@@ -1,0 +1,35 @@
+{
+  "parent": "tofucraft:tofucraft/make_tofu",
+  "display": {
+    "icon": {
+      "item": "tofucraft:seeds_soybeans_nether"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.nether_soybeans.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.nether_soybeans.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "soybeans": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tofucraft:seeds_soybeans_nether"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "soybeans"
+    ]
+  ]
+}

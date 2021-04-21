@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " E ",
+    "ESE",
+    " E "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "E": {
+      "item": "tofucraft:edamame_boild"
+    }
+  },
+  "result": {
+    "item": "tofucraft:zunda",
+    "count": 2
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "tofucraft:tofucraft/nether_soybeans",
+  "display": {
+    "icon": {
+      "item": "tofucraft:seeds_soybeans_soul"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.very_strange_soybeans.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.very_strange_soybeans.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "soybeans": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tofucraft:seeds_soybeans_soul"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "soybeans"
+    ]
+  ]
+}

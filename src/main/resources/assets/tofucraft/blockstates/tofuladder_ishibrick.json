@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": [
+      {
+        "model": "tofucraft:block/tofuladder_ishibrick"
+      }
+    ],
+    "facing=east": [
+      {
+        "model": "tofucraft:block/tofuladder_ishibrick",
+        "y": 90
+      }
+    ],
+    "facing=west": [
+      {
+        "model": "tofucraft:block/tofuladder_ishibrick",
+        "y": 270
+      }
+    ],
+    "facing=south": [
+      {
+        "model": "tofucraft:block/tofuladder_ishibrick",
+        "y": 180
+      }
+    ]
+  }
+}

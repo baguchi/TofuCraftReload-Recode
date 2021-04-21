@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TT",
+    "T#",
+    " #"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/wooden"
+    },
+    "T": {
+      "item": "tofucraft:blocktofumomen"
+    }
+  },
+  "result": {
+    "item": "tofucraft:toolmomenaxe"
+  }
+}

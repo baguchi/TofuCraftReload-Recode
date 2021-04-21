@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "tofucraft:block/momen_tofu_namako_wall"
+    },
+    "facing=west": {
+      "model": "tofucraft:block/momen_tofu_namako_wall",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "tofucraft:block/momen_tofu_namako_wall",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "tofucraft:block/momen_tofu_namako_wall",
+      "y": 270
+    }
+  }
+}

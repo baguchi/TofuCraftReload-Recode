@@ -1,0 +1,35 @@
+{
+  "parent": "tofucraft:tofucraft/make_tofu",
+  "display": {
+    "icon": {
+      "item": "tofucraft:tofustick"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.tofustick.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.tofustick.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tofustick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tofucraft:tofustick"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tofustick"
+    ]
+  ]
+}

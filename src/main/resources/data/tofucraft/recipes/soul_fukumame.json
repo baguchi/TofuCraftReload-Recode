@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:bowl"
+    },
+    "S": {
+      "item": "tofucraft:seeds_soybeans_soul"
+    }
+  },
+  "result": {
+    "item": "tofucraft:soul_fukumame"
+  }
+}

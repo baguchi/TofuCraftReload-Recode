@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "TTT",
+    " T "
+  ],
+  "key": {
+    "T": {
+      "item": "tofucraft:tofumetal"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofumetal_shield"
+  }
+}

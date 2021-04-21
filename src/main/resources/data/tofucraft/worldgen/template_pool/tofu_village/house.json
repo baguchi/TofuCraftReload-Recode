@@ -1,0 +1,51 @@
+{
+  "name": "tofucraft:tofu_village/house",
+  "fallback": "tofucraft:tofu_village/terminators",
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "location": "tofucraft:tofu_village/house/tofu_smith",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "tofucraft:tofu_village/house/soyworker_house",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "tofucraft:tofu_village/house/tofunian_towerhouse",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "tofucraft:tofu_village/house/hut_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "tofucraft:tofu_village/house/small_farm_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+    "multipart": [
+      {
+        "apply": {
+          "model": "tofucraft:block/saltpan_dish"
+        }
+      },
+        {   "when": { "north": "false" },
+          "apply": {
+            "model": "tofucraft:block/saltpan_edge",
+            "uvlock": true
+          }
+        },
+        {   "when": { "east": "false" },
+          "apply": {
+            "model": "tofucraft:block/saltpan_edge",
+            "y": 90,
+            "uvlock": true
+          }
+        },
+        {   "when": { "south": "false" },
+          "apply": {
+            "model": "tofucraft:block/saltpan_edge",
+            "y": 180,
+            "uvlock": true
+          }
+        },
+        {   "when": { "west": "false" },
+          "apply": {
+            "model": "tofucraft:block/saltpan_edge",
+            "y": 270,
+            "uvlock": true
+          }
+        },
+      {
+        "when": {
+          "stat": "water"
+        },
+        "apply": {
+          "model": "tofucraft:block/saltpan_contentwater"
+        }
+      },
+      {
+        "when": {
+          "stat": "salt"
+        },
+        "apply": {
+          "model": "tofucraft:block/saltpan_contentsalt"
+        }
+      },
+      {
+        "when": {
+          "stat": "bittern"
+        },
+        "apply": {
+          "model": "tofucraft:block/saltpan_contentbittern"
+        }
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TT",
+    "TT",
+    "TT"
+  ],
+  "key": {
+    "T": {
+      "item": "tofucraft:tofumomen"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofudoor_momen",
+    "count": 1
+  }
+}

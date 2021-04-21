@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tofucraft:raw_tofufish"
+  },
+  "result": "tofucraft:cooked_tofufish",
+  "experience": 0.2,
+  "cookingtime": 200
+}

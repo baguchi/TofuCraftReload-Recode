@@ -1,0 +1,253 @@
+{
+  "credit": "Made with Blockbench",
+  "parent": "bagu",
+  "texture_size": [
+    32,
+    32
+  ],
+  "textures": {
+    "0": "tofucraft:items/tofugauntlet",
+    "particle": "tofucraft:items/tofugauntlet"
+  },
+  "elements": [
+    {
+      "name": "gauntlet",
+      "from": [
+        5,
+        0,
+        0
+      ],
+      "to": [
+        11,
+        6,
+        10
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          3,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            3,
+            10.5,
+            6,
+            13.5
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            3,
+            5,
+            6
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            10.5,
+            3,
+            13.5
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            3,
+            5,
+            6
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            3,
+            0,
+            6,
+            5
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            3,
+            0,
+            6,
+            5
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "core",
+      "from": [
+        6,
+        4,
+        2
+      ],
+      "to": [
+        10,
+        8,
+        6
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          3,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            6,
+            10.5,
+            8,
+            12.5
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            6,
+            10.5,
+            8,
+            12.5
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            6,
+            10.5,
+            8,
+            12.5
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            6,
+            10.5,
+            8,
+            12.5
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            6,
+            10.5,
+            8,
+            12.5
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            6,
+            10.5,
+            8,
+            12.5
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [
+        0,
+        2.75,
+        3
+      ]
+    },
+    "thirdperson_lefthand": {
+      "translation": [
+        0,
+        3,
+        0
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        42,
+        6,
+        0
+      ],
+      "translation": [
+        0,
+        2,
+        0
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        42,
+        15,
+        0
+      ],
+      "translation": [
+        0,
+        1.5,
+        0
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        1.75,
+        0
+      ],
+      "scale": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    "gui": {
+      "rotation": [
+        20,
+        147,
+        0
+      ],
+      "translation": [
+        0,
+        1.5,
+        0
+      ]
+    },
+    "head": {
+      "translation": [
+        0,
+        14,
+        0
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        -90,
+        -180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        -5
+      ]
+    }
+  }
+}

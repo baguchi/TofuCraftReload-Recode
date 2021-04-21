@@ -1,0 +1,15 @@
+{
+  "config": {
+    "feature": {
+      "config": {},
+      "type": "tofucraft:zunda_mushroom_small"
+    },
+    "decorator": {
+      "config": {
+        "count": 2
+      },
+      "type": "minecraft:count_multilayer"
+    }
+  },
+  "type": "minecraft:decorated"
+}

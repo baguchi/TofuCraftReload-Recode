@@ -1,0 +1,7 @@
+{
+  "parent": "tofucraft:block/chikuwa_template",
+  "textures": {
+    "cube0": "tofucraft:block/chikuwa_side_tofu",
+    "cube1": "tofucraft:block/chikuwa_inner"
+  }
+}

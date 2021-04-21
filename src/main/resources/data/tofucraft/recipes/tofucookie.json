@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:crops/wheat"
+    },
+    "X": {
+      "item": "tofucraft:tofumomen"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofucookie",
+    "count": 8
+  }
+}

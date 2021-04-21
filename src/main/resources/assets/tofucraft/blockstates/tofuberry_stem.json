@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "grow=false": {
+      "model": "tofucraft:block/tofuberry_stem"
+    },
+    "grow=true": {
+      "model": "tofucraft:block/tofuberry_stem_grow"
+    }
+  }
+}

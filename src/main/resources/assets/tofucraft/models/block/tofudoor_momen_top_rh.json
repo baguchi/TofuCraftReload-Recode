@@ -1,0 +1,7 @@
+{
+  "parent": "block/door_top_rh",
+  "textures": {
+    "bottom": "tofucraft:block/tofudoor_momen_lower",
+    "top": "tofucraft:block/tofudoor_momen_upper"
+  }
+}

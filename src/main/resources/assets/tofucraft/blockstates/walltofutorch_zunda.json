@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tofucraft:block/walltofutorch_zunda"
+    },
+    "facing=south": {
+      "model": "tofucraft:block/walltofutorch_zunda",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "tofucraft:block/walltofutorch_zunda",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "tofucraft:block/walltofutorch_zunda",
+      "y": 270
+    }
+  }
+}

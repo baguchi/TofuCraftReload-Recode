@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "tofucraft:block/sprouts_0"
+    },
+    "age=1": {
+      "model": "tofucraft:block/sprouts_1"
+    },
+    "age=2": {
+      "model": "tofucraft:block/sprouts_2"
+    },
+    "age=3": {
+      "model": "tofucraft:block/sprouts_3"
+    }
+  }
+}

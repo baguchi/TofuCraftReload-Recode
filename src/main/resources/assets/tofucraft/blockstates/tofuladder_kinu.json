@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": [
+      {
+        "model": "tofucraft:block/tofuladder_kinu"
+      }
+    ],
+    "facing=east": [
+      {
+        "model": "tofucraft:block/tofuladder_kinu",
+        "y": 90
+      }
+    ],
+    "facing=west": [
+      {
+        "model": "tofucraft:block/tofuladder_kinu",
+        "y": 270
+      }
+    ],
+    "facing=south": [
+      {
+        "model": "tofucraft:block/tofuladder_kinu",
+        "y": 180
+      }
+    ]
+  }
+}

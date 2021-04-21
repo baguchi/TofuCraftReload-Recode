@@ -1,0 +1,115 @@
+{
+  "music.soft": {
+    "sounds":[
+      {
+        "name": "tofucraft:music/soft",
+        "stream": true
+      }
+    ]
+  },
+  "music.milky_earth": {
+    "sounds":[
+      {
+        "name": "tofucraft:music/milky_earth",
+        "stream": true
+      }
+    ]
+  },
+  "music.rough_ground": {
+    "sounds":[
+      {
+        "name": "tofucraft:music/rough_ground",
+        "stream": true
+      }
+    ]
+  },
+  "music.tofu_road": {
+    "sounds":[
+      {
+        "name": "tofucraft:music/tofu_road",
+        "stream": true
+      }
+    ]
+  },
+  "music.green_branch": {
+    "sounds":[
+      {
+        "name": "tofucraft:music/green_branch",
+        "stream": true
+      }
+    ]
+  },
+  "music.tofu_dungeon": {
+    "sounds": [
+      "tofucraft:music/tofu_dungeon"
+    ],
+    "stream": true
+  },
+  "tofubugle": {
+    "sounds": [
+      {
+        "name": "tofucraft:tofubugle1",
+        "stream": false
+      },
+      {
+        "name": "tofucraft:tofubugle2",
+        "stream": false
+      }
+    ]
+  },
+  "mob.tofunian.yes": {
+    "sounds": [
+      "tofucraft:mob/tofunian/tofunian_yes"
+    ],
+    "subtitle": "subtitles.entity.tofunian.yes"
+  },
+  "mob.tofunian.ambient": {
+    "sounds": [
+      "tofucraft:mob/tofunian/tofunian_ambient"
+    ],
+    "subtitle": "subtitles.entity.tofunian.idle"
+  },
+  "mob.tofunian.no": {
+    "sounds": [
+      "tofucraft:mob/tofunian/tofunian_no"
+    ],
+    "subtitle": "subtitles.entity.tofunian.no"
+  },
+  "mob.tofunian.death": {
+    "sounds": [
+      "tofucraft:mob/tofunian/tofunian_death"
+    ],
+    "subtitle": "subtitles.entity.tofunian.death"
+  },
+  "mob.zombie_tofunian.idle": {
+    "sounds": [
+      "tofucraft:mob/zombie_tofunian/zombie_tofunian_idle"
+    ],
+    "subtitle": "subtitles.entity.zombie_tofunian.idle"
+  },
+  "mob.zombie_tofunian.hurt": {
+    "sounds": [
+      "tofucraft:mob/zombie_tofunian/zombie_tofunian_hurt"
+    ],
+    "subtitle": "subtitles.entity.zombie_tofunian.hurt"
+  },
+  "mob.zombie_tofunian.death": {
+    "sounds": [
+      "tofucraft:mob/zombie_tofunian/zombie_tofunian_death"
+    ],
+    "subtitle": "subtitles.entity.zombie_tofunian.death"
+  },
+  "block.soybean_soul.soul_breath": {
+    "sounds": [
+      "tofucraft:block/soul_breath"
+    ],
+    "subtitle": "subtitles.block.soybean_soul.soul_breath"
+  },
+  "item.soybean.crack": {
+    "sounds": [
+      "tofucraft:item/soybean/soybean_cracking",
+      "tofucraft:item/soybean/soybean_cracking2"
+    ],
+    "subtitle": "subtitles.block.soybean.soybean_crack"
+  }
+}

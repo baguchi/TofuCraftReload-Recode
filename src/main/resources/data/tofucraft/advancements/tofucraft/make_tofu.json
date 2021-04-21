@@ -1,0 +1,35 @@
+{
+  "parent": "tofucraft:tofucraft/bittern_bottle",
+  "display": {
+    "icon": {
+      "item": "tofucraft:blocktofukinu"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.make_tofu.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.make_tofu.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tofukinu": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tofucraft:tofukinu"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tofukinu"
+    ]
+  ]
+}

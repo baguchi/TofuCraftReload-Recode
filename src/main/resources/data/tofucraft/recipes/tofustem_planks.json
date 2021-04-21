@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:tofustem"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:tofustem_planks",
+    "count": 4
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "tofucraft:block/salt_cauldron_fluid_3",
+  "textures": {
+    "texture": "tofucraft:block/nigari"
+  }
+}

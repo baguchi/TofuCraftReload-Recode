@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "tofucraft:items/crying_tofu_diamond_pickaxe"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:tofuslab_ishibrick"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofuishi_chiseled_brick"
+  }
+}

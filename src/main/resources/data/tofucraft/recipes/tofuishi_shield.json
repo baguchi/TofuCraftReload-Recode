@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#T#",
+    "###",
+    " # "
+  ],
+  "key": {
+    "T": {
+      "item": "tofucraft:tofumetal"
+    },
+    "#": {
+      "item": "tofucraft:tofuishi"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofuishi_shield"
+  }
+}

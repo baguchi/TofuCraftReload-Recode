@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "tofucraft:block/ricecrop_0"
+    },
+    "age=1": {
+      "model": "tofucraft:block/ricecrop_1"
+    },
+    "age=2": {
+      "model": "tofucraft:block/ricecrop_1"
+    },
+    "age=3": {
+      "model": "tofucraft:block/ricecrop_2"
+    },
+    "age=4": {
+      "model": "tofucraft:block/ricecrop_2"
+    },
+    "age=5": {
+      "model": "tofucraft:block/ricecrop_3"
+    },
+    "age=6": {
+      "model": "tofucraft:block/ricecrop_3"
+    },
+    "age=7": {
+      "model": "tofucraft:block/ricecrop_4"
+    },
+    "inventory": {
+      "model": "tofucraft:block/ricecrop_4"
+    }
+  }
+}

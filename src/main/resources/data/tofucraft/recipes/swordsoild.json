@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "T",
+    "T",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/wooden"
+    },
+    "T": {
+      "item": "tofucraft:blocktofuishi"
+    }
+  },
+  "result": {
+    "item": "tofucraft:swordsolid"
+  }
+}

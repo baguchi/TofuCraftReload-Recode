@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " Z ",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:wheat"
+    },
+    "Z": {
+      "item": "tofucraft:zunda"
+    }
+  },
+  "result": {
+    "item": "tofucraft:zundamanju",
+    "count": 3
+  }
+}

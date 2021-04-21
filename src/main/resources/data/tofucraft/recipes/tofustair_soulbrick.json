@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:tofusoul_brick"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofustair_soulbrick",
+    "count": 4
+  }
+}

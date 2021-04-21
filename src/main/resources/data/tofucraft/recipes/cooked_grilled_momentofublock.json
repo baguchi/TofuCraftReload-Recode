@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tofucraft:blocktofumomen"
+  },
+  "result": "tofucraft:blocktofugrilled",
+  "experience": 0.15,
+  "cookingtime": 200
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "tofucraft:tofucraft/roots",
+  "display": {
+    "icon": {
+      "item": "tofucraft:blocksaltpan"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.make_saltpan.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.make_saltpan.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "saltpan": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tofucraft:blocksaltpan"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "saltpan"
+    ]
+  ]
+}

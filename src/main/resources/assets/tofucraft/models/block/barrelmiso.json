@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "tofucraft:block/barrel/barrel_bottom",
+    "up": "tofucraft:block/barrel/barrel_top",
+    "down": "tofucraft:block/barrel/barrel_bottom",
+    "west": "tofucraft:block/barrel/barrelmiso_side",
+    "north": "tofucraft:block/barrel/barrelmiso_side",
+    "east": "tofucraft:block/barrel/barrelmiso_side",
+    "south": "tofucraft:block/barrel/barrelmiso_side"
+  }
+}

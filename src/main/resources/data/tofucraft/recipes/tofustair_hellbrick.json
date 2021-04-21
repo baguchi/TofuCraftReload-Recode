@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:tofuhell_brick"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofustair_hellbrick",
+    "count": 4
+  }
+}

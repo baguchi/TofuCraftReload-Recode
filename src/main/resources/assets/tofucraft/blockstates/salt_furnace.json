@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "tofucraft:block/salt_furnace"
+    },
+    "lit=true": {
+      "model": "tofucraft:block/salt_furnace_lit"
+    }
+  }
+}

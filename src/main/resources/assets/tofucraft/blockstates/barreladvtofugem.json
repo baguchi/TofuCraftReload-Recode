@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "ferm=0": {
+      "model": "tofucraft:block/barreladvtofugem"
+    },
+    "ferm=1": {
+      "model": "tofucraft:block/barreladvtofugem"
+    },
+    "ferm=2": {
+      "model": "tofucraft:block/barreladvtofugem"
+    },
+    "ferm=3": {
+      "model": "tofucraft:block/barreladvtofugem"
+    },
+    "ferm=4": {
+      "model": "tofucraft:block/barreladvtofugem"
+    },
+    "ferm=5": {
+      "model": "tofucraft:block/barreladvtofugem"
+    },
+    "ferm=6": {
+      "model": "tofucraft:block/barreladvtofugem"
+    },
+    "ferm=7": {
+      "model": "tofucraft:block/barreladvtofugem_fin"
+    },
+    "ferm=8": {
+      "model": "tofucraft:block/barreladvtofugem_fin"
+    }
+  }
+}

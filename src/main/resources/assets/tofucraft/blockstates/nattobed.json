@@ -1,0 +1,52 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "particle": "tofucraft:block/nattobed_top",
+      "up": "tofucraft:block/nattobed_top",
+      "down": "tofucraft:block/nattobed_top",
+      "west": "tofucraft:block/nattobed_side",
+      "north": "tofucraft:block/nattobed_side",
+      "east": "tofucraft:block/nattobed_side",
+      "south": "tofucraft:block/nattobed_side"
+    }
+  },
+  "variants": {
+    "ferm=0": {
+      "model": "cube_all"
+    },
+    "ferm=1": {
+      "model": "cube_all"
+    },
+    "ferm=2": {
+      "model": "cube_all"
+    },
+    "ferm=3": {
+      "model": "cube_all"
+    },
+    "ferm=4": {
+      "model": "cube_all"
+    },
+    "ferm=5": {
+      "model": "cube_all"
+    },
+    "ferm=6": {
+      "model": "cube_all"
+    },
+    "ferm=7": {
+      "model": "cube_all",
+      "textures": {
+        "particle": "tofucraft:block/nattobed_top_fin",
+        "up": "tofucraft:block/nattobed_top_fin",
+        "down": "tofucraft:block/nattobed_top_fin",
+        "west": "tofucraft:block/nattobed_side_fin",
+        "north": "tofucraft:block/nattobed_side_fin",
+        "east": "tofucraft:block/nattobed_side_fin",
+        "south": "tofucraft:block/nattobed_side_fin"
+      }
+    },
+    "inventory": {
+      "model": "cube_all"
+    }
+  }
+}

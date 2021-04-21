@@ -1,0 +1,7 @@
+{
+  "parent": "tofucraft:block/saltpan_inventorymodel",
+    "textures": {
+      "edgetexture": "block/oak_planks",
+      "dishtexture": "block/cobblestone"
+    }
+}

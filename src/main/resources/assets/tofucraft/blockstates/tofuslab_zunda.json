@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tofucraft:block/tofuslab_zunda"
+    },
+    "type=top": {
+      "model": "tofucraft:block/tofuslab_ishi_zunda"
+    },
+    "type=double": {
+      "model": "tofucraft:block/blocktofuzunda"
+    }
+  }
+}

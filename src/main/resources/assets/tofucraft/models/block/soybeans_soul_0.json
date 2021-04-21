@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "tofucraft:block/soybean_soul_0"
+  }
+}

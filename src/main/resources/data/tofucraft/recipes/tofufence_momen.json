@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "tofucraft:blocktofumomen"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofufence_momen",
+    "count": 6
+  }
+}

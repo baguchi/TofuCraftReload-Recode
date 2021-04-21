@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tofucraft:seeds_soybeans"
+  },
+  "result": "tofucraft:soybeans_parched",
+  "experience": 0.05,
+  "cookingtime": 200
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "stat=empty": [
+      {
+        "model": "tofucraft:block/wheat_bowl"
+      }
+    ],
+    "stat=koujibase": [
+      {
+        "model": "tofucraft:block/wheat_bowl_koujibase"
+      }
+    ],
+    "stat=kouji": [
+      {
+        "model": "tofucraft:block/wheat_bowl_kouji"
+      }
+    ]
+  }
+}

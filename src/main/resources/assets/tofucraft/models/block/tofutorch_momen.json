@@ -1,0 +1,6 @@
+{
+  "parent": "block/template_torch",
+  "textures": {
+    "torch": "tofucraft:block/tofutorch_momen"
+  }
+}

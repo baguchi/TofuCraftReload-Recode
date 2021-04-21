@@ -1,0 +1,6 @@
+{
+  "parent": "block/leaves",
+  "textures": {
+    "all": "tofucraft:block/leaves_apricot"
+  }
+}

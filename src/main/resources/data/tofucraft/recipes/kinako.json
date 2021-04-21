@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:soybeans_parched"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:kinako"
+  }
+}

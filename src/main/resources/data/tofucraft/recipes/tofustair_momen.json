@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " ##",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:blocktofumomen"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofustair_momen",
+    "count": 4
+  }
+}

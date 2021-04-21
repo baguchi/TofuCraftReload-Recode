@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "tofucraft:block/leek_green_stem_top",
+    "up": "tofucraft:block/leek_green_stem_top",
+    "down": "tofucraft:block/leek_green_stem_top",
+    "west": "tofucraft:block/leek_green_stem",
+    "north": "tofucraft:block/leek_green_stem",
+    "east": "tofucraft:block/leek_green_stem",
+    "south": "tofucraft:block/leek_green_stem"
+  }
+}

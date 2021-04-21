@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tofucraft:edamame"
+  },
+  "result": "tofucraft:edamame_boild",
+  "experience": 0.05,
+  "cookingtime": 200
+}

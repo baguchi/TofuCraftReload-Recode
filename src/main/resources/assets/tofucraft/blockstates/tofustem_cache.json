@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,zundama=false": {
+      "model": "tofucraft:block/tofustem_cache"
+    },
+    "facing=south,zundama=false": {
+      "model": "tofucraft:block/tofustem_cache",
+      "y": 180
+    },
+    "facing=west,zundama=false": {
+      "model": "tofucraft:block/tofustem_cache",
+      "y": 270
+    },
+    "facing=east,zundama=false": {
+      "model": "tofucraft:block/tofustem_cache",
+      "y": 90
+    },
+    "facing=north,zundama=true": {
+      "model": "tofucraft:block/tofustem_zundama_cache"
+    },
+    "facing=south,zundama=true": {
+      "model": "tofucraft:block/tofustem_zundama_cache",
+      "y": 180
+    },
+    "facing=west,zundama=true": {
+      "model": "tofucraft:block/tofustem_zundama_cache",
+      "y": 270
+    },
+    "facing=east,zundama=true": {
+      "model": "tofucraft:block/tofustem_zundama_cache",
+      "y": 90
+    }
+  }
+}

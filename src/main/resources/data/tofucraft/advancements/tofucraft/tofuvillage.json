@@ -1,0 +1,33 @@
+{
+  "parent": "tofucraft:tofucraft/tofuworld",
+  "display": {
+    "icon": {
+      "item": "tofucraft:tofudoor_momen"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.tofuvillage.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.tofuvillage.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tofuvillage": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "tofucraft:tofu_village"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tofuvillage"
+    ]
+  ]
+}

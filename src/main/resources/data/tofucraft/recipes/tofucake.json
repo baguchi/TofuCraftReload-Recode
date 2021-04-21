@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "SES",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "tag": "forge:crops/wheat"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "E": {
+      "tag": "forge:eggs"
+    },
+    "T": {
+      "item": "tofucraft:tofukinu"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofucake"
+  }
+}

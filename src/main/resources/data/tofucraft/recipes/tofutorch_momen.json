@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "#",
+    "#"
+  ],
+  "key": {
+    "C": [
+      {
+        "item": "minecraft:coal"
+      },
+      {
+        "item": "minecraft:charcoal"
+      }
+    ],
+    "#": {
+      "item": "tofucraft:tofumomen",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofutorch_momen",
+    "count": 4
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tofucraft:block/tofuslab_metal"
+    },
+    "type=top": {
+      "model": "tofucraft:block/tofuslab_metal_top"
+    },
+    "type=double": {
+      "model": "tofucraft:block/blocktofumetal"
+    }
+  }
+}

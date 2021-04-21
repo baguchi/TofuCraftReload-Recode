@@ -1,0 +1,35 @@
+{
+  "parent": "tofucraft:tofucraft/tofuvillage",
+  "display": {
+    "icon": {
+      "item": "tofucraft:tofuhoe"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.tofufarmers_tool.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.tofufarmers_tool.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tofuhoe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tofucraft:tofuhoe"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tofuhoe"
+    ]
+  ]
+}

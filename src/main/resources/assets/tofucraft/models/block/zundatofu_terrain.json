@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "tofucraft:block/tofu_terrain",
+    "down": "tofucraft:block/tofu_terrain",
+    "up": "tofucraft:block/blocktofuzunda",
+    "north": "tofucraft:block/zundatofu_terrain_side",
+    "east": "tofucraft:block/zundatofu_terrain_side",
+    "south": "tofucraft:block/zundatofu_terrain_side",
+    "west": "tofucraft:block/zundatofu_terrain_side"
+  }
+}

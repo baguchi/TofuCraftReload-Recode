@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "tofucraft:block/tofustem_moss"
+    },
+    "axis=z": {
+      "model": "tofucraft:block/tofustem_moss",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "tofucraft:block/tofustem_moss",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "minecraft:block/cauldron"
+      }
+    },
+    {
+      "when": {
+        "stat": "salt",
+        "level": 1
+      },
+      "apply": {
+        "model": "tofucraft:block/salt_cauldron_salt_1"
+      }
+    },
+    {
+      "when": {
+        "stat": "salt",
+        "level": 2
+      },
+      "apply": {
+        "model": "tofucraft:block/salt_cauldron_salt_2"
+      }
+    },
+    {
+      "when": {
+        "stat": "salt",
+        "level": 3
+      },
+      "apply": {
+        "model": "tofucraft:block/salt_cauldron_salt_3"
+      }
+    },
+    {
+      "when": {
+        "stat": "bittern",
+        "level": 1
+      },
+      "apply": {
+        "model": "tofucraft:block/salt_cauldron_bittern_1"
+      }
+    },
+    {
+      "when": {
+        "stat": "bittern",
+        "level": 2
+      },
+      "apply": {
+        "model": "tofucraft:block/salt_cauldron_bittern_2"
+      }
+    },
+    {
+      "when": {
+        "stat": "bittern",
+        "level": 3
+      },
+      "apply": {
+        "model": "tofucraft:block/salt_cauldron_bittern_3"
+      }
+    }
+  ]
+}

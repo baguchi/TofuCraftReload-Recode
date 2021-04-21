@@ -1,0 +1,34 @@
+{
+   "variants" : {
+      "ferm=0" : {
+         "model": "tofucraft:block/barrelmiso"
+      },
+      "ferm=1" : {
+         "model": "tofucraft:block/barrelmiso"
+      },
+      "ferm=2" : {
+         "model": "tofucraft:block/barrelmiso"
+      },
+      "ferm=3" : {
+         "model": "tofucraft:block/barrelmiso"
+      },
+      "ferm=4" : {
+         "model": "tofucraft:block/barrelmiso"
+      },
+      "ferm=5" : {
+         "model": "tofucraft:block/barrelmiso"
+      },
+      "ferm=6" : {
+         "model": "tofucraft:block/barrelmiso"
+      },
+      "ferm=7" : {
+         "model": "tofucraft:block/barrelmiso_fin"
+      },
+      "ferm=8" : {
+         "model": "tofucraft:block/barrelmiso_fin"
+      },
+      "inventory" : {
+         "model": "tofucraft:block/barrelmiso"
+      }
+   }
+}

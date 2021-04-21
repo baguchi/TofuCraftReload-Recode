@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tofucraft:block/tofuslab_kinu"
+    },
+    "type=top": {
+      "model": "tofucraft:block/tofuslab_kinu_top"
+    },
+    "type=double": {
+      "model": "tofucraft:block/blocktofukinu"
+    }
+  }
+}

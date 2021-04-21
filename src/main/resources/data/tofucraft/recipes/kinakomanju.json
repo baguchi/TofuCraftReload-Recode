@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " K ",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:wheat"
+    },
+    "K": {
+      "item": "tofucraft:kinako"
+    }
+  },
+  "result": {
+    "item": "tofucraft:kinakomanju",
+    "count": 3
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "tofucraft:block/tofu_namako_wall",
+  "textures": {
+    "cross": "tofucraft:block/blocktofumomen"
+  }
+}
