@@ -5,8 +5,6 @@ import baguchan.tofucraft.entity.TofuSpiderEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,7 +15,7 @@ public class TofuSpiderRender extends MobRenderer<TofuSpiderEntity, TofuSpiderMo
 	private static final ResourceLocation TEXTURE = new ResourceLocation("tofucraft:textures/entity/tofuspider/tofuspider.png");
 
 	public TofuSpiderRender(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, (EntityModel) new TofuSpiderModel(), 0.8F);
+		super(renderManagerIn, new TofuSpiderModel(), 0.8F);
 	}
 
 	protected void scale(TofuSpiderEntity p_225620_1_, MatrixStack p_225620_2_, float p_225620_3_) {

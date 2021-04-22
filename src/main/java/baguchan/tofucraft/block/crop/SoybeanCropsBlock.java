@@ -2,7 +2,6 @@ package baguchan.tofucraft.block.crop;
 
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
@@ -21,11 +20,11 @@ public class SoybeanCropsBlock extends CropsBlock {
 	}
 
 	protected boolean func_200014_a_(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		return (super.func_200014_a_(state, worldIn, pos) || state.func_203425_a(TofuBlocks.TOFU_FARMLAND));
+		return (super.func_200014_a_(state, worldIn, pos) || state.is(TofuBlocks.TOFU_FARMLAND));
 	}
 
 	protected IItemProvider getSeedsItem() {
-		return (IItemProvider) TofuItems.SEEDS_SOYBEANS;
+		return TofuItems.SEEDS_SOYBEANS;
 	}
 
 	public VoxelShape func_220053_a(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

@@ -13,7 +13,6 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -38,7 +37,7 @@ public class FukumameEntity extends ThrowableEntity {
 		super(p_i50154_1_, x, y, z, worldIn);
 	}
 
-	protected void func_70088_a() {
+	protected void defineSynchedData() {
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -46,7 +45,7 @@ public class FukumameEntity extends ThrowableEntity {
 		if (id == 3) {
 			double d0 = 0.08D;
 			for (int i = 0; i < 6; i++)
-				this.level.func_195594_a((IParticleData) new ItemParticleData(ParticleTypes.field_197591_B, new ItemStack((IItemProvider) TofuItems.SEEDS_SOYBEANS)), func_226277_ct_(), func_226278_cu_(), func_226281_cx_(), (this.field_70146_Z.nextFloat() - 0.5D) * 0.08D, (this.field_70146_Z.nextFloat() - 0.5D) * 0.08D, (this.field_70146_Z.nextFloat() - 0.5D) * 0.08D);
+				this.level.func_195594_a((IParticleData) new ItemParticleData(ParticleTypes.field_197591_B, new ItemStack(TofuItems.SEEDS_SOYBEANS)), getX(), getY(), getZ(), (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D);
 		}
 	}
 
@@ -58,14 +57,14 @@ public class FukumameEntity extends ThrowableEntity {
 
 	protected void func_70227_a(RayTraceResult result) {
 		super.func_70227_a(result);
-		playSound(TofuSounds.SOYBEAN_CRACK, 0.8F, 0.8F + this.level.field_73012_v.nextFloat() * 0.4F);
-		if (!this.level.field_72995_K) {
-			this.level.func_72960_a((Entity) this, (byte) 3);
+		playSound(TofuSounds.SOYBEAN_CRACK, 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F);
+		if (!this.level.isClientSide) {
+			this.level.broadcastEntityEvent((Entity) this, (byte) 3);
 			func_70106_y();
 		}
 	}
 
 	public IPacket<?> func_213297_N() {
-		return NetworkHooks.getEntitySpawningPacket((Entity) this);
+		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

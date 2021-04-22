@@ -1,14 +1,6 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.entity.ai.CropHarvestGoal;
-import baguchan.tofucraft.entity.ai.DoSleepingGoal;
-import baguchan.tofucraft.entity.ai.FindJobBlockGoal;
-import baguchan.tofucraft.entity.ai.MakeFoodGoal;
-import baguchan.tofucraft.entity.ai.RestockGoal;
-import baguchan.tofucraft.entity.ai.ShareItemGoal;
-import baguchan.tofucraft.entity.ai.SleepOnBedGoal;
-import baguchan.tofucraft.entity.ai.TofunianLoveGoal;
-import baguchan.tofucraft.entity.ai.WakeUpGoal;
+import baguchan.tofucraft.entity.ai.*;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuTrades;
@@ -17,29 +9,10 @@ import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.DynamicOps;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
-
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.LookAtCustomerGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookAtWithoutMovingGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TradeWithPlayerGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.IReputationTracking;
@@ -56,24 +29,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.NBTDynamicOps;
-import net.minecraft.nbt.NBTUtil;
+import net.minecraft.nbt.*;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.village.GossipManager;
@@ -85,12 +51,18 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.common.util.ITeleporter;
 
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class TofunianEntity extends AbstractTofunianEntity implements IReputationTracking {
-	private static final DataParameter<String> ROLE = EntityDataManager.func_187226_a(TofunianEntity.class, DataSerializers.field_187194_d);
+	private static final DataParameter<String> ROLE = EntityDataManager.defineId(TofunianEntity.class, DataSerializers.STRING);
 
-	public static final Map<Item, Integer> FOOD_POINTS = (Map<Item, Integer>) ImmutableMap.of(TofuItems.SOYMILK, Integer.valueOf(5), TofuItems.TOFUCOOKIE, Integer.valueOf(3), TofuItems.TOFUGRILLED, Integer.valueOf(2));
+	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK, Integer.valueOf(5), TofuItems.TOFUCOOKIE, Integer.valueOf(3), TofuItems.TOFUGRILLED, Integer.valueOf(2));
 
-	private static final Set<Item> WANTED_ITEMS = (Set<Item>) ImmutableSet.of(TofuItems.SOYMILK, TofuItems.TOFUCOOKIE, TofuItems.TOFUGRILLED, TofuItems.SEEDS_SOYBEANS);
+	private static final Set<Item> WANTED_ITEMS = ImmutableSet.of(TofuItems.SOYMILK, TofuItems.TOFUCOOKIE, TofuItems.TOFUGRILLED, TofuItems.SEEDS_SOYBEANS);
 
 	private byte foodLevel;
 
@@ -122,49 +94,55 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 	private int tofunianLevel = 1;
 
 	public TofunianEntity(EntityType<? extends TofunianEntity> type, World worldIn) {
-		super((EntityType) type, worldIn);
-		((GroundPathNavigator) func_70661_as()).func_179688_b(true);
-		func_98053_h(true);
+		super(type, worldIn);
+		((GroundPathNavigator) getNavigation()).setCanOpenDoors(true);
+		setCanPickUpLoot(true);
 	}
 
-	protected void func_184651_r() {
-		super.func_184651_r();
-		this.field_70714_bg.func_75776_a(0, (Goal) new WakeUpGoal((CreatureEntity) this));
-		this.field_70714_bg.func_75776_a(0, (Goal) new DoSleepingGoal((CreatureEntity) this));
-		this.field_70714_bg.func_75776_a(0, (Goal) new SwimGoal((MobEntity) this));
-		this.field_70714_bg.func_75776_a(1, (Goal) new TradeWithPlayerGoal(this));
-		this.field_70714_bg.func_75776_a(1, (Goal) new AvoidEntityGoal((CreatureEntity) this, ZombieEntity.class, 8.0F, 1.2D, 1.2D));
-		this.field_70714_bg.func_75776_a(1, (Goal) new AvoidEntityGoal((CreatureEntity) this, AbstractIllagerEntity.class, 12.0F, 1.2D, 1.2D));
-		this.field_70714_bg.func_75776_a(1, (Goal) new AvoidEntityGoal((CreatureEntity) this, RavagerEntity.class, 12.0F, 1.2D, 1.2D));
-		this.field_70714_bg.func_75776_a(1, (Goal) new AvoidEntityGoal((CreatureEntity) this, ZoglinEntity.class, 10.0F, 1.2D, 1.2D));
-		this.field_70714_bg.func_75776_a(1, (Goal) new LookAtCustomerGoal(this));
-		this.field_70714_bg.func_75776_a(2, (Goal) new SleepOnBedGoal(this, 1.0D, 8));
-		this.field_70714_bg.func_75776_a(3, (Goal) new TofunianLoveGoal(this, 1.0D));
-		this.field_70714_bg.func_75776_a(4, (Goal) new FindJobBlockGoal(this, 1.0D, 8));
-		this.field_70714_bg.func_75776_a(4, (Goal) new RestockGoal(this, 1.149999976158142D, 6));
-		this.field_70714_bg.func_75776_a(4, (Goal) new MakeFoodGoal(this, 1.100000023841858D, 6));
-		this.field_70714_bg.func_75776_a(4, (Goal) new CropHarvestGoal(this, 1.0D));
-		this.field_70714_bg.func_75776_a(5, (Goal) new ShareItemGoal(this, 1.0D));
-		this.field_70714_bg.func_75776_a(8, (Goal) new WaterAvoidingRandomWalkingGoal((CreatureEntity) this, 1.0D));
-		this.field_70714_bg.func_75776_a(9, (Goal) new LookAtWithoutMovingGoal((MobEntity) this, PlayerEntity.class, 3.0F, 1.0F));
-		this.field_70714_bg.func_75776_a(10, (Goal) new LookAtGoal((MobEntity) this, MobEntity.class, 8.0F));
+	protected void registerGoals() {
+		super.registerGoals();
+		this.goalSelector.addGoal(0, new WakeUpGoal(this));
+		this.goalSelector.addGoal(0, new DoSleepingGoal(this));
+		this.goalSelector.addGoal(0, new SwimGoal(this));
+		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal(this, ZombieEntity.class, 8.0F, 1.2D, 1.2D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal(this, AbstractIllagerEntity.class, 12.0F, 1.2D, 1.2D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal(this, RavagerEntity.class, 12.0F, 1.2D, 1.2D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal(this, ZoglinEntity.class, 10.0F, 1.2D, 1.2D));
+		this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
+		this.goalSelector.addGoal(2, new SleepOnBedGoal(this, 1.0D, 8));
+		this.goalSelector.addGoal(3, new TofunianLoveGoal(this, 1.0D));
+		this.goalSelector.addGoal(4, new FindJobBlockGoal(this, 1.0D, 8));
+		this.goalSelector.addGoal(4, new RestockGoal(this, 1.149999976158142D, 6));
+		this.goalSelector.addGoal(4, new MakeFoodGoal(this, 1.100000023841858D, 6));
+		this.goalSelector.addGoal(4, new CropHarvestGoal(this, 1.0D));
+		this.goalSelector.addGoal(5, new ShareItemGoal(this, 1.0D));
+		this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
+		this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
-		return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233821_d_, 0.23999999463558197D).func_233815_a_(Attributes.field_233819_b_, 20.0D);
+		return MobEntity.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.23999999463558197D).add(Attributes.MAX_HEALTH, 20.0D);
 	}
 
-	protected void func_70088_a() {
-		super.func_70088_a();
-		this.field_70180_af.func_187214_a(ROLE, Roles.TOFUNIAN.name());
+	@Nullable
+	@Override
+	public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+		return TofuEntityTypes.TOFUNIAN.create(p_241840_1_);
+	}
+
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(ROLE, Roles.TOFUNIAN.name());
 	}
 
 	public void setRole(Roles role) {
-		this.field_70180_af.func_187227_b(ROLE, role.name());
+		this.entityData.set(ROLE, role.name());
 	}
 
 	public Roles getRole() {
-		return Roles.get((String) this.field_70180_af.func_187225_a(ROLE));
+		return Roles.get(this.entityData.get(ROLE));
 	}
 
 	public void setTofunainHome(@Nullable BlockPos pos) {
@@ -187,138 +165,140 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 
 	@Nullable
 	public Entity changeDimension(ServerWorld server, ITeleporter teleporter) {
-		setTofunainHome((BlockPos) null);
+		setTofunainHome(null);
 		return super.changeDimension(server, teleporter);
 	}
 
-	protected void func_70619_bc() {
-		if (!func_213716_dX() && this.timeUntilReset > 0) {
+	protected void customServerAiStep() {
+		if (!isTrading() && this.timeUntilReset > 0) {
 			this.timeUntilReset--;
 			if (this.timeUntilReset <= 0) {
 				if (this.leveledUp) {
 					increaseMerchantCareer();
 					this.leveledUp = false;
 				}
-				func_195064_c(new EffectInstance(Effects.field_76428_l, 200, 0));
+				addEffect(new EffectInstance(Effects.REGENERATION, 200, 0));
 			}
 		}
-		if (this.previousCustomer != null && func_130014_f_() instanceof ServerWorld) {
-			((ServerWorld) func_130014_f_()).func_217489_a(IReputationType.field_221033_e, (Entity) this.previousCustomer, this);
-			func_130014_f_().func_72960_a((Entity) this, (byte) 14);
+		if (this.previousCustomer != null && getLevel() instanceof ServerWorld) {
+			((ServerWorld) getLevel()).onReputationEvent(IReputationType.TRADE, this.previousCustomer, this);
+			getLevel().broadcastEntityEvent(this, (byte) 14);
 			this.previousCustomer = null;
 		}
-		if (getRole() == Roles.TOFUNIAN && func_213716_dX())
-			func_213750_eg();
-		super.func_70619_bc();
+		if (getRole() == Roles.TOFUNIAN && isTrading())
+			stopTrading();
+		super.customServerAiStep();
 	}
 
-	public void onReputationEvent(IReputationType type, Entity target) {
-		if (type == IReputationType.field_221029_a) {
-			this.gossip.func_220916_a(target.func_110124_au(), GossipType.MAJOR_POSITIVE, 20);
-			this.gossip.func_220916_a(target.func_110124_au(), GossipType.MINOR_POSITIVE, 25);
-		} else if (type == IReputationType.field_221033_e) {
-			this.gossip.func_220916_a(target.func_110124_au(), GossipType.TRADING, 2);
-		} else if (type == IReputationType.field_221031_c) {
-			this.gossip.func_220916_a(target.func_110124_au(), GossipType.MINOR_NEGATIVE, 25);
-		} else if (type == IReputationType.field_221032_d) {
-			this.gossip.func_220916_a(target.func_110124_au(), GossipType.MAJOR_NEGATIVE, 25);
+
+	public void onReputationEventFrom(IReputationType p_213739_1_, Entity p_213739_2_) {
+		if (p_213739_1_ == IReputationType.ZOMBIE_VILLAGER_CURED) {
+			this.gossip.add(p_213739_2_.getUUID(), GossipType.MAJOR_POSITIVE, 20);
+			this.gossip.add(p_213739_2_.getUUID(), GossipType.MINOR_POSITIVE, 25);
+		} else if (p_213739_1_ == IReputationType.TRADE) {
+			this.gossip.add(p_213739_2_.getUUID(), GossipType.TRADING, 2);
+		} else if (p_213739_1_ == IReputationType.VILLAGER_HURT) {
+			this.gossip.add(p_213739_2_.getUUID(), GossipType.MINOR_NEGATIVE, 25);
+		} else if (p_213739_1_ == IReputationType.VILLAGER_KILLED) {
+			this.gossip.add(p_213739_2_.getUUID(), GossipType.MAJOR_NEGATIVE, 25);
 		}
 	}
 
-	protected void func_213713_b(MerchantOffer offer) {
-		int i = 3 + this.field_70146_Z.nextInt(4);
-		this.xp += offer.func_222210_n();
-		this.previousCustomer = func_70931_l_();
+	protected void rewardTradeXp(MerchantOffer offer) {
+		int i = 3 + this.random.nextInt(4);
+		this.xp += offer.getXp();
+		this.previousCustomer = this.getTradingPlayer();
 		if (canLevelUp()) {
 			this.timeUntilReset = 40;
 			this.leveledUp = true;
 			i += 5;
 		}
-		if (offer.func_222221_q())
-			func_130014_f_().func_217376_c((Entity) new ExperienceOrbEntity(func_130014_f_(), func_226277_ct_(), func_226278_cu_() + 0.5D, func_226281_cx_(), i));
+		if (offer.shouldRewardExp())
+			getLevel().addFreshEntity(new ExperienceOrbEntity(getLevel(), getX(), getY() + 0.5D, getZ(), i));
 	}
 
-	public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-		ItemStack itemstack = p_230254_1_.func_184586_b(p_230254_2_);
-		if (itemstack.func_77973_b() != TofuItems.TOFUNIAN_SPAWNEGG && func_70089_S() && !func_213716_dX() && !func_70631_g_()) {
-			if (func_70631_g_()) {
+	public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+		ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+		if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && isAlive() && !isTrading() && !isBaby()) {
+			if (isBaby()) {
 				shakeHead();
-				return ActionResultType.func_233537_a_(func_130014_f_().isClientSide());
+				return ActionResultType.sidedSuccess(getLevel().isClientSide());
 			}
-			boolean flag = func_213706_dY().isEmpty();
+			boolean flag = this.getOffers().isEmpty();
 			if (p_230254_2_ == Hand.MAIN_HAND) {
-				if (flag && !func_130014_f_().isClientSide())
+				if (flag && !getLevel().isClientSide())
 					shakeHead();
-				p_230254_1_.func_195066_a(Stats.field_188074_H);
+				p_230254_1_.awardStat(Stats.TRADED_WITH_VILLAGER);
 			}
 			if (flag)
-				return ActionResultType.func_233537_a_(func_130014_f_().isClientSide());
-			if (!func_130014_f_().isClientSide() && !this.field_213724_bz.isEmpty())
+				return ActionResultType.sidedSuccess(getLevel().isClientSide());
+			if (!getLevel().isClientSide() && !this.offers.isEmpty())
 				displayMerchantGui(p_230254_1_);
-			return ActionResultType.func_233537_a_(func_130014_f_().isClientSide());
+			return ActionResultType.sidedSuccess(getLevel().isClientSide());
 		}
-		return ActionResultType.func_233537_a_(func_130014_f_().isClientSide());
+		return ActionResultType.sidedSuccess(getLevel().isClientSide());
 	}
 
 	private void displayMerchantGui(PlayerEntity player) {
 		recalculateSpecialPricesFor(player);
-		func_70932_a_(player);
-		func_213707_a(player, func_145748_c_(), this.tofunianLevel);
+		setTradingPlayer(player);
+		openTradingScreen(player, getDisplayName(), this.tofunianLevel);
 	}
 
-	public void func_70932_a_(@Nullable PlayerEntity player) {
-		boolean flag = (func_70931_l_() != null && player == null);
-		super.func_70932_a_(player);
+	public void setTradingPlayer(@Nullable PlayerEntity player) {
+		boolean flag = (getTradingPlayer() != null && player == null);
+		super.setTradingPlayer(player);
 		if (flag)
-			func_213750_eg();
+			stopTrading();
 	}
 
-	protected void func_213750_eg() {
-		super.func_213750_eg();
+	protected void stopTrading() {
+		super.stopTrading();
 		resetSpecialPrices();
 	}
 
 	private void resetSpecialPrices() {
-		for (MerchantOffer merchantoffer : func_213706_dY())
-			merchantoffer.func_222220_k();
+		for (MerchantOffer merchantoffer : this.getOffers())
+			merchantoffer.resetSpecialPriceDiff();
 	}
 
-	public boolean func_223340_ej() {
+	public boolean canRestock() {
 		return true;
 	}
 
 	public void restock() {
 		calculateDemandOfOffers();
-		for (MerchantOffer merchantoffer : func_213706_dY())
-			merchantoffer.func_222203_h();
-		this.lastRestock = func_130014_f_().func_82737_E();
+		for (MerchantOffer merchantoffer : this.getOffers())
+			merchantoffer.resetUses();
+		this.lastRestock = getLevel().getGameTime();
 		this.restocksToday++;
 	}
 
 	private boolean allowedToRestock() {
-		return (this.restocksToday == 0 || (this.restocksToday < 2 && func_130014_f_().func_82737_E() > this.lastRestock + 2400L));
+		return (this.restocksToday == 0 || (this.restocksToday < 2 && getLevel().getGameTime() > this.lastRestock + 2400L));
 	}
 
 	public boolean canResetStock() {
-		int m;
 		long i = this.lastRestock + 12000L;
-		long j = func_130014_f_().func_82737_E();
-		boolean flag = (j > i);
-		long k = func_130014_f_().func_72820_D();
+		long j = this.level.getGameTime();
+		boolean flag = j > i;
+		long k = this.level.getDayTime();
 		if (this.lastRestockDayTime > 0L) {
 			long l = this.lastRestockDayTime / 24000L;
 			long i1 = k / 24000L;
-			m = flag | ((i1 > l) ? 1 : 0);
+			flag |= i1 > l;
 		}
+
 		this.lastRestockDayTime = k;
-		if (m != 0) {
+		if (flag) {
 			this.lastRestock = j;
-			func_223718_eH();
+			this.resetNumberOfRestocks();
 		}
-		return (allowedToRestock() && hasUsedOffer());
+
+		return this.allowedToRestock() && this.hasUsedOffer();
 	}
 
-	private void func_223718_eH() {
+	private void resetNumberOfRestocks() {
 		resetOffersAndAdjustForDemand();
 		this.restocksToday = 0;
 	}
@@ -326,44 +306,45 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 	private void resetOffersAndAdjustForDemand() {
 		int i = 2 - this.restocksToday;
 		if (i > 0)
-			for (MerchantOffer merchantoffer : func_213706_dY())
-				merchantoffer.func_222203_h();
+			for (MerchantOffer merchantoffer : this.getOffers())
+				merchantoffer.resetUses();
 		for (int j = 0; j < i; j++)
 			calculateDemandOfOffers();
 	}
 
 	private boolean hasUsedOffer() {
-		for (MerchantOffer merchantoffer : func_213706_dY()) {
-			if (merchantoffer.func_226654_r_())
+		for (MerchantOffer merchantoffer : this.getOffers()) {
+			if (merchantoffer.needsRestock())
 				return true;
 		}
 		return false;
 	}
 
 	private void calculateDemandOfOffers() {
-		for (MerchantOffer merchantoffer : func_213706_dY())
-			merchantoffer.func_222222_e();
+		for(MerchantOffer merchantoffer : this.getOffers()) {
+			merchantoffer.updateDemand();
+		}
 	}
 
 	private void recalculateSpecialPricesFor(PlayerEntity playerIn) {
 		int i = getPlayerReputation(playerIn);
 		if (i != 0)
-			for (MerchantOffer merchantoffer : func_213706_dY())
-				merchantoffer.func_222207_a(-MathHelper.func_76141_d(i * merchantoffer.func_222211_m()));
+			for (MerchantOffer merchantoffer : this.getOffers())
+				merchantoffer.addToSpecialPriceDiff(-MathHelper.floor((float)i * merchantoffer.getPriceMultiplier()));
 	}
 
 	public void setOffers(MerchantOffers offersIn) {
-		this.field_213724_bz = offersIn;
+		this.offers = offersIn;
 	}
 
 	private boolean canLevelUp() {
 		int i = this.tofunianLevel;
-		return (VillagerData.func_221128_d(i) && this.xp >= VillagerData.func_221127_c(i));
+		return VillagerData.canLevelUp(i) && this.tofunianLevel >= VillagerData.getMaxXpPerLevel(i);
 	}
 
 	private void increaseMerchantCareer() {
 		setTofunainLevel(this.tofunianLevel + 1);
-		func_213712_ef();
+		updateTrades();
 	}
 
 	public void setTofunainLevel(int level) {
@@ -375,73 +356,73 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 	}
 
 	public int getPlayerReputation(PlayerEntity player) {
-		return this.gossip.func_220921_a(player.func_110124_au(), gossipType -> true);
+		return this.gossip.getReputation(player.getUUID(), gossipType -> true);
 	}
 
-	public void func_213281_b(CompoundNBT compound) {
-		super.func_213281_b(compound);
-		compound.func_74774_a("FoodLevel", this.foodLevel);
-		compound.func_218657_a("Gossips", (INBT) this.gossip.func_234058_a_((DynamicOps) NBTDynamicOps.field_210820_a).getValue());
-		compound.func_74768_a("Xp", this.xp);
-		compound.func_74768_a("Level", this.tofunianLevel);
-		compound.func_74772_a("LastRestock", this.lastRestock);
-		compound.func_74772_a("LastGossipDecay", this.lastGossipDecay);
-		compound.func_74768_a("RestocksToday", this.restocksToday);
+	public void addAdditionalSaveData(CompoundNBT compound) {
+		super.addAdditionalSaveData(compound);
+		compound.putByte("FoodLevel", this.foodLevel);
+		compound.put("Gossips", (INBT) this.gossip.store((DynamicOps) NBTDynamicOps.INSTANCE).getValue());
+		compound.putInt("Xp", this.xp);
+		compound.putInt("Level", this.tofunianLevel);
+		compound.putLong("LastRestock", this.lastRestock);
+		compound.putLong("LastGossipDecay", this.lastGossipDecay);
+		compound.putInt("RestocksToday", this.restocksToday);
 		if (this.tofunainHome != null)
-			compound.func_218657_a("TofunianHome", (INBT) NBTUtil.func_186859_a(this.tofunainHome));
+			compound.put("TofunianHome", NBTUtil.writeBlockPos(this.tofunainHome));
 		if (this.tofunainJobBlock != null)
-			compound.func_218657_a("TofunianJobBlock", (INBT) NBTUtil.func_186859_a(this.tofunainJobBlock));
-		compound.func_74778_a("Roles", getRole().name());
+			compound.put("TofunianJobBlock", NBTUtil.writeBlockPos(this.tofunainJobBlock));
+		compound.putString("Roles", getRole().name());
 	}
 
-	public void func_70037_a(CompoundNBT compound) {
-		super.func_70037_a(compound);
-		if (compound.func_150297_b("Offers", 10))
-			this.field_213724_bz = new MerchantOffers(compound.func_74775_l("Offers"));
-		if (compound.func_150297_b("FoodLevel", 1))
-			this.foodLevel = compound.func_74771_c("FoodLevel");
-		ListNBT listnbt = compound.func_150295_c("Gossips", 10);
-		this.gossip.func_234057_a_(new Dynamic((DynamicOps) NBTDynamicOps.field_210820_a, listnbt));
-		if (compound.func_150297_b("Xp", 3))
-			this.xp = compound.func_74762_e("Xp");
-		if (compound.func_74764_b("Level"))
-			this.tofunianLevel = compound.func_74762_e("Level");
-		this.lastGossipDecay = compound.func_74763_f("LastGossipDecay");
-		this.lastRestock = compound.func_74763_f("LastRestock");
-		this.restocksToday = compound.func_74762_e("RestocksToday");
-		if (compound.func_74764_b("TofunianHome"))
-			this.tofunainHome = NBTUtil.func_186861_c(compound.func_74775_l("TofunianHome"));
-		if (compound.func_74764_b("TofunianJobBlock"))
-			this.tofunainJobBlock = NBTUtil.func_186861_c(compound.func_74775_l("TofunianJobBlock"));
-		if (compound.func_74764_b("Roles"))
-			setRole(Roles.get(compound.func_74779_i("Roles")));
-		func_98053_h(true);
+	public void readAdditionalSaveData(CompoundNBT compound) {
+		super.readAdditionalSaveData(compound);
+		if (compound.contains("Offers", 10))
+			this.offers = new MerchantOffers(compound.getCompound("Offers"));
+		if (compound.contains("FoodLevel", 1))
+			this.foodLevel = compound.getByte("FoodLevel");
+		ListNBT listnbt = compound.getList("Gossips", 10);
+		this.gossip.update(new Dynamic<>(NBTDynamicOps.INSTANCE, listnbt));
+		if (compound.contains("Xp", 3))
+			this.xp = compound.getInt("Xp");
+		if (compound.contains("Level"))
+			this.tofunianLevel = compound.getInt("Level");
+		this.lastGossipDecay = compound.getLong("LastGossipDecay");
+		this.lastRestock = compound.getLong("LastRestock");
+		this.restocksToday = compound.getInt("RestocksToday");
+		if (compound.contains("TofunianHome"))
+			this.tofunainHome = NBTUtil.readBlockPos(compound.getCompound("TofunianHome"));
+		if (compound.contains("TofunianJobBlock"))
+			this.tofunainJobBlock = NBTUtil.readBlockPos(compound.getCompound("TofunianJobBlock"));
+		if (compound.contains("Roles"))
+			setRole(Roles.get(compound.getString("Roles")));
+		setCanPickUpLoot(true);
 	}
 
-	public int func_213708_dV() {
+	public int getVillagerXp() {
 		return this.xp;
 	}
 
-	protected void func_175445_a(ItemEntity p_175445_1_) {
-		ItemStack itemstack = p_175445_1_.func_92059_d();
-		if (func_230293_i_(itemstack)) {
-			Inventory inventory = func_213715_ed();
-			boolean flag = inventory.func_233541_b_(itemstack);
+	protected void pickUpItem(ItemEntity p_175445_1_) {
+		ItemStack itemstack = p_175445_1_.getItem();
+		if (wantsToPickUp(itemstack)) {
+			Inventory inventory = getInventory();
+			boolean flag = inventory.canAddItem(itemstack);
 			if (!flag)
 				return;
-			func_233630_a_(p_175445_1_);
-			func_71001_a((Entity) p_175445_1_, itemstack.func_190916_E());
-			ItemStack itemstack1 = inventory.func_174894_a(itemstack);
-			if (itemstack1.func_190926_b()) {
-				p_175445_1_.func_70106_y();
+			this.onItemPickup(p_175445_1_);
+			this.take(p_175445_1_, itemstack.getCount());
+			ItemStack itemstack1 = inventory.addItem(itemstack);
+			if (itemstack1.isEmpty()) {
+				p_175445_1_.remove();
 			} else {
-				itemstack.func_190920_e(itemstack1.func_190916_E());
+				itemstack.setCount(itemstack1.getCount());
 			}
 		}
 	}
 
 	public boolean func_213743_em() {
-		return (this.foodLevel + countFoodPointsInInventory() >= 12 && func_70874_b() == 0);
+		return (this.foodLevel + countFoodPointsInInventory() >= 12 && getAge() == 0);
 	}
 
 	private boolean hungry() {
@@ -450,15 +431,15 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 
 	private void eatUntilFull() {
 		if (hungry() && countFoodPointsInInventory() != 0)
-			for (int i = 0; i < func_213715_ed().func_70302_i_(); i++) {
-				ItemStack itemstack = func_213715_ed().func_70301_a(i);
-				if (!itemstack.func_190926_b()) {
-					Integer integer = FOOD_POINTS.get(itemstack.func_77973_b());
+			for (int i = 0; i < getInventory().getContainerSize(); i++) {
+				ItemStack itemstack = getInventory().getItem(i);
+				if (!itemstack.isEmpty()) {
+					Integer integer = FOOD_POINTS.get(itemstack.getItem());
 					if (integer != null) {
-						int j = itemstack.func_190916_E();
+						int j = itemstack.getCount();
 						for (int k = j; k > 0; k--) {
 							this.foodLevel = (byte) (this.foodLevel + integer.intValue());
-							func_213715_ed().func_70298_a(i, 1);
+							getInventory().removeItem(i, 1);
 							if (!hungry())
 								return;
 						}
@@ -467,9 +448,9 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 			}
 	}
 
-	public boolean func_230293_i_(ItemStack p_230293_1_) {
-		Item item = p_230293_1_.func_77973_b();
-		return (WANTED_ITEMS.contains(item) && func_213715_ed().func_233541_b_(p_230293_1_));
+	public boolean wantsToPickUp(ItemStack p_230293_1_) {
+		Item item = p_230293_1_.getItem();
+		return (WANTED_ITEMS.contains(item) && getInventory().canAddItem(p_230293_1_));
 	}
 
 	public boolean hasExcessFood() {
@@ -481,58 +462,54 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 	}
 
 	public boolean hasFarmSeeds() {
-		return func_213715_ed().func_213902_a((Set) ImmutableSet.of(TofuItems.SEEDS_SOYBEANS));
+		return getInventory().hasAnyOf(ImmutableSet.of(TofuItems.SEEDS_SOYBEANS));
 	}
 
 	private int countFoodPointsInInventory() {
-		Inventory inventory = func_213715_ed();
-		return FOOD_POINTS.entrySet().stream().mapToInt(p_226553_1_ -> inventory.func_213901_a((Item) p_226553_1_.getKey()) * ((Integer) p_226553_1_.getValue()).intValue())
+		Inventory inventory = getInventory();
+		return FOOD_POINTS.entrySet().stream().mapToInt(p_226553_1_ -> inventory.countItem(p_226553_1_.getKey()) * p_226553_1_.getValue().intValue())
 
 				.sum();
 	}
 
 	public void cookingFood() {
-		for (int i = 0; i < func_213715_ed().func_70302_i_(); i++) {
-			ItemStack itemstack = func_213715_ed().func_70301_a(i);
-			if (!itemstack.func_190926_b() &&
-					itemstack.func_77973_b() == TofuItems.SEEDS_SOYBEANS) {
-				func_213715_ed().func_70298_a(i, 1);
+		for (int i = 0; i < getInventory().getContainerSize(); i++) {
+			ItemStack itemstack = getInventory().getItem(i);
+			if (!itemstack.isEmpty() &&
+					itemstack.getItem() == TofuItems.SEEDS_SOYBEANS) {
+				getInventory().removeItem(i, 1);
 				cookResult();
 			}
 		}
 	}
 
 	private void cookResult() {
-		func_213715_ed().func_174894_a(new ItemStack((IItemProvider) TofuItems.TOFUGRILLED));
+		getInventory().addItem(new ItemStack(TofuItems.TOFUGRILLED));
 	}
 
-	protected void func_213712_ef() {
-		Int2ObjectMap<VillagerTrades.ITrade[]> int2objectmap = (Int2ObjectMap<VillagerTrades.ITrade[]>) TofuTrades.TOFUNIAN_TRADE.get(getRole());
+	protected void updateTrades() {
+		Int2ObjectMap<VillagerTrades.ITrade[]> int2objectmap = TofuTrades.TOFUNIAN_TRADE.get(getRole());
 		if (int2objectmap != null && !int2objectmap.isEmpty()) {
-			VillagerTrades.ITrade[] avillagertrades$itrade = (VillagerTrades.ITrade[]) int2objectmap.get(this.tofunianLevel);
+			VillagerTrades.ITrade[] avillagertrades$itrade = int2objectmap.get(this.tofunianLevel);
 			if (avillagertrades$itrade != null) {
-				MerchantOffers merchantoffers = func_213706_dY();
-				func_213717_a(merchantoffers, avillagertrades$itrade, 2);
+				MerchantOffers merchantoffers = this.getOffers();
+				addOffersFromItemListings(merchantoffers, avillagertrades$itrade, 2);
 			}
 		}
 	}
 
-	public void func_70636_d() {
-		func_82168_bl();
-		super.func_70636_d();
-	}
 
-	public void func_70071_h_() {
-		super.func_70071_h_();
+	public void tick() {
+		super.tick();
 		tickGossip();
 	}
 
 	private void tickGossip() {
-		long i = func_130014_f_().func_82737_E();
+		long i = getLevel().getGameTime();
 		if (this.lastGossipDecay == 0L) {
 			this.lastGossipDecay = i;
 		} else if (i >= this.lastGossipDecay + 24000L) {
-			this.gossip.func_223538_b();
+			this.gossip.decay();
 			this.lastGossipDecay = i;
 		}
 	}
@@ -542,53 +519,34 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 	}
 
 	public void setGossips(INBT gossip) {
-		this.gossip.func_234057_a_(new Dynamic((DynamicOps) NBTDynamicOps.field_210820_a, gossip));
+		this.gossip.update(new Dynamic(NBTDynamicOps.INSTANCE, gossip));
 	}
 
-	public void func_70604_c(@Nullable LivingEntity p_70604_1_) {
+	public void setLastHurtByMob(@Nullable LivingEntity p_70604_1_) {
 		if (p_70604_1_ != null && this.level instanceof ServerWorld) {
-			((ServerWorld) this.level).func_217489_a(IReputationType.field_221031_c, (Entity) p_70604_1_, this);
-			if (func_70089_S() && p_70604_1_ instanceof PlayerEntity)
-				this.level.func_72960_a((Entity) this, (byte) 13);
+			((ServerWorld)this.level).onReputationEvent(IReputationType.VILLAGER_HURT, p_70604_1_, this);
+			if (this.isAlive() && p_70604_1_ instanceof PlayerEntity) {
+				this.level.broadcastEntityEvent(this, (byte)13);
+			}
 		}
-		super.func_70604_c(p_70604_1_);
-	}
 
-	public void func_70645_a(DamageSource cause) {
-		super.func_70645_a(cause);
+		super.setLastHurtByMob(p_70604_1_);
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public void func_70103_a(byte p_70103_1_) {
+	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 12) {
-			func_213718_a((IParticleData) ParticleTypes.field_197633_z);
+			this.addParticlesAroundSelf(ParticleTypes.HEART);
 		} else if (p_70103_1_ == 13) {
-			func_213718_a((IParticleData) ParticleTypes.field_197609_b);
+			this.addParticlesAroundSelf(ParticleTypes.ANGRY_VILLAGER);
 		} else if (p_70103_1_ == 14) {
-			func_213718_a((IParticleData) ParticleTypes.field_197632_y);
+			this.addParticlesAroundSelf(ParticleTypes.HAPPY_VILLAGER);
 		} else if (p_70103_1_ == 42) {
-			func_213718_a((IParticleData) ParticleTypes.field_218422_X);
+			this.addParticlesAroundSelf(ParticleTypes.SPLASH);
 		} else {
-			super.func_70103_a(p_70103_1_);
+			super.handleEntityEvent(p_70103_1_);
 		}
-	}
 
-	@Nullable
-	public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-		return (AgeableEntity) TofuEntityTypes.TOFUNIAN.func_200721_a((World) p_241840_1_);
-	}
-
-	public void func_213739_a(IReputationType p_213739_1_, Entity p_213739_2_) {
-		if (p_213739_1_ == IReputationType.field_221029_a) {
-			this.gossip.func_220916_a(p_213739_2_.func_110124_au(), GossipType.MAJOR_POSITIVE, 20);
-			this.gossip.func_220916_a(p_213739_2_.func_110124_au(), GossipType.MINOR_POSITIVE, 25);
-		} else if (p_213739_1_ == IReputationType.field_221033_e) {
-			this.gossip.func_220916_a(p_213739_2_.func_110124_au(), GossipType.TRADING, 2);
-		} else if (p_213739_1_ == IReputationType.field_221031_c) {
-			this.gossip.func_220916_a(p_213739_2_.func_110124_au(), GossipType.MINOR_NEGATIVE, 25);
-		} else if (p_213739_1_ == IReputationType.field_221032_d) {
-			this.gossip.func_220916_a(p_213739_2_.func_110124_au(), GossipType.MAJOR_NEGATIVE, 25);
-		}
 	}
 
 	public enum Roles implements IExtensibleEnum {
@@ -597,7 +555,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 		private static final Map<String, Roles> lookup;
 
 		static {
-			lookup = (Map<String, Roles>) Arrays.<Roles>stream(values()).collect(Collectors.toMap(Enum::name, p_220362_0_ -> p_220362_0_));
+			lookup = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, p_220362_0_ -> p_220362_0_));
 		}
 
 		public static Roles create(String name) {

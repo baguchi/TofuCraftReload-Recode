@@ -1,9 +1,6 @@
 package baguchan.tofucraft.client.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-
-import java.util.Random;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.LightTexture;
@@ -20,6 +17,8 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.IWeatherRenderHandler;
+
+import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuWeatherRenderer implements IWeatherRenderHandler {
@@ -106,7 +105,7 @@ public class TofuWeatherRenderer implements IWeatherRenderHandler {
 								float f3 = -(i3 + partialTicks) / 32.0F * (3.0F + random.nextFloat());
 								double d2 = (k1 + 0.5F) - xIn;
 								double d4 = (j1 + 0.5F) - zIn;
-								float f4 = MathHelper.func_76133_a(d2 * d2 + d4 * d4) / l;
+								float f4 = MathHelper.sqrt(d2 * d2 + d4 * d4) / l;
 								float f5 = ((1.0F - f4 * f4) * 0.5F + 0.5F) * f;
 								blockpos$mutable.func_181079_c(k1, l2, j1);
 								int j3 = WorldRenderer.func_228421_a_((IBlockDisplayReader) clientWorld, (BlockPos) blockpos$mutable);
@@ -127,7 +126,7 @@ public class TofuWeatherRenderer implements IWeatherRenderHandler {
 								float f8 = (float) (random.nextDouble() + (f1 * (float) random.nextGaussian()) * 0.001D);
 								double d3 = (k1 + 0.5F) - xIn;
 								double d5 = (j1 + 0.5F) - zIn;
-								float f9 = MathHelper.func_76133_a(d3 * d3 + d5 * d5) / l;
+								float f9 = MathHelper.sqrt(d3 * d3 + d5 * d5) / l;
 								float f10 = ((1.0F - f9 * f9) * 0.3F + 0.5F) * f;
 								blockpos$mutable.func_181079_c(k1, l2, j1);
 								int k3 = WorldRenderer.func_228421_a_((IBlockDisplayReader) clientWorld, (BlockPos) blockpos$mutable);

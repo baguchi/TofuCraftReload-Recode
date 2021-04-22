@@ -23,7 +23,7 @@ public class TofuShieldItemRender extends ItemStackTileEntityRenderer {
 	private final ShieldModel shieldModel = new ShieldModel();
 
 	public void func_239207_a_(ItemStack itemStackIn, ItemCameraTransforms.TransformType p_239207_2_, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
-		Item item = itemStackIn.func_77973_b();
+		Item item = itemStackIn.getItem();
 		if (item == TofuItems.TOFUISHI_SHIELD) {
 			matrixStackIn.func_227860_a_();
 			matrixStackIn.func_227862_a_(1.0F, -1.0F, -1.0F);

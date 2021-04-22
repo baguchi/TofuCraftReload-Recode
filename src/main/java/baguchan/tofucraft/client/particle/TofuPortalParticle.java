@@ -6,7 +6,6 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.PortalParticle;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.IParticleData;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -31,7 +30,7 @@ public class TofuPortalParticle extends PortalParticle {
 		public Particle createParticle(BasicParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			TofuPortalParticle portalparticle = new TofuPortalParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
 			portalparticle.func_217568_a(this.spriteSet);
-			return (Particle) portalparticle;
+			return portalparticle;
 		}
 	}
 }

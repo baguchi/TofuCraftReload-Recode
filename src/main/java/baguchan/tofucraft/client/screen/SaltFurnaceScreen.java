@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.ITextProperties;
@@ -27,7 +26,7 @@ public class SaltFurnaceScreen extends ContainerScreen<SaltFurnaceContainer> {
 	private static final ResourceLocation texture = new ResourceLocation("tofucraft", "textures/gui/salt_furnace.png");
 
 	public SaltFurnaceScreen(SaltFurnaceContainer p_i51104_1_, PlayerInventory p_i51104_3_, ITextComponent p_i51104_4_) {
-		super((Container) p_i51104_1_, p_i51104_3_, p_i51104_4_);
+		super(p_i51104_1_, p_i51104_3_, p_i51104_4_);
 	}
 
 	public void func_231160_c_() {

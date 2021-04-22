@@ -1,7 +1,5 @@
 package baguchan.tofucraft.registry;
 
-import java.util.function.Supplier;
-
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
@@ -12,12 +10,14 @@ import net.minecraft.util.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.function.Supplier;
+
 public enum TofuArmorMaterial implements IArmorMaterial {
-	KINU("tofucraft:kinu", 1, new int[]{0, 0, 0, 0}, 8, SoundEvents.field_187728_s, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{(IItemProvider) TofuItems.TOFUKINU})),
-	MOMEN("tofucraft:momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.field_187713_n, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{(IItemProvider) TofuItems.TOFUMOMEN})),
-	SOLID("tofucraft:solid", 10, new int[]{1, 4, 5, 2}, 16, SoundEvents.field_187725_r, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{(IItemProvider) TofuItems.TOFUISHI})),
-	METAL("tofucraft:metal", 15, new int[]{2, 5, 6, 2}, 12, SoundEvents.field_187722_q, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{(IItemProvider) TofuItems.TOFUMETAL})),
-	DIAMOND("tofucraft:diamond", 40, new int[]{4, 7, 9, 4}, 10, SoundEvents.field_187716_o, 2.5F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{(IItemProvider) TofuItems.TOFUDIAMOND}));
+	KINU("tofucraft:kinu", 1, new int[]{0, 0, 0, 0}, 8, SoundEvents.field_187728_s, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUKINU})),
+	MOMEN("tofucraft:momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.field_187713_n, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUMOMEN})),
+	SOLID("tofucraft:solid", 10, new int[]{1, 4, 5, 2}, 16, SoundEvents.field_187725_r, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUISHI})),
+	METAL("tofucraft:metal", 15, new int[]{2, 5, 6, 2}, 12, SoundEvents.field_187722_q, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUMETAL})),
+	DIAMOND("tofucraft:diamond", 40, new int[]{4, 7, 9, 4}, 10, SoundEvents.field_187716_o, 2.5F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUDIAMOND}));
 
 	private static final int[] HEALTH_PER_SLOT;
 

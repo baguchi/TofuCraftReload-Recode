@@ -13,11 +13,11 @@ public class WakeUpGoal extends Goal {
 	}
 
 	public boolean canUse() {
-		return ((this.creature.level.isDay() && this.creature.func_70608_bn()) || (this.creature.func_213374_dv().isPresent() && this.creature.func_226278_cu_() <= ((BlockPos) this.creature.func_213374_dv().get()).getY() + 0.4D && !((BlockPos) this.creature.func_213374_dv().get()).func_218137_a((IPosition) this.creature.func_213303_ch(), 1.14D) && this.creature.func_70608_bn()));
+		return ((this.creature.level.isDay() && this.creature.isSleeping()) || (this.creature.getSleepingPos().isPresent() && this.creature.getY() <= ((BlockPos) this.creature.getSleepingPos().get()).getY() + 0.4D && !((BlockPos) this.creature.getSleepingPos().get()).closerThan((IPosition) this.creature.position(), 1.14D) && this.creature.isSleeping()));
 	}
 
-	public void func_75249_e() {
-		super.func_75249_e();
-		this.creature.func_213366_dy();
+	public void start() {
+		super.start();
+		this.creature.clearSleepingPos();
 	}
 }

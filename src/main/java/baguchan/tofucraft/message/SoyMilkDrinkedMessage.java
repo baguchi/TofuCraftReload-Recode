@@ -1,10 +1,6 @@
 package baguchan.tofucraft.message;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.capability.SoyHealthCapability;
-
-import java.util.function.Supplier;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -12,10 +8,12 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-public class SoyMilkDrinkedMessage {
-	private int entityId;
+import java.util.function.Supplier;
 
-	private int level;
+public class SoyMilkDrinkedMessage {
+	private final int entityId;
+
+	private final int level;
 
 	public SoyMilkDrinkedMessage(LivingEntity entity, int level) {
 		this.entityId = entity.func_145782_y();

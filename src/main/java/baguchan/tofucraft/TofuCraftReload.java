@@ -3,18 +3,12 @@ package baguchan.tofucraft;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.SoyHealthStorage;
 import baguchan.tofucraft.client.ClientProxy;
-import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.world.TofuDefaultBiomeFeatures;
-
-import java.util.Locale;
-import java.util.concurrent.Callable;
-import java.util.function.Supplier;
-
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -33,13 +27,15 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
+import java.util.Locale;
+
 @Mod("tofucraft")
 public class TofuCraftReload {
 	public static final String MODID = "tofucraft";
 
 	public static final String NETWORK_PROTOCOL = "2";
 
-	public static ClientProxy PROXY = (ClientProxy) DistExecutor.runForDist(() -> ClientProxy::new, () -> ClientProxy::new);
+	public static ClientProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> ClientProxy::new);
 
 	@CapabilityInject(SoyHealthCapability.class)
 	public static final Capability<SoyHealthCapability> SOY_HEALTH_CAPABILITY = null;
@@ -64,7 +60,7 @@ public class TofuCraftReload {
 		TofuDefaultBiomeFeatures.init();
 		TofuRecipes.register();
 		TofuDimensions.registerDimensionStuff();
-		CapabilityManager.INSTANCE.register(SoyHealthCapability.class, (Capability.IStorage) new SoyHealthStorage(), SoyHealthCapability::new);
+		CapabilityManager.INSTANCE.register(SoyHealthCapability.class, new SoyHealthStorage(), SoyHealthCapability::new);
 	}
 
 	private void setupMessages() {

@@ -3,33 +3,17 @@ package baguchan.tofucraft.world.dimension;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.world.SeedHolder;
 import com.mojang.datafixers.kinds.App;
-import com.mojang.datafixers.kinds.Applicative;
-import com.mojang.datafixers.util.Function3;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import it.unimi.dsi.fastutil.objects.ObjectList;
 import it.unimi.dsi.fastutil.objects.ObjectListIterator;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.stream.IntStream;
-import javax.annotation.Nullable;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.math.SectionPos;
+import net.minecraft.util.math.*;
 import net.minecraft.world.Blockreader;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IServerWorld;
@@ -41,28 +25,26 @@ import net.minecraft.world.biome.provider.EndBiomeProvider;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.DimensionSettings;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.INoiseGenerator;
-import net.minecraft.world.gen.ImprovedNoiseGenerator;
-import net.minecraft.world.gen.NoiseChunkGenerator;
-import net.minecraft.world.gen.OctavesNoiseGenerator;
-import net.minecraft.world.gen.PerlinNoiseGenerator;
-import net.minecraft.world.gen.SimplexNoiseGenerator;
-import net.minecraft.world.gen.WorldGenRegion;
+import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.jigsaw.JigsawJunction;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
-import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.settings.NoiseSettings;
 import net.minecraft.world.spawner.WorldEntitySpawner;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.world.StructureSpawnManager;
+
+import javax.annotation.Nullable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 public class TofuChunkGenerator extends ChunkGenerator {
 	public static final Codec<TofuChunkGenerator> CODEC;
@@ -72,7 +54,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 	private static final float[] BIOME_WEIGHTS;
 
 	static {
-		CODEC = RecordCodecBuilder.create(p_236091_0_ -> p_236091_0_.group((App) BiomeProvider.field_235202_a_.fieldOf("biome_source").forGetter(()), (App) Codec.LONG.fieldOf("seed").orElseGet(SeedHolder::getSeed).forGetter(()), (App) DimensionSettings.field_236098_b_.fieldOf("settings").forGetter(())).apply((Applicative) p_236091_0_, p_236091_0_.stable(TofuChunkGenerator::new)));
+		CODEC = RecordCodecBuilder.create(p_236091_0_ -> p_236091_0_.group((App) BiomeProvider.field_235202_a_.fieldOf("biome_source").forGetter(()), (App) Codec.LONG.fieldOf("seed").orElseGet(SeedHolder::getSeed).forGetter(()), (App) DimensionSettings.field_236098_b_.fieldOf("settings").forGetter(())).apply(p_236091_0_, p_236091_0_.stable(TofuChunkGenerator::new)));
 		BEARD_KERNEL = (float[]) Util.func_200696_a(new float[13824], p_236094_0_ -> {
 			for (int i = 0; i < 24; i++) {
 				for (int j = 0; j < 24; j++) {
@@ -91,7 +73,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 		});
 	}
 
-	private static final BlockState AIR = Blocks.field_150350_a.func_176223_P();
+	private static final BlockState AIR = Blocks.field_150350_a.defaultBlockState();
 
 	private final int chunkHeight;
 
@@ -150,25 +132,25 @@ public class TofuChunkGenerator extends ChunkGenerator {
 		this.minLimitPerlinNoise = new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-15, 0));
 		this.maxLimitPerlinNoise = new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-15, 0));
 		this.mainPerlinNoise = new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-7, 0));
-		this.surfaceNoise = noisesettings.func_236178_i_() ? (INoiseGenerator) new PerlinNoiseGenerator(this.random, IntStream.rangeClosed(-3, 0)) : (INoiseGenerator) new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-3, 0));
+		this.surfaceNoise = noisesettings.func_236178_i_() ? new PerlinNoiseGenerator(this.random, IntStream.rangeClosed(-3, 0)) : new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-3, 0));
 		this.random.func_202423_a(2620);
 		this.depthNoise = new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-15, 0));
 		if (noisesettings.func_236180_k_()) {
 			SharedSeedRandom sharedseedrandom = new SharedSeedRandom(p_i241976_3_);
 			sharedseedrandom.func_202423_a(17292);
-			this.islandNoise = new SimplexNoiseGenerator((Random) sharedseedrandom);
+			this.islandNoise = new SimplexNoiseGenerator(sharedseedrandom);
 		} else {
 			this.islandNoise = null;
 		}
 	}
 
 	protected Codec<? extends ChunkGenerator> func_230347_a_() {
-		return (Codec) CODEC;
+		return CODEC;
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public ChunkGenerator func_230349_a_(long p_230349_1_) {
-		return (ChunkGenerator) new NoiseChunkGenerator(this.field_222542_c.func_230320_a_(p_230349_1_), p_230349_1_, this.field_222543_d);
+		return new NoiseChunkGenerator(this.field_222542_c.func_230320_a_(p_230349_1_), p_230349_1_, this.field_222543_d);
 	}
 
 	public boolean stable(long p_236088_1_, RegistryKey<DimensionSettings> p_236088_3_) {
@@ -304,8 +286,8 @@ public class TofuChunkGenerator extends ChunkGenerator {
 
 	public IBlockReader func_230348_a_(int p_230348_1_, int p_230348_2_) {
 		BlockState[] ablockstate = new BlockState[this.chunkCountY * this.chunkHeight];
-		iterateNoiseColumn(p_230348_1_, p_230348_2_, ablockstate, (Predicate<BlockState>) null);
-		return (IBlockReader) new Blockreader(ablockstate);
+		iterateNoiseColumn(p_230348_1_, p_230348_2_, ablockstate, null);
+		return new Blockreader(ablockstate);
 	}
 
 	private int iterateNoiseColumn(int p_236087_1_, int p_236087_2_, @Nullable BlockState[] p_236087_3_, @Nullable Predicate<BlockState> p_236087_4_) {
@@ -371,7 +353,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 				p_225551_1_.func_226691_t_((BlockPos) blockpos$mutable.func_181079_c(k + i1, i2, l + j1)).func_206854_a((Random) sharedseedrandom, p_225551_2_, k1, l1, i2, d1, this.defaultBlock, this.defaultFluid, func_230356_f_(), p_225551_1_.func_72905_C());
 			}
 		}
-		setBedrock(p_225551_2_, (Random) sharedseedrandom);
+		setBedrock(p_225551_2_, sharedseedrandom);
 	}
 
 	private void setBedrock(IChunk p_222555_1_, Random p_222555_2_) {
@@ -389,12 +371,12 @@ public class TofuChunkGenerator extends ChunkGenerator {
 				if (flag)
 					for (int j1 = 0; j1 < 5; j1++) {
 						if (j1 <= p_222555_2_.nextInt(5))
-							p_222555_1_.func_177436_a((BlockPos) blockpos$mutable.func_181079_c(blockpos.getX(), l - j1, blockpos.getZ()), TofuBlocks.TOFUBEDROCK.func_176223_P(), false);
+							p_222555_1_.func_177436_a((BlockPos) blockpos$mutable.func_181079_c(blockpos.getX(), l - j1, blockpos.getZ()), TofuBlocks.TOFUBEDROCK.defaultBlockState(), false);
 					}
 				if (flag1)
 					for (int k1 = 4; k1 >= 0; k1--) {
 						if (k1 <= p_222555_2_.nextInt(5))
-							p_222555_1_.func_177436_a((BlockPos) blockpos$mutable.func_181079_c(blockpos.getX(), k + k1, blockpos.getZ()), TofuBlocks.TOFUBEDROCK.func_176223_P(), false);
+							p_222555_1_.func_177436_a((BlockPos) blockpos$mutable.func_181079_c(blockpos.getX(), k + k1, blockpos.getZ()), TofuBlocks.TOFUBEDROCK.defaultBlockState(), false);
 					}
 			}
 	}
@@ -484,7 +466,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 								double d17 = MathHelper.func_219803_d(d16, d14, d15);
 								double d18 = MathHelper.func_151237_a(d17 / 200.0D, -1.0D, 1.0D);
 								for (d18 = d18 / 2.0D - d18 * d18 * d18 / 24.0D; objectlistiterator.hasNext(); d18 += getContribution(j4, k4, l4) * 0.8D) {
-									StructurePiece structurepiece = (StructurePiece) objectlistiterator.next();
+									StructurePiece structurepiece = objectlistiterator.next();
 									MutableBoundingBox mutableboundingbox = structurepiece.func_74874_b();
 									int j4 = Math.max(0, Math.max(mutableboundingbox.field_78897_a - i3, i3 - mutableboundingbox.field_78893_d));
 									int k4 = i2 - mutableboundingbox.field_78895_b + ((structurepiece instanceof AbstractVillagePiece) ? ((AbstractVillagePiece) structurepiece).func_214830_d() : 0);
@@ -492,7 +474,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 								}
 								objectlistiterator.back(objectArrayList1.size());
 								while (objectlistiterator1.hasNext()) {
-									JigsawJunction jigsawjunction = (JigsawJunction) objectlistiterator1.next();
+									JigsawJunction jigsawjunction = objectlistiterator1.next();
 									int k5 = i3 - jigsawjunction.func_214895_a();
 									int j4 = i2 - jigsawjunction.func_214896_b();
 									int k4 = l3 - jigsawjunction.func_214893_c();
@@ -502,7 +484,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 								BlockState blockstate = generateBaseState(d18, i2);
 								if (blockstate != AIR) {
 									blockpos$mutable.func_181079_c(i3, i2, l3);
-									if (blockstate.getLightValue((IBlockReader) chunkprimer, (BlockPos) blockpos$mutable) != 0)
+									if (blockstate.getLightValue(chunkprimer, blockpos$mutable) != 0)
 										chunkprimer.func_201637_h((BlockPos) blockpos$mutable);
 									chunksection.func_177484_a(j3, j2, i4, blockstate, false);
 									heightmap.func_202270_a(j3, i2, i4, blockstate);

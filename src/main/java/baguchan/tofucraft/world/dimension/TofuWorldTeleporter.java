@@ -4,15 +4,6 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import javax.annotation.Nullable;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PortalInfo;
@@ -31,6 +22,14 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import net.minecraftforge.common.util.ITeleporter;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class TofuWorldTeleporter implements ITeleporter {
 	private static final Map<ResourceLocation, Map<ColumnPos, PortalPosition>> destinationCoordinateCache = new HashMap<>();
@@ -79,7 +78,7 @@ public class TofuWorldTeleporter implements ITeleporter {
 										if (d0 < 0.0D || d1 < d0) {
 											d0 = d1;
 											blockpos = blockpos1;
-											i = MathHelper.func_76123_f(MathHelper.func_76133_a(d1));
+											i = MathHelper.func_76123_f(MathHelper.sqrt(d1));
 										}
 									}
 							}
@@ -95,10 +94,10 @@ public class TofuWorldTeleporter implements ITeleporter {
 		}
 		if (flag) {
 			destinationCoordinateCache.putIfAbsent(world.func_234923_W_().func_240901_a_(), Maps.newHashMapWithExpectedSize(4096));
-			((Map<ColumnPos, PortalPosition>) destinationCoordinateCache.get(world.func_234923_W_().func_240901_a_())).put(columnPos, new PortalPosition(blockpos, world.func_82737_E()));
+			destinationCoordinateCache.get(world.func_234923_W_().func_240901_a_()).put(columnPos, new PortalPosition(blockpos, world.func_82737_E()));
 			world.func_72863_F().registerTickingTicket(TicketType.field_219493_f, new ChunkPos(blockpos), 3, new BlockPos(columnPos.field_219439_a, blockpos.getY(), columnPos.field_219440_b));
 		}
-		BlockPos[] portalBorder = getBoundaryPositions(world, blockpos).<BlockPos>toArray(new BlockPos[0]);
+		BlockPos[] portalBorder = getBoundaryPositions(world, blockpos).toArray(new BlockPos[0]);
 		BlockPos borderPos = portalBorder[0];
 		double portalX = borderPos.getX() + 0.5D;
 		double portalY = borderPos.getY() + 1.0D;
@@ -146,14 +145,14 @@ public class TofuWorldTeleporter implements ITeleporter {
 
 	private static PortalInfo moveToSafeCoords(ServerWorld world, Entity entity) {
 		BlockPos pos = entity.func_233580_cy_();
-		if (isSafeAround((World) world, pos, entity))
+		if (isSafeAround(world, pos, entity))
 			return makePortalInfo(entity, entity.func_213303_ch());
 		BlockPos safeCoords = findSafeCoords(world, 200, pos, entity);
 		if (safeCoords != null)
-			return makePortalInfo(entity, safeCoords.getX(), entity.func_226278_cu_(), safeCoords.getZ());
+			return makePortalInfo(entity, safeCoords.getX(), entity.getY(), safeCoords.getZ());
 		safeCoords = findSafeCoords(world, 400, pos, entity);
 		if (safeCoords != null)
-			return makePortalInfo(entity, safeCoords.getX(), entity.func_226278_cu_(), safeCoords.getZ());
+			return makePortalInfo(entity, safeCoords.getX(), entity.getY(), safeCoords.getZ());
 		return makePortalInfo(entity, entity.func_213303_ch());
 	}
 
@@ -180,7 +179,7 @@ public class TofuWorldTeleporter implements ITeleporter {
 		int attempts = range / 8;
 		for (int i = 0; i < attempts; i++) {
 			BlockPos dPos = new BlockPos(pos.getX(), 100, pos.getZ());
-			if (isSafeAround((World) world, dPos, entity))
+			if (isSafeAround(world, dPos, entity))
 				return dPos;
 		}
 		return null;
@@ -196,16 +195,16 @@ public class TofuWorldTeleporter implements ITeleporter {
 		}
 		spot = findPortalCoords(world, pos, blockpos -> isIdealForPortal(world, blockpos));
 		if (spot != null) {
-			cachePortalCoords(world, pos, makePortalAt((World) world, spot));
+			cachePortalCoords(world, pos, makePortalAt(world, spot));
 			return;
 		}
 		spot = findPortalCoords(world, pos, blockPos -> isOkayForPortal(world, blockPos));
 		if (spot != null) {
-			cachePortalCoords(world, pos, makePortalAt((World) world, spot));
+			cachePortalCoords(world, pos, makePortalAt(world, spot));
 			return;
 		}
 		double yFactor = getYFactor(world);
-		cachePortalCoords(world, pos, makePortalAt((World) world, new BlockPos(entity.func_226277_ct_(), entity.func_226278_cu_() * yFactor - 1.0D, entity.func_226281_cx_())));
+		cachePortalCoords(world, pos, makePortalAt(world, new BlockPos(entity.getX(), entity.getY() * yFactor - 1.0D, entity.getZ())));
 	}
 
 	private static void loadSurroundingArea(ServerWorld world, Vector3d pos) {
@@ -255,7 +254,7 @@ public class TofuWorldTeleporter implements ITeleporter {
 	private static void cachePortalCoords(ServerWorld world, Vector3d loc, BlockPos pos) {
 		int x = MathHelper.func_76128_c(loc.field_72450_a), z = MathHelper.func_76128_c(loc.field_72449_c);
 		destinationCoordinateCache.putIfAbsent(world.func_234923_W_().func_240901_a_(), Maps.newHashMapWithExpectedSize(4096));
-		((Map<ColumnPos, PortalPosition>) destinationCoordinateCache.get(world.func_234923_W_().func_240901_a_())).put(new ColumnPos(x, z), new PortalPosition(pos, world.func_82737_E()));
+		destinationCoordinateCache.get(world.func_234923_W_().func_240901_a_()).put(new ColumnPos(x, z), new PortalPosition(pos, world.func_82737_E()));
 	}
 
 	private static boolean isIdealForPortal(ServerWorld world, BlockPos pos) {
@@ -291,22 +290,22 @@ public class TofuWorldTeleporter implements ITeleporter {
 	}
 
 	private static PortalInfo makePortalInfo(Entity entity, Vector3d pos) {
-		return new PortalInfo(pos, Vector3d.field_186680_a, entity.field_70125_A, entity.field_70177_z);
+		return new PortalInfo(pos, Vector3d.field_186680_a, entity.xRot, entity.yRot);
 	}
 
 	public static BlockPos makePortalAt(World world, BlockPos pos) {
-		BlockState portalState = TofuBlocks.TOFU_PORTAL.func_176223_P();
+		BlockState portalState = TofuBlocks.TOFU_PORTAL.defaultBlockState();
 		while (pos.getX() > 1 && world.func_175623_d(pos))
 			pos = pos.func_177977_b();
 		while (!world.func_175623_d(pos.func_177977_b()) && world.getBlockState(pos).getBlock() != TofuBlocks.TOFU_TERRAIN)
-			pos = pos.func_177984_a();
-		BlockState snowstate = TofuBlocks.GRILLEDTOFU.func_176223_P();
+			pos = pos.above();
+		BlockState snowstate = TofuBlocks.GRILLEDTOFU.defaultBlockState();
 		for (BlockPos basePos : BlockPos.Mutable.func_218278_a(pos.func_177982_a(-2, 0, -2), pos.func_177982_a(2, 1, 2)))
-			world.func_180501_a(basePos, snowstate, 2);
+			world.setBlock(basePos, snowstate, 2);
 		for (BlockPos airPos : BlockPos.Mutable.func_218278_a(pos.func_177982_a(-2, 2, -1), pos.func_177982_a(2, 3, 1)))
-			world.func_180501_a(airPos, Blocks.field_150350_a.func_176223_P(), 2);
+			world.setBlock(airPos, Blocks.field_150350_a.defaultBlockState(), 2);
 		for (BlockPos portalPos : BlockPos.Mutable.func_218278_a(pos.func_177982_a(-1, 1, -1), pos.func_177982_a(1, 1, 1)))
-			world.func_180501_a(portalPos, portalState, 2);
+			world.setBlock(portalPos, portalState, 2);
 		return pos;
 	}
 

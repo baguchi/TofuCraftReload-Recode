@@ -1,6 +1,5 @@
 package baguchan.tofucraft.block;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -37,7 +36,7 @@ public class TofuCakeBlock extends Block {
 		super(properties);
 		this.foodLevel = foodLevel;
 		this.foodSaturation = foodSaturation;
-		func_180632_j((BlockState) ((BlockState) this.field_176227_L.func_177621_b()).func_206870_a((Property) BITES, Integer.valueOf(0)));
+		func_180632_j((BlockState) ((BlockState) this.field_176227_L.func_177621_b()).setValue(BITES, Integer.valueOf(0)));
 	}
 
 	public VoxelShape func_220053_a(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
@@ -45,14 +44,14 @@ public class TofuCakeBlock extends Block {
 	}
 
 	public ActionResultType func_225533_a_(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		if (worldIn.field_72995_K) {
-			ItemStack itemstack = player.func_184586_b(handIn);
-			if (eatSlice((IWorld) worldIn, pos, state, player).func_226246_a_())
+		if (worldIn.isClientSide) {
+			ItemStack itemstack = player.getItemInHand(handIn);
+			if (eatSlice(worldIn, pos, state, player).func_226246_a_())
 				return ActionResultType.SUCCESS;
-			if (itemstack.func_190926_b())
+			if (itemstack.isEmpty())
 				return ActionResultType.CONSUME;
 		}
-		return eatSlice((IWorld) worldIn, pos, state, player);
+		return eatSlice(worldIn, pos, state, player);
 	}
 
 	private ActionResultType eatSlice(IWorld world, BlockPos pos, BlockState state, PlayerEntity player) {
@@ -62,15 +61,15 @@ public class TofuCakeBlock extends Block {
 		player.func_71024_bL().func_75122_a(this.foodLevel, this.foodSaturation);
 		int i = ((Integer) state.func_177229_b((Property) BITES)).intValue();
 		if (i < 6) {
-			world.func_180501_a(pos, (BlockState) state.func_206870_a((Property) BITES, Integer.valueOf(i + 1)), 3);
+			world.setBlock(pos, state.setValue(BITES, Integer.valueOf(i + 1)), 3);
 		} else {
-			world.func_217377_a(pos, false);
+			world.removeBlock(pos, false);
 		}
 		return ActionResultType.SUCCESS;
 	}
 
 	public BlockState func_196271_a(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
-		return (p_196271_2_ == Direction.DOWN && !p_196271_1_.func_196955_c((IWorldReader) p_196271_4_, p_196271_5_)) ? Blocks.field_150350_a.func_176223_P() : super.func_196271_a(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
+		return (p_196271_2_ == Direction.DOWN && !p_196271_1_.func_196955_c((IWorldReader) p_196271_4_, p_196271_5_)) ? Blocks.field_150350_a.defaultBlockState() : super.func_196271_a(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
 	}
 
 	public boolean func_196260_a(BlockState state, IWorldReader worldIn, BlockPos pos) {
@@ -78,7 +77,7 @@ public class TofuCakeBlock extends Block {
 	}
 
 	protected void func_206840_a(StateContainer.Builder<Block, BlockState> builder) {
-		builder.func_206894_a(new Property[]{(Property) BITES});
+		builder.func_206894_a(new Property[]{BITES});
 	}
 
 	public int func_180641_l(BlockState p_180641_1_, World p_180641_2_, BlockPos p_180641_3_) {

@@ -1,17 +1,12 @@
 package baguchan.tofucraft.client.particle;
 
-import java.util.Random;
-
-import net.minecraft.client.particle.IAnimatedSprite;
-import net.minecraft.client.particle.IParticleFactory;
-import net.minecraft.client.particle.IParticleRenderType;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.SpriteTexturedParticle;
+import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.IParticleData;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
 public class ZundaSporeParticle extends SpriteTexturedParticle {
@@ -58,14 +53,14 @@ public class ZundaSporeParticle extends SpriteTexturedParticle {
 		}
 
 		public Particle createParticle(BasicParticleType p_199234_1_, ClientWorld p_199234_2_, double p_199234_3_, double p_199234_5_, double p_199234_7_, double p_199234_9_, double p_199234_11_, double p_199234_13_) {
-			Random random = p_199234_2_.field_73012_v;
+			Random random = p_199234_2_.random;
 			double d0 = random.nextGaussian() * 9.999999974752427E-7D;
 			double d1 = random.nextGaussian() * 9.999999747378752E-5D;
 			double d2 = random.nextGaussian() * 9.999999974752427E-7D;
 			ZundaSporeParticle underwaterparticle = new ZundaSporeParticle(p_199234_2_, p_199234_3_, p_199234_5_, p_199234_7_, d0, d1, d2);
 			underwaterparticle.func_217568_a(this.sprite);
 			underwaterparticle.func_70538_b(0.5F, 0.9F, 0.5F);
-			return (Particle) underwaterparticle;
+			return underwaterparticle;
 		}
 	}
 }

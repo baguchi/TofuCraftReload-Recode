@@ -1,10 +1,6 @@
 package baguchan.tofucraft.block.crop;
 
 import baguchan.tofucraft.registry.TofuItems;
-
-import java.util.Random;
-
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -17,11 +13,12 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
+
+import java.util.Random;
 
 public class SoybeanNetherCropsBlock extends CropsBlock {
 	private static final VoxelShape[] SHAPES = new VoxelShape[]{Block.func_208617_a(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.func_208617_a(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D), Block.func_208617_a(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.func_208617_a(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D), Block.func_208617_a(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), Block.func_208617_a(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D), Block.func_208617_a(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.func_208617_a(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D)};
@@ -31,7 +28,7 @@ public class SoybeanNetherCropsBlock extends CropsBlock {
 	}
 
 	protected boolean func_200014_a_(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		return (state.func_203425_a(Blocks.field_150425_aM) || state.func_203425_a(Blocks.field_150424_aL) || state.func_203425_a(Blocks.field_235381_mu_));
+		return (state.is(Blocks.field_150425_aM) || state.is(Blocks.field_150424_aL) || state.is(Blocks.field_235381_mu_));
 	}
 
 	public void func_225542_b_(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
@@ -39,10 +36,10 @@ public class SoybeanNetherCropsBlock extends CropsBlock {
 			return;
 		int i = func_185527_x(state);
 		if (i < func_185526_g()) {
-			float f = getGrowthChance((Block) this, (IBlockReader) worldIn, pos);
-			if (ForgeHooks.onCropsGrowPre((World) worldIn, pos, state, (random.nextInt((int) (25.0F / f) + 1) == 0))) {
-				worldIn.func_180501_a(pos, func_185528_e(i + 1), 2);
-				ForgeHooks.onCropsGrowPost((World) worldIn, pos, state);
+			float f = getGrowthChance(this, worldIn, pos);
+			if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, (random.nextInt((int) (25.0F / f) + 1) == 0))) {
+				worldIn.setBlock(pos, func_185528_e(i + 1), 2);
+				ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 			}
 		}
 	}
@@ -80,8 +77,8 @@ public class SoybeanNetherCropsBlock extends CropsBlock {
 	public boolean func_196260_a(BlockState state, IWorldReader worldIn, BlockPos pos) {
 		BlockPos blockpos = pos.func_177977_b();
 		if (state.getBlock() == this)
-			return worldIn.getBlockState(blockpos).canSustainPlant((IBlockReader) worldIn, blockpos, Direction.UP, (IPlantable) this);
-		return func_200014_a_(worldIn.getBlockState(blockpos), (IBlockReader) worldIn, blockpos);
+			return worldIn.getBlockState(blockpos).canSustainPlant(worldIn, blockpos, Direction.UP, this);
+		return func_200014_a_(worldIn.getBlockState(blockpos), worldIn, blockpos);
 	}
 
 	public PlantType getPlantType(IBlockReader world, BlockPos pos) {
@@ -89,7 +86,7 @@ public class SoybeanNetherCropsBlock extends CropsBlock {
 	}
 
 	protected IItemProvider getSeedsItem() {
-		return (IItemProvider) TofuItems.SEEDS_SOYBEANS_NETHER;
+		return TofuItems.SEEDS_SOYBEANS_NETHER;
 	}
 
 	public VoxelShape func_220053_a(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

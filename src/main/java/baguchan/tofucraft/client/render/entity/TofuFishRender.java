@@ -5,8 +5,6 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.CodModel;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -19,7 +17,7 @@ public class TofuFishRender extends MobRenderer<TofuFishEntity, CodModel<TofuFis
 	private static final ResourceLocation TEXTURE = new ResourceLocation("tofucraft:textures/entity/tofufish.png");
 
 	public TofuFishRender(EntityRendererManager renderManagerIn) {
-		super(renderManagerIn, (EntityModel) new CodModel(), 0.3F);
+		super(renderManagerIn, new CodModel(), 0.3F);
 	}
 
 	protected void setupRotations(TofuFishEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {

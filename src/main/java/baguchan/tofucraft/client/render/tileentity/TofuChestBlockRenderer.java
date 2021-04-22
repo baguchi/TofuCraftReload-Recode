@@ -22,7 +22,6 @@ import net.minecraft.state.Property;
 import net.minecraft.state.properties.ChestType;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.IChestLid;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMerger;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -97,7 +96,7 @@ public class TofuChestBlockRenderer<T extends TofuChestTileEntity> extends TileE
 	public void render(T p_225616_1_, float p_225616_2_, MatrixStack p_225616_3_, IRenderTypeBuffer p_225616_4_, int p_225616_5_, int p_225616_6_) {
 		World world = p_225616_1_.func_145831_w();
 		boolean flag = (world != null);
-		BlockState blockstate = flag ? p_225616_1_.func_195044_w() : (BlockState) TofuBlocks.TOFUCHEST.func_176223_P().func_206870_a((Property) ChestBlock.field_176459_a, (Comparable) Direction.SOUTH);
+		BlockState blockstate = flag ? p_225616_1_.func_195044_w() : TofuBlocks.TOFUCHEST.defaultBlockState().setValue(ChestBlock.field_176459_a, (Comparable) Direction.SOUTH);
 		ChestType chesttype = blockstate.func_235901_b_((Property) ChestBlock.field_196314_b) ? (ChestType) blockstate.func_177229_b((Property) ChestBlock.field_196314_b) : ChestType.SINGLE;
 		Block block = blockstate.getBlock();
 		if (block instanceof AbstractChestBlock) {
@@ -110,14 +109,14 @@ public class TofuChestBlockRenderer<T extends TofuChestTileEntity> extends TileE
 			p_225616_3_.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(-f));
 			p_225616_3_.func_227861_a_(-0.5D, -0.5D, -0.5D);
 			if (flag) {
-				icallbackwrapper = abstractchestblock.func_225536_a_(blockstate, world, p_225616_1_.func_174877_v(), true);
+				icallbackwrapper = abstractchestblock.func_225536_a_(blockstate, world, p_225616_1_.getBlockPos(), true);
 			} else {
 				icallbackwrapper = TileEntityMerger.ICallback::func_225537_b_;
 			}
 			float f1 = ((Float2FloatFunction) icallbackwrapper.apply(ChestBlock.func_226917_a_((IChestLid) p_225616_1_))).get(p_225616_2_);
 			f1 = 1.0F - f1;
 			f1 = 1.0F - f1 * f1 * f1;
-			int i = ((Int2IntFunction) icallbackwrapper.apply((TileEntityMerger.ICallback) new DualBrightnessCallback())).applyAsInt(p_225616_5_);
+			int i = ((Int2IntFunction) icallbackwrapper.apply(new DualBrightnessCallback())).applyAsInt(p_225616_5_);
 			RenderMaterial rendermaterial = getMaterial(p_225616_1_, chesttype);
 			IVertexBuilder ivertexbuilder = rendermaterial.func_229311_a_(p_225616_4_, RenderType::func_228638_b_);
 			if (flag1) {

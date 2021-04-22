@@ -3,20 +3,12 @@ package baguchan.tofucraft.block;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuParticles;
 import baguchan.tofucraft.world.dimension.TofuWorldTeleporter;
-
-import java.util.Random;
-
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BreakableBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.particles.IParticleData;
-import net.minecraft.util.Direction;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -29,7 +21,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.util.ITeleporter;
+
+import java.util.Random;
 
 public class TofuPortalBlock extends BreakableBlock {
 	private static final VoxelShape AABB = VoxelShapes.func_197881_a(new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.8125D, 1.0D));
@@ -43,16 +36,16 @@ public class TofuPortalBlock extends BreakableBlock {
 	}
 
 	public boolean trySpawnPortal(World worldIn, BlockPos pos) {
-		Size size = new Size((IWorld) worldIn, pos);
+		Size size = new Size(worldIn, pos);
 		if (size.isValid()) {
 			size.placePortalBlocks();
-			worldIn.func_184133_a(null, pos, SoundEvents.field_193782_bq, SoundCategory.BLOCKS, 0.7F, 1.0F);
+			worldIn.playSound(null, pos, SoundEvents.field_193782_bq, SoundCategory.BLOCKS, 0.7F, 1.0F);
 			return true;
 		}
-		Size size1 = new Size((IWorld) worldIn, pos);
+		Size size1 = new Size(worldIn, pos);
 		if (size1.isValid()) {
 			size1.placePortalBlocks();
-			worldIn.func_184133_a(null, pos, SoundEvents.field_193782_bq, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			worldIn.playSound(null, pos, SoundEvents.field_193782_bq, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			return true;
 		}
 		return false;
@@ -69,7 +62,7 @@ public class TofuPortalBlock extends BreakableBlock {
 		}
 		if (!good) {
 			world.func_175669_a(2001, pos, Block.func_196246_j(state));
-			world.func_180501_a(pos, TofuBlocks.SOYMILK.func_176223_P(), 3);
+			world.setBlock(pos, TofuBlocks.SOYMILK.defaultBlockState(), 3);
 		}
 	}
 
@@ -87,7 +80,7 @@ public class TofuPortalBlock extends BreakableBlock {
 	}
 
 	public static void attemptSendPlayer(Entity entity, boolean forcedEntry) {
-		if (!entity.func_70089_S() || entity.level.isClientSide())
+		if (!entity.isAlive() || entity.level.isClientSide())
 			return;
 		if (entity.func_184218_aH() || !entity.func_184222_aU())
 			return;
@@ -99,7 +92,7 @@ public class TofuPortalBlock extends BreakableBlock {
 			return;
 		entity.level.func_217381_Z().func_76320_a("tofu_portal");
 		entity.func_242279_ag();
-		entity.changeDimension(serverWorld, (ITeleporter) new TofuWorldTeleporter());
+		entity.changeDimension(serverWorld, new TofuWorldTeleporter());
 		entity.level.func_217381_Z().func_76319_b();
 	}
 
@@ -189,7 +182,7 @@ public class TofuPortalBlock extends BreakableBlock {
 
 		void placePortalBlocks() {
 			for (BlockPos portalPos : BlockPos.Mutable.func_218278_a(this.nw, this.se))
-				this.world.func_180501_a(portalPos, TofuBlocks.TOFU_PORTAL.func_176223_P(), 2);
+				this.world.setBlock(portalPos, TofuBlocks.TOFU_PORTAL.defaultBlockState(), 2);
 		}
 	}
 }

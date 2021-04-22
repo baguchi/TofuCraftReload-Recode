@@ -1,18 +1,18 @@
 package baguchan.tofucraft.registry;
 
-import java.util.function.Supplier;
-
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.LazyValue;
 
+import java.util.function.Supplier;
+
 public enum TofuItemTier implements IItemTier {
-	KINU(0, 1, 0.1F, 0.0F, 2, () -> Ingredient.func_199804_a(new IItemProvider[]{(IItemProvider) TofuItems.TOFUKINU})),
-	MOMEN(0, 2, 0.25F, 0.25F, 5, () -> Ingredient.func_199804_a(new IItemProvider[]{(IItemProvider) TofuItems.TOFUMOMEN})),
-	SOLID(1, 131, 5.0F, 1.0F, 12, () -> Ingredient.func_199804_a(new IItemProvider[]{(IItemProvider) TofuItems.TOFUISHI})),
-	METAL(2, 250, 6.0F, 2.0F, 15, () -> Ingredient.func_199804_a(new IItemProvider[]{(IItemProvider) TofuItems.TOFUMETAL})),
-	TOFUDIAMOND(3, 1600, 8.0F, 4.0F, 12, () -> Ingredient.func_199804_a(new IItemProvider[]{(IItemProvider) TofuItems.TOFUDIAMOND}));
+	KINU(0, 1, 0.1F, 0.0F, 2, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUKINU})),
+	MOMEN(0, 2, 0.25F, 0.25F, 5, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUMOMEN})),
+	SOLID(1, 131, 5.0F, 1.0F, 12, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUISHI})),
+	METAL(2, 250, 6.0F, 2.0F, 15, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUMETAL})),
+	TOFUDIAMOND(3, 1600, 8.0F, 4.0F, 12, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUDIAMOND}));
 
 	private final int level;
 

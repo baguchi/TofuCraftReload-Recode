@@ -3,9 +3,6 @@ package baguchan.tofucraft.fluid;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
@@ -27,13 +24,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidAttributes;
 
+import java.util.Random;
+
 public abstract class NigariFluid extends WaterFluid {
 	public Fluid func_210197_e() {
-		return (Fluid) TofuFluids.BITTERN_FLOW;
+		return TofuFluids.BITTERN_FLOW;
 	}
 
 	public Fluid func_210198_f() {
-		return (Fluid) TofuFluids.BITTERN;
+		return TofuFluids.BITTERN;
 	}
 
 	public Item func_204524_b() {
@@ -58,7 +57,7 @@ public abstract class NigariFluid extends WaterFluid {
 	}
 
 	public BlockState func_204527_a(FluidState p_204527_1_) {
-		return (BlockState) TofuBlocks.BITTERN.func_176223_P().func_206870_a((Property) FlowingFluidBlock.field_176367_b, Integer.valueOf(func_207205_e(p_204527_1_)));
+		return (BlockState) TofuBlocks.BITTERN.defaultBlockState().setValue((Property) FlowingFluidBlock.field_176367_b, Integer.valueOf(func_207205_e(p_204527_1_)));
 	}
 
 	public boolean func_207187_a(Fluid p_207187_1_) {
@@ -84,7 +83,7 @@ public abstract class NigariFluid extends WaterFluid {
 	protected FluidAttributes createAttributes() {
 		return FluidAttributes.builder(new ResourceLocation("tofucraft", "block/bittern"), new ResourceLocation("tofucraft", "block/bittern"))
 
-				.build((Fluid) this);
+				.build(this);
 	}
 
 	public static class Flowing extends NigariFluid {

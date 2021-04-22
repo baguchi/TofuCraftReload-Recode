@@ -19,14 +19,14 @@ public class BugleItem extends Item {
 		int i = func_77626_a(p_77615_1_) - p_77615_4_;
 		if (p_77615_3_ instanceof PlayerEntity) {
 			PlayerEntity playerentity = (PlayerEntity) p_77615_3_;
-			playerentity.func_184811_cZ().func_185145_a(this, 80);
+			playerentity.getCooldowns().addCooldown(this, 80);
 		}
 		if (i >= 20)
 			p_77615_3_.playSound(TofuSounds.TOFUBUGLE, 3.0F, 1.0F);
 	}
 
-	public ActionResult<ItemStack> func_77659_a(World p_77659_1_, PlayerEntity p_77659_2_, Hand p_77659_3_) {
-		ItemStack itemstack = p_77659_2_.func_184586_b(p_77659_3_);
+	public ActionResult<ItemStack> use(World p_77659_1_, PlayerEntity p_77659_2_, Hand p_77659_3_) {
+		ItemStack itemstack = p_77659_2_.getItemInHand(p_77659_3_);
 		p_77659_2_.func_184598_c(p_77659_3_);
 		return ActionResult.func_226249_b_(itemstack);
 	}

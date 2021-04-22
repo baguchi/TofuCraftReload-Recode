@@ -4,14 +4,10 @@ import baguchan.tofucraft.entity.TofuSlimeEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.layers.SlimeGelLayer;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.SlimeModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -23,8 +19,8 @@ public class TofuSlimeRender extends MobRenderer<TofuSlimeEntity, SlimeModel<Tof
 	private static final ResourceLocation SLIME_LOCATION = new ResourceLocation("tofucraft", "textures/entity/tofuslime.png");
 
 	public TofuSlimeRender(EntityRendererManager p_i47193_1_) {
-		super(p_i47193_1_, (EntityModel) new SlimeModel(16), 0.25F);
-		func_177094_a((LayerRenderer) new SlimeGelLayer((IEntityRenderer) this));
+		super(p_i47193_1_, new SlimeModel(16), 0.25F);
+		func_177094_a((LayerRenderer) new SlimeGelLayer(this));
 	}
 
 	public void render(TofuSlimeEntity p_225623_1_, float p_225623_2_, float p_225623_3_, MatrixStack p_225623_4_, IRenderTypeBuffer p_225623_5_, int p_225623_6_) {

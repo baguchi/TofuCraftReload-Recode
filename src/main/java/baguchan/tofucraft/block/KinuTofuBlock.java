@@ -1,8 +1,5 @@
 package baguchan.tofucraft.block;
 
-import java.util.Random;
-
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -19,6 +16,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Random;
 
 public class KinuTofuBlock extends Block {
 	public static final IntegerProperty AGE = BlockStateProperties.field_208170_W;
@@ -47,12 +46,12 @@ public class KinuTofuBlock extends Block {
 
 	public void func_225534_a_(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		super.func_225534_a_(state, worldIn, pos, random);
-		if (isUnderWeight((World) worldIn, pos))
+		if (isUnderWeight(worldIn, pos))
 			worldIn.func_175655_b(pos, true);
 	}
 
 	public boolean isUnderWeight(World world, BlockPos pos) {
-		BlockState weightBlock = world.getBlockState(pos.func_177984_a());
+		BlockState weightBlock = world.getBlockState(pos.above());
 		BlockState baseBlock = world.getBlockState(pos.func_177977_b());
 		boolean isWeightValid = (weightBlock != null && (weightBlock.func_185904_a() == Material.field_151576_e || weightBlock.func_185904_a() == Material.field_151573_f));
 		float baseHardness = baseBlock.func_185887_b((IBlockReader) world, pos.func_177977_b());
@@ -61,6 +60,6 @@ public class KinuTofuBlock extends Block {
 	}
 
 	protected void func_206840_a(StateContainer.Builder<Block, BlockState> builder) {
-		builder.func_206894_a(new Property[]{(Property) AGE});
+		builder.func_206894_a(new Property[]{AGE});
 	}
 }

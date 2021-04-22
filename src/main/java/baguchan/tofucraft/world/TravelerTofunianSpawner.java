@@ -2,12 +2,6 @@ package baguchan.tofucraft.world;
 
 import baguchan.tofucraft.entity.TravelerTofunianEntity;
 import baguchan.tofucraft.registry.TofuEntityTypes;
-
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Random;
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -22,11 +16,15 @@ import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.spawner.WorldEntitySpawner;
+
+import javax.annotation.Nullable;
+import java.util.Iterator;
+import java.util.Optional;
+import java.util.Random;
 
 public class TravelerTofunianSpawner {
 	private final Random random = new Random();
@@ -42,7 +40,7 @@ public class TravelerTofunianSpawner {
 	public TravelerTofunianSpawner(ServerWorld p_i50177_1_) {
 		this.world = p_i50177_1_;
 		this.field_221248_c = 1200;
-		TravelerTofunianWorldData worldinfo = TravelerTofunianWorldData.get((World) p_i50177_1_);
+		TravelerTofunianWorldData worldinfo = TravelerTofunianWorldData.get(p_i50177_1_);
 		this.field_221249_d = worldinfo.getTofunianSpawnDelay();
 		this.field_221250_e = worldinfo.getTofunianSpawnChance();
 		if (this.field_221249_d == 0 && this.field_221250_e == 0) {
@@ -56,14 +54,14 @@ public class TravelerTofunianSpawner {
 	public void tick() {
 		if (this.world.func_82736_K().func_223586_b(GameRules.field_223601_d) && --this.field_221248_c <= 0) {
 			this.field_221248_c = 1200;
-			TravelerTofunianWorldData worldinfo = TravelerTofunianWorldData.get((World) this.world);
+			TravelerTofunianWorldData worldinfo = TravelerTofunianWorldData.get(this.world);
 			this.field_221249_d -= 1200;
 			worldinfo.setTofunianSpawnDelay(this.field_221249_d);
 			if (this.field_221249_d <= 0) {
 				this.field_221249_d = 24000;
 				if (this.world.func_82736_K().func_223586_b(GameRules.field_223601_d)) {
 					int i = this.field_221250_e;
-					this.field_221250_e = MathHelper.func_76125_a(this.field_221250_e + 25, 25, 75);
+					this.field_221250_e = MathHelper.clamp(this.field_221250_e + 25, 25, 75);
 					worldinfo.setTofunianSpawnChance(this.field_221250_e);
 					if (this.random.nextInt(100) <= i && func_221245_b())
 						this.field_221250_e = 25;
@@ -88,7 +86,7 @@ public class TravelerTofunianSpawner {
 				return false;
 			TravelerTofunianEntity entityTravelerTofunian = (TravelerTofunianEntity) TofuEntityTypes.TRAVELER_TOFUNIAN.func_220342_a(this.world, (CompoundNBT) null, (ITextComponent) null, (PlayerEntity) null, blockpos2, SpawnReason.EVENT, false, false);
 			if (entityTravelerTofunian != null) {
-				TravelerTofunianWorldData worldinfo = TravelerTofunianWorldData.get((World) this.world);
+				TravelerTofunianWorldData worldinfo = TravelerTofunianWorldData.get(this.world);
 				worldinfo.setTravelerTofunianID(entityTravelerTofunian.func_110124_au());
 				entityTravelerTofunian.setDespawnDelay(48000);
 				entityTravelerTofunian.setWanderTarget(blockpos1);

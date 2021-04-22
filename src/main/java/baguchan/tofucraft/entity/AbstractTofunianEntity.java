@@ -1,9 +1,6 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.registry.TofuSounds;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.Pose;
@@ -11,21 +8,23 @@ import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 public abstract class AbstractTofunianEntity extends AbstractVillagerEntity {
 	public AbstractTofunianEntity(EntityType<? extends AbstractTofunianEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
 	protected void shakeHead() {
-		func_213720_r(40);
+		setUnhappyCounter(40);
 		if (!this.level.isClientSide())
-			playSound(TofuSounds.TOFUNIAN_NO, func_70599_aP(), func_70647_i());
+			playSound(TofuSounds.TOFUNIAN_NO, getSoundVolume(), getVoicePitch());
 	}
 
-	public void func_70071_h_() {
-		super.func_70071_h_();
-		if (func_213719_ec() > 0)
-			func_213720_r(func_213719_ec() - 1);
+	public void tick() {
+		super.tick();
+		if (getUnhappyCounter() > 0)
+			setUnhappyCounter(getUnhappyCounter() - 1);
 	}
 
 	protected SoundEvent func_184639_G() {
@@ -45,11 +44,11 @@ public abstract class AbstractTofunianEntity extends AbstractVillagerEntity {
 		return TofuSounds.TOFUNIAN_DEATH;
 	}
 
-	protected float func_213348_b(Pose poseIn, EntitySize sizeIn) {
-		return func_70631_g_() ? 0.3F : (sizeIn.field_220316_b * 0.8F);
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		return isBaby() ? 0.3F : (sizeIn.height * 0.8F);
 	}
 
-	public boolean func_213397_c(double distanceToClosestPlayer) {
+	public boolean removeWhenFarAway(double distanceToClosestPlayer) {
 		return false;
 	}
 }

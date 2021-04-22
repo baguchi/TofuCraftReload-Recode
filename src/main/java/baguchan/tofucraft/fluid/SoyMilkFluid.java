@@ -4,9 +4,6 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuTags;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowingFluidBlock;
@@ -29,13 +26,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidAttributes;
 
+import java.util.Random;
+
 public abstract class SoyMilkFluid extends WaterFluid {
 	public Fluid func_210197_e() {
-		return (Fluid) TofuFluids.SOYMILK_FLOW;
+		return TofuFluids.SOYMILK_FLOW;
 	}
 
 	public Fluid func_210198_f() {
-		return (Fluid) TofuFluids.SOYMILK;
+		return TofuFluids.SOYMILK;
 	}
 
 	public Item func_204524_b() {
@@ -60,7 +59,7 @@ public abstract class SoyMilkFluid extends WaterFluid {
 	}
 
 	public BlockState func_204527_a(FluidState p_204527_1_) {
-		return (BlockState) TofuBlocks.SOYMILK.func_176223_P().func_206870_a((Property) FlowingFluidBlock.field_176367_b, Integer.valueOf(func_207205_e(p_204527_1_)));
+		return (BlockState) TofuBlocks.SOYMILK.defaultBlockState().setValue((Property) FlowingFluidBlock.field_176367_b, Integer.valueOf(func_207205_e(p_204527_1_)));
 	}
 
 	public boolean func_207187_a(Fluid p_207187_1_) {
@@ -86,7 +85,7 @@ public abstract class SoyMilkFluid extends WaterFluid {
 	protected FluidAttributes createAttributes() {
 		return FluidAttributes.builder(new ResourceLocation("tofucraft", "block/soymilk"), new ResourceLocation("tofucraft", "block/soymilk_flow"))
 
-				.overlay(new ResourceLocation("tofucraft", "block/soymilk_overlay")).build((Fluid) this);
+				.overlay(new ResourceLocation("tofucraft", "block/soymilk_overlay")).build(this);
 	}
 
 	public static class Flowing extends SoyMilkFluid {

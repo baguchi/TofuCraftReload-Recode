@@ -26,8 +26,8 @@ public class FukumameRender<T extends Entity> extends EntityRenderer<T> {
 
 	public void func_225623_a_(T p_225623_1_, float p_225623_2_, float p_225623_3_, MatrixStack p_225623_4_, IRenderTypeBuffer p_225623_5_, int p_225623_6_) {
 		p_225623_4_.func_227860_a_();
-		p_225623_4_.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(MathHelper.func_219799_g(p_225623_3_, ((Entity) p_225623_1_).field_70126_B, ((Entity) p_225623_1_).field_70177_z) - 90.0F));
-		p_225623_4_.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(MathHelper.func_219799_g(p_225623_3_, ((Entity) p_225623_1_).field_70127_C, ((Entity) p_225623_1_).field_70125_A)));
+		p_225623_4_.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(MathHelper.func_219799_g(p_225623_3_, ((Entity) p_225623_1_).field_70126_B, p_225623_1_.yRot) - 90.0F));
+		p_225623_4_.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(MathHelper.func_219799_g(p_225623_3_, ((Entity) p_225623_1_).field_70127_C, p_225623_1_.xRot)));
 		int i = 0;
 		float f = 0.0F;
 		float f1 = 0.5F;

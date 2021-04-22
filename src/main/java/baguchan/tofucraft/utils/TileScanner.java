@@ -33,21 +33,21 @@ public class TileScanner {
 	}
 
 	public enum Method {
-		partial((String) new IScanMethod() {
+		partial(new IScanMethod() {
 			public void apply(World world, BlockPos relPos, BlockPos absTargPos, int size, Impl<?> impl) {
 				int dist = Math.abs(relPos.getX()) + Math.abs(relPos.getY()) + Math.abs(relPos.getZ());
 				if (dist == size)
 					impl.apply(world, absTargPos);
 			}
 		}),
-		full((String) new IScanMethod() {
+		full(new IScanMethod() {
 			public void apply(World world, BlockPos relPos, BlockPos absTargPos, int size, Impl<?> impl) {
 				int dist = Math.abs(relPos.getX()) + Math.abs(relPos.getY()) + Math.abs(relPos.getZ());
 				if (dist <= size)
 					impl.apply(world, absTargPos);
 			}
 		}),
-		fullSimply((String) new IScanMethod() {
+		fullSimply(new IScanMethod() {
 			public void apply(World world, BlockPos relPos, BlockPos absTagPos, int size, Impl<?> impl) {
 				impl.apply(world, absTagPos);
 			}
@@ -60,7 +60,7 @@ public class TileScanner {
 		}
 	}
 
-	private static interface IScanMethod {
+	private interface IScanMethod {
 		void apply(World param1World, BlockPos param1BlockPos1, BlockPos param1BlockPos2, int param1Int, Impl<?> param1Impl);
 	}
 

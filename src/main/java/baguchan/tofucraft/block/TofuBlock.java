@@ -1,11 +1,6 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.api.HardenRecipes;
-
-import java.util.Map;
-import java.util.Random;
-
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -21,6 +16,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Map;
+import java.util.Random;
 
 public class TofuBlock extends Block {
 	public static final IntegerProperty AGE = BlockStateProperties.field_208170_W;
@@ -44,21 +42,21 @@ public class TofuBlock extends Block {
 
 	public void func_225534_a_(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		super.func_225534_a_(state, worldIn, pos, random);
-		if (isUnderWeight((World) worldIn, pos)) {
+		if (isUnderWeight(worldIn, pos)) {
 			int i = ((Integer) state.func_177229_b((Property) AGE)).intValue();
 			if (random.nextInt(5) == 0)
 				if (i < 7) {
-					worldIn.func_180501_a(pos, (BlockState) state.func_206870_a((Property) AGE, Integer.valueOf(i + 1)), 2);
+					worldIn.setBlock(pos, state.setValue(AGE, Integer.valueOf(i + 1)), 2);
 				} else {
 					Map.Entry<Block, Block> result = HardenRecipes.getResult(state.getBlock());
 					if (result != null)
-						worldIn.func_180501_a(pos, ((Block) result.getValue()).func_176223_P(), 2);
+						worldIn.setBlock(pos, result.getValue().defaultBlockState(), 2);
 				}
 		}
 	}
 
 	public boolean isUnderWeight(World world, BlockPos pos) {
-		BlockState weightBlock = world.getBlockState(pos.func_177984_a());
+		BlockState weightBlock = world.getBlockState(pos.above());
 		BlockState baseBlock = world.getBlockState(pos.func_177977_b());
 		boolean isWeightValid = (weightBlock != null && (weightBlock.func_185904_a() == Material.field_151576_e || weightBlock.func_185904_a() == Material.field_151573_f));
 		float baseHardness = baseBlock.func_185887_b((IBlockReader) world, pos.func_177977_b());
@@ -67,6 +65,6 @@ public class TofuBlock extends Block {
 	}
 
 	protected void func_206840_a(StateContainer.Builder<Block, BlockState> builder) {
-		builder.func_206894_a(new Property[]{(Property) AGE});
+		builder.func_206894_a(new Property[]{AGE});
 	}
 }

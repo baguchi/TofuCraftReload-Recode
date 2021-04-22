@@ -2,10 +2,6 @@ package baguchan.tofucraft.block.utils;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.tileentity.SaltFurnaceTileEntity;
-
-import java.util.Random;
-
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -24,11 +20,7 @@ import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -37,26 +29,27 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import java.util.Random;
 
 public class SaltFurnaceBlock extends ContainerBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.field_208190_q;
 
 	public SaltFurnaceBlock(Properties p_i50000_1_) {
 		super(p_i50000_1_);
-		func_180632_j((BlockState) ((BlockState) this.field_176227_L.func_177621_b()).func_206870_a((Property) LIT, Boolean.valueOf(false)));
+		func_180632_j((BlockState) ((BlockState) this.field_176227_L.func_177621_b()).setValue(LIT, Boolean.valueOf(false)));
 	}
 
 	public ActionResultType func_225533_a_(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
 		boolean flag = false;
-		ItemStack stack = p_225533_4_.func_184586_b(p_225533_5_);
+		ItemStack stack = p_225533_4_.getItemInHand(p_225533_5_);
 		TileEntity tileentity = p_225533_2_.func_175625_s(p_225533_3_);
 		if (tileentity instanceof SaltFurnaceTileEntity) {
-			IFluidHandlerItem handler = (IFluidHandlerItem) FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1)).orElse(null);
+			IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1)).orElse(null);
 			if (handler != null && handler instanceof net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper) {
-				FluidUtil.interactWithFluidHandler(p_225533_4_, p_225533_5_, (IFluidHandler) tileentity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null));
+				FluidUtil.interactWithFluidHandler(p_225533_4_, p_225533_5_, tileentity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null));
 				flag = true;
 			}
 		}
@@ -80,7 +73,7 @@ public class SaltFurnaceBlock extends ContainerBlock {
 	}
 
 	public void func_196243_a(BlockState p_196243_1_, World p_196243_2_, BlockPos p_196243_3_, BlockState p_196243_4_, boolean p_196243_5_) {
-		if (!p_196243_1_.func_203425_a(p_196243_4_.getBlock())) {
+		if (!p_196243_1_.is(p_196243_4_.getBlock())) {
 			TileEntity tileentity = p_196243_2_.func_175625_s(p_196243_3_);
 			if (tileentity instanceof SaltFurnaceTileEntity) {
 				InventoryHelper.func_180175_a(p_196243_2_, p_196243_3_, (IInventory) tileentity);
@@ -103,7 +96,7 @@ public class SaltFurnaceBlock extends ContainerBlock {
 	}
 
 	protected void func_206840_a(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-		p_206840_1_.func_206894_a(new Property[]{(Property) LIT});
+		p_206840_1_.func_206894_a(new Property[]{LIT});
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -128,6 +121,6 @@ public class SaltFurnaceBlock extends ContainerBlock {
 	}
 
 	public TileEntity func_196283_a_(IBlockReader p_196283_1_) {
-		return (TileEntity) new SaltFurnaceTileEntity();
+		return new SaltFurnaceTileEntity();
 	}
 }

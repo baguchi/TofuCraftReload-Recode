@@ -1,13 +1,12 @@
 package baguchan.tofucraft.world;
 
-import java.util.UUID;
-import java.util.function.Supplier;
-
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.DimensionSavedDataManager;
 import net.minecraft.world.storage.WorldSavedData;
+
+import java.util.UUID;
 
 public class TravelerTofunianWorldData extends WorldSavedData {
 	private static final String IDENTIFIER = "tofucraft_travelling_tofunian";
@@ -65,19 +64,19 @@ public class TravelerTofunianWorldData extends WorldSavedData {
 	}
 
 	public void func_76184_a(CompoundNBT nbt) {
-		if (nbt.func_150297_b("TravelerTofunianSpawnDelay", 99))
-			this.tofunianSpawnDelay = nbt.func_74762_e("TravelerTofunianSpawnDelay");
-		if (nbt.func_150297_b("TravelerTofunianSpawnChance", 99))
-			this.tofunianSpawnChance = nbt.func_74762_e("TravelerTofunianSpawnChance");
-		if (nbt.func_150297_b("TravelerTofunianId", 8))
+		if (nbt.contains("TravelerTofunianSpawnDelay", 99))
+			this.tofunianSpawnDelay = nbt.getInt("TravelerTofunianSpawnDelay");
+		if (nbt.contains("TravelerTofunianSpawnChance", 99))
+			this.tofunianSpawnChance = nbt.getInt("TravelerTofunianSpawnChance");
+		if (nbt.contains("TravelerTofunianId", 8))
 			this.tofunianID = UUID.fromString(nbt.func_74779_i("TravelerTofunianId"));
 	}
 
 	public CompoundNBT func_189551_b(CompoundNBT compound) {
-		compound.func_74768_a("TravelerTofunianSpawnDelay", this.tofunianSpawnDelay);
-		compound.func_74768_a("TravelerTofunianSpawnChance", this.tofunianSpawnChance);
+		compound.putInt("TravelerTofunianSpawnDelay", this.tofunianSpawnDelay);
+		compound.putInt("TravelerTofunianSpawnChance", this.tofunianSpawnChance);
 		if (this.tofunianID != null)
-			compound.func_74778_a("TravelerTofunianId", this.tofunianID.toString());
+			compound.putString("TravelerTofunianId", this.tofunianID.toString());
 		return compound;
 	}
 }

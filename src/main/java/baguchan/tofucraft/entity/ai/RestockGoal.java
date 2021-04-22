@@ -2,12 +2,8 @@ package baguchan.tofucraft.entity.ai;
 
 import baguchan.tofucraft.api.TofunianJobBlocks;
 import baguchan.tofucraft.entity.TofunianEntity;
-
-import java.util.Map;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
@@ -18,22 +14,22 @@ public class RestockGoal extends MoveToBlockGoal {
 	private final TofunianEntity creature;
 
 	public RestockGoal(TofunianEntity creature, double speedIn, int length) {
-		super((CreatureEntity) creature, speedIn, length);
+		super(creature, speedIn, length);
 		this.creature = creature;
 	}
 
 	public boolean canUse() {
-		return (this.creature.getRole() != TofunianEntity.Roles.TOFUNIAN && this.creature.canResetStock() && this.creature.func_130014_f_().isDay() && super.canUse());
+		return (this.creature.getRole() != TofunianEntity.Roles.TOFUNIAN && this.creature.canResetStock() && this.creature.getLevel().isDay() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.getRole() != TofunianEntity.Roles.TOFUNIAN && this.creature.canResetStock() && this.creature.func_130014_f_().isDay() && this.mob != null);
+		return (super.canContinueToUse() && this.creature.getRole() != TofunianEntity.Roles.TOFUNIAN && this.creature.canResetStock() && this.creature.getLevel().isDay() && this.blockPos != null);
 	}
 
 	public void tick() {
 		super.tick();
 		if (isReachedTarget()) {
-			this.creature.setTofunainJobBlock(this.mob);
+			this.creature.setTofunainJobBlock(this.blockPos);
 			this.creature.restock();
 			this.creature.swing(Hand.MAIN_HAND);
 			this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
@@ -48,12 +44,12 @@ public class RestockGoal extends MoveToBlockGoal {
 				.isPresent();
 	}
 
-	protected boolean func_179489_g() {
+	protected boolean findNearestBlock() {
 		if (this.creature.getTofunainJobBlock() != null &&
-				isValidTarget((IWorldReader) this.creature.func_130014_f_(), this.creature.getTofunainJobBlock())) {
-			this.mob = this.creature.getTofunainJobBlock();
+				isValidTarget(this.creature.getLevel(), this.creature.getTofunainJobBlock())) {
+			this.blockPos = this.creature.getTofunainJobBlock();
 			return true;
 		}
-		return super.func_179489_g();
+		return super.findNearestBlock();
 	}
 }

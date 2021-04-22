@@ -10,6 +10,6 @@ public class TofuBedTileEntity extends TileEntity {
 	}
 
 	public SUpdateTileEntityPacket func_189518_D_() {
-		return new SUpdateTileEntityPacket(this.field_174879_c, 11, func_189517_E_());
+		return new SUpdateTileEntityPacket(this.getBlockPos(), 11, func_189517_E_());
 	}
 }

@@ -13,14 +13,14 @@ public class TofuStickItem extends Item {
 		super(group);
 	}
 
-	public ActionResultType func_195939_a(ItemUseContext context) {
-		if (context.func_195991_k().getBlockState(context.func_195995_a()).getBlock() == TofuBlocks.GRILLEDTOFU &&
-				TofuBlocks.TOFU_PORTAL.trySpawnPortal(context.func_195991_k(), context.func_195995_a().func_177984_a())) {
-			if (!context.func_195999_j().func_184812_l_())
-				context.func_195996_i().func_222118_a(1, (LivingEntity) context.func_195999_j(), p_213625_1_ -> p_213625_1_.func_213334_d(context.func_221531_n()));
+	public ActionResultType useOn(ItemUseContext context) {
+		if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() == TofuBlocks.GRILLEDTOFU &&
+				TofuBlocks.TOFU_PORTAL.trySpawnPortal(context.getLevel(), context.getClickedPos().above())) {
+			if (!context.getPlayer().isCreative())
+				context.getItemInHand().hurtAndBreak(1, (LivingEntity) context.getPlayer(), p_213625_1_ -> p_213625_1_.broadcastBreakEvent(context.getHand()));
 			return ActionResultType.SUCCESS;
 		}
-		return super.func_195939_a(context);
+		return super.useOn(context);
 	}
 
 	public Rarity func_77613_e(ItemStack stack) {

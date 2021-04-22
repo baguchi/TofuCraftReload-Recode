@@ -7,7 +7,7 @@ import net.minecraftforge.common.capabilities.Capability;
 
 public class SoyHealthStorage<T extends SoyHealthCapability> implements Capability.IStorage<T> {
 	public INBT writeNBT(Capability<T> capability, T instance, Direction side) {
-		return (INBT) instance.serializeNBT();
+		return instance.serializeNBT();
 	}
 
 	public void readNBT(Capability<T> capability, T instance, Direction side, INBT nbt) {

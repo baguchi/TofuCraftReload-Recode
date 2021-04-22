@@ -1,11 +1,6 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuBlocks;
-
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
@@ -17,13 +12,16 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.FlowersFeature;
 import net.minecraft.world.server.ServerWorld;
 
+import java.util.List;
+import java.util.Random;
+
 public class TofuTerrainBlock extends Block implements IGrowable {
 	public TofuTerrainBlock(Properties properties) {
 		super(properties);
 	}
 
 	public boolean func_176473_a(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-		return worldIn.getBlockState(pos.func_177984_a()).func_196958_f();
+		return worldIn.getBlockState(pos.above()).func_196958_f();
 	}
 
 	public boolean func_180670_a(World worldIn, Random rand, BlockPos pos, BlockState state) {
@@ -31,15 +29,15 @@ public class TofuTerrainBlock extends Block implements IGrowable {
 	}
 
 	public void func_225535_a_(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-		BlockPos blockpos = pos.func_177984_a();
-		BlockState blockstate = TofuBlocks.BLOCKLEEK.func_176223_P();
+		BlockPos blockpos = pos.above();
+		BlockState blockstate = TofuBlocks.BLOCKLEEK.defaultBlockState();
 		int i;
 		label28:
 		for (i = 0; i < 128; i++) {
 			BlockPos blockpos1 = blockpos;
 			for (int j = 0; j < i / 16; ) {
 				blockpos1 = blockpos1.func_177982_a(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
-				if (worldIn.getBlockState(blockpos1.func_177977_b()).func_203425_a(this)) {
+				if (worldIn.getBlockState(blockpos1.func_177977_b()).is(this)) {
 					if (worldIn.getBlockState(blockpos1).func_235785_r_((IBlockReader) worldIn, blockpos1))
 						continue label28;
 					j++;
@@ -60,7 +58,7 @@ public class TofuTerrainBlock extends Block implements IGrowable {
 					blockstate1 = blockstate;
 				}
 				if (blockstate1.func_196955_c((IWorldReader) worldIn, blockpos1))
-					worldIn.func_180501_a(blockpos1, blockstate1, 3);
+					worldIn.setBlock(blockpos1, blockstate1, 3);
 			}
 			continue;
 		}

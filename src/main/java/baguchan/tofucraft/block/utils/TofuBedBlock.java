@@ -1,18 +1,7 @@
 package baguchan.tofucraft.block.utils;
 
 import baguchan.tofucraft.tileentity.TofuBedTileEntity;
-
-import java.util.List;
-import java.util.Optional;
-import javax.annotation.Nullable;
-
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.*;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -30,11 +19,7 @@ import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMerger;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TransportationHelper;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -45,15 +30,14 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.ExplosionContext;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.ICollisionReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.ArrayUtils;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Optional;
 
 public class TofuBedBlock extends HorizontalBlock implements ITileEntityProvider {
 	public static final EnumProperty<BedPart> PART = BlockStateProperties.field_208139_an;
@@ -80,7 +64,7 @@ public class TofuBedBlock extends HorizontalBlock implements ITileEntityProvider
 
 	public TofuBedBlock(Properties p_i48442_2_) {
 		super(p_i48442_2_);
-		func_180632_j((BlockState) ((BlockState) ((BlockState) this.field_176227_L.func_177621_b()).func_206870_a((Property) PART, (Comparable) BedPart.FOOT)).func_206870_a((Property) OCCUPIED, Boolean.valueOf(false)));
+		func_180632_j((BlockState) ((BlockState) this.field_176227_L.func_177621_b()).setValue((Property) PART, (Comparable) BedPart.FOOT).setValue(OCCUPIED, Boolean.valueOf(false)));
 	}
 
 	@Nullable
@@ -91,19 +75,19 @@ public class TofuBedBlock extends HorizontalBlock implements ITileEntityProvider
 	}
 
 	public ActionResultType func_225533_a_(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-		if (p_225533_2_.field_72995_K)
+		if (p_225533_2_.isClientSide)
 			return ActionResultType.CONSUME;
 		if (p_225533_1_.func_177229_b((Property) PART) != BedPart.HEAD) {
 			p_225533_3_ = p_225533_3_.func_177972_a((Direction) p_225533_1_.func_177229_b((Property) field_185512_D));
 			p_225533_1_ = p_225533_2_.getBlockState(p_225533_3_);
-			if (!p_225533_1_.func_203425_a((Block) this))
+			if (!p_225533_1_.is((Block) this))
 				return ActionResultType.CONSUME;
 		}
 		if (!canSetSpawn(p_225533_2_)) {
-			p_225533_2_.func_217377_a(p_225533_3_, false);
+			p_225533_2_.removeBlock(p_225533_3_, false);
 			BlockPos blockpos = p_225533_3_.func_177972_a(((Direction) p_225533_1_.func_177229_b((Property) field_185512_D)).func_176734_d());
-			if (p_225533_2_.getBlockState(blockpos).func_203425_a((Block) this))
-				p_225533_2_.func_217377_a(blockpos, false);
+			if (p_225533_2_.getBlockState(blockpos).is((Block) this))
+				p_225533_2_.removeBlock(blockpos, false);
 			p_225533_2_.func_230546_a_((Entity) null, DamageSource.func_233546_a_(), (ExplosionContext) null, p_225533_3_.getX() + 0.5D, p_225533_3_.getY() + 0.5D, p_225533_3_.getZ() + 0.5D, 5.0F, true, Explosion.Mode.DESTROY);
 			return ActionResultType.SUCCESS;
 		}
@@ -124,7 +108,7 @@ public class TofuBedBlock extends HorizontalBlock implements ITileEntityProvider
 	}
 
 	private boolean kickVillagerOutOfBed(World p_226861_1_, BlockPos p_226861_2_) {
-		List<VillagerEntity> list = p_226861_1_.func_175647_a(VillagerEntity.class, new AxisAlignedBB(p_226861_2_), LivingEntity::func_70608_bn);
+		List<VillagerEntity> list = p_226861_1_.func_175647_a(VillagerEntity.class, new AxisAlignedBB(p_226861_2_), LivingEntity::isSleeping);
 		if (list.isEmpty())
 			return false;
 		((VillagerEntity) list.get(0)).func_213366_dy();
@@ -153,7 +137,7 @@ public class TofuBedBlock extends HorizontalBlock implements ITileEntityProvider
 
 	public BlockState func_196271_a(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
 		if (p_196271_2_ == getNeighbourDirection((BedPart) p_196271_1_.func_177229_b((Property) PART), (Direction) p_196271_1_.func_177229_b((Property) field_185512_D)))
-			return (p_196271_3_.func_203425_a((Block) this) && p_196271_3_.func_177229_b((Property) PART) != p_196271_1_.func_177229_b((Property) PART)) ? (BlockState) p_196271_1_.func_206870_a((Property) OCCUPIED, p_196271_3_.func_177229_b((Property) OCCUPIED)) : Blocks.field_150350_a.func_176223_P();
+			return (p_196271_3_.is((Block) this) && p_196271_3_.func_177229_b((Property) PART) != p_196271_1_.func_177229_b((Property) PART)) ? p_196271_1_.setValue((Property) OCCUPIED, p_196271_3_.func_177229_b((Property) OCCUPIED)) : Blocks.field_150350_a.defaultBlockState();
 		return super.func_196271_a(p_196271_1_, p_196271_2_, p_196271_3_, p_196271_4_, p_196271_5_, p_196271_6_);
 	}
 
@@ -162,13 +146,13 @@ public class TofuBedBlock extends HorizontalBlock implements ITileEntityProvider
 	}
 
 	public void func_176208_a(World p_176208_1_, BlockPos p_176208_2_, BlockState p_176208_3_, PlayerEntity p_176208_4_) {
-		if (!p_176208_1_.field_72995_K && p_176208_4_.func_184812_l_()) {
+		if (!p_176208_1_.isClientSide && p_176208_4_.func_184812_l_()) {
 			BedPart bedpart = (BedPart) p_176208_3_.func_177229_b((Property) PART);
 			if (bedpart == BedPart.FOOT) {
 				BlockPos blockpos = p_176208_2_.func_177972_a(getNeighbourDirection(bedpart, (Direction) p_176208_3_.func_177229_b((Property) field_185512_D)));
 				BlockState blockstate = p_176208_1_.getBlockState(blockpos);
 				if (blockstate.getBlock() == this && blockstate.func_177229_b((Property) PART) == BedPart.HEAD) {
-					p_176208_1_.func_180501_a(blockpos, Blocks.field_150350_a.func_176223_P(), 35);
+					p_176208_1_.setBlock(blockpos, Blocks.field_150350_a.defaultBlockState(), 35);
 					p_176208_1_.func_217378_a(p_176208_4_, 2001, blockpos, Block.func_196246_j(blockstate));
 				}
 			}
@@ -179,9 +163,9 @@ public class TofuBedBlock extends HorizontalBlock implements ITileEntityProvider
 	@Nullable
 	public BlockState func_196258_a(BlockItemUseContext p_196258_1_) {
 		Direction direction = p_196258_1_.func_195992_f();
-		BlockPos blockpos = p_196258_1_.func_195995_a();
+		BlockPos blockpos = p_196258_1_.getClickedPos();
 		BlockPos blockpos1 = blockpos.func_177972_a(direction);
-		return p_196258_1_.func_195991_k().getBlockState(blockpos1).func_196953_a(p_196258_1_) ? (BlockState) func_176223_P().func_206870_a((Property) field_185512_D, (Comparable) direction) : null;
+		return p_196258_1_.getLevel().getBlockState(blockpos1).func_196953_a(p_196258_1_) ? defaultBlockState().setValue(field_185512_D, (Comparable) direction) : null;
 	}
 
 	public VoxelShape func_220053_a(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
@@ -216,7 +200,7 @@ public class TofuBedBlock extends HorizontalBlock implements ITileEntityProvider
 		Direction direction = (Direction) p_242652_1_.getBlockState(p_242652_2_).func_177229_b((Property) field_185512_D);
 		Direction direction1 = direction.func_176746_e();
 		Direction direction2 = direction1.func_243532_a(p_242652_3_) ? direction1.func_176734_d() : direction1;
-		if (isBunkBed((IBlockReader) p_242652_1_, p_242652_2_))
+		if (isBunkBed(p_242652_1_, p_242652_2_))
 			return findBunkBedStandUpPosition(p_242652_0_, p_242652_1_, p_242652_2_, direction, direction2);
 		int[][] aint = bedStandUpOffsets(direction, direction2);
 		Optional<Vector3d> optional = findStandUpPositionAtOffset(p_242652_0_, p_242652_1_, p_242652_2_, aint, true);
@@ -263,18 +247,18 @@ public class TofuBedBlock extends HorizontalBlock implements ITileEntityProvider
 	}
 
 	protected void func_206840_a(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-		p_206840_1_.func_206894_a(new Property[]{(Property) field_185512_D, (Property) PART, (Property) OCCUPIED});
+		p_206840_1_.func_206894_a(new Property[]{(Property) field_185512_D, PART, OCCUPIED});
 	}
 
 	public TileEntity func_196283_a_(IBlockReader p_196283_1_) {
-		return (TileEntity) new TofuBedTileEntity();
+		return new TofuBedTileEntity();
 	}
 
 	public void func_180633_a(World p_180633_1_, BlockPos p_180633_2_, BlockState p_180633_3_, @Nullable LivingEntity p_180633_4_, ItemStack p_180633_5_) {
 		super.func_180633_a(p_180633_1_, p_180633_2_, p_180633_3_, p_180633_4_, p_180633_5_);
-		if (!p_180633_1_.field_72995_K) {
+		if (!p_180633_1_.isClientSide) {
 			BlockPos blockpos = p_180633_2_.func_177972_a((Direction) p_180633_3_.func_177229_b((Property) field_185512_D));
-			p_180633_1_.func_180501_a(blockpos, (BlockState) p_180633_3_.func_206870_a((Property) PART, (Comparable) BedPart.HEAD), 3);
+			p_180633_1_.setBlock(blockpos, p_180633_3_.setValue((Property) PART, (Comparable) BedPart.HEAD), 3);
 			p_180633_1_.func_230547_a_(p_180633_2_, Blocks.field_150350_a);
 			p_180633_3_.func_235734_a_((IWorld) p_180633_1_, p_180633_2_, 3);
 		}
@@ -295,7 +279,7 @@ public class TofuBedBlock extends HorizontalBlock implements ITileEntityProvider
 	}
 
 	private static int[][] bedStandUpOffsets(Direction p_242656_0_, Direction p_242656_1_) {
-		return (int[][]) ArrayUtils.addAll((Object[]) bedSurroundStandUpOffsets(p_242656_0_, p_242656_1_), (Object[]) bedAboveStandUpOffsets(p_242656_0_));
+		return (int[][]) ArrayUtils.addAll(bedSurroundStandUpOffsets(p_242656_0_, p_242656_1_), (Object[]) bedAboveStandUpOffsets(p_242656_0_));
 	}
 
 	private static int[][] bedSurroundStandUpOffsets(Direction p_242658_0_, Direction p_242658_1_) {

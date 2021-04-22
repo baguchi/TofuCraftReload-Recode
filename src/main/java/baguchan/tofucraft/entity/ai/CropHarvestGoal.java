@@ -7,12 +7,9 @@ import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -28,13 +25,13 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 	private boolean canPlant;
 
 	public CropHarvestGoal(TofunianEntity tofunianIn, double speed) {
-		super((CreatureEntity) tofunianIn, speed, 8);
+		super(tofunianIn, speed, 8);
 		this.tofunian = tofunianIn;
 	}
 
 	public boolean canUse() {
 		if (this.nextStartTick <= 0) {
-			if (!ForgeEventFactory.getMobGriefingEvent(this.tofunian.level, (Entity) this.tofunian))
+			if (!ForgeEventFactory.getMobGriefingEvent(this.tofunian.level, this.tofunian))
 				return false;
 			this.canHarvest = false;
 			this.canPlant = false;
@@ -57,29 +54,29 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 
 	public void tick() {
 		super.tick();
-		this.tofunian.getLookControl().setLookAt(this.mob.getX() + 0.5D, (this.mob.getY() + 1), this.mob.getZ() + 0.5D, 10.0F, this.tofunian.func_70646_bf());
+		this.tofunian.getLookControl().setLookAt(this.mob.getX() + 0.5D, (this.mob.getY() + 1), this.mob.getZ() + 0.5D, 10.0F, this.tofunian.getMaxHeadXRot());
 		if (isReachedTarget()) {
-			World world = this.tofunian.func_190670_t_();
-			BlockPos blockpos = this.mob.func_177984_a();
+			World world = this.tofunian.getLevel();
+			BlockPos blockpos = this.blockPos.above();
 			BlockState blockstate = world.getBlockState(blockpos);
 			Block block = blockstate.getBlock();
 			if (this.canHarvest && block instanceof CropsBlock) {
-				Integer integer = (Integer) blockstate.func_177229_b((Property) CropsBlock.field_176488_a);
+				Integer integer = (Integer) blockstate.getValue(CropsBlock.AGE);
 				if (integer.intValue() == 7)
-					world.func_175655_b(blockpos, true);
+					world.destroyBlock(blockpos, true);
 			}
-			BlockState blockstate2 = world.getBlockState(this.mob);
+			BlockState blockstate2 = world.getBlockState(this.blockPos);
 			ItemStack stack = findSeeds(this.tofunian);
-			if (this.canPlant && blockstate2.getBlock() == TofuBlocks.TOFU_FARMLAND && !stack.func_190926_b()) {
-				world.func_180501_a(this.mob.func_177984_a(), TofuBlocks.SOYBEAN.func_176223_P(), 2);
-				stack.func_190918_g(1);
+			if (this.canPlant && blockstate2.getBlock() == TofuBlocks.TOFU_FARMLAND && !stack.isEmpty()) {
+				world.setBlock(this.blockPos.above(), TofuBlocks.SOYBEAN.defaultBlockState(), 2);
+				stack.shrink(1);
 			}
 			this.canPlant = false;
 			this.canHarvest = false;
 			this.nextStartTick = 10;
 		}
 		if (this.wantsToHarvest && !this.canPlant && !this.canHarvest && --this.nextStartTick <= 0)
-			if (func_179489_g()) {
+			if (findNearestBlock()) {
 				this.canPlant = true;
 				this.canHarvest = true;
 			} else {
@@ -90,15 +87,15 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 	protected boolean isValidTarget(IWorldReader p_179488_1_, BlockPos p_179488_2_) {
 		Block block = p_179488_1_.getBlockState(p_179488_2_).getBlock();
 		if (block == TofuBlocks.TOFU_FARMLAND && this.wantsToHarvest) {
-			p_179488_2_ = p_179488_2_.func_177984_a();
+			p_179488_2_ = p_179488_2_.above();
 			BlockState blockstate = p_179488_1_.getBlockState(p_179488_2_);
 			block = blockstate.getBlock();
-			if (block instanceof SoybeanCropsBlock && ((SoybeanCropsBlock) block).func_185525_y(blockstate)) {
+			if (block instanceof SoybeanCropsBlock && ((SoybeanCropsBlock) block).isMaxAge(blockstate)) {
 				this.canHarvest = true;
 				this.canPlant = true;
 				return true;
 			}
-			if (!findSeeds(this.tofunian).func_190926_b() && blockstate.func_196958_f()) {
+			if (!findSeeds(this.tofunian).isEmpty() && blockstate.isAir()) {
 				this.canHarvest = true;
 				this.canPlant = true;
 				return true;
@@ -108,13 +105,13 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 	}
 
 	private ItemStack findSeeds(TofunianEntity tofunian) {
-		Inventory inventory = tofunian.func_213715_ed();
-		int i = inventory.func_70302_i_();
+		Inventory inventory = tofunian.getInventory();
+		int i = inventory.getContainerSize();
 		for (int j = 0; j < i; j++) {
-			ItemStack itemstack = inventory.func_70301_a(j);
-			if (itemstack.func_77973_b() == TofuItems.SEEDS_SOYBEANS)
+			ItemStack itemstack = inventory.getItem(j);
+			if (itemstack.getItem() == TofuItems.SEEDS_SOYBEANS)
 				return itemstack;
 		}
-		return ItemStack.field_190927_a;
+		return ItemStack.EMPTY;
 	}
 }

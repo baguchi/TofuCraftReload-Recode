@@ -4,49 +4,19 @@ import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
 import baguchan.tofucraft.entity.projectile.ZundaArrowEntity;
-import baguchan.tofucraft.item.BitternItem;
-import baguchan.tofucraft.item.BugleItem;
-import baguchan.tofucraft.item.FukumameItem;
-import baguchan.tofucraft.item.NetherFukumameItem;
-import baguchan.tofucraft.item.SoulFukumameItem;
-import baguchan.tofucraft.item.SoymilkBottleItem;
-import baguchan.tofucraft.item.TofuHoeItem;
-import baguchan.tofucraft.item.TofuScoopItem;
-import baguchan.tofucraft.item.TofuShieldItem;
-import baguchan.tofucraft.item.TofuStickItem;
-import baguchan.tofucraft.item.ZundaArrowItem;
-
-import java.util.concurrent.Callable;
-
+import baguchan.tofucraft.item.*;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.IDispenseItemBehavior;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.BlockNamedItem;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.FishBucketItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.Rarity;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
 import net.minecraft.potion.Effects;
-import net.minecraft.state.Property;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
@@ -54,235 +24,142 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @EventBusSubscriber(modid = "tofucraft", bus = EventBusSubscriber.Bus.MOD)
 public class TofuItems {
-	public static final Item TOFUKINU = new Item((new Item.Properties()).func_221540_a(TofuFoods.TOFU).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUMOMEN = new Item((new Item.Properties()).func_221540_a(TofuFoods.TOFU).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUISHI = new Item((new Item.Properties()).func_221540_a(TofuFoods.ISHITOFU).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUMETAL = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUDIAMOND = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUDIAMOND_NUGGET = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUHELL = new Item((new Item.Properties()).func_221540_a(TofuFoods.TOFUHELL).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUSOUL = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUGRILLED = new Item((new Item.Properties()).func_221540_a(TofuFoods.TOFUGRILLED).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUZUNDA = new Item((new Item.Properties()).func_221540_a(TofuFoods.TOFUZUNDA).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item BITTERN = (Item) new BitternItem((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SALT = (Item) new BitternItem((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUSCOOP = (Item) new TofuScoopItem((new Item.Properties()).func_200917_a(1).func_200918_c(264).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUSTICK = (Item) new TofuStickItem((new Item.Properties()).func_200917_a(1).func_200918_c(64).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item FUKUMAME = (Item) new FukumameItem((new Item.Properties()).func_200917_a(1).func_200918_c(64).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item NETHER_FUKUMAME = (Item) new NetherFukumameItem((new Item.Properties()).func_200917_a(1).func_200918_c(64).func_200916_a(TofuItemGroup.TOFUCRAFT), false);
-
-	public static final Item INFERNO_NETHER_FUKUMAME = (Item) new NetherFukumameItem((new Item.Properties()).func_200917_a(1).func_200918_c(64).func_200916_a(TofuItemGroup.TOFUCRAFT), true);
-
-	public static final Item SOUL_FUKUMAME = (Item) new SoulFukumameItem((new Item.Properties()).func_200917_a(1).func_200918_c(64).func_208103_a(Rarity.UNCOMMON).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ZUNDA_ARROW = (Item) new ZundaArrowItem((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SEEDS_SOYBEANS = (Item) new BlockNamedItem(TofuBlocks.SOYBEAN, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SEEDS_SOYBEANS_NETHER = (Item) new BlockNamedItem(TofuBlocks.SOYBEAN_NETHER, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SEEDS_SOYBEANS_SOUL = (Item) new BlockNamedItem(TofuBlocks.SOYBEAN_SOUL, (new Item.Properties()).func_208103_a(Rarity.UNCOMMON).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOYBEAN_PARCHED = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item KINAKO = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item EDAMAME = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item BOILED_EDAMAME = new Item((new Item.Properties()).func_221540_a(TofuFoods.BOILED_EDAMAME).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item LEEK = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ZUNDA = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ZUNDAMA = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ZUNDARUBY = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFU_HAMBURG_RAW = new Item((new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFU_HAMBURG = new Item((new Item.Properties()).func_221540_a(TofuFoods.TOFU_HAMBURG).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item RAW_TOFU_FISH = new Item((new Item.Properties()).func_221540_a(TofuFoods.RAW_TOFUFISH).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item COOKED_TOFU_FISH = new Item((new Item.Properties()).func_221540_a(TofuFoods.COOKED_TOFUFISH).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUCOOKIE = new Item((new Item.Properties()).func_221540_a(TofuFoods.TOFUCOOKIE).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOYSTICK = new Item((new Item.Properties()).func_221540_a(TofuFoods.SOYSTICK).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SALTYMELON = new Item((new Item.Properties()).func_221540_a(TofuFoods.SALTYMELON).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOYMILK = (Item) new SoymilkBottleItem(Effects.field_76428_l, Effects.field_76444_x, (new Item.Properties()).func_200917_a(16).func_200919_a(Items.field_151069_bo).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOYMILK_APPLE = (Item) new SoymilkBottleItem(Effects.field_76429_m, Effects.field_180152_w, (new Item.Properties()).func_200917_a(16).func_200919_a(Items.field_151069_bo).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOYMILK_COCOA = (Item) new SoymilkBottleItem(Effects.field_76430_j, Effects.field_76429_m, (new Item.Properties()).func_200917_a(16).func_200919_a(Items.field_151069_bo).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOYMILK_KINAKO = (Item) new SoymilkBottleItem(Effects.field_76424_c, Effects.field_76422_e, (new Item.Properties()).func_200917_a(16).func_200919_a(Items.field_151069_bo).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOYMILK_PUDDING = (Item) new SoymilkBottleItem(Effects.field_76428_l, Effects.field_180152_w, (new Item.Properties()).func_200917_a(16).func_200919_a(Items.field_151069_bo).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOYMILK_PUMPKIN = (Item) new SoymilkBottleItem(Effects.field_76420_g, Effects.field_76422_e, (new Item.Properties()).func_200917_a(16).func_200919_a(Items.field_151069_bo).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item KINAKO_MANJU = new Item((new Item.Properties()).func_221540_a(TofuFoods.KINAKO_MANJU).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ZUNDA_MANJU = new Item((new Item.Properties()).func_221540_a(TofuFoods.ZUNDA_MANJU).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item NETHER_MANJU = new Item((new Item.Properties()).func_221540_a(TofuFoods.NETHER_MANJU).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOUL_MANJU = new Item((new Item.Properties()).func_221540_a(TofuFoods.SOUL_MANJU).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOY_CHOCOLATE = new Item((new Item.Properties()).func_221540_a(TofuFoods.SOY_CHOCOLATE).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUNIAN_SOY_CHOCOLATE = new Item((new Item.Properties()).func_221540_a(TofuFoods.SOY_CHOCOLATE).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item BUCKET_SOYMILK = (Item) new BucketItem(() -> TofuFluids.SOYMILK, (new Item.Properties()).func_200919_a(Items.field_151133_ar).func_200917_a(1).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item BUCKET_SOYMILK_NETHER = (Item) new BucketItem(() -> TofuFluids.SOYMILK_HELL, (new Item.Properties()).func_200919_a(Items.field_151133_ar).func_200917_a(1).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item BUCKET_SOYMILK_SOUL = (Item) new BucketItem(() -> TofuFluids.SOYMILK_SOUL, (new Item.Properties()).func_200919_a(Items.field_151133_ar).func_200917_a(1).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUFISH_BUCKET = (Item) new FishBucketItem(() -> TofuEntityTypes.TOFUFISH, () -> Fluids.field_204546_a, (new Item.Properties()).func_200919_a(Items.field_151133_ar).func_200917_a(1).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUFISH_SOYMILK_BUCKET = (Item) new FishBucketItem(() -> TofuEntityTypes.TOFUFISH, () -> TofuFluids.SOYMILK, (new Item.Properties()).func_200919_a(Items.field_151133_ar).func_200917_a(1).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item BUCKET_BITTERN = (Item) new BucketItem(() -> TofuFluids.BITTERN, (new Item.Properties()).func_200919_a(Items.field_151133_ar).func_200917_a(1).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item KINUSWORD = (Item) new SwordItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item KINUAXE = (Item) new AxeItem(TofuItemTier.KINU, 0.0F, -2.25F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item KINUPICKAXE = (Item) new PickaxeItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item KINUSHOVEL = (Item) new ShovelItem(TofuItemTier.KINU, 0.0F, -2.2F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item MOMENSWORD = (Item) new SwordItem(TofuItemTier.MOMEN, 0, -2.2F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item MOMENAXE = (Item) new AxeItem(TofuItemTier.MOMEN, 1.0F, -2.5F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item MOMENPICKAXE = (Item) new PickaxeItem(TofuItemTier.MOMEN, 0, -2.25F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item MOMENSHOVEL = (Item) new ShovelItem(TofuItemTier.MOMEN, 0.0F, -2.25F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOLIDSWORD = (Item) new SwordItem(TofuItemTier.SOLID, 3, -2.3F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOLIDAXE = (Item) new AxeItem(TofuItemTier.SOLID, 7.0F, -2.9F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOLIDPICKAXE = (Item) new PickaxeItem(TofuItemTier.SOLID, 1, -2.9F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item SOLIDSHOVEL = (Item) new ShovelItem(TofuItemTier.SOLID, 1.5F, -2.9F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item METALSWORD = (Item) new SwordItem(TofuItemTier.METAL, 3, -2.3F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item METALAXE = (Item) new AxeItem(TofuItemTier.METAL, 6.0F, -3.0F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item METALPICKAXE = (Item) new PickaxeItem(TofuItemTier.METAL, 1, -2.9F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item METALSHOVEL = (Item) new ShovelItem(TofuItemTier.METAL, 1.5F, -2.9F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUDIAMONDSWORD = (Item) new SwordItem(TofuItemTier.TOFUDIAMOND, 3, -2.3F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUDIAMONDAXE = (Item) new AxeItem(TofuItemTier.TOFUDIAMOND, 6.0F, -3.0F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUDIAMONDPICKAXE = (Item) new PickaxeItem(TofuItemTier.TOFUDIAMOND, 1, -2.9F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUDIAMONDSHOVEL = (Item) new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -2.9F, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_KINUHELMET = (Item) new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.HEAD, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_KINUCHESTPLATE = (Item) new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.CHEST, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_KINULEGGINS = (Item) new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.LEGS, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_KINUBOOTS = (Item) new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.FEET, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_MOMENHELMET = (Item) new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.HEAD, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_MOMENCHESTPLATE = (Item) new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.CHEST, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_MOMENLEGGINS = (Item) new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.LEGS, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_MOMENBOOTS = (Item) new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.FEET, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_SOLIDHELMET = (Item) new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.HEAD, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_SOLIDCHESTPLATE = (Item) new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.CHEST, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_SOLIDLEGGINS = (Item) new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.LEGS, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_SOLIDBOOTS = (Item) new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.FEET, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_METALHELMET = (Item) new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.HEAD, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_METALCHESTPLATE = (Item) new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.CHEST, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_METALLEGGINS = (Item) new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.LEGS, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_METALBOOTS = (Item) new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.FEET, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_DIAMONDHELMET = (Item) new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.HEAD, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_DIAMONDCHESTPLATE = (Item) new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.CHEST, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_DIAMONDLEGGINS = (Item) new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.LEGS, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item ARMOR_DIAMONDBOOTS = (Item) new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.FEET, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUISHI_SHIELD = (Item) new TofuShieldItem((new Item.Properties()).func_200917_a(1).func_200918_c(324).func_200916_a(TofuItemGroup.TOFUCRAFT).setISTER(() -> baguchan.tofucraft.client.render.item.TofuShieldItemRender::new));
-
-	public static final Item TOFUMETAL_SHIELD = (Item) new TofuShieldItem((new Item.Properties()).func_200917_a(1).func_200918_c(436).func_200916_a(TofuItemGroup.TOFUCRAFT).setISTER(() -> baguchan.tofucraft.client.render.item.TofuShieldItemRender::new));
-
-	public static final Item TOFUHOE = (Item) new TofuHoeItem((new Item.Properties()).func_200917_a(1).func_200918_c(324).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item BUGLE = (Item) new BugleItem((new Item.Properties()).func_200917_a(1).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUNIAN_SPAWNEGG = (Item) new SpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TRAVELER_TOFUNIAN_SPAWNEGG = (Item) new SpawnEggItem(TofuEntityTypes.TRAVELER_TOFUNIAN, 15460584, 8763986, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUCOW_SPAWNEGG = (Item) new SpawnEggItem(TofuEntityTypes.TOFUCOW, 15460584, 10724259, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUFISH_SPAWNEGG = (Item) new SpawnEggItem(TofuEntityTypes.TOFUFISH, 15460584, 3817023, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUSLIME_SPAWNEGG = (Item) new SpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
-
-	public static final Item TOFUSPIDER_SPAWNEGG = (Item) new SpawnEggItem(TofuEntityTypes.TOFUSPIDER, 15460584, 3026478, (new Item.Properties()).func_200916_a(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUKINU = new Item((new Item.Properties()).food(TofuFoods.TOFU).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUMOMEN = new Item((new Item.Properties()).food(TofuFoods.TOFU).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUISHI = new Item((new Item.Properties()).food(TofuFoods.ISHITOFU).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUMETAL = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUDIAMOND = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUDIAMOND_NUGGET = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUHELL = new Item((new Item.Properties()).food(TofuFoods.TOFUHELL).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUSOUL = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUGRILLED = new Item((new Item.Properties()).food(TofuFoods.TOFUGRILLED).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUZUNDA = new Item((new Item.Properties()).food(TofuFoods.TOFUZUNDA).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BITTERN = new BitternItem((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SALT = new BitternItem((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUSCOOP = new TofuScoopItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUSTICK = new TofuStickItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item FUKUMAME = new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item NETHER_FUKUMAME = new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT), false);
+	public static final Item INFERNO_NETHER_FUKUMAME = new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT), true);
+	public static final Item SOUL_FUKUMAME = new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ZUNDA_ARROW = new ZundaArrowItem((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SEEDS_SOYBEANS = new BlockNamedItem(TofuBlocks.SOYBEAN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SEEDS_SOYBEANS_NETHER = new BlockNamedItem(TofuBlocks.SOYBEAN_NETHER, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SEEDS_SOYBEANS_SOUL = new BlockNamedItem(TofuBlocks.SOYBEAN_SOUL, (new Item.Properties()).rarity(Rarity.UNCOMMON).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOYBEAN_PARCHED = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item KINAKO = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item EDAMAME = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BOILED_EDAMAME = new Item((new Item.Properties()).food(TofuFoods.BOILED_EDAMAME).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item LEEK = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ZUNDA = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ZUNDAMA = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ZUNDARUBY = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_HAMBURG_RAW = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_HAMBURG = new Item((new Item.Properties()).food(TofuFoods.TOFU_HAMBURG).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item RAW_TOFU_FISH = new Item((new Item.Properties()).food(TofuFoods.RAW_TOFUFISH).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item COOKED_TOFU_FISH = new Item((new Item.Properties()).food(TofuFoods.COOKED_TOFUFISH).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUCOOKIE = new Item((new Item.Properties()).food(TofuFoods.TOFUCOOKIE).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOYSTICK = new Item((new Item.Properties()).food(TofuFoods.SOYSTICK).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SALTYMELON = new Item((new Item.Properties()).food(TofuFoods.SALTYMELON).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item SOYMILK = new SoymilkBottleItem(Effects.REGENERATION, Effects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOYMILK_APPLE = new SoymilkBottleItem(Effects.DAMAGE_RESISTANCE, Effects.ABSORPTION, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOYMILK_COCOA = new SoymilkBottleItem(Effects.JUMP, Effects.MOVEMENT_SPEED, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOYMILK_KINAKO = new SoymilkBottleItem(Effects.MOVEMENT_SPEED, Effects.DIG_SPEED, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOYMILK_PUDDING = new SoymilkBottleItem(Effects.REGENERATION, Effects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOYMILK_PUMPKIN = new SoymilkBottleItem(Effects.DAMAGE_BOOST, Effects.DIG_SPEED, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item KINAKO_MANJU = new Item((new Item.Properties()).food(TofuFoods.KINAKO_MANJU).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ZUNDA_MANJU = new Item((new Item.Properties()).food(TofuFoods.ZUNDA_MANJU).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item NETHER_MANJU = new Item((new Item.Properties()).food(TofuFoods.NETHER_MANJU).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOUL_MANJU = new Item((new Item.Properties()).food(TofuFoods.SOUL_MANJU).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOY_CHOCOLATE = new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item TOFUNIAN_SOY_CHOCOLATE = new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUCKET_SOYMILK = new BucketItem(() -> TofuFluids.SOYMILK, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUCKET_SOYMILK_NETHER = new BucketItem(() -> TofuFluids.SOYMILK_HELL, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUCKET_SOYMILK_SOUL = new BucketItem(() -> TofuFluids.SOYMILK_SOUL, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUFISH_BUCKET = new FishBucketItem(() -> TofuEntityTypes.TOFUFISH, () -> Fluids.WATER, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUFISH_SOYMILK_BUCKET = new FishBucketItem(() -> TofuEntityTypes.TOFUFISH, () -> TofuFluids.SOYMILK, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUCKET_BITTERN = new BucketItem(() -> TofuFluids.BITTERN, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item KINUSWORD = new SwordItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item KINUAXE = new AxeItem(TofuItemTier.KINU, 0.0F, -2.25F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item KINUPICKAXE = new PickaxeItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item KINUSHOVEL = new ShovelItem(TofuItemTier.KINU, 0.0F, -2.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item MOMENSWORD = new SwordItem(TofuItemTier.MOMEN, 0, -2.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item MOMENAXE = new AxeItem(TofuItemTier.MOMEN, 1.0F, -2.5F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item MOMENPICKAXE = new PickaxeItem(TofuItemTier.MOMEN, 0, -2.25F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item MOMENSHOVEL = new ShovelItem(TofuItemTier.MOMEN, 0.0F, -2.25F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item SOLIDSWORD = new SwordItem(TofuItemTier.SOLID, 3, -2.3F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOLIDAXE = new AxeItem(TofuItemTier.SOLID, 7.0F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOLIDPICKAXE = new PickaxeItem(TofuItemTier.SOLID, 1, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOLIDSHOVEL = new ShovelItem(TofuItemTier.SOLID, 1.5F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item METALSWORD = new SwordItem(TofuItemTier.METAL, 3, -2.3F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item METALAXE = new AxeItem(TofuItemTier.METAL, 6.0F, -3.0F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item METALPICKAXE = new PickaxeItem(TofuItemTier.METAL, 1, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item METALSHOVEL = new ShovelItem(TofuItemTier.METAL, 1.5F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item TOFUDIAMONDSWORD = new SwordItem(TofuItemTier.TOFUDIAMOND, 3, -2.3F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUDIAMONDAXE = new AxeItem(TofuItemTier.TOFUDIAMOND, 6.0F, -3.0F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUDIAMONDPICKAXE = new PickaxeItem(TofuItemTier.TOFUDIAMOND, 1, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUDIAMONDSHOVEL = new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item ARMOR_KINUHELMET = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_KINUCHESTPLATE = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_KINULEGGINS = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.LEGS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_KINUBOOTS = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlotType.FEET, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item ARMOR_MOMENHELMET = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_MOMENCHESTPLATE = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_MOMENLEGGINS = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.LEGS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_MOMENBOOTS = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlotType.FEET, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item ARMOR_SOLIDHELMET = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_SOLIDCHESTPLATE = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_SOLIDLEGGINS = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.LEGS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_SOLIDBOOTS = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlotType.FEET, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item ARMOR_METALHELMET = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_METALCHESTPLATE = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_METALLEGGINS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.LEGS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_METALBOOTS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlotType.FEET, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item ARMOR_DIAMONDHELMET = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_DIAMONDCHESTPLATE = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_DIAMONDLEGGINS = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.LEGS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_DIAMONDBOOTS = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlotType.FEET, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
+	public static final Item TOFUISHI_SHIELD = new TofuShieldItem((new Item.Properties()).stacksTo(1).durability(324).tab(TofuItemGroup.TOFUCRAFT).setISTER(() -> baguchan.tofucraft.client.render.item.TofuShieldItemRender::new));
+	public static final Item TOFUMETAL_SHIELD = new TofuShieldItem((new Item.Properties()).stacksTo(1).durability(436).tab(TofuItemGroup.TOFUCRAFT).setISTER(() -> baguchan.tofucraft.client.render.item.TofuShieldItemRender::new));
+	public static final Item TOFUHOE = new TofuHoeItem((new Item.Properties()).stacksTo(1).durability(324).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUGLE = new BugleItem((new Item.Properties()).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUNIAN_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TRAVELER_TOFUNIAN_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TRAVELER_TOFUNIAN, 15460584, 8763986, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUCOW_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUCOW, 15460584, 10724259, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUFISH_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUFISH, 15460584, 3817023, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUSLIME_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUSPIDER_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUSPIDER, 15460584, 3026478, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
 		if (item instanceof BlockItem)
-			Item.field_179220_a.put(((BlockItem) item).func_179223_d(), item);
+			Item.BY_BLOCK.put(((BlockItem) item).getBlock(), item);
 		item.setRegistryName(new ResourceLocation("tofucraft", id));
-		registry.getRegistry().register((IForgeRegistryEntry) item);
+		registry.getRegistry().register(item);
 	}
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item) {
 		if (item instanceof BlockItem && item.getRegistryName() == null) {
-			item.setRegistryName(((BlockItem) item).func_179223_d().getRegistryName());
-			Item.field_179220_a.put(((BlockItem) item).func_179223_d(), item);
+			item.setRegistryName(((BlockItem) item).getBlock().getRegistryName());
+			Item.BY_BLOCK.put(((BlockItem) item).getBlock(), item);
 		}
-		registry.getRegistry().register((IForgeRegistryEntry) item);
+		registry.getRegistry().register(item);
 	}
 
 	@SubscribeEvent
@@ -392,87 +269,87 @@ public class TofuItems {
 		register(registry, TOFUFISH_SPAWNEGG, "tofufish_spawnegg");
 		register(registry, TOFUSLIME_SPAWNEGG, "tofuslime_spawnegg");
 		register(registry, TOFUSPIDER_SPAWNEGG, "tofuspider_spawnegg");
-		DispenserBlock.func_199774_a((IItemProvider) ZUNDA_ARROW, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
-			protected ProjectileEntity func_82499_a(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
-				ZundaArrowEntity arrowentity = new ZundaArrowEntity(p_82499_1_, p_82499_2_.func_82615_a(), p_82499_2_.func_82617_b(), p_82499_2_.func_82616_c());
-				arrowentity.field_70251_a = AbstractArrowEntity.PickupStatus.ALLOWED;
-				return (ProjectileEntity) arrowentity;
+		DispenserBlock.registerBehavior((IItemProvider) ZUNDA_ARROW, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
+			protected ProjectileEntity getProjectile(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
+				ZundaArrowEntity arrowentity = new ZundaArrowEntity(p_82499_1_, p_82499_2_.x(), p_82499_2_.y(), p_82499_2_.z());
+				arrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
+				return arrowentity;
 			}
 		});
-		DispenserBlock.func_199774_a((IItemProvider) FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
-			protected ProjectileEntity func_82499_a(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
-				FukumameEntity fukumameEntity = new FukumameEntity(p_82499_1_, p_82499_2_.func_82615_a(), p_82499_2_.func_82617_b(), p_82499_2_.func_82616_c());
-				return (ProjectileEntity) fukumameEntity;
+		DispenserBlock.registerBehavior((IItemProvider) FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
+			protected ProjectileEntity getProjectile(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
+				FukumameEntity fukumameEntity = new FukumameEntity(p_82499_1_, p_82499_2_.x(), p_82499_2_.y(), p_82499_2_.z());
+				return fukumameEntity;
 			}
 
-			public ItemStack func_82487_b(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
-				ServerWorld serverWorld = p_82487_1_.func_197524_h();
-				IPosition iposition = DispenserBlock.func_149939_a(p_82487_1_);
-				Direction direction = (Direction) p_82487_1_.func_189992_e().func_177229_b((Property) DispenserBlock.field_176441_a);
+			public ItemStack execute(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
+				ServerWorld serverWorld = p_82487_1_.getLevel();
+				IPosition iposition = DispenserBlock.getDispensePosition(p_82487_1_);
+				Direction direction = (Direction) p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
 				for (int i = 0; i < 5; i++) {
-					ProjectileEntity projectileentity = func_82499_a((World) serverWorld, iposition, p_82487_2_);
-					projectileentity.func_70186_c(direction.func_82601_c(), (direction.func_96559_d() + 0.1F), direction.func_82599_e(), func_82500_b(), func_82498_a());
-					serverWorld.func_217376_c((Entity) projectileentity);
+					ProjectileEntity projectileentity = getProjectile(serverWorld, iposition, p_82487_2_);
+					projectileentity.shoot(direction.getStepX(), (direction.getStepY() + 0.1F), direction.getStepZ(), this.getPower(), this.getUncertainty());
+					serverWorld.addFreshEntity(projectileentity);
 				}
-				p_82487_2_.func_96631_a(1, serverWorld.func_201674_k(), (ServerPlayerEntity) null);
+				p_82487_2_.hurt(1, serverWorld.getRandom(), (ServerPlayerEntity) null);
 				return p_82487_2_;
 			}
 		});
-		DispenserBlock.func_199774_a((IItemProvider) NETHER_FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
-			protected ProjectileEntity func_82499_a(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
-				NetherFukumameEntity fukumameEntity = new NetherFukumameEntity(p_82499_1_, p_82499_2_.func_82615_a(), p_82499_2_.func_82617_b(), p_82499_2_.func_82616_c());
-				return (ProjectileEntity) fukumameEntity;
+		DispenserBlock.registerBehavior((IItemProvider) NETHER_FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
+			protected ProjectileEntity getProjectile(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
+				NetherFukumameEntity fukumameEntity = new NetherFukumameEntity(p_82499_1_, p_82499_2_.x(), p_82499_2_.y(), p_82499_2_.z());
+				return fukumameEntity;
 			}
 
-			public ItemStack func_82487_b(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
-				ServerWorld serverWorld = p_82487_1_.func_197524_h();
-				IPosition iposition = DispenserBlock.func_149939_a(p_82487_1_);
-				Direction direction = (Direction) p_82487_1_.func_189992_e().func_177229_b((Property) DispenserBlock.field_176441_a);
+			public ItemStack execute(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
+				ServerWorld serverWorld = p_82487_1_.getLevel();
+				IPosition iposition = DispenserBlock.getDispensePosition(p_82487_1_);
+				Direction direction = (Direction) p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
 				for (int i = 0; i < 5; i++) {
-					ProjectileEntity projectileentity = func_82499_a((World) serverWorld, iposition, p_82487_2_);
-					projectileentity.func_70186_c(direction.func_82601_c(), (direction.func_96559_d() + 0.1F), direction.func_82599_e(), func_82500_b(), func_82498_a());
-					serverWorld.func_217376_c((Entity) projectileentity);
+					ProjectileEntity projectileentity = getProjectile(serverWorld, iposition, p_82487_2_);
+					projectileentity.shoot(direction.getStepX(), (direction.getStepY() + 0.1F), direction.getStepZ(), this.getPower(), this.getUncertainty());
+					serverWorld.addFreshEntity(projectileentity);
 				}
-				p_82487_2_.func_96631_a(1, serverWorld.func_201674_k(), (ServerPlayerEntity) null);
+				p_82487_2_.hurt(1, serverWorld.getRandom(), (ServerPlayerEntity) null);
 				return p_82487_2_;
 			}
 		});
-		DispenserBlock.func_199774_a((IItemProvider) INFERNO_NETHER_FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
-			protected ProjectileEntity func_82499_a(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
-				NetherFukumameEntity fukumameEntity = new NetherFukumameEntity(p_82499_1_, p_82499_2_.func_82615_a(), p_82499_2_.func_82617_b(), p_82499_2_.func_82616_c());
-				fukumameEntity.func_70015_d(10);
-				return (ProjectileEntity) fukumameEntity;
+		DispenserBlock.registerBehavior((IItemProvider) INFERNO_NETHER_FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
+			protected ProjectileEntity getProjectile(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
+				NetherFukumameEntity fukumameEntity = new NetherFukumameEntity(p_82499_1_, p_82499_2_.x(), p_82499_2_.y(), p_82499_2_.z());
+				fukumameEntity.setSecondsOnFire(10);
+				return fukumameEntity;
 			}
 
-			public ItemStack func_82487_b(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
-				ServerWorld serverWorld = p_82487_1_.func_197524_h();
-				IPosition iposition = DispenserBlock.func_149939_a(p_82487_1_);
-				Direction direction = (Direction) p_82487_1_.func_189992_e().func_177229_b((Property) DispenserBlock.field_176441_a);
+			public ItemStack execute(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
+				ServerWorld serverWorld = p_82487_1_.getLevel();
+				IPosition iposition = DispenserBlock.getDispensePosition(p_82487_1_);
+				Direction direction = (Direction) p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
 				for (int i = 0; i < 5; i++) {
-					ProjectileEntity projectileentity = func_82499_a((World) serverWorld, iposition, p_82487_2_);
-					projectileentity.func_70186_c(direction.func_82601_c(), (direction.func_96559_d() + 0.1F), direction.func_82599_e(), func_82500_b(), func_82498_a());
-					serverWorld.func_217376_c((Entity) projectileentity);
+					ProjectileEntity projectileentity = getProjectile(serverWorld, iposition, p_82487_2_);
+					projectileentity.shoot(direction.getStepX(), (direction.getStepY() + 0.1F), direction.getStepZ(), this.getPower(), this.getUncertainty());
+					serverWorld.addFreshEntity(projectileentity);
 				}
-				p_82487_2_.func_96631_a(1, serverWorld.func_201674_k(), (ServerPlayerEntity) null);
+				p_82487_2_.hurt(1, serverWorld.getRandom(), (ServerPlayerEntity) null);
 				return p_82487_2_;
 			}
 		});
-		DispenserBlock.func_199774_a((IItemProvider) SOUL_FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
-			protected ProjectileEntity func_82499_a(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
-				SoulFukumameEntity fukumameEntity = new SoulFukumameEntity(p_82499_1_, p_82499_2_.func_82615_a(), p_82499_2_.func_82617_b(), p_82499_2_.func_82616_c());
-				return (ProjectileEntity) fukumameEntity;
+		DispenserBlock.registerBehavior((IItemProvider) SOUL_FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
+			protected ProjectileEntity getProjectile(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
+				SoulFukumameEntity fukumameEntity = new SoulFukumameEntity(p_82499_1_, p_82499_2_.x(), p_82499_2_.y(), p_82499_2_.z());
+				return fukumameEntity;
 			}
 
-			public ItemStack func_82487_b(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
-				ServerWorld serverWorld = p_82487_1_.func_197524_h();
-				IPosition iposition = DispenserBlock.func_149939_a(p_82487_1_);
-				Direction direction = (Direction) p_82487_1_.func_189992_e().func_177229_b((Property) DispenserBlock.field_176441_a);
+			public ItemStack execute(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
+				ServerWorld serverWorld = p_82487_1_.getLevel();
+				IPosition iposition = DispenserBlock.getDispensePosition(p_82487_1_);
+				Direction direction = (Direction) p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
 				for (int i = 0; i < 5; i++) {
-					ProjectileEntity projectileentity = func_82499_a((World) serverWorld, iposition, p_82487_2_);
-					projectileentity.func_70186_c(direction.func_82601_c(), (direction.func_96559_d() + 0.1F), direction.func_82599_e(), func_82500_b(), func_82498_a());
-					serverWorld.func_217376_c((Entity) projectileentity);
+					ProjectileEntity projectileentity = getProjectile(serverWorld, iposition, p_82487_2_);
+					projectileentity.shoot(direction.getStepX(), (direction.getStepY() + 0.1F), direction.getStepZ(), this.getPower(), this.getUncertainty());
+					serverWorld.addFreshEntity(projectileentity);
 				}
-				p_82487_2_.func_96631_a(1, serverWorld.func_201674_k(), (ServerPlayerEntity) null);
+				p_82487_2_.hurt(1, serverWorld.getRandom(), (ServerPlayerEntity) null);
 				return p_82487_2_;
 			}
 		});

@@ -18,11 +18,9 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.state.Property;
 import net.minecraft.state.properties.BedPart;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMerger;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -70,8 +68,8 @@ public class TofuBedBlockRenderer extends TileEntityRenderer<TofuBedTileEntity> 
 		World world = p_225616_1_.func_145831_w();
 		if (world != null) {
 			BlockState blockstate = p_225616_1_.func_195044_w();
-			TileEntityMerger.ICallbackWrapper<? extends TofuBedTileEntity> icallbackwrapper = TileEntityMerger.func_226924_a_(TofuTileEntitys.TOFUBED, BedBlock::func_226863_i_, BedBlock::func_226862_h_, ChestBlock.field_176459_a, blockstate, (IWorld) world, p_225616_1_.func_174877_v(), (p_228846_0_, p_228846_1_) -> false);
-			int i = ((Int2IntFunction) icallbackwrapper.apply((TileEntityMerger.ICallback) new DualBrightnessCallback())).get(p_225616_5_);
+			TileEntityMerger.ICallbackWrapper<? extends TofuBedTileEntity> icallbackwrapper = TileEntityMerger.func_226924_a_(TofuTileEntitys.TOFUBED, BedBlock::func_226863_i_, BedBlock::func_226862_h_, ChestBlock.field_176459_a, blockstate, (IWorld) world, p_225616_1_.getBlockPos(), (p_228846_0_, p_228846_1_) -> false);
+			int i = ((Int2IntFunction) icallbackwrapper.apply(new DualBrightnessCallback())).get(p_225616_5_);
 			renderPiece(p_225616_3_, p_225616_4_, (blockstate.func_177229_b((Property) BedBlock.field_176472_a) == BedPart.HEAD), (Direction) blockstate.func_177229_b((Property) BedBlock.field_185512_D), rendermaterial, i, p_225616_6_, false);
 		} else {
 			renderPiece(p_225616_3_, p_225616_4_, true, Direction.SOUTH, rendermaterial, p_225616_5_, p_225616_6_, false);
