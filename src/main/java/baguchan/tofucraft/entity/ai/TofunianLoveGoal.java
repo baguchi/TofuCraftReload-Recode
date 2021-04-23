@@ -1,9 +1,7 @@
 package baguchan.tofucraft.entity.ai;
 
 import baguchan.tofucraft.entity.TofunianEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -56,24 +54,24 @@ public class TofunianLoveGoal extends Goal {
 	}
 
 	public void tick() {
-		this.tofunian.getLookControl().setLookAt((Entity) this.partner, 10.0F, this.tofunian.getMaxHeadXRot());
-		this.tofunian.getNavigation().moveTo((Entity) this.partner, this.speedModifier);
+		this.tofunian.getLookControl().setLookAt(this.partner, 10.0F, this.tofunian.getMaxHeadXRot());
+		this.tofunian.getNavigation().moveTo(this.partner, this.speedModifier);
 		this.loveTime++;
 		if (this.loveTime % 40 == 0)
-			this.level.broadcastEntityEvent((Entity) this.tofunian, (byte) 12);
-		if (this.loveTime >= 160 && this.tofunian.distanceToSqr((Entity) this.partner) < 9.0D)
+			this.level.broadcastEntityEvent(this.tofunian, (byte) 12);
+		if (this.loveTime >= 160 && this.tofunian.distanceToSqr(this.partner) < 9.0D)
 			breed();
 	}
 
 	@Nullable
 	private TofunianEntity getFreePartner() {
-		List<TofunianEntity> list = this.level.getNearbyEntities(this.partnerClass, PARTNER_TARGETING, (LivingEntity) this.tofunian, this.tofunian.getBoundingBox().inflate(8.0D));
+		List<TofunianEntity> list = this.level.getNearbyEntities(this.partnerClass, PARTNER_TARGETING, this.tofunian, this.tofunian.getBoundingBox().inflate(8.0D));
 		double d0 = Double.MAX_VALUE;
 		TofunianEntity tofunian2 = null;
 		for (TofunianEntity tofunianEntity1 : list) {
-			if (tofunianEntity1.func_213743_em() && this.tofunian.distanceToSqr((Entity) tofunianEntity1) < d0) {
+			if (tofunianEntity1.func_213743_em() && this.tofunian.distanceToSqr(tofunianEntity1) < d0) {
 				tofunian2 = tofunianEntity1;
-				d0 = this.tofunian.distanceToSqr((Entity) tofunianEntity1);
+				d0 = this.tofunian.distanceToSqr(tofunianEntity1);
 			}
 		}
 		return tofunian2;
@@ -86,8 +84,8 @@ public class TofunianLoveGoal extends Goal {
 			this.partner.setAge(6000);
 			tofunianEntity.setAge(-24000);
 			tofunianEntity.moveTo(this.tofunian.getX(), this.tofunian.getY(), this.tofunian.getZ(), 0.0F, 0.0F);
-			((ServerWorld) this.level).addFreshEntityWithPassengers((Entity) tofunianEntity);
-			this.level.broadcastEntityEvent((Entity) tofunianEntity, (byte) 12);
+			((ServerWorld) this.level).addFreshEntityWithPassengers(tofunianEntity);
+			this.level.broadcastEntityEvent(tofunianEntity, (byte) 12);
 		}
 	}
 }

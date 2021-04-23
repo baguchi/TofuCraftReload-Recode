@@ -34,7 +34,7 @@ public class TofuFishEntity extends AbstractGroupFishEntity {
 			ItemStack itemstack1 = TofuItems.TOFUFISH_SOYMILK_BUCKET.getDefaultInstance();
 			this.saveToBucketTag(itemstack1);
 			if (!this.level.isClientSide) {
-				CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayerEntity)p_230254_1_, itemstack1);
+				CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayerEntity) p_230254_1_, itemstack1);
 			}
 
 			if (itemstack.isEmpty()) {

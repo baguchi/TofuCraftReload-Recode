@@ -6,7 +6,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.IGrowable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.FlowersFeature;
@@ -20,47 +19,55 @@ public class TofuTerrainBlock extends Block implements IGrowable {
 		super(properties);
 	}
 
-	public boolean func_176473_a(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-		return worldIn.getBlockState(pos.above()).func_196958_f();
+
+	public boolean isValidBonemealTarget(IBlockReader p_176473_1_, BlockPos p_176473_2_, BlockState p_176473_3_, boolean p_176473_4_) {
+		return p_176473_1_.getBlockState(p_176473_2_.above()).isAir();
 	}
 
-	public boolean func_180670_a(World worldIn, Random rand, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(World p_180670_1_, Random p_180670_2_, BlockPos p_180670_3_, BlockState p_180670_4_) {
 		return true;
 	}
 
-	public void func_225535_a_(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-		BlockPos blockpos = pos.above();
+	public void performBonemeal(ServerWorld p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_, BlockState p_225535_4_) {
+		BlockPos blockpos = p_225535_3_.above();
 		BlockState blockstate = TofuBlocks.BLOCKLEEK.defaultBlockState();
-		int i;
-		label28:
-		for (i = 0; i < 128; i++) {
+
+		label48:
+		for (int i = 0; i < 128; ++i) {
 			BlockPos blockpos1 = blockpos;
-			for (int j = 0; j < i / 16; ) {
-				blockpos1 = blockpos1.func_177982_a(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
-				if (worldIn.getBlockState(blockpos1.func_177977_b()).is(this)) {
-					if (worldIn.getBlockState(blockpos1).func_235785_r_((IBlockReader) worldIn, blockpos1))
-						continue label28;
-					j++;
+
+			for (int j = 0; j < i / 16; ++j) {
+				blockpos1 = blockpos1.offset(p_225535_2_.nextInt(3) - 1, (p_225535_2_.nextInt(3) - 1) * p_225535_2_.nextInt(3) / 2, p_225535_2_.nextInt(3) - 1);
+				if (!p_225535_1_.getBlockState(blockpos1.below()).is(this) || p_225535_1_.getBlockState(blockpos1).isCollisionShapeFullBlock(p_225535_1_, blockpos1)) {
+					continue label48;
 				}
-				continue label28;
 			}
-			BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-			if (blockstate2.func_196958_f()) {
+
+			BlockState blockstate2 = p_225535_1_.getBlockState(blockpos1);
+			if (blockstate2.is(blockstate.getBlock()) && p_225535_2_.nextInt(10) == 0) {
+				((IGrowable) blockstate.getBlock()).performBonemeal(p_225535_1_, p_225535_2_, blockpos1, blockstate2);
+			}
+
+			if (blockstate2.isAir()) {
 				BlockState blockstate1;
-				if (rand.nextInt(8) == 0) {
-					List<ConfiguredFeature<?, ?>> list = worldIn.func_226691_t_(blockpos1).func_242440_e().func_242496_b();
-					if (list.isEmpty())
+				if (p_225535_2_.nextInt(8) == 0) {
+					List<ConfiguredFeature<?, ?>> list = p_225535_1_.getBiome(blockpos1).getGenerationSettings().getFlowerFeatures();
+					if (list.isEmpty()) {
 						continue;
+					}
+
 					ConfiguredFeature<?, ?> configuredfeature = list.get(0);
-					FlowersFeature flowersfeature = (FlowersFeature) configuredfeature.field_222737_a;
-					blockstate1 = flowersfeature.func_225562_b_(rand, blockpos1, configuredfeature.func_242767_c());
+					FlowersFeature flowersfeature = (FlowersFeature) configuredfeature.feature;
+					blockstate1 = flowersfeature.getRandomFlower(p_225535_2_, blockpos1, configuredfeature.config());
 				} else {
 					blockstate1 = blockstate;
 				}
-				if (blockstate1.func_196955_c((IWorldReader) worldIn, blockpos1))
-					worldIn.setBlock(blockpos1, blockstate1, 3);
+
+				if (blockstate1.canSurvive(p_225535_1_, blockpos1)) {
+					p_225535_1_.setBlock(blockpos1, blockstate1, 3);
+				}
 			}
-			continue;
 		}
+
 	}
 }

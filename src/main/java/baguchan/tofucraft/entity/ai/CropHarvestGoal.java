@@ -61,7 +61,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 			BlockState blockstate = world.getBlockState(blockpos);
 			Block block = blockstate.getBlock();
 			if (this.canHarvest && block instanceof CropsBlock) {
-				Integer integer = (Integer) blockstate.getValue(CropsBlock.AGE);
+				Integer integer = blockstate.getValue(CropsBlock.AGE);
 				if (integer.intValue() == 7)
 					world.destroyBlock(blockpos, true);
 			}

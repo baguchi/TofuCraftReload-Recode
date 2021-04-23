@@ -321,7 +321,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 	}
 
 	private void calculateDemandOfOffers() {
-		for(MerchantOffer merchantoffer : this.getOffers()) {
+		for (MerchantOffer merchantoffer : this.getOffers()) {
 			merchantoffer.updateDemand();
 		}
 	}
@@ -330,7 +330,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 		int i = getPlayerReputation(playerIn);
 		if (i != 0)
 			for (MerchantOffer merchantoffer : this.getOffers())
-				merchantoffer.addToSpecialPriceDiff(-MathHelper.floor((float)i * merchantoffer.getPriceMultiplier()));
+				merchantoffer.addToSpecialPriceDiff(-MathHelper.floor((float) i * merchantoffer.getPriceMultiplier()));
 	}
 
 	public void setOffers(MerchantOffers offersIn) {
@@ -524,9 +524,9 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 
 	public void setLastHurtByMob(@Nullable LivingEntity p_70604_1_) {
 		if (p_70604_1_ != null && this.level instanceof ServerWorld) {
-			((ServerWorld)this.level).onReputationEvent(IReputationType.VILLAGER_HURT, p_70604_1_, this);
+			((ServerWorld) this.level).onReputationEvent(IReputationType.VILLAGER_HURT, p_70604_1_, this);
 			if (this.isAlive() && p_70604_1_ instanceof PlayerEntity) {
-				this.level.broadcastEntityEvent(this, (byte)13);
+				this.level.broadcastEntityEvent(this, (byte) 13);
 			}
 		}
 

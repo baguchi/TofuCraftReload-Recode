@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "package": "baguchan.tofucraft.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "tofucraft.refmap.json",
+  "mixins": [
+    "DimensionGeneratorSettingsMixin"
+  ],
+  "minVersion": "0.8"
+}

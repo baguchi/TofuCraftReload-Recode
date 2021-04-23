@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
 import net.minecraft.client.renderer.entity.layers.ElytraLayer;
 import net.minecraft.client.renderer.entity.layers.HeadLayer;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,11 +20,11 @@ public class TofunianRender<T extends TofunianEntity> extends MobRenderer<T, Tof
 
 	public TofunianRender(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn, new TofunianModel(), 0.5F);
-		func_177094_a((LayerRenderer) new BipedArmorLayer(this, new BipedModel(0.25F), new BipedModel(0.5F)));
-		func_177094_a((LayerRenderer) new HeadLayer(this));
-		func_177094_a((LayerRenderer) new ElytraLayer(this));
-		func_177094_a((LayerRenderer) new AdvancedHeldItemLayer(this));
-		func_177094_a((LayerRenderer) new TofunianRoleLayer(this));
+		addLayer(new BipedArmorLayer(this, new BipedModel(0.25F), new BipedModel(0.5F)));
+		addLayer(new HeadLayer(this));
+		addLayer(new ElytraLayer(this));
+		addLayer(new AdvancedHeldItemLayer(this));
+		addLayer(new TofunianRoleLayer(this));
 	}
 
 	public ResourceLocation getTextureLocation(T entity) {

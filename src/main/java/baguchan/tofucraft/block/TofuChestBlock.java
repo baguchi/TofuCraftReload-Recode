@@ -14,7 +14,7 @@ public class TofuChestBlock extends ChestBlock {
 		super(p_i225757_1_, p_i225757_2_);
 	}
 
-	public TileEntity func_196283_a_(IBlockReader p_196283_1_) {
+	public TileEntity createTileEntity(IBlockReader p_196283_1_) {
 		return new TofuChestTileEntity();
 	}
 }

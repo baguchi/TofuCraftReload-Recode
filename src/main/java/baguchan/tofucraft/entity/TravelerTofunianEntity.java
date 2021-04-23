@@ -19,7 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -44,17 +43,17 @@ public class TravelerTofunianEntity extends AbstractTofunianEntity {
 
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(0, (Goal) new SwimGoal(this));
-		this.goalSelector.addGoal(1, (Goal) new TradeWithPlayerGoal(this));
-		this.goalSelector.addGoal(1, (Goal) new AvoidEntityGoal(this, ZombieEntity.class, 8.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, (Goal) new AvoidEntityGoal(this, AbstractIllagerEntity.class, 12.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, (Goal) new AvoidEntityGoal(this, RavagerEntity.class, 12.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, (Goal) new AvoidEntityGoal(this, ZoglinEntity.class, 10.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, (Goal) new LookAtCustomerGoal(this));
+		this.goalSelector.addGoal(0, new SwimGoal(this));
+		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal(this, ZombieEntity.class, 8.0F, 1.2D, 1.2D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal(this, AbstractIllagerEntity.class, 12.0F, 1.2D, 1.2D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal(this, RavagerEntity.class, 12.0F, 1.2D, 1.2D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal(this, ZoglinEntity.class, 10.0F, 1.2D, 1.2D));
+		this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
 		this.goalSelector.addGoal(2, new MoveToGoal(this, 10.0D, 1.149999976158142D));
-		this.goalSelector.addGoal(8, (Goal) new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-		this.goalSelector.addGoal(9, (Goal) new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(10, (Goal) new LookAtGoal(this, MobEntity.class, 8.0F));
+		this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
+		this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
 	}
 
 	public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -65,7 +64,7 @@ public class TravelerTofunianEntity extends AbstractTofunianEntity {
 		super.addAdditionalSaveData(compound);
 		compound.putInt("DespawnDelay", this.despawnDelay);
 		if (this.wanderTarget != null)
-			compound.put("WanderTarget", (INBT) NBTUtil.writeBlockPos(this.wanderTarget));
+			compound.put("WanderTarget", NBTUtil.writeBlockPos(this.wanderTarget));
 	}
 
 	public void readAdditionalSaveData(CompoundNBT compound) {
@@ -169,7 +168,7 @@ public class TravelerTofunianEntity extends AbstractTofunianEntity {
 		}
 
 		public void stop() {
-			this.trader.setWanderTarget((BlockPos)null);
+			this.trader.setWanderTarget(null);
 			TravelerTofunianEntity.this.navigation.stop();
 		}
 
@@ -182,11 +181,11 @@ public class TravelerTofunianEntity extends AbstractTofunianEntity {
 			BlockPos blockpos = this.trader.getWanderTarget();
 			if (blockpos != null && TravelerTofunianEntity.this.navigation.isDone()) {
 				if (this.isTooFarAway(blockpos, 10.0D)) {
-					Vector3d vector3d = (new Vector3d((double)blockpos.getX() - this.trader.getX(), (double)blockpos.getY() - this.trader.getY(), (double)blockpos.getZ() - this.trader.getZ())).normalize();
+					Vector3d vector3d = (new Vector3d((double) blockpos.getX() - this.trader.getX(), (double) blockpos.getY() - this.trader.getY(), (double) blockpos.getZ() - this.trader.getZ())).normalize();
 					Vector3d vector3d1 = vector3d.scale(10.0D).add(this.trader.getX(), this.trader.getY(), this.trader.getZ());
 					TravelerTofunianEntity.this.navigation.moveTo(vector3d1.x, vector3d1.y, vector3d1.z, this.speedModifier);
 				} else {
-					TravelerTofunianEntity.this.navigation.moveTo((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), this.speedModifier);
+					TravelerTofunianEntity.this.navigation.moveTo(blockpos.getX(), blockpos.getY(), blockpos.getZ(), this.speedModifier);
 				}
 			}
 

@@ -11,7 +11,7 @@ public class TofuBushBlock extends BushBlock {
 		super(properties);
 	}
 
-	protected boolean func_200014_a_(BlockState state, IBlockReader worldIn, BlockPos pos) {
+	protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
 		return state.is(TofuTags.Blocks.TOFU_TERRAIN);
 	}
 }

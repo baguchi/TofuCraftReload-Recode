@@ -27,12 +27,12 @@ public class TravelerTofunianWorldData extends WorldSavedData {
 
 	public static TravelerTofunianWorldData get(World world) {
 		if (world instanceof ServerWorld) {
-			ServerWorld overworld = world.func_73046_m().func_71218_a(world.func_234923_W_());
-			DimensionSavedDataManager storage = overworld.func_217481_x();
-			TravelerTofunianWorldData data = (TravelerTofunianWorldData) storage.func_215753_b(TravelerTofunianWorldData::new, "tofucraft_travelling_tofunian");
+			ServerWorld overworld = world.getServer().getLevel(world.dimension());
+			DimensionSavedDataManager storage = overworld.getDataStorage();
+			TravelerTofunianWorldData data = storage.get(TravelerTofunianWorldData::new, "tofucraft_travelling_tofunian");
 			if (data != null) {
 				data.world = world;
-				data.func_76185_a();
+				data.setDirty();
 				return data;
 			}
 		}
@@ -63,16 +63,16 @@ public class TravelerTofunianWorldData extends WorldSavedData {
 		this.tickCounter++;
 	}
 
-	public void func_76184_a(CompoundNBT nbt) {
+	public void load(CompoundNBT nbt) {
 		if (nbt.contains("TravelerTofunianSpawnDelay", 99))
 			this.tofunianSpawnDelay = nbt.getInt("TravelerTofunianSpawnDelay");
 		if (nbt.contains("TravelerTofunianSpawnChance", 99))
 			this.tofunianSpawnChance = nbt.getInt("TravelerTofunianSpawnChance");
 		if (nbt.contains("TravelerTofunianId", 8))
-			this.tofunianID = UUID.fromString(nbt.func_74779_i("TravelerTofunianId"));
+			this.tofunianID = UUID.fromString(nbt.getString("TravelerTofunianId"));
 	}
 
-	public CompoundNBT func_189551_b(CompoundNBT compound) {
+	public CompoundNBT save(CompoundNBT compound) {
 		compound.putInt("TravelerTofunianSpawnDelay", this.tofunianSpawnDelay);
 		compound.putInt("TravelerTofunianSpawnChance", this.tofunianSpawnChance);
 		if (this.tofunianID != null)

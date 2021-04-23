@@ -5,7 +5,6 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.CodModel;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3f;
@@ -20,14 +19,15 @@ public class TofuFishRender extends MobRenderer<TofuFishEntity, CodModel<TofuFis
 		super(renderManagerIn, new CodModel(), 0.3F);
 	}
 
-	protected void setupRotations(TofuFishEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
-		super.func_225621_a_((LivingEntity) entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
-		float f = 4.3F * MathHelper.func_76126_a(0.6F * ageInTicks);
-		matrixStackIn.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(f));
-		if (!entityLiving.func_70090_H()) {
-			matrixStackIn.func_227861_a_(0.10000000149011612D, 0.10000000149011612D, -0.10000000149011612D);
-			matrixStackIn.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(90.0F));
+	protected void setupRotations(TofuFishEntity p_225621_1_, MatrixStack p_225621_2_, float p_225621_3_, float p_225621_4_, float p_225621_5_) {
+		super.setupRotations(p_225621_1_, p_225621_2_, p_225621_3_, p_225621_4_, p_225621_5_);
+		float f = 4.3F * MathHelper.sin(0.6F * p_225621_3_);
+		p_225621_2_.mulPose(Vector3f.YP.rotationDegrees(f));
+		if (!p_225621_1_.isInWater()) {
+			p_225621_2_.translate(0.1F, 0.1F, -0.1F);
+			p_225621_2_.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
 		}
+
 	}
 
 	public ResourceLocation getTextureLocation(TofuFishEntity entity) {

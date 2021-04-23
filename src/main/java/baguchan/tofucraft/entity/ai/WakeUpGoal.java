@@ -1,9 +1,7 @@
 package baguchan.tofucraft.entity.ai;
 
-import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.util.math.BlockPos;
 
 public class WakeUpGoal extends Goal {
 	private final CreatureEntity creature;
@@ -13,7 +11,7 @@ public class WakeUpGoal extends Goal {
 	}
 
 	public boolean canUse() {
-		return ((this.creature.level.isDay() && this.creature.isSleeping()) || (this.creature.getSleepingPos().isPresent() && this.creature.getY() <= ((BlockPos) this.creature.getSleepingPos().get()).getY() + 0.4D && !((BlockPos) this.creature.getSleepingPos().get()).closerThan((IPosition) this.creature.position(), 1.14D) && this.creature.isSleeping()));
+		return ((this.creature.level.isDay() && this.creature.isSleeping()) || (this.creature.getSleepingPos().isPresent() && this.creature.getY() <= this.creature.getSleepingPos().get().getY() + 0.4D && !this.creature.getSleepingPos().get().closerThan(this.creature.position(), 1.14D) && this.creature.isSleeping()));
 	}
 
 	public void start() {

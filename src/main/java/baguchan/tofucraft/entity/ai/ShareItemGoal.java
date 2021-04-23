@@ -1,7 +1,6 @@
 package baguchan.tofucraft.entity.ai;
 
 import baguchan.tofucraft.entity.TofunianEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.BrainUtil;
@@ -58,13 +57,13 @@ public class ShareItemGoal extends Goal {
 
 	@Nullable
 	private TofunianEntity getFreePartner() {
-		List<TofunianEntity> list = this.tofunian.level.getNearbyEntities(TofunianEntity.class, PARTNER_TARGETING, (LivingEntity) this.tofunian, this.tofunian.getBoundingBox().inflate(8.0D));
+		List<TofunianEntity> list = this.tofunian.level.getNearbyEntities(TofunianEntity.class, PARTNER_TARGETING, this.tofunian, this.tofunian.getBoundingBox().inflate(8.0D));
 		double d0 = Double.MAX_VALUE;
 		TofunianEntity tofunian2 = null;
 		for (TofunianEntity tofunianEntity1 : list) {
-			if (tofunianEntity1.wantsMoreFood() && this.tofunian.distanceToSqr((Entity) tofunianEntity1) < d0) {
+			if (tofunianEntity1.wantsMoreFood() && this.tofunian.distanceToSqr(tofunianEntity1) < d0) {
 				tofunian2 = tofunianEntity1;
-				d0 = this.tofunian.distanceToSqr((Entity) tofunianEntity1);
+				d0 = this.tofunian.distanceToSqr(tofunianEntity1);
 			}
 		}
 		return tofunian2;
@@ -72,10 +71,10 @@ public class ShareItemGoal extends Goal {
 
 	public void tick() {
 		super.tick();
-		if (this.tofunian.canSee((Entity) this.partner)) {
+		if (this.tofunian.canSee(this.partner)) {
 			if (!this.hasPassed) {
-				this.tofunian.getNavigation().moveTo((Entity) this.partner, 2.0D);
-				this.tofunian.getLookControl().setLookAt((Entity) this.partner, 30.0F, 30.0F);
+				this.tofunian.getNavigation().moveTo(this.partner, 2.0D);
+				this.tofunian.getLookControl().setLookAt(this.partner, 30.0F, 30.0F);
 				throwHalfStack(this.tofunian, TofunianEntity.FOOD_POINTS.keySet(), this.partner);
 				this.hasPassed = true;
 			}
@@ -89,11 +88,12 @@ public class ShareItemGoal extends Goal {
 		ItemStack itemstack = ItemStack.EMPTY;
 		int i = 0;
 
-		while(i < inventory.getContainerSize()) {
+		while (i < inventory.getContainerSize()) {
 			ItemStack itemstack1;
 			Item item;
 			int j;
-			label28: {
+			label28:
+			{
 				itemstack1 = inventory.getItem(i);
 				if (!itemstack1.isEmpty()) {
 					item = itemstack1.getItem();

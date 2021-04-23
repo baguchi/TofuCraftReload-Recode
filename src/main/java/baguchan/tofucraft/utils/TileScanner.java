@@ -23,7 +23,7 @@ public class TileScanner {
 			for (int y = -size; y <= size; y++) {
 				for (int z = -size; z <= size; z++) {
 					if (x != 0 || y != 0 || z != 0) {
-						BlockPos absTargPos = this.centrePos.func_177982_a(x, y, z);
+						BlockPos absTargPos = this.centrePos.offset(x, y, z);
 						method.impl.apply(this.world, new BlockPos(x, y, z), absTargPos, size, impl);
 					}
 				}

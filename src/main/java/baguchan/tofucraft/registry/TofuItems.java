@@ -7,10 +7,8 @@ import baguchan.tofucraft.entity.projectile.ZundaArrowEntity;
 import baguchan.tofucraft.item.*;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.dispenser.IDispenseItemBehavior;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.fluid.Fluids;
@@ -18,7 +16,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.Direction;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -269,14 +266,14 @@ public class TofuItems {
 		register(registry, TOFUFISH_SPAWNEGG, "tofufish_spawnegg");
 		register(registry, TOFUSLIME_SPAWNEGG, "tofuslime_spawnegg");
 		register(registry, TOFUSPIDER_SPAWNEGG, "tofuspider_spawnegg");
-		DispenserBlock.registerBehavior((IItemProvider) ZUNDA_ARROW, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
+		DispenserBlock.registerBehavior(ZUNDA_ARROW, new ProjectileDispenseBehavior() {
 			protected ProjectileEntity getProjectile(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
 				ZundaArrowEntity arrowentity = new ZundaArrowEntity(p_82499_1_, p_82499_2_.x(), p_82499_2_.y(), p_82499_2_.z());
 				arrowentity.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
 				return arrowentity;
 			}
 		});
-		DispenserBlock.registerBehavior((IItemProvider) FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
+		DispenserBlock.registerBehavior(FUKUMAME, new ProjectileDispenseBehavior() {
 			protected ProjectileEntity getProjectile(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
 				FukumameEntity fukumameEntity = new FukumameEntity(p_82499_1_, p_82499_2_.x(), p_82499_2_.y(), p_82499_2_.z());
 				return fukumameEntity;
@@ -285,17 +282,17 @@ public class TofuItems {
 			public ItemStack execute(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
 				ServerWorld serverWorld = p_82487_1_.getLevel();
 				IPosition iposition = DispenserBlock.getDispensePosition(p_82487_1_);
-				Direction direction = (Direction) p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
+				Direction direction = p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
 				for (int i = 0; i < 5; i++) {
 					ProjectileEntity projectileentity = getProjectile(serverWorld, iposition, p_82487_2_);
 					projectileentity.shoot(direction.getStepX(), (direction.getStepY() + 0.1F), direction.getStepZ(), this.getPower(), this.getUncertainty());
 					serverWorld.addFreshEntity(projectileentity);
 				}
-				p_82487_2_.hurt(1, serverWorld.getRandom(), (ServerPlayerEntity) null);
+				p_82487_2_.hurt(1, serverWorld.getRandom(), null);
 				return p_82487_2_;
 			}
 		});
-		DispenserBlock.registerBehavior((IItemProvider) NETHER_FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
+		DispenserBlock.registerBehavior(NETHER_FUKUMAME, new ProjectileDispenseBehavior() {
 			protected ProjectileEntity getProjectile(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
 				NetherFukumameEntity fukumameEntity = new NetherFukumameEntity(p_82499_1_, p_82499_2_.x(), p_82499_2_.y(), p_82499_2_.z());
 				return fukumameEntity;
@@ -304,17 +301,17 @@ public class TofuItems {
 			public ItemStack execute(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
 				ServerWorld serverWorld = p_82487_1_.getLevel();
 				IPosition iposition = DispenserBlock.getDispensePosition(p_82487_1_);
-				Direction direction = (Direction) p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
+				Direction direction = p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
 				for (int i = 0; i < 5; i++) {
 					ProjectileEntity projectileentity = getProjectile(serverWorld, iposition, p_82487_2_);
 					projectileentity.shoot(direction.getStepX(), (direction.getStepY() + 0.1F), direction.getStepZ(), this.getPower(), this.getUncertainty());
 					serverWorld.addFreshEntity(projectileentity);
 				}
-				p_82487_2_.hurt(1, serverWorld.getRandom(), (ServerPlayerEntity) null);
+				p_82487_2_.hurt(1, serverWorld.getRandom(), null);
 				return p_82487_2_;
 			}
 		});
-		DispenserBlock.registerBehavior((IItemProvider) INFERNO_NETHER_FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
+		DispenserBlock.registerBehavior(INFERNO_NETHER_FUKUMAME, new ProjectileDispenseBehavior() {
 			protected ProjectileEntity getProjectile(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
 				NetherFukumameEntity fukumameEntity = new NetherFukumameEntity(p_82499_1_, p_82499_2_.x(), p_82499_2_.y(), p_82499_2_.z());
 				fukumameEntity.setSecondsOnFire(10);
@@ -324,17 +321,17 @@ public class TofuItems {
 			public ItemStack execute(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
 				ServerWorld serverWorld = p_82487_1_.getLevel();
 				IPosition iposition = DispenserBlock.getDispensePosition(p_82487_1_);
-				Direction direction = (Direction) p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
+				Direction direction = p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
 				for (int i = 0; i < 5; i++) {
 					ProjectileEntity projectileentity = getProjectile(serverWorld, iposition, p_82487_2_);
 					projectileentity.shoot(direction.getStepX(), (direction.getStepY() + 0.1F), direction.getStepZ(), this.getPower(), this.getUncertainty());
 					serverWorld.addFreshEntity(projectileentity);
 				}
-				p_82487_2_.hurt(1, serverWorld.getRandom(), (ServerPlayerEntity) null);
+				p_82487_2_.hurt(1, serverWorld.getRandom(), null);
 				return p_82487_2_;
 			}
 		});
-		DispenserBlock.registerBehavior((IItemProvider) SOUL_FUKUMAME, (IDispenseItemBehavior) new ProjectileDispenseBehavior() {
+		DispenserBlock.registerBehavior(SOUL_FUKUMAME, new ProjectileDispenseBehavior() {
 			protected ProjectileEntity getProjectile(World p_82499_1_, IPosition p_82499_2_, ItemStack p_82499_3_) {
 				SoulFukumameEntity fukumameEntity = new SoulFukumameEntity(p_82499_1_, p_82499_2_.x(), p_82499_2_.y(), p_82499_2_.z());
 				return fukumameEntity;
@@ -343,13 +340,13 @@ public class TofuItems {
 			public ItemStack execute(IBlockSource p_82487_1_, ItemStack p_82487_2_) {
 				ServerWorld serverWorld = p_82487_1_.getLevel();
 				IPosition iposition = DispenserBlock.getDispensePosition(p_82487_1_);
-				Direction direction = (Direction) p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
+				Direction direction = p_82487_1_.getBlockState().getValue(DispenserBlock.FACING);
 				for (int i = 0; i < 5; i++) {
 					ProjectileEntity projectileentity = getProjectile(serverWorld, iposition, p_82487_2_);
 					projectileentity.shoot(direction.getStepX(), (direction.getStepY() + 0.1F), direction.getStepZ(), this.getPower(), this.getUncertainty());
 					serverWorld.addFreshEntity(projectileentity);
 				}
-				p_82487_2_.hurt(1, serverWorld.getRandom(), (ServerPlayerEntity) null);
+				p_82487_2_.hurt(1, serverWorld.getRandom(), null);
 				return p_82487_2_;
 			}
 		});

@@ -16,7 +16,7 @@ public class SoyMilkDrinkedMessage {
 	private final int level;
 
 	public SoyMilkDrinkedMessage(LivingEntity entity, int level) {
-		this.entityId = entity.func_145782_y();
+		this.entityId = entity.getId();
 		this.level = level;
 	}
 
@@ -40,9 +40,11 @@ public class SoyMilkDrinkedMessage {
 		NetworkEvent.Context context = contextSupplier.get();
 		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT)
 			context.enqueueWork(() -> {
-				Entity entity = (Minecraft.func_71410_x()).field_71439_g.level.func_73045_a(message.entityId);
+				Entity entity = (Minecraft.getInstance()).player.level.getEntity(message.entityId);
 				if (entity != null && entity instanceof LivingEntity)
-					entity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY, null).ifPresent(());
+					entity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY, null).ifPresent((cap) -> {
+						cap.setSoyHealth((LivingEntity) entity, message.level);
+					});
 			});
 		return true;
 	}

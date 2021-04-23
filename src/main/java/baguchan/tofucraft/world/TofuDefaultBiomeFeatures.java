@@ -8,36 +8,29 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.blockplacer.BlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
+import net.minecraft.world.gen.blockstateprovider.PlainFlowerBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 
-import java.util.Set;
-
 public class TofuDefaultBiomeFeatures {
-	public static BlockClusterFeatureConfig NETHER_SOYBEAN_CLUSTER = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.SOYBEAN_SOUL.defaultBlockState().setValue(SoybeanSoulCropsBlock.field_176488_a, Integer.valueOf(7))), (BlockPlacer) SimpleBlockPlacer.field_236447_c_)).func_227315_a_(64).func_227317_b_().func_227322_d_();
+	public static BlockClusterFeatureConfig NETHER_SOYBEAN_CLUSTER = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.SOYBEAN_SOUL.defaultBlockState().setValue(SoybeanSoulCropsBlock.AGE, Integer.valueOf(7))), (BlockPlacer) SimpleBlockPlacer.CODEC)).tries(64).noProjection().build();
 
-	public static BlockClusterFeatureConfig SOUL_SOYBEAN_CLUSTER = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.SOYBEAN_SOUL.defaultBlockState().setValue(SoybeanSoulCropsBlock.field_176488_a, Integer.valueOf(7))), (BlockPlacer) SimpleBlockPlacer.field_236447_c_)).func_227315_a_(64).func_227317_b_().func_227322_d_();
+	public static BlockClusterFeatureConfig SOUL_SOYBEAN_CLUSTER = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.SOYBEAN_SOUL.defaultBlockState().setValue(SoybeanSoulCropsBlock.AGE, Integer.valueOf(7))), (BlockPlacer) SimpleBlockPlacer.CODEC)).tries(64).noProjection().build();
 
-	public static BlockClusterFeatureConfig TOFU_FLOWER_CLUSTER = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.TOFU_FLOWER.defaultBlockState()), (BlockPlacer) SimpleBlockPlacer.field_236447_c_)).func_227315_a_(64).func_227322_d_();
+	public static BlockClusterFeatureConfig TOFU_FLOWER_CLUSTER = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(TofuBlocks.TOFU_FLOWER.defaultBlockState()), (BlockPlacer) SimpleBlockPlacer.CODEC)).tries(64).build();
 
-	public static final ConfiguredFeature<?, ?> NETHER_SOYBEAN = register("tofucraft:nether_soybean", (ConfiguredFeature<?, ?>) ((ConfiguredFeature) Feature.field_227248_z_.func_225566_b_((IFeatureConfig) NETHER_SOYBEAN_CLUSTER).func_227228_a_(Features.Placements.field_243996_g).func_242733_d(128)).func_242729_a(1));
-
-	public static final ConfiguredFeature<?, ?> NETHER_SOYBEAN_PATCH = register("tofucraft:nether_soybean_patch", (ConfiguredFeature<?, ?>) ((ConfiguredFeature) Feature.field_227248_z_.func_225566_b_((IFeatureConfig) NETHER_SOYBEAN_CLUSTER).func_227228_a_(Features.Placements.field_243996_g).func_242733_d(86)).func_242729_a(3));
-
-	public static final ConfiguredFeature<?, ?> SOUL_SOYBEAN = register("tofucraft:soul_soybean", (ConfiguredFeature<?, ?>) ((ConfiguredFeature) Feature.field_227248_z_.func_225566_b_((IFeatureConfig) SOUL_SOYBEAN_CLUSTER).func_227228_a_(Features.Placements.field_243996_g).func_242733_d(128)).func_242729_a(2));
-
-	public static final ConfiguredFeature<?, ?> TOFU_FLOWER = register("tofucraft:tofu_flower", (ConfiguredFeature<?, ?>) Feature.field_227247_y_.func_225566_b_((IFeatureConfig) TOFU_FLOWER_CLUSTER).func_227228_a_(Features.Placements.field_243996_g).func_227228_a_(Features.Placements.field_243994_e).func_242732_c(2));
-
-	public static final ConfiguredFeature<?, ?> SOYMILK_LAKE = register("tofucraft:soymilk_lake", Feature.field_202289_ai.func_225566_b_((IFeatureConfig) new BlockStateFeatureConfig(TofuBlocks.SOYMILK.defaultBlockState())).func_227228_a_(Placement.field_215006_E.func_227446_a_((IPlacementConfig) new ChanceConfig(4))));
-
-	public static final ConfiguredFeature<?, ?> SPRING_SOYMILK = register("tofucraft:spring_soymilk", (ConfiguredFeature<?, ?>) ((ConfiguredFeature) Feature.field_202295_ao.func_225566_b_((IFeatureConfig) new LiquidsConfig(TofuFluids.SOYMILK.func_207188_f(), true, 4, 1, (Set) ImmutableSet.of(TofuBlocks.TOFU_TERRAIN))).func_227228_a_(Placement.field_242908_m.func_227446_a_((IPlacementConfig) new TopSolidRangeConfig(8, 8, 256))).func_242728_a()).func_242732_c(50));
+	public static final ConfiguredFeature<?, ?> NETHER_SOYBEAN = register("tofucraft:nether_soybean", (ConfiguredFeature<?, ?>) ((ConfiguredFeature) Feature.RANDOM_PATCH.configured(NETHER_SOYBEAN_CLUSTER).decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE).range(128)).chance(1));
+	public static final ConfiguredFeature<?, ?> NETHER_SOYBEAN_PATCH = register("tofucraft:nether_soybean_patch", (ConfiguredFeature<?, ?>) ((ConfiguredFeature) Feature.RANDOM_PATCH.configured(NETHER_SOYBEAN_CLUSTER).decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE).range(86)).chance(3));
+	public static final ConfiguredFeature<?, ?> SOUL_SOYBEAN = register("tofucraft:soul_soybean", (ConfiguredFeature<?, ?>) ((ConfiguredFeature) Feature.RANDOM_PATCH.configured(SOUL_SOYBEAN_CLUSTER).decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE).range(128)).chance(2));
+	public static final ConfiguredFeature<?, ?> TOFU_FLOWER = register("tofucraft:tofu_flower", (ConfiguredFeature<?, ?>) Feature.FLOWER.configured((new BlockClusterFeatureConfig.Builder(PlainFlowerBlockStateProvider.INSTANCE, SimpleBlockPlacer.INSTANCE)).tries(64).build()));
+	public static final ConfiguredFeature<?, ?> SOYMILK_LAKE = register("tofucraft:soymilk_lake", Feature.LAKE.configured(new BlockStateFeatureConfig(TofuBlocks.SOYMILK.defaultBlockState())).decorated(Placement.WATER_LAKE.configured(new ChanceConfig(4))));
+	public static final ConfiguredFeature<?, ?> SPRING_SOYMILK = register("tofucraft:spring_soymilk", (ConfiguredFeature<?, ?>) Feature.SPRING.configured(new LiquidsConfig(TofuFluids.SOYMILK.defaultFluidState(), true, 4, 1, ImmutableSet.of(TofuBlocks.TOFU_TERRAIN))).decorated(Placement.RANGE_BIASED.configured(new TopSolidRangeConfig(8, 8, 256))).squared().count(50));
 
 	private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> p_243968_1_) {
-		return (ConfiguredFeature<FC, ?>) Registry.func_218325_a(WorldGenRegistries.field_243653_e, name, p_243968_1_);
+		return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, name, p_243968_1_);
 	}
 
 	public static void init() {

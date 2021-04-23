@@ -12,7 +12,7 @@ public class TofuFlowerBlock extends FlowerBlock {
 		super(effect, effectDuration, properties);
 	}
 
-	protected boolean func_200014_a_(BlockState state, IBlockReader worldIn, BlockPos pos) {
+	protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
 		return state.is(TofuTags.Blocks.TOFU_TERRAIN);
 	}
 }

@@ -17,14 +17,14 @@ public class TofuSpiderEntity extends SpiderEntity implements IRangedAttackMob {
 
 
 	protected void registerGoals() {
-		this.goalSelector.addGoal(1, (Goal) new SwimGoal(this));
-		this.goalSelector.addGoal(4, (Goal) new RangedAttackGoal(this, 1.0D, 80, 15.0F));
-		this.goalSelector.addGoal(5, (Goal) new WaterAvoidingRandomWalkingGoal(this, 0.8D));
-		this.goalSelector.addGoal(6, (Goal) new LookAtGoal(this, PlayerEntity.class, 8.0F));
-		this.goalSelector.addGoal(6, (Goal) new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(1, (Goal) new HurtByTargetGoal(this, new Class[0]));
-		this.targetSelector.addGoal(2, (Goal) new TargetGoal<>(this, PlayerEntity.class));
-		this.targetSelector.addGoal(3, (Goal) new TargetGoal<>(this, IronGolemEntity.class));
+		this.goalSelector.addGoal(1, new SwimGoal(this));
+		this.goalSelector.addGoal(4, new RangedAttackGoal(this, 1.0D, 80, 15.0F));
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
+		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+		this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
+		this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[0]));
+		this.targetSelector.addGoal(2, new TargetGoal<>(this, PlayerEntity.class));
+		this.targetSelector.addGoal(3, new TargetGoal<>(this, IronGolemEntity.class));
 	}
 
 	public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {

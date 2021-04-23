@@ -50,6 +50,6 @@ public class TofuCowEntity extends CowEntity {
 	}
 
 	public TofuCowEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-		return (TofuCowEntity) TofuEntityTypes.TOFUCOW.create((World) p_241840_1_);
+		return TofuEntityTypes.TOFUCOW.create(p_241840_1_);
 	}
 }

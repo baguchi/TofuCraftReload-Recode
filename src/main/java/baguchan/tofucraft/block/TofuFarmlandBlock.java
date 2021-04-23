@@ -1,17 +1,14 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.ITag;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -21,88 +18,96 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.FarmlandWaterManager;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
 public class TofuFarmlandBlock extends Block {
-	public static final IntegerProperty MOISTURE = BlockStateProperties.field_208133_ah;
+	public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE;
 
-	protected static final VoxelShape SHAPE = Block.func_208617_a(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
+	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
 	public TofuFarmlandBlock(Properties properties) {
 		super(properties);
-		func_180632_j((BlockState) ((BlockState) this.field_176227_L.func_177621_b()).setValue(MOISTURE, Integer.valueOf(0)));
+		registerDefaultState(this.stateDefinition.any().setValue(MOISTURE, Integer.valueOf(0)));
 	}
 
-	public BlockState func_196271_a(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (facing == Direction.UP && !stateIn.func_196955_c((IWorldReader) worldIn, currentPos))
-			worldIn.func_205220_G_().func_205360_a(currentPos, this, 1);
-		return super.func_196271_a(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		if (facing == Direction.UP && !stateIn.canSurvive(worldIn, currentPos))
+			worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
+		return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
-	public boolean func_196260_a(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		BlockState blockstate = worldIn.getBlockState(pos.above());
-		return (!blockstate.func_185904_a().func_76220_a() || blockstate.getBlock() instanceof net.minecraft.block.FenceGateBlock || blockstate.getBlock() instanceof net.minecraft.block.MovingPistonBlock);
+	public boolean canSurvive(BlockState p_196260_1_, IWorldReader p_196260_2_, BlockPos p_196260_3_) {
+		BlockState blockstate = p_196260_2_.getBlockState(p_196260_3_.above());
+		return !blockstate.getMaterial().isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
 	}
 
-	public BlockState func_196258_a(BlockItemUseContext context) {
-		return !defaultBlockState().func_196955_c((IWorldReader) context.getLevel(), context.getClickedPos()) ? TofuBlocks.TOFU_TERRAIN.defaultBlockState() : super.func_196258_a(context);
+	public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
+		return !this.defaultBlockState().canSurvive(p_196258_1_.getLevel(), p_196258_1_.getClickedPos()) ? Blocks.DIRT.defaultBlockState() : super.getStateForPlacement(p_196258_1_);
 	}
 
-	public VoxelShape func_220053_a(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+	public boolean useShapeForLightOcclusion(BlockState p_220074_1_) {
+		return true;
+	}
+
+	public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
 		return SHAPE;
 	}
 
-	public void func_225534_a_(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-		if (!state.func_196955_c((IWorldReader) worldIn, pos))
-			turnToDirt(state, worldIn, pos);
+	public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_) {
+		if (!p_225534_1_.canSurvive(p_225534_2_, p_225534_3_)) {
+			turnToDirt(p_225534_1_, p_225534_2_, p_225534_3_);
+		}
+
 	}
 
-	public void func_225542_b_(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-		int i = ((Integer) state.func_177229_b((Property) MOISTURE)).intValue();
-		if (!hasWater(worldIn, pos) && !worldIn.func_175727_C(pos.above())) {
+	public void randomTick(BlockState p_225542_1_, ServerWorld p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
+		int i = p_225542_1_.getValue(MOISTURE);
+		if (!isNearWater(p_225542_2_, p_225542_3_) && !p_225542_2_.isRainingAt(p_225542_3_.above())) {
 			if (i > 0) {
-				worldIn.setBlock(pos, state.setValue(MOISTURE, Integer.valueOf(i - 1)), 2);
-			} else if (!hasCrops(worldIn, pos)) {
-				turnToDirt(state, worldIn, pos);
+				p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(MOISTURE, Integer.valueOf(i - 1)), 2);
+			} else if (!isUnderCrops(p_225542_2_, p_225542_3_)) {
+				turnToDirt(p_225542_1_, p_225542_2_, p_225542_3_);
 			}
 		} else if (i < 7) {
-			worldIn.setBlock(pos, state.setValue(MOISTURE, Integer.valueOf(7)), 2);
+			p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(MOISTURE, Integer.valueOf(7)), 2);
 		}
+
 	}
 
-	public void func_180658_a(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
-		if (!worldIn.isClientSide && ForgeHooks.onFarmlandTrample(worldIn, pos, TofuBlocks.TOFU_TERRAIN.defaultBlockState(), fallDistance, entityIn))
-			turnToDirt(worldIn.getBlockState(pos), worldIn, pos);
-		super.func_180658_a(worldIn, pos, entityIn, fallDistance);
+	public void fallOn(World p_180658_1_, BlockPos p_180658_2_, Entity p_180658_3_, float p_180658_4_) {
+		if (!p_180658_1_.isClientSide && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(p_180658_1_, p_180658_2_, Blocks.DIRT.defaultBlockState(), p_180658_4_, p_180658_3_)) { // Forge: Move logic to Entity#canTrample
+			turnToDirt(p_180658_1_.getBlockState(p_180658_2_), p_180658_1_, p_180658_2_);
+		}
+
+		super.fallOn(p_180658_1_, p_180658_2_, p_180658_3_, p_180658_4_);
 	}
 
 	public static void turnToDirt(BlockState p_199610_0_, World p_199610_1_, BlockPos p_199610_2_) {
-		p_199610_1_.func_175656_a(p_199610_2_, func_199601_a(p_199610_0_, TofuBlocks.TOFU_TERRAIN.defaultBlockState(), p_199610_1_, p_199610_2_));
+		p_199610_1_.setBlockAndUpdate(p_199610_2_, pushEntitiesUp(p_199610_0_, TofuBlocks.TOFU_TERRAIN.defaultBlockState(), p_199610_1_, p_199610_2_));
 	}
 
-	private boolean hasCrops(IBlockReader worldIn, BlockPos pos) {
-		BlockState plant = worldIn.getBlockState(pos.above());
-		BlockState state = worldIn.getBlockState(pos);
-		return (plant.getBlock() instanceof IPlantable && state.canSustainPlant(worldIn, pos, Direction.UP, (IPlantable) plant.getBlock()));
+	private boolean isUnderCrops(IBlockReader p_176529_0_, BlockPos p_176529_1_) {
+		BlockState plant = p_176529_0_.getBlockState(p_176529_1_.above());
+		BlockState state = p_176529_0_.getBlockState(p_176529_1_);
+		return plant.getBlock() instanceof net.minecraftforge.common.IPlantable && state.canSustainPlant(p_176529_0_, p_176529_1_, Direction.UP, (net.minecraftforge.common.IPlantable) plant.getBlock());
 	}
 
-	private static boolean hasWater(IWorldReader worldIn, BlockPos pos) {
-		for (BlockPos blockpos : BlockPos.func_218278_a(pos.func_177982_a(-4, 0, -4), pos.func_177982_a(4, 1, 4))) {
-			if (worldIn.getFluidState(blockpos).func_206884_a((ITag) FluidTags.field_206959_a))
+	private static boolean isNearWater(IWorldReader p_176530_0_, BlockPos p_176530_1_) {
+		for (BlockPos blockpos : BlockPos.betweenClosed(p_176530_1_.offset(-4, 0, -4), p_176530_1_.offset(4, 1, 4))) {
+			if (p_176530_0_.getFluidState(blockpos).is(FluidTags.WATER)) {
 				return true;
+			}
 		}
-		return FarmlandWaterManager.hasBlockWaterTicket(worldIn, pos);
+
+		return net.minecraftforge.common.FarmlandWaterManager.hasBlockWaterTicket(p_176530_0_, p_176530_1_);
 	}
 
-	protected void func_206840_a(StateContainer.Builder<Block, BlockState> builder) {
-		builder.func_206894_a(new Property[]{MOISTURE});
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
+		p_206840_1_.add(MOISTURE);
 	}
 
-	public boolean func_196266_a(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
+	public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
 		return false;
 	}
 }

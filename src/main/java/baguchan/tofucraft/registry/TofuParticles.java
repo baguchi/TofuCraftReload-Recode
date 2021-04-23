@@ -9,7 +9,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = "tofucraft", bus = EventBusSubscriber.Bus.MOD)
@@ -27,7 +26,7 @@ public class TofuParticles {
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public static void registerParticleFactories(ParticleFactoryRegisterEvent event) {
-		ParticleManager particleManager = (Minecraft.func_71410_x()).field_71452_i;
+		ParticleManager particleManager = (Minecraft.getInstance()).field_71452_i;
 		particleManager.func_215234_a((ParticleType) TOFU_PORTAL, baguchan.tofucraft.client.particle.TofuPortalParticle.Factory::new);
 		particleManager.func_215234_a((ParticleType) ZUNDA_SPORE, baguchan.tofucraft.client.particle.ZundaSporeParticle.ZundaSporeFactory::new);
 	}

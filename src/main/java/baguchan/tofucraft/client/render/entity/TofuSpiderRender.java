@@ -5,7 +5,6 @@ import baguchan.tofucraft.entity.TofuSpiderEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -19,8 +18,8 @@ public class TofuSpiderRender extends MobRenderer<TofuSpiderEntity, TofuSpiderMo
 	}
 
 	protected void scale(TofuSpiderEntity p_225620_1_, MatrixStack p_225620_2_, float p_225620_3_) {
-		p_225620_2_.func_227862_a_(1.3F, 1.3F, 1.3F);
-		super.func_225620_a_((LivingEntity) p_225620_1_, p_225620_2_, p_225620_3_);
+		p_225620_2_.scale(1.3F, 1.3F, 1.3F);
+		super.scale(p_225620_1_, p_225620_2_, p_225620_3_);
 	}
 
 	protected float getFlipDegrees(TofuSpiderEntity p_77037_1_) {

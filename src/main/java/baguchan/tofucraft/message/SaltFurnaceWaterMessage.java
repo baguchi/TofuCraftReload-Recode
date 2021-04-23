@@ -31,8 +31,8 @@ public class SaltFurnaceWaterMessage {
 	}
 
 	public static SaltFurnaceWaterMessage readPacketData(PacketBuffer buffer) {
-		BlockPos blockPos = buffer.func_179259_c();
-		FluidStack fluid = FluidStack.loadFluidStackFromNBT(buffer.func_150793_b());
+		BlockPos blockPos = buffer.readBlockPos();
+		FluidStack fluid = FluidStack.loadFluidStackFromNBT(buffer.readNbt());
 		return new SaltFurnaceWaterMessage(blockPos, fluid);
 	}
 
@@ -40,7 +40,7 @@ public class SaltFurnaceWaterMessage {
 		NetworkEvent.Context context = contextSupplier.get();
 		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT)
 			context.enqueueWork(() -> {
-				TileEntity tileentity = (Minecraft.func_71410_x()).field_71439_g.getLevel().func_175625_s(message.blockPos);
+				TileEntity tileentity = (Minecraft.getInstance()).player.level.getBlockEntity(message.blockPos);
 				if (tileentity instanceof SaltFurnaceTileEntity) {
 					SaltFurnaceTileEntity tileentity1 = (SaltFurnaceTileEntity) tileentity;
 					tileentity1.waterTank.setFluid(message.fluid);

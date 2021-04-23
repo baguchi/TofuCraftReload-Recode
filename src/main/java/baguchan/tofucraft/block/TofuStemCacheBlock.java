@@ -17,24 +17,24 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
 public class TofuStemCacheBlock extends HorizontalBlock {
-	public static final BooleanProperty ZUNDAMA = BooleanProperty.func_177716_a("zundama");
+	public static final BooleanProperty ZUNDAMA = BooleanProperty.create("zundama");
 
 	public TofuStemCacheBlock(Properties builder) {
 		super(builder);
-		func_180632_j((BlockState) ((BlockState) this.field_176227_L.func_177621_b()).setValue(ZUNDAMA, Boolean.valueOf(true)));
+		registerDefaultState(this.stateDefinition.any().setValue(ZUNDAMA, Boolean.valueOf(true)));
 	}
 
-	public ActionResultType func_225533_a_(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-		boolean hasZunda = ((Boolean) state.func_177229_b((Property) ZUNDAMA)).booleanValue();
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		boolean hasZunda = ((Boolean) state.getValue((Property) ZUNDAMA)).booleanValue();
 		if (hasZunda) {
 			ItemStack salt = new ItemStack(TofuItems.ZUNDAMA, 1);
 			if (worldIn instanceof World) {
 				float f = 0.7F;
-				double d0 = (worldIn.func_201674_k().nextFloat() * f) + (1.0F - f) * 0.5D;
-				double d1 = (worldIn.func_201674_k().nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
-				double d2 = (worldIn.func_201674_k().nextFloat() * f) + (1.0F - f) * 0.5D;
+				double d0 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
+				double d1 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
+				double d2 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
 				ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, salt);
-				itemEntity.func_174867_a(10);
+				itemEntity.setPickUpDelay(10);
 				worldIn.addFreshEntity(itemEntity);
 			}
 			worldIn.setBlock(pos, state.setValue(ZUNDAMA, Boolean.valueOf(false)), 3);
@@ -43,7 +43,7 @@ public class TofuStemCacheBlock extends HorizontalBlock {
 		return ActionResultType.PASS;
 	}
 
-	protected void func_206840_a(StateContainer.Builder<Block, BlockState> builder) {
-		builder.func_206894_a(new Property[]{(Property) HorizontalBlock.field_185512_D, ZUNDAMA});
+	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+		builder.add(HorizontalBlock.FACING, ZUNDAMA);
 	}
 }
