@@ -114,7 +114,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 		this.minLimitPerlinNoise = new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-15, 0));
 		this.maxLimitPerlinNoise = new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-15, 0));
 		this.mainPerlinNoise = new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-7, 0));
-		this.surfaceNoise = (INoiseGenerator) (noisesettings.useSimplexSurfaceNoise() ? new PerlinNoiseGenerator(this.random, IntStream.rangeClosed(-3, 0)) : new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-3, 0)));
+		this.surfaceNoise = noisesettings.useSimplexSurfaceNoise() ? new PerlinNoiseGenerator(this.random, IntStream.rangeClosed(-3, 0)) : new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-3, 0));
 		this.random.consumeCount(2620);
 		this.depthNoise = new OctavesNoiseGenerator(this.random, IntStream.rangeClosed(-15, 0));
 		if (noisesettings.islandNoiseOverride()) {
@@ -186,7 +186,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 		double d0;
 		double d1;
 		if (this.islandNoise != null) {
-			d0 = (double) (EndBiomeProvider.getHeightValue(this.islandNoise, p_222548_2_, p_222548_3_) - 8.0F);
+			d0 = EndBiomeProvider.getHeightValue(this.islandNoise, p_222548_2_, p_222548_3_) - 8.0F;
 			if (d0 > 0.0D) {
 				d1 = 0.25D;
 			} else {
@@ -225,8 +225,8 @@ public class TofuChunkGenerator extends ChunkGenerator {
 
 			float f10 = f1 / f2;
 			float f11 = f / f2;
-			double d16 = (double) (f10 * 0.5F - 0.125F);
-			double d18 = (double) (f11 * 0.9F + 0.1F);
+			double d16 = f10 * 0.5F - 0.125F;
+			double d18 = f11 * 0.9F + 0.1F;
 			d0 = d16 * 0.265625D;
 			d1 = 96.0D / d18;
 		}
@@ -235,12 +235,12 @@ public class TofuChunkGenerator extends ChunkGenerator {
 		double d13 = 684.412D * noisesettings.noiseSamplingSettings().yScale();
 		double d14 = d12 / noisesettings.noiseSamplingSettings().xzFactor();
 		double d15 = d13 / noisesettings.noiseSamplingSettings().yFactor();
-		double d17 = (double) noisesettings.topSlideSettings().target();
-		double d19 = (double) noisesettings.topSlideSettings().size();
-		double d20 = (double) noisesettings.topSlideSettings().offset();
-		double d21 = (double) noisesettings.bottomSlideSettings().target();
-		double d2 = (double) noisesettings.bottomSlideSettings().size();
-		double d3 = (double) noisesettings.bottomSlideSettings().offset();
+		double d17 = noisesettings.topSlideSettings().target();
+		double d19 = noisesettings.topSlideSettings().size();
+		double d20 = noisesettings.topSlideSettings().offset();
+		double d21 = noisesettings.bottomSlideSettings().target();
+		double d2 = noisesettings.bottomSlideSettings().size();
+		double d3 = noisesettings.bottomSlideSettings().offset();
 		double d4 = noisesettings.randomDensityOffset() ? this.getRandomDensity(p_222548_2_, p_222548_3_) : 0.0D;
 		double d5 = noisesettings.densityFactor();
 		double d6 = noisesettings.densityOffset();
@@ -272,7 +272,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 	}
 
 	private double getRandomDensity(int p_236095_1_, int p_236095_2_) {
-		double d0 = this.depthNoise.getValue((double) (p_236095_1_ * 200), 10.0D, (double) (p_236095_2_ * 200), 1.0D, 0.0D, true);
+		double d0 = this.depthNoise.getValue(p_236095_1_ * 200, 10.0D, p_236095_2_ * 200, 1.0D, 0.0D, true);
 		double d1;
 		if (d0 < 0.0D) {
 			d1 = -d0 * 0.3D;
@@ -285,12 +285,12 @@ public class TofuChunkGenerator extends ChunkGenerator {
 	}
 
 	public int getBaseHeight(int p_222529_1_, int p_222529_2_, Heightmap.Type p_222529_3_) {
-		return this.iterateNoiseColumn(p_222529_1_, p_222529_2_, (BlockState[]) null, p_222529_3_.isOpaque());
+		return this.iterateNoiseColumn(p_222529_1_, p_222529_2_, null, p_222529_3_.isOpaque());
 	}
 
 	public IBlockReader getBaseColumn(int p_230348_1_, int p_230348_2_) {
 		BlockState[] ablockstate = new BlockState[this.chunkCountY * this.chunkHeight];
-		this.iterateNoiseColumn(p_230348_1_, p_230348_2_, ablockstate, (Predicate<BlockState>) null);
+		this.iterateNoiseColumn(p_230348_1_, p_230348_2_, ablockstate, null);
 		return new Blockreader(ablockstate);
 	}
 
@@ -565,7 +565,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 	}
 
 	private static double computeContribution(int p_222554_0_, int p_222554_1_, int p_222554_2_) {
-		double d0 = (double) (p_222554_0_ * p_222554_0_ + p_222554_2_ * p_222554_2_);
+		double d0 = p_222554_0_ * p_222554_0_ + p_222554_2_ * p_222554_2_;
 		double d1 = (double) p_222554_1_ + 0.5D;
 		double d2 = d1 * d1;
 		double d3 = Math.pow(Math.E, -(d2 / 16.0D + d0 / 16.0D));

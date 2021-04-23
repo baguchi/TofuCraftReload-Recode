@@ -6,10 +6,8 @@ import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.village.PointOfInterestManager;
 import net.minecraft.village.PointOfInterestType;
 import net.minecraft.world.GameRules;
@@ -81,14 +79,14 @@ public class TravelerTofunianSpawner {
 			Optional<BlockPos> optional = pointofinterestmanager.find(PointOfInterestType.MEETING.getPredicate(), (p_221241_0_) -> {
 				return true;
 			}, blockpos, 48, PointOfInterestManager.Status.ANY);
-			BlockPos blockpos1 = (BlockPos)optional.orElse(blockpos);
+			BlockPos blockpos1 = optional.orElse(blockpos);
 			BlockPos blockpos2 = this.func_221244_a(blockpos1, 48);
 			if (blockpos2 != null && this.func_226559_a_(blockpos2)) {
 				if (world.getBiomeName(blockpos2).equals(Optional.of(Biomes.THE_VOID))) {
 					return false;
 				}
 
-				TravelerTofunianEntity entityPlagueDoctor = TofuEntityTypes.TRAVELER_TOFUNIAN.spawn(this.world, (CompoundNBT)null, (ITextComponent)null, (PlayerEntity)null, blockpos2, SpawnReason.EVENT, false, false);
+				TravelerTofunianEntity entityPlagueDoctor = TofuEntityTypes.TRAVELER_TOFUNIAN.spawn(this.world, null, null, null, blockpos2, SpawnReason.EVENT, false, false);
 				if (entityPlagueDoctor != null) {
 					TravelerTofunianWorldData worldinfo = TravelerTofunianWorldData.get(world);
 
@@ -109,7 +107,7 @@ public class TravelerTofunianSpawner {
 	private BlockPos func_221244_a(BlockPos p_221244_1_, int p_221244_2_) {
 		BlockPos blockpos = null;
 
-		for(int i = 0; i < 10; ++i) {
+		for (int i = 0; i < 10; ++i) {
 			int j = p_221244_1_.getX() + this.random.nextInt(p_221244_2_ * 2) - p_221244_2_;
 			int k = p_221244_1_.getZ() + this.random.nextInt(p_221244_2_ * 2) - p_221244_2_;
 			int l = this.world.getHeight(Heightmap.Type.WORLD_SURFACE, j, k);
@@ -132,8 +130,8 @@ public class TravelerTofunianSpawner {
 				return true;
 			}
 
-			blockpos = (BlockPos)var2.next();
-		} while(this.world.getBlockState(blockpos).getCollisionShape(this.world, blockpos).isEmpty());
+			blockpos = (BlockPos) var2.next();
+		} while (this.world.getBlockState(blockpos).getCollisionShape(this.world, blockpos).isEmpty());
 
 		return false;
 	}

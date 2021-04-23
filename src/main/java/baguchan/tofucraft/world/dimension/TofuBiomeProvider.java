@@ -108,7 +108,7 @@ public class TofuBiomeProvider extends BiomeProvider {
 
 	public Biome getNoiseBiome(int p_225526_1_, int p_225526_2_, int p_225526_3_) {
 		int i = this.useY ? p_225526_2_ : 0;
-		Biome.Attributes biome$attributes = new Biome.Attributes((float)this.temperatureNoise.getValue((double)p_225526_1_, (double)i, (double)p_225526_3_), (float)this.humidityNoise.getValue((double)p_225526_1_, (double)i, (double)p_225526_3_), (float)this.altitudeNoise.getValue((double)p_225526_1_, (double)i, (double)p_225526_3_), (float)this.weirdnessNoise.getValue((double)p_225526_1_, (double)i, (double)p_225526_3_), 0.0F);
+		Biome.Attributes biome$attributes = new Biome.Attributes((float) this.temperatureNoise.getValue(p_225526_1_, i, p_225526_3_), (float) this.humidityNoise.getValue(p_225526_1_, i, p_225526_3_), (float) this.altitudeNoise.getValue(p_225526_1_, i, p_225526_3_), (float) this.weirdnessNoise.getValue(p_225526_1_, i, p_225526_3_), 0.0F);
 		return this.parameters.stream().min(Comparator.comparing((p_235272_1_) -> {
 			return p_235272_1_.getFirst().fitness(biome$attributes);
 		})).map(Pair::getSecond).map(Supplier::get).orElse(BiomeRegistry.THE_VOID);
