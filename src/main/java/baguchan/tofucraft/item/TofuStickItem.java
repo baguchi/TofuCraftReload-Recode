@@ -23,11 +23,13 @@ public class TofuStickItem extends Item {
 		return super.useOn(context);
 	}
 
-	public Rarity func_77613_e(ItemStack stack) {
+	@Override
+	public Rarity getRarity(ItemStack p_77613_1_) {
 		return Rarity.RARE;
 	}
 
-	public boolean func_77636_d(ItemStack stack) {
+	@Override
+	public boolean isFoil(ItemStack p_77636_1_) {
 		return true;
 	}
 }

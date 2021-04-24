@@ -10,7 +10,8 @@ public class TofuVillageStructure extends JigsawStructure {
 		super(p_i232001_1_, 0, true, true);
 	}
 
-	public GenerationStage.Decoration func_236396_f_() {
+	@Override
+	public GenerationStage.Decoration step() {
 		return GenerationStage.Decoration.SURFACE_STRUCTURES;
 	}
 }

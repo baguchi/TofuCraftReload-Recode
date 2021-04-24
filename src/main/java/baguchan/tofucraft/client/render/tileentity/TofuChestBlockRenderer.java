@@ -123,7 +123,7 @@ public class TofuChestBlockRenderer<T extends TofuChestTileEntity> extends TileE
 	}
 
 	private static RenderMaterial getChestRenderMaterial(ResourceLocation p_228774_0_) {
-		return new RenderMaterial(Atlases.BED_SHEET, p_228774_0_);
+		return new RenderMaterial(Atlases.CHEST_SHEET, p_228774_0_);
 	}
 
 	protected RenderMaterial getMaterial(T tileEntity, ChestType chestType) {

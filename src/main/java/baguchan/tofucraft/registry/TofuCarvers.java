@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber(modid = "tofucraft", bus = EventBusSubscriber.Bus.MOD)
 public class TofuCarvers {
 	public static final WorldCarver<ProbabilityConfig> TOFU_CAVE = new TofuCaveCarver(ProbabilityConfig.CODEC, 256);
-
 	public static final WorldCarver<ProbabilityConfig> TOFU_CANYON = new TofuCanyonCarver(ProbabilityConfig.CODEC);
 
 	@SubscribeEvent

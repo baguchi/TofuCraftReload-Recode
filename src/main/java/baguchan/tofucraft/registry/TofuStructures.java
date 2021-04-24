@@ -17,7 +17,7 @@ public class TofuStructures {
 
 	@SubscribeEvent
 	public static void registerStructures(RegistryEvent.Register<Structure<?>> registry) {
-		registry.getRegistry().register(TOFUVILLAGE.setRegistryName("tofucraft:tofu_village"));
+		registry.getRegistry().register(TOFUVILLAGE.setRegistryName("tofu_village"));
 		putStructureOnAList("tofucraft:tofu_village", TOFUVILLAGE);
 	}
 }

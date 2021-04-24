@@ -1,5 +1,6 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.world.dimension.TofuBiomeProvider;
 import baguchan.tofucraft.world.dimension.TofuChunkGenerator;
 import net.minecraft.util.RegistryKey;
@@ -10,9 +11,8 @@ import net.minecraft.world.World;
 public class TofuDimensions {
 	public static final RegistryKey<World> tofu_world = RegistryKey.create(Registry.DIMENSION_REGISTRY, name("tofu_world"));
 
-
 	private static ResourceLocation name(String name) {
-		return new ResourceLocation("tofucraft", name);
+		return new ResourceLocation(TofuCraftReload.MODID, name);
 	}
 
 	public static void registerDimensionStuff() {

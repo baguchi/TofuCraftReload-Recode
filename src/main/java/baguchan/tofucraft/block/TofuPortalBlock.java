@@ -101,6 +101,8 @@ public class TofuPortalBlock extends BreakableBlock {
 		if (serverWorld == null)
 			return;
 
+
+		entity.setPortalCooldown();
 		entity.changeDimension(serverWorld, new TofuWorldTeleporter());
 	}
 

@@ -1,5 +1,6 @@
 package baguchan.tofucraft.event;
 
+import baguchan.tofucraft.TofuCraftReload;
 import com.google.common.collect.Sets;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTables;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.Set;
 
-@EventBusSubscriber(modid = "tofucraft")
+@EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class LootEvents {
 	private static final Set<ResourceLocation> TEMPLE_LOOT = Sets.newHashSet(LootTables.JUNGLE_TEMPLE);
 

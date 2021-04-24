@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = "tofucraft", value = {Dist.CLIENT}, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = "tofucraft", value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ClientRegistrar {
 	public static void renderEntity() {
 		RenderingRegistry.registerEntityRenderingHandler(TofuEntityTypes.TOFUNIAN, baguchan.tofucraft.client.render.entity.TofunianRender::new);

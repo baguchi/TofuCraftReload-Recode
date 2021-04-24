@@ -1,5 +1,6 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.world.TofuDefaultBiomeFeatures;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -9,7 +10,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = "tofucraft")
+@EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class TofuBiomes {
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void loadingBiome(BiomeLoadingEvent event) {
