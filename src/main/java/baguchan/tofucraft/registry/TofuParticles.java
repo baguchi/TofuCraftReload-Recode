@@ -26,8 +26,8 @@ public class TofuParticles {
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public static void registerParticleFactories(ParticleFactoryRegisterEvent event) {
-		ParticleManager particleManager = (Minecraft.getInstance()).field_71452_i;
-		particleManager.func_215234_a((ParticleType) TOFU_PORTAL, baguchan.tofucraft.client.particle.TofuPortalParticle.Factory::new);
-		particleManager.func_215234_a((ParticleType) ZUNDA_SPORE, baguchan.tofucraft.client.particle.ZundaSporeParticle.ZundaSporeFactory::new);
+		ParticleManager particleManager = (Minecraft.getInstance()).particleEngine;
+		particleManager.register(TOFU_PORTAL, baguchan.tofucraft.client.particle.TofuPortalParticle.Factory::new);
+		particleManager.register(ZUNDA_SPORE, baguchan.tofucraft.client.particle.ZundaSporeParticle.ZundaSporeFactory::new);
 	}
 }

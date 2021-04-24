@@ -13,7 +13,7 @@ public class TofuTags {
 		public static final ITag.INamedTag<Block> TOFU_TERRAIN = tag("tofu_terrain");
 
 		private static ITag.INamedTag<Block> tag(String name) {
-			return BlockTags.func_199894_a("tofucraft:" + name);
+			return BlockTags.bind("tofucraft:" + name);
 		}
 	}
 
@@ -21,7 +21,7 @@ public class TofuTags {
 		public static final ITag.INamedTag<Fluid> SOYMILK = tag("soymilk");
 
 		private static ITag.INamedTag<Fluid> tag(String name) {
-			return FluidTags.func_206956_a("tofucraft:" + name);
+			return FluidTags.bind("tofucraft:" + name);
 		}
 	}
 }

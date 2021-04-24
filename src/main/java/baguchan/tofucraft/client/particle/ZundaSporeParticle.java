@@ -12,35 +12,35 @@ import java.util.Random;
 public class ZundaSporeParticle extends SpriteTexturedParticle {
 	private ZundaSporeParticle(ClientWorld p_i232437_1_, double p_i232437_2_, double p_i232437_4_, double p_i232437_6_) {
 		super(p_i232437_1_, p_i232437_2_, p_i232437_4_ - 0.125D, p_i232437_6_);
-		this.field_70552_h = 0.4F;
-		this.field_70553_i = 0.4F;
-		this.field_70551_j = 0.7F;
-		func_187115_a(0.01F, 0.01F);
-		this.field_70544_f *= this.field_187136_p.nextFloat() * 0.6F + 0.2F;
-		this.field_70547_e = (int) (16.0D / (Math.random() * 0.8D + 0.2D));
-		this.field_190017_n = false;
+		this.rCol = 0.4F;
+		this.gCol = 0.4F;
+		this.bCol = 0.7F;
+		this.setSize(0.01F, 0.01F);
+		this.quadSize *= this.random.nextFloat() * 0.6F + 0.2F;
+		this.lifetime = (int) (16.0D / (Math.random() * 0.8D + 0.2D));
+		this.hasPhysics = false;
 	}
 
 	private ZundaSporeParticle(ClientWorld p_i232438_1_, double p_i232438_2_, double p_i232438_4_, double p_i232438_6_, double p_i232438_8_, double p_i232438_10_, double p_i232438_12_) {
 		super(p_i232438_1_, p_i232438_2_, p_i232438_4_ - 0.125D, p_i232438_6_, p_i232438_8_, p_i232438_10_, p_i232438_12_);
-		func_187115_a(0.01F, 0.01F);
-		this.field_70544_f *= this.field_187136_p.nextFloat() * 0.6F + 0.6F;
-		this.field_70547_e = (int) (16.0D / (Math.random() * 0.8D + 0.2D));
-		this.field_190017_n = false;
+		this.setSize(0.01F, 0.01F);
+		this.quadSize *= this.random.nextFloat() * 0.6F + 0.6F;
+		this.lifetime = (int) (16.0D / (Math.random() * 0.8D + 0.2D));
+		this.hasPhysics = false;
 	}
 
-	public IParticleRenderType func_217558_b() {
-		return IParticleRenderType.field_217602_b;
+	public IParticleRenderType getRenderType() {
+		return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
-	public void func_189213_a() {
-		this.field_187123_c = this.field_187126_f;
-		this.field_187124_d = this.field_187127_g;
-		this.field_187125_e = this.field_187128_h;
-		if (this.field_70547_e-- <= 0) {
-			func_187112_i();
+	public void tick() {
+		this.xo = this.x;
+		this.yo = this.y;
+		this.zo = this.z;
+		if (this.lifetime-- <= 0) {
+			this.remove();
 		} else {
-			func_187110_a(this.field_187129_i, this.field_187130_j, this.field_187131_k);
+			this.move(this.xd, this.yd, this.zd);
 		}
 	}
 
@@ -58,8 +58,8 @@ public class ZundaSporeParticle extends SpriteTexturedParticle {
 			double d1 = random.nextGaussian() * 9.999999747378752E-5D;
 			double d2 = random.nextGaussian() * 9.999999974752427E-7D;
 			ZundaSporeParticle underwaterparticle = new ZundaSporeParticle(p_199234_2_, p_199234_3_, p_199234_5_, p_199234_7_, d0, d1, d2);
-			underwaterparticle.func_217568_a(this.sprite);
-			underwaterparticle.func_70538_b(0.5F, 0.9F, 0.5F);
+			underwaterparticle.pickSprite(this.sprite);
+			underwaterparticle.setColor(0.5F, 0.9F, 0.5F);
 			return underwaterparticle;
 		}
 	}

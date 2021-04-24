@@ -10,9 +10,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = "tofucraft", bus = EventBusSubscriber.Bus.MOD)
 public class TofuCarvers {
-	public static final WorldCarver<ProbabilityConfig> TOFU_CAVE = new TofuCaveCarver(ProbabilityConfig.field_236576_b_, 256);
+	public static final WorldCarver<ProbabilityConfig> TOFU_CAVE = new TofuCaveCarver(ProbabilityConfig.CODEC, 256);
 
-	public static final WorldCarver<ProbabilityConfig> TOFU_CANYON = new TofuCanyonCarver(ProbabilityConfig.field_236576_b_);
+	public static final WorldCarver<ProbabilityConfig> TOFU_CANYON = new TofuCanyonCarver(ProbabilityConfig.CODEC);
 
 	@SubscribeEvent
 	public static void registerCarvers(RegistryEvent.Register<WorldCarver<?>> registry) {

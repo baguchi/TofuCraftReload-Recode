@@ -11,13 +11,13 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = "tofucraft", bus = EventBusSubscriber.Bus.MOD)
 public class TofuFeatures {
-	public static final Feature<NoFeatureConfig> TOFU_BUILDING = new SurfaceTofuTemplateFeature(NoFeatureConfig.field_236558_a_, 4, 4, new ResourceLocation[]{new ResourceLocation("tofucraft", "tofu/tofu_1"), new ResourceLocation("tofucraft", "tofu/tofu_2"), new ResourceLocation("tofucraft", "tofu/tofu_3"), new ResourceLocation("tofucraft", "tofu/tofu_4"), new ResourceLocation("tofucraft", "tofu/tofu_5")});
+	public static final Feature<NoFeatureConfig> TOFU_BUILDING = new SurfaceTofuTemplateFeature(NoFeatureConfig.CODEC, 4, 4, new ResourceLocation[]{new ResourceLocation("tofucraft", "tofu/tofu_1"), new ResourceLocation("tofucraft", "tofu/tofu_2"), new ResourceLocation("tofucraft", "tofu/tofu_3"), new ResourceLocation("tofucraft", "tofu/tofu_4"), new ResourceLocation("tofucraft", "tofu/tofu_5")});
 
-	public static final Feature<NoFeatureConfig> ZUNDA_MUSHROOM_SMALL = new SurfaceTofuTemplateFeature(NoFeatureConfig.field_236558_a_, 7, 7, new ResourceLocation[]{new ResourceLocation("tofucraft", "mushroom/mushroom_zunda_small"), new ResourceLocation("tofucraft", "mushroom/mushroom_zunda_cache_small")});
+	public static final Feature<NoFeatureConfig> ZUNDA_MUSHROOM_SMALL = new SurfaceTofuTemplateFeature(NoFeatureConfig.CODEC, 7, 7, new ResourceLocation[]{new ResourceLocation("tofucraft", "mushroom/mushroom_zunda_small"), new ResourceLocation("tofucraft", "mushroom/mushroom_zunda_cache_small")});
 
-	public static final Feature<NoFeatureConfig> ZUNDA_MUSHROOM_BIG = new SurfaceTofuTemplateFeature(NoFeatureConfig.field_236558_a_, 7, 7, new ResourceLocation[]{new ResourceLocation("tofucraft", "mushroom/mushroom_zunda_big"), new ResourceLocation("tofucraft", "mushroom/mushroom_zunda_big2")});
+	public static final Feature<NoFeatureConfig> ZUNDA_MUSHROOM_BIG = new SurfaceTofuTemplateFeature(NoFeatureConfig.CODEC, 7, 7, new ResourceLocation[]{new ResourceLocation("tofucraft", "mushroom/mushroom_zunda_big"), new ResourceLocation("tofucraft", "mushroom/mushroom_zunda_big2")});
 
-	public static final Feature<NoFeatureConfig> BIG_LEEK = new BigLeekFeature(NoFeatureConfig.field_236558_a_);
+	public static final Feature<NoFeatureConfig> BIG_LEEK = new BigLeekFeature(NoFeatureConfig.CODEC);
 
 	@SubscribeEvent
 	public static void registerFeature(RegistryEvent.Register<Feature<?>> registry) {

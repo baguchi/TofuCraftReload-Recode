@@ -3,7 +3,6 @@ package baguchan.tofucraft.registry;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -13,11 +12,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum TofuArmorMaterial implements IArmorMaterial {
-	KINU("tofucraft:kinu", 1, new int[]{0, 0, 0, 0}, 8, SoundEvents.field_187728_s, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUKINU})),
-	MOMEN("tofucraft:momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.field_187713_n, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUMOMEN})),
-	SOLID("tofucraft:solid", 10, new int[]{1, 4, 5, 2}, 16, SoundEvents.field_187725_r, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUISHI})),
-	METAL("tofucraft:metal", 15, new int[]{2, 5, 6, 2}, 12, SoundEvents.field_187722_q, 0.0F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUMETAL})),
-	DIAMOND("tofucraft:diamond", 40, new int[]{4, 7, 9, 4}, 10, SoundEvents.field_187716_o, 2.5F, 0.0F, () -> Ingredient.func_199804_a(new IItemProvider[]{TofuItems.TOFUDIAMOND}));
+	KINU("tofucraft:kinu", 1, new int[]{0, 0, 0, 0}, 8, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUKINU)),
+	MOMEN("tofucraft:momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMOMEN)),
+	SOLID("tofucraft:solid", 10, new int[]{1, 4, 5, 2}, 16, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUISHI)),
+	METAL("tofucraft:metal", 15, new int[]{2, 5, 6, 2}, 12, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMETAL)),
+	DIAMOND("tofucraft:diamond", 40, new int[]{4, 7, 9, 4}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.5F, 0.0F, () -> Ingredient.of(TofuItems.TOFUDIAMOND));
 
 	private static final int[] HEALTH_PER_SLOT;
 
@@ -52,36 +51,36 @@ public enum TofuArmorMaterial implements IArmorMaterial {
 		this.repairIngredient = new LazyValue(p_i231593_10_);
 	}
 
-	public int func_200896_a(EquipmentSlotType p_200896_1_) {
-		return HEALTH_PER_SLOT[p_200896_1_.func_188454_b()] * this.durabilityMultiplier;
+	public int getDurabilityForSlot(EquipmentSlotType p_200896_1_) {
+		return HEALTH_PER_SLOT[p_200896_1_.getIndex()] * this.durabilityMultiplier;
 	}
 
-	public int func_200902_b(EquipmentSlotType p_200902_1_) {
-		return this.slotProtections[p_200902_1_.func_188454_b()];
+	public int getDefenseForSlot(EquipmentSlotType p_200902_1_) {
+		return this.slotProtections[p_200902_1_.getIndex()];
 	}
 
-	public int func_200900_a() {
+	public int getEnchantmentValue() {
 		return this.enchantmentValue;
 	}
 
-	public SoundEvent func_200899_b() {
+	public SoundEvent getEquipSound() {
 		return this.sound;
 	}
 
-	public Ingredient func_200898_c() {
-		return (Ingredient) this.repairIngredient.func_179281_c();
+	public Ingredient getRepairIngredient() {
+		return this.repairIngredient.get();
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public String func_200897_d() {
+	public String getName() {
 		return this.name;
 	}
 
-	public float func_200901_e() {
+	public float getToughness() {
 		return this.toughness;
 	}
 
-	public float func_230304_f_() {
+	public float getKnockbackResistance() {
 		return this.knockbackResistance;
 	}
 }

@@ -13,8 +13,8 @@ public class TofuRecipes {
 		BitternRecipes.addRecipe(TofuFluids.SOYMILK_SOUL, TofuBlocks.SOULTOFU);
 		HardenRecipes.addRecipe(TofuBlocks.MOMENTOFU, TofuBlocks.ISHITOFU);
 		HardenRecipes.addRecipe(TofuBlocks.ISHITOFU, TofuBlocks.METALTOFU);
-		TofunianJobBlocks.addJobBlock(Blocks.field_150462_ai, TofunianEntity.Roles.TOFUCOOK);
-		TofunianJobBlocks.addJobBlock(Blocks.field_150460_al, TofunianEntity.Roles.TOFUSMITH);
-		TofunianJobBlocks.addJobBlock(Blocks.field_150383_bp, TofunianEntity.Roles.SOYWORKER);
+		TofunianJobBlocks.addJobBlock(Blocks.CRAFTING_TABLE, TofunianEntity.Roles.TOFUCOOK);
+		TofunianJobBlocks.addJobBlock(Blocks.FURNACE, TofunianEntity.Roles.TOFUSMITH);
+		TofunianJobBlocks.addJobBlock(Blocks.CAULDRON, TofunianEntity.Roles.SOYWORKER);
 	}
 }

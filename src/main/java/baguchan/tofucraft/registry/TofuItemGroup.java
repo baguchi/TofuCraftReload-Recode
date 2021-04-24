@@ -5,7 +5,8 @@ import net.minecraft.item.ItemStack;
 
 public class TofuItemGroup {
 	public static final ItemGroup TOFUCRAFT = new ItemGroup("tofucraft") {
-		public ItemStack func_78016_d() {
+		@Override
+		public ItemStack makeIcon() {
 			return new ItemStack(TofuItems.TOFUMOMEN);
 		}
 	};
