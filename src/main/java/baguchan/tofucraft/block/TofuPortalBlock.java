@@ -17,8 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.Dimension;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -72,15 +70,21 @@ public class TofuPortalBlock extends BreakableBlock {
 	public void entityInside(BlockState p_196262_1_, World p_196262_2_, BlockPos p_196262_3_, Entity p_196262_4_) {
 		super.entityInside(p_196262_1_, p_196262_2_, p_196262_3_, p_196262_4_);
 
-		attemptSendPlayer(p_196262_4_, false);
+		if (p_196262_4_.isOnPortalCooldown()) {
+			p_196262_4_.portalCooldown = 100;
+		} else {
+			if (p_196262_2_ instanceof ServerWorld) {
+				attemptSendPlayer(p_196262_4_, (ServerWorld) p_196262_2_);
+			}
+		}
 	}
 
 	private static RegistryKey<World> getDestination(Entity entity) {
-		return !entity.level.dimension().getRegistryName().equals(TofuDimensions.tofu_world.getRegistryName())
-				? TofuDimensions.tofu_world : RegistryKey.create(Registry.DIMENSION_REGISTRY, Dimension.OVERWORLD.getRegistryName());
+		return entity.level.dimension() == World.OVERWORLD
+				? TofuDimensions.tofu_world : World.OVERWORLD;
 	}
 
-	public static void attemptSendPlayer(Entity entity, boolean forcedEntry) {
+	public static void attemptSendPlayer(Entity entity, ServerWorld oldworld) {
 		if (!entity.isAlive() || entity.level.isClientSide) {
 			return;
 		}
@@ -89,21 +93,16 @@ public class TofuPortalBlock extends BreakableBlock {
 			return;
 		}
 
-		if (!forcedEntry && entity.isOnPortalCooldown()) {
-			entity.setPortalCooldown();
-
-			return;
-		}
-
 		RegistryKey<World> destination = getDestination(entity);
-		ServerWorld serverWorld = entity.level.getServer().getLevel(destination);
+		ServerWorld serverWorld = oldworld.getServer().getLevel(destination);
 
 		if (serverWorld == null)
 			return;
 
-
-		entity.setPortalCooldown();
+		entity.level.getProfiler().push("portal");
 		entity.changeDimension(serverWorld, new TofuWorldTeleporter());
+		entity.portalCooldown = 100;
+		entity.level.getProfiler().pop();
 	}
 
 	@OnlyIn(Dist.CLIENT)
