@@ -45,7 +45,7 @@ public class CommonEvents {
 		if (!livingEntity.level.isClientSide())
 			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
 				SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(livingEntity, cap.getSoyHealthLevel());
-				TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(()), message);
+				TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> livingEntity), message);
 			});
 	}
 
@@ -60,13 +60,13 @@ public class CommonEvents {
 	public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
 		PlayerEntity player = event.getPlayer();
 		if (player instanceof ServerPlayerEntity)
-			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(()), new SoyMilkDrinkedMessage(player, handler.getSoyHealthLevel())));
+			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) player), new SoyMilkDrinkedMessage(player, handler.getSoyHealthLevel())));
 	}
 
 	@SubscribeEvent
 	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		PlayerEntity playerEntity = event.getPlayer();
-		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(()), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel())));
+		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel())));
 	}
 
 	@SubscribeEvent
@@ -102,8 +102,8 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onBlockDrop(BlockEvent.BreakEvent event) {
-		if (!event.getPlayer().func_184812_l_() && (
-				event.getWorld().getBlockState(event.getPos()).is(Blocks.field_150349_c) || event.getWorld().getBlockState(event.getPos()).is(Blocks.field_196804_gh)) &&
+		if (!event.getPlayer().isCreative() && (
+				event.getWorld().getBlockState(event.getPos()).is(Blocks.FERN) || event.getWorld().getBlockState(event.getPos()).is(Blocks.TALL_GRASS) || event.getWorld().getBlockState(event.getPos()).is(Blocks.GRASS)) &&
 				event.getWorld() instanceof World && ((World) event.getWorld()).random.nextFloat() < 0.075F) {
 			ItemEntity entity = new ItemEntity((World) event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEANS));
 			event.getWorld().addFreshEntity(entity);
