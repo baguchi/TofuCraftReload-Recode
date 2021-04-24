@@ -39,13 +39,13 @@ public class BitternItem extends Item {
 			Map.Entry<Fluid, Block> result = BitternRecipes.getResult(fluidState.getType().getFluid());
 			if (result != null) {
 				worldIn.setBlock(blockraytraceresult1.getBlockPos(), result.getValue().defaultBlockState(), 11);
-				//worldIn.blockEvent(2001, blockraytraceresult1.getBlockPos(), Block.getId(worldIn.getBlockState(blockraytraceresult1.getBlockPos())));
-				if (!playerIn.level.isClientSide)
+				worldIn.globalLevelEvent(2001, blockraytraceresult1.getBlockPos(), Block.getId(worldIn.getBlockState(blockraytraceresult1.getBlockPos())));
+				if (!playerIn.isCreative())
 					itemstack.shrink(1);
 				ItemStack itemstack2 = new ItemStack(Items.GLASS_BOTTLE);
 				if (itemstack.isEmpty()) {
 					playerIn.setItemInHand(handIn, itemstack2);
-				} else if (!playerIn.level.isClientSide &&
+				} else if (!playerIn.isCreative() &&
 						!playerIn.inventory.add(itemstack2)) {
 					playerIn.drop(itemstack2, false);
 				}
