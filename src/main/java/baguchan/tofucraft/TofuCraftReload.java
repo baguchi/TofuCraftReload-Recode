@@ -3,6 +3,7 @@ package baguchan.tofucraft;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.SoyHealthStorage;
 import baguchan.tofucraft.client.ClientProxy;
+import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
@@ -52,7 +53,7 @@ public class TofuCraftReload {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-		DistExecutor.runWhenOn(Dist.CLIENT, () -> ());
+		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup));
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -60,7 +61,7 @@ public class TofuCraftReload {
 		TofuDefaultBiomeFeatures.init();
 		TofuRecipes.register();
 		TofuDimensions.registerDimensionStuff();
-		CapabilityManager.INSTANCE.register(SoyHealthCapability.class, new SoyHealthStorage(), SoyHealthCapability::new);
+		CapabilityManager.INSTANCE.register(SoyHealthCapability.class, new SoyHealthStorage<>(), SoyHealthCapability::new);
 	}
 
 	private void setupMessages() {
@@ -92,6 +93,6 @@ public class TofuCraftReload {
 	}
 
 	public static ResourceLocation prefix(String name) {
-		return new ResourceLocation("tofucraft", name.toLowerCase(Locale.ROOT));
+		return new ResourceLocation(TofuCraftReload.MODID, name.toLowerCase(Locale.ROOT));
 	}
 }

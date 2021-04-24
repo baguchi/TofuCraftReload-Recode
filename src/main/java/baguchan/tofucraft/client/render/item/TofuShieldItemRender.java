@@ -22,22 +22,22 @@ public class TofuShieldItemRender extends ItemStackTileEntityRenderer {
 
 	private final ShieldModel shieldModel = new ShieldModel();
 
-	public void func_239207_a_(ItemStack itemStackIn, ItemCameraTransforms.TransformType p_239207_2_, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+	public void renderByItem(ItemStack itemStackIn, ItemCameraTransforms.TransformType p_239207_2_, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
 		Item item = itemStackIn.getItem();
 		if (item == TofuItems.TOFUISHI_SHIELD) {
-			matrixStackIn.func_227860_a_();
-			matrixStackIn.func_227862_a_(1.0F, -1.0F, -1.0F);
-			IVertexBuilder ivertexbuilder = ItemRenderer.func_239391_c_(bufferIn, this.shieldModel.func_228282_a_(ISHI_TEXTURE), true, itemStackIn.func_77962_s());
-			this.shieldModel.func_228294_b_().func_228309_a_(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
-			this.shieldModel.func_228293_a_().func_228309_a_(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
-			matrixStackIn.func_227865_b_();
+			matrixStackIn.pushPose();
+			matrixStackIn.scale(1.0F, -1.0F, -1.0F);
+			IVertexBuilder ivertexbuilder = ItemRenderer.getFoilBufferDirect(bufferIn, this.shieldModel.renderType(ISHI_TEXTURE), true, itemStackIn.hasFoil());
+			this.shieldModel.handle().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+			this.shieldModel.plate().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+			matrixStackIn.popPose();
 		} else if (item == TofuItems.TOFUMETAL_SHIELD) {
-			matrixStackIn.func_227860_a_();
-			matrixStackIn.func_227862_a_(1.0F, -1.0F, -1.0F);
-			IVertexBuilder ivertexbuilder = ItemRenderer.func_239391_c_(bufferIn, this.shieldModel.func_228282_a_(METAL_TEXTURE), true, itemStackIn.func_77962_s());
-			this.shieldModel.func_228294_b_().func_228309_a_(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
-			this.shieldModel.func_228293_a_().func_228309_a_(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
-			matrixStackIn.func_227865_b_();
+			matrixStackIn.pushPose();
+			matrixStackIn.scale(1.0F, -1.0F, -1.0F);
+			IVertexBuilder ivertexbuilder = ItemRenderer.getFoilBufferDirect(bufferIn, this.shieldModel.renderType(METAL_TEXTURE), true, itemStackIn.hasFoil());
+			this.shieldModel.handle().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+			this.shieldModel.plate().render(matrixStackIn, ivertexbuilder, combinedLightIn, combinedOverlayIn, 1.0F, 1.0F, 1.0F, 1.0F);
+			matrixStackIn.popPose();
 		}
 	}
 }

@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class TofuChestItemRender extends ItemStackTileEntityRenderer {
 	private final TofuChestTileEntity tofuchest = new TofuChestTileEntity();
 
-	public void func_239207_a_(ItemStack itemStackIn, ItemCameraTransforms.TransformType p_239207_2_, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
-		TileEntityRendererDispatcher.field_147556_a.func_228852_a_((TileEntity) this.tofuchest, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
+	public void renderByItem(ItemStack itemStackIn, ItemCameraTransforms.TransformType p_239207_2_, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
+		TileEntityRendererDispatcher.instance.renderItem((TileEntity) this.tofuchest, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn);
 	}
 }

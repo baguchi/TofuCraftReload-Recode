@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CropsBlock;
-import net.minecraft.state.Property;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
@@ -28,17 +27,17 @@ public class SoybeanNetherCropsBlock extends CropsBlock {
 	}
 
 	protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		return (state.is(Blocks.field_150425_aM) || state.is(Blocks.field_150424_aL) || state.is(Blocks.field_235381_mu_));
+		return (state.is(Blocks.SOUL_SAND) || state.is(Blocks.NETHERRACK) || state.is(Blocks.CRIMSON_NYLIUM));
 	}
 
-	public void func_225542_b_(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if (!worldIn.isAreaLoaded(pos, 1))
 			return;
-		int i = func_185527_x(state);
-		if (i < func_185526_g()) {
+		int i = getAge(state);
+		if (i < getMaxAge()) {
 			float f = getGrowthChance(this, worldIn, pos);
 			if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, (random.nextInt((int) (25.0F / f) + 1) == 0))) {
-				worldIn.setBlock(pos, func_185528_e(i + 1), 2);
+				worldIn.setBlock(pos, this.getStateForAge(i + 1), 2);
 				ForgeHooks.onCropsGrowPost(worldIn, pos, state);
 			}
 		}
@@ -46,7 +45,7 @@ public class SoybeanNetherCropsBlock extends CropsBlock {
 
 	protected static float getGrowthChance(Block blockIn, IBlockReader worldIn, BlockPos pos) {
 		float f = 1.0F;
-		BlockPos blockpos = pos.func_177977_b();
+		BlockPos blockpos = pos.below();
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				float f1 = 0.0F;
@@ -58,24 +57,26 @@ public class SoybeanNetherCropsBlock extends CropsBlock {
 				f += f1;
 			}
 		}
-		BlockPos blockpos1 = pos.func_177978_c();
-		BlockPos blockpos2 = pos.func_177968_d();
-		BlockPos blockpos3 = pos.func_177976_e();
-		BlockPos blockpos4 = pos.func_177974_f();
+
+		BlockPos blockpos1 = pos.north();
+		BlockPos blockpos2 = pos.south();
+		BlockPos blockpos3 = pos.west();
+		BlockPos blockpos4 = pos.east();
 		boolean flag = (blockIn == worldIn.getBlockState(blockpos3).getBlock() || blockIn == worldIn.getBlockState(blockpos4).getBlock());
 		boolean flag1 = (blockIn == worldIn.getBlockState(blockpos1).getBlock() || blockIn == worldIn.getBlockState(blockpos2).getBlock());
 		if (flag && flag1) {
 			f /= 2.0F;
 		} else {
-			boolean flag2 = (blockIn == worldIn.getBlockState(blockpos3.func_177978_c()).getBlock() || blockIn == worldIn.getBlockState(blockpos4.func_177978_c()).getBlock() || blockIn == worldIn.getBlockState(blockpos4.func_177968_d()).getBlock() || blockIn == worldIn.getBlockState(blockpos3.func_177968_d()).getBlock());
-			if (flag2)
+			boolean flag2 = blockIn == worldIn.getBlockState(blockpos3.north()).getBlock() || blockIn == worldIn.getBlockState(blockpos4.north()).getBlock() || blockIn == worldIn.getBlockState(blockpos4.south()).getBlock() || blockIn == worldIn.getBlockState(blockpos3.south()).getBlock();
+			if (flag2) {
 				f /= 2.0F;
+			}
 		}
 		return f;
 	}
 
-	public boolean func_196260_a(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		BlockPos blockpos = pos.func_177977_b();
+	public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		BlockPos blockpos = pos.below();
 		if (state.getBlock() == this)
 			return worldIn.getBlockState(blockpos).canSustainPlant(worldIn, blockpos, Direction.UP, this);
 		return mayPlaceOn(worldIn.getBlockState(blockpos), worldIn, blockpos);
@@ -85,11 +86,11 @@ public class SoybeanNetherCropsBlock extends CropsBlock {
 		return PlantType.NETHER;
 	}
 
-	protected IItemProvider getSeedsItem() {
+	protected IItemProvider getBaseSeedId() {
 		return TofuItems.SEEDS_SOYBEANS_NETHER;
 	}
 
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-		return SHAPES[((Integer) state.getValue((Property) func_185524_e())).intValue()];
+		return SHAPES[state.getValue(AGE)];
 	}
 }

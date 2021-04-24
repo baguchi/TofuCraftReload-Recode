@@ -34,17 +34,17 @@ import java.util.Random;
 public class SaltPanBlock extends Block implements IWaterLoggable {
 	public static VoxelShape SALT_PAN_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D);
 
-	public static final EnumProperty<Stat> STAT = EnumProperty.func_177709_a("stat", Stat.class);
+	public static final EnumProperty<Stat> STAT = EnumProperty.create("stat", Stat.class);
 
-	public static final BooleanProperty NORTH = SixWayBlock.field_196488_a;
+	public static final BooleanProperty NORTH = SixWayBlock.NORTH;
 
-	public static final BooleanProperty EAST = SixWayBlock.field_196490_b;
+	public static final BooleanProperty EAST = SixWayBlock.EAST;
 
-	public static final BooleanProperty SOUTH = SixWayBlock.field_196492_c;
+	public static final BooleanProperty SOUTH = SixWayBlock.SOUTH;
 
-	public static final BooleanProperty WEST = SixWayBlock.field_196495_y;
+	public static final BooleanProperty WEST = SixWayBlock.WEST;
 
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.field_208198_y;
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
 	public SaltPanBlock(Properties properties) {
 		super(properties);
@@ -52,10 +52,10 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 	}
 
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (!stateIn.func_196955_c((IWorldReader) worldIn, currentPos))
+		if (!stateIn.canSurvive(worldIn, currentPos))
 			worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
 		if (((Boolean) stateIn.getValue((Property) WATERLOGGED)).booleanValue()) {
-			worldIn.func_205219_F_().func_205360_a(currentPos, Fluids.WATER, Fluids.WATER.func_205569_a((IWorldReader) worldIn));
+			worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 			Stat stat = getStat(stateIn);
 			if (stat == Stat.EMPTY || stat == Stat.BITTERN) {
 				worldIn.setBlock(currentPos, stateIn.setValue(STAT, Stat.WATER), 3);
@@ -67,30 +67,30 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 					double d1 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
 					double d2 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
 					ItemEntity itemEntity = new ItemEntity((World) worldIn, currentPos.getX() + d0, currentPos.getY() + d1, currentPos.getZ() + d2, salt);
-					itemEntity.func_174867_a(10);
+					itemEntity.setPickUpDelay(10);
 					worldIn.addFreshEntity(itemEntity);
 				}
 				worldIn.setBlock(currentPos, stateIn.setValue(STAT, Stat.WATER), 3);
 			}
 		}
-		return facing.func_176740_k().func_176722_c() ? stateIn.setValue(NORTH, Boolean.valueOf(canConnectTo(worldIn, currentPos.func_177978_c())))
-				.setValue(EAST, Boolean.valueOf(canConnectTo(worldIn, currentPos.func_177974_f())))
-				.setValue(SOUTH, Boolean.valueOf(canConnectTo(worldIn, currentPos.func_177968_d())))
-				.setValue(WEST, Boolean.valueOf(canConnectTo(worldIn, currentPos.func_177976_e()))) : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return facing.getAxis().isHorizontal() ? stateIn.setValue(NORTH, Boolean.valueOf(canConnectTo(worldIn, currentPos.north())))
+				.setValue(EAST, Boolean.valueOf(canConnectTo(worldIn, currentPos.east())))
+				.setValue(SOUTH, Boolean.valueOf(canConnectTo(worldIn, currentPos.south())))
+				.setValue(WEST, Boolean.valueOf(canConnectTo(worldIn, currentPos.west()))) : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
 	}
 
 	@Nullable
-	public BlockState func_196258_a(BlockItemUseContext context) {
+	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		BlockState blockstate = context.getLevel().getBlockState(context.getClickedPos());
-		return (blockstate.getBlock() == this) ? context.getLevel().getBlockState(context.getClickedPos()).setValue(NORTH, Boolean.valueOf(canConnectTo((IWorld) context.getLevel(), context.getClickedPos().func_177978_c())))
-				.setValue(EAST, Boolean.valueOf(canConnectTo((IWorld) context.getLevel(), context.getClickedPos().func_177974_f())))
-				.setValue(SOUTH, Boolean.valueOf(canConnectTo((IWorld) context.getLevel(), context.getClickedPos().func_177968_d())))
-				.setValue(WEST, Boolean.valueOf(canConnectTo((IWorld) context.getLevel(), context.getClickedPos().func_177976_e()))) : super.func_196258_a(context);
+		return (blockstate.getBlock() == this) ? context.getLevel().getBlockState(context.getClickedPos()).setValue(NORTH, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().north())))
+				.setValue(EAST, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().east())))
+				.setValue(SOUTH, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().south())))
+				.setValue(WEST, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().west()))) : super.getStateForPlacement(context);
 	}
 
-	public boolean func_196260_a(BlockState state, IWorldReader worldIn, BlockPos pos) {
-		BlockPos posDown = pos.func_177977_b();
-		return worldIn.getBlockState(posDown).func_224755_d((IBlockReader) worldIn, posDown, Direction.UP);
+
+	public boolean canSurvive(BlockState p_196260_1_, IWorldReader p_196260_2_, BlockPos p_196260_3_) {
+		return p_196260_2_.getBlockState(p_196260_3_.below()).getMaterial().isSolid();
 	}
 
 	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -99,10 +99,10 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		Stat stat = getStat(state);
 		if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
-			if (stat == Stat.EMPTY && itemHeld != null && itemHeld.getItem() == Items.field_151131_as) {
-				if (!player.func_184812_l_())
-					player.setItemInHand(handIn, new ItemStack((IItemProvider) Items.field_151133_ar));
-				worldIn.playSound(null, pos, SoundEvents.field_187624_K, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			if (stat == Stat.EMPTY && itemHeld != null && itemHeld.getItem() == Items.WATER_BUCKET) {
+				if (!player.isCreative())
+					player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
+				worldIn.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				TileScanner tileScanner = new TileScanner(worldIn, pos);
 				tileScanner.scan(1, TileScanner.Method.fullSimply, new TileScanner.Impl<Object>() {
 					public void apply(World world, BlockPos pos) {
@@ -115,7 +115,7 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 			}
 			if (stat == Stat.BITTERN && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
 				ItemStack nigari = new ItemStack(TofuItems.BITTERN);
-				worldIn.playSound(null, pos, SoundEvents.field_187615_H, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				worldIn.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				if (itemHeld.getCount() == 1) {
 					player.setItemInHand(handIn, nigari);
 				} else {
@@ -137,7 +137,7 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 				double d1 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
 				double d2 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
 				ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, salt);
-				itemEntity.func_174867_a(10);
+				itemEntity.setPickUpDelay(10);
 				worldIn.addFreshEntity(itemEntity);
 				worldIn.setBlock(pos, state.setValue(STAT, Stat.BITTERN), 3);
 				return ActionResultType.SUCCESS;
@@ -147,8 +147,8 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 	}
 
 	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-		if (!state.func_196955_c((IWorldReader) worldIn, pos))
-			worldIn.func_175655_b(pos, true);
+		if (!state.canSurvive(worldIn, pos))
+			worldIn.destroyBlock(pos, true);
 		Stat stat = getStat(state);
 		int l = stat.getMeta();
 		if (stat == Stat.WATER && !((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
@@ -173,12 +173,12 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 
 	private float calcAdaptation(World world, BlockPos pos) {
 		float rate;
-		Biome biome = world.func_226691_t_(pos);
-		boolean isUnderTheSun = world.func_226660_f_(pos);
-		boolean isRaining = world.func_72896_J();
-		boolean isDaytime = (world.func_72820_D() % 24000L < 12000L);
-		float humidity = biome.func_76727_i();
-		float temperature = biome.func_225486_c(pos);
+		Biome biome = world.getBiome(pos);
+		boolean isUnderTheSun = world.canSeeSky(pos);
+		boolean isRaining = world.isRaining();
+		boolean isDaytime = (world.dayTime() % 24000L < 12000L);
+		float humidity = biome.getDownfall();
+		float temperature = biome.getTemperature(pos);
 		if (!isUnderTheSun || isRaining) {
 			rate = 0.0F;
 		} else {
@@ -193,7 +193,8 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 		return SALT_PAN_AABB;
 	}
 
-	public BlockRenderType getRenderType(BlockState state) {
+	@Override
+	public BlockRenderType getRenderShape(BlockState p_149645_1_) {
 		return BlockRenderType.MODEL;
 	}
 
@@ -201,8 +202,9 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 		builder.add(STAT, NORTH, EAST, SOUTH, WEST, WATERLOGGED);
 	}
 
-	public FluidState func_204507_t(BlockState state) {
-		return ((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue() ? Fluids.WATER.func_207204_a(false) : super.func_204507_t(state);
+	@Override
+	public FluidState getFluidState(BlockState p_204507_1_) {
+		return ((Boolean) p_204507_1_.getValue((Property) WATERLOGGED)).booleanValue() ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
 	}
 
 	public enum Stat implements IStringSerializable {
@@ -238,7 +240,8 @@ public class SaltPanBlock extends Block implements IWaterLoggable {
 			return this.meta;
 		}
 
-		public String func_176610_l() {
+		@Override
+		public String getSerializedName() {
 			return this.name;
 		}
 	}
