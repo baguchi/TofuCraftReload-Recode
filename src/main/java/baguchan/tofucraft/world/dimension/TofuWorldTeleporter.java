@@ -369,7 +369,7 @@ public class TofuWorldTeleporter implements ITeleporter {
 		BlockState portalState = TofuBlocks.TOFU_PORTAL.defaultBlockState();
 		while (pos.getX() > 1 && world.isEmptyBlock(pos))
 			pos = pos.below();
-		while (!world.isEmptyBlock(pos.below()) && world.getBlockState(pos).getBlock() != TofuBlocks.TOFU_TERRAIN)
+		while (!world.isEmptyBlock(pos.above()) && world.getBlockState(pos).getBlock() != TofuBlocks.TOFU_TERRAIN)
 			pos = pos.above();
 		BlockState snowstate = TofuBlocks.GRILLEDTOFU.defaultBlockState();
 		for (BlockPos basePos : BlockPos.Mutable.betweenClosed(pos.offset(-2, 0, -2), pos.offset(2, 1, 2)))

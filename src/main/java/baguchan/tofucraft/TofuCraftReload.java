@@ -36,7 +36,7 @@ public class TofuCraftReload {
 
 	public static final String NETWORK_PROTOCOL = "2";
 
-	public static ClientProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> ClientProxy::new);
+	public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
 	@CapabilityInject(SoyHealthCapability.class)
 	public static final Capability<SoyHealthCapability> SOY_HEALTH_CAPABILITY = null;
