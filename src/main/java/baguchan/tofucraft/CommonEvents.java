@@ -31,7 +31,7 @@ import net.minecraftforge.fml.network.PacketDistributor;
 import java.util.HashMap;
 import java.util.Map;
 
-@EventBusSubscriber(modid = "tofucraft")
+@EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
 	@SubscribeEvent
 	public static void onAttachEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {

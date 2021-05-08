@@ -9,7 +9,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = "tofucraft", bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuFeatures {
 	public static final Feature<NoFeatureConfig> TOFU_BUILDING = new SurfaceTofuTemplateFeature(NoFeatureConfig.CODEC, 4, 4, new ResourceLocation[]{new ResourceLocation("tofucraft", "tofu/tofu_1"), new ResourceLocation("tofucraft", "tofu/tofu_2"), new ResourceLocation("tofucraft", "tofu/tofu_3"), new ResourceLocation("tofucraft", "tofu/tofu_4"), new ResourceLocation("tofucraft", "tofu/tofu_5")});
 

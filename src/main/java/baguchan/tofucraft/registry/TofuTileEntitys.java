@@ -11,7 +11,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = "tofucraft", bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuTileEntitys {
 	public static final TileEntityType<SaltFurnaceTileEntity> SALT_FURNACE = register("tofucraft:salt_furnace", TileEntityType.Builder.of(SaltFurnaceTileEntity::new, TofuBlocks.SALT_FURNACE));
 

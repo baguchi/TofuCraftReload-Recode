@@ -30,7 +30,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 import java.util.Locale;
 
-@Mod("tofucraft")
+@Mod(TofuCraftReload.MODID)
 public class TofuCraftReload {
 	public static final String MODID = "tofucraft";
 
@@ -42,9 +42,9 @@ public class TofuCraftReload {
 	public static final Capability<SoyHealthCapability> SOY_HEALTH_CAPABILITY = null;
 
 	public static final SimpleChannel CHANNEL = NetworkRegistry.ChannelBuilder.named(new ResourceLocation("tofucraft", "net"))
-			.networkProtocolVersion(() -> "2")
-			.clientAcceptedVersions("2"::equals)
-			.serverAcceptedVersions("2"::equals)
+			.networkProtocolVersion(() -> NETWORK_PROTOCOL)
+			.clientAcceptedVersions(NETWORK_PROTOCOL::equals)
+			.serverAcceptedVersions(NETWORK_PROTOCOL::equals)
 			.simpleChannel();
 
 	public TofuCraftReload() {

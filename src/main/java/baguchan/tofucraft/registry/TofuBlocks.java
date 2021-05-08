@@ -19,7 +19,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = "tofucraft", bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuBlocks {
 	public static final Block SOYMILK = new TofuFluidBlock(TofuFluids.SOYMILK, AbstractBlock.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops());
 

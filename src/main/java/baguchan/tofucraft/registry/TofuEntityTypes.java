@@ -18,7 +18,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = "tofucraft", bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuEntityTypes {
 	public static final EntityType<TofunianEntity> TOFUNIAN = EntityType.Builder.of(TofunianEntity::new, EntityClassification.CREATURE)
 			.sized(0.6F, 1.2F).build("tofucraft:tofunian");
