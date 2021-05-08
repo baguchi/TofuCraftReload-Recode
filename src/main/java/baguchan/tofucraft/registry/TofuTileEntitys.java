@@ -1,5 +1,6 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.tileentity.SaltFurnaceTileEntity;
 import baguchan.tofucraft.tileentity.TofuBedTileEntity;
 import baguchan.tofucraft.tileentity.TofuChestTileEntity;

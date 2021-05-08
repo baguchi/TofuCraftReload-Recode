@@ -1,5 +1,6 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.world.gen.structure.TofuVillageStructure;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.VillageConfig;

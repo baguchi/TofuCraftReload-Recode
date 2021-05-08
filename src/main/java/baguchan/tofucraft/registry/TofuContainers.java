@@ -1,5 +1,6 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.inventory.SaltFurnaceContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.event.RegistryEvent;

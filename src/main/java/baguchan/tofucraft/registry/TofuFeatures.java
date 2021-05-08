@@ -1,5 +1,6 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.world.gen.feature.BigLeekFeature;
 import baguchan.tofucraft.world.gen.feature.SurfaceTofuTemplateFeature;
 import net.minecraft.util.ResourceLocation;

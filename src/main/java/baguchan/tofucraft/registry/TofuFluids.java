@@ -1,5 +1,6 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.fluid.NigariFluid;
 import baguchan.tofucraft.fluid.SoyMilkFluid;
 import baguchan.tofucraft.fluid.SoyMilkHellFluid;

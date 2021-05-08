@@ -1,5 +1,6 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.world.carver.TofuCanyonCarver;
 import baguchan.tofucraft.world.carver.TofuCaveCarver;
 import net.minecraft.world.gen.carver.WorldCarver;

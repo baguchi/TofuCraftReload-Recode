@@ -1,5 +1,6 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.block.*;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
@@ -22,189 +23,114 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuBlocks {
 	public static final Block SOYMILK = new TofuFluidBlock(TofuFluids.SOYMILK, AbstractBlock.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops());
-
 	public static final Block SOYMILK_HELL = new TofuFluidBlock(TofuFluids.SOYMILK_HELL, AbstractBlock.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops());
-
 	public static final Block SOYMILK_SOUL = new TofuFluidBlock(TofuFluids.SOYMILK_SOUL, AbstractBlock.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops());
 
 	public static final Block BITTERN = new TofuFluidBlock(TofuFluids.BITTERN, AbstractBlock.Properties.of(Material.WATER).noCollission().strength(100.0F).noDrops());
-
 	public static final Block SOYBEAN = new SoybeanCropsBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.CROP));
-
 	public static final Block SOYBEAN_NETHER = new SoybeanNetherCropsBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.CROP));
-
 	public static final Block SOYBEAN_SOUL = new SoybeanSoulCropsBlock(AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.CROP));
 
 	public static final Block KINUTOFU = new KinuTofuBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).randomTicks().harvestTool(ToolType.SHOVEL).strength(0.1F, 0.2F).sound(SoundType.SNOW));
-
 	public static final Block MOMENTOFU = new TofuBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).randomTicks().harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
-
 	public static final Block ISHITOFU = new TofuBlock(AbstractBlock.Properties.of(Material.STONE).randomTicks().harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
-
 	public static final Block METALTOFU = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().harvestLevel(1).strength(4.0F, 7.5F).sound(SoundType.METAL));
-
 	public static final Block DIAMONDTOFU = new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_LIGHT_BLUE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().harvestLevel(2).strength(5.0F, 8.0F).sound(SoundType.METAL));
-
 	public static final Block HELLTOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
-
 	public static final Block SOULTOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
-
 	public static final Block GRILLEDTOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
-
 	public static final Block ZUNDATOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 
 	public static final Block ISHITOFU_BRICK = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.6F, 6.5F).sound(SoundType.STONE));
-
 	public static final Block ISHITOFU_SMOOTH_BRICK = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.6F, 6.5F).sound(SoundType.STONE));
-
 	public static final Block ISHITOFU_CHISELED_BRICK = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.6F, 6.5F).sound(SoundType.STONE));
-
 	public static final Block ZUNDATOFU_BRICK = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.6F, 6.5F).sound(SoundType.STONE));
-
 	public static final Block ZUNDATOFU_SMOOTHBRICK = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.6F, 6.5F).sound(SoundType.STONE));
-
 	public static final Block HELLTOFU_BRICK = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.6F, 6.5F).sound(SoundType.STONE));
-
 	public static final Block HELLTOFU_SMOOTHBRICK = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.6F, 6.5F).sound(SoundType.STONE));
-
 	public static final Block SOULTOFU_BRICK = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.6F, 6.5F).sound(SoundType.STONE));
-
 	public static final Block SOULTOFU_SMOOTHBRICK = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.6F, 6.5F).sound(SoundType.STONE));
 
 	public static final Block TOFUSTAIR_KINU = new StairsBlock(KINUTOFU::defaultBlockState, AbstractBlock.Properties.copy(KINUTOFU));
-
 	public static final Block TOFUSTAIR_MOMEN = new StairsBlock(MOMENTOFU::defaultBlockState, AbstractBlock.Properties.copy(MOMENTOFU));
-
 	public static final Block TOFUSTAIR_ISHI = new StairsBlock(ISHITOFU::defaultBlockState, AbstractBlock.Properties.copy(ISHITOFU));
-
 	public static final Block TOFUSTAIR_METAL = new StairsBlock(METALTOFU::defaultBlockState, AbstractBlock.Properties.copy(METALTOFU));
-
 	public static final Block TOFUSTAIR_ZUNDA = new StairsBlock(ZUNDATOFU::defaultBlockState, AbstractBlock.Properties.copy(ZUNDATOFU));
-
 	public static final Block TOFUSTAIR_ZUNDABRICK = new StairsBlock(ZUNDATOFU_BRICK::defaultBlockState, AbstractBlock.Properties.copy(ZUNDATOFU_BRICK));
-
 	public static final Block TOFUSTAIR_ISHIBRICK = new StairsBlock(ISHITOFU_BRICK::defaultBlockState, AbstractBlock.Properties.copy(ISHITOFU_BRICK));
-
 	public static final Block TOFUSTAIR_HELLBRICK = new StairsBlock(HELLTOFU_BRICK::defaultBlockState, AbstractBlock.Properties.copy(HELLTOFU_BRICK));
-
 	public static final Block TOFUSTAIR_SOULBRICK = new StairsBlock(SOULTOFU_BRICK::defaultBlockState, AbstractBlock.Properties.copy(SOULTOFU_BRICK));
 
 	public static final Block TOFUSLAB_KINU = new SlabBlock(AbstractBlock.Properties.copy(KINUTOFU));
-
 	public static final Block TOFUSLAB_MOMEN = new SlabBlock(AbstractBlock.Properties.copy(MOMENTOFU));
-
 	public static final Block TOFUSLAB_ISHI = new SlabBlock(AbstractBlock.Properties.copy(ISHITOFU));
-
 	public static final Block TOFUSLAB_METAL = new SlabBlock(AbstractBlock.Properties.copy(METALTOFU));
-
 	public static final Block TOFUSLAB_ZUNDA = new SlabBlock(AbstractBlock.Properties.copy(ZUNDATOFU));
-
 	public static final Block TOFUSLAB_ZUNDABRICK = new SlabBlock(AbstractBlock.Properties.copy(ZUNDATOFU_BRICK));
-
 	public static final Block TOFUSLAB_ISHIBRICK = new SlabBlock(AbstractBlock.Properties.copy(ISHITOFU_BRICK));
-
 	public static final Block TOFUSLAB_HELLBRICK = new SlabBlock(AbstractBlock.Properties.copy(HELLTOFU_BRICK));
-
 	public static final Block TOFUSLAB_SOULBRICK = new SlabBlock(AbstractBlock.Properties.copy(SOULTOFU_BRICK));
 
 	public static final Block TOFUTORCH_KINU = new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
-
 			.noCollission().noOcclusion().sound(SoundType.SNOW), ParticleTypes.FLAME);
 
 	public static final Block TOFUTORCH_MOMEN = new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
-
 			.noCollission().noOcclusion().sound(SoundType.SNOW), ParticleTypes.FLAME);
 
 	public static final Block TOFUTORCH_ISHI = new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F, 6.0F).lightLevel(state -> 14)
-
 			.noCollission().noOcclusion().sound(SoundType.STONE), ParticleTypes.FLAME);
 
 	public static final Block TOFUTORCH_METAL = new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F, 7.5F).lightLevel(state -> 14)
-
 			.noCollission().noOcclusion().sound(SoundType.METAL), ParticleTypes.FLAME);
 
 	public static final Block WALLTOFUTORCH_KINU = new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
-
 			.noCollission().noOcclusion().sound(SoundType.SNOW).dropsLike(TOFUTORCH_KINU), ParticleTypes.FLAME);
 
 	public static final Block WALLTOFUTORCH_MOMEN = new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
-
 			.noCollission().noOcclusion().sound(SoundType.SNOW).dropsLike(TOFUTORCH_MOMEN), ParticleTypes.FLAME);
 
 	public static final Block WALLTOFUTORCH_ISHI = new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F, 6.0F).lightLevel(state -> 14)
-
 			.noCollission().noOcclusion().sound(SoundType.STONE).dropsLike(TOFUTORCH_ISHI), ParticleTypes.FLAME);
 
 	public static final Block WALLTOFUTORCH_METAL = new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F, 7.5F).lightLevel(state -> 14)
-
 			.noCollission().noOcclusion().sound(SoundType.METAL).dropsLike(TOFUTORCH_METAL), ParticleTypes.FLAME);
 
 	public static final Block TOFULADDER_KINU = new LadderBlock(AbstractBlock.Properties.copy(KINUTOFU).noOcclusion());
-
 	public static final Block TOFULADDER_MOMEN = new LadderBlock(AbstractBlock.Properties.copy(MOMENTOFU).noOcclusion());
-
 	public static final Block TOFULADDER_ISHI = new LadderBlock(AbstractBlock.Properties.copy(ISHITOFU).noOcclusion());
-
 	public static final Block TOFULADDER_METAL = new LadderBlock(AbstractBlock.Properties.copy(METALTOFU).noOcclusion());
-
 	public static final Block TOFULADDER_ISHIBRICK = new LadderBlock(AbstractBlock.Properties.copy(ISHITOFU_BRICK).noOcclusion());
 
 	public static final Block TOFUFENCE_KINU = new WallBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.1F, 0.2F).sound(SoundType.SNOW).noOcclusion());
-
 	public static final Block TOFUFENCE_MOMEN = new WallBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW).noOcclusion());
-
 	public static final Block TOFUFENCE_ISHI = new WallBlock(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE).noOcclusion());
-
 	public static final Block TOFUFENCE_METAL = new WallBlock(AbstractBlock.Properties.copy(METALTOFU).noOcclusion());
 
 	public static final Block TOFUDOOR_KINU = new DoorBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.1F, 0.2F).sound(SoundType.SNOW).noOcclusion());
-
 	public static final Block TOFUDOOR_MOMEN = new DoorBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW).noOcclusion());
-
 	public static final Block TOFUDOOR_ISHI = new DoorBlock(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE).noOcclusion());
-
 	public static final Block TOFUDOOR_METAL = new DoorBlock(AbstractBlock.Properties.copy(METALTOFU).noOcclusion());
 
 	public static final Block TOFU_TERRAIN = new TofuTerrainBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.5F, 1.0F).sound(SoundType.SNOW));
-
 	public static final Block ZUNDATOFU_TERRAIN = new TofuTerrainBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.5F, 1.0F).sound(SoundType.SNOW));
 
 	public static final Block ORE_TOFU_DIAMOND = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.5F, 1.5F).sound(SoundType.SNOW));
-
 	public static final Block TOFUBEDROCK = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(-1.0F).sound(SoundType.STONE));
-
 	public static final Block TOFU_FLOWER = new TofuFlowerBlock(Effects.REGENERATION, 2, AbstractBlock.Properties.of(Material.PLANT).instabreak().noCollission().sound(SoundType.GRASS));
-
 	public static final Block BLOCKLEEK = new TofuBushBlock(AbstractBlock.Properties.of(Material.PLANT).instabreak().noCollission().sound(SoundType.GRASS));
-
 	public static final Block LEEK_GREEN_STEM = new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM));
-
 	public static final Block LEEK_STEM = new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM));
-
 	public static final Block ZUNDATOFU_MUSHROOM = new TofuMushroomBlock(AbstractBlock.Properties.of(Material.PLANT).instabreak().noCollission().sound(SoundType.FUNGUS));
-
 	public static final Block TOFU_STEM = new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM));
-
 	public static final Block TOFU_STEM_MOSS = new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM));
-
-	public static final Block TOFU_STEM_CACHE;
-
-	static {
-		TOFU_STEM_CACHE = new TofuStemCacheBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 3.0F).lightLevel(state -> ((Boolean) state.getValue((Property) TofuStemCacheBlock.ZUNDAMA)).booleanValue() ? 13 : 0).sound(SoundType.STEM));
-	}
-
+	public static final Block TOFU_STEM_CACHE = new TofuStemCacheBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 3.0F).lightLevel(state -> ((Boolean) state.getValue((Property) TofuStemCacheBlock.ZUNDAMA)).booleanValue() ? 13 : 0).sound(SoundType.STEM));
 	public static final Block TOFU_STEM_PLANKS = new Block(AbstractBlock.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD));
-
 	public static final Block POTTED_TOFU_FLOWER = new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> TOFU_FLOWER, AbstractBlock.Properties.of(Material.DECORATION).instabreak().noCollission().sound(SoundType.STONE));
 
 	public static final Block TOFU_FARMLAND = new TofuFarmlandBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.5F, 1.0F).noOcclusion().sound(SoundType.SNOW));
-
 	public static final Block SALTPAN = new SaltPanBlock(AbstractBlock.Properties.of(Material.WOOD).harvestTool(ToolType.AXE).strength(2.0F, 3.0F).randomTicks().noOcclusion().sound(SoundType.WOOD));
-
 	public static final Block SALT_FURNACE = new SaltFurnaceBlock(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).strength(2.5F).randomTicks().sound(SoundType.METAL));
-
 	public static final Block TOFUBED = new TofuBedBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.AXE).strength(0.2F).noOcclusion().sound(SoundType.SNOW));
-
 	public static final Block TOFUCHEST = new TofuChestBlock(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).strength(2.5F).noOcclusion().sound(SoundType.STONE), () -> TofuTileEntitys.TOFUCHEST);
 
 	public static final TofuPortalBlock TOFU_PORTAL = new TofuPortalBlock(AbstractBlock.Properties.of(Material.PORTAL).noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel(state -> 11)
