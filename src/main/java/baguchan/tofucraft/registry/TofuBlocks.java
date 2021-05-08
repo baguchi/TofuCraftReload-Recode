@@ -37,6 +37,7 @@ public class TofuBlocks {
 	public static final Block METALTOFU = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().harvestLevel(1).strength(4.0F, 7.5F).sound(SoundType.METAL));
 	public static final Block DIAMONDTOFU = new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_LIGHT_BLUE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().harvestLevel(2).strength(5.0F, 8.0F).sound(SoundType.METAL));
 	public static final Block HELLTOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final Block HELLMETAL_TOFU = new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).harvestTool(ToolType.PICKAXE).harvestLevel(1).strength(4.0F, 7.5F).sound(SoundType.NETHERITE_BLOCK));
 	public static final Block SOULTOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block GRILLEDTOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block ZUNDATOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
@@ -155,6 +156,7 @@ public class TofuBlocks {
 		registry.getRegistry().register(METALTOFU.setRegistryName("blocktofumetal"));
 		registry.getRegistry().register(DIAMONDTOFU.setRegistryName("blocktofudiamond"));
 		registry.getRegistry().register(HELLTOFU.setRegistryName("blocktofuhell"));
+		registry.getRegistry().register(HELLMETAL_TOFU.setRegistryName("blocktofu_hellmetal"));
 		registry.getRegistry().register(SOULTOFU.setRegistryName("blocktofusoul"));
 		registry.getRegistry().register(GRILLEDTOFU.setRegistryName("blocktofugrilled"));
 		registry.getRegistry().register(ZUNDATOFU.setRegistryName("blocktofuzunda"));
@@ -239,6 +241,7 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(METALTOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(DIAMONDTOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(HELLTOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(HELLMETAL_TOFU, (new Item.Properties()).fireResistant().tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(SOULTOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(GRILLEDTOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(ZUNDATOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
