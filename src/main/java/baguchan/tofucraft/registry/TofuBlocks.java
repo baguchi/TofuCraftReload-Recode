@@ -36,7 +36,7 @@ public class TofuBlocks {
 	public static final Block ISHITOFU = new TofuBlock(AbstractBlock.Properties.of(Material.STONE).randomTicks().harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
 	public static final Block METALTOFU = new Block(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().harvestLevel(1).strength(4.0F, 7.5F).sound(SoundType.METAL));
 	public static final Block DIAMONDTOFU = new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_LIGHT_BLUE).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().harvestLevel(2).strength(5.0F, 8.0F).sound(SoundType.METAL));
-	public static final Block HELLTOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final Block HELLTOFU = new HellTofuBlock(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block HELLMETAL_TOFU = new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).harvestTool(ToolType.PICKAXE).harvestLevel(1).strength(4.0F, 7.5F).sound(SoundType.NETHERITE_BLOCK));
 	public static final Block SOULTOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block GRILLEDTOFU = new Block(AbstractBlock.Properties.of(TofuMaterial.TOFU).harvestTool(ToolType.SHOVEL).strength(0.35F, 0.5F).sound(SoundType.SNOW));
