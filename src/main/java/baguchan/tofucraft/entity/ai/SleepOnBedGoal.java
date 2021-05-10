@@ -34,7 +34,7 @@ public class SleepOnBedGoal extends MoveToBlockGoal {
 	protected boolean isValidTarget(IWorldReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
 		Block block = blockstate.getBlock();
-		return (blockstate.is(BlockTags.BEDS) && blockstate.getValue((Property) BedBlock.PART) == BedPart.HEAD && !((Boolean) blockstate.getValue((Property) BedBlock.PART)).booleanValue());
+		return blockstate.hasProperty((Property) BedBlock.PART) && blockstate.is(BlockTags.BEDS) && blockstate.getValue((Property) BedBlock.PART) == BedPart.HEAD;
 	}
 
 	protected boolean findNearestBlock() {
