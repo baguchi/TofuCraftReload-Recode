@@ -29,7 +29,7 @@ public class TofuSpiderEntity extends SpiderEntity implements IRangedAttackMob {
 
 	public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
 		playSound(SoundEvents.SNOWBALL_THROW, 1.0F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 3; i++) {
 			FukumameEntity snowballentity = new FukumameEntity(this.level, this);
 			double d0 = p_82196_1_.getEyeY() - getEyeY();
 			double d1 = p_82196_1_.getX() - getX();
