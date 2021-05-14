@@ -18,6 +18,7 @@ public class TofuSpiderEntity extends SpiderEntity implements IRangedAttackMob {
 
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new SwimGoal(this));
+		this.goalSelector.addGoal(3, new AttackGoal(this));
 		this.goalSelector.addGoal(4, new RangedAttackGoal(this, 1.0D, 80, 15.0F));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
@@ -49,6 +50,35 @@ public class TofuSpiderEntity extends SpiderEntity implements IRangedAttackMob {
 		public boolean canUse() {
 			float f = this.mob.getBrightness();
 			return !(f >= 0.5F) && super.canUse();
+		}
+	}
+
+	static class AttackGoal extends MeleeAttackGoal {
+		public AttackGoal(SpiderEntity p_i46676_1_) {
+			super(p_i46676_1_, 1.0D, true);
+		}
+
+		public boolean canUse() {
+			if (super.canUse() && !this.mob.isVehicle()) {
+				LivingEntity livingentity = this.mob.getTarget();
+				return 16F >= this.mob.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
+			} else {
+				return false;
+			}
+		}
+
+		public boolean canContinueToUse() {
+			float f = this.mob.getBrightness();
+			if (f >= 0.5F && this.mob.getRandom().nextInt(100) == 0) {
+				this.mob.setTarget((LivingEntity) null);
+				return false;
+			} else {
+				return super.canContinueToUse();
+			}
+		}
+
+		protected double getAttackReachSqr(LivingEntity p_179512_1_) {
+			return (double) (4.0F + p_179512_1_.getBbWidth());
 		}
 	}
 
