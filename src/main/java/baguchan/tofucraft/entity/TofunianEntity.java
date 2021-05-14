@@ -166,6 +166,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 	@Nullable
 	public Entity changeDimension(ServerWorld server, ITeleporter teleporter) {
 		setTofunainHome(null);
+		setTofunainJobBlock(null);
 		return super.changeDimension(server, teleporter);
 	}
 
