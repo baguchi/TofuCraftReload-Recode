@@ -12,4 +12,9 @@ public class TofuChestTileEntity extends ChestTileEntity {
 	public TofuChestTileEntity() {
 		this(TofuTileEntitys.TOFUCHEST);
 	}
+
+	@Override
+	public TileEntityType<?> getType() {
+		return TofuTileEntitys.TOFUCHEST;
+	}
 }
