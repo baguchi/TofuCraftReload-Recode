@@ -39,4 +39,9 @@ public class TofuSlimeRender extends MobRenderer<TofuSlimeEntity, SlimeModel<Tof
 	public ResourceLocation getTextureLocation(TofuSlimeEntity p_110775_1_) {
 		return SLIME_LOCATION;
 	}
+
+	@Override
+	protected boolean isShaking(TofuSlimeEntity p_230495_1_) {
+		return p_230495_1_.isConverting();
+	}
 }
