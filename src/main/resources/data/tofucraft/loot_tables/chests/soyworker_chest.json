@@ -16,7 +16,7 @@
         {
           "type": "minecraft:item",
           "weight": 20,
-          "name": "tofucraft:bucketsoymilk"
+          "name": "tofucraft:bucket_soymilk"
         },
         {
           "type": "minecraft:item",
