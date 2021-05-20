@@ -11,6 +11,7 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.IServerWorld;
@@ -50,6 +51,7 @@ public class TofuSlimeEntity extends SlimeEntity {
 		if (this.timeInZundaPlace > 300) {
 			if (this.getDeathSound() != null) {
 				this.playSound(this.getDeathSound(), 1.0F, 1.0F);
+				this.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 1.0F);
 			}
 			this.finishConversionFromZunda((ServerWorld) this.level);
 		}
@@ -64,7 +66,7 @@ public class TofuSlimeEntity extends SlimeEntity {
 	}
 
 	public boolean isWeakFromZunda() {
-		return this.level.getBiome(this.blockPosition()).getRegistryName().equals(TofuBiomes.ZUNDA_TOFU_FUNGI_FOREST);
+		return this.level.getBiomeName(this.blockPosition()).isPresent() && this.level.getBiomeName(this.blockPosition()).get().equals(TofuBiomes.ZUNDA_TOFU_FUNGI_FOREST);
 	}
 
 	public boolean isWeakFromUltraWarm() {
