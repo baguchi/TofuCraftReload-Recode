@@ -60,7 +60,12 @@ public class TofuTerrainBlock extends Block implements IGrowable {
 					FlowersFeature flowersfeature = (FlowersFeature) configuredfeature.feature;
 					blockstate1 = flowersfeature.getRandomFlower(p_225535_2_, blockpos1, configuredfeature.config());
 				} else {
-					blockstate1 = blockstate;
+
+					if (this == TofuBlocks.ZUNDATOFU_TERRAIN && p_225535_2_.nextInt(8) == 0) {
+						blockstate1 = TofuBlocks.ZUNDATOFU_MUSHROOM.defaultBlockState();
+					} else {
+						blockstate1 = blockstate;
+					}
 				}
 
 				if (blockstate1.canSurvive(p_225535_1_, blockpos1)) {
