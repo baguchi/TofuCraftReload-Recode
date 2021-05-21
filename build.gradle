@@ -20,7 +20,7 @@ mixin {
     add sourceSets.main, "tofucraft.refmap.json"
 }
 
-version = '1.16.5-0.3.7.3'
+version = '1.16.5-0.3.7.4'
 group = 'baguchan.tofucraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'TofuCraftReload'
 
