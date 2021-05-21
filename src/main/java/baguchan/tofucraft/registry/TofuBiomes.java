@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class TofuBiomes {
+	public static final RegistryKey<Biome> TOFU_PLAIN = RegistryKey.create(Registry.BIOME_REGISTRY, name("tofu_plain"));
+	public static final RegistryKey<Biome> TOFU_WASTE = RegistryKey.create(Registry.BIOME_REGISTRY, name("tofu_waste"));
 	public static final RegistryKey<Biome> ZUNDA_TOFU_FUNGI_FOREST = RegistryKey.create(Registry.BIOME_REGISTRY, name("zunda_tofu_fungi_forest"));
 
 	private static ResourceLocation name(String name) {
