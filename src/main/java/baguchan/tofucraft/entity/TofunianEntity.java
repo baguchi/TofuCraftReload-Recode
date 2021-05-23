@@ -341,7 +341,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 	}
 
 	private boolean canLevelUp() {
-		int i = this.xp;
+		int i = this.tofunianLevel;
 		return VillagerData.canLevelUp(i) && this.xp >= VillagerData.getMaxXpPerLevel(i);
 	}
 
@@ -425,7 +425,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 	}
 
 	public boolean func_213743_em() {
-		return (this.foodLevel + countFoodPointsInInventory() >= 12 && getAge() == 0);
+		return (this.foodLevel + countFoodPointsInInventory() >= 32 && getAge() == 0);
 	}
 
 	private boolean hungry() {
