@@ -341,8 +341,8 @@ public class TofunianEntity extends AbstractTofunianEntity implements IReputatio
 	}
 
 	private boolean canLevelUp() {
-		int i = this.tofunianLevel;
-		return VillagerData.canLevelUp(i) && this.tofunianLevel >= VillagerData.getMaxXpPerLevel(i);
+		int i = this.xp;
+		return VillagerData.canLevelUp(i) && this.xp >= VillagerData.getMaxXpPerLevel(i);
 	}
 
 	private void increaseMerchantCareer() {
