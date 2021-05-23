@@ -27,21 +27,23 @@ public abstract class AbstractTofunianEntity extends AbstractVillagerEntity {
 			setUnhappyCounter(getUnhappyCounter() - 1);
 	}
 
-	protected SoundEvent func_184639_G() {
+	@Nullable
+	@Override
+	protected SoundEvent getAmbientSound() {
 		return TofuSounds.TOFUNIAN_AMBIENT;
 	}
 
-	public SoundEvent func_213714_ea() {
-		return TofuSounds.TOFUNIAN_YES;
-	}
-
-	protected SoundEvent func_213721_r(boolean getYesSound) {
-		return getYesSound ? TofuSounds.TOFUNIAN_YES : TofuSounds.TOFUNIAN_NO;
-	}
-
-	@Nullable
-	protected SoundEvent func_184615_bR() {
+	protected SoundEvent getDeathSound() {
 		return TofuSounds.TOFUNIAN_DEATH;
+	}
+
+
+	protected SoundEvent getTradeUpdatedSound(boolean p_213721_1_) {
+		return p_213721_1_ ? TofuSounds.TOFUNIAN_YES : TofuSounds.TOFUNIAN_NO;
+	}
+
+	public SoundEvent getNotifyTradeSound() {
+		return TofuSounds.TOFUNIAN_YES;
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
