@@ -49,7 +49,6 @@ public class TofunianLoveGoal extends Goal {
 	}
 
 	public void start() {
-		this.partner = null;
 		this.loveTime = 0;
 	}
 

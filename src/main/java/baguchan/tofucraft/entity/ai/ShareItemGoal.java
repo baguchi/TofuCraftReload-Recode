@@ -51,7 +51,6 @@ public class ShareItemGoal extends Goal {
 	}
 
 	public void start() {
-		this.partner = null;
 		this.hasPassed = false;
 	}
 
