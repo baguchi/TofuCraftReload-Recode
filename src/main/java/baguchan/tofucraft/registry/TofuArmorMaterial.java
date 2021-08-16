@@ -1,17 +1,17 @@
 package baguchan.tofucraft.registry;
 
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.function.Supplier;
 
-public enum TofuArmorMaterial implements IArmorMaterial {
+public enum TofuArmorMaterial implements ArmorMaterial {
 	KINU("tofucraft:kinu", 1, new int[]{0, 0, 0, 0}, 8, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUKINU)),
 	MOMEN("tofucraft:momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMOMEN)),
 	SOLID("tofucraft:solid", 10, new int[]{1, 4, 5, 2}, 16, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUISHI)),
@@ -34,7 +34,7 @@ public enum TofuArmorMaterial implements IArmorMaterial {
 
 	private final float knockbackResistance;
 
-	private final LazyValue<Ingredient> repairIngredient;
+	private final LazyLoadedValue<Ingredient> repairIngredient;
 
 	static {
 		HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
@@ -48,14 +48,14 @@ public enum TofuArmorMaterial implements IArmorMaterial {
 		this.sound = p_i231593_7_;
 		this.toughness = p_i231593_8_;
 		this.knockbackResistance = p_i231593_9_;
-		this.repairIngredient = new LazyValue(p_i231593_10_);
+		this.repairIngredient = new LazyLoadedValue(p_i231593_10_);
 	}
 
-	public int getDurabilityForSlot(EquipmentSlotType p_200896_1_) {
+	public int getDurabilityForSlot(EquipmentSlot p_200896_1_) {
 		return HEALTH_PER_SLOT[p_200896_1_.getIndex()] * this.durabilityMultiplier;
 	}
 
-	public int getDefenseForSlot(EquipmentSlotType p_200902_1_) {
+	public int getDefenseForSlot(EquipmentSlot p_200902_1_) {
 		return this.slotProtections[p_200902_1_.getIndex()];
 	}
 

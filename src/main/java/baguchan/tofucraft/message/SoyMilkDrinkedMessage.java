@@ -2,11 +2,11 @@ package baguchan.tofucraft.message;
 
 import baguchan.tofucraft.TofuCraftReload;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -25,12 +25,12 @@ public class SoyMilkDrinkedMessage {
 		this.level = level;
 	}
 
-	public void serialize(PacketBuffer buffer) {
+	public void serialize(FriendlyByteBuf buffer) {
 		buffer.writeInt(this.entityId);
 		buffer.writeInt(this.level);
 	}
 
-	public static SoyMilkDrinkedMessage deserialize(PacketBuffer buffer) {
+	public static SoyMilkDrinkedMessage deserialize(FriendlyByteBuf buffer) {
 		int entityId = buffer.readInt();
 		int level = buffer.readInt();
 		return new SoyMilkDrinkedMessage(entityId, level);

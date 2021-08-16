@@ -1,21 +1,21 @@
 package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.api.BitternRecipes;
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.Items;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 
 import java.util.Map;
 
@@ -24,19 +24,20 @@ public class BitternItem extends Item {
 		super(group);
 	}
 
-	public ActionResultType useOn(ItemUseContext p_195939_1_) {
-		return ActionResultType.PASS;
+	@Override
+	public InteractionResult useOn(UseOnContext p_41427_) {
+		return InteractionResult.CONSUME;
 	}
 
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
-		BlockRayTraceResult blockraytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
-		BlockRayTraceResult blockraytraceresult1 = blockraytraceresult.withPosition(blockraytraceresult.getBlockPos());
-		if (blockraytraceresult.getType() == RayTraceResult.Type.MISS)
-			return new ActionResult(ActionResultType.PASS, itemstack);
-		if (blockraytraceresult.getType() == RayTraceResult.Type.BLOCK) {
+		BlockHitResult blockraytraceresult = getPlayerPOVHitResult(worldIn, playerIn, ClipContext.Fluid.SOURCE_ONLY);
+		BlockHitResult blockraytraceresult1 = blockraytraceresult.withPosition(blockraytraceresult.getBlockPos());
+		if (blockraytraceresult.getType() == HitResult.Type.MISS)
+			return new InteractionResultHolder<>(InteractionResult.PASS, itemstack);
+		if (blockraytraceresult.getType() == HitResult.Type.BLOCK) {
 			FluidState fluidState = worldIn.getFluidState(blockraytraceresult1.getBlockPos());
-			Map.Entry<Fluid, Block> result = BitternRecipes.getResult(fluidState.getType().getFluid());
+			Map.Entry<Fluid, Block> result = BitternRecipes.getResult(fluidState.getType());
 			if (result != null) {
 				worldIn.setBlock(blockraytraceresult1.getBlockPos(), result.getValue().defaultBlockState(), 11);
 				worldIn.globalLevelEvent(2001, blockraytraceresult1.getBlockPos(), Block.getId(worldIn.getBlockState(blockraytraceresult1.getBlockPos())));
@@ -46,12 +47,12 @@ public class BitternItem extends Item {
 				if (itemstack.isEmpty()) {
 					playerIn.setItemInHand(handIn, itemstack2);
 				} else if (!playerIn.isCreative() &&
-						!playerIn.inventory.add(itemstack2)) {
+						!playerIn.getInventory().add(itemstack2)) {
 					playerIn.drop(itemstack2, false);
 				}
-				return new ActionResult(ActionResultType.SUCCESS, playerIn.getItemInHand(handIn));
+				return new InteractionResultHolder<>(InteractionResult.SUCCESS, playerIn.getItemInHand(handIn));
 			}
 		}
-		return new ActionResult(ActionResultType.FAIL, itemstack);
+		return new InteractionResultHolder<>(InteractionResult.FAIL, itemstack);
 	}
 }

@@ -1,8 +1,0 @@
-{
-  "parent": "block/outer_stairs",
-  "textures": {
-    "bottom": "tofucraft:block/blocktofumetal",
-    "top": "tofucraft:block/blocktofumetal",
-    "side": "tofucraft:block/blocktofumetal"
-  }
-}

@@ -2,64 +2,67 @@ package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.TofuCraftReload;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.UseAction;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 
 public class SoymilkBottleItem extends Item {
-	private final Effect effect;
+	private final MobEffect effect;
 
-	private final Effect secondEffect;
+	private final MobEffect secondEffect;
 
-	public SoymilkBottleItem(Effect effect, Effect secondEffect, Properties properties) {
+	public SoymilkBottleItem(MobEffect effect, MobEffect secondEffect, Item.Properties properties) {
 		super(properties);
 		this.effect = effect;
 		this.secondEffect = secondEffect;
 	}
 
-	public ItemStack finishUsingItem(ItemStack p_77654_1_, World p_77654_2_, LivingEntity p_77654_3_) {
-		super.finishUsingItem(p_77654_1_, p_77654_2_, p_77654_3_);
-		p_77654_3_.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
-			p_77654_3_.addEffect(new EffectInstance(this.effect, 200 * cap.getSoyHealthLevel(), 0));
+	@Override
+	public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
+		super.finishUsingItem(p_41409_, p_41410_, p_41411_);
+		p_41411_.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
+			p_41411_.addEffect(new MobEffectInstance(this.effect, 200 * cap.getSoyHealthLevel(), 0));
 			if (cap.getRemainTick() < 24000) {
-				cap.setSoyHealth(p_77654_3_, cap.getSoyHealthLevel() + 1);
+				cap.setSoyHealth(p_41411_, cap.getSoyHealthLevel() + 1);
 				if (cap.getSoyHealthLevel() > 4)
-					p_77654_3_.addEffect(new EffectInstance(this.secondEffect, 24000, 0));
+					p_41411_.addEffect(new MobEffectInstance(this.secondEffect, 24000, 0));
 			}
 		});
-		if (p_77654_3_ instanceof ServerPlayerEntity) {
-			ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) p_77654_3_;
-			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, p_77654_1_);
+		if (p_41411_ instanceof ServerPlayer) {
+			ServerPlayer serverplayerentity = (ServerPlayer) p_41411_;
+			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, p_41409_);
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
-		p_77654_1_.shrink(1);
-		if (p_77654_1_.isEmpty())
+		p_41409_.shrink(1);
+		if (p_41409_.isEmpty())
 			return new ItemStack(Items.GLASS_BOTTLE);
-		if (p_77654_3_ instanceof PlayerEntity && !((PlayerEntity) p_77654_3_).abilities.instabuild) {
+		if (p_41411_ instanceof Player && !((Player) p_41411_).getAbilities().instabuild) {
 			ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
-			PlayerEntity playerentity = (PlayerEntity) p_77654_3_;
-			if (!playerentity.inventory.add(itemstack)) {
+			Player playerentity = (Player) p_41411_;
+			if (!playerentity.getInventory().add(itemstack)) {
 				playerentity.drop(itemstack, false);
 			}
 		}
-		return p_77654_1_;
+		return p_41409_;
 	}
+
 
 	public int getUseDuration(ItemStack p_77626_1_) {
 		return 32;
 	}
 
-	public UseAction getUseAnimation(ItemStack p_77661_1_) {
-		return UseAction.DRINK;
+	@Override
+	public UseAnim getUseAnimation(ItemStack p_41452_) {
+		return UseAnim.DRINK;
 	}
 
 	public SoundEvent getDrinkingSound() {
@@ -70,7 +73,9 @@ public class SoymilkBottleItem extends Item {
 		return SoundEvents.GENERIC_DRINK;
 	}
 
-	public ActionResult<ItemStack> use(World p_77659_1_, PlayerEntity p_77659_2_, Hand p_77659_3_) {
-		return DrinkHelper.useDrink(p_77659_1_, p_77659_2_, p_77659_3_);
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level p_41432_, Player p_41433_, InteractionHand p_41434_) {
+		return ItemUtils.startUsingInstantly(p_41432_, p_41433_, p_41434_);
 	}
 }
+

@@ -1,11 +1,11 @@
 package baguchan.tofucraft.api;
 
 import com.google.common.collect.Maps;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 
 import java.util.Map;
 
-import net.minecraft.block.Block;
-import net.minecraft.fluid.Fluid;
 
 public class BitternRecipes {
 	public static final Map<Fluid, Block> recipesList = Maps.newHashMap();

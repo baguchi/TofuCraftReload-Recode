@@ -1,10 +1,10 @@
 package baguchan.tofucraft.registry;
 
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 public class TofuItemGroup {
-	public static final ItemGroup TOFUCRAFT = new ItemGroup("tofucraft") {
+	public static final CreativeModeTab TOFUCRAFT = new CreativeModeTab("tofucraft") {
 		@Override
 		public ItemStack makeIcon() {
 			return new ItemStack(TofuItems.TOFUMOMEN);

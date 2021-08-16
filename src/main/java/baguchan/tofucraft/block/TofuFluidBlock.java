@@ -1,11 +1,10 @@
 package baguchan.tofucraft.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.fluid.FlowingFluid;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.material.FlowingFluid;
 
-public class TofuFluidBlock extends FlowingFluidBlock {
-	public TofuFluidBlock(FlowingFluid fluid, Properties properties) {
-		super(fluid, properties);
+public class TofuFluidBlock extends LiquidBlock {
+	public TofuFluidBlock(FlowingFluid soymilk, Properties properties) {
+		super(soymilk, properties);
 	}
 }

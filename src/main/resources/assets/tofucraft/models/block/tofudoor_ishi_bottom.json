@@ -1,7 +1,0 @@
-{
-  "parent": "block/door_bottom",
-  "textures": {
-    "bottom": "tofucraft:block/tofudoor_ishi_lower",
-    "top": "tofucraft:block/tofudoor_ishi_upper"
-  }
-}

@@ -1,14 +1,14 @@
 package baguchan.tofucraft.utils;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class TileScanner {
-	private final World world;
+	private final Level world;
 
 	private final BlockPos centrePos;
 
-	public TileScanner(World world, BlockPos pos) {
+	public TileScanner(Level world, BlockPos pos) {
 		this.world = world;
 		this.centrePos = pos;
 	}
@@ -34,21 +34,21 @@ public class TileScanner {
 
 	public enum Method {
 		partial(new IScanMethod() {
-			public void apply(World world, BlockPos relPos, BlockPos absTargPos, int size, Impl<?> impl) {
+			public void apply(Level world, BlockPos relPos, BlockPos absTargPos, int size, Impl<?> impl) {
 				int dist = Math.abs(relPos.getX()) + Math.abs(relPos.getY()) + Math.abs(relPos.getZ());
 				if (dist == size)
 					impl.apply(world, absTargPos);
 			}
 		}),
 		full(new IScanMethod() {
-			public void apply(World world, BlockPos relPos, BlockPos absTargPos, int size, Impl<?> impl) {
+			public void apply(Level world, BlockPos relPos, BlockPos absTargPos, int size, Impl<?> impl) {
 				int dist = Math.abs(relPos.getX()) + Math.abs(relPos.getY()) + Math.abs(relPos.getZ());
 				if (dist <= size)
 					impl.apply(world, absTargPos);
 			}
 		}),
 		fullSimply(new IScanMethod() {
-			public void apply(World world, BlockPos relPos, BlockPos absTagPos, int size, Impl<?> impl) {
+			public void apply(Level world, BlockPos relPos, BlockPos absTagPos, int size, Impl<?> impl) {
 				impl.apply(world, absTagPos);
 			}
 		});
@@ -61,13 +61,13 @@ public class TileScanner {
 	}
 
 	private interface IScanMethod {
-		void apply(World param1World, BlockPos param1BlockPos1, BlockPos param1BlockPos2, int param1Int, Impl<?> param1Impl);
+		void apply(Level param1Level, BlockPos param1BlockPos1, BlockPos param1BlockPos2, int param1Int, Impl<?> param1Impl);
 	}
 
 	public static abstract class Impl<T> {
 		public BlockPos pos;
 
-		public abstract void apply(World param1World, BlockPos param1BlockPos);
+		public abstract void apply(Level param1Level, BlockPos param1BlockPos);
 
 		public T getReturn() {
 			return null;

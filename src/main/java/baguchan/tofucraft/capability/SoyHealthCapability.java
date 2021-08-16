@@ -2,27 +2,27 @@ package baguchan.tofucraft.capability;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySerializable<CompoundNBT> {
+public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySerializable<CompoundTag> {
 	private int remainTick;
 
 	private int soyHealthLevel;
 
 	public void setSoyHealth(LivingEntity entity, int level) {
 		this.remainTick = 48000;
-		this.soyHealthLevel = MathHelper.clamp(level, 0, 20);
+		this.soyHealthLevel = Mth.clamp(level, 0, 20);
 		if (!entity.level.isClientSide()) {
 			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, level);
 			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
@@ -59,14 +59,14 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 		return (capability == TofuCraftReload.SOY_HEALTH_CAPABILITY) ? LazyOptional.of(() -> this).cast() : LazyOptional.empty();
 	}
 
-	public CompoundNBT serializeNBT() {
-		CompoundNBT nbt = new CompoundNBT();
+	public CompoundTag serializeNBT() {
+		CompoundTag nbt = new CompoundTag();
 		nbt.putInt("RemainTick", this.remainTick);
 		nbt.putInt("SoyHealthLevel", this.soyHealthLevel);
 		return nbt;
 	}
 
-	public void deserializeNBT(CompoundNBT nbt) {
+	public void deserializeNBT(CompoundTag nbt) {
 		this.remainTick = nbt.getInt("RemainTick");
 		this.soyHealthLevel = nbt.getInt("SoyHealthLevel");
 	}

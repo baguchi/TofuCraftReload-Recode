@@ -1,17 +1,16 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.api.HardenRecipes;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.Property;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -19,14 +18,14 @@ import java.util.Map;
 import java.util.Random;
 
 public class TofuBlock extends Block {
-	public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
+	public static final IntegerProperty HARDNESS = IntegerProperty.create("hardness", 0, 7);
 
 	public TofuBlock(Properties properties) {
 		super(properties);
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);
 		if (isUnderWeight(worldIn, pos) &&
 				rand.nextInt(5) == 0) {
@@ -38,13 +37,13 @@ public class TofuBlock extends Block {
 		}
 	}
 
-	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
 		super.randomTick(state, worldIn, pos, random);
 		if (isUnderWeight(worldIn, pos)) {
-			int i = ((Integer) state.getValue((Property) AGE)).intValue();
+			int i = ((Integer) state.getValue((Property) HARDNESS)).intValue();
 			if (random.nextInt(5) == 0)
 				if (i < 7) {
-					worldIn.setBlock(pos, state.setValue(AGE, Integer.valueOf(i + 1)), 2);
+					worldIn.setBlock(pos, state.setValue(HARDNESS, Integer.valueOf(i + 1)), 2);
 				} else {
 					Map.Entry<Block, Block> result = HardenRecipes.getResult(state.getBlock());
 					if (result != null)
@@ -53,7 +52,7 @@ public class TofuBlock extends Block {
 		}
 	}
 
-	public boolean isUnderWeight(World world, BlockPos pos) {
+	public boolean isUnderWeight(Level world, BlockPos pos) {
 		BlockState weightBlock = world.getBlockState(pos.above());
 		BlockState baseBlock = world.getBlockState(pos.below());
 		boolean isWeightValid = (weightBlock != null && (weightBlock.getMaterial() == Material.STONE || weightBlock.getMaterial() == Material.METAL || weightBlock.getMaterial() == Material.HEAVY_METAL));
@@ -62,7 +61,8 @@ public class TofuBlock extends Block {
 		return (isWeightValid && isBaseValid);
 	}
 
-	protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-		builder.add(AGE);
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_49915_) {
+		p_49915_.add(HARDNESS);
 	}
 }

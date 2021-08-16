@@ -1,6 +1,0 @@
-{
-  "parent": "block/crop",
-  "textures": {
-    "crop": "tofucraft:block/sprouts_2"
-  }
-}

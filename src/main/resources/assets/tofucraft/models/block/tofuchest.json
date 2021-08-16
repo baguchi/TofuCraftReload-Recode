@@ -1,8 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "tofucraft:entity/chest/tofuchest",
-
-    "particle": "tofucraft:entity/chest/tofuchest"
-  }
-}

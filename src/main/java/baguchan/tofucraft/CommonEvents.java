@@ -2,41 +2,31 @@ package baguchan.tofucraft;
 
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
-import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
-import baguchan.tofucraft.world.TravelerTofunianSpawner;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.network.PacketDistributor;
-
-import java.util.HashMap;
-import java.util.Map;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
 	@SubscribeEvent
 	public static void onAttachEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {
 		if (event.getObject() instanceof LivingEntity)
-			event.addCapability(new ResourceLocation("tofucraft", "soy_health"), new SoyHealthCapability());
+			event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "soy_health"), new SoyHealthCapability());
 	}
 
 	@SubscribeEvent
@@ -58,25 +48,25 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-		PlayerEntity player = event.getPlayer();
-		if (player instanceof ServerPlayerEntity)
-			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) player), new SoyMilkDrinkedMessage(player, handler.getSoyHealthLevel())));
+		Player player = event.getPlayer();
+		if (player instanceof ServerPlayer)
+			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new SoyMilkDrinkedMessage(player, handler.getSoyHealthLevel())));
 	}
 
 	@SubscribeEvent
 	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
-		PlayerEntity playerEntity = event.getPlayer();
+		Player playerEntity = event.getPlayer();
 		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel())));
 	}
 
-	@SubscribeEvent
+	/*@SubscribeEvent
 	public static void onFluidPlaceEvent(BlockEvent.FluidPlaceBlockEvent event) {
 		FluidState fluidState = event.getWorld().getFluidState(event.getLiquidPos());
 		if (fluidState.getType() == TofuFluids.SOYMILK || fluidState.getType() == TofuFluids.SOYMILK_FLOW)
 			event.setNewState(TofuBlocks.TOFU_TERRAIN.defaultBlockState());
-	}
+	}*/
 
-	private static final Map<ServerWorld, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
+	/*private static final Map<ServerWorld, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
 
 	@SubscribeEvent
 	public static void worldLoad(WorldEvent.Load evt) {
@@ -98,14 +88,14 @@ public class CommonEvents {
 			if (spawner != null)
 				spawner.tick();
 		}
-	}
+	}*/
 
 	@SubscribeEvent
 	public static void onBlockDrop(BlockEvent.BreakEvent event) {
 		if (!event.getPlayer().isCreative() && (
 				event.getWorld().getBlockState(event.getPos()).is(Blocks.FERN) || event.getWorld().getBlockState(event.getPos()).is(Blocks.TALL_GRASS) || event.getWorld().getBlockState(event.getPos()).is(Blocks.GRASS)) &&
-				event.getWorld() instanceof World && ((World) event.getWorld()).random.nextFloat() < 0.075F) {
-			ItemEntity entity = new ItemEntity((World) event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEANS));
+				event.getWorld() instanceof Level && ((Level) event.getWorld()).random.nextFloat() < 0.075F) {
+			ItemEntity entity = new ItemEntity((Level) event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEANS));
 			event.getWorld().addFreshEntity(entity);
 		}
 	}

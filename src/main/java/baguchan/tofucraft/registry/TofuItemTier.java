@@ -1,12 +1,12 @@
 package baguchan.tofucraft.registry;
 
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
-public enum TofuItemTier implements IItemTier {
+public enum TofuItemTier implements Tier {
 	KINU(0, 1, 0.1F, 0.0F, 2, () -> Ingredient.of(TofuItems.TOFUKINU)),
 	MOMEN(0, 2, 0.25F, 0.25F, 5, () -> Ingredient.of(TofuItems.TOFUMOMEN)),
 	SOLID(1, 131, 5.0F, 1.0F, 12, () -> Ingredient.of(TofuItems.TOFUISHI)),
@@ -23,7 +23,7 @@ public enum TofuItemTier implements IItemTier {
 
 	private final int enchantmentValue;
 
-	private final LazyValue<Ingredient> repairIngredient;
+	private final LazyLoadedValue<Ingredient> repairIngredient;
 
 	TofuItemTier(int p_i48458_3_, int p_i48458_4_, float p_i48458_5_, float p_i48458_6_, int p_i48458_7_, Supplier<Ingredient> p_i48458_8_) {
 		this.level = p_i48458_3_;
@@ -31,7 +31,7 @@ public enum TofuItemTier implements IItemTier {
 		this.speed = p_i48458_5_;
 		this.damage = p_i48458_6_;
 		this.enchantmentValue = p_i48458_7_;
-		this.repairIngredient = new LazyValue(p_i48458_8_);
+		this.repairIngredient = new LazyLoadedValue(p_i48458_8_);
 	}
 
 	public int getUses() {

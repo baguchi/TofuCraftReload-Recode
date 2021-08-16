@@ -1,9 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "top": "tofucraft:block/blocktofumomen",
-    "bottom": "#top",
-    "side": "#top",
-    "all": "#top"
-  }
-}

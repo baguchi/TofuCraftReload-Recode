@@ -1,26 +1,26 @@
 package baguchan.tofucraft.registry;
 
-import net.minecraft.block.Block;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.ITag;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 
 public class TofuTags {
 	public static class Blocks {
-		public static final ITag.INamedTag<Block> SOFT_TOFU = tag("soft_tofu");
+		public static final Tag.Named<Block> SOFT_TOFU = tag("soft_tofu");
 
-		public static final ITag.INamedTag<Block> TOFU_TERRAIN = tag("tofu_terrain");
+		public static final Tag.Named<Block> TOFU_TERRAIN = tag("tofu_terrain");
 
-		private static ITag.INamedTag<Block> tag(String name) {
+		private static Tag.Named<Block> tag(String name) {
 			return BlockTags.bind("tofucraft:" + name);
 		}
 	}
 
 	public static class Fluids {
-		public static final ITag.INamedTag<Fluid> SOYMILK = tag("soymilk");
+		public static final Tag.Named<Fluid> SOYMILK = tag("soymilk");
 
-		private static ITag.INamedTag<Fluid> tag(String name) {
+		private static Tag.Named<Fluid> tag(String name) {
 			return FluidTags.bind("tofucraft:" + name);
 		}
 	}

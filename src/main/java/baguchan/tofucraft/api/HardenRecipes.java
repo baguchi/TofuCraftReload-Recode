@@ -1,10 +1,10 @@
 package baguchan.tofucraft.api;
 
 import com.google.common.collect.Maps;
+import net.minecraft.world.level.block.Block;
 
 import java.util.Map;
 
-import net.minecraft.block.Block;
 
 public class HardenRecipes {
 	public static final Map<Block, Block> recipesList = Maps.newHashMap();

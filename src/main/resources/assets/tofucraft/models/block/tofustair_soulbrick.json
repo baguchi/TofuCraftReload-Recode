@@ -1,8 +1,0 @@
-{
-  "parent": "block/stairs",
-  "textures": {
-    "bottom": "tofucraft:block/tofusoul_brick",
-    "top": "tofucraft:block/tofusoul_brick",
-    "side": "tofucraft:block/tofusoul_brick"
-  }
-}

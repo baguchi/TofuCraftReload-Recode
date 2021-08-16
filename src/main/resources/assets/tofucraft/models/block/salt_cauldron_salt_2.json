@@ -1,6 +1,0 @@
-{
-  "parent": "tofucraft:block/salt_cauldron_fluid_2",
-  "textures": {
-    "texture": "tofucraft:block/blocksalt"
-  }
-}

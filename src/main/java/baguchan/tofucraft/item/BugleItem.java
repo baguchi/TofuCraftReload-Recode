@@ -1,41 +1,48 @@
 package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.registry.TofuSounds;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.UseAction;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.Level;
 
 public class BugleItem extends Item {
 	public BugleItem(Properties tab) {
 		super(tab);
 	}
 
-	public void releaseUsing(ItemStack p_77615_1_, World p_77615_2_, LivingEntity p_77615_3_, int p_77615_4_) {
-		int i = getUseDuration(p_77615_1_) - p_77615_4_;
-		if (p_77615_3_ instanceof PlayerEntity) {
-			PlayerEntity playerentity = (PlayerEntity) p_77615_3_;
-			playerentity.getCooldowns().addCooldown(this, 80);
+	@Override
+	public void releaseUsing(ItemStack p_41412_, Level p_41413_, LivingEntity p_41414_, int p_41415_) {
+		int i = getUseDuration(p_41412_) - p_41415_;
+
+		if (p_41414_ instanceof Player) {
+			Player playerentity = (Player) p_41414_;
+			if (i >= 20) {
+				playerentity.getCooldowns().addCooldown(this, 80);
+			}
 		}
 		if (i >= 20)
-			p_77615_3_.playSound(TofuSounds.TOFUBUGLE, 3.0F, 1.0F);
+			p_41414_.playSound(TofuSounds.TOFUBUGLE, 3.0F, 1.0F);
 	}
 
-	public ActionResult<ItemStack> use(World p_77659_1_, PlayerEntity p_77659_2_, Hand p_77659_3_) {
-		ItemStack itemstack = p_77659_2_.getItemInHand(p_77659_3_);
-		p_77659_2_.startUsingItem(p_77659_3_);
-		return ActionResult.success(itemstack);
+	@Override
+	public InteractionResultHolder<ItemStack> use(Level p_41432_, Player p_41433_, InteractionHand p_41434_) {
+		ItemStack itemstack = p_41433_.getItemInHand(p_41434_);
+		p_41433_.startUsingItem(p_41434_);
+
+		return InteractionResultHolder.success(itemstack);
 	}
 
 	public int getUseDuration(ItemStack p_77626_1_) {
 		return 72000;
 	}
 
-	public UseAction getUseAnimation(ItemStack p_77661_1_) {
-		return UseAction.BOW;
+	@Override
+	public UseAnim getUseAnimation(ItemStack p_41452_) {
+		return UseAnim.BOW;
 	}
 }
