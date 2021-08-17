@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.HashCache;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 
 import java.nio.file.Path;
@@ -81,5 +83,37 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.ISHITOFU.asItem(), TofuItems.TOFUISHI);
 		tofuBlockItem(consumer, TofuBlocks.METALTOFU.asItem(), TofuItems.TOFUMETAL);
 		tofuBlockItem(consumer, TofuBlocks.DIAMONDTOFU.asItem(), TofuItems.TOFUDIAMOND);
+
+		//soimilk
+		ShapedRecipeBuilder.shaped(TofuItems.BUCKET_SOYMILK)
+				.pattern("#")
+				.pattern("X")
+				.define('#', TofuItems.SEEDS_SOYBEANS)
+				.define('X', Items.BUCKET)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(TofuItems.BUCKET_SOYMILK_NETHER)
+				.pattern("#")
+				.pattern("X")
+				.define('#', TofuItems.SEEDS_SOYBEANS_NETHER)
+				.define('X', Items.BUCKET)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(TofuItems.BUCKET_SOYMILK_SOUL)
+				.pattern("#")
+				.pattern("X")
+				.define('#', TofuItems.SEEDS_SOYBEANS_SOUL)
+				.define('X', Items.BUCKET)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL))
+				.save(consumer);
+
+
+		ShapedRecipeBuilder.shaped(TofuBlocks.SALTPAN)
+				.pattern("# #")
+				.pattern(" X ")
+				.define('#', Tags.Items.RODS_WOODEN)
+				.define('X', Tags.Items.COBBLESTONE)
+				.unlockedBy("has_item", has(Tags.Items.COBBLESTONE))
+				.save(consumer);
 	}
 }
