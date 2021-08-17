@@ -22,12 +22,14 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+		//block
 		toBlock(TofuBlocks.KINUTOFU);
 		toBlock(TofuBlocks.MOMENTOFU);
 		toBlock(TofuBlocks.ISHITOFU);
 		toBlock(TofuBlocks.METALTOFU);
+		toBlock(TofuBlocks.DIAMONDTOFU);
 
-
+		//item
 		singleTex(TofuItems.TOFUKINU);
 		singleTex(TofuItems.TOFUMOMEN);
 		singleTex(TofuItems.TOFUISHI);
@@ -88,30 +90,30 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.TOFUSCOOP);
 		singleTexTool(TofuItems.BUGLE);
 
-		singleTexTool(TofuItems.KINUSWORD);
-		singleTexTool(TofuItems.KINUPICKAXE);
-		singleTexTool(TofuItems.KINUAXE);
-		singleTexTool(TofuItems.KINUSHOVEL);
+		singleTexTool(TofuItems.TOFU_KINU_SWORD);
+		singleTexTool(TofuItems.TOFU_KINU_PICKAXE);
+		singleTexTool(TofuItems.TOFU_KINU_AXE);
+		singleTexTool(TofuItems.TOFU_KINU_SHOVEL);
 
-		singleTexTool(TofuItems.MOMENSWORD);
-		singleTexTool(TofuItems.MOMENPICKAXE);
-		singleTexTool(TofuItems.MOMENAXE);
-		singleTexTool(TofuItems.MOMENSHOVEL);
+		singleTexTool(TofuItems.TOFU_MOMEN_SWORD);
+		singleTexTool(TofuItems.TOFU_MOMEN_PICKAXE);
+		singleTexTool(TofuItems.TOFU_MOMEN_AXE);
+		singleTexTool(TofuItems.TOFU_MOMEN_SHOVEL);
 
-		singleTexTool(TofuItems.SOLIDSWORD);
-		singleTexTool(TofuItems.SOLIDPICKAXE);
-		singleTexTool(TofuItems.SOLIDAXE);
-		singleTexTool(TofuItems.SOLIDSHOVEL);
+		singleTexTool(TofuItems.TOFU_SOLID_SWORD);
+		singleTexTool(TofuItems.TOFU_SOLID_PICKAXE);
+		singleTexTool(TofuItems.TOFU_SOLID_AXE);
+		singleTexTool(TofuItems.TOFU_SOLID_SHOVEL);
 
-		singleTexTool(TofuItems.METALSWORD);
-		singleTexTool(TofuItems.METALPICKAXE);
-		singleTexTool(TofuItems.METALAXE);
-		singleTexTool(TofuItems.METALSHOVEL);
+		singleTexTool(TofuItems.TOFU_METAL_SWORD);
+		singleTexTool(TofuItems.TOFU_METAL_PICKAXE);
+		singleTexTool(TofuItems.TOFU_METAL_AXE);
+		singleTexTool(TofuItems.TOFU_METAL_SHOVEL);
 
-		singleTexTool(TofuItems.TOFUDIAMONDSWORD);
-		singleTexTool(TofuItems.TOFUDIAMONDPICKAXE);
-		singleTexTool(TofuItems.TOFUDIAMONDAXE);
-		singleTexTool(TofuItems.TOFUDIAMONDSHOVEL);
+		singleTexTool(TofuItems.TOFU_DIAMOND_SWORD);
+		singleTexTool(TofuItems.TOFU_DIAMOND_PICKAXE);
+		singleTexTool(TofuItems.TOFU_DIAMOND_AXE);
+		singleTexTool(TofuItems.TOFU_DIAMOND_SHOVEL);
 
 		singleTex(TofuItems.ARMOR_TOFU_KINUHELMET);
 		singleTex(TofuItems.ARMOR_TOFU_KINUCHESTPLATE);

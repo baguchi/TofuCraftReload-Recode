@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -140,7 +141,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void pickaxeItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Item handle) {
+	protected final void pickaxeItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Tag.Named<Item> handle) {
 		ShapedRecipeBuilder.shaped(result)
 				.pattern("###")
 				.pattern(" X ")
@@ -151,7 +152,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void swordItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Item handle) {
+	protected final void swordItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Tag.Named<Item> handle) {
 		ShapedRecipeBuilder.shaped(result)
 				.pattern("#")
 				.pattern("#")
@@ -162,7 +163,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void axeItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Item handle) {
+	protected final void axeItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Tag.Named<Item> handle) {
 		ShapedRecipeBuilder.shaped(result)
 				.pattern("##")
 				.pattern("#X")
@@ -171,6 +172,26 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.define('X', handle)
 				.unlockedBy("has_item", has(material))
 				.save(consumer, locEquip(name));
+	}
+
+	protected final void shovelItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Tag.Named<Item> handle) {
+		ShapedRecipeBuilder.shaped(result)
+				.pattern("#")
+				.pattern("X")
+				.pattern("X")
+				.define('#', material)
+				.define('X', handle)
+				.unlockedBy("has_item", has(material))
+				.save(consumer, locEquip(name));
+	}
+
+	protected final void tofuBlockItem(Consumer<FinishedRecipe> consumer, Item result, Item material) {
+		ShapedRecipeBuilder.shaped(result)
+				.pattern("##")
+				.pattern("##")
+				.define('#', material)
+				.unlockedBy("has_item", has(material))
+				.save(consumer);
 	}
 
 

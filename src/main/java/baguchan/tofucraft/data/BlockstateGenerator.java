@@ -19,6 +19,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.MOMENTOFU);
 		simpleBlock(TofuBlocks.ISHITOFU);
 		simpleBlock(TofuBlocks.METALTOFU);
+		simpleBlock(TofuBlocks.DIAMONDTOFU);
 	}
 
 	@Nonnull
