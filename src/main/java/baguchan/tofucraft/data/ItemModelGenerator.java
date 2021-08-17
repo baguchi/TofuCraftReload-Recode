@@ -113,30 +113,30 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.TOFUDIAMONDAXE);
 		singleTexTool(TofuItems.TOFUDIAMONDSHOVEL);
 
-		singleTex(TofuItems.ARMOR_KINUHELMET);
-		singleTex(TofuItems.ARMOR_KINUCHESTPLATE);
-		singleTex(TofuItems.ARMOR_KINULEGGINS);
-		singleTex(TofuItems.ARMOR_KINUBOOTS);
+		singleTex(TofuItems.ARMOR_TOFU_KINUHELMET);
+		singleTex(TofuItems.ARMOR_TOFU_KINUCHESTPLATE);
+		singleTex(TofuItems.ARMOR_TOFU_KINULEGGINGS);
+		singleTex(TofuItems.ARMOR_TOFU_KINUBOOTS);
 
-		singleTex(TofuItems.ARMOR_MOMENHELMET);
-		singleTex(TofuItems.ARMOR_MOMENCHESTPLATE);
-		singleTex(TofuItems.ARMOR_MOMENLEGGINS);
-		singleTex(TofuItems.ARMOR_MOMENBOOTS);
+		singleTex(TofuItems.ARMOR_TOFU_MOMENHELMET);
+		singleTex(TofuItems.ARMOR_TOFU_MOMENCHESTPLATE);
+		singleTex(TofuItems.ARMOR_TOFU_MOMENLEGGINGS);
+		singleTex(TofuItems.ARMOR_TOFU_MOMENBOOTS);
 
-		singleTex(TofuItems.ARMOR_SOLIDHELMET);
-		singleTex(TofuItems.ARMOR_SOLIDCHESTPLATE);
-		singleTex(TofuItems.ARMOR_SOLIDLEGGINS);
-		singleTex(TofuItems.ARMOR_SOLIDBOOTS);
+		singleTex(TofuItems.ARMOR_TOFU_SOLIDHELMET);
+		singleTex(TofuItems.ARMOR_TOFU_SOLIDCHESTPLATE);
+		singleTex(TofuItems.ARMOR_TOFU_SOLIDLEGGINGS);
+		singleTex(TofuItems.ARMOR_TOFU_SOLIDBOOTS);
 
-		singleTex(TofuItems.ARMOR_METALHELMET);
-		singleTex(TofuItems.ARMOR_METALCHESTPLATE);
-		singleTex(TofuItems.ARMOR_METALLEGGINS);
-		singleTex(TofuItems.ARMOR_METALBOOTS);
+		singleTex(TofuItems.ARMOR_TOFU_METALHELMET);
+		singleTex(TofuItems.ARMOR_TOFU_METALCHESTPLATE);
+		singleTex(TofuItems.ARMOR_TOFU_METALLEGGINGS);
+		singleTex(TofuItems.ARMOR_TOFU_METALBOOTS);
 
-		singleTex(TofuItems.ARMOR_DIAMONDHELMET);
-		singleTex(TofuItems.ARMOR_DIAMONDCHESTPLATE);
-		singleTex(TofuItems.ARMOR_DIAMONDLEGGINS);
-		singleTex(TofuItems.ARMOR_DIAMONDBOOTS);
+		singleTex(TofuItems.ARMOR_TOFU_DIAMONDHELMET);
+		singleTex(TofuItems.ARMOR_TOFU_DIAMONDCHESTPLATE);
+		singleTex(TofuItems.ARMOR_TOFU_DIAMONDLEGGINGS);
+		singleTex(TofuItems.ARMOR_TOFU_DIAMONDBOOTS);
 	}
 
 	private ItemModelBuilder generated(String name, ResourceLocation... layers) {
