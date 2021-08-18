@@ -1,5 +1,6 @@
 package baguchan.tofucraft.data;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import com.google.gson.JsonObject;
@@ -7,6 +8,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.HashCache;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 
@@ -105,6 +107,47 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuItems.SEEDS_SOYBEANS_SOUL)
 				.define('X', Items.BUCKET)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL))
+				.save(consumer);
+
+		//food
+		foodCooking(TofuItems.SEEDS_SOYBEANS, TofuItems.SOYBEAN_PARCHED, 0.1F, consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.KINAKO)
+				.requires(TofuItems.SOYBEAN_PARCHED)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_item", has(TofuItems.SOYBEAN_PARCHED))
+				.save(consumer);
+
+		foodCooking(TofuItems.EDAMAME, TofuItems.BOILED_EDAMAME, 0.1F, consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDA)
+				.requires(TofuItems.BOILED_EDAMAME, 8)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_item", has(TofuItems.BOILED_EDAMAME))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDAMA)
+				.requires(TofuItems.ZUNDA, 4)
+				.requires(Items.GLOWSTONE)
+				.unlockedBy("has_item", has(TofuItems.ZUNDA))
+				.save(consumer);
+		foodCooking(TofuItems.TOFU_HAMBURG_RAW, TofuItems.TOFU_HAMBURG, 0.25F, consumer);
+		foodCooking(TofuItems.RAW_TOFU_FISH, TofuItems.COOKED_TOFU_FISH, 0.2F, consumer);
+		ShapedRecipeBuilder.shaped(TofuItems.TOFUCOOKIE)
+				.pattern("X#X")
+				.define('#', TofuItems.TOFUKINU)
+				.define('X', Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.TOFUKINU))
+				.save(consumer, TofuCraftReload.prefix("tofucookie_kinu"));
+		ShapedRecipeBuilder.shaped(TofuItems.TOFUCOOKIE)
+				.pattern("X#X")
+				.define('#', TofuItems.TOFUMOMEN)
+				.define('X', Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.TOFUMOMEN))
+				.save(consumer, TofuCraftReload.prefix("tofucookie_momen"));
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYSTICK)
+				.requires(TofuItems.SEEDS_SOYBEANS)
+				.requires(Items.SUGAR)
+				.requires(TofuItems.SALT)
+				.unlockedBy("has_item", has(TofuItems.SALT))
 				.save(consumer);
 
 

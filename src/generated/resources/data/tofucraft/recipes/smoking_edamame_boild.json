@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "tofucraft:edamame"
+  },
+  "result": "tofucraft:edamame_boild",
+  "experience": 0.1,
+  "cookingtime": 100
+}

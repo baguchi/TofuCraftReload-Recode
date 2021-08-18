@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:zunda"
+    },
+    {
+      "item": "tofucraft:zunda"
+    },
+    {
+      "item": "tofucraft:zunda"
+    },
+    {
+      "item": "tofucraft:zunda"
+    },
+    {
+      "item": "minecraft:glowstone"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:zundama"
+  }
+}
