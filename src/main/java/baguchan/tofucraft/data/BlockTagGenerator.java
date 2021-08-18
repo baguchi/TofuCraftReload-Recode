@@ -2,6 +2,7 @@ package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
@@ -24,5 +25,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				.add(TofuBlocks.METALTOFU);
 		tag(BlockTags.NEEDS_IRON_TOOL)
 				.add(TofuBlocks.DIAMONDTOFU);
+		tag(BlockTags.PIGLIN_REPELLENTS).add(TofuBlocks.SOYBEAN_SOUL);
+
+		tag(TofuTags.Blocks.SOFT_TOFU).add(TofuBlocks.KINUTOFU, TofuBlocks.MOMENTOFU);
 	}
 }

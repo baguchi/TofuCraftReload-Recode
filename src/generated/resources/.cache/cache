@@ -105,6 +105,8 @@ add834a27711be86ed915cb2ed4935bb2f260572 assets/tofucraft/models/item/zundamanju
 e28dadd281167e7006d79906e53eedf64693d933 data/minecraft/tags/blocks/mineable/shovel.json
 00d7e01cac99fcbc9af2fc70ffac60f387d5c762 data/minecraft/tags/blocks/needs_iron_tool.json
 a25d0db23bf279fd44ebb26d4015181249f43ec4 data/minecraft/tags/blocks/needs_stone_tool.json
+a9f84cdec7564f756b5e8747072233f75d30ddf0 data/minecraft/tags/blocks/piglin_repellents.json
+503368044985b27c6e25f975bf7cddff8be61e70 data/minecraft/tags/fluids/water.json
 9115abc03a1873afd0426eec2cb1f9c439a9fec1 data/tofucraft/loot_tables/blocks/blocksaltpan.json
 80308c454ab8d9989e24fc4e4c1d6491fcfd427b data/tofucraft/loot_tables/blocks/blocktofuishi.json
 23531c6063eb26503727780a87f5eef5a5f98448 data/tofucraft/loot_tables/blocks/blocktofukinu.json
@@ -159,3 +161,4 @@ a400ce09115602de74cc6419fbd3761ab95a92f1 data/tofucraft/recipes/equipment/tofu_s
 0c2b989f685badd43577be38a7c750beb97691ab data/tofucraft/recipes/equipment/tofu_solid_pickaxe.json
 45f89d242c87523ccdfc1e658c9d9104d4d4055b data/tofucraft/recipes/equipment/tofu_solid_shovel.json
 d31fdee27e0798403c9472daf46e0233e6b7597b data/tofucraft/recipes/equipment/tofu_solid_sword.json
+e28dadd281167e7006d79906e53eedf64693d933 data/tofucraft/tags/blocks/soft_tofu.json

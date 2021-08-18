@@ -4,7 +4,6 @@ import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
-import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,7 +50,6 @@ public class TofuCraftReload {
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
-		TofuRecipes.register();
 		CapabilityManager.INSTANCE.register(SoyHealthCapability.class);
 	}
 

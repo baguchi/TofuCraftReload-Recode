@@ -1,9 +1,10 @@
 package baguchan.tofucraft.block;
 
-import baguchan.tofucraft.api.HardenRecipes;
+import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,7 +15,6 @@ import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Map;
 import java.util.Random;
 
 public class TofuBlock extends Block {
@@ -45,9 +45,9 @@ public class TofuBlock extends Block {
 				if (i < 7) {
 					worldIn.setBlock(pos, state.setValue(HARDNESS, Integer.valueOf(i + 1)), 2);
 				} else {
-					Map.Entry<Block, Block> result = HardenRecipes.getResult(state.getBlock());
+					ItemStack result = RecipeHelper.getTofu(state.getBlock());
 					if (result != null)
-						worldIn.setBlock(pos, result.getValue().defaultBlockState(), 2);
+						worldIn.setBlock(pos, Block.byItem(result.getItem()).defaultBlockState(), 2);
 				}
 		}
 	}
