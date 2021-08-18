@@ -3,9 +3,11 @@ package baguchan.tofucraft.block.crop;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -28,6 +30,18 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 
 	protected boolean mayPlaceOn(BlockState state, LevelReader worldIn, BlockPos pos) {
 		return (state.is(Blocks.SOUL_SAND) || state.is(Blocks.SOUL_SOIL) || state.is(Blocks.WARPED_NYLIUM));
+	}
+
+	@Override
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+		super.animateTick(stateIn, worldIn, pos, rand);
+		if (stateIn.getValue(AGE) == 7 && rand.nextInt(15) == 0) {
+			double d4 = rand.nextBoolean() ? 0.5D : -0.5D;
+			double d0 = pos.getX() + 0.5D + rand.nextFloat() * d4;
+			double d1 = (pos.getY() + rand.nextFloat());
+			double d2 = pos.getZ() + 0.5D + rand.nextFloat() * d4;
+			worldIn.addParticle(ParticleTypes.SOUL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+		}
 	}
 
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
