@@ -8,7 +8,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -19,11 +18,6 @@ import net.minecraft.world.phys.HitResult;
 public class BitternItem extends Item {
 	public BitternItem(Properties group) {
 		super(group);
-	}
-
-	@Override
-	public InteractionResult useOn(UseOnContext p_41427_) {
-		return InteractionResult.CONSUME;
 	}
 
 	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
@@ -37,7 +31,7 @@ public class BitternItem extends Item {
 			ItemStack result = RecipeHelper.getBitternResult(fluidState.getType());
 			if (result != null) {
 				worldIn.setBlock(blockraytraceresult1.getBlockPos(), Block.byItem(result.getItem()).defaultBlockState(), 11);
-				worldIn.globalLevelEvent(2001, blockraytraceresult1.getBlockPos(), Block.getId(worldIn.getBlockState(blockraytraceresult1.getBlockPos())));
+				worldIn.levelEvent(2001, blockraytraceresult1.getBlockPos(), Block.getId(worldIn.getBlockState(blockraytraceresult1.getBlockPos())));
 				if (!playerIn.isCreative())
 					itemstack.shrink(1);
 				ItemStack itemstack2 = new ItemStack(Items.GLASS_BOTTLE);
