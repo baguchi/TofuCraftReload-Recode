@@ -1,5 +1,6 @@
 package baguchan.tofucraft.utils;
 
+import baguchan.tofucraft.recipe.BitternInfo;
 import baguchan.tofucraft.recipe.HardenInfo;
 import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.client.Minecraft;
@@ -7,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 
@@ -27,6 +29,24 @@ public class RecipeHelper {
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
 				if (recipe instanceof HardenInfo && ((HardenInfo) recipe).getTofu().test(new ItemStack(block.asItem()))) {
 					return ((HardenInfo) recipe).getResults().getItems()[0];
+				}
+			}
+		}
+
+		return null;
+	}
+
+	@Nullable
+	public static ItemStack getBitternResult(Fluid fluid) {
+		final RecipeManager manager = getManager();
+
+		if (manager != null && fluid != null) {
+			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
+				return recipe.getType() == TofuRecipes.RECIPETYPE_BITTERN;
+			});
+			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
+				if (recipe instanceof BitternInfo && ((BitternInfo) recipe).getFluid().test(fluid)) {
+					return ((BitternInfo) recipe).getResults().getItems()[0];
 				}
 			}
 		}

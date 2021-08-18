@@ -1,0 +1,9 @@
+{
+  "type": "tofucraft:bittern",
+  "process": {
+    "fluid": "tofucraft:soymilk"
+  },
+  "result": {
+    "item": "tofucraft:blocktofumetal"
+  }
+}

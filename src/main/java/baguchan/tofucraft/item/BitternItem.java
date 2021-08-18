@@ -1,6 +1,6 @@
 package baguchan.tofucraft.item;
 
-import baguchan.tofucraft.api.BitternRecipes;
+import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -12,12 +12,9 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-
-import java.util.Map;
 
 public class BitternItem extends Item {
 	public BitternItem(Properties group) {
@@ -37,9 +34,9 @@ public class BitternItem extends Item {
 			return new InteractionResultHolder<>(InteractionResult.PASS, itemstack);
 		if (blockraytraceresult.getType() == HitResult.Type.BLOCK) {
 			FluidState fluidState = worldIn.getFluidState(blockraytraceresult1.getBlockPos());
-			Map.Entry<Fluid, Block> result = BitternRecipes.getResult(fluidState.getType());
+			ItemStack result = RecipeHelper.getBitternResult(fluidState.getType());
 			if (result != null) {
-				worldIn.setBlock(blockraytraceresult1.getBlockPos(), result.getValue().defaultBlockState(), 11);
+				worldIn.setBlock(blockraytraceresult1.getBlockPos(), Block.byItem(result.getItem()).defaultBlockState(), 11);
 				worldIn.globalLevelEvent(2001, blockraytraceresult1.getBlockPos(), Block.getId(worldIn.getBlockState(blockraytraceresult1.getBlockPos())));
 				if (!playerIn.isCreative())
 					itemstack.shrink(1);

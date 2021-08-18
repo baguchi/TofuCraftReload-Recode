@@ -15,19 +15,15 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 @EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuFluids {
 	public static final FlowingFluid SOYMILK = registerFluid("soymilk", new SoyMilkFluid.Source());
-
 	public static final FlowingFluid SOYMILK_FLOW = registerFluid("soymilk_flow", new SoyMilkFluid.Flowing());
 
 	public static final FlowingFluid SOYMILK_HELL = registerFluid("soymilk_hell", new SoyMilkHellFluid.Source());
-
 	public static final FlowingFluid SOYMILK_HELL_FLOW = registerFluid("soymilk_hell_flow", new SoyMilkHellFluid.Flowing());
 
 	public static final FlowingFluid SOYMILK_SOUL = registerFluid("soymilk_soul", new SoyMilkSoulFluid.Source());
-
 	public static final FlowingFluid SOYMILK_SOUL_FLOW = registerFluid("soymilk_soul_flow", new SoyMilkSoulFluid.Flowing());
 
 	public static final FlowingFluid BITTERN = registerFluid("bittern", new NigariFluid.Source());
-
 	public static final FlowingFluid BITTERN_FLOW = registerFluid("bittern_flow", new NigariFluid.Flowing());
 
 	private static <T extends Fluid> T registerFluid(String key, T p_215710_1_) {
