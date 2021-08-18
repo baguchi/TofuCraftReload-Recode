@@ -35,6 +35,14 @@ public class TofuBlocks {
 	public static final Block METALTOFU = new Block(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	public static final Block DIAMONDTOFU = new Block(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
 
+	public static final Block HELLTOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final Block HELLTOFU_BRICK = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
+	public static final Block HELLTOFU_SMOOTH_BRICK = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
+
+	public static final Block SOULTOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final Block SOULTOFU_BRICK = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
+	public static final Block SOULTOFU_SMOOTH_BRICK = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
+
 
 	public static final Block SALTPAN = new SaltPanBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().noOcclusion().sound(SoundType.WOOD));
 
@@ -44,14 +52,23 @@ public class TofuBlocks {
 		registry.getRegistry().register(SOYMILK_HELL.setRegistryName("soymilk_hell"));
 		registry.getRegistry().register(SOYMILK_SOUL.setRegistryName("soymilk_soul"));
 		registry.getRegistry().register(BITTERN.setRegistryName("bittern"));
+
 		registry.getRegistry().register(SOYBEAN.setRegistryName("soybean"));
 		registry.getRegistry().register(SOYBEAN_NETHER.setRegistryName("soybean_nether"));
 		registry.getRegistry().register(SOYBEAN_SOUL.setRegistryName("soybean_soul"));
+
 		registry.getRegistry().register(KINUTOFU.setRegistryName("blocktofukinu"));
 		registry.getRegistry().register(MOMENTOFU.setRegistryName("blocktofumomen"));
 		registry.getRegistry().register(ISHITOFU.setRegistryName("blocktofuishi"));
 		registry.getRegistry().register(METALTOFU.setRegistryName("blocktofumetal"));
 		registry.getRegistry().register(DIAMONDTOFU.setRegistryName("blocktofudiamond"));
+
+		registry.getRegistry().register(HELLTOFU.setRegistryName("blocktofuhell"));
+		registry.getRegistry().register(HELLTOFU_BRICK.setRegistryName("tofuhell_brick"));
+		registry.getRegistry().register(HELLTOFU_SMOOTH_BRICK.setRegistryName("tofuhell_smooth_brick"));
+		registry.getRegistry().register(SOULTOFU.setRegistryName("blocktofusoul"));
+		registry.getRegistry().register(SOULTOFU_BRICK.setRegistryName("tofusoul_brick"));
+		registry.getRegistry().register(SOULTOFU_SMOOTH_BRICK.setRegistryName("tofusoul_smooth_brick"));
 
 		registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
 	}
@@ -63,6 +80,15 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(ISHITOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(METALTOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(DIAMONDTOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+
+		TofuItems.register(registry, new BlockItem(HELLTOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(HELLTOFU_BRICK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(HELLTOFU_SMOOTH_BRICK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+
+		TofuItems.register(registry, new BlockItem(SOULTOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(SOULTOFU_BRICK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(SOULTOFU_SMOOTH_BRICK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+
 
 		TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 	}

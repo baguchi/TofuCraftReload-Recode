@@ -85,6 +85,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.ISHITOFU.asItem(), TofuItems.TOFUISHI);
 		tofuBlockItem(consumer, TofuBlocks.METALTOFU.asItem(), TofuItems.TOFUMETAL);
 		tofuBlockItem(consumer, TofuBlocks.DIAMONDTOFU.asItem(), TofuItems.TOFUDIAMOND);
+		tofuBlockItem(consumer, TofuBlocks.HELLTOFU.asItem(), TofuItems.TOFUHELL);
+		tofuBlockItem(consumer, TofuBlocks.HELLTOFU_BRICK.asItem(), TofuBlocks.HELLTOFU.asItem());
+		tofuBlockItem(consumer, TofuBlocks.HELLTOFU_SMOOTH_BRICK.asItem(), TofuBlocks.HELLTOFU_BRICK.asItem());
+		tofuBlockItem(consumer, TofuBlocks.SOULTOFU.asItem(), TofuItems.TOFUSOUL);
+		tofuBlockItem(consumer, TofuBlocks.SOULTOFU_BRICK.asItem(), TofuBlocks.SOULTOFU.asItem());
+		tofuBlockItem(consumer, TofuBlocks.SOULTOFU_SMOOTH_BRICK.asItem(), TofuBlocks.SOULTOFU_BRICK.asItem());
 
 		//soimilk
 		ShapedRecipeBuilder.shaped(TofuItems.BUCKET_SOYMILK)
