@@ -152,7 +152,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer, TofuCraftReload.prefix("tofucookie_momen"));
 		ShapelessRecipeBuilder.shapeless(TofuItems.SOYSTICK)
 				.requires(TofuItems.SEEDS_SOYBEANS)
-				.requires(Items.SUGAR)
+				.requires(Items.WHEAT)
 				.requires(TofuItems.SALT)
 				.unlockedBy("has_item", has(TofuItems.SALT))
 				.save(consumer);
