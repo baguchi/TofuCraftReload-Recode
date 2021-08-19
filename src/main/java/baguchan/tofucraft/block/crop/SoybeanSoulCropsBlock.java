@@ -92,8 +92,6 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 	@Override
 	public boolean canSurvive(BlockState p_52282_, LevelReader p_52283_, BlockPos p_52284_) {
 		BlockPos blockpos = p_52284_.below();
-		if (p_52282_.getBlock() == this)
-			return p_52283_.getBlockState(blockpos).canSustainPlant(p_52283_, blockpos, Direction.UP, this);
 		return mayPlaceOn(p_52283_.getBlockState(blockpos), p_52283_, blockpos);
 	}
 
@@ -103,8 +101,8 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 	}
 
 	@Override
-	protected boolean mayPlaceOn(BlockState p_52302_, BlockGetter p_52303_, BlockPos p_52304_) {
-		return super.mayPlaceOn(p_52302_, p_52303_, p_52304_);
+	protected boolean mayPlaceOn(BlockState state, BlockGetter p_52303_, BlockPos p_52304_) {
+		return state.is(Blocks.SOUL_SAND) || state.is(Blocks.SOUL_SOIL);
 	}
 
 	@Override
