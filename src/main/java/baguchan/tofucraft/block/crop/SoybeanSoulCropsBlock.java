@@ -28,10 +28,6 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 		super(builder);
 	}
 
-	protected boolean mayPlaceOn(BlockState state, LevelReader worldIn, BlockPos pos) {
-		return (state.is(Blocks.SOUL_SAND) || state.is(Blocks.SOUL_SOIL) || state.is(Blocks.WARPED_NYLIUM));
-	}
-
 	@Override
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);
@@ -90,14 +86,16 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 	}
 
 	@Override
-	public boolean canSurvive(BlockState p_52282_, LevelReader p_52283_, BlockPos p_52284_) {
-		BlockPos blockpos = p_52284_.below();
-		return mayPlaceOn(p_52283_.getBlockState(blockpos), p_52283_, blockpos);
+	public PlantType getPlantType(BlockGetter world, BlockPos pos) {
+		return PlantType.NETHER;
 	}
 
 	@Override
-	public PlantType getPlantType(BlockGetter world, BlockPos pos) {
-		return PlantType.NETHER;
+	public boolean canSurvive(BlockState p_51028_, LevelReader p_51029_, BlockPos p_51030_) {
+		BlockPos blockpos = p_51030_.below();
+		if (p_51028_.getBlock() == this) //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+			return p_51029_.getBlockState(blockpos).canSustainPlant(p_51029_, blockpos, Direction.UP, this);
+		return this.mayPlaceOn(p_51029_.getBlockState(blockpos), p_51029_, blockpos);
 	}
 
 	@Override
