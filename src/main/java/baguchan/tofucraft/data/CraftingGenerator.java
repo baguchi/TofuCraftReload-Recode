@@ -156,6 +156,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.SALT)
 				.unlockedBy("has_item", has(TofuItems.SALT))
 				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SALTYMELON)
+				.requires(TofuItems.SALT)
+				.requires(Items.MELON_SLICE)
+				.unlockedBy("has_item", has(TofuItems.SALT))
+				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK)
 				.requires(TofuItems.BUCKET_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
