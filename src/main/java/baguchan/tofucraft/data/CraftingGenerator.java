@@ -156,7 +156,76 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.SALT)
 				.unlockedBy("has_item", has(TofuItems.SALT))
 				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK)
+				.requires(TofuItems.BUCKET_SOYMILK)
+				.requires(Items.GLASS_BOTTLE)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_APPLE)
+				.requires(TofuItems.BUCKET_SOYMILK)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.APPLE)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_COCOA)
+				.requires(TofuItems.BUCKET_SOYMILK)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.COCOA_BEANS)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_KINAKO)
+				.requires(TofuItems.BUCKET_SOYMILK)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(TofuItems.KINAKO)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_PUDDING)
+				.requires(TofuItems.BUCKET_SOYMILK)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.SUGAR)
+				.requires(Items.EGG)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_PUMPKIN)
+				.requires(TofuItems.BUCKET_SOYMILK)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.PUMPKIN)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK))
+				.save(consumer);
 
+		ShapelessRecipeBuilder.shapeless(TofuItems.KINAKO_MANJU)
+				.requires(TofuItems.KINAKO)
+				.requires(Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.KINAKO))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDA_MANJU)
+				.requires(TofuItems.ZUNDA)
+				.requires(Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.ZUNDA))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.NETHER_MANJU)
+				.requires(TofuItems.SEEDS_SOYBEANS_NETHER)
+				.requires(Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOUL_MANJU)
+				.requires(TofuItems.SEEDS_SOYBEANS_SOUL)
+				.requires(Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOY_CHOCOLATE)
+				.requires(TofuItems.BUCKET_SOYMILK)
+				.requires(Items.COCOA_BEANS)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUNIAN_SOY_CHOCOLATE)
+				.requires(TofuItems.BUCKET_SOYMILK)
+				.requires(Items.COCOA_BEANS)
+				.requires(Items.SUGAR)
+				.requires(TofuItems.LEEK)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK))
+				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.SALTPAN)
 				.pattern("# #")

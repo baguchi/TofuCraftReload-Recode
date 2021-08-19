@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:bucket_soymilk"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:cocoa_beans"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:soymilk_cocoa"
+  }
+}

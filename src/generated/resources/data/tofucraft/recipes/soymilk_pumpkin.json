@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:bucket_soymilk"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:pumpkin"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:soymilk_pumpkin"
+  }
+}

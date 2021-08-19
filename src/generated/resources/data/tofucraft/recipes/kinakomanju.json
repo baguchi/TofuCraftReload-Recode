@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:kinako"
+    },
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:kinakomanju"
+  }
+}
