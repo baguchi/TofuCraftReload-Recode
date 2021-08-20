@@ -93,14 +93,12 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 	@Override
 	public boolean canSurvive(BlockState p_51028_, LevelReader p_51029_, BlockPos p_51030_) {
 		BlockPos blockpos = p_51030_.below();
-		if (p_51028_.getBlock() == this) //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
-			return p_51029_.getBlockState(blockpos).canSustainPlant(p_51029_, blockpos, Direction.UP, this);
 		return this.mayPlaceOn(p_51029_.getBlockState(blockpos), p_51029_, blockpos);
 	}
 
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter p_52303_, BlockPos p_52304_) {
-		return state.is(Blocks.SOUL_SAND) || state.is(Blocks.SOUL_SOIL);
+		return state.is(Blocks.SOUL_SAND) || state.is(Blocks.SOUL_SOIL) || state.is(Blocks.WARPED_NYLIUM);
 	}
 
 	@Override
