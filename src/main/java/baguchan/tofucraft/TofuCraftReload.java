@@ -5,6 +5,7 @@ import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
+import baguchan.tofucraft.world.TofuBiomeSource;
 import baguchan.tofucraft.world.TofuChunkGenerator;
 import baguchan.tofucraft.world.gen.feature.DefaultTofuFeatures;
 import net.minecraft.core.Registry;
@@ -59,6 +60,7 @@ public class TofuCraftReload {
 		CapabilityManager.INSTANCE.register(SoyHealthCapability.class);
 		DefaultTofuFeatures.init();
 		Registry.register(Registry.CHUNK_GENERATOR, TofuCraftReload.prefix("chunk_generator"), TofuChunkGenerator.CODEC);
+		Registry.register(Registry.BIOME_SOURCE, TofuCraftReload.prefix("biome_privider"), TofuBiomeSource.CODEC);
 	}
 
 	private void setupMessages() {
