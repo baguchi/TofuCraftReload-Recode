@@ -1,6 +1,7 @@
 package baguchan.tofucraft;
 
 import baguchan.tofucraft.capability.SoyHealthCapability;
+import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.resources.ResourceLocation;
@@ -25,8 +26,10 @@ import net.minecraftforge.fmllegacy.network.PacketDistributor;
 public class CommonEvents {
 	@SubscribeEvent
 	public static void onAttachEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {
-		if (event.getObject() instanceof LivingEntity)
+		if (event.getObject() instanceof LivingEntity) {
 			event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "soy_health"), new SoyHealthCapability());
+			event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "tofu_living"), new TofuLivingCapability());
+		}
 	}
 
 	@SubscribeEvent
@@ -42,8 +45,12 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onUpdate(LivingEvent.LivingUpdateEvent event) {
 		LivingEntity livingEntity = event.getEntityLiving();
-		if (!livingEntity.level.isClientSide())
+		if (!livingEntity.level.isClientSide()) {
 			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(SoyHealthCapability::tick);
+		}
+		livingEntity.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(tofuLivingCapability -> {
+			tofuLivingCapability.tick(livingEntity);
+		});
 	}
 
 	@SubscribeEvent

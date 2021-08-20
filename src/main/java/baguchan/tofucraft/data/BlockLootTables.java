@@ -73,6 +73,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFU_TERRAIN);
 		createTofuDiamondOreDrop(TofuBlocks.ORE_TOFU_DIAMOND, TofuItems.TOFUDIAMOND_NUGGET);
 
+		this.add(TofuBlocks.TOFU_PORTAL, noDrop());
 		dropSelf(TofuBlocks.SALTPAN);
 	}
 
@@ -106,7 +107,6 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 
 	@Override
 	protected Iterable<Block> getKnownBlocks() {
-		// todo 1.15 once all blockitems are ported, change this to all TF blocks, so an error will be thrown if we're missing any tables
 		return knownBlocks;
 	}
 }

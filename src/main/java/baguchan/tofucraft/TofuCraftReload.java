@@ -1,6 +1,7 @@
 package baguchan.tofucraft;
 
 import baguchan.tofucraft.capability.SoyHealthCapability;
+import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
@@ -35,6 +36,8 @@ public class TofuCraftReload {
 
 	@CapabilityInject(SoyHealthCapability.class)
 	public static final Capability<SoyHealthCapability> SOY_HEALTH_CAPABILITY = null;
+	@CapabilityInject(TofuLivingCapability.class)
+	public static final Capability<TofuLivingCapability> TOFU_LIVING_CAPABILITY = null;
 
 	public static final SimpleChannel CHANNEL = NetworkRegistry.ChannelBuilder.named(new ResourceLocation("tofucraft", "net"))
 			.networkProtocolVersion(() -> NETWORK_PROTOCOL)

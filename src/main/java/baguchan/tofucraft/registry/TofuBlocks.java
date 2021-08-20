@@ -4,6 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.block.KinuTofuBlock;
 import baguchan.tofucraft.block.TofuBlock;
 import baguchan.tofucraft.block.TofuFluidBlock;
+import baguchan.tofucraft.block.TofuPortalBlock;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
@@ -51,7 +52,7 @@ public class TofuBlocks {
 	public static final Block TOFU_TERRAIN = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block ORE_TOFU_DIAMOND = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 
-
+	public static final Block TOFU_PORTAL = new TofuPortalBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(-1.0F, 10000.0F).randomTicks().noOcclusion().noCollission().sound(SoundType.GLASS));
 	public static final Block SALTPAN = new SaltPanBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().noOcclusion().sound(SoundType.WOOD));
 
 	@SubscribeEvent
@@ -86,6 +87,7 @@ public class TofuBlocks {
 		registry.getRegistry().register(TOFU_TERRAIN.setRegistryName("tofu_terrain"));
 		registry.getRegistry().register(ORE_TOFU_DIAMOND.setRegistryName("ore_tofu_diamond"));
 
+		registry.getRegistry().register(TOFU_PORTAL.setRegistryName("tofuportal"));
 		registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
 	}
 
