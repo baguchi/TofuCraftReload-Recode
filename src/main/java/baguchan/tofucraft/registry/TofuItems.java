@@ -1,10 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.item.BitternItem;
-import baguchan.tofucraft.item.BugleItem;
-import baguchan.tofucraft.item.SoymilkBottleItem;
-import baguchan.tofucraft.item.TofuScoopItem;
+import baguchan.tofucraft.item.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -119,6 +116,7 @@ public class TofuItems {
 
 	public static final Item BUGLE = new BugleItem((new Item.Properties()).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFUSCOOP = new TofuScoopItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUSTICK = new TofuStickItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuItemGroup.TOFUCRAFT));
 
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
@@ -151,6 +149,7 @@ public class TofuItems {
 		register(registry, BITTERN, "bittern_bottle");
 		register(registry, SALT, "salt");
 		register(registry, TOFUSCOOP, "tofuscoop");
+		register(registry, TOFUSTICK, "tofustick");
 		register(registry, SEEDS_SOYBEANS, "seeds_soybeans");
 		register(registry, SEEDS_SOYBEANS_NETHER, "seeds_soybeans_nether");
 		register(registry, SEEDS_SOYBEANS_SOUL, "seeds_soybeans_soul");

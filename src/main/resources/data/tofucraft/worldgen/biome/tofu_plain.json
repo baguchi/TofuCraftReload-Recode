@@ -20,6 +20,8 @@
   "surface_builder": "tofucraft:tofu",
   "carvers": {
     "air": [
+      "tofucraft:tofu_cave",
+      "tofucraft:tofu_canyon"
     ],
     "liquid": []
   },
@@ -31,9 +33,12 @@
     [],
     [],
     [
+      "tofucraft:ore_tofu_diamond",
+      "tofucraft:ore_tofu_diamond_large"
     ],
     [],
     [
+      "tofucraft:leek"
     ],
     [
       "minecraft:freeze_top_layer"

@@ -44,6 +44,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFU_TERRAIN);
 		toBlock(TofuBlocks.ORE_TOFU_DIAMOND);
 
+		itemBlockFlat(TofuBlocks.LEEK);
+
 		//item
 		singleTex(TofuItems.TOFUKINU);
 		singleTex(TofuItems.TOFUMOMEN);
@@ -103,6 +105,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.BUCKET_BITTERN);
 
 		singleTexTool(TofuItems.TOFUSCOOP);
+		singleTexTool(TofuItems.TOFUSTICK);
 		singleTexTool(TofuItems.BUGLE);
 
 		singleTexTool(TofuItems.TOFU_KINU_SWORD);
@@ -217,6 +220,19 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 	private void toBlockModel(Block b, ResourceLocation model) {
 		withExistingParent(b.getRegistryName().getPath(), model);
+	}
+
+	public ItemModelBuilder itemBlockFlat(Block block) {
+		return itemBlockFlat(block, blockName(block));
+	}
+
+	public ItemModelBuilder itemBlockFlat(Block block, String name) {
+		return withExistingParent(blockName(block), mcLoc("item/generated"))
+				.texture("layer0", modLoc("block/" + name));
+	}
+
+	public String blockName(Block block) {
+		return block.getRegistryName().getPath();
 	}
 
 	@Override

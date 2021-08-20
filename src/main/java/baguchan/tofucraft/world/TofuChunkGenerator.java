@@ -1,5 +1,6 @@
 package baguchan.tofucraft.world;
 
+import baguchan.tofucraft.world.gen.TofuAquifer;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
@@ -214,7 +215,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 	}
 
 	private Aquifer getAquifer(int p_158397_, int p_158398_, ChunkPos p_158399_) {
-		return !this.isAquifersEnabled() ? Aquifer.createDisabled(this.getSeaLevel(), this.defaultFluid) : Aquifer.create(p_158399_, this.barrierNoise, this.waterLevelNoise, this.lavaNoise, this.settings.get(), this.sampler, p_158397_ * this.cellHeight, p_158398_ * this.cellHeight);
+		return !this.isAquifersEnabled() ? Aquifer.createDisabled(this.getSeaLevel(), this.defaultFluid) : TofuAquifer.create(p_158399_, this.barrierNoise, this.waterLevelNoise, this.lavaNoise, this.settings.get(), this.sampler, p_158397_ * this.cellHeight, p_158398_ * this.cellHeight);
 	}
 
 	protected BlockState updateNoiseAndGenerateBaseState(Aquifer p_158441_, BaseStoneSource p_158442_, NoiseModifier p_158443_, int p_158444_, int p_158445_, int p_158446_, double p_158447_) {

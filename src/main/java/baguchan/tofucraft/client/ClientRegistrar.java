@@ -35,6 +35,8 @@ public class ClientRegistrar {
 		setRenderLayer(TofuBlocks.SOYBEAN_NETHER, RenderType.cutout());
 		setRenderLayer(TofuBlocks.SOYBEAN_SOUL, RenderType.cutout());
 
+		setRenderLayer(TofuBlocks.LEEK, RenderType.cutout());
+
 		setRenderLayer(TofuBlocks.TOFU_PORTAL, RenderType.translucent());
 		setRenderLayer(TofuBlocks.SALTPAN, RenderType.cutout());
 	}

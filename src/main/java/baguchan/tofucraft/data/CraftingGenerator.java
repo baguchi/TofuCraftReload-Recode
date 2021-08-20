@@ -261,5 +261,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('X', Blocks.COBBLESTONE_SLAB)
 				.unlockedBy("has_item", has(Blocks.COBBLESTONE_SLAB))
 				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(TofuItems.TOFUSTICK)
+				.pattern("#")
+				.pattern("X")
+				.pattern("X")
+				.define('X', Tags.Items.RODS_WOODEN)
+				.define('#', Blocks.IRON_BARS)
+				.unlockedBy("has_item", has(Blocks.IRON_BARS))
+				.save(consumer);
 	}
 }
