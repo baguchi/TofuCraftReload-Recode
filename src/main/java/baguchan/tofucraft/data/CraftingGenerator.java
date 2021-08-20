@@ -81,8 +81,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 		axeItem(consumer, "tofu_kinu_axe", TofuItems.TOFU_KINU_AXE, TofuBlocks.KINUTOFU.asItem(), Tags.Items.RODS_WOODEN);
 		shovelItem(consumer, "tofu_kinu_shovel", TofuItems.TOFU_KINU_SHOVEL, TofuBlocks.KINUTOFU.asItem(), Tags.Items.RODS_WOODEN);
 
-		//test
-
 		tofuBlockItem(consumer, TofuBlocks.KINUTOFU.asItem(), TofuItems.TOFUKINU);
 		tofuBlockItem(consumer, TofuBlocks.MOMENTOFU.asItem(), TofuItems.TOFUMOMEN);
 		tofuBlockItem(consumer, TofuBlocks.ISHITOFU.asItem(), TofuItems.TOFUISHI);
