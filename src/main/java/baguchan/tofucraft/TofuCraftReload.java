@@ -60,7 +60,7 @@ public class TofuCraftReload {
 		CapabilityManager.INSTANCE.register(SoyHealthCapability.class);
 		DefaultTofuFeatures.init();
 		Registry.register(Registry.CHUNK_GENERATOR, TofuCraftReload.prefix("chunk_generator"), TofuChunkGenerator.CODEC);
-		Registry.register(Registry.BIOME_SOURCE, TofuCraftReload.prefix("biome_privider"), TofuBiomeSource.CODEC);
+		Registry.register(Registry.BIOME_SOURCE, TofuCraftReload.prefix("biome_provider"), TofuBiomeSource.CODEC);
 	}
 
 	private void setupMessages() {

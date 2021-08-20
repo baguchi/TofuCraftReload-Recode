@@ -18,6 +18,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -25,15 +26,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Random;
 
 public class TofuPortalBlock extends Block {
-	private static final VoxelShape AABB = Block.box(0.0D, 0.0D, 0.0D, 1.0D, 0.8125D, 1.0D);
-
 	public TofuPortalBlock(Properties props) {
 		super(props);
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-		return AABB;
+	@Deprecated
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+		return Shapes.empty();
 	}
 
 	public boolean trySpawnPortal(Level worldIn, BlockPos pos) {
@@ -56,11 +56,11 @@ public class TofuPortalBlock extends Block {
 
 			BlockState neighboringState = world.getBlockState(pos.relative(facing));
 
-			good = neighboringState.getBlock() == TofuBlocks.GRILLEDTOFU || neighboringState == state;
+			good = facing == Direction.UP || neighboringState.getBlock() == TofuBlocks.GRILLEDTOFU || neighboringState == state;
 		}
 
 		if (!good) {
-			world.globalLevelEvent(2001, pos, Block.getId(state));
+			world.levelEvent(2001, pos, Block.getId(state));
 			world.setBlock(pos, TofuBlocks.SOYMILK.defaultBlockState(), 0b11);
 		}
 	}
@@ -69,18 +69,15 @@ public class TofuPortalBlock extends Block {
 	public void entityInside(BlockState p_196262_1_, Level p_196262_2_, BlockPos p_196262_3_, Entity p_196262_4_) {
 		super.entityInside(p_196262_1_, p_196262_2_, p_196262_3_, p_196262_4_);
 
-		if (p_196262_4_.isOnPortalCooldown()) {
-			p_196262_4_.setPortalCooldown();
-		} else {
-			p_196262_4_.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(handler -> {
-				handler.setInPortal(true);
-				int waitTime = handler.getPortalTimer();
-				if (waitTime >= 80) {
-					attemptSendPlayer(p_196262_4_, p_196262_2_);
-					handler.setPortalTimer(0);
-				}
-			});
-		}
+		p_196262_4_.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(handler -> {
+			handler.setInPortal(true);
+			int waitTime = handler.getPortalTimer();
+			if (waitTime >= 80) {
+				attemptSendPlayer(p_196262_4_, p_196262_2_);
+				handler.setPortalTimer(0);
+			}
+		});
+
 	}
 
 	private static ResourceKey<Level> getDestination(Entity entity) {
@@ -89,7 +86,7 @@ public class TofuPortalBlock extends Block {
 	}
 
 	public static void attemptSendPlayer(Entity entity, Level oldworld) {
-		if (!entity.isAlive() || entity.level.isClientSide) {
+		if (!entity.isAlive()) {
 			return;
 		}
 

@@ -101,7 +101,7 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 
 	@Nonnull
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
-		return (capability == TofuCraftReload.SOY_HEALTH_CAPABILITY) ? LazyOptional.of(() -> this).cast() : LazyOptional.empty();
+		return (capability == TofuCraftReload.TOFU_LIVING_CAPABILITY) ? LazyOptional.of(() -> this).cast() : LazyOptional.empty();
 	}
 
 	public CompoundTag serializeNBT() {

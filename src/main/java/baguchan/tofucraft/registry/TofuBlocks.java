@@ -52,7 +52,9 @@ public class TofuBlocks {
 	public static final Block TOFU_TERRAIN = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block ORE_TOFU_DIAMOND = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 
-	public static final Block TOFU_PORTAL = new TofuPortalBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(-1.0F, 10000.0F).randomTicks().noOcclusion().noCollission().sound(SoundType.GLASS));
+	public static final Block TOFU_PORTAL = new TofuPortalBlock(BlockBehaviour.Properties.of(Material.PORTAL).strength(-1.0F).noCollission().noOcclusion().noDrops().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
+		return 11;
+	}));
 	public static final Block SALTPAN = new SaltPanBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().noOcclusion().sound(SoundType.WOOD));
 
 	@SubscribeEvent
