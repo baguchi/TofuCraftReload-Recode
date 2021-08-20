@@ -17,7 +17,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 	@Override
 	protected void addTags() {
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(TofuBlocks.KINUTOFU, TofuBlocks.MOMENTOFU, TofuBlocks.HELLTOFU, TofuBlocks.SOULTOFU
-				, TofuBlocks.GRILLEDTOFU, TofuBlocks.ZUNDATOFU);
+				, TofuBlocks.GRILLEDTOFU, TofuBlocks.ZUNDATOFU
+				, TofuBlocks.TOFU_TERRAIN, TofuBlocks.ORE_TOFU_DIAMOND);
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(TofuBlocks.ISHITOFU, TofuBlocks.ISHITOFU_BRICK, TofuBlocks.ISHITOFU_SMOOTH_BRICK, TofuBlocks.ISHITOFU_CHISELED_BRICK
 				, TofuBlocks.METALTOFU, TofuBlocks.DIAMONDTOFU
 				, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU_SMOOTH_BRICK

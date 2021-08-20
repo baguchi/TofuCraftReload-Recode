@@ -32,6 +32,9 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.SOULTOFU);
 		simpleBlock(TofuBlocks.SOULTOFU_BRICK);
 		simpleBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK);
+
+		simpleBlock(TofuBlocks.TOFU_TERRAIN);
+		simpleBlock(TofuBlocks.ORE_TOFU_DIAMOND);
 	}
 
 	@Nonnull

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:tofudiamond"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:tofudiamondnugget",
+    "count": 9
+  }
+}

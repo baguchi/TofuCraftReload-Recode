@@ -37,9 +37,8 @@ public class TofuBlocks {
 	public static final Block ISHITOFU_CHISELED_BRICK = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
 	public static final Block METALTOFU = new Block(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	public static final Block DIAMONDTOFU = new Block(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
-	public static final Block GRILLEDTOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).randomTicks().strength(0.35F, 0.5F).sound(SoundType.SNOW));
-	public static final Block ZUNDATOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).randomTicks().strength(0.35F, 0.5F).sound(SoundType.SNOW));
-
+	public static final Block GRILLEDTOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final Block ZUNDATOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 
 	public static final Block HELLTOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block HELLTOFU_BRICK = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
@@ -48,6 +47,9 @@ public class TofuBlocks {
 	public static final Block SOULTOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block SOULTOFU_BRICK = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
 	public static final Block SOULTOFU_SMOOTH_BRICK = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
+
+	public static final Block TOFU_TERRAIN = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final Block ORE_TOFU_DIAMOND = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 
 
 	public static final Block SALTPAN = new SaltPanBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().noOcclusion().sound(SoundType.WOOD));
@@ -81,6 +83,9 @@ public class TofuBlocks {
 		registry.getRegistry().register(SOULTOFU_BRICK.setRegistryName("tofusoul_brick"));
 		registry.getRegistry().register(SOULTOFU_SMOOTH_BRICK.setRegistryName("tofusoul_smooth_brick"));
 
+		registry.getRegistry().register(TOFU_TERRAIN.setRegistryName("tofu_terrain"));
+		registry.getRegistry().register(ORE_TOFU_DIAMOND.setRegistryName("ore_tofu_diamond"));
+
 		registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
 	}
 
@@ -104,6 +109,9 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(SOULTOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(SOULTOFU_BRICK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(SOULTOFU_SMOOTH_BRICK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+
+		TofuItems.register(registry, new BlockItem(TOFU_TERRAIN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(ORE_TOFU_DIAMOND, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 
 
 		TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));

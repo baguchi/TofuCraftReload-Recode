@@ -70,7 +70,14 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.SOULTOFU_BRICK);
 		dropSelf(TofuBlocks.SOULTOFU_SMOOTH_BRICK);
 
+		dropSelf(TofuBlocks.TOFU_TERRAIN);
+		createTofuDiamondOreDrop(TofuBlocks.ORE_TOFU_DIAMOND, TofuItems.TOFUDIAMOND_NUGGET);
+
 		dropSelf(TofuBlocks.SALTPAN);
+	}
+
+	protected static LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {
+		return createSilkTouchDispatchTable(p_124140_, applyExplosionDecay(p_124140_, LootItem.lootTableItem(p_124141_).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
 	}
 
 	private void registerLeavesNoSapling(Block leaves) {
