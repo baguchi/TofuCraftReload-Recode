@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "tofucraft:blocktofuishi",
+    "tofucraft:tofuishi_brick",
+    "tofucraft:tofuishi_smooth_brick",
+    "tofucraft:tofuishi_chiseled_brick",
     "tofucraft:blocktofumetal",
     "tofucraft:blocktofudiamond",
     "tofucraft:tofuhell_brick",

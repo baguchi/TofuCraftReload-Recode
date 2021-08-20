@@ -56,6 +56,12 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material), result, xp, 600).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + result.getRegistryName().getPath()));
 	}
 
+	protected final void foodCooking(Item material, Item result, float xp, Consumer<FinishedRecipe> consumer, String recipeName) {
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material), result, xp, 200).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("smelting_" + recipeName));
+		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material), result, xp, 100).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("smoking_" + recipeName));
+		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material), result, xp, 600).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + recipeName));
+	}
+
 	protected final void helmetItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material) {
 		ShapedRecipeBuilder.shaped(result)
 				.pattern("###")
@@ -140,6 +146,15 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 
 	protected final void tofuBlockItem(Consumer<FinishedRecipe> consumer, Item result, Item material) {
 		ShapedRecipeBuilder.shaped(result)
+				.pattern("##")
+				.pattern("##")
+				.define('#', material)
+				.unlockedBy("has_item", has(material))
+				.save(consumer);
+	}
+
+	protected final void decorationTofuBlockItem(Consumer<FinishedRecipe> consumer, Item result, Item material) {
+		ShapedRecipeBuilder.shaped(result, 4)
 				.pattern("##")
 				.pattern("##")
 				.define('#', material)

@@ -33,7 +33,7 @@ public class KinuTofuBlock extends Block {
 
 	@Override
 	public void fallOn(Level p_152426_, BlockState p_152427_, BlockPos p_152428_, Entity p_152429_, float p_152430_) {
-		super.fallOn(p_152426_, p_152427_, p_152428_, p_152429_, p_152430_);
+		super.fallOn(p_152426_, p_152427_, p_152428_, p_152429_, p_152430_ * 0.5F);
 		p_152426_.destroyBlock(p_152428_, true);
 	}
 

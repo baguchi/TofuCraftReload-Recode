@@ -55,8 +55,13 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		registerTofuDrop(TofuBlocks.KINUTOFU, TofuItems.TOFUKINU);
 		registerTofuDrop(TofuBlocks.MOMENTOFU, TofuItems.TOFUMOMEN);
 		registerTofuDrop(TofuBlocks.ISHITOFU, TofuItems.TOFUISHI);
+		dropSelf(TofuBlocks.ISHITOFU_BRICK);
+		dropSelf(TofuBlocks.ISHITOFU_SMOOTH_BRICK);
+		dropSelf(TofuBlocks.ISHITOFU_CHISELED_BRICK);
 		registerTofuDrop(TofuBlocks.METALTOFU, TofuItems.TOFUMETAL);
 		registerTofuDrop(TofuBlocks.DIAMONDTOFU, TofuItems.TOFUDIAMOND);
+		registerTofuDrop(TofuBlocks.GRILLEDTOFU, TofuItems.TOFUGRILLED);
+		registerTofuDrop(TofuBlocks.ZUNDATOFU, TofuItems.TOFUZUNDA);
 		registerTofuDrop(TofuBlocks.HELLTOFU, TofuItems.TOFUHELL);
 		registerTofuDrop(TofuBlocks.SOULTOFU, TofuItems.TOFUSOUL);
 

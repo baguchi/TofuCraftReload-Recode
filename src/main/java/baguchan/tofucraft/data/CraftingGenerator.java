@@ -84,8 +84,18 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.KINUTOFU.asItem(), TofuItems.TOFUKINU);
 		tofuBlockItem(consumer, TofuBlocks.MOMENTOFU.asItem(), TofuItems.TOFUMOMEN);
 		tofuBlockItem(consumer, TofuBlocks.ISHITOFU.asItem(), TofuItems.TOFUISHI);
+		decorationTofuBlockItem(consumer, TofuBlocks.ISHITOFU_BRICK.asItem(), TofuBlocks.ISHITOFU.asItem());
+		decorationTofuBlockItem(consumer, TofuBlocks.ISHITOFU_SMOOTH_BRICK.asItem(), TofuBlocks.ISHITOFU_BRICK.asItem());
 		tofuBlockItem(consumer, TofuBlocks.METALTOFU.asItem(), TofuItems.TOFUMETAL);
 		tofuBlockItem(consumer, TofuBlocks.DIAMONDTOFU.asItem(), TofuItems.TOFUDIAMOND);
+		tofuBlockItem(consumer, TofuBlocks.GRILLEDTOFU.asItem(), TofuItems.TOFUGRILLED);
+		tofuBlockItem(consumer, TofuBlocks.ZUNDATOFU.asItem(), TofuItems.TOFUZUNDA);
+
+		foodCooking(TofuItems.TOFUKINU, TofuItems.TOFUGRILLED, 0.1F, consumer, "grilled_from_kinu");
+		foodCooking(TofuItems.TOFUMOMEN, TofuItems.TOFUGRILLED, 0.1F, consumer, "grilled_from_momen");
+		foodCooking(TofuBlocks.KINUTOFU.asItem(), TofuBlocks.GRILLEDTOFU.asItem(), 0.1F, consumer, "grilled_block_from_kinu");
+		foodCooking(TofuBlocks.MOMENTOFU.asItem(), TofuBlocks.GRILLEDTOFU.asItem(), 0.1F, consumer, "grilled_block_from_momen");
+
 		tofuBlockItem(consumer, TofuBlocks.HELLTOFU.asItem(), TofuItems.TOFUHELL);
 		tofuBlockItem(consumer, TofuBlocks.HELLTOFU_BRICK.asItem(), TofuBlocks.HELLTOFU.asItem());
 		tofuBlockItem(consumer, TofuBlocks.HELLTOFU_SMOOTH_BRICK.asItem(), TofuBlocks.HELLTOFU_BRICK.asItem());
