@@ -1,0 +1,14 @@
+{
+  "type": "default",
+  "config": {
+    "top_material": {
+      "Name": "tofucraft:tofu_terrain"
+    },
+    "under_material": {
+      "Name": "tofucraft:tofu_terrain"
+    },
+    "underwater_material": {
+      "Name": "tofucraft:tofu_terrain"
+    }
+  }
+}
