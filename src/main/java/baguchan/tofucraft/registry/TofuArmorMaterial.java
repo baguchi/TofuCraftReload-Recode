@@ -14,9 +14,9 @@ import java.util.function.Supplier;
 public enum TofuArmorMaterial implements ArmorMaterial {
 	KINU("tofucraft:kinu", 1, new int[]{0, 0, 0, 0}, 8, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUKINU)),
 	MOMEN("tofucraft:momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMOMEN)),
-	SOLID("tofucraft:solid", 10, new int[]{1, 4, 5, 2}, 16, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUISHI)),
-	METAL("tofucraft:metal", 15, new int[]{2, 5, 6, 2}, 12, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMETAL)),
-	DIAMOND("tofucraft:diamond", 40, new int[]{4, 7, 9, 4}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.5F, 0.0F, () -> Ingredient.of(TofuItems.TOFUDIAMOND));
+	SOLID("tofucraft:solid", 10, new int[]{1, 4, 5, 2}, 12, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUISHI)),
+	METAL("tofucraft:metal", 14, new int[]{2, 5, 6, 2}, 14, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMETAL)),
+	DIAMOND("tofucraft:diamond", 40, new int[]{4, 7, 9, 4}, 16, SoundEvents.ARMOR_EQUIP_DIAMOND, 2.5F, 0.0F, () -> Ingredient.of(TofuItems.TOFUDIAMOND));
 
 	private static final int[] HEALTH_PER_SLOT;
 
