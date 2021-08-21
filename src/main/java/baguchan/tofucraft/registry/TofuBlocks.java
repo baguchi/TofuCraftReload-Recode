@@ -254,7 +254,7 @@ public class TofuBlocks {
 
 
 		TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUBED, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)) {
+		TofuItems.register(registry, new BlockItem(TOFUBED, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT).stacksTo(1)) {
 			@Override
 			public void initializeClient(@Nonnull Consumer<IItemRenderProperties> consumer) {
 				consumer.accept(new IItemRenderProperties() {

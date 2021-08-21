@@ -9,6 +9,7 @@ import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -63,5 +64,6 @@ public class TofuEntityTypes {
 	@SubscribeEvent
 	public static void registerEntityAttribute(EntityAttributeCreationEvent event) {
 		event.put(TOFUCOW, TofuCowEntity.createAttributes().build());
+		event.put(TOFUSLIME, Monster.createMonsterAttributes().build());
 	}
 }
