@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofuishi"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofufence_ishi",
+    "count": 6
+  }
+}
