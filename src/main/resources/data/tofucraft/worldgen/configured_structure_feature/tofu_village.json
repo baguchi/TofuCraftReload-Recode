@@ -1,0 +1,7 @@
+{
+  "config": {
+    "start_pool": "tofucraft:tofu_village/town_centers",
+    "size": 6
+  },
+  "type": "tofucraft:tofu_village"
+}

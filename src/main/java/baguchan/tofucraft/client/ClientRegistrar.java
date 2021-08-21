@@ -4,6 +4,8 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.client.render.FukumameRender;
 import baguchan.tofucraft.client.render.NetherFukumameRender;
 import baguchan.tofucraft.client.render.SoulFukumameRender;
+import baguchan.tofucraft.client.render.entity.TofuCowRender;
+import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
@@ -56,6 +58,12 @@ public class ClientRegistrar {
 		setRenderLayer(TofuBlocks.WALLTOFUTORCH_ISHI, RenderType.cutout());
 		setRenderLayer(TofuBlocks.WALLTOFUTORCH_METAL, RenderType.cutout());
 
+		setRenderLayer(TofuBlocks.TOFULADDER_KINU, RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFULADDER_MOMEN, RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFULADDER_ISHI, RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFULADDER_ISHIBRICK, RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFULADDER_METAL, RenderType.cutout());
+
 		setRenderLayer(TofuBlocks.LEEK, RenderType.cutout());
 
 		setRenderLayer(TofuBlocks.TOFU_PORTAL, RenderType.translucent());
@@ -75,6 +83,9 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
+		event.registerEntityRenderer(TofuEntityTypes.TOFUCOW, TofuCowRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFUSLIME, TofuSlimeRender::new);
+
 		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME, FukumameRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.NETHER_FUKUMAME, NetherFukumameRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.SOUL_FUKUMAME, SoulFukumameRender::new);

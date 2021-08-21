@@ -46,11 +46,24 @@
     ]
   ],
   "starts": [
+    "tofucraft:tofu_village"
   ],
   "spawners": {
     "monster": [
+      {
+        "type": "tofucraft:tofuslime",
+        "weight": 100,
+        "minCount": 1,
+        "maxCount": 2
+      }
     ],
     "creature": [
+      {
+        "type": "tofucraft:tofucow",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
+      }
     ],
     "ambient": [
     ],

@@ -185,6 +185,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.ARMOR_TOFU_DIAMONDCHESTPLATE);
 		singleTex(TofuItems.ARMOR_TOFU_DIAMONDLEGGINGS);
 		singleTex(TofuItems.ARMOR_TOFU_DIAMONDBOOTS);
+
+		egg(TofuItems.TOFUCOW_SPAWNEGG);
+		egg(TofuItems.TOFUSLIME_SPAWNEGG);
 	}
 
 	public ItemModelBuilder torchItem(Block item) {
@@ -262,6 +265,10 @@ public class ItemModelGenerator extends ItemModelProvider {
 	public ItemModelBuilder itemBlockFlat(Block block, String name) {
 		return withExistingParent(blockName(block), mcLoc("item/generated"))
 				.texture("layer0", modLoc("block/" + name));
+	}
+
+	public ItemModelBuilder egg(Item item) {
+		return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
 	}
 
 	public String blockName(Block block) {

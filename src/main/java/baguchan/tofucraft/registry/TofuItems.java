@@ -121,6 +121,8 @@ public class TofuItems {
 	public static final Item NETHER_FUKUMAME = new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item SOUL_FUKUMAME = new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuItemGroup.TOFUCRAFT));
 
+	public static final Item TOFUCOW_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUCOW, 15460584, 10724259, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUSLIME_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
 		if (item instanceof BlockItem)
@@ -233,5 +235,8 @@ public class TofuItems {
 		register(registry, ARMOR_TOFU_DIAMONDCHESTPLATE, "tofu_diamond_chestplate");
 		register(registry, ARMOR_TOFU_DIAMONDLEGGINGS, "tofu_diamond_leggings");
 		register(registry, ARMOR_TOFU_DIAMONDBOOTS, "tofu_diamond_boots");
+
+		register(registry, TOFUCOW_SPAWNEGG, "tofucow_spawnegg");
+		register(registry, TOFUSLIME_SPAWNEGG, "tofuslime_spawnegg");
 	}
 }
