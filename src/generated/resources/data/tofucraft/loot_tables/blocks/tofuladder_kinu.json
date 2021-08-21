@@ -7,16 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "tofucraft:tofubed",
-              "properties": {
-                "part": "head"
-              }
-            }
-          ],
-          "name": "tofucraft:tofubed"
+          "name": "tofucraft:tofuladder_kinu"
         }
       ],
       "conditions": [

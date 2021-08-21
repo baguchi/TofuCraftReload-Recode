@@ -56,17 +56,17 @@
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "tofucraft:armorsolidhelmet"
+          "name": "tofucraft:tofu_solid_helmet"
         },
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "tofucraft:toolmetalshovel"
+          "name": "tofucraft:tofu_metal_shovel"
         },
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "tofucraft:swordmetal"
+          "name": "tofucraft:tofu_metal_sword"
         },
         {
           "type": "minecraft:item",

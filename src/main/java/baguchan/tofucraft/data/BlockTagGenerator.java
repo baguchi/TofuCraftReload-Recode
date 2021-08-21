@@ -20,6 +20,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.GRILLEDTOFU, TofuBlocks.ZUNDATOFU
 				, TofuBlocks.TOFUSTAIR_KINU, TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.TOFUSTAIR_ZUNDA
 				, TofuBlocks.TOFUSLAB_KINU, TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.TOFUSLAB_ZUNDA
+				, TofuBlocks.TOFULADDER_KINU, TofuBlocks.TOFULADDER_MOMEN
 				, TofuBlocks.TOFU_TERRAIN, TofuBlocks.ORE_TOFU_DIAMOND);
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(TofuBlocks.ISHITOFU, TofuBlocks.ISHITOFU_BRICK, TofuBlocks.ISHITOFU_SMOOTH_BRICK, TofuBlocks.ISHITOFU_CHISELED_BRICK
 				, TofuBlocks.METALTOFU, TofuBlocks.DIAMONDTOFU
@@ -27,6 +28,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU_SMOOTH_BRICK
 				, TofuBlocks.TOFUSTAIR_ISHI, TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.TOFUSTAIR_ISHIBRICK, TofuBlocks.TOFUSTAIR_HELLBRICK, TofuBlocks.TOFUSTAIR_SOULBRICK
 				, TofuBlocks.TOFUSLAB_ISHI, TofuBlocks.TOFUSLAB_METAL, TofuBlocks.TOFUSLAB_ISHIBRICK, TofuBlocks.TOFUSLAB_HELLBRICK, TofuBlocks.TOFUSLAB_SOULBRICK
+				, TofuBlocks.TOFULADDER_ISHI, TofuBlocks.TOFULADDER_ISHIBRICK, TofuBlocks.TOFULADDER_METAL
 				, TofuBlocks.TOFUCHEST
 				, TofuBlocks.TOFU_BEDROCK);
 
@@ -38,5 +40,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 
 		tag(TofuTags.Blocks.SOFT_TOFU).add(TofuBlocks.KINUTOFU, TofuBlocks.MOMENTOFU, TofuBlocks.HELLTOFU, TofuBlocks.SOULTOFU
 				, TofuBlocks.GRILLEDTOFU, TofuBlocks.ZUNDATOFU);
+		tag(BlockTags.BEDS).add(TofuBlocks.TOFUBED);
+		tag(BlockTags.CLIMBABLE).add(TofuBlocks.TOFULADDER_KINU, TofuBlocks.TOFULADDER_MOMEN, TofuBlocks.TOFULADDER_ISHI, TofuBlocks.TOFULADDER_ISHIBRICK, TofuBlocks.TOFULADDER_METAL);
 	}
 }

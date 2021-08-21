@@ -8,7 +8,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -97,6 +99,12 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.WALLTOFUTORCH_ISHI);
 		dropSelf(TofuBlocks.WALLTOFUTORCH_METAL);
 
+		dropSelf(TofuBlocks.TOFULADDER_KINU);
+		dropSelf(TofuBlocks.TOFULADDER_MOMEN);
+		dropSelf(TofuBlocks.TOFULADDER_ISHI);
+		dropSelf(TofuBlocks.TOFULADDER_ISHIBRICK);
+		dropSelf(TofuBlocks.TOFULADDER_METAL);
+
 		dropSelf(TofuBlocks.TOFU_TERRAIN);
 		this.add(TofuBlocks.ORE_TOFU_DIAMOND, createTofuDiamondOreDrop(TofuBlocks.ORE_TOFU_DIAMOND, TofuItems.TOFUDIAMOND_NUGGET));
 		dropSelf(TofuBlocks.TOFU_BEDROCK);
@@ -104,7 +112,9 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		this.add(TofuBlocks.LEEK, noDrop());
 
 		dropSelf(TofuBlocks.SALTPAN);
-		dropSelf(TofuBlocks.TOFUBED);
+		this.add(TofuBlocks.TOFUBED, (p_124233_) -> {
+			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);
+		});
 		dropSelf(TofuBlocks.TOFUCHEST);
 	}
 
