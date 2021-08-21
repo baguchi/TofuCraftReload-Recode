@@ -3,10 +3,12 @@ package baguchan.tofucraft.registry;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.TofuCowEntity;
 import baguchan.tofucraft.entity.TofuSlimeEntity;
+import baguchan.tofucraft.entity.TofunianEntity;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
@@ -18,9 +20,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuEntityTypes {
-	/*public static final EntityType<TofunianEntity> TOFUNIAN = EntityType.Builder.of(TofunianEntity::new, MobCategory.CREATURE)
+	public static final EntityType<TofunianEntity> TOFUNIAN = EntityType.Builder.of(TofunianEntity::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.2F).build("tofucraft:tofunian");
-			*/
+
 	/*public static final EntityType<TravelerTofunianEntity> TRAVELER_TOFUNIAN = EntityType.Builder.of(TravelerTofunianEntity::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.2F).build("tofucraft:traveler_tofunian");*/
 
@@ -51,9 +53,11 @@ public class TofuEntityTypes {
 	@SubscribeEvent
 	public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> registry) {
 		registry.getRegistry().register(TOFUCOW.setRegistryName("tofucow"));
+		registry.getRegistry().register(TOFUNIAN.setRegistryName("tofunian"));
 		registry.getRegistry().register(TOFUSLIME.setRegistryName("tofuslime"));
 
 		SpawnPlacements.register(TOFUCOW, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCowEntity::checkTofuAnimalSpawnRules);
+		SpawnPlacements.register(TOFUNIAN, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
 		SpawnPlacements.register(TOFUSLIME, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSlimeEntity::checkMonsterSpawnRules);
 
 		registry.getRegistry().register(FUKUMAME.setRegistryName("fukumame"));
@@ -64,6 +68,7 @@ public class TofuEntityTypes {
 	@SubscribeEvent
 	public static void registerEntityAttribute(EntityAttributeCreationEvent event) {
 		event.put(TOFUCOW, TofuCowEntity.createAttributes().build());
+		event.put(TOFUNIAN, TofunianEntity.createAttributes().build());
 		event.put(TOFUSLIME, Monster.createMonsterAttributes().build());
 	}
 }
