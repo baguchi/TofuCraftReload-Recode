@@ -118,8 +118,8 @@ public class TofuItems {
 	public static final Item TOFUSCOOP = new TofuScoopItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFUSTICK = new TofuStickItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item FUKUMAME = new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item NETHER_FUKUMAME = new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SOUL_FUKUMAME = new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item NETHER_FUKUMAME = new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOUL_FUKUMAME = new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuItemGroup.TOFUCRAFT));
 
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
