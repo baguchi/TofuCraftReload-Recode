@@ -1,5 +1,6 @@
 package baguchan.tofucraft.world;
 
+import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.world.gen.TofuAquifer;
 import baguchan.tofucraft.world.gen.TofuOreVeinifier;
 import com.google.common.collect.Lists;
@@ -270,7 +271,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 				if (flag) {
 					for (int i2 = 0; i2 < 5; ++i2) {
 						if (i2 <= p_64401_.nextInt(5)) {
-							p_64400_.setBlockState(blockpos$mutableblockpos.set(blockpos.getX(), i1 - i2, blockpos.getZ()), Blocks.BEDROCK.defaultBlockState(), false);
+							p_64400_.setBlockState(blockpos$mutableblockpos.set(blockpos.getX(), i1 - i2, blockpos.getZ()), TofuBlocks.TOFU_BEDROCK.defaultBlockState(), false);
 						}
 					}
 				}
@@ -278,7 +279,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 				if (flag1) {
 					for (int j2 = 4; j2 >= 0; --j2) {
 						if (j2 <= p_64401_.nextInt(5)) {
-							p_64400_.setBlockState(blockpos$mutableblockpos.set(blockpos.getX(), l + j2, blockpos.getZ()), Blocks.BEDROCK.defaultBlockState(), false);
+							p_64400_.setBlockState(blockpos$mutableblockpos.set(blockpos.getX(), l + j2, blockpos.getZ()), TofuBlocks.TOFU_BEDROCK.defaultBlockState(), false);
 						}
 					}
 				}

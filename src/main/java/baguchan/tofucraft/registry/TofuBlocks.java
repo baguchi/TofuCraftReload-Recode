@@ -48,8 +48,9 @@ public class TofuBlocks {
 
 	public static final Block TOFU_TERRAIN = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block ORE_TOFU_DIAMOND = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.5F, 1.0F).sound(SoundType.SNOW));
-	public static final Block LEEK = new LeekBlock(BlockBehaviour.Properties.of(Material.PLANT).instabreak().noOcclusion().sound(SoundType.GRASS));
+	public static final Block TOFU_BEDROCK = new Block(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F).sound(SoundType.STONE));
 
+	public static final Block LEEK = new LeekBlock(BlockBehaviour.Properties.of(Material.PLANT).instabreak().noOcclusion().sound(SoundType.GRASS));
 
 	public static final TofuPortalBlock TOFU_PORTAL = new TofuPortalBlock(BlockBehaviour.Properties.of(Material.PORTAL).strength(-1.0F).noCollission().noOcclusion().noDrops().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
 		return 11;
@@ -87,6 +88,8 @@ public class TofuBlocks {
 
 		registry.getRegistry().register(TOFU_TERRAIN.setRegistryName("tofu_terrain"));
 		registry.getRegistry().register(ORE_TOFU_DIAMOND.setRegistryName("ore_tofu_diamond"));
+		registry.getRegistry().register(TOFU_BEDROCK.setRegistryName("tofu_bedrock"));
+
 		registry.getRegistry().register(LEEK.setRegistryName("blockleek"));
 
 		registry.getRegistry().register(TOFU_PORTAL.setRegistryName("tofuportal"));

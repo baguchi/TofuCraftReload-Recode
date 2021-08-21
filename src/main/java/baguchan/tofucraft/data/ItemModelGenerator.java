@@ -43,6 +43,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		toBlock(TofuBlocks.TOFU_TERRAIN);
 		toBlock(TofuBlocks.ORE_TOFU_DIAMOND);
+		toBlock(TofuBlocks.TOFU_BEDROCK);
 
 		itemBlockFlat(TofuBlocks.LEEK);
 
