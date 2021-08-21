@@ -24,8 +24,9 @@ public class TofuStructures {
 	}
 
 	@SubscribeEvent
-	public static void registerfeature(RegistryEvent.Register<StructureFeature<?>> registry) {
+	public static void registerStructure(RegistryEvent.Register<StructureFeature<?>> registry) {
 		registry.getRegistry().register(TOFU_VILLAGE.setRegistryName("tofu_village"));
+		StructureFeature.STRUCTURES_REGISTRY.put(prefix("tofu_village"), TOFU_VILLAGE);
 	}
 
 	private static <FC extends FeatureConfiguration, F extends StructureFeature<FC>> ConfiguredStructureFeature<FC, F> configFeatureRegister(String p_127268_, ConfiguredStructureFeature<FC, F> p_127269_) {
