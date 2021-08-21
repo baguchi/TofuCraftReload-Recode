@@ -180,6 +180,14 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.unlockedBy("has_" + blockIn.getRegistryName().getPath(), has(blockIn)).save(consumer);
 	}
 
+	public void makeFence(Consumer<FinishedRecipe> consumer, Block fenceOut, Block blockIn) {
+		ShapedRecipeBuilder.shaped(fenceOut, 6)
+				.pattern("MMM")
+				.pattern("MMM")
+				.define('M', blockIn)
+				.unlockedBy("has_" + blockIn.getRegistryName().getPath(), has(blockIn)).save(consumer);
+	}
+
 	public void makeTorch(Consumer<FinishedRecipe> consumer, Block torchOut, Block blockIn) {
 		ShapedRecipeBuilder.shaped(torchOut, 4)
 				.pattern("C")

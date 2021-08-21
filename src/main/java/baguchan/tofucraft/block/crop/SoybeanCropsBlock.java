@@ -1,5 +1,6 @@
 package baguchan.tofucraft.block.crop;
 
+import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -22,6 +23,10 @@ public class SoybeanCropsBlock extends CropBlock {
 		return TofuItems.SEEDS_SOYBEANS;
 	}
 
+	@Override
+	protected boolean mayPlaceOn(BlockState p_52302_, BlockGetter p_52303_, BlockPos p_52304_) {
+		return super.mayPlaceOn(p_52302_, p_52303_, p_52304_) || p_52302_.is(TofuBlocks.TOFU_FARMLAND);
+	}
 
 	@Override
 	public VoxelShape getShape(BlockState p_52297_, BlockGetter p_52298_, BlockPos p_52299_, CollisionContext p_52300_) {

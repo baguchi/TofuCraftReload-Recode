@@ -90,6 +90,11 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUSLAB_HELLBRICK);
 		dropSelf(TofuBlocks.TOFUSLAB_SOULBRICK);
 
+		dropSelf(TofuBlocks.TOFUFENCE_KINU);
+		dropSelf(TofuBlocks.TOFUFENCE_MOMEN);
+		dropSelf(TofuBlocks.TOFUFENCE_ISHI);
+		dropSelf(TofuBlocks.TOFUFENCE_METAL);
+
 		dropSelf(TofuBlocks.TOFUTORCH_KINU);
 		dropSelf(TofuBlocks.TOFUTORCH_MOMEN);
 		dropSelf(TofuBlocks.TOFUTORCH_ISHI);
@@ -111,6 +116,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 
 		this.add(TofuBlocks.LEEK, noDrop());
 
+		dropOther(TofuBlocks.TOFU_FARMLAND, TofuBlocks.TOFU_TERRAIN);
 		dropSelf(TofuBlocks.SALTPAN);
 		this.add(TofuBlocks.TOFUBED, (p_124233_) -> {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);

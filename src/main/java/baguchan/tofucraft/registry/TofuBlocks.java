@@ -104,6 +104,11 @@ public class TofuBlocks {
 	public static final Block TOFULADDER_METAL = new LadderBlock(BlockBehaviour.Properties.copy(METALTOFU).noOcclusion());
 	public static final Block TOFULADDER_ISHIBRICK = new LadderBlock(BlockBehaviour.Properties.copy(ISHITOFU_BRICK).noOcclusion());
 
+	public static final Block TOFUFENCE_KINU = new WallBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.1F, 0.2F).sound(SoundType.SNOW).noOcclusion());
+	public static final Block TOFUFENCE_MOMEN = new WallBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW).noOcclusion());
+	public static final Block TOFUFENCE_ISHI = new WallBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE).noOcclusion());
+	public static final Block TOFUFENCE_METAL = new WallBlock(BlockBehaviour.Properties.copy(METALTOFU).noOcclusion());
+
 
 	public static final Block TOFU_TERRAIN = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block ORE_TOFU_DIAMOND = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.5F, 1.0F).sound(SoundType.SNOW));
@@ -114,6 +119,7 @@ public class TofuBlocks {
 	public static final TofuPortalBlock TOFU_PORTAL = new TofuPortalBlock(BlockBehaviour.Properties.of(Material.PORTAL).strength(-1.0F).noCollission().noOcclusion().noDrops().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
 		return 11;
 	}));
+	public static final Block TOFU_FARMLAND = new TofuFarmlandBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.5F, 1.0F).noOcclusion().sound(SoundType.SNOW));
 	public static final Block SALTPAN = new SaltPanBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().noOcclusion().sound(SoundType.WOOD));
 
 	public static final Block TOFUBED = new TofuBedBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.2F).noOcclusion().sound(SoundType.SNOW));
@@ -168,6 +174,11 @@ public class TofuBlocks {
 		registry.getRegistry().register(TOFUSLAB_HELLBRICK.setRegistryName("tofuslab_hellbrick"));
 		registry.getRegistry().register(TOFUSLAB_SOULBRICK.setRegistryName("tofuslab_soulbrick"));
 
+		registry.getRegistry().register(TOFUFENCE_KINU.setRegistryName("tofufence_kinu"));
+		registry.getRegistry().register(TOFUFENCE_MOMEN.setRegistryName("tofufence_momen"));
+		registry.getRegistry().register(TOFUFENCE_ISHI.setRegistryName("tofufence_ishi"));
+		registry.getRegistry().register(TOFUFENCE_METAL.setRegistryName("tofufence_metal"));
+
 		registry.getRegistry().register(TOFUTORCH_KINU.setRegistryName("tofutorch_kinu"));
 		registry.getRegistry().register(TOFUTORCH_MOMEN.setRegistryName("tofutorch_momen"));
 		registry.getRegistry().register(TOFUTORCH_ISHI.setRegistryName("tofutorch_ishi"));
@@ -191,6 +202,7 @@ public class TofuBlocks {
 		registry.getRegistry().register(LEEK.setRegistryName("blockleek"));
 
 		registry.getRegistry().register(TOFU_PORTAL.setRegistryName("tofuportal"));
+		registry.getRegistry().register(TOFU_FARMLAND.setRegistryName("tofu_farmland"));
 		registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
 
 		registry.getRegistry().register(TOFUBED.setRegistryName("tofubed"));
@@ -237,6 +249,11 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(TOFUSLAB_HELLBRICK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(TOFUSLAB_SOULBRICK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 
+		TofuItems.register(registry, new BlockItem(TOFUFENCE_KINU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUFENCE_MOMEN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUFENCE_ISHI, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUFENCE_METAL, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+
 		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_KINU, WALLTOFUTORCH_KINU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_MOMEN, WALLTOFUTORCH_MOMEN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_ISHI, WALLTOFUTORCH_ISHI, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
@@ -252,7 +269,7 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(ORE_TOFU_DIAMOND, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(LEEK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 
-
+		TofuItems.register(registry, new BlockItem(TOFU_FARMLAND, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(TOFUBED, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT).stacksTo(1)) {
 			@Override
