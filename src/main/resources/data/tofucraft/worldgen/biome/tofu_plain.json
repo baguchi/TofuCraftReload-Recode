@@ -21,7 +21,8 @@
   "carvers": {
     "air": [
       "tofucraft:tofu_cave",
-      "tofucraft:tofu_canyon"
+      "tofucraft:tofu_canyon",
+      "tofucraft:tofu_crevice"
     ],
     "liquid": []
   },
