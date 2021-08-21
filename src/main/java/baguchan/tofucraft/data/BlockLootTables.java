@@ -70,6 +70,33 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.SOULTOFU_BRICK);
 		dropSelf(TofuBlocks.SOULTOFU_SMOOTH_BRICK);
 
+		dropSelf(TofuBlocks.TOFUSTAIR_KINU);
+		dropSelf(TofuBlocks.TOFUSTAIR_MOMEN);
+		dropSelf(TofuBlocks.TOFUSTAIR_ISHI);
+		dropSelf(TofuBlocks.TOFUSTAIR_METAL);
+		dropSelf(TofuBlocks.TOFUSTAIR_ZUNDA);
+		dropSelf(TofuBlocks.TOFUSTAIR_ISHIBRICK);
+		dropSelf(TofuBlocks.TOFUSTAIR_HELLBRICK);
+		dropSelf(TofuBlocks.TOFUSTAIR_SOULBRICK);
+
+		dropSelf(TofuBlocks.TOFUSLAB_KINU);
+		dropSelf(TofuBlocks.TOFUSLAB_MOMEN);
+		dropSelf(TofuBlocks.TOFUSLAB_ISHI);
+		dropSelf(TofuBlocks.TOFUSLAB_METAL);
+		dropSelf(TofuBlocks.TOFUSLAB_ZUNDA);
+		dropSelf(TofuBlocks.TOFUSLAB_ISHIBRICK);
+		dropSelf(TofuBlocks.TOFUSLAB_HELLBRICK);
+		dropSelf(TofuBlocks.TOFUSLAB_SOULBRICK);
+
+		dropSelf(TofuBlocks.TOFUTORCH_KINU);
+		dropSelf(TofuBlocks.TOFUTORCH_MOMEN);
+		dropSelf(TofuBlocks.TOFUTORCH_ISHI);
+		dropSelf(TofuBlocks.TOFUTORCH_METAL);
+		dropSelf(TofuBlocks.WALLTOFUTORCH_KINU);
+		dropSelf(TofuBlocks.WALLTOFUTORCH_MOMEN);
+		dropSelf(TofuBlocks.WALLTOFUTORCH_ISHI);
+		dropSelf(TofuBlocks.WALLTOFUTORCH_METAL);
+
 		dropSelf(TofuBlocks.TOFU_TERRAIN);
 		this.add(TofuBlocks.ORE_TOFU_DIAMOND, createTofuDiamondOreDrop(TofuBlocks.ORE_TOFU_DIAMOND, TofuItems.TOFUDIAMOND_NUGGET));
 		dropSelf(TofuBlocks.TOFU_BEDROCK);
@@ -77,6 +104,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		this.add(TofuBlocks.LEEK, noDrop());
 
 		dropSelf(TofuBlocks.SALTPAN);
+		dropSelf(TofuBlocks.TOFUBED);
+		dropSelf(TofuBlocks.TOFUCHEST);
 	}
 
 	protected static LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

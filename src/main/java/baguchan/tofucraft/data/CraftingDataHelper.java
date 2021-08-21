@@ -8,11 +8,13 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.crafting.NBTIngredient;
 import net.minecraftforge.fmllegacy.RegistryObject;
 
@@ -160,6 +162,31 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.define('#', material)
 				.unlockedBy("has_item", has(material))
 				.save(consumer);
+	}
+
+	public void makeStairs(Consumer<FinishedRecipe> consumer, Block stairsOut, Block blockIn) {
+		ShapedRecipeBuilder.shaped(stairsOut, 4)
+				.pattern("M  ")
+				.pattern("MM ")
+				.pattern("MMM")
+				.define('M', blockIn)
+				.unlockedBy("has_" + blockIn.getRegistryName().getPath(), has(blockIn)).save(consumer);
+	}
+
+	public void makeSlab(Consumer<FinishedRecipe> consumer, Block slabOut, Block blockIn) {
+		ShapedRecipeBuilder.shaped(slabOut, 6)
+				.pattern("MMM")
+				.define('M', blockIn)
+				.unlockedBy("has_" + blockIn.getRegistryName().getPath(), has(blockIn)).save(consumer);
+	}
+
+	public void makeTorch(Consumer<FinishedRecipe> consumer, Block torchOut, Block blockIn) {
+		ShapedRecipeBuilder.shaped(torchOut, 4)
+				.pattern("C")
+				.pattern("M")
+				.define('C', ItemTags.COALS)
+				.define('M', blockIn)
+				.unlockedBy("has_" + blockIn.getRegistryName().getPath(), has(blockIn)).save(consumer);
 	}
 
 

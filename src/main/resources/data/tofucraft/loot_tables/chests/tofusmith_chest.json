@@ -1,0 +1,88 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 4.0,
+        "max": 8.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "tofucraft:tofugrilled"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "tofucraft:tofuishi"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "tofucraft:tofumetal"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "tofucraft:armorsolidhelmet"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "tofucraft:toolmetalshovel"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "tofucraft:swordmetal"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "tofucraft:zundaruby"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofustick"
+        }
+      ]
+    }
+  ]
+}

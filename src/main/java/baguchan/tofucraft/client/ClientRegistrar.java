@@ -4,12 +4,17 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.client.render.FukumameRender;
 import baguchan.tofucraft.client.render.NetherFukumameRender;
 import baguchan.tofucraft.client.render.SoulFukumameRender;
+import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
+import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
+import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -27,6 +32,8 @@ public class ClientRegistrar {
 	}
 
 	public static void renderTileEntity() {
+		BlockEntityRenderers.register(TofuBlockEntitys.TOFUBED, TofuBedRenderer::new);
+		BlockEntityRenderers.register(TofuBlockEntitys.TOFUCHEST, TofuChestRenderer::new);
 	}
 
 	public static void renderBlockColor() {
@@ -39,6 +46,15 @@ public class ClientRegistrar {
 		setRenderLayer(TofuBlocks.SOYBEAN, RenderType.cutout());
 		setRenderLayer(TofuBlocks.SOYBEAN_NETHER, RenderType.cutout());
 		setRenderLayer(TofuBlocks.SOYBEAN_SOUL, RenderType.cutout());
+
+		setRenderLayer(TofuBlocks.TOFUTORCH_KINU, RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUTORCH_MOMEN, RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUTORCH_ISHI, RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUTORCH_METAL, RenderType.cutout());
+		setRenderLayer(TofuBlocks.WALLTOFUTORCH_KINU, RenderType.cutout());
+		setRenderLayer(TofuBlocks.WALLTOFUTORCH_MOMEN, RenderType.cutout());
+		setRenderLayer(TofuBlocks.WALLTOFUTORCH_ISHI, RenderType.cutout());
+		setRenderLayer(TofuBlocks.WALLTOFUTORCH_METAL, RenderType.cutout());
 
 		setRenderLayer(TofuBlocks.LEEK, RenderType.cutout());
 
@@ -70,5 +86,13 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void onTextureStitch(TextureStitchEvent.Pre event) {
+		if (event.getMap().location().equals(Sheets.BED_SHEET)) {
+			event.addSprite(TofuBedRenderer.BED_TEXTURES);
+		}
+		if (event.getMap().location().equals(Sheets.CHEST_SHEET)) {
+			event.addSprite(TofuChestRenderer.CHEST_LOCATION.texture());
+			event.addSprite(TofuChestRenderer.CHEST_LOCATION_LEFT.texture());
+			event.addSprite(TofuChestRenderer.CHEST_LOCATION_RIGHT.texture());
+		}
 	}
 }

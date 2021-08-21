@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "tofucraft:block/tofuslab_soulbrick_top"
+    },
+    "type=bottom": {
+      "model": "tofucraft:block/tofuslab_soulbrick"
+    },
+    "type=double": {
+      "model": "tofucraft:block/tofusoul_brick"
+    }
+  }
+}

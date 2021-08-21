@@ -11,6 +11,17 @@
     "tofucraft:tofuhell_smooth_brick",
     "tofucraft:tofusoul_brick",
     "tofucraft:tofusoul_smooth_brick",
+    "tofucraft:tofustair_ishi",
+    "tofucraft:tofustair_metal",
+    "tofucraft:tofustair_ishibrick",
+    "tofucraft:tofustair_hellbrick",
+    "tofucraft:tofustair_soulbrick",
+    "tofucraft:tofuslab_ishi",
+    "tofucraft:tofuslab_metal",
+    "tofucraft:tofuslab_ishibrick",
+    "tofucraft:tofuslab_hellbrick",
+    "tofucraft:tofuslab_soulbrick",
+    "tofucraft:tofuchest",
     "tofucraft:tofu_bedrock"
   ]
 }

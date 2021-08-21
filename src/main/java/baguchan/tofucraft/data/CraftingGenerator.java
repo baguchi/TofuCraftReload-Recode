@@ -103,6 +103,29 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.GRILLEDTOFU.asItem(), TofuItems.TOFUGRILLED);
 		tofuBlockItem(consumer, TofuBlocks.ZUNDATOFU.asItem(), TofuItems.TOFUZUNDA);
 
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_KINU, TofuBlocks.KINUTOFU);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.MOMENTOFU);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_ISHI, TofuBlocks.ISHITOFU);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.METALTOFU);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_ZUNDA, TofuBlocks.ZUNDATOFU);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
+
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_KINU, TofuBlocks.KINUTOFU);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.MOMENTOFU);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_ISHI, TofuBlocks.ISHITOFU);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_METAL, TofuBlocks.METALTOFU);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_ZUNDA, TofuBlocks.ZUNDATOFU);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
+
+		makeTorch(consumer, TofuBlocks.TOFUTORCH_KINU, TofuBlocks.KINUTOFU);
+		makeTorch(consumer, TofuBlocks.TOFUTORCH_MOMEN, TofuBlocks.MOMENTOFU);
+		makeTorch(consumer, TofuBlocks.TOFUTORCH_ISHI, TofuBlocks.ISHITOFU);
+		makeTorch(consumer, TofuBlocks.TOFUTORCH_METAL, TofuBlocks.METALTOFU);
+
 		foodCooking(TofuItems.TOFUKINU, TofuItems.TOFUGRILLED, 0.1F, consumer, "grilled_from_kinu");
 		foodCooking(TofuItems.TOFUMOMEN, TofuItems.TOFUGRILLED, 0.1F, consumer, "grilled_from_momen");
 		foodCooking(TofuBlocks.KINUTOFU.asItem(), TofuBlocks.GRILLEDTOFU.asItem(), 0.1F, consumer, "grilled_block_from_kinu");
@@ -260,6 +283,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', Tags.Items.RODS_WOODEN)
 				.define('X', Blocks.COBBLESTONE_SLAB)
 				.unlockedBy("has_item", has(Blocks.COBBLESTONE_SLAB))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(TofuBlocks.TOFUCHEST)
+				.pattern("###")
+				.pattern("# #")
+				.pattern("###")
+				.define('#', TofuItems.TOFUISHI)
+				.unlockedBy("has_item", has(TofuItems.TOFUISHI))
 				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(TofuItems.TOFUSCOOP)

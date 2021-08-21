@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3.0,
+        "max": 5.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "name": "tofucraft:soymilk"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "name": "tofucraft:bucket_soymilk"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "tofucraft:zundaruby"
+        }
+      ]
+    }
+  ]
+}

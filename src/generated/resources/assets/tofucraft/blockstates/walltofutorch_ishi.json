@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "tofucraft:block/walltofutorch_ishi",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "tofucraft:block/walltofutorch_ishi",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "tofucraft:block/walltofutorch_ishi",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "tofucraft:block/walltofutorch_ishi"
+    }
+  }
+}

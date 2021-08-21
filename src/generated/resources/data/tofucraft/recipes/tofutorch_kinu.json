@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "M"
+  ],
+  "key": {
+    "C": {
+      "tag": "minecraft:coals"
+    },
+    "M": {
+      "item": "tofucraft:blocktofukinu"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofutorch_kinu",
+    "count": 4
+  }
+}

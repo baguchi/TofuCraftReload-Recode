@@ -41,6 +41,29 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.SOULTOFU_BRICK);
 		toBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK);
 
+		toBlock(TofuBlocks.TOFUSTAIR_KINU);
+		toBlock(TofuBlocks.TOFUSTAIR_MOMEN);
+		toBlock(TofuBlocks.TOFUSTAIR_ISHI);
+		toBlock(TofuBlocks.TOFUSTAIR_METAL);
+		toBlock(TofuBlocks.TOFUSTAIR_ZUNDA);
+		toBlock(TofuBlocks.TOFUSTAIR_ISHIBRICK);
+		toBlock(TofuBlocks.TOFUSTAIR_HELLBRICK);
+		toBlock(TofuBlocks.TOFUSTAIR_SOULBRICK);
+
+		toBlock(TofuBlocks.TOFUSLAB_KINU);
+		toBlock(TofuBlocks.TOFUSLAB_MOMEN);
+		toBlock(TofuBlocks.TOFUSLAB_ISHI);
+		toBlock(TofuBlocks.TOFUSLAB_METAL);
+		toBlock(TofuBlocks.TOFUSLAB_ZUNDA);
+		toBlock(TofuBlocks.TOFUSLAB_ISHIBRICK);
+		toBlock(TofuBlocks.TOFUSLAB_HELLBRICK);
+		toBlock(TofuBlocks.TOFUSLAB_SOULBRICK);
+
+		torchItem(TofuBlocks.TOFUTORCH_KINU);
+		torchItem(TofuBlocks.TOFUTORCH_MOMEN);
+		torchItem(TofuBlocks.TOFUTORCH_ISHI);
+		torchItem(TofuBlocks.TOFUTORCH_METAL);
+
 		toBlock(TofuBlocks.TOFU_TERRAIN);
 		toBlock(TofuBlocks.ORE_TOFU_DIAMOND);
 		toBlock(TofuBlocks.TOFU_BEDROCK);
@@ -162,6 +185,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.ARMOR_TOFU_DIAMONDCHESTPLATE);
 		singleTex(TofuItems.ARMOR_TOFU_DIAMONDLEGGINGS);
 		singleTex(TofuItems.ARMOR_TOFU_DIAMONDBOOTS);
+	}
+
+	public ItemModelBuilder torchItem(Block item) {
+		return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/generated"))
+				.texture("layer0", modLoc("block/" + item.getRegistryName().getPath()));
 	}
 
 	private ItemModelBuilder generated(String name, ResourceLocation... layers) {
