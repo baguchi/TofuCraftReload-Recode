@@ -107,7 +107,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		singleTexTool(TofuItems.TOFUSCOOP);
 		singleTexTool(TofuItems.TOFUSTICK);
+		singleTexTool(TofuItems.TOFUSTICK);
 		singleTexTool(TofuItems.BUGLE);
+		singleTexTool(TofuItems.FUKUMAME);
+		singleTexTool(TofuItems.NETHER_FUKUMAME);
+		singleTexTool(TofuItems.SOUL_FUKUMAME);
 
 		singleTexTool(TofuItems.TOFU_KINU_SWORD);
 		singleTexTool(TofuItems.TOFU_KINU_PICKAXE);

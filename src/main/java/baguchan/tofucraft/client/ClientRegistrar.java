@@ -1,7 +1,11 @@
 package baguchan.tofucraft.client;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.client.render.FukumameRender;
+import baguchan.tofucraft.client.render.NetherFukumameRender;
+import baguchan.tofucraft.client.render.SoulFukumameRender;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -9,6 +13,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -50,6 +55,17 @@ public class ClientRegistrar {
 		renderTileEntity();
 		renderBlockColor();
 		renderBlockLayer();
+	}
+
+	@SubscribeEvent
+	public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
+		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME, FukumameRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.NETHER_FUKUMAME, NetherFukumameRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.SOUL_FUKUMAME, SoulFukumameRender::new);
+	}
+
+	@SubscribeEvent
+	public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
 	}
 
 	@SubscribeEvent

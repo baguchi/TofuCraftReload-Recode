@@ -117,6 +117,9 @@ public class TofuItems {
 	public static final Item BUGLE = new BugleItem((new Item.Properties()).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFUSCOOP = new TofuScoopItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFUSTICK = new TofuStickItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item FUKUMAME = new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item NETHER_FUKUMAME = new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOUL_FUKUMAME = new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
 
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
@@ -148,8 +151,14 @@ public class TofuItems {
 		register(registry, TOFUZUNDA, "tofuzunda");
 		register(registry, BITTERN, "bittern_bottle");
 		register(registry, SALT, "salt");
+
+		register(registry, BUGLE, "bugle");
 		register(registry, TOFUSCOOP, "tofuscoop");
 		register(registry, TOFUSTICK, "tofustick");
+		register(registry, FUKUMAME, "fukumame");
+		register(registry, NETHER_FUKUMAME, "nether_fukumame");
+		register(registry, SOUL_FUKUMAME, "soul_fukumame");
+
 		register(registry, SEEDS_SOYBEANS, "seeds_soybeans");
 		register(registry, SEEDS_SOYBEANS_NETHER, "seeds_soybeans_nether");
 		register(registry, SEEDS_SOYBEANS_SOUL, "seeds_soybeans_soul");
@@ -224,6 +233,5 @@ public class TofuItems {
 		register(registry, ARMOR_TOFU_DIAMONDCHESTPLATE, "tofu_diamond_chestplate");
 		register(registry, ARMOR_TOFU_DIAMONDLEGGINGS, "tofu_diamond_leggings");
 		register(registry, ARMOR_TOFU_DIAMONDBOOTS, "tofu_diamond_boots");
-		register(registry, BUGLE, "bugle");
 	}
 }

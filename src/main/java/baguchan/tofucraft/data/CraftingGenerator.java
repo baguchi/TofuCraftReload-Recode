@@ -262,13 +262,38 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Blocks.COBBLESTONE_SLAB))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(TofuItems.TOFUSTICK)
+		ShapedRecipeBuilder.shaped(TofuItems.TOFUSCOOP)
 				.pattern("#")
 				.pattern("X")
 				.pattern("X")
 				.define('X', Tags.Items.RODS_WOODEN)
 				.define('#', Blocks.IRON_BARS)
 				.unlockedBy("has_item", has(Blocks.IRON_BARS))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(TofuItems.FUKUMAME)
+				.pattern("###")
+				.pattern("###")
+				.pattern(" X ")
+				.define('X', Items.BOWL)
+				.define('#', TofuItems.SOYBEAN_PARCHED)
+				.unlockedBy("has_item", has(TofuItems.SOYBEAN_PARCHED))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(TofuItems.NETHER_FUKUMAME)
+				.pattern("###")
+				.pattern("###")
+				.pattern(" X ")
+				.define('X', Items.BOWL)
+				.define('#', TofuItems.SEEDS_SOYBEANS_NETHER)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(TofuItems.SOUL_FUKUMAME)
+				.pattern("###")
+				.pattern("###")
+				.pattern(" X ")
+				.define('X', Items.BOWL)
+				.define('#', TofuItems.SEEDS_SOYBEANS_SOUL)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL))
 				.save(consumer);
 	}
 }
