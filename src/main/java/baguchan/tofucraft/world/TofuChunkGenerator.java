@@ -1,6 +1,7 @@
 package baguchan.tofucraft.world;
 
 import baguchan.tofucraft.world.gen.TofuAquifer;
+import baguchan.tofucraft.world.gen.TofuOreVeinifier;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
@@ -116,7 +117,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 
 		this.sampler = new NoiseSampler(p_64341_, this.cellWidth, this.cellHeight, this.cellCountY, noisesettings, blendednoise, simplexnoise, perlinnoise, noisemodifier);
 		this.baseStoneSource = new DepthBasedReplacingBaseStoneSource(p_64343_, this.defaultBlock, Blocks.DEEPSLATE.defaultBlockState(), noisegeneratorsettings);
-		this.oreVeinifier = new OreVeinifier(p_64343_, this.defaultBlock, this.cellWidth, this.cellHeight, noisegeneratorsettings.noiseSettings().minY());
+		this.oreVeinifier = new TofuOreVeinifier(p_64343_, this.defaultBlock, this.cellWidth, this.cellHeight, noisegeneratorsettings.noiseSettings().minY());
 		this.noodleCavifier = new NoodleCavifier(p_64343_);
 	}
 

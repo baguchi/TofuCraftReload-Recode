@@ -97,7 +97,7 @@ public class TofuAquifer implements Aquifer {
 						double var52 = this.similarity(var14, var16);
 						double var53 = this.similarity(var15, var16);
 						var10 = var51 > 0.0D;
-						if (var48.fluidLevel >= p_158036_ && var48.fluidType.is(Blocks.WATER) && this.isLavaLevel(p_158036_ - 1)) {
+						if (var48.fluidLevel >= p_158036_ && var48.fluidType.is(TofuBlocks.SOYMILK) && this.isLavaLevel(p_158036_ - 1)) {
 							var7 = 1.0D;
 						} else if (var51 > -1.0D) {
 							double var54 = 1.0D + (this.barrierNoise.getValue((double) p_158035_, (double) p_158036_, (double) p_158037_) + 0.05D) / 4.0D;
@@ -227,7 +227,7 @@ public class TofuAquifer implements Aquifer {
 	private TofuAquifer.AquiferStatus computeAquifer(int p_158042_, int p_158043_, int p_158044_) {
 		int var4 = this.noiseGeneratorSettings.seaLevel();
 		if (p_158043_ > 30) {
-			return new TofuAquifer.AquiferStatus(var4, Blocks.WATER.defaultBlockState());
+			return new TofuAquifer.AquiferStatus(var4, TofuBlocks.SOYMILK.defaultBlockState());
 		} else {
 			double var8 = this.waterLevelNoise.getValue((double) Math.floorDiv(p_158042_, 64), (double) Math.floorDiv(p_158043_, 40) / 1.4D, (double) Math.floorDiv(p_158044_, 64)) * 30.0D + -10.0D;
 			boolean var10 = false;

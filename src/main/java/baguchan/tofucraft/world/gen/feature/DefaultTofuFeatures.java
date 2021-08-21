@@ -31,11 +31,11 @@ public class DefaultTofuFeatures {
 
 	public static final ConfiguredFeature<?, ?> NETHER_SOYBEAN = register("tofucraft:nether_soybean", (Feature.RANDOM_PATCH.configured(NETHER_SOYBEAN_CLUSTER).range(Features.Decorators.FULL_RANGE)).rarity(2));
 	public static final ConfiguredFeature<?, ?> NETHER_SOYBEAN_PATCH = register("tofucraft:nether_soybean_patch", (Feature.RANDOM_PATCH.configured(NETHER_SOYBEAN_CLUSTER).range(Features.Decorators.FULL_RANGE)).rarity(3));
-	public static final ConfiguredFeature<?, ?> SOUL_SOYBEAN = register("tofucraft:soul_soybean", (Feature.RANDOM_PATCH.configured(SOUL_SOYBEAN_CLUSTER)).decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE).count(3));
+	public static final ConfiguredFeature<?, ?> SOUL_SOYBEAN = register("tofucraft:soul_soybean", (Feature.RANDOM_PATCH.configured(SOUL_SOYBEAN_CLUSTER).range(Features.Decorators.FULL_RANGE)).rarity(3));
 
-	public static final ConfiguredFeature<?, ?> LEEK = register("tofucraft:leek", (Feature.RANDOM_PATCH.configured(LEEK_CLUSTER).range(Features.Decorators.FULL_RANGE)).rarity(2));
+	public static final ConfiguredFeature<?, ?> LEEK = register("tofucraft:leek", (Feature.RANDOM_PATCH.configured(LEEK_CLUSTER).decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE).count(5)));
 
-	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND = register("tofucraft:ore_tofu_diamond", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 6, 0.5F)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)).squared().count(8));
+	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND = register("tofucraft:ore_tofu_diamond", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 6, 0.5F)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)).squared().count(12));
 	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND_LARGE = register("tofucraft:ore_tofu_diamond_large", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 16, 0.7F)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)).squared().rarity(9));
 
 
