@@ -12,10 +12,16 @@ public class TofunianSleepOnBedGoal extends SleepOnBedGoal {
 
 
 	public void tick() {
-		if (isReachedTarget()) {
-			this.creature.setTofunainHome(this.blockPos);
-		}
 		super.tick();
+	}
+
+	protected boolean findNearestBlock() {
+		if (this.creature.getTofunainHome() != null &&
+				isValidTarget(this.creature.getLevel(), this.creature.getTofunainHome())) {
+			this.blockPos = this.creature.getTofunainHome();
+			return true;
+		}
+		return super.findNearestBlock();
 	}
 
 }

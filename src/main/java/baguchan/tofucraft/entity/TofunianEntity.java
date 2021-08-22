@@ -1,9 +1,6 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.entity.ai.DoSleepingGoal;
-import baguchan.tofucraft.entity.ai.FindJobBlockGoal;
-import baguchan.tofucraft.entity.ai.TofunianSleepOnBedGoal;
-import baguchan.tofucraft.entity.ai.WakeUpGoal;
+import baguchan.tofucraft.entity.ai.*;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
@@ -22,6 +19,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -43,7 +41,6 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
@@ -115,10 +112,11 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
 		this.goalSelector.addGoal(5, new TofunianSleepOnBedGoal(this, 0.85F, 6));
 		this.goalSelector.addGoal(6, new FindJobBlockGoal(this, 0.85F, 6));
-		this.goalSelector.addGoal(7, new MoveToGoal(this, 26.0D, 1.0D));
-		this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(9, new InteractGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		this.goalSelector.addGoal(7, new RestockGoal(this, 0.85F, 6));
+		this.goalSelector.addGoal(8, new MoveToGoal(this, 26.0D, 1.0D));
+		this.goalSelector.addGoal(9, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(10, new InteractGoal(this, Player.class, 3.0F, 1.0F));
+		this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -187,9 +185,61 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 			getLevel().broadcastEntityEvent(this, (byte) 14);
 			this.previousCustomer = null;
 		}
-		if (getRole() == Roles.TOFUNIAN && isTrading())
+		if (getRole() == Roles.TOFUNIAN && isTrading()) {
 			stopTrading();
+		}
+
+		this.tofunianJobCheck();
+		this.tofunianHomeCheck();
+
 		super.customServerAiStep();
+	}
+
+	public void tofunianJobCheck() {
+		if ((level.getGameTime() + this.getId()) % (50) != 0) return;
+
+		//validate job position
+		if (this.getTofunainJobBlock() != null && this.getRole() != Roles.TOFUNIAN) {
+			if (Roles.getJobBlock(this.level.getBlockState(this.getTofunainJobBlock()).getBlock()) == null) {
+				//home position isnt a chest, keep current position but find better one
+				this.setTofunainJobBlock(null);
+
+				if (this.getTofunainLevel() == 1 && this.getVillagerXp() == 0) {
+					this.getOffers().clear();
+				}
+			}
+		}
+	}
+
+	public void tofunianHomeCheck() {
+		if ((level.getGameTime() + this.getId()) % (50) != 0) return;
+
+		//validate home position
+		boolean tryFind = false;
+		if (getTofunainHome() == null) {
+			tryFind = true;
+		} else {
+			if (!this.level.getBlockState(this.getTofunainHome()).is(BlockTags.BEDS)) {
+				//home position isnt a chest, keep current position but find better one
+				tryFind = true;
+				this.setTofunainHome(null);
+			}
+		}
+
+		if (tryFind) {
+			int range = 10;
+			for (int x = -range; x <= range; x++) {
+				for (int y = -range / 2; y <= range / 2; y++) {
+					for (int z = -range; z <= range; z++) {
+						BlockPos pos = this.blockPosition().offset(x, y, z);
+						if (this.level.getBlockState(pos).is(BlockTags.BEDS)) {
+							setTofunainHome(pos);
+							return;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	protected void rewardTradeXp(MerchantOffer offer) {
@@ -207,7 +257,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 
 	public InteractionResult mobInteract(Player p_35472_, InteractionHand p_35473_) {
 		ItemStack itemstack = p_35472_.getItemInHand(p_35473_);
-		if (itemstack.getItem() != Items.VILLAGER_SPAWN_EGG && this.isAlive() && !this.isTrading() && !this.isSleeping() && !p_35472_.isSecondaryUseActive()) {
+		if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.isTrading() && !this.isSleeping() && !p_35472_.isSecondaryUseActive()) {
 			if (this.isBaby()) {
 				this.setUnhappy();
 				return InteractionResult.sidedSuccess(this.level.isClientSide);
@@ -653,6 +703,13 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 			for (Roles role : values()) {
 				if (role != TOFUNIAN && role.getBlock() == blockIn)
 					return blockIn;
+			}
+			return null;
+		}
+
+		public static Block getJobMatch(Roles roles, Block blockIn) {
+			if (roles != TOFUNIAN && roles.getBlock() == blockIn) {
+				return blockIn;
 			}
 			return null;
 		}

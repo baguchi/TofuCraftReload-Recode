@@ -18,11 +18,11 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level.isDay() && this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level.isDay() && (this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level.isDay() && !this.creature.isBaby() && this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN && this.mob != null);
+		return (super.canContinueToUse() && this.creature.level.isDay() && !this.creature.isBaby() && (this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && this.mob != null);
 	}
 
 	public void tick() {
@@ -34,7 +34,11 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 
 			TofunianEntity.Roles role = TofunianEntity.Roles.get(block);
 			if (role != null) {
-				this.creature.setRole(role);
+				if (this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN || this.creature.getTofunainLevel() == 1 && this.creature.getVillagerXp() == 0) {
+					this.creature.setRole(role);
+				}
+
+
 				this.creature.swing(InteractionHand.MAIN_HAND);
 				this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
 			}
@@ -45,7 +49,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
 		Block block = blockstate.getBlock();
-		return TofunianEntity.Roles.getJobBlock(block) != null;
+		return (this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN || this.creature.getTofunainLevel() == 1 && this.creature.getVillagerXp() == 0) && TofunianEntity.Roles.getJobBlock(block) != null || this.creature.getRole() != TofunianEntity.Roles.TOFUNIAN && TofunianEntity.Roles.getJobMatch(this.creature.getRole(), block) != null;
 	}
 
 	protected boolean findNearestBlock() {
