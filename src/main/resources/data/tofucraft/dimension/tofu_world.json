@@ -33,6 +33,16 @@
             "humidity": 0.0
           },
           "biome": "tofucraft:tofu_plain"
+        },
+        {
+          "parameters": {
+            "altitude": 0.0,
+            "weirdness": 0.0,
+            "offset": 0.0,
+            "temperature": -0.5,
+            "humidity": -0.25
+          },
+          "biome": "tofucraft:tofu_waste"
         }
       ],
       "temperature_noise": {
