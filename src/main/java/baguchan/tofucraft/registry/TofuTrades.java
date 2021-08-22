@@ -34,7 +34,7 @@ public class TofuTrades {
 		p_221237_0_.put(TofunianEntity.Roles.SOYWORKER, gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(Blocks.GLASS, 10, 6, 2), new ZundaRubyForItemsTrade(TofuItems.LEEK, 26, 6, 2)}
 				, 2, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.TOFU_HAMBURG, 1, 9, 6, 7), new ItemsForZundaRubyTrade(TofuItems.COOKED_TOFU_FISH, 1, 12, 5, 7)}
 				, 3, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.BITTERN, 4, 8, 15), new ItemsForZundaRubyTrade(TofuItems.SOY_CHOCOLATE, 1, 6, 8, 15)}
-				, 4, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.SOYMILK, 1, 3, 6, 20), new ItemsForZundaRubyTrade(TofuItems.SOY_CHOCOLATE, 1, 6, 8, 20)}
+				, 4, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.SOYMILK, 1, 3, 6, 20), new ItemsForZundaRubyTrade(TofuItems.TOFUNIAN_SOY_CHOCOLATE, 1, 6, 8, 20)}
 				, 5, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.SOYMILK_APPLE, 1, 3, 6, 30), new ItemsForZundaRubyTrade(TofuItems.SOYMILK_KINAKO, 1, 3, 6, 30), new ItemsForZundaRubyTrade(TofuItems.SOYMILK_PUMPKIN, 1, 3, 6, 30), new ItemsForZundaRubyTrade(TofuItems.SOYMILK_PUDDING, 1, 3, 6, 30)})));
 	});
 
