@@ -610,7 +610,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 
 	@Override
 	protected Component getTypeName() {
-		return new TranslatableComponent("entity.tofucraft.tofunian" + this.getRole().name().toLowerCase(Locale.ROOT));
+		return new TranslatableComponent("entity.tofucraft.tofunian." + this.getRole().name().toLowerCase(Locale.ROOT));
 	}
 
 	public enum Roles implements IExtensibleEnum {

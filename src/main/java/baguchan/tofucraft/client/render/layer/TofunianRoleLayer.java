@@ -12,15 +12,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofunianRoleLayer extends RenderLayer<TofunianEntity, TofunianModel<TofunianEntity>> {
-	private static final ResourceLocation WOLF_COLLAR_LOCATION = new ResourceLocation("textures/entity/wolf/wolf_collar.png");
-
 	public TofunianRoleLayer(RenderLayerParent<TofunianEntity, TofunianModel<TofunianEntity>> tofunianRender) {
 		super(tofunianRender);
 	}
 
 	public void render(PoseStack p_117720_, MultiBufferSource p_117721_, int p_117722_, TofunianEntity p_117723_, float p_117724_, float p_117725_, float p_117726_, float p_117727_, float p_117728_, float p_117729_) {
 		if (!p_117723_.isInvisible() && p_117723_.getRole() != TofunianEntity.Roles.TOFUNIAN) {
-			renderColoredCutoutModel(this.getParentModel(), WOLF_COLLAR_LOCATION, p_117720_, p_117721_, p_117722_, p_117723_, 1.0F, 1.0F, 1.0F);
+			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117723_), p_117720_, p_117721_, p_117722_, p_117723_, 1.0F, 1.0F, 1.0F);
 		}
 	}
 
