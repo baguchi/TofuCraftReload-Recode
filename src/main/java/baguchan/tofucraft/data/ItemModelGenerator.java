@@ -186,6 +186,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.ARMOR_TOFU_DIAMONDLEGGINGS);
 		singleTex(TofuItems.ARMOR_TOFU_DIAMONDBOOTS);
 
+		egg(TofuItems.TOFUNIAN_SPAWNEGG);
 		egg(TofuItems.TOFUCOW_SPAWNEGG);
 		egg(TofuItems.TOFUSLIME_SPAWNEGG);
 	}

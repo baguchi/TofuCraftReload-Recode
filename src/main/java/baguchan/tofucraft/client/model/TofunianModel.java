@@ -15,6 +15,7 @@ public class TofunianModel<T extends TofunianEntity> extends HierarchicalModel<T
 	private final ModelPart root;
 	private final ModelPart head;
 	private final ModelPart hat;
+	private final ModelPart body;
 	private final ModelPart leftLeg;
 	private final ModelPart rightLeg;
 	private final ModelPart rightArm;
@@ -24,6 +25,7 @@ public class TofunianModel<T extends TofunianEntity> extends HierarchicalModel<T
 		this.root = p_170688_;
 		this.head = p_170688_.getChild("head");
 		this.hat = this.head.getChild("hat");
+		this.body = p_170688_.getChild("body");
 		this.leftLeg = p_170688_.getChild("left_leg");
 		this.rightLeg = p_170688_.getChild("right_leg");
 		this.leftArm = p_170688_.getChild("left_arm");
@@ -33,9 +35,9 @@ public class TofunianModel<T extends TofunianEntity> extends HierarchicalModel<T
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition var0 = new MeshDefinition();
 		PartDefinition var1 = var0.getRoot();
-		PartDefinition var2 = var1.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F).addBox(-1.5F, -11.0F, -0.0F, 3.0F, 3.0F, 0.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition var2 = var1.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F).addBox(-1.5F, -11.0F, -0.0F, 3.0F, 3.0F, 0.0F), PartPose.offset(0.0F, 14.0F, -0.0F));
 		var2.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 14.0F, -0.0F));
-		var1.addOrReplaceChild("body", CubeListBuilder.create().texOffs(8, 16).addBox(-3.0F, 0.0F, -2.0F, 6.0F, 6.0F, 4.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+		var1.addOrReplaceChild("body", CubeListBuilder.create().texOffs(8, 16).addBox(-3.0F, 0.0F, -2.0F, 6.0F, 6.0F, 4.0F), PartPose.offset(0.0F, 14.0F, 0.0F));
 
 		var1.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F), PartPose.offset(-1.4F, 18.0F, 0.0F));
 		var1.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 16).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 6.0F, 2.0F), PartPose.offset(1.4F, 18.0F, 0.0F));
@@ -48,9 +50,19 @@ public class TofunianModel<T extends TofunianEntity> extends HierarchicalModel<T
 		return this.root;
 	}
 
-	public void setupAnim(T p_102928_, float p_102929_, float p_102930_, float p_102931_, float p_102932_, float p_102933_) {
-		this.head.yRot = p_102932_ * 0.017453292F;
-		this.head.xRot = p_102933_ * 0.017453292F;
+	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.head.yRot = netHeadYaw * 0.017453292F;
+		this.head.xRot = headPitch * 0.017453292F;
+
+		boolean flag = entity.getUnhappyCounter() > 0;
+
+		if (flag) {
+			this.head.zRot = 0.3F * Mth.sin(0.45F * ageInTicks);
+			this.head.xRot = 0.4F;
+		} else {
+			this.head.zRot = 0.0F;
+		}
+
 		if (this.riding) {
 			this.rightArm.xRot = -0.62831855F;
 			this.rightArm.yRot = 0.0F;
@@ -65,18 +77,42 @@ public class TofunianModel<T extends TofunianEntity> extends HierarchicalModel<T
 			this.leftLeg.yRot = -0.31415927F;
 			this.leftLeg.zRot = -0.07853982F;
 		} else {
-			this.rightArm.xRot = Mth.cos(p_102929_ * 0.6662F + 3.1415927F) * 2.0F * p_102930_ * 0.5F;
+			this.rightArm.xRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 2.0F * limbSwingAmount * 0.5F;
 			this.rightArm.yRot = 0.0F;
 			this.rightArm.zRot = 0.0F;
-			this.leftArm.xRot = Mth.cos(p_102929_ * 0.6662F) * 2.0F * p_102930_ * 0.5F;
+			this.leftArm.xRot = Mth.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F;
 			this.leftArm.yRot = 0.0F;
 			this.leftArm.zRot = 0.0F;
-			this.rightLeg.xRot = Mth.cos(p_102929_ * 0.6662F) * 1.4F * p_102930_ * 0.5F;
+			this.rightLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
 			this.rightLeg.yRot = 0.0F;
 			this.rightLeg.zRot = 0.0F;
-			this.leftLeg.xRot = Mth.cos(p_102929_ * 0.6662F + 3.1415927F) * 1.4F * p_102930_ * 0.5F;
+			this.leftLeg.xRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount * 0.5F;
 			this.leftLeg.yRot = 0.0F;
 			this.leftLeg.zRot = 0.0F;
+		}
+
+		if (attackTime > 0) {
+			if (entity.getMainArm() == HumanoidArm.RIGHT) {
+				this.rightArm.xRot = attackTime * -0.75F;
+				this.rightArm.zRot = attackTime * -0.5F;
+			} else {
+				this.rightArm.xRot = attackTime * -0.75F;
+				this.rightArm.zRot = attackTime * 0.5F;
+			}
+		}
+
+		float f6 = 12.0F;
+
+		if (entity.isBaby()) {
+			this.head.y = 18.0F;
+			this.rightArm.visible = false;
+			this.leftArm.visible = false;
+			this.body.visible = false;
+		} else {
+			this.head.y = 14.0F;
+			this.rightArm.visible = true;
+			this.leftArm.visible = true;
+			this.body.visible = true;
 		}
 	}
 

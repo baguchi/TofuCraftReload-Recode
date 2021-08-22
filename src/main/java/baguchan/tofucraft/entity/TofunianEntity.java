@@ -1,5 +1,9 @@
 package baguchan.tofucraft.entity;
 
+import baguchan.tofucraft.entity.ai.DoSleepingGoal;
+import baguchan.tofucraft.entity.ai.FindJobBlockGoal;
+import baguchan.tofucraft.entity.ai.TofunianSleepOnBedGoal;
+import baguchan.tofucraft.entity.ai.WakeUpGoal;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
@@ -11,6 +15,8 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.*;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -41,15 +47,16 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.common.util.ITeleporter;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TofunianEntity extends AbstractTofunianEntity implements ReputationEventHandler {
@@ -92,9 +99,11 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 
 	protected void registerGoals() {
 		super.registerGoals();
+		this.goalSelector.addGoal(0, new WakeUpGoal(this));
+		this.goalSelector.addGoal(0, new DoSleepingGoal(this));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-
 		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
+		this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.2D, 1.2D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Evoker.class, 12.0F, 1.2D, 1.2D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Vindicator.class, 8.0F, 1.2D, 1.2D));
@@ -104,6 +113,9 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zoglin.class, 10.0F, 1.2D, 1.2D));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
 		this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
+		this.goalSelector.addGoal(5, new TofunianSleepOnBedGoal(this, 0.85F, 6));
+		this.goalSelector.addGoal(6, new FindJobBlockGoal(this, 0.85F, 6));
+		this.goalSelector.addGoal(7, new MoveToGoal(this, 26.0D, 1.0D));
 		this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(9, new InteractGoal(this, Player.class, 3.0F, 1.0F));
 		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
@@ -596,18 +608,29 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		this.gossips.update(new Dynamic<>(NbtOps.INSTANCE, p_35456_));
 	}
 
+	@Override
+	protected Component getTypeName() {
+		return new TranslatableComponent("entity.tofucraft.tofunian" + this.getRole().name().toLowerCase(Locale.ROOT));
+	}
+
 	public enum Roles implements IExtensibleEnum {
-		TOFUCOOK, TOFUSMITH, SOYWORKER, TOFUNIAN;
+		TOFUCOOK(Blocks.CRAFTING_TABLE), TOFUSMITH(Blocks.FURNACE), SOYWORKER(Blocks.CAULDRON), TOFUNIAN(Blocks.AIR);
 
 		private static final Map<String, Roles> lookup;
+		private final Block block;
 
 		static {
 			lookup = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, p_220362_0_ -> p_220362_0_));
 		}
 
-		public static Roles create(String name) {
+		private Roles(Block block) {
+			this.block = block;
+		}
+
+		public static Roles create(String name, Block block) {
 			throw new IllegalStateException("Enum not extended");
 		}
+
 
 		public static Roles get(String nameIn) {
 			for (Roles role : values()) {
@@ -615,6 +638,71 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 					return role;
 			}
 			return TOFUNIAN;
+		}
+
+		@Nullable
+		public static Roles get(Block blockIn) {
+			for (Roles role : values()) {
+				if (role != TOFUNIAN && role.getBlock() == blockIn)
+					return role;
+			}
+			return null;
+		}
+
+		public static Block getJobBlock(Block blockIn) {
+			for (Roles role : values()) {
+				if (role != TOFUNIAN && role.getBlock() == blockIn)
+					return blockIn;
+			}
+			return null;
+		}
+
+		public Block getBlock() {
+			return block;
+		}
+	}
+
+	class MoveToGoal extends Goal {
+		final TofunianEntity hunter;
+		final double stopDistance;
+		final double speedModifier;
+
+		MoveToGoal(TofunianEntity p_i50459_2_, double p_i50459_3_, double p_i50459_5_) {
+			this.hunter = p_i50459_2_;
+			this.stopDistance = p_i50459_3_;
+			this.speedModifier = p_i50459_5_;
+			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+		}
+
+		public void stop() {
+			this.hunter.setTofunainHome((BlockPos) null);
+			TofunianEntity.this.navigation.stop();
+		}
+
+		public boolean canUse() {
+			BlockPos blockpos = this.hunter.getTofunainHome();
+
+			double distance = this.hunter.level.isDay() ? this.stopDistance : this.stopDistance / 3.0F;
+
+			return blockpos != null && this.isTooFarAway(blockpos, distance);
+		}
+
+		public void tick() {
+			BlockPos blockpos = this.hunter.getTofunainHome();
+			if (blockpos != null && TofunianEntity.this.navigation.isDone()) {
+				if (this.isTooFarAway(blockpos, 10.0D)) {
+					Vec3 vector3d = (new Vec3((double) blockpos.getX() - this.hunter.getX(), (double) blockpos.getY() - this.hunter.getY(), (double) blockpos.getZ() - this.hunter.getZ())).normalize();
+					Vec3 vector3d1 = vector3d.scale(10.0D).add(this.hunter.getX(), this.hunter.getY(), this.hunter.getZ());
+					TofunianEntity.this.navigation.moveTo(vector3d1.x, vector3d1.y, vector3d1.z, this.speedModifier);
+				} else {
+					TofunianEntity.this.navigation.moveTo((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ(), this.speedModifier);
+				}
+			}
+
+		}
+
+		private boolean isTooFarAway(BlockPos p_220846_1_, double p_220846_2_) {
+			return !p_220846_1_.closerThan(this.hunter.position(), p_220846_2_);
 		}
 	}
 }
