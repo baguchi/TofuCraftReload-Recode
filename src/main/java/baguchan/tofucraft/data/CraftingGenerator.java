@@ -176,25 +176,25 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 		foodCooking(TofuItems.EDAMAME, TofuItems.BOILED_EDAMAME, 0.1F, consumer);
 
-		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDA)
+		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDA, 4)
 				.requires(TofuItems.BOILED_EDAMAME, 8)
 				.requires(Items.SUGAR)
 				.unlockedBy("has_item", has(TofuItems.BOILED_EDAMAME))
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDAMA)
 				.requires(TofuItems.ZUNDA, 4)
-				.requires(Items.GLOWSTONE)
+				.requires(Items.GLOWSTONE_DUST)
 				.unlockedBy("has_item", has(TofuItems.ZUNDA))
 				.save(consumer);
 		foodCooking(TofuItems.TOFU_HAMBURG_RAW, TofuItems.TOFU_HAMBURG, 0.25F, consumer);
 		foodCooking(TofuItems.RAW_TOFU_FISH, TofuItems.COOKED_TOFU_FISH, 0.2F, consumer);
-		ShapedRecipeBuilder.shaped(TofuItems.TOFUCOOKIE)
+		ShapedRecipeBuilder.shaped(TofuItems.TOFUCOOKIE, 8)
 				.pattern("X#X")
 				.define('#', TofuItems.TOFUKINU)
 				.define('X', Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.TOFUKINU))
 				.save(consumer, TofuCraftReload.prefix("tofucookie_kinu"));
-		ShapedRecipeBuilder.shaped(TofuItems.TOFUCOOKIE)
+		ShapedRecipeBuilder.shaped(TofuItems.TOFUCOOKIE, 8)
 				.pattern("X#X")
 				.define('#', TofuItems.TOFUMOMEN)
 				.define('X', Items.WHEAT)
@@ -248,33 +248,33 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(TofuItems.KINAKO_MANJU)
+		ShapelessRecipeBuilder.shapeless(TofuItems.KINAKO_MANJU, 2)
 				.requires(TofuItems.KINAKO)
 				.requires(Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.KINAKO))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDA_MANJU)
+		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDA_MANJU, 2)
 				.requires(TofuItems.ZUNDA)
 				.requires(Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.ZUNDA))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(TofuItems.NETHER_MANJU)
+		ShapelessRecipeBuilder.shapeless(TofuItems.NETHER_MANJU, 2)
 				.requires(TofuItems.SEEDS_SOYBEANS_NETHER)
 				.requires(Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(TofuItems.SOUL_MANJU)
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOUL_MANJU, 2)
 				.requires(TofuItems.SEEDS_SOYBEANS_SOUL)
 				.requires(Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(TofuItems.SOY_CHOCOLATE)
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOY_CHOCOLATE, 6)
 				.requires(TofuItems.BUCKET_SOYMILK)
 				.requires(Items.COCOA_BEANS)
 				.requires(Items.SUGAR)
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUNIAN_SOY_CHOCOLATE)
+		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUNIAN_SOY_CHOCOLATE, 6)
 				.requires(TofuItems.BUCKET_SOYMILK)
 				.requires(Items.COCOA_BEANS)
 				.requires(Items.SUGAR)
