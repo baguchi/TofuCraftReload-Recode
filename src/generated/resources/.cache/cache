@@ -247,6 +247,7 @@ e4122140b043e2ea27a6f5a12dd288e81d50787e assets/tofucraft/models/item/tofutorch_
 575fa1b10d816ef788790b5d68f3408ae4ba3949 assets/tofucraft/models/item/zundama.json
 add834a27711be86ed915cb2ed4935bb2f260572 assets/tofucraft/models/item/zundamanju.json
 0dae73b2545891a9ef5b6b6c810dac15f4f00d57 assets/tofucraft/models/item/zundaruby.json
+d47aad475874189399719aa8e286e1c77b2b2352 data/minecraft/recipes/tofumomen_from_kinu.json
 00793dcec0c1359bb99f1db6122b3394fcfe1197 data/minecraft/tags/blocks/beds.json
 507a238f2814f0ba836a47482f5b7dda5ecab107 data/minecraft/tags/blocks/climbable.json
 3581b4beb68b14431b1ada6d1021a52a6694150c data/minecraft/tags/blocks/mineable/pickaxe.json
@@ -316,7 +317,6 @@ e7c260fbc0353aae8acae274041e1147e5244ad3 data/tofucraft/recipes/blocktofudiamond
 d1da18433d6da2c1b81b791816e70a03f3d997a2 data/tofucraft/recipes/blocktofugrilled.json
 23fc21f88f1132bacf3b83506aaf63765615374a data/tofucraft/recipes/blocktofuhell.json
 76857d67ba7f14905e72ef9a934ed2e12682bb0b data/tofucraft/recipes/blocktofuishi.json
-b6f767aee0312a5d2580ce6c3fe25c039a4e19b3 data/tofucraft/recipes/blocktofukinu.json
 c50e98eadb06a5eaf9bad09ecc7f961e60f7ab0f data/tofucraft/recipes/blocktofumetal.json
 f112b4c6985262d2c616fe1e797d5af13985414a data/tofucraft/recipes/blocktofumomen.json
 8b61722fa7985a20e46cda71c128714a348a82ee data/tofucraft/recipes/blocktofusoul.json

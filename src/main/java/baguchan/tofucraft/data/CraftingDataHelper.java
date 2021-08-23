@@ -155,6 +155,15 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.save(consumer);
 	}
 
+	protected final void tofuBlockItem(Consumer<FinishedRecipe> consumer, Item result, Item material, String name) {
+		ShapedRecipeBuilder.shaped(result)
+				.pattern("##")
+				.pattern("##")
+				.define('#', material)
+				.unlockedBy("has_item", has(material))
+				.save(consumer, name);
+	}
+
 	protected final void decorationTofuBlockItem(Consumer<FinishedRecipe> consumer, Item result, Item material) {
 		ShapedRecipeBuilder.shaped(result, 4)
 				.pattern("##")
