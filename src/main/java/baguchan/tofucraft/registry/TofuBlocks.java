@@ -116,7 +116,7 @@ public class TofuBlocks {
 	public static final Block TOFU_BEDROCK = new Block(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F).sound(SoundType.STONE));
 
 	public static final Block SAPLING_TOFU = new TofuSaplingBlock(new TofuTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS));
-	public static final Block LEAVES_TOFU = new TofuLeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).noCollission().randomTicks().instabreak().sound(SoundType.GRASS));
+	public static final Block LEAVES_TOFU = new TofuLeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).noOcclusion().randomTicks().sound(SoundType.GRASS));
 
 
 	public static final Block LEEK = new LeekBlock(BlockBehaviour.Properties.of(Material.PLANT).instabreak().noOcclusion().noCollission().sound(SoundType.GRASS));

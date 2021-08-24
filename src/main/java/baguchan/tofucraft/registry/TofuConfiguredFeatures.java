@@ -2,6 +2,7 @@ package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
+import baguchan.tofucraft.world.gen.foliage.TofuFoliagePlacer;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
@@ -13,8 +14,8 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.blockplacers.SimpleBlockPlacer;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.FeatureDecorator;
 import net.minecraft.world.level.levelgen.placement.FrequencyWithExtraChanceDecoratorConfiguration;
@@ -39,11 +40,12 @@ public class TofuConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> TOFU_ROCK = register("tofucraft:tofu_rock", TofuFeatures.TOFU_ROCK.configured(new BlockStateConfiguration(TofuBlocks.ISHITOFU.defaultBlockState())).decorated(Features.Decorators.HEIGHTMAP_SQUARE).countRandom(2));
 	public static final ConfiguredFeature<?, ?> TOFU_BUILDING = register("tofucraft:tofu_building", TofuFeatures.TOFU_BUILDING.configured(new BlockStateConfiguration(TofuBlocks.TOFU_TERRAIN.defaultBlockState())).decorated(Features.Decorators.HEIGHTMAP_SQUARE).countRandom(3));
 
-	public static final ConfiguredFeature<TreeConfiguration, ?> TOFU_TREE = register("tofucraft:tofu_tree", Feature.TREE.configured((new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(TofuBlocks.ISHITOFU.defaultBlockState()), new StraightTrunkPlacer(4, 2, 0), new SimpleStateProvider(TofuBlocks.LEAVES_TOFU.defaultBlockState()), new SimpleStateProvider(TofuBlocks.SAPLING_TOFU.defaultBlockState()), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(2), 3), new TwoLayersFeatureSize(1, 0, 1))).dirt(new SimpleStateProvider(TofuBlocks.TOFU_TERRAIN.defaultBlockState())).ignoreVines().build()));
+	public static final ConfiguredFeature<TreeConfiguration, ?> TOFU_TREE = register("tofucraft:tofu_tree", Feature.TREE.configured((new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(TofuBlocks.ISHITOFU.defaultBlockState()), new StraightTrunkPlacer(4, 2, 0), new SimpleStateProvider(TofuBlocks.LEAVES_TOFU.defaultBlockState()), new SimpleStateProvider(TofuBlocks.SAPLING_TOFU.defaultBlockState()), new TofuFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(2, 2, 2))).dirt(new SimpleStateProvider(TofuBlocks.TOFU_TERRAIN.defaultBlockState())).ignoreVines().build()));
+	public static final ConfiguredFeature<TreeConfiguration, ?> TOFU_TREE_BIG = register("tofucraft:tofu_tree_big", Feature.TREE.configured((new TreeConfiguration.TreeConfigurationBuilder(new SimpleStateProvider(TofuBlocks.ISHITOFU.defaultBlockState()), new FancyTrunkPlacer(3, 11, 0), new SimpleStateProvider(TofuBlocks.LEAVES_TOFU.defaultBlockState()), new SimpleStateProvider(TofuBlocks.SAPLING_TOFU.defaultBlockState()), new TofuFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), 4), new TwoLayersFeatureSize(3, 3, 3))).dirt(new SimpleStateProvider(TofuBlocks.TOFU_TERRAIN.defaultBlockState())).ignoreVines().build()));
 	public static final ConfiguredFeature<?, ?> LEEK = register("tofucraft:leek", (Feature.RANDOM_PATCH.configured(LEEK_CLUSTER).decorated(Features.Decorators.HEIGHTMAP_DOUBLE_SQUARE).count(5)));
 
 	public static final ConfiguredFeature<?, ?> TOFUPLAIN_VEGETATION = register("tofucraft:tofu_plain_vegetation", TOFU_TREE.decorated(Features.Decorators.HEIGHTMAP_WITH_TREE_THRESHOLD_SQUARED).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(0, 0.05F, 1))));
-	public static final ConfiguredFeature<?, ?> TOFUFOREST_VEGETATION = register("tofucraft:tofu_forest_vegetation", TOFU_TREE.decorated(Features.Decorators.HEIGHTMAP_WITH_TREE_THRESHOLD_SQUARED).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(2, 0.1F, 1))));
+	public static final ConfiguredFeature<?, ?> TOFUFOREST_VEGETATION = register("tofucraft:tofu_forest_vegetation", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(TOFU_TREE_BIG.weighted(0.1F)), TOFU_TREE)).decorated(Features.Decorators.HEIGHTMAP_WITH_TREE_THRESHOLD_SQUARED).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(6, 0.1F, 1))));
 
 
 	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND = register("tofucraft:ore_tofu_diamond", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 6, 0.5F)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)).squared().count(12));

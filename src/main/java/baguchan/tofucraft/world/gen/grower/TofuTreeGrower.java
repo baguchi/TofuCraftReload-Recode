@@ -11,7 +11,7 @@ import java.util.Random;
 public class TofuTreeGrower extends AbstractTreeGrower {
 	@Nullable
 	protected ConfiguredFeature<TreeConfiguration, ?> getConfiguredFeature(Random p_60038_, boolean p_60039_) {
-		return TofuConfiguredFeatures.TOFU_TREE;
+		return p_60038_.nextInt(8) == 0 ? TofuConfiguredFeatures.TOFU_TREE_BIG : TofuConfiguredFeatures.TOFU_TREE;
 
 	}
 }

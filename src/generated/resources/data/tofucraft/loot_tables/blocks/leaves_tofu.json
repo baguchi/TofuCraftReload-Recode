@@ -38,7 +38,7 @@
                   ]
                 }
               ],
-              "name": "tofucraft:sapling_tofu"
+              "name": "tofucraft:leaves_tofu"
             },
             {
               "type": "minecraft:item",
@@ -57,7 +57,7 @@
                   ]
                 }
               ],
-              "name": "tofucraft:leaves_tofu"
+              "name": "tofucraft:sapling_tofu"
             }
           ]
         }
