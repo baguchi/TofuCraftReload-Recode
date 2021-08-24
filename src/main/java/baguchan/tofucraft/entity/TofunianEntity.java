@@ -54,14 +54,19 @@ import net.minecraftforge.common.util.ITeleporter;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class TofunianEntity extends AbstractTofunianEntity implements ReputationEventHandler {
 	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(TofunianEntity.class, EntityDataSerializers.STRING);
 
-	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK, Integer.valueOf(5), TofuItems.TOFUCOOKIE, Integer.valueOf(3), TofuItems.TOFUGRILLED, Integer.valueOf(2));
+	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK, 3, TofuItems.TOFUCOOKIE, 3, TofuItems.TOFUGRILLED, 1);
 
 	private static final Set<Item> WANTED_ITEMS = ImmutableSet.of(TofuItems.SOYMILK, TofuItems.TOFUCOOKIE, TofuItems.TOFUGRILLED, TofuItems.SEEDS_SOYBEANS);
+	private static final Predicate<? super ItemEntity> ALLOWED_ITEMS = (p_213616_0_) -> {
+		return WANTED_ITEMS.contains(p_213616_0_.getItem().getItem());
+	};
+
 
 	private byte foodLevel;
 	private final GossipContainer gossips = new GossipContainer();
@@ -110,13 +115,20 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zoglin.class, 10.0F, 1.2D, 1.2D));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
 		this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
-		this.goalSelector.addGoal(5, new TofunianSleepOnBedGoal(this, 0.85F, 6));
-		this.goalSelector.addGoal(6, new FindJobBlockGoal(this, 0.85F, 6));
-		this.goalSelector.addGoal(7, new RestockGoal(this, 0.85F, 6));
-		this.goalSelector.addGoal(8, new MoveToGoal(this, 26.0D, 1.0D));
-		this.goalSelector.addGoal(9, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(10, new InteractGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		this.goalSelector.addGoal(2, new TofunianSleepOnBedGoal(this, 0.85F, 6));
+		this.goalSelector.addGoal(3, new GetItemGoal<>(this));
+		this.goalSelector.addGoal(4, new CropHarvestGoal(this, 0.9F));
+		this.goalSelector.addGoal(5, new MakeFoodGoal(this, 0.9F, 6));
+		this.goalSelector.addGoal(6, new RestockGoal(this, 0.9F, 6));
+		this.goalSelector.addGoal(7, new MoveToGoal(this, 26.0D, 1.0D));
+		this.goalSelector.addGoal(8, new FindJobBlockGoal(this, 0.85F, 6));
+		this.goalSelector.addGoal(9, new TofunianLoveGoal(this, 0.8F));
+		this.goalSelector.addGoal(10, new RandomStrollGoal(this, 0.9D));
+		this.goalSelector.addGoal(11, new MoveToGoal(this, 26.0D, 1.0D));
+		this.goalSelector.addGoal(12, new InteractGoal(this, Player.class, 3.0F, 1.0F));
+		this.goalSelector.addGoal(13, new ShareItemGoal(this, 0.9F));
+		this.goalSelector.addGoal(14, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		this.goalSelector.addGoal(15, new RandomLookAroundGoal(this));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -193,6 +205,11 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		this.tofunianHomeCheck();
 
 		super.customServerAiStep();
+	}
+
+	public void aiStep() {
+		this.updateSwingTime();
+		super.aiStep();
 	}
 
 	public void tofunianJobCheck() {
@@ -321,12 +338,6 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		this.openTradingScreen(p_35537_, this.getDisplayName(), this.getTofunainLevel());
 	}
 
-	private void displayMerchantGui(Player player) {
-		recalculateSpecialPricesFor(player);
-		setTradingPlayer(player);
-		openTradingScreen(player, getDisplayName(), this.tofunianLevel);
-	}
-
 	public void setTradingPlayer(@Nullable Player player) {
 		boolean flag = (getTradingPlayer() != null && player == null);
 		super.setTradingPlayer(player);
@@ -406,13 +417,6 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		for (MerchantOffer merchantoffer : this.getOffers()) {
 			merchantoffer.updateDemand();
 		}
-	}
-
-	private void recalculateSpecialPricesFor(Player playerIn) {
-		int i = getPlayerReputation(playerIn);
-		if (i != 0)
-			for (MerchantOffer merchantoffer : this.getOffers())
-				merchantoffer.addToSpecialPriceDiff(-Mth.floor((float) i * merchantoffer.getPriceMultiplier()));
 	}
 
 	public void setOffers(MerchantOffers offersIn) {
@@ -500,8 +504,8 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		}
 	}
 
-	public boolean func_213743_em() {
-		return (this.foodLevel + countFoodPointsInInventory() >= 32 && getAge() == 0);
+	public boolean canMate() {
+		return (this.foodLevel + countFoodPointsInInventory() >= 42 && getAge() == 0);
 	}
 
 	private boolean hungry() {
@@ -533,11 +537,11 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 	}
 
 	public boolean hasExcessFood() {
-		return (countFoodPointsInInventory() >= 32);
+		return (countFoodPointsInInventory() >= 42);
 	}
 
 	public boolean wantsMoreFood() {
-		return (countFoodPointsInInventory() < 24);
+		return (countFoodPointsInInventory() < 42);
 	}
 
 	public boolean hasFarmSeeds() {
@@ -760,6 +764,25 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 
 		private boolean isTooFarAway(BlockPos p_220846_1_, double p_220846_2_) {
 			return !p_220846_1_.closerThan(this.hunter.position(), p_220846_2_);
+		}
+	}
+
+	public class GetItemGoal<T extends TofunianEntity> extends Goal {
+		private final T mob;
+
+		public GetItemGoal(T p_i50572_2_) {
+			this.mob = p_i50572_2_;
+			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+		}
+
+		public boolean canUse() {
+
+			List<ItemEntity> list = this.mob.level.getEntitiesOfClass(ItemEntity.class, this.mob.getBoundingBox().inflate(4.0D, 4.0D, 4.0D), TofunianEntity.ALLOWED_ITEMS);
+			if (!list.isEmpty() && this.mob.hasLineOfSight(list.get(0))) {
+				return this.mob.getNavigation().moveTo(list.get(0), (double) 1.0F);
+			}
+
+			return false;
 		}
 	}
 }
