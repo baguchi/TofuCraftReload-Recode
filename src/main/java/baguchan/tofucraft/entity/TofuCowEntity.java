@@ -46,4 +46,8 @@ public class TofuCowEntity extends Cow {
 			return super.mobInteract(p_28298_, p_28299_);
 		}
 	}
+
+	public boolean isFood(ItemStack p_27600_) {
+		return p_27600_.is(TofuItems.LEEK);
+	}
 }
