@@ -1,0 +1,31 @@
+{
+  "parent": "tofucraft:tofucraft/tofustick",
+  "display": {
+    "icon": {
+      "item": "tofucraft:tofu_terrain"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.tofuworld.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.tofuworld.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tofuworld": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "tofucraft:tofu_world"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tofuworld"
+    ]
+  ]
+}
