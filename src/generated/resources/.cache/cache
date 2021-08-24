@@ -253,7 +253,7 @@ e4122140b043e2ea27a6f5a12dd288e81d50787e assets/tofucraft/models/item/tofutorch_
 575fa1b10d816ef788790b5d68f3408ae4ba3949 assets/tofucraft/models/item/zundama.json
 add834a27711be86ed915cb2ed4935bb2f260572 assets/tofucraft/models/item/zundamanju.json
 0dae73b2545891a9ef5b6b6c810dac15f4f00d57 assets/tofucraft/models/item/zundaruby.json
-d47aad475874189399719aa8e286e1c77b2b2352 data/minecraft/recipes/tofumomen_from_kinu.json
+644e11be8f7196b53d59e498f938a89150eb41d2 data/minecraft/recipes/tofumomen_from_kinu.json
 00793dcec0c1359bb99f1db6122b3394fcfe1197 data/minecraft/tags/blocks/beds.json
 507a238f2814f0ba836a47482f5b7dda5ecab107 data/minecraft/tags/blocks/climbable.json
 3581b4beb68b14431b1ada6d1021a52a6694150c data/minecraft/tags/blocks/mineable/pickaxe.json
