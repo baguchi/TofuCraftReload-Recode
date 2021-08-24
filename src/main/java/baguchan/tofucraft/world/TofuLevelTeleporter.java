@@ -313,13 +313,13 @@ public class TofuLevelTeleporter implements ITeleporter {
 			for (int rz = entityZ - range; rz <= entityZ + range; rz++) {
 				double zWeight = (rz + 0.5D) - loc.z;
 
-				for (int ry = getScanHeight(world, rx, rz); ry >= 0; ry--) {
+				for (int ry = getScanHeight(world, rx, rz); ry >= world.getMinBuildHeight(); ry--) {
 
 					if (!world.isEmptyBlock(pos.set(rx, ry, rz))) {
 						continue;
 					}
 
-					while (ry > 0 && world.isEmptyBlock(pos.set(rx, ry - 1, rz))) {
+					while (ry > world.getMinBuildHeight() && world.isEmptyBlock(pos.set(rx, ry - 1, rz))) {
 						ry--;
 					}
 
@@ -367,10 +367,6 @@ public class TofuLevelTeleporter implements ITeleporter {
 
 	public static BlockPos makePortalAt(Level world, BlockPos pos) {
 		BlockState portalState = TofuBlocks.TOFU_PORTAL.defaultBlockState();
-		while (pos.getX() > 1 && world.isEmptyBlock(pos))
-			pos = pos.below();
-		while (!world.isEmptyBlock(pos.above()) && world.getBlockState(pos).getBlock() != TofuBlocks.TOFU_TERRAIN)
-			pos = pos.above();
 		BlockState snowstate = TofuBlocks.GRILLEDTOFU.defaultBlockState();
 		for (BlockPos basePos : BlockPos.MutableBlockPos.betweenClosed(pos.offset(-2, 0, -2), pos.offset(2, 1, 2)))
 			world.setBlock(basePos, snowstate, 2);
