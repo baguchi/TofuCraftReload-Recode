@@ -66,6 +66,9 @@ public class ClientRegistrar {
 		setRenderLayer(TofuBlocks.TOFULADDER_ISHIBRICK, RenderType.cutout());
 		setRenderLayer(TofuBlocks.TOFULADDER_METAL, RenderType.cutout());
 
+		setRenderLayer(TofuBlocks.SAPLING_TOFU, RenderType.cutout());
+		setRenderLayer(TofuBlocks.LEAVES_TOFU, RenderType.cutoutMipped());
+
 		setRenderLayer(TofuBlocks.LEEK, RenderType.cutout());
 
 		setRenderLayer(TofuBlocks.TOFU_PORTAL, RenderType.translucent());

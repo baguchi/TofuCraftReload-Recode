@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tofucraft:tofu_bedrock"
+          "name": "tofucraft:sapling_tofu"
         }
       ],
       "conditions": [

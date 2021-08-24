@@ -67,6 +67,9 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.ORE_TOFU_DIAMOND);
 		simpleBlock(TofuBlocks.TOFU_BEDROCK);
 
+		crossBlock(TofuBlocks.SAPLING_TOFU);
+		simpleBlock(TofuBlocks.LEAVES_TOFU);
+
 		crossBlock(TofuBlocks.LEEK);
 
 		simpleBlock(TofuBlocks.TOFU_PORTAL);

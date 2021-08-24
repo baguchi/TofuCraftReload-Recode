@@ -10,6 +10,7 @@ import baguchan.tofucraft.block.utils.TofuBedBlock;
 import baguchan.tofucraft.block.utils.TofuChestBlock;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
+import baguchan.tofucraft.world.gen.grower.TofuTreeGrower;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -114,6 +115,10 @@ public class TofuBlocks {
 	public static final Block ORE_TOFU_DIAMOND = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.5F, 1.0F).sound(SoundType.SNOW));
 	public static final Block TOFU_BEDROCK = new Block(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F).sound(SoundType.STONE));
 
+	public static final Block SAPLING_TOFU = new TofuSaplingBlock(new TofuTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS));
+	public static final Block LEAVES_TOFU = new TofuLeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).noCollission().randomTicks().instabreak().sound(SoundType.GRASS));
+
+
 	public static final Block LEEK = new LeekBlock(BlockBehaviour.Properties.of(Material.PLANT).instabreak().noOcclusion().noCollission().sound(SoundType.GRASS));
 
 	public static final TofuPortalBlock TOFU_PORTAL = new TofuPortalBlock(BlockBehaviour.Properties.of(Material.PORTAL).strength(-1.0F).noCollission().noOcclusion().noDrops().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
@@ -199,6 +204,9 @@ public class TofuBlocks {
 		registry.getRegistry().register(ORE_TOFU_DIAMOND.setRegistryName("ore_tofu_diamond"));
 		registry.getRegistry().register(TOFU_BEDROCK.setRegistryName("tofu_bedrock"));
 
+		registry.getRegistry().register(SAPLING_TOFU.setRegistryName("sapling_tofu"));
+		registry.getRegistry().register(LEAVES_TOFU.setRegistryName("leaves_tofu"));
+
 		registry.getRegistry().register(LEEK.setRegistryName("blockleek"));
 
 		registry.getRegistry().register(TOFU_PORTAL.setRegistryName("tofuportal"));
@@ -267,6 +275,11 @@ public class TofuBlocks {
 
 		TofuItems.register(registry, new BlockItem(TOFU_TERRAIN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(ORE_TOFU_DIAMOND, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFU_BEDROCK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+
+		TofuItems.register(registry, new BlockItem(SAPLING_TOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(LEAVES_TOFU, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+
 		TofuItems.register(registry, new BlockItem(LEEK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(TOFU_FARMLAND, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
