@@ -27,7 +27,7 @@ logoFile = "logo.png" #optional
 # A text field displayed in the mod UI
 #credits="" #optional
 # A text field displayed in the mod UI
-authors = "sugardog125, 0999312" #optional
+authors = "bagu_chan, 0999312" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description = '''
 TofuCraft in 1.17.1!
