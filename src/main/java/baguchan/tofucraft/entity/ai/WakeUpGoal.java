@@ -16,6 +16,6 @@ public class WakeUpGoal extends Goal {
 
 	public void start() {
 		super.start();
-		this.creature.clearSleepingPos();
+		this.creature.stopSleeping();
 	}
 }
