@@ -20,7 +20,7 @@ public class SleepOnBedGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (super.canUse() && !this.creature.level.isDay() && !this.creature.isSleeping());
+		return (this.creature.level.isNight() && !this.creature.isSleeping() && super.canUse());
 	}
 
 	public void tick() {
