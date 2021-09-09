@@ -78,12 +78,12 @@ public class TofuItems {
 	public static final Item SOY_CHOCOLATE = new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuItemGroup.TOFUCRAFT));
 
 	public static final Item TOFUNIAN_SOY_CHOCOLATE = new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item BUCKET_SOYMILK = new BucketItem(() -> TofuFluids.SOYMILK, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item BUCKET_SOYMILK_NETHER = new BucketItem(() -> TofuFluids.SOYMILK_HELL, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item BUCKET_SOYMILK_SOUL = new BucketItem(() -> TofuFluids.SOYMILK_SOUL, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUFISH_BUCKET = new FishBucketItem(() -> TofuEntityTypes.TOFUFISH, () -> Fluids.WATER, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUFISH_SOYMILK_BUCKET = new FishBucketItem(() -> TofuEntityTypes.TOFUFISH, () -> TofuFluids.SOYMILK, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item BUCKET_BITTERN = new BucketItem(() -> TofuFluids.BITTERN, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUCKET_SOYMILK = new BucketItem(() -> TofuFluids.SOYMILK, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUCKET_SOYMILK_NETHER = new BucketItem(() -> TofuFluids.SOYMILK_HELL, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUCKET_SOYMILK_SOUL = new BucketItem(() -> TofuFluids.SOYMILK_SOUL, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUFISH_BUCKET = new FishBucketItem(() -> TofuEntityTypes.TOFUFISH, () -> Fluids.WATER, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUFISH_SOYMILK_BUCKET = new FishBucketItem(() -> TofuEntityTypes.TOFUFISH, () -> TofuFluids.SOYMILK, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUCKET_BITTERN = new BucketItem(() -> TofuFluids.BITTERN, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
 
 	public static final Item KINUSWORD = new SwordItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item KINUAXE = new AxeItem(TofuItemTier.KINU, 0.0F, -2.25F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
