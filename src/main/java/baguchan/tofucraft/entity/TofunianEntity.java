@@ -218,11 +218,11 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		//validate job position
 		if (this.getTofunainJobBlock() != null && this.getRole() != Roles.TOFUNIAN) {
 			if (Roles.getJobBlock(this.level.getBlockState(this.getTofunainJobBlock()).getBlock()) == null) {
-				//home position isnt a chest, keep current position but find better one
 				this.setTofunainJobBlock(null);
 
 				if (this.getTofunainLevel() == 1 && this.getVillagerXp() == 0) {
-					this.getOffers().clear();
+					this.setOffers(null);
+					this.setRole(Roles.TOFUNIAN);
 				}
 			}
 		}
@@ -579,6 +579,10 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 				addOffersFromItemListings(merchantoffers, avillagertrades$ItemListing, 2);
 			}
 		}
+	}
+
+	public void remadeTrade() {
+		this.updateTrades();
 	}
 
 

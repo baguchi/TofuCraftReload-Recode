@@ -36,6 +36,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 			if (role != null) {
 				if (this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN || this.creature.getTofunainLevel() == 1 && this.creature.getVillagerXp() == 0) {
 					this.creature.setRole(role);
+					this.creature.remadeTrade();
 				}
 
 
