@@ -182,7 +182,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	private float calcAdaptation(Level world, BlockPos pos) {
 		float rate;
 		Biome biome = world.getBiome(pos);
-		boolean isUnderTheSun = world.canSeeSky(pos);
+		boolean isUnderTheSun = world.getRawBrightness(pos, 0) > 8;
 		boolean isRaining = world.isRaining();
 		boolean isDaytime = (world.dayTime() % 24000L < 12000L);
 		float humidity = biome.getDownfall();
