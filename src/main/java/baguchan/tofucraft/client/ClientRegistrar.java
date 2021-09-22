@@ -6,6 +6,7 @@ import baguchan.tofucraft.client.render.FukumameRender;
 import baguchan.tofucraft.client.render.NetherFukumameRender;
 import baguchan.tofucraft.client.render.SoulFukumameRender;
 import baguchan.tofucraft.client.render.entity.TofuCowRender;
+import baguchan.tofucraft.client.render.entity.TofuFishRender;
 import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
 import baguchan.tofucraft.client.render.entity.TofunianRender;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
@@ -90,6 +91,7 @@ public class ClientRegistrar {
 	public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(TofuEntityTypes.TOFUCOW, TofuCowRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUNIAN, TofunianRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFUFISH, TofuFishRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUSLIME, TofuSlimeRender::new);
 
 		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME, FukumameRender::new);

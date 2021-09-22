@@ -3,9 +3,11 @@ package baguchan.tofucraft.registry;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.item.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -60,8 +62,8 @@ public class TofuItems {
 	public static final Item BUCKET_SOYMILK = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item BUCKET_SOYMILK_NETHER = new BucketItem(TofuFluids.SOYMILK_HELL, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item BUCKET_SOYMILK_SOUL = new BucketItem(TofuFluids.SOYMILK_SOUL, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	//public static final Item TOFUFISH_BUCKET = new FishBucketItem(() -> TofuEntityTypes.TOFUFISH, () -> Fluids.WATER, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	//public static final Item TOFUFISH_SOYMILK_BUCKET = new FishBucketItem(() -> TofuEntityTypes.TOFUFISH, () -> TofuFluids.SOYMILK, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUFISH_BUCKET = new MobBucketItem(TofuEntityTypes.TOFUFISH, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUFISH_SOYMILK_BUCKET = new MobBucketItem(TofuEntityTypes.TOFUFISH, TofuFluids.SOYMILK, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item BUCKET_BITTERN = new BucketItem(TofuFluids.BITTERN, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
 
 	public static final Item TOFU_KINU_SWORD = new SwordItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
@@ -195,6 +197,8 @@ public class TofuItems {
 		register(registry, BUCKET_SOYMILK, "bucket_soymilk");
 		register(registry, BUCKET_SOYMILK_NETHER, "bucket_soymilk_nether");
 		register(registry, BUCKET_SOYMILK_SOUL, "bucket_soymilk_soul");
+		register(registry, TOFUFISH_BUCKET, "tofufish_bucket");
+		register(registry, TOFUFISH_SOYMILK_BUCKET, "tofufish_soymilk_bucket");
 		register(registry, BUCKET_BITTERN, "bucket_bittern");
 		register(registry, TOFU_KINU_SWORD, "tofu_kinu_sword");
 		register(registry, TOFU_KINU_AXE, "tofu_kinu_axe");

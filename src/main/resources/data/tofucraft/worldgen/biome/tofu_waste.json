@@ -71,6 +71,12 @@
     "water_creature": [
     ],
     "water_ambient": [
+      {
+        "type": "tofucraft:tofufish",
+        "weight": 10,
+        "minCount": 3,
+        "maxCount": 6
+      }
     ],
     "misc": [
     ]
