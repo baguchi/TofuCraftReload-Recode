@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "tofucraft.refmap.json",
   "mixins": [
-    "DimensionGeneratorSettingsMixin"
+    "WorldGenSettingsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
