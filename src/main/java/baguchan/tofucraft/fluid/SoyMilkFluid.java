@@ -7,6 +7,8 @@ import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -37,6 +39,11 @@ public abstract class SoyMilkFluid extends WaterFluid {
 
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(Level p_204522_1_, BlockPos p_204522_2_, FluidState p_204522_3_, Random p_204522_4_) {
+		if (!p_204522_3_.isSource() && !p_204522_3_.getValue(FALLING)) {
+			if (p_204522_4_.nextInt(64) == 0) {
+				p_204522_1_.playLocalSound((double) p_204522_2_.getX() + 0.5D, (double) p_204522_2_.getY() + 0.5D, (double) p_204522_2_.getZ() + 0.5D, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, p_204522_4_.nextFloat() * 0.25F + 0.75F, p_204522_4_.nextFloat() + 0.5F, false);
+			}
+		}
 	}
 
 	protected boolean canConvertToSource() {

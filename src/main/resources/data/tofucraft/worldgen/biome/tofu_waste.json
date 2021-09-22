@@ -30,7 +30,9 @@
     [],
     [
     ],
-    [],
+    [
+      "tofucraft:tofu_building"
+    ],
     [],
     [],
     [
@@ -39,7 +41,6 @@
     ],
     [],
     [
-      "tofucraft:tofu_building",
       "tofucraft:leek"
     ],
     [
