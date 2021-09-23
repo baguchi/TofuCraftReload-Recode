@@ -6,6 +6,9 @@
   "mixins": [
     "WorldGenSettingsMixin"
   ],
+  "client": [
+    "client.MinecraftMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },
