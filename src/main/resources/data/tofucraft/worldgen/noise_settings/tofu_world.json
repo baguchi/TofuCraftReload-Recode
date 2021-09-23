@@ -7,7 +7,7 @@
   "noise_caves_enabled": true,
   "noodle_caves_enabled": true,
   "aquifers_enabled": true,
-  "deepslate_enabled": false,
+  "deepslate_enabled": true,
   "ore_veins_enabled": false,
   "structures": {
     "structures": {

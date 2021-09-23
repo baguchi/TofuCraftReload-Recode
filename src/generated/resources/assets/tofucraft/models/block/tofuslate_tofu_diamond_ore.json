@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "tofucraft:block/tofuslate_tofu_diamond_ore"
+  }
+}

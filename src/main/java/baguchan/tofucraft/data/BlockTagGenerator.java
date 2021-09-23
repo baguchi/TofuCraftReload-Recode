@@ -32,12 +32,14 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFULADDER_ISHI, TofuBlocks.TOFULADDER_ISHIBRICK, TofuBlocks.TOFULADDER_METAL
 				, TofuBlocks.TOFUFENCE_ISHI, TofuBlocks.TOFUFENCE_METAL
 				, TofuBlocks.TOFUCHEST
-				, TofuBlocks.TOFU_BEDROCK);
+				, TofuBlocks.TOFU_BEDROCK
+				, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE
+				, TofuBlocks.TOFUSLATE);
 
 		tag(BlockTags.NEEDS_STONE_TOOL)
 				.add(TofuBlocks.METALTOFU, TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.TOFUSLAB_METAL, TofuBlocks.TOFULADDER_METAL, TofuBlocks.TOFUFENCE_METAL);
 		tag(BlockTags.NEEDS_IRON_TOOL)
-				.add(TofuBlocks.DIAMONDTOFU);
+				.add(TofuBlocks.DIAMONDTOFU, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE);
 		tag(BlockTags.PIGLIN_REPELLENTS).add(TofuBlocks.SOYBEAN_SOUL);
 
 		tag(TofuTags.Blocks.SOFT_TOFU).add(TofuBlocks.KINUTOFU, TofuBlocks.MOMENTOFU, TofuBlocks.HELLTOFU, TofuBlocks.SOULTOFU

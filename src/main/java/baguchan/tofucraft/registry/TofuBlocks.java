@@ -112,6 +112,8 @@ public class TofuBlocks {
 
 
 	public static final Block TOFU_TERRAIN = new TofuTerrainBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final Block TOFUSLATE = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(2.5F, 4.0F).sound(SoundType.DEEPSLATE));
+	public static final Block TOFUSLATE_TOFU_DIAMOND_ORE = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 4.0F).sound(SoundType.DEEPSLATE));
 	public static final Block ORE_TOFU_DIAMOND = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.5F, 1.0F).sound(SoundType.SNOW));
 	public static final Block TOFU_BEDROCK = new Block(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F).sound(SoundType.STONE));
 
@@ -201,6 +203,8 @@ public class TofuBlocks {
 		registry.getRegistry().register(TOFULADDER_METAL.setRegistryName("tofuladder_metal"));
 
 		registry.getRegistry().register(TOFU_TERRAIN.setRegistryName("tofu_terrain"));
+		registry.getRegistry().register(TOFUSLATE.setRegistryName("tofuslate"));
+		registry.getRegistry().register(TOFUSLATE_TOFU_DIAMOND_ORE.setRegistryName("tofuslate_tofu_diamond_ore"));
 		registry.getRegistry().register(ORE_TOFU_DIAMOND.setRegistryName("ore_tofu_diamond"));
 		registry.getRegistry().register(TOFU_BEDROCK.setRegistryName("tofu_bedrock"));
 
@@ -274,6 +278,9 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(TOFULADDER_METAL, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(TOFU_TERRAIN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLATE, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLATE_TOFU_DIAMOND_ORE, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+
 		TofuItems.register(registry, new BlockItem(ORE_TOFU_DIAMOND, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(TOFU_BEDROCK, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 

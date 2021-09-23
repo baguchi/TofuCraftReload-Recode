@@ -65,6 +65,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		torchItem(TofuBlocks.TOFUTORCH_METAL);
 
 		toBlock(TofuBlocks.TOFU_TERRAIN);
+		toBlock(TofuBlocks.TOFUSLATE);
+		toBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE);
 		toBlock(TofuBlocks.ORE_TOFU_DIAMOND);
 		toBlock(TofuBlocks.TOFU_BEDROCK);
 

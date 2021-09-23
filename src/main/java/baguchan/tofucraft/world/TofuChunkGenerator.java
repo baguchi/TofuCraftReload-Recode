@@ -117,7 +117,7 @@ public class TofuChunkGenerator extends ChunkGenerator {
 		}
 
 		this.sampler = new NoiseSampler(p_64341_, this.cellWidth, this.cellHeight, this.cellCountY, noisesettings, blendednoise, simplexnoise, perlinnoise, noisemodifier);
-		this.baseStoneSource = new DepthBasedReplacingBaseStoneSource(p_64343_, this.defaultBlock, Blocks.DEEPSLATE.defaultBlockState(), noisegeneratorsettings);
+		this.baseStoneSource = new DepthBasedReplacingBaseStoneSource(p_64343_, this.defaultBlock, TofuBlocks.TOFUSLATE.defaultBlockState(), noisegeneratorsettings);
 		this.oreVeinifier = new TofuOreVeinifier(p_64343_, this.defaultBlock, this.cellWidth, this.cellHeight, noisegeneratorsettings.noiseSettings().minY());
 		this.noodleCavifier = new NoodleCavifier(p_64343_);
 	}

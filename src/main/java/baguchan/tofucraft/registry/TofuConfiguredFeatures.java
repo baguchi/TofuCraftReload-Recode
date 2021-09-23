@@ -23,6 +23,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 
 public class TofuConfiguredFeatures {
 	public static final RuleTest TOFU_ORE_REPLACEABLES = new BlockMatchTest(TofuBlocks.TOFU_TERRAIN);
+	public static final RuleTest TOFUSLATE_ORE_REPLACEABLES = new BlockMatchTest(TofuBlocks.TOFUSLATE);
 
 	public static RandomPatchConfiguration NETHER_SOYBEAN_CLUSTER = (new RandomPatchConfiguration.GrassConfigurationBuilder(new SimpleStateProvider(TofuBlocks.SOYBEAN_NETHER.defaultBlockState().setValue(SoybeanNetherCropsBlock.AGE, 7)), SimpleBlockPlacer.INSTANCE)).tries(64).noProjection().build();
 
@@ -30,7 +31,7 @@ public class TofuConfiguredFeatures {
 
 	public static RandomPatchConfiguration LEEK_CLUSTER = (new RandomPatchConfiguration.GrassConfigurationBuilder(new SimpleStateProvider(TofuBlocks.LEEK.defaultBlockState()), SimpleBlockPlacer.INSTANCE)).tries(64).noProjection().build();
 
-	public static final ImmutableList<OreConfiguration.TargetBlockState> ORE_DIAMOND_TARGET_LIST = ImmutableList.of(OreConfiguration.target(TOFU_ORE_REPLACEABLES, TofuBlocks.ORE_TOFU_DIAMOND.defaultBlockState()));
+	public static final ImmutableList<OreConfiguration.TargetBlockState> ORE_DIAMOND_TARGET_LIST = ImmutableList.of(OreConfiguration.target(TOFU_ORE_REPLACEABLES, TofuBlocks.ORE_TOFU_DIAMOND.defaultBlockState()), OreConfiguration.target(TOFUSLATE_ORE_REPLACEABLES, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.defaultBlockState()));
 
 	public static final ConfiguredFeature<?, ?> NETHER_SOYBEAN = register("tofucraft:nether_soybean", (Feature.RANDOM_PATCH.configured(NETHER_SOYBEAN_CLUSTER).range(Features.Decorators.FULL_RANGE)).rarity(2));
 	public static final ConfiguredFeature<?, ?> NETHER_SOYBEAN_PATCH = register("tofucraft:nether_soybean_patch", (Feature.RANDOM_PATCH.configured(NETHER_SOYBEAN_CLUSTER).range(Features.Decorators.FULL_RANGE)).rarity(3));
@@ -47,8 +48,8 @@ public class TofuConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> TOFUFOREST_VEGETATION = register("tofucraft:tofu_forest_vegetation", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(TOFU_TREE_BIG.weighted(0.1F)), TOFU_TREE)).decorated(Features.Decorators.HEIGHTMAP_WITH_TREE_THRESHOLD_SQUARED).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(6, 0.1F, 1))));
 
 
-	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND = register("tofucraft:ore_tofu_diamond", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 6, 0.5F)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)).squared().count(12));
-	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND_LARGE = register("tofucraft:ore_tofu_diamond_large", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 16, 0.7F)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)).squared().rarity(9));
+	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND = register("tofucraft:ore_tofu_diamond", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 6, 0.5F)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(100)).squared().count(15));
+	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND_LARGE = register("tofucraft:ore_tofu_diamond_large", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 16, 0.7F)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)).squared().rarity(6));
 
 
 	private static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> p_243968_1_) {

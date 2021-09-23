@@ -12,7 +12,7 @@ import net.minecraft.world.level.material.Fluids;
 public class TofuCaveCarver extends CaveWorldCarver {
 	public TofuCaveCarver(Codec<CaveCarverConfiguration> p_159194_) {
 		super(p_159194_);
-		this.replaceableBlocks = ImmutableSet.of(TofuBlocks.TOFU_TERRAIN, Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DIRT);
+		this.replaceableBlocks = ImmutableSet.of(TofuBlocks.TOFU_TERRAIN, TofuBlocks.TOFUSLATE, Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DIRT);
 		this.liquids = ImmutableSet.of(Fluids.WATER, TofuFluids.SOYMILK);
 	}
 }

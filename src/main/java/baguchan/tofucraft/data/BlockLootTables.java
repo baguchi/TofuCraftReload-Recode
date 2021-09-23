@@ -113,6 +113,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFULADDER_METAL);
 
 		dropSelf(TofuBlocks.TOFU_TERRAIN);
+		dropSelf(TofuBlocks.TOFUSLATE);
+		this.add(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE, createTofuDiamondOreDrop(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE, TofuItems.TOFUDIAMOND_NUGGET));
 		this.add(TofuBlocks.ORE_TOFU_DIAMOND, createTofuDiamondOreDrop(TofuBlocks.ORE_TOFU_DIAMOND, TofuItems.TOFUDIAMOND_NUGGET));
 		dropSelf(TofuBlocks.TOFU_BEDROCK);
 		dropSelf(TofuBlocks.SAPLING_TOFU);
