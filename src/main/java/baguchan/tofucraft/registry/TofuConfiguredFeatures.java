@@ -48,7 +48,7 @@ public class TofuConfiguredFeatures {
 	public static final ConfiguredFeature<?, ?> TOFUFOREST_VEGETATION = register("tofucraft:tofu_forest_vegetation", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(ImmutableList.of(TOFU_TREE_BIG.weighted(0.1F)), TOFU_TREE)).decorated(Features.Decorators.HEIGHTMAP_WITH_TREE_THRESHOLD_SQUARED).decorated(FeatureDecorator.COUNT_EXTRA.configured(new FrequencyWithExtraChanceDecoratorConfiguration(6, 0.1F, 1))));
 
 
-	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND = register("tofucraft:ore_tofu_diamond", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 6, 0.5F)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(100)).squared().count(15));
+	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND = register("tofucraft:ore_tofu_diamond", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 8)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(100)).squared().count(15));
 	public static final ConfiguredFeature<?, ?> ORE_TOFU_DIAMOND_LARGE = register("tofucraft:ore_tofu_diamond_large", Feature.ORE.configured(new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 16, 0.7F)).rangeTriangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)).squared().rarity(6));
 
 
