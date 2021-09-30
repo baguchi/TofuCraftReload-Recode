@@ -9,6 +9,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 
@@ -45,7 +46,7 @@ public class RecipeHelper {
 				return recipe.getType() == TofuRecipes.RECIPETYPE_BITTERN;
 			});
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe instanceof BitternInfo && ((BitternInfo) recipe).getFluid().test(fluid)) {
+				if (recipe instanceof BitternInfo && ((BitternInfo) recipe).getFluid().test(new FluidStack(fluid, 1000))) {
 					return ((BitternInfo) recipe).getResults().getItems()[0];
 				}
 			}

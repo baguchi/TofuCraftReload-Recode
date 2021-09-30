@@ -1,24 +1,29 @@
 package baguchan.tofucraft.recipe;
 
+import com.google.common.collect.Lists;
 import com.google.gson.*;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.SerializationTags;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class FluidIngredient implements Predicate<Fluid> {
+public class FluidIngredient implements Predicate<FluidStack> {
 	//Because Mojang caches things... we need to invalidate them.. so... here we go..
 	private static final java.util.Set<FluidIngredient> INSTANCES = java.util.Collections.newSetFromMap(new java.util.WeakHashMap<FluidIngredient, Boolean>());
 
@@ -28,7 +33,7 @@ public class FluidIngredient implements Predicate<Fluid> {
 
 	public static final FluidIngredient EMPTY = new FluidIngredient(Stream.empty());
 	private final FluidIngredient.Value[] values;
-	private Fluid[] fluids;
+	private FluidStack[] fluidStacks;
 	private IntList stackingIds;
 
 	protected FluidIngredient(Stream<? extends FluidIngredient.Value> p_43907_) {
@@ -38,32 +43,32 @@ public class FluidIngredient implements Predicate<Fluid> {
 		FluidIngredient.INSTANCES.add(this);
 	}
 
-	public Fluid[] getFluids() {
+	public FluidStack[] getFluids() {
 		this.dissolve();
-		return this.fluids;
+		return this.fluidStacks;
 	}
 
 	private void dissolve() {
-		if (this.fluids == null) {
-			this.fluids = Arrays.stream(this.values).flatMap((p_43916_) -> {
+		if (this.fluidStacks == null) {
+			this.fluidStacks = Arrays.stream(this.values).flatMap((p_43916_) -> {
 				return p_43916_.getFluids().stream();
 			}).distinct().toArray((p_43910_) -> {
-				return new Fluid[p_43910_];
+				return new FluidStack[p_43910_];
 			});
 		}
 
 	}
 
-	public boolean test(@Nullable Fluid p_43914_) {
+	public boolean test(@Nullable FluidStack p_43914_) {
 		if (p_43914_ == null) {
 			return false;
 		} else {
 			this.dissolve();
-			if (this.fluids.length == 0) {
-				return false;
+			if (this.fluidStacks.length == 0) {
+				return p_43914_.isEmpty();
 			} else {
-				for (Fluid fluidstack : this.fluids) {
-					if (fluidstack == p_43914_) {
+				for (FluidStack fluidstack : this.fluidStacks) {
+					if (fluidstack.containsFluid(p_43914_)) {
 						return true;
 					}
 				}
@@ -74,14 +79,20 @@ public class FluidIngredient implements Predicate<Fluid> {
 	}
 
 
+	public final void toNetwork(FriendlyByteBuf p_43924_) {
+		this.dissolve();
+
+		p_43924_.writeCollection(Arrays.asList(this.fluidStacks), FriendlyByteBuf::writeFluidStack);
+	}
+
 	public JsonElement toJson() {
 		if (this.values.length == 1) {
 			return this.values[0].serialize();
 		} else {
 			JsonArray jsonarray = new JsonArray();
 
-			for (FluidIngredient.Value ingredient$value : this.values) {
-				jsonarray.add(ingredient$value.serialize());
+			for (FluidIngredient.Value Fluidingredient$value : this.values) {
+				jsonarray.add(Fluidingredient$value.serialize());
 			}
 
 			return jsonarray;
@@ -89,44 +100,45 @@ public class FluidIngredient implements Predicate<Fluid> {
 	}
 
 	public boolean isEmpty() {
-		return this.values.length == 0 && (this.fluids == null || this.fluids.length == 0) && (this.stackingIds == null || this.stackingIds.isEmpty());
+		return this.values.length == 0 && (this.fluidStacks == null || this.fluidStacks.length == 0) && (this.stackingIds == null || this.stackingIds.isEmpty());
 	}
 
 	protected void invalidate() {
-		this.fluids = null;
+		this.fluidStacks = null;
 		this.stackingIds = null;
 	}
 
+	public boolean isSimple() {
+		return this == EMPTY;
+	}
+
 	public static FluidIngredient fromValues(Stream<? extends FluidIngredient.Value> p_43939_) {
-		FluidIngredient ingredient = new FluidIngredient(p_43939_);
-		return ingredient.values.length == 0 ? EMPTY : ingredient;
+		FluidIngredient Fluidingredient = new FluidIngredient(p_43939_);
+		return Fluidingredient.values.length == 0 ? EMPTY : Fluidingredient;
 	}
 
 	public static FluidIngredient of() {
 		return EMPTY;
 	}
 
-	public static FluidIngredient of(Fluid... p_43928_) {
+	public static FluidIngredient of(FluidStack... p_43928_) {
 		return of(Arrays.stream(p_43928_));
 	}
 
-	public static FluidIngredient of(Stream<Fluid> p_43922_) {
-		return fromValues(p_43922_.map(FluidIngredient.FluidValue::new));
+	public static FluidIngredient of(Stream<FluidStack> p_43922_) {
+		return fromValues(p_43922_.filter((p_43944_) -> {
+			return !p_43944_.isEmpty();
+		}).map(FluidIngredient.FluidValue::new));
 	}
 
+	public static FluidIngredient of(Tag<Fluid> p_43912_) {
+		return fromValues(Stream.of(new FluidIngredient.TagValue(p_43912_)));
+	}
 
 	public static FluidIngredient fromNetwork(FriendlyByteBuf p_43941_) {
 		var size = p_43941_.readVarInt();
-		return fromValues(Stream.generate(() -> new FluidIngredient.FluidValue(p_43941_.readFluidStack().getFluid())).limit(size));
+		return fromValues(Stream.generate(() -> new FluidIngredient.FluidValue(p_43941_.readFluidStack())).limit(size));
 	}
-
-	public final void toNetwork(FriendlyByteBuf p_43924_) {
-		this.dissolve();
-		if (this.fluids[0] != null) {
-			p_43924_.writeFluidStack(new FluidStack(this.fluids[0], 1000));
-		}
-	}
-
 
 	public static FluidIngredient fromJson(@Nullable JsonElement p_43918_) {
 		if (p_43918_ != null && !p_43918_.isJsonNull()) {
@@ -149,14 +161,31 @@ public class FluidIngredient implements Predicate<Fluid> {
 		}
 	}
 
+	public static FluidStack getFluidStack(JsonObject json, boolean readNBT) {
+		String fluidName = GsonHelper.getAsString(json, "fluid");
+
+		Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluidName));
+
+		if (fluid == null)
+			throw new JsonSyntaxException("Unknown fluid '" + fluidName + "'");
+
+		return new FluidStack(fluid, 1000);
+	}
+
 	public static FluidIngredient.Value valueFromJson(JsonObject p_43920_) {
 		if (p_43920_.has("fluid") && p_43920_.has("tag")) {
-			throw new JsonParseException("An ingredient entry is either a tag or an fluid, not both");
+			throw new JsonParseException("An Fluidingredient entry is either a tag or an fluid, not both");
 		} else if (p_43920_.has("fluid")) {
 			Fluid fluid = fluidFromJson(p_43920_);
-			return new FluidIngredient.FluidValue(fluid);
+			return new FluidIngredient.FluidValue(new FluidStack(fluid, 1000));
+		} else if (p_43920_.has("tag")) {
+			ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.getAsString(p_43920_, "tag"));
+			Tag<Fluid> tag = SerializationTags.getInstance().getTagOrThrow(Registry.FLUID_REGISTRY, resourcelocation, (p_151262_) -> {
+				return new JsonSyntaxException("Unknown fluid tag '" + p_151262_ + "'");
+			});
+			return new FluidIngredient.TagValue(tag);
 		} else {
-			throw new JsonParseException("An ingredient entry needs either a tag or an fluid");
+			throw new JsonParseException("An Fluidingredient entry needs either a tag or an fluid");
 		}
 	}
 
@@ -179,25 +208,51 @@ public class FluidIngredient implements Predicate<Fluid> {
 	}
 
 	public static class FluidValue implements FluidIngredient.Value {
-		private final Fluid fluid;
+		private final FluidStack fluid;
 
-		public FluidValue(Fluid p_43953_) {
+		public FluidValue(FluidStack p_43953_) {
 			this.fluid = p_43953_;
 		}
 
-		public Collection<Fluid> getFluids() {
+		public Collection<FluidStack> getFluids() {
 			return Collections.singleton(this.fluid);
 		}
 
 		public JsonObject serialize() {
 			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("fluid", Registry.FLUID.getKey(this.fluid).toString());
+			jsonobject.addProperty("fluid", Registry.FLUID.getKey(this.fluid.getFluid()).toString());
+			return jsonobject;
+		}
+	}
+
+	public static class TagValue implements FluidIngredient.Value {
+		private final Tag<Fluid> tag;
+
+		public TagValue(Tag<Fluid> p_43961_) {
+			this.tag = p_43961_;
+		}
+
+		public Collection<FluidStack> getFluids() {
+			List<FluidStack> list = Lists.newArrayList();
+
+			for (Fluid fluid : this.tag.getValues()) {
+				list.add(new FluidStack(fluid, 1000));
+			}
+
+			return list;
+		}
+
+		public JsonObject serialize() {
+			JsonObject jsonobject = new JsonObject();
+			jsonobject.addProperty("tag", SerializationTags.getInstance().getIdOrThrow(Registry.FLUID_REGISTRY, this.tag, () -> {
+				return new IllegalStateException("Unknown fluid tag");
+			}).toString());
 			return jsonobject;
 		}
 	}
 
 	public interface Value {
-		Collection<Fluid> getFluids();
+		Collection<FluidStack> getFluids();
 
 		JsonObject serialize();
 	}

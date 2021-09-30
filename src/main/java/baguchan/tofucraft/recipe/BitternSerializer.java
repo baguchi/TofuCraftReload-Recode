@@ -34,7 +34,7 @@ public class BitternSerializer extends ForgeRegistryEntry<RecipeSerializer<?>> i
 			return new BitternInfo(id, fluid, results);
 		} catch (final Exception e) {
 
-			throw new IllegalStateException("Failed to read harden info from packet buffer. This is not good.");
+			throw new IllegalStateException("Failed to read bittern info from packet buffer. This is not good.");
 		}
 	}
 

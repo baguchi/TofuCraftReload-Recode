@@ -38,14 +38,15 @@ public class SoyMilkDrinkedMessage {
 
 	public static boolean handle(SoyMilkDrinkedMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
 		NetworkEvent.Context context = contextSupplier.get();
-		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT)
+		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
 			context.enqueueWork(() -> {
 				Entity entity = (Minecraft.getInstance()).player.level.getEntity(message.entityId);
 				if (entity != null && entity instanceof LivingEntity)
-					entity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY, null).ifPresent((cap) -> {
+					entity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent((cap) -> {
 						cap.setSoyHealth((LivingEntity) entity, message.level);
 					});
 			});
+		}
 		return true;
 	}
 }
