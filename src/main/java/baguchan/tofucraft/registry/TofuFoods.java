@@ -32,13 +32,13 @@ public class TofuFoods {
 
 	public static final FoodProperties SALTYMELON = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.32F).build();
 
-	public static final FoodProperties KINAKO_MANJU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.24F).fast().build();
+	public static final FoodProperties KINAKO_MANJU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.275F).fast().build();
 
-	public static final FoodProperties ZUNDA_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.26F).fast().build();
+	public static final FoodProperties ZUNDA_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.28F).fast().build();
 
-	public static final FoodProperties NETHER_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.26F).fast().alwaysEat().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1.0F).build();
+	public static final FoodProperties NETHER_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.28F).fast().alwaysEat().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1.0F).build();
 
-	public static final FoodProperties SOUL_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.26F).fast().alwaysEat().effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200), 1.0F).build();
+	public static final FoodProperties SOUL_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.28F).fast().alwaysEat().effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200), 1.0F).build();
 
-	public static final FoodProperties SOY_CHOCOLATE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.16F).fast().build();
+	public static final FoodProperties SOY_CHOCOLATE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.18F).fast().build();
 }
