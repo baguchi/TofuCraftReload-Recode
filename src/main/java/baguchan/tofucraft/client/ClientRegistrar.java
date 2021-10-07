@@ -11,10 +11,13 @@ import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
 import baguchan.tofucraft.client.render.entity.TofunianRender;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
+import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuContainers;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -85,6 +88,7 @@ public class ClientRegistrar {
 		renderTileEntity();
 		renderBlockColor();
 		renderBlockLayer();
+		MenuScreens.register(TofuContainers.SALT_FURNACE, SaltFurnaceScreen::new);
 	}
 
 	@SubscribeEvent

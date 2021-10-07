@@ -143,6 +143,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.SOULTOFU_BRICK.asItem(), TofuBlocks.SOULTOFU.asItem());
 		tofuBlockItem(consumer, TofuBlocks.SOULTOFU_SMOOTH_BRICK.asItem(), TofuBlocks.SOULTOFU_BRICK.asItem());
 
+		ShapedRecipeBuilder.shaped(TofuBlocks.SALT_FURNACE)
+				.pattern("###")
+				.pattern("# #")
+				.pattern("SSS")
+				.define('#', Items.IRON_INGOT)
+				.define('S', Items.COBBLESTONE)
+				.unlockedBy("has_item", has(TofuItems.TOFUDIAMOND_NUGGET))
+				.save(consumer);
+
 		//soimilk
 		ShapedRecipeBuilder.shaped(TofuItems.BUCKET_SOYMILK)
 				.pattern("#")

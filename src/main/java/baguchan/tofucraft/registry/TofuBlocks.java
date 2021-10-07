@@ -5,6 +5,7 @@ import baguchan.tofucraft.block.*;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
+import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
 import baguchan.tofucraft.block.utils.SaltPanBlock;
 import baguchan.tofucraft.block.utils.TofuBedBlock;
 import baguchan.tofucraft.block.utils.TofuChestBlock;
@@ -128,6 +129,9 @@ public class TofuBlocks {
 	}));
 	public static final Block TOFU_FARMLAND = new TofuFarmlandBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.5F, 1.0F).noOcclusion().sound(SoundType.SNOW));
 	public static final Block SALTPAN = new SaltPanBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().noOcclusion().sound(SoundType.WOOD));
+	public static final Block SALT_FURNACE = new SaltFurnaceBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).sound(SoundType.STONE).lightLevel((p_50872_) -> {
+		return p_50872_.getValue(SaltFurnaceBlock.LIT) ? 13 : 0;
+	}));
 
 	public static final Block TOFUBED = new TofuBedBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.2F).noOcclusion().sound(SoundType.SNOW));
 	public static final Block TOFUCHEST = new TofuChestBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).noOcclusion().sound(SoundType.STONE), () -> TofuBlockEntitys.TOFUCHEST);
@@ -216,6 +220,7 @@ public class TofuBlocks {
 		registry.getRegistry().register(TOFU_PORTAL.setRegistryName("tofuportal"));
 		registry.getRegistry().register(TOFU_FARMLAND.setRegistryName("tofu_farmland"));
 		registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
+		registry.getRegistry().register(SALT_FURNACE.setRegistryName("salt_furnace"));
 
 		registry.getRegistry().register(TOFUBED.setRegistryName("tofubed"));
 		registry.getRegistry().register(TOFUCHEST.setRegistryName("tofuchest"));
@@ -291,6 +296,7 @@ public class TofuBlocks {
 
 		TofuItems.register(registry, new BlockItem(TOFU_FARMLAND, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(SALTPAN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(SALT_FURNACE, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(TOFUBED, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT).stacksTo(1)) {
 			@Override
 			public void initializeClient(@Nonnull Consumer<IItemRenderProperties> consumer) {

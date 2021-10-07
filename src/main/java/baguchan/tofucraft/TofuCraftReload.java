@@ -4,6 +4,8 @@ import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.client.ClientRegistrar;
+import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
+import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuConfiguredFeatures;
 import baguchan.tofucraft.world.TofuBiomeSource;
@@ -67,6 +69,14 @@ public class TofuCraftReload {
 		CHANNEL.messageBuilder(SoyMilkDrinkedMessage.class, 0)
 				.encoder(SoyMilkDrinkedMessage::serialize).decoder(SoyMilkDrinkedMessage::deserialize)
 				.consumer(SoyMilkDrinkedMessage::handle)
+				.add();
+		CHANNEL.messageBuilder(SaltFurnaceBitternMessage.class, 1)
+				.encoder(SaltFurnaceBitternMessage::writePacketData).decoder(SaltFurnaceBitternMessage::readPacketData)
+				.consumer(SaltFurnaceBitternMessage::handle)
+				.add();
+		CHANNEL.messageBuilder(SaltFurnaceWaterMessage.class, 2)
+				.encoder(SaltFurnaceWaterMessage::writePacketData).decoder(SaltFurnaceWaterMessage::readPacketData)
+				.consumer(SaltFurnaceWaterMessage::handle)
 				.add();
 	}
 
