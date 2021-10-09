@@ -7,6 +7,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
@@ -37,8 +38,9 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 	}
 
 	protected void renderBg(PoseStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+		RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
 		RenderSystem.setShaderTexture(0, texture);
+		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		int i = this.leftPos;
 		int j = this.topPos;
 		this.blit(p_230450_1_, i, j, 0, 0, this.imageWidth, this.imageHeight);
@@ -69,6 +71,9 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 
 
 	public static void renderFluidStack(int x, int y, int width, int height, float depth, FluidStack fluidStack) {
+		RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
+		RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
+
 		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(fluidStack.getFluid().getAttributes().getStillTexture());
 		Tesselator tessellator = Tesselator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuilder();
@@ -84,12 +89,12 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 				int currentWidth = Math.min(sprite.getWidth(), width2);
 				width2 -= currentWidth;
 				float u2 = sprite.getU((16 * currentWidth) / (float) sprite.getWidth());
-				bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-				bufferbuilder.vertex(x2, y, depth).uv(u1, v1).endVertex();
-				bufferbuilder.vertex(x2, y + currentHeight, depth).uv(u1, v2).endVertex();
-				bufferbuilder.vertex(x2 + currentWidth, y + currentHeight, depth).uv(u2, v2).endVertex();
-				bufferbuilder.vertex(x2 + currentWidth, y, depth).uv(u2, v1).endVertex();
-				bufferbuilder.end();
+				bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+				bufferbuilder.vertex(x2, y, depth).uv(u1, v1).color(255, 255, 255, 255).endVertex();
+				bufferbuilder.vertex(x2, y + currentHeight, depth).uv(u1, v2).color(255, 255, 255, 255).endVertex();
+				bufferbuilder.vertex(x2 + currentWidth, y + currentHeight, depth).uv(u2, v2).color(255, 255, 255, 255).endVertex();
+				bufferbuilder.vertex(x2 + currentWidth, y, depth).uv(u2, v1).color(255, 255, 255, 255).endVertex();
+				tessellator.end();
 				x2 += currentWidth;
 			} while (width2 > 0);
 

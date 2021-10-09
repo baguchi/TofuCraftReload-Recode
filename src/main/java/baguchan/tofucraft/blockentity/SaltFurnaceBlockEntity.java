@@ -221,6 +221,16 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			saltFurnaceBlock.setChanged();
 	}
 
+	@Override
+	public void startOpen(Player p_18955_) {
+		super.startOpen(p_18955_);
+		if (!this.level.isClientSide()) {
+			LevelChunk chunk = this.level.getChunkAt(this.getBlockPos());
+			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new SaltFurnaceWaterMessage(this.getBlockPos(), this.waterTank.getFluid()));
+			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new SaltFurnaceBitternMessage(this.getBlockPos(), this.bitternTank.getFluid()));
+		}
+	}
+
 	protected boolean hasWater() {
 		boolean flag = (this.waterTank.getFluid().getFluid() == Fluids.WATER && this.waterTank.getFluid().getAmount() >= 200);
 		ItemStack itemstack1 = this.items.get(1);
