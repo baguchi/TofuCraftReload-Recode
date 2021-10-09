@@ -13,7 +13,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import java.util.ArrayList;
 import java.util.List;
 
-public class JigjawHelper {
+public class JigsawHelper {
 	public static void registerJigsaw(MinecraftServer server, ResourceLocation poolLocation, ResourceLocation nbtLocation, int weight) {
 		RegistryAccess manager = server.registryAccess();
 		Registry<StructureTemplatePool> pools = manager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY);

@@ -8,6 +8,7 @@ import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuConfiguredFeatures;
+import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.TofuBiomeSource;
 import baguchan.tofucraft.world.TofuChunkGenerator;
 import net.minecraft.core.Registry;
@@ -17,6 +18,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -26,6 +28,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fmllegacy.network.NetworkRegistry;
 import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
+import net.minecraftforge.fmlserverevents.FMLServerAboutToStartEvent;
 
 import java.util.Locale;
 
@@ -87,6 +90,21 @@ public class TofuCraftReload {
 	}
 
 	private void processIMC(InterModProcessEvent event) {
+	}
+
+	@SubscribeEvent
+	public void onServerAboutToStartEvent(FMLServerAboutToStartEvent event) {
+		// SETUP Tofu Worker House
+		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/plains/houses"),
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_plains_1"), 8);
+		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/taiga/houses"),
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_taiga_1"), 8);
+		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/savanna/houses"),
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_savanna_1"), 8);
+		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/snowy/houses"),
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_snowy_1"), 8);
+		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/desert/houses"),
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_desert_1"), 8);
 	}
 
 
