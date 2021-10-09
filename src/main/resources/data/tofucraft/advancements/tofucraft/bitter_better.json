@@ -1,0 +1,37 @@
+{
+  "parent": "tofucraft:tofucraft/bittern_bottle",
+  "display": {
+    "icon": {
+      "item": "tofucraft:salt_furnace"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.bitter_better.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.bitter_better.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "salt_furnace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:salt_furnace"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "salt_furnace"
+    ]
+  ]
+}
