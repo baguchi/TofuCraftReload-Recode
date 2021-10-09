@@ -30,6 +30,7 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 		this.container = furnaceInventoryIn;
 		this.data = dataIn;
 		this.level = playerInventoryIn.player.level;
+		furnaceInventoryIn.startOpen(playerInventoryIn.player);
 		addSlot(new Slot(this.container, 0, 23, 53));
 		addSlot(new Slot(this.container, 1, 80, 53) {
 			@Override

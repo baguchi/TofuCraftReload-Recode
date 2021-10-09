@@ -89,6 +89,10 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 					return SaltFurnaceBlockEntity.this.cookingProgress;
 				case 3:
 					return SaltFurnaceBlockEntity.this.cookingTotalTime;
+				case 4:
+					return SaltFurnaceBlockEntity.this.waterTank.getFluidAmount();
+				case 5:
+					return SaltFurnaceBlockEntity.this.bitternTank.getFluidAmount();
 			}
 			return 0;
 		}
@@ -107,6 +111,16 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 					break;
 				case 3:
 					SaltFurnaceBlockEntity.this.cookingTotalTime = p_221477_2_;
+					break;
+				case 4:
+					if (waterTank.getFluid() != null) {
+						SaltFurnaceBlockEntity.this.waterTank.getFluid().setAmount(p_221477_2_);
+					}
+					break;
+				case 5:
+					if (bitternTank.getFluid() != null) {
+						SaltFurnaceBlockEntity.this.bitternTank.getFluid().setAmount(p_221477_2_);
+					}
 					break;
 			}
 		}
@@ -164,7 +178,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		return p_189515_1_;
 	}
 
-	public static void serverTick(Level p_155014_, BlockPos p_155015_, BlockState p_155016_, SaltFurnaceBlockEntity saltFurnaceBlock) {
+	public static void tick(Level p_155014_, BlockPos p_155015_, BlockState p_155016_, SaltFurnaceBlockEntity saltFurnaceBlock) {
 		boolean flag = saltFurnaceBlock.isLit();
 		boolean flag1 = false;
 		if (saltFurnaceBlock.isLit())
@@ -180,6 +194,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 				TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new SaltFurnaceBitternMessage(p_155015_, saltFurnaceBlock.bitternTank.getFluid()));
 				saltFurnaceBlock.prevBitternFluid = saltFurnaceBlock.bitternTank.getFluidAmount();
 			}
+		}
 			ItemStack itemstack = saltFurnaceBlock.items.get(0);
 			if (saltFurnaceBlock.isLit() || !saltFurnaceBlock.items.get(0).isEmpty()) {
 				if (!saltFurnaceBlock.isLit() && saltFurnaceBlock.hasWater()) {
@@ -216,7 +231,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 				saltFurnaceBlock.level.setBlock(p_155015_, saltFurnaceBlock.level.getBlockState(p_155015_).setValue(SaltFurnaceBlock.LIT, Boolean.valueOf(saltFurnaceBlock.isLit())), 3);
 			}
 			saltFurnaceBlock.makeBittern();
-		}
+
 		if (flag1)
 			saltFurnaceBlock.setChanged();
 	}
@@ -409,8 +424,11 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	public void invalidateCaps() {
 		super.invalidateCaps();
-		for (int x = 0; x < this.handlers.length; x++)
+
+		for (int x = 0; x < this.handlers.length; x++) {
 			this.handlers[x].invalidate();
+		}
+		this.holder.invalidate();
 	}
 
 	@Override

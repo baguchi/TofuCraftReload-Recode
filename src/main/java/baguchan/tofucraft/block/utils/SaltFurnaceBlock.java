@@ -2,6 +2,7 @@ package baguchan.tofucraft.block.utils;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
+import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,6 +35,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
@@ -58,7 +60,13 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, blockentity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null));
 				flag = true;
 			}
+
+			if (flag) {
+				TofuCraftReload.CHANNEL.send(PacketDistributor.ALL.noArg(), new SaltFurnaceWaterMessage(p_48708_, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()));
+			}
 		}
+
+
 		if (!flag) {
 			if (p_48707_.isClientSide) {
 				TofuCraftReload.PROXY.setRefrencedTE(p_48707_.getBlockEntity(p_48708_));
@@ -157,6 +165,6 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 
 	@Nullable
 	protected static <T extends BlockEntity> BlockEntityTicker<T> createFurnaceTicker(Level p_151988_, BlockEntityType<T> p_151989_, BlockEntityType<? extends SaltFurnaceBlockEntity> p_151990_) {
-		return p_151988_.isClientSide ? null : createTickerHelper(p_151989_, p_151990_, SaltFurnaceBlockEntity::serverTick);
+		return createTickerHelper(p_151989_, p_151990_, SaltFurnaceBlockEntity::tick);
 	}
 }
