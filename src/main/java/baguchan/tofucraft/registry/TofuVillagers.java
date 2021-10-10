@@ -8,9 +8,6 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
-
-import java.lang.reflect.InvocationTargetException;
 
 @Mod.EventBusSubscriber(modid = TofuCraftReload.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuVillagers {
@@ -18,18 +15,10 @@ public class TofuVillagers {
 	public static final PoiType TOFU_CRAFTSMAN_POI = new PoiType("tofucraft:tofu_craftsman", PoiType.getBlockStates(TofuBlocks.SALT_FURNACE), 1, 1);
 	public static final VillagerProfession TOFU_CRAFTSMAN = new VillagerProfession("tofucraft:tofu_craftsman", TOFU_CRAFTSMAN_POI, ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_LEATHERWORKER);
 
-	public static void registerTofuCraftsmanPOI() {
-		try {
-			ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, TOFU_CRAFTSMAN_POI);
-		} catch (InvocationTargetException | IllegalAccessException e) {
-			e.printStackTrace();
-		}
-	}
 
 	@SubscribeEvent
 	public static void registerPoi(RegistryEvent.Register<PoiType> registry) {
 		registry.getRegistry().register(TOFU_CRAFTSMAN_POI.setRegistryName("tofu_craftsman"));
-		registerTofuCraftsmanPOI();
 	}
 
 	@SubscribeEvent
