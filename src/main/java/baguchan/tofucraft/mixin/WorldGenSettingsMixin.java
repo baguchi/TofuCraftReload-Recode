@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WorldGenSettings.class)
 public class WorldGenSettingsMixin {
-	@Inject(method = {"<init>(JZZLnet/minecraft/core/MappedRegistry;Ljava/util/Optional;)V"}, at = {@At("RETURN")})
+	@Inject(method = {"<init>(JZZLnet/minecraft/core/MappedRegistry;Ljava/util/Optional;)V"}, at = @At("RETURN"))
 	private void getSeedFromConstructor(long seed, boolean p_64615_, boolean p_64616_, MappedRegistry<LevelStem> p_64617_, java.util.Optional<String> p_64618_, CallbackInfo ci) {
 		SeedHolder.putInSeed(seed);
 	}

@@ -26,7 +26,7 @@ public class MinecraftMixin {
 	@Shadow
 	public LocalPlayer player;
 
-	@Inject(method = {"getSituationalMusic"}, at = {@At("HEAD")}, cancellable = true)
+	@Inject(method = {"getSituationalMusic"}, at = @At("HEAD"), cancellable = true)
 	public void getSituationalMusic(CallbackInfoReturnable<Music> callbackInfo) {
 		if (this.player != null) {
 			if (this.player.level.dimension() == TofuDimensions.tofu_world) {
