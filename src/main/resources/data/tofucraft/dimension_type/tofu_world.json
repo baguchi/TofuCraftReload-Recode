@@ -1,8 +1,8 @@
 {
   "has_raids": false,
-  "logical_height": 384,
+  "logical_height": 320,
   "min_y": -64,
-  "height": 384,
+  "height": 320,
   "infiniburn": "minecraft:infiniburn_overworld",
   "ambient_light": 0.0,
   "coordinate_scale": 1.0,

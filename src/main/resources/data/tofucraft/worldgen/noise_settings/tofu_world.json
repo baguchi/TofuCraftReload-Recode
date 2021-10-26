@@ -20,7 +20,7 @@
   },
   "noise": {
     "min_y": -64,
-    "height": 384,
+    "height": 320,
     "random_density_offset": true,
     "density_factor": 1.0,
     "density_offset": -0.46875,
