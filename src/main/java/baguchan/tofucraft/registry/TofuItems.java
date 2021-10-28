@@ -128,16 +128,13 @@ public class TofuItems {
 	public static final Item TOFUSLIME_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
-		if (item instanceof BlockItem)
-			Item.BY_BLOCK.put(((BlockItem) item).getBlock(), item);
-		item.setRegistryName(new ResourceLocation("tofucraft", id));
+		item.setRegistryName(new ResourceLocation(TofuCraftReload.MODID, id));
 		registry.getRegistry().register(item);
 	}
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item) {
 		if (item instanceof BlockItem && item.getRegistryName() == null) {
 			item.setRegistryName(((BlockItem) item).getBlock().getRegistryName());
-			Item.BY_BLOCK.put(((BlockItem) item).getBlock(), item);
 		}
 		registry.getRegistry().register(item);
 	}
