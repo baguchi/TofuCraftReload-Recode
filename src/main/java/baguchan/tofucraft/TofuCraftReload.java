@@ -16,8 +16,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -40,10 +40,12 @@ public class TofuCraftReload {
 
 	public static CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
-	@CapabilityInject(SoyHealthCapability.class)
-	public static final Capability<SoyHealthCapability> SOY_HEALTH_CAPABILITY = null;
-	@CapabilityInject(TofuLivingCapability.class)
-	public static final Capability<TofuLivingCapability> TOFU_LIVING_CAPABILITY = null;
+	public static final Capability<SoyHealthCapability> SOY_HEALTH_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
+	});
+
+	public static final Capability<TofuLivingCapability> TOFU_LIVING_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
+	});
+
 
 	public static final SimpleChannel CHANNEL = NetworkRegistry.ChannelBuilder.named(new ResourceLocation("tofucraft", "net"))
 			.networkProtocolVersion(() -> NETWORK_PROTOCOL)
@@ -62,7 +64,6 @@ public class TofuCraftReload {
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
-		CapabilityManager.INSTANCE.register(SoyHealthCapability.class);
 		TofuConfiguredFeatures.init();
 		Registry.register(Registry.CHUNK_GENERATOR, TofuCraftReload.prefix("chunk_generator"), TofuChunkGenerator.CODEC);
 		Registry.register(Registry.BIOME_SOURCE, TofuCraftReload.prefix("biome_provider"), TofuBiomeSource.CODEC);

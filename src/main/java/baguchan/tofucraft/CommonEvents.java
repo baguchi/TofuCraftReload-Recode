@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -24,6 +25,13 @@ import net.minecraftforge.fmllegacy.network.PacketDistributor;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
+
+	@SubscribeEvent
+	public static void onRegisterEntityCapabilities(RegisterCapabilitiesEvent event) {
+		event.register(SoyHealthCapability.class);
+		event.register(TofuLivingCapability.class);
+	}
+
 	@SubscribeEvent
 	public static void onAttachEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {
 		if (event.getObject() instanceof LivingEntity) {
