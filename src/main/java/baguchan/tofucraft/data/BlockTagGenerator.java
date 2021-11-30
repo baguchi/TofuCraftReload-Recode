@@ -34,7 +34,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFUCHEST
 				, TofuBlocks.TOFU_BEDROCK
 				, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE
-				, TofuBlocks.TOFUSLATE);
+				, TofuBlocks.TOFUSLATE
+				, TofuBlocks.SALT_FURNACE);
 
 		tag(BlockTags.NEEDS_STONE_TOOL)
 				.add(TofuBlocks.METALTOFU, TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.TOFUSLAB_METAL, TofuBlocks.TOFULADDER_METAL, TofuBlocks.TOFUFENCE_METAL);
