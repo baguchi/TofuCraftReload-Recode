@@ -126,7 +126,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 
 	public BlockState updateShape(BlockState p_51555_, Direction p_51556_, BlockState p_51557_, LevelAccessor p_51558_, BlockPos p_51559_, BlockPos p_51560_) {
 		if (p_51555_.getValue(WATERLOGGED)) {
-			p_51558_.getLiquidTicks().scheduleTick(p_51559_, Fluids.WATER, Fluids.WATER.getTickDelay(p_51558_));
+			p_51558_.scheduleTick(p_51559_, Fluids.WATER, Fluids.WATER.getTickDelay(p_51558_));
 		}
 
 		if (p_51557_.is(this) && p_51556_.getAxis().isHorizontal()) {

@@ -7,7 +7,9 @@ import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfigura
 
 public class TofuVillageStructure extends JigsawFeature {
 	public TofuVillageStructure(Codec<JigsawConfiguration> p_66150_) {
-		super(p_66150_, 0, true, true);
+		super(p_66150_, 0, true, true, (p_197185_) -> {
+			return true;
+		});
 	}
 
 	/*@Override

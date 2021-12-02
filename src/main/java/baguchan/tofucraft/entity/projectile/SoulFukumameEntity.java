@@ -17,7 +17,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
 
 public class SoulFukumameEntity extends ThrowableProjectile {
 	public SoulFukumameEntity(EntityType<? extends SoulFukumameEntity> p_i50154_1_, Level p_i50154_2_) {

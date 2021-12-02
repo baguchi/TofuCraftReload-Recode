@@ -110,10 +110,10 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void onTextureStitch(TextureStitchEvent.Pre event) {
-		if (event.getMap().location().equals(Sheets.BED_SHEET)) {
+		if (event.getAtlas().location().equals(Sheets.BED_SHEET)) {
 			event.addSprite(TofuBedRenderer.BED_TEXTURES);
 		}
-		if (event.getMap().location().equals(Sheets.CHEST_SHEET)) {
+		if (event.getAtlas().location().equals(Sheets.CHEST_SHEET)) {
 			event.addSprite(TofuChestRenderer.CHEST_LOCATION.texture());
 			event.addSprite(TofuChestRenderer.CHEST_LOCATION_LEFT.texture());
 			event.addSprite(TofuChestRenderer.CHEST_LOCATION_RIGHT.texture());

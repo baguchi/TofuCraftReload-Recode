@@ -7,17 +7,19 @@ import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
-import baguchan.tofucraft.registry.TofuConfiguredFeatures;
 import baguchan.tofucraft.utils.JigsawHelper;
-import baguchan.tofucraft.world.TofuBiomeSource;
-import baguchan.tofucraft.world.TofuChunkGenerator;
-import net.minecraft.core.Registry;
+import baguchan.tofucraft.world.gen.feature.ModNetherFeatures;
+import baguchan.tofucraft.world.gen.feature.ModTreeFeatures;
+import baguchan.tofucraft.world.gen.feature.TofuWorldFeatures;
+import baguchan.tofucraft.world.placement.ModNetherPlacements;
+import baguchan.tofucraft.world.placement.TofuWorldPlacements;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
+import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -26,9 +28,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fmllegacy.network.NetworkRegistry;
-import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
-import net.minecraftforge.fmlserverevents.FMLServerAboutToStartEvent;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.simple.SimpleChannel;
 
 import java.util.Locale;
 
@@ -64,9 +65,11 @@ public class TofuCraftReload {
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
-		TofuConfiguredFeatures.init();
-		Registry.register(Registry.CHUNK_GENERATOR, TofuCraftReload.prefix("chunk_generator"), TofuChunkGenerator.CODEC);
-		Registry.register(Registry.BIOME_SOURCE, TofuCraftReload.prefix("biome_provider"), TofuBiomeSource.CODEC);
+		ModTreeFeatures.init();
+		ModNetherFeatures.init();
+		TofuWorldFeatures.init();
+		ModNetherPlacements.init();
+		TofuWorldPlacements.init();
 	}
 
 	private void setupMessages() {
@@ -94,7 +97,7 @@ public class TofuCraftReload {
 	}
 
 	@SubscribeEvent
-	public void onServerAboutToStartEvent(FMLServerAboutToStartEvent event) {
+	public void onServerAboutToStartEvent(ServerStartedEvent event) {
 		// SETUP Tofu Worker House
 		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/plains/houses"),
 				new ResourceLocation("tofucraft:village/tofu_craftsman_house_plains_1"), 8);

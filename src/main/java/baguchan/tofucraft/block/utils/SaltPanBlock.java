@@ -60,10 +60,10 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (!stateIn.canSurvive(worldIn, currentPos))
-			worldIn.getBlockTicks().scheduleTick(currentPos, this, 1);
+		if (!stateIn.canSurvive(worldIn, currentPos) && !worldIn.getBlockTicks().hasScheduledTick(currentPos, this))
+			worldIn.scheduleTick(currentPos, this, 1);
 		if (((Boolean) stateIn.getValue((Property) WATERLOGGED)).booleanValue()) {
-			worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 			Stat stat = getStat(stateIn);
 			if (stat == Stat.EMPTY || stat == Stat.BITTERN) {
 				worldIn.setBlock(currentPos, stateIn.setValue(STAT, Stat.WATER), 3);
@@ -186,7 +186,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 		boolean isRaining = world.isRaining();
 		boolean isDaytime = (world.dayTime() % 24000L < 12000L);
 		float humidity = biome.getDownfall();
-		float temperature = biome.getTemperature(pos);
+		float temperature = biome.getBaseTemperature();
 		if (!isUnderTheSun || isRaining) {
 			rate = 0.0F;
 		} else {

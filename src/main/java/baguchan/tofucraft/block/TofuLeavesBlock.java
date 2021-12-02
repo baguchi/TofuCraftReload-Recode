@@ -18,9 +18,10 @@ public class TofuLeavesBlock extends LeavesBlock {
 
 	public BlockState updateShape(BlockState p_54440_, Direction p_54441_, BlockState p_54442_, LevelAccessor p_54443_, BlockPos p_54444_, BlockPos p_54445_) {
 		int i = getDistanceAt(p_54442_) + 1;
-		if (i != 1 || p_54440_.getValue(DISTANCE) != i) {
-			p_54443_.getBlockTicks().scheduleTick(p_54444_, this, 1);
-		}
+		if (!p_54443_.getBlockTicks().hasScheduledTick(p_54444_, this))
+			if (i != 1 || p_54440_.getValue(DISTANCE) != i) {
+				p_54443_.scheduleTick(p_54444_, this, 1);
+			}
 
 		return p_54440_;
 	}

@@ -17,12 +17,8 @@
       "replace_current_music": false
     }
   },
-  "surface_builder": "tofucraft:tofu",
   "carvers": {
     "air": [
-      "tofucraft:tofu_cave",
-      "tofucraft:tofu_canyon",
-      "tofucraft:tofu_crevice"
     ],
     "liquid": []
   },
@@ -34,13 +30,10 @@
     [],
     [],
     [
-      "tofucraft:ore_tofu_diamond",
-      "tofucraft:ore_tofu_diamond_large"
     ],
     [],
     [
-      "tofucraft:tofu_forest_vegetation",
-      "tofucraft:leek"
+      "tofucraft:tofu_tree_forest"
     ],
     [
       "minecraft:freeze_top_layer"

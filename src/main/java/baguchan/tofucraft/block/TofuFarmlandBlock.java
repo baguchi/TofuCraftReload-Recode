@@ -36,8 +36,8 @@ public class TofuFarmlandBlock extends Block {
 	}
 
 	public BlockState updateShape(BlockState p_53276_, Direction p_53277_, BlockState p_53278_, LevelAccessor p_53279_, BlockPos p_53280_, BlockPos p_53281_) {
-		if (p_53277_ == Direction.UP && !p_53276_.canSurvive(p_53279_, p_53280_)) {
-			p_53279_.getBlockTicks().scheduleTick(p_53280_, this, 1);
+		if (p_53277_ == Direction.UP && !p_53276_.canSurvive(p_53279_, p_53280_) && !p_53279_.getBlockTicks().hasScheduledTick(p_53280_, this)) {
+			p_53279_.scheduleTick(p_53280_, this, 1);
 		}
 
 		return super.updateShape(p_53276_, p_53277_, p_53278_, p_53279_, p_53280_, p_53281_);
