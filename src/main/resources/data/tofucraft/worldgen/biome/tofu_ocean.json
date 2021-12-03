@@ -1,10 +1,10 @@
 {
-  "depth": 0.2,
-  "scale": 0.05,
+  "depth": -0.3,
+  "scale": 0.15,
   "precipitation": "rain",
   "temperature": 0.6,
-  "downfall": 0.75,
-  "category": "plains",
+  "downfall": 0.85,
+  "category": "ocean",
   "effects": {
     "sky_color": 8037887,
     "fog_color": 12638463,

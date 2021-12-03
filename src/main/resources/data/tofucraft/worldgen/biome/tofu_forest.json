@@ -1,6 +1,6 @@
 {
-  "depth": 0.1,
-  "scale": 0.2,
+  "depth": 0.2,
+  "scale": 0.1,
   "precipitation": "rain",
   "temperature": 0.75,
   "downfall": 0.8,
@@ -19,6 +19,9 @@
   },
   "carvers": {
     "air": [
+      "tofucraft:tofu_cave",
+      "tofucraft:tofu_cave_extra_underground",
+      "tofucraft:tofu_canyon"
     ],
     "liquid": []
   },
@@ -30,10 +33,14 @@
     [],
     [],
     [
+      "tofucraft:ore_tofu_diamond",
+      "tofucraft:ore_tofu_diamond_large",
+      "tofucraft:ore_tofu_diamond_buried"
     ],
     [],
     [
-      "tofucraft:tofu_tree_forest"
+      "tofucraft:tofu_tree_forest",
+      "tofucraft:patch_leek"
     ],
     [
       "minecraft:freeze_top_layer"

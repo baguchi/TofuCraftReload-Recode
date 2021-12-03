@@ -20,6 +20,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.event.server.ServerStartedEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -55,6 +57,7 @@ public class TofuCraftReload {
 			.simpleChannel();
 
 	public TofuCraftReload() {
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		setupMessages();
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
@@ -62,14 +65,18 @@ public class TofuCraftReload {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup));
 		MinecraftForge.EVENT_BUS.register(this);
+		forgeBus.addListener(TofuCraftReload::addTrees);
 	}
 
-	private void setup(FMLCommonSetupEvent event) {
+	private static void addTrees(BiomeLoadingEvent event) {
 		ModTreeFeatures.init();
 		ModNetherFeatures.init();
 		TofuWorldFeatures.init();
 		ModNetherPlacements.init();
 		TofuWorldPlacements.init();
+	}
+
+	private void setup(FMLCommonSetupEvent event) {
 	}
 
 	private void setupMessages() {

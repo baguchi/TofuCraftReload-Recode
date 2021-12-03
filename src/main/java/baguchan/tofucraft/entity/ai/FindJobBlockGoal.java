@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class FindJobBlockGoal extends MoveToBlockGoal {
 	private final TofunianEntity creature;
+	private boolean findBlock;
 
 	public FindJobBlockGoal(TofunianEntity creature, double speedIn, int length) {
 		super(creature, speedIn, length);
@@ -22,7 +23,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level.isDay() && !this.creature.isBaby() && (this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && this.mob != null);
+		return !this.findBlock && (super.canContinueToUse() && this.creature.level.isDay() && !this.creature.isBaby() && (this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && this.mob != null);
 	}
 
 	public void tick() {
@@ -33,10 +34,11 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 			Block block = blockstate.getBlock();
 
 			TofunianEntity.Roles role = TofunianEntity.Roles.get(block);
-			if (role != null) {
+			if (role != null && !this.findBlock) {
 				if (this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN || this.creature.getTofunainLevel() == 1 && this.creature.getVillagerXp() == 0) {
 					this.creature.setRole(role);
 					this.creature.remadeTrade();
+					this.findBlock = true;
 				}
 
 
@@ -51,6 +53,12 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 		BlockState blockstate = worldIn.getBlockState(pos);
 		Block block = blockstate.getBlock();
 		return (this.creature.getRole() == TofunianEntity.Roles.TOFUNIAN || this.creature.getTofunainLevel() == 1 && this.creature.getVillagerXp() == 0) && TofunianEntity.Roles.getJobBlock(block) != null || this.creature.getRole() != TofunianEntity.Roles.TOFUNIAN && TofunianEntity.Roles.getJobMatch(this.creature.getRole(), block) != null;
+	}
+
+	@Override
+	public void start() {
+		super.start();
+		this.findBlock = false;
 	}
 
 	protected boolean findNearestBlock() {
