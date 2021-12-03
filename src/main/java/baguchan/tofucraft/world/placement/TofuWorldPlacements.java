@@ -22,9 +22,8 @@ public class TofuWorldPlacements {
 
 	public static final PlacedFeature PATCH_LEEK = PlacementUtils.register("tofucraft:patch_leek", TofuWorldFeatures.LEEK.placed(NoiseThresholdCountPlacement.of(-0.8D, 5, 10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
-	public static final PlacedFeature TOFU_TREES_FOREST = PlacementUtils.register("tofucraft:tofu_trees_forest", TofuWorldFeatures.TOFU_TREES.placed(treePlacement(PlacementUtils.countExtra(6, 0.1F, 1), TofuBlocks.SAPLING_TOFU)));
+	public static final PlacedFeature TOFU_TREES_FOREST = PlacementUtils.register("tofucraft:tofu_trees_forest", TofuWorldFeatures.TOFU_TREES.placed(treePlacement(PlacementUtils.countExtra(10, 0.1F, 1), TofuBlocks.SAPLING_TOFU)));
 	public static final PlacedFeature TOFU_TREES_PLAINS = PlacementUtils.register("tofucraft:tofu_trees_plains", TofuWorldFeatures.TOFU_TREES.placed(treePlacement(PlacementUtils.countExtra(0, 0.01F, 1), TofuBlocks.SAPLING_TOFU)));
-
 	public static void init() {
 
 	}

@@ -9,10 +9,7 @@ import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.gen.feature.ModNetherFeatures;
-import baguchan.tofucraft.world.gen.feature.ModTreeFeatures;
-import baguchan.tofucraft.world.gen.feature.TofuWorldFeatures;
 import baguchan.tofucraft.world.placement.ModNetherPlacements;
-import baguchan.tofucraft.world.placement.TofuWorldPlacements;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -20,7 +17,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -59,25 +55,23 @@ public class TofuCraftReload {
 	public TofuCraftReload() {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		setupMessages();
+
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup));
 		MinecraftForge.EVENT_BUS.register(this);
-		forgeBus.addListener(TofuCraftReload::addTrees);
-	}
-
-	private static void addTrees(BiomeLoadingEvent event) {
-		ModTreeFeatures.init();
-		ModNetherFeatures.init();
-		TofuWorldFeatures.init();
-		ModNetherPlacements.init();
-		TofuWorldPlacements.init();
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
+		ModNetherFeatures.init();
+		ModNetherPlacements.init();
+		/*ModTreeFeatures.init();
+		TofuWorldFeatures.init();
+		TofuWorldPlacements.init();*/
 	}
+
 
 	private void setupMessages() {
 		CHANNEL.messageBuilder(SoyMilkDrinkedMessage.class, 0)

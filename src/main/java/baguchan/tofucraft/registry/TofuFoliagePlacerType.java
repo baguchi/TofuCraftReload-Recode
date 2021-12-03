@@ -12,7 +12,7 @@ public class TofuFoliagePlacerType {
 
 	public static final FoliagePlacerType<TofuFoliagePlacer> TOFU_FOLIAGE_PLACER = new FoliagePlacerType<>(TofuFoliagePlacer.CODEC);
 	@SubscribeEvent
-	public static void registerCarvers(RegistryEvent.Register<FoliagePlacerType<?>> registry) {
+	public static void registerFoliagePlacer(RegistryEvent.Register<FoliagePlacerType<?>> registry) {
 		registry.getRegistry().register(TOFU_FOLIAGE_PLACER.setRegistryName("tofu_foliage_placer"));
 	}
 }
