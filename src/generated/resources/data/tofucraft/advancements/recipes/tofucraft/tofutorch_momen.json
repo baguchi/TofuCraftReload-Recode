@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofutorch_momen"
+    ]
+  },
+  "criteria": {
+    "has_blocktofumomen": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:blocktofumomen"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tofucraft:tofutorch_momen"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blocktofumomen",
+      "has_the_recipe"
+    ]
+  ]
+}

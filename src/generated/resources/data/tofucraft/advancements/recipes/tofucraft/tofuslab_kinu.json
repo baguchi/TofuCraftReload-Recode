@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofuslab_kinu"
+    ]
+  },
+  "criteria": {
+    "has_blocktofukinu": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:blocktofukinu"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tofucraft:tofuslab_kinu"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blocktofukinu",
+      "has_the_recipe"
+    ]
+  ]
+}

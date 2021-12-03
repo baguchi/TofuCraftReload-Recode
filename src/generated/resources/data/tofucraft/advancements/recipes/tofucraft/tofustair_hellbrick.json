@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofustair_hellbrick"
+    ]
+  },
+  "criteria": {
+    "has_tofuhell_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:tofuhell_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tofucraft:tofustair_hellbrick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tofuhell_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

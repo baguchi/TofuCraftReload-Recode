@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofuslab_ishibrick"
+    ]
+  },
+  "criteria": {
+    "has_tofuishi_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:tofuishi_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tofucraft:tofuslab_ishibrick"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tofuishi_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

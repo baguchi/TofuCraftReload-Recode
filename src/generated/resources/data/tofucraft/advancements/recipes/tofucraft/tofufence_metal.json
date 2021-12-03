@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofufence_metal"
+    ]
+  },
+  "criteria": {
+    "has_blocktofumetal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:blocktofumetal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tofucraft:tofufence_metal"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blocktofumetal",
+      "has_the_recipe"
+    ]
+  ]
+}
