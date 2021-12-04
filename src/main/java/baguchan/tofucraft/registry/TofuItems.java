@@ -2,12 +2,23 @@ package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.item.*;
+import baguchan.tofucraft.utils.RecipeHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSource;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -241,5 +252,71 @@ public class TofuItems {
 		register(registry, TOFUNIAN_SPAWNEGG, "tofunian_spawnegg");
 		register(registry, TOFUCOW_SPAWNEGG, "tofucow_spawnegg");
 		register(registry, TOFUSLIME_SPAWNEGG, "tofuslime_spawnegg");
+
+		DispenseItemBehavior dispenseitembehavior1 = new DefaultDispenseItemBehavior() {
+			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+
+			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
+				DispensibleContainerItem dispensiblecontaineritem = (DispensibleContainerItem) p_123562_.getItem();
+				BlockPos blockpos = p_123561_.getPos().relative(p_123561_.getBlockState().getValue(DispenserBlock.FACING));
+				Level level = p_123561_.getLevel();
+				if (dispensiblecontaineritem.emptyContents((Player) null, level, blockpos, (BlockHitResult) null)) {
+					dispensiblecontaineritem.checkExtraContent((Player) null, level, p_123562_, blockpos);
+					return new ItemStack(Items.BUCKET);
+				} else {
+					return this.defaultDispenseItemBehavior.dispense(p_123561_, p_123562_);
+				}
+			}
+		};
+		DispenserBlock.registerBehavior(BUCKET_SOYMILK, dispenseitembehavior1);
+		DispenserBlock.registerBehavior(BUCKET_SOYMILK_NETHER, dispenseitembehavior1);
+		DispenserBlock.registerBehavior(BUCKET_SOYMILK_SOUL, dispenseitembehavior1);
+		DispenserBlock.registerBehavior(BUCKET_BITTERN, dispenseitembehavior1);
+		DispenseItemBehavior dispenseitembehavior2 = new DefaultDispenseItemBehavior() {
+			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+
+			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
+				BlockPos blockpos = p_123561_.getPos().relative(p_123561_.getBlockState().getValue(DispenserBlock.FACING));
+				FluidState fluidState = p_123561_.getLevel().getFluidState(blockpos);
+				ItemStack result = RecipeHelper.getBitternResult(fluidState.getType());
+				if (result != null) {
+					p_123561_.getLevel().setBlock(blockpos, Block.byItem(result.getItem()).defaultBlockState(), 11);
+					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));
+					return new ItemStack(Items.GLASS_BOTTLE);
+				}
+				return p_123562_;
+			}
+		};
+		DispenserBlock.registerBehavior(BITTERN, dispenseitembehavior2);
+		DispenseItemBehavior dispenseitembehavior3 = new DefaultDispenseItemBehavior() {
+			private boolean success = false;
+			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+
+			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
+				BlockPos blockpos = p_123561_.getPos().relative(p_123561_.getBlockState().getValue(DispenserBlock.FACING));
+				if (p_123561_.getLevel().getBlockState(blockpos).is(TofuTags.Blocks.SOFT_TOFU)) {
+					ItemStack stack = new ItemStack(Item.BY_BLOCK.get(p_123561_.getLevel().getBlockState(blockpos).getBlock()));
+					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));
+					p_123561_.getLevel().removeBlock(blockpos, false);
+					this.defaultDispenseItemBehavior.dispense(p_123561_, stack);
+					p_123562_.hurt(1, p_123561_.getLevel().getRandom(), null);
+					setSuccess(true);
+				}
+				return p_123562_;
+			}
+
+			public boolean isSuccess() {
+				return this.success;
+			}
+
+			public void setSuccess(boolean p_123574_) {
+				this.success = p_123574_;
+			}
+
+			protected void playSound(BlockSource p_123572_) {
+				p_123572_.getLevel().levelEvent(this.isSuccess() ? 1000 : 1001, p_123572_.getPos(), 0);
+			}
+		};
+		DispenserBlock.registerBehavior(TOFUSCOOP, dispenseitembehavior3);
 	}
 }
