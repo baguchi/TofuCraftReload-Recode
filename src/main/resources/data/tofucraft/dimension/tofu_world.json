@@ -80,8 +80,7 @@
           1.0
         ]
       },
-      "type": "minecraft:multi_noise",
-      "seed": 0
+      "type": "minecraft:multi_noise"
     },
     "settings": "tofucraft:tofu_world",
     "type": "minecraft:noise",
