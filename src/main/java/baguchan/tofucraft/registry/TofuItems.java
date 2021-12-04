@@ -282,25 +282,39 @@ public class TofuItems {
 				if (result != null) {
 					p_123561_.getLevel().setBlock(blockpos, Block.byItem(result.getItem()).defaultBlockState(), 11);
 					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));
+					return new ItemStack(Items.GLASS_BOTTLE);
 				}
-				return this.defaultDispenseItemBehavior.dispense(p_123561_, p_123562_);
+				return p_123562_;
 			}
 		};
 		DispenserBlock.registerBehavior(BITTERN, dispenseitembehavior2);
 		DispenseItemBehavior dispenseitembehavior3 = new DefaultDispenseItemBehavior() {
+			private boolean success = false;
 			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
 				BlockPos blockpos = p_123561_.getPos().relative(p_123561_.getBlockState().getValue(DispenserBlock.FACING));
-				FluidState fluidState = p_123561_.getLevel().getFluidState(blockpos);
 				if (p_123561_.getLevel().getBlockState(blockpos).is(TofuTags.Blocks.SOFT_TOFU)) {
 					ItemStack stack = new ItemStack(Item.BY_BLOCK.get(p_123561_.getLevel().getBlockState(blockpos).getBlock()));
 					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));
 					p_123561_.getLevel().removeBlock(blockpos, false);
 					this.defaultDispenseItemBehavior.dispense(p_123561_, stack);
-					return p_123562_;
+					p_123562_.hurt(1, p_123561_.getLevel().getRandom(), null);
+					setSuccess(true);
 				}
-				return this.defaultDispenseItemBehavior.dispense(p_123561_, p_123562_);
+				return p_123562_;
+			}
+
+			public boolean isSuccess() {
+				return this.success;
+			}
+
+			public void setSuccess(boolean p_123574_) {
+				this.success = p_123574_;
+			}
+
+			protected void playSound(BlockSource p_123572_) {
+				p_123572_.getLevel().levelEvent(this.isSuccess() ? 1000 : 1001, p_123572_.getPos(), 0);
 			}
 		};
 		DispenserBlock.registerBehavior(TOFUSCOOP, dispenseitembehavior3);
