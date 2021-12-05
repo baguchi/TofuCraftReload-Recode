@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -319,5 +320,11 @@ public class TofuItems {
 			}
 		};
 		DispenserBlock.registerBehavior(TOFUSCOOP, dispenseitembehavior3);
+
+		ComposterBlock.COMPOSTABLES.put(TofuItems.EDAMAME, 0.1F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.BOILED_EDAMAME, 0.1F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_SOYBEANS, 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_SOYBEANS_NETHER, 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_SOYBEANS_SOUL, 0.3F);
 	}
 }
