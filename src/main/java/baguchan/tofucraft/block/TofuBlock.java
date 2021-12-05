@@ -41,7 +41,7 @@ public class TofuBlock extends Block {
 		super.randomTick(state, worldIn, pos, random);
 		if (isUnderWeight(worldIn, pos)) {
 			int i = ((Integer) state.getValue((Property) HARDNESS)).intValue();
-			if (random.nextInt(5) == 0)
+			if (random.nextInt(3) == 0)
 				if (i < 7) {
 					worldIn.setBlock(pos, state.setValue(HARDNESS, Integer.valueOf(i + 1)), 2);
 				} else {
