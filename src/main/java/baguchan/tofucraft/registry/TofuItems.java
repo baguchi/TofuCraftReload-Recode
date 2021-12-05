@@ -282,7 +282,8 @@ public class TofuItems {
 				if (result != null) {
 					p_123561_.getLevel().setBlock(blockpos, Block.byItem(result.getItem()).defaultBlockState(), 11);
 					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));
-					return new ItemStack(Items.GLASS_BOTTLE);
+					p_123562_.shrink(1);
+					this.defaultDispenseItemBehavior.dispense(p_123561_, new ItemStack(Items.GLASS_BOTTLE));
 				}
 				return p_123562_;
 			}
