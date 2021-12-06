@@ -34,9 +34,12 @@
     [],
     [],
     [
+      "tofucraft:ore_tofu_diamond",
+      "tofucraft:ore_tofu_diamond_large"
     ],
     [],
     [
+      "tofucraft:leek"
     ],
     [
       "minecraft:freeze_top_layer"
