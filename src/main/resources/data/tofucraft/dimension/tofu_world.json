@@ -1,89 +1,121 @@
 {
   "type": "tofucraft:tofu_world",
   "generator": {
+    "type": "minecraft:noise",
+    "seed": 0,
+    "settings": "tofucraft:tofu_world",
     "biome_source": {
-      "humidity_noise": {
-        "firstOctave": -7,
-        "amplitudes": [
-          1.0,
-          1.0
-        ]
-      },
-      "altitude_noise": {
-        "firstOctave": -7,
-        "amplitudes": [
-          1.0,
-          1.0
-        ]
-      },
-      "weirdness_noise": {
-        "firstOctave": -7,
-        "amplitudes": [
-          1.0,
-          1.0
-        ]
-      },
+      "type": "minecraft:multi_noise",
       "biomes": [
         {
+          "biome": "tofucraft:tofu_plains",
           "parameters": {
-            "temperature": 0,
-            "humidity": 0,
-            "continentalness": 0,
-            "erosion": 0,
-            "weirdness": -0.1,
+            "temperature": [
+              -0.5,
+              0.3
+            ],
+            "humidity": [
+              -0.3,
+              0.1
+            ],
+            "continentalness": [
+              0.03,
+              1
+            ],
+            "erosion": [
+              -0.225,
+              0.5
+            ],
+            "weirdness": [
+              -1,
+              0.93
+            ],
             "depth": 0,
             "offset": 0
-          },
-          "biome": "tofucraft:tofu_plains"
+          }
         },
         {
+          "biome": "tofucraft:tofu_waste",
           "parameters": {
-            "temperature": -0.5,
-            "humidity": -0.25,
-            "continentalness": 0,
-            "erosion": 0,
-            "weirdness": 0,
-            "depth": -0.05,
-            "offset": 0
-          },
-          "biome": "tofucraft:tofu_waste"
-        },
-        {
-          "parameters": {
-            "temperature": -0.5,
-            "humidity": 0.15,
-            "continentalness": 0,
-            "erosion": 0,
-            "weirdness": 0,
-            "depth": -0.25,
-            "offset": 0
-          },
-          "biome": "tofucraft:tofu_ocean"
-        },
-        {
-          "parameters": {
-            "temperature": 0.0,
-            "humidity": 0.5,
-            "continentalness": 0,
-            "erosion": 0,
-            "weirdness": 0,
+            "temperature": [
+              -1,
+              -0.5
+            ],
+            "humidity": [
+              -0.3,
+              0.1
+            ],
+            "continentalness": [
+              0.03,
+              1
+            ],
+            "erosion": [
+              -0.225,
+              0.15
+            ],
+            "weirdness": [
+              -0.5,
+              0.8
+            ],
             "depth": 0,
             "offset": 0
-          },
-          "biome": "tofucraft:tofu_forest"
+          }
+        },
+        {
+          "biome": "tofucraft:tofu_ocean",
+          "parameters": {
+            "temperature": [
+              -1,
+              1
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              -1,
+              0
+            ],
+            "erosion": [
+              0.3,
+              0.8
+            ],
+            "weirdness": [
+              -1,
+              1
+            ],
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "tofucraft:tofu_forest",
+          "parameters": {
+            "temperature": [
+              0,
+              0.8
+            ],
+            "humidity": [
+              0.3,
+              0.8
+            ],
+            "continentalness": [
+              0.3,
+              0.5
+            ],
+            "erosion": [
+              -0.2,
+              0
+            ],
+            "weirdness": [
+              -1,
+              0.4
+            ],
+            "depth": 0,
+            "offset": 0
+          }
         }
-      ],
-      "temperature_noise": {
-        "firstOctave": -7,
-        "amplitudes": [
-          1.0,
-          1.0
-        ]
-      },
-      "type": "minecraft:multi_noise"
-    },
-    "settings": "tofucraft:tofu_world",
-    "type": "minecraft:noise",
-    "seed": 0
+      ]
+    }
   }
 }
