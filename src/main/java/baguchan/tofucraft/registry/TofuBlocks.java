@@ -114,7 +114,7 @@ public class TofuBlocks {
 
 	public static final Block TOFU_TERRAIN = new TofuTerrainBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block TOFUSLATE = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(2.5F, 4.0F).sound(SoundType.DEEPSLATE));
-	public static final Block TOFUSLATE_TOFU_DIAMOND_ORE = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 4.0F).sound(SoundType.DEEPSLATE));
+	public static final Block TOFUSLATE_TOFU_DIAMOND_ORE = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.5F, 4.0F).sound(SoundType.DEEPSLATE));
 	public static final Block ORE_TOFU_DIAMOND = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.5F, 1.0F).sound(SoundType.SNOW));
 	public static final Block TOFU_BEDROCK = new Block(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F).sound(SoundType.STONE));
 
