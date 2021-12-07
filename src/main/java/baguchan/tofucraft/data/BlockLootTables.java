@@ -120,6 +120,12 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.SAPLING_TOFU);
 		this.add(TofuBlocks.LEAVES_TOFU, createLeavesDrops(TofuBlocks.LEAVES_TOFU, TofuBlocks.SAPLING_TOFU, DEFAULT_SAPLING_DROP_RATES));
 
+		dropSelf(TofuBlocks.LEEK_GREEN_STEM);
+		dropSelf(TofuBlocks.LEEK_STEM);
+		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM);
+		dropSelf(TofuBlocks.TOFU_STEM);
+		dropSelf(TofuBlocks.TOFU_STEM_PLANKS);
+
 		this.add(TofuBlocks.LEEK, noDrop());
 
 		dropOther(TofuBlocks.TOFU_FARMLAND, TofuBlocks.TOFU_TERRAIN);

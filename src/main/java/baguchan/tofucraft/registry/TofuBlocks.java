@@ -124,6 +124,13 @@ public class TofuBlocks {
 
 	public static final Block LEEK = new LeekBlock(BlockBehaviour.Properties.of(Material.PLANT).instabreak().noOcclusion().noCollission().sound(SoundType.GRASS));
 
+	public static final RotatedPillarBlock LEEK_GREEN_STEM = new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM));
+	public static final RotatedPillarBlock LEEK_STEM = new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM));
+	public static final Block ZUNDATOFU_MUSHROOM = new TofuMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT).instabreak().noCollission().sound(SoundType.FUNGUS));
+	public static final RotatedPillarBlock TOFU_STEM = new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM));
+	public static final Block TOFU_STEM_PLANKS = new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD));
+
+
 	public static final TofuPortalBlock TOFU_PORTAL = new TofuPortalBlock(BlockBehaviour.Properties.of(Material.PORTAL).strength(-1.0F).noCollission().noOcclusion().noDrops().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
 		return 11;
 	}));
@@ -217,6 +224,12 @@ public class TofuBlocks {
 
 		registry.getRegistry().register(LEEK.setRegistryName("blockleek"));
 
+		registry.getRegistry().register(LEEK_GREEN_STEM.setRegistryName("leek_green_stem"));
+		registry.getRegistry().register(LEEK_STEM.setRegistryName("leek_stem"));
+		registry.getRegistry().register(ZUNDATOFU_MUSHROOM.setRegistryName("zundatofu_mushroom"));
+		registry.getRegistry().register(TOFU_STEM.setRegistryName("tofustem"));
+		registry.getRegistry().register(TOFU_STEM_PLANKS.setRegistryName("tofustem_planks"));
+
 		registry.getRegistry().register(TOFU_PORTAL.setRegistryName("tofuportal"));
 		registry.getRegistry().register(TOFU_FARMLAND.setRegistryName("tofu_farmland"));
 		registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
@@ -293,6 +306,12 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(LEAVES_TOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(LEEK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+
+		TofuItems.register(registry, new BlockItem(LEEK_GREEN_STEM, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(LEEK_STEM, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(ZUNDATOFU_MUSHROOM, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFU_STEM, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFU_STEM_PLANKS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(TOFU_FARMLAND, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(SALTPAN, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));

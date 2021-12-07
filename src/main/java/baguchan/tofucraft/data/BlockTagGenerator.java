@@ -36,6 +36,9 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE
 				, TofuBlocks.TOFUSLATE
 				, TofuBlocks.SALT_FURNACE);
+		tag(BlockTags.MINEABLE_WITH_AXE).add(TofuBlocks.SALTPAN
+				, TofuBlocks.LEEK_GREEN_STEM, TofuBlocks.LEEK_STEM
+				, TofuBlocks.TOFU_STEM, TofuBlocks.TOFU_STEM_PLANKS);
 
 		tag(BlockTags.NEEDS_STONE_TOOL)
 				.add(TofuBlocks.METALTOFU, TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.TOFUSLAB_METAL, TofuBlocks.TOFULADDER_METAL, TofuBlocks.TOFUFENCE_METAL);
@@ -47,5 +50,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.GRILLEDTOFU, TofuBlocks.ZUNDATOFU);
 		tag(BlockTags.BEDS).add(TofuBlocks.TOFUBED);
 		tag(BlockTags.CLIMBABLE).add(TofuBlocks.TOFULADDER_KINU, TofuBlocks.TOFULADDER_MOMEN, TofuBlocks.TOFULADDER_ISHI, TofuBlocks.TOFULADDER_ISHIBRICK, TofuBlocks.TOFULADDER_METAL);
+		tag(BlockTags.WITHER_IMMUNE).add(TofuBlocks.TOFU_BEDROCK);
+		tag(BlockTags.DRAGON_IMMUNE).add(TofuBlocks.TOFU_BEDROCK);
 	}
 }
