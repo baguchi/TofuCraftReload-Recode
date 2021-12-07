@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "tofucraft:block/tofustem",
+    "end": "tofucraft:block/tofustem_top"
+  }
+}

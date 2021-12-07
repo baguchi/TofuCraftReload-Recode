@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "tofucraft:block/leek_stem_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "tofucraft:block/leek_stem"
+    },
+    "axis=z": {
+      "model": "tofucraft:block/leek_stem_horizontal",
+      "x": 90
+    }
+  }
+}

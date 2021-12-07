@@ -38,6 +38,10 @@ public class BiomeLoadEvents {
 			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.TOFU_TREES_PLAINS);
 		}
 
+		if (event.getName().toString().contains("tofucraft:soybean_forest")) {
+			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.BEG_LEEK);
+		}
+
 		if (event.getName().toString().contains("tofucraft:tofu_waste")) {
 			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.TOFU_BUILDING);
 			generation.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.TOFU_TREES_PLAINS);

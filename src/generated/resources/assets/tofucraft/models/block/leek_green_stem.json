@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "tofucraft:block/leek_green_stem",
+    "end": "tofucraft:block/leek_green_stem_top"
+  }
+}

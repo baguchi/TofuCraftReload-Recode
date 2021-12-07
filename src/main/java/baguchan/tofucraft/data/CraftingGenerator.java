@@ -134,9 +134,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.SOULTOFU_BRICK.asItem(), TofuBlocks.SOULTOFU.asItem());
 		tofuBlockItem(consumer, TofuBlocks.SOULTOFU_SMOOTH_BRICK.asItem(), TofuBlocks.SOULTOFU_BRICK.asItem());
 
-		ShapedRecipeBuilder.shaped(TofuBlocks.TOFU_STEM_PLANKS, 4)
-				.pattern("#")
-				.define('#', TofuBlocks.TOFU_STEM)
+		ShapelessRecipeBuilder.shapeless(TofuBlocks.TOFU_STEM_PLANKS, 4)
+				.requires(TofuBlocks.TOFU_STEM.asItem())
 				.unlockedBy("has_item", has(TofuBlocks.TOFU_STEM))
 				.save(consumer);
 

@@ -24,7 +24,7 @@ public class TofuWorldPlacements {
 	public static final PlacedFeature PATCH_LEEK_WASTE = register("tofucraft:patch_leek_waste", TofuWorldFeatures.LEEK.placed(CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
 
-	public static final PlacedFeature BEG_LEEK = register("tofucraft:big_leek", TofuWorldFeatures.BIG_LEEK.placed(PlacementUtils.countExtra(1, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+	public static final PlacedFeature BEG_LEEK = register("tofucraft:big_leek", TofuWorldFeatures.BIG_LEEK.placed(PlacementUtils.countExtra(3, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
 	public static final PlacedFeature TOFU_BUILDING = register("tofucraft:tofu_building", TofuWorldFeatures.TOFU_BUILDING.placed(PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 

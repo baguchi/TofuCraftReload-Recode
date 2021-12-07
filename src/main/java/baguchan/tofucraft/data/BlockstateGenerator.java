@@ -72,7 +72,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		logBlock(TofuBlocks.LEEK_GREEN_STEM);
 		logBlock(TofuBlocks.LEEK_STEM);
 		crossBlock(TofuBlocks.ZUNDATOFU_MUSHROOM);
-		axisBlock(TofuBlocks.TOFU_STEM);
+		logBlock(TofuBlocks.TOFU_STEM);
 		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS);
 
 		crossBlock(TofuBlocks.SAPLING_TOFU);

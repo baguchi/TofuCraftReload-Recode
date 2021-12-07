@@ -23,7 +23,7 @@ public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
 		BlockState blockstate = p_159749_.level().getBlockState(p_159749_.origin().below());
 		if (!blockstate.is(TofuBlocks.TOFU_TERRAIN))
 			return false;
-		if (p_159749_.random().nextInt(8) == 0) {
+		if (p_159749_.random().nextInt(6) != 0) {
 			setBigLeekBlock(p_159749_.level(), p_159749_.random(), p_159749_.origin());
 		} else {
 			setLeekBlock(p_159749_.level(), p_159749_.random(), p_159749_.origin());
@@ -37,9 +37,9 @@ public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
 		for (int i = 0; i < height; i++) {
 			for (BlockPos blockpos1 : BlockPos.betweenClosed(pos.offset(-1, -0, -1), pos.offset(1, 0, 1))) {
 				if ((height - i) < height / 2.5D) {
-					level.setBlock(pos.above(i), TofuBlocks.LEEK_GREEN_STEM.defaultBlockState(), 2);
+					level.setBlock(blockpos1.above(i), TofuBlocks.LEEK_GREEN_STEM.defaultBlockState(), 2);
 				} else {
-					level.setBlock(pos.above(i), TofuBlocks.LEEK_STEM.defaultBlockState(), 2);
+					level.setBlock(blockpos1.above(i), TofuBlocks.LEEK_STEM.defaultBlockState(), 2);
 				}
 			}
 		}
