@@ -58,6 +58,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Tofunian extends AbstractTofunian implements ReputationEventHandler {
+	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 
 	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK, 3, TofuItems.TOFUCOOKIE, 3, TofuItems.TOFUGRILLED, 1);
@@ -144,6 +145,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(ROLE, Roles.TOFUNIAN.name());
+		this.entityData.define(ACTION, Actions.NORMAL.name());
+	}
+
+	public Actions getAction() {
+		return Actions.get(this.entityData.get(ROLE));
+	}
+
+	public void setAction(Actions action) {
+		this.entityData.set(ACTION, action.name());
 	}
 
 	public void setRole(Roles role) {
@@ -450,35 +460,44 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		compound.putLong("LastRestock", this.lastRestock);
 		compound.putLong("LastGossipDecay", this.lastGossipDecay);
 		compound.putInt("RestocksToday", this.restocksToday);
-		if (this.tofunainHome != null)
+		if (this.tofunainHome != null) {
 			compound.put("TofunianHome", NbtUtils.writeBlockPos(this.tofunainHome));
-		if (this.tofunainJobBlock != null)
+		}
+		if (this.tofunainJobBlock != null) {
 			compound.put("TofunianJobBlock", NbtUtils.writeBlockPos(this.tofunainJobBlock));
+		}
 		compound.putString("Roles", getRole().name());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		if (compound.contains("Offers", 10))
+		if (compound.contains("Offers", 10)) {
 			this.offers = new MerchantOffers(compound.getCompound("Offers"));
-		if (compound.contains("FoodLevel", 1))
+		}
+		if (compound.contains("FoodLevel", 1)) {
 			this.foodLevel = compound.getByte("FoodLevel");
+		}
 		ListTag listtag = compound.getList("Gossips", 10);
 		this.gossips.update(new Dynamic<>(NbtOps.INSTANCE, listtag));
 		ListTag listnbt = compound.getList("Gossips", 10);
-		if (compound.contains("Xp", 3))
+		if (compound.contains("Xp", 3)) {
 			this.xp = compound.getInt("Xp");
-		if (compound.contains("Level"))
+		}
+		if (compound.contains("Level")) {
 			this.tofunianLevel = compound.getInt("Level");
+		}
 		this.lastGossipDecay = compound.getLong("LastGossipDecay");
 		this.lastRestock = compound.getLong("LastRestock");
 		this.restocksToday = compound.getInt("RestocksToday");
-		if (compound.contains("TofunianHome"))
+		if (compound.contains("TofunianHome")) {
 			this.tofunainHome = NbtUtils.readBlockPos(compound.getCompound("TofunianHome"));
-		if (compound.contains("TofunianJobBlock"))
+		}
+		if (compound.contains("TofunianJobBlock")) {
 			this.tofunainJobBlock = NbtUtils.readBlockPos(compound.getCompound("TofunianJobBlock"));
-		if (compound.contains("Roles"))
+		}
+		if (compound.contains("Roles")) {
 			setRole(Roles.get(compound.getString("Roles")));
+		}
 		setCanPickUpLoot(true);
 	}
 
@@ -669,6 +688,28 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Override
 	protected Component getTypeName() {
 		return new TranslatableComponent("entity.tofucraft.tofunian." + this.getRole().name().toLowerCase(Locale.ROOT));
+	}
+
+	public enum Actions implements IExtensibleEnum {
+		NORMAL,
+		CRY,
+		EAT;
+
+		private Actions() {
+
+		}
+
+		public static Actions get(String nameIn) {
+			for (Actions role : values()) {
+				if (role.name().equals(nameIn))
+					return role;
+			}
+			return NORMAL;
+		}
+
+		public static Actions create(String name) {
+			throw new IllegalStateException("Enum not extended");
+		}
 	}
 
 	public enum Roles implements IExtensibleEnum {
