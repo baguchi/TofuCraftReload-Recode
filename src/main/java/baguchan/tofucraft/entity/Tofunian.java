@@ -713,7 +713,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public enum Roles implements IExtensibleEnum {
-		TOFUCOOK(Blocks.CRAFTING_TABLE), TOFUSMITH(Blocks.FURNACE), SOYWORKER(Blocks.CAULDRON), TOFUNIAN(Blocks.AIR);
+		TOFUCOOK(Blocks.COMPOSTER), TOFUSMITH(Blocks.BLAST_FURNACE), SOYWORKER(Blocks.CAULDRON), TOFUNIAN(Blocks.AIR);
 
 		private static final Map<String, Roles> lookup;
 		private final Block block;
