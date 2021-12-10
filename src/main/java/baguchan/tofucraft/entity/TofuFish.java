@@ -26,8 +26,8 @@ import net.minecraft.world.level.LevelAccessor;
 import java.util.Optional;
 import java.util.Random;
 
-public class TofuFishEntity extends AbstractSchoolingFish {
-	public TofuFishEntity(EntityType<? extends TofuFishEntity> p_27523_, Level p_27524_) {
+public class TofuFish extends AbstractSchoolingFish {
+	public TofuFish(EntityType<? extends TofuFish> p_27523_, Level p_27524_) {
 		super(p_27523_, p_27524_);
 	}
 

@@ -1,6 +1,6 @@
 package baguchan.tofucraft.entity.ai;
 
-import baguchan.tofucraft.entity.TofunianEntity;
+import baguchan.tofucraft.entity.Tofunian;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -10,19 +10,19 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class RestockGoal extends MoveToBlockGoal {
-	private final TofunianEntity creature;
+	private final Tofunian creature;
 
-	public RestockGoal(TofunianEntity creature, double speedIn, int length) {
+	public RestockGoal(Tofunian creature, double speedIn, int length) {
 		super(creature, speedIn, length);
 		this.creature = creature;
 	}
 
 	public boolean canUse() {
-		return (this.creature.level.isDay() && this.creature.getRole() != TofunianEntity.Roles.TOFUNIAN && this.creature.canResetStock() && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level.isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.canResetStock() && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level.isDay() && this.creature.canResetStock() && !this.creature.isBaby() && this.creature.getRole() != TofunianEntity.Roles.TOFUNIAN && this.mob != null);
+		return (super.canContinueToUse() && this.creature.level.isDay() && this.creature.canResetStock() && !this.creature.isBaby() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.mob != null);
 	}
 
 	public void tick() {

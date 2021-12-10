@@ -1,11 +1,11 @@
 package baguchan.tofucraft.entity.ai;
 
-import baguchan.tofucraft.entity.TofunianEntity;
+import baguchan.tofucraft.entity.Tofunian;
 
 public class TofunianSleepOnBedGoal extends SleepOnBedGoal {
-	private final TofunianEntity creature;
+	private final Tofunian creature;
 
-	public TofunianSleepOnBedGoal(TofunianEntity creature, double speedIn, int length) {
+	public TofunianSleepOnBedGoal(Tofunian creature, double speedIn, int length) {
 		super(creature, speedIn, length);
 		this.creature = creature;
 	}

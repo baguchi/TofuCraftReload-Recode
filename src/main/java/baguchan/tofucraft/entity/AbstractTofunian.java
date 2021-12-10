@@ -10,8 +10,8 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
-public abstract class AbstractTofunianEntity extends AbstractVillager {
-	public AbstractTofunianEntity(EntityType<? extends AbstractTofunianEntity> type, Level worldIn) {
+public abstract class AbstractTofunian extends AbstractVillager {
+	public AbstractTofunian(EntityType<? extends AbstractTofunian> type, Level worldIn) {
 		super(type, worldIn);
 	}
 

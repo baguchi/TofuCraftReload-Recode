@@ -1,6 +1,6 @@
 package baguchan.tofucraft.entity.ai;
 
-import baguchan.tofucraft.entity.TofunianEntity;
+import baguchan.tofucraft.entity.Tofunian;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
@@ -17,17 +17,17 @@ import java.util.Set;
 public class ShareItemGoal extends Goal {
 	private static final TargetingConditions PARTNER_TARGETING = TargetingConditions.forNonCombat().range(8.0D).ignoreInvisibilityTesting();
 
-	protected final TofunianEntity tofunian;
+	protected final Tofunian tofunian;
 
 	protected final double speedModifier;
 
 	protected int nextStartTick;
 
-	protected TofunianEntity partner;
+	protected Tofunian partner;
 
 	private boolean hasPassed;
 
-	public ShareItemGoal(TofunianEntity entity, double speed) {
+	public ShareItemGoal(Tofunian entity, double speed) {
 		this.tofunian = entity;
 		this.speedModifier = speed;
 		setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
@@ -55,11 +55,11 @@ public class ShareItemGoal extends Goal {
 	}
 
 	@Nullable
-	private TofunianEntity getFreePartner() {
-		List<TofunianEntity> list = this.tofunian.level.getNearbyEntities(TofunianEntity.class, PARTNER_TARGETING, this.tofunian, this.tofunian.getBoundingBox().inflate(8.0D));
+	private Tofunian getFreePartner() {
+		List<Tofunian> list = this.tofunian.level.getNearbyEntities(Tofunian.class, PARTNER_TARGETING, this.tofunian, this.tofunian.getBoundingBox().inflate(8.0D));
 		double d0 = Double.MAX_VALUE;
-		TofunianEntity tofunian2 = null;
-		for (TofunianEntity tofunianEntity1 : list) {
+		Tofunian tofunian2 = null;
+		for (Tofunian tofunianEntity1 : list) {
 			if (tofunianEntity1.wantsMoreFood() && this.tofunian.distanceToSqr(tofunianEntity1) < d0) {
 				tofunian2 = tofunianEntity1;
 				d0 = this.tofunian.distanceToSqr(tofunianEntity1);
@@ -74,7 +74,7 @@ public class ShareItemGoal extends Goal {
 			if (!this.hasPassed) {
 				this.tofunian.getNavigation().moveTo(this.partner, 2.0D);
 				this.tofunian.getLookControl().setLookAt(this.partner, 30.0F, 30.0F);
-				throwHalfStack(this.tofunian, TofunianEntity.FOOD_POINTS.keySet(), this.partner);
+				throwHalfStack(this.tofunian, Tofunian.FOOD_POINTS.keySet(), this.partner);
 				this.hasPassed = true;
 			}
 		} else {
@@ -82,7 +82,7 @@ public class ShareItemGoal extends Goal {
 		}
 	}
 
-	private static void throwHalfStack(TofunianEntity p_220586_0_, Set<Item> p_220586_1_, LivingEntity p_220586_2_) {
+	private static void throwHalfStack(Tofunian p_220586_0_, Set<Item> p_220586_1_, LivingEntity p_220586_2_) {
 		SimpleContainer inventory = p_220586_0_.getInventory();
 		ItemStack itemstack = ItemStack.EMPTY;
 		int i = 0;

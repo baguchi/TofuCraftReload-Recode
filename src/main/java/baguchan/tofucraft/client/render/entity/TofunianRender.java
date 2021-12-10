@@ -5,7 +5,7 @@ import baguchan.tofucraft.client.TofuModelLayers;
 import baguchan.tofucraft.client.model.TofunianModel;
 import baguchan.tofucraft.client.render.layer.TofunianItemInHandLayer;
 import baguchan.tofucraft.client.render.layer.TofunianRoleLayer;
-import baguchan.tofucraft.entity.TofunianEntity;
+import baguchan.tofucraft.entity.Tofunian;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class TofunianRender extends MobRenderer<TofunianEntity, TofunianModel<TofunianEntity>> {
+public class TofunianRender extends MobRenderer<Tofunian, TofunianModel<Tofunian>> {
 	private static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian.png");
 
 	public TofunianRender(EntityRendererProvider.Context p_173956_) {
@@ -23,7 +23,7 @@ public class TofunianRender extends MobRenderer<TofunianEntity, TofunianModel<To
 		this.addLayer(new TofunianItemInHandLayer<>(this));
 	}
 
-	protected void scale(TofunianEntity p_116314_, PoseStack p_116315_, float p_116316_) {
+	protected void scale(Tofunian p_116314_, PoseStack p_116315_, float p_116316_) {
 		float var4 = p_116314_.getScale();
 		if (p_116314_.isBaby()) {
 			this.shadowRadius = 0.25F;
@@ -34,7 +34,7 @@ public class TofunianRender extends MobRenderer<TofunianEntity, TofunianModel<To
 		p_116315_.scale(var4, var4, var4);
 	}
 
-	public ResourceLocation getTextureLocation(TofunianEntity p_114029_) {
+	public ResourceLocation getTextureLocation(Tofunian p_114029_) {
 		return LOCATION;
 	}
 }

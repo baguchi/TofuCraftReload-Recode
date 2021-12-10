@@ -14,8 +14,8 @@ import net.minecraft.world.level.Level;
 
 import java.util.EnumSet;
 
-public class TofuSpiderEntity extends Spider implements RangedAttackMob {
-	public TofuSpiderEntity(EntityType<? extends TofuSpiderEntity> p_33786_, Level p_33787_) {
+public class TofuSpider extends Spider implements RangedAttackMob {
+	public TofuSpider(EntityType<? extends TofuSpider> p_33786_, Level p_33787_) {
 		super(p_33786_, p_33787_);
 		this.xpReward = 4;
 	}
@@ -31,12 +31,12 @@ public class TofuSpiderEntity extends Spider implements RangedAttackMob {
 	}
 
 	static class TofuSpiderAttackGoal extends Goal {
-		private final TofuSpiderEntity spider;
+		private final TofuSpider spider;
 		private int attackStep;
 		private int attackTime;
 		private int lastSeen;
 
-		public TofuSpiderAttackGoal(TofuSpiderEntity p_32247_) {
+		public TofuSpiderAttackGoal(TofuSpider p_32247_) {
 			this.spider = p_32247_;
 			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		}

@@ -22,8 +22,8 @@ import net.minecraft.world.level.LevelAccessor;
 
 import java.util.Random;
 
-public class TofuCowEntity extends Cow {
-	public TofuCowEntity(EntityType<? extends Cow> p_28285_, Level p_28286_) {
+public class TofuCow extends Cow {
+	public TofuCow(EntityType<? extends Cow> p_28285_, Level p_28286_) {
 		super(p_28285_, p_28286_);
 	}
 

@@ -1,6 +1,6 @@
 package baguchan.tofucraft.client.model;
 
-import baguchan.tofucraft.entity.TofunianEntity;
+import baguchan.tofucraft.entity.Tofunian;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.HeadedModel;
@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 
-public class TofunianModel<T extends TofunianEntity> extends HierarchicalModel<T> implements ArmedModel, HeadedModel {
+public class TofunianModel<T extends Tofunian> extends HierarchicalModel<T> implements ArmedModel, HeadedModel {
 	private final ModelPart root;
 	private final ModelPart head;
 	private final ModelPart hat;

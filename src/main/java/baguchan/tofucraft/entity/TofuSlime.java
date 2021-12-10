@@ -16,8 +16,8 @@ import net.minecraft.world.level.ServerLevelAccessor;
 
 import java.util.Random;
 
-public class TofuSlimeEntity extends Slime {
-	public TofuSlimeEntity(EntityType<? extends Slime> p_33588_, Level p_33589_) {
+public class TofuSlime extends Slime {
+	public TofuSlime(EntityType<? extends Slime> p_33588_, Level p_33589_) {
 		super(p_33588_, p_33589_);
 	}
 
@@ -34,7 +34,7 @@ public class TofuSlimeEntity extends Slime {
 		}
 	}
 
-	public static boolean checkMonsterSpawnRules(EntityType<? extends TofuSlimeEntity> p_33018_, ServerLevelAccessor p_33019_, MobSpawnType p_33020_, BlockPos p_33021_, Random p_33022_) {
+	public static boolean checkMonsterSpawnRules(EntityType<? extends TofuSlime> p_33018_, ServerLevelAccessor p_33019_, MobSpawnType p_33020_, BlockPos p_33021_, Random p_33022_) {
 		return p_33019_.getDifficulty() != Difficulty.PEACEFUL && isDarkEnoughToSpawn(p_33019_, p_33021_, p_33022_) && checkMobSpawnRules(p_33018_, p_33019_, p_33020_, p_33021_, p_33022_);
 	}
 }

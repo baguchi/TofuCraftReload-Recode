@@ -1,7 +1,7 @@
 package baguchan.tofucraft.entity.ai;
 
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
-import baguchan.tofucraft.entity.TofunianEntity;
+import baguchan.tofucraft.entity.Tofunian;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.ForgeEventFactory;
 
 public class CropHarvestGoal extends MoveToBlockGoal {
-	private final TofunianEntity tofunian;
+	private final Tofunian tofunian;
 
 	private boolean wantsToHarvest;
 
@@ -24,7 +24,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 
 	private boolean canPlant;
 
-	public CropHarvestGoal(TofunianEntity tofunianIn, double speed) {
+	public CropHarvestGoal(Tofunian tofunianIn, double speed) {
 		super(tofunianIn, speed, 8);
 		this.tofunian = tofunianIn;
 	}
@@ -37,7 +37,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 			this.canPlant = false;
 			this.wantsToHarvest = true;
 		}
-		return (this.tofunian.level.isDay() && this.tofunian.getRole() == TofunianEntity.Roles.TOFUCOOK && super.canUse());
+		return (this.tofunian.level.isDay() && this.tofunian.getRole() == Tofunian.Roles.TOFUCOOK && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
@@ -105,7 +105,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 		return false;
 	}
 
-	private ItemStack findSeeds(TofunianEntity tofunian) {
+	private ItemStack findSeeds(Tofunian tofunian) {
 		SimpleContainer inventory = tofunian.getInventory();
 		int i = inventory.getContainerSize();
 		for (int j = 0; j < i; j++) {

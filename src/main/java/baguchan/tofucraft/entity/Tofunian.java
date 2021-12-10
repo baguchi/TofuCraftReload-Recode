@@ -57,8 +57,8 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class TofunianEntity extends AbstractTofunianEntity implements ReputationEventHandler {
-	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(TofunianEntity.class, EntityDataSerializers.STRING);
+public class Tofunian extends AbstractTofunian implements ReputationEventHandler {
+	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 
 	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK, 3, TofuItems.TOFUCOOKIE, 3, TofuItems.TOFUGRILLED, 1);
 
@@ -93,7 +93,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 
 	private int tofunianLevel = 1;
 
-	public TofunianEntity(EntityType<? extends TofunianEntity> type, Level worldIn) {
+	public Tofunian(EntityType<? extends Tofunian> type, Level worldIn) {
 		super(type, worldIn);
 		((GroundPathNavigation) getNavigation()).setCanOpenDoors(true);
 		setCanPickUpLoot(true);
@@ -639,7 +639,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		});
 	}
 
-	public void gossip(ServerLevel p_35412_, TofunianEntity p_35413_, long p_35414_) {
+	public void gossip(ServerLevel p_35412_, Tofunian p_35413_, long p_35414_) {
 		if ((p_35414_ < this.lastGossipTime || p_35414_ >= this.lastGossipTime + 1200L) && (p_35414_ < p_35413_.lastGossipTime || p_35414_ >= p_35413_.lastGossipTime + 1200L)) {
 			this.gossips.transferFrom(p_35413_.gossips, this.random, 10);
 			this.lastGossipTime = p_35414_;
@@ -728,11 +728,11 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 	}
 
 	class MoveToGoal extends Goal {
-		final TofunianEntity hunter;
+		final Tofunian hunter;
 		final double stopDistance;
 		final double speedModifier;
 
-		MoveToGoal(TofunianEntity p_i50459_2_, double p_i50459_3_, double p_i50459_5_) {
+		MoveToGoal(Tofunian p_i50459_2_, double p_i50459_3_, double p_i50459_5_) {
 			this.hunter = p_i50459_2_;
 			this.stopDistance = p_i50459_3_;
 			this.speedModifier = p_i50459_5_;
@@ -741,7 +741,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 
 		public void stop() {
 			this.hunter.setTofunainHome((BlockPos) null);
-			TofunianEntity.this.navigation.stop();
+			Tofunian.this.navigation.stop();
 		}
 
 		public boolean canUse() {
@@ -754,13 +754,13 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 
 		public void tick() {
 			BlockPos blockpos = this.hunter.getTofunainHome();
-			if (blockpos != null && TofunianEntity.this.navigation.isDone()) {
+			if (blockpos != null && Tofunian.this.navigation.isDone()) {
 				if (this.isTooFarAway(blockpos, 10.0D)) {
 					Vec3 vector3d = (new Vec3((double) blockpos.getX() - this.hunter.getX(), (double) blockpos.getY() - this.hunter.getY(), (double) blockpos.getZ() - this.hunter.getZ())).normalize();
 					Vec3 vector3d1 = vector3d.scale(10.0D).add(this.hunter.getX(), this.hunter.getY(), this.hunter.getZ());
-					TofunianEntity.this.navigation.moveTo(vector3d1.x, vector3d1.y, vector3d1.z, this.speedModifier);
+					Tofunian.this.navigation.moveTo(vector3d1.x, vector3d1.y, vector3d1.z, this.speedModifier);
 				} else {
-					TofunianEntity.this.navigation.moveTo((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ(), this.speedModifier);
+					Tofunian.this.navigation.moveTo((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ(), this.speedModifier);
 				}
 			}
 
@@ -771,7 +771,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 		}
 	}
 
-	public class GetItemGoal<T extends TofunianEntity> extends Goal {
+	public class GetItemGoal<T extends Tofunian> extends Goal {
 		private final T mob;
 
 		public GetItemGoal(T p_i50572_2_) {
@@ -781,7 +781,7 @@ public class TofunianEntity extends AbstractTofunianEntity implements Reputation
 
 		public boolean canUse() {
 
-			List<ItemEntity> list = this.mob.level.getEntitiesOfClass(ItemEntity.class, this.mob.getBoundingBox().inflate(4.0D, 4.0D, 4.0D), TofunianEntity.ALLOWED_ITEMS);
+			List<ItemEntity> list = this.mob.level.getEntitiesOfClass(ItemEntity.class, this.mob.getBoundingBox().inflate(4.0D, 4.0D, 4.0D), Tofunian.ALLOWED_ITEMS);
 			if (!list.isEmpty() && this.mob.hasLineOfSight(list.get(0))) {
 				return this.mob.getNavigation().moveTo(list.get(0), (double) 1.0F);
 			}
