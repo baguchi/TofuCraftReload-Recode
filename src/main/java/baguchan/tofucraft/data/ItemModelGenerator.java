@@ -203,6 +203,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		egg(TofuItems.TOFUNIAN_SPAWNEGG);
 		egg(TofuItems.TOFUCOW_SPAWNEGG);
 		egg(TofuItems.TOFUSLIME_SPAWNEGG);
+		egg(TofuItems.TOFUSPIDER_SPAWNEGG);
 	}
 
 	public ItemModelBuilder torchItem(Block item) {

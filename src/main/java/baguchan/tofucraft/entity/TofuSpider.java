@@ -83,7 +83,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 					if (this.attackTime <= 0) {
 						++this.attackStep;
 						if (this.attackStep == 1) {
-							this.attackTime = 30;
+							this.attackTime = 20;
 						} else if (this.attackStep <= 3) {
 							this.attackTime = 10;
 						} else {
@@ -92,9 +92,8 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 						}
 
 						if (this.attackStep > 1) {
-							for (int i = 0; i < 2; i++) {
-								this.spider.performRangedAttack(livingentity, attackTime);
-							}
+							this.spider.performRangedAttack(livingentity, attackTime);
+
 							this.spider.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 0.4F / (this.spider.getRandom().nextFloat() * 0.4F + 0.8F));
 						}
 					}

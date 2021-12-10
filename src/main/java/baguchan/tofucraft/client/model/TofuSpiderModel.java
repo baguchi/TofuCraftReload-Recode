@@ -70,12 +70,12 @@ public class TofuSpiderModel<T extends Entity> extends EntityModel<T> {
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
 		this.head.xRot = headPitch * ((float) Math.PI / 180F);
-		this.legR.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount - 0.4098033F;
+		this.legR.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount + 0.4098033F;
 		this.legR2.yRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 0.5F * limbSwingAmount;
-		this.legR3.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount + 0.4098033F;
-		this.legL.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount - 0.4098033F;
+		this.legR3.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount - 0.4098033F;
+		this.legL.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount + 0.4098033F;
 		this.legL2.yRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 0.6F * limbSwingAmount;
-		this.legL3.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount + 0.4098033F;
+		this.legL3.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount - 0.4098033F;
 	}
 
 	@Override
