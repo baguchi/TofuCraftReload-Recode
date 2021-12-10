@@ -6,6 +6,7 @@
       "rolls": 1,
       "entries": [
         {
+          "type": "item",
           "name": "tofucraft:seeds_soybeans",
           "weight": 1,
           "functions": [
@@ -26,6 +27,7 @@
           ]
         },
         {
+          "type": "item",
           "name": "tofucraft:yuba",
           "weight": 1,
           "functions": [

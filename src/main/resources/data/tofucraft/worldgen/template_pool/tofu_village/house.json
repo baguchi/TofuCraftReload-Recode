@@ -8,7 +8,7 @@
         "location": "tofucraft:tofu_village/house/tofu_smith",
         "processors": "minecraft:empty",
         "projection": "rigid",
-        "element_type": "minecraft:legacy_single_pool_element"
+        "element_type": "minecraft:single_pool_element"
       }
     },
     {
@@ -17,7 +17,7 @@
         "location": "tofucraft:tofu_village/house/soyworker_house",
         "processors": "minecraft:empty",
         "projection": "rigid",
-        "element_type": "minecraft:legacy_single_pool_element"
+        "element_type": "minecraft:single_pool_element"
       }
     },
     {
@@ -26,7 +26,7 @@
         "location": "tofucraft:tofu_village/house/tofunian_towerhouse",
         "processors": "minecraft:empty",
         "projection": "rigid",
-        "element_type": "minecraft:legacy_single_pool_element"
+        "element_type": "minecraft:single_pool_element"
       }
     },
     {
@@ -35,7 +35,7 @@
         "location": "tofucraft:tofu_village/house/hut_1",
         "processors": "minecraft:empty",
         "projection": "rigid",
-        "element_type": "minecraft:legacy_single_pool_element"
+        "element_type": "minecraft:single_pool_element"
       }
     },
     {
@@ -44,7 +44,7 @@
         "location": "tofucraft:tofu_village/house/small_farm_1",
         "processors": "minecraft:empty",
         "projection": "rigid",
-        "element_type": "minecraft:legacy_single_pool_element"
+        "element_type": "minecraft:single_pool_element"
       }
     }
   ]

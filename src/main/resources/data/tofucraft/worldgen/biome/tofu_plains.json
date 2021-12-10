@@ -42,6 +42,7 @@
     ]
   ],
   "starts": [
+    "tofucraft:tofu_village"
   ],
   "spawners": {
     "monster": [
