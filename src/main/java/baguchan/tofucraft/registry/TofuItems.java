@@ -46,6 +46,7 @@ public class TofuItems {
 	public static final Item EDAMAME = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item BOILED_EDAMAME = new Item((new Item.Properties()).food(TofuFoods.BOILED_EDAMAME).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item LEEK = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item YUBA = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item ZUNDA = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item ZUNDAMA = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item ZUNDARUBY = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
@@ -183,6 +184,8 @@ public class TofuItems {
 		register(registry, EDAMAME, "edamame");
 		register(registry, BOILED_EDAMAME, "edamame_boild");
 		register(registry, LEEK, "leek");
+		register(registry, YUBA, "yuba");
+
 		register(registry, ZUNDA, "zunda");
 		register(registry, ZUNDAMA, "zundama");
 		register(registry, ZUNDARUBY, "zundaruby");

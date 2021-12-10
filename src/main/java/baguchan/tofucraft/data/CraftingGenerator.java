@@ -7,6 +7,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
@@ -335,6 +336,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('X', Items.BOWL)
 				.define('#', TofuItems.SEEDS_SOYBEANS_SOUL)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(TofuBlocks.TOFUBED)
+				.pattern("###")
+				.pattern("PPP")
+				.define('#', TofuItems.YUBA)
+				.define('P', ItemTags.PLANKS)
+				.unlockedBy("has_item", has(TofuItems.YUBA))
 				.save(consumer);
 	}
 }
