@@ -1,14 +1,12 @@
 package baguchan.tofucraft.client;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.client.model.TofuSpiderModel;
 import baguchan.tofucraft.client.model.TofunianModel;
 import baguchan.tofucraft.client.render.FukumameRender;
 import baguchan.tofucraft.client.render.NetherFukumameRender;
 import baguchan.tofucraft.client.render.SoulFukumameRender;
-import baguchan.tofucraft.client.render.entity.TofuCowRender;
-import baguchan.tofucraft.client.render.entity.TofuFishRender;
-import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
-import baguchan.tofucraft.client.render.entity.TofunianRender;
+import baguchan.tofucraft.client.render.entity.*;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
@@ -97,6 +95,7 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.TOFUNIAN, TofunianRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUFISH, TofuFishRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUSLIME, TofuSlimeRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFUSPIDER, TofuSpiderRender::new);
 
 		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME, FukumameRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.NETHER_FUKUMAME, NetherFukumameRender::new);
@@ -106,6 +105,7 @@ public class ClientRegistrar {
 	@SubscribeEvent
 	public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
 		event.registerLayerDefinition(TofuModelLayers.TOFUNIAN, TofunianModel::createBodyLayer);
+		event.registerLayerDefinition(TofuModelLayers.TOFUSPIDER, TofuSpiderModel::createBodyLayer);
 	}
 
 	@SubscribeEvent

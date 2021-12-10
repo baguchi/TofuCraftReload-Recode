@@ -9,4 +9,5 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class TofuModelLayers {
 	public static final ModelLayerLocation TOFUNIAN = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "tofunian"), "tofunian");
+	public static final ModelLayerLocation TOFUSPIDER = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "tofuspider"), "tofuspider");
 }

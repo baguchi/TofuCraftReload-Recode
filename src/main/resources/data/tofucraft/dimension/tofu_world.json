@@ -72,10 +72,40 @@
           "parameters": {
             "temperature": [
               -1,
-              1
+              0
             ],
             "humidity": [
               -1,
+              0
+            ],
+            "continentalness": [
+              -0.19,
+              1
+            ],
+            "erosion": [
+              -1,
+              1
+            ],
+            "weirdness": [
+              -1,
+              1
+            ],
+            "depth": [
+              0,
+              1.0
+            ],
+            "offset": 0
+          }
+        },
+        {
+          "biome": "tofucraft:tofu_plains",
+          "parameters": {
+            "temperature": [
+              0,
+              1
+            ],
+            "humidity": [
+              0,
               1
             ],
             "continentalness": [

@@ -138,6 +138,8 @@ public class TofuItems {
 	public static final Item TOFUNIAN_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFUCOW_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUCOW, 15460584, 10724259, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFUSLIME_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUSPIDER_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUSPIDER, 15460584, 3026478, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
 		item.setRegistryName(new ResourceLocation(TofuCraftReload.MODID, id));
@@ -253,6 +255,7 @@ public class TofuItems {
 		register(registry, TOFUNIAN_SPAWNEGG, "tofunian_spawnegg");
 		register(registry, TOFUCOW_SPAWNEGG, "tofucow_spawnegg");
 		register(registry, TOFUSLIME_SPAWNEGG, "tofuslime_spawnegg");
+		register(registry, TOFUSPIDER_SPAWNEGG, "tofuspider_spawnegg");
 
 		DispenseItemBehavior dispenseitembehavior1 = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();

@@ -22,7 +22,7 @@ public class TofuNoiseGeneratorSettings {
 	public static NoiseGeneratorSettings tofuWorld() {
 		Map<StructureFeature<?>, StructureFeatureConfiguration> map = Maps.newHashMap();
 		map.put(TofuStructures.TOFU_VILLAGE, new StructureFeatureConfiguration(34, 8, 10387312));
-		return new NoiseGeneratorSettings(new StructureSettings(Optional.empty(), map), NoiseSettings.create(-64, 384, new NoiseSamplingSettings(1.0D, 1.0D, 80.0D, 160.0D), new NoiseSlider(-0.078125D, 2, 8), new NoiseSlider(0.1171875D, 3, 0), 1, 2, false, false, false, TerrainProvider.overworld(false)), TofuBlocks.TOFU_TERRAIN.defaultBlockState(), TofuBlocks.SOYMILK.defaultBlockState(), TofuSurfaceRuleData.tofuWorld(), 63, false, true, true, true, true, false);
+		return new NoiseGeneratorSettings(new StructureSettings(Optional.empty(), map), NoiseSettings.create(-64, 384, new NoiseSamplingSettings(1.0D, 1.0D, 80.0D, 160.0D), new NoiseSlider(-0.078125D, 2, 8), new NoiseSlider(0.1171875D, 3, 0), 1, 2, false, false, false, TerrainProvider.overworld(false)), TofuBlocks.TOFU_TERRAIN.defaultBlockState(), TofuBlocks.SOYMILK.defaultBlockState(), TofuSurfaceRuleData.tofuWorld(), 63, false, true, true, false, true, false);
 	}
 
 	public static void register(ResourceKey<NoiseGeneratorSettings> p_198263_, NoiseGeneratorSettings p_198264_) {
