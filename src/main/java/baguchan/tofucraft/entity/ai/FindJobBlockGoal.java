@@ -37,7 +37,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 			if (role != null && !this.findBlock) {
 				if (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainLevel() == 1 && this.creature.getVillagerXp() == 0) {
 					this.creature.setRole(role);
-					this.creature.remadeTrade();
+
 					this.findBlock = true;
 				}
 
@@ -61,8 +61,12 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 		this.findBlock = false;
 	}
 
-	protected boolean findNearestBlock() {
-		return super.findNearestBlock();
+	@Override
+	public void stop() {
+		super.stop();
+		if (this.findBlock) {
+			this.creature.remadeTrade();
+		}
 	}
 
 	public double acceptedDistance() {
