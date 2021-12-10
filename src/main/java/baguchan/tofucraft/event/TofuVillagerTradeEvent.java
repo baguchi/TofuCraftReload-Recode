@@ -39,7 +39,7 @@ public class TofuVillagerTradeEvent {
 			trades.add(new EmeraldForItems(TofuItems.SEEDS_SOYBEANS, 16, 12, 1));
 			trades.add(new ItemsForEmeralds(TofuItems.TOFUGRILLED, 1, 9, 8, 2));
 			trades2.add(new ItemsForEmeralds(TofuItems.SOYMILK, 1, 3, 8, 7));
-			trades2.add(new EmeraldForItems(Items.GLASS_BOTTLE, 3, 8, 6));
+			trades2.add(new EmeraldForItems(Items.GLASS_BOTTLE, 5, 8, 6));
 
 			trades3.add(new EmeraldForItems(TofuItems.SALT, 17, 12, 12));
 			trades3.add(new ItemsForEmeralds(new ItemStack(TofuItems.TOFUCOOKIE), 2, 8, 12, 14, 0.052F));
