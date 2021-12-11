@@ -73,6 +73,8 @@ public class ClientRegistrar {
 
 		setRenderLayer(TofuBlocks.LEEK, RenderType.cutout());
 
+		setRenderLayer(TofuBlocks.ZUNDATOFU_MUSHROOM, RenderType.cutout());
+
 		setRenderLayer(TofuBlocks.TOFU_PORTAL, RenderType.translucent());
 		setRenderLayer(TofuBlocks.SALTPAN, RenderType.cutout());
 	}

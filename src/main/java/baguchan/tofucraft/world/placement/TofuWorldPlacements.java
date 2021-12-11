@@ -23,10 +23,14 @@ public class TofuWorldPlacements {
 	public static final PlacedFeature PATCH_LEEK = register("tofucraft:patch_leek", TofuWorldFeatures.LEEK.placed(NoiseThresholdCountPlacement.of(-0.8D, 5, 10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 	public static final PlacedFeature PATCH_LEEK_WASTE = register("tofucraft:patch_leek_waste", TofuWorldFeatures.LEEK.placed(CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
-
 	public static final PlacedFeature BEG_LEEK = register("tofucraft:big_leek", TofuWorldFeatures.BIG_LEEK.placed(PlacementUtils.countExtra(3, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
 	public static final PlacedFeature TOFU_BUILDING = register("tofucraft:tofu_building", TofuWorldFeatures.TOFU_BUILDING.placed(PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
+	public static final PlacedFeature PATCH_ZUNDA_TOFU_MUSHROOM = register("tofucraft:patch_zunda_tofu_mushroom", TofuWorldFeatures.ZUNDA_TOFU_MUSHROOM.placed(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
+	public static final PlacedFeature BIG_ZUNDA_TOFU_MUSHROOM = register("tofucraft:big_zunda_tofu_mushroom", TofuWorldFeatures.BIG_ZUNDA_TOFU_MUSHUROOM.placed(PlacementUtils.countExtra(3, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+
 
 	public static final PlacedFeature TOFU_TREES_FOREST = register("tofucraft:tofu_trees_forest", TofuWorldFeatures.TOFU_TREES.placed(treePlacement(PlacementUtils.countExtra(10, 0.1F, 1), TofuBlocks.SAPLING_TOFU)));
 	public static final PlacedFeature TOFU_TREES_PLAINS = register("tofucraft:tofu_trees_plains", TofuWorldFeatures.TOFU_TREES.placed(treePlacement(PlacementUtils.countExtra(0, 0.01F, 1), TofuBlocks.SAPLING_TOFU)));

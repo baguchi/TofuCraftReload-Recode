@@ -2,7 +2,6 @@ package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -45,9 +44,6 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 			}
 
 			BlockState blockstate1 = p_53687_.getBlockState(blockpos1);
-			if (blockstate1.is(blockstate.getBlock()) && p_53688_.nextInt(10) == 0) {
-				((BonemealableBlock) blockstate.getBlock()).performBonemeal(p_53687_, p_53688_, blockpos1, blockstate1);
-			}
 
 			if (blockstate1.isAir()) {
 				PlacedFeature placedfeature;
@@ -58,11 +54,8 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 					}
 
 					placedfeature = ((RandomPatchConfiguration) list.get(0).config()).feature().get();
-				} else {
-					placedfeature = VegetationPlacements.GRASS_BONEMEAL;
+					placedfeature.place(p_53687_, p_53687_.getChunkSource().getGenerator(), p_53688_, blockpos1);
 				}
-
-				placedfeature.place(p_53687_, p_53687_.getChunkSource().getGenerator(), p_53688_, blockpos1);
 			}
 		}
 

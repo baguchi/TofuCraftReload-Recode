@@ -32,7 +32,7 @@
             ],
             "depth": [
               0,
-              1.0
+              1
             ],
             "offset": 0
           }
@@ -62,7 +62,7 @@
             ],
             "depth": [
               0,
-              1.0
+              1
             ],
             "offset": 0
           }
@@ -92,7 +92,7 @@
             ],
             "depth": [
               0,
-              1.0
+              1
             ],
             "offset": 0
           }
@@ -122,7 +122,7 @@
             ],
             "depth": [
               0,
-              1.0
+              1
             ],
             "offset": 0
           }
@@ -139,7 +139,7 @@
               0.5
             ],
             "continentalness": [
-              0.1,
+              0.25,
               0.6
             ],
             "erosion": [
@@ -152,7 +152,7 @@
             ],
             "depth": [
               0,
-              1.0
+              1
             ],
             "offset": 0
           }
@@ -182,7 +182,7 @@
             ],
             "depth": [
               0,
-              1.0
+              1
             ],
             "offset": 0
           }
@@ -199,7 +199,7 @@
               1
             ],
             "continentalness": [
-              0.1,
+              0.3,
               0.8
             ],
             "erosion": [
@@ -212,7 +212,7 @@
             ],
             "depth": [
               0,
-              1.0
+              1
             ],
             "offset": 0
           }
@@ -242,7 +242,37 @@
             ],
             "depth": [
               0,
-              1.0
+              1
+            ],
+            "offset": 0
+          }
+        },
+        {
+          "biome": "tofucraft:zunda_forest",
+          "parameters": {
+            "temperature": [
+              -1,
+              0
+            ],
+            "humidity": [
+              0,
+              1
+            ],
+            "continentalness": [
+              0,
+              0.4
+            ],
+            "erosion": [
+              -1,
+              1
+            ],
+            "weirdness": [
+              -1,
+              1
+            ],
+            "depth": [
+              0,
+              1
             ],
             "offset": 0
           }

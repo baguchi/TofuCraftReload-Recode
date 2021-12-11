@@ -11,6 +11,7 @@ import baguchan.tofucraft.block.utils.TofuBedBlock;
 import baguchan.tofucraft.block.utils.TofuChestBlock;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
+import baguchan.tofucraft.world.gen.feature.TofuWorldFeatures;
 import baguchan.tofucraft.world.gen.grower.TofuTreeGrower;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -126,7 +127,9 @@ public class TofuBlocks {
 
 	public static final RotatedPillarBlock LEEK_GREEN_STEM = new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM));
 	public static final RotatedPillarBlock LEEK_STEM = new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM));
-	public static final Block ZUNDATOFU_MUSHROOM = new TofuMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT).instabreak().noCollission().sound(SoundType.FUNGUS));
+	public static final Block ZUNDATOFU_MUSHROOM = new TofuMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT).instabreak().noCollission().sound(SoundType.FUNGUS), () -> {
+		return TofuWorldFeatures.BIG_ZUNDA_TOFU_MUSHUROOM;
+	});
 	public static final RotatedPillarBlock TOFU_STEM = new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM));
 	public static final Block TOFU_STEM_PLANKS = new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD));
 
