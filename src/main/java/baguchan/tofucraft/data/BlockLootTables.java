@@ -126,7 +126,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFU_STEM);
 		dropSelf(TofuBlocks.TOFU_STEM_PLANKS);
 
-		this.add(TofuBlocks.LEEK, noDrop());
+		this.dropOther(TofuBlocks.LEEK, TofuItems.LEEK);
 
 		dropOther(TofuBlocks.TOFU_FARMLAND, TofuBlocks.TOFU_TERRAIN);
 		dropSelf(TofuBlocks.SALTPAN);
