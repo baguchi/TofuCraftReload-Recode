@@ -1,5 +1,6 @@
 package baguchan.tofucraft;
 
+import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.ClientProxy;
@@ -77,6 +78,7 @@ public class TofuCraftReload {
 		TofuWorldFeatures.init();
 		TofuWorldPlacements.init();
 		TofuNoiseGeneratorSettings.init();
+		TofuEnergyMap.init();
 	}
 
 

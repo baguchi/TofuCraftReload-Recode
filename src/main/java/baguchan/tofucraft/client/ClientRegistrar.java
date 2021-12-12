@@ -10,6 +10,7 @@ import baguchan.tofucraft.client.render.entity.*;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
+import baguchan.tofucraft.client.screen.TFStorageScreen;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuContainers;
@@ -89,6 +90,7 @@ public class ClientRegistrar {
 		renderBlockColor();
 		renderBlockLayer();
 		MenuScreens.register(TofuContainers.SALT_FURNACE, SaltFurnaceScreen::new);
+		MenuScreens.register(TofuContainers.TF_STORAGE, TFStorageScreen::new);
 	}
 
 	@SubscribeEvent

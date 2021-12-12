@@ -5,6 +5,7 @@ import baguchan.tofucraft.block.*;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
+import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
 import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
 import baguchan.tofucraft.block.utils.SaltPanBlock;
 import baguchan.tofucraft.block.utils.TofuBedBlock;
@@ -146,6 +147,9 @@ public class TofuBlocks {
 	public static final Block TOFUBED = new TofuBedBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.2F).noOcclusion().sound(SoundType.SNOW));
 	public static final Block TOFUCHEST = new TofuChestBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).noOcclusion().sound(SoundType.STONE), () -> TofuBlockEntitys.TOFUCHEST);
 
+	public static final Block TF_STORAGE = new TFStorageBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).lightLevel((p_50872_) -> {
+		return p_50872_.getValue(TFStorageBlock.LIT) ? 13 : 0;
+	}));
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> registry) {
@@ -240,6 +244,8 @@ public class TofuBlocks {
 
 		registry.getRegistry().register(TOFUBED.setRegistryName("tofubed"));
 		registry.getRegistry().register(TOFUCHEST.setRegistryName("tofuchest"));
+
+		registry.getRegistry().register(TF_STORAGE.setRegistryName("tf_storage"));
 	}
 
 	@SubscribeEvent
@@ -373,5 +379,7 @@ public class TofuBlocks {
 				});
 			}
 		});
+
+		TofuItems.register(registry, new BlockItem(TF_STORAGE, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
 	}
 }

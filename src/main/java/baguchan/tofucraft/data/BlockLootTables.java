@@ -136,6 +136,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);
 		});
 		dropSelf(TofuBlocks.TOFUCHEST);
+
+		dropSelf(TofuBlocks.TF_STORAGE);
 	}
 
 	protected static LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

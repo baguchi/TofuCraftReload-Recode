@@ -35,7 +35,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFU_BEDROCK
 				, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE
 				, TofuBlocks.TOFUSLATE
-				, TofuBlocks.SALT_FURNACE);
+				, TofuBlocks.SALT_FURNACE
+				, TofuBlocks.TF_STORAGE);
 		tag(BlockTags.MINEABLE_WITH_AXE).add(TofuBlocks.SALTPAN
 				, TofuBlocks.LEEK_GREEN_STEM, TofuBlocks.LEEK_STEM
 				, TofuBlocks.TOFU_STEM, TofuBlocks.TOFU_STEM_PLANKS);

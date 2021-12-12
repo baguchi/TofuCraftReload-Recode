@@ -4,6 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
+import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
 import com.mojang.datafixers.types.Type;
 import net.minecraft.Util;
 import net.minecraft.util.datafix.fixes.References;
@@ -18,6 +19,7 @@ public class TofuBlockEntitys {
 	public static final BlockEntityType<TofuBedBlockEntity> TOFUBED = register("tofucraft:tofubed", BlockEntityType.Builder.of(TofuBedBlockEntity::new, TofuBlocks.TOFUBED));
 	public static final BlockEntityType<TofuChestBlockEntity> TOFUCHEST = register("tofucraft:tofuchest", BlockEntityType.Builder.of(TofuChestBlockEntity::new, TofuBlocks.TOFUCHEST));
 	public static final BlockEntityType<SaltFurnaceBlockEntity> SALT_FURNACE = register("tofucraft:salt_furnace", BlockEntityType.Builder.of(SaltFurnaceBlockEntity::new, TofuBlocks.SALT_FURNACE));
+	public static final BlockEntityType<TFStorageBlockEntity> TF_STORAGE = register("tofucraft:tf_storage", BlockEntityType.Builder.of(TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE));
 
 
 	private static <T extends BlockEntity> BlockEntityType<T> register(String p_200966_0_, BlockEntityType.Builder<T> p_200966_1_) {
@@ -31,5 +33,6 @@ public class TofuBlockEntitys {
 		registry.getRegistry().register(TOFUCHEST.setRegistryName("tofuchest"));
 
 		registry.getRegistry().register(SALT_FURNACE.setRegistryName("salf_furnace"));
+		registry.getRegistry().register(TF_STORAGE.setRegistryName("tf_storage"));
 	}
 }

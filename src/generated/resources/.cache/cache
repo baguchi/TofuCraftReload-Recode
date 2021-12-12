@@ -287,7 +287,7 @@ add834a27711be86ed915cb2ed4935bb2f260572 assets/tofucraft/models/item/zundamanju
 507a238f2814f0ba836a47482f5b7dda5ecab107 data/minecraft/tags/blocks/climbable.json
 cc6e508230756a356a4f75bc6c7d4651d9b16173 data/minecraft/tags/blocks/dragon_immune.json
 c8f481aec72cbe1aec912ef226cd7fa8b0b71cb9 data/minecraft/tags/blocks/mineable/axe.json
-eed376d07c1617042e8b0007f557311289458d4d data/minecraft/tags/blocks/mineable/pickaxe.json
+34c718cf1eee7308414732627a68dbae2c5d040c data/minecraft/tags/blocks/mineable/pickaxe.json
 72fa67b8019517e993ebaa932df9841e8ec7884a data/minecraft/tags/blocks/mineable/shovel.json
 1c44e6117718e15f14984f13ccca65239aa7b42a data/minecraft/tags/blocks/needs_iron_tool.json
 350324f8f59d894bf9eadb6534eae5aa49d9b7c2 data/minecraft/tags/blocks/needs_stone_tool.json
@@ -450,6 +450,7 @@ a1eecdf539f40267d9415692f1adf71a19244136 data/tofucraft/loot_tables/blocks/ore_t
 6ca121140f16970e55c608eef0d440aaaac4b59c data/tofucraft/loot_tables/blocks/soybean.json
 0d6429dc3ea319b59a2d42d871719f4c88eb93cd data/tofucraft/loot_tables/blocks/soybean_nether.json
 dbdf819064d71817af9fabe591ad0d57b96ff561 data/tofucraft/loot_tables/blocks/soybean_soul.json
+6484d8586a0a7723ae1cde476a79c9bc3d09503d data/tofucraft/loot_tables/blocks/tf_storage.json
 7c59fc4c22c4da03ffbca7d13419dbf2174e3509 data/tofucraft/loot_tables/blocks/tofu_bedrock.json
 25193d51e9ec9eb1aeec548b0dd9d271b0dfc121 data/tofucraft/loot_tables/blocks/tofu_farmland.json
 25193d51e9ec9eb1aeec548b0dd9d271b0dfc121 data/tofucraft/loot_tables/blocks/tofu_terrain.json
