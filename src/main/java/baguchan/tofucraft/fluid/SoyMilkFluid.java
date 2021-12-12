@@ -69,7 +69,7 @@ public abstract class SoyMilkFluid extends WaterFluid {
 
 	protected FluidAttributes createAttributes() {
 		return FluidAttributes.builder(new ResourceLocation(TofuCraftReload.MODID, "block/soymilk"), new ResourceLocation(TofuCraftReload.MODID, "block/soymilk_flow"))
-
+				.sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY)
 				.build(this);
 	}
 
