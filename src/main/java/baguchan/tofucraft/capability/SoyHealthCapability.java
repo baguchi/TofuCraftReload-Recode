@@ -22,7 +22,7 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 
 	public void setSoyHealth(LivingEntity entity, int level) {
 		this.remainTick = 48000;
-		this.soyHealthLevel = Mth.clamp(level, 0, 20);
+		this.soyHealthLevel = Mth.clamp(level, 1, 20);
 		if (!entity.level.isClientSide()) {
 			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, level);
 			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
