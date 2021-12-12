@@ -1,0 +1,19 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "botanypots"
+    }
+  ],
+  "type": "botanypots:soil",
+  "input": {
+    "item": "tofucraft:tofu_terrain"
+  },
+  "display": {
+    "block": "tofucraft:tofu_terrain"
+  },
+  "categories": [
+    "tofu"
+  ],
+  "ticks": 200
+}
