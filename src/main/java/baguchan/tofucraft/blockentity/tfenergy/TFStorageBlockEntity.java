@@ -221,35 +221,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 		return this.current_workload == 0 ? 0 : ((this.current_workload - this.workload) * par1 / this.current_workload);
 	}
 
-	public int getField(int id) {
-
-		switch (id) {
-			case 0:
-				return energy;
-			case 1:
-				return workload;
-			case 2:
-				return current_workload;
-			default:
-				return 0;
-
-		}
-	}
-
-	public void setField(int id, int value) {
-		switch (id) {
-			case 0:
-				this.energy = value;
-				break;
-			case 1:
-				this.workload = value;
-				break;
-			case 2:
-				this.current_workload = value;
-				break;
-		}
-	}
-
 	public NonNullList<ItemStack> getInventory() {
 		return inventory;
 	}

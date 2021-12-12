@@ -8,6 +8,7 @@ import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
+import baguchan.tofucraft.message.TFStorageSoymilkMessage;
 import baguchan.tofucraft.registry.TofuFoliagePlacerType;
 import baguchan.tofucraft.registry.TofuNoiseGeneratorSettings;
 import baguchan.tofucraft.utils.JigsawHelper;
@@ -94,6 +95,10 @@ public class TofuCraftReload {
 		CHANNEL.messageBuilder(SaltFurnaceWaterMessage.class, 2)
 				.encoder(SaltFurnaceWaterMessage::writePacketData).decoder(SaltFurnaceWaterMessage::readPacketData)
 				.consumer(SaltFurnaceWaterMessage::handle)
+				.add();
+		CHANNEL.messageBuilder(TFStorageSoymilkMessage.class, 3)
+				.encoder(TFStorageSoymilkMessage::writePacketData).decoder(TFStorageSoymilkMessage::readPacketData)
+				.consumer(TFStorageSoymilkMessage::handle)
 				.add();
 	}
 
