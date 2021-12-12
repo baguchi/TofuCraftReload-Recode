@@ -2,8 +2,10 @@ package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -28,6 +30,10 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(2, new TofuSpiderAttackGoal(this));
+	}
+
+	protected float getStandingEyeHeight(Pose p_33799_, EntityDimensions p_33800_) {
+		return 0.35F;
 	}
 
 	static class TofuSpiderAttackGoal extends Goal {
