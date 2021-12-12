@@ -14,6 +14,7 @@ public class TofuEnergyMap {
 	public static void init() {
 		register(new ItemStack(TofuItems.TOFUKINU, 1), 100);
 		register(new ItemStack(TofuItems.TOFUMOMEN, 1), 100);
+		register(new ItemStack(TofuItems.TOFUISHI, 1), 100);
 	}
 
 	public static void register(ItemStack item, int loader) {

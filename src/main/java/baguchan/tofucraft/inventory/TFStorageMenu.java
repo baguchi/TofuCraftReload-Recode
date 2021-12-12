@@ -53,8 +53,12 @@ public class TFStorageMenu extends AbstractContainerMenu {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			switch (slotIndex) {
-				default:
+				case 0:
 					if (!moveItemStackTo(itemstack1, 1, 37, true))
+						return ItemStack.EMPTY;
+					break;
+				default:
+					if (!moveItemStackTo(itemstack1, 0, 0, false))
 						return ItemStack.EMPTY;
 					break;
 			}
