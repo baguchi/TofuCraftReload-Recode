@@ -1,7 +1,7 @@
 package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.nbt.CompoundTag;
@@ -63,7 +63,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, Item smithItem, Item result) {
-		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuItems.TOFUDIAMOND), result).unlocks("has_tofudiamond", has(TofuItems.TOFUDIAMOND)).save(consumer, "smithing_" + result.getRegistryName().getPath());
+		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU), result).unlocks("has_tofudiamond", has(TofuBlocks.DIAMONDTOFU)).save(consumer, "smithing_" + result.getRegistryName().getPath());
 	}
 
 	protected final void helmetItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material) {
