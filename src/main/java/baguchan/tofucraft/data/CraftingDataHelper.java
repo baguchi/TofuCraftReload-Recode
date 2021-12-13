@@ -1,11 +1,9 @@
 package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -62,6 +60,10 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material), result, xp, 200).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("smelting_" + recipeName));
 		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material), result, xp, 100).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("smoking_" + recipeName));
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material), result, xp, 600).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + recipeName));
+	}
+
+	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, Item smithItem, Item result) {
+		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuItems.TOFUDIAMOND), result).unlocks("has_tofudiamond", has(TofuItems.TOFUDIAMOND)).save(consumer, "smithing_" + result.getRegistryName().getPath());
 	}
 
 	protected final void helmetItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material) {

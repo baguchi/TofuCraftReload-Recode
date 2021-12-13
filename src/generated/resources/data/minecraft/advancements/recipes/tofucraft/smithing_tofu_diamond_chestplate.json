@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tofucraft:equipment/tofu_diamond_shovel"
+      "minecraft:smithing_tofu_diamond_chestplate"
     ]
   },
   "criteria": {
-    "has_item": {
+    "has_tofudiamond": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "tofucraft:blocktofudiamond"
+              "tofucraft:tofudiamond"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tofucraft:equipment/tofu_diamond_shovel"
+        "recipe": "minecraft:smithing_tofu_diamond_chestplate"
       }
     }
   },
   "requirements": [
     [
-      "has_item",
+      "has_tofudiamond",
       "has_the_recipe"
     ]
   ]

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:diamond_axe"
+  },
+  "addition": {
+    "item": "tofucraft:tofudiamond"
+  },
+  "result": {
+    "item": "tofucraft:tofu_diamond_axe"
+  }
+}

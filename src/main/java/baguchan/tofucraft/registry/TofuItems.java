@@ -91,18 +91,18 @@ public class TofuItems {
 
 	public static final Item TOFU_SOLID_SWORD = new SwordItem(TofuItemTier.SOLID, 3, -2.3F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFU_SOLID_AXE = new AxeItem(TofuItemTier.SOLID, 6.0F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_SOLID_PICKAXE = new PickaxeItem(TofuItemTier.SOLID, 1, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_SOLID_PICKAXE = new PickaxeItem(TofuItemTier.SOLID, 1, -2.7F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFU_SOLID_SHOVEL = new ShovelItem(TofuItemTier.SOLID, 1.5F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 
 	public static final Item TOFU_METAL_SWORD = new SwordItem(TofuItemTier.METAL, 3, -2.3F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_METAL_AXE = new AxeItem(TofuItemTier.METAL, 5.0F, -3.0F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_METAL_PICKAXE = new PickaxeItem(TofuItemTier.METAL, 1, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_METAL_AXE = new AxeItem(TofuItemTier.METAL, 5.0F, -3.1F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_METAL_PICKAXE = new PickaxeItem(TofuItemTier.METAL, 1, -2.7F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFU_METAL_SHOVEL = new ShovelItem(TofuItemTier.METAL, 1.5F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 
-	public static final Item TOFU_DIAMOND_SWORD = new SwordItem(TofuItemTier.TOFUDIAMOND, 3, -2.3F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_DIAMOND_AXE = new AxeItem(TofuItemTier.TOFUDIAMOND, 5.0F, -3.0F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_DIAMOND_SWORD = new SwordItem(TofuItemTier.TOFUDIAMOND, 3, -2.5F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_DIAMOND_AXE = new AxeItem(TofuItemTier.TOFUDIAMOND, 5.0F, -3.3F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFU_DIAMOND_PICKAXE = new PickaxeItem(TofuItemTier.TOFUDIAMOND, 1, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_DIAMOND_SHOVEL = new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_DIAMOND_SHOVEL = new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -3.1F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 
 	public static final Item ARMOR_TOFU_KINUHELMET = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item ARMOR_TOFU_KINUCHESTPLATE = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));

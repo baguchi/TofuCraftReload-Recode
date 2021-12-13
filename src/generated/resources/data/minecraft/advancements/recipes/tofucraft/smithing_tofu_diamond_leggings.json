@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tofucraft:equipment/tofu_metal_boots"
+      "minecraft:smithing_tofu_diamond_leggings"
     ]
   },
   "criteria": {
-    "has_item": {
+    "has_tofudiamond": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "tofucraft:blocktofumetal"
+              "tofucraft:tofudiamond"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tofucraft:equipment/tofu_metal_boots"
+        "recipe": "minecraft:smithing_tofu_diamond_leggings"
       }
     }
   },
   "requirements": [
     [
-      "has_item",
+      "has_tofudiamond",
       "has_the_recipe"
     ]
   ]
