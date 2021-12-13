@@ -18,7 +18,7 @@ public class TofuWorldPlacements {
 
 	public static final PlacedFeature ORE_TOFU_DIAMOND = register("tofucraft:ore_tofu_diamond", TofuWorldFeatures.ORE_DIAMOND_SMALL.placed(commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
 	public static final PlacedFeature ORE_TOFU_DIAMOND_LARGE = register("tofucraft:ore_tofu_diamond_large", TofuWorldFeatures.ORE_DIAMOND_LARGE.placed(rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
-	public static final PlacedFeature ORE_TOFU_DIAMOND_BURIED = register("tofucraft:ore_tofu_diamond_buried", TofuWorldFeatures.ORE_DIAMOND_BURIED.placed(commonOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
+	public static final PlacedFeature ORE_TOFU_DIAMOND_BURIED = register("tofucraft:ore_tofu_diamond_buried", TofuWorldFeatures.ORE_DIAMOND_BURIED.placed(commonOrePlacement(5, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
 
 	public static final PlacedFeature PATCH_LEEK = register("tofucraft:patch_leek", TofuWorldFeatures.LEEK.placed(NoiseThresholdCountPlacement.of(-0.8D, 5, 10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 	public static final PlacedFeature PATCH_LEEK_WASTE = register("tofucraft:patch_leek_waste", TofuWorldFeatures.LEEK.placed(CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
