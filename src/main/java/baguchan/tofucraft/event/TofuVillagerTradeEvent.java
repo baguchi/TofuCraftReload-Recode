@@ -2,7 +2,7 @@ package baguchan.tofucraft.event;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuItems;
-import baguchan.tofucraft.registry.TofuVillagers;
+import baguchan.tofucraft.registry.TofuPoisAndProfession;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -35,7 +35,7 @@ public class TofuVillagerTradeEvent {
 		List<VillagerTrades.ItemListing> trades3 = event.getTrades().get(3);
 		List<VillagerTrades.ItemListing> trades4 = event.getTrades().get(4);
 		List<VillagerTrades.ItemListing> trades5 = event.getTrades().get(5);
-		if (event.getType() == TofuVillagers.TOFU_CRAFTSMAN) {
+		if (event.getType() == TofuPoisAndProfession.TOFU_CRAFTSMAN) {
 			trades.add(new EmeraldForItems(TofuItems.SEEDS_SOYBEANS, 16, 12, 1));
 			trades.add(new ItemsForEmeralds(TofuItems.TOFUGRILLED, 1, 9, 8, 2));
 			trades2.add(new ItemsForEmeralds(TofuItems.SOYMILK, 1, 3, 8, 7));

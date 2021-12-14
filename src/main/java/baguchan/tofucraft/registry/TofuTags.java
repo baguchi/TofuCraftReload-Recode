@@ -2,7 +2,9 @@ package baguchan.tofucraft.registry;
 
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 
@@ -14,6 +16,19 @@ public class TofuTags {
 
 		private static Tag.Named<Block> tag(String name) {
 			return BlockTags.bind("tofucraft:" + name);
+		}
+	}
+
+	public static class Items {
+		public static final Tag.Named<Item> SOYBEAN = forgeTag("crops/soybean");
+		public static final Tag.Named<Item> SALT = forgeTag("salt");
+
+		private static Tag.Named<Item> tag(String name) {
+			return ItemTags.bind("tofucraft:" + name);
+		}
+
+		private static Tag.Named<Item> forgeTag(String name) {
+			return ItemTags.bind("forge:" + name);
 		}
 	}
 

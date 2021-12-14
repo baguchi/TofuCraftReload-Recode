@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S#S",
+    "#D#",
+    " W "
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:salt"
+    },
+    "S": {
+      "item": "tofucraft:seeds_soybeans_soul"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "W": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "item": "tofucraft:morijio",
+    "count": 3
+  }
+}

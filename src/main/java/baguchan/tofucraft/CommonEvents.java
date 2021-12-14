@@ -4,14 +4,19 @@ import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuPoisAndProfession;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -19,9 +24,12 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.network.PacketDistributor;
+
+import java.util.Optional;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
@@ -104,6 +112,27 @@ public class CommonEvents {
 				spawner.tick();
 		}
 	}*/
+
+	/*
+	 * This Event make mob cannot spawn when morijio is near
+	 *
+	 * */
+	@SubscribeEvent
+	public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
+		LivingEntity livingEntity = event.getEntityLiving();
+		LevelAccessor level = event.getWorld();
+		if (level instanceof ServerLevel) {
+			Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
+				return p_184069_ == TofuPoisAndProfession.MORIJIO_POI;
+			}, (p_184055_) -> {
+				return true;
+			}, livingEntity.blockPosition(), 64, PoiManager.Occupancy.ANY);
+
+			if (optional.isPresent()) {
+				event.setResult(Event.Result.DENY);
+			}
+		}
+	}
 
 	@SubscribeEvent
 	public static void onBlockDrop(BlockEvent.BreakEvent event) {

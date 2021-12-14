@@ -159,6 +159,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUDIAMOND_NUGGET))
 				.save(consumer);
 
+		ShapedRecipeBuilder.shaped(TofuBlocks.MORIJIO, 3)
+				.pattern("S#S")
+				.pattern("#D#")
+				.pattern(" W ")
+				.define('#', TofuItems.SALT)
+				.define('S', TofuItems.SEEDS_SOYBEANS_SOUL)
+				.define('D', Items.DIAMOND)
+				.define('W', Items.BOWL)
+				.unlockedBy("has_item", has(TofuItems.SALT))
+				.save(consumer);
+
 		//soimilk
 		ShapedRecipeBuilder.shaped(TofuItems.BUCKET_SOYMILK)
 				.pattern("#")
