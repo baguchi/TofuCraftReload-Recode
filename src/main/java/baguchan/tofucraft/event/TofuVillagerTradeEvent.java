@@ -1,6 +1,7 @@
 package baguchan.tofucraft.event;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoisAndProfession;
 import com.google.common.collect.ImmutableMap;
@@ -49,7 +50,7 @@ public class TofuVillagerTradeEvent {
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_PUDDING, 1, 3, 6, 16));
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_PUMPKIN, 1, 3, 6, 16));
 
-			trades5.add(new ItemsForEmeralds(TofuItems.SOY_CHOCOLATE, 2, 8, 6, 20));
+			trades5.add(new ItemsForEmeralds(TofuBlocks.MORIJIO, 8, 2, 6, 20));
 		}
 	}
 
