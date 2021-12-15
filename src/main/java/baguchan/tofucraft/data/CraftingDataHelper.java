@@ -172,7 +172,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.pattern("###")
 				.pattern("# #")
 				.define('#', material)
-				.unlockedBy("has_item", has(result))
+				.unlockedBy("has_item", has(material))
 				.save(consumer);
 	}
 
