@@ -30,9 +30,6 @@ public class TofuSurfaceRuleData {
 			builder.add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)), BEDROCK));
 		}
 
-		SurfaceRules.ConditionSource surfacerules$conditionsource7 = SurfaceRules.waterBlockCheck(0, 0);
-		SurfaceRules.ConditionSource surfacerules$conditionsource9 = SurfaceRules.hole();
-		builder.add(SurfaceRules.sequence(SurfaceRules.ifTrue(surfacerules$conditionsource9, SurfaceRules.ifTrue(surfacerules$conditionsource7, AIR))));
 		builder.add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("deepslate", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), TOFUSLATE));
 		return SurfaceRules.sequence(builder.build().toArray((p_198379_) -> {
 			return new SurfaceRules.RuleSource[p_198379_];
