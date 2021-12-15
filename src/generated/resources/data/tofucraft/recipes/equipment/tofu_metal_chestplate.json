@@ -2,14 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "# #",
-    "# #"
+    "###",
+    "###"
   ],
   "key": {
     "#": {
-      "item": "tofucraft:blocktofudiamond"
+      "item": "tofucraft:blocktofumetal"
     }
   },
   "result": {
-    "item": "tofucraft:tofu_diamond_boots"
+    "item": "tofucraft:tofu_metal_chestplate"
   }
 }

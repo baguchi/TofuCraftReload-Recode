@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tofucraft:equipment/tofu_diamond_chestplate"
+      "tofucraft:equipment/tofu_metal_helmet"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "tofucraft:blocktofudiamond"
+              "tofucraft:blocktofumetal"
             ]
           }
         ]
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tofucraft:equipment/tofu_diamond_chestplate"
+        "recipe": "tofucraft:equipment/tofu_metal_helmet"
       }
     }
   },
