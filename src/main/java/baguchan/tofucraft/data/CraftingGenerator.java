@@ -83,6 +83,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 		axeItem(consumer, "tofu_kinu_axe", TofuItems.TOFU_KINU_AXE, TofuBlocks.KINUTOFU.asItem(), Tags.Items.RODS_WOODEN);
 		shovelItem(consumer, "tofu_kinu_shovel", TofuItems.TOFU_KINU_SHOVEL, TofuBlocks.KINUTOFU.asItem(), Tags.Items.RODS_WOODEN);
 
+		ladderItem(consumer, TofuBlocks.TOFULADDER_KINU.asItem(), TofuItems.TOFUKINU);
+		ladderItem(consumer, TofuBlocks.TOFULADDER_MOMEN.asItem(), TofuItems.TOFUMOMEN);
+		ladderItem(consumer, TofuBlocks.TOFULADDER_ISHI.asItem(), TofuItems.TOFUISHI);
+		ladderItem(consumer, TofuBlocks.TOFULADDER_ISHIBRICK.asItem(), TofuBlocks.ISHITOFU_BRICK.asItem());
+		ladderItem(consumer, TofuBlocks.TOFULADDER_METAL.asItem(), TofuItems.TOFUMETAL);
+
 		tofuBlockItem(consumer, TofuBlocks.MOMENTOFU.asItem(), TofuItems.TOFUKINU, "tofumomen_from_kinu");
 		tofuBlockItem(consumer, TofuBlocks.MOMENTOFU.asItem(), TofuItems.TOFUMOMEN);
 		tofuBlockItem(consumer, TofuBlocks.ISHITOFU.asItem(), TofuItems.TOFUISHI);
@@ -104,6 +110,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 		tofuBlockItem(consumer, TofuBlocks.GRILLEDTOFU.asItem(), TofuItems.TOFUGRILLED);
 		tofuBlockItem(consumer, TofuBlocks.ZUNDATOFU.asItem(), TofuItems.TOFUZUNDA);
+
+		ShapedRecipeBuilder.shaped(TofuBlocks.ISHITOFU_CHISELED_BRICK)
+				.pattern("#")
+				.pattern("#")
+				.define('#', TofuBlocks.TOFUSLAB_ISHIBRICK)
+				.unlockedBy("has_item", has(TofuBlocks.TOFUSLAB_ISHIBRICK))
+				.save(consumer);
 
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_KINU, TofuBlocks.KINUTOFU);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.MOMENTOFU);
