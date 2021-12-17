@@ -3,7 +3,6 @@
   "icon": "tofucraft:tofukinu",
   "category": "tofucraft:first_step",
   "priority": true,
-  "advancement": "tofucraft:roots",
   "pages": [
     {
       "type": "text",
