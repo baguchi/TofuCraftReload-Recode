@@ -1,7 +1,0 @@
-{
-  "name": "First Steps",
-  "description": "Let's start by breaking the grass.",
-  "icon": "tofucraft:seeds_soybeans",
-  "parent": "tofucraft:intro",
-  "sortnum": 0
-}

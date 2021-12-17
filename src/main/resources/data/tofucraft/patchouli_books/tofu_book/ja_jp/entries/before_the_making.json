@@ -1,0 +1,43 @@
+{
+  "name": "豆腐を作る前に",
+  "icon": "tofucraft:tofukinu",
+  "category": "tofucraft:first_step",
+  "priority": true,
+  "flag": "advancements_disabled",
+  "pages": [
+    {
+      "type": "text",
+      "text": "豆腐を作る前にいくつかの手順が必要になります。$(br2)最初に豆乳バケツとにがり入り瓶が必要でしょう"
+    },
+    {
+      "type": "crafting",
+      "title": "豆乳バケツ",
+      "recipe": "tofucraft:bucket_soymilk"
+    },
+    {
+      "type": "image",
+      "images": [
+        "tofucraft:textures/gui/page/before_the_making.png"
+      ],
+      "title": "にがり",
+      "border": true,
+      "text": "にがりを作る時は製塩かまどか塩田が必要になります"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tofucraft:blocksaltpan",
+        "count": 1
+      },
+      "text": "塩田は簡単に作れる代わりに天候に左右されやすいです。$(br2)空っぽの瓶ですくいましょう"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tofucraft:salt_furnace",
+        "count": 1
+      },
+      "text": "塩かまどはわかりやすいguiで自動化もできます。$(br2)水バケツで水の補充を忘れずに"
+    }
+  ]
+}

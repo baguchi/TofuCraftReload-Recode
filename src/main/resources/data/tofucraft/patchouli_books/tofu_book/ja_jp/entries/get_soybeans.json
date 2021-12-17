@@ -1,0 +1,36 @@
+{
+  "name": "最初の下準備",
+  "icon": "tofucraft:seeds_soybeans",
+  "category": "tofucraft:first_step",
+  "priority": true,
+  "flag": "advancements_disabled",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "大豆",
+      "text": "大豆は通常の小麦の種と同じで、簡単に集めることができます。 （レシピの変動がない限り）",
+      "item": {
+        "item": "tofucraft:seeds_soybeans",
+        "count": 1
+      }
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "地獄大豆",
+      "text": "その上、あなたがネザーに行くとき、あなたは赤い大豆を見つけることがあるでしょう。",
+      "item": {
+        "item": "tofucraft:seeds_soybeans_nether",
+        "count": 1
+      }
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "魂大豆",
+      "text": "...青い大豆もね！",
+      "item": {
+        "item": "tofucraft:seeds_soybeans_soul",
+        "count": 1
+      }
+    }
+  ]
+}

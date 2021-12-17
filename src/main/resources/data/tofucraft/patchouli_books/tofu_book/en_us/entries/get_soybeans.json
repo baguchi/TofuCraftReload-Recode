@@ -1,0 +1,36 @@
+{
+  "name": "First Step",
+  "icon": "tofucraft:seeds_soybeans",
+  "category": "tofucraft:first_step",
+  "priority": true,
+  "flag": "advancements_disabled",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Soybeans",
+      "text": "Soybeans are the same as ordinary wheat seeds and can be easily collected. (Unless there is any fluctuation)",
+      "item": {
+        "item": "tofucraft:seeds_soybeans",
+        "count": 1
+      }
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "NetherSoybeans",
+      "text": "Besides, you can find other strange soybeans that you can find when you go to the Nether. ",
+      "item": {
+        "item": "tofucraft:seeds_soybeans_nether",
+        "count": 1
+      }
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "SoulSoybeans",
+      "text": "...and you can find soul variant too!",
+      "item": {
+        "item": "tofucraft:seeds_soybeans_soul",
+        "count": 1
+      }
+    }
+  ]
+}
