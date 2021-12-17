@@ -1,0 +1,18 @@
+{
+  "name": "A Smelting Yes Haha",
+  "icon": "tofucraft:seeds_soybeans",
+  "category": "tofucraft:intro",
+  "priority": true,
+  "advancement": "tofucraft:roots",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Soybeans",
+      "text": "Soybeans are the same as ordinary wheat seeds and can be easily collected. (Unless there is any fluctuation)",
+      "item": {
+        "item": "tofucraft:seeds_soybeans",
+        "count": 1
+      }
+    }
+  ]
+}

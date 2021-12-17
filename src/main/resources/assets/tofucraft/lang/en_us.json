@@ -389,5 +389,8 @@
   "block.tofucraft.blocktofukinu.jei_desc": "This block that can be made by hardening tofu with bittern. Be careful as it will break if you fall from above.",
   "block.tofucraft.blocktofumomen.jei_desc": "This block gets harder over time with stones on top and bottom.",
   "entity.tofucraft.slabfish.type.bagu_chan": "bagu_chan",
-  "entity.tofucraft.slabfish.type.tofu": "Tofu"
+  "entity.tofucraft.slabfish.type.tofu": "Tofu",
+  "tofucraft.tofu_book.tooltip": "Tofu Knowledge 2021",
+  "tofucraft.tofu_book.tooltip2": "If you want see this book. put the Patchouli mod!",
+  "item.tofucraft.tofu_book": "TofuBook"
 }

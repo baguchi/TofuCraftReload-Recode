@@ -383,12 +383,14 @@
   "block.tofucraft.blocktofukinu.jei_desc": "このブロックは、豆乳をにがりで固めることでできます。上からentityが落ちると壊れてしまいます。",
   "block.tofucraft.blocktofumomen.jei_desc": "このブロックは、上と下に石を置くと時間経過でより硬くなります。",
   "entity.tofucraft.slabfish.type.bagu_chan": "ばぐちゃん",
-  "entity.tofucraft.slabfish.type.tofu_waste": "豆腐",
   "block.tofucraft.zundama_block": "Zundama Block",
   "block.tofucraft.potted_tofuflower": "Potted TofuFlower",
   "block.tofucraft.potted_tofusapling": "Potted TofuSapling",
   "block.tofucraft.potted_zundatofutofusapling": "Potted ZundaTofuSapling",
   "entity.tofucraft.tofufish": "Tofu Fish",
   "itemGroup.tofucraft": "TofuCraft",
-  "entity.tofucraft.slabfish.type.tofu": "Tofu"
+  "entity.tofucraft.slabfish.type.tofu": "Tofu",
+  "tofucraft.tofu_book.tooltip": "Tofu Knowledge 2021",
+  "tofucraft.tofu_book.tooltip2": "Patchouli modを入れると、より詳しい内容を知ることが出来ます",
+  "item.tofucraft.tofu_book": "豆腐職人ガイド"
 }
