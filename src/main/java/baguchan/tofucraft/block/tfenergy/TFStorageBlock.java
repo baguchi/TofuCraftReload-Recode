@@ -43,7 +43,7 @@ import java.util.Random;
 
 public class TFStorageBlock extends BaseEntityBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
-	public static final DirectionProperty FACING = BlockStateProperties.FACING;
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 
 	public TFStorageBlock(Properties properties) {
