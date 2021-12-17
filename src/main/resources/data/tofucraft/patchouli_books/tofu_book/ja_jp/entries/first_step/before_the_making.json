@@ -1,9 +1,9 @@
 {
-  "name": "豆腐を作る前に",
+  "name": "Before The Making",
   "icon": "tofucraft:tofukinu",
   "category": "tofucraft:first_step",
   "priority": true,
-  "flag": "advancements_disabled",
+  "advancement": "tofucraft:roots",
   "pages": [
     {
       "type": "text",
