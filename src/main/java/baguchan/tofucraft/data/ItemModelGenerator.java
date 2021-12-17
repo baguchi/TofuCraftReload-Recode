@@ -9,9 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 
 import static baguchan.tofucraft.TofuCraftReload.prefix;
 
@@ -222,7 +220,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder singleTexTool(Item item) {
-		return tool(item.getRegistryName().getPath(), prefix("items/" + item.getRegistryName().getPath()));
+		return tool(item.getRegistryName().getPath(), prefix("item/" + item.getRegistryName().getPath()));
 	}
 
 	private ItemModelBuilder tool(String name, ResourceLocation... layers) {
@@ -234,7 +232,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder singleTex(Item item) {
-		return generated(item.getRegistryName().getPath(), prefix("items/" + item.getRegistryName().getPath()));
+		return generated(item.getRegistryName().getPath(), prefix("item/" + item.getRegistryName().getPath()));
 	}
 
 	private ItemModelBuilder bowItem(String name, ResourceLocation... layers) {
@@ -243,13 +241,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 			builder = builder.texture("layer" + i, layers[i]);
 		}
 		return builder;
-	}
-
-	private ItemModelBuilder bowTex(RegistryObject<Item> item, ModelFile pull0, ModelFile pull1, ModelFile pull2) {
-		return bowItem(item.getId().getPath(), prefix("items/" + item.getId().getPath()))
-				.override().predicate(new ResourceLocation("pulling"), 1).model(pull0).end()
-				.override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 0.65).model(pull1).end()
-				.override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), (float) 0.9).model(pull2).end();
 	}
 
 	private void woodenButton(Block button, String variant) {

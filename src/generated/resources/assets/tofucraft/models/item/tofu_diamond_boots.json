@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "tofucraft:items/tofu_diamond_boots"
+    "layer0": "tofucraft:item/tofu_diamond_boots"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "tofucraft:items/zundama"
+    "layer0": "tofucraft:item/zundama"
   }
 }

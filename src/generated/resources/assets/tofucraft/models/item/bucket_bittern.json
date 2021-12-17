@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "tofucraft:items/bucket_bittern"
+    "layer0": "tofucraft:item/bucket_bittern"
   }
 }

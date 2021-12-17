@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "tofucraft:items/tofu_diamond_shovel"
+    "layer0": "tofucraft:item/tofu_diamond_shovel"
   }
 }

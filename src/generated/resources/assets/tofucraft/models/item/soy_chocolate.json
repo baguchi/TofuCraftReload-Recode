@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "tofucraft:items/soy_chocolate"
+    "layer0": "tofucraft:item/soy_chocolate"
   }
 }

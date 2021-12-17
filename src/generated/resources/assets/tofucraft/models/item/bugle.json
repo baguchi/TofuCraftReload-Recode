@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "tofucraft:items/bugle"
+    "layer0": "tofucraft:item/bugle"
   }
 }

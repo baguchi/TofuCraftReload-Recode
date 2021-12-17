@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "tofucraft:items/soul_fukumame"
+    "layer0": "tofucraft:item/soul_fukumame"
   }
 }
