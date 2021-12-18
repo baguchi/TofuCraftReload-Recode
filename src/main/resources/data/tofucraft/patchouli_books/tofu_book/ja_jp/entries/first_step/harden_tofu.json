@@ -20,13 +20,13 @@
       "multiblock": {
         "pattern": [
           [
-            "S"
+            "  S  "
           ],
           [
-            "B"
+            "  B  "
           ],
           [
-            "S"
+            "  S  "
           ]
         ],
         "mapping": {
