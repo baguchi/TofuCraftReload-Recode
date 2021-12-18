@@ -38,7 +38,7 @@ public class SaltFurnaceWaterMessage {
 
 	public static boolean handle(SaltFurnaceWaterMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
 		NetworkEvent.Context context = contextSupplier.get();
-		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT)
+		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
 			context.enqueueWork(() -> {
 				BlockEntity tileentity = (Minecraft.getInstance()).player.level.getBlockEntity(message.blockPos);
 				if (tileentity instanceof SaltFurnaceBlockEntity) {
@@ -46,6 +46,7 @@ public class SaltFurnaceWaterMessage {
 					tileentity1.waterTank.setFluid(message.fluid);
 				}
 			});
+		}
 		return true;
 	}
 }

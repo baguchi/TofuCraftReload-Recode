@@ -49,30 +49,32 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(false)));
 	}
 
-	public InteractionResult use(BlockState p_48706_, Level p_48707_, BlockPos p_48708_, Player p_48709_, InteractionHand p_48710_, BlockHitResult p_48711_) {
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
 
 		boolean flag = false;
-		ItemStack stack = p_48709_.getItemInHand(p_48710_);
-		BlockEntity blockentity = p_48707_.getBlockEntity(p_48708_);
+		ItemStack stack = player.getItemInHand(hand);
+		BlockEntity blockentity = level.getBlockEntity(pos);
 		if (blockentity instanceof SaltFurnaceBlockEntity) {
 			IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1)).orElse(null);
 			if (handler != null && handler instanceof net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper) {
-				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, blockentity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null));
+				FluidUtil.interactWithFluidHandler(player, hand, blockentity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null));
 				flag = true;
 			}
 
 			if (flag) {
-				TofuCraftReload.CHANNEL.send(PacketDistributor.ALL.noArg(), new SaltFurnaceWaterMessage(p_48708_, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()));
+				if (!level.isClientSide) {
+					TofuCraftReload.CHANNEL.send(PacketDistributor.ALL.noArg(), new SaltFurnaceWaterMessage(pos, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()));
+				}
 			}
 		}
 
 
 		if (!flag) {
-			if (p_48707_.isClientSide) {
-				TofuCraftReload.PROXY.setRefrencedTE(p_48707_.getBlockEntity(p_48708_));
+			if (level.isClientSide) {
+				TofuCraftReload.PROXY.setRefrencedTE(level.getBlockEntity(pos));
 				return InteractionResult.SUCCESS;
 			} else {
-				this.openContainer(p_48707_, p_48708_, p_48709_);
+				this.openContainer(level, pos, player);
 				return InteractionResult.CONSUME;
 			}
 		} else {
