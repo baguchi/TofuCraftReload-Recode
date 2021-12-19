@@ -77,19 +77,18 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 
 
 	@Override
-	public void load(CompoundTag compound) {
-		super.load(compound);
+	public void saveAdditional(CompoundTag compound) {
+		super.saveAdditional(compound);
 		compound.putInt(TAG_ENERGY, energy);
 		compound.putString(TAG_UUID, uuid);
 		compound.putInt(TAG_ENERGY_MAX, energyMax);
 	}
 
-	public CompoundTag save(CompoundTag compound) {
-		super.save(compound);
+	public void load(CompoundTag compound) {
+		super.load(compound);
 		this.energyMax = compound.getInt(TAG_ENERGY_MAX);
 		this.energy = compound.getInt(TAG_ENERGY);
 		this.uuid = compound.getString(TAG_UUID);
-		return compound;
 	}
 
 	@Override

@@ -235,8 +235,8 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 		return super.getCapability(capability, facing);
 	}
 
-	public CompoundTag save(CompoundTag cmp) {
-		super.load(cmp);
+	public void saveAdditional(CompoundTag cmp) {
+		super.saveAdditional(cmp);
 		ContainerHelper.saveAllItems(cmp, this.inventory);
 		cmp.putInt("workload", this.workload);
 		cmp.putInt("current", this.current_workload);
@@ -244,11 +244,10 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 		CompoundTag tankTag = this.tank.writeToNBT(new CompoundTag());
 
 		cmp.put("Tank", tankTag);
-		return cmp;
 	}
 
 	public void load(CompoundTag cmp) {
-		super.save(cmp);
+		super.load(cmp);
 		this.inventory =
 				NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.inventory);
