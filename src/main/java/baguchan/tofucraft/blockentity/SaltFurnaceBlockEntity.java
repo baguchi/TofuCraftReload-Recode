@@ -163,8 +163,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		this.litDuration = getBurnDuration(this.items.get(1));
 	}
 
-	public CompoundTag save(CompoundTag p_189515_1_) {
-		super.save(p_189515_1_);
+	public void saveAdditional(CompoundTag p_189515_1_) {
+		super.saveAdditional(p_189515_1_);
 		CompoundTag nbt = new CompoundTag();
 		CompoundTag nbt2 = new CompoundTag();
 		this.waterTank.writeToNBT(nbt);
@@ -175,7 +175,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		p_189515_1_.putInt("CookTime", this.cookingProgress);
 		p_189515_1_.putInt("CookTimeTotal", this.cookingTotalTime);
 		ContainerHelper.saveAllItems(p_189515_1_, this.items);
-		return p_189515_1_;
 	}
 
 	public static void tick(Level p_155014_, BlockPos p_155015_, BlockState p_155016_, SaltFurnaceBlockEntity saltFurnaceBlock) {
