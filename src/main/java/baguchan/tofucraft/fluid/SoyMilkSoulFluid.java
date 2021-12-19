@@ -45,9 +45,8 @@ public abstract class SoyMilkSoulFluid extends WaterFluid {
 	}
 
 	protected boolean canConvertToSource() {
-		return true;
+		return false;
 	}
-
 
 	public BlockState createLegacyBlock(FluidState p_204527_1_) {
 		return TofuBlocks.SOYMILK_SOUL.defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_204527_1_)));

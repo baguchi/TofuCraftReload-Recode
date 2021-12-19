@@ -47,7 +47,7 @@ public abstract class SoyMilkFluid extends WaterFluid {
 	}
 
 	protected boolean canConvertToSource() {
-		return true;
+		return false;
 	}
 
 	public BlockState createLegacyBlock(FluidState p_204527_1_) {
