@@ -45,7 +45,7 @@ public abstract class SoyMilkHellFluid extends WaterFluid {
 	}
 
 	protected boolean canConvertToSource() {
-		return true;
+		return false;
 	}
 
 
