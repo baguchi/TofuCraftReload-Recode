@@ -3,6 +3,7 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -308,6 +309,18 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL))
 				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.KINAKO_MOCHI, 2)
+				.requires(TofuItems.KINAKO)
+				.requires(TofuTags.Items.RICE)
+				.unlockedBy("has_item", has(TofuItems.KINAKO))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDA_MOCHI, 2)
+				.requires(TofuItems.ZUNDA_MOCHI)
+				.requires(TofuTags.Items.RICE)
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_MOCHI))
+				.save(consumer);
+
 		ShapelessRecipeBuilder.shapeless(TofuItems.SOY_CHOCOLATE, 6)
 				.requires(TofuItems.BUCKET_SOYMILK)
 				.requires(Items.COCOA_BEANS)

@@ -68,6 +68,9 @@ public class TofuItems {
 	public static final Item ZUNDA_MANJU = new Item((new Item.Properties()).food(TofuFoods.ZUNDA_MANJU).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item NETHER_MANJU = new Item((new Item.Properties()).food(TofuFoods.NETHER_MANJU).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item SOUL_MANJU = new Item((new Item.Properties()).food(TofuFoods.SOUL_MANJU).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ZUNDA_MOCHI = new Item((new Item.Properties()).food(TofuFoods.ZUNDA_MOCHI).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item KINAKO_MOCHI = new Item((new Item.Properties()).food(TofuFoods.KINAKO_MOCHI).tab(TofuItemGroup.TOFUCRAFT));
+
 
 	public static final Item SOY_CHOCOLATE = new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuItemGroup.TOFUCRAFT));
 	public static final Item TOFUNIAN_SOY_CHOCOLATE = new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuItemGroup.TOFUCRAFT));
@@ -202,10 +205,15 @@ public class TofuItems {
 		register(registry, SOYMILK_KINAKO, "soymilk_kinako");
 		register(registry, SOYMILK_PUDDING, "soymilk_pudding");
 		register(registry, SOYMILK_PUMPKIN, "soymilk_pumpkin");
+
 		register(registry, KINAKO_MANJU, "kinakomanju");
 		register(registry, ZUNDA_MANJU, "zundamanju");
 		register(registry, NETHER_MANJU, "nethermanju");
 		register(registry, SOUL_MANJU, "soulmanju");
+
+		register(registry, KINAKO_MOCHI, "kinako_mochi");
+		register(registry, ZUNDA_MOCHI, "zunda_mochi");
+
 		register(registry, SOY_CHOCOLATE, "soy_chocolate");
 		register(registry, TOFUNIAN_SOY_CHOCOLATE, "tofunian_soy_chocolate");
 		register(registry, BUCKET_SOYMILK, "bucket_soymilk");

@@ -22,6 +22,7 @@ public class TofuTags {
 	public static class Items {
 		public static final Tag.Named<Item> SOYBEAN = forgeTag("crops/soybean");
 		public static final Tag.Named<Item> SALT = forgeTag("salt");
+		public static final Tag.Named<Item> RICE = forgeTag("crops/rice");
 
 		private static Tag.Named<Item> tag(String name) {
 			return ItemTags.bind("tofucraft:" + name);

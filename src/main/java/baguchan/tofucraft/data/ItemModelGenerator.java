@@ -131,6 +131,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.NETHER_MANJU);
 		singleTex(TofuItems.SOUL_MANJU);
 
+		singleTex(TofuItems.KINAKO_MOCHI);
+		singleTex(TofuItems.ZUNDA_MOCHI);
+
 		singleTex(TofuItems.SOY_CHOCOLATE);
 		singleTex(TofuItems.TOFUNIAN_SOY_CHOCOLATE);
 

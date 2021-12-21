@@ -154,6 +154,7 @@ e105ad3c392ef63c5344963df9462730ac421e96 assets/tofucraft/models/item/cooked_tof
 6e52473b2f6dfa7d3fbffe4a8f1dd5dc3831b782 assets/tofucraft/models/item/edamame_boild.json
 34d0a3a886c4df3b577d0d846773a16a8c781662 assets/tofucraft/models/item/fukumame.json
 5e42492d9dc9b9e0098ea2f04582996487b22ccb assets/tofucraft/models/item/kinako.json
+7071eb970429a28a3fed4dae913dcc753dd9d7e0 assets/tofucraft/models/item/kinako_mochi.json
 c6ebdd5f4efa5a29f37415f236ea67655cb1e9d0 assets/tofucraft/models/item/kinakomanju.json
 24f0c80119aecc5fd3bc05d0ea0d26dca22d5aa6 assets/tofucraft/models/item/leaves_tofu.json
 f82ed758dc50db6cba60fbbd799149f5640c1b02 assets/tofucraft/models/item/leek.json
@@ -277,6 +278,7 @@ e4122140b043e2ea27a6f5a12dd288e81d50787e assets/tofucraft/models/item/tofutorch_
 7f1be792c4723ddfb7635d4ffe43e13d9483997b assets/tofucraft/models/item/tofuzunda.json
 4544c6a599e64fbe3745d0b24bac8d49fbd06f94 assets/tofucraft/models/item/yuba.json
 88443cd0d42ccfbe12092839a87c17806f3653fa assets/tofucraft/models/item/zunda.json
+8f8707cd82c10f2196d922a40776c7043e85c388 assets/tofucraft/models/item/zunda_mochi.json
 60188fdad3127825d48b0bdaa9527053b8e22b8a assets/tofucraft/models/item/zundama.json
 570e738b85b775992de1e5572873f52e03eba9b9 assets/tofucraft/models/item/zundamanju.json
 6fe1e98d237290de53e0be5c36c6e9a97f330298 assets/tofucraft/models/item/zundaruby.json
@@ -365,6 +367,7 @@ de7c35f7d9c512b412a51295e7e2dc867aca1f43 data/tofucraft/advancements/recipes/tof
 8b75314caee8ae65209c07a730118306a32b9b51 data/tofucraft/advancements/recipes/tofucraft/equipment/tofu_solid_sword.json
 9fb79e38fa3dca2bc648d0d0642d65ab16ff2cbe data/tofucraft/advancements/recipes/tofucraft/fukumame.json
 49ad2059f45e4045a4750da4054920553645399b data/tofucraft/advancements/recipes/tofucraft/kinako.json
+63779e65d806b2456ca46412223bfe86abc2d844 data/tofucraft/advancements/recipes/tofucraft/kinako_mochi.json
 2543158b699c5df27b32d81e1e9c414571020135 data/tofucraft/advancements/recipes/tofucraft/kinakomanju.json
 2405942fd8ce55d4acb43f7e4eda62a76f1c9aba data/tofucraft/advancements/recipes/tofucraft/morijio.json
 9564b7fb25f7454ee6b4f2ddc943fb6afb798f51 data/tofucraft/advancements/recipes/tofucraft/nether_fukumame.json
@@ -443,6 +446,7 @@ e34302800981c88c2dcbac73a35134f45fbfbddd data/tofucraft/advancements/recipes/tof
 aac1c2c983af813ec31976f30c7c49a4586d4aa2 data/tofucraft/advancements/recipes/tofucraft/tofutorch_metal.json
 79c6031c68f5bf077a3a516f416fb465b0eceae9 data/tofucraft/advancements/recipes/tofucraft/tofutorch_momen.json
 61a55a4891af8fd5b17858071a47fed7950ad627 data/tofucraft/advancements/recipes/tofucraft/zunda.json
+1efbb5c2058c5d355d49aafec884480b1f746ada data/tofucraft/advancements/recipes/tofucraft/zunda_mochi.json
 b782b5d271d472d44fd60e7d2136542f7bdcff54 data/tofucraft/advancements/recipes/tofucraft/zundama.json
 96b19a12300343c3d55c748c4fd1b0843a7d442d data/tofucraft/advancements/recipes/tofucraft/zundamanju.json
 c15a79adcad0435b4db59b364ac0d44a9e3fc021 data/tofucraft/loot_tables/blocks/blockleek.json
@@ -567,6 +571,7 @@ b618a5df7c7a036ad4767c35dc832e15212d963b data/tofucraft/recipes/equipment/tofu_s
 d4765d15949d155585df76be2a5ea707c2c73bf7 data/tofucraft/recipes/equipment/tofu_solid_sword.json
 898e5c010db1dbb360ab300e894205692231a88a data/tofucraft/recipes/fukumame.json
 9ea55fe15d5c9c3cdd9af16ea4b4a1acded0e126 data/tofucraft/recipes/kinako.json
+79076bf27851eb5c82f1e24a41f3f0e0bf0de0cf data/tofucraft/recipes/kinako_mochi.json
 a796d895ed6fd9ca4e5368929a3a7170631ce165 data/tofucraft/recipes/kinakomanju.json
 bbc92629e94d17cc5ff83c9dfe05b671a50cf217 data/tofucraft/recipes/morijio.json
 fc75b830462168dffefd6126f48292ab0b188b63 data/tofucraft/recipes/nether_fukumame.json
@@ -645,6 +650,7 @@ b15ea64c211e5e8c9d978a0332e0f6d500167542 data/tofucraft/recipes/tofutorch_kinu.j
 687659738f271550bd778aa002d8879fa9667289 data/tofucraft/recipes/tofutorch_metal.json
 b49d8bcf4e49bdd5dbb4727e619ae6fd103b90b3 data/tofucraft/recipes/tofutorch_momen.json
 663b286047a1bb78aca38368f8af10be6bd7a7ac data/tofucraft/recipes/zunda.json
+a0e9d6cf54ac91fec532fa9e7668e74815f1409c data/tofucraft/recipes/zunda_mochi.json
 93855d6bd0b7d8ee733aa4b3864964367886ce41 data/tofucraft/recipes/zundama.json
 e90966505020abb41084e0648f9755d16e9faed2 data/tofucraft/recipes/zundamanju.json
 4d1783bf7b3bf2ab71c4fd6be1f5f3b67f11a3f8 data/tofucraft/tags/blocks/soft_tofu.json
