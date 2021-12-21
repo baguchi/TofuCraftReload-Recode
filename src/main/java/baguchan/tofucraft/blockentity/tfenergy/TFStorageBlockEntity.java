@@ -255,7 +255,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 		this.workload = cmp.getInt("workload");
 		this.current_workload = cmp.getInt("current");
 
-		this.tank.readFromNBT(cmp.getCompound("Tank"));
+		this.tank = this.tank.readFromNBT(cmp.getCompound("Tank"));
 	}
 
 	@Override

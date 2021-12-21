@@ -150,11 +150,11 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		this.items = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
 		if (p_230337_2_.contains("WaterTank", 10)) {
 			CompoundTag nbt = p_230337_2_.getCompound("WaterTank");
-			this.waterTank.readFromNBT(nbt);
+			this.waterTank = this.waterTank.readFromNBT(nbt);
 		}
 		if (p_230337_2_.contains("BitternTank", 10)) {
 			CompoundTag nbt = p_230337_2_.getCompound("BitternTank");
-			this.bitternTank.readFromNBT(nbt);
+			this.bitternTank = this.bitternTank.readFromNBT(nbt);
 		}
 		ContainerHelper.loadAllItems(p_230337_2_, this.items);
 		this.litTime = p_230337_2_.getInt("BurnTime");
