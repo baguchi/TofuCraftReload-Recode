@@ -132,6 +132,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.SALTPAN);
 		dropSelf(TofuBlocks.SALT_FURNACE);
 		dropSelf(TofuBlocks.MORIJIO);
+		registerEmpty(TofuBlocks.TOFUCAKE);
 
 		this.add(TofuBlocks.TOFUBED, (p_124233_) -> {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);

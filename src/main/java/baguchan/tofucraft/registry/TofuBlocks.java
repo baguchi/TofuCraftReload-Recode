@@ -145,6 +145,9 @@ public class TofuBlocks {
 	}));
 	public static final Block MORIJIO = new MorijioBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F, 3.0F).noOcclusion().sound(SoundType.WOOD));
 
+	public static final Block TOFUCAKE = new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL));
+
+
 	public static final Block TOFUBED = new TofuBedBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.2F).noOcclusion().sound(SoundType.SNOW));
 	public static final Block TOFUCHEST = new TofuChestBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).noOcclusion().sound(SoundType.STONE), () -> TofuBlockEntitys.TOFUCHEST);
 
@@ -243,6 +246,7 @@ public class TofuBlocks {
 		registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
 		registry.getRegistry().register(SALT_FURNACE.setRegistryName("salt_furnace"));
 		registry.getRegistry().register(MORIJIO.setRegistryName("morijio"));
+		registry.getRegistry().register(TOFUCAKE.setRegistryName("tofucake"));
 
 		registry.getRegistry().register(TOFUBED.setRegistryName("tofubed"));
 		registry.getRegistry().register(TOFUCHEST.setRegistryName("tofuchest"));
@@ -328,6 +332,7 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(SALTPAN, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(SALT_FURNACE, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(MORIJIO, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUCAKE, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(TOFUBED, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT).stacksTo(1)) {
 			@Override

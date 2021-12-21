@@ -184,6 +184,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.SALT))
 				.save(consumer);
 
+		ShapedRecipeBuilder.shaped(TofuBlocks.TOFUCAKE)
+				.pattern("###")
+				.pattern("SES")
+				.pattern("WWW")
+				.define('#', TofuItems.TOFUKINU)
+				.define('S', Items.SUGAR)
+				.define('E', Tags.Items.EGGS)
+				.define('W', Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.TOFUKINU))
+				.save(consumer);
+
 		//soimilk
 		ShapedRecipeBuilder.shaped(TofuItems.BUCKET_SOYMILK)
 				.pattern("#")
@@ -310,12 +321,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(TofuItems.KINAKO_MOCHI, 2)
+		ShapelessRecipeBuilder.shapeless(TofuItems.KINAKO_MOCHI, 1)
 				.requires(TofuItems.KINAKO)
 				.requires(TofuTags.Items.RICE)
 				.unlockedBy("has_item", has(TofuItems.KINAKO))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDA_MOCHI, 2)
+		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDA_MOCHI, 1)
 				.requires(TofuItems.ZUNDA_MOCHI)
 				.requires(TofuTags.Items.RICE)
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_MOCHI))

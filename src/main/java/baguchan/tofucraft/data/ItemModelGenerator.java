@@ -78,6 +78,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.LEAVES_TOFU);
 
 		itemBlockFlat(TofuBlocks.LEEK);
+		singleTex(TofuBlocks.TOFUCAKE.asItem());
 
 		//item
 		singleTex(TofuItems.TOFUKINU);
