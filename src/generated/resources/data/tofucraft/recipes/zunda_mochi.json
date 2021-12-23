@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "tofucraft:zunda_mochi"
+      "item": "tofucraft:zunda"
     },
     {
       "tag": "forge:crops/rice"
