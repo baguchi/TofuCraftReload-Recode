@@ -33,9 +33,14 @@
     [],
     [],
     [
+      "tofucraft:ore_tofu_diamond",
+      "tofucraft:ore_tofu_diamond_large",
+      "tofucraft:ore_tofu_diamond_buried"
     ],
     [],
     [
+      "tofucraft:tofu_trees_forest",
+      "tofucraft:patch_leek_waste"
     ],
     [
       "minecraft:freeze_top_layer"

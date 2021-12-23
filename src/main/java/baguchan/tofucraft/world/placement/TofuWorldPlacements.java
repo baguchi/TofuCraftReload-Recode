@@ -4,6 +4,7 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.world.gen.feature.TofuWorldFeatures;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.block.Block;
@@ -40,7 +41,7 @@ public class TofuWorldPlacements {
 	}
 
 	public static PlacedFeature register(String p_195369_, PlacedFeature p_195370_) {
-		return BuiltinRegistries.register(BuiltinRegistries.PLACED_FEATURE, p_195369_, p_195370_);
+		return Registry.register(BuiltinRegistries.PLACED_FEATURE, p_195369_, p_195370_);
 	}
 
 	private static ImmutableList.Builder<PlacementModifier> treePlacementBase(PlacementModifier p_195485_) {

@@ -3,6 +3,7 @@ package baguchan.tofucraft.world.gen.feature;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuFeatures;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -43,7 +44,7 @@ public class TofuWorldFeatures {
 	}
 
 	public static <FC extends FeatureConfiguration> ConfiguredFeature<FC, ?> register(String p_195006_, ConfiguredFeature<FC, ?> p_195007_) {
-		return BuiltinRegistries.register(BuiltinRegistries.CONFIGURED_FEATURE, p_195006_, p_195007_);
+		return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, p_195006_, p_195007_);
 	}
 
 	public static void init() {

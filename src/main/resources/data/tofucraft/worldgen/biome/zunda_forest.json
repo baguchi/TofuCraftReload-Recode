@@ -33,9 +33,14 @@
     [],
     [],
     [
+      "tofucraft:ore_tofu_diamond",
+      "tofucraft:ore_tofu_diamond_large",
+      "tofucraft:ore_tofu_diamond_buried"
     ],
     [],
     [
+      "tofucraft:big_zunda_tofu_mushroom",
+      "tofucraft:patch_zunda_tofu_mushroom"
     ],
     [
       "minecraft:freeze_top_layer"
