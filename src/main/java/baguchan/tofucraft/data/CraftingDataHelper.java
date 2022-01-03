@@ -62,8 +62,12 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material), result, xp, 600).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + recipeName));
 	}
 
+	public static void cuttingRecipe(Consumer<FinishedRecipe> consumer, Item cuttingItem, Item result) {
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(cuttingItem), result).unlockedBy("has_item", has(cuttingItem)).save(consumer, TofuCraftReload.prefix("cutting_" + result.getRegistryName().getPath()));
+	}
+
 	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, Item smithItem, Item result) {
-		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU), result).unlocks("has_tofudiamond", has(TofuBlocks.DIAMONDTOFU)).save(consumer, "smithing_" + result.getRegistryName().getPath());
+		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU), result).unlocks("has_tofudiamond", has(TofuBlocks.DIAMONDTOFU)).save(consumer, TofuCraftReload.prefix("smithing_" + result.getRegistryName().getPath()));
 	}
 
 	protected final void helmetItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material) {
@@ -163,7 +167,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.pattern("##")
 				.define('#', material)
 				.unlockedBy("has_item", has(material))
-				.save(consumer, name);
+				.save(consumer, TofuCraftReload.prefix(name));
 	}
 
 	protected final void ladderItem(Consumer<FinishedRecipe> consumer, Item result, Item material) {
@@ -194,11 +198,21 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.unlockedBy("has_" + blockIn.getRegistryName().getPath(), has(blockIn)).save(consumer);
 	}
 
+	public void makeStairsCraftingOrCutting(Consumer<FinishedRecipe> consumer, Block stairsOut, Block blockIn) {
+		makeStairs(consumer, stairsOut, blockIn);
+		cuttingRecipe(consumer, blockIn.asItem(), stairsOut.asItem());
+	}
+
 	public void makeSlab(Consumer<FinishedRecipe> consumer, Block slabOut, Block blockIn) {
 		ShapedRecipeBuilder.shaped(slabOut, 6)
 				.pattern("MMM")
 				.define('M', blockIn)
 				.unlockedBy("has_" + blockIn.getRegistryName().getPath(), has(blockIn)).save(consumer);
+	}
+
+	public void makeSlabCraftingOrCutting(Consumer<FinishedRecipe> consumer, Block slabOut, Block blockIn) {
+		makeSlab(consumer, slabOut, blockIn);
+		cuttingRecipe(consumer, blockIn.asItem(), slabOut.asItem());
 	}
 
 	public void makeFence(Consumer<FinishedRecipe> consumer, Block fenceOut, Block blockIn) {

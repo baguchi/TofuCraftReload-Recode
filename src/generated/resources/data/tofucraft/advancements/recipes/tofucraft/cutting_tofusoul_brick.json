@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:smithing_tofu_diamond_leggings"
+      "tofucraft:cutting_tofusoul_brick"
     ]
   },
   "criteria": {
-    "has_tofudiamond": {
+    "has_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "tofucraft:blocktofudiamond"
+              "tofucraft:tofusoul_brick"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:smithing_tofu_diamond_leggings"
+        "recipe": "tofucraft:cutting_tofusoul_brick"
       }
     }
   },
   "requirements": [
     [
-      "has_tofudiamond",
+      "has_item",
       "has_the_recipe"
     ]
   ]

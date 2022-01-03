@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:smithing_tofu_diamond_shovel"
+      "tofucraft:smithing_tofu_diamond_leggings"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:smithing_tofu_diamond_shovel"
+        "recipe": "tofucraft:smithing_tofu_diamond_leggings"
       }
     }
   },

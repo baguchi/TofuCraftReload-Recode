@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:tofumomen_from_kinu"
+      "tofucraft:cutting_tofuslab_hellbrick"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "tofucraft:tofukinu"
+              "tofucraft:tofuhell_brick"
             ]
           }
         ]
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:tofumomen_from_kinu"
+        "recipe": "tofucraft:cutting_tofuslab_hellbrick"
       }
     }
   },

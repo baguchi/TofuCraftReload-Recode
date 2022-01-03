@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "tofucraft:blocktofumetal"
+  },
+  "result": "tofucraft:tofuslab_metal",
+  "count": 1
+}
