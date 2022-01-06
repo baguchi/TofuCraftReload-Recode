@@ -11,7 +11,7 @@ public enum TofuItemTier implements Tier {
 	MOMEN(0, 2, 0.25F, 0.25F, 5, () -> Ingredient.of(TofuItems.TOFUMOMEN)),
 	SOLID(1, 131, 5.0F, 1.0F, 12, () -> Ingredient.of(TofuItems.TOFUISHI)),
 	METAL(2, 245, 6.0F, 2.0F, 16, () -> Ingredient.of(TofuItems.TOFUMETAL)),
-	TOFUDIAMOND(3, 1724, 8.5F, 4.0F, 18, () -> Ingredient.of(TofuItems.TOFUDIAMOND));
+	TOFUDIAMOND(3, 1724, 8.5F, 5.0F, 18, () -> Ingredient.of(TofuItems.TOFUDIAMOND));
 
 	private final int level;
 
