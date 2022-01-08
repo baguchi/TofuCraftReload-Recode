@@ -23,11 +23,14 @@ public class StackableBowlItem extends Item {
 			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, p_41409_);
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
-		p_41409_.shrink(1);
-		if (p_41409_.isEmpty())
-			return new ItemStack(Items.GLASS_BOTTLE);
 		if (p_41411_ instanceof Player && !((Player) p_41411_).getAbilities().instabuild) {
-			ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
+			p_41409_.shrink(1);
+		}
+
+		if (p_41409_.isEmpty())
+			return new ItemStack(Items.BOWL);
+		if (p_41411_ instanceof Player && !((Player) p_41411_).getAbilities().instabuild) {
+			ItemStack itemstack = new ItemStack(Items.BOWL);
 			Player playerentity = (Player) p_41411_;
 			if (!playerentity.getInventory().add(itemstack)) {
 				playerentity.drop(itemstack, false);
