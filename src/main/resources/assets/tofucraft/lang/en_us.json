@@ -328,6 +328,7 @@
   "tofucraft.radar.result.success": "Success to Found TofuSlime Chunk",
   "tofucraft.radar.result.failed": "Not Found TofuSlime Chunk",
   "itemGroup.tofucraft": "TofuCraft",
+  "itemGroup.tofu_delight": "Tofu Delight",
   "item.minecraft.potion.effect.tofu_resistance": "Potion of Tofu Resistance",
   "item.minecraft.splash_potion.effect.tofu_resistance": "Splash Potion of Tofu Resistance",
   "item.minecraft.lingering_potion.effect.tofu_resistance": "Lingering Potion of Tofu Resistance",

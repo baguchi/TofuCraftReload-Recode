@@ -256,85 +256,85 @@ public class TofuBlocks {
 
 	@SubscribeEvent
 	public static void registerItemBlocks(RegistryEvent.Register<Item> registry) {
-		TofuItems.register(registry, new BlockItem(KINUTOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(MOMENTOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(ISHITOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(ISHITOFU_BRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(ISHITOFU_SMOOTH_BRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(ISHITOFU_CHISELED_BRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(METALTOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(DIAMONDTOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(GRILLEDTOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(ZUNDATOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(KINUTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(MOMENTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(ISHITOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(ISHITOFU_BRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(ISHITOFU_SMOOTH_BRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(ISHITOFU_CHISELED_BRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(METALTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(DIAMONDTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(GRILLEDTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(ZUNDATOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(HELLTOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(HELLTOFU_BRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(HELLTOFU_SMOOTH_BRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(HELLTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(HELLTOFU_BRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(HELLTOFU_SMOOTH_BRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(SOULTOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(SOULTOFU_BRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(SOULTOFU_SMOOTH_BRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(SOULTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(SOULTOFU_BRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(SOULTOFU_SMOOTH_BRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(TOFUSTAIR_KINU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSTAIR_MOMEN, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSTAIR_ISHI, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSTAIR_METAL, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSTAIR_ZUNDA, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSTAIR_ISHIBRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSTAIR_HELLBRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSTAIR_SOULBRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSTAIR_KINU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSTAIR_MOMEN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSTAIR_ISHI, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSTAIR_METAL, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSTAIR_ZUNDA, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSTAIR_ISHIBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSTAIR_HELLBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSTAIR_SOULBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(TOFUSLAB_KINU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSLAB_MOMEN, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSLAB_ISHI, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSLAB_METAL, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSLAB_ZUNDA, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLAB_KINU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLAB_MOMEN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLAB_ISHI, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLAB_METAL, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLAB_ZUNDA, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(TOFUSLAB_ISHIBRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSLAB_HELLBRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSLAB_SOULBRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLAB_ISHIBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLAB_HELLBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLAB_SOULBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(TOFUFENCE_KINU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUFENCE_MOMEN, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUFENCE_ISHI, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUFENCE_METAL, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUFENCE_KINU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUFENCE_MOMEN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUFENCE_ISHI, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUFENCE_METAL, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_KINU, WALLTOFUTORCH_KINU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_MOMEN, WALLTOFUTORCH_MOMEN, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_ISHI, WALLTOFUTORCH_ISHI, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_METAL, WALLTOFUTORCH_METAL, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_KINU, WALLTOFUTORCH_KINU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_MOMEN, WALLTOFUTORCH_MOMEN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_ISHI, WALLTOFUTORCH_ISHI, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new StandingAndWallBlockItem(TOFUTORCH_METAL, WALLTOFUTORCH_METAL, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(TOFULADDER_KINU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFULADDER_MOMEN, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFULADDER_ISHI, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFULADDER_ISHIBRICK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFULADDER_METAL, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFULADDER_KINU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFULADDER_MOMEN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFULADDER_ISHI, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFULADDER_ISHIBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFULADDER_METAL, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(TOFU_TERRAIN, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSLATE, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUSLATE_TOFU_DIAMOND_ORE, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFU_TERRAIN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLATE, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLATE_TOFU_DIAMOND_ORE, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(ORE_TOFU_DIAMOND, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFU_BEDROCK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(ORE_TOFU_DIAMOND, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFU_BEDROCK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(SAPLING_TOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(LEAVES_TOFU, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(SAPLING_TOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(LEAVES_TOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(LEEK, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(LEEK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(LEEK_GREEN_STEM, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(LEEK_STEM, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(ZUNDATOFU_MUSHROOM, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFU_STEM, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFU_STEM_PLANKS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(LEEK_GREEN_STEM, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(LEEK_STEM, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(ZUNDATOFU_MUSHROOM, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFU_STEM, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFU_STEM_PLANKS, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(TOFU_FARMLAND, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(SALTPAN, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(SALT_FURNACE, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(MORIJIO, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUCAKE, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFU_FARMLAND, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(SALTPAN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(SALT_FURNACE, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(MORIJIO, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUCAKE, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-		TofuItems.register(registry, new BlockItem(TOFUBED, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT).stacksTo(1)) {
+		TofuItems.register(registry, new BlockItem(TOFUBED, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT).stacksTo(1)) {
 			@Override
 			public void initializeClient(@Nonnull Consumer<IItemRenderProperties> consumer) {
 				consumer.accept(new IItemRenderProperties() {
@@ -361,7 +361,7 @@ public class TofuBlocks {
 				});
 			}
 		});
-		TofuItems.register(registry, new BlockItem(TOFUCHEST, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)) {
+		TofuItems.register(registry, new BlockItem(TOFUCHEST, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)) {
 			@Override
 			public void initializeClient(@Nonnull Consumer<IItemRenderProperties> consumer) {
 				consumer.accept(new IItemRenderProperties() {
@@ -389,6 +389,6 @@ public class TofuBlocks {
 			}
 		});
 
-		TofuItems.register(registry, new BlockItem(TF_STORAGE, new Item.Properties().tab(TofuItemGroup.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TF_STORAGE, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 	}
 }

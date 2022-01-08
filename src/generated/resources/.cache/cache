@@ -152,6 +152,7 @@ deeba0602223532d43cb5b03ade395191b0af995 assets/tofucraft/models/item/blocktofuh
 e105ad3c392ef63c5344963df9462730ac421e96 assets/tofucraft/models/item/cooked_tofufish.json
 9c78e30fbb7e12938f2c7b349ef2c7c76a4b215c assets/tofucraft/models/item/edamame.json
 6e52473b2f6dfa7d3fbffe4a8f1dd5dc3831b782 assets/tofucraft/models/item/edamame_boild.json
+673cfd679ecb49a432d64236fc45c6ff1b9b8f50 assets/tofucraft/models/item/edamame_rice.json
 34d0a3a886c4df3b577d0d846773a16a8c781662 assets/tofucraft/models/item/fukumame.json
 5e42492d9dc9b9e0098ea2f04582996487b22ccb assets/tofucraft/models/item/kinako.json
 7071eb970429a28a3fed4dae913dcc753dd9d7e0 assets/tofucraft/models/item/kinako_mochi.json
@@ -277,7 +278,9 @@ bc078ece2bb397606e5827c4aba179d6aec82157 assets/tofucraft/models/item/tofutorch_
 e4874ad8c88d3984d6567d634c40924089b5cf6b assets/tofucraft/models/item/tofutorch_metal.json
 e4122140b043e2ea27a6f5a12dd288e81d50787e assets/tofucraft/models/item/tofutorch_momen.json
 7f1be792c4723ddfb7635d4ffe43e13d9483997b assets/tofucraft/models/item/tofuzunda.json
+f24538abcd1b39470e865c03cb5d8486776122f9 assets/tofucraft/models/item/tomato_soybean_stew.json
 4544c6a599e64fbe3745d0b24bac8d49fbd06f94 assets/tofucraft/models/item/yuba.json
+ff6ea01b3fc449c61c49a16680538059eec3cfb4 assets/tofucraft/models/item/yudofu.json
 88443cd0d42ccfbe12092839a87c17806f3653fa assets/tofucraft/models/item/zunda.json
 8f8707cd82c10f2196d922a40776c7043e85c388 assets/tofucraft/models/item/zunda_mochi.json
 60188fdad3127825d48b0bdaa9527053b8e22b8a assets/tofucraft/models/item/zundama.json

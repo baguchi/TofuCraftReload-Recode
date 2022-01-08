@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "tofucraft:momentofu"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:yudofu"
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "experience": 0.1,
+  "cookingtime": 100
+}

@@ -26,123 +26,128 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuItems {
-	public static final Item TOFUKINU = new Item((new Item.Properties()).food(TofuFoods.TOFU).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUMOMEN = new Item((new Item.Properties()).food(TofuFoods.TOFU).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUISHI = new Item((new Item.Properties()).food(TofuFoods.ISHITOFU).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUMETAL = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUDIAMOND = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUDIAMOND_NUGGET = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUHELL = new Item((new Item.Properties()).food(TofuFoods.TOFUHELL).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUSOUL = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUGRILLED = new Item((new Item.Properties()).food(TofuFoods.TOFUGRILLED).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUZUNDA = new Item((new Item.Properties()).food(TofuFoods.TOFUZUNDA).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item BITTERN = new BitternItem((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SALT = new BitternItem((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SEEDS_SOYBEANS = new ItemNameBlockItem(TofuBlocks.SOYBEAN, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SEEDS_SOYBEANS_NETHER = new ItemNameBlockItem(TofuBlocks.SOYBEAN_NETHER, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SEEDS_SOYBEANS_SOUL = new ItemNameBlockItem(TofuBlocks.SOYBEAN_SOUL, (new Item.Properties()).rarity(Rarity.UNCOMMON).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SOYBEAN_PARCHED = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item KINAKO = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item EDAMAME = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item BOILED_EDAMAME = new Item((new Item.Properties()).food(TofuFoods.BOILED_EDAMAME).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item LEEK = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item YUBA = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ZUNDA = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ZUNDAMA = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ZUNDARUBY = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_HAMBURG_RAW = new Item((new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_HAMBURG = new Item((new Item.Properties()).food(TofuFoods.TOFU_HAMBURG).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item RAW_TOFU_FISH = new Item((new Item.Properties()).food(TofuFoods.RAW_TOFUFISH).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item COOKED_TOFU_FISH = new Item((new Item.Properties()).food(TofuFoods.COOKED_TOFUFISH).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUCOOKIE = new Item((new Item.Properties()).food(TofuFoods.TOFUCOOKIE).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SOYSTICK = new Item((new Item.Properties()).food(TofuFoods.SOYSTICK).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SALTYMELON = new Item((new Item.Properties()).food(TofuFoods.SALTYMELON).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUKINU = new Item((new Item.Properties()).food(TofuFoods.TOFU).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUMOMEN = new Item((new Item.Properties()).food(TofuFoods.TOFU).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUISHI = new Item((new Item.Properties()).food(TofuFoods.ISHITOFU).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUMETAL = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUDIAMOND = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUDIAMOND_NUGGET = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUHELL = new Item((new Item.Properties()).food(TofuFoods.TOFUHELL).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUSOUL = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUGRILLED = new Item((new Item.Properties()).food(TofuFoods.TOFUGRILLED).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUZUNDA = new Item((new Item.Properties()).food(TofuFoods.TOFUZUNDA).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item BITTERN = new BitternItem((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SALT = new BitternItem((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SEEDS_SOYBEANS = new ItemNameBlockItem(TofuBlocks.SOYBEAN, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SEEDS_SOYBEANS_NETHER = new ItemNameBlockItem(TofuBlocks.SOYBEAN_NETHER, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SEEDS_SOYBEANS_SOUL = new ItemNameBlockItem(TofuBlocks.SOYBEAN_SOUL, (new Item.Properties()).rarity(Rarity.UNCOMMON).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SOYBEAN_PARCHED = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item KINAKO = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item EDAMAME = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item BOILED_EDAMAME = new Item((new Item.Properties()).food(TofuFoods.BOILED_EDAMAME).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item LEEK = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item YUBA = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ZUNDA = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ZUNDAMA = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ZUNDARUBY = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_HAMBURG_RAW = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_HAMBURG = new Item((new Item.Properties()).food(TofuFoods.TOFU_HAMBURG).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item RAW_TOFU_FISH = new Item((new Item.Properties()).food(TofuFoods.RAW_TOFUFISH).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item COOKED_TOFU_FISH = new Item((new Item.Properties()).food(TofuFoods.COOKED_TOFUFISH).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUCOOKIE = new Item((new Item.Properties()).food(TofuFoods.TOFUCOOKIE).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SOYSTICK = new Item((new Item.Properties()).food(TofuFoods.SOYSTICK).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SALTYMELON = new Item((new Item.Properties()).food(TofuFoods.SALTYMELON).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item SOYMILK = new SoymilkBottleItem(MobEffects.REGENERATION, MobEffects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SOYMILK_APPLE = new SoymilkBottleItem(MobEffects.DAMAGE_RESISTANCE, MobEffects.ABSORPTION, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SOYMILK_COCOA = new SoymilkBottleItem(MobEffects.JUMP, MobEffects.MOVEMENT_SPEED, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SOYMILK_KINAKO = new SoymilkBottleItem(MobEffects.MOVEMENT_SPEED, MobEffects.DIG_SPEED, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SOYMILK_PUDDING = new SoymilkBottleItem(MobEffects.REGENERATION, MobEffects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SOYMILK_PUMPKIN = new SoymilkBottleItem(MobEffects.DAMAGE_BOOST, MobEffects.DIG_SPEED, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item KINAKO_MANJU = new Item((new Item.Properties()).food(TofuFoods.KINAKO_MANJU).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ZUNDA_MANJU = new Item((new Item.Properties()).food(TofuFoods.ZUNDA_MANJU).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item NETHER_MANJU = new Item((new Item.Properties()).food(TofuFoods.NETHER_MANJU).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SOUL_MANJU = new Item((new Item.Properties()).food(TofuFoods.SOUL_MANJU).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ZUNDA_MOCHI = new Item((new Item.Properties()).food(TofuFoods.ZUNDA_MOCHI).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item KINAKO_MOCHI = new Item((new Item.Properties()).food(TofuFoods.KINAKO_MOCHI).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOYMILK = new SoymilkBottleItem(MobEffects.REGENERATION, MobEffects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SOYMILK_APPLE = new SoymilkBottleItem(MobEffects.DAMAGE_RESISTANCE, MobEffects.ABSORPTION, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SOYMILK_COCOA = new SoymilkBottleItem(MobEffects.JUMP, MobEffects.MOVEMENT_SPEED, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SOYMILK_KINAKO = new SoymilkBottleItem(MobEffects.MOVEMENT_SPEED, MobEffects.DIG_SPEED, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SOYMILK_PUDDING = new SoymilkBottleItem(MobEffects.REGENERATION, MobEffects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SOYMILK_PUMPKIN = new SoymilkBottleItem(MobEffects.DAMAGE_BOOST, MobEffects.DIG_SPEED, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item KINAKO_MANJU = new Item((new Item.Properties()).food(TofuFoods.KINAKO_MANJU).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ZUNDA_MANJU = new Item((new Item.Properties()).food(TofuFoods.ZUNDA_MANJU).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item NETHER_MANJU = new Item((new Item.Properties()).food(TofuFoods.NETHER_MANJU).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SOUL_MANJU = new Item((new Item.Properties()).food(TofuFoods.SOUL_MANJU).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ZUNDA_MOCHI = new Item((new Item.Properties()).food(TofuFoods.ZUNDA_MOCHI).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item KINAKO_MOCHI = new Item((new Item.Properties()).food(TofuFoods.KINAKO_MOCHI).tab(TofuCreativeModeTab.TOFUCRAFT));
 
 
-	public static final Item SOY_CHOCOLATE = new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUNIAN_SOY_CHOCOLATE = new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item SOY_CHOCOLATE = new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUNIAN_SOY_CHOCOLATE = new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item BUCKET_SOYMILK = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item BUCKET_SOYMILK_NETHER = new BucketItem(TofuFluids.SOYMILK_HELL, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item BUCKET_SOYMILK_SOUL = new BucketItem(TofuFluids.SOYMILK_SOUL, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUFISH_BUCKET = new MobBucketItem(TofuEntityTypes.TOFUFISH, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUFISH_SOYMILK_BUCKET = new MobBucketItem(TofuEntityTypes.TOFUFISH, TofuFluids.SOYMILK, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item BUCKET_BITTERN = new BucketItem(TofuFluids.BITTERN, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUCKET_SOYMILK = new BucketItem(TofuFluids.SOYMILK, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item BUCKET_SOYMILK_NETHER = new BucketItem(TofuFluids.SOYMILK_HELL, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item BUCKET_SOYMILK_SOUL = new BucketItem(TofuFluids.SOYMILK_SOUL, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUFISH_BUCKET = new MobBucketItem(TofuEntityTypes.TOFUFISH, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUFISH_SOYMILK_BUCKET = new MobBucketItem(TofuEntityTypes.TOFUFISH, TofuFluids.SOYMILK, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item BUCKET_BITTERN = new BucketItem(TofuFluids.BITTERN, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item TOFU_KINU_SWORD = new SwordItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_KINU_AXE = new AxeItem(TofuItemTier.KINU, 0.0F, -2.25F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_KINU_PICKAXE = new PickaxeItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_KINU_SHOVEL = new ShovelItem(TofuItemTier.KINU, 0.0F, -2.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_KINU_SWORD = new SwordItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_KINU_AXE = new AxeItem(TofuItemTier.KINU, 0.0F, -2.25F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_KINU_PICKAXE = new PickaxeItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_KINU_SHOVEL = new ShovelItem(TofuItemTier.KINU, 0.0F, -2.2F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item TOFU_MOMEN_SWORD = new SwordItem(TofuItemTier.MOMEN, 0, -2.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_MOMEN_AXE = new AxeItem(TofuItemTier.MOMEN, 1.0F, -2.5F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_MOMEN_PICKAXE = new PickaxeItem(TofuItemTier.MOMEN, 0, -2.25F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_MOMEN_SHOVEL = new ShovelItem(TofuItemTier.MOMEN, 0.0F, -2.25F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_MOMEN_SWORD = new SwordItem(TofuItemTier.MOMEN, 0, -2.2F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_MOMEN_AXE = new AxeItem(TofuItemTier.MOMEN, 1.0F, -2.5F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_MOMEN_PICKAXE = new PickaxeItem(TofuItemTier.MOMEN, 0, -2.25F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_MOMEN_SHOVEL = new ShovelItem(TofuItemTier.MOMEN, 0.0F, -2.25F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item TOFU_SOLID_SWORD = new SwordItem(TofuItemTier.SOLID, 3, -2.3F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_SOLID_AXE = new AxeItem(TofuItemTier.SOLID, 6.0F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_SOLID_PICKAXE = new PickaxeItem(TofuItemTier.SOLID, 1, -2.7F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_SOLID_SHOVEL = new ShovelItem(TofuItemTier.SOLID, 1.5F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_SOLID_SWORD = new SwordItem(TofuItemTier.SOLID, 3, -2.3F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_SOLID_AXE = new AxeItem(TofuItemTier.SOLID, 6.0F, -2.9F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_SOLID_PICKAXE = new PickaxeItem(TofuItemTier.SOLID, 1, -2.7F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_SOLID_SHOVEL = new ShovelItem(TofuItemTier.SOLID, 1.5F, -2.9F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item TOFU_METAL_SWORD = new SwordItem(TofuItemTier.METAL, 3, -2.3F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_METAL_AXE = new AxeItem(TofuItemTier.METAL, 5.0F, -3.1F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_METAL_PICKAXE = new PickaxeItem(TofuItemTier.METAL, 1, -2.7F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_METAL_SHOVEL = new ShovelItem(TofuItemTier.METAL, 1.5F, -2.9F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_METAL_SWORD = new SwordItem(TofuItemTier.METAL, 3, -2.3F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_METAL_AXE = new AxeItem(TofuItemTier.METAL, 5.0F, -3.1F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_METAL_PICKAXE = new PickaxeItem(TofuItemTier.METAL, 1, -2.7F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_METAL_SHOVEL = new ShovelItem(TofuItemTier.METAL, 1.5F, -2.9F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item TOFU_DIAMOND_SWORD = new SwordItem(TofuItemTier.TOFUDIAMOND, 3, -2.4F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_DIAMOND_AXE = new AxeItem(TofuItemTier.TOFUDIAMOND, 5.0F, -3.2F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_DIAMOND_PICKAXE = new PickaxeItem(TofuItemTier.TOFUDIAMOND, 1, -2.8F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFU_DIAMOND_SHOVEL = new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -3.0F, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFU_DIAMOND_SWORD = new SwordItem(TofuItemTier.TOFUDIAMOND, 3, -2.4F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_DIAMOND_AXE = new AxeItem(TofuItemTier.TOFUDIAMOND, 5.0F, -3.2F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_DIAMOND_PICKAXE = new PickaxeItem(TofuItemTier.TOFUDIAMOND, 1, -2.8F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFU_DIAMOND_SHOVEL = new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -3.0F, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item ARMOR_TOFU_KINUHELMET = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_KINUCHESTPLATE = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_KINULEGGINGS = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.LEGS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_KINUBOOTS = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.FEET, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_KINUHELMET = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_KINUCHESTPLATE = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_KINULEGGINGS = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.LEGS, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_KINUBOOTS = new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.FEET, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item ARMOR_TOFU_MOMENHELMET = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_MOMENCHESTPLATE = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_MOMENLEGGINGS = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.LEGS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_MOMENBOOTS = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.FEET, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_MOMENHELMET = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_MOMENCHESTPLATE = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_MOMENLEGGINGS = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.LEGS, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_MOMENBOOTS = new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.FEET, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item ARMOR_TOFU_SOLIDHELMET = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_SOLIDCHESTPLATE = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_SOLIDLEGGINGS = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.LEGS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_SOLIDBOOTS = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.FEET, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_SOLIDHELMET = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_SOLIDCHESTPLATE = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_SOLIDLEGGINGS = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.LEGS, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_SOLIDBOOTS = new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.FEET, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item ARMOR_TOFU_METALHELMET = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_METALCHESTPLATE = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_METALLEGGINGS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.LEGS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_METALBOOTS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.FEET, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_METALHELMET = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_METALCHESTPLATE = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_METALLEGGINGS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.LEGS, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_METALBOOTS = new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.FEET, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item ARMOR_TOFU_DIAMONDHELMET = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_DIAMONDCHESTPLATE = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_DIAMONDLEGGINGS = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlot.LEGS, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item ARMOR_TOFU_DIAMONDBOOTS = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlot.FEET, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_DIAMONDHELMET = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlot.HEAD, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_DIAMONDCHESTPLATE = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlot.CHEST, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_DIAMONDLEGGINGS = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlot.LEGS, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item ARMOR_TOFU_DIAMONDBOOTS = new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlot.FEET, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item BUGLE = new BugleItem((new Item.Properties()).stacksTo(1).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUSCOOP = new TofuScoopItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUSTICK = new TofuStickItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item FUKUMAME = new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item NETHER_FUKUMAME = new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item SOUL_FUKUMAME = new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item BUGLE = new BugleItem((new Item.Properties()).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUSCOOP = new TofuScoopItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUSTICK = new TofuStickItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item FUKUMAME = new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item NETHER_FUKUMAME = new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SOUL_FUKUMAME = new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuCreativeModeTab.TOFUCRAFT));
 
-	public static final Item TOFUNIAN_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUCOW_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUCOW, 15460584, 10724259, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUSLIME_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
-	public static final Item TOFUSPIDER_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUSPIDER, 15460584, 3026478, (new Item.Properties()).tab(TofuItemGroup.TOFUCRAFT));
+	public static final Item TOFUNIAN_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUCOW_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUCOW, 15460584, 10724259, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUSLIME_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUSPIDER_SPAWNEGG = new SpawnEggItem(TofuEntityTypes.TOFUSPIDER, 15460584, 3026478, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+
+	//Tofu delight item
+	public static final Item TOMATO_SOYBEAN_STEW = new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.TOMATO_SOYBEAN_STEW).tab(TofuCreativeModeTab.TOFU_DELIGHT));
+	public static final Item YUDOFU = new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.YUDOFU).tab(TofuCreativeModeTab.TOFU_DELIGHT));
+	public static final Item EDAMAME_RICE = new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.EDAMAME_RICE).tab(TofuCreativeModeTab.TOFU_DELIGHT));
 
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
@@ -267,6 +272,10 @@ public class TofuItems {
 		register(registry, TOFUCOW_SPAWNEGG, "tofucow_spawnegg");
 		register(registry, TOFUSLIME_SPAWNEGG, "tofuslime_spawnegg");
 		register(registry, TOFUSPIDER_SPAWNEGG, "tofuspider_spawnegg");
+
+		register(registry, TOMATO_SOYBEAN_STEW, "tomato_soybean_stew");
+		register(registry, YUDOFU, "yudofu");
+		register(registry, EDAMAME_RICE, "edamame_rice");
 
 		DispenseItemBehavior dispenseitembehavior1 = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();

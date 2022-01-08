@@ -1,0 +1,25 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:crops/rice"
+    },
+    {
+      "item": "tofucraft:edamame"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:edamame_rice"
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "experience": 0.1,
+  "cookingtime": 100
+}
