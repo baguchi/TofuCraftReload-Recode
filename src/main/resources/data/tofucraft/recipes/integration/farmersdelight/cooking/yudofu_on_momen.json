@@ -8,7 +8,7 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "item": "tofucraft:momentofu"
+      "item": "tofucraft:tofumomen"
     }
   ],
   "result": {

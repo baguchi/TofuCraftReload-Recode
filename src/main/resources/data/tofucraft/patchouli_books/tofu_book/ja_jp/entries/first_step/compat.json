@@ -1,0 +1,12 @@
+{
+  "name": "Compat",
+  "icon": "tofucraft:edamame_rice",
+  "category": "tofucraft:first_step",
+  "priority": true,
+  "pages": [
+    {
+      "type": "text",
+      "text": "もし他のmodを入れたとき、そのmodと豆腐クラフトの対応レシピが追加されます。(Farmer's delightなど)$(br2)レシピが増えたり、自動化できたりするので一度試してみては？"
+    }
+  ]
+}

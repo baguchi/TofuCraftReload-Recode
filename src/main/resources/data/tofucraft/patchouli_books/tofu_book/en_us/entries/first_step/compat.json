@@ -1,0 +1,12 @@
+{
+  "name": "Compat",
+  "icon": "tofucraft:edamame_rice",
+  "category": "tofucraft:first_step",
+  "priority": true,
+  "pages": [
+    {
+      "type": "text",
+      "text": "If you put another mod(like Farmer's delight).$(br2)You can use new recipe!(like yudofu and edamame rice)."
+    }
+  ]
+}

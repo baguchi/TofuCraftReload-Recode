@@ -14,7 +14,7 @@ public class TofuCreativeModeTab {
 	public static final CreativeModeTab TOFU_DELIGHT = new CreativeModeTab("tofu_delight") {
 		@Override
 		public ItemStack makeIcon() {
-			return new ItemStack(TofuItems.TOFUMOMEN);
+			return new ItemStack(TofuItems.EDAMAME_RICE);
 		}
 	};
 }
