@@ -40,11 +40,6 @@ public class StackableBowlItem extends Item {
 		return p_41409_;
 	}
 
-
-	public int getUseDuration(ItemStack p_77626_1_) {
-		return 32;
-	}
-
 	@Override
 	public UseAnim getUseAnimation(ItemStack p_41452_) {
 		return UseAnim.EAT;
