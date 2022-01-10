@@ -121,7 +121,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(4, new CropHarvestGoal(this, 0.9F));
 		this.goalSelector.addGoal(5, new MakeFoodGoal(this, 0.9F, 6));
 		this.goalSelector.addGoal(6, new RestockGoal(this, 0.9F, 6));
-		this.goalSelector.addGoal(7, new MoveToGoal(this, 26.0D, 1.0D));
+		this.goalSelector.addGoal(7, new MoveToGoal(this, 30.0D, 1.0D));
 		this.goalSelector.addGoal(8, new FindJobBlockGoal(this, 0.85F, 6));
 		this.goalSelector.addGoal(9, new TofunianLoveGoal(this, 0.8F));
 		this.goalSelector.addGoal(10, new RandomStrollGoal(this, 0.9D));
@@ -788,7 +788,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		public boolean canUse() {
 			BlockPos blockpos = this.hunter.getTofunainHome();
 
-			double distance = this.hunter.level.isDay() ? this.stopDistance : this.stopDistance / 3.0F;
+			double distance = this.hunter.level.isDay() ? this.stopDistance : this.stopDistance / 4.0F;
 
 			return blockpos != null && this.isTooFarAway(blockpos, distance);
 		}
