@@ -64,9 +64,6 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	@Override
 	public void stop() {
 		super.stop();
-		if (this.findBlock) {
-			this.creature.remadeTrade();
-		}
 	}
 
 	public double acceptedDistance() {
