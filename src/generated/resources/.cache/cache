@@ -290,6 +290,7 @@ ff6ea01b3fc449c61c49a16680538059eec3cfb4 assets/tofucraft/models/item/yudofu.jso
 00793dcec0c1359bb99f1db6122b3394fcfe1197 data/minecraft/tags/blocks/beds.json
 507a238f2814f0ba836a47482f5b7dda5ecab107 data/minecraft/tags/blocks/climbable.json
 cc6e508230756a356a4f75bc6c7d4651d9b16173 data/minecraft/tags/blocks/dragon_immune.json
+5e7ff02b8d7b6682cf88ce15438eefdd3528a115 data/minecraft/tags/blocks/fences.json
 aaf63492c641c7d981a5b7ee379faca3925126fb data/minecraft/tags/blocks/mineable/axe.json
 34c718cf1eee7308414732627a68dbae2c5d040c data/minecraft/tags/blocks/mineable/pickaxe.json
 72fa67b8019517e993ebaa932df9841e8ec7884a data/minecraft/tags/blocks/mineable/shovel.json
