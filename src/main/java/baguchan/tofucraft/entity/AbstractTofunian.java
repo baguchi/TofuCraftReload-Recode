@@ -2,6 +2,7 @@ package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Pose;
@@ -31,6 +32,12 @@ public abstract class AbstractTofunian extends AbstractVillager {
 	@Override
 	protected SoundEvent getAmbientSound() {
 		return TofuSounds.TOFUNIAN_AMBIENT;
+	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getHurtSound(DamageSource p_21239_) {
+		return TofuSounds.TOFUNIAN_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {

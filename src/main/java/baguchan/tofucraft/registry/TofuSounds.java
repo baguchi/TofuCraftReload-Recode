@@ -22,6 +22,7 @@ public class TofuSounds {
 	public static final SoundEvent TOFUNIAN_NO = createEvent("mob.tofunian.no");
 
 	public static final SoundEvent TOFUNIAN_AMBIENT = createEvent("mob.tofunian.ambient");
+	public static final SoundEvent TOFUNIAN_HURT = createEvent("mob.tofunian.hurt");
 	public static final SoundEvent TOFUNIAN_DEATH = createEvent("mob.tofunian.death");
 
 	public static final SoundEvent ZOMBIE_TOFUNIAN_IDLE = createEvent("mob.zombie_tofunian.idle");
