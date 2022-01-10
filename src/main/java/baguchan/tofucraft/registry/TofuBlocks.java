@@ -332,7 +332,7 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(SALTPAN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(SALT_FURNACE, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(MORIJIO, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
-		TofuItems.register(registry, new BlockItem(TOFUCAKE, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUCAKE, new Item.Properties().stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(TOFUBED, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT).stacksTo(1)) {
 			@Override
