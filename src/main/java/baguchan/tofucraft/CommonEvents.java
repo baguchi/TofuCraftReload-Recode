@@ -19,11 +19,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.village.VillageSiegeEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -134,6 +136,23 @@ public class CommonEvents {
 					event.setResult(Event.Result.DENY);
 				}
 			}
+	}
+
+	@SubscribeEvent
+	public static void onCheckZombieSiege(VillageSiegeEvent event) {
+		Vec3 vec3 = event.getAttemptedSpawnPos();
+		LevelAccessor level = event.getWorld();
+		if (level instanceof ServerLevel) {
+			Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
+				return p_184069_ == TofuPoisAndProfession.MORIJIO_POI;
+			}, (p_184055_) -> {
+				return true;
+			}, new BlockPos(vec3), 64, PoiManager.Occupancy.ANY);
+
+			if (optional.isPresent()) {
+				event.setCanceled(true);
+			}
+		}
 	}
 
 	@SubscribeEvent
