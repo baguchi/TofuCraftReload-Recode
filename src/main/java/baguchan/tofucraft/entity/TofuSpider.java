@@ -120,13 +120,16 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	}
 
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
-		FukumameEntity bone = new FukumameEntity(this.level, this);
-		double d1 = p_29912_.getX() - this.getX();
-		double d2 = p_29912_.getEyeY() - this.getEyeY();
-		double d3 = p_29912_.getZ() - this.getZ();
-		bone.shoot(d1, d2, d3, 1.4F, 2.0F + p_29913_);
+		for (int i = 0; i < 3; i++) {
+			FukumameEntity bone = new FukumameEntity(this.level, this);
+			double d1 = p_29912_.getX() - this.getX();
+			double d2 = p_29912_.getEyeY() - this.getEyeY();
+			double d3 = p_29912_.getZ() - this.getZ();
+			float d0 = this.random.nextFloat() * 20.0F - 10.0F;
+			bone.shootFromRotation(this, this.getXRot() + d0 * 0.3F, this.getYRot() + d0, 0.0F, 1.5F, 0.8F);
 
-		this.level.addFreshEntity(bone);
+			this.level.addFreshEntity(bone);
+		}
 	}
 
 	@Override
