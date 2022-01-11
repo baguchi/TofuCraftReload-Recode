@@ -25,7 +25,7 @@ public class NetherFukumameItem extends Item {
 			for (int i = 0; i < 5; i++) {
 				NetherFukumameEntity fukumamentity = new NetherFukumameEntity(levelIn, playerIn);
 				float d0 = levelIn.random.nextFloat() * 20.0F - 10.0F;
-				fukumamentity.shootFromRotation(playerIn, playerIn.getXRot() + d0 * 0.25F, playerIn.getYRot() + d0, 0.0F, 1.5F, 0.8F);
+				fukumamentity.shootFromRotation(playerIn, playerIn.getXRot() + d0 * 0.325F, playerIn.getYRot() + d0, 0.0F, 1.5F, 0.8F);
 				levelIn.addFreshEntity(fukumamentity);
 			}
 		}

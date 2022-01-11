@@ -2,6 +2,7 @@ package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -125,8 +126,8 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 			double d1 = p_29912_.getX() - this.getX();
 			double d2 = p_29912_.getEyeY() - this.getEyeY();
 			double d3 = p_29912_.getZ() - this.getZ();
-			float d0 = this.random.nextFloat() * 20.0F - 10.0F;
-			bone.shootFromRotation(this, this.getXRot() + d0 * 0.3F, this.getYRot() + d0, 0.0F, 1.5F, 0.8F);
+			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
+			bone.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
 
 			this.level.addFreshEntity(bone);
 		}
