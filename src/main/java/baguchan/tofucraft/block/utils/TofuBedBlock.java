@@ -11,7 +11,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.DyeColor;
@@ -102,11 +102,11 @@ public class TofuBedBlock extends BedBlock {
 	}
 
 	private boolean kickVillagerOutOfBed(Level p_49491_, BlockPos p_49492_) {
-		List<Villager> var3 = p_49491_.getEntitiesOfClass(Villager.class, new AABB(p_49492_), LivingEntity::isSleeping);
+		List<AbstractVillager> var3 = p_49491_.getEntitiesOfClass(AbstractVillager.class, new AABB(p_49492_), LivingEntity::isSleeping);
 		if (var3.isEmpty()) {
 			return false;
 		} else {
-			((Villager) var3.get(0)).stopSleeping();
+			((AbstractVillager) var3.get(0)).stopSleeping();
 			return true;
 		}
 	}
