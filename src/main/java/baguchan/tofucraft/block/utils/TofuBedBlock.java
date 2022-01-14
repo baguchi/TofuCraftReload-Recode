@@ -14,6 +14,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
@@ -36,7 +37,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class TofuBedBlock extends HorizontalDirectionalBlock implements EntityBlock {
+public class TofuBedBlock extends BedBlock {
 	public static final EnumProperty<BedPart> PART;
 	public static final BooleanProperty OCCUPIED;
 	protected static final int HEIGHT = 9;
@@ -52,15 +53,9 @@ public class TofuBedBlock extends HorizontalDirectionalBlock implements EntityBl
 	protected static final VoxelShape EAST_SHAPE;
 
 	public TofuBedBlock(Properties p_49455_) {
-		super(p_49455_);
+		super(DyeColor.WHITE, p_49455_);
 
 		this.registerDefaultState((BlockState) ((BlockState) ((BlockState) this.stateDefinition.any()).setValue(PART, BedPart.FOOT)).setValue(OCCUPIED, false));
-	}
-
-	@Nullable
-	public static Direction getBedOrientation(BlockGetter p_49486_, BlockPos p_49487_) {
-		BlockState var2 = p_49486_.getBlockState(p_49487_);
-		return var2.getBlock() instanceof BedBlock ? (Direction) var2.getValue(FACING) : null;
 	}
 
 	public InteractionResult use(BlockState p_49515_, Level p_49516_, BlockPos p_49517_, Player p_49518_, InteractionHand p_49519_, BlockHitResult p_49520_) {
@@ -114,28 +109,6 @@ public class TofuBedBlock extends HorizontalDirectionalBlock implements EntityBl
 			((Villager) var3.get(0)).stopSleeping();
 			return true;
 		}
-	}
-
-	public void fallOn(Level p_152169_, BlockState p_152170_, BlockPos p_152171_, Entity p_152172_, float p_152173_) {
-		super.fallOn(p_152169_, p_152170_, p_152171_, p_152172_, p_152173_ * 0.5F);
-	}
-
-	public void updateEntityAfterFallOn(BlockGetter p_49483_, Entity p_49484_) {
-		if (p_49484_.isSuppressingBounce()) {
-			super.updateEntityAfterFallOn(p_49483_, p_49484_);
-		} else {
-			this.bounceUp(p_49484_);
-		}
-
-	}
-
-	private void bounceUp(Entity p_49457_) {
-		Vec3 var2 = p_49457_.getDeltaMovement();
-		if (var2.y < 0.0D) {
-			double var3 = p_49457_ instanceof LivingEntity ? 1.0D : 0.8D;
-			p_49457_.setDeltaMovement(var2.x, -var2.y * 0.6600000262260437D * var3, var2.z);
-		}
-
 	}
 
 	public BlockState updateShape(BlockState p_49525_, Direction p_49526_, BlockState p_49527_, LevelAccessor p_49528_, BlockPos p_49529_, BlockPos p_49530_) {
