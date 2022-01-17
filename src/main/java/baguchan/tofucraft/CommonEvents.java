@@ -13,6 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -124,18 +125,21 @@ public class CommonEvents {
 	public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
 		LivingEntity livingEntity = event.getEntityLiving();
 		LevelAccessor level = event.getWorld();
-		if (event.getSpawnReason() != MobSpawnType.SPAWNER && event.getSpawnReason() != MobSpawnType.EVENT && event.getSpawnReason() != MobSpawnType.BREEDING && event.getSpawnReason() != MobSpawnType.PATROL)
-			if (level instanceof ServerLevel) {
-				Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
-					return p_184069_ == TofuPoisAndProfession.MORIJIO_POI;
-				}, (p_184055_) -> {
-					return true;
-				}, livingEntity.blockPosition(), 64, PoiManager.Occupancy.ANY);
+		if (!(livingEntity instanceof Animal)) {
+			if (event.getSpawnReason() != MobSpawnType.SPAWNER && event.getSpawnReason() != MobSpawnType.EVENT && event.getSpawnReason() != MobSpawnType.BREEDING && event.getSpawnReason() != MobSpawnType.PATROL) {
+				if (level instanceof ServerLevel) {
+					Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
+						return p_184069_ == TofuPoisAndProfession.MORIJIO_POI;
+					}, (p_184055_) -> {
+						return true;
+					}, livingEntity.blockPosition(), 48, PoiManager.Occupancy.ANY);
 
-				if (optional.isPresent()) {
-					event.setResult(Event.Result.DENY);
+					if (optional.isPresent()) {
+						event.setResult(Event.Result.DENY);
+					}
 				}
 			}
+		}
 	}
 
 	@SubscribeEvent
@@ -147,7 +151,7 @@ public class CommonEvents {
 				return p_184069_ == TofuPoisAndProfession.MORIJIO_POI;
 			}, (p_184055_) -> {
 				return true;
-			}, new BlockPos(vec3), 64, PoiManager.Occupancy.ANY);
+			}, new BlockPos(vec3), 48, PoiManager.Occupancy.ANY);
 
 			if (optional.isPresent()) {
 				event.setCanceled(true);
