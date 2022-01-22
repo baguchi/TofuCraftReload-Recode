@@ -37,7 +37,7 @@ public class TofuItems {
 	public static final Item TOFUGRILLED = new Item((new Item.Properties()).food(TofuFoods.TOFUGRILLED).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item TOFUZUNDA = new Item((new Item.Properties()).food(TofuFoods.TOFUZUNDA).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item BITTERN = new BitternItem((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
-	public static final Item SALT = new BitternItem((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item SALT = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item SEEDS_SOYBEANS = new ItemNameBlockItem(TofuBlocks.SOYBEAN, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item SEEDS_SOYBEANS_NETHER = new ItemNameBlockItem(TofuBlocks.SOYBEAN_NETHER, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item SEEDS_SOYBEANS_SOUL = new ItemNameBlockItem(TofuBlocks.SOYBEAN_SOUL, (new Item.Properties()).rarity(Rarity.UNCOMMON).tab(TofuCreativeModeTab.TOFUCRAFT));
