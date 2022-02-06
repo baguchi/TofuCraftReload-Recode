@@ -148,7 +148,7 @@ public class TofuItems {
 	public static final Item TOMATO_SOYBEAN_STEW = new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.TOMATO_SOYBEAN_STEW).tab(TofuCreativeModeTab.TOFU_DELIGHT));
 	public static final Item YUDOFU = new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.YUDOFU).tab(TofuCreativeModeTab.TOFU_DELIGHT));
 	public static final Item EDAMAME_RICE = new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.EDAMAME_RICE).tab(TofuCreativeModeTab.TOFU_DELIGHT));
-	public static final Item DASHI = new Item((new Item.Properties()).stacksTo(1).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFU_DELIGHT));
+	public static final Item BOTTLE_DASHI = new Item((new Item.Properties()).stacksTo(1).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFU_DELIGHT));
 	public static final Item TOFU_EGG = new Item((new Item.Properties()).food(TofuFoods.TOFU_EGG).tab(TofuCreativeModeTab.TOFU_DELIGHT));
 
 
@@ -278,7 +278,7 @@ public class TofuItems {
 		register(registry, TOMATO_SOYBEAN_STEW, "tomato_soybean_stew");
 		register(registry, YUDOFU, "yudofu");
 		register(registry, EDAMAME_RICE, "edamame_rice");
-		register(registry, DASHI, "dashi");
+		register(registry, BOTTLE_DASHI, "bottle_dashi");
 		register(registry, TOFU_EGG, "tofuegg");
 
 		DispenseItemBehavior dispenseitembehavior1 = new DefaultDispenseItemBehavior() {

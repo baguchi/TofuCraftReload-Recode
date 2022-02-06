@@ -213,7 +213,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.YUDOFU);
 		singleTex(TofuItems.EDAMAME_RICE);
 
-		singleTex(TofuItems.DASHI);
+		singleTex(TofuItems.BOTTLE_DASHI);
 		singleTex(TofuItems.TOFU_EGG);
 	}
 
