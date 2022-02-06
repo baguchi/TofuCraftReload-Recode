@@ -12,8 +12,8 @@ import baguchan.tofucraft.message.TFStorageSoymilkMessage;
 import baguchan.tofucraft.registry.TofuFoliagePlacerType;
 import baguchan.tofucraft.registry.TofuNoiseGeneratorSettings;
 import baguchan.tofucraft.utils.JigsawHelper;
-import baguchan.tofucraft.world.gen.feature.ModNetherFeatures;
-import baguchan.tofucraft.world.gen.feature.ModTreeFeatures;
+import baguchan.tofucraft.world.gen.feature.ModNetherFeature;
+import baguchan.tofucraft.world.gen.feature.ModTreeFeature;
 import baguchan.tofucraft.world.gen.feature.TofuWorldFeatures;
 import baguchan.tofucraft.world.placement.ModNetherPlacements;
 import baguchan.tofucraft.world.placement.TofuWorldPlacements;
@@ -72,10 +72,10 @@ public class TofuCraftReload {
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
-		ModNetherFeatures.init();
+		ModNetherFeature.init();
 		ModNetherPlacements.init();
 		TofuFoliagePlacerType.init();
-		ModTreeFeatures.init();
+		ModTreeFeature.init();
 		TofuWorldFeatures.init();
 		TofuWorldPlacements.init();
 		TofuNoiseGeneratorSettings.init();

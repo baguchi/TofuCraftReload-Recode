@@ -37,7 +37,7 @@ public class TofuWorldFeatures {
 	public static final ConfiguredFeature<?, ?> BIG_ZUNDA_TOFU_MUSHUROOM = register("tofucraft:big_zunda_tofu_mushroom", TofuFeatures.BIG_ZUNDA_TOFU_MUSHROOM.configured(RandomFeatureConfiguration.NONE));
 
 
-	public static final ConfiguredFeature<RandomFeatureConfiguration, ?> TOFU_TREES = register("tofucraft:tofu_trees", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(ModTreeFeatures.TOFU_TREE_BIG.placed(), 0.33333334F)), ModTreeFeatures.TOFU_TREE.placed())));
+	public static final ConfiguredFeature<RandomFeatureConfiguration, ?> TOFU_TREES = register("tofucraft:tofu_trees", Feature.RANDOM_SELECTOR.configured(new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(ModTreeFeature.TOFU_TREE_BIG.placed(), 0.33333334F)), ModTreeFeature.TOFU_TREE.placed())));
 
 	private static RandomPatchConfiguration grassPatch(BlockStateProvider p_195203_, int p_195204_) {
 		return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(p_195203_)).onlyWhenEmpty());

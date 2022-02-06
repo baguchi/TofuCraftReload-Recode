@@ -13,7 +13,7 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 
-public class ModTreeFeatures {
+public class ModTreeFeature {
 	public static final ConfiguredFeature<TreeConfiguration, ?> TOFU_TREE = register("tofucraft:tofu_tree", Feature.TREE.configured(createTofuTree().build()));
 	public static final ConfiguredFeature<TreeConfiguration, ?> TOFU_TREE_BIG = register("tofucraft:tofu_tree_big", Feature.TREE.configured(createTofuTreeBig().build()));
 

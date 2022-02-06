@@ -18,7 +18,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 
 import java.util.Random;
 
-public class TemplateFeatures extends Feature<NoneFeatureConfiguration> {
+public class TemplateFeature extends Feature<NoneFeatureConfiguration> {
 	protected final int offsetX;
 
 	protected final int offsetZ;
@@ -26,7 +26,7 @@ public class TemplateFeatures extends Feature<NoneFeatureConfiguration> {
 	private final ResourceLocation[] TEMPLATE;
 
 
-	public TemplateFeatures(Codec<NoneFeatureConfiguration> codec, int offsetX, int offsetZ, ResourceLocation[] template) {
+	public TemplateFeature(Codec<NoneFeatureConfiguration> codec, int offsetX, int offsetZ, ResourceLocation[] template) {
 		super(codec);
 		this.offsetX = offsetX;
 		this.offsetZ = offsetZ;
