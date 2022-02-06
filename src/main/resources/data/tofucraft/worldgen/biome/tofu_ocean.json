@@ -39,14 +39,11 @@
     ],
     [],
     [
-      "tofucraft:tofu_trees_plains",
       "tofucraft:patch_leek"
     ],
     [
       "minecraft:freeze_top_layer"
     ]
-  ],
-  "starts": [
   ],
   "spawners": {
     "monster": [

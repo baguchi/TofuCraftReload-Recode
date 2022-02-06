@@ -46,8 +46,6 @@
       "minecraft:freeze_top_layer"
     ]
   ],
-  "starts": [
-  ],
   "spawners": {
     "monster": [
       {

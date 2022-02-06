@@ -44,9 +44,6 @@
       "minecraft:freeze_top_layer"
     ]
   ],
-  "starts": [
-    "tofucraft:tofu_village"
-  ],
   "spawners": {
     "monster": [
       {
