@@ -9,7 +9,6 @@ import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.message.TFStorageSoymilkMessage;
-import baguchan.tofucraft.registry.TofuFoliagePlacerType;
 import baguchan.tofucraft.registry.TofuNoiseGeneratorSettings;
 import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.gen.feature.ModNetherFeature;
@@ -74,7 +73,6 @@ public class TofuCraftReload {
 	private void setup(FMLCommonSetupEvent event) {
 		ModNetherFeature.init();
 		ModNetherPlacements.init();
-		TofuFoliagePlacerType.init();
 		ModTreeFeature.init();
 		TofuWorldFeatures.init();
 		TofuWorldPlacements.init();
