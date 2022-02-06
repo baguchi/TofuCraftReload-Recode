@@ -4,7 +4,7 @@
   "precipitation": "rain",
   "temperature": 0.7,
   "downfall": 0.8,
-  "category": "plains",
+  "category": "ocean",
   "effects": {
     "sky_color": 8037887,
     "fog_color": 12638463,

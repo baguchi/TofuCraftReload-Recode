@@ -9,6 +9,7 @@ import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.message.TFStorageSoymilkMessage;
+import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuNoiseGeneratorSettings;
 import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.gen.feature.ModNetherFeature;
@@ -78,6 +79,7 @@ public class TofuCraftReload {
 		TofuWorldPlacements.init();
 		TofuNoiseGeneratorSettings.init();
 		TofuEnergyMap.init();
+		TofuBiomes.init();
 	}
 
 

@@ -1,15 +1,15 @@
 {
   "precipitation": "rain",
-  "temperature": 0.85,
-  "downfall": 0.75,
-  "category": "plains",
+  "temperature": 0.3,
+  "downfall": 0.6,
+  "category": "extreme_hills",
   "effects": {
     "sky_color": 8037887,
     "fog_color": 12638463,
     "water_color": 4159204,
     "water_fog_color": 329011,
     "music": {
-      "sound": "tofucraft:music.rough_ground",
+      "sound": "tofucraft:music.soft",
       "min_delay": 12000,
       "max_delay": 24000,
       "replace_current_music": false
@@ -27,8 +27,7 @@
     [],
     [
     ],
-    [
-    ],
+    [],
     [],
     [],
     [
@@ -38,7 +37,8 @@
     ],
     [],
     [
-      "tofucraft:tofu_building"
+      "tofucraft:tofu_trees_plains",
+      "tofucraft:patch_leek"
     ],
     [
       "minecraft:freeze_top_layer"
