@@ -6,10 +6,7 @@ import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
-import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
-import baguchan.tofucraft.block.utils.SaltPanBlock;
-import baguchan.tofucraft.block.utils.TofuBedBlock;
-import baguchan.tofucraft.block.utils.TofuChestBlock;
+import baguchan.tofucraft.block.utils.*;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
 import baguchan.tofucraft.world.gen.feature.TofuWorldFeatures;
@@ -144,6 +141,9 @@ public class TofuBlocks {
 		return p_50872_.getValue(SaltFurnaceBlock.LIT) ? 13 : 0;
 	}));
 	public static final Block MORIJIO = new MorijioBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F, 3.0F).noOcclusion().sound(SoundType.WOOD));
+	//BARREL
+	public static final Block BARREL_MISO = new MisoBarrelBlock(TofuItems.BOTTLE_SOYSAUSE, BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().noOcclusion().sound(SoundType.WOOD));
+
 
 	public static final Block TOFUCAKE = new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL));
 
@@ -251,6 +251,9 @@ public class TofuBlocks {
 		registry.getRegistry().register(SALTPAN.setRegistryName("blocksaltpan"));
 		registry.getRegistry().register(SALT_FURNACE.setRegistryName("salt_furnace"));
 		registry.getRegistry().register(MORIJIO.setRegistryName("morijio"));
+
+		registry.getRegistry().register(BARREL_MISO.setRegistryName("barrel_miso"));
+
 		registry.getRegistry().register(TOFUCAKE.setRegistryName("tofucake"));
 
 		registry.getRegistry().register(TOFUBED.setRegistryName("tofubed"));
@@ -341,6 +344,9 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(SALTPAN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(SALT_FURNACE, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(MORIJIO, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+
+		TofuItems.register(registry, new BlockItem(BARREL_MISO, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+
 		TofuItems.register(registry, new BlockItem(TOFUCAKE, new Item.Properties().stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(TOFUBED, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT).stacksTo(1)) {

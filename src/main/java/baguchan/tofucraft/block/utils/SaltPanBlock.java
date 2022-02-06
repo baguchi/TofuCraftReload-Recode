@@ -102,8 +102,6 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		if (worldIn.isClientSide)
-			return InteractionResult.SUCCESS;
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		Stat stat = getStat(state);
 		if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
@@ -239,13 +237,6 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 			this.meta = meta;
 			this.name = name;
 		}
-
-		public static Stat byMetadata(int meta) {
-			if (meta < 0 || meta >= META_LOOKUP.length)
-				meta = 0;
-			return META_LOOKUP[meta];
-		}
-
 		public int getMeta() {
 			return this.meta;
 		}

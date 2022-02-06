@@ -40,8 +40,9 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TF_STORAGE);
 		tag(BlockTags.MINEABLE_WITH_AXE).add(TofuBlocks.SALTPAN
 				, TofuBlocks.LEEK_GREEN_STEM, TofuBlocks.LEEK_STEM
-				, TofuBlocks.TOFU_STEM, TofuBlocks.TOFU_STEM_PLANKS,
-				TofuBlocks.MORIJIO);
+				, TofuBlocks.TOFU_STEM, TofuBlocks.TOFU_STEM_PLANKS
+				, TofuBlocks.MORIJIO
+				, TofuBlocks.BARREL_MISO);
 
 		tag(BlockTags.NEEDS_STONE_TOOL)
 				.add(TofuBlocks.METALTOFU, TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.TOFUSLAB_METAL, TofuBlocks.TOFULADDER_METAL, TofuBlocks.TOFUFENCE_METAL);

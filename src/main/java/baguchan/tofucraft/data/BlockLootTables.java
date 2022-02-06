@@ -1,6 +1,8 @@
 package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
+import baguchan.tofucraft.block.utils.MisoBarrelBlock;
+import baguchan.tofucraft.block.utils.WorkedBarrelBaseBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -10,6 +12,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -18,6 +21,7 @@ import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -132,6 +136,13 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.SALTPAN);
 		dropSelf(TofuBlocks.SALT_FURNACE);
 		dropSelf(TofuBlocks.MORIJIO);
+
+		LootItemCondition.Builder lootitemcondition$builder4 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WorkedBarrelBaseBlock.Stat.USED));
+		LootItemCondition.Builder lootitemcondition$builder5 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WorkedBarrelBaseBlock.Stat.FLUID));
+
+		add(TofuBlocks.BARREL_MISO, applyExplosionDecay(TofuBlocks.BARREL_MISO, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.MISO).when(lootitemcondition$builder4).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion()))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.MISO).when(lootitemcondition$builder5).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F)))))));
+
+
 		registerEmpty(TofuBlocks.TOFUCAKE);
 
 		this.add(TofuBlocks.TOFUBED, (p_124233_) -> {

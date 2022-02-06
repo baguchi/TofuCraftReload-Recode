@@ -108,6 +108,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.KOUJI_BASE);
 		singleTex(TofuItems.KOUJI);
 
+		singleTex(TofuItems.MISO);
+		singleTex(TofuItems.BOTTLE_SOYSAUSE);
+
 		singleTex(TofuItems.LEEK);
 		singleTex(TofuItems.YUBA);
 

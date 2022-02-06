@@ -36,7 +36,7 @@ public class TofuItems {
 	public static final Item TOFUSOUL = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item TOFUGRILLED = new Item((new Item.Properties()).food(TofuFoods.TOFUGRILLED).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item TOFUZUNDA = new Item((new Item.Properties()).food(TofuFoods.TOFUZUNDA).tab(TofuCreativeModeTab.TOFUCRAFT));
-	public static final Item BITTERN = new BitternItem((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item BITTERN = new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item SALT = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item SEEDS_SOYBEANS = new ItemNameBlockItem(TofuBlocks.SOYBEAN, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item SEEDS_SOYBEANS_NETHER = new ItemNameBlockItem(TofuBlocks.SOYBEAN_NETHER, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
@@ -48,6 +48,9 @@ public class TofuItems {
 
 	public static final Item KOUJI_BASE = new KoujiBaseItem((new Item.Properties()).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item KOUJI = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+
+	public static final Item MISO = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item BOTTLE_SOYSAUSE = new Item((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).tab(TofuCreativeModeTab.TOFUCRAFT));
 
 	public static final Item LEEK = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item YUBA = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
@@ -200,6 +203,9 @@ public class TofuItems {
 
 		register(registry, KOUJI_BASE, "koujibase");
 		register(registry, KOUJI, "kouji");
+
+		register(registry, MISO, "miso");
+		register(registry, BOTTLE_SOYSAUSE, "bottle_soysause");
 
 		register(registry, LEEK, "leek");
 		register(registry, YUBA, "yuba");

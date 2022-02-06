@@ -188,6 +188,16 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.SALT))
 				.save(consumer);
 
+		ShapedRecipeBuilder.shaped(TofuBlocks.BARREL_MISO, 1)
+				.pattern("SSS")
+				.pattern("KKK")
+				.pattern(" B ")
+				.define('S', TofuItems.SALT)
+				.define('K', TofuItems.KOUJI)
+				.define('B', Tags.Items.BARRELS_WOODEN)
+				.unlockedBy("has_item", has(TofuItems.KOUJI))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(TofuBlocks.TOFUCAKE)
 				.pattern("###")
 				.pattern("SES")
