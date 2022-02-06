@@ -83,14 +83,14 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUSTAIR_HELLBRICK);
 		dropSelf(TofuBlocks.TOFUSTAIR_SOULBRICK);
 
-		dropSelf(TofuBlocks.TOFUSLAB_KINU);
-		dropSelf(TofuBlocks.TOFUSLAB_MOMEN);
-		dropSelf(TofuBlocks.TOFUSLAB_ISHI);
-		dropSelf(TofuBlocks.TOFUSLAB_METAL);
-		dropSelf(TofuBlocks.TOFUSLAB_ZUNDA);
-		dropSelf(TofuBlocks.TOFUSLAB_ISHIBRICK);
-		dropSelf(TofuBlocks.TOFUSLAB_HELLBRICK);
-		dropSelf(TofuBlocks.TOFUSLAB_SOULBRICK);
+		registerSlab(TofuBlocks.TOFUSLAB_KINU);
+		registerSlab(TofuBlocks.TOFUSLAB_MOMEN);
+		registerSlab(TofuBlocks.TOFUSLAB_ISHI);
+		registerSlab(TofuBlocks.TOFUSLAB_METAL);
+		registerSlab(TofuBlocks.TOFUSLAB_ZUNDA);
+		registerSlab(TofuBlocks.TOFUSLAB_ISHIBRICK);
+		registerSlab(TofuBlocks.TOFUSLAB_HELLBRICK);
+		registerSlab(TofuBlocks.TOFUSLAB_SOULBRICK);
 
 		dropSelf(TofuBlocks.TOFUFENCE_KINU);
 		dropSelf(TofuBlocks.TOFUFENCE_MOMEN);
@@ -143,7 +143,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 
 		registerTofuDrop(TofuBlocks.EGGTOFU, TofuItems.TOFU_EGG);
 		dropSelf(TofuBlocks.TOFUSTAIR_EGGTOFU);
-		dropSelf(TofuBlocks.TOFUSLAB_EGGTOFU);
+		registerSlab(TofuBlocks.TOFUSLAB_EGGTOFU);
 	}
 
 	protected static LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {
@@ -172,6 +172,10 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 
 	private void registerEmpty(Block b) {
 		add(b, LootTable.lootTable());
+	}
+
+	private void registerSlab(Block b) {
+		add(b, createSlabItemTable(b));
 	}
 
 	@Override
