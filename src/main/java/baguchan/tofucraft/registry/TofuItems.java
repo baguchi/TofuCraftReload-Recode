@@ -157,6 +157,7 @@ public class TofuItems {
 	public static final Item EDAMAME_RICE = new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.EDAMAME_RICE).tab(TofuCreativeModeTab.TOFU_DELIGHT));
 	public static final Item BOTTLE_DASHI = new Item((new Item.Properties()).stacksTo(1).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFU_DELIGHT));
 	public static final Item TOFU_EGG = new Item((new Item.Properties()).food(TofuFoods.TOFU_EGG).tab(TofuCreativeModeTab.TOFU_DELIGHT));
+	public static final Item SOYSAUSE_RAMEN = new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SOYSAUSE_RAMEN).tab(TofuCreativeModeTab.TOFU_DELIGHT));
 
 
 	public static void register(RegistryEvent.Register<Item> registry, Item item, String id) {
@@ -294,6 +295,7 @@ public class TofuItems {
 		register(registry, EDAMAME_RICE, "edamame_rice");
 		register(registry, BOTTLE_DASHI, "bottle_dashi");
 		register(registry, TOFU_EGG, "tofuegg");
+		register(registry, SOYSAUSE_RAMEN, "soysause_ramen");
 
 		DispenseItemBehavior dispenseitembehavior1 = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
