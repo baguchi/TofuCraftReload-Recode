@@ -45,6 +45,10 @@ public class TofuItems {
 	public static final Item KINAKO = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item EDAMAME = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item BOILED_EDAMAME = new Item((new Item.Properties()).food(TofuFoods.BOILED_EDAMAME).tab(TofuCreativeModeTab.TOFUCRAFT));
+
+	public static final Item KOUJI_BASE = new KoujiBaseItem((new Item.Properties()).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item KOUJI = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
+
 	public static final Item LEEK = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item YUBA = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item ZUNDA = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
@@ -193,6 +197,10 @@ public class TofuItems {
 		register(registry, KINAKO, "kinako");
 		register(registry, EDAMAME, "edamame");
 		register(registry, BOILED_EDAMAME, "edamame_boild");
+
+		register(registry, KOUJI_BASE, "koujibase");
+		register(registry, KOUJI, "kouji");
+
 		register(registry, LEEK, "leek");
 		register(registry, YUBA, "yuba");
 

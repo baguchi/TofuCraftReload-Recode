@@ -410,5 +410,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.EGGTOFU.asItem(), TofuItems.TOFU_EGG);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_EGGTOFU, TofuBlocks.EGGTOFU);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_EGGTOFU, TofuBlocks.EGGTOFU);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.KOUJI_BASE, 1)
+				.requires(TofuItems.SEEDS_SOYBEANS)
+				.requires(Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS))
+				.save(consumer);
 	}
 }

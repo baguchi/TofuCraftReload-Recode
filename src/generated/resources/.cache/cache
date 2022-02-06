@@ -168,6 +168,8 @@ e105ad3c392ef63c5344963df9462730ac421e96 assets/tofucraft/models/item/cooked_tof
 5e42492d9dc9b9e0098ea2f04582996487b22ccb assets/tofucraft/models/item/kinako.json
 7071eb970429a28a3fed4dae913dcc753dd9d7e0 assets/tofucraft/models/item/kinako_mochi.json
 c6ebdd5f4efa5a29f37415f236ea67655cb1e9d0 assets/tofucraft/models/item/kinakomanju.json
+12874e054afd3d50ef25662a4cd2fc1d7db85a9b assets/tofucraft/models/item/kouji.json
+9e79c9f2ba8b527254c6bc7baa2d0eefd64db1a6 assets/tofucraft/models/item/koujibase.json
 24f0c80119aecc5fd3bc05d0ea0d26dca22d5aa6 assets/tofucraft/models/item/leaves_tofu.json
 f82ed758dc50db6cba60fbbd799149f5640c1b02 assets/tofucraft/models/item/leek.json
 cee528b40077a42612f42b6b3d8b742cb63b7d05 assets/tofucraft/models/item/leek_green_stem.json
@@ -386,6 +388,7 @@ de7c35f7d9c512b412a51295e7e2dc867aca1f43 data/tofucraft/advancements/recipes/tof
 49ad2059f45e4045a4750da4054920553645399b data/tofucraft/advancements/recipes/tofucraft/kinako.json
 63779e65d806b2456ca46412223bfe86abc2d844 data/tofucraft/advancements/recipes/tofucraft/kinako_mochi.json
 2543158b699c5df27b32d81e1e9c414571020135 data/tofucraft/advancements/recipes/tofucraft/kinakomanju.json
+c5f24dc344de9f6d688fcc58837be4fc2c538b24 data/tofucraft/advancements/recipes/tofucraft/koujibase.json
 2405942fd8ce55d4acb43f7e4eda62a76f1c9aba data/tofucraft/advancements/recipes/tofucraft/morijio.json
 9564b7fb25f7454ee6b4f2ddc943fb6afb798f51 data/tofucraft/advancements/recipes/tofucraft/nether_fukumame.json
 17dcd8d70f412484db2a1c7b1ab17347231136b8 data/tofucraft/advancements/recipes/tofucraft/nethermanju.json
@@ -618,6 +621,7 @@ d4765d15949d155585df76be2a5ea707c2c73bf7 data/tofucraft/recipes/equipment/tofu_s
 9ea55fe15d5c9c3cdd9af16ea4b4a1acded0e126 data/tofucraft/recipes/kinako.json
 19d2058661a60f9548f6266616e6d872e2969c2c data/tofucraft/recipes/kinako_mochi.json
 a796d895ed6fd9ca4e5368929a3a7170631ce165 data/tofucraft/recipes/kinakomanju.json
+cc046d19da65be9e28be9c28a4e55c30d1189941 data/tofucraft/recipes/koujibase.json
 bbc92629e94d17cc5ff83c9dfe05b671a50cf217 data/tofucraft/recipes/morijio.json
 fc75b830462168dffefd6126f48292ab0b188b63 data/tofucraft/recipes/nether_fukumame.json
 a85134e3c6b96b21dca6ab78cd3bc19dadecccdb data/tofucraft/recipes/nethermanju.json
