@@ -212,6 +212,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOMATO_SOYBEAN_STEW);
 		singleTex(TofuItems.YUDOFU);
 		singleTex(TofuItems.EDAMAME_RICE);
+
+		singleTex(TofuItems.DASHI);
+		singleTex(TofuItems.TOFU_EGG);
 	}
 
 	public ItemModelBuilder torchItem(Block item) {
