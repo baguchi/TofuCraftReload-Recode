@@ -215,6 +215,10 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		singleTex(TofuItems.BOTTLE_DASHI);
 		singleTex(TofuItems.TOFU_EGG);
+
+		toBlock(TofuBlocks.EGGTOFU);
+		toBlock(TofuBlocks.TOFUSTAIR_EGGTOFU);
+		toBlock(TofuBlocks.TOFUSLAB_EGGTOFU);
 	}
 
 	public ItemModelBuilder torchItem(Block item) {

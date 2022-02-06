@@ -81,6 +81,10 @@ public class BlockstateGenerator extends BlockStateProvider {
 		crossBlock(TofuBlocks.LEEK);
 
 		simpleBlock(TofuBlocks.TOFU_PORTAL);
+
+		simpleBlock(TofuBlocks.EGGTOFU);
+		stairs(TofuBlocks.TOFUSTAIR_EGGTOFU, TofuBlocks.EGGTOFU);
+		slab(TofuBlocks.TOFUSLAB_EGGTOFU, TofuBlocks.EGGTOFU);
 	}
 
 	public void torchBlock(Block block, Block wall) {

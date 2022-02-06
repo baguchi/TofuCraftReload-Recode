@@ -140,6 +140,10 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUCHEST);
 
 		dropSelf(TofuBlocks.TF_STORAGE);
+
+		registerTofuDrop(TofuBlocks.EGGTOFU, TofuItems.TOFU_EGG);
+		dropSelf(TofuBlocks.TOFUSTAIR_EGGTOFU);
+		dropSelf(TofuBlocks.TOFUSLAB_EGGTOFU);
 	}
 
 	protected static LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

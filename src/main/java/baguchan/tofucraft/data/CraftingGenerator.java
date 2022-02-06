@@ -406,5 +406,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('P', ItemTags.PLANKS)
 				.unlockedBy("has_item", has(TofuItems.YUBA))
 				.save(consumer);
+
+		tofuBlockItem(consumer, TofuBlocks.EGGTOFU.asItem(), TofuItems.TOFU_EGG);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_EGGTOFU, TofuBlocks.EGGTOFU);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_EGGTOFU, TofuBlocks.EGGTOFU);
 	}
 }

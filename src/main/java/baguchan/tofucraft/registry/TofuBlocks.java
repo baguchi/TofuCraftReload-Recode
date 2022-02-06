@@ -155,6 +155,11 @@ public class TofuBlocks {
 		return p_50872_.getValue(TFStorageBlock.LIT) ? 13 : 0;
 	}));
 
+	//Tofu delight item
+	public static final Block EGGTOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final StairBlock TOFUSTAIR_EGGTOFU = new StairBlock(EGGTOFU::defaultBlockState, BlockBehaviour.Properties.copy(EGGTOFU));
+	public static final SlabBlock TOFUSLAB_EGGTOFU = new SlabBlock(BlockBehaviour.Properties.copy(EGGTOFU));
+
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> registry) {
 		registry.getRegistry().register(SOYMILK.setRegistryName("soymilk"));
@@ -252,6 +257,10 @@ public class TofuBlocks {
 		registry.getRegistry().register(TOFUCHEST.setRegistryName("tofuchest"));
 
 		registry.getRegistry().register(TF_STORAGE.setRegistryName("tf_storage"));
+
+		registry.getRegistry().register(EGGTOFU.setRegistryName("blocktofuegg"));
+		registry.getRegistry().register(TOFUSTAIR_EGGTOFU.setRegistryName("tofustair_egg"));
+		registry.getRegistry().register(TOFUSLAB_EGGTOFU.setRegistryName("tofuslab_egg"));
 	}
 
 	@SubscribeEvent
@@ -390,5 +399,9 @@ public class TofuBlocks {
 		});
 
 		TofuItems.register(registry, new BlockItem(TF_STORAGE, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+
+		TofuItems.register(registry, new BlockItem(EGGTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFU_DELIGHT)));
+		TofuItems.register(registry, new BlockItem(TOFUSTAIR_EGGTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFU_DELIGHT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLAB_EGGTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFU_DELIGHT)));
 	}
 }

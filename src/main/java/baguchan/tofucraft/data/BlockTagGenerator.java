@@ -22,7 +22,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFUSLAB_KINU, TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.TOFUSLAB_ZUNDA
 				, TofuBlocks.TOFULADDER_KINU, TofuBlocks.TOFULADDER_MOMEN
 				, TofuBlocks.TOFUFENCE_KINU, TofuBlocks.TOFUFENCE_MOMEN
-				, TofuBlocks.TOFU_TERRAIN, TofuBlocks.ORE_TOFU_DIAMOND);
+				, TofuBlocks.TOFU_TERRAIN, TofuBlocks.ORE_TOFU_DIAMOND
+				, TofuBlocks.EGGTOFU, TofuBlocks.TOFUSTAIR_EGGTOFU, TofuBlocks.TOFUSLAB_EGGTOFU);
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(TofuBlocks.ISHITOFU, TofuBlocks.ISHITOFU_BRICK, TofuBlocks.ISHITOFU_SMOOTH_BRICK, TofuBlocks.ISHITOFU_CHISELED_BRICK
 				, TofuBlocks.METALTOFU, TofuBlocks.DIAMONDTOFU
 				, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU_SMOOTH_BRICK
