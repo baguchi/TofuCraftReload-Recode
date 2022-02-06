@@ -6,12 +6,7 @@
     "settings": "tofucraft:tofu_world",
     "biome_source": {
       "type": "minecraft:multi_noise",
-      "biomes": [
-        {
-          "biome": "tofucraft:tofu_ocean",
-          "preset": "tofucraft:tofu_world"
-        }
-      ]
+      "preset": "tofucraft:tofu_world"
     }
   }
 }

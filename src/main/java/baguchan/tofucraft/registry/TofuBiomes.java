@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 public class TofuBiomes {
 	public static final ResourceKey<Biome> TOFU_PLAINS = register("tofu_plains");
 	public static final ResourceKey<Biome> TOFU_FOREST = register("tofu_forest");
-	public static final ResourceKey<Biome> TOFU_WASTES = register("tofu_wastes");
+	public static final ResourceKey<Biome> TOFU_WASTES = register("tofu_waste");
 	public static final ResourceKey<Biome> TOFU_MOUNTAIN = register("tofu_mountain");
 
 	public static final ResourceKey<Biome> ZUNDA_FOREST = register("zunda_forest");
