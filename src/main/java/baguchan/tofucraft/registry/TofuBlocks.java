@@ -147,7 +147,7 @@ public class TofuBlocks {
 	public static final Block MORIJIO = new MorijioBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F, 3.0F).noOcclusion().sound(SoundType.WOOD));
 	//BARREL
 	public static final Block BARREL_MISO = new MisoBarrelBlock(TofuItems.BOTTLE_SOYSAUSE, BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD));
-	public static final Block BARREL_MISOTOFU = new BarrelBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD));
+	public static final Block BARREL_MISOTOFU = new WorkedBarrelBaseBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD));
 
 
 	public static final Block TOFUCAKE = new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL));
