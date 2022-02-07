@@ -36,6 +36,8 @@ public class TofuItems {
 	public static final Item TOFUSOUL = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item TOFUGRILLED = new Item((new Item.Properties()).food(TofuFoods.TOFUGRILLED).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item TOFUZUNDA = new Item((new Item.Properties()).food(TofuFoods.TOFUZUNDA).tab(TofuCreativeModeTab.TOFUCRAFT));
+	public static final Item TOFUMISO = new Item((new Item.Properties()).food(TofuFoods.TOFUMISO).tab(TofuCreativeModeTab.TOFUCRAFT));
+
 	public static final Item BITTERN = new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item SALT = new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
 	public static final Item SEEDS_SOYBEANS = new ItemNameBlockItem(TofuBlocks.SOYBEAN, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT));
@@ -184,6 +186,8 @@ public class TofuItems {
 		register(registry, TOFUSOUL, "tofusoul");
 		register(registry, TOFUGRILLED, "tofugrilled");
 		register(registry, TOFUZUNDA, "tofuzunda");
+		register(registry, TOFUMISO, "tofumiso");
+
 		register(registry, BITTERN, "bittern_bottle");
 		register(registry, SALT, "salt");
 

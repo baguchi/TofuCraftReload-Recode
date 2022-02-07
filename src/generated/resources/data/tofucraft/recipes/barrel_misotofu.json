@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "TTT",
+    " B "
+  ],
+  "key": {
+    "M": {
+      "item": "tofucraft:miso"
+    },
+    "T": {
+      "item": "tofucraft:tofumomen"
+    },
+    "B": {
+      "tag": "forge:barrels/wooden"
+    }
+  },
+  "result": {
+    "item": "tofucraft:barrel_misotofu"
+  }
+}

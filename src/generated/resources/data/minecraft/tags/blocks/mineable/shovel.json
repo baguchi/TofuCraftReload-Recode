@@ -21,6 +21,9 @@
     "tofucraft:ore_tofu_diamond",
     "tofucraft:blocktofuegg",
     "tofucraft:tofustair_egg",
-    "tofucraft:tofuslab_egg"
+    "tofucraft:tofuslab_egg",
+    "tofucraft:blocktofumiso",
+    "tofucraft:tofustair_miso",
+    "tofucraft:tofuslab_miso"
   ]
 }

@@ -111,6 +111,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 		tofuBlockItem(consumer, TofuBlocks.GRILLEDTOFU.asItem(), TofuItems.TOFUGRILLED);
 		tofuBlockItem(consumer, TofuBlocks.ZUNDATOFU.asItem(), TofuItems.TOFUZUNDA);
+		tofuBlockItem(consumer, TofuBlocks.MISOTOFU.asItem(), TofuItems.TOFUMISO);
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.ISHITOFU_CHISELED_BRICK)
 				.pattern("#")
@@ -128,6 +129,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_MISO, TofuBlocks.MISOTOFU);
 
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_KINU, TofuBlocks.KINUTOFU);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.MOMENTOFU);
@@ -137,6 +139,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
+		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_MISO, TofuBlocks.MISOTOFU);
 
 		makeFence(consumer, TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
 		makeFence(consumer, TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
@@ -196,6 +199,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('K', TofuItems.KOUJI)
 				.define('B', Tags.Items.BARRELS_WOODEN)
 				.unlockedBy("has_item", has(TofuItems.KOUJI))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(TofuBlocks.BARREL_MISOTOFU, 1)
+				.pattern("MMM")
+				.pattern("TTT")
+				.pattern(" B ")
+				.define('M', TofuItems.MISO)
+				.define('T', TofuItems.TOFUMOMEN)
+				.define('B', Tags.Items.BARRELS_WOODEN)
+				.unlockedBy("has_item", has(TofuItems.MISO))
 				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.TOFUCAKE)

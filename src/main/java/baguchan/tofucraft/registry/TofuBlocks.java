@@ -54,6 +54,7 @@ public class TofuBlocks {
 	public static final Block DIAMONDTOFU = new Block(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	public static final Block GRILLEDTOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block ZUNDATOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final Block MISOTOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 
 	public static final Block HELLTOFU = new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final Block HELLTOFU_BRICK = new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
@@ -71,6 +72,8 @@ public class TofuBlocks {
 	public static final StairBlock TOFUSTAIR_ISHIBRICK = new StairBlock(ISHITOFU_BRICK::defaultBlockState, BlockBehaviour.Properties.copy(ISHITOFU_BRICK));
 	public static final StairBlock TOFUSTAIR_HELLBRICK = new StairBlock(HELLTOFU_BRICK::defaultBlockState, BlockBehaviour.Properties.copy(HELLTOFU_BRICK));
 	public static final StairBlock TOFUSTAIR_SOULBRICK = new StairBlock(SOULTOFU_BRICK::defaultBlockState, BlockBehaviour.Properties.copy(SOULTOFU_BRICK));
+	public static final StairBlock TOFUSTAIR_MISO = new StairBlock(MISOTOFU::defaultBlockState, BlockBehaviour.Properties.copy(MISOTOFU));
+
 
 	public static final SlabBlock TOFUSLAB_KINU = new SlabBlock(BlockBehaviour.Properties.copy(KINUTOFU));
 	public static final SlabBlock TOFUSLAB_MOMEN = new SlabBlock(BlockBehaviour.Properties.copy(MOMENTOFU));
@@ -80,6 +83,7 @@ public class TofuBlocks {
 	public static final SlabBlock TOFUSLAB_ISHIBRICK = new SlabBlock(BlockBehaviour.Properties.copy(ISHITOFU_BRICK));
 	public static final SlabBlock TOFUSLAB_HELLBRICK = new SlabBlock(BlockBehaviour.Properties.copy(HELLTOFU_BRICK));
 	public static final SlabBlock TOFUSLAB_SOULBRICK = new SlabBlock(BlockBehaviour.Properties.copy(SOULTOFU_BRICK));
+	public static final SlabBlock TOFUSLAB_MISO = new SlabBlock(BlockBehaviour.Properties.copy(MISOTOFU));
 
 	public static final Block TOFUTORCH_KINU = new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
 			.noCollission().noOcclusion().sound(SoundType.SNOW), ParticleTypes.FLAME);
@@ -143,6 +147,7 @@ public class TofuBlocks {
 	public static final Block MORIJIO = new MorijioBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F, 3.0F).noOcclusion().sound(SoundType.WOOD));
 	//BARREL
 	public static final Block BARREL_MISO = new MisoBarrelBlock(TofuItems.BOTTLE_SOYSAUSE, BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD));
+	public static final Block BARREL_MISOTOFU = new BarrelBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD));
 
 
 	public static final Block TOFUCAKE = new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL));
@@ -181,6 +186,7 @@ public class TofuBlocks {
 		registry.getRegistry().register(DIAMONDTOFU.setRegistryName("blocktofudiamond"));
 		registry.getRegistry().register(GRILLEDTOFU.setRegistryName("blocktofugrilled"));
 		registry.getRegistry().register(ZUNDATOFU.setRegistryName("blocktofuzunda"));
+		registry.getRegistry().register(MISOTOFU.setRegistryName("blocktofumiso"));
 
 		registry.getRegistry().register(HELLTOFU.setRegistryName("blocktofuhell"));
 		registry.getRegistry().register(HELLTOFU_BRICK.setRegistryName("tofuhell_brick"));
@@ -197,6 +203,7 @@ public class TofuBlocks {
 		registry.getRegistry().register(TOFUSTAIR_ISHIBRICK.setRegistryName("tofustair_ishibrick"));
 		registry.getRegistry().register(TOFUSTAIR_HELLBRICK.setRegistryName("tofustair_hellbrick"));
 		registry.getRegistry().register(TOFUSTAIR_SOULBRICK.setRegistryName("tofustair_soulbrick"));
+		registry.getRegistry().register(TOFUSTAIR_MISO.setRegistryName("tofustair_miso"));
 
 		registry.getRegistry().register(TOFUSLAB_KINU.setRegistryName("tofuslab_kinu"));
 		registry.getRegistry().register(TOFUSLAB_MOMEN.setRegistryName("tofuslab_momen"));
@@ -207,6 +214,7 @@ public class TofuBlocks {
 		registry.getRegistry().register(TOFUSLAB_ZUNDA.setRegistryName("tofuslab_zunda"));
 		registry.getRegistry().register(TOFUSLAB_HELLBRICK.setRegistryName("tofuslab_hellbrick"));
 		registry.getRegistry().register(TOFUSLAB_SOULBRICK.setRegistryName("tofuslab_soulbrick"));
+		registry.getRegistry().register(TOFUSLAB_MISO.setRegistryName("tofuslab_miso"));
 
 		registry.getRegistry().register(TOFUFENCE_KINU.setRegistryName("tofufence_kinu"));
 		registry.getRegistry().register(TOFUFENCE_MOMEN.setRegistryName("tofufence_momen"));
@@ -253,6 +261,7 @@ public class TofuBlocks {
 		registry.getRegistry().register(MORIJIO.setRegistryName("morijio"));
 
 		registry.getRegistry().register(BARREL_MISO.setRegistryName("barrel_miso"));
+		registry.getRegistry().register(BARREL_MISOTOFU.setRegistryName("barrel_misotofu"));
 
 		registry.getRegistry().register(TOFUCAKE.setRegistryName("tofucake"));
 
@@ -278,6 +287,7 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(DIAMONDTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(GRILLEDTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(ZUNDATOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(MISOTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(HELLTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(HELLTOFU_BRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -295,6 +305,8 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(TOFUSTAIR_ISHIBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(TOFUSTAIR_HELLBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(TOFUSTAIR_SOULBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSTAIR_MISO, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+
 
 		TofuItems.register(registry, new BlockItem(TOFUSLAB_KINU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(TOFUSLAB_MOMEN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -305,6 +317,7 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(TOFUSLAB_ISHIBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(TOFUSLAB_HELLBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(TOFUSLAB_SOULBRICK, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(TOFUSLAB_MISO, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(TOFUFENCE_KINU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 		TofuItems.register(registry, new BlockItem(TOFUFENCE_MOMEN, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -346,6 +359,7 @@ public class TofuBlocks {
 		TofuItems.register(registry, new BlockItem(MORIJIO, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(BARREL_MISO, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
+		TofuItems.register(registry, new BlockItem(BARREL_MISOTOFU, new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 		TofuItems.register(registry, new BlockItem(TOFUCAKE, new Item.Properties().stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT)));
 

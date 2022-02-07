@@ -32,6 +32,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.DIAMONDTOFU);
 		simpleBlock(TofuBlocks.GRILLEDTOFU);
 		simpleBlock(TofuBlocks.ZUNDATOFU);
+		simpleBlock(TofuBlocks.MISOTOFU);
 
 		simpleBlock(TofuBlocks.HELLTOFU);
 		simpleBlock(TofuBlocks.HELLTOFU_BRICK);
@@ -48,6 +49,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		stairs(TofuBlocks.TOFUSTAIR_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
 		stairs(TofuBlocks.TOFUSTAIR_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
 		stairs(TofuBlocks.TOFUSTAIR_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
+		stairs(TofuBlocks.TOFUSTAIR_MISO, TofuBlocks.MISOTOFU);
 
 		slab(TofuBlocks.TOFUSLAB_KINU, TofuBlocks.KINUTOFU);
 		slab(TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.MOMENTOFU);
@@ -57,6 +59,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFUSLAB_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
 		slab(TofuBlocks.TOFUSLAB_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
 		slab(TofuBlocks.TOFUSLAB_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
+		slab(TofuBlocks.TOFUSLAB_MISO, TofuBlocks.MISOTOFU);
 
 		torchBlock(TofuBlocks.TOFUTORCH_KINU, TofuBlocks.WALLTOFUTORCH_KINU);
 		torchBlock(TofuBlocks.TOFUTORCH_MOMEN, TofuBlocks.WALLTOFUTORCH_MOMEN);

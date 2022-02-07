@@ -1,0 +1,50 @@
+{
+  "parent": "tofucraft:tofucraft/make_tofu",
+  "display": {
+    "icon": {
+      "item": "tofucraft:koujibase"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.fermentation_basics.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.fermentation_basics.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "koujibase": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:koujibase"
+            ]
+          }
+        ]
+      }
+    },
+    "kouji": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:kouji"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "koujibase",
+      "kouji"
+    ]
+  ]
+}

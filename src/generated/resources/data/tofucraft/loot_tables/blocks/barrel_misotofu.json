@@ -10,7 +10,7 @@
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
-              "block": "tofucraft:barrel_miso",
+              "block": "tofucraft:barrel_misotofu",
               "properties": {
                 "stat": "used"
               }
@@ -23,7 +23,7 @@
               "add": false
             }
           ],
-          "name": "tofucraft:miso"
+          "name": "tofucraft:tofumiso"
         }
       ]
     },

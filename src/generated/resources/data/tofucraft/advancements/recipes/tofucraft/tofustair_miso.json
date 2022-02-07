@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofustair_miso"
+    ]
+  },
+  "criteria": {
+    "has_blocktofumiso": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:blocktofumiso"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tofucraft:tofustair_miso"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blocktofumiso",
+      "has_the_recipe"
+    ]
+  ]
+}

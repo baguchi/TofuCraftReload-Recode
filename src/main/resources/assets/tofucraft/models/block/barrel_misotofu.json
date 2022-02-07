@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "tofucraft:block/barrel/barrel_top",
+    "front": "tofucraft:block/barrel/barrelmisotofu_side",
+    "side": "tofucraft:block/barrel/barrelmisotofu_side",
+    "bottom": "tofucraft:block/barrel/barrel_bottom"
+  }
+}

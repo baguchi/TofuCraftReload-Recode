@@ -1,0 +1,37 @@
+{
+  "parent": "tofucraft:tofucraft/fermentation_basics",
+  "display": {
+    "icon": {
+      "item": "tofucraft:miso"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.miso.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.miso.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "miso": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:miso"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "miso"
+    ]
+  ]
+}

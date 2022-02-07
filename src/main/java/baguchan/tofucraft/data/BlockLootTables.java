@@ -138,10 +138,12 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.MORIJIO);
 
 		LootItemCondition.Builder lootitemcondition$builder4 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WorkedBarrelBaseBlock.Stat.USED));
-		LootItemCondition.Builder lootitemcondition$builder5 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WorkedBarrelBaseBlock.Stat.FLUID));
 
-		add(TofuBlocks.BARREL_MISO, applyExplosionDecay(TofuBlocks.BARREL_MISO, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.MISO).when(lootitemcondition$builder4).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion()))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.MISO).when(lootitemcondition$builder5).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F)))))));
+		add(TofuBlocks.BARREL_MISO, applyExplosionDecay(TofuBlocks.BARREL_MISO, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.MISO).when(lootitemcondition$builder4).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion())))));
 
+		LootItemCondition.Builder lootitemcondition$builder5 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISOTOFU).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WorkedBarrelBaseBlock.STAT, WorkedBarrelBaseBlock.Stat.USED));
+
+		add(TofuBlocks.BARREL_MISOTOFU, applyExplosionDecay(TofuBlocks.BARREL_MISOTOFU, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFUMISO).when(lootitemcondition$builder5).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion())))));
 
 		registerEmpty(TofuBlocks.TOFUCAKE);
 
