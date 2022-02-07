@@ -24,7 +24,6 @@ public class WorkedBarrelBaseBlock extends Block {
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
-		super.randomTick(state, worldIn, pos, random);
 		Stat stat = getStat(state);
 		int time = state.getValue(TIME);
 
@@ -35,12 +34,8 @@ public class WorkedBarrelBaseBlock extends Block {
 
 			if (time >= 5 && stat == Stat.USING) {
 				worldIn.setBlock(pos, state.setValue(STAT, Stat.USED), 3);
-				barrelFinished(state, worldIn, pos, random);
 			}
 		}
-	}
-
-	public void barrelFinished(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
 	}
 
 	public boolean isUnderWeight(Level world, BlockPos pos) {

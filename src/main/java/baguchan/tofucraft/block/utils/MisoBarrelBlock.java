@@ -32,8 +32,19 @@ public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
 	}
 
 	@Override
-	public void barrelFinished(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
-		worldIn.setBlock(pos, state.setValue(FLUIDS, 3), 3);
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+		Stat stat = getStat(state);
+		int time = state.getValue(TIME);
+
+		if (isUnderWeight(worldIn, pos)) {
+			if (time < 5 && random.nextInt(4) == 0) {
+				worldIn.setBlock(pos, state.setValue(TIME, time + 1), 3);
+			}
+
+			if (time >= 5 && stat == Stat.USING) {
+				worldIn.setBlock(pos, state.setValue(STAT, Stat.USED).setValue(FLUIDS, 3), 3);
+			}
+		}
 	}
 
 	@Override
