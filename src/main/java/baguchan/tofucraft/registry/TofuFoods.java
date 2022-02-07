@@ -44,7 +44,7 @@ public class TofuFoods {
 
 	//Tofu delight
 	public static final FoodProperties TOFU_EGG = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
-	public static final FoodProperties SOYSAUSE_RAMEN = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.85F).fast().build();
+	public static final FoodProperties SOYSAUSE_RAMEN = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.85F).build();
 
 
 	private static FoodProperties.Builder stew(int p_150384_) {

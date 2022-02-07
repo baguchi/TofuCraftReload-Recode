@@ -19,22 +19,28 @@ public class WorkedBarrelBaseBlock extends Block {
 
 	public WorkedBarrelBaseBlock(Properties properties) {
 		super(properties);
-		registerDefaultState(this.stateDefinition.any().setValue(STAT, Stat.USING));
+		registerDefaultState(this.stateDefinition.any().setValue(STAT, Stat.USING).setValue(TIME, 0));
 	}
 
+	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+		super.randomTick(state, worldIn, pos, random);
 		Stat stat = getStat(state);
 		int time = state.getValue(TIME);
 
 		if (isUnderWeight(worldIn, pos)) {
-			if (time < 5) {
-				state.setValue(TIME, time + 1);
+			if (time < 5 && random.nextInt(4) == 0) {
+				worldIn.setBlock(pos, state.setValue(TIME, time + 1), 3);
 			}
 
 			if (time >= 5 && stat == Stat.USING) {
-				state.setValue(STAT, Stat.USED);
+				worldIn.setBlock(pos, state.setValue(STAT, Stat.USED), 3);
+				barrelFinished(state, worldIn, pos, random);
 			}
 		}
+	}
+
+	public void barrelFinished(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
 	}
 
 	public boolean isUnderWeight(Level world, BlockPos pos) {
@@ -59,8 +65,7 @@ public class WorkedBarrelBaseBlock extends Block {
 
 	public enum Stat implements StringRepresentable {
 		USING("using"),
-		USED("used"),
-		FLUID("fluid");
+		USED("used");
 
 		private final String name;
 

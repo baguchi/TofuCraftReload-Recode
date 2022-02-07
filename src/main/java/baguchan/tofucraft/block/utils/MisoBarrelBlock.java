@@ -12,38 +12,37 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Random;
 
 public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
-
 	public final Item finishedBottleItem;
+	public static final IntegerProperty FLUIDS = IntegerProperty.create("fluids", 0, 3);
+
 
 	public MisoBarrelBlock(Item finishedBottleItem, Properties properties) {
 		super(properties);
 		this.finishedBottleItem = finishedBottleItem;
+		registerDefaultState(this.stateDefinition.any().setValue(STAT, Stat.USING).setValue(TIME, 0).setValue(FLUIDS, 0));
 	}
 
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
-		Stat stat = getStat(state);
-		int time = state.getValue(TIME);
-
-		if (time < 5) {
-			state.setValue(TIME, time + 1);
-		}
-
-		if (time >= 5 && stat == Stat.USING) {
-			state.setValue(STAT, Stat.FLUID);
-		}
+	@Override
+	public void barrelFinished(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+		worldIn.setBlock(pos, state.setValue(FLUIDS, 3), 3);
 	}
 
+	@Override
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		Stat stat = getStat(state);
+		int fluidsAmounts = state.getValue(FLUIDS);
 
-		if (stat == Stat.FLUID && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
+		if (stat == Stat.USED && fluidsAmounts > 0 && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
 			ItemStack nigari = new ItemStack(finishedBottleItem);
 			worldIn.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 			if (itemHeld.getCount() == 1) {
@@ -57,5 +56,10 @@ public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
 			return InteractionResult.SUCCESS;
 		}
 		return InteractionResult.PASS;
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(STAT, TIME, FLUIDS);
 	}
 }
