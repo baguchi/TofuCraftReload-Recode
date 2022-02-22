@@ -37,6 +37,7 @@ public class TofuStructureSettings extends StructureSettings {
 	public static void registerStructures(BiConsumer<ConfiguredStructureFeature<?, ?>, ResourceKey<Biome>> p_194758_) {
 		register(p_194758_, TofuStructures.TOFU_VILLAGE_FEATURES, TofuBiomes.TOFU_PLAINS);
 		register(p_194758_, TofuStructures.TOFU_VILLAGE_FEATURES, TofuBiomes.TOFU_WASTES);
+		register(p_194758_, TofuStructures.TOFU_VILLAGE_FEATURES, TofuBiomes.TOFU_FOREST);
 	}
 
 	private static void register(BiConsumer<ConfiguredStructureFeature<?, ?>, ResourceKey<Biome>> p_194764_, ConfiguredStructureFeature<?, ?> p_194765_, ResourceKey<Biome> p_194766_) {
