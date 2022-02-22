@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_blocktofuishi": {
+    "has_tofuishi": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "tofucraft:blocktofuishi"
+              "tofucraft:tofuishi"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_blocktofuishi",
+      "has_tofuishi",
       "has_the_recipe"
     ]
   ]

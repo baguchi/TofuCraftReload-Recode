@@ -146,10 +146,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeFence(consumer, TofuBlocks.TOFUFENCE_ISHI, TofuBlocks.ISHITOFU);
 		makeFence(consumer, TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
 
-		makeTorch(consumer, TofuBlocks.TOFUTORCH_KINU, TofuBlocks.KINUTOFU);
-		makeTorch(consumer, TofuBlocks.TOFUTORCH_MOMEN, TofuBlocks.MOMENTOFU);
-		makeTorch(consumer, TofuBlocks.TOFUTORCH_ISHI, TofuBlocks.ISHITOFU);
-		makeTorch(consumer, TofuBlocks.TOFUTORCH_METAL, TofuBlocks.METALTOFU);
+		makeTorch(consumer, TofuBlocks.TOFUTORCH_KINU, TofuItems.TOFUKINU);
+		makeTorch(consumer, TofuBlocks.TOFUTORCH_MOMEN, TofuItems.TOFUMOMEN);
+		makeTorch(consumer, TofuBlocks.TOFUTORCH_ISHI, TofuItems.TOFUISHI);
+		makeTorch(consumer, TofuBlocks.TOFUTORCH_METAL, TofuItems.TOFUMETAL);
 
 		foodCooking(TofuItems.TOFUKINU, TofuItems.TOFUGRILLED, 0.1F, consumer, "grilled_from_kinu");
 		foodCooking(TofuItems.TOFUMOMEN, TofuItems.TOFUGRILLED, 0.1F, consumer, "grilled_from_momen");

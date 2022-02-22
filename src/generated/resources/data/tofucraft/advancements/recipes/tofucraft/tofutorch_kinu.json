@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_blocktofukinu": {
+    "has_tofukinu": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "tofucraft:blocktofukinu"
+              "tofucraft:tofukinu"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_blocktofukinu",
+      "has_tofukinu",
       "has_the_recipe"
     ]
   ]

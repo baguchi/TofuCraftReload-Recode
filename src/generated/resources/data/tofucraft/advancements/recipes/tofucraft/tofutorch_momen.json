@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_blocktofumomen": {
+    "has_tofumomen": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "tofucraft:blocktofumomen"
+              "tofucraft:tofumomen"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_blocktofumomen",
+      "has_tofumomen",
       "has_the_recipe"
     ]
   ]
