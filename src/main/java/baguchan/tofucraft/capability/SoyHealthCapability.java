@@ -4,8 +4,10 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
@@ -26,6 +28,9 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 		if (!entity.level.isClientSide()) {
 			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, level);
 			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
+			if (entity instanceof Player) {
+				((Player) entity).displayClientMessage(new TranslatableComponent("item.tofucraft.soymilk.drink_day", this.soyHealthLevel), true);
+			}
 		}
 	}
 

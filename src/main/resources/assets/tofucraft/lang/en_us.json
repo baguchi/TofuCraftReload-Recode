@@ -382,6 +382,7 @@
   "item.tofucraft.tofuhoe.jei_desc": "Tofunian's farm tools. You can use this to cultivate Tofu. The cultivated tofu becomes farmland and can grow leek and soybeans.",
   "block.tofucraft.blocktofukinu.jei_desc": "This block that can be made by hardening tofu with bittern. Be careful as it will break if you fall from above.",
   "block.tofucraft.blocktofumomen.jei_desc": "This block gets harder over time with stones on top and bottom.",
+  "item.tofucraft.soymilk.drink_day": "SoyMilk Drink Day %1$s",
   "entity.tofucraft.slabfish.type.bagu_chan": "bagu_chan",
   "entity.tofucraft.slabfish.type.tofu": "Tofu",
   "tofucraft.tofu_book.tooltip": "Tofu Knowledge 2022",

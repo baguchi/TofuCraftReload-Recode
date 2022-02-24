@@ -382,6 +382,7 @@
   "item.tofucraft.tofuhoe.jei_desc": "トウフニアンの農具。これを豆腐に使うと豆腐農地に変え、大豆やネギを育てられます。",
   "block.tofucraft.blocktofukinu.jei_desc": "このブロックは、豆乳をにがりで固めることでできます。上からentityが落ちると壊れてしまいます。",
   "block.tofucraft.blocktofumomen.jei_desc": "このブロックは、上と下に石を置くと時間経過でより硬くなります。",
+  "item.tofucraft.soymilk.drink_day": "%1$s日目の豆乳を飲んだ",
   "entity.tofucraft.slabfish.type.bagu_chan": "ばぐちゃん",
   "entity.tofucraft.slabfish.type.tofu": "Tofu",
   "tofucraft.tofu_book.tooltip": "Tofu Knowledge 2021",
