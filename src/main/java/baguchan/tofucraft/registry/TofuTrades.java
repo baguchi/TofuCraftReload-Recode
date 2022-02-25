@@ -111,10 +111,10 @@ public class TofuTrades {
 
 		public MerchantOffer getOffer(Entity trader, Random rand) {
 			int i = 5 + rand.nextInt(15);
-			int j = Math.min(this.sellingItemCount + i, 64);
-			ItemStack stack = new ItemStack(this.sellingItem.getItem(), j);
+			int j = Math.min(this.rubyCount + i, 64);
+			ItemStack stack = new ItemStack(this.sellingItem.getItem(), 1);
 			EnchantmentHelper.enchantItem(rand, stack, i, false);
-			return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY, this.rubyCount), stack, this.maxUses, this.xpValue, this.priceMultiplier);
+			return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY, j), stack, this.maxUses, this.xpValue, this.priceMultiplier);
 		}
 	}
 
