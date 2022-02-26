@@ -22,7 +22,7 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 	protected final Level level;
 
 	public SaltFurnaceMenu(int i, Inventory playerInventory) {
-		this(i, playerInventory, new SimpleContainer(4), new SimpleContainerData(4));
+		this(i, playerInventory, new SimpleContainer(5), new SimpleContainerData(4));
 	}
 
 	public SaltFurnaceMenu(int id, Inventory playerInventoryIn, Container furnaceInventoryIn, ContainerData dataIn) {
@@ -38,13 +38,14 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 				return false;
 			}
 		});
-		addSlot(new Slot(this.container, 2, 124, 20));
+		addSlot(new Slot(this.container, 2, 102, 17));
 		addSlot(new Slot(this.container, 3, 102, 53) {
 			@Override
 			public boolean mayPlace(ItemStack p_40231_) {
 				return false;
 			}
 		});
+		addSlot(new Slot(this.container, 4, 124, 17));
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++)
 				addSlot(new Slot(playerInventoryIn, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
@@ -67,7 +68,7 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 			itemstack = itemstack1.copy();
 			switch (slotIndex) {
 				case 0:
-					if (!moveItemStackTo(itemstack1, 4, 40, true))
+					if (!moveItemStackTo(itemstack1, 5, 41, true))
 						return ItemStack.EMPTY;
 					break;
 				default:

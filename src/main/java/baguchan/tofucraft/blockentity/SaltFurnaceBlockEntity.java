@@ -47,11 +47,12 @@ import net.minecraftforge.network.PacketDistributor;
 import javax.annotation.Nullable;
 
 public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, StackedContentsCompatible {
-	private static final int[] SLOTS_FOR_DOWN = new int[]{3, 1};
 
-	private static final int[] SLOTS_FOR_SIDES = new int[]{0, 2};
+	private static final int[] SLOTS_FOR_SIDES = new int[]{0};
+	private static final int[] SLOTS_FOR_UP = new int[]{2, 4};
+	private static final int[] SLOTS_FOR_DOWN = new int[]{1, 3, 4};
 
-	protected NonNullList<ItemStack> items = NonNullList.withSize(4, ItemStack.EMPTY);
+	protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
 
 	public FluidTank waterTank = new FluidTank(3000) {
 		public boolean isFluidValid(FluidStack stack) {
@@ -89,10 +90,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 					return SaltFurnaceBlockEntity.this.cookingProgress;
 				case 3:
 					return SaltFurnaceBlockEntity.this.cookingTotalTime;
-				case 4:
-					return SaltFurnaceBlockEntity.this.waterTank.getFluidAmount();
-				case 5:
-					return SaltFurnaceBlockEntity.this.bitternTank.getFluidAmount();
 			}
 			return 0;
 		}
@@ -111,16 +108,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 					break;
 				case 3:
 					SaltFurnaceBlockEntity.this.cookingTotalTime = p_221477_2_;
-					break;
-				case 4:
-					if (waterTank.getFluid() != null) {
-						SaltFurnaceBlockEntity.this.waterTank.getFluid().setAmount(p_221477_2_);
-					}
-					break;
-				case 5:
-					if (bitternTank.getFluid() != null) {
-						SaltFurnaceBlockEntity.this.bitternTank.getFluid().setAmount(p_221477_2_);
-					}
 					break;
 			}
 		}
@@ -194,45 +181,48 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 				saltFurnaceBlock.prevBitternFluid = saltFurnaceBlock.bitternTank.getFluidAmount();
 			}
 		}
-			ItemStack itemstack = saltFurnaceBlock.items.get(0);
-			if (saltFurnaceBlock.isLit() || !saltFurnaceBlock.items.get(0).isEmpty()) {
-				if (!saltFurnaceBlock.isLit() && saltFurnaceBlock.hasWater()) {
-					saltFurnaceBlock.litTime = saltFurnaceBlock.getBurnDuration(itemstack);
-					saltFurnaceBlock.litDuration = saltFurnaceBlock.litTime;
-					if (saltFurnaceBlock.isLit()) {
-						flag1 = true;
-						if (itemstack.hasContainerItem()) {
+		ItemStack itemstack = saltFurnaceBlock.items.get(0);
+		if (saltFurnaceBlock.isLit() || !saltFurnaceBlock.items.get(0).isEmpty()) {
+			if (!saltFurnaceBlock.isLit() && saltFurnaceBlock.hasWater()) {
+				saltFurnaceBlock.litTime = saltFurnaceBlock.getBurnDuration(itemstack);
+				saltFurnaceBlock.litDuration = saltFurnaceBlock.litTime;
+				if (saltFurnaceBlock.isLit()) {
+					flag1 = true;
+					if (itemstack.hasContainerItem()) {
+						saltFurnaceBlock.items.set(0, itemstack.getContainerItem());
+					} else if (!itemstack.isEmpty()) {
+						Item item = itemstack.getItem();
+						itemstack.shrink(1);
+						if (itemstack.isEmpty())
 							saltFurnaceBlock.items.set(0, itemstack.getContainerItem());
-						} else if (!itemstack.isEmpty()) {
-							Item item = itemstack.getItem();
-							itemstack.shrink(1);
-							if (itemstack.isEmpty())
-								saltFurnaceBlock.items.set(0, itemstack.getContainerItem());
-						}
 					}
 				}
-				if (saltFurnaceBlock.isLit() && saltFurnaceBlock.hasWater()) {
-					saltFurnaceBlock.cookingProgress++;
-					if (saltFurnaceBlock.cookingProgress == saltFurnaceBlock.cookingTotalTime) {
-						saltFurnaceBlock.cookingProgress = 0;
-						saltFurnaceBlock.cookingTotalTime = saltFurnaceBlock.getTotalCookTime();
-						saltFurnaceBlock.makeSalt();
-						flag1 = true;
-					}
-				} else {
+			}
+			if (saltFurnaceBlock.isLit() && saltFurnaceBlock.hasWater()) {
+				saltFurnaceBlock.cookingProgress++;
+				if (saltFurnaceBlock.cookingProgress == saltFurnaceBlock.cookingTotalTime) {
 					saltFurnaceBlock.cookingProgress = 0;
+					saltFurnaceBlock.cookingTotalTime = saltFurnaceBlock.getTotalCookTime();
+					saltFurnaceBlock.makeSalt();
+					flag1 = true;
 				}
-			} else if (!saltFurnaceBlock.isLit() && saltFurnaceBlock.cookingProgress > 0) {
-				saltFurnaceBlock.cookingProgress = Mth.clamp(saltFurnaceBlock.cookingProgress - 2, 0, saltFurnaceBlock.cookingTotalTime);
+			} else {
+				saltFurnaceBlock.cookingProgress = 0;
 			}
-			if (flag != saltFurnaceBlock.isLit()) {
-				flag1 = true;
-				saltFurnaceBlock.level.setBlock(p_155015_, saltFurnaceBlock.level.getBlockState(p_155015_).setValue(SaltFurnaceBlock.LIT, Boolean.valueOf(saltFurnaceBlock.isLit())), 3);
-			}
-			saltFurnaceBlock.makeBittern();
+		} else if (!saltFurnaceBlock.isLit() && saltFurnaceBlock.cookingProgress > 0) {
+			saltFurnaceBlock.cookingProgress = Mth.clamp(saltFurnaceBlock.cookingProgress - 2, 0, saltFurnaceBlock.cookingTotalTime);
+		}
+		if (flag != saltFurnaceBlock.isLit()) {
+			flag1 = true;
+			saltFurnaceBlock.level.setBlock(p_155015_, saltFurnaceBlock.level.getBlockState(p_155015_).setValue(SaltFurnaceBlock.LIT, Boolean.valueOf(saltFurnaceBlock.isLit())), 3);
+		}
+		saltFurnaceBlock.makeBittern();
+		saltFurnaceBlock.putWater();
 
-		if (flag1)
+
+		if (flag1) {
 			saltFurnaceBlock.setChanged();
+		}
 	}
 
 	@Override
@@ -267,6 +257,29 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			return false;
 		}
 		return false;
+	}
+
+	protected boolean canPutWater() {
+		boolean flag = (this.waterTank.getFluid().getAmount() <= 1000);
+		ItemStack itemstack1 = this.items.get(4);
+		if (itemstack1.getItem() == Items.WATER_BUCKET) {
+			return flag;
+		}
+		return false;
+	}
+
+	private void putWater() {
+		if (canPutWater()) {
+			ItemStack itemstack1 = new ItemStack(Items.BUCKET, 1);
+			ItemStack itemstack2 = this.items.get(4);
+			itemstack2.shrink(1);
+			if (itemstack2.isEmpty()) {
+				this.items.set(4, itemstack1.copy());
+			} else if (itemstack2.getItem() == itemstack1.getItem()) {
+				itemstack2.grow(itemstack1.getCount());
+			}
+			this.waterTank.fill(new FluidStack(Fluids.WATER, 1000), IFluidHandler.FluidAction.EXECUTE);
+		}
 	}
 
 	private void makeBittern() {
@@ -314,8 +327,14 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	@Override
 	public int[] getSlotsForFace(Direction p_180463_1_) {
-		if (p_180463_1_ == Direction.DOWN)
+		if (p_180463_1_ == Direction.UP) {
+			return SLOTS_FOR_UP;
+		}
+
+		if (p_180463_1_ == Direction.DOWN) {
 			return SLOTS_FOR_DOWN;
+		}
+
 		return SLOTS_FOR_SIDES;
 	}
 
@@ -325,12 +344,30 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		return canPlaceItem(p_180462_1_, p_180462_2_);
 	}
 
+	public boolean canPlaceItem(int p_94041_1_, ItemStack p_94041_2_) {
+		if (p_94041_1_ == 3 || p_94041_1_ == 1) {
+			return false;
+		}
+		if (p_94041_1_ == 2) {
+			return (p_94041_2_.getItem() == Items.GLASS_BOTTLE);
+		}
+		if (p_94041_1_ == 4) {
+			return p_94041_2_.getItem() == Items.WATER_BUCKET;
+		}
+		ItemStack itemstack = this.items.get(0);
+		return (isFuel(p_94041_2_) || (p_94041_2_.getItem() == Items.BUCKET && itemstack.getItem() != Items.BUCKET));
+	}
+
 	@Override
 	public boolean canTakeItemThroughFace(int p_180461_1_, ItemStack p_180461_2_, Direction p_180461_3_) {
-		if (p_180461_3_ == Direction.DOWN && p_180461_1_ == 1) {
-			Item item = p_180461_2_.getItem();
-			return item == Items.WATER_BUCKET || item == Items.BUCKET;
+		if (p_180461_1_ == 0 || p_180461_1_ == 2) {
+			return false;
 		}
+
+		if (p_180461_1_ == 4) {
+			return p_180461_2_.getItem() == Items.BUCKET;
+		}
+
 		return true;
 	}
 
@@ -383,15 +420,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		} else {
 			return p_70300_1_.distanceToSqr((double) this.worldPosition.getX() + 0.5D, (double) this.worldPosition.getY() + 0.5D, (double) this.worldPosition.getZ() + 0.5D) <= 64.0D;
 		}
-	}
-
-	public boolean canPlaceItem(int p_94041_1_, ItemStack p_94041_2_) {
-		if (p_94041_1_ == 3 || p_94041_1_ == 1)
-			return false;
-		if (p_94041_1_ != 0)
-			return (p_94041_2_.getItem() == Items.GLASS_BOTTLE);
-		ItemStack itemstack = this.items.get(0);
-		return (isFuel(p_94041_2_) || (p_94041_2_.getItem() == Items.BUCKET && itemstack.getItem() != Items.BUCKET));
 	}
 
 	public void clearContent() {
