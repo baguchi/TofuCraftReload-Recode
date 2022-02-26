@@ -35,11 +35,11 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 
 			Tofunian.Roles role = Tofunian.Roles.get(block);
 			if (role != null && !this.findBlock) {
-				if (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainLevel() == 1 && this.creature.getVillagerXp() == 0) {
+				if (this.creature.getRole() == Tofunian.Roles.TOFUNIAN) {
 					this.creature.setRole(role);
-
-					this.findBlock = true;
+					this.creature.setOffers(null);
 				}
+				this.findBlock = true;
 
 
 				this.creature.swing(InteractionHand.MAIN_HAND);
@@ -52,7 +52,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
 		Block block = blockstate.getBlock();
-		return (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainLevel() == 1 && this.creature.getVillagerXp() == 0) && Tofunian.Roles.getJobBlock(block) != null || this.creature.getRole() != Tofunian.Roles.TOFUNIAN && Tofunian.Roles.getJobMatch(this.creature.getRole(), block) != null;
+		return (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && Tofunian.Roles.getJobBlock(block) != null || this.creature.getRole() != Tofunian.Roles.TOFUNIAN && Tofunian.Roles.getJobMatch(this.creature.getRole(), block) != null;
 	}
 
 	@Override

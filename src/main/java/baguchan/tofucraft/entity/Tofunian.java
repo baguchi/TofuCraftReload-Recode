@@ -371,8 +371,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public void restock() {
 		calculateDemandOfOffers();
-		for (MerchantOffer merchantoffer : this.getOffers())
+		for (MerchantOffer merchantoffer : this.getOffers()) {
 			merchantoffer.resetUses();
+		}
 		this.lastRestock = getLevel().getGameTime();
 		this.restocksToday++;
 	}
@@ -408,17 +409,22 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	private void resetOffersAndAdjustForDemand() {
 		int i = 2 - this.restocksToday;
-		if (i > 0)
-			for (MerchantOffer merchantoffer : this.getOffers())
+		if (i > 0) {
+			for (MerchantOffer merchantoffer : this.getOffers()) {
 				merchantoffer.resetUses();
-		for (int j = 0; j < i; j++)
+			}
+		}
+		for (int j = 0; j < i; j++) {
 			calculateDemandOfOffers();
+		}
 	}
 
 	private boolean hasUsedOffer() {
 		for (MerchantOffer merchantoffer : this.getOffers()) {
-			if (merchantoffer.needsRestock())
+			if (merchantoffer.needsRestock()) {
 				return true;
+			}
+
 		}
 		return false;
 	}
@@ -589,7 +595,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		getInventory().addItem(new ItemStack(TofuItems.TOFUGRILLED));
 	}
 
-	protected void updateTrades() {
+	public void updateTrades() {
 		Int2ObjectMap<VillagerTrades.ItemListing[]> int2objectmap = TofuTrades.TOFUNIAN_TRADE.get(getRole());
 		if (int2objectmap != null && !int2objectmap.isEmpty()) {
 			VillagerTrades.ItemListing[] avillagertrades$ItemListing = int2objectmap.get(this.tofunianLevel);
@@ -600,9 +606,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 	}
 
-	public void remadeTrade() {
-		this.updateTrades();
-	}
 
 
 	public void tick() {

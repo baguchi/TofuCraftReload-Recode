@@ -12,6 +12,8 @@ import net.minecraft.world.level.block.state.BlockState;
 public class RestockGoal extends MoveToBlockGoal {
 	private final Tofunian creature;
 
+	private boolean restockComplete;
+
 	public RestockGoal(Tofunian creature, double speedIn, int length) {
 		super(creature, speedIn, length);
 		this.creature = creature;
@@ -22,15 +24,16 @@ public class RestockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level.isDay() && this.creature.canResetStock() && !this.creature.isBaby() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.mob != null);
+		return (super.canContinueToUse() && this.creature.level.isDay() && this.creature.canResetStock() && !this.creature.isBaby() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
 	}
 
 	public void tick() {
 		super.tick();
-		if (isReachedTarget()) {
+		if (isReachedTarget() && !restockComplete) {
 			this.creature.restock();
 			this.creature.swing(InteractionHand.MAIN_HAND);
 			this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
+			restockComplete = true;
 		}
 	}
 
@@ -49,6 +52,12 @@ public class RestockGoal extends MoveToBlockGoal {
 			return true;
 		}
 		return super.findNearestBlock();
+	}
+
+	@Override
+	public void stop() {
+		super.stop();
+		restockComplete = false;
 	}
 
 	public double acceptedDistance() {
