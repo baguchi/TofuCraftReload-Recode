@@ -50,10 +50,10 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 	}
 
 	public void tick(LivingEntity livingEntity) {
-		if (livingEntity.level.getDayTime() > this.lastTick + 24000L) {
+		if (livingEntity.level.getGameTime() > this.lastTick + 24000L) {
 			if (this.soyHealthLevel > 0) {
-				this.soyHealthLevel -= 2;
-				this.lastTick = livingEntity.level.getDayTime();
+				this.soyHealthLevel = Mth.clamp(this.soyHealthLevel - 2, 1, 20);
+				this.lastTick = livingEntity.level.getGameTime();
 			}
 		}
 	}
