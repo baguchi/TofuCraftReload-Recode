@@ -30,7 +30,7 @@ public class SoymilkBottleItem extends Item {
 	public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
 		super.finishUsingItem(p_41409_, p_41410_, p_41411_);
 		p_41411_.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
-			if (cap.getRemainTick() < 24000) {
+			if (p_41410_.getGameTime() > cap.getRemainTick() + 12000L) {
 				cap.setSoyHealth(p_41411_, cap.getSoyHealthLevel() + 1);
 				if (cap.getSoyHealthLevel() > 4)
 					p_41411_.addEffect(new MobEffectInstance(this.secondEffect, 24000, 0));

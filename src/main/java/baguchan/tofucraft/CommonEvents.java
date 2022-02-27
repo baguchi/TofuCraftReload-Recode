@@ -66,7 +66,9 @@ public class CommonEvents {
 	public static void onUpdate(LivingEvent.LivingUpdateEvent event) {
 		LivingEntity livingEntity = event.getEntityLiving();
 		if (!livingEntity.level.isClientSide()) {
-			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(SoyHealthCapability::tick);
+			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
+				cap.tick(livingEntity);
+			});
 		}
 		livingEntity.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(tofuLivingCapability -> {
 			tofuLivingCapability.tick(livingEntity);

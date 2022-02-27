@@ -18,12 +18,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySerializable<CompoundTag> {
-	private int remainTick;
-
 	private int soyHealthLevel;
+	private long lastTick;
 
 	public void setSoyHealth(LivingEntity entity, int level) {
-		this.remainTick = 48000;
+		this.lastTick = entity.level.getDayTime();
 		this.soyHealthLevel = Mth.clamp(level, 1, 20);
 		if (!entity.level.isClientSide()) {
 			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, level);
@@ -42,20 +41,20 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 		}
 	}
 
-	public int getRemainTick() {
-		return this.remainTick;
+	public long getRemainTick() {
+		return this.lastTick;
 	}
 
 	public int getSoyHealthLevel() {
 		return this.soyHealthLevel;
 	}
 
-	public void tick() {
-		if (this.remainTick > 0) {
-			this.remainTick--;
-		} else if (this.remainTick <= 0 && this.soyHealthLevel > 0) {
-			this.soyHealthLevel -= 2;
-			this.remainTick = 24000;
+	public void tick(LivingEntity livingEntity) {
+		if (livingEntity.level.getDayTime() > this.lastTick + 24000L) {
+			if (this.soyHealthLevel > 0) {
+				this.soyHealthLevel -= 2;
+				this.lastTick = livingEntity.level.getDayTime();
+			}
 		}
 	}
 
@@ -66,13 +65,13 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 
 	public CompoundTag serializeNBT() {
 		CompoundTag nbt = new CompoundTag();
-		nbt.putInt("RemainTick", this.remainTick);
+		nbt.putLong("RemainTick", this.lastTick);
 		nbt.putInt("SoyHealthLevel", this.soyHealthLevel);
 		return nbt;
 	}
 
 	public void deserializeNBT(CompoundTag nbt) {
-		this.remainTick = nbt.getInt("RemainTick");
+		this.lastTick = nbt.getInt("RemainTick");
 		this.soyHealthLevel = nbt.getInt("SoyHealthLevel");
 	}
 }
