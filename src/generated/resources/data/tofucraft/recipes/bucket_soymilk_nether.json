@@ -1,17 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#",
-    "X"
-  ],
-  "key": {
-    "#": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
       "item": "tofucraft:seeds_soybeans_nether"
     },
-    "X": {
+    {
       "item": "minecraft:bucket"
     }
-  },
+  ],
   "result": {
     "item": "tofucraft:bucket_soymilk_nether"
   }

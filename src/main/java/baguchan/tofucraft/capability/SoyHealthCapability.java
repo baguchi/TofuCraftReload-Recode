@@ -1,7 +1,6 @@
 package baguchan.tofucraft.capability;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.message.SoyHealthRemainMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -35,14 +34,6 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
 		}
 		this.soyHealthLevel = Mth.clamp(level, 1, 20);
-	}
-
-	public void setRemainTick(LivingEntity entity, long tick) {
-		this.lastTick = tick;
-		if (!entity.level.isClientSide()) {
-			SoyHealthRemainMessage message = new SoyHealthRemainMessage(entity, tick);
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
-		}
 	}
 
 	public void removeAllSoyHealth(LivingEntity entity) {

@@ -222,25 +222,19 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 
 		//soimilk
-		ShapedRecipeBuilder.shaped(TofuItems.BUCKET_SOYMILK)
-				.pattern("#")
-				.pattern("X")
-				.define('#', TofuItems.SEEDS_SOYBEANS)
-				.define('X', Items.BUCKET)
+		ShapelessRecipeBuilder.shapeless(TofuItems.BUCKET_SOYMILK)
+				.requires(TofuItems.SEEDS_SOYBEANS)
+				.requires(Items.BUCKET)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS))
 				.save(consumer);
-		ShapedRecipeBuilder.shaped(TofuItems.BUCKET_SOYMILK_NETHER)
-				.pattern("#")
-				.pattern("X")
-				.define('#', TofuItems.SEEDS_SOYBEANS_NETHER)
-				.define('X', Items.BUCKET)
+		ShapelessRecipeBuilder.shapeless(TofuItems.BUCKET_SOYMILK_NETHER)
+				.requires(TofuItems.SEEDS_SOYBEANS_NETHER)
+				.requires(Items.BUCKET)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER))
 				.save(consumer);
-		ShapedRecipeBuilder.shaped(TofuItems.BUCKET_SOYMILK_SOUL)
-				.pattern("#")
-				.pattern("X")
-				.define('#', TofuItems.SEEDS_SOYBEANS_SOUL)
-				.define('X', Items.BUCKET)
+		ShapelessRecipeBuilder.shapeless(TofuItems.BUCKET_SOYMILK_SOUL)
+				.requires(TofuItems.SEEDS_SOYBEANS_SOUL)
+				.requires(Items.BUCKET)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL))
 				.save(consumer);
 
