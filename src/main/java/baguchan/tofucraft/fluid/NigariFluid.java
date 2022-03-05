@@ -24,15 +24,15 @@ import java.util.Random;
 
 public abstract class NigariFluid extends WaterFluid {
 	public Fluid getFlowing() {
-		return TofuFluids.BITTERN_FLOW;
+		return TofuFluids.BITTERN_FLOW.get();
 	}
 
 	public Fluid getSource() {
-		return TofuFluids.BITTERN;
+		return TofuFluids.BITTERN.get();
 	}
 
 	public Item getBucket() {
-		return TofuItems.BUCKET_BITTERN;
+		return TofuItems.BUCKET_BITTERN.get();
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -49,11 +49,11 @@ public abstract class NigariFluid extends WaterFluid {
 	}
 
 	public BlockState createLegacyBlock(FluidState p_204527_1_) {
-		return TofuBlocks.BITTERN.defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_204527_1_)));
+		return TofuBlocks.BITTERN.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_204527_1_)));
 	}
 
 	public boolean isSame(Fluid p_207187_1_) {
-		return p_207187_1_ == TofuFluids.BITTERN || p_207187_1_ == TofuFluids.BITTERN_FLOW;
+		return p_207187_1_ == TofuFluids.BITTERN.get() || p_207187_1_ == TofuFluids.BITTERN_FLOW.get();
 	}
 
 	protected float getExplosionResistance() {

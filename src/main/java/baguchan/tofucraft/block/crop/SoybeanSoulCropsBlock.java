@@ -103,7 +103,7 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 
 	@Override
 	protected ItemLike getBaseSeedId() {
-		return TofuItems.SEEDS_SOYBEANS_SOUL;
+		return TofuItems.SEEDS_SOYBEANS_SOUL.get();
 	}
 
 

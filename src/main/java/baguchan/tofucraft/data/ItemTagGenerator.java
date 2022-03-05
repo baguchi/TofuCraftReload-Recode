@@ -16,6 +16,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags() {
-		tag(ItemTags.PLANKS).add(TofuBlocks.TOFU_STEM_PLANKS.asItem());
+		tag(ItemTags.PLANKS).add(TofuBlocks.TOFU_STEM_PLANKS.get().asItem());
 	}
 }

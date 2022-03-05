@@ -12,11 +12,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum TofuArmorMaterial implements ArmorMaterial {
-	KINU("tofucraft:kinu", 1, new int[]{0, 0, 0, 0}, 8, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUKINU)),
-	MOMEN("tofucraft:momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMOMEN)),
-	SOLID("tofucraft:solid", 10, new int[]{1, 4, 5, 2}, 12, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUISHI)),
-	METAL("tofucraft:metal", 14, new int[]{2, 5, 6, 2}, 14, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMETAL)),
-	DIAMOND("tofucraft:diamond", 36, new int[]{4, 7, 9, 4}, 18, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.1F, 0.05F, () -> Ingredient.of(TofuItems.TOFUDIAMOND));
+	KINU("tofucraft:kinu", 1, new int[]{0, 0, 0, 0}, 8, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUKINU.get())),
+	MOMEN("tofucraft:momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMOMEN.get())),
+	SOLID("tofucraft:solid", 10, new int[]{1, 4, 5, 2}, 12, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUISHI.get())),
+	METAL("tofucraft:metal", 14, new int[]{2, 5, 6, 2}, 14, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMETAL.get())),
+	DIAMOND("tofucraft:diamond", 36, new int[]{4, 7, 9, 4}, 18, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.1F, 0.05F, () -> Ingredient.of(TofuItems.TOFUDIAMOND.get()));
 
 	private static final int[] HEALTH_PER_SLOT;
 

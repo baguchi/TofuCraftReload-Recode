@@ -32,7 +32,7 @@ public class TofuFish extends AbstractSchoolingFish {
 	}
 
 	public ItemStack getBucketItemStack() {
-		return new ItemStack(TofuItems.TOFUFISH_BUCKET);
+		return new ItemStack(TofuItems.TOFUFISH_BUCKET.get());
 	}
 
 	protected SoundEvent getAmbientSound() {
@@ -71,9 +71,9 @@ public class TofuFish extends AbstractSchoolingFish {
 
 			p_148831_.discard();
 			return Optional.of(InteractionResult.sidedSuccess(level.isClientSide));
-		} else if (itemstack.getItem() == TofuItems.BUCKET_SOYMILK && p_148831_.isAlive()) {
+		} else if (itemstack.getItem() == TofuItems.BUCKET_SOYMILK.get() && p_148831_.isAlive()) {
 			p_148831_.playSound(p_148831_.getPickupSound(), 1.0F, 1.0F);
-			ItemStack itemstack1 = TofuItems.TOFUFISH_SOYMILK_BUCKET.getDefaultInstance();
+			ItemStack itemstack1 = TofuItems.TOFUFISH_SOYMILK_BUCKET.get().getDefaultInstance();
 			p_148831_.saveToBucketTag(itemstack1);
 			ItemStack itemstack2 = ItemUtils.createFilledResult(itemstack, p_148829_, itemstack1, false);
 			p_148829_.setItemInHand(p_148830_, itemstack2);
@@ -90,6 +90,6 @@ public class TofuFish extends AbstractSchoolingFish {
 	}
 
 	public static boolean checkTofuFishSpawnRules(EntityType<? extends AbstractFish> p_27468_, LevelAccessor p_27469_, MobSpawnType p_27470_, BlockPos p_27471_, Random p_27472_) {
-		return p_27469_.getBlockState(p_27471_).is(TofuBlocks.SOYMILK) && p_27469_.getBlockState(p_27471_.above()).is(TofuBlocks.SOYMILK);
+		return p_27469_.getBlockState(p_27471_).is(TofuBlocks.SOYMILK.get()) && p_27469_.getBlockState(p_27471_.above()).is(TofuBlocks.SOYMILK.get());
 	}
 }

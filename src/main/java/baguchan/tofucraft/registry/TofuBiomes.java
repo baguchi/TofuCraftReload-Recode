@@ -37,7 +37,7 @@ public class TofuBiomes {
 				};
 			}));
 		});
-		return new Climate.ParameterList<>(builder.build());
+		return new Climate.ParameterList(builder.build());
 	});
 
 	public static void init() {

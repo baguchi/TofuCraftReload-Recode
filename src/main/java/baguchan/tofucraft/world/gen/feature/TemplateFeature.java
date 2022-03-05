@@ -43,7 +43,7 @@ public class TemplateFeature extends Feature<NoneFeatureConfiguration> {
 		int i = random.nextInt(this.TEMPLATE.length);
 		StructureManager templatemanager = worldgenlevel.getLevel().getServer().getStructureManager();
 		StructureTemplate template = templatemanager.getOrCreate(this.TEMPLATE[i]);
-		StructurePlaceSettings placementsettings = (new StructurePlaceSettings()).setRotation(rotation).addProcessor(new ProtectedBlockProcessor(BlockTags.FEATURES_CANNOT_REPLACE.getName()));
+		StructurePlaceSettings placementsettings = (new StructurePlaceSettings()).setRotation(rotation).addProcessor(new ProtectedBlockProcessor(BlockTags.FEATURES_CANNOT_REPLACE));
 		BlockPos blockpos2 = (new BlockPos(-this.offsetX / 2, 0, -this.offsetZ / 2)).rotate(rotation);
 		BlockPos blockpos3 = (new BlockPos(this.offsetX / 2, 0, this.offsetZ / 2)).rotate(rotation);
 		BlockPos blockpos4 = blockpos.offset(blockpos2);
@@ -56,6 +56,6 @@ public class TemplateFeature extends Feature<NoneFeatureConfiguration> {
 	}
 
 	public static boolean isTofu(BlockState p_159760_) {
-		return p_159760_.is(TofuBlocks.TOFU_TERRAIN);
+		return p_159760_.is(TofuBlocks.TOFU_TERRAIN.get());
 	}
 }

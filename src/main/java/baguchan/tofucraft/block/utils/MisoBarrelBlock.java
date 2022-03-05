@@ -17,15 +17,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Random;
 
 public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
-	public final Item finishedBottleItem;
+	public final RegistryObject<Item> finishedBottleItem;
 	public static final IntegerProperty FLUIDS = IntegerProperty.create("fluids", 0, 3);
 
 
-	public MisoBarrelBlock(Item finishedBottleItem, Properties properties) {
+	public MisoBarrelBlock(RegistryObject<Item> finishedBottleItem, Properties properties) {
 		super(properties);
 		this.finishedBottleItem = finishedBottleItem;
 		registerDefaultState(this.stateDefinition.any().setValue(STAT, Stat.USING).setValue(TIME, 0).setValue(FLUIDS, 0));
@@ -54,7 +55,7 @@ public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
 		int fluidsAmounts = state.getValue(FLUIDS);
 
 		if (stat == Stat.USED && fluidsAmounts > 0 && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
-			ItemStack nigari = new ItemStack(finishedBottleItem);
+			ItemStack nigari = new ItemStack(finishedBottleItem.get());
 			worldIn.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 			if (itemHeld.getCount() == 1) {
 				player.setItemInHand(handIn, nigari);

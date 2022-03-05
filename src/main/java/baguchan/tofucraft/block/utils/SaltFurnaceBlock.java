@@ -162,7 +162,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_152382_, BlockState p_152383_, BlockEntityType<T> p_152384_) {
-		return createFurnaceTicker(p_152382_, p_152384_, TofuBlockEntitys.SALT_FURNACE);
+		return createFurnaceTicker(p_152382_, p_152384_, TofuBlockEntitys.SALT_FURNACE.get());
 	}
 
 	@Nullable

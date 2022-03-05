@@ -3,11 +3,11 @@ package baguchan.tofucraft.recipe;
 import com.google.common.collect.Lists;
 import com.google.gson.*;
 import it.unimi.dsi.fastutil.ints.IntList;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.SerializationTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
@@ -131,7 +131,7 @@ public class FluidIngredient implements Predicate<FluidStack> {
 		}).map(FluidIngredient.FluidValue::new));
 	}
 
-	public static FluidIngredient of(Tag<Fluid> p_43912_) {
+	public static FluidIngredient of(TagKey<Fluid> p_43912_) {
 		return fromValues(Stream.of(new FluidIngredient.TagValue(p_43912_)));
 	}
 
@@ -177,13 +177,11 @@ public class FluidIngredient implements Predicate<FluidStack> {
 			throw new JsonParseException("An Fluidingredient entry is either a tag or an fluid, not both");
 		} else if (p_43920_.has("fluid")) {
 			Fluid fluid = fluidFromJson(p_43920_);
-			return new FluidIngredient.FluidValue(new FluidStack(fluid, 1000));
+			return new FluidIngredient.FluidValue(fluid);
 		} else if (p_43920_.has("tag")) {
 			ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.getAsString(p_43920_, "tag"));
-			Tag<Fluid> tag = SerializationTags.getInstance().getTagOrThrow(Registry.FLUID_REGISTRY, resourcelocation, (p_151262_) -> {
-				return new JsonSyntaxException("Unknown fluid tag '" + p_151262_ + "'");
-			});
-			return new FluidIngredient.TagValue(tag);
+			TagKey<Fluid> tagkey = TagKey.create(Registry.FLUID_REGISTRY, resourcelocation);
+			return new FluidIngredient.TagValue(tagkey);
 		} else {
 			throw new JsonParseException("An Fluidingredient entry needs either a tag or an fluid");
 		}
@@ -208,35 +206,39 @@ public class FluidIngredient implements Predicate<FluidStack> {
 	}
 
 	public static class FluidValue implements FluidIngredient.Value {
-		private final FluidStack fluid;
+		private final Fluid fluid;
 
 		public FluidValue(FluidStack p_43953_) {
+			this.fluid = p_43953_.getFluid();
+		}
+
+		public FluidValue(Fluid p_43953_) {
 			this.fluid = p_43953_;
 		}
 
-		public Collection<FluidStack> getFluids() {
+		public Collection<Fluid> getFluids() {
 			return Collections.singleton(this.fluid);
 		}
 
 		public JsonObject serialize() {
 			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("fluid", Registry.FLUID.getKey(this.fluid.getFluid()).toString());
+			jsonobject.addProperty("fluid", Registry.FLUID.getKey(this.fluid).toString());
 			return jsonobject;
 		}
 	}
 
 	public static class TagValue implements FluidIngredient.Value {
-		private final Tag<Fluid> tag;
+		private final TagKey<Fluid> tag;
 
-		public TagValue(Tag<Fluid> p_43961_) {
+		public TagValue(TagKey<Fluid> p_43961_) {
 			this.tag = p_43961_;
 		}
 
-		public Collection<FluidStack> getFluids() {
-			List<FluidStack> list = Lists.newArrayList();
+		public Collection<Fluid> getFluids() {
+			List<Fluid> list = Lists.newArrayList();
 
-			for (Fluid fluid : this.tag.getValues()) {
-				list.add(new FluidStack(fluid, 1000));
+			for (Holder<Fluid> holder : Registry.FLUID.getTagOrEmpty(this.tag)) {
+				list.add(holder.value());
 			}
 
 			return list;
@@ -244,15 +246,13 @@ public class FluidIngredient implements Predicate<FluidStack> {
 
 		public JsonObject serialize() {
 			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("tag", SerializationTags.getInstance().getIdOrThrow(Registry.FLUID_REGISTRY, this.tag, () -> {
-				return new IllegalStateException("Unknown fluid tag");
-			}).toString());
+			jsonobject.addProperty("tag", this.tag.location().toString());
 			return jsonobject;
 		}
 	}
 
 	public interface Value {
-		Collection<FluidStack> getFluids();
+		Collection<Fluid> getFluids();
 
 		JsonObject serialize();
 	}

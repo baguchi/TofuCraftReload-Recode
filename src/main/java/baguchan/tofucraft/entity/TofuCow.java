@@ -32,14 +32,14 @@ public class TofuCow extends Cow {
 	}
 
 	public static boolean checkTofuAnimalSpawnRules(EntityType<? extends Animal> p_27578_, LevelAccessor p_27579_, MobSpawnType p_27580_, BlockPos p_27581_, Random p_27582_) {
-		return p_27579_.getBlockState(p_27581_.below()).is(TofuBlocks.TOFU_TERRAIN) && p_27579_.getRawBrightness(p_27581_, 0) > 8;
+		return p_27579_.getBlockState(p_27581_.below()).is(TofuBlocks.TOFU_TERRAIN.get()) && p_27579_.getRawBrightness(p_27581_, 0) > 8;
 	}
 
 	public InteractionResult mobInteract(Player p_28298_, InteractionHand p_28299_) {
 		ItemStack var3 = p_28298_.getItemInHand(p_28299_);
 		if (var3.is(Items.BUCKET) && !this.isBaby()) {
 			p_28298_.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
-			ItemStack var4 = ItemUtils.createFilledResult(var3, p_28298_, TofuItems.BUCKET_SOYMILK.getDefaultInstance());
+			ItemStack var4 = ItemUtils.createFilledResult(var3, p_28298_, TofuItems.BUCKET_SOYMILK.get().getDefaultInstance());
 			p_28298_.setItemInHand(p_28299_, var4);
 			return InteractionResult.sidedSuccess(this.level.isClientSide);
 		} else {
@@ -48,6 +48,6 @@ public class TofuCow extends Cow {
 	}
 
 	public boolean isFood(ItemStack p_27600_) {
-		return p_27600_.is(TofuItems.LEEK);
+		return p_27600_.is(TofuItems.LEEK.get());
 	}
 }

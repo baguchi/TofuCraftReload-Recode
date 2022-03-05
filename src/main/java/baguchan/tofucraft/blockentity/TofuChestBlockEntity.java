@@ -12,6 +12,6 @@ public class TofuChestBlockEntity extends ChestBlockEntity {
 	}
 
 	public TofuChestBlockEntity(BlockPos p_155331_, BlockState p_155332_) {
-		super(TofuBlockEntitys.TOFUCHEST, p_155331_, p_155332_);
+		super(TofuBlockEntitys.TOFUCHEST.get(), p_155331_, p_155332_);
 	}
 }

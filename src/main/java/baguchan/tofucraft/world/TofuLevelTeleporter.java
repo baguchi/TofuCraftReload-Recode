@@ -152,7 +152,7 @@ public class TofuLevelTeleporter implements ITeleporter {
 	}
 
 	private static boolean isPortal(BlockState state) {
-		return state.getBlock() == TofuBlocks.TOFU_PORTAL;
+		return state.getBlock() == TofuBlocks.TOFU_PORTAL.get();
 	}
 
 	// from the start point, builds a set of all directly adjacent non-portal blocks
@@ -366,8 +366,8 @@ public class TofuLevelTeleporter implements ITeleporter {
 	}
 
 	public static BlockPos makePortalAt(Level world, BlockPos pos) {
-		BlockState portalState = TofuBlocks.TOFU_PORTAL.defaultBlockState();
-		BlockState snowstate = TofuBlocks.GRILLEDTOFU.defaultBlockState();
+		BlockState portalState = TofuBlocks.TOFU_PORTAL.get().defaultBlockState();
+		BlockState snowstate = TofuBlocks.GRILLEDTOFU.get().defaultBlockState();
 		for (BlockPos basePos : BlockPos.MutableBlockPos.betweenClosed(pos.offset(-2, 0, -2), pos.offset(2, 1, 2)))
 			world.setBlock(basePos, snowstate, 2);
 		for (BlockPos airPos : BlockPos.MutableBlockPos.betweenClosed(pos.offset(-2, 2, -1), pos.offset(2, 3, 1)))

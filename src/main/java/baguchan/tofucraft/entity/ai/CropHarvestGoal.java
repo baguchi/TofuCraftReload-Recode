@@ -67,8 +67,8 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 			}
 			BlockState blockstate2 = world.getBlockState(this.blockPos);
 			ItemStack stack = findSeeds(this.tofunian);
-			if (this.canPlant && blockstate2.getBlock() == TofuBlocks.TOFU_FARMLAND && !stack.isEmpty()) {
-				world.setBlock(this.blockPos.above(), TofuBlocks.SOYBEAN.defaultBlockState(), 2);
+			if (this.canPlant && blockstate2.getBlock() == TofuBlocks.TOFU_FARMLAND.get() && !stack.isEmpty()) {
+				world.setBlock(this.blockPos.above(), TofuBlocks.SOYBEAN.get().defaultBlockState(), 2);
 				stack.shrink(1);
 			}
 			this.canPlant = false;
@@ -87,7 +87,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 
 	protected boolean isValidTarget(LevelReader p_179488_1_, BlockPos p_179488_2_) {
 		Block block = p_179488_1_.getBlockState(p_179488_2_).getBlock();
-		if (block == TofuBlocks.TOFU_FARMLAND && this.wantsToHarvest) {
+		if (block == TofuBlocks.TOFU_FARMLAND.get() && this.wantsToHarvest) {
 			p_179488_2_ = p_179488_2_.above();
 			BlockState blockstate = p_179488_1_.getBlockState(p_179488_2_);
 			block = blockstate.getBlock();
@@ -110,7 +110,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 		int i = inventory.getContainerSize();
 		for (int j = 0; j < i; j++) {
 			ItemStack itemstack = inventory.getItem(j);
-			if (itemstack.getItem() == TofuItems.SEEDS_SOYBEANS)
+			if (itemstack.getItem() == TofuItems.SEEDS_SOYBEANS.get())
 				return itemstack;
 		}
 		return ItemStack.EMPTY;

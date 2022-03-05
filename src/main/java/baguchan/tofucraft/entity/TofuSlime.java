@@ -22,7 +22,7 @@ public class TofuSlime extends Slime {
 	}
 
 	protected ParticleOptions getParticleType() {
-		return new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(TofuItems.TOFUKINU));
+		return new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(TofuItems.TOFUKINU.get()));
 	}
 
 	public static boolean isDarkEnoughToSpawn(ServerLevelAccessor p_33009_, BlockPos p_33010_, Random p_33011_) {

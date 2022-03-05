@@ -22,24 +22,24 @@ import java.util.Random;
 
 
 public class TofuTrades {
-	public static final Int2ObjectMap<VillagerTrades.ItemListing[]> TRAVELER_TOFUNIAN_TRADE = gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(Blocks.WHITE_WOOL, 8, 6, 5), new ZundaRubyForItemsTrade(Blocks.GLASS, 9, 6, 5), new ZundaRubyForItemsTrade(Items.WHEAT, 16, 6, 5)}, 2, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.TOFUGRILLED, 1, 9, 5, 5), new ItemsForZundaRubyTrade(TofuItems.TOFUSTICK, 10, 1, 2, 5)}));
+	public static final Int2ObjectMap<VillagerTrades.ItemListing[]> TRAVELER_TOFUNIAN_TRADE = gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(Blocks.WHITE_WOOL, 8, 6, 5), new ZundaRubyForItemsTrade(Blocks.GLASS, 9, 6, 5), new ZundaRubyForItemsTrade(Items.WHEAT, 16, 6, 5)}, 2, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.TOFUGRILLED.get(), 1, 9, 5, 5), new ItemsForZundaRubyTrade(TofuItems.TOFUSTICK.get(), 10, 1, 2, 5)}));
 
 	public static final Map<Tofunian.Roles, Int2ObjectMap<VillagerTrades.ItemListing[]>> TOFUNIAN_TRADE = Util.make(Maps.newHashMap(), p_221237_0_ -> {
-		p_221237_0_.put(Tofunian.Roles.TOFUCOOK, gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.SEEDS_SOYBEANS, 16, 8, 1), new ItemsForZundaRubyTrade(TofuItems.TOFUGRILLED, 1, 10, 2)}
-				, 2, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.TOFUKINU, 28, 9, 6), new ItemsForZundaRubyTrade(TofuBlocks.ISHITOFU_BRICK, 1, 12, 4, 8)}
-				, 3, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.TOFUCOOKIE, 1, 12, 6, 13), new ItemsForZundaRubyTrade(TofuItems.TOFUMISO, 1, 6, 6, 13)}
-				, 4, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.YUBA, 18, 8, 15), new ZundaRubyForItemsTrade(TofuBlocks.LEEK_STEM, 16, 8, 15)}
-				, 5, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuBlocks.TOFUCAKE.asItem(), 3, 1, 20)})));
-		p_221237_0_.put(Tofunian.Roles.TOFUSMITH, gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.TOFUISHI, 16, 8, 2), new ItemsForZundaRubyTrade(TofuItems.TOFU_SOLID_PICKAXE, 1, 1, 3), new ItemsForZundaRubyTrade(TofuItems.TOFU_SOLID_SHOVEL, 1, 1, 3)}
-				, 2, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.TOFUMETAL, 8, 8, 6), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_PICKAXE, 6, 1, 4, 10), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_SHOVEL, 6, 1, 4, 10), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_SWORD, 6, 1, 4, 10), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_AXE, 6, 1, 4, 10)}
-				, 3, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_METALBOOTS, 4, 1, 4, 12), new ItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_METALCHESTPLATE, 7, 1, 4, 16), new ItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_METALLEGGINGS, 6, 1, 4, 15), new ItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_METALHELMET, 5, 1, 4, 14)}
-				, 4, new VillagerTrades.ItemListing[]{new EnchantedItemsForZundaRubyTrade(new ItemStack(TofuItems.TOFU_DIAMOND_PICKAXE), 16, 1, 2, 20, 0.085F), new EnchantedItemsForZundaRubyTrade(new ItemStack(TofuItems.TOFU_DIAMOND_SHOVEL), 14, 1, 2, 20, 0.085F), new EnchantedItemsForZundaRubyTrade(new ItemStack(TofuItems.TOFU_DIAMOND_SWORD), 15, 1, 2, 20, 0.085F), new EnchantedItemsForZundaRubyTrade(new ItemStack(TofuItems.TOFU_DIAMOND_AXE), 16, 1, 2, 20, 0.085F)}
-				, 5, new VillagerTrades.ItemListing[]{new EnchantedItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_DIAMONDBOOTS, 14, 1, 2, 25), new EnchantedItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_DIAMONDCHESTPLATE, 18, 1, 2, 25), new EnchantedItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_DIAMONDLEGGINGS, 16, 1, 2, 25), new EnchantedItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_DIAMONDHELMET, 15, 1, 2, 25)})));
-		p_221237_0_.put(Tofunian.Roles.SOYWORKER, gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(Blocks.GLASS, 10, 6, 2), new ZundaRubyForItemsTrade(TofuItems.LEEK, 26, 6, 2)}
-				, 2, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.TOFU_HAMBURG, 1, 9, 6, 7), new ItemsForZundaRubyTrade(TofuItems.COOKED_TOFU_FISH, 1, 12, 5, 7)}
-				, 3, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.BITTERN, 4, 8, 15), new ItemsForZundaRubyTrade(TofuItems.SOY_CHOCOLATE, 1, 6, 8, 15)}
-				, 4, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.SOYMILK, 1, 3, 6, 20), new ItemsForZundaRubyTrade(TofuItems.TOFUNIAN_SOY_CHOCOLATE, 1, 6, 8, 20)}
-				, 5, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.SOYMILK_APPLE, 1, 3, 6, 30), new ItemsForZundaRubyTrade(TofuItems.SOYMILK_KINAKO, 1, 3, 6, 30), new ItemsForZundaRubyTrade(TofuItems.SOYMILK_PUMPKIN, 1, 3, 6, 30), new ItemsForZundaRubyTrade(TofuItems.SOYMILK_PUDDING, 1, 3, 6, 30)})));
+		p_221237_0_.put(Tofunian.Roles.TOFUCOOK, gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.SEEDS_SOYBEANS.get(), 16, 8, 1), new ItemsForZundaRubyTrade(TofuItems.TOFUGRILLED.get(), 1, 10, 2)}
+				, 2, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.TOFUKINU.get(), 28, 9, 6), new ItemsForZundaRubyTrade(TofuBlocks.ISHITOFU_BRICK.get(), 1, 12, 4, 8)}
+				, 3, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.TOFUCOOKIE.get(), 1, 12, 6, 13), new ItemsForZundaRubyTrade(TofuItems.TOFUMISO.get(), 1, 6, 6, 13)}
+				, 4, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.YUBA.get(), 18, 8, 15), new ZundaRubyForItemsTrade(TofuBlocks.LEEK_STEM.get(), 16, 8, 15)}
+				, 5, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuBlocks.TOFUCAKE.get().asItem(), 3, 1, 20)})));
+		p_221237_0_.put(Tofunian.Roles.TOFUSMITH, gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.TOFUISHI.get(), 16, 8, 2), new ItemsForZundaRubyTrade(TofuItems.TOFU_SOLID_PICKAXE.get(), 1, 1, 3), new ItemsForZundaRubyTrade(TofuItems.TOFU_SOLID_SHOVEL.get(), 1, 1, 3)}
+				, 2, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.TOFUMETAL.get(), 8, 8, 6), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_PICKAXE.get(), 6, 1, 4, 10), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_SHOVEL.get(), 6, 1, 4, 10), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_SWORD.get(), 6, 1, 4, 10), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_AXE.get(), 6, 1, 4, 10)}
+				, 3, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_METALBOOTS.get(), 4, 1, 4, 12), new ItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_METALCHESTPLATE.get(), 7, 1, 4, 16), new ItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_METALLEGGINGS.get(), 6, 1, 4, 15), new ItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_METALHELMET.get(), 5, 1, 4, 14)}
+				, 4, new VillagerTrades.ItemListing[]{new EnchantedItemsForZundaRubyTrade(new ItemStack(TofuItems.TOFU_DIAMOND_PICKAXE.get()), 16, 1, 2, 20, 0.085F), new EnchantedItemsForZundaRubyTrade(new ItemStack(TofuItems.TOFU_DIAMOND_SHOVEL.get()), 14, 1, 2, 20, 0.085F), new EnchantedItemsForZundaRubyTrade(new ItemStack(TofuItems.TOFU_DIAMOND_SWORD.get()), 15, 1, 2, 20, 0.085F), new EnchantedItemsForZundaRubyTrade(new ItemStack(TofuItems.TOFU_DIAMOND_AXE.get()), 16, 1, 2, 20, 0.085F)}
+				, 5, new VillagerTrades.ItemListing[]{new EnchantedItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_DIAMONDBOOTS.get(), 14, 1, 2, 25), new EnchantedItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_DIAMONDCHESTPLATE.get(), 18, 1, 2, 25), new EnchantedItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_DIAMONDLEGGINGS.get(), 16, 1, 2, 25), new EnchantedItemsForZundaRubyTrade(TofuItems.ARMOR_TOFU_DIAMONDHELMET.get(), 15, 1, 2, 25)})));
+		p_221237_0_.put(Tofunian.Roles.SOYWORKER, gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(Blocks.GLASS, 10, 6, 2), new ZundaRubyForItemsTrade(TofuItems.LEEK.get(), 26, 6, 2)}
+				, 2, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.TOFU_HAMBURG.get(), 1, 9, 6, 7), new ItemsForZundaRubyTrade(TofuItems.COOKED_TOFU_FISH.get(), 1, 12, 5, 7)}
+				, 3, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.BITTERN_BOTTLE.get(), 4, 8, 15), new ItemsForZundaRubyTrade(TofuItems.SOY_CHOCOLATE.get(), 1, 6, 8, 15)}
+				, 4, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.SOYMILK.get(), 1, 3, 6, 20), new ItemsForZundaRubyTrade(TofuItems.TOFUNIAN_SOY_CHOCOLATE.get(), 1, 6, 8, 20)}
+				, 5, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.SOYMILK_APPLE.get(), 1, 3, 6, 30), new ItemsForZundaRubyTrade(TofuItems.SOYMILK_KINAKO.get(), 1, 3, 6, 30), new ItemsForZundaRubyTrade(TofuItems.SOYMILK_PUMPKIN.get(), 1, 3, 6, 30), new ItemsForZundaRubyTrade(TofuItems.SOYMILK_PUDDING.get(), 1, 3, 6, 30)})));
 	});
 
 	private static Int2ObjectMap<VillagerTrades.ItemListing[]> gatAsIntMap(ImmutableMap<Integer, VillagerTrades.ItemListing[]> p_221238_0_) {
@@ -67,7 +67,7 @@ public class TofuTrades {
 
 		public MerchantOffer getOffer(Entity trader, Random rand) {
 			ItemStack itemstack = new ItemStack(this.tradeItem, this.count);
-			return new MerchantOffer(itemstack, new ItemStack(TofuItems.ZUNDARUBY), this.maxUses, this.xpValue, this.priceMultiplier);
+			return new MerchantOffer(itemstack, new ItemStack(TofuItems.ZUNDARUBY.get()), this.maxUses, this.xpValue, this.priceMultiplier);
 		}
 	}
 
@@ -114,7 +114,7 @@ public class TofuTrades {
 			int j = Math.min(this.rubyCount + i, 64);
 			ItemStack stack = new ItemStack(this.sellingItem.getItem(), 1);
 			EnchantmentHelper.enchantItem(rand, stack, i, false);
-			return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY, j), stack, this.maxUses, this.xpValue, this.priceMultiplier);
+			return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY.get(), j), stack, this.maxUses, this.xpValue, this.priceMultiplier);
 		}
 	}
 
@@ -157,7 +157,7 @@ public class TofuTrades {
 		}
 
 		public MerchantOffer getOffer(Entity trader, Random rand) {
-			return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY, this.rubyCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+			return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY.get(), this.rubyCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
 		}
 	}
 }

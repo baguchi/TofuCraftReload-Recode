@@ -7,17 +7,17 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.crafting.NBTIngredient;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.lang.reflect.Constructor;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public abstract class CraftingDataHelper extends RecipeProvider {
 	public CraftingDataHelper(DataGenerator generator) {
@@ -50,186 +50,186 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		return Ingredient.of(stack);
 	}
 
-	protected final void foodCooking(Item material, Item result, float xp, Consumer<FinishedRecipe> consumer) {
-		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material), result, xp, 200).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("smelting_" + result.getRegistryName().getPath()));
-		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material), result, xp, 100).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("smoking_" + result.getRegistryName().getPath()));
-		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material), result, xp, 600).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + result.getRegistryName().getPath()));
+	protected final void foodCooking(RegistryObject<? extends ItemLike> material, RegistryObject<? extends ItemLike> result, float xp, Consumer<FinishedRecipe> consumer) {
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + result.get().getRegistryName().getPath()));
+		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + result.get().getRegistryName().getPath()));
+		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material.get()), result.get(), xp, 600).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + result.get().getRegistryName().getPath()));
 	}
 
-	protected final void foodCooking(Item material, Item result, float xp, Consumer<FinishedRecipe> consumer, String recipeName) {
-		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material), result, xp, 200).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("smelting_" + recipeName));
-		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material), result, xp, 100).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("smoking_" + recipeName));
-		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material), result, xp, 600).unlockedBy("has_item", has(material)).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + recipeName));
+	protected final void foodCooking(RegistryObject<? extends ItemLike> material, RegistryObject<? extends ItemLike> result, float xp, Consumer<FinishedRecipe> consumer, String recipeName) {
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + recipeName));
+		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + recipeName));
+		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material.get()), result.get(), xp, 600).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + recipeName));
 	}
 
-	public static void cuttingRecipe(Consumer<FinishedRecipe> consumer, Item cuttingItem, Item result) {
-		SingleItemRecipeBuilder.stonecutting(Ingredient.of(cuttingItem), result).unlockedBy("has_item", has(cuttingItem)).save(consumer, TofuCraftReload.prefix("cutting_" + result.getRegistryName().getPath()));
+	public static void cuttingRecipe(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> cuttingItem, RegistryObject<? extends ItemLike> result) {
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(cuttingItem.get()), result.get()).unlockedBy("has_item", has(cuttingItem.get())).save(consumer, TofuCraftReload.prefix("cutting_" + result.get().getRegistryName().getPath()));
 	}
 
-	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, Item smithItem, Item result) {
-		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU), result).unlocks("has_tofudiamond", has(TofuBlocks.DIAMONDTOFU)).save(consumer, TofuCraftReload.prefix("smithing_" + result.getRegistryName().getPath()));
+	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RegistryObject<Item> result) {
+		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), result.get()).unlocks("has_tofudiamond", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, TofuCraftReload.prefix("smithing_" + result.get().getRegistryName().getPath()));
 	}
 
-	protected final void helmetItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material) {
-		ShapedRecipeBuilder.shaped(result)
+	protected final void helmetItem(Consumer<FinishedRecipe> consumer, String name, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material) {
+		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("###")
 				.pattern("# #")
-				.define('#', material)
-				.unlockedBy("has_item", has(material))
+				.define('#', material.get())
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void chestplateItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material) {
-		ShapedRecipeBuilder.shaped(result)
+	protected final void chestplateItem(Consumer<FinishedRecipe> consumer, String name, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material) {
+		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("# #")
 				.pattern("###")
 				.pattern("###")
-				.define('#', material)
-				.unlockedBy("has_item", has(material))
+				.define('#', material.get())
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void leggingsItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material) {
-		ShapedRecipeBuilder.shaped(result)
+	protected final void leggingsItem(Consumer<FinishedRecipe> consumer, String name, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material) {
+		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("###")
 				.pattern("# #")
 				.pattern("# #")
-				.define('#', material)
-				.unlockedBy("has_item", has(material))
+				.define('#', material.get())
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void bootsItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material) {
-		ShapedRecipeBuilder.shaped(result)
+	protected final void bootsItem(Consumer<FinishedRecipe> consumer, String name, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material) {
+		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("# #")
 				.pattern("# #")
-				.define('#', material)
-				.unlockedBy("has_item", has(material))
+				.define('#', material.get())
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void pickaxeItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Tag.Named<Item> handle) {
-		ShapedRecipeBuilder.shaped(result)
+	protected final void pickaxeItem(Consumer<FinishedRecipe> consumer, String name, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material, TagKey<Item> handle) {
+		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("###")
 				.pattern(" X ")
 				.pattern(" X ")
-				.define('#', material)
+				.define('#', material.get())
 				.define('X', handle)
-				.unlockedBy("has_item", has(material))
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void swordItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Tag.Named<Item> handle) {
-		ShapedRecipeBuilder.shaped(result)
+	protected final void swordItem(Consumer<FinishedRecipe> consumer, String name, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material, TagKey<Item> handle) {
+		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("#")
 				.pattern("#")
 				.pattern("X")
-				.define('#', material)
+				.define('#', material.get())
 				.define('X', handle)
-				.unlockedBy("has_item", has(material))
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void axeItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Tag.Named<Item> handle) {
-		ShapedRecipeBuilder.shaped(result)
+	protected final void axeItem(Consumer<FinishedRecipe> consumer, String name, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material, TagKey<Item> handle) {
+		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("##")
 				.pattern("#X")
 				.pattern(" X")
-				.define('#', material)
+				.define('#', material.get())
 				.define('X', handle)
-				.unlockedBy("has_item", has(material))
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void shovelItem(Consumer<FinishedRecipe> consumer, String name, Item result, Item material, Tag.Named<Item> handle) {
-		ShapedRecipeBuilder.shaped(result)
+	protected final void shovelItem(Consumer<FinishedRecipe> consumer, String name, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material, TagKey<Item> handle) {
+		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("#")
 				.pattern("X")
 				.pattern("X")
-				.define('#', material)
+				.define('#', material.get())
 				.define('X', handle)
-				.unlockedBy("has_item", has(material))
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer, locEquip(name));
 	}
 
-	protected final void tofuBlockItem(Consumer<FinishedRecipe> consumer, Item result, Item material) {
-		ShapedRecipeBuilder.shaped(result)
+	protected final void tofuBlockItem(Consumer<FinishedRecipe> consumer, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material) {
+		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("##")
 				.pattern("##")
-				.define('#', material)
-				.unlockedBy("has_item", has(material))
+				.define('#', material.get())
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer);
 	}
 
-	protected final void tofuBlockItem(Consumer<FinishedRecipe> consumer, Item result, Item material, String name) {
-		ShapedRecipeBuilder.shaped(result)
+	protected final void tofuBlockItem(Consumer<FinishedRecipe> consumer, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material, String name) {
+		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("##")
 				.pattern("##")
-				.define('#', material)
-				.unlockedBy("has_item", has(material))
+				.define('#', material.get())
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer, TofuCraftReload.prefix(name));
 	}
 
-	protected final void ladderItem(Consumer<FinishedRecipe> consumer, Item result, Item material) {
-		ShapedRecipeBuilder.shaped(result, 6)
+	protected final void ladderItem(Consumer<FinishedRecipe> consumer, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material) {
+		ShapedRecipeBuilder.shaped(result.get(), 6)
 				.pattern("# #")
 				.pattern("###")
 				.pattern("# #")
-				.define('#', material)
-				.unlockedBy("has_item", has(material))
+				.define('#', material.get())
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer);
 	}
 
-	protected final void decorationTofuBlockItem(Consumer<FinishedRecipe> consumer, Item result, Item material) {
-		ShapedRecipeBuilder.shaped(result, 4)
+	protected final void decorationTofuBlockItem(Consumer<FinishedRecipe> consumer, RegistryObject<? extends ItemLike> result, RegistryObject<? extends ItemLike> material) {
+		ShapedRecipeBuilder.shaped(result.get(), 4)
 				.pattern("##")
 				.pattern("##")
-				.define('#', material)
-				.unlockedBy("has_item", has(material))
+				.define('#', material.get())
+				.unlockedBy("has_item", has(material.get()))
 				.save(consumer);
 	}
 
-	public void makeStairs(Consumer<FinishedRecipe> consumer, Block stairsOut, Block blockIn) {
-		ShapedRecipeBuilder.shaped(stairsOut, 4)
+	public void makeStairs(Consumer<FinishedRecipe> consumer, RegistryObject<? extends ItemLike> stairsOut, RegistryObject<? extends ItemLike> blockIn) {
+		ShapedRecipeBuilder.shaped(stairsOut.get(), 4)
 				.pattern("M  ")
 				.pattern("MM ")
 				.pattern("MMM")
-				.define('M', blockIn)
-				.unlockedBy("has_" + blockIn.getRegistryName().getPath(), has(blockIn)).save(consumer);
+				.define('M', blockIn.get())
+				.unlockedBy("has_item", has(blockIn.get())).save(consumer);
 	}
 
-	public void makeStairsCraftingOrCutting(Consumer<FinishedRecipe> consumer, Block stairsOut, Block blockIn) {
+	public void makeStairsCraftingOrCutting(Consumer<FinishedRecipe> consumer, RegistryObject<? extends ItemLike> stairsOut, RegistryObject<? extends ItemLike> blockIn) {
 		makeStairs(consumer, stairsOut, blockIn);
-		cuttingRecipe(consumer, blockIn.asItem(), stairsOut.asItem());
+		cuttingRecipe(consumer, blockIn, stairsOut);
 	}
 
-	public void makeSlab(Consumer<FinishedRecipe> consumer, Block slabOut, Block blockIn) {
-		ShapedRecipeBuilder.shaped(slabOut, 6)
+	public void makeSlab(Consumer<FinishedRecipe> consumer, RegistryObject<? extends ItemLike> slabOut, RegistryObject<? extends ItemLike> blockIn) {
+		ShapedRecipeBuilder.shaped(slabOut.get(), 6)
 				.pattern("MMM")
-				.define('M', blockIn)
-				.unlockedBy("has_" + blockIn.getRegistryName().getPath(), has(blockIn)).save(consumer);
+				.define('M', blockIn.get())
+				.unlockedBy("has_item", has(blockIn.get())).save(consumer);
 	}
 
-	public void makeSlabCraftingOrCutting(Consumer<FinishedRecipe> consumer, Block slabOut, Block blockIn) {
+	public void makeSlabCraftingOrCutting(Consumer<FinishedRecipe> consumer, RegistryObject<? extends ItemLike> slabOut, RegistryObject<? extends ItemLike> blockIn) {
 		makeSlab(consumer, slabOut, blockIn);
-		cuttingRecipe(consumer, blockIn.asItem(), slabOut.asItem());
+		cuttingRecipe(consumer, blockIn, slabOut);
 	}
 
-	public void makeFence(Consumer<FinishedRecipe> consumer, Block fenceOut, Block blockIn) {
-		ShapedRecipeBuilder.shaped(fenceOut, 6)
+	public void makeFence(Consumer<FinishedRecipe> consumer, RegistryObject<? extends ItemLike> fenceOut, RegistryObject<? extends ItemLike> blockIn) {
+		ShapedRecipeBuilder.shaped(fenceOut.get(), 6)
 				.pattern("MMM")
 				.pattern("MMM")
-				.define('M', blockIn)
-				.unlockedBy("has_" + blockIn.getRegistryName().getPath(), has(blockIn)).save(consumer);
+				.define('M', blockIn.get())
+				.unlockedBy("has_item", has(blockIn.get())).save(consumer);
 	}
 
-	public void makeTorch(Consumer<FinishedRecipe> consumer, Block torchOut, Item itemIn) {
-		ShapedRecipeBuilder.shaped(torchOut, 4)
+	public void makeTorch(Consumer<FinishedRecipe> consumer, RegistryObject<? extends ItemLike> torchOut, RegistryObject<? extends ItemLike> itemIn) {
+		ShapedRecipeBuilder.shaped(torchOut.get(), 4)
 				.pattern("C")
 				.pattern("M")
 				.define('C', ItemTags.COALS)
-				.define('M', itemIn)
-				.unlockedBy("has_" + itemIn.getRegistryName().getPath(), has(itemIn)).save(consumer);
+				.define('M', itemIn.get())
+				.unlockedBy("has_item", has(itemIn.get())).save(consumer);
 	}
 
 

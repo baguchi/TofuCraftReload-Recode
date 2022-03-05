@@ -4,7 +4,7 @@ import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuItems;
-import baguchan.tofucraft.registry.TofuPoisAndProfession;
+import baguchan.tofucraft.registry.TofuPoiTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -131,7 +131,7 @@ public class CommonEvents {
 			if (event.getSpawnReason() != MobSpawnType.SPAWNER && event.getSpawnReason() != MobSpawnType.EVENT && event.getSpawnReason() != MobSpawnType.BREEDING && event.getSpawnReason() != MobSpawnType.PATROL) {
 				if (level instanceof ServerLevel) {
 					Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
-						return p_184069_ == TofuPoisAndProfession.MORIJIO_POI;
+						return p_184069_ == TofuPoiTypes.MORIJIO_POI.get();
 					}, (p_184055_) -> {
 						return true;
 					}, livingEntity.blockPosition(), 48, PoiManager.Occupancy.ANY);
@@ -150,7 +150,7 @@ public class CommonEvents {
 		LevelAccessor level = event.getWorld();
 		if (level instanceof ServerLevel) {
 			Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
-				return p_184069_ == TofuPoisAndProfession.MORIJIO_POI;
+				return p_184069_ == TofuPoiTypes.MORIJIO_POI.get();
 			}, (p_184055_) -> {
 				return true;
 			}, new BlockPos(vec3), 48, PoiManager.Occupancy.ANY);
@@ -166,7 +166,7 @@ public class CommonEvents {
 		if (!event.getPlayer().isCreative() && (
 				event.getWorld().getBlockState(event.getPos()).is(Blocks.FERN) || event.getWorld().getBlockState(event.getPos()).is(Blocks.TALL_GRASS) || event.getWorld().getBlockState(event.getPos()).is(Blocks.GRASS)) &&
 				event.getWorld() instanceof Level && ((Level) event.getWorld()).random.nextFloat() < 0.075F) {
-			ItemEntity entity = new ItemEntity((Level) event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEANS));
+			ItemEntity entity = new ItemEntity((Level) event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEANS.get()));
 			event.getWorld().addFreshEntity(entity);
 		}
 	}

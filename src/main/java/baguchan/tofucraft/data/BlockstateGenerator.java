@@ -22,72 +22,72 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		simpleBlock(TofuBlocks.KINUTOFU);
-		simpleBlock(TofuBlocks.MOMENTOFU);
-		simpleBlock(TofuBlocks.ISHITOFU);
-		simpleBlock(TofuBlocks.ISHITOFU_BRICK);
-		simpleBlock(TofuBlocks.ISHITOFU_SMOOTH_BRICK);
-		simpleBlock(TofuBlocks.ISHITOFU_CHISELED_BRICK);
-		simpleBlock(TofuBlocks.METALTOFU);
-		simpleBlock(TofuBlocks.DIAMONDTOFU);
-		simpleBlock(TofuBlocks.GRILLEDTOFU);
-		simpleBlock(TofuBlocks.ZUNDATOFU);
-		simpleBlock(TofuBlocks.MISOTOFU);
+		simpleBlock(TofuBlocks.KINUTOFU.get());
+		simpleBlock(TofuBlocks.MOMENTOFU.get());
+		simpleBlock(TofuBlocks.ISHITOFU.get());
+		simpleBlock(TofuBlocks.ISHITOFU_BRICK.get());
+		simpleBlock(TofuBlocks.ISHITOFU_SMOOTH_BRICK.get());
+		simpleBlock(TofuBlocks.ISHITOFU_CHISELED_BRICK.get());
+		simpleBlock(TofuBlocks.METALTOFU.get());
+		simpleBlock(TofuBlocks.DIAMONDTOFU.get());
+		simpleBlock(TofuBlocks.GRILLEDTOFU.get());
+		simpleBlock(TofuBlocks.ZUNDATOFU.get());
+		simpleBlock(TofuBlocks.MISOTOFU.get());
 
-		simpleBlock(TofuBlocks.HELLTOFU);
-		simpleBlock(TofuBlocks.HELLTOFU_BRICK);
-		simpleBlock(TofuBlocks.HELLTOFU_SMOOTH_BRICK);
-		simpleBlock(TofuBlocks.SOULTOFU);
-		simpleBlock(TofuBlocks.SOULTOFU_BRICK);
-		simpleBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK);
+		simpleBlock(TofuBlocks.HELLTOFU.get());
+		simpleBlock(TofuBlocks.HELLTOFU_BRICK.get());
+		simpleBlock(TofuBlocks.HELLTOFU_SMOOTH_BRICK.get());
+		simpleBlock(TofuBlocks.SOULTOFU.get());
+		simpleBlock(TofuBlocks.SOULTOFU_BRICK.get());
+		simpleBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK.get());
 
-		stairs(TofuBlocks.TOFUSTAIR_KINU, TofuBlocks.KINUTOFU);
-		stairs(TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.MOMENTOFU);
-		stairs(TofuBlocks.TOFUSTAIR_ISHI, TofuBlocks.ISHITOFU);
-		stairs(TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.METALTOFU);
-		stairs(TofuBlocks.TOFUSTAIR_ZUNDA, TofuBlocks.ZUNDATOFU);
-		stairs(TofuBlocks.TOFUSTAIR_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
-		stairs(TofuBlocks.TOFUSTAIR_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
-		stairs(TofuBlocks.TOFUSTAIR_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
-		stairs(TofuBlocks.TOFUSTAIR_MISO, TofuBlocks.MISOTOFU);
+		stairs(TofuBlocks.TOFUSTAIR_KINU.get(), TofuBlocks.KINUTOFU.get());
+		stairs(TofuBlocks.TOFUSTAIR_MOMEN.get(), TofuBlocks.MOMENTOFU.get());
+		stairs(TofuBlocks.TOFUSTAIR_ISHI.get(), TofuBlocks.ISHITOFU.get());
+		stairs(TofuBlocks.TOFUSTAIR_METAL.get(), TofuBlocks.METALTOFU.get());
+		stairs(TofuBlocks.TOFUSTAIR_ZUNDA.get(), TofuBlocks.ZUNDATOFU.get());
+		stairs(TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
+		stairs(TofuBlocks.TOFUSTAIR_HELLBRICK.get(), TofuBlocks.HELLTOFU_BRICK.get());
+		stairs(TofuBlocks.TOFUSTAIR_SOULBRICK.get(), TofuBlocks.SOULTOFU_BRICK.get());
+		stairs(TofuBlocks.TOFUSTAIR_MISO.get(), TofuBlocks.MISOTOFU.get());
 
-		slab(TofuBlocks.TOFUSLAB_KINU, TofuBlocks.KINUTOFU);
-		slab(TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.MOMENTOFU);
-		slab(TofuBlocks.TOFUSLAB_ISHI, TofuBlocks.ISHITOFU);
-		slab(TofuBlocks.TOFUSLAB_METAL, TofuBlocks.METALTOFU);
-		slab(TofuBlocks.TOFUSLAB_ZUNDA, TofuBlocks.ZUNDATOFU);
-		slab(TofuBlocks.TOFUSLAB_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
-		slab(TofuBlocks.TOFUSLAB_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
-		slab(TofuBlocks.TOFUSLAB_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
-		slab(TofuBlocks.TOFUSLAB_MISO, TofuBlocks.MISOTOFU);
+		slab(TofuBlocks.TOFUSLAB_KINU.get(), TofuBlocks.KINUTOFU.get());
+		slab(TofuBlocks.TOFUSLAB_MOMEN.get(), TofuBlocks.MOMENTOFU.get());
+		slab(TofuBlocks.TOFUSLAB_ISHI.get(), TofuBlocks.ISHITOFU.get());
+		slab(TofuBlocks.TOFUSLAB_METAL.get(), TofuBlocks.METALTOFU.get());
+		slab(TofuBlocks.TOFUSLAB_ZUNDA.get(), TofuBlocks.ZUNDATOFU.get());
+		slab(TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
+		slab(TofuBlocks.TOFUSLAB_HELLBRICK.get(), TofuBlocks.HELLTOFU_BRICK.get());
+		slab(TofuBlocks.TOFUSLAB_SOULBRICK.get(), TofuBlocks.SOULTOFU_BRICK.get());
+		slab(TofuBlocks.TOFUSLAB_MISO.get(), TofuBlocks.MISOTOFU.get());
 
-		torchBlock(TofuBlocks.TOFUTORCH_KINU, TofuBlocks.WALLTOFUTORCH_KINU);
-		torchBlock(TofuBlocks.TOFUTORCH_MOMEN, TofuBlocks.WALLTOFUTORCH_MOMEN);
-		torchBlock(TofuBlocks.TOFUTORCH_ISHI, TofuBlocks.WALLTOFUTORCH_ISHI);
-		torchBlock(TofuBlocks.TOFUTORCH_METAL, TofuBlocks.WALLTOFUTORCH_METAL);
+		torchBlock(TofuBlocks.TOFUTORCH_KINU.get(), TofuBlocks.WALLTOFUTORCH_KINU.get());
+		torchBlock(TofuBlocks.TOFUTORCH_MOMEN.get(), TofuBlocks.WALLTOFUTORCH_MOMEN.get());
+		torchBlock(TofuBlocks.TOFUTORCH_ISHI.get(), TofuBlocks.WALLTOFUTORCH_ISHI.get());
+		torchBlock(TofuBlocks.TOFUTORCH_METAL.get(), TofuBlocks.WALLTOFUTORCH_METAL.get());
 
-		simpleBlock(TofuBlocks.TOFU_TERRAIN);
-		simpleBlock(TofuBlocks.TOFUSLATE);
-		simpleBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE);
-		simpleBlock(TofuBlocks.ORE_TOFU_DIAMOND);
-		simpleBlock(TofuBlocks.TOFU_BEDROCK);
+		simpleBlock(TofuBlocks.TOFU_TERRAIN.get());
+		simpleBlock(TofuBlocks.TOFUSLATE.get());
+		simpleBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
+		simpleBlock(TofuBlocks.ORE_TOFU_DIAMOND.get());
+		simpleBlock(TofuBlocks.TOFU_BEDROCK.get());
 
-		logBlock(TofuBlocks.LEEK_GREEN_STEM);
-		logBlock(TofuBlocks.LEEK_STEM);
-		crossBlock(TofuBlocks.ZUNDATOFU_MUSHROOM);
-		logBlock(TofuBlocks.TOFU_STEM);
-		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS);
+		logBlock(TofuBlocks.LEEK_GREEN_STEM.get());
+		logBlock(TofuBlocks.LEEK_STEM.get());
+		crossBlock(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
+		logBlock(TofuBlocks.TOFU_STEM.get());
+		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS.get());
 
-		crossBlock(TofuBlocks.SAPLING_TOFU);
-		simpleBlock(TofuBlocks.LEAVES_TOFU);
+		crossBlock(TofuBlocks.SAPLING_TOFU.get());
+		simpleBlock(TofuBlocks.LEAVES_TOFU.get());
 
-		crossBlock(TofuBlocks.LEEK);
+		crossBlock(TofuBlocks.LEEK.get());
 
-		simpleBlock(TofuBlocks.TOFU_PORTAL);
+		simpleBlock(TofuBlocks.TOFU_PORTAL.get());
 
-		simpleBlock(TofuBlocks.EGGTOFU);
-		stairs(TofuBlocks.TOFUSTAIR_EGGTOFU, TofuBlocks.EGGTOFU);
-		slab(TofuBlocks.TOFUSLAB_EGGTOFU, TofuBlocks.EGGTOFU);
+		simpleBlock(TofuBlocks.EGGTOFU.get());
+		stairs(TofuBlocks.TOFUSTAIR_EGG.get(), TofuBlocks.EGGTOFU.get());
+		slab(TofuBlocks.TOFUSLAB_EGG.get(), TofuBlocks.EGGTOFU.get());
 	}
 
 	public void torchBlock(Block block, Block wall) {

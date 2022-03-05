@@ -1,11 +1,11 @@
 package baguchan.tofucraft.world.placement;
 
 import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.world.gen.feature.TofuWorldFeatures;
+import baguchan.tofucraft.world.gen.features.ModTreeFeatures;
+import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -17,31 +17,29 @@ import java.util.List;
 public class TofuWorldPlacements {
 	public static final PlacementModifier TREE_THRESHOLD = SurfaceWaterDepthFilter.forMaxDepth(0);
 
-	public static final PlacedFeature ORE_TOFU_DIAMOND = register("tofucraft:ore_tofu_diamond", TofuWorldFeatures.ORE_DIAMOND_SMALL.placed(commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
-	public static final PlacedFeature ORE_TOFU_DIAMOND_LARGE = register("tofucraft:ore_tofu_diamond_large", TofuWorldFeatures.ORE_DIAMOND_LARGE.placed(rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
-	public static final PlacedFeature ORE_TOFU_DIAMOND_BURIED = register("tofucraft:ore_tofu_diamond_buried", TofuWorldFeatures.ORE_DIAMOND_BURIED.placed(commonOrePlacement(5, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)))));
+	public static final Holder<PlacedFeature> ORE_TOFU_DIAMOND = PlacementUtils.register("tofucraft:ore_tofu_diamond", TofuWorldFeatures.ORE_DIAMOND_SMALL, commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
+	public static final Holder<PlacedFeature> ORE_TOFU_DIAMOND_LARGE = PlacementUtils.register("tofucraft:ore_tofu_diamond_large", TofuWorldFeatures.ORE_DIAMOND_LARGE, rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
+	public static final Holder<PlacedFeature> ORE_TOFU_DIAMOND_BURIED = PlacementUtils.register("tofucraft:ore_tofu_diamond_buried", TofuWorldFeatures.ORE_DIAMOND_BURIED, commonOrePlacement(5, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 
-	public static final PlacedFeature PATCH_LEEK = register("tofucraft:patch_leek", TofuWorldFeatures.LEEK.placed(NoiseThresholdCountPlacement.of(-0.8D, 5, 10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
-	public static final PlacedFeature PATCH_LEEK_WASTE = register("tofucraft:patch_leek_waste", TofuWorldFeatures.LEEK.placed(CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+	public static final Holder<PlacedFeature> PATCH_LEEK = PlacementUtils.register("tofucraft:patch_leek", TofuWorldFeatures.LEEK, NoiseThresholdCountPlacement.of(-0.8D, 5, 10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+	public static final Holder<PlacedFeature> PATCH_LEEK_WASTE = PlacementUtils.register("tofucraft:patch_leek_waste", TofuWorldFeatures.LEEK, CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
-	public static final PlacedFeature BEG_LEEK = register("tofucraft:big_leek", TofuWorldFeatures.BIG_LEEK.placed(PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+	public static final Holder<PlacedFeature> BEG_LEEK = PlacementUtils.register("tofucraft:big_leek", TofuWorldFeatures.BIG_LEEK, PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
-	public static final PlacedFeature TOFU_BUILDING = register("tofucraft:tofu_building", TofuWorldFeatures.TOFU_BUILDING.placed(PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+	public static final Holder<PlacedFeature> TOFU_BUILDING = PlacementUtils.register("tofucraft:tofu_building", TofuWorldFeatures.TOFU_BUILDING, PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
-	public static final PlacedFeature PATCH_ZUNDA_TOFU_MUSHROOM = register("tofucraft:patch_zunda_tofu_mushroom", TofuWorldFeatures.ZUNDA_TOFU_MUSHROOM.placed(InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+	public static final Holder<PlacedFeature> PATCH_ZUNDA_TOFU_MUSHROOM = PlacementUtils.register("tofucraft:patch_zunda_tofu_mushroom", TofuWorldFeatures.ZUNDA_TOFU_MUSHROOM, InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
-	public static final PlacedFeature BIG_ZUNDA_TOFU_MUSHROOM = register("tofucraft:big_zunda_tofu_mushroom", TofuWorldFeatures.BIG_ZUNDA_TOFU_MUSHUROOM.placed(PlacementUtils.countExtra(3, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+	public static final Holder<PlacedFeature> BIG_ZUNDA_TOFU_MUSHROOM = PlacementUtils.register("tofucraft:big_zunda_tofu_mushroom", TofuWorldFeatures.BIG_ZUNDA_TOFU_MUSHUROOM, PlacementUtils.countExtra(3, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
 
-	public static final PlacedFeature TOFU_TREES_FOREST = register("tofucraft:tofu_trees_forest", TofuWorldFeatures.TOFU_TREES.placed(treePlacement(PlacementUtils.countExtra(10, 0.1F, 1), TofuBlocks.SAPLING_TOFU)));
-	public static final PlacedFeature TOFU_TREES_PLAINS = register("tofucraft:tofu_trees_plains", TofuWorldFeatures.TOFU_TREES.placed(treePlacement(PlacementUtils.countExtra(0, 0.01F, 1), TofuBlocks.SAPLING_TOFU)));
+	public static final Holder<PlacedFeature> TOFU_CHECKED = PlacementUtils.register("tofucraft:tofu_checked", ModTreeFeatures.TOFU_TREE, PlacementUtils.filteredByBlockSurvival(TofuBlocks.SAPLING_TOFU.get()));
+
+	public static final Holder<PlacedFeature> TOFU_TREES_FOREST = PlacementUtils.register("tofucraft:tofu_trees_forest", TofuWorldFeatures.TOFU_TREES, treePlacement(PlacementUtils.countExtra(10, 0.1F, 1), TofuBlocks.SAPLING_TOFU.get()));
+	public static final Holder<PlacedFeature> TOFU_TREES_PLAINS = PlacementUtils.register("tofucraft:tofu_trees_plains", TofuWorldFeatures.TOFU_TREES, treePlacement(PlacementUtils.countExtra(0, 0.01F, 1), TofuBlocks.SAPLING_TOFU.get()));
 
 	public static void init() {
 
-	}
-
-	public static PlacedFeature register(String p_195369_, PlacedFeature p_195370_) {
-		return Registry.register(BuiltinRegistries.PLACED_FEATURE, p_195369_, p_195370_);
 	}
 
 	private static ImmutableList.Builder<PlacementModifier> treePlacementBase(PlacementModifier p_195485_) {

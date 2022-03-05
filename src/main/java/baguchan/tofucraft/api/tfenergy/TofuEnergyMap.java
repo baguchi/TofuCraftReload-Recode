@@ -12,9 +12,9 @@ public class TofuEnergyMap {
 	private static HashMap<FluidStack, Integer> fluidRecipes = new HashMap<>();
 
 	public static void init() {
-		register(new ItemStack(TofuItems.TOFUKINU, 1), 100);
-		register(new ItemStack(TofuItems.TOFUMOMEN, 1), 100);
-		register(new ItemStack(TofuItems.TOFUISHI, 1), 100);
+		register(new ItemStack(TofuItems.TOFUKINU.get(), 1), 100);
+		register(new ItemStack(TofuItems.TOFUMOMEN.get(), 1), 100);
+		register(new ItemStack(TofuItems.TOFUISHI.get(), 1), 100);
 	}
 
 	public static void register(ItemStack item, int loader) {

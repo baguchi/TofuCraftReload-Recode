@@ -2,6 +2,7 @@ package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -10,6 +11,7 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -19,9 +21,9 @@ import java.util.function.Supplier;
 public class TofuMushroomBlock extends BushBlock implements BonemealableBlock {
 	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
 
-	private final Supplier<ConfiguredFeature<?, ?>> featureSupplier;
+	private final Supplier<Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>>> featureSupplier;
 
-	public TofuMushroomBlock(Properties properties, Supplier<ConfiguredFeature<?, ?>> p_153984_) {
+	public TofuMushroomBlock(Properties properties, Supplier<Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>>> p_153984_) {
 		super(properties);
 		this.featureSupplier = p_153984_;
 	}
@@ -33,12 +35,12 @@ public class TofuMushroomBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState p_51042_, BlockGetter p_51043_, BlockPos p_51044_) {
-		return p_51042_.is(TofuBlocks.TOFU_TERRAIN);
+		return p_51042_.is(TofuBlocks.TOFU_TERRAIN.get());
 	}
 
 	public boolean growMushroom(ServerLevel p_54860_, BlockPos p_54861_, BlockState p_54862_, Random p_54863_) {
 		p_54860_.removeBlock(p_54861_, false);
-		if (this.featureSupplier.get().place(p_54860_, p_54860_.getChunkSource().getGenerator(), p_54863_, p_54861_)) {
+		if (this.featureSupplier.get().value().place(p_54860_, p_54860_.getChunkSource().getGenerator(), p_54863_, p_54861_)) {
 			return true;
 		} else {
 			p_54860_.setBlock(p_54861_, p_54862_, 3);

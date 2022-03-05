@@ -56,12 +56,12 @@ public class TofuPortalBlock extends Block {
 
 			BlockState neighboringState = world.getBlockState(pos.relative(facing));
 
-			good = facing == Direction.UP || neighboringState.getBlock() == TofuBlocks.GRILLEDTOFU || neighboringState == state;
+			good = facing == Direction.UP || neighboringState.getBlock() == TofuBlocks.GRILLEDTOFU.get() || neighboringState == state;
 		}
 
 		if (!good) {
 			world.levelEvent(2001, pos, Block.getId(state));
-			world.setBlock(pos, TofuBlocks.SOYMILK.defaultBlockState(), 0b11);
+			world.setBlock(pos, TofuBlocks.SOYMILK.get().defaultBlockState(), 0b11);
 		}
 	}
 
@@ -176,11 +176,11 @@ public class TofuPortalBlock extends Block {
 		}
 
 		boolean isEmptyBlock(BlockState state) {
-			return (state.getBlock() == TofuBlocks.SOYMILK);
+			return (state.getBlock() == TofuBlocks.SOYMILK.get());
 		}
 
 		boolean isTofuBlock(BlockState state) {
-			return (state.getBlock() == TofuBlocks.GRILLEDTOFU);
+			return (state.getBlock() == TofuBlocks.GRILLEDTOFU.get());
 		}
 
 		public boolean isValid() {
@@ -189,7 +189,7 @@ public class TofuPortalBlock extends Block {
 
 		void placePortalBlocks() {
 			for (BlockPos portalPos : BlockPos.MutableBlockPos.betweenClosed(this.nw, this.se))
-				this.world.setBlock(portalPos, TofuBlocks.TOFU_PORTAL.defaultBlockState(), 2);
+				this.world.setBlock(portalPos, TofuBlocks.TOFU_PORTAL.get().defaultBlockState(), 2);
 		}
 	}
 }

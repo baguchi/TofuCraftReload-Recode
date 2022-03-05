@@ -61,9 +61,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 
-	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK, 3, TofuItems.TOFUCOOKIE, 3, TofuItems.TOFUGRILLED, 1);
+	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK.get(), 3, TofuItems.TOFUCOOKIE.get(), 3, TofuItems.TOFUGRILLED.get(), 1);
 
-	private static final Set<Item> WANTED_ITEMS = ImmutableSet.of(TofuItems.SOYMILK, TofuItems.TOFUCOOKIE, TofuItems.TOFUGRILLED, TofuItems.SEEDS_SOYBEANS);
+	private static final Set<Item> WANTED_ITEMS = ImmutableSet.of(TofuItems.SOYMILK.get(), TofuItems.TOFUCOOKIE.get(), TofuItems.TOFUGRILLED.get(), TofuItems.SEEDS_SOYBEANS.get());
 	private static final Predicate<? super ItemEntity> ALLOWED_ITEMS = (p_213616_0_) -> {
 		return WANTED_ITEMS.contains(p_213616_0_.getItem().getItem());
 	};
@@ -139,7 +139,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		return TofuEntityTypes.TOFUNIAN.create(p_241840_1_);
+		return TofuEntityTypes.TOFUNIAN.get().create(p_241840_1_);
 	}
 
 	protected void defineSynchedData() {
@@ -284,7 +284,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public InteractionResult mobInteract(Player p_35472_, InteractionHand p_35473_) {
 		ItemStack itemstack = p_35472_.getItemInHand(p_35473_);
-		if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG && this.isAlive() && !this.isTrading() && !this.isSleeping() && !p_35472_.isSecondaryUseActive()) {
+		if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG.get() && this.isAlive() && !this.isTrading() && !this.isSleeping() && !p_35472_.isSecondaryUseActive()) {
 			if (this.isBaby()) {
 				this.setUnhappy();
 				return InteractionResult.sidedSuccess(this.level.isClientSide);
@@ -570,7 +570,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public boolean hasFarmSeeds() {
-		return getInventory().hasAnyOf(ImmutableSet.of(TofuItems.SEEDS_SOYBEANS));
+		return getInventory().hasAnyOf(ImmutableSet.of(TofuItems.SEEDS_SOYBEANS.get()));
 	}
 
 	private int countFoodPointsInInventory() {
@@ -584,7 +584,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		for (int i = 0; i < getInventory().getContainerSize(); i++) {
 			ItemStack itemstack = getInventory().getItem(i);
 			if (!itemstack.isEmpty() &&
-					itemstack.getItem() == TofuItems.SEEDS_SOYBEANS) {
+					itemstack.getItem() == TofuItems.SEEDS_SOYBEANS.get()) {
 				getInventory().removeItem(i, 1);
 				cookResult();
 			}
@@ -592,7 +592,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	private void cookResult() {
-		getInventory().addItem(new ItemStack(TofuItems.TOFUGRILLED));
+		getInventory().addItem(new ItemStack(TofuItems.TOFUGRILLED.get()));
 	}
 
 	public void updateTrades() {
@@ -811,7 +811,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 
 		private boolean isTooFarAway(BlockPos p_220846_1_, double p_220846_2_) {
-			return !p_220846_1_.closerThan(this.hunter.position(), p_220846_2_);
+			return !p_220846_1_.closerThan(this.hunter.blockPosition(), p_220846_2_);
 		}
 	}
 

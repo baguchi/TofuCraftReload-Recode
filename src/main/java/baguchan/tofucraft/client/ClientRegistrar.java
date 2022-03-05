@@ -39,45 +39,45 @@ public class ClientRegistrar {
 	}
 
 	public static void renderTileEntity() {
-		BlockEntityRenderers.register(TofuBlockEntitys.TOFUBED, TofuBedRenderer::new);
-		BlockEntityRenderers.register(TofuBlockEntitys.TOFUCHEST, TofuChestRenderer::new);
+		BlockEntityRenderers.register(TofuBlockEntitys.TOFUBED.get(), TofuBedRenderer::new);
+		BlockEntityRenderers.register(TofuBlockEntitys.TOFUCHEST.get(), TofuChestRenderer::new);
 	}
 
 	public static void renderBlockColor() {
 		Minecraft.getInstance().getBlockColors().register((p_92621_, p_92622_, p_92623_, p_92624_) -> {
 			return p_92622_ != null && p_92623_ != null ? BiomeColors.getAverageWaterColor(p_92622_, p_92623_) : -1;
-		}, TofuBlocks.SALTPAN);
+		}, TofuBlocks.SALTPAN.get());
 	}
 
 	public static void renderBlockLayer() {
-		setRenderLayer(TofuBlocks.SOYBEAN, RenderType.cutout());
-		setRenderLayer(TofuBlocks.SOYBEAN_NETHER, RenderType.cutout());
-		setRenderLayer(TofuBlocks.SOYBEAN_SOUL, RenderType.cutout());
+		setRenderLayer(TofuBlocks.SOYBEAN.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.SOYBEAN_NETHER.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.SOYBEAN_SOUL.get(), RenderType.cutout());
 
-		setRenderLayer(TofuBlocks.TOFUTORCH_KINU, RenderType.cutout());
-		setRenderLayer(TofuBlocks.TOFUTORCH_MOMEN, RenderType.cutout());
-		setRenderLayer(TofuBlocks.TOFUTORCH_ISHI, RenderType.cutout());
-		setRenderLayer(TofuBlocks.TOFUTORCH_METAL, RenderType.cutout());
-		setRenderLayer(TofuBlocks.WALLTOFUTORCH_KINU, RenderType.cutout());
-		setRenderLayer(TofuBlocks.WALLTOFUTORCH_MOMEN, RenderType.cutout());
-		setRenderLayer(TofuBlocks.WALLTOFUTORCH_ISHI, RenderType.cutout());
-		setRenderLayer(TofuBlocks.WALLTOFUTORCH_METAL, RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUTORCH_KINU.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUTORCH_MOMEN.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUTORCH_ISHI.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUTORCH_METAL.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.WALLTOFUTORCH_KINU.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.WALLTOFUTORCH_MOMEN.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.WALLTOFUTORCH_ISHI.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.WALLTOFUTORCH_METAL.get(), RenderType.cutout());
 
-		setRenderLayer(TofuBlocks.TOFULADDER_KINU, RenderType.cutout());
-		setRenderLayer(TofuBlocks.TOFULADDER_MOMEN, RenderType.cutout());
-		setRenderLayer(TofuBlocks.TOFULADDER_ISHI, RenderType.cutout());
-		setRenderLayer(TofuBlocks.TOFULADDER_ISHIBRICK, RenderType.cutout());
-		setRenderLayer(TofuBlocks.TOFULADDER_METAL, RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFULADDER_KINU.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFULADDER_MOMEN.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFULADDER_ISHI.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFULADDER_ISHIBRICK.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFULADDER_METAL.get(), RenderType.cutout());
 
-		setRenderLayer(TofuBlocks.SAPLING_TOFU, RenderType.cutout());
-		setRenderLayer(TofuBlocks.LEAVES_TOFU, RenderType.cutoutMipped());
+		setRenderLayer(TofuBlocks.SAPLING_TOFU.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.LEAVES_TOFU.get(), RenderType.cutoutMipped());
 
-		setRenderLayer(TofuBlocks.LEEK, RenderType.cutout());
+		setRenderLayer(TofuBlocks.LEEK.get(), RenderType.cutout());
 
-		setRenderLayer(TofuBlocks.ZUNDATOFU_MUSHROOM, RenderType.cutout());
+		setRenderLayer(TofuBlocks.ZUNDATOFU_MUSHROOM.get(), RenderType.cutout());
 
-		setRenderLayer(TofuBlocks.TOFU_PORTAL, RenderType.translucent());
-		setRenderLayer(TofuBlocks.SALTPAN, RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFU_PORTAL.get(), RenderType.translucent());
+		setRenderLayer(TofuBlocks.SALTPAN.get(), RenderType.cutout());
 	}
 
 	private static void setRenderLayer(Block block, RenderType type) {
@@ -95,15 +95,15 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
-		event.registerEntityRenderer(TofuEntityTypes.TOFUCOW, TofuCowRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFUNIAN, TofunianRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFUFISH, TofuFishRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFUSLIME, TofuSlimeRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFUSPIDER, TofuSpiderRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFUCOW.get(), TofuCowRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFUNIAN.get(), TofunianRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFUFISH.get(), TofuFishRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFUSLIME.get(), TofuSlimeRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFUSPIDER.get(), TofuSpiderRender::new);
 
-		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME, FukumameRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.NETHER_FUKUMAME, NetherFukumameRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.SOUL_FUKUMAME, SoulFukumameRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME.get(), FukumameRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.NETHER_FUKUMAME.get(), NetherFukumameRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.SOUL_FUKUMAME.get(), SoulFukumameRender::new);
 	}
 
 	@SubscribeEvent

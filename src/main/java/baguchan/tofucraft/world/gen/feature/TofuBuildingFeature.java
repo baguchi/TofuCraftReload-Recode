@@ -50,6 +50,6 @@ public class TofuBuildingFeature extends Feature<BlockStateConfiguration> {
 	}
 
 	public static boolean isTofu(BlockState p_159760_) {
-		return p_159760_.is(TofuBlocks.TOFU_TERRAIN);
+		return p_159760_.is(TofuBlocks.TOFU_TERRAIN.get());
 	}
 }

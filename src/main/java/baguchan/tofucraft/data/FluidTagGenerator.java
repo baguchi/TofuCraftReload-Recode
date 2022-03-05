@@ -15,9 +15,9 @@ public class FluidTagGenerator extends FluidTagsProvider {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags() {
-		tag(FluidTags.WATER).add(TofuFluids.SOYMILK, TofuFluids.SOYMILK_FLOW
-				, TofuFluids.SOYMILK_HELL, TofuFluids.SOYMILK_HELL_FLOW
-				, TofuFluids.SOYMILK_SOUL, TofuFluids.SOYMILK_SOUL_FLOW
-				, TofuFluids.BITTERN, TofuFluids.BITTERN_FLOW);
+		tag(FluidTags.WATER).add(TofuFluids.SOYMILK.get(), TofuFluids.SOYMILK_FLOW.get()
+				, TofuFluids.SOYMILK_HELL.get(), TofuFluids.SOYMILK_HELL_FLOW.get()
+				, TofuFluids.SOYMILK_SOUL.get(), TofuFluids.SOYMILK_SOUL_FLOW.get()
+				, TofuFluids.BITTERN.get(), TofuFluids.BITTERN_FLOW.get());
 	}
 }

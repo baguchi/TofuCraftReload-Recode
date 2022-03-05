@@ -58,7 +58,7 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		//TF METER
 		p_230450_1_.pushPose();
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		FluidStack fluidTank2 = new FluidStack(TofuFluids.SOYMILK_FLOW, 1000);
+		FluidStack fluidTank2 = new FluidStack(TofuFluids.SOYMILK_FLOW.get(), 1000);
 		int heightInd2 = (int) (44.0F * menu.getTFEnergy() / menu.getTFMaxEnergy());
 		if (heightInd2 > 0)
 			renderFluidStack(i + 76, j + 69 - heightInd2, 10, heightInd2, 0.0F, fluidTank2);

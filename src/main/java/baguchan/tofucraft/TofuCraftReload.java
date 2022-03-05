@@ -9,12 +9,12 @@ import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.message.TFStorageSoymilkMessage;
-import baguchan.tofucraft.registry.TofuBiomes;
-import baguchan.tofucraft.registry.TofuNoiseGeneratorSettings;
+import baguchan.tofucraft.registry.*;
 import baguchan.tofucraft.utils.JigsawHelper;
-import baguchan.tofucraft.world.gen.feature.ModNetherFeature;
-import baguchan.tofucraft.world.gen.feature.ModTreeFeature;
-import baguchan.tofucraft.world.gen.feature.TofuWorldFeatures;
+import baguchan.tofucraft.world.carver.TofuConfiguredWorldCarvers;
+import baguchan.tofucraft.world.gen.features.ModNetherFeatures;
+import baguchan.tofucraft.world.gen.features.ModTreeFeatures;
+import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
 import baguchan.tofucraft.world.placement.ModNetherPlacements;
 import baguchan.tofucraft.world.placement.TofuWorldPlacements;
 import net.minecraft.resources.ResourceLocation;
@@ -61,25 +61,43 @@ public class TofuCraftReload {
 
 	public TofuCraftReload() {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		setupMessages();
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+
+		TofuCarvers.WORLD_CARVER.register(modBus);
+		TofuBlocks.BLOCKS.register(modBus);
+		TofuEntityTypes.ENTITIES.register(modBus);
+		TofuFluids.FLUIDS.register(modBus);
+
+		TofuItems.ITEMS.register(modBus);
+		TofuPoiTypes.POI_TYPES.register(modBus);
+		TofuProfessions.PROFESSIONS.register(modBus);
+		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
+
+		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
+
+
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup));
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
-		ModNetherFeature.init();
+		TofuItems.registerDispenserItem();
+		TofuItems.registerCompostableItem();
+		ModNetherFeatures.init();
 		ModNetherPlacements.init();
-		ModTreeFeature.init();
+		ModTreeFeatures.init();
 		TofuWorldFeatures.init();
 		TofuWorldPlacements.init();
 		TofuNoiseGeneratorSettings.init();
 		TofuEnergyMap.init();
 		TofuBiomes.init();
+		TofuConfiguredWorldCarvers.init();
 	}
 
 

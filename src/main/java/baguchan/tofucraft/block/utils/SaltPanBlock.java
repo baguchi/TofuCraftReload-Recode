@@ -68,7 +68,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 			if (stat == Stat.EMPTY || stat == Stat.BITTERN) {
 				worldIn.setBlock(currentPos, stateIn.setValue(STAT, Stat.WATER), 3);
 			} else if (stat == Stat.SALT) {
-				ItemStack salt = new ItemStack(TofuItems.SALT, 1);
+				ItemStack salt = new ItemStack(TofuItems.SALT.get(), 1);
 				if (worldIn instanceof Level) {
 					float f = 0.7F;
 					double d0 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
@@ -113,14 +113,14 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 				tileScanner.scan(1, TileScanner.Method.fullSimply, new TileScanner.Impl<Object>() {
 					public void apply(Level world, BlockPos pos) {
 						if (SaltPanBlock.this.getStat(world.getBlockState(pos)) == Stat.EMPTY)
-							world.setBlock(pos, TofuBlocks.SALTPAN.defaultBlockState().setValue(SaltPanBlock.STAT, Stat.WATER), 3);
+							world.setBlock(pos, TofuBlocks.SALTPAN.get().defaultBlockState().setValue(SaltPanBlock.STAT, Stat.WATER), 3);
 					}
 				});
 				worldIn.setBlock(pos, state.setValue(STAT, Stat.WATER), 3);
 				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.BITTERN && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
-				ItemStack nigari = new ItemStack(TofuItems.BITTERN);
+				ItemStack nigari = new ItemStack(TofuItems.BITTERN_BOTTLE.get());
 				worldIn.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 				if (itemHeld.getCount() == 1) {
 					player.setItemInHand(handIn, nigari);
@@ -137,7 +137,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.SALT) {
-				ItemStack salt = new ItemStack(TofuItems.SALT, 1);
+				ItemStack salt = new ItemStack(TofuItems.SALT.get(), 1);
 				float f = 0.7F;
 				double d0 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
 				double d1 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
@@ -179,7 +179,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 
 	private float calcAdaptation(Level world, BlockPos pos) {
 		float rate;
-		Biome biome = world.getBiome(pos);
+		Biome biome = world.getBiome(pos).value();
 		boolean isUnderTheSun = world.getRawBrightness(pos, 0) > 8;
 		boolean isRaining = world.isRaining();
 		boolean isDaytime = (world.dayTime() % 24000L < 12000L);

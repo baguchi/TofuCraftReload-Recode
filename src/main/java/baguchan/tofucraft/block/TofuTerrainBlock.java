@@ -30,7 +30,7 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 
 	public void performBonemeal(ServerLevel p_53687_, Random p_53688_, BlockPos p_53689_, BlockState p_53690_) {
 		BlockPos blockpos = p_53689_.above();
-		BlockState blockstate = TofuBlocks.LEEK.defaultBlockState();
+		BlockState blockstate = TofuBlocks.LEEK.get().defaultBlockState();
 
 		label46:
 		for (int i = 0; i < 128; ++i) {
@@ -48,12 +48,12 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 			if (blockstate1.isAir()) {
 				PlacedFeature placedfeature;
 				if (p_53688_.nextInt(8) == 0) {
-					List<ConfiguredFeature<?, ?>> list = p_53687_.getBiome(blockpos1).getGenerationSettings().getFlowerFeatures();
+					List<ConfiguredFeature<?, ?>> list = p_53687_.getBiome(blockpos1).value().getGenerationSettings().getFlowerFeatures();
 					if (list.isEmpty()) {
 						continue;
 					}
 
-					placedfeature = ((RandomPatchConfiguration) list.get(0).config()).feature().get();
+					placedfeature = ((RandomPatchConfiguration) list.get(0).config()).feature().value();
 					placedfeature.place(p_53687_, p_53687_.getChunkSource().getGenerator(), p_53688_, blockpos1);
 				}
 			}

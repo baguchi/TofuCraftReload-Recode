@@ -20,12 +20,12 @@ public class SoybeanCropsBlock extends CropBlock {
 
 	@Override
 	protected ItemLike getBaseSeedId() {
-		return TofuItems.SEEDS_SOYBEANS;
+		return TofuItems.SEEDS_SOYBEANS.get();
 	}
 
 	@Override
 	protected boolean mayPlaceOn(BlockState p_52302_, BlockGetter p_52303_, BlockPos p_52304_) {
-		return super.mayPlaceOn(p_52302_, p_52303_, p_52304_) || p_52302_.is(TofuBlocks.TOFU_FARMLAND);
+		return super.mayPlaceOn(p_52302_, p_52303_, p_52304_) || p_52302_.is(TofuBlocks.TOFU_FARMLAND.get());
 	}
 
 	@Override

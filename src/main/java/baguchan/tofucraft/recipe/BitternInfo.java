@@ -87,7 +87,7 @@ public class BitternInfo implements Recipe<Inventory> {
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 
-		return TofuRecipes.RECIPE_BITTERN;
+		return TofuRecipes.RECIPE_BITTERN.get();
 	}
 
 	@Override

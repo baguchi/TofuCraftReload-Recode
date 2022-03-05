@@ -92,7 +92,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 	};
 
 	public TFStorageBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
-		super(TofuBlockEntitys.TF_STORAGE, p_155229_, p_155230_, 10000);
+		super(TofuBlockEntitys.TF_STORAGE.get(), p_155229_, p_155230_, 10000);
 		this.holder = LazyOptional.of(() -> this.tank);
 	}
 

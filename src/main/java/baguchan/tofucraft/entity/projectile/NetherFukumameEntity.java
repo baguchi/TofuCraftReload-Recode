@@ -25,11 +25,11 @@ public class NetherFukumameEntity extends ThrowableProjectile {
 	}
 
 	public NetherFukumameEntity(Level worldIn, LivingEntity throwerIn) {
-		super(TofuEntityTypes.NETHER_FUKUMAME, throwerIn, worldIn);
+		super(TofuEntityTypes.NETHER_FUKUMAME.get(), throwerIn, worldIn);
 	}
 
 	public NetherFukumameEntity(Level worldIn, double x, double y, double z) {
-		super(TofuEntityTypes.NETHER_FUKUMAME, x, y, z, worldIn);
+		super(TofuEntityTypes.NETHER_FUKUMAME.get(), x, y, z, worldIn);
 	}
 
 	public NetherFukumameEntity(EntityType<? extends NetherFukumameEntity> p_i50154_1_, Level worldIn, double x, double y, double z) {
@@ -44,7 +44,7 @@ public class NetherFukumameEntity extends ThrowableProjectile {
 		if (id == 3) {
 			double d0 = 0.08D;
 			for (int i = 0; i < 6; i++) {
-				this.level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(TofuItems.SEEDS_SOYBEANS_NETHER)), getX(), getY(), getZ(), (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D);
+				this.level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(TofuItems.SEEDS_SOYBEANS_NETHER.get())), getX(), getY(), getZ(), (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D);
 			}
 		}
 		if (id == 4) {

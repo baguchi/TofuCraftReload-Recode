@@ -49,7 +49,7 @@ public class TofuFarmlandBlock extends Block {
 	}
 
 	public BlockState getStateForPlacement(BlockPlaceContext p_53249_) {
-		return !this.defaultBlockState().canSurvive(p_53249_.getLevel(), p_53249_.getClickedPos()) ? TofuBlocks.TOFU_TERRAIN.defaultBlockState() : super.getStateForPlacement(p_53249_);
+		return !this.defaultBlockState().canSurvive(p_53249_.getLevel(), p_53249_.getClickedPos()) ? TofuBlocks.TOFU_TERRAIN.get().defaultBlockState() : super.getStateForPlacement(p_53249_);
 	}
 
 	public boolean useShapeForLightOcclusion(BlockState p_53295_) {
@@ -82,7 +82,7 @@ public class TofuFarmlandBlock extends Block {
 	}
 
 	public void fallOn(Level p_153227_, BlockState p_153228_, BlockPos p_153229_, Entity p_153230_, float p_153231_) {
-		if (!p_153227_.isClientSide && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(p_153227_, p_153229_, TofuBlocks.TOFU_TERRAIN.defaultBlockState(), p_153231_, p_153230_)) { // Forge: Move logic to Entity#canTrample
+		if (!p_153227_.isClientSide && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(p_153227_, p_153229_, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), p_153231_, p_153230_)) { // Forge: Move logic to Entity#canTrample
 			turnToDirt(p_153228_, p_153227_, p_153229_);
 		}
 
@@ -90,7 +90,7 @@ public class TofuFarmlandBlock extends Block {
 	}
 
 	public static void turnToDirt(BlockState p_53297_, Level p_53298_, BlockPos p_53299_) {
-		p_53298_.setBlockAndUpdate(p_53299_, pushEntitiesUp(p_53297_, TofuBlocks.TOFU_TERRAIN.defaultBlockState(), p_53298_, p_53299_));
+		p_53298_.setBlockAndUpdate(p_53299_, pushEntitiesUp(p_53297_, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), p_53298_, p_53299_));
 	}
 
 	private static boolean isUnderCrops(BlockGetter p_53251_, BlockPos p_53252_) {

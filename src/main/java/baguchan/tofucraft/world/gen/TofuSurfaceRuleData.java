@@ -9,8 +9,8 @@ import net.minecraft.world.level.levelgen.VerticalAnchor;
 
 public class TofuSurfaceRuleData {
 	private static final SurfaceRules.RuleSource AIR = makeStateRule(Blocks.AIR);
-	private static final SurfaceRules.RuleSource BEDROCK = makeStateRule(TofuBlocks.TOFU_BEDROCK);
-	private static final SurfaceRules.RuleSource TOFUSLATE = makeStateRule(TofuBlocks.TOFUSLATE);
+	private static final SurfaceRules.RuleSource BEDROCK = makeStateRule(TofuBlocks.TOFU_BEDROCK.get());
+	private static final SurfaceRules.RuleSource TOFUSLATE = makeStateRule(TofuBlocks.TOFUSLATE.get());
 
 	private static SurfaceRules.RuleSource makeStateRule(Block p_194811_) {
 		return SurfaceRules.state(p_194811_.defaultBlockState());

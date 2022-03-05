@@ -15,8 +15,8 @@ public class TofuStickItem extends Item {
 
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
-		if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() == TofuBlocks.GRILLEDTOFU &&
-				TofuBlocks.TOFU_PORTAL.trySpawnPortal(context.getLevel(), context.getClickedPos().above())) {
+		if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() == TofuBlocks.GRILLEDTOFU.get() &&
+				TofuBlocks.TOFU_PORTAL.get().trySpawnPortal(context.getLevel(), context.getClickedPos().above())) {
 			if (!context.getPlayer().isCreative())
 				context.getItemInHand().hurtAndBreak(1, (LivingEntity) context.getPlayer(), p_213625_1_ -> p_213625_1_.broadcastBreakEvent(context.getHand()));
 			return InteractionResult.SUCCESS;

@@ -3,7 +3,7 @@
   "logical_height": 320,
   "min_y": -64,
   "height": 320,
-  "infiniburn": "minecraft:infiniburn_overworld",
+  "infiniburn": "#minecraft:infiniburn_overworld",
   "ambient_light": 0.0,
   "coordinate_scale": 1.0,
   "piglin_safe": false,

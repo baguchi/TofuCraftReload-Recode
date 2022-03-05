@@ -10,29 +10,21 @@ import net.minecraft.Util;
 import net.minecraft.util.datafix.fixes.References;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = TofuCraftReload.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TofuBlockEntitys {
-	public static final BlockEntityType<TofuBedBlockEntity> TOFUBED = register("tofucraft:tofubed", BlockEntityType.Builder.of(TofuBedBlockEntity::new, TofuBlocks.TOFUBED));
-	public static final BlockEntityType<TofuChestBlockEntity> TOFUCHEST = register("tofucraft:tofuchest", BlockEntityType.Builder.of(TofuChestBlockEntity::new, TofuBlocks.TOFUCHEST));
-	public static final BlockEntityType<SaltFurnaceBlockEntity> SALT_FURNACE = register("tofucraft:salt_furnace", BlockEntityType.Builder.of(SaltFurnaceBlockEntity::new, TofuBlocks.SALT_FURNACE));
-	public static final BlockEntityType<TFStorageBlockEntity> TF_STORAGE = register("tofucraft:tf_storage", BlockEntityType.Builder.of(TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE));
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, TofuCraftReload.MODID);
+
+	public static final RegistryObject<BlockEntityType<TofuBedBlockEntity>> TOFUBED = BLOCK_ENTITIES.register("tofubed", () -> register("tofucraft:tofubed", BlockEntityType.Builder.of(TofuBedBlockEntity::new, TofuBlocks.TOFUBED.get())));
+	public static final RegistryObject<BlockEntityType<TofuChestBlockEntity>> TOFUCHEST = BLOCK_ENTITIES.register("tofuchest", () -> register("tofucraft:tofuchest", BlockEntityType.Builder.of(TofuChestBlockEntity::new, TofuBlocks.TOFUCHEST.get())));
+	public static final RegistryObject<BlockEntityType<SaltFurnaceBlockEntity>> SALT_FURNACE = BLOCK_ENTITIES.register("salt_furnace", () -> register("tofucraft:salt_furnace", BlockEntityType.Builder.of(SaltFurnaceBlockEntity::new, TofuBlocks.SALT_FURNACE.get())));
+	public static final RegistryObject<BlockEntityType<TFStorageBlockEntity>> TF_STORAGE = BLOCK_ENTITIES.register("tf_storage", () -> register("tofucraft:tf_storage", BlockEntityType.Builder.of(TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE.get())));
 
 
 	private static <T extends BlockEntity> BlockEntityType<T> register(String p_200966_0_, BlockEntityType.Builder<T> p_200966_1_) {
 		Type<?> type = Util.fetchChoiceType(References.BLOCK_ENTITY, p_200966_0_);
 		return p_200966_1_.build(type);
-	}
-
-	@SubscribeEvent
-	public static void registerBlockEntityType(RegistryEvent.Register<BlockEntityType<?>> registry) {
-		registry.getRegistry().register(TOFUBED.setRegistryName("tofubed"));
-		registry.getRegistry().register(TOFUCHEST.setRegistryName("tofuchest"));
-
-		registry.getRegistry().register(SALT_FURNACE.setRegistryName("salf_furnace"));
-		registry.getRegistry().register(TF_STORAGE.setRegistryName("tf_storage"));
 	}
 }

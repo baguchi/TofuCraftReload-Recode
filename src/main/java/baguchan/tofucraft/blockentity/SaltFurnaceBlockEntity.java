@@ -62,7 +62,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	public FluidTank bitternTank = new FluidTank(2000) {
 		public boolean isFluidValid(FluidStack stack) {
-			return (stack.getFluid() == TofuFluids.BITTERN);
+			return (stack.getFluid() == TofuFluids.BITTERN.get());
 		}
 	};
 
@@ -122,7 +122,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	private final LazyOptional<IFluidHandler> holder;
 
 	public SaltFurnaceBlockEntity(BlockPos p_155545_, BlockState p_155546_) {
-		super(TofuBlockEntitys.SALT_FURNACE, p_155545_, p_155546_);
+		super(TofuBlockEntitys.SALT_FURNACE.get(), p_155545_, p_155546_);
 		this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 		this.holder = LazyOptional.of(() -> this.waterTank);
 	}
@@ -246,7 +246,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	protected boolean hasBittern() {
-		boolean flag = (this.bitternTank.getFluid().getFluid() == TofuFluids.BITTERN && this.bitternTank.getFluid().getAmount() >= 200);
+		boolean flag = (this.bitternTank.getFluid().getFluid() == TofuFluids.BITTERN.get() && this.bitternTank.getFluid().getAmount() >= 200);
 		ItemStack itemstack1 = this.items.get(3);
 		ItemStack itemstack2 = this.items.get(2);
 		if (itemstack2.getItem() == Items.GLASS_BOTTLE) {
@@ -284,7 +284,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	private void makeBittern() {
 		if (hasBittern()) {
-			ItemStack itemstack1 = new ItemStack(TofuItems.BITTERN, 1);
+			ItemStack itemstack1 = new ItemStack(TofuItems.BITTERN_BOTTLE.get(), 1);
 			ItemStack itemstack2 = this.items.get(3);
 			ItemStack itemstack3 = this.items.get(2);
 			itemstack3.shrink(1);
@@ -299,7 +299,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	private void makeSalt() {
 		if (hasWater()) {
-			ItemStack itemstack1 = new ItemStack(TofuItems.SALT, 2);
+			ItemStack itemstack1 = new ItemStack(TofuItems.SALT.get(), 2);
 			ItemStack itemstack2 = this.items.get(1);
 			if (itemstack2.isEmpty()) {
 				this.items.set(1, itemstack1.copy());
@@ -307,7 +307,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 				itemstack2.grow(itemstack1.getCount());
 			}
 			this.waterTank.drain(200, IFluidHandler.FluidAction.EXECUTE);
-			this.bitternTank.fill(new FluidStack(TofuFluids.BITTERN, 200), IFluidHandler.FluidAction.EXECUTE);
+			this.bitternTank.fill(new FluidStack(TofuFluids.BITTERN.get(), 200), IFluidHandler.FluidAction.EXECUTE);
 		}
 	}
 

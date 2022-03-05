@@ -22,7 +22,7 @@ public class KoujiBaseItem extends Item {
 			if (compoundtag.contains("Fermentation")) {
 				int ticks = compoundtag.getInt("Fermentation");
 				if (ticks > 2400) {
-					ItemStack newstack = new ItemStack(TofuItems.KOUJI, 1);
+					ItemStack newstack = new ItemStack(TofuItems.KOUJI.get(), 1);
 					p_41404_.shrink(1);
 					player.getInventory().add(newstack);
 				}

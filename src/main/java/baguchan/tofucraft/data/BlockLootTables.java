@@ -45,118 +45,118 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 
 	@Override
 	protected void addTables() {
-		LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 6));
-		LootItemCondition.Builder lootitemcondition$builder1 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 7));
-		LootItemCondition.Builder lootitemcondition$builder_extra = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 5));
+		LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 6));
+		LootItemCondition.Builder lootitemcondition$builder1 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 7));
+		LootItemCondition.Builder lootitemcondition$builder_extra = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 5));
 
 
-		add(TofuBlocks.SOYBEAN, applyExplosionDecay(TofuBlocks.SOYBEAN, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS).when(lootitemcondition$builder1).otherwise(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS)))).withPool(LootPool.lootPool().when(lootitemcondition$builder1).add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3)))).withPool(LootPool.lootPool().when(lootitemcondition$builder).add(LootItem.lootTableItem(TofuItems.EDAMAME).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))).withPool(LootPool.lootPool().when(lootitemcondition$builder_extra).add(LootItem.lootTableItem(TofuItems.EDAMAME).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3)))));
+		add(TofuBlocks.SOYBEAN.get(), applyExplosionDecay(TofuBlocks.SOYBEAN.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS.get()).when(lootitemcondition$builder1).otherwise(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS.get())))).withPool(LootPool.lootPool().when(lootitemcondition$builder1).add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3)))).withPool(LootPool.lootPool().when(lootitemcondition$builder).add(LootItem.lootTableItem(TofuItems.EDAMAME.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))).withPool(LootPool.lootPool().when(lootitemcondition$builder_extra).add(LootItem.lootTableItem(TofuItems.EDAMAME.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3)))));
 
-		LootItemCondition.Builder lootitemcondition$builder2 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN_NETHER).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 7));
+		LootItemCondition.Builder lootitemcondition$builder2 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN_NETHER.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 7));
 
-		add(TofuBlocks.SOYBEAN_NETHER, applyExplosionDecay(TofuBlocks.SOYBEAN_NETHER, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_NETHER).when(lootitemcondition$builder2).otherwise(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_NETHER)))).withPool(LootPool.lootPool().when(lootitemcondition$builder2).add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_NETHER).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
+		add(TofuBlocks.SOYBEAN_NETHER.get(), applyExplosionDecay(TofuBlocks.SOYBEAN_NETHER.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_NETHER.get()).when(lootitemcondition$builder2).otherwise(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_NETHER.get())))).withPool(LootPool.lootPool().when(lootitemcondition$builder2).add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_NETHER.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
 
-		LootItemCondition.Builder lootitemcondition$builder3 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN_SOUL).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 7));
+		LootItemCondition.Builder lootitemcondition$builder3 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN_SOUL.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 7));
 
-		add(TofuBlocks.SOYBEAN_SOUL, applyExplosionDecay(TofuBlocks.SOYBEAN_SOUL, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_SOUL).when(lootitemcondition$builder3).otherwise(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_SOUL)))).withPool(LootPool.lootPool().when(lootitemcondition$builder3).add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_SOUL).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
+		add(TofuBlocks.SOYBEAN_SOUL.get(), applyExplosionDecay(TofuBlocks.SOYBEAN_SOUL.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_SOUL.get()).when(lootitemcondition$builder3).otherwise(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_SOUL.get())))).withPool(LootPool.lootPool().when(lootitemcondition$builder3).add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_SOUL.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
 
-		registerTofuDrop(TofuBlocks.KINUTOFU, TofuItems.TOFUKINU);
-		registerTofuDrop(TofuBlocks.MOMENTOFU, TofuItems.TOFUMOMEN);
-		registerTofuDrop(TofuBlocks.ISHITOFU, TofuItems.TOFUISHI);
-		dropSelf(TofuBlocks.ISHITOFU_BRICK);
-		dropSelf(TofuBlocks.ISHITOFU_SMOOTH_BRICK);
-		dropSelf(TofuBlocks.ISHITOFU_CHISELED_BRICK);
-		registerTofuDrop(TofuBlocks.METALTOFU, TofuItems.TOFUMETAL);
-		registerTofuDrop(TofuBlocks.DIAMONDTOFU, TofuItems.TOFUDIAMOND);
-		registerTofuDrop(TofuBlocks.GRILLEDTOFU, TofuItems.TOFUGRILLED);
-		registerTofuDrop(TofuBlocks.ZUNDATOFU, TofuItems.TOFUZUNDA);
-		registerTofuDrop(TofuBlocks.HELLTOFU, TofuItems.TOFUHELL);
-		registerTofuDrop(TofuBlocks.SOULTOFU, TofuItems.TOFUSOUL);
+		registerTofuDrop(TofuBlocks.KINUTOFU.get(), TofuItems.TOFUKINU.get());
+		registerTofuDrop(TofuBlocks.MOMENTOFU.get(), TofuItems.TOFUMOMEN.get());
+		registerTofuDrop(TofuBlocks.ISHITOFU.get(), TofuItems.TOFUISHI.get());
+		dropSelf(TofuBlocks.ISHITOFU_BRICK.get());
+		dropSelf(TofuBlocks.ISHITOFU_SMOOTH_BRICK.get());
+		dropSelf(TofuBlocks.ISHITOFU_CHISELED_BRICK.get());
+		registerTofuDrop(TofuBlocks.METALTOFU.get(), TofuItems.TOFUMETAL.get());
+		registerTofuDrop(TofuBlocks.DIAMONDTOFU.get(), TofuItems.TOFUDIAMOND.get());
+		registerTofuDrop(TofuBlocks.GRILLEDTOFU.get(), TofuItems.TOFUGRILLED.get());
+		registerTofuDrop(TofuBlocks.ZUNDATOFU.get(), TofuItems.TOFUZUNDA.get());
+		registerTofuDrop(TofuBlocks.HELLTOFU.get(), TofuItems.TOFUHELL.get());
+		registerTofuDrop(TofuBlocks.SOULTOFU.get(), TofuItems.TOFUSOUL.get());
 
-		dropSelf(TofuBlocks.HELLTOFU_BRICK);
-		dropSelf(TofuBlocks.HELLTOFU_SMOOTH_BRICK);
-		dropSelf(TofuBlocks.SOULTOFU_BRICK);
-		dropSelf(TofuBlocks.SOULTOFU_SMOOTH_BRICK);
+		dropSelf(TofuBlocks.HELLTOFU_BRICK.get());
+		dropSelf(TofuBlocks.HELLTOFU_SMOOTH_BRICK.get());
+		dropSelf(TofuBlocks.SOULTOFU_BRICK.get());
+		dropSelf(TofuBlocks.SOULTOFU_SMOOTH_BRICK.get());
 
-		dropSelf(TofuBlocks.TOFUSTAIR_KINU);
-		dropSelf(TofuBlocks.TOFUSTAIR_MOMEN);
-		dropSelf(TofuBlocks.TOFUSTAIR_ISHI);
-		dropSelf(TofuBlocks.TOFUSTAIR_METAL);
-		dropSelf(TofuBlocks.TOFUSTAIR_ZUNDA);
-		dropSelf(TofuBlocks.TOFUSTAIR_ISHIBRICK);
-		dropSelf(TofuBlocks.TOFUSTAIR_HELLBRICK);
-		dropSelf(TofuBlocks.TOFUSTAIR_SOULBRICK);
+		dropSelf(TofuBlocks.TOFUSTAIR_KINU.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_MOMEN.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_ISHI.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_METAL.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_ZUNDA.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_ISHIBRICK.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_HELLBRICK.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_SOULBRICK.get());
 
-		registerSlab(TofuBlocks.TOFUSLAB_KINU);
-		registerSlab(TofuBlocks.TOFUSLAB_MOMEN);
-		registerSlab(TofuBlocks.TOFUSLAB_ISHI);
-		registerSlab(TofuBlocks.TOFUSLAB_METAL);
-		registerSlab(TofuBlocks.TOFUSLAB_ZUNDA);
-		registerSlab(TofuBlocks.TOFUSLAB_ISHIBRICK);
-		registerSlab(TofuBlocks.TOFUSLAB_HELLBRICK);
-		registerSlab(TofuBlocks.TOFUSLAB_SOULBRICK);
+		registerSlab(TofuBlocks.TOFUSLAB_KINU.get());
+		registerSlab(TofuBlocks.TOFUSLAB_MOMEN.get());
+		registerSlab(TofuBlocks.TOFUSLAB_ISHI.get());
+		registerSlab(TofuBlocks.TOFUSLAB_METAL.get());
+		registerSlab(TofuBlocks.TOFUSLAB_ZUNDA.get());
+		registerSlab(TofuBlocks.TOFUSLAB_ISHIBRICK.get());
+		registerSlab(TofuBlocks.TOFUSLAB_HELLBRICK.get());
+		registerSlab(TofuBlocks.TOFUSLAB_SOULBRICK.get());
 
-		dropSelf(TofuBlocks.TOFUFENCE_KINU);
-		dropSelf(TofuBlocks.TOFUFENCE_MOMEN);
-		dropSelf(TofuBlocks.TOFUFENCE_ISHI);
-		dropSelf(TofuBlocks.TOFUFENCE_METAL);
+		dropSelf(TofuBlocks.TOFUFENCE_KINU.get());
+		dropSelf(TofuBlocks.TOFUFENCE_MOMEN.get());
+		dropSelf(TofuBlocks.TOFUFENCE_ISHI.get());
+		dropSelf(TofuBlocks.TOFUFENCE_METAL.get());
 
-		dropSelf(TofuBlocks.TOFUTORCH_KINU);
-		dropSelf(TofuBlocks.TOFUTORCH_MOMEN);
-		dropSelf(TofuBlocks.TOFUTORCH_ISHI);
-		dropSelf(TofuBlocks.TOFUTORCH_METAL);
-		dropSelf(TofuBlocks.WALLTOFUTORCH_KINU);
-		dropSelf(TofuBlocks.WALLTOFUTORCH_MOMEN);
-		dropSelf(TofuBlocks.WALLTOFUTORCH_ISHI);
-		dropSelf(TofuBlocks.WALLTOFUTORCH_METAL);
+		dropSelf(TofuBlocks.TOFUTORCH_KINU.get());
+		dropSelf(TofuBlocks.TOFUTORCH_MOMEN.get());
+		dropSelf(TofuBlocks.TOFUTORCH_ISHI.get());
+		dropSelf(TofuBlocks.TOFUTORCH_METAL.get());
+		dropSelf(TofuBlocks.WALLTOFUTORCH_KINU.get());
+		dropSelf(TofuBlocks.WALLTOFUTORCH_MOMEN.get());
+		dropSelf(TofuBlocks.WALLTOFUTORCH_ISHI.get());
+		dropSelf(TofuBlocks.WALLTOFUTORCH_METAL.get());
 
-		dropSelf(TofuBlocks.TOFULADDER_KINU);
-		dropSelf(TofuBlocks.TOFULADDER_MOMEN);
-		dropSelf(TofuBlocks.TOFULADDER_ISHI);
-		dropSelf(TofuBlocks.TOFULADDER_ISHIBRICK);
-		dropSelf(TofuBlocks.TOFULADDER_METAL);
+		dropSelf(TofuBlocks.TOFULADDER_KINU.get());
+		dropSelf(TofuBlocks.TOFULADDER_MOMEN.get());
+		dropSelf(TofuBlocks.TOFULADDER_ISHI.get());
+		dropSelf(TofuBlocks.TOFULADDER_ISHIBRICK.get());
+		dropSelf(TofuBlocks.TOFULADDER_METAL.get());
 
-		dropSelf(TofuBlocks.TOFU_TERRAIN);
-		dropSelf(TofuBlocks.TOFUSLATE);
-		this.add(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE, createTofuDiamondOreDrop(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE, TofuItems.TOFUDIAMOND_NUGGET));
-		this.add(TofuBlocks.ORE_TOFU_DIAMOND, createTofuDiamondOreDrop(TofuBlocks.ORE_TOFU_DIAMOND, TofuItems.TOFUDIAMOND_NUGGET));
-		dropSelf(TofuBlocks.TOFU_BEDROCK);
-		dropSelf(TofuBlocks.SAPLING_TOFU);
-		this.add(TofuBlocks.LEAVES_TOFU, createLeavesDrops(TofuBlocks.LEAVES_TOFU, TofuBlocks.SAPLING_TOFU, DEFAULT_SAPLING_DROP_RATES));
+		dropSelf(TofuBlocks.TOFU_TERRAIN.get());
+		dropSelf(TofuBlocks.TOFUSLATE.get());
+		this.add(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), createTofuDiamondOreDrop(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuItems.TOFUDIAMOND_NUGGET.get()));
+		this.add(TofuBlocks.ORE_TOFU_DIAMOND.get(), createTofuDiamondOreDrop(TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuItems.TOFUDIAMOND_NUGGET.get()));
+		dropSelf(TofuBlocks.TOFU_BEDROCK.get());
+		dropSelf(TofuBlocks.SAPLING_TOFU.get());
+		this.add(TofuBlocks.LEAVES_TOFU.get(), createLeavesDrops(TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.SAPLING_TOFU.get(), DEFAULT_SAPLING_DROP_RATES));
 
-		dropSelf(TofuBlocks.LEEK_GREEN_STEM);
-		dropSelf(TofuBlocks.LEEK_STEM);
-		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM);
-		dropSelf(TofuBlocks.TOFU_STEM);
-		dropSelf(TofuBlocks.TOFU_STEM_PLANKS);
+		dropSelf(TofuBlocks.LEEK_GREEN_STEM.get());
+		dropSelf(TofuBlocks.LEEK_STEM.get());
+		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
+		dropSelf(TofuBlocks.TOFU_STEM.get());
+		dropSelf(TofuBlocks.TOFU_STEM_PLANKS.get());
 
-		this.dropOther(TofuBlocks.LEEK, TofuItems.LEEK);
+		this.dropOther(TofuBlocks.LEEK.get(), TofuItems.LEEK.get());
 
-		dropOther(TofuBlocks.TOFU_FARMLAND, TofuBlocks.TOFU_TERRAIN);
-		dropSelf(TofuBlocks.SALTPAN);
-		dropSelf(TofuBlocks.SALT_FURNACE);
-		dropSelf(TofuBlocks.MORIJIO);
+		dropOther(TofuBlocks.TOFU_FARMLAND.get(), TofuBlocks.TOFU_TERRAIN.get());
+		dropSelf(TofuBlocks.SALTPAN.get());
+		dropSelf(TofuBlocks.SALT_FURNACE.get());
+		dropSelf(TofuBlocks.MORIJIO.get());
 
-		LootItemCondition.Builder lootitemcondition$builder4 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WorkedBarrelBaseBlock.Stat.USED));
+		LootItemCondition.Builder lootitemcondition$builder4 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WorkedBarrelBaseBlock.Stat.USED));
 
-		add(TofuBlocks.BARREL_MISO, applyExplosionDecay(TofuBlocks.BARREL_MISO, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.MISO).when(lootitemcondition$builder4).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion())))));
+		add(TofuBlocks.BARREL_MISO.get(), applyExplosionDecay(TofuBlocks.BARREL_MISO.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.MISO.get()).when(lootitemcondition$builder4).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion())))));
 
-		LootItemCondition.Builder lootitemcondition$builder5 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISOTOFU).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WorkedBarrelBaseBlock.STAT, WorkedBarrelBaseBlock.Stat.USED));
+		LootItemCondition.Builder lootitemcondition$builder5 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISOTOFU.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WorkedBarrelBaseBlock.STAT, WorkedBarrelBaseBlock.Stat.USED));
 
-		add(TofuBlocks.BARREL_MISOTOFU, applyExplosionDecay(TofuBlocks.BARREL_MISOTOFU, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFUMISO).when(lootitemcondition$builder5).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion())))));
+		add(TofuBlocks.BARREL_MISOTOFU.get(), applyExplosionDecay(TofuBlocks.BARREL_MISOTOFU.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFUMISO.get()).when(lootitemcondition$builder5).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion())))));
 
-		registerEmpty(TofuBlocks.TOFUCAKE);
+		registerEmpty(TofuBlocks.TOFUCAKE.get());
 
-		this.add(TofuBlocks.TOFUBED, (p_124233_) -> {
+		this.add(TofuBlocks.TOFUBED.get(), (p_124233_) -> {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);
 		});
-		dropSelf(TofuBlocks.TOFUCHEST);
+		dropSelf(TofuBlocks.TOFUCHEST.get());
 
-		dropSelf(TofuBlocks.TF_STORAGE);
+		dropSelf(TofuBlocks.TF_STORAGE.get());
 
-		registerTofuDrop(TofuBlocks.EGGTOFU, TofuItems.TOFU_EGG);
-		dropSelf(TofuBlocks.TOFUSTAIR_EGGTOFU);
-		registerSlab(TofuBlocks.TOFUSLAB_EGGTOFU);
+		registerTofuDrop(TofuBlocks.EGGTOFU.get(), TofuItems.TOFUEGG.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_EGG.get());
+		registerSlab(TofuBlocks.TOFUSLAB_EGG.get());
 	}
 
 	protected static LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

@@ -174,7 +174,7 @@ public class TFStorageBlock extends BaseEntityBlock {
 
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_152382_, BlockState p_152383_, BlockEntityType<T> p_152384_) {
-		return createTicker(p_152382_, p_152384_, TofuBlockEntitys.TF_STORAGE);
+		return createTicker(p_152382_, p_152384_, TofuBlockEntitys.TF_STORAGE.get());
 	}
 
 	@Nullable

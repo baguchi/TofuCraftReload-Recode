@@ -51,7 +51,7 @@ public class ClientEvents {
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, timeInPortal);
 			RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
 			RenderSystem.setShader(GameRenderer::getPositionTexShader);
-			TextureAtlasSprite textureatlassprite = mc.getBlockRenderer().getBlockModelShaper().getParticleIcon(TofuBlocks.TOFU_PORTAL.defaultBlockState());
+			TextureAtlasSprite textureatlassprite = mc.getBlockRenderer().getBlockModelShaper().getParticleIcon(TofuBlocks.TOFU_PORTAL.get().defaultBlockState());
 			float f = textureatlassprite.getU0();
 			float f1 = textureatlassprite.getV0();
 			float f2 = textureatlassprite.getU1();

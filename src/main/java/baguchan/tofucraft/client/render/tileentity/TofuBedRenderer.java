@@ -68,7 +68,7 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity> 
 		Level var8 = p_112205_.getLevel();
 		if (var8 != null) {
 			BlockState var9 = p_112205_.getBlockState();
-			DoubleBlockCombiner.NeighborCombineResult<? extends TofuBedBlockEntity> var10 = DoubleBlockCombiner.combineWithNeigbour(TofuBlockEntitys.TOFUBED, BedBlock::getBlockType, BedBlock::getConnectedDirection, ChestBlock.FACING, var9, var8, p_112205_.getBlockPos(), (p_112202_, p_112203_) -> {
+			DoubleBlockCombiner.NeighborCombineResult<? extends TofuBedBlockEntity> var10 = DoubleBlockCombiner.combineWithNeigbour(TofuBlockEntitys.TOFUBED.get(), BedBlock::getBlockType, BedBlock::getConnectedDirection, ChestBlock.FACING, var9, var8, p_112205_.getBlockPos(), (p_112202_, p_112203_) -> {
 				return false;
 			});
 			int var11 = ((Int2IntFunction) var10.apply(new BrightnessCombiner())).get(p_112209_);

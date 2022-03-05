@@ -21,7 +21,7 @@ public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
 		if (!p_159749_.level().isEmptyBlock(p_159749_.origin()))
 			return false;
 		BlockState blockstate = p_159749_.level().getBlockState(p_159749_.origin().below());
-		if (!blockstate.is(TofuBlocks.TOFU_TERRAIN))
+		if (!blockstate.is(TofuBlocks.TOFU_TERRAIN.get()))
 			return false;
 		if (p_159749_.random().nextInt(6) != 0) {
 			setBigLeekBlock(p_159749_.level(), p_159749_.random(), p_159749_.origin());
@@ -37,9 +37,9 @@ public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
 		for (int i = 0; i < height; i++) {
 			for (BlockPos blockpos1 : BlockPos.betweenClosed(pos.offset(-1, -0, -1), pos.offset(1, 0, 1))) {
 				if ((height - i) < height / 2.5D) {
-					level.setBlock(blockpos1.above(i), TofuBlocks.LEEK_GREEN_STEM.defaultBlockState(), 2);
+					level.setBlock(blockpos1.above(i), TofuBlocks.LEEK_GREEN_STEM.get().defaultBlockState(), 2);
 				} else {
-					level.setBlock(blockpos1.above(i), TofuBlocks.LEEK_STEM.defaultBlockState(), 2);
+					level.setBlock(blockpos1.above(i), TofuBlocks.LEEK_STEM.get().defaultBlockState(), 2);
 				}
 			}
 		}
@@ -49,9 +49,9 @@ public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
 		int height = 4 + rand.nextInt(4);
 		for (int i = 0; i < height; i++) {
 			if ((height - i) < height / 2.5D) {
-				level.setBlock(pos.above(i), TofuBlocks.LEEK_GREEN_STEM.defaultBlockState(), 2);
+				level.setBlock(pos.above(i), TofuBlocks.LEEK_GREEN_STEM.get().defaultBlockState(), 2);
 			} else {
-				level.setBlock(pos.above(i), TofuBlocks.LEEK_STEM.defaultBlockState(), 2);
+				level.setBlock(pos.above(i), TofuBlocks.LEEK_STEM.get().defaultBlockState(), 2);
 			}
 		}
 	}

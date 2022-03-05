@@ -87,7 +87,7 @@ public class HardenInfo implements Recipe<Inventory> {
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 
-		return TofuRecipes.RECIPE_HARDER;
+		return TofuRecipes.RECIPE_HARDER.get();
 	}
 
 	@Override

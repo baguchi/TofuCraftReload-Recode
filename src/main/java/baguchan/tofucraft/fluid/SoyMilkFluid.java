@@ -26,15 +26,15 @@ import java.util.Random;
 
 public abstract class SoyMilkFluid extends WaterFluid {
 	public Fluid getFlowing() {
-		return TofuFluids.SOYMILK_FLOW;
+		return TofuFluids.SOYMILK_FLOW.get();
 	}
 
 	public Fluid getSource() {
-		return TofuFluids.SOYMILK;
+		return TofuFluids.SOYMILK.get();
 	}
 
 	public Item getBucket() {
-		return TofuItems.BUCKET_SOYMILK;
+		return TofuItems.BUCKET_SOYMILK.get();
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -51,11 +51,11 @@ public abstract class SoyMilkFluid extends WaterFluid {
 	}
 
 	public BlockState createLegacyBlock(FluidState p_204527_1_) {
-		return TofuBlocks.SOYMILK.defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_204527_1_)));
+		return TofuBlocks.SOYMILK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_204527_1_)));
 	}
 
 	public boolean isSame(Fluid p_207187_1_) {
-		return p_207187_1_ == TofuFluids.SOYMILK || p_207187_1_ == TofuFluids.SOYMILK_FLOW;
+		return p_207187_1_ == TofuFluids.SOYMILK.get() || p_207187_1_ == TofuFluids.SOYMILK_FLOW.get();
 	}
 
 	@Override

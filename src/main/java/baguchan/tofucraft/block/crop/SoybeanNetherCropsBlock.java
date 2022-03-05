@@ -89,7 +89,7 @@ public class SoybeanNetherCropsBlock extends CropBlock {
 
 	@Override
 	protected ItemLike getBaseSeedId() {
-		return TofuItems.SEEDS_SOYBEANS_NETHER;
+		return TofuItems.SEEDS_SOYBEANS_NETHER.get();
 	}
 
 
