@@ -1,11 +1,11 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.world.TofuTerrainProvider;
 import baguchan.tofucraft.world.gen.TofuSurfaceRuleData;
 import com.mojang.serialization.DataResult;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.TerrainProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.TerrainShaper;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.levelgen.*;
 
 public class TofuNoiseGeneratorSettings {
 
-	static final NoiseSettings TOFU_NOISE_SETTINGS = create(-64, 320, new NoiseSamplingSettings(1.0D, 1.0D, 80.0D, 160.0D), new NoiseSlider(-0.078125D, 2, 8), new NoiseSlider(0.1171875D, 3, 0), 1, 2, TofuTerrainProvider.tofuworld(false));
+	static final NoiseSettings TOFU_NOISE_SETTINGS = create(-64, 320, new NoiseSamplingSettings(1.0D, 1.0D, 80.0D, 160.0D), new NoiseSlider(-0.078125D, 2, 8), new NoiseSlider(0.1171875D, 3, 0), 1, 2, TerrainProvider.overworld(false));
 
 	public static final ResourceKey<NoiseGeneratorSettings> TOFU_WORLD = ResourceKey.create(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY, new ResourceLocation(TofuCraftReload.MODID, "tofu_world"));
 

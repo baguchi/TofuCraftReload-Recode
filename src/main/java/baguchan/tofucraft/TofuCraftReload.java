@@ -69,6 +69,7 @@ public class TofuCraftReload {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
+		TofuBiomes.BIOMES.register(modBus);
 		TofuCarvers.WORLD_CARVER.register(modBus);
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuEntityTypes.ENTITIES.register(modBus);

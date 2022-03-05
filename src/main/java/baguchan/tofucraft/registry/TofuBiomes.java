@@ -5,15 +5,19 @@ import baguchan.tofucraft.world.biome.TofuBiomeBuilder;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Registry;
+import net.minecraft.data.worldgen.biome.OverworldBiomes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSource;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
 public class TofuBiomes {
+	public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, TofuCraftReload.MODID);
 	public static final ResourceKey<Biome> TOFU_PLAINS = register("tofu_plains");
 	public static final ResourceKey<Biome> TOFU_FOREST = register("tofu_forest");
 	public static final ResourceKey<Biome> TOFU_WASTES = register("tofu_waste");
@@ -45,6 +49,7 @@ public class TofuBiomes {
 	}
 
 	private static ResourceKey<Biome> register(String p_48229_) {
+		BIOMES.register(p_48229_, OverworldBiomes::theVoid);
 		return ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(TofuCraftReload.MODID, p_48229_));
 	}
 }

@@ -2,7 +2,6 @@ package baguchan.tofucraft.world.gen.features;
 
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuFeatures;
-import baguchan.tofucraft.world.placement.TofuWorldPlacements;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.features.FeatureUtils;
@@ -12,6 +11,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 
@@ -38,7 +38,10 @@ public class TofuWorldFeatures {
 	public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> BIG_ZUNDA_TOFU_MUSHUROOM = FeatureUtils.register("tofucraft:big_zunda_tofu_mushroom", TofuFeatures.BIG_ZUNDA_TOFU_MUSHROOM, RandomFeatureConfiguration.NONE);
 
 
-	public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> TOFU_TREES = FeatureUtils.register("tofucraft:tofu_trees", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(ModTreeFeatures.TOFU_TREE_BIG), 0.33333334F)), TofuWorldPlacements.TOFU_CHECKED));
+	public static final Holder<PlacedFeature> TOFU_CHECKED = PlacementUtils.register("tofucraft:tofu_checked", ModTreeFeatures.TOFU_TREE, PlacementUtils.filteredByBlockSurvival(TofuBlocks.SAPLING_TOFU.get()));
+
+
+	public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> TOFU_TREES = FeatureUtils.register("tofucraft:tofu_trees", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(ModTreeFeatures.TOFU_TREE_BIG), 0.33333334F)), TOFU_CHECKED));
 
 	private static RandomPatchConfiguration grassPatch(BlockStateProvider p_195203_, int p_195204_) {
 		return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(p_195203_)));

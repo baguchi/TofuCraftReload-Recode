@@ -1,7 +1,6 @@
 package baguchan.tofucraft.world.placement;
 
 import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.world.gen.features.ModTreeFeatures;
 import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
@@ -31,9 +30,6 @@ public class TofuWorldPlacements {
 	public static final Holder<PlacedFeature> PATCH_ZUNDA_TOFU_MUSHROOM = PlacementUtils.register("tofucraft:patch_zunda_tofu_mushroom", TofuWorldFeatures.ZUNDA_TOFU_MUSHROOM, InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
 	public static final Holder<PlacedFeature> BIG_ZUNDA_TOFU_MUSHROOM = PlacementUtils.register("tofucraft:big_zunda_tofu_mushroom", TofuWorldFeatures.BIG_ZUNDA_TOFU_MUSHUROOM, PlacementUtils.countExtra(3, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-
-
-	public static final Holder<PlacedFeature> TOFU_CHECKED = PlacementUtils.register("tofucraft:tofu_checked", ModTreeFeatures.TOFU_TREE, PlacementUtils.filteredByBlockSurvival(TofuBlocks.SAPLING_TOFU.get()));
 
 	public static final Holder<PlacedFeature> TOFU_TREES_FOREST = PlacementUtils.register("tofucraft:tofu_trees_forest", TofuWorldFeatures.TOFU_TREES, treePlacement(PlacementUtils.countExtra(10, 0.1F, 1), TofuBlocks.SAPLING_TOFU.get()));
 	public static final Holder<PlacedFeature> TOFU_TREES_PLAINS = PlacementUtils.register("tofucraft:tofu_trees_plains", TofuWorldFeatures.TOFU_TREES, treePlacement(PlacementUtils.countExtra(0, 0.01F, 1), TofuBlocks.SAPLING_TOFU.get()));
