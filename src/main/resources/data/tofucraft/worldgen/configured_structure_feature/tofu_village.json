@@ -1,0 +1,10 @@
+{
+  "type": "tofucraft:tofu_village",
+  "biomes": "#tofucraft:has_structure/tofu_village",
+  "adapt_noise": true,
+  "spawn_overrides": {},
+  "config": {
+    "start_pool": "tofucraft:tofu_village/town_centers",
+    "size": 6
+  }
+}
