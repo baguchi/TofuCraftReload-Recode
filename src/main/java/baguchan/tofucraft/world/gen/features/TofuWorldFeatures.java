@@ -24,8 +24,8 @@ public class TofuWorldFeatures {
 	public static final ImmutableList<OreConfiguration.TargetBlockState> ORE_DIAMOND_TARGET_LIST = ImmutableList.of(OreConfiguration.target(TOFU_ORE_REPLACEABLES, TofuBlocks.ORE_TOFU_DIAMOND.get().defaultBlockState()), OreConfiguration.target(TOFUSLATE_ORE_REPLACEABLES, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get().defaultBlockState()));
 
 
-	public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_DIAMOND_SMALL = FeatureUtils.register("tofucraft:ore_tofu_diamond_small", Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 4, 0.5F));
-	public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_DIAMOND_LARGE = FeatureUtils.register("tofucraft:ore_tofu_diamond_large", Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 12, 0.7F));
+	public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_DIAMOND_SMALL = FeatureUtils.register("tofucraft:ore_tofu_diamond_small", Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 5, 0.2F));
+	public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_DIAMOND_LARGE = FeatureUtils.register("tofucraft:ore_tofu_diamond_large", Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 12, 0.5F));
 	public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_DIAMOND_BURIED = FeatureUtils.register("tofucraft:ore_tofu_diamond_buried", Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 8, 1.0F));
 
 	public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> LEEK = FeatureUtils.register("tofucraft:leek", Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(TofuBlocks.LEEK.get()), 32));
