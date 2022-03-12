@@ -7,14 +7,12 @@ import baguchan.tofucraft.client.render.FukumameRender;
 import baguchan.tofucraft.client.render.NetherFukumameRender;
 import baguchan.tofucraft.client.render.SoulFukumameRender;
 import baguchan.tofucraft.client.render.entity.*;
+import baguchan.tofucraft.client.render.item.TofuShieldBWLR;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchan.tofucraft.client.screen.TFStorageScreen;
-import baguchan.tofucraft.registry.TofuBlockEntitys;
-import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.registry.TofuContainers;
-import baguchan.tofucraft.registry.TofuEntityTypes;
+import baguchan.tofucraft.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.BiomeColors;
@@ -22,6 +20,8 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -89,6 +89,11 @@ public class ClientRegistrar {
 		renderTileEntity();
 		renderBlockColor();
 		renderBlockLayer();
+
+		ItemProperties.register(TofuItems.TOFU_SHIELD.get(), new ResourceLocation("blocking"), (p_174590_, p_174591_, p_174592_, p_174593_) -> {
+			return p_174592_ != null && p_174592_.isUsingItem() && p_174592_.getUseItem() == p_174590_ ? 1.0F : 0.0F;
+		});
+
 		MenuScreens.register(TofuContainers.SALT_FURNACE, SaltFurnaceScreen::new);
 		MenuScreens.register(TofuContainers.TF_STORAGE, TFStorageScreen::new);
 	}
@@ -121,6 +126,9 @@ public class ClientRegistrar {
 			event.addSprite(TofuChestRenderer.CHEST_LOCATION.texture());
 			event.addSprite(TofuChestRenderer.CHEST_LOCATION_LEFT.texture());
 			event.addSprite(TofuChestRenderer.CHEST_LOCATION_RIGHT.texture());
+		}
+		if (event.getAtlas().location().equals(Sheets.SHIELD_SHEET)) {
+			event.addSprite(TofuShieldBWLR.SHIELD.texture());
 		}
 	}
 }

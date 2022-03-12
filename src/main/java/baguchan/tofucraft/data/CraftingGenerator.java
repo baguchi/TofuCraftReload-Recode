@@ -432,5 +432,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()))
 				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(TofuItems.TOFU_SHIELD.get())
+				.pattern("###")
+				.pattern("###")
+				.pattern(" # ")
+				.define('#', TofuItems.TOFUMETAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.save(consumer);
 	}
 }

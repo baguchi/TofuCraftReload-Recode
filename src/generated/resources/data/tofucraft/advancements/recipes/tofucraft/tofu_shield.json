@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tofucraft:tofuslab_zunda"
+      "tofucraft:tofu_shield"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "tofucraft:blocktofuzunda"
+              "tofucraft:tofumetal"
             ]
           }
         ]
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tofucraft:tofuslab_zunda"
+        "recipe": "tofucraft:tofu_shield"
       }
     }
   },
