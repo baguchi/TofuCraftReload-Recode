@@ -5,6 +5,7 @@ import baguchan.tofucraft.block.*;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
+import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
 import baguchan.tofucraft.block.utils.*;
 import baguchan.tofucraft.client.render.item.TofuBedBWLR;
@@ -159,6 +160,7 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> TF_STORAGE = register("tf_storage", () -> new TFStorageBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
 		return p_50872_.getValue(TFStorageBlock.LIT) ? 13 : 0;
 	})));
+	public static final RegistryObject<Block> ANTENNA_BASIC = register("antenna_basic", () -> new TFAntennaBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
 
 	//Tofu delight item
 	public static final RegistryObject<Block> EGGTOFU = register("blocktofuegg", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));

@@ -1,5 +1,6 @@
 package baguchan.tofucraft.blockentity.tfenergy;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.api.tfenergy.IEnergyExtractable;
 import baguchan.tofucraft.api.tfenergy.ITofuEnergy;
 import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
@@ -7,6 +8,7 @@ import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
 import baguchan.tofucraft.blockentity.tfenergy.base.EnergyBaseBlockEntity;
 import baguchan.tofucraft.blockentity.tfenergy.base.SenderBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFStorageMenu;
+import baguchan.tofucraft.message.TFStorageSoymilkMessage;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,6 +30,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
@@ -36,6 +39,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -49,6 +53,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 	protected NonNullList<ItemStack> inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 	private int workload = 0;
 	private int current_workload = 0;
+	private int prevFluid;
 	private final LazyOptional<IFluidHandler> holder;
 
 	protected final ContainerData dataAccess = new ContainerData() {
@@ -126,6 +131,14 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 
 
 		if (level.isClientSide()) return;
+
+		if (!level.isClientSide) {
+			if (tfStorageBlockEntity.prevFluid != tfStorageBlockEntity.tank.getFluidAmount()) {
+				LevelChunk chunk = level.getChunkAt(p_155015_);
+				TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new TFStorageSoymilkMessage(p_155015_, tfStorageBlockEntity.tank.getFluid()));
+				tfStorageBlockEntity.prevFluid = tfStorageBlockEntity.tank.getFluidAmount();
+			}
+		}
 
 		//Transform workload to power
 		if (tfStorageBlockEntity.workload > 0 && tfStorageBlockEntity.getEnergyStored() < tfStorageBlockEntity.getMaxEnergyStored()) {
@@ -248,8 +261,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 
 	public void load(CompoundTag cmp) {
 		super.load(cmp);
-		this.inventory =
-				NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.inventory);
 
 		this.workload = cmp.getInt("workload");

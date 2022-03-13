@@ -153,6 +153,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUCHEST.get());
 
 		dropSelf(TofuBlocks.TF_STORAGE.get());
+		dropSelf(TofuBlocks.ANTENNA_BASIC.get());
 
 		registerTofuDrop(TofuBlocks.EGGTOFU.get(), TofuItems.TOFUEGG.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_EGG.get());

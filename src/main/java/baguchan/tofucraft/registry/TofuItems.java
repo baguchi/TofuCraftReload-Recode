@@ -152,6 +152,13 @@ public class TofuItems {
 	public static final RegistryObject<Item> NETHER_FUKUMAME = ITEMS.register("nether_fukumame", () -> new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> SOUL_FUKUMAME = ITEMS.register("soul_fukumame", () -> new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
+	public static final RegistryObject<Item> TOFUGEM = ITEMS.register("tofugem", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> TF_CAPACITOR = ITEMS.register("tf_capacitor", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> TF_COIL = ITEMS.register("tf_coil", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> TF_CIRCUIT = ITEMS.register("tf_circuit", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> TF_OSCILLATOR = ITEMS.register("tf_oscillator", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
+
 	public static final RegistryObject<Item> TOFUNIAN_SPAWNEGG = ITEMS.register("tofunian_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUCOW_SPAWNEGG = ITEMS.register("tofucow_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUCOW, 15460584, 10724259, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUSLIME_SPAWNEGG = ITEMS.register("tofuslime_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));

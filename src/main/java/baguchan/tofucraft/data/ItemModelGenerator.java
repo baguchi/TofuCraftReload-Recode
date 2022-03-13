@@ -83,6 +83,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		itemBlockFlat(TofuBlocks.LEEK.get());
 		singleTex(TofuBlocks.TOFUCAKE.get().asItem());
 
+		toBlock(TofuBlocks.ANTENNA_BASIC.get());
+
 		//item
 		singleTex(TofuItems.TOFUKINU.get());
 		singleTex(TofuItems.TOFUMOMEN.get());
@@ -163,6 +165,13 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.FUKUMAME.get());
 		singleTexTool(TofuItems.NETHER_FUKUMAME.get());
 		singleTexTool(TofuItems.SOUL_FUKUMAME.get());
+
+
+		singleTexTool(TofuItems.TOFUGEM.get());
+		singleTexTool(TofuItems.TF_COIL.get());
+		singleTexTool(TofuItems.TF_CIRCUIT.get());
+		singleTexTool(TofuItems.TF_CAPACITOR.get());
+		singleTexTool(TofuItems.TF_OSCILLATOR.get());
 
 		singleTexTool(TofuItems.TOFU_KINU_SWORD.get());
 		singleTexTool(TofuItems.TOFU_KINU_PICKAXE.get());

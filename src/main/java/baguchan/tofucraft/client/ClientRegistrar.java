@@ -78,6 +78,8 @@ public class ClientRegistrar {
 
 		setRenderLayer(TofuBlocks.TOFU_PORTAL.get(), RenderType.translucent());
 		setRenderLayer(TofuBlocks.SALTPAN.get(), RenderType.cutout());
+
+		setRenderLayer(TofuBlocks.ANTENNA_BASIC.get(), RenderType.cutout());
 	}
 
 	private static void setRenderLayer(Block block, RenderType type) {

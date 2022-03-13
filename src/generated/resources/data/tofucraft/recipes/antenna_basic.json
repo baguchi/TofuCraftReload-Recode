@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "LOR",
+    "TCT"
+  ],
+  "key": {
+    "P": {
+      "item": "tofucraft:leek"
+    },
+    "R": {
+      "item": "tofucraft:tf_capacitor"
+    },
+    "O": {
+      "item": "tofucraft:tf_oscillator"
+    },
+    "L": {
+      "item": "tofucraft:tf_coil"
+    },
+    "T": {
+      "item": "tofucraft:tofumetal"
+    },
+    "C": {
+      "item": "tofucraft:tf_circuit"
+    }
+  },
+  "result": {
+    "item": "tofucraft:antenna_basic"
+  }
+}

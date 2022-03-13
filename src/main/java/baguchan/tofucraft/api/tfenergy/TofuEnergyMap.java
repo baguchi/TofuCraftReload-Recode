@@ -1,5 +1,6 @@
 package baguchan.tofucraft.api.tfenergy;
 
+import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -15,6 +16,7 @@ public class TofuEnergyMap {
 		register(new ItemStack(TofuItems.TOFUKINU.get(), 1), 100);
 		register(new ItemStack(TofuItems.TOFUMOMEN.get(), 1), 100);
 		register(new ItemStack(TofuItems.TOFUISHI.get(), 1), 100);
+		register(new FluidStack(TofuFluids.SOYMILK.get(), 100), 100);
 	}
 
 	public static void register(ItemStack item, int loader) {
@@ -27,8 +29,9 @@ public class TofuEnergyMap {
 
 	public static int getFuel(ItemStack item) {
 		for (ItemStack rep : recipes.keySet()) {
-			if (rep.getItem().equals(item.getItem()))
+			if (rep.is(item.getItem())) {
 				return recipes.get(rep);
+			}
 		}
 		return -1;
 	}

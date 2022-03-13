@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "TTT",
+    "RRR"
+  ],
+  "key": {
+    "T": {
+      "item": "tofucraft:tofuishi"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tf_coil"
+  }
+}
