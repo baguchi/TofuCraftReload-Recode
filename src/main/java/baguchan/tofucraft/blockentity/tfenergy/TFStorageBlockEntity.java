@@ -309,7 +309,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 	@org.jetbrains.annotations.Nullable
 	@Override
 	public AbstractContainerMenu createMenu(int p_39954_, Inventory p_39955_, Player p_39956_) {
-		return new TFStorageMenu(p_39954_, p_39955_);
+		return new TFStorageMenu(p_39954_, p_39955_, this, this.dataAccess);
 	}
 
 

@@ -45,8 +45,9 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		int i = this.leftPos;
 		int j = this.topPos;
 		this.blit(p_230450_1_, i, j, 0, 0, this.imageWidth, this.imageHeight);
-		int l = this.menu.getBurnProgress();
+		/*int l = this.menu.getBurnProgress();
 		blit(p_230450_1_, i + 54, j + 54, 176, 14, l + 1, 16);
+		*/
 		p_230450_1_.pushPose();
 		if (TofuCraftReload.PROXY.getRefrencedTE() instanceof TFStorageBlockEntity && ((TFStorageBlockEntity) TofuCraftReload.PROXY.getRefrencedTE()).getTank().getFluid() != null) {
 			FluidTank fluidTank = ((TFStorageBlockEntity) TofuCraftReload.PROXY.getRefrencedTE()).getTank();
