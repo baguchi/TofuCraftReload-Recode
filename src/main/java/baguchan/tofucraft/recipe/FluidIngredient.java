@@ -52,9 +52,7 @@ public class FluidIngredient implements Predicate<FluidStack> {
 		if (this.fluidStacks == null) {
 			this.fluidStacks = Arrays.stream(this.values).flatMap((p_43916_) -> {
 				return p_43916_.getFluids().stream();
-			}).distinct().toArray((p_43910_) -> {
-				return new FluidStack[p_43910_];
-			});
+			}).distinct().toArray(FluidStack[]::new);
 		}
 
 	}
@@ -177,7 +175,7 @@ public class FluidIngredient implements Predicate<FluidStack> {
 			throw new JsonParseException("An Fluidingredient entry is either a tag or an fluid, not both");
 		} else if (p_43920_.has("fluid")) {
 			Fluid fluid = fluidFromJson(p_43920_);
-			return new FluidIngredient.FluidValue(fluid);
+			return new FluidIngredient.FluidValue(new FluidStack(fluid, 1000));
 		} else if (p_43920_.has("tag")) {
 			ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.getAsString(p_43920_, "tag"));
 			TagKey<Fluid> tagkey = TagKey.create(Registry.FLUID_REGISTRY, resourcelocation);
@@ -206,23 +204,20 @@ public class FluidIngredient implements Predicate<FluidStack> {
 	}
 
 	public static class FluidValue implements FluidIngredient.Value {
-		private final Fluid fluid;
+		private final FluidStack fluid;
 
 		public FluidValue(FluidStack p_43953_) {
-			this.fluid = p_43953_.getFluid();
-		}
-
-		public FluidValue(Fluid p_43953_) {
 			this.fluid = p_43953_;
 		}
 
-		public Collection<Fluid> getFluids() {
+
+		public Collection<FluidStack> getFluids() {
 			return Collections.singleton(this.fluid);
 		}
 
 		public JsonObject serialize() {
 			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("fluid", Registry.FLUID.getKey(this.fluid).toString());
+			jsonobject.addProperty("fluid", Registry.FLUID.getKey(this.fluid.getFluid()).toString());
 			return jsonobject;
 		}
 	}
@@ -234,11 +229,11 @@ public class FluidIngredient implements Predicate<FluidStack> {
 			this.tag = p_43961_;
 		}
 
-		public Collection<Fluid> getFluids() {
-			List<Fluid> list = Lists.newArrayList();
+		public Collection<FluidStack> getFluids() {
+			List<FluidStack> list = Lists.newArrayList();
 
 			for (Holder<Fluid> holder : Registry.FLUID.getTagOrEmpty(this.tag)) {
-				list.add(holder.value());
+				list.add(new FluidStack(holder.value(), 1000));
 			}
 
 			return list;
@@ -252,7 +247,7 @@ public class FluidIngredient implements Predicate<FluidStack> {
 	}
 
 	public interface Value {
-		Collection<Fluid> getFluids();
+		Collection<FluidStack> getFluids();
 
 		JsonObject serialize();
 	}
