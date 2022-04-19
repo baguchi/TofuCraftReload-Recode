@@ -78,6 +78,13 @@ public class BlockstateGenerator extends BlockStateProvider {
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_HELL, "hell");
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_SOUL, "soul");
 
+		trapdoor(TofuBlocks.TOFUTRAPDOOR_KINU);
+		trapdoor(TofuBlocks.TOFUTRAPDOOR_MOMEN);
+		trapdoor(TofuBlocks.TOFUTRAPDOOR_ISHI);
+		trapdoor(TofuBlocks.TOFUTRAPDOOR_METAL);
+		trapdoor(TofuBlocks.TOFUTRAPDOOR_HELL);
+		trapdoor(TofuBlocks.TOFUTRAPDOOR_SOUL);
+
 		torchBlock(TofuBlocks.TOFUTORCH_KINU.get(), TofuBlocks.WALLTOFUTORCH_KINU.get());
 		torchBlock(TofuBlocks.TOFUTORCH_MOMEN.get(), TofuBlocks.WALLTOFUTORCH_MOMEN.get());
 		torchBlock(TofuBlocks.TOFUTORCH_ISHI.get(), TofuBlocks.WALLTOFUTORCH_ISHI.get());
@@ -149,6 +156,14 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 	public void wall(Supplier<? extends WallBlock> wall, Supplier<? extends Block> fullBlock) {
 		wallBlock(wall.get(), texture(name(fullBlock.get())));
+	}
+
+	public void trapdoor(Supplier<? extends TrapDoorBlock> block) {
+		trapdoorBlock(block.get(), texture(name(block.get())), true);
+	}
+
+	public void trapdoor(Supplier<? extends TrapDoorBlock> block, String name) {
+		trapdoorBlock(block.get(), texture(name + "_trapdoor"), true);
 	}
 
 	protected ResourceLocation texture(String name) {

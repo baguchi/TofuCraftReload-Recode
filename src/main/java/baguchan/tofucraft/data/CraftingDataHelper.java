@@ -241,6 +241,14 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.unlockedBy("has_" + plankIn.get().getRegistryName().getPath(), has(plankIn.get())).save(consumer);
 	}
 
+	public void makeTrapdoor(Consumer<FinishedRecipe> consumer, Supplier<? extends Block> trapdoorOut, Supplier<? extends ItemLike> plankIn) {
+		ShapedRecipeBuilder.shaped(trapdoorOut.get(), 2)
+				.pattern("PPP")
+				.pattern("PPP")
+				.define('P', plankIn.get())
+				.unlockedBy("has_" + plankIn.get().asItem().getRegistryName().getPath(), has(plankIn.get())).save(consumer);
+	}
+
 
 	protected final ResourceLocation locEquip(String name) {
 		return TofuCraftReload.prefix("equipment/" + name);

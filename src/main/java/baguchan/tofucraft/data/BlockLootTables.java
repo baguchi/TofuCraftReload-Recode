@@ -121,6 +121,12 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		this.add(TofuBlocks.TOFUDOOR_HELL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		this.add(TofuBlocks.TOFUDOOR_SOUL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 
+		dropSelf(TofuBlocks.TOFUTRAPDOOR_KINU.get());
+		dropSelf(TofuBlocks.TOFUTRAPDOOR_MOMEN.get());
+		dropSelf(TofuBlocks.TOFUTRAPDOOR_ISHI.get());
+		dropSelf(TofuBlocks.TOFUTRAPDOOR_METAL.get());
+		dropSelf(TofuBlocks.TOFUTRAPDOOR_HELL.get());
+		dropSelf(TofuBlocks.TOFUTRAPDOOR_SOUL.get());
 
 		dropSelf(TofuBlocks.TOFUTORCH_KINU.get());
 		dropSelf(TofuBlocks.TOFUTORCH_MOMEN.get());
