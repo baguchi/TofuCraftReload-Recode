@@ -8,9 +8,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.function.Supplier;
 
 import static baguchan.tofucraft.TofuCraftReload.prefix;
 
@@ -60,6 +63,13 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSLAB_HELLBRICK.get());
 		toBlock(TofuBlocks.TOFUSLAB_SOULBRICK.get());
 		toBlock(TofuBlocks.TOFUSLAB_MISO.get());
+
+		wall(TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
+		wall(TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
+		wall(TofuBlocks.TOFUFENCE_ISHI, TofuBlocks.ISHITOFU);
+		wall(TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
+		wall(TofuBlocks.TOFUFENCE_HELL, TofuBlocks.HELLTOFU);
+		wall(TofuBlocks.TOFUFENCE_SOUL, TofuBlocks.SOULTOFU);
 
 		singleTex(TofuBlocks.TOFUDOOR_KINU.get());
 		singleTex(TofuBlocks.TOFUDOOR_MOMEN.get());
@@ -298,6 +308,10 @@ public class ItemModelGenerator extends ItemModelProvider {
 				.texture("texture", "block/wood/planks_" + variant + "_0");
 	}
 
+	public ItemModelBuilder wall(Supplier<? extends WallBlock> wall, Supplier<? extends Block> fullBlock) {
+		return wallInventory(wall.get().getRegistryName().getPath(), texture(blockName(fullBlock.get())));
+	}
+
 	private void toBlock(Block b) {
 		toBlockModel(b, b.getRegistryName().getPath());
 	}
@@ -330,5 +344,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 	@Override
 	public String getName() {
 		return "TofuCraftReload item and itemblock models";
+	}
+
+	private ResourceLocation texture(String name) {
+		return modLoc("block/" + name);
 	}
 }

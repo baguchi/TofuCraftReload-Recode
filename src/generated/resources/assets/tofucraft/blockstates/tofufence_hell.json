@@ -5,16 +5,7 @@
         "up": "true"
       },
       "apply": {
-        "model": "tofucraft:block/tofufence_kinu_post"
-      }
-    },
-    {
-      "when": {
-        "north": "low"
-      },
-      "apply": {
-        "model": "tofucraft:block/tofufence_kinu_side",
-        "uvlock": true
+        "model": "tofucraft:block/tofufence_hell_post"
       }
     },
     {
@@ -22,8 +13,36 @@
         "east": "low"
       },
       "apply": {
-        "model": "tofucraft:block/tofufence_kinu_side",
+        "model": "tofucraft:block/tofufence_hell_side",
         "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "tall"
+      },
+      "apply": {
+        "model": "tofucraft:block/tofufence_hell_side_tall",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "low"
+      },
+      "apply": {
+        "model": "tofucraft:block/tofufence_hell_side",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "tall"
+      },
+      "apply": {
+        "model": "tofucraft:block/tofufence_hell_side_tall",
         "uvlock": true
       }
     },
@@ -32,7 +51,17 @@
         "south": "low"
       },
       "apply": {
-        "model": "tofucraft:block/tofufence_kinu_side",
+        "model": "tofucraft:block/tofufence_hell_side",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "south": "tall"
+      },
+      "apply": {
+        "model": "tofucraft:block/tofufence_hell_side_tall",
         "y": 180,
         "uvlock": true
       }
@@ -42,37 +71,8 @@
         "west": "low"
       },
       "apply": {
-        "model": "tofucraft:block/tofufence_kinu_side",
+        "model": "tofucraft:block/tofufence_hell_side",
         "y": 270,
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "north": "tall"
-      },
-      "apply": {
-        "model": "tofucraft:block/tofufence_kinu_side_tall",
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "east": "tall"
-      },
-      "apply": {
-        "model": "tofucraft:block/tofufence_kinu_side_tall",
-        "y": 90,
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "south": "tall"
-      },
-      "apply": {
-        "model": "tofucraft:block/tofufence_kinu_side_tall",
-        "y": 180,
         "uvlock": true
       }
     },
@@ -81,7 +81,7 @@
         "west": "tall"
       },
       "apply": {
-        "model": "tofucraft:block/tofufence_kinu_side_tall",
+        "model": "tofucraft:block/tofufence_hell_side_tall",
         "y": 270,
         "uvlock": true
       }

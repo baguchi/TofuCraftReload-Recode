@@ -4,10 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -62,6 +59,13 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFUSLAB_HELLBRICK.get(), TofuBlocks.HELLTOFU_BRICK.get());
 		slab(TofuBlocks.TOFUSLAB_SOULBRICK.get(), TofuBlocks.SOULTOFU_BRICK.get());
 		slab(TofuBlocks.TOFUSLAB_MISO.get(), TofuBlocks.MISOTOFU.get());
+
+		wall(TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
+		wall(TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
+		wall(TofuBlocks.TOFUFENCE_ISHI, TofuBlocks.ISHITOFU);
+		wall(TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
+		wall(TofuBlocks.TOFUFENCE_HELL, TofuBlocks.HELLTOFU);
+		wall(TofuBlocks.TOFUFENCE_SOUL, TofuBlocks.SOULTOFU);
 
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_KINU, "kinu");
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_MOMEN, "momen");
@@ -137,6 +141,10 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 	public void ancientFormatDoor(Supplier<? extends DoorBlock> block, String name) {
 		doorBlock(block.get(), texture("tofudoor_" + name + "_lower"), texture("tofudoor_" + name + "_upper"));
+	}
+
+	public void wall(Supplier<? extends WallBlock> wall, Supplier<? extends Block> fullBlock) {
+		wallBlock(wall.get(), texture(name(fullBlock.get())));
 	}
 
 	protected ResourceLocation texture(String name) {

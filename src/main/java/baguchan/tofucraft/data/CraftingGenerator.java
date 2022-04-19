@@ -145,6 +145,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeFence(consumer, TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
 		makeFence(consumer, TofuBlocks.TOFUFENCE_ISHI, TofuBlocks.ISHITOFU);
 		makeFence(consumer, TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
+		makeFence(consumer, TofuBlocks.TOFUFENCE_HELL, TofuBlocks.HELLTOFU);
+		makeFence(consumer, TofuBlocks.TOFUFENCE_SOUL, TofuBlocks.SOULTOFU);
 
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_KINU, TofuBlocks.KINUTOFU);
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_MOMEN, TofuBlocks.MOMENTOFU);

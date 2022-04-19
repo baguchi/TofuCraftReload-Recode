@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofuhell"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofufence_hell",
+    "count": 6
+  }
+}
