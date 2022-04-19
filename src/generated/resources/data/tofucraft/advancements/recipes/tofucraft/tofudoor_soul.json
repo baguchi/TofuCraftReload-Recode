@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofudoor_soul"
+    ]
+  },
+  "criteria": {
+    "has_blocktofusoul": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:blocktofusoul"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tofucraft:tofudoor_soul"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blocktofusoul",
+      "has_the_recipe"
+    ]
+  ]
+}

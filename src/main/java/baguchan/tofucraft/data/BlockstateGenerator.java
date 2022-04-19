@@ -67,6 +67,8 @@ public class BlockstateGenerator extends BlockStateProvider {
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_MOMEN, "momen");
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_ISHI, "ishi");
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_METAL, "metal");
+		ancientFormatDoor(TofuBlocks.TOFUDOOR_HELL, "hell");
+		ancientFormatDoor(TofuBlocks.TOFUDOOR_SOUL, "soul");
 
 		torchBlock(TofuBlocks.TOFUTORCH_KINU.get(), TofuBlocks.WALLTOFUTORCH_KINU.get());
 		torchBlock(TofuBlocks.TOFUTORCH_MOMEN.get(), TofuBlocks.WALLTOFUTORCH_MOMEN.get());

@@ -65,6 +65,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.TOFUDOOR_MOMEN.get());
 		singleTex(TofuBlocks.TOFUDOOR_ISHI.get());
 		singleTex(TofuBlocks.TOFUDOOR_METAL.get());
+		singleTex(TofuBlocks.TOFUDOOR_HELL.get());
+		singleTex(TofuBlocks.TOFUDOOR_SOUL.get());
 
 		torchItem(TofuBlocks.TOFUTORCH_KINU.get());
 		torchItem(TofuBlocks.TOFUTORCH_MOMEN.get());
