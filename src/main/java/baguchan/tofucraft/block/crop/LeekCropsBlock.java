@@ -1,8 +1,6 @@
 package baguchan.tofucraft.block.crop;
 
-import baguchan.tofucraft.entity.Tofunian;
 import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -38,7 +36,7 @@ public class LeekCropsBlock extends CropBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter p_52303_, BlockPos p_52304_) {
-		return state.is(TofuBlocks.TOFU_FARMLAND.get()) || state.is(TofuBlocks.SOULTOFU.get());
+		return state.is(TofuBlocks.TOFU_FARMLAND.get());
 	}
 
 	@Override
@@ -67,18 +65,7 @@ public class LeekCropsBlock extends CropBlock {
 		if (i > j) {
 			i = j;
 		}
-
-		if (p_52264_.getBlockState(p_52265_.below()).getBlock() == TofuBlocks.SOULTOFU.get() && i == 3) {
-			p_52264_.removeBlock(p_52265_, false);
-
-			Tofunian tofunian = TofuEntityTypes.TOFUNIAN.get().create(p_52264_);
-			tofunian.setPos(p_52265_.getX(), p_52265_.getY(), p_52265_.getZ());
-
-			p_52264_.addFreshEntity(tofunian);
-		} else {
-			p_52264_.setBlock(p_52265_, this.getStateForAge(i), 2);
-		}
-
+		p_52264_.setBlock(p_52265_, this.getStateForAge(i), 2);
 	}
 
 	protected int getBonemealAgeIncrease(Level p_49663_) {
