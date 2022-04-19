@@ -9,8 +9,8 @@ public class TofuFoods {
 	public static final FoodProperties TOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).fast().build();
 
 	public static final FoodProperties ISHITOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).fast().build();
-	public static final FoodProperties TOFUHELL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).alwaysEat().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1.0F).build();
-	public static final FoodProperties TOFUSOUL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).fast().build();
+	public static final FoodProperties TOFUHELL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.16F).alwaysEat().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1.0F).build();
+	public static final FoodProperties TOFUSOUL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.16F).fast().build();
 	public static final FoodProperties TOFUGRILLED = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUZUNDA = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUMISO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).fast().build();
@@ -23,7 +23,7 @@ public class TofuFoods {
 
 	public static final FoodProperties COOKED_TOFUFISH = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.6F).build();
 
-	public static final FoodProperties TOFUCOOKIE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
+	public static final FoodProperties TOFUCOOKIE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.16F).build();
 
 	public static final FoodProperties SOYSTICK = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.42F).fast().build();
 
@@ -40,7 +40,7 @@ public class TofuFoods {
 	public static final FoodProperties KINAKO_MOCHI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
 
 	public static final FoodProperties TOMATO_SOYBEAN_STEW = stew(5).build();
-	public static final FoodProperties YUDOFU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.15F).fast().build();
+	public static final FoodProperties YUDOFU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties EDAMAME_RICE = stew(5).build();
 
 	//Tofu delight
