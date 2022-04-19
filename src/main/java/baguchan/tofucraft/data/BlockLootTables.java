@@ -90,6 +90,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUSTAIR_ISHI.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_METAL.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_ZUNDA.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_HELL.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_SOUL.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_ISHIBRICK.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_HELLBRICK.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_SOULBRICK.get());
@@ -99,6 +101,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		registerSlab(TofuBlocks.TOFUSLAB_ISHI.get());
 		registerSlab(TofuBlocks.TOFUSLAB_METAL.get());
 		registerSlab(TofuBlocks.TOFUSLAB_ZUNDA.get());
+		registerSlab(TofuBlocks.TOFUSLAB_HELL.get());
+		registerSlab(TofuBlocks.TOFUSLAB_SOUL.get());
 		registerSlab(TofuBlocks.TOFUSLAB_ISHIBRICK.get());
 		registerSlab(TofuBlocks.TOFUSLAB_HELLBRICK.get());
 		registerSlab(TofuBlocks.TOFUSLAB_SOULBRICK.get());

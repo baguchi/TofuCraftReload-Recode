@@ -49,6 +49,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSTAIR_ISHI.get());
 		toBlock(TofuBlocks.TOFUSTAIR_METAL.get());
 		toBlock(TofuBlocks.TOFUSTAIR_ZUNDA.get());
+		toBlock(TofuBlocks.TOFUSTAIR_HELL.get());
+		toBlock(TofuBlocks.TOFUSTAIR_SOUL.get());
 		toBlock(TofuBlocks.TOFUSTAIR_ISHIBRICK.get());
 		toBlock(TofuBlocks.TOFUSTAIR_HELLBRICK.get());
 		toBlock(TofuBlocks.TOFUSTAIR_SOULBRICK.get());
@@ -59,6 +61,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSLAB_ISHI.get());
 		toBlock(TofuBlocks.TOFUSLAB_METAL.get());
 		toBlock(TofuBlocks.TOFUSLAB_ZUNDA.get());
+		toBlock(TofuBlocks.TOFUSLAB_HELL.get());
+		toBlock(TofuBlocks.TOFUSLAB_SOUL.get());
 		toBlock(TofuBlocks.TOFUSLAB_ISHIBRICK.get());
 		toBlock(TofuBlocks.TOFUSLAB_HELLBRICK.get());
 		toBlock(TofuBlocks.TOFUSLAB_SOULBRICK.get());

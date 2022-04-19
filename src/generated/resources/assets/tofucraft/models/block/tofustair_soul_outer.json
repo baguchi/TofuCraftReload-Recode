@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "tofucraft:block/blocktofusoul",
+    "bottom": "tofucraft:block/blocktofusoul",
+    "top": "tofucraft:block/blocktofusoul"
+  }
+}
