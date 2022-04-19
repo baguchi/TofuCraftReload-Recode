@@ -5,6 +5,7 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -14,6 +15,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
+import java.util.function.Supplier;
 
 public class BlockstateGenerator extends BlockStateProvider {
 	public BlockstateGenerator(DataGenerator gen, ExistingFileHelper exFileHelper) {
@@ -60,6 +62,11 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFUSLAB_HELLBRICK.get(), TofuBlocks.HELLTOFU_BRICK.get());
 		slab(TofuBlocks.TOFUSLAB_SOULBRICK.get(), TofuBlocks.SOULTOFU_BRICK.get());
 		slab(TofuBlocks.TOFUSLAB_MISO.get(), TofuBlocks.MISOTOFU.get());
+
+		ancientFormatDoor(TofuBlocks.TOFUDOOR_KINU, "kinu");
+		ancientFormatDoor(TofuBlocks.TOFUDOOR_MOMEN, "momen");
+		ancientFormatDoor(TofuBlocks.TOFUDOOR_ISHI, "ishi");
+		ancientFormatDoor(TofuBlocks.TOFUDOOR_METAL, "metal");
 
 		torchBlock(TofuBlocks.TOFUTORCH_KINU.get(), TofuBlocks.WALLTOFUTORCH_KINU.get());
 		torchBlock(TofuBlocks.TOFUTORCH_MOMEN.get(), TofuBlocks.WALLTOFUTORCH_MOMEN.get());
@@ -120,6 +127,14 @@ public class BlockstateGenerator extends BlockStateProvider {
 				ConfiguredModel.builder()
 						.modelFile(model)
 						.build());
+	}
+
+	public void door(Supplier<? extends DoorBlock> block, String name) {
+		doorBlock(block.get(), texture(name + "_door_bottom"), texture(name + "_door_top"));
+	}
+
+	public void ancientFormatDoor(Supplier<? extends DoorBlock> block, String name) {
+		doorBlock(block.get(), texture("tofudoor_" + name + "_lower"), texture("tofudoor_" + name + "_upper"));
 	}
 
 	protected ResourceLocation texture(String name) {

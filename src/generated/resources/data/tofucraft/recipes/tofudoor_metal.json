@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "tofucraft:blocktofumetal"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofudoor_metal",
+    "count": 3
+  }
+}

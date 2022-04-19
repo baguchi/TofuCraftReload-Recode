@@ -6,6 +6,7 @@ import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -59,6 +60,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSLAB_HELLBRICK.get());
 		toBlock(TofuBlocks.TOFUSLAB_SOULBRICK.get());
 		toBlock(TofuBlocks.TOFUSLAB_MISO.get());
+
+		singleTex(TofuBlocks.TOFUDOOR_KINU.get());
+		singleTex(TofuBlocks.TOFUDOOR_MOMEN.get());
+		singleTex(TofuBlocks.TOFUDOOR_ISHI.get());
+		singleTex(TofuBlocks.TOFUDOOR_METAL.get());
 
 		torchItem(TofuBlocks.TOFUTORCH_KINU.get());
 		torchItem(TofuBlocks.TOFUTORCH_MOMEN.get());
@@ -266,8 +272,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		return builder;
 	}
 
-	private ItemModelBuilder singleTex(Item item) {
-		return generated(item.getRegistryName().getPath(), prefix("item/" + item.getRegistryName().getPath()));
+	private ItemModelBuilder singleTex(ItemLike item) {
+		return generated(item.asItem().getRegistryName().getPath(), prefix("item/" + item.asItem().getRegistryName().getPath()));
 	}
 
 	private ItemModelBuilder bowItem(String name, ResourceLocation... layers) {
