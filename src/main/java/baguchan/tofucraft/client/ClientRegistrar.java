@@ -70,6 +70,13 @@ public class ClientRegistrar {
 		setRenderLayer(TofuBlocks.TOFULADDER_ISHIBRICK.get(), RenderType.cutout());
 		setRenderLayer(TofuBlocks.TOFULADDER_METAL.get(), RenderType.cutout());
 
+		setRenderLayer(TofuBlocks.TOFUDOOR_KINU.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUDOOR_MOMEN.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUDOOR_ISHI.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUDOOR_METAL.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUDOOR_HELL.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFUDOOR_SOUL.get(), RenderType.cutout());
+
 		setRenderLayer(TofuBlocks.SAPLING_TOFU.get(), RenderType.cutout());
 		setRenderLayer(TofuBlocks.LEAVES_TOFU.get(), RenderType.cutoutMipped());
 
