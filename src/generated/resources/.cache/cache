@@ -451,6 +451,8 @@ b312b090570f138fe10e0be772dd1054f06796d9 data/minecraft/tags/blocks/mineable/sho
 1c44e6117718e15f14984f13ccca65239aa7b42a data/minecraft/tags/blocks/needs_iron_tool.json
 e6db782664451e9445a9c4e099bf255e190e0b03 data/minecraft/tags/blocks/needs_stone_tool.json
 a9f84cdec7564f756b5e8747072233f75d30ddf0 data/minecraft/tags/blocks/piglin_repellents.json
+3ef5ad2f8347c1c06086efea6e79d41342084be4 data/minecraft/tags/blocks/soul_fire_base_blocks.json
+3ef5ad2f8347c1c06086efea6e79d41342084be4 data/minecraft/tags/blocks/soul_speed_blocks.json
 09037a59321ba4bef96a8cf5664b1c734fd59e27 data/minecraft/tags/blocks/trapdoors.json
 ae5b134640da7daf0a61d224c869b742b350cfba data/minecraft/tags/blocks/walls.json
 cc6e508230756a356a4f75bc6c7d4651d9b16173 data/minecraft/tags/blocks/wither_immune.json
