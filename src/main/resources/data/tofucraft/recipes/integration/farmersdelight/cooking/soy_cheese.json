@@ -9,10 +9,10 @@
   "ingredients": [
     [
       {
-        "tag": "#forge:salt"
+        "tag": "forge:salt"
       },
       {
-        "tag": "#forge:dust/salt"
+        "tag": "forge:dust/salt"
       }
     ],
     {
