@@ -1,6 +1,6 @@
 package baguchan.tofucraft.block;
 
-import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
@@ -35,7 +35,7 @@ public class TofuMushroomBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState p_51042_, BlockGetter p_51043_, BlockPos p_51044_) {
-		return p_51042_.is(TofuBlocks.TOFU_TERRAIN.get());
+		return p_51042_.is(TofuTags.Blocks.TOFU_TERRAIN);
 	}
 
 	public boolean growMushroom(ServerLevel p_54860_, BlockPos p_54861_, BlockState p_54862_, Random p_54863_) {

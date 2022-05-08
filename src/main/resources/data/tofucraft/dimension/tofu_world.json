@@ -7,6 +7,8 @@
     "biome_source": {
       "type": "minecraft:multi_noise",
       "preset": "tofucraft:tofu_world"
-    }
-  }
+    },
+    "use_overworld_seed": true
+  },
+  "forge:use_server_seed": true
 }

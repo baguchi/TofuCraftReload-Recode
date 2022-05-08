@@ -1,6 +1,6 @@
 package baguchan.tofucraft.block;
 
-import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuTags;
 import baguchan.tofucraft.world.gen.grower.TofuTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -14,6 +14,6 @@ public class TofuSaplingBlock extends SaplingBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState p_51042_, BlockGetter p_51043_, BlockPos p_51044_) {
-		return p_51042_.is(TofuBlocks.TOFU_TERRAIN.get());
+		return p_51042_.is(TofuTags.Blocks.TOFU_TERRAIN);
 	}
 }
