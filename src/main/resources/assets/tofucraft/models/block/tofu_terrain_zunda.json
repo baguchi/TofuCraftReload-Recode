@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "tofucraft:block/blocktofuzunda",
+    "front": "tofucraft:block/tofu_terrain_zunda_side",
+    "side": "tofucraft:block/tofu_terrain_zunda_side",
+    "bottom": "tofucraft:block/tofu_terrain"
+  }
+}

@@ -95,6 +95,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		torchItem(TofuBlocks.TOFUTORCH_METAL.get());
 
 		toBlock(TofuBlocks.TOFU_TERRAIN.get());
+		toBlock(TofuBlocks.TOFU_TERRAIN_ZUNDA.get());
 		toBlock(TofuBlocks.TOFUSLATE.get());
 		toBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
 		toBlock(TofuBlocks.ORE_TOFU_DIAMOND.get());
@@ -264,6 +265,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.BOTTLE_DASHI.get());
 		singleTex(TofuItems.TOFUEGG.get());
 		singleTex(TofuItems.SOYSAUSE_RAMEN.get());
+		singleTex(TofuItems.SOY_CHEESE.get());
 
 		toBlock(TofuBlocks.EGGTOFU.get());
 		toBlock(TofuBlocks.TOFUSTAIR_EGG.get());

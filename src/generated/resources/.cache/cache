@@ -293,6 +293,7 @@ c59865c54958097cc52d898e08af1e4f87c11d0b assets/tofucraft/models/item/seeds_soyb
 6781b32111b34440191f01d274540fde1bc1fd0f assets/tofucraft/models/item/seeds_soybeans_soul.json
 b20fbf1e2ae5cf671aa9b374fc17fee92c6d0a6e assets/tofucraft/models/item/soul_fukumame.json
 a3985d2219af86485f66835c0ba85f89f610f419 assets/tofucraft/models/item/soulmanju.json
+737289117a1b38656bb3429c2c8a2635e5afe29d assets/tofucraft/models/item/soy_cheese.json
 7c67c88f711a8535247f9e81e60096a5e4fa115a assets/tofucraft/models/item/soy_chocolate.json
 7e290abf8306fdc10972462c29ee17207f8d1042 assets/tofucraft/models/item/soybeans_parched.json
 77e9752164be5bc4711d08a8565b55207e6c37d3 assets/tofucraft/models/item/soymilk.json
@@ -349,6 +350,7 @@ e6e6425be18706b44e04d500285bee8270ec6d6c assets/tofucraft/models/item/tofu_solid
 f4fa37d3bf1e9b9db21e4f24b2e35ae852e7ec6c assets/tofucraft/models/item/tofu_solid_shovel.json
 02765e1fc5079b67b324534eb92db1957b6d22ae assets/tofucraft/models/item/tofu_solid_sword.json
 9ce36052acaf1a20ae4e0203671aa42486e4c981 assets/tofucraft/models/item/tofu_terrain.json
+f48291436fcb1e027e0b4739f5aa3199029d1469 assets/tofucraft/models/item/tofu_terrain_zunda.json
 31c4ff2f714b361716c8fcae3d123eaaa21caf13 assets/tofucraft/models/item/tofucake.json
 c4688e70f7e909b45cdaa62d8fa1cb1cadbea4b4 assets/tofucraft/models/item/tofucookie.json
 98167609bf3898587f7565736a6fc24a7966cacd assets/tofucraft/models/item/tofucow_spawnegg.json
@@ -447,7 +449,7 @@ ff6ea01b3fc449c61c49a16680538059eec3cfb4 assets/tofucraft/models/item/yudofu.jso
 cc6e508230756a356a4f75bc6c7d4651d9b16173 data/minecraft/tags/blocks/dragon_immune.json
 9cc54df34b751cb5a9a2ef6eeaa2f0a968cfc888 data/minecraft/tags/blocks/mineable/axe.json
 528de311ab5d857972af525547f45af03752ae9f data/minecraft/tags/blocks/mineable/pickaxe.json
-b312b090570f138fe10e0be772dd1054f06796d9 data/minecraft/tags/blocks/mineable/shovel.json
+c87b753c722b103b8ff801a8a054167dd5b8b721 data/minecraft/tags/blocks/mineable/shovel.json
 1c44e6117718e15f14984f13ccca65239aa7b42a data/minecraft/tags/blocks/needs_iron_tool.json
 e6db782664451e9445a9c4e099bf255e190e0b03 data/minecraft/tags/blocks/needs_stone_tool.json
 a9f84cdec7564f756b5e8747072233f75d30ddf0 data/minecraft/tags/blocks/piglin_repellents.json
@@ -683,6 +685,7 @@ dbdf819064d71817af9fabe591ad0d57b96ff561 data/tofucraft/loot_tables/blocks/soybe
 7c59fc4c22c4da03ffbca7d13419dbf2174e3509 data/tofucraft/loot_tables/blocks/tofu_bedrock.json
 25193d51e9ec9eb1aeec548b0dd9d271b0dfc121 data/tofucraft/loot_tables/blocks/tofu_farmland.json
 25193d51e9ec9eb1aeec548b0dd9d271b0dfc121 data/tofucraft/loot_tables/blocks/tofu_terrain.json
+f3c83a7daf598caddfc2aa216c7a51d1e9862b4a data/tofucraft/loot_tables/blocks/tofu_terrain_zunda.json
 b354e435f17ba7c48d57d6b98c92096886cf336c data/tofucraft/loot_tables/blocks/tofubed.json
 374fc761ad454802cb3e7a484cfec94537b114d8 data/tofucraft/loot_tables/blocks/tofucake.json
 1f402236a877ddab9a815f03e4a398d9212458c7 data/tofucraft/loot_tables/blocks/tofuchest.json
@@ -942,4 +945,4 @@ f26f6ad95028dbb0b17f6f003ee7cc9dc9728a01 data/tofucraft/recipes/tofutrapdoor_kin
 93855d6bd0b7d8ee733aa4b3864964367886ce41 data/tofucraft/recipes/zundama.json
 e90966505020abb41084e0648f9755d16e9faed2 data/tofucraft/recipes/zundamanju.json
 4d1783bf7b3bf2ab71c4fd6be1f5f3b67f11a3f8 data/tofucraft/tags/blocks/soft_tofu.json
-72aa20c210ad7dde7d1e0132b45e6293c231ae78 data/tofucraft/tags/blocks/tofu_terrain.json
+cfb0765696fc99034dbd1a1b1776768e58468139 data/tofucraft/tags/blocks/tofu_terrain.json

@@ -1,0 +1,28 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    [
+      {
+        "tag": "#forge:salt"
+      },
+      {
+        "tag": "#forge:dust/salt"
+      }
+    ],
+    {
+      "item": "tofucraft:bucket_soymilk"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:soy_cheese",
+    "count": 4
+  },
+  "experience": 0.1,
+  "cookingtime": 100
+}

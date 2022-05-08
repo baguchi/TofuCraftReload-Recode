@@ -1,7 +1,7 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -32,7 +32,7 @@ public class TofuCow extends Cow {
 	}
 
 	public static boolean checkTofuAnimalSpawnRules(EntityType<? extends Animal> p_27578_, LevelAccessor p_27579_, MobSpawnType p_27580_, BlockPos p_27581_, Random p_27582_) {
-		return p_27579_.getBlockState(p_27581_.below()).is(TofuBlocks.TOFU_TERRAIN.get()) && p_27579_.getRawBrightness(p_27581_, 0) > 8;
+		return p_27579_.getBlockState(p_27581_.below()).is(TofuTags.Blocks.TOFU_TERRAIN) && p_27579_.getRawBrightness(p_27581_, 0) > 8;
 	}
 
 	public InteractionResult mobInteract(Player p_28298_, InteractionHand p_28299_) {

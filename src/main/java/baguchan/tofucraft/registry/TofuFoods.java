@@ -17,7 +17,7 @@ public class TofuFoods {
 
 	public static final FoodProperties BOILED_EDAMAME = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
 
-	public static final FoodProperties TOFU_HAMBURG = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build();
+	public static final FoodProperties TOFU_HAMBURG = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
 
 	public static final FoodProperties RAW_TOFUFISH = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
 
@@ -44,8 +44,9 @@ public class TofuFoods {
 	public static final FoodProperties EDAMAME_RICE = stew(5).build();
 
 	//Tofu delight
-	public static final FoodProperties TOFU_EGG = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
+	public static final FoodProperties TOFU_EGG = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.32F).fast().build();
 	public static final FoodProperties SOYSAUSE_RAMEN = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.85F).build();
+	public static final FoodProperties SOY_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
 
 
 	private static FoodProperties.Builder stew(int p_150384_) {

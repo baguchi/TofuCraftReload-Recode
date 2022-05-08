@@ -12,7 +12,7 @@ import net.minecraft.world.level.material.Fluids;
 public class TofuCanyonCarver extends CanyonWorldCarver {
 	public TofuCanyonCarver(Codec<CanyonCarverConfiguration> codec) {
 		super(codec);
-		this.replaceableBlocks = ImmutableSet.of(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFUSLATE.get(), Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DIRT);
+		this.replaceableBlocks = ImmutableSet.of(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.TOFUSLATE.get(), Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DIRT);
 		this.liquids = ImmutableSet.of(Fluids.WATER, TofuFluids.SOYMILK.get());
 	}
 }

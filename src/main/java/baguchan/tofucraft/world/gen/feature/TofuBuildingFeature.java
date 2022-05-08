@@ -1,6 +1,6 @@
 package baguchan.tofucraft.world.gen.feature;
 
-import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
@@ -50,6 +50,6 @@ public class TofuBuildingFeature extends Feature<BlockStateConfiguration> {
 	}
 
 	public static boolean isTofu(BlockState p_159760_) {
-		return p_159760_.is(TofuBlocks.TOFU_TERRAIN.get());
+		return p_159760_.is(TofuTags.Blocks.TOFU_TERRAIN);
 	}
 }

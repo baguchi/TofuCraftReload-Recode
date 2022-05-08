@@ -1,6 +1,7 @@
 package baguchan.tofucraft.world.gen.feature;
 
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
@@ -21,7 +22,7 @@ public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
 		if (!p_159749_.level().isEmptyBlock(p_159749_.origin()))
 			return false;
 		BlockState blockstate = p_159749_.level().getBlockState(p_159749_.origin().below());
-		if (!blockstate.is(TofuBlocks.TOFU_TERRAIN.get()))
+		if (!blockstate.is(TofuTags.Blocks.TOFU_TERRAIN))
 			return false;
 		if (p_159749_.random().nextInt(6) != 0) {
 			setBigLeekBlock(p_159749_.level(), p_159749_.random(), p_159749_.origin());
