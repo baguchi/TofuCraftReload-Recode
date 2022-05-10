@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-public class HardenInfo implements Recipe<Inventory> {
+public class HardenRecipe implements Recipe<Inventory> {
 
 	protected final ResourceLocation id;
 	/**
@@ -20,13 +20,13 @@ public class HardenInfo implements Recipe<Inventory> {
 	/**
 	 * This ingredient used for the harden tofu.
 	 */
-	private Ingredient results;
+	final ItemStack result;
 
-	public HardenInfo(ResourceLocation id, Ingredient tofu, Ingredient results) {
+	public HardenRecipe(ResourceLocation id, Ingredient tofu, ItemStack results) {
 
 		this.id = id;
 		this.tofu = tofu;
-		this.results = results;
+		this.result = results;
 	}
 
 	/**
@@ -44,19 +44,10 @@ public class HardenInfo implements Recipe<Inventory> {
 	 *
 	 * @return An array of harden results for the tofu.
 	 */
-	public Ingredient getResults() {
-
-		return this.results;
-	}
 
 	public void setTofu(Ingredient tofu) {
 
 		this.tofu = tofu;
-	}
-
-	public void setResults(Ingredient results) {
-
-		this.results = results;
 	}
 
 	@Override
@@ -76,7 +67,7 @@ public class HardenInfo implements Recipe<Inventory> {
 
 	@Override
 	public ItemStack getResultItem() {
-		return null;
+		return this.result;
 	}
 
 	@Override

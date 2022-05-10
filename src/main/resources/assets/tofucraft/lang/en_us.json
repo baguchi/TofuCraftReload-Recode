@@ -402,5 +402,7 @@
   "entity.tofucraft.slabfish.type.tofu": "Tofu",
   "tofucraft.tofu_book.tooltip": "Tofu Knowledge 2022",
   "tofucraft.tofu_book.tooltip2": "If you want see this book. put the Patchouli mod!",
-  "item.tofucraft.tofu_book": "TofuBook"
+  "item.tofucraft.tofu_book": "TofuBook",
+  "tofucraft.jei.bittern": "Bittern",
+  "tofucraft.jei.harden": "Harden"
 }

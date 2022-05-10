@@ -1,7 +1,7 @@
 package baguchan.tofucraft.utils;
 
-import baguchan.tofucraft.recipe.BitternInfo;
-import baguchan.tofucraft.recipe.HardenInfo;
+import baguchan.tofucraft.recipe.BitternRecipe;
+import baguchan.tofucraft.recipe.HardenRecipe;
 import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.ItemStack;
@@ -28,8 +28,8 @@ public class RecipeHelper {
 				return recipe.getType() == TofuRecipes.RECIPETYPE_HARDER;
 			});
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe instanceof HardenInfo && ((HardenInfo) recipe).getTofu().test(new ItemStack(block.asItem()))) {
-					return ((HardenInfo) recipe).getResults().getItems()[0];
+				if (recipe instanceof HardenRecipe && ((HardenRecipe) recipe).getTofu().test(new ItemStack(block.asItem()))) {
+					return ((HardenRecipe) recipe).getResultItem();
 				}
 			}
 		}
@@ -46,8 +46,8 @@ public class RecipeHelper {
 				return recipe.getType() == TofuRecipes.RECIPETYPE_BITTERN;
 			});
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe instanceof BitternInfo && ((BitternInfo) recipe).getFluid().test(new FluidStack(fluid, 1000))) {
-					return ((BitternInfo) recipe).getResults().getItems()[0];
+				if (recipe instanceof BitternRecipe && ((BitternRecipe) recipe).getFluid().test(new FluidStack(fluid, 1000))) {
+					return ((BitternRecipe) recipe).getResultItem();
 				}
 			}
 		}

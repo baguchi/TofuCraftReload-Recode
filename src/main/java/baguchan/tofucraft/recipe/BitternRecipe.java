@@ -4,13 +4,12 @@ import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-public class BitternInfo implements Recipe<Inventory> {
+public class BitternRecipe implements Recipe<Inventory> {
 
 	protected final ResourceLocation id;
 	/**
@@ -20,13 +19,13 @@ public class BitternInfo implements Recipe<Inventory> {
 	/**
 	 * This ingredient used for the harden tofu.
 	 */
-	private Ingredient results;
+	final ItemStack result;
 
-	public BitternInfo(ResourceLocation id, FluidIngredient fluid, Ingredient results) {
+	public BitternRecipe(ResourceLocation id, FluidIngredient fluid, ItemStack results) {
 
 		this.id = id;
 		this.fluid = fluid;
-		this.results = results;
+		this.result = results;
 	}
 
 	/**
@@ -39,24 +38,9 @@ public class BitternInfo implements Recipe<Inventory> {
 		return this.fluid;
 	}
 
-	/**
-	 * Gets all the possible results when harden the tofu.
-	 *
-	 * @return An array of harden results for the tofu.
-	 */
-	public Ingredient getResults() {
-
-		return this.results;
-	}
-
 	public void setFluid(FluidIngredient tofu) {
 
 		this.fluid = tofu;
-	}
-
-	public void setResults(Ingredient results) {
-
-		this.results = results;
 	}
 
 	@Override
@@ -76,7 +60,7 @@ public class BitternInfo implements Recipe<Inventory> {
 
 	@Override
 	public ItemStack getResultItem() {
-		return null;
+		return this.result;
 	}
 
 	@Override

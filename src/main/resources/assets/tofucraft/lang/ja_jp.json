@@ -402,5 +402,7 @@
   "entity.tofucraft.slabfish.type.tofu": "Tofu",
   "tofucraft.tofu_book.tooltip": "Tofu Knowledge 2021",
   "tofucraft.tofu_book.tooltip2": "Patchouli modを入れると、より詳しい内容を知ることが出来ます",
-  "item.tofucraft.tofu_book": "豆腐職人ガイド"
+  "item.tofucraft.tofu_book": "豆腐職人ガイド",
+  "tofucraft.jei.bittern": "にがりで固める工程",
+  "tofucraft.jei.harden": "重みで固める工程"
 }

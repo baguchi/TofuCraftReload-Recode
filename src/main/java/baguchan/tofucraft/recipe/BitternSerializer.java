@@ -4,34 +4,38 @@ import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-public class BitternSerializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<BitternInfo> {
+public class BitternSerializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<BitternRecipe> {
 
 	public static final BitternSerializer INSTANCE = new BitternSerializer();
 
 	@Override
-	public BitternInfo fromJson(ResourceLocation id, JsonObject json) {
+	public BitternRecipe fromJson(ResourceLocation id, JsonObject json) {
 
 		final FluidIngredient fluid = FluidIngredient.fromJson(GsonHelper.getAsJsonObject(json, "process"));
-		final Ingredient results = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "result"));
+		final ItemStack results = itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 
-		return new BitternInfo(id, fluid, results);
+		return new BitternRecipe(id, fluid, results);
+	}
+
+	public static ItemStack itemStackFromJson(JsonObject p_151275_) {
+		return net.minecraftforge.common.crafting.CraftingHelper.getItemStack(p_151275_, false, true);
 	}
 
 	@Nullable
 	@Override
-	public BitternInfo fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+	public BitternRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
 		try {
 
 			final FluidIngredient fluid = FluidIngredient.fromNetwork(buf);
-			final Ingredient results = Ingredient.fromNetwork(buf);
+			ItemStack results = buf.readItem();
 
-			return new BitternInfo(id, fluid, results);
+			return new BitternRecipe(id, fluid, results);
 		} catch (final Exception e) {
 
 			throw new IllegalStateException("Failed to read bittern info from packet buffer. This is not good.");
@@ -39,8 +43,8 @@ public class BitternSerializer extends ForgeRegistryEntry<RecipeSerializer<?>> i
 	}
 
 	@Override
-	public void toNetwork(FriendlyByteBuf p_44101_, BitternInfo p_44102_) {
+	public void toNetwork(FriendlyByteBuf p_44101_, BitternRecipe p_44102_) {
 		p_44102_.getFluid().toNetwork(p_44101_);
-		p_44102_.getResults().toNetwork(p_44101_);
+		p_44101_.writeItem(p_44102_.result);
 	}
 }
