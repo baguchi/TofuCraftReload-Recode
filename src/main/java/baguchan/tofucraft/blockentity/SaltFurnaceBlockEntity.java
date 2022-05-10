@@ -14,9 +14,12 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
@@ -32,6 +35,7 @@ import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -311,6 +315,21 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		}
 	}
 
+	public void popExperience(ServerPlayer p_155004_) {
+		createExperience(p_155004_.getLevel(), p_155004_.position(), 2, 2);
+	}
+
+
+	private static void createExperience(ServerLevel p_154999_, Vec3 p_155000_, int p_155001_, float p_155002_) {
+		int i = Mth.floor((float) p_155001_ * p_155002_);
+		float f = Mth.frac((float) p_155001_ * p_155002_);
+		if (f != 0.0F && Math.random() < (double) f) {
+			++i;
+		}
+
+		ExperienceOrb.award(p_154999_, p_155000_, i);
+	}
+
 	protected int getBurnDuration(ItemStack p_213997_1_) {
 		if (p_213997_1_.isEmpty())
 			return 0;
@@ -322,7 +341,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	public static boolean isFuel(ItemStack p_213991_0_) {
-		return (ForgeHooks.getBurnTime(p_213991_0_, RecipeType.SMELTING) > 0);
+		return (ForgeHooks.getBurnTime(p_213991_0_, null) > 0);
 	}
 
 	@Override
@@ -406,7 +425,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			p_70299_2_.setCount(this.getMaxStackSize());
 		}
 
-		if (p_70299_1_ == 0 && !flag) {
+		if (p_70299_1_ == 0 && !flag && this.cookingTotalTime == 0) {
 			this.cookingTotalTime = this.getTotalCookTime();
 			this.cookingProgress = 0;
 			this.setChanged();

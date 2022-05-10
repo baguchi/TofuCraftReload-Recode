@@ -1,5 +1,6 @@
 package baguchan.tofucraft.inventory;
 
+import baguchan.tofucraft.inventory.slot.SaltFurnaceResultSlot;
 import baguchan.tofucraft.registry.TofuContainers;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -32,19 +33,9 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 		this.level = playerInventoryIn.player.level;
 		furnaceInventoryIn.startOpen(playerInventoryIn.player);
 		addSlot(new Slot(this.container, 0, 23, 53));
-		addSlot(new Slot(this.container, 1, 80, 53) {
-			@Override
-			public boolean mayPlace(ItemStack p_40231_) {
-				return false;
-			}
-		});
+		addSlot(new SaltFurnaceResultSlot(playerInventoryIn.player, this.container, 1, 80, 53));
 		addSlot(new Slot(this.container, 2, 102, 17));
-		addSlot(new Slot(this.container, 3, 102, 53) {
-			@Override
-			public boolean mayPlace(ItemStack p_40231_) {
-				return false;
-			}
-		});
+		addSlot(new SaltFurnaceResultSlot(playerInventoryIn.player, this.container, 3, 102, 53));
 		addSlot(new Slot(this.container, 4, 124, 17));
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++)
