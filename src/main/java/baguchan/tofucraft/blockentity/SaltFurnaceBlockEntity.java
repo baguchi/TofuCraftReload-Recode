@@ -315,8 +315,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		}
 	}
 
-	public void popExperience(ServerPlayer p_155004_) {
-		createExperience(p_155004_.getLevel(), p_155004_.position(), 2, 2);
+	public void popExperience(ServerPlayer p_155004_, ItemStack p_39558_) {
+		createExperience(p_155004_.getLevel(), p_155004_.position(), 2, p_39558_.getCount());
 	}
 
 

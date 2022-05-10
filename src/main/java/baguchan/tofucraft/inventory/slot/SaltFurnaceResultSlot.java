@@ -30,7 +30,7 @@ public class SaltFurnaceResultSlot extends Slot {
 
 	protected void checkTakeAchievements(ItemStack p_39558_) {
 		if (this.player instanceof ServerPlayer && this.container instanceof SaltFurnaceBlockEntity) {
-			((SaltFurnaceBlockEntity) this.container).popExperience((ServerPlayer) this.player);
+			((SaltFurnaceBlockEntity) this.container).popExperience((ServerPlayer) this.player, p_39558_);
 		}
 	}
 }
