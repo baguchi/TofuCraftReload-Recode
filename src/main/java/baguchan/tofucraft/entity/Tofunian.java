@@ -607,7 +607,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 
-
 	public void tick() {
 		super.tick();
 		this.maybeDecayGossip();

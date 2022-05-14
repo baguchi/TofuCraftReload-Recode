@@ -79,6 +79,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		registerTofuDrop(TofuBlocks.ZUNDATOFU.get(), TofuItems.TOFUZUNDA.get());
 		registerTofuDrop(TofuBlocks.HELLTOFU.get(), TofuItems.TOFUHELL.get());
 		registerTofuDrop(TofuBlocks.SOULTOFU.get(), TofuItems.TOFUSOUL.get());
+		registerTofuDrop(TofuBlocks.MISOTOFU.get(), TofuItems.TOFUMISO.get());
+		registerTofuDrop(TofuBlocks.DRIEDTOFU.get(), TofuItems.TOFUDRIED.get());
 
 		dropSelf(TofuBlocks.HELLTOFU_BRICK.get());
 		dropSelf(TofuBlocks.HELLTOFU_SMOOTH_BRICK.get());
@@ -95,6 +97,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUSTAIR_ISHIBRICK.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_HELLBRICK.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_SOULBRICK.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_MISO.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_DRIED.get());
 
 		registerSlab(TofuBlocks.TOFUSLAB_KINU.get());
 		registerSlab(TofuBlocks.TOFUSLAB_MOMEN.get());
@@ -106,6 +110,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		registerSlab(TofuBlocks.TOFUSLAB_ISHIBRICK.get());
 		registerSlab(TofuBlocks.TOFUSLAB_HELLBRICK.get());
 		registerSlab(TofuBlocks.TOFUSLAB_SOULBRICK.get());
+		registerSlab(TofuBlocks.TOFUSLAB_MISO.get());
+		registerSlab(TofuBlocks.TOFUSLAB_DRIED.get());
 
 		dropSelf(TofuBlocks.TOFUFENCE_KINU.get());
 		dropSelf(TofuBlocks.TOFUFENCE_MOMEN.get());

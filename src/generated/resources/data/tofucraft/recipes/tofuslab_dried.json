@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofudried"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofuslab_dried",
+    "count": 6
+  }
+}

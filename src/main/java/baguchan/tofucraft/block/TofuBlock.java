@@ -1,5 +1,6 @@
 package baguchan.tofucraft.block;
 
+import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -39,7 +40,13 @@ public class TofuBlock extends Block {
 
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
 		super.randomTick(state, worldIn, pos, random);
-		if (isUnderWeight(worldIn, pos)) {
+		if (isDriedCondition(worldIn, pos)) {
+			if (random.nextInt(5) == 0) {
+				if (this == TofuBlocks.MOMENTOFU.get()) {
+					worldIn.setBlock(pos, TofuBlocks.DRIEDTOFU.get().defaultBlockState(), 2);
+				}
+			}
+		} else if (isUnderWeight(worldIn, pos)) {
 			int i = ((Integer) state.getValue((Property) HARDNESS)).intValue();
 			if (random.nextInt(4) == 0)
 				if (i < 7) {
@@ -59,6 +66,12 @@ public class TofuBlock extends Block {
 		float baseHardness = baseBlock.getDestroySpeed(world, pos.below());
 		boolean isBaseValid = (baseBlock.isCollisionShapeFullBlock(world, pos) && (baseBlock.getMaterial() == Material.STONE || baseBlock.getMaterial() == Material.METAL || baseHardness >= 1.0F || baseHardness < 0.0F));
 		return (isWeightValid && isBaseValid);
+	}
+
+	public boolean isDriedCondition(Level world, BlockPos pos) {
+		BlockState upperBlock = world.getBlockState(pos.above(1));
+		return (world.getBiome(pos).value().getBaseTemperature() < 0.15F
+				&& !world.canSeeSky(pos.above()) && upperBlock.isAir());
 	}
 
 	@Override
