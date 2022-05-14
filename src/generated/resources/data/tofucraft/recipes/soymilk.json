@@ -6,9 +6,16 @@
     },
     {
       "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:glass_bottle"
     }
   ],
   "result": {
-    "item": "tofucraft:soymilk"
+    "item": "tofucraft:soymilk",
+    "count": 3
   }
 }
