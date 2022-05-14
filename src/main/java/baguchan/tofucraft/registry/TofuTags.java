@@ -24,7 +24,13 @@ public class TofuTags {
 	public static class Items {
 		public static final TagKey<Item> SOYBEAN = forgeTag("crops/soybean");
 		public static final TagKey<Item> SALT = forgeTag("salt");
+		public static final TagKey<Item> DUST_SALT = forgeTag("dust/salt");
 		public static final TagKey<Item> RICE = forgeTag("crops/rice");
+		public static final TagKey<Item> EGGS = forgeTag("eggs");
+		public static final TagKey<Item> MILK = forgeTag("milk");
+		public static final TagKey<Item> MILK_MILK = forgeTag("milk/milk");
+		public static final TagKey<Item> SOYMILK = forgeTag("soy_milk");
+		public static final TagKey<Item> MILK_SOYMILK = forgeTag("milk/soy_milk");
 
 		private static TagKey<Item> tag(String name) {
 			return ItemTags.create(new ResourceLocation(TofuCraftReload.MODID, name));

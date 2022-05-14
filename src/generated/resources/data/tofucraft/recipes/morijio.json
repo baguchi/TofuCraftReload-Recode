@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "item": "tofucraft:salt"
+      "tag": "forge:salt"
     },
     "S": {
       "item": "tofucraft:seeds_soybeans_soul"

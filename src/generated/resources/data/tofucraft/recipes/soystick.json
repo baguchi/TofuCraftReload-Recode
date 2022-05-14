@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "tofucraft:seeds_soybeans"
+      "tag": "forge:crops/soybean"
     },
     {
       "item": "minecraft:wheat"
     },
     {
-      "item": "tofucraft:salt"
+      "tag": "forge:salt"
     }
   ],
   "result": {
