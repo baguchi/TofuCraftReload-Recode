@@ -41,7 +41,7 @@ public class TofuBlock extends Block {
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
 		super.randomTick(state, worldIn, pos, random);
 		if (isDriedCondition(worldIn, pos)) {
-			if (random.nextInt(5) == 0) {
+			if (random.nextInt(8) == 0) {
 				if (this == TofuBlocks.MOMENTOFU.get()) {
 					worldIn.setBlock(pos, TofuBlocks.DRIEDTOFU.get().defaultBlockState(), 2);
 				}
