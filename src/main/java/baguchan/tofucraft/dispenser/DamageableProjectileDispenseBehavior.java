@@ -17,7 +17,9 @@ public abstract class DamageableProjectileDispenseBehavior extends AbstractProje
 		Projectile projectile = this.getProjectile(level, position, p_123367_);
 		projectile.shoot((double) direction.getStepX(), (double) ((float) direction.getStepY() + 0.1F), (double) direction.getStepZ(), this.getPower(), this.getUncertainty());
 		level.addFreshEntity(projectile);
-		p_123367_.hurt(1, level.random, null);
+		if (p_123367_.hurt(1, p_123366_.getLevel().getRandom(), null)) {
+			p_123367_.setCount(0);
+		}
 		return p_123367_;
 	}
 }

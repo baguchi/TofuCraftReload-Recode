@@ -239,7 +239,9 @@ public class TofuItems {
 					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));
 					p_123561_.getLevel().removeBlock(blockpos, false);
 					this.defaultDispenseItemBehavior.dispense(p_123561_, stack);
-					p_123562_.hurt(1, p_123561_.getLevel().getRandom(), null);
+					if (p_123562_.hurt(1, p_123561_.getLevel().getRandom(), null)) {
+						p_123562_.setCount(0);
+					}
 					setSuccess(true);
 				}
 				return p_123562_;
