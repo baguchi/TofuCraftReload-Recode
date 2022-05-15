@@ -1,10 +1,12 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.recipe.AggregatorRecipe;
 import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.BitternSerializer;
 import baguchan.tofucraft.recipe.HardenRecipe;
 import baguchan.tofucraft.recipe.HardenSerializer;
+import cn.mcmod_mmf.mmlib.recipe.AbstractRecipeSerializer;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -20,6 +22,10 @@ public class TofuRecipes {
 
 	public static final RecipeType<BitternRecipe> RECIPETYPE_BITTERN = register("tofucraft:bittern");
 	public static final RegistryObject<RecipeSerializer<?>> RECIPE_BITTERN = RECIPE_SERIALIZERS.register("bittern", () -> new BitternSerializer());
+
+	public static final RecipeType<AggregatorRecipe> RECIPETYPE_AGGREGATOR = register("tofucraft:aggregator");
+	public static final RegistryObject<AbstractRecipeSerializer<AggregatorRecipe>> RECIPE_AGGREGATOR = RECIPE_SERIALIZERS.register("aggregator", 
+	        () -> new AbstractRecipeSerializer<>(AggregatorRecipe.class));
 
 	static <T extends Recipe<?>> RecipeType<T> register(final String p_44120_) {
 		return new RecipeType<T>() {

@@ -30,7 +30,7 @@ public class JigsawHelper {
 				elements.add(element);
 			}
 
-			List<Pair<StructurePoolElement, Integer>> elementCounts = new ArrayList(pool.rawTemplates);
+			List<Pair<StructurePoolElement, Integer>> elementCounts = new ArrayList<>(pool.rawTemplates);
 
 			elements.addAll(pool.templates);
 			elementCounts.addAll(pool.rawTemplates);

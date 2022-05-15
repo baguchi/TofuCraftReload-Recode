@@ -6,10 +6,8 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BedBlock;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
-import net.minecraft.world.level.block.state.properties.Property;
 
 public class SleepOnBedGoal extends MoveToBlockGoal {
 	private final PathfinderMob creature;
@@ -33,8 +31,7 @@ public class SleepOnBedGoal extends MoveToBlockGoal {
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		Block block = blockstate.getBlock();
-		return blockstate.hasProperty((Property) BedBlock.PART) && blockstate.is(BlockTags.BEDS) && blockstate.getValue((Property) BedBlock.PART) == BedPart.HEAD;
+		return blockstate.hasProperty(BedBlock.PART) && blockstate.is(BlockTags.BEDS) && blockstate.getValue(BedBlock.PART) == BedPart.HEAD;
 
 	}
 
