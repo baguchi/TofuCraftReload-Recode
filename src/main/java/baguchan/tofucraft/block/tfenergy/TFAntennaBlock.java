@@ -17,6 +17,6 @@ public class TFAntennaBlock extends Block implements IAnntena {
 
 	@Override
 	public int getPower(BlockPos pos, Level world) {
-		return 7;
+		return 20;
 	}
 }

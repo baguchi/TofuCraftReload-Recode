@@ -13,7 +13,6 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		super(generator, TofuCraftReload.MODID, exFileHelper);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags() {
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()

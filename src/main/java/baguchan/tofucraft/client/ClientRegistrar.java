@@ -11,6 +11,7 @@ import baguchan.tofucraft.client.render.item.TofuShieldBWLR;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
+import baguchan.tofucraft.client.screen.TFAggreatorScreen;
 import baguchan.tofucraft.client.screen.TFStorageScreen;
 import baguchan.tofucraft.registry.*;
 import net.minecraft.client.Minecraft;
@@ -113,6 +114,7 @@ public class ClientRegistrar {
 
 		MenuScreens.register(TofuContainers.SALT_FURNACE, SaltFurnaceScreen::new);
 		MenuScreens.register(TofuContainers.TF_STORAGE, TFStorageScreen::new);
+		MenuScreens.register(TofuContainers.TF_AGGREGATOR, TFAggreatorScreen::new);
 	}
 
 	@SubscribeEvent

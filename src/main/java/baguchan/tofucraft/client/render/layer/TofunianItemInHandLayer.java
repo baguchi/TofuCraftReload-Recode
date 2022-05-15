@@ -27,7 +27,7 @@ public class TofunianItemInHandLayer<T extends LivingEntity, M extends EntityMod
 			if (this.getParentModel().young) {
 				float var14 = 0.5F;
 				p_117204_.translate(0.0D, 0.75D, 0.0D);
-				p_117204_.scale(0.5F, 0.5F, 0.5F);
+				p_117204_.scale(var14, var14, var14);
 			}
 
 			this.renderArmWithItem(p_117207_, var13, ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, HumanoidArm.RIGHT, p_117204_, p_117205_, p_117206_);

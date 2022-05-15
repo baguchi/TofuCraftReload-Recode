@@ -118,6 +118,13 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     maven { url = "https://dvs1.progwml6.com/files/maven" }
 
+    // Curse Forge
+    maven {
+        url = "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 dependencies {
@@ -130,7 +137,7 @@ dependencies {
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.2-forge:10.0.0.191")
 
-
+	implementation fg.deobf("curse.maven:mysterious-mountain-lib-368098:3788751")
     //annotationProcessor("org.spongepowered:mixin:0.8.4:processor")
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"

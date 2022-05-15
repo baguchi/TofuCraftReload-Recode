@@ -242,8 +242,7 @@ public class TofuLevelTeleporter implements ITeleporter {
 		loadSurroundingArea(world, pos);
 
 		BlockPos spot = findPortalCoords(world, pos, blockPos -> isPortalAt(world, blockPos));
-		String name = entity.getName().getString();
-
+		
 		if (spot != null) {
 			cachePortalCoords(world, pos, spot);
 			return;

@@ -59,7 +59,6 @@ public class RecipeHelper {
 	}
 
 	public static RecipeManager getManager() {
-
 		return getManager(null);
 	}
 
