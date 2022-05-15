@@ -1,15 +1,22 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
+import baguchan.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
+import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
 import baguchan.tofucraft.item.*;
 import baguchan.tofucraft.utils.RecipeHelper;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
+import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -251,5 +258,26 @@ public class TofuItems {
 			}
 		};
 		DispenserBlock.registerBehavior(TOFUSCOOP.get(), dispenseitembehavior3);
+
+		DispenserBlock.registerBehavior(FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
+				return Util.make(new FukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
+				});
+			}
+		});
+		DispenserBlock.registerBehavior(NETHER_FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
+				return Util.make(new NetherFukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
+				});
+			}
+
+
+		});
+		DispenserBlock.registerBehavior(SOUL_FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
+				return Util.make(new SoulFukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
+				});
+			}
+		});
 	}
 }
