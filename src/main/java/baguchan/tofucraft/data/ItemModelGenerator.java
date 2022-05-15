@@ -36,6 +36,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.GRILLEDTOFU.get());
 		toBlock(TofuBlocks.ZUNDATOFU.get());
 		toBlock(TofuBlocks.MISOTOFU.get());
+		toBlock(TofuBlocks.DRIEDTOFU.get());
 
 		toBlock(TofuBlocks.HELLTOFU.get());
 		toBlock(TofuBlocks.HELLTOFU_BRICK.get());
@@ -55,6 +56,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSTAIR_HELLBRICK.get());
 		toBlock(TofuBlocks.TOFUSTAIR_SOULBRICK.get());
 		toBlock(TofuBlocks.TOFUSTAIR_MISO.get());
+		toBlock(TofuBlocks.TOFUSTAIR_DRIED.get());
 
 		toBlock(TofuBlocks.TOFUSLAB_KINU.get());
 		toBlock(TofuBlocks.TOFUSLAB_MOMEN.get());
@@ -67,6 +69,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSLAB_HELLBRICK.get());
 		toBlock(TofuBlocks.TOFUSLAB_SOULBRICK.get());
 		toBlock(TofuBlocks.TOFUSLAB_MISO.get());
+		toBlock(TofuBlocks.TOFUSLAB_DRIED.get());
 
 		wall(TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
 		wall(TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
@@ -129,6 +132,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFUGRILLED.get());
 		singleTex(TofuItems.TOFUZUNDA.get());
 		singleTex(TofuItems.TOFUMISO.get());
+		singleTex(TofuItems.TOFUDRIED.get());
 
 		singleTex(TofuItems.BITTERN_BOTTLE.get());
 		singleTex(TofuItems.SALT.get());

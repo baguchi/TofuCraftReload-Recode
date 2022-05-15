@@ -7,7 +7,7 @@
   ],
   "key": {
     "S": {
-      "item": "tofucraft:salt"
+      "tag": "forge:salt"
     },
     "K": {
       "item": "tofucraft:kouji"

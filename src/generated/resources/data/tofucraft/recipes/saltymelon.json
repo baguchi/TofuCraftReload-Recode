@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "tofucraft:salt"
+      "tag": "forge:salt"
     },
     {
       "item": "minecraft:melon_slice"

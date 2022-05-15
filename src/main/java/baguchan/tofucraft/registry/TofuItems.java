@@ -1,15 +1,22 @@
 package baguchan.tofucraft.registry;
 
+import baguchan.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
+import baguchan.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
+import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
 import baguchan.tofucraft.item.*;
 import baguchan.tofucraft.utils.RecipeHelper;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
+import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -35,10 +42,11 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFUDIAMOND = ITEMS.register("tofudiamond", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUDIAMOND_NUGGET = ITEMS.register("tofudiamondnugget", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUHELL = ITEMS.register("tofuhell", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUHELL).tab(TofuCreativeModeTab.TOFUCRAFT)));
-	public static final RegistryObject<Item> TOFUSOUL = ITEMS.register("tofusoul", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> TOFUSOUL = ITEMS.register("tofusoul", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUSOUL).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUGRILLED = ITEMS.register("tofugrilled", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUGRILLED).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUZUNDA = ITEMS.register("tofuzunda", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUZUNDA).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUMISO = ITEMS.register("tofumiso", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUMISO).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> TOFUDRIED = ITEMS.register("tofudried", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUDRIED).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 	public static final RegistryObject<Item> BITTERN_BOTTLE = ITEMS.register("bittern_bottle", () -> new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -231,7 +239,9 @@ public class TofuItems {
 					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));
 					p_123561_.getLevel().removeBlock(blockpos, false);
 					this.defaultDispenseItemBehavior.dispense(p_123561_, stack);
-					p_123562_.hurt(1, p_123561_.getLevel().getRandom(), null);
+					if (p_123562_.hurt(1, p_123561_.getLevel().getRandom(), null)) {
+						p_123562_.setCount(0);
+					}
 					setSuccess(true);
 				}
 				return p_123562_;
@@ -250,5 +260,26 @@ public class TofuItems {
 			}
 		};
 		DispenserBlock.registerBehavior(TOFUSCOOP.get(), dispenseitembehavior3);
+
+		DispenserBlock.registerBehavior(FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
+				return Util.make(new FukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
+				});
+			}
+		});
+		DispenserBlock.registerBehavior(NETHER_FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
+				return Util.make(new NetherFukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
+				});
+			}
+
+
+		});
+		DispenserBlock.registerBehavior(SOUL_FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
+				return Util.make(new SoulFukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
+				});
+			}
+		});
 	}
 }

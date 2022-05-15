@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:seeds_soybeans"
-            ]
+            "tag": "forge:crops/soybean"
           }
         ]
       }

@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 
 public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySerializable<CompoundTag> {
 	private int soyHealthLevel;
-	private long lastTick;
+	private long lastTick = -12000L;
 
 	//when can update is true. update last tick
 	public void setSoyHealth(LivingEntity entity, int level, boolean canUpdate) {

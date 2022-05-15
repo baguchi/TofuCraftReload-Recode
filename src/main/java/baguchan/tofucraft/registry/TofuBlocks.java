@@ -57,6 +57,8 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> GRILLEDTOFU = register("blocktofugrilled", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> ZUNDATOFU = register("blocktofuzunda", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> MISOTOFU = register("blocktofumiso", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
+	public static final RegistryObject<Block> DRIEDTOFU = register("blocktofudried", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
+
 
 	public static final RegistryObject<Block> HELLTOFU = register("blocktofuhell", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> HELLTOFU_BRICK = register("tofuhell_brick", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
@@ -78,6 +80,7 @@ public class TofuBlocks {
 	public static final RegistryObject<StairBlock> TOFUSTAIR_HELLBRICK = register("tofustair_hellbrick", () -> new StairBlock(HELLTOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.copy(HELLTOFU_BRICK.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_SOULBRICK = register("tofustair_soulbrick", () -> new StairBlock(SOULTOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.copy(SOULTOFU_BRICK.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_MISO = register("tofustair_miso", () -> new StairBlock(MISOTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(MISOTOFU.get())));
+	public static final RegistryObject<StairBlock> TOFUSTAIR_DRIED = register("tofustair_dried", () -> new StairBlock(DRIEDTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(DRIEDTOFU.get())));
 
 
 	public static final RegistryObject<SlabBlock> TOFUSLAB_KINU = register("tofuslab_kinu", () -> new SlabBlock(BlockBehaviour.Properties.copy(KINUTOFU.get())));
@@ -92,6 +95,7 @@ public class TofuBlocks {
 	public static final RegistryObject<SlabBlock> TOFUSLAB_HELLBRICK = register("tofuslab_hellbrick", () -> new SlabBlock(BlockBehaviour.Properties.copy(HELLTOFU_BRICK.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_SOULBRICK = register("tofuslab_soulbrick", () -> new SlabBlock(BlockBehaviour.Properties.copy(SOULTOFU_BRICK.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_MISO = register("tofuslab_miso", () -> new SlabBlock(BlockBehaviour.Properties.copy(MISOTOFU.get())));
+	public static final RegistryObject<SlabBlock> TOFUSLAB_DRIED = register("tofuslab_dried", () -> new SlabBlock(BlockBehaviour.Properties.copy(DRIEDTOFU.get())));
 
 	public static final RegistryObject<Block> TOFUTORCH_KINU = register("tofutorch_kinu", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
 			.noCollission().noOcclusion().sound(SoundType.SNOW), ParticleTypes.FLAME));
@@ -191,9 +195,9 @@ public class TofuBlocks {
     })));
 	
 	//Tofu delight item
-	public static final RegistryObject<Block> EGGTOFU = register("blocktofuegg", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
-	public static final RegistryObject<StairBlock> TOFUSTAIR_EGG = register("tofustair_egg", () -> new StairBlock(EGGTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(EGGTOFU.get())));
-	public static final RegistryObject<SlabBlock> TOFUSLAB_EGG = register("tofuslab_egg", () -> new SlabBlock(BlockBehaviour.Properties.copy(EGGTOFU.get())));
+	public static final RegistryObject<Block> EGGTOFU = register("blocktofuegg", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)), TofuCreativeModeTab.TOFU_DELIGHT);
+	public static final RegistryObject<StairBlock> TOFUSTAIR_EGG = register("tofustair_egg", () -> new StairBlock(EGGTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(EGGTOFU.get())), TofuCreativeModeTab.TOFU_DELIGHT);
+	public static final RegistryObject<SlabBlock> TOFUSLAB_EGG = register("tofuslab_egg", () -> new SlabBlock(BlockBehaviour.Properties.copy(EGGTOFU.get())), TofuCreativeModeTab.TOFU_DELIGHT);
 
 	private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
 		RegistryObject<T> register = BLOCKS.register(name, block);
@@ -207,21 +211,25 @@ public class TofuBlocks {
 	}
 
 	private static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends Block> block) {
-		return (RegistryObject<B>) baseRegister(name, block, TofuBlocks::registerBlockItem);
+		return (RegistryObject<B>) baseRegister(name, block, (object) -> TofuBlocks.registerBlockItem(object, TofuCreativeModeTab.TOFUCRAFT));
 	}
 
-	private static <T extends Block> Supplier<BlockItem> registerBlockItem(final RegistryObject<T> block) {
+	private static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends Block> block, CreativeModeTab tab) {
+		return (RegistryObject<B>) baseRegister(name, block, (object) -> TofuBlocks.registerBlockItem(object, tab));
+	}
+
+	private static <T extends Block> Supplier<BlockItem> registerBlockItem(final RegistryObject<T> block, CreativeModeTab tab) {
 		return () -> {
 			if (Objects.requireNonNull(block.get()) == TOFUTORCH_KINU.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_KINU.get(), WALLTOFUTORCH_KINU.get(), new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT));
+				return new StandingAndWallBlockItem(TOFUTORCH_KINU.get(), WALLTOFUTORCH_KINU.get(), new Item.Properties().tab(tab));
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_MOMEN.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_MOMEN.get(), WALLTOFUTORCH_MOMEN.get(), new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT));
+				return new StandingAndWallBlockItem(TOFUTORCH_MOMEN.get(), WALLTOFUTORCH_MOMEN.get(), new Item.Properties().tab(tab));
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_ISHI.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_ISHI.get(), WALLTOFUTORCH_ISHI.get(), new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT));
+				return new StandingAndWallBlockItem(TOFUTORCH_ISHI.get(), WALLTOFUTORCH_ISHI.get(), new Item.Properties().tab(tab));
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_METAL.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_METAL.get(), WALLTOFUTORCH_METAL.get(), new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT));
+				return new StandingAndWallBlockItem(TOFUTORCH_METAL.get(), WALLTOFUTORCH_METAL.get(), new Item.Properties().tab(tab));
 			} else if (Objects.requireNonNull(block.get()) == TOFUBED.get()) {
-				return new BedItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT).stacksTo(1)) {
+				return new BedItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab).stacksTo(1)) {
 					@Override
 					public void initializeClient(Consumer<IItemRenderProperties> consumer) {
 						consumer.accept(new IItemRenderProperties() {
@@ -233,7 +241,7 @@ public class TofuBlocks {
 					}
 				};
 			} else if (Objects.requireNonNull(block.get()) == TOFUCHEST.get()) {
-				return new BedItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT)) {
+				return new BedItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab)) {
 					@Override
 					public void initializeClient(Consumer<IItemRenderProperties> consumer) {
 						consumer.accept(new IItemRenderProperties() {
@@ -245,9 +253,9 @@ public class TofuBlocks {
 					}
 				};
 			} else if (Objects.requireNonNull(block.get()) instanceof DoorBlock) {
-				return new DoubleHighBlockItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT));
+				return new DoubleHighBlockItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab));
 			} else {
-				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT));
+				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab));
 			}
 		};
 	}

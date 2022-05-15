@@ -23,7 +23,6 @@ public class HardenRecipe implements Recipe<Inventory> {
 	final ItemStack result;
 
 	public HardenRecipe(ResourceLocation id, Ingredient tofu, ItemStack results) {
-
 		this.id = id;
 		this.tofu = tofu;
 		this.result = results;
