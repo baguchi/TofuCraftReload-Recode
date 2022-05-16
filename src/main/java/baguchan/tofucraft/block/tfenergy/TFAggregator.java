@@ -4,7 +4,9 @@ import baguchan.tofucraft.blockentity.tfenergy.TFAggregatorBlockEntity;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +25,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 
 public class TFAggregator extends BaseEntityBlock {
@@ -41,7 +44,7 @@ public class TFAggregator extends BaseEntityBlock {
     
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand handIn,
-            BlockHitResult result) {
+                                 BlockHitResult result) {
         if (!world.isClientSide) {
             BlockEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof TFAggregatorBlockEntity blockEntity) {
@@ -50,13 +53,30 @@ public class TFAggregator extends BaseEntityBlock {
         }
         return InteractionResult.SUCCESS;
     }
-    
+
+    @Override
+    public void onRemove(BlockState p_48713_, Level p_48714_, BlockPos p_48715_, BlockState p_48716_, boolean p_48717_) {
+        if (!p_48713_.is(p_48716_.getBlock())) {
+            BlockEntity blockentity = p_48714_.getBlockEntity(p_48715_);
+            if (blockentity instanceof TFAggregatorBlockEntity) {
+                if (p_48714_ instanceof ServerLevel) {
+                    Containers.dropContents(p_48714_, p_48715_, ((TFAggregatorBlockEntity) blockentity).getDroppableInventory());
+                    ((TFAggregatorBlockEntity) blockentity).grantStoredRecipeExperience((ServerLevel) p_48714_, Vec3.atCenterOf(p_48715_));
+                }
+
+                p_48714_.updateNeighbourForOutputSignal(p_48715_, this);
+            }
+
+            super.onRemove(p_48713_, p_48714_, p_48715_, p_48716_, p_48717_);
+        }
+    }
+
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
-            BlockEntityType<T> blockEntity) {
+                                                                  BlockEntityType<T> blockEntity) {
         return createTickerHelper(blockEntity, TofuBlockEntitys.TF_AGGREGATOR.get(), TFAggregatorBlockEntity::workingTick);
     }
-    
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
