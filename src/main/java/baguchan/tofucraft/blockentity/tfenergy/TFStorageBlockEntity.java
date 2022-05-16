@@ -105,14 +105,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 		if (!level.isClientSide() && tfStorageBlockEntity.getEnergyStored() > 0) {
 			if (tfStorageBlockEntity.isValid()) {
 				if (!tfStorageBlockEntity.isCached) tfStorageBlockEntity.onCache();
-				if (tfStorageBlockEntity.findCooldown <= 0) {
-					if (tfStorageBlockEntity.cache.isEmpty() && tfStorageBlockEntity.isCached) {
-						tfStorageBlockEntity.isCached = false;
-					}
-				} else {
-					tfStorageBlockEntity.findCooldown -= 1;
-				}
-
 				if (tfStorageBlockEntity.cache.size() > 0) {
 					List<BlockEntity> toSend = new ArrayList<>();
 
