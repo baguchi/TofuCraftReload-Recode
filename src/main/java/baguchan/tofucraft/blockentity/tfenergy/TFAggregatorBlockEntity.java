@@ -182,7 +182,7 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
         }
 
         ++recipeTime;
-        this.drain(recipeTime * 10, true);
+        this.drain(10, true);
         recipeTimeTotal = recipe.getRecipeTime();
         if (recipeTime < recipeTimeTotal) {
             return false;

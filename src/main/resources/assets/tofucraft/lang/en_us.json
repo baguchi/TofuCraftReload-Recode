@@ -283,7 +283,7 @@
   "block.tofucraft.antenna_basic": "Antenna Basic",
   "block.tofucraft.tfoven": "TF Oven",
   "block.tofucraft.tfadvanced_aggregator": "TFAdvanced Aggregator",
-  "block.tofucraft.tfaggregator": "TF Aggregator",
+  "block.tofucraft.tf_aggregator": "TF Aggregator",
   "entity.tofucraft.tofunian.guard": "Guard Tofunian",
   "entity.tofucraft.tofunian.tofucook": "TofuCook Tofunian",
   "entity.tofucraft.tofunian.tofusmith": "TofuSmith Tofunian",

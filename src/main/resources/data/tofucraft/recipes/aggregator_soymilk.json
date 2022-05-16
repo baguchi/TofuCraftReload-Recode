@@ -1,0 +1,10 @@
+{
+  "type": "tofucraft:aggregator",
+  "ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "item": "tofucraft:soymilk"
+  },
+  "recipeTime": 25
+}

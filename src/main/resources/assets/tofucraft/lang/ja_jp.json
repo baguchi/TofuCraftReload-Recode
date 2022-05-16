@@ -283,7 +283,7 @@
   "block.tofucraft.antenna_basic": "アンテナベーシック",
   "block.tofucraft.tfoven": "TFオーブン",
   "block.tofucraft.tfadvanced_aggregator": "TFアドバンスドアグレガーター",
-  "block.tofucraft.tfaggregator": "TFアグレガーター",
+  "block.tofucraft.tf_aggregator": "TFアグレガーター",
   "entity.tofucraft.tofunian.guard": "守備のトーフニアン",
   "entity.tofucraft.tofunian.tofucook": "豆腐コック トーフニアン",
   "entity.tofucraft.tofunian.tofusmith": "豆腐鍛冶　トーフニアン",
