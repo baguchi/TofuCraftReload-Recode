@@ -47,8 +47,14 @@ ordering = "NONE"
 side = "BOTH"
 # Here's another dependency
 [[dependencies.tofucraft]]
-    modId="minecraft"
+modId = "minecraft"
 mandatory = true
 versionRange = "[1.18.2,]"
 ordering = "NONE"
-    side="BOTH"
+side = "BOTH"
+[[dependencies.tofucraft]]
+modId = "mmlib"
+mandatory = true
+versionRange = "[1.0.0-1.18.1,)"
+ordering = "AFTER"
+side = "BOTH"
