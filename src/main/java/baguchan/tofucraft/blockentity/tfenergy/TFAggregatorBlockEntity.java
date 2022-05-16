@@ -1,6 +1,6 @@
 package baguchan.tofucraft.blockentity.tfenergy;
 
-import baguchan.tofucraft.blockentity.tfenergy.base.EnergyBaseBlockEntity;
+import baguchan.tofucraft.blockentity.tfenergy.base.WorkerBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFAggregatorMenu;
 import baguchan.tofucraft.recipe.AggregatorRecipe;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 @SuppressWarnings("LossyEncoding")
-public class TFAggregatorBlockEntity extends EnergyBaseBlockEntity implements MenuProvider {
+public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements MenuProvider {
 
     private final ItemStackHandler inventory;
     private LazyOptional<IItemHandler> inputHandler;
