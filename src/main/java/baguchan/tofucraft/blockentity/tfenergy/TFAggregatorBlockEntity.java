@@ -1,13 +1,7 @@
 package baguchan.tofucraft.blockentity.tfenergy;
 
-import java.util.Optional;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import baguchan.tofucraft.blockentity.tfenergy.base.EnergyBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFAggregatorMenu;
-import baguchan.tofucraft.inventory.TFStorageMenu;
 import baguchan.tofucraft.recipe.AggregatorRecipe;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuRecipes;
@@ -38,26 +32,71 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Optional;
+
+@SuppressWarnings("LossyEncoding")
 public class TFAggregatorBlockEntity extends EnergyBaseBlockEntity implements MenuProvider {
 
     private final ItemStackHandler inventory;
     private LazyOptional<IItemHandler> inputHandler;
     private LazyOptional<IItemHandler> outputHandler;
-    protected final ContainerData tileData;
     private final Object2IntOpenHashMap<ResourceLocation> experienceTracker;
     private int recipeTime;
     private int recipeTimeTotal;
     private ResourceLocation lastRecipeID;
     private boolean checkNewRecipe;
+
+    protected final ContainerData dataAccess = new ContainerData() {
+        @Override
+        public int get(int p_221476_1_) {
+            switch (p_221476_1_) {
+                case 0:
+                    return TFAggregatorBlockEntity.this.recipeTime;
+                case 1:
+                    return TFAggregatorBlockEntity.this.recipeTimeTotal;
+                case 2:
+                    return TFAggregatorBlockEntity.this.energy;
+                case 3:
+                    return TFAggregatorBlockEntity.this.energyMax;
+            }
+            return 0;
+        }
+
+        @Override
+        public void set(int p_221477_1_, int p_221477_2_) {
+            switch (p_221477_1_) {
+                case 0:
+                    TFAggregatorBlockEntity.this.recipeTime = p_221477_2_;
+                    break;
+                case 1:
+                    TFAggregatorBlockEntity.this.recipeTimeTotal = p_221477_2_;
+                    break;
+                case 2:
+                    TFAggregatorBlockEntity.this.energy = p_221477_2_;
+                    break;
+                case 3:
+                    TFAggregatorBlockEntity.this.energyMax = p_221477_2_;
+                    break;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 4;
+        }
+    };
+
     public TFAggregatorBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
         super(TofuBlockEntitys.TF_AGGREGATOR.get(), p_155229_, p_155230_, 50000);
-        
+
         this.inventory = createHandler();
         this.inputHandler = LazyOptional.of(() -> new TFOvenItemHandler(inventory, Direction.UP));
         this.outputHandler = LazyOptional.of(() -> new TFOvenItemHandler(inventory, Direction.DOWN));
-        this.tileData = createIntArray();
         this.experienceTracker = new Object2IntOpenHashMap<>();
     }
+
     public static void workingTick(Level level, BlockPos pos, BlockState state, TFAggregatorBlockEntity blockEntity) {
         boolean didInventoryChange = false;
 
@@ -141,7 +180,7 @@ public class TFAggregatorBlockEntity extends EnergyBaseBlockEntity implements Me
         if (level == null) {
             return false;
         }
-        
+
         ++recipeTime;
         this.drain(recipeTime * 10, true);
         recipeTimeTotal = recipe.getRecipeTime();
@@ -170,11 +209,11 @@ public class TFAggregatorBlockEntity extends EnergyBaseBlockEntity implements Me
         if (!slotStack.isEmpty()) {
             slotStack.shrink(1);
         }
-        
+
         return true;
     }
-    
-    // Basic methods --¡ý
+
+    // Basic methods
 
     public void trackRecipeExperience(@Nullable Recipe<?> recipe) {
         if (recipe != null) {
@@ -194,8 +233,8 @@ public class TFAggregatorBlockEntity extends EnergyBaseBlockEntity implements Me
                     pos, entry.getIntValue(), ((AggregatorRecipe) recipe).getExperience()));
         }
     }
-    
-    
+
+
     @Override
     public void load(CompoundTag compound) {
         super.load(compound);
@@ -225,7 +264,7 @@ public class TFAggregatorBlockEntity extends EnergyBaseBlockEntity implements Me
         compound.put("Inventory", inventory.serializeNBT());
         return compound;
     }
-    
+
     @Override
     @Nonnull
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
@@ -255,7 +294,7 @@ public class TFAggregatorBlockEntity extends EnergyBaseBlockEntity implements Me
     public CompoundTag getUpdateTag() {
         return writeItems(new CompoundTag());
     }
-    
+
     private ItemStackHandler createHandler() {
         return new ItemStackHandler(2) {
             @Override
@@ -267,50 +306,7 @@ public class TFAggregatorBlockEntity extends EnergyBaseBlockEntity implements Me
             }
         };
     }
-    
-    private ContainerData createIntArray() {
-        return new ContainerData() {
-            @Override
-            public int get(int index) {
-                switch (index) {
-                case 0:
-                    return TFAggregatorBlockEntity.this.recipeTime;
-                case 1:
-                    return TFAggregatorBlockEntity.this.recipeTimeTotal;
-                case 2:
-                    return TFAggregatorBlockEntity.this.energy;
-                case 3:
-                    return TFAggregatorBlockEntity.this.energyMax;
-                default:
-                    return 0;
-                }
-            }
 
-            @Override
-            public void set(int index, int value) {
-                switch (index) {
-                case 0:
-                    TFAggregatorBlockEntity.this.recipeTime = value;
-                    break;
-                case 1:
-                    TFAggregatorBlockEntity.this.recipeTimeTotal = value;
-                    break;
-                case 2:
-                    TFAggregatorBlockEntity.this.energy = value;
-                    break;
-                case 3:
-                    TFAggregatorBlockEntity.this.energyMax = value;
-                    break;
-                }
-            }
-
-            @Override
-            public int getCount() {
-                return 4;
-            }
-        };
-    }
-    
     public static class TFOvenItemHandler implements IItemHandler {
         private static final int SLOT_INPUT = 0;
         private static final int SLOT_OUTPUT = 1;
@@ -371,7 +367,7 @@ public class TFAggregatorBlockEntity extends EnergyBaseBlockEntity implements Me
 
     @Override
     public AbstractContainerMenu createMenu(int p_39954_, Inventory p_39955_, Player p_39956_) {
-        return new TFAggregatorMenu(p_39954_, p_39955_, this, this.tileData);
+        return new TFAggregatorMenu(p_39954_, p_39955_, this, this.dataAccess);
     }
 
 }

@@ -2,6 +2,7 @@ package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.*;
+import cn.mcmod_mmf.mmlib.recipe.AbstractRecipeSerializer;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -19,8 +20,9 @@ public class TofuRecipes {
 	public static final RegistryObject<RecipeSerializer<?>> RECIPE_BITTERN = RECIPE_SERIALIZERS.register("bittern", () -> new BitternSerializer());
 
 	public static final RecipeType<AggregatorRecipe> RECIPETYPE_AGGREGATOR = register("tofucraft:aggregator");
-	public static final RegistryObject<AbstractRecipeSerializer<AggregatorRecipe>> RECIPE_AGGREGATOR = RECIPE_SERIALIZERS.register("aggregator", 
-	        () -> new AbstractRecipeSerializer<>(AggregatorRecipe.class));
+	public static final RegistryObject<AbstractRecipeSerializer<AggregatorRecipe>> RECIPE_AGGREGATOR = RECIPE_SERIALIZERS.register("aggregator",
+			() -> new AbstractRecipeSerializer<>(AggregatorRecipe.class));
+
 	public static final RecipeType<TofuConditionRecipe> RECIPETYPE_TOFU_CONDITION = register("tofucraft:tofu_condition");
 	public static final RegistryObject<RecipeSerializer<?>> RECIPE_TOFU_CONDITION = RECIPE_SERIALIZERS.register("tofu_condition", () -> new TofuConditionSerializer());
 

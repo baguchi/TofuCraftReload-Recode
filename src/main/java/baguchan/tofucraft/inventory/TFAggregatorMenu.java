@@ -1,7 +1,5 @@
 package baguchan.tofucraft.inventory;
 
-import java.util.Objects;
-
 import baguchan.tofucraft.blockentity.tfenergy.TFAggregatorBlockEntity;
 import baguchan.tofucraft.inventory.slot.TFAggreatorResultSlot;
 import baguchan.tofucraft.registry.TofuBlocks;
@@ -9,11 +7,7 @@ import baguchan.tofucraft.registry.TofuContainers;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.SimpleContainerData;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,14 +15,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
+import java.util.Objects;
+
 public class TFAggregatorMenu extends AbstractContainerMenu {
 
     public final TFAggregatorBlockEntity tileEntity;
     public final ItemStackHandler inventory;
     private final ContainerData containerData;
     private final ContainerLevelAccess canInteractWithCallable;
-
-    
     
     public TFAggregatorMenu(final int windowId, final Inventory playerInventory,
             final TFAggregatorBlockEntity tileEntity, ContainerData cookingPotDataIn) {
