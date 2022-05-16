@@ -516,6 +516,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('T', TofuBlocks.METALTOFU.get())
 				.define('C', TofuItems.TF_COIL.get())
 				.define('O', TofuItems.TF_OSCILLATOR.get())
+				.define('R', TofuItems.TF_CIRCUIT.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
 

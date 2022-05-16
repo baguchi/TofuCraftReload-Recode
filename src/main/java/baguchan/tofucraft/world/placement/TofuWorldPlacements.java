@@ -20,7 +20,7 @@ public class TofuWorldPlacements {
 	public static final Holder<PlacedFeature> ORE_TOFU_DIAMOND_LARGE = PlacementUtils.register("tofucraft:ore_tofu_diamond_large", TofuWorldFeatures.ORE_DIAMOND_LARGE, rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 	public static final Holder<PlacedFeature> ORE_TOFU_DIAMOND_BURIED = PlacementUtils.register("tofucraft:ore_tofu_diamond_buried", TofuWorldFeatures.ORE_DIAMOND_BURIED, commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 
-	public static final Holder<PlacedFeature> ORE_TOFUGEM = PlacementUtils.register("tofucraft:ore_tofugem", TofuWorldFeatures.ORE_TOFUGEM_SMALL, commonOrePlacement(25, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-320), VerticalAnchor.aboveBottom(320))));
+	public static final Holder<PlacedFeature> ORE_TOFUGEM = PlacementUtils.register("tofucraft:ore_tofugem", TofuWorldFeatures.ORE_TOFUGEM_SMALL, commonOrePlacement(25, HeightRangePlacement.triangle(VerticalAnchor.belowTop(240), VerticalAnchor.belowTop(-240))));
 	public static final Holder<PlacedFeature> ORE_TOFUGEM_LARGE = PlacementUtils.register("tofucraft:ore_tofugem_large", TofuWorldFeatures.ORE_TOFUGEM_LARGE, commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.aboveBottom(64))));
 
 
