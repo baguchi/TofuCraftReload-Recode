@@ -97,6 +97,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.TOFUSLATE.get());
 		simpleBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
 		simpleBlock(TofuBlocks.ORE_TOFU_DIAMOND.get());
+		simpleBlock(TofuBlocks.ORE_TOFUGEM.get());
 		simpleBlock(TofuBlocks.TOFU_BEDROCK.get());
 
 		logBlock(TofuBlocks.LEEK_GREEN_STEM.get());

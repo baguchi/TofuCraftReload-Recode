@@ -102,6 +102,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSLATE.get());
 		toBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
 		toBlock(TofuBlocks.ORE_TOFU_DIAMOND.get());
+		toBlock(TofuBlocks.ORE_TOFUGEM.get());
 		toBlock(TofuBlocks.TOFU_BEDROCK.get());
 
 		toBlock(TofuBlocks.LEEK_GREEN_STEM.get());

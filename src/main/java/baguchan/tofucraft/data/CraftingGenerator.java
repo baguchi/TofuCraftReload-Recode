@@ -508,6 +508,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('C', TofuItems.TF_CAPACITOR.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(TofuBlocks.TF_AGGREGATOR.get())
+				.pattern("COC")
+				.pattern("DRD")
+				.pattern(" T ")
+				.define('D', TofuBlocks.DRIEDTOFU.get())
+				.define('T', TofuBlocks.METALTOFU.get())
+				.define('C', TofuItems.TF_COIL.get())
+				.define('O', TofuItems.TF_OSCILLATOR.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(TofuBlocks.ANTENNA_BASIC.get())
 				.pattern(" P ")
 				.pattern("LOR")
