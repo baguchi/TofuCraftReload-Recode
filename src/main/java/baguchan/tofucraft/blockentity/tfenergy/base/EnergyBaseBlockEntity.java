@@ -11,9 +11,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.UUID;
-
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 	public static final String TAG_ENERGY = "tf_energy";
@@ -96,19 +95,22 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 		this.uuid = compound.getString(TAG_UUID);
 	}
 
+
 	@Override
-	public void reviveCaps() {
-		super.reviveCaps();
-		if (!this.getLevel().isClientSide())
+	public void onLoad() {
+		super.onLoad();
+		if (!this.getLevel().isClientSide()) {
 			if (uuid.isEmpty()) uuid = UUID.randomUUID().toString();
-		TofuNetwork.Instance.register(uuid, this, false);
+			TofuNetwork.Instance.register(uuid, this, false);
+		}
 	}
 
 	@Override
 	public void invalidateCaps() {
 		super.invalidateCaps();
-		if (!this.getLevel().isClientSide())
+		if (!this.getLevel().isClientSide()) {
 			TofuNetwork.Instance.unload(uuid, false);
+		}
 	}
 	
     @Override

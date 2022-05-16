@@ -25,6 +25,8 @@ public class SenderBaseBlockEntity extends EnergyBaseBlockEntity {
 	protected List<BlockEntity> cache = new ArrayList<>();
 	protected boolean isCached = false;
 
+	protected int findCooldown;
+
 	private Block antenna;
 
 	public SenderBaseBlockEntity(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_, int energyMax) {
@@ -41,7 +43,6 @@ public class SenderBaseBlockEntity extends EnergyBaseBlockEntity {
 						.filter(entry -> entry.getValue() instanceof SenderBaseBlockEntity &&
 								((SenderBaseBlockEntity) entry.getValue()).isValid()));
 		tes.forEach(te -> ((SenderBaseBlockEntity) te).onCache());
-
 	}
 
 	@SubscribeEvent
@@ -92,6 +93,7 @@ public class SenderBaseBlockEntity extends EnergyBaseBlockEntity {
 	public void onCache() {
 		cache = TofuNetwork.toTiles(TofuNetwork.Instance.getInsertableWithinRadius(this, ((IAnntena) antenna).getRadius(getBlockPos().above(), level)));
 		isCached = true;
+		findCooldown = 100;
 	}
 
 	public int getTransferPower() {

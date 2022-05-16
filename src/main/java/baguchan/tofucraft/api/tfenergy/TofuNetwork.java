@@ -82,7 +82,7 @@ public class TofuNetwork {
 		return reference
 				.entrySet()
 				.stream()
-				.filter(entry -> entry.getValue().getLevel().dimensionType() == dimid);
+				.filter(entry -> entry.getValue().getLevel().dimensionType().equals(dimid));
 	}
 
 	public Stream<Map.Entry<String, BlockEntity>> getTEWithinRadius(Level world, BlockPos pos, double radius) {
