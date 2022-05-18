@@ -73,6 +73,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 		pickaxeItem(consumer, "tofu_momen_pickaxe", TofuItems.TOFU_MOMEN_PICKAXE, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
 		axeItem(consumer, "tofu_momen_axe", TofuItems.TOFU_MOMEN_AXE, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
 		shovelItem(consumer, "tofu_momen_shovel", TofuItems.TOFU_MOMEN_SHOVEL, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
+		ShapedRecipeBuilder.shaped(TofuItems.TOFU_METAL_SHEARS.get())
+				.pattern(" #")
+				.pattern("# ")
+				.define('#', TofuItems.TOFUMETAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.save(consumer);
+
 
 		helmetItem(consumer, "tofu_kinu_helmet", TofuItems.ARMOR_TOFU_KINUHELMET, TofuBlocks.KINUTOFU);
 		chestplateItem(consumer, "tofu_kinu_chestplate", TofuItems.ARMOR_TOFU_KINUCHESTPLATE, TofuBlocks.KINUTOFU);
