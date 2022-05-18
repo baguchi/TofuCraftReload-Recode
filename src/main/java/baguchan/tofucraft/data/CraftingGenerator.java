@@ -200,8 +200,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("# #")
 				.pattern("SSS")
 				.define('#', Items.IRON_INGOT)
-				.define('S', Items.COBBLESTONE)
-				.unlockedBy("has_item", has(TofuItems.TOFUDIAMOND_NUGGET.get()))
+				.define('S', Tags.Items.COBBLESTONE)
+				.unlockedBy("has_item", has(Items.IRON_INGOT))
 				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.MORIJIO.get(), 3)
@@ -399,6 +399,22 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('X', Blocks.COBBLESTONE_SLAB)
 				.unlockedBy("has_item", has(Blocks.COBBLESTONE_SLAB))
 				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(TofuBlocks.SALTPAN.get())
+				.pattern("# #")
+				.pattern(" X ")
+				.define('#', Tags.Items.RODS_WOODEN)
+				.define('X', Blocks.COBBLED_DEEPSLATE_SLAB)
+				.unlockedBy("has_item", has(Blocks.COBBLED_DEEPSLATE_SLAB))
+				.save(consumer, TofuCraftReload.prefix("deepslate_saltpan"));
+
+		ShapedRecipeBuilder.shaped(TofuBlocks.SALTPAN.get())
+				.pattern("# #")
+				.pattern(" X ")
+				.define('#', Tags.Items.RODS_WOODEN)
+				.define('X', Blocks.BLACKSTONE_SLAB)
+				.unlockedBy("has_item", has(Blocks.BLACKSTONE_SLAB))
+				.save(consumer, TofuCraftReload.prefix("blackstone_saltpan"));
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.TOFUCHEST.get())
 				.pattern("###")

@@ -10,7 +10,7 @@
       "item": "minecraft:iron_ingot"
     },
     "S": {
-      "item": "minecraft:cobblestone"
+      "tag": "forge:cobblestone"
     }
   },
   "result": {

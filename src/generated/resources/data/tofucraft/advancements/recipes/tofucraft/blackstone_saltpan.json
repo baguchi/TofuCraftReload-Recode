@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tofucraft:salt_furnace"
+      "tofucraft:blackstone_saltpan"
     ]
   },
   "criteria": {
@@ -12,7 +12,7 @@
         "items": [
           {
             "items": [
-              "minecraft:iron_ingot"
+              "minecraft:blackstone_slab"
             ]
           }
         ]
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tofucraft:salt_furnace"
+        "recipe": "tofucraft:blackstone_saltpan"
       }
     }
   },
