@@ -9,11 +9,11 @@ public class TofuFoods {
 	public static final FoodProperties TOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).fast().build();
 
 	public static final FoodProperties ISHITOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).fast().build();
-	public static final FoodProperties TOFUHELL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.16F).alwaysEat().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1.0F).build();
-	public static final FoodProperties TOFUSOUL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.16F).fast().effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200), 1.0F).build();
+	public static final FoodProperties TOFUHELL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).alwaysEat().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1.0F).build();
+	public static final FoodProperties TOFUSOUL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200), 1.0F).build();
 	public static final FoodProperties TOFUGRILLED = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUZUNDA = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
-	public static final FoodProperties TOFUMISO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).fast().build();
+	public static final FoodProperties TOFUMISO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).fast().build();
 	public static final FoodProperties TOFUDRIED = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).fast().build();
 
 
@@ -48,7 +48,7 @@ public class TofuFoods {
 	//Tofu delight
 	public static final FoodProperties TOFU_EGG = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.32F).fast().build();
 	public static final FoodProperties SOYSAUSE_RAMEN = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.85F).build();
-	public static final FoodProperties SOY_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
+	public static final FoodProperties SOY_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).build();
 
 
 	private static FoodProperties.Builder stew(int p_150384_) {
