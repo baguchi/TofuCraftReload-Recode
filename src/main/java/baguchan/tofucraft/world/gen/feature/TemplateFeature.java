@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,11 +13,9 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.structure.templatesystem.ProtectedBlockProcessor;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureManager;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-
-import java.util.Random;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 
 public class TemplateFeature extends Feature<NoneFeatureConfiguration> {
 	protected final int offsetX;
@@ -37,11 +36,11 @@ public class TemplateFeature extends Feature<NoneFeatureConfiguration> {
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159471_) {
 		BlockPos blockpos = p_159471_.origin();
 		WorldGenLevel worldgenlevel = p_159471_.level();
-		Random random = p_159471_.random();
+		RandomSource random = p_159471_.random();
 
 		Rotation rotation = Rotation.getRandom(random);
 		int i = random.nextInt(this.TEMPLATE.length);
-		StructureManager templatemanager = worldgenlevel.getLevel().getServer().getStructureManager();
+		StructureTemplateManager templatemanager = worldgenlevel.getLevel().getServer().getStructureManager();
 		StructureTemplate template = templatemanager.getOrCreate(this.TEMPLATE[i]);
 		StructurePlaceSettings placementsettings = (new StructurePlaceSettings()).setRotation(rotation).addProcessor(new ProtectedBlockProcessor(BlockTags.FEATURES_CANNOT_REPLACE));
 		BlockPos blockpos2 = (new BlockPos(-this.offsetX / 2, 0, -this.offsetZ / 2)).rotate(rotation);

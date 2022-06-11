@@ -26,7 +26,7 @@ public class BugleItem extends Item {
 			}
 		}
 		if (i >= 20)
-			p_41414_.playSound(TofuSounds.TOFUBUGLE, 3.0F, 1.0F);
+			p_41414_.playSound(TofuSounds.TOFUBUGLE.get(), 3.0F, 1.0F);
 	}
 
 	@Override

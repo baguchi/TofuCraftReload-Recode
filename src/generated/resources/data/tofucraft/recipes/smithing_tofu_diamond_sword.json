@@ -1,10 +1,10 @@
 {
   "type": "minecraft:smithing",
-  "base": {
-    "item": "minecraft:diamond_sword"
-  },
   "addition": {
     "item": "tofucraft:blocktofudiamond"
+  },
+  "base": {
+    "item": "minecraft:diamond_sword"
   },
   "result": {
     "item": "tofucraft:tofu_diamond_sword"

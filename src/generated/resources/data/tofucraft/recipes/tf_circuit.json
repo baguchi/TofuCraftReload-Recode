@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "RIR",
-    "TTT"
-  ],
   "key": {
-    "T": {
-      "item": "tofucraft:blocktofuishi"
+    "I": {
+      "item": "tofucraft:tofuishi"
     },
     "R": {
       "item": "minecraft:redstone"
     },
-    "I": {
-      "item": "tofucraft:tofuishi"
+    "T": {
+      "item": "tofucraft:blocktofuishi"
     }
   },
+  "pattern": [
+    "RIR",
+    "TTT"
+  ],
   "result": {
     "item": "tofucraft:tf_circuit"
   }

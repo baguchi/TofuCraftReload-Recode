@@ -112,9 +112,9 @@ public class ClientRegistrar {
 			return p_174592_ != null && p_174592_.isUsingItem() && p_174592_.getUseItem() == p_174590_ ? 1.0F : 0.0F;
 		});
 
-		MenuScreens.register(TofuContainers.SALT_FURNACE, SaltFurnaceScreen::new);
-		MenuScreens.register(TofuContainers.TF_STORAGE, TFStorageScreen::new);
-		MenuScreens.register(TofuContainers.TF_AGGREGATOR, TFAggreatorScreen::new);
+		MenuScreens.register(TofuContainers.SALT_FURNACE.get(), SaltFurnaceScreen::new);
+		MenuScreens.register(TofuContainers.TF_STORAGE.get(), TFStorageScreen::new);
+		MenuScreens.register(TofuContainers.TF_AGGREGATOR.get(), TFAggreatorScreen::new);
 	}
 
 	@SubscribeEvent

@@ -13,7 +13,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
@@ -447,7 +446,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	@Override
 	protected Component getDefaultName() {
-		return new TranslatableComponent("container.tofucraft.salt_furnace");
+		return Component.translatable("container.tofucraft.salt_furnace");
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package baguchan.tofucraft.utils;
 
 import com.mojang.datafixers.util.Pair;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
@@ -20,7 +21,7 @@ public class JigsawHelper {
 		StructureTemplatePool pool = pools.get(poolLocation);
 
 		StructureProcessorList processorList = manager.registryOrThrow(Registry.PROCESSOR_LIST_REGISTRY).get(poolLocation);
-		List<StructurePoolElement> elements = pool.templates;
+		ObjectArrayList<StructurePoolElement> elements = pool.templates;
 
 		if (processorList != null && manager.registryOrThrow(Registry.PROCESSOR_LIST_REGISTRY).getResourceKey(processorList).isPresent()) {
 			ResourceKey<StructureProcessorList> processorListKey = manager.registryOrThrow(Registry.PROCESSOR_LIST_REGISTRY).getResourceKey(processorList).get();

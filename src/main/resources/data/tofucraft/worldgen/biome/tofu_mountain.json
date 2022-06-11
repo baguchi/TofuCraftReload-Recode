@@ -78,7 +78,6 @@
     "misc": [
     ]
   },
-  "player_spawn_friendly": true,
   "spawn_costs": {
   }
 }

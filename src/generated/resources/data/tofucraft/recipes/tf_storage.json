@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "CCC",
-    "GTG"
-  ],
   "key": {
+    "C": {
+      "item": "tofucraft:tf_capacitor"
+    },
     "G": {
       "item": "minecraft:glass"
     },
     "T": {
       "item": "tofucraft:blocktofumetal"
-    },
-    "C": {
-      "item": "tofucraft:tf_capacitor"
     }
   },
+  "pattern": [
+    "CCC",
+    "GTG"
+  ],
   "result": {
     "item": "tofucraft:tf_storage"
   }

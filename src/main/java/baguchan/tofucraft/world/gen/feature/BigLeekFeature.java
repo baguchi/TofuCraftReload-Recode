@@ -4,13 +4,12 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
-import java.util.Random;
 
 public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
 	public BigLeekFeature(Codec<NoneFeatureConfiguration> codec) {
@@ -33,7 +32,7 @@ public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
 		return true;
 	}
 
-	private void setBigLeekBlock(WorldGenLevel level, Random rand, BlockPos pos) {
+	private void setBigLeekBlock(WorldGenLevel level, RandomSource rand, BlockPos pos) {
 		int height = 8 + rand.nextInt(4);
 		for (int i = 0; i < height; i++) {
 			for (BlockPos blockpos1 : BlockPos.betweenClosed(pos.offset(-1, -0, -1), pos.offset(1, 0, 1))) {
@@ -46,7 +45,7 @@ public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
 		}
 	}
 
-	private void setLeekBlock(WorldGenLevel level, Random rand, BlockPos pos) {
+	private void setLeekBlock(WorldGenLevel level, RandomSource rand, BlockPos pos) {
 		int height = 4 + rand.nextInt(4);
 		for (int i = 0; i < height; i++) {
 			if ((height - i) < height / 2.5D) {

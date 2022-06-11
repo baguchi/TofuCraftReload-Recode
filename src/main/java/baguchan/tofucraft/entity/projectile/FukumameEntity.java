@@ -58,7 +58,7 @@ public class FukumameEntity extends ThrowableProjectile {
 
 	protected void onHit(HitResult p_37406_) {
 		super.onHit(p_37406_);
-		playSound(TofuSounds.SOYBEAN_CRACK, 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F);
+		playSound(TofuSounds.SOYBEAN_CRACK.get(), 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F);
 		if (!this.level.isClientSide) {
 			this.level.broadcastEntityEvent(this, (byte) 3);
 			this.discard();

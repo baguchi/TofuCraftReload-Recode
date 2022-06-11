@@ -69,5 +69,9 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		tag(BlockTags.DOORS).add(TofuBlocks.TOFUDOOR_METAL.get());
 		tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(TofuBlocks.SOULTOFU.get());
 		tag(BlockTags.SOUL_SPEED_BLOCKS).add(TofuBlocks.SOULTOFU.get());
+
+		tag(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get())
+				.add(TofuBlocks.TOFUSLATE.get());
+
 	}
 }

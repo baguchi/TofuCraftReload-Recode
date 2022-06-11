@@ -31,10 +31,10 @@ public class TofuBiomes {
 	public static final ResourceKey<Biome> TOFU_BEACH = register("tofu_beach");
 
 
-	public static final MultiNoiseBiomeSource.Preset TOFU_WORLD = new MultiNoiseBiomeSource.Preset(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), (p_187108_) -> {
+	public static final MultiNoiseBiomeSource.Preset TOFU_WORLD = new MultiNoiseBiomeSource.Preset(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), (p_204281_) -> {
 		ImmutableList.Builder<Pair<Climate.ParameterPoint, Holder<Biome>>> builder = ImmutableList.builder();
 		(new TofuBiomeBuilder()).addBiomes((p_204279_) -> {
-			builder.add(p_204279_.mapSecond(p_187108_::getOrCreateHolder));
+			builder.add(p_204279_.mapSecond(p_204281_::getOrCreateHolderOrThrow));
 		});
 		return new Climate.ParameterList<>(builder.build());
 	});

@@ -1,8 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "X#X"
-  ],
   "key": {
     "#": {
       "item": "tofucraft:tofukinu"
@@ -11,8 +8,11 @@
       "item": "minecraft:wheat"
     }
   },
+  "pattern": [
+    "X#X"
+  ],
   "result": {
-    "item": "tofucraft:tofucookie",
-    "count": 8
+    "count": 8,
+    "item": "tofucraft:tofucookie"
   }
 }

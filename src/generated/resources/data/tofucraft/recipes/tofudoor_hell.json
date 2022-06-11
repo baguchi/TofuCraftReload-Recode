@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "PP",
-    "PP",
-    "PP"
-  ],
   "key": {
     "P": {
       "item": "tofucraft:blocktofuhell"
     }
   },
+  "pattern": [
+    "PP",
+    "PP",
+    "PP"
+  ],
   "result": {
-    "item": "tofucraft:tofudoor_hell",
-    "count": 3
+    "count": 3,
+    "item": "tofucraft:tofudoor_hell"
   }
 }

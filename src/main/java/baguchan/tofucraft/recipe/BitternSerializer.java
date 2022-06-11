@@ -6,11 +6,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-public class BitternSerializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<BitternRecipe> {
+public class BitternSerializer implements RecipeSerializer<BitternRecipe> {
 
 	public static final BitternSerializer INSTANCE = new BitternSerializer();
 

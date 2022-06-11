@@ -4,16 +4,12 @@ import baguchan.tofucraft.blockentity.tfenergy.base.WorkerBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFAggregatorMenu;
 import baguchan.tofucraft.recipe.AggregatorRecipe;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
-import baguchan.tofucraft.registry.TofuRecipes;
-import cn.mcmod_mmf.mmlib.utils.LevelUtils;
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -129,7 +125,8 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
             return Optional.empty();
         }
 
-        if (lastRecipeID != null) {
+        //TODO when mmlib is done. do it
+        /*if (lastRecipeID != null) {
             Recipe<RecipeWrapper> recipe = level.getRecipeManager().getAllRecipesFor(TofuRecipes.RECIPETYPE_AGGREGATOR).stream()
                     .filter(now -> now.getId().equals(lastRecipeID)).findFirst().get();
             if (recipe instanceof AggregatorRecipe) {
@@ -146,7 +143,7 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
                 lastRecipeID = recipe.get().getId();
                 return recipe;
             }
-        }
+        }*/
 
         checkNewRecipe = false;
         return Optional.empty();
@@ -156,7 +153,7 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
         if(this.isEnergyEmpty())
             return false;
         if (hasInput()) {
-            ItemStack resultStack = recipe.getResultItem();
+            ItemStack resultStack = ItemStack.EMPTY;
             if (resultStack.isEmpty()) {
                 return false;
             } else {
@@ -183,28 +180,28 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
 
         ++recipeTime;
         this.drain(10, false);
-        recipeTimeTotal = recipe.getRecipeTime();
+        recipeTimeTotal = 0;
         if (recipeTime < recipeTimeTotal) {
             return false;
         }
 
         recipeTime = 0;
 
-        ItemStack resultStack = recipe.getResultItem();
+        ItemStack resultStack = ItemStack.EMPTY;
         ItemStack outStack = inventory.getStackInSlot(1);
         if (outStack.isEmpty()) {
             inventory.setStackInSlot(1, resultStack.copy());
         } else if (outStack.sameItem(resultStack)) {
             outStack.grow(resultStack.getCount());
         }
-        trackRecipeExperience(recipe);
+        //trackRecipeExperience(recipe);
 
         ItemStack slotStack = inventory.getStackInSlot(0);
         if (slotStack.hasContainerItem()) {
             double x = worldPosition.getX() + 0.5;
             double y = worldPosition.getY() + 0.7;
             double z = worldPosition.getZ() + 0.5;
-            LevelUtils.spawnItemEntity(level, inventory.getStackInSlot(0).getContainerItem(), x, y, z, 0F, 0.25F, 0F);
+            //LevelUtils.spawnItemEntity(level, inventory.getStackInSlot(0).getContainerItem(), x, y, z, 0F, 0.25F, 0F);
         }
         if (!slotStack.isEmpty()) {
             slotStack.shrink(1);
@@ -228,10 +225,10 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
     }
 
     public void grantStoredRecipeExperience(Level world, Vec3 pos) {
-        for (Object2IntMap.Entry<ResourceLocation> entry : experienceTracker.object2IntEntrySet()) {
+        /*for (Object2IntMap.Entry<ResourceLocation> entry : experienceTracker.object2IntEntrySet()) {
             world.getRecipeManager().byKey(entry.getKey()).ifPresent(recipe -> LevelUtils.splitAndSpawnExperience(world,
                     pos, entry.getIntValue(), ((AggregatorRecipe) recipe).getExperience()));
-        }
+        }*/
     }
 
 
@@ -362,7 +359,7 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("container.tofucraft.tf_aggregator");
+        return Component.translatable("container.tofucraft.tf_aggregator");
     }
 
     @Override

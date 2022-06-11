@@ -48,9 +48,6 @@
       "minecraft:freeze_top_layer"
     ]
   ],
-  "starts": [
-    "tofucraft:tofu_village"
-  ],
   "spawners": {
     "monster": [
       {
@@ -83,7 +80,6 @@
     "misc": [
     ]
   },
-  "player_spawn_friendly": true,
   "spawn_costs": {
   }
 }

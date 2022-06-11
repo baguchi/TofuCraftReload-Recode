@@ -3,7 +3,7 @@ package baguchan.tofucraft.block.utils;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -81,7 +81,7 @@ public class TofuBedBlock extends BedBlock {
 				return InteractionResult.SUCCESS;
 			} else if ((Boolean) p_49515_.getValue(OCCUPIED)) {
 				if (!this.kickVillagerOutOfBed(p_49516_, p_49517_)) {
-					p_49518_.displayClientMessage(new TranslatableComponent("block.minecraft.bed.occupied"), true);
+					p_49518_.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
 				}
 
 				return InteractionResult.SUCCESS;

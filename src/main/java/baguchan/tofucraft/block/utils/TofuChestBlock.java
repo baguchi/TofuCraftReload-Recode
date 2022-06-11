@@ -5,11 +5,11 @@ import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
@@ -43,7 +43,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
@@ -91,7 +90,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 					if (p_51604_.hasCustomName()) {
 						return p_51604_.getDisplayName();
 					} else {
-						return (Component) (p_51605_.hasCustomName() ? p_51605_.getDisplayName() : new TranslatableComponent("container.chestDouble"));
+						return (Component) (p_51605_.hasCustomName() ? p_51605_.getDisplayName() : Component.translatable("container.chestDouble"));
 					}
 				}
 			});
@@ -341,7 +340,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		return false;
 	}
 
-	public void tick(BlockState p_153059_, ServerLevel p_153060_, BlockPos p_153061_, Random p_153062_) {
+	public void tick(BlockState p_153059_, ServerLevel p_153060_, BlockPos p_153061_, RandomSource p_153062_) {
 		BlockEntity blockentity = p_153060_.getBlockEntity(p_153061_);
 		if (blockentity instanceof TofuChestBlockEntity) {
 			((TofuChestBlockEntity) blockentity).recheckOpen();

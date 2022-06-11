@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " M ",
-    "RGR",
-    " M "
-  ],
   "key": {
+    "G": {
+      "item": "tofucraft:tofugem"
+    },
     "M": {
       "item": "tofucraft:tofumetal"
     },
     "R": {
       "item": "minecraft:redstone"
-    },
-    "G": {
-      "item": "tofucraft:tofugem"
     }
   },
+  "pattern": [
+    " M ",
+    "RGR",
+    " M "
+  ],
   "result": {
     "item": "tofucraft:tf_capacitor"
   }

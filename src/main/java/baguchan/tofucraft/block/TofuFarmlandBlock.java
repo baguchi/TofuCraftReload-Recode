@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -22,8 +23,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.Random;
 
 public class TofuFarmlandBlock extends Block {
 	public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE;
@@ -60,14 +59,14 @@ public class TofuFarmlandBlock extends Block {
 		return SHAPE;
 	}
 
-	public void tick(BlockState p_53262_, ServerLevel p_53263_, BlockPos p_53264_, Random p_53265_) {
+	public void tick(BlockState p_53262_, ServerLevel p_53263_, BlockPos p_53264_, RandomSource p_53265_) {
 		if (!p_53262_.canSurvive(p_53263_, p_53264_)) {
 			turnToDirt(p_53262_, p_53263_, p_53264_);
 		}
 
 	}
 
-	public void randomTick(BlockState p_53285_, ServerLevel p_53286_, BlockPos p_53287_, Random p_53288_) {
+	public void randomTick(BlockState p_53285_, ServerLevel p_53286_, BlockPos p_53287_, RandomSource p_53288_) {
 		int i = p_53285_.getValue(MOISTURE);
 		if (!isNearWater(p_53286_, p_53287_) && !p_53286_.isRainingAt(p_53287_.above())) {
 			if (i > 0) {

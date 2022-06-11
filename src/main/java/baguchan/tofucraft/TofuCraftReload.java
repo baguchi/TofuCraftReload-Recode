@@ -79,6 +79,10 @@ public class TofuCraftReload {
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
+		TofuContainers.MENU_TYPES.register(modBus);
+		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
+		TofuFeatures.FEATURES.register(modBus);
+		TofuSounds.SOUND_EVENTS.register(modBus);
 
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 

@@ -4,6 +4,7 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -16,8 +17,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.Random;
 
 public class LeekCropsBlock extends CropBlock {
 	public static final int MAX_AGE = 3;
@@ -52,7 +51,7 @@ public class LeekCropsBlock extends CropBlock {
 		return 3;
 	}
 
-	public void randomTick(BlockState p_49667_, ServerLevel p_49668_, BlockPos p_49669_, Random p_49670_) {
+	public void randomTick(BlockState p_49667_, ServerLevel p_49668_, BlockPos p_49669_, RandomSource p_49670_) {
 		if (p_49670_.nextInt(3) != 0) {
 			super.randomTick(p_49667_, p_49668_, p_49669_, p_49670_);
 		}

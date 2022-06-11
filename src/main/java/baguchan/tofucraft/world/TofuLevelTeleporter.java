@@ -52,12 +52,12 @@ public class TofuLevelTeleporter implements ITeleporter {
 		int i = 200; // scan radius up to 200, and also un-inline this variable back into below
 		boolean flag = true;
 		BlockPos blockpos = BlockPos.ZERO;
-		ColumnPos columnPos = new ColumnPos(pos);
+		ColumnPos columnPos = new ColumnPos(pos.getX(), pos.getZ());
 
 		if (!isPlayer && columnMap.containsKey(columnPos)) {
 			return null;
 		} else {
-			PortalPosition portalPosition = destinationCoordinateCache.containsKey(world.dimension().getRegistryName()) ? destinationCoordinateCache.get(world.dimension().getRegistryName()).get(columnPos) : null;
+			PortalPosition portalPosition = destinationCoordinateCache.containsKey(world.dimension().location()) ? destinationCoordinateCache.get(world.dimension().location()).get(columnPos) : null;
 			if (portalPosition != null) {
 				blockpos = portalPosition.pos;
 				portalPosition.lastUpdateTime = world.getGameTime();
@@ -124,9 +124,9 @@ public class TofuLevelTeleporter implements ITeleporter {
 			return null;
 		} else {
 			if (flag) {
-				destinationCoordinateCache.putIfAbsent(world.dimension().getRegistryName(), Maps.newHashMapWithExpectedSize(4096));
-				destinationCoordinateCache.get(world.dimension().getRegistryName()).put(columnPos, new PortalPosition(blockpos, world.getGameTime()));
-				world.getChunkSource().registerTickingTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, new BlockPos(columnPos.x, blockpos.getY(), columnPos.z));
+				destinationCoordinateCache.putIfAbsent(world.dimension().location(), Maps.newHashMapWithExpectedSize(4096));
+				destinationCoordinateCache.get(world.dimension().location()).put(columnPos, new PortalPosition(blockpos, world.getGameTime()));
+				world.getChunkSource().registerTickingTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, new BlockPos(columnPos.x(), blockpos.getY(), columnPos.z()));
 			}
 
 			// replace with our own placement logic
@@ -340,13 +340,13 @@ public class TofuLevelTeleporter implements ITeleporter {
 	}
 
 	private static double getYFactor(ServerLevel world) {
-		return world.dimension().getRegistryName().equals(Level.OVERWORLD.getRegistryName()) ? 2.0 : 0.5;
+		return 2.0;
 	}
 
 	private static void cachePortalCoords(ServerLevel world, Vec3 loc, BlockPos pos) {
 		int x = Mth.floor(loc.x), z = Mth.floor(loc.z);
-		destinationCoordinateCache.putIfAbsent(world.dimension().getRegistryName(), Maps.newHashMapWithExpectedSize(4096));
-		destinationCoordinateCache.get(world.dimension().getRegistryName()).put(new ColumnPos(x, z), new PortalPosition(pos, world.getGameTime()));
+		destinationCoordinateCache.putIfAbsent(world.dimension().location(), Maps.newHashMapWithExpectedSize(4096));
+		destinationCoordinateCache.get(world.dimension().location()).put(new ColumnPos(x, z), new PortalPosition(pos, world.getGameTime()));
 	}
 
 	private static boolean isIdealForPortal(ServerLevel world, BlockPos pos) {

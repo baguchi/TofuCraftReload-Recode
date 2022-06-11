@@ -5,6 +5,7 @@ import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -16,8 +17,6 @@ import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Random;
-
 public class TofuBlock extends Block {
 	public static final IntegerProperty HARDNESS = IntegerProperty.create("hardness", 0, 7);
 
@@ -26,7 +25,7 @@ public class TofuBlock extends Block {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);
 		if (isUnderWeight(worldIn, pos) &&
 				rand.nextInt(5) == 0) {
@@ -38,7 +37,7 @@ public class TofuBlock extends Block {
 		}
 	}
 
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		super.randomTick(state, worldIn, pos, random);
 		if (isDriedCondition(worldIn, pos)) {
 			if (random.nextInt(8) == 0) {

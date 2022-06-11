@@ -2,6 +2,7 @@ package baguchan.tofucraft.block.utils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -10,8 +11,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
-
-import java.util.Random;
 
 public class WorkedBarrelBaseBlock extends Block {
 	public static final EnumProperty<Stat> STAT = EnumProperty.create("stat", Stat.class);
@@ -23,7 +22,7 @@ public class WorkedBarrelBaseBlock extends Block {
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		Stat stat = getStat(state);
 		int time = state.getValue(TIME);
 

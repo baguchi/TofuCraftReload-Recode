@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "# #",
-    "###",
-    "# #"
-  ],
   "key": {
     "#": {
       "item": "tofucraft:tofuishi_brick"
     }
   },
+  "pattern": [
+    "# #",
+    "###",
+    "# #"
+  ],
   "result": {
-    "item": "tofucraft:tofuladder_ishibrick",
-    "count": 6
+    "count": 6,
+    "item": "tofucraft:tofuladder_ishibrick"
   }
 }

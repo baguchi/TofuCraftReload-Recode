@@ -1,25 +1,26 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.world.biome.TofuBiomeBuilder;
+import baguchan.tofucraft.world.gen.TofuNoiseRouterData;
 import baguchan.tofucraft.world.gen.TofuSurfaceRuleData;
 import com.mojang.serialization.DataResult;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.data.worldgen.TerrainProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.TerrainShaper;
 import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.levelgen.*;
+import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+import net.minecraft.world.level.levelgen.NoiseSettings;
 
 public class TofuNoiseGeneratorSettings {
 
-	static final NoiseSettings TOFU_NOISE_SETTINGS = create(-64, 320, new NoiseSamplingSettings(1.0D, 1.0D, 80.0D, 160.0D), new NoiseSlider(-0.078125D, 2, 8), new NoiseSlider(0.1171875D, 3, 0), 1, 2, TerrainProvider.overworld(false));
+	static final NoiseSettings TOFU_NOISE_SETTINGS = create(-64, 384, 1, 2);
 
 	public static final ResourceKey<NoiseGeneratorSettings> TOFU_WORLD = ResourceKey.create(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY, new ResourceLocation(TofuCraftReload.MODID, "tofu_world"));
 
 	public static NoiseGeneratorSettings tofuWorld() {
-		return new NoiseGeneratorSettings(TOFU_NOISE_SETTINGS, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), TofuBlocks.SOYMILK.get().defaultBlockState(), NoiseRouterData.overworld(TOFU_NOISE_SETTINGS, false), TofuSurfaceRuleData.tofuWorld(), 64, false, true, false, false);
+		return new NoiseGeneratorSettings(TOFU_NOISE_SETTINGS, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), TofuBlocks.SOYMILK.get().defaultBlockState(), TofuNoiseRouterData.tofuworld(BuiltinRegistries.DENSITY_FUNCTION, false, false), TofuSurfaceRuleData.tofuWorld(), (new TofuBiomeBuilder()).spawnTarget(), 64, false, true, false, false);
 	}
 
 	private static DataResult<NoiseSettings> guardY(NoiseSettings p_158721_) {
@@ -32,8 +33,8 @@ public class TofuNoiseGeneratorSettings {
 		}
 	}
 
-	public static NoiseSettings create(int p_212299_, int p_212300_, NoiseSamplingSettings p_212301_, NoiseSlider p_212302_, NoiseSlider p_212303_, int p_212304_, int p_212305_, TerrainShaper p_212306_) {
-		NoiseSettings noisesettings = new NoiseSettings(p_212299_, p_212300_, p_212301_, p_212302_, p_212303_, p_212304_, p_212305_, p_212306_);
+	public static NoiseSettings create(int p_224526_, int p_224527_, int p_224528_, int p_224529_) {
+		NoiseSettings noisesettings = new NoiseSettings(p_224526_, p_224527_, p_224528_, p_224529_);
 		guardY(noisesettings).error().ifPresent((p_158719_) -> {
 			throw new IllegalStateException(p_158719_.message());
 		});

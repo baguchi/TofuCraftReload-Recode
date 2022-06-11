@@ -7,11 +7,10 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-public class TofuConditionSerializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<TofuConditionRecipe> {
+public class TofuConditionSerializer implements RecipeSerializer<TofuConditionRecipe> {
 
 	public static final TofuConditionSerializer INSTANCE = new TofuConditionSerializer();
 

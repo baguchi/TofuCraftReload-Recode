@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "MMM"
-  ],
   "key": {
     "M": {
       "item": "tofucraft:blocktofuegg"
     }
   },
+  "pattern": [
+    "MMM"
+  ],
   "result": {
-    "item": "tofucraft:tofuslab_egg",
-    "count": 6
+    "count": 6,
+    "item": "tofucraft:tofuslab_egg"
   }
 }

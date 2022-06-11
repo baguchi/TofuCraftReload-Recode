@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "# #"
-  ],
   "key": {
     "#": {
       "item": "tofucraft:blocktofumetal"
     }
   },
+  "pattern": [
+    "###",
+    "# #"
+  ],
   "result": {
     "item": "tofucraft:tofu_metal_helmet"
   }

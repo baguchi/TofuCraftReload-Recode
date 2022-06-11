@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -24,7 +25,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 
 import java.util.Optional;
-import java.util.Random;
 
 public class TofuFish extends AbstractSchoolingFish {
 	public TofuFish(EntityType<? extends TofuFish> p_27523_, Level p_27524_) {
@@ -89,7 +89,7 @@ public class TofuFish extends AbstractSchoolingFish {
 		}
 	}
 
-	public static boolean checkTofuFishSpawnRules(EntityType<? extends AbstractFish> p_27468_, LevelAccessor p_27469_, MobSpawnType p_27470_, BlockPos p_27471_, Random p_27472_) {
+	public static boolean checkTofuFishSpawnRules(EntityType<? extends AbstractFish> p_27468_, LevelAccessor p_27469_, MobSpawnType p_27470_, BlockPos p_27471_, RandomSource p_27472_) {
 		return p_27469_.getBlockState(p_27471_).is(TofuBlocks.SOYMILK.get()) && p_27469_.getBlockState(p_27471_.above()).is(TofuBlocks.SOYMILK.get());
 	}
 }

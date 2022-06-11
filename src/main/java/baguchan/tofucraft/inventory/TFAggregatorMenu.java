@@ -26,7 +26,7 @@ public class TFAggregatorMenu extends AbstractContainerMenu {
     
     public TFAggregatorMenu(final int windowId, final Inventory playerInventory,
             final TFAggregatorBlockEntity tileEntity, ContainerData cookingPotDataIn) {
-        super(TofuContainers.TF_AGGREGATOR, windowId);
+        super(TofuContainers.TF_AGGREGATOR.get(), windowId);
         this.tileEntity = tileEntity;
         this.inventory = tileEntity.getInventory();
         this.containerData = cookingPotDataIn;

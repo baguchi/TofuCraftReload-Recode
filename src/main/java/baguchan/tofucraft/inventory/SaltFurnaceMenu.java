@@ -27,7 +27,7 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 	}
 
 	public SaltFurnaceMenu(int id, Inventory playerInventoryIn, Container furnaceInventoryIn, ContainerData dataIn) {
-		super(TofuContainers.SALT_FURNACE, id);
+		super(TofuContainers.SALT_FURNACE.get(), id);
 		this.container = furnaceInventoryIn;
 		this.data = dataIn;
 		this.level = playerInventoryIn.player.level;

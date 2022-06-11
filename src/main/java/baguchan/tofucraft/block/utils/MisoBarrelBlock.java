@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -19,8 +20,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Random;
-
 public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
 	public final RegistryObject<Item> finishedBottleItem;
 	public static final IntegerProperty FLUIDS = IntegerProperty.create("fluids", 0, 3);
@@ -33,7 +32,7 @@ public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		Stat stat = getStat(state);
 		int time = state.getValue(TIME);
 

@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "PP",
-    "PP",
-    "PP"
-  ],
   "key": {
     "P": {
       "item": "tofucraft:blocktofumomen"
     }
   },
+  "pattern": [
+    "PP",
+    "PP",
+    "PP"
+  ],
   "result": {
-    "item": "tofucraft:tofudoor_momen",
-    "count": 3
+    "count": 3,
+    "item": "tofucraft:tofudoor_momen"
   }
 }

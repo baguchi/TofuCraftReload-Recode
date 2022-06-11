@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "tofucraft:soybeans_parched"
+    },
+    "X": {
+      "item": "minecraft:bowl"
+    }
+  },
   "pattern": [
     "###",
     "###",
     " X "
   ],
-  "key": {
-    "X": {
-      "item": "minecraft:bowl"
-    },
-    "#": {
-      "item": "tofucraft:soybeans_parched"
-    }
-  },
   "result": {
     "item": "tofucraft:fukumame"
   }

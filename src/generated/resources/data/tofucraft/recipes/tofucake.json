@@ -1,24 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "SES",
-    "WWW"
-  ],
   "key": {
     "#": {
       "item": "tofucraft:tofukinu"
     },
-    "S": {
-      "item": "minecraft:sugar"
-    },
     "E": {
       "tag": "forge:eggs"
+    },
+    "S": {
+      "item": "minecraft:sugar"
     },
     "W": {
       "item": "minecraft:wheat"
     }
   },
+  "pattern": [
+    "###",
+    "SES",
+    "WWW"
+  ],
   "result": {
     "item": "tofucraft:tofucake"
   }

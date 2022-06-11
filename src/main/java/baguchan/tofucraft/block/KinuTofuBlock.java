@@ -3,6 +3,7 @@ package baguchan.tofucraft.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -11,15 +12,13 @@ import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Random;
-
 public class KinuTofuBlock extends Block {
 	public KinuTofuBlock(Properties properties) {
 		super(properties);
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);
 		if (isUnderWeight(worldIn, pos) &&
 				rand.nextInt(4) == 0) {
@@ -38,7 +37,7 @@ public class KinuTofuBlock extends Block {
 	}
 
 	@Override
-	public void randomTick(BlockState p_225542_1_, ServerLevel p_225542_2_, BlockPos p_225542_3_, Random p_225542_4_) {
+	public void randomTick(BlockState p_225542_1_, ServerLevel p_225542_2_, BlockPos p_225542_3_, RandomSource p_225542_4_) {
 		super.randomTick(p_225542_1_, p_225542_2_, p_225542_3_, p_225542_4_);
 
 		if (isUnderWeight(p_225542_2_, p_225542_3_))

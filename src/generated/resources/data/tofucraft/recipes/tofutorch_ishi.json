@@ -1,9 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "C",
-    "M"
-  ],
   "key": {
     "C": {
       "tag": "minecraft:coals"
@@ -12,8 +8,12 @@
       "item": "tofucraft:tofuishi"
     }
   },
+  "pattern": [
+    "C",
+    "M"
+  ],
   "result": {
-    "item": "tofucraft:tofutorch_ishi",
-    "count": 4
+    "count": 4,
+    "item": "tofucraft:tofutorch_ishi"
   }
 }

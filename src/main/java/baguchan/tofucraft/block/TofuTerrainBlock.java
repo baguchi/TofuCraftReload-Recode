@@ -3,6 +3,7 @@ package baguchan.tofucraft.block;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConf
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
-import java.util.Random;
 
 public class TofuTerrainBlock extends Block implements BonemealableBlock {
 	public TofuTerrainBlock(Properties properties) {
@@ -24,11 +24,11 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 		return p_53692_.getBlockState(p_53693_.above()).isAir();
 	}
 
-	public boolean isBonemealSuccess(Level p_53697_, Random p_53698_, BlockPos p_53699_, BlockState p_53700_) {
+	public boolean isBonemealSuccess(Level p_53697_, RandomSource p_53698_, BlockPos p_53699_, BlockState p_53700_) {
 		return true;
 	}
 
-	public void performBonemeal(ServerLevel p_53687_, Random p_53688_, BlockPos p_53689_, BlockState p_53690_) {
+	public void performBonemeal(ServerLevel p_53687_, RandomSource p_53688_, BlockPos p_53689_, BlockState p_53690_) {
 		BlockPos blockpos = p_53689_.above();
 		BlockState blockstate = TofuBlocks.LEEK.get().defaultBlockState();
 

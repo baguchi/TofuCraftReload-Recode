@@ -7,11 +7,10 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-public class HardenSerializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<HardenRecipe> {
+public class HardenSerializer implements RecipeSerializer<HardenRecipe> {
 
 	public static final HardenSerializer INSTANCE = new HardenSerializer();
 

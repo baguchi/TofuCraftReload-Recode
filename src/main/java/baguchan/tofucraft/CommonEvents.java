@@ -131,7 +131,7 @@ public class CommonEvents {
 			if (event.getSpawnReason() != MobSpawnType.SPAWNER && event.getSpawnReason() != MobSpawnType.EVENT && event.getSpawnReason() != MobSpawnType.BREEDING && event.getSpawnReason() != MobSpawnType.PATROL) {
 				if (level instanceof ServerLevel) {
 					Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
-						return p_184069_ == TofuPoiTypes.MORIJIO_POI.get();
+						return p_184069_.is(TofuPoiTypes.MORIJIO);
 					}, (p_184055_) -> {
 						return true;
 					}, livingEntity.blockPosition(), 48, PoiManager.Occupancy.ANY);
@@ -150,7 +150,7 @@ public class CommonEvents {
 		LevelAccessor level = event.getWorld();
 		if (level instanceof ServerLevel) {
 			Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
-				return p_184069_ == TofuPoiTypes.MORIJIO_POI.get();
+				return p_184069_.is(TofuPoiTypes.MORIJIO);
 			}, (p_184055_) -> {
 				return true;
 			}, new BlockPos(vec3), 48, PoiManager.Occupancy.ANY);

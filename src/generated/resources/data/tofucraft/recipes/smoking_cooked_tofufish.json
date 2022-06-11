@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smoking",
+  "cookingtime": 100,
+  "experience": 0.2,
   "ingredient": {
     "item": "tofucraft:raw_tofufish"
   },
-  "result": "tofucraft:cooked_tofufish",
-  "experience": 0.2,
-  "cookingtime": 100
+  "result": "tofucraft:cooked_tofufish"
 }

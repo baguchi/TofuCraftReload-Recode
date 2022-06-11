@@ -5,7 +5,7 @@
 <div align=center><img src="https://i.imgur.com/ofYHpTk.png" alt="TofuCraftReload Logo"/></div>
 </p>
 
-Welcome to TofuCraftReload, TofuCraft mod in 1.18.1 Minecraft.
+Welcome to TofuCraftReload, TofuCraft mod in 1.19 Minecraft.
 
 TofuCraft is a mod that all about tofu.
 
@@ -17,7 +17,7 @@ Craft Salt Furnace to get salt, and use it to make tofu.
 
 Besides, you will get a brand new Tofu World to explore!
 
-TofuCraft Reload 是 TofuCraft 的 1.18.1 重制版。
+TofuCraft Reload 是 TofuCraft 的 1.19 重制版。
 
 和你玩过的豆腐工艺模组一样，TofuCraft Reload 的玩法也是制作豆腐和探索豆腐世界。
 

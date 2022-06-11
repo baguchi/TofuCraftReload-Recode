@@ -16,6 +16,8 @@ public class TofuTags {
 
 		public static final TagKey<Block> TOFU_TERRAIN = tag("tofu_terrain");
 
+		public static final TagKey<Block> TOFU_WORLD_CARVER_REPLACEABLE = tag("tofu_world_replaceable");
+
 		private static TagKey<Block> tag(String name) {
 			return BlockTags.create(new ResourceLocation(TofuCraftReload.MODID, name));
 		}

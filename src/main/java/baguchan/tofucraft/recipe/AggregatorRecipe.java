@@ -1,19 +1,7 @@
 package baguchan.tofucraft.recipe;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-import baguchan.tofucraft.registry.TofuRecipes;
-import cn.mcmod_mmf.mmlib.recipe.AbstractRecipe;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
-
-public class AggregatorRecipe extends AbstractRecipe {
-    @Expose
+public class AggregatorRecipe {
+    /*@Expose
     @SerializedName("ingredient")
     public Ingredient inputItems;
     @Expose()
@@ -55,6 +43,6 @@ public class AggregatorRecipe extends AbstractRecipe {
     @Override
     public RecipeType<?> getType() {
         return TofuRecipes.RECIPETYPE_AGGREGATOR;
-    }
+    }*/
 
 }

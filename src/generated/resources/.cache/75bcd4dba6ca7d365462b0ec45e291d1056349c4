@@ -1,0 +1,20 @@
+// 1.19	2022-06-10T06:35:47.0846412	Tags for minecraft:block
+6a3c43ee72d79e7592c8c8302fe763037c5debbf data/minecraft/tags/blocks/beds.json
+b8ea11915124147c29bc57ea0ffb5124931561cf data/minecraft/tags/blocks/climbable.json
+e57f6b64dcd3a0b1321ed52d19a6ecac984fee3d data/minecraft/tags/blocks/doors.json
+c2b0ed7afcd982bdf9198a9cc6077acd54b5c4f9 data/minecraft/tags/blocks/dragon_immune.json
+940d37f184a55a19f76fb6d6fc880189c91de25f data/minecraft/tags/blocks/mineable/axe.json
+5cb8fe83f335e2933873b1cb76203349fbe6a394 data/minecraft/tags/blocks/mineable/pickaxe.json
+7180c809ca92ae6008293c9b1ee2d5642a6207ac data/minecraft/tags/blocks/mineable/shovel.json
+e43cd9136a0a4723dcabde90e438e971c743424f data/minecraft/tags/blocks/needs_iron_tool.json
+4b76c7630be9a5b3cca95649a63992204d4b423f data/minecraft/tags/blocks/needs_stone_tool.json
+40380f32b1bd25d310de83093dd5a866d1f8dbe5 data/minecraft/tags/blocks/piglin_repellents.json
+485ffc22cbc4cb683af816974c539515c099b2c2 data/minecraft/tags/blocks/soul_fire_base_blocks.json
+485ffc22cbc4cb683af816974c539515c099b2c2 data/minecraft/tags/blocks/soul_speed_blocks.json
+74e8247f01226474e538555ea20a95e11b1378ec data/minecraft/tags/blocks/trapdoors.json
+a5a3a7b8f6d874e14bafee65f1234c46b27a5485 data/minecraft/tags/blocks/walls.json
+c2b0ed7afcd982bdf9198a9cc6077acd54b5c4f9 data/minecraft/tags/blocks/wither_immune.json
+6befd4ee31b0e17dc4c248ab0c24c5633925b96a data/minecraft/tags/blocks/wooden_doors.json
+a09335eb4e21504e699ee06a2181d8d8d9346365 data/tofucraft/tags/blocks/soft_tofu.json
+1b5121d10d3ad0b1fbf709be02d7ad0af381a345 data/tofucraft/tags/blocks/tofu_terrain.json
+724ff328324956ab14688d7b13a8797a76a8b136 data/tofucraft/tags/blocks/tofu_world_replaceable.json

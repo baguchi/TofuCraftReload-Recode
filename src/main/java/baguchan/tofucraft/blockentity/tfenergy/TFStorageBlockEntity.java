@@ -15,7 +15,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
@@ -303,7 +302,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 
 	@Override
 	public Component getDisplayName() {
-		return new TranslatableComponent("container.tofucraft.tf_storage");
+		return Component.translatable("container.tofucraft.tf_storage");
 	}
 
 	@org.jetbrains.annotations.Nullable

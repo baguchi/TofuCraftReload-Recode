@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom",
-  "textures": {
-    "bottom": "tofucraft:block/tofudoor_hell_lower",
-    "top": "tofucraft:block/tofudoor_hell_upper"
-  }
-}

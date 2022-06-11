@@ -1,10 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#",
-    "#",
-    "X"
-  ],
   "key": {
     "#": {
       "item": "tofucraft:blocktofumetal"
@@ -13,6 +8,11 @@
       "tag": "forge:rods/wooden"
     }
   },
+  "pattern": [
+    "#",
+    "#",
+    "X"
+  ],
   "result": {
     "item": "tofucraft:tofu_metal_sword"
   }

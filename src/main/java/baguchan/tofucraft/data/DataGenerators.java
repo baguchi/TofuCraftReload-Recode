@@ -9,14 +9,14 @@ import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 @Mod.EventBusSubscriber(modid = TofuCraftReload.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
 	@SubscribeEvent
-	public static void gatherData(GatherDataEvent evt) {
-		evt.getGenerator().addProvider(new BlockstateGenerator(evt.getGenerator(), evt.getExistingFileHelper()));
-		evt.getGenerator().addProvider(new ItemModelGenerator(evt.getGenerator(), evt.getExistingFileHelper()));
-		BlockTagsProvider blocktags = new BlockTagGenerator(evt.getGenerator(), evt.getExistingFileHelper());
-		evt.getGenerator().addProvider(blocktags);
-		evt.getGenerator().addProvider(new ItemTagGenerator(evt.getGenerator(), blocktags, evt.getExistingFileHelper()));
-		evt.getGenerator().addProvider(new FluidTagGenerator(evt.getGenerator(), evt.getExistingFileHelper()));
-		evt.getGenerator().addProvider(new LootGenerator(evt.getGenerator()));
-		evt.getGenerator().addProvider(new CraftingGenerator(evt.getGenerator()));
+	public static void gatherData(GatherDataEvent event) {
+		event.getGenerator().addProvider(event.includeServer(), new BlockstateGenerator(event.getGenerator(), event.getExistingFileHelper()));
+		event.getGenerator().addProvider(event.includeServer(), new ItemModelGenerator(event.getGenerator(), event.getExistingFileHelper()));
+		BlockTagsProvider blocktags = new BlockTagGenerator(event.getGenerator(), event.getExistingFileHelper());
+		event.getGenerator().addProvider(event.includeServer(), blocktags);
+		event.getGenerator().addProvider(event.includeServer(), new ItemTagGenerator(event.getGenerator(), blocktags, event.getExistingFileHelper()));
+		event.getGenerator().addProvider(event.includeServer(), new FluidTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
+		event.getGenerator().addProvider(event.includeServer(), new LootGenerator(event.getGenerator()));
+		event.getGenerator().addProvider(event.includeServer(), new CraftingGenerator(event.getGenerator()));
 	}
 }

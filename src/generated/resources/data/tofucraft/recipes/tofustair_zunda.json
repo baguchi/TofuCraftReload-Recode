@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "M  ",
-    "MM ",
-    "MMM"
-  ],
   "key": {
     "M": {
       "item": "tofucraft:blocktofuzunda"
     }
   },
+  "pattern": [
+    "M  ",
+    "MM ",
+    "MMM"
+  ],
   "result": {
-    "item": "tofucraft:tofustair_zunda",
-    "count": 4
+    "count": 4,
+    "item": "tofucraft:tofustair_zunda"
   }
 }

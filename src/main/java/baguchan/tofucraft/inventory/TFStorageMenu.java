@@ -26,7 +26,7 @@ public class TFStorageMenu extends AbstractContainerMenu {
 	}
 
 	public TFStorageMenu(int id, Inventory playerInventoryIn, Container furnaceInventoryIn, ContainerData dataIn) {
-		super(TofuContainers.TF_STORAGE, id);
+		super(TofuContainers.TF_STORAGE.get(), id);
 		this.container = furnaceInventoryIn;
 		this.data = dataIn;
 		this.level = playerInventoryIn.player.level;

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.25,
   "ingredient": {
     "item": "tofucraft:tofuhamburg_raw"
   },
-  "result": "tofucraft:tofuhamburg",
-  "experience": 0.25,
-  "cookingtime": 200
+  "result": "tofucraft:tofuhamburg"
 }

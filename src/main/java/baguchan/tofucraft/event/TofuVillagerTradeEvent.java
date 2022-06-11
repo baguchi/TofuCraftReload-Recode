@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.core.Registry;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerDataHolder;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -25,7 +26,6 @@ import net.minecraftforge.fml.common.Mod;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class TofuVillagerTradeEvent {
@@ -73,7 +73,7 @@ public class TofuVillagerTradeEvent {
 			this.priceMultiplier = 0.05F;
 		}
 
-		public MerchantOffer getOffer(Entity p_35662_, Random p_35663_) {
+		public MerchantOffer getOffer(Entity p_35662_, RandomSource p_35663_) {
 			ItemStack itemstack = new ItemStack(this.item, this.cost);
 			return new MerchantOffer(itemstack, new ItemStack(Items.EMERALD), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
@@ -98,7 +98,7 @@ public class TofuVillagerTradeEvent {
 		}
 
 		@Nullable
-		public MerchantOffer getOffer(Entity p_35674_, Random p_35675_) {
+		public MerchantOffer getOffer(Entity p_35674_, RandomSource p_35675_) {
 			if (p_35674_ instanceof VillagerDataHolder) {
 				ItemStack itemstack = new ItemStack(this.trades.get(((VillagerDataHolder) p_35674_).getVillagerData().getType()), this.cost);
 				return new MerchantOffer(itemstack, new ItemStack(Items.EMERALD), this.maxUses, this.villagerXp, 0.05F);
@@ -141,7 +141,7 @@ public class TofuVillagerTradeEvent {
 			this.priceMultiplier = p_35763_;
 		}
 
-		public MerchantOffer getOffer(Entity p_35771_, Random p_35772_) {
+		public MerchantOffer getOffer(Entity p_35771_, RandomSource p_35772_) {
 			return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
 	}

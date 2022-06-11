@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "# #",
-    "###",
-    "# #"
-  ],
   "key": {
     "#": {
       "item": "tofucraft:tofumetal"
     }
   },
+  "pattern": [
+    "# #",
+    "###",
+    "# #"
+  ],
   "result": {
-    "item": "tofucraft:tofuladder_metal",
-    "count": 6
+    "count": 6,
+    "item": "tofucraft:tofuladder_metal"
   }
 }

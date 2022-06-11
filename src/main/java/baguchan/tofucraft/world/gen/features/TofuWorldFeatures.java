@@ -34,13 +34,13 @@ public class TofuWorldFeatures {
 
 
 	public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> LEEK = FeatureUtils.register("tofucraft:leek", Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(TofuBlocks.LEEK.get()), 32));
-	public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> BIG_LEEK = FeatureUtils.register("tofucraft:big_leek", TofuFeatures.BIG_LEEK, RandomFeatureConfiguration.NONE);
+	public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> BIG_LEEK = FeatureUtils.register("tofucraft:big_leek", TofuFeatures.BIG_LEEK.get(), RandomFeatureConfiguration.NONE);
 
-	public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> TOFU_BUILDING = FeatureUtils.register("tofucraft:tofu_building", TofuFeatures.TOFU_BUILDING, new BlockStateConfiguration(TofuBlocks.TOFU_TERRAIN.get().defaultBlockState()));
+	public static final Holder<ConfiguredFeature<BlockStateConfiguration, ?>> TOFU_BUILDING = FeatureUtils.register("tofucraft:tofu_building", TofuFeatures.TOFU_BUILDING.get(), new BlockStateConfiguration(TofuBlocks.TOFU_TERRAIN.get().defaultBlockState()));
 
 	public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> ZUNDA_TOFU_MUSHROOM = FeatureUtils.register("tofucraft:zunda_tofu_mushroom", Feature.FLOWER, grassPatch(BlockStateProvider.simple(TofuBlocks.ZUNDATOFU_MUSHROOM.get()), 32));
 
-	public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> BIG_ZUNDA_TOFU_MUSHUROOM = FeatureUtils.register("tofucraft:big_zunda_tofu_mushroom", TofuFeatures.BIG_ZUNDA_TOFU_MUSHROOM, RandomFeatureConfiguration.NONE);
+	public static final Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> BIG_ZUNDA_TOFU_MUSHUROOM = FeatureUtils.register("tofucraft:big_zunda_tofu_mushroom", TofuFeatures.BIG_ZUNDA_TOFU_MUSHROOM.get(), RandomFeatureConfiguration.NONE);
 
 
 	public static final Holder<PlacedFeature> TOFU_CHECKED = PlacementUtils.register("tofucraft:tofu_checked", ModTreeFeatures.TOFU_TREE, PlacementUtils.filteredByBlockSurvival(TofuBlocks.SAPLING_TOFU.get()));

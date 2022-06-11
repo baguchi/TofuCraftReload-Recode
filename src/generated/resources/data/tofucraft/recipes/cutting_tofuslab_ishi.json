@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
+  "count": 1,
   "ingredient": {
     "item": "tofucraft:blocktofuishi"
   },
-  "result": "tofucraft:tofuslab_ishi",
-  "count": 1
+  "result": "tofucraft:tofuslab_ishi"
 }

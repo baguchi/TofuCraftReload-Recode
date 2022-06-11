@@ -3,13 +3,12 @@ package baguchan.tofucraft.world.gen.feature;
 import baguchan.tofucraft.registry.TofuTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
-
-import java.util.Random;
 
 public class TofuBuildingFeature extends Feature<BlockStateConfiguration> {
 	public TofuBuildingFeature(Codec<BlockStateConfiguration> codec) {
@@ -20,7 +19,7 @@ public class TofuBuildingFeature extends Feature<BlockStateConfiguration> {
 	public boolean place(FeaturePlaceContext<BlockStateConfiguration> p_159471_) {
 		BlockPos blockpos = p_159471_.origin();
 		WorldGenLevel worldgenlevel = p_159471_.level();
-		Random random = p_159471_.random();
+		RandomSource random = p_159471_.random();
 
 		BlockStateConfiguration blockstateconfiguration;
 		for (blockstateconfiguration = p_159471_.config(); blockpos.getY() > worldgenlevel.getMinBuildHeight() + 3; blockpos = blockpos.below()) {

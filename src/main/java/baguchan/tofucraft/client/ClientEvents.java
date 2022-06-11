@@ -37,7 +37,7 @@ public class ClientEvents {
 	}
 
 	public static void renderAetherPortalOverlay(RenderGameOverlayEvent.Post event, Minecraft mc, Window window, TofuLivingCapability handler) {
-		float timeInPortal = handler.getPrevPortalAnimTime() + (handler.getPortalAnimTime() - handler.getPrevPortalAnimTime()) * event.getPartialTicks();
+		float timeInPortal = handler.getPrevPortalAnimTime() + (handler.getPortalAnimTime() - handler.getPrevPortalAnimTime()) * event.getPartialTick();
 		if (timeInPortal > 0.0F) {
 			if (timeInPortal < 1.0F) {
 				timeInPortal = timeInPortal * timeInPortal;

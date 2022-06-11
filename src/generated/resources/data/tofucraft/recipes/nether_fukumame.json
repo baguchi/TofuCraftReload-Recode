@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "tofucraft:seeds_soybeans_nether"
+    },
+    "X": {
+      "item": "minecraft:bowl"
+    }
+  },
   "pattern": [
     "###",
     "###",
     " X "
   ],
-  "key": {
-    "X": {
-      "item": "minecraft:bowl"
-    },
-    "#": {
-      "item": "tofucraft:seeds_soybeans_nether"
-    }
-  },
   "result": {
     "item": "tofucraft:nether_fukumame"
   }

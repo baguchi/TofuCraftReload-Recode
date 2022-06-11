@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_bars"
+    },
+    "X": {
+      "tag": "forge:rods/wooden"
+    }
+  },
   "pattern": [
     "#",
     "X",
     "X"
   ],
-  "key": {
-    "X": {
-      "tag": "forge:rods/wooden"
-    },
-    "#": {
-      "item": "minecraft:iron_bars"
-    }
-  },
   "result": {
     "item": "tofucraft:tofuscoop"
   }

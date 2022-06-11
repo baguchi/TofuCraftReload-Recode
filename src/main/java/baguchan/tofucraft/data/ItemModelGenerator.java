@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.WallBlock;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
@@ -279,8 +280,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	public ItemModelBuilder torchItem(Block item) {
-		return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/generated"))
-				.texture("layer0", modLoc("block/" + item.getRegistryName().getPath()));
+		return withExistingParent(ForgeRegistries.BLOCKS.getKey(item).getPath(), mcLoc("item/generated"))
+				.texture("layer0", modLoc("block/" + ForgeRegistries.BLOCKS.getKey(item).getPath()));
 	}
 
 	private ItemModelBuilder generated(String name, ResourceLocation... layers) {
@@ -292,7 +293,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder singleTexTool(Item item) {
-		return tool(item.getRegistryName().getPath(), prefix("item/" + item.getRegistryName().getPath()));
+		return tool(ForgeRegistries.ITEMS.getKey(item).getPath(), prefix("item/" + ForgeRegistries.ITEMS.getKey(item).getPath()));
 	}
 
 	private ItemModelBuilder tool(String name, ResourceLocation... layers) {
@@ -304,7 +305,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	private ItemModelBuilder singleTex(ItemLike item) {
-		return generated(item.asItem().getRegistryName().getPath(), prefix("item/" + item.asItem().getRegistryName().getPath()));
+		return generated(ForgeRegistries.ITEMS.getKey(item.asItem()).getPath(), prefix("item/" + ForgeRegistries.ITEMS.getKey(item.asItem()).getPath()));
 	}
 
 	private ItemModelBuilder bowItem(String name, ResourceLocation... layers) {
@@ -316,23 +317,23 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	private void woodenButton(Block button, String variant) {
-		getBuilder(button.getRegistryName().getPath())
+		getBuilder(ForgeRegistries.BLOCKS.getKey(button).getPath())
 				.parent(getExistingFile(mcLoc("block/button_inventory")))
 				.texture("texture", "block/wood/planks_" + variant + "_0");
 	}
 
 	private void woodenFence(Block fence, String variant) {
-		getBuilder(fence.getRegistryName().getPath())
+		getBuilder(ForgeRegistries.BLOCKS.getKey(fence).getPath())
 				.parent(getExistingFile(mcLoc("block/fence_inventory")))
 				.texture("texture", "block/wood/planks_" + variant + "_0");
 	}
 
 	public ItemModelBuilder wall(Supplier<? extends WallBlock> wall, Supplier<? extends Block> fullBlock) {
-		return wallInventory(wall.get().getRegistryName().getPath(), texture(blockName(fullBlock.get())));
+		return wallInventory(ForgeRegistries.BLOCKS.getKey(wall.get()).getPath(), texture(blockName(fullBlock.get())));
 	}
 
 	private void toBlock(Block b) {
-		toBlockModel(b, b.getRegistryName().getPath());
+		toBlockModel(b, ForgeRegistries.BLOCKS.getKey(b).getPath());
 	}
 
 	private void toBlockModel(Block b, String model) {
@@ -340,7 +341,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	private void toBlockModel(Block b, ResourceLocation model) {
-		withExistingParent(b.getRegistryName().getPath(), model);
+		withExistingParent(ForgeRegistries.BLOCKS.getKey(b).getPath(), model);
 	}
 
 	public ItemModelBuilder itemBlockFlat(Block block) {
@@ -353,11 +354,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	public ItemModelBuilder egg(Item item) {
-		return withExistingParent(item.getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
+		return withExistingParent(ForgeRegistries.ITEMS.getKey(item).getPath(), mcLoc("item/template_spawn_egg"));
 	}
 
 	public String blockName(Block block) {
-		return block.getRegistryName().getPath();
+		return ForgeRegistries.BLOCKS.getKey(block).getPath();
 	}
 
 	@Override
