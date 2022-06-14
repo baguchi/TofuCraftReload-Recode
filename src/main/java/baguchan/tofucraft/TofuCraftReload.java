@@ -80,6 +80,9 @@ public class TofuCraftReload {
 		TofuProfessions.PROFESSIONS.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuContainers.MENU_TYPES.register(modBus);
+		TofuBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modBus);
+		TofuDimensionSettings.NOISE_GENERATORS.register(modBus);
+		TofuDimensionSettings.DIMENSION_TYPES.register(modBus);
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
 		TofuFeatures.FEATURES.register(modBus);
 		TofuSounds.SOUND_EVENTS.register(modBus);
@@ -99,7 +102,6 @@ public class TofuCraftReload {
 		ModTreeFeatures.init();
 		TofuWorldFeatures.init();
 		TofuWorldPlacements.init();
-		TofuNoiseGeneratorSettings.init();
 		TofuEnergyMap.init();
 		TofuBiomes.init();
 		TofuConfiguredWorldCarvers.init();
