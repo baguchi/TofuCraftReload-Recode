@@ -1,4 +1,4 @@
-// 1.19	2022-06-11T20:56:41.0804959	Recipes
+// 1.19	2022-06-14T14:04:38.8844378	Recipes
 8224d4e3154d47211ba8c3b84b48cb89ac139b7d data/tofucraft/advancements/recipes/tofucraft/antenna_basic.json
 d7d7be0bd8fd8d5ed45a09be34844708e9dfdc99 data/tofucraft/advancements/recipes/tofucraft/barrel_miso.json
 8a6b68a85cbdf19f9aba87ae83dce547e42f9240 data/tofucraft/advancements/recipes/tofucraft/barrel_misotofu.json
@@ -117,7 +117,6 @@ d0d88c37bb87003d4445e346884e3c685fb4373e data/tofucraft/advancements/recipes/tof
 2ca5f54317b04d3e634fda1cb0b9654093f5b582 data/tofucraft/advancements/recipes/tofucraft/soymilk_pumpkin.json
 17a840b2946c5ccef6b489a13548277f1f7a6cf6 data/tofucraft/advancements/recipes/tofucraft/soystick.json
 af3cb0883cf027c82b992384b6b082e598218372 data/tofucraft/advancements/recipes/tofucraft/soy_chocolate.json
-225d5212bee2d0c9fbc3846ee897c29f5fc7e7fe data/tofucraft/advancements/recipes/tofucraft/tf_aggregator.json
 4b61c246a4c51d639d4024f71319366aa76967d0 data/tofucraft/advancements/recipes/tofucraft/tf_capacitor.json
 60fb060e52ba7f9e7d5efddb6e24c0e7e8b59bca data/tofucraft/advancements/recipes/tofucraft/tf_circuit.json
 9408f474629d21b98c3d6efa0934b6a58aa442e6 data/tofucraft/advancements/recipes/tofucraft/tf_coil.json
@@ -320,7 +319,6 @@ dddca18198177793f69fc26485689d85525325f6 data/tofucraft/recipes/soymilk_apple.js
 57398f01def629f6eeb371b60da3121dfcd23255 data/tofucraft/recipes/soymilk_pumpkin.json
 51e49f82820e21fd2f03769569db5752df28c2cd data/tofucraft/recipes/soystick.json
 eae74574a07b6760d4d5398d832cd71250aea5f5 data/tofucraft/recipes/soy_chocolate.json
-fe8a288b8fd2331fdcbc4910c3e4cef5d45c554c data/tofucraft/recipes/tf_aggregator.json
 a90908c2ad9ca6551b3679fef966bb663220624f data/tofucraft/recipes/tf_capacitor.json
 ac5c43a8a54a076ec7f685f6e74b100116bbc0af data/tofucraft/recipes/tf_circuit.json
 b4c3c70806f2928aea1e8d0ff7b8661164c545fd data/tofucraft/recipes/tf_coil.json
