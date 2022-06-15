@@ -73,6 +73,7 @@ public class TofuCraftReload {
 		TofuCarvers.WORLD_CARVER.register(modBus);
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuEntityTypes.ENTITIES.register(modBus);
+		TofuFluidTypes.FLUID_TYPES.register(modBus);
 		TofuFluids.FLUIDS.register(modBus);
 
 		TofuItems.ITEMS.register(modBus);
