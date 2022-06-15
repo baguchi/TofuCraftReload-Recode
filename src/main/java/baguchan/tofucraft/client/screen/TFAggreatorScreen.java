@@ -2,8 +2,10 @@ package baguchan.tofucraft.client.screen;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.inventory.TFAggregatorMenu;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -44,17 +46,18 @@ public class TFAggreatorScreen extends AbstractContainerScreen<TFAggregatorMenu>
     protected void renderBg(PoseStack ms, float partialTicks, int mouseX, int mouseY) {
         // Render UI background
         if (this.minecraft == null) {
-			return;
-		}
-        /*RenderUtils.setup(texture);
+            return;
+        }
+        RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
+        RenderSystem.setShaderTexture(0, texture);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         this.blit(ms, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
         // Render progress arrow
         int l = this.menu.getProgressionRoll();
         this.blit(ms, this.leftPos + 74, this.topPos + 31, 176, 0, l + 1, 17);
         int heightInd = (int) (55.0F * menu.getTFEnergy() / menu.getTFMaxEnergy());
         if (heightInd > 0)
-            this.blit(ms, this.leftPos + 18, this.topPos + 65 - heightInd, 176, 71-heightInd, 8, heightInd);
-   */
-	}
+            this.blit(ms, this.leftPos + 18, this.topPos + 65 - heightInd, 176, 71 - heightInd, 8, heightInd);
+    }
 
 }

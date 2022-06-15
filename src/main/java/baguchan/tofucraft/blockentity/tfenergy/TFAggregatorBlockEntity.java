@@ -4,6 +4,9 @@ import baguchan.tofucraft.blockentity.tfenergy.base.WorkerBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFAggregatorMenu;
 import baguchan.tofucraft.recipe.AggregatorRecipe;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
+import baguchan.tofucraft.registry.TofuRecipes;
+import baguchan.tofucraft.utils.RecipeHelper;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,13 +14,19 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -26,7 +35,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -98,7 +106,7 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
 
         if (blockEntity.hasInput()) {
             Optional<AggregatorRecipe> recipe = blockEntity
-                    .getMatchingRecipe(new RecipeWrapper(blockEntity.inventory));
+                    .getMatchingRecipe(blockEntity.inventory);
             if (recipe.isPresent() && blockEntity.canWork(recipe.get())) {
                 didInventoryChange = blockEntity.processRecipe(recipe.get());
             } else {
@@ -120,30 +128,34 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
         return false;
     }
 
-    private Optional<AggregatorRecipe> getMatchingRecipe(RecipeWrapper inventoryWrapper) {
+    private Optional<AggregatorRecipe> getMatchingRecipe(ItemStackHandler inventoryWrapper) {
         if (level == null) {
             return Optional.empty();
         }
 
-        //TODO when mmlib is done. do it
-        /*if (lastRecipeID != null) {
-            Recipe<RecipeWrapper> recipe = level.getRecipeManager().getAllRecipesFor(TofuRecipes.RECIPETYPE_AGGREGATOR).stream()
-                    .filter(now -> now.getId().equals(lastRecipeID)).findFirst().get();
-            if (recipe instanceof AggregatorRecipe) {
-                if (recipe.matches(inventoryWrapper, level)) {
-                    return Optional.of((AggregatorRecipe) recipe);
+        final RecipeManager manager = RecipeHelper.getManager();
+
+
+        if (lastRecipeID != null) {
+            Recipe<?> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
+                return recipe.getType() == TofuRecipes.RECIPETYPE_AGGREGATOR && recipe.getId().equals(lastRecipeID);
+            }).findFirst().get();
+            if (tofuRecipe instanceof AggregatorRecipe) {
+                if (tofuRecipe.getIngredients().contains(inventoryWrapper.getStackInSlot(0))) {
+                    return Optional.of((AggregatorRecipe) tofuRecipe);
                 }
             }
         }
 
         if (checkNewRecipe) {
-            Optional<AggregatorRecipe> recipe = level.getRecipeManager().getRecipeFor(TofuRecipes.RECIPETYPE_AGGREGATOR,
-                    inventoryWrapper, level);
-            if (recipe.isPresent()) {
-                lastRecipeID = recipe.get().getId();
-                return recipe;
+            Optional<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
+                return recipe.getType() == TofuRecipes.RECIPETYPE_AGGREGATOR && recipe.getId().equals(lastRecipeID);
+            }).findFirst();
+            if (tofuRecipe.isPresent()) {
+                lastRecipeID = tofuRecipe.get().getId();
+                return Optional.of((AggregatorRecipe) tofuRecipe.get());
             }
-        }*/
+        }
 
         checkNewRecipe = false;
         return Optional.empty();
@@ -153,7 +165,7 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
         if(this.isEnergyEmpty())
             return false;
         if (hasInput()) {
-            ItemStack resultStack = ItemStack.EMPTY;
+            ItemStack resultStack = recipe.getResultItem();
             if (resultStack.isEmpty()) {
                 return false;
             } else {
@@ -180,28 +192,30 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
 
         ++recipeTime;
         this.drain(10, false);
-        recipeTimeTotal = 0;
+        recipeTimeTotal = recipe.getRecipeTime();
         if (recipeTime < recipeTimeTotal) {
             return false;
         }
 
         recipeTime = 0;
 
-        ItemStack resultStack = ItemStack.EMPTY;
+        ItemStack resultStack = recipe.getResultItem();
         ItemStack outStack = inventory.getStackInSlot(1);
         if (outStack.isEmpty()) {
             inventory.setStackInSlot(1, resultStack.copy());
         } else if (outStack.sameItem(resultStack)) {
             outStack.grow(resultStack.getCount());
         }
-        //trackRecipeExperience(recipe);
+        trackRecipeExperience(recipe);
 
         ItemStack slotStack = inventory.getStackInSlot(0);
         if (slotStack.hasContainerItem()) {
             double x = worldPosition.getX() + 0.5;
             double y = worldPosition.getY() + 0.7;
             double z = worldPosition.getZ() + 0.5;
-            //LevelUtils.spawnItemEntity(level, inventory.getStackInSlot(0).getContainerItem(), x, y, z, 0F, 0.25F, 0F);
+
+            ItemEntity itemEntity = new ItemEntity(level, x, y, z, inventory.getStackInSlot(0).getContainerItem(), 0F, 0.25F, 0F);
+            level.addFreshEntity(itemEntity);
         }
         if (!slotStack.isEmpty()) {
             slotStack.shrink(1);
@@ -220,15 +234,28 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
     }
 
     public void clearUsedRecipes(Player player) {
-        grantStoredRecipeExperience(player.level, player.position());
-        experienceTracker.clear();
+        if (player instanceof ServerPlayer) {
+            grantStoredRecipeExperience((ServerLevel) player.level, player.position());
+            experienceTracker.clear();
+        }
+
     }
 
-    public void grantStoredRecipeExperience(Level world, Vec3 pos) {
-        /*for (Object2IntMap.Entry<ResourceLocation> entry : experienceTracker.object2IntEntrySet()) {
-            world.getRecipeManager().byKey(entry.getKey()).ifPresent(recipe -> LevelUtils.splitAndSpawnExperience(world,
-                    pos, entry.getIntValue(), ((AggregatorRecipe) recipe).getExperience()));
-        }*/
+    public void grantStoredRecipeExperience(ServerLevel world, Vec3 pos) {
+        for (Object2IntMap.Entry<ResourceLocation> entry : experienceTracker.object2IntEntrySet()) {
+            world.getRecipeManager().byKey(entry.getKey()).ifPresent(recipe -> createExperience(world,
+                    pos, entry.getIntValue(), 1));
+        }
+    }
+
+    private static void createExperience(ServerLevel p_154999_, Vec3 p_155000_, int p_155001_, float p_155002_) {
+        int i = Mth.floor((float) p_155001_ * p_155002_);
+        float f = Mth.frac((float) p_155001_ * p_155002_);
+        if (f != 0.0F && Math.random() < (double) f) {
+            ++i;
+        }
+
+        ExperienceOrb.award(p_154999_, p_155000_, i);
     }
 
 

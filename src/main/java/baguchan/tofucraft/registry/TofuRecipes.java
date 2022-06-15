@@ -13,17 +13,17 @@ public class TofuRecipes {
 	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, TofuCraftReload.MODID);
 
 	public static final RecipeType<HardenRecipe> RECIPETYPE_HARDER = register("tofucraft:harder");
-	public static final RegistryObject<RecipeSerializer<?>> RECIPE_HARDER = RECIPE_SERIALIZERS.register("harder", () -> new HardenSerializer());
+	public static final RegistryObject<RecipeSerializer<?>> RECIPE_HARDER = RECIPE_SERIALIZERS.register("harder", HardenSerializer::new);
 
 	public static final RecipeType<BitternRecipe> RECIPETYPE_BITTERN = register("tofucraft:bittern");
-	public static final RegistryObject<RecipeSerializer<?>> RECIPE_BITTERN = RECIPE_SERIALIZERS.register("bittern", () -> new BitternSerializer());
+	public static final RegistryObject<RecipeSerializer<?>> RECIPE_BITTERN = RECIPE_SERIALIZERS.register("bittern", BitternSerializer::new);
 
-	/*public static final RecipeType<AggregatorRecipe> RECIPETYPE_AGGREGATOR = register("tofucraft:aggregator");
-	public static final RegistryObject<AbstractRecipeSerializer<AggregatorRecipe>> RECIPE_AGGREGATOR = RECIPE_SERIALIZERS.register("aggregator",
-			() -> new AbstractRecipeSerializer<>(AggregatorRecipe.class));
-*/
+	public static final RecipeType<AggregatorRecipe> RECIPETYPE_AGGREGATOR = register("tofucraft:aggregator");
+	public static final RegistryObject<RecipeSerializer<?>> RECIPE_AGGREGATOR = RECIPE_SERIALIZERS.register("aggregator",
+			AggregatorSerializer::new);
+
 	public static final RecipeType<TofuConditionRecipe> RECIPETYPE_TOFU_CONDITION = register("tofucraft:tofu_condition");
-	public static final RegistryObject<RecipeSerializer<?>> RECIPE_TOFU_CONDITION = RECIPE_SERIALIZERS.register("tofu_condition", () -> new TofuConditionSerializer());
+	public static final RegistryObject<RecipeSerializer<?>> RECIPE_TOFU_CONDITION = RECIPE_SERIALIZERS.register("tofu_condition", TofuConditionSerializer::new);
 
 	static <T extends Recipe<?>> RecipeType<T> register(final String p_44120_) {
 		return new RecipeType<T>() {
