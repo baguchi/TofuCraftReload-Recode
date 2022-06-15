@@ -16,9 +16,9 @@ public class SoymilkFluidType extends FluidType {
 	@Override
 	public void initializeClient(Consumer<IFluidTypeRenderProperties> consumer) {
 		consumer.accept(new IFluidTypeRenderProperties() {
-			private static final ResourceLocation TEXTURE_STILL = new ResourceLocation(TofuCraftReload.MODID, "blocks/soymilk_still.png");
-			private static final ResourceLocation TEXTURE_FLOW = new ResourceLocation(TofuCraftReload.MODID, "blocks/soymilk_flowing.png");
-			private static final ResourceLocation TEXTURE_OVERLAY = new ResourceLocation(TofuCraftReload.MODID, "blocks/soymilk_overlay.png");
+			private static final ResourceLocation TEXTURE_STILL = new ResourceLocation(TofuCraftReload.MODID, "block/soymilk");
+			private static final ResourceLocation TEXTURE_FLOW = new ResourceLocation(TofuCraftReload.MODID, "block/soymilk_flow");
+			private static final ResourceLocation TEXTURE_OVERLAY = new ResourceLocation(TofuCraftReload.MODID, "block/soymilk_overlay");
 
 			@Override
 			public ResourceLocation getStillTexture() {
