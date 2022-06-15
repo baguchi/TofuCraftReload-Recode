@@ -1,12 +1,11 @@
 package baguchan.tofucraft.fluid;
 
-import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -21,7 +20,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.WaterFluid;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidType;
 
 public abstract class SoyMilkFluid extends WaterFluid {
 	public Fluid getFlowing() {
@@ -66,10 +65,9 @@ public abstract class SoyMilkFluid extends WaterFluid {
 		return 100.0F;
 	}
 
-	protected FluidAttributes createAttributes() {
-		return FluidAttributes.builder(new ResourceLocation(TofuCraftReload.MODID, "block/soymilk"), new ResourceLocation(TofuCraftReload.MODID, "block/soymilk_flow"))
-				.sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY)
-				.build(this);
+	@Override
+	public FluidType getFluidType() {
+		return TofuFluidTypes.SOYMILK.get();
 	}
 
 	public static class Flowing extends SoyMilkFluid {
