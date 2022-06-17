@@ -1,6 +1,27 @@
 package baguchan.tofucraft.compat.jei;
 
-/*
+
+import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.recipe.HardenRecipe;
+import com.mojang.blaze3d.vertex.PoseStack;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.drawable.IDrawableAnimated;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
+import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.Nullable;
+
 public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 
 	public static final ResourceLocation UID = new ResourceLocation(TofuCraftReload.MODID, "harden");
@@ -10,7 +31,7 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 	private final IDrawable icon;
 
 	public HardenCategory(IGuiHelper helper) {
-		title = new TranslatableComponent("tofucraft.jei.harden");
+		title = Component.translatable("tofucraft.jei.harden");
 		ResourceLocation backgroundImage = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/general_jei_recipe.png");
 		background = helper.createDrawable(backgroundImage, 16, 16, 144, 54);
 		icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Blocks.COBBLESTONE));
@@ -18,13 +39,8 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 	}
 
 	@Override
-	public ResourceLocation getUid() {
+	public @Nullable ResourceLocation getRegistryName(HardenRecipe recipe) {
 		return UID;
-	}
-
-	@Override
-	public Class<? extends HardenRecipe> getRecipeClass() {
-		return HardenRecipe.class;
 	}
 
 	@Override
@@ -64,8 +80,9 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 
 	}
 
+
 	@Override
-	public void draw(HardenRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY) {
-		arrow.draw(matrixStack, 72 - 17, 35 - 17);
+	public void draw(HardenRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
-}*/
+}
