@@ -249,7 +249,7 @@ public class TofuBlocks {
 					}
 				};
 			} else if (Objects.requireNonNull(block.get()) == TOFUCHEST.get()) {
-				return new BedItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab)) {
+				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab)) {
 					@Override
 					public void initializeClient(Consumer<IItemRenderProperties> consumer) {
 						consumer.accept(new IItemRenderProperties() {
@@ -260,6 +260,8 @@ public class TofuBlocks {
 						});
 					}
 				};
+			} else if (Objects.requireNonNull(block.get()) == TOFUCAKE.get()) {
+				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().stacksTo(1).tab(tab));
 			} else if (Objects.requireNonNull(block.get()) instanceof DoorBlock) {
 				return new DoubleHighBlockItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab));
 			} else {
