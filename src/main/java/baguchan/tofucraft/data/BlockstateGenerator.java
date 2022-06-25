@@ -37,6 +37,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.ZUNDATOFU.get());
 		simpleBlock(TofuBlocks.MISOTOFU.get());
 		simpleBlock(TofuBlocks.DRIEDTOFU.get());
+		simpleBlock(TofuBlocks.SCULK_BONE.get());
 
 		simpleBlock(TofuBlocks.HELLTOFU.get());
 		simpleBlock(TofuBlocks.HELLTOFU_BRICK.get());

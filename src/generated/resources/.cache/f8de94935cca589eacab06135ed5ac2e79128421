@@ -1,4 +1,4 @@
-// 1.19	2022-06-11T20:56:41.0794997	TofuCraftReload item and itemblock models
+// 1.19	2022-06-25T17:26:39.7243988	TofuCraftReload item and itemblock models
 66f804790cfbad9cfb207e2126d08f74ee8ea752 assets/tofucraft/models/item/antenna_basic.json
 6d23a3bf32c18a81fc3c9962417fc45551cb2ef8 assets/tofucraft/models/item/bittern_bottle.json
 0b54db281f31e7565c5939c3fc417e395cb3bea1 assets/tofucraft/models/item/blockleek.json
@@ -44,6 +44,8 @@ edc75fb57b431891476591301028d19182da27cc assets/tofucraft/models/item/nether_fuk
 3cad8a55e19253023474946f6bc527f1249a349b assets/tofucraft/models/item/salt.json
 a1907e2d0c809da2ac1bea453ec8996092b3595b assets/tofucraft/models/item/saltymelon.json
 cd3b71c79daa9810289b1bceaa84d0be172a67c1 assets/tofucraft/models/item/sapling_tofu.json
+7705156de33d1cfcce10c370e208e8fae5df850b assets/tofucraft/models/item/sculked_tofu_soul.json
+f652e791e5956022b9835aa3c4772c5730078297 assets/tofucraft/models/item/sculk_bone.json
 f6124be124ce30a8bb87e2e23a4401bb6ccf8fdd assets/tofucraft/models/item/seeds_soybeans.json
 d51853166388ab6227227146196840e6d304ea21 assets/tofucraft/models/item/seeds_soybeans_nether.json
 b06b3c9a08a6a907b81378b1fbeba84be959c60b assets/tofucraft/models/item/seeds_soybeans_soul.json

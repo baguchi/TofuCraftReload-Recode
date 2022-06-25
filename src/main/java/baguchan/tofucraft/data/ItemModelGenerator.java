@@ -38,6 +38,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.ZUNDATOFU.get());
 		toBlock(TofuBlocks.MISOTOFU.get());
 		toBlock(TofuBlocks.DRIEDTOFU.get());
+		toBlock(TofuBlocks.SCULK_BONE.get());
+		toBlock(TofuBlocks.SCULKED_TOFU_SOUL.get());
 
 		toBlock(TofuBlocks.HELLTOFU.get());
 		toBlock(TofuBlocks.HELLTOFU_BRICK.get());

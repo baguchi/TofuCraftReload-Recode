@@ -1,4 +1,4 @@
-// 1.19	2022-06-11T20:56:41.0834872	TofuCraftReload loot tables
+// 1.19	2022-06-25T17:26:39.7243988	TofuCraftReload loot tables
 7fde57aad7fc3dff80690533a116285cfe78a5ec data/tofucraft/loot_tables/blocks/antenna_basic.json
 eb40b5c1c677c7ae220c42b6fc2bbf96fc584ca2 data/tofucraft/loot_tables/blocks/barrel_miso.json
 a1192effaf6443d67f911b8917edf354b53a5ca1 data/tofucraft/loot_tables/blocks/barrel_misotofu.json
@@ -25,6 +25,8 @@ c2b431acad5522cb67fdc7f914472aad61b7f3ff data/tofucraft/loot_tables/blocks/ore_t
 ac98d1483d868032283cf7aabff099f9dd45d3c7 data/tofucraft/loot_tables/blocks/ore_tofu_diamond.json
 faf36ca1bd60a0b5f712e91015efb433d784c2ec data/tofucraft/loot_tables/blocks/salt_furnace.json
 fed107cfb9c7823d4bde08554e586ae9d599bba9 data/tofucraft/loot_tables/blocks/sapling_tofu.json
+f10e69bdd023f29db97dcd6c9fe8bb1d315e195f data/tofucraft/loot_tables/blocks/sculked_tofu_soul.json
+d5ebc0f11adac6a6c7ab0807a1a04eafd70ab5e1 data/tofucraft/loot_tables/blocks/sculk_bone.json
 6def77d377b8af6c833afbcd2c12fa07b363e187 data/tofucraft/loot_tables/blocks/soybean.json
 e41611eab44bbd1459db9bd2cd7e0b8115f12473 data/tofucraft/loot_tables/blocks/soybean_nether.json
 471f9c49164df81102b853b54efcf8593910fdb2 data/tofucraft/loot_tables/blocks/soybean_soul.json
