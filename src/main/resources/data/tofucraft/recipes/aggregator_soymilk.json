@@ -1,6 +1,6 @@
 {
   "type": "tofucraft:aggregator",
-  "ingredient": {
+  "process": {
     "item": "minecraft:glass_bottle"
   },
   "result": {
