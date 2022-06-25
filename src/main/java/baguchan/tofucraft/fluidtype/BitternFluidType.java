@@ -1,6 +1,7 @@
 package baguchan.tofucraft.fluidtype;
 
 import baguchan.tofucraft.TofuCraftReload;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.IFluidTypeRenderProperties;
 import net.minecraftforge.fluids.FluidType;
@@ -18,7 +19,7 @@ public class BitternFluidType extends FluidType {
 		consumer.accept(new IFluidTypeRenderProperties() {
 			private static final ResourceLocation TEXTURE_STILL = new ResourceLocation(TofuCraftReload.MODID, "block/bittern");
 			private static final ResourceLocation TEXTURE_FLOW = new ResourceLocation(TofuCraftReload.MODID, "block/bittern");
-			private static final ResourceLocation TEXTURE_OVERLAY = new ResourceLocation(TofuCraftReload.MODID, "block/bittern_overlay");
+			private static final ResourceLocation TEXTURE_OVERLAY = new ResourceLocation(TofuCraftReload.MODID, "textures/block/bittern_overlay.png");
 
 			@Override
 			public ResourceLocation getStillTexture() {
@@ -31,7 +32,7 @@ public class BitternFluidType extends FluidType {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getOverlayTexture() {
+			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
 				return TEXTURE_OVERLAY;
 			}
 		});
