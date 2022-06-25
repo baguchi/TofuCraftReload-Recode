@@ -10,12 +10,14 @@ import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
@@ -33,6 +35,9 @@ import net.minecraft.world.entity.ai.gossip.GossipContainer;
 import net.minecraft.world.entity.ai.gossip.GossipType;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.village.ReputationEventType;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.VillagerData;
@@ -43,13 +48,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.common.util.ITeleporter;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -57,6 +62,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Tofunian extends AbstractTofunian implements ReputationEventHandler {
+
 	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 
@@ -226,7 +232,16 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 		//validate job position
 		if (this.getTofunainJobBlock() != null && this.getRole() != Roles.TOFUNIAN) {
-			if (Roles.getJobBlock(this.level.getBlockState(this.getTofunainJobBlock()).getBlock()) == null) {
+			if (!Roles.getJobBlock(this.getRole().getPoiType()).contains(this.level.getBlockState(this.getTofunainJobBlock()))) {
+				if (this.level instanceof ServerLevel) {
+					//don't forget release poi
+					PoiManager poimanager = ((ServerLevel) this.level).getPoiManager();
+					if (poimanager.exists(this.getTofunainJobBlock(), (p_217230_) -> {
+						return true;
+					})) {
+						poimanager.release(this.getTofunainJobBlock());
+					}
+				}
 				this.setTofunainJobBlock(null);
 
 				if (this.getTofunainLevel() == 1 && this.getVillagerXp() == 0) {
@@ -714,20 +729,20 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public enum Roles implements IExtensibleEnum {
-		TOFUCOOK(Blocks.COMPOSTER), TOFUSMITH(Blocks.BLAST_FURNACE), SOYWORKER(Blocks.CAULDRON), TOFUNIAN(Blocks.AIR);
+		TOFUCOOK(PoiTypes.FARMER), TOFUSMITH(PoiTypes.ARMORER), SOYWORKER(PoiTypes.LEATHERWORKER), TOFUNIAN(null);
 
 		private static final Map<String, Roles> lookup;
-		private final Block block;
+		private final ResourceKey<PoiType> poitype;
 
 		static {
 			lookup = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, p_220362_0_ -> p_220362_0_));
 		}
 
-		private Roles(Block block) {
-			this.block = block;
+		private Roles(ResourceKey<PoiType> poitype) {
+			this.poitype = poitype;
 		}
 
-		public static Roles create(String name, Block block) {
+		public static Roles create(String name, ResourceKey<PoiType> poitype) {
 			throw new IllegalStateException("Enum not extended");
 		}
 
@@ -741,31 +756,54 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 
 		@Nullable
-		public static Roles get(Block blockIn) {
+		public static Roles getJob(ResourceKey<PoiType> poitypeIn) {
 			for (Roles role : values()) {
-				if (role != TOFUNIAN && role.getBlock() == blockIn)
+				if (role != TOFUNIAN && role.getPoiType() == poitypeIn) {
 					return role;
+				}
 			}
 			return null;
 		}
 
-		public static Block getJobBlock(Block blockIn) {
+		@Nullable
+		public static Roles get(BlockState blockState) {
 			for (Roles role : values()) {
-				if (role != TOFUNIAN && role.getBlock() == blockIn)
-					return blockIn;
+				Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(role.getPoiType());
+
+				if (role != TOFUNIAN && poiTypeHolder.isPresent() && poiTypeHolder.get().value().is(blockState)) {
+					return role;
+				}
 			}
 			return null;
 		}
 
-		public static Block getJobMatch(Roles roles, Block blockIn) {
-			if (roles != TOFUNIAN && roles.getBlock() == blockIn) {
-				return blockIn;
+		public static Set<BlockState> getJobBlock(ResourceKey<PoiType> poitypeIn) {
+			for (Roles role : values()) {
+				if (role != TOFUNIAN && role.getPoiType() == poitypeIn) {
+					Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(role.getPoiType());
+
+					if (poiTypeHolder.isPresent()) {
+						return poiTypeHolder.get().value().matchingStates();
+					}
+				}
 			}
 			return null;
 		}
 
-		public Block getBlock() {
-			return block;
+		public static Set<BlockState> getJobMatch(Roles roles, ResourceKey<PoiType> poitypeIn) {
+			if (roles != TOFUNIAN && roles.getPoiType() == poitypeIn) {
+				Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(roles.getPoiType());
+
+				if (poiTypeHolder.isPresent()) {
+					return poiTypeHolder.get().value().matchingStates();
+				}
+			}
+			return null;
+		}
+
+		@Nullable
+		public ResourceKey<PoiType> getPoiType() {
+			return poitype;
 		}
 	}
 

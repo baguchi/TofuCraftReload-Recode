@@ -6,7 +6,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class RestockGoal extends MoveToBlockGoal {
@@ -40,8 +39,7 @@ public class RestockGoal extends MoveToBlockGoal {
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		Block block = blockstate.getBlock();
-		return this.creature.getRole().getBlock() == block;
+		return Tofunian.Roles.getJobBlock(this.creature.getRole().getPoiType()).contains(blockstate);
 	}
 
 
