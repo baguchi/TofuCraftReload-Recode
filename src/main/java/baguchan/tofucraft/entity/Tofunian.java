@@ -643,7 +643,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@OnlyIn(Dist.CLIENT)
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 5) {
-			this.agreeAnimationState.startIfStopped(this.tickCount);
+			this.agreeAnimationState.start(this.tickCount);
 		} else if (p_70103_1_ == 12) {
 			this.addParticlesAroundSelf(ParticleTypes.HEART);
 		} else if (p_70103_1_ == 13) {
