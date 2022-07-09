@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/door_top_right_open",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "tofucraft:block/tofudoor_kinu_lower",
     "top": "tofucraft:block/tofudoor_kinu_upper"

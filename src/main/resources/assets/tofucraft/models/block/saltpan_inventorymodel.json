@@ -1,15 +1,42 @@
 {
-	"parent": "block/block",
-	"textures": {
-        "particle": "#dishtexture"
-    },
-	"elements":
-	[
-        {   "from": [ 0, 0, 0 ],
-            "to": [ 16, 1, 16 ],
-            "faces": {
-                "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#dishtexture", "cullface": "down" },
-                "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#dishtexture", "cullface": "up"   },
+  "parent": "block/block",
+  "render_type": "cutout",
+  "textures": {
+    "particle": "#dishtexture"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        1,
+        16
+      ],
+      "faces": {
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#dishtexture",
+          "cullface": "down"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#dishtexture",
+          "cullface": "up"
+        },
                 "north": { "uv": [ 0, 0, 16, 1  ], "texture": "#dishtexture" },
                 "south": { "uv": [ 0, 0, 16, 1  ], "texture": "#dishtexture" },
                 "west":  { "uv": [ 0, 0, 16, 1  ], "texture": "#dishtexture" },

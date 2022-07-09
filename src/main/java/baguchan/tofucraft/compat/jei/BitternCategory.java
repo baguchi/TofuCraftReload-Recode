@@ -1,29 +1,7 @@
 package baguchan.tofucraft.compat.jei;
 
 
-import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.recipe.BitternRecipe;
-import baguchan.tofucraft.recipe.FluidIngredient;
-import baguchan.tofucraft.registry.TofuItems;
-import com.mojang.blaze3d.vertex.PoseStack;
-import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.forge.ForgeTypes;
-import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
-import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.gui.drawable.IDrawableAnimated;
-import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
-import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.recipe.IFocusGroup;
-import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.RecipeType;
-import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Arrays;
-
+/*
 public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 
 	public static final ResourceLocation UID = new ResourceLocation(TofuCraftReload.MODID, "bittern");
@@ -83,3 +61,4 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
 }
+*/

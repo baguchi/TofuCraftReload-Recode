@@ -4,6 +4,7 @@
     "particle": "tofucraft:block/tofuladder_momen",
     "texture": "tofucraft:block/tofuladder_momen"
   },
+  "render_type": "cutout",
   "elements": [
     {
       "from": [

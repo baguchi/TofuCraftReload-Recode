@@ -112,7 +112,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS.get());
 
 		crossBlock(TofuBlocks.SAPLING_TOFU.get());
-		simpleBlock(TofuBlocks.LEAVES_TOFU.get());
+		simpleLeavesBlock(TofuBlocks.LEAVES_TOFU.get());
 
 		crossBlock(TofuBlocks.LEEK.get());
 
@@ -123,6 +123,14 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFUSLAB_EGG.get(), TofuBlocks.EGGTOFU.get());
 
 		crossBlock(TofuBlocks.ANTENNA_BASIC.get());
+	}
+
+	public ModelFile cubeLeavesAll(Block block) {
+		return models().cubeAll(name(block), blockTexture(block)).renderType("minecraft:cutout_mipped");
+	}
+
+	public void simpleLeavesBlock(Block block) {
+		simpleBlock(block, cubeLeavesAll(block));
 	}
 
 	public void torchBlock(Block block, Block wall) {
@@ -145,7 +153,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 	public void crossBlock(Block block) {
-		crossBlock(block, models().cross(name(block), texture(name(block))));
+		crossBlock(block, models().cross(name(block), texture(name(block))).renderType("minecraft:cutout"));
 	}
 
 	private void crossBlock(Block block, ModelFile model) {
@@ -166,7 +174,8 @@ public class BlockstateGenerator extends BlockStateProvider {
 	private ModelBuilder<?> door(String name, String model, ResourceLocation bottom, ResourceLocation top) {
 		return models().withExistingParent(name, "block/" + model)
 				.texture("bottom", bottom)
-				.texture("top", top);
+				.texture("top", top)
+				.renderType("minecraft:cutout");
 	}
 
 	private void doorBlockInternal(DoorBlock block, String baseName, ResourceLocation bottom, ResourceLocation top) {
@@ -209,6 +218,18 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 	public void trapdoor(Supplier<? extends TrapDoorBlock> block, String name) {
 		trapdoorBlock(block.get(), texture(name + "_trapdoor"), true);
+	}
+
+	public void trapdoor(TrapDoorBlock block, ResourceLocation texture, boolean orientable) {
+		trapdoorBlockInternal(block, name(block), texture, orientable);
+	}
+
+
+	private void trapdoorBlockInternal(TrapDoorBlock block, String baseName, ResourceLocation texture, boolean orientable) {
+		ModelFile bottom = orientable ? models().trapdoorOrientableBottom(baseName + "_bottom", texture) : models().trapdoorBottom(baseName + "_bottom", texture).renderType("minecraft:cutout");
+		ModelFile top = orientable ? models().trapdoorOrientableTop(baseName + "_top", texture) : models().trapdoorTop(baseName + "_top", texture).renderType("minecraft:cutout");
+		ModelFile open = orientable ? models().trapdoorOrientableOpen(baseName + "_open", texture) : models().trapdoorOpen(baseName + "_open", texture).renderType("minecraft:cutout");
+		trapdoorBlock(block, bottom, top, open, orientable);
 	}
 
 	protected ResourceLocation texture(String name) {

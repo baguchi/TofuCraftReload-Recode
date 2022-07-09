@@ -21,7 +21,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
-import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -239,10 +239,11 @@ public class TofuBlocks {
 			} else if (Objects.requireNonNull(block.get()) == TOFUBED.get()) {
 				return new BedItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab).stacksTo(1)) {
 					@Override
-					public void initializeClient(Consumer<IItemRenderProperties> consumer) {
-						consumer.accept(new IItemRenderProperties() {
+					public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+						super.initializeClient(consumer);
+						consumer.accept(new IClientItemExtensions() {
 							@Override
-							public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
+							public BlockEntityWithoutLevelRenderer getCustomRenderer() {
 								return new TofuBedBWLR();
 							}
 						});
@@ -251,10 +252,11 @@ public class TofuBlocks {
 			} else if (Objects.requireNonNull(block.get()) == TOFUCHEST.get()) {
 				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab)) {
 					@Override
-					public void initializeClient(Consumer<IItemRenderProperties> consumer) {
-						consumer.accept(new IItemRenderProperties() {
+					public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+						super.initializeClient(consumer);
+						consumer.accept(new IClientItemExtensions() {
 							@Override
-							public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
+							public BlockEntityWithoutLevelRenderer getCustomRenderer() {
 								return new TofuChestBWLR();
 							}
 						});
