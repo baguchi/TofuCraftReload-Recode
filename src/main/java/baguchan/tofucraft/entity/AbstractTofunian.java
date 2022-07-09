@@ -16,12 +16,6 @@ public abstract class AbstractTofunian extends AbstractVillager {
 		super(type, worldIn);
 	}
 
-	protected void shakeHead() {
-		setUnhappyCounter(40);
-		if (!this.level.isClientSide())
-			playSound(TofuSounds.TOFUNIAN_NO.get(), getSoundVolume(), getVoicePitch());
-	}
-
 	public void tick() {
 		super.tick();
 		if (getUnhappyCounter() > 0)

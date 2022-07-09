@@ -6,13 +6,13 @@ import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
 
 public class TofunianAnimation {
-	public static final AnimationDefinition TOFUNIAN_SUCCESS_TRADE = AnimationDefinition.Builder.withLength(2.5F)
+	public static final AnimationDefinition TOFUNIAN_AGREE_TRADE = AnimationDefinition.Builder.withLength(1.25F)
 			.addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION
-					, new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.4F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
-					, new Keyframe(0.5F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
-					, new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, 0.4F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
-					, new Keyframe(1.5F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
-					, new Keyframe(2.0F, KeyframeAnimations.degreeVec(0.0F, 0.4F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
-					, new Keyframe(2.5F, KeyframeAnimations.degreeVec(0.0F, 0.4F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)))
+					, new Keyframe(0.0F, KeyframeAnimations.degreeVec(32.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+					, new Keyframe(0.25F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+					, new Keyframe(0.5F, KeyframeAnimations.degreeVec(32.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+					, new Keyframe(0.75F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+					, new Keyframe(1.0F, KeyframeAnimations.degreeVec(32.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+					, new Keyframe(1.25F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)))
 			.build();
 }

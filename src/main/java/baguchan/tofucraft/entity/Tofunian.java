@@ -99,6 +99,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	private int tofunianLevel = 1;
 
+	public final AnimationState agreeAnimationState = new AnimationState();
+
 	public Tofunian(EntityType<? extends Tofunian> type, Level worldIn) {
 		super(type, worldIn);
 		((GroundPathNavigation) getNavigation()).setCanOpenDoors(true);
@@ -132,7 +134,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(10, new RandomStrollGoal(this, 0.9D));
 		this.goalSelector.addGoal(11, new MoveToGoal(this, 26.0D, 1.0D));
 		this.goalSelector.addGoal(12, new InteractGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(13, new ShareItemGoal(this, 0.9F));
+		this.goalSelector.addGoal(13, new ShareItemAndGossipGoal(this, 0.9F));
 		this.goalSelector.addGoal(14, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 		this.goalSelector.addGoal(15, new RandomLookAroundGoal(this));
 	}
@@ -461,6 +463,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	private void increaseMerchantCareer() {
 		setTofunainLevel(this.tofunianLevel + 1);
 		updateTrades();
+		this.level.broadcastEntityEvent(this, (byte) 5);
 	}
 
 	public void setTofunainLevel(int level) {
@@ -639,7 +642,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@OnlyIn(Dist.CLIENT)
 	public void handleEntityEvent(byte p_70103_1_) {
-		if (p_70103_1_ == 12) {
+		if (p_70103_1_ == 5) {
+			this.agreeAnimationState.startIfStopped(this.tickCount);
+		} else if (p_70103_1_ == 12) {
 			this.addParticlesAroundSelf(ParticleTypes.HEART);
 		} else if (p_70103_1_ == 13) {
 			this.addParticlesAroundSelf(ParticleTypes.ANGRY_VILLAGER);

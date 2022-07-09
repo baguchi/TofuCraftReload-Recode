@@ -1,5 +1,6 @@
 package baguchan.tofucraft.client.model;
 
+import baguchan.tofucraft.client.animation.definitions.TofunianAnimation;
 import baguchan.tofucraft.entity.Tofunian;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.ArmedModel;
@@ -51,6 +52,7 @@ public class TofunianModel<T extends Tofunian> extends HierarchicalModel<T> impl
 	}
 
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.root().getAllParts().forEach(ModelPart::resetPose);
 		this.head.yRot = netHeadYaw * 0.017453292F;
 		this.head.xRot = headPitch * 0.017453292F;
 
@@ -114,6 +116,7 @@ public class TofunianModel<T extends Tofunian> extends HierarchicalModel<T> impl
 			this.leftArm.visible = true;
 			this.body.visible = true;
 		}
+		this.animate(entity.agreeAnimationState, TofunianAnimation.TOFUNIAN_AGREE_TRADE, ageInTicks);
 	}
 
 	private ModelPart getArm(HumanoidArm p_102923_) {

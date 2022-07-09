@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity.ai;
 
 import baguchan.tofucraft.entity.Tofunian;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
@@ -14,7 +15,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
-public class ShareItemGoal extends Goal {
+public class ShareItemAndGossipGoal extends Goal {
 	private static final TargetingConditions PARTNER_TARGETING = TargetingConditions.forNonCombat().range(8.0D).ignoreInvisibilityTesting();
 
 	protected final Tofunian tofunian;
@@ -25,9 +26,11 @@ public class ShareItemGoal extends Goal {
 
 	protected Tofunian partner;
 
-	private boolean hasPassed;
+	private boolean needPassed;
 
-	public ShareItemGoal(Tofunian entity, double speed) {
+	private int tryingTalkingTick;
+
+	public ShareItemAndGossipGoal(Tofunian entity, double speed) {
 		this.tofunian = entity;
 		this.speedModifier = speed;
 		setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
@@ -39,7 +42,7 @@ public class ShareItemGoal extends Goal {
 			return false;
 		}
 		if (this.tofunian.level.isDay() && !this.tofunian.isBaby() && this.tofunian.hasExcessFood()) {
-			this.nextStartTick = this.tofunian.getRandom().nextInt(60) + 200;
+			this.nextStartTick = this.tofunian.getRandom().nextInt(200) + 200;
 			this.partner = getFreePartner();
 			return (this.partner != null);
 		}
@@ -47,11 +50,19 @@ public class ShareItemGoal extends Goal {
 	}
 
 	public boolean canContinueToUse() {
-		return (!this.hasPassed && this.partner != null && this.partner.isAlive());
+		return (this.tryingTalkingTick < 300 && this.partner != null && this.partner.isAlive());
 	}
 
 	public void start() {
-		this.hasPassed = false;
+		if (this.partner.wantsMoreFood()) {
+			this.needPassed = true;
+		}
+	}
+
+	@Override
+	public void stop() {
+		super.stop();
+		this.tryingTalkingTick = 0;
 	}
 
 	@Nullable
@@ -60,7 +71,7 @@ public class ShareItemGoal extends Goal {
 		double d0 = Double.MAX_VALUE;
 		Tofunian tofunian2 = null;
 		for (Tofunian tofunianEntity1 : list) {
-			if (tofunianEntity1.wantsMoreFood() && this.tofunian.distanceToSqr(tofunianEntity1) < d0) {
+			if (this.tofunian.distanceToSqr(tofunianEntity1) < d0) {
 				tofunian2 = tofunianEntity1;
 				d0 = this.tofunian.distanceToSqr(tofunianEntity1);
 			}
@@ -70,15 +81,31 @@ public class ShareItemGoal extends Goal {
 
 	public void tick() {
 		super.tick();
+		++this.tryingTalkingTick;
 		if (this.tofunian.hasLineOfSight(this.partner)) {
-			if (!this.hasPassed) {
+
+			if (this.tofunian.distanceToSqr(this.partner) < 6.0F) {
+				this.tofunian.getLookControl().setLookAt(this.partner, 30.0F, 30.0F);
+
+				if (this.needPassed) {
+
+					throwHalfStack(this.tofunian, Tofunian.FOOD_POINTS.keySet(), this.partner);
+					this.needPassed = false;
+				}
+
+				if (this.tofunian.getRandom().nextFloat() < 0.005F) {
+					this.tofunian.level.broadcastEntityEvent(this.tofunian, (byte) 5);
+				}
+
+				if (this.tofunian.level instanceof ServerLevel) {
+					this.tofunian.gossip((ServerLevel) this.tofunian.level, this.partner, this.tofunian.level.getGameTime());
+				}
+			} else {
 				this.tofunian.getNavigation().moveTo(this.partner, 2.0D);
 				this.tofunian.getLookControl().setLookAt(this.partner, 30.0F, 30.0F);
-				throwHalfStack(this.tofunian, Tofunian.FOOD_POINTS.keySet(), this.partner);
-				this.hasPassed = true;
 			}
 		} else {
-			this.hasPassed = true;
+			this.tofunian.getNavigation().moveTo(this.partner, 2.0D);
 		}
 	}
 
