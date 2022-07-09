@@ -41,7 +41,7 @@ public class ShareItemAndGossipGoal extends Goal {
 			this.nextStartTick--;
 			return false;
 		}
-		if (this.tofunian.level.isDay() && !this.tofunian.isBaby() && this.tofunian.hasExcessFood()) {
+		if (this.tofunian.level.isDay() && !this.tofunian.isBaby()) {
 			this.nextStartTick = this.tofunian.getRandom().nextInt(200) + 200;
 			this.partner = getFreePartner();
 			return (this.partner != null);
@@ -54,7 +54,7 @@ public class ShareItemAndGossipGoal extends Goal {
 	}
 
 	public void start() {
-		if (this.partner.wantsMoreFood()) {
+		if (this.partner.wantsMoreFood() && this.tofunian.hasExcessFood()) {
 			this.needPassed = true;
 		}
 	}
@@ -93,10 +93,6 @@ public class ShareItemAndGossipGoal extends Goal {
 					this.needPassed = false;
 					this.tofunian.level.broadcastEntityEvent(this.tofunian, (byte) 5);
 
-				} else {
-					if (this.tofunian.getRandom().nextFloat() < 0.01F) {
-						this.tofunian.level.broadcastEntityEvent(this.tofunian, (byte) 5);
-					}
 				}
 				if (this.tofunian.level instanceof ServerLevel) {
 					this.tofunian.gossip((ServerLevel) this.tofunian.level, this.partner, this.tofunian.level.getGameTime());
