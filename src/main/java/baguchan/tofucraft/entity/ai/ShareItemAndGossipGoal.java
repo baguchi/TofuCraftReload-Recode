@@ -91,21 +91,22 @@ public class ShareItemAndGossipGoal extends Goal {
 
 					throwHalfStack(this.tofunian, Tofunian.FOOD_POINTS.keySet(), this.partner);
 					this.needPassed = false;
-				}
-
-				if (this.tofunian.getRandom().nextFloat() < 0.005F) {
 					this.tofunian.level.broadcastEntityEvent(this.tofunian, (byte) 5);
-				}
 
+				} else {
+					if (this.tofunian.getRandom().nextFloat() < 0.01F) {
+						this.tofunian.level.broadcastEntityEvent(this.tofunian, (byte) 5);
+					}
+				}
 				if (this.tofunian.level instanceof ServerLevel) {
 					this.tofunian.gossip((ServerLevel) this.tofunian.level, this.partner, this.tofunian.level.getGameTime());
 				}
 			} else {
-				this.tofunian.getNavigation().moveTo(this.partner, 2.0D);
+				this.tofunian.getNavigation().moveTo(this.partner, 1.0D);
 				this.tofunian.getLookControl().setLookAt(this.partner, 30.0F, 30.0F);
 			}
 		} else {
-			this.tofunian.getNavigation().moveTo(this.partner, 2.0D);
+			this.tofunian.getNavigation().moveTo(this.partner, 1.0D);
 		}
 	}
 
