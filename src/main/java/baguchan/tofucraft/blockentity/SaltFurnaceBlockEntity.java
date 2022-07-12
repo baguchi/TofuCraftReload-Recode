@@ -191,13 +191,13 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 				saltFurnaceBlock.litDuration = saltFurnaceBlock.litTime;
 				if (saltFurnaceBlock.isLit()) {
 					flag1 = true;
-					if (itemstack.hasContainerItem()) {
-						saltFurnaceBlock.items.set(0, itemstack.getContainerItem());
+					if (itemstack.hasCraftingRemainingItem()) {
+						saltFurnaceBlock.items.set(0, itemstack.getCraftingRemainingItem());
 					} else if (!itemstack.isEmpty()) {
 						Item item = itemstack.getItem();
 						itemstack.shrink(1);
 						if (itemstack.isEmpty())
-							saltFurnaceBlock.items.set(0, itemstack.getContainerItem());
+							saltFurnaceBlock.items.set(0, itemstack.getCraftingRemainingItem());
 					}
 				}
 			}

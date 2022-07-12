@@ -16,7 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TofuBlockEntitys {
-	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, TofuCraftReload.MODID);
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, TofuCraftReload.MODID);
 
 	public static final RegistryObject<BlockEntityType<TofuBedBlockEntity>> TOFUBED = BLOCK_ENTITIES.register("tofubed", () -> register("tofucraft:tofubed", BlockEntityType.Builder.of(TofuBedBlockEntity::new, TofuBlocks.TOFUBED.get())));
 	public static final RegistryObject<BlockEntityType<TofuChestBlockEntity>> TOFUCHEST = BLOCK_ENTITIES.register("tofuchest", () -> register("tofucraft:tofuchest", BlockEntityType.Builder.of(TofuChestBlockEntity::new, TofuBlocks.TOFUCHEST.get())));

@@ -21,7 +21,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuEntityTypes {
-	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, TofuCraftReload.MODID);
+	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, TofuCraftReload.MODID);
 
 	public static final RegistryObject<EntityType<Tofunian>> TOFUNIAN = ENTITIES.register("tofunian", () -> EntityType.Builder.of(Tofunian::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.2F).build("tofucraft:tofunian"));

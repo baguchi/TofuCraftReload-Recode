@@ -209,12 +209,12 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
         trackRecipeExperience(recipe);
 
         ItemStack slotStack = inventory.getStackInSlot(0);
-        if (slotStack.hasContainerItem()) {
+        if (slotStack.hasCraftingRemainingItem()) {
             double x = worldPosition.getX() + 0.5;
             double y = worldPosition.getY() + 0.7;
             double z = worldPosition.getZ() + 0.5;
 
-            ItemEntity itemEntity = new ItemEntity(level, x, y, z, inventory.getStackInSlot(0).getContainerItem(), 0F, 0.25F, 0F);
+            ItemEntity itemEntity = new ItemEntity(level, x, y, z, inventory.getStackInSlot(0).getCraftingRemainingItem(), 0F, 0.25F, 0F);
             level.addFreshEntity(itemEntity);
         }
         if (!slotStack.isEmpty()) {

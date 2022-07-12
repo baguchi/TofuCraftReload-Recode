@@ -6,7 +6,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -51,8 +51,8 @@ public class TofuNetwork {
 	}
 
 	@SubscribeEvent
-	public static void onUnloadLevel(WorldEvent.Unload event) {
-		LevelAccessor world = event.getWorld();
+	public static void onUnloadLevel(LevelEvent.Unload event) {
+		LevelAccessor world = event.getLevel();
 		for (String uid : toUUIDs(Instance.getTEWithinDim(world.dimensionType()))) {
 			//It is a world unload, so isSystem is here to prevent bugs from misdetailed event.
 			Instance.unload(uid, true);

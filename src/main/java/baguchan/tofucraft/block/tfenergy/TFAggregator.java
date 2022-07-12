@@ -48,7 +48,7 @@ public class TFAggregator extends BaseEntityBlock {
         if (!world.isClientSide) {
             BlockEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof TFAggregatorBlockEntity blockEntity) {
-                NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
+                NetworkHooks.openScreen((ServerPlayer) player, blockEntity, pos);
             }
         }
         return InteractionResult.SUCCESS;

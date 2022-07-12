@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 public class TofuProfessions {
-	public static final DeferredRegister<VillagerProfession> PROFESSIONS = DeferredRegister.create(ForgeRegistries.PROFESSIONS, TofuCraftReload.MODID);
+	public static final DeferredRegister<VillagerProfession> PROFESSIONS = DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, TofuCraftReload.MODID);
 
 	public static final RegistryObject<VillagerProfession> TOFU_CRAFTSMAN = register("tofu_craftsman", TofuPoiTypes.TOFU_CRAFTSMAN, ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_LEATHERWORKER);
 

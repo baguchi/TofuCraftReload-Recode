@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.crafting.NBTIngredient;
+import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.lang.reflect.Constructor;
@@ -37,7 +37,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		stack.setTag(nbt);
 
 		try {
-			Constructor<NBTIngredient> constructor = NBTIngredient.class.getDeclaredConstructor(ItemStack.class);
+			Constructor<CompoundIngredient> constructor = CompoundIngredient.class.getDeclaredConstructor(ItemStack.class);
 
 			constructor.setAccessible(true);
 

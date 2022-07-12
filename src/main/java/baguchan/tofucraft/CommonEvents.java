@@ -26,8 +26,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.village.VillageSiegeEvent;
-import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -54,7 +54,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onEntitySpawn(LivingSpawnEvent event) {
-		LivingEntity livingEntity = event.getEntityLiving();
+		LivingEntity livingEntity = event.getEntity();
 		if (!livingEntity.level.isClientSide())
 			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
 				SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(livingEntity, cap.getSoyHealthLevel(), false);
@@ -63,8 +63,8 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onUpdate(LivingEvent.LivingUpdateEvent event) {
-		LivingEntity livingEntity = event.getEntityLiving();
+	public static void onUpdate(LivingEvent.LivingTickEvent event) {
+		LivingEntity livingEntity = event.getEntity();
 		if (!livingEntity.level.isClientSide()) {
 			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
 				cap.tick(livingEntity);
@@ -77,20 +77,20 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-		Player player = event.getPlayer();
+		Player player = event.getEntity();
 		if (player instanceof ServerPlayer)
 			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new SoyMilkDrinkedMessage(player, handler.getSoyHealthLevel(), false)));
 	}
 
 	@SubscribeEvent
 	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
-		Player playerEntity = event.getPlayer();
+		Player playerEntity = event.getEntity();
 		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel(), false)));
 	}
 
 	/*@SubscribeEvent
 	public static void onFluidPlaceEvent(BlockEvent.FluidPlaceBlockEvent event) {
-		FluidState fluidState = event.getWorld().getFluidState(event.getLiquidPos());
+		FluidState fluidState = event.getLevel().getFluidState(event.getLiquidPos());
 		if (fluidState.getType() == TofuFluids.SOYMILK || fluidState.getType() == TofuFluids.SOYMILK_FLOW)
 			event.setNewState(TofuBlocks.TOFU_TERRAIN.defaultBlockState());
 	}*/
@@ -99,14 +99,14 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void worldLoad(WorldEvent.Load evt) {
-		if (!evt.getWorld().isClientSide() && evt.getWorld() instanceof ServerWorld)
-			TRAVELER_TOFUNIAN_SPAWNER_MAP.put((ServerWorld) evt.getWorld(), new TravelerTofunianSpawner((ServerWorld) evt.getWorld()));
+		if (!evt.getLevel().isClientSide() && evt.getLevel() instanceof ServerWorld)
+			TRAVELER_TOFUNIAN_SPAWNER_MAP.put((ServerWorld) evt.getLevel(), new TravelerTofunianSpawner((ServerWorld) evt.getLevel()));
 	}
 
 	@SubscribeEvent
 	public static void worldUnload(WorldEvent.Unload evt) {
-		if (!evt.getWorld().isClientSide() && evt.getWorld() instanceof ServerWorld)
-			TRAVELER_TOFUNIAN_SPAWNER_MAP.remove(evt.getWorld());
+		if (!evt.getLevel().isClientSide() && evt.getLevel() instanceof ServerWorld)
+			TRAVELER_TOFUNIAN_SPAWNER_MAP.remove(evt.getLevel());
 	}
 
 	@SubscribeEvent
@@ -125,8 +125,8 @@ public class CommonEvents {
 	 * */
 	@SubscribeEvent
 	public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
-		LivingEntity livingEntity = event.getEntityLiving();
-		LevelAccessor level = event.getWorld();
+		LivingEntity livingEntity = event.getEntity();
+		LevelAccessor level = event.getLevel();
 		if (livingEntity instanceof Enemy) {
 			if (event.getSpawnReason() != MobSpawnType.SPAWNER && event.getSpawnReason() != MobSpawnType.EVENT && event.getSpawnReason() != MobSpawnType.BREEDING && event.getSpawnReason() != MobSpawnType.PATROL) {
 				if (level instanceof ServerLevel) {
@@ -147,7 +147,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onCheckZombieSiege(VillageSiegeEvent event) {
 		Vec3 vec3 = event.getAttemptedSpawnPos();
-		LevelAccessor level = event.getWorld();
+		LevelAccessor level = event.getLevel();
 		if (level instanceof ServerLevel) {
 			Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
 				return p_184069_.is(TofuPoiTypes.MORIJIO);
@@ -164,10 +164,10 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onBlockDrop(BlockEvent.BreakEvent event) {
 		if (!event.getPlayer().isCreative() && (
-				event.getWorld().getBlockState(event.getPos()).is(Blocks.FERN) || event.getWorld().getBlockState(event.getPos()).is(Blocks.TALL_GRASS) || event.getWorld().getBlockState(event.getPos()).is(Blocks.GRASS)) &&
-				event.getWorld() instanceof Level && ((Level) event.getWorld()).random.nextFloat() < 0.075F) {
-			ItemEntity entity = new ItemEntity((Level) event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEANS.get()));
-			event.getWorld().addFreshEntity(entity);
+				event.getLevel().getBlockState(event.getPos()).is(Blocks.FERN) || event.getLevel().getBlockState(event.getPos()).is(Blocks.TALL_GRASS) || event.getLevel().getBlockState(event.getPos()).is(Blocks.GRASS)) &&
+				event.getLevel() instanceof Level && ((Level) event.getLevel()).random.nextFloat() < 0.075F) {
+			ItemEntity entity = new ItemEntity((Level) event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEANS.get()));
+			event.getLevel().addFreshEntity(entity);
 		}
 	}
 }

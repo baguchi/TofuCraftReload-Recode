@@ -112,19 +112,19 @@ public class TofuCraftReload {
 	private void setupMessages() {
 		CHANNEL.messageBuilder(SoyMilkDrinkedMessage.class, 0)
 				.encoder(SoyMilkDrinkedMessage::serialize).decoder(SoyMilkDrinkedMessage::deserialize)
-				.consumer(SoyMilkDrinkedMessage::handle)
+				.consumerMainThread(SoyMilkDrinkedMessage::handle)
 				.add();
 		CHANNEL.messageBuilder(SaltFurnaceBitternMessage.class, 1)
 				.encoder(SaltFurnaceBitternMessage::writePacketData).decoder(SaltFurnaceBitternMessage::readPacketData)
-				.consumer(SaltFurnaceBitternMessage::handle)
+				.consumerMainThread(SaltFurnaceBitternMessage::handle)
 				.add();
 		CHANNEL.messageBuilder(SaltFurnaceWaterMessage.class, 2)
 				.encoder(SaltFurnaceWaterMessage::writePacketData).decoder(SaltFurnaceWaterMessage::readPacketData)
-				.consumer(SaltFurnaceWaterMessage::handle)
+				.consumerMainThread(SaltFurnaceWaterMessage::handle)
 				.add();
 		CHANNEL.messageBuilder(TFStorageSoymilkMessage.class, 3)
 				.encoder(TFStorageSoymilkMessage::writePacketData).decoder(TFStorageSoymilkMessage::readPacketData)
-				.consumer(TFStorageSoymilkMessage::handle)
+				.consumerMainThread(TFStorageSoymilkMessage::handle)
 				.add();
 	}
 
