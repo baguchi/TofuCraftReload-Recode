@@ -1,6 +1,15 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.entity.ai.*;
+import baguchan.tofucraft.entity.ai.CropHarvestGoal;
+import baguchan.tofucraft.entity.ai.DoSleepingGoal;
+import baguchan.tofucraft.entity.ai.FindJobBlockGoal;
+import baguchan.tofucraft.entity.ai.MakeFoodGoal;
+import baguchan.tofucraft.entity.ai.OpenTofuDoorGoal;
+import baguchan.tofucraft.entity.ai.RestockGoal;
+import baguchan.tofucraft.entity.ai.ShareItemAndGossipGoal;
+import baguchan.tofucraft.entity.ai.TofunianLoveGoal;
+import baguchan.tofucraft.entity.ai.TofunianSleepOnBedGoal;
+import baguchan.tofucraft.entity.ai.WakeUpGoal;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
@@ -12,7 +21,11 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.*;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.NbtUtils;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -25,12 +38,29 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ReputationEventHandler;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.InteractGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.LookAtTradingPlayerGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.TradeWithPlayerGoal;
 import net.minecraft.world.entity.ai.gossip.GossipContainer;
 import net.minecraft.world.entity.ai.gossip.GossipType;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
@@ -39,7 +69,13 @@ import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.Evoker;
+import net.minecraft.world.entity.monster.Illusioner;
+import net.minecraft.world.entity.monster.Pillager;
+import net.minecraft.world.entity.monster.Vex;
+import net.minecraft.world.entity.monster.Vindicator;
+import net.minecraft.world.entity.monster.Zoglin;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
@@ -57,7 +93,13 @@ import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -656,6 +698,23 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			super.handleEntityEvent(p_70103_1_);
 		}
 
+	}
+
+	public void die(DamageSource p_35419_) {
+		Entity entity = p_35419_.getEntity();
+
+		if (this.getTofunainJobBlock() != null) {
+			if (this.level instanceof ServerLevel) {
+				//don't forget release poi
+				PoiManager poimanager = ((ServerLevel) this.level).getPoiManager();
+				if (poimanager.exists(this.getTofunainJobBlock(), (p_217230_) -> {
+					return true;
+				})) {
+					poimanager.release(this.getTofunainJobBlock());
+				}
+			}
+		}
+		super.die(p_35419_);
 	}
 
 	@Override
