@@ -20,6 +20,9 @@
     },
     "age=6": {
       "model": "tofucraft:block/rice_crop_3"
+    },
+    "age=7": {
+      "model": "tofucraft:block/rice_crop_4"
     }
   }
 }
