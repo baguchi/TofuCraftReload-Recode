@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:onigiri"
+    },
+    {
+      "item": "tofucraft:bottle_soysause"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:yakionigiri_shoyu"
+  }
+}
