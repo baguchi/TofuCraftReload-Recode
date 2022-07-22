@@ -339,6 +339,16 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('X', Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.TOFUMOMEN.get()))
 				.save(consumer, TofuCraftReload.prefix("tofucookie_momen"));
+
+		ShapedRecipeBuilder.shaped(TofuItems.TTTBURGER.get(), 1)
+				.pattern(" X ")
+				.pattern("###")
+				.pattern(" X ")
+				.define('#', TofuItems.TOFUFRIED_POUCH.get())
+				.define('X', Items.BREAD)
+				.unlockedBy("has_item", has(TofuItems.TOFUKINU.get()))
+				.save(consumer);
+
 		ShapelessRecipeBuilder.shapeless(TofuItems.SOYSTICK.get())
 				.requires(TofuTags.Items.SOYBEAN)
 				.requires(Items.WHEAT)

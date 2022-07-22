@@ -1,4 +1,4 @@
-// 1.19	2022-07-22T18:36:49.0421062	TofuCraftReload item and itemblock models
+// 1.19	2022-07-22T20:13:28.1620474	TofuCraftReload item and itemblock models
 66f804790cfbad9cfb207e2126d08f74ee8ea752 assets/tofucraft/models/item/antenna_basic.json
 6d23a3bf32c18a81fc3c9962417fc45551cb2ef8 assets/tofucraft/models/item/bittern_bottle.json
 0b54db281f31e7565c5939c3fc417e395cb3bea1 assets/tofucraft/models/item/blockleek.json
@@ -201,6 +201,7 @@ ba25f0458749d3cafb2479c04c2072b228290583 assets/tofucraft/models/item/tofu_solid
 d96b4588a2a17962ea1d35ded604e1e06928a163 assets/tofucraft/models/item/tofu_terrain.json
 8bc0b286cdc10ccc6e48520af269963a28bab085 assets/tofucraft/models/item/tofu_terrain_zunda.json
 fd290c3f94c0db12eeb198bd52d375932367e5cd assets/tofucraft/models/item/tomato_soybean_stew.json
+38c1e6f0b8a3bb6aaa8662b3422c50465bc6b438 assets/tofucraft/models/item/tttburger.json
 915cd8698e7b71d4f776dbaf06229d32c135a222 assets/tofucraft/models/item/yuba.json
 23dbd078c160bbae9ebec17b91625360343e9a8c assets/tofucraft/models/item/yudofu.json
 0e956bcb946cc0b8b50e5c438328a57812cc4467 assets/tofucraft/models/item/zunda.json
