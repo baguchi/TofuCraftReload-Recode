@@ -144,6 +144,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
 				.save(consumer);
 
+		ShapelessRecipeBuilder.shapeless(TofuItems.AGEDASHI_TOFU.get(), 1)
+				.requires(TofuItems.TOFUFRIED_POUCH.get())
+				.requires(TofuItems.BOTTLE_DASHI.get())
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.requires(Items.BOWL)
+				.unlockedBy("has_item", has(TofuItems.TOFUFRIED_POUCH.get()))
+				.save(consumer);
+
+
 		ShapelessRecipeBuilder.shapeless(TofuItems.STARCH_RAW.get(), 1)
 				.requires(Items.POTATO)
 				.unlockedBy("has_item", has(Items.POTATO))
