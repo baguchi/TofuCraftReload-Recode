@@ -1,10 +1,16 @@
 package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -123,6 +129,9 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFUSLAB_EGG.get(), TofuBlocks.EGGTOFU.get());
 
 		crossBlock(TofuBlocks.ANTENNA_BASIC.get());
+
+		cake(TofuBlocks.TOFUCAKE, "tofucake");
+		cake(TofuBlocks.ZUNDATOFUCAKE, "zundatofucake");
 	}
 
 	public ModelFile cubeLeavesAll(Block block) {
@@ -161,6 +170,73 @@ public class BlockstateGenerator extends BlockStateProvider {
 				ConfiguredModel.builder()
 						.modelFile(model)
 						.build());
+	}
+
+
+	public void cake(Supplier<? extends TofuCakeBlock> block, String name) {
+		cakeBlockInternal(block.get(), name(block.get()), texture(name + "_bottom"), texture(name + "_top"), texture(name + "_side"), texture(name + "_inner"));
+	}
+
+	private void cakeBlockInternal(TofuCakeBlock block, String baseName, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation inside) {
+		ModelFile cake = cake(baseName + "_uneaten", bottom, top, side);
+		ModelFile sliced1 = slicedCake(baseName + "_slice1", "cake_slice1", bottom, top, side, inside);
+		ModelFile sliced2 = slicedCake(baseName + "_slice2", "cake_slice2", bottom, top, side, inside);
+		ModelFile sliced3 = slicedCake(baseName + "_slice3", "cake_slice3", bottom, top, side, inside);
+		ModelFile sliced4 = slicedCake(baseName + "_slice4", "cake_slice4", bottom, top, side, inside);
+		ModelFile sliced5 = slicedCake(baseName + "_slice5", "cake_slice5", bottom, top, side, inside);
+		ModelFile sliced6 = slicedCake(baseName + "_slice6", "cake_slice6", bottom, top, side, inside);
+
+		cakeBlock(block, cake, sliced1, sliced2, sliced3, sliced4, sliced5, sliced6);
+	}
+
+	public void cakeBlock(TofuCakeBlock block, ModelFile uneat, ModelFile sliced1, ModelFile sliced2, ModelFile sliced3, ModelFile sliced4, ModelFile sliced5, ModelFile sliced6) {
+		getVariantBuilder(block).forAllStatesExcept(state -> {
+			int bite = ((int) state.getValue(TofuCakeBlock.BITES));
+			ModelFile file;
+			switch (bite) {
+				case 0:
+					file = uneat;
+					break;
+				case 1:
+					file = sliced1;
+					break;
+				case 2:
+					file = sliced2;
+					break;
+				case 3:
+					file = sliced3;
+					break;
+				case 4:
+					file = sliced4;
+					break;
+				case 5:
+					file = sliced5;
+					break;
+				default:
+					file = sliced6;
+					break;
+			}
+
+			return ConfiguredModel.builder().modelFile(file)
+					.build();
+		}, DoorBlock.POWERED);
+	}
+
+	private ModelBuilder<?> slicedCake(String name, String model, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation inside) {
+		return models().withExistingParent(name, "block/" + model)
+				.texture("particle", top)
+				.texture("bottom", bottom)
+				.texture("top", top)
+				.texture("side", side)
+				.texture("inside", inside);
+	}
+
+	private ModelBuilder<?> cake(String name, ResourceLocation bottom, ResourceLocation top, ResourceLocation side) {
+		return models().withExistingParent(name, "block/" + "cake")
+				.texture("particle", top)
+				.texture("bottom", bottom)
+				.texture("top", top)
+				.texture("side", side);
 	}
 
 	public void door(Supplier<? extends DoorBlock> block, String name) {

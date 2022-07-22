@@ -1,7 +1,17 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.block.*;
+import baguchan.tofucraft.block.KinuTofuBlock;
+import baguchan.tofucraft.block.LeekBlock;
+import baguchan.tofucraft.block.MorijioBlock;
+import baguchan.tofucraft.block.TofuBlock;
+import baguchan.tofucraft.block.TofuCakeBlock;
+import baguchan.tofucraft.block.TofuFarmlandBlock;
+import baguchan.tofucraft.block.TofuLeavesBlock;
+import baguchan.tofucraft.block.TofuMushroomBlock;
+import baguchan.tofucraft.block.TofuPortalBlock;
+import baguchan.tofucraft.block.TofuSaplingBlock;
+import baguchan.tofucraft.block.TofuTerrainBlock;
 import baguchan.tofucraft.block.crop.LeekCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
@@ -9,7 +19,12 @@ import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
 import baguchan.tofucraft.block.tfenergy.TFAggregator;
 import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
-import baguchan.tofucraft.block.utils.*;
+import baguchan.tofucraft.block.utils.MisoBarrelBlock;
+import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
+import baguchan.tofucraft.block.utils.SaltPanBlock;
+import baguchan.tofucraft.block.utils.TofuBedBlock;
+import baguchan.tofucraft.block.utils.TofuChestBlock;
+import baguchan.tofucraft.block.utils.WorkedBarrelBaseBlock;
 import baguchan.tofucraft.client.render.item.TofuBedBWLR;
 import baguchan.tofucraft.client.render.item.TofuChestBWLR;
 import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
@@ -17,8 +32,25 @@ import baguchan.tofucraft.world.gen.grower.TofuTreeGrower;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.item.BedItem;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DoubleHighBlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.StandingAndWallBlockItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.LadderBlock;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.TorchBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
@@ -188,8 +220,8 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> BARREL_MISOTOFU = register("barrel_misotofu", () -> new WorkedBarrelBaseBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD)));
 
 
-	public static final RegistryObject<Block> TOFUCAKE = register("tofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL)));
-
+	public static final RegistryObject<TofuCakeBlock> TOFUCAKE = register("tofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.1F));
+	public static final RegistryObject<TofuCakeBlock> ZUNDATOFUCAKE = register("zundatofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.2F));
 
 	public static final RegistryObject<Block> TOFUBED = register("tofubed", () -> new TofuBedBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.2F).noOcclusion().sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> TOFUCHEST = register("tofuchest", () -> new TofuChestBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).noOcclusion().sound(SoundType.STONE), TofuBlockEntitys.TOFUCHEST::get));
@@ -198,8 +230,8 @@ public class TofuBlocks {
 		return p_50872_.getValue(TFStorageBlock.LIT) ? 13 : 0;
 	})));
 	public static final RegistryObject<Block> ANTENNA_BASIC = register("antenna_basic", () -> new TFAntennaBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
-    public static final RegistryObject<Block> TF_AGGREGATOR = register("tf_aggregator", () -> new TFAggregator(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
-        return p_50872_.getValue(TFAggregator.LIT) ? 13 : 0;
+	public static final RegistryObject<Block> TF_AGGREGATOR = register("tf_aggregator", () -> new TFAggregator(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
+		return p_50872_.getValue(TFAggregator.LIT) ? 13 : 0;
     })));
 	
 	//Tofu delight item

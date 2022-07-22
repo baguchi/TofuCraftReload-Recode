@@ -14,7 +14,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -28,13 +27,16 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class TofuCakeBlock extends Block {
 	public static final int MAX_BITES = 6;
 	public static final IntegerProperty BITES = BlockStateProperties.BITES;
-	public static final int FULL_CAKE_SIGNAL = getOutputSignal(0);
-	protected static final float AABB_OFFSET = 1.0F;
-	protected static final float AABB_SIZE_PER_BITE = 2.0F;
+
+	public final int foodHeal;
+	public final float foodSaturation;
+
 	protected static final VoxelShape[] SHAPE_BY_BITE = new VoxelShape[]{Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(3.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(5.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(7.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(9.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(11.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(13.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D)};
 
-	public TofuCakeBlock(BlockBehaviour.Properties p_51184_) {
+	public TofuCakeBlock(Properties p_51184_, int foodHeal, float foodSaturation) {
 		super(p_51184_);
+		this.foodHeal = foodHeal;
+		this.foodSaturation = foodSaturation;
 		this.registerDefaultState(this.stateDefinition.any().setValue(BITES, Integer.valueOf(0)));
 	}
 
@@ -59,12 +61,12 @@ public class TofuCakeBlock extends Block {
 		return eat(p_51203_, p_51204_, p_51202_, p_51205_);
 	}
 
-	protected static InteractionResult eat(LevelAccessor p_51186_, BlockPos p_51187_, BlockState p_51188_, Player p_51189_) {
+	protected InteractionResult eat(LevelAccessor p_51186_, BlockPos p_51187_, BlockState p_51188_, Player p_51189_) {
 		if (!p_51189_.canEat(false)) {
 			return InteractionResult.PASS;
 		} else {
 			p_51189_.awardStat(Stats.EAT_CAKE_SLICE);
-			p_51189_.getFoodData().eat(1, 0.1F);
+			p_51189_.getFoodData().eat(this.foodHeal, this.foodSaturation);
 			int i = p_51188_.getValue(BITES);
 			p_51186_.gameEvent(p_51189_, GameEvent.EAT, p_51187_);
 			if (i < 6) {

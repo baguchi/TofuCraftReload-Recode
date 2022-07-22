@@ -1,4 +1,4 @@
-// 1.19	2022-06-25T17:26:39.7243988	TofuCraftReload loot tables
+// 1.19	2022-07-22T21:48:15.957264	TofuCraftReload loot tables
 7fde57aad7fc3dff80690533a116285cfe78a5ec data/tofucraft/loot_tables/blocks/antenna_basic.json
 eb40b5c1c677c7ae220c42b6fc2bbf96fc584ca2 data/tofucraft/loot_tables/blocks/barrel_miso.json
 a1192effaf6443d67f911b8917edf354b53a5ca1 data/tofucraft/loot_tables/blocks/barrel_misotofu.json
@@ -102,4 +102,5 @@ d97f8851f9249a9f74580cc23da59c449d37818c data/tofucraft/loot_tables/blocks/tofut
 8215bfaf6bdff36a6bfd7579d678d9ded63134aa data/tofucraft/loot_tables/blocks/tofu_farmland.json
 8215bfaf6bdff36a6bfd7579d678d9ded63134aa data/tofucraft/loot_tables/blocks/tofu_terrain.json
 a28539f08f269b1ad5fc56bcd8a4ad894d60419b data/tofucraft/loot_tables/blocks/tofu_terrain_zunda.json
+1d4929d7d6176f60e5ea991a577527ed251ef375 data/tofucraft/loot_tables/blocks/zundatofucake.json
 67072b1eaa4a9d638fe3cc0a1465b41db7dc888f data/tofucraft/loot_tables/blocks/zundatofu_mushroom.json
