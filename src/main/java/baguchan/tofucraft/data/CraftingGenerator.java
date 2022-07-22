@@ -152,13 +152,19 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUFRIED_POUCH.get()))
 				.save(consumer);
 
-
 		ShapelessRecipeBuilder.shapeless(TofuItems.STARCH_RAW.get(), 1)
-				.requires(Items.POTATO)
-				.unlockedBy("has_item", has(Items.POTATO))
+				.requires(TofuItems.MINCEDPOTATO.get())
+				.requires(TofuItems.FILTERCLOTH.get())
+				.unlockedBy("has_item", has(TofuItems.MINCEDPOTATO.get()))
 				.save(consumer);
 
 		foodCookingButNoCampfire(TofuItems.STARCH_RAW, TofuItems.STARCH, 0.1F, consumer);
+
+		ShapedRecipeBuilder.shaped(TofuItems.FILTERCLOTH.get(), 32)
+				.pattern("###")
+				.define('#', Ingredient.of(ItemTags.WOOL))
+				.unlockedBy("has_item", has(Items.WHITE_WOOL))
+				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.ISHITOFU_CHISELED_BRICK.get())
 				.pattern("#")
@@ -452,6 +458,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.SUGAR)
 				.requires(TofuItems.LEEK.get())
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.MINCEDPOTATO.get(), 1)
+				.requires(Items.POTATO)
+				.unlockedBy("has_item", has(Items.POTATO))
 				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.SALTPAN.get())
