@@ -9,7 +9,11 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 
@@ -121,6 +125,31 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.MISOTOFU, TofuItems.TOFUMISO);
 		tofuBlockItem(consumer, TofuBlocks.DRIEDTOFU, TofuItems.TOFUDRIED);
 
+		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUFRIED.get(), 1)
+				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
+				.requires(TofuItems.BOTTLE_DASHI.get())
+				.unlockedBy("has_item", has(TofuItems.BOTTLE_DASHI.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUFRIED.get(), 1)
+				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
+				.requires(TofuItems.BOTTLE_DASHI.get())
+				.unlockedBy("has_item", has(TofuItems.BOTTLE_DASHI.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUFRIED_POUCH.get(), 1)
+				.requires(TofuItems.STARCH.get())
+				.requires(TofuItems.BOTTLE_DASHI.get())
+				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
+				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.STARCH_RAW.get(), 1)
+				.requires(Items.POTATO)
+				.unlockedBy("has_item", has(Items.POTATO))
+				.save(consumer);
+
+		foodCookingButNoCampfire(TofuItems.STARCH_RAW, TofuItems.STARCH, 0.1F, consumer);
+
 		ShapedRecipeBuilder.shaped(TofuBlocks.ISHITOFU_CHISELED_BRICK.get())
 				.pattern("#")
 				.pattern("#")
@@ -220,6 +249,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('D', Items.DIAMOND)
 				.define('W', Items.BOWL)
 				.unlockedBy("has_item", has(TofuTags.Items.SALT))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.BOTTLE_DASHI.get(), 1)
+				.requires(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER)))
+				.requires(Items.DRIED_KELP)
+				.unlockedBy("has_item", has(Items.KELP))
 				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.BARREL_MISO.get(), 1)

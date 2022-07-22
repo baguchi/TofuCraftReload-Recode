@@ -1,4 +1,4 @@
-// 1.19	2022-06-25T17:26:39.7243988	TofuCraftReload item and itemblock models
+// 1.19	2022-07-22T18:36:49.0421062	TofuCraftReload item and itemblock models
 66f804790cfbad9cfb207e2126d08f74ee8ea752 assets/tofucraft/models/item/antenna_basic.json
 6d23a3bf32c18a81fc3c9962417fc45551cb2ef8 assets/tofucraft/models/item/bittern_bottle.json
 0b54db281f31e7565c5939c3fc417e395cb3bea1 assets/tofucraft/models/item/blockleek.json
@@ -62,6 +62,8 @@ b816d3c8faef31391b19828522b9a630643b3b7f assets/tofucraft/models/item/soymilk_pu
 77d84f6db5d0bf038e1592ac39cdec5c54d40047 assets/tofucraft/models/item/soystick.json
 8b548f2a1c83c5b75dad3c39316c3b884e65ec71 assets/tofucraft/models/item/soy_cheese.json
 330882abdf0e45e6b2de60fac1d7e07e75b10700 assets/tofucraft/models/item/soy_chocolate.json
+20cf5eabb7f52368efd17c38243f9ac7eb054f08 assets/tofucraft/models/item/starch.json
+c161feff5ea05a7fe083917e8c83fdce89d04bdd assets/tofucraft/models/item/starch_raw.json
 ea82465eb6504030f9f052bd81b4db5ea70f6578 assets/tofucraft/models/item/tf_capacitor.json
 d193e0f8bf14e76df2820db1c800af9f8ddfef49 assets/tofucraft/models/item/tf_circuit.json
 bc81fa325456e3482c4741d23f12c2847d7c5b95 assets/tofucraft/models/item/tf_coil.json
@@ -87,6 +89,8 @@ c4cd9919662bcb3c80a0571eec6eae15e2d8b200 assets/tofucraft/models/item/tofufence_
 e359555830d4dc34380e873430a28a12a411e5b0 assets/tofucraft/models/item/tofufence_soul.json
 98bd6ef52305cb097188ace04c5b6aeef231947c assets/tofucraft/models/item/tofufish_bucket.json
 0d8f53d27d2abe3d08c25b5b85e10561248f4c19 assets/tofucraft/models/item/tofufish_soymilk_bucket.json
+b8d2244986a5ec7018320b4c7d3c0055f24cd9b1 assets/tofucraft/models/item/tofufried.json
+e853ac178beda31243b5d52ee22974d0b1dfe973 assets/tofucraft/models/item/tofufried_pouch.json
 6ee139a3bbb30ffde1fcb903c77739f16da9fdab assets/tofucraft/models/item/tofugem.json
 9e3e15c2c84764e0793e4b36ab94eb576a5fced9 assets/tofucraft/models/item/tofugrilled.json
 e78cc184377003179f7030f84cdef3974b65525a assets/tofucraft/models/item/tofuhamburg.json

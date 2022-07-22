@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    [
+      {
+        "item": "tofucraft:tofukinu"
+      },
+      {
+        "item": "tofucraft:tofumomen"
+      }
+    ],
+    {
+      "item": "tofucraft:bottle_dashi"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:tofufried_pouch"
+  }
+}
