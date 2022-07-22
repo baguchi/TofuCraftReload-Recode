@@ -1,4 +1,4 @@
-// 1.19	2022-07-23T02:33:26.2345206	Recipes
+// 1.19	2022-07-23T02:51:24.1703062	Recipes
 3ae53c165df3e026db8a5f3b30b42c182e67c5ca data/tofucraft/advancements/recipes/tofucraft/agedashi_tofu.json
 8224d4e3154d47211ba8c3b84b48cb89ac139b7d data/tofucraft/advancements/recipes/tofucraft/antenna_basic.json
 d7d7be0bd8fd8d5ed45a09be34844708e9dfdc99 data/tofucraft/advancements/recipes/tofucraft/barrel_miso.json
@@ -201,6 +201,7 @@ bf6f6496f93b82e2b56fb6a848c2bc311fa67dfe data/tofucraft/advancements/recipes/tof
 1dcb1af32ec887f65354211b20b78bf2bf51fd42 data/tofucraft/advancements/recipes/tofucraft/tofutrapdoor_metal.json
 1303131273653cae6f2bfcbd6c96740c70a0a350 data/tofucraft/advancements/recipes/tofucraft/tofutrapdoor_momen.json
 66f298e45723ec2c7610bb9597bf647016d69d2d data/tofucraft/advancements/recipes/tofucraft/tofutrapdoor_soul.json
+e234889ee0d72220fa7792971dfc08a4f4b059e8 data/tofucraft/advancements/recipes/tofucraft/tofuzunda.json
 dc53e8e623488a256aae53fa27ddfb50ed370bb1 data/tofucraft/advancements/recipes/tofucraft/tofu_metal_shears.json
 559e39ccd315f095f901386c111f307c73c74e0f data/tofucraft/advancements/recipes/tofucraft/tofu_shield.json
 9b1bf56c45d3d96425f19e2b0ce50d2c925c2ea7 data/tofucraft/advancements/recipes/tofucraft/tttburger.json
@@ -209,6 +210,7 @@ dc53e8e623488a256aae53fa27ddfb50ed370bb1 data/tofucraft/advancements/recipes/tof
 9c3e708b53c3f568913123f0439d32e9cb31dbe3 data/tofucraft/advancements/recipes/tofucraft/zunda.json
 9a2dd6a81fd8b42bccc7a8bc502e34d96e3f3c10 data/tofucraft/advancements/recipes/tofucraft/zundama.json
 75ebb933bbebd155a69f41a6e2932a7d0a0429af data/tofucraft/advancements/recipes/tofucraft/zundamanju.json
+87d0c94ce00d551737576f9a5ddbb7e09ea78e47 data/tofucraft/advancements/recipes/tofucraft/zundatofucake.json
 e91058bd5eaed3a24d7deeb8c6faa0a0275c484c data/tofucraft/advancements/recipes/tofucraft/zunda_mochi.json
 be4e9439fbf6f276c0964728e99b050289dae128 data/tofucraft/advancements/recipes/tofu_delight/blocktofuegg.json
 0d3d4de4d13d0c3ae6f7f72e166373640fb49bb6 data/tofucraft/advancements/recipes/tofu_delight/tofuegg.json
@@ -420,6 +422,7 @@ f511ded079752b64b6f2e777366d19753c7111e7 data/tofucraft/recipes/tofutrapdoor_kin
 1a8a8bfbc4a9505bdb69bb79cfdbbd9395dbe084 data/tofucraft/recipes/tofutrapdoor_metal.json
 3a6fd0d0522e64aa2910469bcb6dbf6e695fd89a data/tofucraft/recipes/tofutrapdoor_momen.json
 83fdaa8f765c0655a9bee6b685964727a51c37c4 data/tofucraft/recipes/tofutrapdoor_soul.json
+d2a6e9e52f11c495737d7274cedb3ef494aeb95f data/tofucraft/recipes/tofuzunda.json
 bcd3212ac748d64bc123064a9589c3f8954c47ed data/tofucraft/recipes/tofu_metal_shears.json
 3094d2ce626d92040d64e3eecb97b092a314586c data/tofucraft/recipes/tofu_shield.json
 fb4b2b5463daf417b2e29d099af10effb2f134d0 data/tofucraft/recipes/tttburger.json
@@ -428,4 +431,5 @@ f029cf787c6416f0c67effd3bd74fefba7e6e060 data/tofucraft/recipes/yakionigiri_shoy
 e1478e187556877184a75681a7d532f3e70b04df data/tofucraft/recipes/zunda.json
 dc6629fb28abab8ea20b4abd22fc7edfd4095f6c data/tofucraft/recipes/zundama.json
 08a369c64aa996acbfe52a8da6ff570b02ec520d data/tofucraft/recipes/zundamanju.json
+eebbbb6d73854fde8657a79f5ef959b25f881619 data/tofucraft/recipes/zundatofucake.json
 b84b1652ed84d0e0ca8d5be09e49081c84a2559f data/tofucraft/recipes/zunda_mochi.json

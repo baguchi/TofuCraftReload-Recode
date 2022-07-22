@@ -236,6 +236,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 		cuttingRecipe(consumer, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU_SMOOTH_BRICK);
 		cuttingRecipe(consumer, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU_BRICK);
 
+		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUZUNDA.get(), 1)
+				.requires(TofuItems.ZUNDA.get())
+				.requires(Items.SUGAR)
+				.requires(TofuItems.STARCH.get())
+				.requires(TofuItems.BOTTLE_DASHI.get())
+				.unlockedBy("has_item", has(TofuItems.ZUNDA.get()))
+				.save(consumer);
+
 		ShapelessRecipeBuilder.shapeless(TofuBlocks.TOFU_STEM_PLANKS.get(), 4)
 				.requires(TofuBlocks.TOFU_STEM.get())
 				.unlockedBy("has_item", has(TofuBlocks.TOFU_STEM.get()))
@@ -295,6 +303,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('E', Tags.Items.EGGS)
 				.define('W', Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.TOFUKINU.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(TofuBlocks.ZUNDATOFUCAKE.get())
+				.pattern("###")
+				.pattern("SES")
+				.pattern("WWW")
+				.define('#', TofuItems.TOFUZUNDA.get())
+				.define('S', Items.SUGAR)
+				.define('E', Tags.Items.EGGS)
+				.define('W', Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.TOFUZUNDA.get()))
 				.save(consumer);
 
 		//soimilk
