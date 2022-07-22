@@ -4,7 +4,17 @@ import baguchan.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
-import baguchan.tofucraft.item.*;
+import baguchan.tofucraft.item.BitternItem;
+import baguchan.tofucraft.item.BugleItem;
+import baguchan.tofucraft.item.FukumameItem;
+import baguchan.tofucraft.item.KoujiBaseItem;
+import baguchan.tofucraft.item.NetherFukumameItem;
+import baguchan.tofucraft.item.SoulFukumameItem;
+import baguchan.tofucraft.item.SoymilkBottleItem;
+import baguchan.tofucraft.item.StackableBowlItem;
+import baguchan.tofucraft.item.TofuScoopItem;
+import baguchan.tofucraft.item.TofuShieldItem;
+import baguchan.tofucraft.item.TofuStickItem;
 import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -17,7 +27,20 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.DispensibleContainerItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShearsItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -47,6 +70,11 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFUZUNDA = ITEMS.register("tofuzunda", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUZUNDA).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUMISO = ITEMS.register("tofumiso", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUMISO).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUDRIED = ITEMS.register("tofudried", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUDRIED).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> TOFUFRIED = ITEMS.register("tofufried", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUFRIED).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> TOFUFRIED_POUCH = ITEMS.register("tofufried_pouch", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUFRIED_POUCH).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
+	public static final RegistryObject<Item> AGEDASHI_TOFU = ITEMS.register("agedashi_tofu", () -> new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.AGEDASHI_TOFU).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
 
 	public static final RegistryObject<Item> BITTERN_BOTTLE = ITEMS.register("bittern_bottle", () -> new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -64,6 +92,10 @@ public class TofuItems {
 	public static final RegistryObject<Item> MISO = ITEMS.register("miso", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> BOTTLE_SOYSAUSE = ITEMS.register("bottle_soysause", () -> new Item((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
+	public static final RegistryObject<Item> STARCH = ITEMS.register("starch", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> STARCH_RAW = ITEMS.register("starch_raw", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
+
 	public static final RegistryObject<Item> LEEK = ITEMS.register("leek", () -> new ItemNameBlockItem(TofuBlocks.LEEK_CROP.get(), (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> YUBA = ITEMS.register("yuba", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> ZUNDA = ITEMS.register("zunda", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -74,6 +106,8 @@ public class TofuItems {
 	public static final RegistryObject<Item> RAW_TOFU_FISH = ITEMS.register("raw_tofufish", () -> new Item((new Item.Properties()).food(TofuFoods.RAW_TOFUFISH).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> COOKED_TOFU_FISH = ITEMS.register("cooked_tofufish", () -> new Item((new Item.Properties()).food(TofuFoods.COOKED_TOFUFISH).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUCOOKIE = ITEMS.register("tofucookie", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUCOOKIE).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> TTTBURGER = ITEMS.register("tttburger", () -> new Item((new Item.Properties()).food(TofuFoods.TTTBURGER).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
 	public static final RegistryObject<Item> SOYSTICK = ITEMS.register("soystick", () -> new Item((new Item.Properties()).food(TofuFoods.SOYSTICK).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> SALTYMELON = ITEMS.register("saltymelon", () -> new Item((new Item.Properties()).food(TofuFoods.SALTYMELON).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
@@ -178,7 +212,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOMATO_SOYBEAN_STEW = ITEMS.register("tomato_soybean_stew", () -> new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.TOMATO_SOYBEAN_STEW).tab(TofuCreativeModeTab.TOFU_DELIGHT)));
 	public static final RegistryObject<Item> YUDOFU = ITEMS.register("yudofu", () -> new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.YUDOFU).tab(TofuCreativeModeTab.TOFU_DELIGHT)));
 	public static final RegistryObject<Item> EDAMAME_RICE = ITEMS.register("edamame_rice", () -> new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.EDAMAME_RICE).tab(TofuCreativeModeTab.TOFU_DELIGHT)));
-	public static final RegistryObject<Item> BOTTLE_DASHI = ITEMS.register("bottle_dashi", () -> new Item((new Item.Properties()).stacksTo(1).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFU_DELIGHT)));
+	public static final RegistryObject<Item> BOTTLE_DASHI = ITEMS.register("bottle_dashi", () -> new Item((new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUEGG = ITEMS.register("tofuegg", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU_EGG).tab(TofuCreativeModeTab.TOFU_DELIGHT)));
 	public static final RegistryObject<Item> SOYSAUSE_RAMEN = ITEMS.register("soysause_ramen", () -> new StackableBowlItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SOYSAUSE_RAMEN).tab(TofuCreativeModeTab.TOFU_DELIGHT)));
 	public static final RegistryObject<Item> SOY_CHEESE = ITEMS.register("soy_cheese", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_CHEESE).tab(TofuCreativeModeTab.TOFU_DELIGHT)));

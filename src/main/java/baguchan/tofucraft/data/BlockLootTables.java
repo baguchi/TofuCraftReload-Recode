@@ -185,6 +185,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		add(TofuBlocks.BARREL_MISOTOFU.get(), applyExplosionDecay(TofuBlocks.BARREL_MISOTOFU.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFUMISO.get()).when(lootitemcondition$builder6).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion())))));
 
 		registerEmpty(TofuBlocks.TOFUCAKE.get());
+		registerEmpty(TofuBlocks.ZUNDATOFUCAKE.get());
 
 		this.add(TofuBlocks.TOFUBED.get(), (p_124233_) -> {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);
