@@ -15,7 +15,8 @@
     }
   ],
   "result": {
-    "item": "tofucraft:tofuegg"
+    "item": "tofucraft:tofuegg",
+    "count": 4
   },
   "experience": 0.1,
   "cookingtime": 100

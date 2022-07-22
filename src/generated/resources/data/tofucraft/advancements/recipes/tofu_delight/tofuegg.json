@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofufried_pouch"
+        "recipe": "tofucraft:tofuegg"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:tofufried_pouch"
+      "tofucraft:tofuegg"
     ]
   }
 }

@@ -125,11 +125,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.MISOTOFU, TofuItems.TOFUMISO);
 		tofuBlockItem(consumer, TofuBlocks.DRIEDTOFU, TofuItems.TOFUDRIED);
 
-		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUFRIED.get(), 1)
-				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
+		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUEGG.get(), 4)
+				.requires(Items.EGG)
 				.requires(TofuItems.BOTTLE_DASHI.get())
-				.unlockedBy("has_item", has(TofuItems.BOTTLE_DASHI.get()))
+				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
 				.save(consumer);
+
 		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUFRIED.get(), 1)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(TofuItems.BOTTLE_DASHI.get())

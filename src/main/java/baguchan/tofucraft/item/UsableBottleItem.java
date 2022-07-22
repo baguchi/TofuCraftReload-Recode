@@ -29,5 +29,15 @@ public class UsableBottleItem extends Item {
 	public boolean hasCraftingRemainingItem(ItemStack stack) {
 		return true;
 	}
+
+	@Override
+	public boolean canBeDepleted() {
+		return false;
+	}
+
+	@Override
+	public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
+		return itemStack;
+	}
 }
 
