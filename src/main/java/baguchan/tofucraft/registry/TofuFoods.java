@@ -44,6 +44,11 @@ public class TofuFoods {
 
 	public static final FoodProperties ZUNDA_MOCHI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
 	public static final FoodProperties KINAKO_MOCHI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
+	public static final FoodProperties ONIGIRI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
+	public static final FoodProperties ONIGIRI_SALT = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.625F).build();
+	public static final FoodProperties YAKIONIGIRI_MISO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.65F).build();
+	public static final FoodProperties YAKIONIGIRI_SHOYU = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.65F).build();
+
 
 	public static final FoodProperties TOMATO_SOYBEAN_STEW = stew(5).build();
 	public static final FoodProperties YUDOFU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();

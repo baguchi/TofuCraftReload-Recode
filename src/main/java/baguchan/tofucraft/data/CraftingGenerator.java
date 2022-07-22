@@ -439,6 +439,25 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuTags.Items.RICE)
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_MOCHI.get()))
 				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.ONIGIRI.get(), 2)
+				.requires(TofuTags.Items.RICE)
+				.unlockedBy("has_item", has(TofuItems.RICE.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.ONIGIRI_SALT.get(), 1)
+				.requires(TofuItems.ONIGIRI.get())
+				.requires(TofuItems.SALT.get())
+				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.YAKIONIGIRI_MISO.get(), 1)
+				.requires(TofuItems.ONIGIRI.get())
+				.requires(TofuItems.MISO.get())
+				.unlockedBy("has_item", has(TofuItems.MISO.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.YAKIONIGIRI_SHOYU.get(), 1)
+				.requires(TofuItems.ONIGIRI.get())
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYSAUSE.get()))
+				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(TofuItems.SOY_CHOCOLATE.get(), 6)
 				.requires(TofuItems.BUCKET_SOYMILK.get())

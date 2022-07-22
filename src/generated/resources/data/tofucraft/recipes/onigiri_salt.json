@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:onigiri"
+    },
+    {
+      "item": "tofucraft:salt"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:onigiri_salt"
+  }
+}

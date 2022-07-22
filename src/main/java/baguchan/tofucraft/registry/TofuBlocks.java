@@ -13,6 +13,8 @@ import baguchan.tofucraft.block.TofuPortalBlock;
 import baguchan.tofucraft.block.TofuSaplingBlock;
 import baguchan.tofucraft.block.TofuTerrainBlock;
 import baguchan.tofucraft.block.crop.LeekCropsBlock;
+import baguchan.tofucraft.block.crop.RiceCropsBlock;
+import baguchan.tofucraft.block.crop.RiceRootBlock;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
@@ -77,6 +79,8 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> SOYBEAN_NETHER = noItemRegister("soybean_nether", () -> new SoybeanNetherCropsBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
 	public static final RegistryObject<Block> SOYBEAN_SOUL = noItemRegister("soybean_soul", () -> new SoybeanSoulCropsBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
 	public static final RegistryObject<Block> LEEK_CROP = noItemRegister("leek_crop", () -> new LeekCropsBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
+	public static final RegistryObject<Block> RICE_CROP = noItemRegister("rice", () -> new RiceCropsBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
+	public static final RegistryObject<Block> RICE_ROOT = noItemRegister("rice_root", () -> new RiceRootBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
 
 
 	public static final RegistryObject<Block> KINUTOFU = register("blocktofukinu", () -> new KinuTofuBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).randomTicks().strength(0.1F, 0.2F).sound(SoundType.SNOW)));

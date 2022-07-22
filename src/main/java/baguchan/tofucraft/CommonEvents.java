@@ -166,7 +166,7 @@ public class CommonEvents {
 		if (!event.getPlayer().isCreative() && (
 				event.getLevel().getBlockState(event.getPos()).is(Blocks.FERN) || event.getLevel().getBlockState(event.getPos()).is(Blocks.TALL_GRASS) || event.getLevel().getBlockState(event.getPos()).is(Blocks.GRASS)) &&
 				event.getLevel() instanceof Level && ((Level) event.getLevel()).random.nextFloat() < 0.075F) {
-			ItemEntity entity = new ItemEntity((Level) event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEANS.get()));
+			ItemEntity entity = new ItemEntity((Level) event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(((Level) event.getLevel()).random.nextBoolean() ? TofuItems.SEEDS_SOYBEANS.get() : TofuItems.SEEDS_RICE.get()));
 			event.getLevel().addFreshEntity(entity);
 		}
 	}
