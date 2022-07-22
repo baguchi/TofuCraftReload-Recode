@@ -1,4 +1,5 @@
-// 1.19	2022-07-22T20:16:08.8175487	Recipes
+// 1.19	2022-07-22T22:06:41.8330263	Recipes
+3ae53c165df3e026db8a5f3b30b42c182e67c5ca data/tofucraft/advancements/recipes/tofucraft/agedashi_tofu.json
 8224d4e3154d47211ba8c3b84b48cb89ac139b7d data/tofucraft/advancements/recipes/tofucraft/antenna_basic.json
 d7d7be0bd8fd8d5ed45a09be34844708e9dfdc99 data/tofucraft/advancements/recipes/tofucraft/barrel_miso.json
 8a6b68a85cbdf19f9aba87ae83dce547e42f9240 data/tofucraft/advancements/recipes/tofucraft/barrel_misotofu.json
@@ -209,6 +210,7 @@ be4e9439fbf6f276c0964728e99b050289dae128 data/tofucraft/advancements/recipes/tof
 0d3d4de4d13d0c3ae6f7f72e166373640fb49bb6 data/tofucraft/advancements/recipes/tofu_delight/tofuegg.json
 2de147cbd270ac94b9bb6601dd825769a2c8fca5 data/tofucraft/advancements/recipes/tofu_delight/tofuslab_egg.json
 58b5dad3aa35f5c86d29a7f9c255ac1e308d88e6 data/tofucraft/advancements/recipes/tofu_delight/tofustair_egg.json
+9f2186bad08fee49e230b77d9025110ed433b5e7 data/tofucraft/recipes/agedashi_tofu.json
 d397dfcd4622b4a9500348f56942a57134c70271 data/tofucraft/recipes/antenna_basic.json
 09a7bfdb86e560c93ffcd364bcec3f67e026f897 data/tofucraft/recipes/barrel_miso.json
 de30889426ef740a9ea7794b117fe800188d58bb data/tofucraft/recipes/barrel_misotofu.json
