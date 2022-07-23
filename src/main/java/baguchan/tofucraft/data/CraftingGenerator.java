@@ -407,6 +407,21 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.COCOA_BEANS)
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
 				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_FRUITS.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.SUGAR)
+				.requires(Items.APPLE)
+				.requires(Items.SWEET_BERRIES)
+				.requires(Items.GLOW_BERRIES)
+				.requires(Items.CHORUS_FRUIT)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_HONEY.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
+				.requires(Items.HONEY_BOTTLE)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_KINAKO.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
@@ -424,6 +439,20 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.PUMPKIN)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_RAMUNE.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.SUGAR)
+				.requires(Items.CYAN_DYE)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_SAKURA.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.SUGAR)
+				.requires(Items.PINK_DYE)
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_ANNIN.get())

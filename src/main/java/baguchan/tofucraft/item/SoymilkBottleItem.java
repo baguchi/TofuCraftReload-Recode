@@ -37,10 +37,10 @@ public class SoymilkBottleItem extends Item {
 					cap.setSoyHealth(p_41411_, cap.getSoyHealthLevel() + 1, true);
 				}
 				if (cap.getSoyHealthLevel() > 4) {
-					p_41411_.addEffect(new MobEffectInstance(this.secondEffect, 24000, 0));
+					p_41411_.addEffect(new MobEffectInstance(this.getSecondEffect(), 24000, 0));
 				}
 			}
-			p_41411_.addEffect(new MobEffectInstance(this.effect, 200 * cap.getSoyHealthLevel(), 0));
+			p_41411_.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel(), 0));
 		});
 		if (p_41411_ instanceof ServerPlayer) {
 			ServerPlayer serverplayerentity = (ServerPlayer) p_41411_;
@@ -81,6 +81,14 @@ public class SoymilkBottleItem extends Item {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level p_41432_, Player p_41433_, InteractionHand p_41434_) {
 		return ItemUtils.startUsingInstantly(p_41432_, p_41433_, p_41434_);
+	}
+
+	public MobEffect getEffect() {
+		return effect;
+	}
+
+	public MobEffect getSecondEffect() {
+		return secondEffect;
 	}
 }
 
