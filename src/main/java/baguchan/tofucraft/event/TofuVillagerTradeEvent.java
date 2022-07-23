@@ -49,6 +49,7 @@ public class TofuVillagerTradeEvent {
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_KINAKO.get(), 1, 3, 6, 16));
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_PUDDING.get(), 1, 3, 6, 16));
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_PUMPKIN.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_ANNIN.get(), 1, 3, 6, 16));
 
 			trades5.add(new ItemsForEmeralds(TofuBlocks.MORIJIO.get(), 10, 2, 6, 20));
 		}
