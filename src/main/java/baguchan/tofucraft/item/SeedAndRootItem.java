@@ -4,6 +4,7 @@ import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 
 public class SeedAndRootItem extends PlaceOnWaterBlockItem {
 	private final Block root;
@@ -14,7 +15,7 @@ public class SeedAndRootItem extends PlaceOnWaterBlockItem {
 	}
 
 	protected boolean placeBlock(BlockPlaceContext p_40578_, BlockState p_40579_) {
-		if (this.root.defaultBlockState().canSurvive(p_40578_.getLevel(), p_40578_.getClickedPos().below())) {
+		if (p_40578_.getLevel().getFluidState(p_40578_.getClickedPos().below()).is(Fluids.WATER) && p_40578_.getLevel().getBlockState(p_40578_.getClickedPos().below()).isAir() && this.root.defaultBlockState().canSurvive(p_40578_.getLevel(), p_40578_.getClickedPos().below())) {
 			p_40578_.getLevel().setBlock(p_40578_.getClickedPos().below(), this.root.defaultBlockState(), 11);
 			return p_40578_.getLevel().setBlock(p_40578_.getClickedPos(), p_40579_, 11);
 		} else {
