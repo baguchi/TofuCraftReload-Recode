@@ -50,6 +50,11 @@ public class TofuFoods {
 	public static final FoodProperties ONIGIRI_SALT = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.625F).build();
 	public static final FoodProperties YAKIONIGIRI_MISO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.65F).build();
 	public static final FoodProperties YAKIONIGIRI_SHOYU = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.65F).build();
+	public static final FoodProperties RICE_BURGER = (new FoodProperties.Builder()).nutrition(9).saturationMod(0.85F).build();
+	public static final FoodProperties RICE_NATTO = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.65F).build();
+	public static final FoodProperties RICE_NATTOLEEK = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.675F).build();
+	public static final FoodProperties RICE_TOFU = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.625F).build();
+	public static final FoodProperties RICE_SOBORO_TOFU = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.65F).build();
 
 
 	public static final FoodProperties TOMATO_SOYBEAN_STEW = stew(5).build();
