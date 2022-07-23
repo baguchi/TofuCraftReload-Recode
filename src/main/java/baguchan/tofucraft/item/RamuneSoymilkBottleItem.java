@@ -28,7 +28,11 @@ public class RamuneSoymilkBottleItem extends SoymilkBottleItem {
 
 	private MobEffect getRandomEffect() {
 		if (effectList == null) {
-			effectList = Registry.MOB_EFFECT.stream().filter(mobEffect -> mobEffect.getCategory() != MobEffectCategory.HARMFUL).toList();
+			effectList = Registry.MOB_EFFECT
+					.stream()
+					.filter(mobEffect -> mobEffect.getCategory() != MobEffectCategory.HARMFUL)
+					.filter(mobEffect -> mobEffect != MobEffects.HEAL)
+					.toList();
 		}
 		return effectList.get(random.nextInt(effectList.size()));
 	}
