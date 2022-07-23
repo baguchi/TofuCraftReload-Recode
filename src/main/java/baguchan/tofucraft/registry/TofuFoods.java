@@ -36,6 +36,7 @@ public class TofuFoods {
 	public static final FoodProperties SALTYMELON = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.35F).build();
 
 	public static final FoodProperties CHILI = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
+	public static final FoodProperties MABODOFU = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.9F).build();
 
 	public static final FoodProperties KINAKO_MANJU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.35F).fast().build();
 	public static final FoodProperties ZUNDA_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.35F).fast().build();
@@ -60,6 +61,9 @@ public class TofuFoods {
 	public static final FoodProperties TOMATO_SOYBEAN_STEW = stew(5).build();
 	public static final FoodProperties YUDOFU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties EDAMAME_RICE = stew(5).build();
+
+	public static final FoodProperties HIYAYAKKO = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
+	public static final FoodProperties NATTOHIYAYAKKO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.35F).build();
 
 	//Tofu delight
 	public static final FoodProperties TOFU_EGG = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.32F).fast().build();
