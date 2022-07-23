@@ -22,11 +22,12 @@ import baguchan.tofucraft.block.tfenergy.TFAggregator;
 import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
 import baguchan.tofucraft.block.utils.MisoBarrelBlock;
+import baguchan.tofucraft.block.utils.NoWeightBaseBlock;
 import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
 import baguchan.tofucraft.block.utils.SaltPanBlock;
 import baguchan.tofucraft.block.utils.TofuBedBlock;
 import baguchan.tofucraft.block.utils.TofuChestBlock;
-import baguchan.tofucraft.block.utils.WorkedBarrelBaseBlock;
+import baguchan.tofucraft.block.utils.WeightBaseBlock;
 import baguchan.tofucraft.client.render.item.TofuBedBWLR;
 import baguchan.tofucraft.client.render.item.TofuChestBWLR;
 import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
@@ -221,7 +222,8 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> MORIJIO = register("morijio", () -> new MorijioBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F, 3.0F).noOcclusion().sound(SoundType.WOOD)));
 	//BARREL
 	public static final RegistryObject<Block> BARREL_MISO = register("barrel_miso", () -> new MisoBarrelBlock(TofuItems.BOTTLE_SOYSAUSE, BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD)));
-	public static final RegistryObject<Block> BARREL_MISOTOFU = register("barrel_misotofu", () -> new WorkedBarrelBaseBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> BARREL_MISOTOFU = register("barrel_misotofu", () -> new WeightBaseBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> NATTOBED = register("nattobed", () -> new NoWeightBaseBlock(BlockBehaviour.Properties.of(TofuMaterial.NATTO).strength(1.0F, 2.0F).randomTicks().sound(SoundType.GRASS)));
 
 
 	public static final RegistryObject<TofuCakeBlock> TOFUCAKE = register("tofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.1F));

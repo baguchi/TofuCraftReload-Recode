@@ -293,6 +293,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('B', Tags.Items.BARRELS_WOODEN)
 				.unlockedBy("has_item", has(TofuItems.MISO.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(TofuBlocks.NATTOBED.get(), 1)
+				.pattern("SSS")
+				.pattern("SSS")
+				.pattern("WWW")
+				.define('S', TofuItems.SEEDS_SOYBEANS.get())
+				.define('W', Tags.Items.CROPS_WHEAT)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()));
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.TOFUCAKE.get())
 				.pattern("###")

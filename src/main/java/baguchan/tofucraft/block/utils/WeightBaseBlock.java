@@ -12,11 +12,11 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 
-public class WorkedBarrelBaseBlock extends Block {
+public class WeightBaseBlock extends Block {
 	public static final EnumProperty<Stat> STAT = EnumProperty.create("stat", Stat.class);
 	public static final IntegerProperty TIME = IntegerProperty.create("time", 0, 5);
 
-	public WorkedBarrelBaseBlock(Properties properties) {
+	public WeightBaseBlock(Properties properties) {
 		super(properties);
 		registerDefaultState(this.stateDefinition.any().setValue(STAT, Stat.USING).setValue(TIME, 0));
 	}
@@ -41,9 +41,7 @@ public class WorkedBarrelBaseBlock extends Block {
 		BlockState weightBlock = world.getBlockState(pos.above());
 		BlockState baseBlock = world.getBlockState(pos.below());
 		boolean isWeightValid = (this != weightBlock.getBlock() && weightBlock != null && (weightBlock.getMaterial() == Material.STONE || weightBlock.getMaterial() == Material.METAL || weightBlock.getMaterial() == Material.HEAVY_METAL));
-		float baseHardness = baseBlock.getDestroySpeed(world, pos.below());
-		boolean isBaseValid = (baseBlock.isCollisionShapeFullBlock(world, pos) && (baseBlock.getMaterial() == Material.STONE || baseBlock.getMaterial() == Material.METAL || baseHardness >= 1.0F || baseHardness < 0.0F));
-		return (isWeightValid && isBaseValid);
+		return (isWeightValid);
 	}
 
 	@Override
