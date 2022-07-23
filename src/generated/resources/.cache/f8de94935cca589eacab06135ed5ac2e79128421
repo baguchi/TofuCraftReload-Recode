@@ -1,4 +1,4 @@
-// 1.19	2022-07-23T00:48:30.9116477	TofuCraftReload item and itemblock models
+// 1.19	2022-07-23T08:07:15.2543825	TofuCraftReload item and itemblock models
 b77ae9850d4e0bf1984d4b63d53606b82a275ae5 assets/tofucraft/models/item/agedashi_tofu.json
 66f804790cfbad9cfb207e2126d08f74ee8ea752 assets/tofucraft/models/item/antenna_basic.json
 6d23a3bf32c18a81fc3c9962417fc45551cb2ef8 assets/tofucraft/models/item/bittern_bottle.json
@@ -37,6 +37,7 @@ e68ada69ae5359418eff58ea69224cc007aee5ad assets/tofucraft/models/item/kinako_moc
 c40dcce09c472b934e2500d47dd1ce2f6febef10 assets/tofucraft/models/item/leek_green_stem.json
 39d09e0dbf1aa223e83cf4c3d02894c038d54c90 assets/tofucraft/models/item/leek_stem.json
 ff6bd282337480d2b45189ad71b27012724b641b assets/tofucraft/models/item/miso.json
+b4e3a217c57bf51f85c9474dcff68a11a720328a assets/tofucraft/models/item/natto.json
 48bf1831eda8d6387bdeb1e192f6418ec3054bdb assets/tofucraft/models/item/nethermanju.json
 edc75fb57b431891476591301028d19182da27cc assets/tofucraft/models/item/nether_fukumame.json
 e2a50d2a6c4abe029062ffdaaeb92779fe1a6484 assets/tofucraft/models/item/onigiri.json

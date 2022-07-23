@@ -92,6 +92,7 @@ public class TofuItems {
 
 	public static final RegistryObject<Item> MISO = ITEMS.register("miso", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> BOTTLE_SOYSAUSE = ITEMS.register("bottle_soysause", () -> new Item((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> NATTO = ITEMS.register("natto", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 	public static final RegistryObject<Item> STARCH = ITEMS.register("starch", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> STARCH_RAW = ITEMS.register("starch_raw", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
