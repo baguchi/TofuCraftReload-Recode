@@ -27,5 +27,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(TofuTags.Items.MILK_MILK).add(TofuItems.BUCKET_SOYMILK.get());
 		tag(TofuTags.Items.SOYMILK).addTag(TofuTags.Items.MILK_SOYMILK);
 		tag(TofuTags.Items.MILK_SOYMILK).add(TofuItems.BUCKET_SOYMILK.get(), TofuItems.SOYMILK.get());
+		tag(TofuTags.Items.RICE).add(TofuItems.RICE.get());
 	}
 }

@@ -1,9 +1,10 @@
-// 1.19	2022-06-25T18:04:03.9620396	Tags for minecraft:block
+// 1.19	2022-07-23T06:54:53.2459101	Tags for minecraft:block
 6a3c43ee72d79e7592c8c8302fe763037c5debbf data/minecraft/tags/blocks/beds.json
 b8ea11915124147c29bc57ea0ffb5124931561cf data/minecraft/tags/blocks/climbable.json
 e57f6b64dcd3a0b1321ed52d19a6ecac984fee3d data/minecraft/tags/blocks/doors.json
 c2b0ed7afcd982bdf9198a9cc6077acd54b5c4f9 data/minecraft/tags/blocks/dragon_immune.json
 940d37f184a55a19f76fb6d6fc880189c91de25f data/minecraft/tags/blocks/mineable/axe.json
+9ac28d6146be2c5e2efbee95525f6d693a6eb3d6 data/minecraft/tags/blocks/mineable/hoe.json
 c6d4f749610153432eb5df460a391145836bb50c data/minecraft/tags/blocks/mineable/pickaxe.json
 7180c809ca92ae6008293c9b1ee2d5642a6207ac data/minecraft/tags/blocks/mineable/shovel.json
 9e9ba4f885baabf684767997138216e931a8f695 data/minecraft/tags/blocks/needs_diamond_tool.json
