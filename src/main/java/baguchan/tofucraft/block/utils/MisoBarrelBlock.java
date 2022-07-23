@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.registries.RegistryObject;
 
-public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
+public class MisoBarrelBlock extends WeightBaseBlock {
 	public final RegistryObject<Item> finishedBottleItem;
 	public static final IntegerProperty FLUIDS = IntegerProperty.create("fluids", 0, 3);
 

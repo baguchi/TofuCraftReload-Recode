@@ -35,6 +35,8 @@ public class TofuFoods {
 
 	public static final FoodProperties SALTYMELON = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.35F).build();
 
+	public static final FoodProperties CHILI = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
+
 	public static final FoodProperties KINAKO_MANJU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.35F).fast().build();
 	public static final FoodProperties ZUNDA_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.35F).fast().build();
 	public static final FoodProperties NETHER_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.35F).fast().alwaysEat().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1.0F).build();
@@ -48,6 +50,11 @@ public class TofuFoods {
 	public static final FoodProperties ONIGIRI_SALT = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.625F).build();
 	public static final FoodProperties YAKIONIGIRI_MISO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.65F).build();
 	public static final FoodProperties YAKIONIGIRI_SHOYU = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.65F).build();
+	public static final FoodProperties RICE_BURGER = (new FoodProperties.Builder()).nutrition(9).saturationMod(0.85F).build();
+	public static final FoodProperties RICE_NATTO = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.65F).build();
+	public static final FoodProperties RICE_NATTOLEEK = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.675F).build();
+	public static final FoodProperties RICE_TOFU = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.625F).build();
+	public static final FoodProperties RICE_SOBORO_TOFU = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.65F).build();
 
 
 	public static final FoodProperties TOMATO_SOYBEAN_STEW = stew(5).build();

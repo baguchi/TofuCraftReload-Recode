@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:onigiri"
+    },
+    {
+      "item": "tofucraft:tofuminced"
+    },
+    {
+      "item": "tofucraft:bottle_soysause"
+    },
+    {
+      "item": "tofucraft:leek"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:ricesoborotofu"
+  }
+}

@@ -33,5 +33,17 @@ public class LootEvents {
 			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/tofustick_ruin")).setWeight(1).setQuality(1)).name("tofustick_ruin").build();
 			event.getTable().addPool(pool);
 		}
+		if (TEMPLE_LOOT.contains(event.getName())) {
+			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/seeds_chili_temple")).setWeight(10).setQuality(5)).name("seeds_chili_temple").build();
+			event.getTable().addPool(pool);
+		}
+		if (SHIP_LOOT.contains(event.getName())) {
+			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/seeds_chili_ship")).setWeight(10).setQuality(5)).name("seeds_chili_ship").build();
+			event.getTable().addPool(pool);
+		}
+		if (RUIN_LOOT.contains(event.getName())) {
+			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/seeds_chili_ruin")).setWeight(10).setQuality(5)).name("seeds_chili_ruin").build();
+			event.getTable().addPool(pool);
+		}
 	}
 }
