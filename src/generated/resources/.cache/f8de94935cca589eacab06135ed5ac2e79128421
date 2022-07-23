@@ -22,10 +22,13 @@ b2ad285c1d534b1fcdbafaec832aa5ffe1a186ab assets/tofucraft/models/item/bottle_soy
 8182b7691c685656edd94e019a8c849756a91546 assets/tofucraft/models/item/bucket_soymilk_nether.json
 fe96b0aa42304181aaff8830c24e048ced599a38 assets/tofucraft/models/item/bucket_soymilk_soul.json
 bcc88b1e6c42b370ff554cf299415c475f1ff05b assets/tofucraft/models/item/bugle.json
+0d56924fc6bcfea79dd001c9bfb887961d3e067f assets/tofucraft/models/item/chili.json
 583e43d1a6338930229939eb3600cd7d972e940a assets/tofucraft/models/item/cooked_tofufish.json
+63a4b89f1279d523df775db8ed891a0d62ec1afe assets/tofucraft/models/item/doubanjiang.json
 ccd37d7c158a1606618b13c4503a62246b1a1cc4 assets/tofucraft/models/item/edamame.json
 6f2f17803b747670541d39360f220ecd12ad3c66 assets/tofucraft/models/item/edamame_boild.json
 eacbf726b49ccc740c5b4d409adc83424c7d5e29 assets/tofucraft/models/item/edamame_rice.json
+32ea9e8202862ee268650349a0545d9d879a7283 assets/tofucraft/models/item/filtercloth.json
 a5429b590b0131e3f5daf9c0b764c0a7f6c509c6 assets/tofucraft/models/item/fukumame.json
 9ec85572a6886b01454f2512dca16860b2f9423b assets/tofucraft/models/item/kinako.json
 2a430c80f992ab08cb2d2df21c5669fa1673a0de assets/tofucraft/models/item/kinakomanju.json
@@ -36,6 +39,7 @@ e68ada69ae5359418eff58ea69224cc007aee5ad assets/tofucraft/models/item/kinako_moc
 80793b0eae13f50efd48b091f2ea4831646a3368 assets/tofucraft/models/item/leek.json
 c40dcce09c472b934e2500d47dd1ce2f6febef10 assets/tofucraft/models/item/leek_green_stem.json
 39d09e0dbf1aa223e83cf4c3d02894c038d54c90 assets/tofucraft/models/item/leek_stem.json
+b9b5d40bbd68602447d98481e1c28a2abbb35048 assets/tofucraft/models/item/mincedpotato.json
 ff6bd282337480d2b45189ad71b27012724b641b assets/tofucraft/models/item/miso.json
 b4e3a217c57bf51f85c9474dcff68a11a720328a assets/tofucraft/models/item/natto.json
 48bf1831eda8d6387bdeb1e192f6418ec3054bdb assets/tofucraft/models/item/nethermanju.json
@@ -57,6 +61,7 @@ a1907e2d0c809da2ac1bea453ec8996092b3595b assets/tofucraft/models/item/saltymelon
 cd3b71c79daa9810289b1bceaa84d0be172a67c1 assets/tofucraft/models/item/sapling_tofu.json
 7705156de33d1cfcce10c370e208e8fae5df850b assets/tofucraft/models/item/sculked_tofu_soul.json
 f652e791e5956022b9835aa3c4772c5730078297 assets/tofucraft/models/item/sculk_bone.json
+f791a9d04b3d50d9233b0328cdcff679aa9e25f6 assets/tofucraft/models/item/seeds_chili.json
 e568bad6b103a9871a341d88d31be380eb4352a9 assets/tofucraft/models/item/seeds_rice.json
 f6124be124ce30a8bb87e2e23a4401bb6ccf8fdd assets/tofucraft/models/item/seeds_soybeans.json
 d51853166388ab6227227146196840e6d304ea21 assets/tofucraft/models/item/seeds_soybeans_nether.json

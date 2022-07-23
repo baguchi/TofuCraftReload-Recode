@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "tofucraft:mincedpotato"
+              "minecraft:potato"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:starch_raw"
+        "recipe": "tofucraft:mincedpotato"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:starch_raw"
+      "tofucraft:mincedpotato"
     ]
   }
 }
