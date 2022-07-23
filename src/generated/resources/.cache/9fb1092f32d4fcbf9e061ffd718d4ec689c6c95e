@@ -1,4 +1,4 @@
-// 1.19	2022-07-23T05:26:10.1047284	Recipes
+// 1.19	2022-07-23T07:13:10.9689252	Recipes
 3ae53c165df3e026db8a5f3b30b42c182e67c5ca data/tofucraft/advancements/recipes/tofucraft/agedashi_tofu.json
 8224d4e3154d47211ba8c3b84b48cb89ac139b7d data/tofucraft/advancements/recipes/tofucraft/antenna_basic.json
 d7d7be0bd8fd8d5ed45a09be34844708e9dfdc99 data/tofucraft/advancements/recipes/tofucraft/barrel_miso.json
@@ -87,6 +87,7 @@ b333ce806b4deb900d41964387c9d3fb4f573d19 data/tofucraft/advancements/recipes/tof
 712d8959d1cc3a06f83a740c44d6966df77366a9 data/tofucraft/advancements/recipes/tofucraft/nether_fukumame.json
 a3950165b7ba7f17ebf2402aab931cc88d631e20 data/tofucraft/advancements/recipes/tofucraft/saltymelon.json
 a030eee3b679e28870857b1c725f4909d112b15a data/tofucraft/advancements/recipes/tofucraft/salt_furnace.json
+7153cc679266733501d5557ac7bc4b5e91d39c13 data/tofucraft/advancements/recipes/tofucraft/seeds_chili.json
 a8e6eecdffa21809f5b9df99b4c05062c25d0cdf data/tofucraft/advancements/recipes/tofucraft/smelting_cooked_tofufish.json
 705c8f7f43148b62b577909451d0af4bb400eff7 data/tofucraft/advancements/recipes/tofucraft/smelting_edamame_boild.json
 7545db9c7297f52aaaf19dccc4ae7d2bc3cbb9e2 data/tofucraft/advancements/recipes/tofucraft/smelting_grilled_block_from_kinu.json
@@ -301,6 +302,7 @@ f2adb914b0722c5f2774b07ea5ca8ea1e5a92aab data/tofucraft/recipes/morijio.json
 514bf6db86cfef03129011dec1a72912227b6fc5 data/tofucraft/recipes/nether_fukumame.json
 9c1364f99f9196942bdd95eddec3ea6250a6b094 data/tofucraft/recipes/saltymelon.json
 d269ea3103b90187c0b92d2f1fd3bdd2e8e76c02 data/tofucraft/recipes/salt_furnace.json
+6024f879f9edcd447fbb3526ce3ce94c6f72de4b data/tofucraft/recipes/seeds_chili.json
 dd0c3c75401e44ada12671d042c1f826cfd342f9 data/tofucraft/recipes/smelting_cooked_tofufish.json
 bca47a0ff0b99ea94d9e831d5469713b55f3f6ae data/tofucraft/recipes/smelting_edamame_boild.json
 0697c70649942a3fc8c6d07b2f207d3694ea46d6 data/tofucraft/recipes/smelting_grilled_block_from_kinu.json

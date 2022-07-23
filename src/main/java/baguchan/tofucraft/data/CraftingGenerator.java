@@ -465,6 +465,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Items.POTATO))
 				.save(consumer);
 
+		ShapelessRecipeBuilder.shapeless(TofuItems.SEEDS_CHILI.get(), 1)
+				.requires(TofuItems.CHILI.get())
+				.unlockedBy("has_item", has(TofuItems.CHILI.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(TofuBlocks.SALTPAN.get())
 				.pattern("# #")
 				.pattern(" X ")
