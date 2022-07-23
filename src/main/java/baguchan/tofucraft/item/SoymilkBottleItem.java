@@ -36,11 +36,13 @@ public class SoymilkBottleItem extends Item {
 				} else {
 					cap.setSoyHealth(p_41411_, cap.getSoyHealthLevel() + 1, true);
 				}
-				if (cap.getSoyHealthLevel() > 4) {
+				if (cap.getSoyHealthLevel() > 4 && !p_41410_.isClientSide) {
 					p_41411_.addEffect(new MobEffectInstance(this.getSecondEffect(), 24000, 0));
 				}
 			}
-			p_41411_.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel(), 0));
+			if (!p_41410_.isClientSide) {
+				p_41411_.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel(), 0));
+			}
 		});
 		if (p_41411_ instanceof ServerPlayer) {
 			ServerPlayer serverplayerentity = (ServerPlayer) p_41411_;
