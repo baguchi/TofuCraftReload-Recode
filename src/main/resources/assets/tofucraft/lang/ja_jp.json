@@ -61,6 +61,10 @@
   "item.tofucraft.soul_fukumame": "魂豆",
   "item.tofucraft.edamame": "枝豆",
   "item.tofucraft.edamame_boild": "茹でた枝豆",
+  "item.tofucraft.mincedpotato": "みじん切りのじゃがいも",
+  "item.tofucraft.seeds_chili": "唐辛子の種",
+  "item.tofucraft.chili": "唐辛子",
+  "item.tofucraft.doubanjiang": "豆板醤",
   "item.tofucraft.onigiri": "おにぎり",
   "item.tofucraft.onigiri_salt": "塩おにぎり",
   "item.tofucraft.yakionigiri_miso": "焼き味噌おにぎり",
@@ -81,6 +85,7 @@
   "item.tofucraft.gelatin": "ゼラチン",
   "item.tofucraft.starch_raw": "生のデンプン",
   "item.tofucraft.starch": "片栗粉",
+  "item.tofucraft.filtercloth": "漉し布",
   "item.tofucraft.koujibase": "麹の種",
   "item.tofucraft.kouji": "麹",
   "item.tofucraft.miso": "味噌",
@@ -419,5 +424,7 @@
   "tofucraft.tofu_book.tooltip2": "Patchouli modを入れると、より詳しい内容を知ることが出来ます",
   "item.tofucraft.tofu_book": "豆腐職人ガイド",
   "tofucraft.jei.bittern": "にがりで固める工程",
-  "tofucraft.jei.harden": "重みで固める工程"
+  "tofucraft.jei.harden": "重みで固める工程",
+  "block.tofucraft.sculked_tofu_soul": "Sculked Soul Tofu",
+  "block.tofucraft.sculk_bone": "Sculk Bone"
 }
