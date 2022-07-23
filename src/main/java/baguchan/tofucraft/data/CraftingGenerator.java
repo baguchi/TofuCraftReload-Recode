@@ -584,6 +584,48 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.CHILI.get()))
 				.save(consumer);
 
+		ShapelessRecipeBuilder.shapeless(TofuItems.DOUBANJIANG.get(), 1)
+				.requires(TofuItems.CHILI.get())
+				.requires(Items.WHEAT)
+				.requires(Items.SUGAR)
+				.requires(TofuItems.SALT.get())
+				.unlockedBy("has_item", has(TofuItems.CHILI.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.MABODOFU.get(), 1)
+				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
+				.requires(TofuItems.STARCH.get())
+				.requires(Items.PORKCHOP)
+				.requires(Items.BOWL)
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.requires(TofuItems.DOUBANJIANG.get())
+				.unlockedBy("has_item", has(TofuItems.DOUBANJIANG.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(TofuItems.GLASSBOWL.get(), 2)
+				.pattern("# #")
+				.pattern(" # ")
+				.define('#', Items.GLASS_PANE)
+				.unlockedBy("has_item", has(Items.GLASS))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.HIYAYAKKO.get(), 1)
+				.requires(TofuItems.TOFUKINU.get())
+				.requires(TofuItems.LEEK.get())
+				.requires(TofuItems.GLASSBOWL.get())
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYSAUSE.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.NATTOHIYAYAKKO.get(), 1)
+				.requires(TofuItems.NATTO.get())
+				.requires(TofuItems.TOFUKINU.get())
+				.requires(TofuItems.LEEK.get())
+				.requires(TofuItems.GLASSBOWL.get())
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYSAUSE.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(TofuBlocks.SALTPAN.get())
 				.pattern("# #")
 				.pattern(" X ")
