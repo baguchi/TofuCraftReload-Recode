@@ -1,4 +1,4 @@
-// 1.19	2022-07-23T12:25:56.1624125	TofuCraftReload item and itemblock models
+// 1.19	2022-07-23T12:47:17.1190397	TofuCraftReload item and itemblock models
 b77ae9850d4e0bf1984d4b63d53606b82a275ae5 assets/tofucraft/models/item/agedashi_tofu.json
 66f804790cfbad9cfb207e2126d08f74ee8ea752 assets/tofucraft/models/item/antenna_basic.json
 6d23a3bf32c18a81fc3c9962417fc45551cb2ef8 assets/tofucraft/models/item/bittern_bottle.json
@@ -49,6 +49,7 @@ e2a50d2a6c4abe029062ffdaaeb92779fe1a6484 assets/tofucraft/models/item/onigiri.js
 b1381ded4c0d3cca67fb8f85d552767378539138 assets/tofucraft/models/item/riceburger.json
 49c411ec3fe0d7f5b42b7d1d73354bb497995d10 assets/tofucraft/models/item/ricenatto.json
 03454573c34462204add00acd282c916d3a70973 assets/tofucraft/models/item/ricenattoleek.json
+68518c7619b230576a42ebac685ae94477da53b6 assets/tofucraft/models/item/ricesoborotofu.json
 5934a44359092bf53390bdeb16c3d09760e159f0 assets/tofucraft/models/item/ricetofu.json
 d653535c8ba35413a13e7feae5aeefb204f694a3 assets/tofucraft/models/item/rollingpin.json
 3cad8a55e19253023474946f6bc527f1249a349b assets/tofucraft/models/item/salt.json

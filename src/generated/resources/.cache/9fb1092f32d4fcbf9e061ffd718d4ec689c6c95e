@@ -1,4 +1,4 @@
-// 1.19	2022-07-23T12:25:56.1544341	Recipes
+// 1.19	2022-07-23T12:47:17.1230284	Recipes
 3ae53c165df3e026db8a5f3b30b42c182e67c5ca data/tofucraft/advancements/recipes/tofucraft/agedashi_tofu.json
 8224d4e3154d47211ba8c3b84b48cb89ac139b7d data/tofucraft/advancements/recipes/tofucraft/antenna_basic.json
 d7d7be0bd8fd8d5ed45a09be34844708e9dfdc99 data/tofucraft/advancements/recipes/tofucraft/barrel_miso.json
@@ -88,6 +88,7 @@ f4bf200de907952d69d2764c4366326f4857cba8 data/tofucraft/advancements/recipes/tof
 42158634984cf4d6ace80653e75d03efd050ae03 data/tofucraft/advancements/recipes/tofucraft/riceburger.json
 65018d75c573730c53f85df7f28163c4be8f976b data/tofucraft/advancements/recipes/tofucraft/ricenatto.json
 98fb456c649fceb7d82ec8e8e07bdce0bc68026a data/tofucraft/advancements/recipes/tofucraft/ricenattoleek.json
+89ef54728bf978e5be79b7f21442e8e7a98592e9 data/tofucraft/advancements/recipes/tofucraft/ricesoborotofu.json
 1dce50749da8a96cedd229a5d0164a5eb5af507d data/tofucraft/advancements/recipes/tofucraft/ricetofu.json
 dbcde0097523335939b871b1eb8dd9315f907c9b data/tofucraft/advancements/recipes/tofucraft/rollingpin.json
 a3950165b7ba7f17ebf2402aab931cc88d631e20 data/tofucraft/advancements/recipes/tofucraft/saltymelon.json
@@ -166,7 +167,7 @@ c2a27b662ac2e93c748f04178abe76a9ce48e73d data/tofucraft/advancements/recipes/tof
 e45f2c36c9ab80727e248cb6595d610553756bf3 data/tofucraft/advancements/recipes/tofucraft/tofuladder_kinu.json
 709d04de352d66315edc007d3e40605d3295e7e4 data/tofucraft/advancements/recipes/tofucraft/tofuladder_metal.json
 695f849eed9240fe2a68ebd9cc30f17306bc2341 data/tofucraft/advancements/recipes/tofucraft/tofuladder_momen.json
-7e36e4c4ca68cc9c9507c2cefb404a380a52eb9d data/tofucraft/advancements/recipes/tofucraft/tofuminced.json
+f6751c8207d2f9a5b8b437089ff5cd1bd6f61a7d data/tofucraft/advancements/recipes/tofucraft/tofuminced.json
 e54b6f7c39b5d8a7236433372a214b2412a14ef1 data/tofucraft/advancements/recipes/tofucraft/tofumomen_from_kinu.json
 0a43236bde87ca354a349f147b55bac1a3165d2f data/tofucraft/advancements/recipes/tofucraft/tofunian_soy_chocolate.json
 d129af22a1b822ba743b2a5e7764c8747acf4533 data/tofucraft/advancements/recipes/tofucraft/tofuscoop.json
@@ -312,6 +313,7 @@ ac9e70eb70459b376f010bc031575fc7782c1074 data/tofucraft/recipes/onigiri.json
 a941c708bf82164419881423e2981661ada9954f data/tofucraft/recipes/riceburger.json
 067997912ec4c0006e9ea891d92510f9c4d06800 data/tofucraft/recipes/ricenatto.json
 cf4772dd02b65faab8a14b8dafea8c853ca7a806 data/tofucraft/recipes/ricenattoleek.json
+6ebe16281260a6892507e17b1e24e18bdcf2eeaa data/tofucraft/recipes/ricesoborotofu.json
 c4301cd6d793ac71127b3d68583b2d1e5cbb7e44 data/tofucraft/recipes/ricetofu.json
 eb56db812b7d9cc7a229cad2bdb12292ac442ca0 data/tofucraft/recipes/rollingpin.json
 9c1364f99f9196942bdd95eddec3ea6250a6b094 data/tofucraft/recipes/saltymelon.json
@@ -391,7 +393,7 @@ c922840a6b9eb4806d65a68c65b1a0804836a092 data/tofucraft/recipes/tofuladder_ishib
 e93ba035357184fe3885d63c356900c1c70a77e9 data/tofucraft/recipes/tofuladder_kinu.json
 1da348a1074d70c2a92db04d82081f4aadb0dced data/tofucraft/recipes/tofuladder_metal.json
 891e8b92c72ed4fecee00b04a0d9c7020590565d data/tofucraft/recipes/tofuladder_momen.json
-3f810eaee9b405b4a1ade40f9a52b3db07106b26 data/tofucraft/recipes/tofuminced.json
+87018dc4bedbc122af802e2cd3bed351f6bd1b8a data/tofucraft/recipes/tofuminced.json
 ecfbc6e1c92e318abf51426acd98cacb68463057 data/tofucraft/recipes/tofumomen_from_kinu.json
 3e95fc71c0c10ba34e120e6653d6451b70d761b3 data/tofucraft/recipes/tofunian_soy_chocolate.json
 26f46257b4a6281b1b968deb0e910bf625e010e2 data/tofucraft/recipes/tofuscoop.json

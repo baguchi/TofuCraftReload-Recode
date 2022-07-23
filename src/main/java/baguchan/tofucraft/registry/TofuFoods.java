@@ -52,6 +52,7 @@ public class TofuFoods {
 	public static final FoodProperties RICE_NATTO = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.65F).build();
 	public static final FoodProperties RICE_NATTOLEEK = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.675F).build();
 	public static final FoodProperties RICE_TOFU = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.625F).build();
+	public static final FoodProperties RICE_SOBORO_TOFU = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.65F).build();
 
 
 	public static final FoodProperties TOMATO_SOYBEAN_STEW = stew(5).build();
