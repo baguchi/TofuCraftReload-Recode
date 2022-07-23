@@ -143,8 +143,8 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 	public void torchBlock(Block block, Block wall) {
-		ModelFile torch = models().torch(name(block), texture(name(block)));
-		ModelFile torchwall = models().torchWall(name(wall), texture(name(block)));
+		ModelFile torch = models().torch(name(block), texture(name(block))).renderType("minecraft:cutout");
+		ModelFile torchwall = models().torchWall(name(wall), texture(name(block))).renderType("minecraft:cutout");
 		simpleBlock(block, torch);
 		getVariantBuilder(wall).forAllStates(state ->
 				ConfiguredModel.builder()
