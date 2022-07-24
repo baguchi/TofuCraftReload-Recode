@@ -29,6 +29,7 @@ public class TofuFoods {
 
 	public static final FoodProperties COOKED_TOFUFISH = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.6F).build();
 
+	public static final FoodProperties MISODENGAKU = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.6F).fast().build();
 	public static final FoodProperties TOFUCOOKIE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
 	public static final FoodProperties TTTBURGER = (new FoodProperties.Builder()).nutrition(9).saturationMod(0.85F).build();
 

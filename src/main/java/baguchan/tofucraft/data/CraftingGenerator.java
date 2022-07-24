@@ -383,6 +383,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 		foodCooking(TofuItems.TOFU_HAMBURG_RAW, TofuItems.TOFU_HAMBURG, 0.25F, consumer);
 		foodCooking(TofuItems.RAW_TOFU_FISH, TofuItems.COOKED_TOFU_FISH, 0.2F, consumer);
+		ShapedRecipeBuilder.shaped(TofuItems.MISODENGAKU.get(), 1)
+				.pattern(" X ")
+				.pattern(" Y ")
+				.pattern(" Z ")
+				.define('X', TofuItems.MISO.get())
+				.define('Y', TofuBlocks.MOMENTOFU.get())
+				.define('Z', Items.STICK)
+				.unlockedBy("has_item", has(TofuItems.MISO.get()))
+				.save(consumer);
 		ShapedRecipeBuilder.shaped(TofuItems.TOFUCOOKIE.get(), 8)
 				.pattern("X#X")
 				.define('#', TofuItems.TOFUKINU.get())
