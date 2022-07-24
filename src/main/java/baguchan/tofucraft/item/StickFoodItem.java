@@ -15,7 +15,7 @@ public class StickFoodItem extends Item {
 	@Override
 	public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
 		if (p_41409_.isEmpty())
-			return new ItemStack(Items.GLASS_BOTTLE);
+			return new ItemStack(Items.STICK);
 		if (p_41411_ instanceof Player && !((Player) p_41411_).getAbilities().instabuild) {
 			ItemStack itemstack = new ItemStack(Items.STICK);
 			Player playerentity = (Player) p_41411_;
