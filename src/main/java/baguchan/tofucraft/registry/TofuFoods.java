@@ -10,6 +10,7 @@ public class TofuFoods {
 
 	public static final FoodProperties ISHITOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).fast().build();
 	public static final FoodProperties TOFUSTEAK = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).fast().build();
+	public static final FoodProperties OAGE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 
 	public static final FoodProperties TOFUHELL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).alwaysEat().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1.0F).build();
 	public static final FoodProperties TOFUSOUL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200), 1.0F).build();
@@ -33,6 +34,8 @@ public class TofuFoods {
 
 	public static final FoodProperties TOFUCOOKIE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
 	public static final FoodProperties TTTBURGER = (new FoodProperties.Builder()).nutrition(9).saturationMod(0.85F).build();
+	public static final FoodProperties MEAT_WRAPPED_YUBA = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.825F).build();
+
 
 	public static final FoodProperties SOYSTICK = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).fast().build();
 
@@ -72,6 +75,8 @@ public class TofuFoods {
 	public static final FoodProperties TOMATO_SOYBEAN_STEW = stew(5).build();
 	public static final FoodProperties YUDOFU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties EDAMAME_RICE = stew(5).build();
+
+	public static final FoodProperties TOFUSOMEN = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
 
 	public static final FoodProperties HIYAYAKKO = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
 	public static final FoodProperties NATTOHIYAYAKKO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.35F).build();

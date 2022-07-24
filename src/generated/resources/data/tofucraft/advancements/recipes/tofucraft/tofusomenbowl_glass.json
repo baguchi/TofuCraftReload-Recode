@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "tofucraft:bottle_soyoil"
+              "tofucraft:tofusomen"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofufried"
+        "recipe": "tofucraft:tofusomenbowl_glass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:tofufried"
+      "tofucraft:tofusomenbowl_glass"
     ]
   }
 }
