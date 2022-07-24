@@ -120,6 +120,9 @@ public class BlockstateGenerator extends BlockStateProvider {
 		crossBlock(TofuBlocks.SAPLING_TOFU.get());
 		simpleLeavesBlock(TofuBlocks.LEAVES_TOFU.get());
 
+		crossBlock(TofuBlocks.SAPLING_APRICOT.get());
+		simpleLeavesBlock(TofuBlocks.LEAVES_APRICOT.get());
+
 		crossBlock(TofuBlocks.LEEK.get());
 
 		simpleBlock(TofuBlocks.TOFU_PORTAL.get());

@@ -1,4 +1,4 @@
-// 1.19	2022-07-23T08:07:15.2513891	TofuCraftReload loot tables
+// 1.19	2022-07-24T11:45:43.9360985	TofuCraftReload loot tables
 7fde57aad7fc3dff80690533a116285cfe78a5ec data/tofucraft/loot_tables/blocks/antenna_basic.json
 eb40b5c1c677c7ae220c42b6fc2bbf96fc584ca2 data/tofucraft/loot_tables/blocks/barrel_miso.json
 a1192effaf6443d67f911b8917edf354b53a5ca1 data/tofucraft/loot_tables/blocks/barrel_misotofu.json
@@ -17,6 +17,7 @@ dee807935b16d8f71e0ea7c17e38475207d18c01 data/tofucraft/loot_tables/blocks/block
 6bc260b5b2d2731763019d9ef58effe2dd9cc768 data/tofucraft/loot_tables/blocks/blocktofusoul.json
 ef3fcbf590c7c545d416928a532af9f09b373aef data/tofucraft/loot_tables/blocks/blocktofuzunda.json
 9c9e2e804f0926d74fe00916bfa6e1475727a929 data/tofucraft/loot_tables/blocks/chili_crop.json
+8933af2e567872f0c3e63cac0074bca333d0e778 data/tofucraft/loot_tables/blocks/leaves_apricot.json
 dc8ae21b3c451b6da90114fad19d50b7f2669958 data/tofucraft/loot_tables/blocks/leaves_tofu.json
 4a0a3fd52b1388bc2c6f348240b1d8de5e0a7017 data/tofucraft/loot_tables/blocks/leek_crop.json
 56ffad830fda77d16ed1bd008775380b52269361 data/tofucraft/loot_tables/blocks/leek_green_stem.json
@@ -28,6 +29,7 @@ ac98d1483d868032283cf7aabff099f9dd45d3c7 data/tofucraft/loot_tables/blocks/ore_t
 0fd0e62f0ef99762e565b677a7b7c6c04f17ac04 data/tofucraft/loot_tables/blocks/rice.json
 1d4929d7d6176f60e5ea991a577527ed251ef375 data/tofucraft/loot_tables/blocks/rice_root.json
 faf36ca1bd60a0b5f712e91015efb433d784c2ec data/tofucraft/loot_tables/blocks/salt_furnace.json
+ede92239f2d25c6d2f2067d424587e92fd816537 data/tofucraft/loot_tables/blocks/sapling_apricot.json
 fed107cfb9c7823d4bde08554e586ae9d599bba9 data/tofucraft/loot_tables/blocks/sapling_tofu.json
 f10e69bdd023f29db97dcd6c9fe8bb1d315e195f data/tofucraft/loot_tables/blocks/sculked_tofu_soul.json
 d5ebc0f11adac6a6c7ab0807a1a04eafd70ab5e1 data/tofucraft/loot_tables/blocks/sculk_bone.json

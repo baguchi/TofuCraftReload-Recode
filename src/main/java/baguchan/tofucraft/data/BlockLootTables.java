@@ -173,6 +173,9 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.SAPLING_TOFU.get());
 		this.add(TofuBlocks.LEAVES_TOFU.get(), createLeavesDrops(TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.SAPLING_TOFU.get(), DEFAULT_SAPLING_DROP_RATES));
 
+		dropSelf(TofuBlocks.SAPLING_APRICOT.get());
+		this.add(TofuBlocks.LEAVES_APRICOT.get(), createApricotLeavesDrop(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.SAPLING_APRICOT.get(), DEFAULT_SAPLING_DROP_RATES));
+
 		dropSelf(TofuBlocks.LEEK_GREEN_STEM.get());
 		dropSelf(TofuBlocks.LEEK_STEM.get());
 		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
@@ -217,6 +220,10 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 
 	protected static LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {
 		return createSilkTouchDispatchTable(p_124140_, applyExplosionDecay(p_124140_, LootItem.lootTableItem(p_124141_).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+	}
+
+	protected static LootTable.Builder createApricotLeavesDrop(Block p_124264_, Block p_124265_, float... p_124266_) {
+		return createLeavesDrops(p_124264_, p_124265_, p_124266_).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(applyExplosionCondition(TofuBlocks.LEAVES_APRICOT.get(), LootItem.lootTableItem(TofuItems.APRICOT.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
 	}
 
 	private void registerLeavesNoSapling(Block leaves) {
