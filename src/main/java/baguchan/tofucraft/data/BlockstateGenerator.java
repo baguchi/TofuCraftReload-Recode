@@ -292,11 +292,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 	public void trapdoor(Supplier<? extends TrapDoorBlock> block) {
-		trapdoorBlock(block.get(), texture(name(block.get())), true);
-	}
-
-	public void trapdoor(Supplier<? extends TrapDoorBlock> block, String name) {
-		trapdoorBlock(block.get(), texture(name + "_trapdoor"), true);
+		trapdoor(block.get(), texture(name(block.get())), true);
 	}
 
 	public void trapdoor(TrapDoorBlock block, ResourceLocation texture, boolean orientable) {
@@ -305,9 +301,9 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 
 	private void trapdoorBlockInternal(TrapDoorBlock block, String baseName, ResourceLocation texture, boolean orientable) {
-		ModelFile bottom = orientable ? models().trapdoorOrientableBottom(baseName + "_bottom", texture) : models().trapdoorBottom(baseName + "_bottom", texture).renderType("minecraft:cutout");
-		ModelFile top = orientable ? models().trapdoorOrientableTop(baseName + "_top", texture) : models().trapdoorTop(baseName + "_top", texture).renderType("minecraft:cutout");
-		ModelFile open = orientable ? models().trapdoorOrientableOpen(baseName + "_open", texture) : models().trapdoorOpen(baseName + "_open", texture).renderType("minecraft:cutout");
+		ModelFile bottom = orientable ? models().trapdoorOrientableBottom(baseName + "_bottom", texture).renderType("minecraft:cutout") : models().trapdoorBottom(baseName + "_bottom", texture).renderType("minecraft:cutout");
+		ModelFile top = orientable ? models().trapdoorOrientableTop(baseName + "_top", texture).renderType("minecraft:cutout") : models().trapdoorTop(baseName + "_top", texture).renderType("minecraft:cutout");
+		ModelFile open = orientable ? models().trapdoorOrientableOpen(baseName + "_open", texture).renderType("minecraft:cutout") : models().trapdoorOpen(baseName + "_open", texture).renderType("minecraft:cutout");
 		trapdoorBlock(block, bottom, top, open, orientable);
 	}
 

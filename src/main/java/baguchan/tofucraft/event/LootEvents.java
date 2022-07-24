@@ -15,29 +15,31 @@ import java.util.Set;
 public class LootEvents {
 	private static final Set<ResourceLocation> TEMPLE_LOOT = Sets.newHashSet(new ResourceLocation("chests/jungle_temple"));
 
-	private static final Set<ResourceLocation> SHIP_LOOT = Sets.newHashSet(new ResourceLocation("chests/shipwreck_supply"));
+	private static final Set<ResourceLocation> SHIP_SUPPLY_LOOT = Sets.newHashSet(new ResourceLocation("chests/shipwreck_supply"));
+
+	private static final Set<ResourceLocation> SHIP_TREASURE_LOOT = Sets.newHashSet(new ResourceLocation("chests/shipwreck_treasure"));
 
 	private static final Set<ResourceLocation> RUIN_LOOT = Sets.newHashSet(new ResourceLocation("chests/underwater_ruin_big"));
 
 	@SubscribeEvent
 	public static void onInjectLoot(LootTableLoadEvent event) {
 		if (TEMPLE_LOOT.contains(event.getName())) {
-			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/tofustick_temple")).setWeight(1).setQuality(1)).name("tofustick_temple").build();
+			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/tofustick_temple")).setWeight(2).setQuality(1)).name("tofustick_temple").build();
 			event.getTable().addPool(pool);
 		}
-		if (SHIP_LOOT.contains(event.getName())) {
-			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/tofustick_ship")).setWeight(1).setQuality(1)).name("tofustick_ship").build();
+		if (SHIP_TREASURE_LOOT.contains(event.getName())) {
+			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/tofustick_ship")).setWeight(10).setQuality(1)).name("tofustick_ship").build();
 			event.getTable().addPool(pool);
 		}
 		if (RUIN_LOOT.contains(event.getName())) {
-			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/tofustick_ruin")).setWeight(1).setQuality(1)).name("tofustick_ruin").build();
+			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/tofustick_ruin")).setWeight(2).setQuality(1)).name("tofustick_ruin").build();
 			event.getTable().addPool(pool);
 		}
 		if (TEMPLE_LOOT.contains(event.getName())) {
 			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/seeds_chili_temple")).setWeight(10).setQuality(5)).name("seeds_chili_temple").build();
 			event.getTable().addPool(pool);
 		}
-		if (SHIP_LOOT.contains(event.getName())) {
+		if (SHIP_SUPPLY_LOOT.contains(event.getName())) {
 			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/seeds_chili_ship")).setWeight(10).setQuality(5)).name("seeds_chili_ship").build();
 			event.getTable().addPool(pool);
 		}
