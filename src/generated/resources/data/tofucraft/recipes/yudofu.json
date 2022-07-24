@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    [
+      {
+        "item": "tofucraft:tofukinu"
+      },
+      {
+        "item": "tofucraft:tofumomen"
+      }
+    ],
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "minecraft:potion"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:yudofu"
+  }
+}

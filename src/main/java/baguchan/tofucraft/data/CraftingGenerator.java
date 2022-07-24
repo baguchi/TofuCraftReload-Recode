@@ -130,6 +130,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.BOTTLE_DASHI.get())
 				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
 				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.YUDOFU.get(), 1)
+				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
+				.requires(Items.BOWL)
+				.requires(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER)))
+				.unlockedBy("has_item", has(TofuItems.TOFUKINU.get()))
+				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUFRIED.get(), 1)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
