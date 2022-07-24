@@ -80,6 +80,7 @@ public class TofuFoods {
 	public static final FoodProperties EDAMAME_RICE = stew(5).build();
 
 	public static final FoodProperties TOFUSOMEN = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
+	public static final FoodProperties TASTYSTEW = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.90F).build();
 
 	public static final FoodProperties HIYAYAKKO = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
 	public static final FoodProperties NATTOHIYAYAKKO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.35F).build();

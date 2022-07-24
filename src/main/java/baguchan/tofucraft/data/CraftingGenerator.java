@@ -702,15 +702,36 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.TOFUKINU.get())
 				.requires(TofuItems.ROLLINGPIN.get())
 				.requires(TofuItems.SALT.get())
-				.requires(TofuItems.STARCH.get())
-				.unlockedBy("has_item", has(TofuItems.ROLLINGPIN.get()))
-				.save(consumer);
+			.requires(TofuItems.STARCH.get())
+			.unlockedBy("has_item", has(TofuItems.ROLLINGPIN.get()))
+			.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUSOMENBOWL_GLASS.get(), 1)
 				.requires(TofuItems.TOFUSOMEN.get())
 				.requires(TofuItems.GLASSBOWL.get())
 				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
 				.requires(TofuItems.BOTTLE_DASHI.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUSOMEN.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.TASTYBEEFSTEW.get(), 1)
+				.requires(Items.BROWN_MUSHROOM)
+				.requires(Items.RED_MUSHROOM)
+				.requires(Ingredient.of(Items.COOKED_CHICKEN, Items.COOKED_MUTTON, Items.COOKED_PORKCHOP, Items.COOKED_RABBIT))
+				.requires(TofuTags.Items.DUST_SALT)
+				.requires(Items.MILK_BUCKET)
+				.requires(Items.WHEAT)
+				.requires(Items.BOWL)
+				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.TASTYSTEW.get(), 1)
+				.requires(Items.BROWN_MUSHROOM)
+				.requires(Items.RED_MUSHROOM)
+				.requires(Items.COOKED_BEEF)
+				.requires(TofuTags.Items.DUST_SALT)
+				.requires(Items.MILK_BUCKET)
+				.requires(Items.WHEAT)
+				.requires(Items.BOWL)
+				.unlockedBy("has_item", has(TofuItems.SALT.get()))
 				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(TofuItems.HIYAYAKKO_GLASS.get(), 1)
