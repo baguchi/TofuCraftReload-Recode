@@ -361,6 +361,16 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 		foodCooking(TofuItems.EDAMAME, TofuItems.BOILED_EDAMAME, 0.1F, consumer);
 
+		ShapedRecipeBuilder.shaped(TofuItems.CHIKUWA.get(), 4)
+				.pattern(" X ")
+				.pattern("YZI")
+				.pattern(" X ")
+				.define('X', ItemTags.FISHES)
+				.define('Y', TofuTags.Items.DUST_SALT)
+				.define('Z', Items.EGG)
+				.define('I', TofuItems.STARCH.get())
+				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
+				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.ZUNDA.get(), 4)
 				.requires(TofuItems.BOILED_EDAMAME.get(), 8)
 				.requires(Items.SUGAR)

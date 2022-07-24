@@ -1,4 +1,4 @@
-// 1.19	2022-07-23T13:23:06.563750776	TofuCraftReload item and itemblock models
+// 1.19	2022-07-24T12:24:09.693810375	TofuCraftReload item and itemblock models
 b77ae9850d4e0bf1984d4b63d53606b82a275ae5 assets/tofucraft/models/item/agedashi_tofu.json
 66f804790cfbad9cfb207e2126d08f74ee8ea752 assets/tofucraft/models/item/antenna_basic.json
 6d23a3bf32c18a81fc3c9962417fc45551cb2ef8 assets/tofucraft/models/item/bittern_bottle.json
@@ -22,6 +22,7 @@ b2ad285c1d534b1fcdbafaec832aa5ffe1a186ab assets/tofucraft/models/item/bottle_soy
 8182b7691c685656edd94e019a8c849756a91546 assets/tofucraft/models/item/bucket_soymilk_nether.json
 fe96b0aa42304181aaff8830c24e048ced599a38 assets/tofucraft/models/item/bucket_soymilk_soul.json
 bcc88b1e6c42b370ff554cf299415c475f1ff05b assets/tofucraft/models/item/bugle.json
+a66fa6d23e0e3926ddba258cdc48116e19efcaeb assets/tofucraft/models/item/chikuwa.json
 0d56924fc6bcfea79dd001c9bfb887961d3e067f assets/tofucraft/models/item/chili.json
 583e43d1a6338930229939eb3600cd7d972e940a assets/tofucraft/models/item/cooked_tofufish.json
 63a4b89f1279d523df775db8ed891a0d62ec1afe assets/tofucraft/models/item/doubanjiang.json
@@ -46,7 +47,6 @@ b9b5d40bbd68602447d98481e1c28a2abbb35048 assets/tofucraft/models/item/mincedpota
 ff6bd282337480d2b45189ad71b27012724b641b assets/tofucraft/models/item/miso.json
 b4e3a217c57bf51f85c9474dcff68a11a720328a assets/tofucraft/models/item/natto.json
 94b968c99d5237412943d625dbd816517bac0a32 assets/tofucraft/models/item/nattohiyayakko.json
-48bf1831eda8d6387bdeb1e192f6418ec3054bdb assets/tofucraft/models/item/nethermanju.json
 edc75fb57b431891476591301028d19182da27cc assets/tofucraft/models/item/nether_fukumame.json
 48bf1831eda8d6387bdeb1e192f6418ec3054bdb assets/tofucraft/models/item/nethermanju.json
 e2a50d2a6c4abe029062ffdaaeb92779fe1a6484 assets/tofucraft/models/item/onigiri.json

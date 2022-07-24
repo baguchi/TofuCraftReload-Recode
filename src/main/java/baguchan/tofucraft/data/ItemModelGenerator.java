@@ -174,6 +174,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.LEEK.get());
 		singleTex(TofuItems.RICE.get());
 		singleTex(TofuItems.SEEDS_RICE.get());
+		singleTex(TofuItems.CHIKUWA.get());
 		singleTex(TofuItems.YUBA.get());
 
 		singleTex(TofuItems.ZUNDA.get());
