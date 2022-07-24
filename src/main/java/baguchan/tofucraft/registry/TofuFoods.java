@@ -63,6 +63,9 @@ public class TofuFoods {
 	public static final FoodProperties RICE_SOBORO_TOFU = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.65F).build();
 	public static final FoodProperties GOHEIMOCHI = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.65F).build();
 
+	public static final FoodProperties PUDDING = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.3F).build();
+	public static final FoodProperties PUDDING_SOYMILK = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.35F).build();
+
 	public static final FoodProperties APRICOT = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
 
 

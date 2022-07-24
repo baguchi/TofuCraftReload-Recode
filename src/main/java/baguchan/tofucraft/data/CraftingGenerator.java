@@ -495,8 +495,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_ANNIN.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
-				.requires(Items.SUGAR)
-				.requires(Items.SUGAR)
+				.requires(TofuItems.KYONINSO.get())
+				.requires(TofuItems.KYONINSO.get())
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
 				.save(consumer);
 
@@ -537,6 +537,20 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.ZUNDA.get())
 				.requires(TofuTags.Items.RICE)
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_MOCHI.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.PUDDING.get(), 1)
+				.requires(Items.EGG)
+				.requires(TofuItems.GELATIN.get())
+				.requires(Items.MILK_BUCKET)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_item", has(TofuItems.GELATIN.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.PUDDING_SOYMILK.get(), 1)
+				.requires(Items.EGG)
+				.requires(TofuItems.GELATIN.get())
+				.requires(TofuItems.SOYMILK.get())
+				.requires(Items.SUGAR)
+				.unlockedBy("has_item", has(TofuItems.GELATIN.get()))
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.ONIGIRI.get(), 2)
 				.requires(TofuTags.Items.RICE)
@@ -644,7 +658,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Items.GLASS))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(TofuItems.HIYAYAKKO.get(), 1)
+		ShapelessRecipeBuilder.shapeless(TofuItems.HIYAYAKKO_GLASS.get(), 1)
 				.requires(TofuItems.TOFUKINU.get())
 				.requires(TofuItems.LEEK.get())
 				.requires(TofuItems.GLASSBOWL.get())
@@ -652,7 +666,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYSAUSE.get()))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(TofuItems.NATTOHIYAYAKKO.get(), 1)
+		ShapelessRecipeBuilder.shapeless(TofuItems.NATTOHIYAYAKKO_GLASS.get(), 1)
 				.requires(TofuItems.NATTO.get())
 				.requires(TofuItems.TOFUKINU.get())
 				.requires(TofuItems.LEEK.get())
