@@ -307,10 +307,10 @@ public class TofuBlocks {
 						});
 					}
 				};
-			} else if (Objects.requireNonNull(block.get()) == TOFUCAKE.get()) {
+			} else if (Objects.requireNonNull(block.get()) instanceof TofuCakeBlock) {
 				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().stacksTo(1).tab(tab));
 			} else if (Objects.requireNonNull(block.get()) instanceof DoorBlock) {
-				return new DoubleHighBlockItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab));
+				return new DoubleHighBlockItem(Objects.requireNonNull(block.get()), new Item.Properties().stacksTo(16).tab(tab));
 			} else {
 				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab));
 			}
