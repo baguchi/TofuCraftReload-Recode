@@ -33,6 +33,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.BowlFoodItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.DispensibleContainerItem;
 import net.minecraft.world.item.Item;
@@ -192,6 +193,7 @@ public class TofuItems {
 
 	public static final RegistryObject<Item> PUDDING = ITEMS.register("pudding", () -> new ReturnableDishItem(TofuItems.GLASSBOWL.get(), (new Item.Properties()).stacksTo(1).food(TofuFoods.PUDDING).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> PUDDING_SOYMILK = ITEMS.register("pudding_soymilk", () -> new ReturnableDishItem(TofuItems.GLASSBOWL.get(), (new Item.Properties()).stacksTo(1).food(TofuFoods.PUDDING_SOYMILK).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> NIKUJAGA = ITEMS.register("nikujaga", () -> new BowlFoodItem((new Item.Properties()).stacksTo(1).food(TofuFoods.NIKUJAGA).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUSOMEN = ITEMS.register("tofusomen", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUSOMENBOWL_GLASS = ITEMS.register("tofusomenbowl_glass", () -> new ReturnableDishItem(TofuItems.GLASSBOWL.get(), (new Item.Properties()).stacksTo(16).food(TofuFoods.TOFUSOMEN).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TASTYBEEFSTEW = ITEMS.register("tastybeefstew", () -> new ReturnableDishItem(Items.BOWL, (new Item.Properties()).stacksTo(1).food(TofuFoods.TASTYSTEW).tab(TofuCreativeModeTab.TOFUCRAFT)));

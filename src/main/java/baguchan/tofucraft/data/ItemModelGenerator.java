@@ -232,6 +232,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.PUDDING.get());
 		singleTex(TofuItems.PUDDING_SOYMILK.get());
 
+		singleTex(TofuItems.NIKUJAGA.get());
+
 		singleTex(TofuItems.ONIGIRI.get());
 		singleTex(TofuItems.ONIGIRI_SALT.get());
 		singleTex(TofuItems.YAKIONIGIRI_MISO.get());
