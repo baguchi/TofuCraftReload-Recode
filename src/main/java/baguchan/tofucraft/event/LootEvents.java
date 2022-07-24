@@ -3,6 +3,7 @@ package baguchan.tofucraft.event;
 import baguchan.tofucraft.TofuCraftReload;
 import com.google.common.collect.Sets;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import net.minecraftforge.event.LootTableLoadEvent;
@@ -21,6 +22,8 @@ public class LootEvents {
 
 	private static final Set<ResourceLocation> RUIN_LOOT = Sets.newHashSet(new ResourceLocation("chests/underwater_ruin_big"));
 
+	private static final Set<ResourceLocation> DUNGEONS_ROOT = Sets.newHashSet(BuiltInLootTables.SIMPLE_DUNGEON);
+
 	@SubscribeEvent
 	public static void onInjectLoot(LootTableLoadEvent event) {
 		if (TEMPLE_LOOT.contains(event.getName())) {
@@ -36,6 +39,7 @@ public class LootEvents {
 			event.getTable().addPool(pool);
 		}
 		if (TEMPLE_LOOT.contains(event.getName())) {
+
 			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/seeds_chili_temple")).setWeight(10).setQuality(5)).name("seeds_chili_temple").build();
 			event.getTable().addPool(pool);
 		}
@@ -45,6 +49,16 @@ public class LootEvents {
 		}
 		if (RUIN_LOOT.contains(event.getName())) {
 			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/seeds_chili_ruin")).setWeight(10).setQuality(5)).name("seeds_chili_ruin").build();
+			event.getTable().addPool(pool);
+		}
+
+		if (SHIP_SUPPLY_LOOT.contains(event.getName())) {
+			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/sapling_apricot_ship")).setWeight(10).setQuality(5)).name("sapling_apricot_ship").build();
+			event.getTable().addPool(pool);
+		}
+
+		if (DUNGEONS_ROOT.contains(event.getName())) {
+			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/sapling_apricot_dungeons")).setWeight(10).setQuality(5)).name("sapling_apricot_dungeons").build();
 			event.getTable().addPool(pool);
 		}
 	}
