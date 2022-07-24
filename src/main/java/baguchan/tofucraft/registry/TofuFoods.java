@@ -49,6 +49,8 @@ public class TofuFoods {
 
 	public static final FoodProperties ZUNDA_MOCHI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
 	public static final FoodProperties KINAKO_MOCHI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
+	public static final FoodProperties CRIMSON_SOUP = stew(6).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1.0F).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 100), 0.1F).build();
+
 	public static final FoodProperties ONIGIRI = (new FoodProperties.Builder()).nutrition(3).fast().saturationMod(0.6F).build();
 	public static final FoodProperties ONIGIRI_SALT = (new FoodProperties.Builder()).nutrition(3).fast().saturationMod(0.625F).build();
 	public static final FoodProperties YAKIONIGIRI_MISO = (new FoodProperties.Builder()).nutrition(3).fast().saturationMod(0.65F).build();
