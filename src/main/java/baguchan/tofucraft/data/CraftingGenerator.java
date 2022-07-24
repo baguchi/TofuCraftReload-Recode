@@ -373,6 +373,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.BUCKET)
 				.unlockedBy("has_item", has(TofuTags.Items.SOYBEAN))
 				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.BUCKET_SOYMILK.get())
+				.requires(TofuTags.Items.SOYBEAN)
+				.requires(Items.BUCKET)
+				.requires(TofuItems.FILTERCLOTH.get())
+				.unlockedBy("has_item", has(TofuTags.Items.SOYBEAN))
+				.save(consumer, TofuCraftReload.prefix("bucket_soymilk_okara"));
 		ShapelessRecipeBuilder.shapeless(TofuItems.BUCKET_SOYMILK_NETHER.get())
 				.requires(TofuItems.SEEDS_SOYBEANS_NETHER.get())
 				.requires(Items.BUCKET)
