@@ -174,6 +174,24 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 		foodCookingButNoCampfire(TofuItems.STARCH_RAW, TofuItems.STARCH, 0.1F, consumer);
 
+		ShapelessRecipeBuilder.shapeless(TofuItems.GELATINRAW.get(), 1)
+				.requires(Items.BONE)
+				.requires(Ingredient.of(Items.LEATHER, Items.RABBIT_HIDE))
+				.unlockedBy("has_item", has(Items.BONE))
+				.save(consumer);
+
+		foodCookingButNoCampfire(TofuItems.GELATINRAW, TofuItems.GELATIN, 0.1F, consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.APRICOTSEED.get(), 1)
+				.requires(TofuItems.APRICOT.get())
+				.unlockedBy("has_item", has(TofuItems.APRICOT.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.KYONINSO.get(), 1)
+				.requires(TofuItems.APRICOTSEED.get())
+				.unlockedBy("has_item", has(TofuItems.APRICOT.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(TofuItems.FILTERCLOTH.get(), 32)
 				.pattern("###")
 				.define('#', Ingredient.of(ItemTags.WOOL))
@@ -491,8 +509,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_ANNIN.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
-				.requires(Items.SUGAR)
-				.requires(Items.SUGAR)
+				.requires(TofuItems.KYONINSO.get())
+				.requires(TofuItems.KYONINSO.get())
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
 				.save(consumer);
 
@@ -533,6 +551,20 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.ZUNDA.get())
 				.requires(TofuTags.Items.RICE)
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_MOCHI.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.PUDDING.get(), 1)
+				.requires(Items.EGG)
+				.requires(TofuItems.GELATIN.get())
+				.requires(Items.MILK_BUCKET)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_item", has(TofuItems.GELATIN.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.PUDDING_SOYMILK.get(), 1)
+				.requires(Items.EGG)
+				.requires(TofuItems.GELATIN.get())
+				.requires(TofuItems.SOYMILK.get())
+				.requires(Items.SUGAR)
+				.unlockedBy("has_item", has(TofuItems.GELATIN.get()))
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.ONIGIRI.get(), 2)
 				.requires(TofuTags.Items.RICE)
@@ -639,8 +671,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', Items.GLASS_PANE)
 				.unlockedBy("has_item", has(Items.GLASS))
 				.save(consumer);
-
-		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUSOMEN.get(), 4)
+    
+    ShapelessRecipeBuilder.shapeless(TofuItems.TOFUSOMEN.get(), 4)
 				.requires(TofuItems.TOFUKINU.get())
 				.requires(TofuItems.ROLLINGPIN.get())
 				.requires(TofuItems.SALT.get())
@@ -655,7 +687,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUSOMEN.get()))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(TofuItems.HIYAYAKKO.get(), 1)
+		ShapelessRecipeBuilder.shapeless(TofuItems.HIYAYAKKO_GLASS.get(), 1)
 				.requires(TofuItems.TOFUKINU.get())
 				.requires(TofuItems.LEEK.get())
 				.requires(TofuItems.GLASSBOWL.get())
@@ -663,13 +695,21 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYSAUSE.get()))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(TofuItems.NATTOHIYAYAKKO.get(), 1)
+		ShapelessRecipeBuilder.shapeless(TofuItems.NATTOHIYAYAKKO_GLASS.get(), 1)
 				.requires(TofuItems.NATTO.get())
 				.requires(TofuItems.TOFUKINU.get())
 				.requires(TofuItems.LEEK.get())
 				.requires(TofuItems.GLASSBOWL.get())
 				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
 				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYSAUSE.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUANNIN.get(), 1)
+				.requires(TofuItems.KYONINSO.get())
+				.requires(TofuItems.KYONINSO.get())
+				.requires(TofuItems.GELATIN.get())
+				.requires(Items.MILK_BUCKET)
+				.unlockedBy("has_item", has(TofuItems.APRICOT.get()))
 				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.SALTPAN.get())

@@ -117,6 +117,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 		itemBlockFlat(TofuBlocks.SAPLING_TOFU.get());
 		toBlock(TofuBlocks.LEAVES_TOFU.get());
 
+		itemBlockFlat(TofuBlocks.SAPLING_APRICOT.get());
+		toBlock(TofuBlocks.LEAVES_APRICOT.get());
+		singleTex(TofuItems.APRICOT.get());
+		singleTex(TofuItems.APRICOTSEED.get());
+		singleTex(TofuItems.KYONINSO.get());
+
 		itemBlockFlat(TofuBlocks.LEEK.get());
 		singleTex(TofuBlocks.TOFUCAKE.get().asItem());
 		singleTex(TofuBlocks.ZUNDATOFUCAKE.get().asItem());
@@ -145,6 +151,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.OAGE.get());
 		singleTex(TofuItems.TOFU_MINCED.get());
 
+		singleTex(TofuItems.TOFUANNIN.get());
+
 		singleTex(TofuItems.BITTERN_BOTTLE.get());
 		singleTex(TofuItems.SALT.get());
 
@@ -172,6 +180,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.STARCH.get());
 		singleTex(TofuItems.STARCH_RAW.get());
 		singleTex(TofuItems.FILTERCLOTH.get());
+
+		singleTex(TofuItems.GELATIN.get());
+		singleTex(TofuItems.GELATINRAW.get());
 
 		singleTex(TofuItems.LEEK.get());
 		singleTex(TofuItems.RICE.get());
@@ -215,6 +226,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.CRIMSON_SOUP.get());
 		singleTex(TofuItems.ZUNDA_MOCHI.get());
 
+		singleTex(TofuItems.PUDDING.get());
+		singleTex(TofuItems.PUDDING_SOYMILK.get());
+
 		singleTex(TofuItems.ONIGIRI.get());
 		singleTex(TofuItems.ONIGIRI_SALT.get());
 		singleTex(TofuItems.YAKIONIGIRI_MISO.get());
@@ -238,10 +252,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFUFISH_SOYMILK_BUCKET.get());
 
 		singleTex(TofuItems.GLASSBOWL.get());
+
 		singleTex(TofuItems.TOFUSOMEN.get());
 		singleTex(TofuItems.TOFUSOMENBOWL_GLASS.get());
-		singleTex(TofuItems.HIYAYAKKO.get());
-		singleTex(TofuItems.NATTOHIYAYAKKO.get());
+
+		singleTex(TofuItems.HIYAYAKKO_GLASS.get());
+		singleTex(TofuItems.NATTOHIYAYAKKO_GLASS.get());
 
 		singleTexTool(TofuItems.TOFUSCOOP.get());
 		singleTexTool(TofuItems.TOFUSTICK.get());
