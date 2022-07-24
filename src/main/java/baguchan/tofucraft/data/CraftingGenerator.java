@@ -642,6 +642,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUSOMEN.get(), 4)
 				.requires(TofuItems.TOFUKINU.get())
+				.requires(TofuItems.ROLLINGPIN.get())
 				.requires(TofuItems.SALT.get())
 				.requires(TofuItems.STARCH.get())
 				.unlockedBy("has_item", has(TofuItems.ROLLINGPIN.get()))
