@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "tofucraft:onigiri"
+    },
+    "M": {
+      "item": "tofucraft:miso"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "#",
+    "M",
+    "S"
+  ],
+  "result": {
+    "item": "tofucraft:goheimochi"
+  }
+}

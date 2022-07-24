@@ -1,4 +1,4 @@
-// 1.19	2022-07-23T22:16:54.355095	Recipes
+// 1.19	2022-07-24T11:41:47.2897642	Recipes
 3ae53c165df3e026db8a5f3b30b42c182e67c5ca data/tofucraft/advancements/recipes/tofucraft/agedashi_tofu.json
 8224d4e3154d47211ba8c3b84b48cb89ac139b7d data/tofucraft/advancements/recipes/tofucraft/antenna_basic.json
 d7d7be0bd8fd8d5ed45a09be34844708e9dfdc99 data/tofucraft/advancements/recipes/tofucraft/barrel_miso.json
@@ -80,6 +80,7 @@ af98df7ebe1989d1a8c539f380d7eaacbe27c6e9 data/tofucraft/advancements/recipes/tof
 40204a64b99d967e43a30ae9f46ad758446c8345 data/tofucraft/advancements/recipes/tofucraft/filtercloth.json
 aa11edd12477db0cf298a87d6e73f233a74e5a96 data/tofucraft/advancements/recipes/tofucraft/fukumame.json
 f6d9daa1a480563728918fbbd560b42277a8f1d9 data/tofucraft/advancements/recipes/tofucraft/glassbowl.json
+236a525c42b899d41c1e36804c7751a589c1f1ba data/tofucraft/advancements/recipes/tofucraft/goheimochi.json
 a032d0c4868fa0082af6834e648677378c695897 data/tofucraft/advancements/recipes/tofucraft/hiyayakko.json
 872dcc2e89adc6ed9d1dfdb2b57233447318e0d3 data/tofucraft/advancements/recipes/tofucraft/kinako.json
 6fc196f69177a52d187ff883a349296b27b7aabc data/tofucraft/advancements/recipes/tofucraft/kinakomanju.json
@@ -317,6 +318,7 @@ e14accca988c39883c4a4b0986d139b16375e7a8 data/tofucraft/recipes/equipment/tofu_s
 6551c3f9caa21c6d139e7fa0a0afa0dbb7cd4471 data/tofucraft/recipes/filtercloth.json
 25a14a4bd91b18f544a619af8f34cccf6ade6856 data/tofucraft/recipes/fukumame.json
 6b3bec25f4304734a961b26b1bcc1145c1db9a05 data/tofucraft/recipes/glassbowl.json
+7a2754e7efc0d4ff33659d09f72f1af4cd39d3f4 data/tofucraft/recipes/goheimochi.json
 d9fd7c4a521324808410e0dcc826fca9ff230a3f data/tofucraft/recipes/hiyayakko.json
 a5d0d0d26a681166c8b3b2e83c34475787ea3a12 data/tofucraft/recipes/kinako.json
 e4777e0308f9de6efe86eb8f590833bd04290a34 data/tofucraft/recipes/kinakomanju.json
