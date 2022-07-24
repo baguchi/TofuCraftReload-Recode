@@ -22,6 +22,8 @@ import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
 import baguchan.tofucraft.block.tfenergy.TFAggregator;
 import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
+import baguchan.tofucraft.block.tree.ApricotLeavesBlock;
+import baguchan.tofucraft.block.tree.ApricotSaplingBlock;
 import baguchan.tofucraft.block.utils.MisoBarrelBlock;
 import baguchan.tofucraft.block.utils.NoWeightBaseBlock;
 import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
@@ -32,6 +34,7 @@ import baguchan.tofucraft.block.utils.WeightBaseBlock;
 import baguchan.tofucraft.client.render.item.TofuBedBWLR;
 import baguchan.tofucraft.client.render.item.TofuChestBWLR;
 import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
+import baguchan.tofucraft.world.gen.grower.ApricotTreeGrower;
 import baguchan.tofucraft.world.gen.grower.TofuTreeGrower;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.particles.ParticleTypes;
@@ -43,6 +46,7 @@ import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.LadderBlock;
@@ -201,8 +205,10 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> SAPLING_TOFU = register("sapling_tofu", () -> new TofuSaplingBlock(new TofuTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> LEAVES_TOFU = register("leaves_tofu", () -> new TofuLeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).noOcclusion().randomTicks().sound(SoundType.GRASS)));
 
-
 	public static final RegistryObject<Block> LEEK = register("blockleek", () -> new LeekBlock(BlockBehaviour.Properties.of(Material.PLANT).instabreak().noOcclusion().noCollission().sound(SoundType.GRASS)));
+
+	public static final RegistryObject<Block> SAPLING_APRICOT = register("sapling_apricot", () -> new ApricotSaplingBlock(new ApricotTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+	public static final RegistryObject<Block> LEAVES_APRICOT = register("leaves_apricot", () -> new ApricotLeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).noOcclusion().randomTicks().sound(SoundType.GRASS)));
 
 	public static final RegistryObject<RotatedPillarBlock> LEEK_GREEN_STEM = register("leek_green_stem", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM)));
 	public static final RegistryObject<RotatedPillarBlock> LEEK_STEM = register("leek_stem", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM)));
