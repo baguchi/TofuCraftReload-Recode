@@ -9,7 +9,6 @@ import baguchan.tofucraft.item.BugleItem;
 import baguchan.tofucraft.item.FukumameItem;
 import baguchan.tofucraft.item.HoneySoymilkBottleItem;
 import baguchan.tofucraft.item.KoujiBaseItem;
-import baguchan.tofucraft.item.MisoDengakuItem;
 import baguchan.tofucraft.item.NetherFukumameItem;
 import baguchan.tofucraft.item.RamuneSoymilkBottleItem;
 import baguchan.tofucraft.item.ReturnableDishItem;
@@ -134,7 +133,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFU_HAMBURG = ITEMS.register("tofuhamburg", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU_HAMBURG).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> RAW_TOFU_FISH = ITEMS.register("raw_tofufish", () -> new Item((new Item.Properties()).food(TofuFoods.RAW_TOFUFISH).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> COOKED_TOFU_FISH = ITEMS.register("cooked_tofufish", () -> new Item((new Item.Properties()).food(TofuFoods.COOKED_TOFUFISH).tab(TofuCreativeModeTab.TOFUCRAFT)));
-	public static final RegistryObject<Item> MISODENGAKU = ITEMS.register("misodengaku", () -> new MisoDengakuItem((new Item.Properties()).food(TofuFoods.MISODENGAKU).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> MISODENGAKU = ITEMS.register("misodengaku", () -> new ReturnableDishItem(Items.STICK, (new Item.Properties()).food(TofuFoods.MISODENGAKU).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUCOOKIE = ITEMS.register("tofucookie", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUCOOKIE).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TTTBURGER = ITEMS.register("tttburger", () -> new Item((new Item.Properties()).food(TofuFoods.TTTBURGER).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> MEAT_WRAPPED_YUBA = ITEMS.register("meatwrapped_yuba", () -> new Item((new Item.Properties()).food(TofuFoods.MEAT_WRAPPED_YUBA).tab(TofuCreativeModeTab.TOFUCRAFT)));
