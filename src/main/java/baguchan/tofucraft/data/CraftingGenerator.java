@@ -396,6 +396,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUKINU.get()))
 				.save(consumer);
 
+		ShapelessRecipeBuilder.shapeless(TofuItems.MEAT_WRAPPED_YUBA.get())
+				.requires(Items.COOKED_CHICKEN)
+				.requires(TofuItems.YUBA.get())
+				.unlockedBy("has_item", has(TofuItems.YUBA.get()))
+				.save(consumer);
+
 		ShapelessRecipeBuilder.shapeless(TofuItems.SOYSTICK.get())
 				.requires(TofuTags.Items.SOYBEAN)
 				.requires(Items.WHEAT)
@@ -624,6 +630,21 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" # ")
 				.define('#', Items.GLASS_PANE)
 				.unlockedBy("has_item", has(Items.GLASS))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUSOMEN.get(), 4)
+				.requires(TofuItems.TOFUKINU.get())
+				.requires(TofuItems.GLASSBOWL.get())
+				.requires(TofuItems.SALT.get())
+				.requires(TofuItems.STARCH.get())
+				.unlockedBy("has_item", has(TofuItems.ROLLINGPIN.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUSOMENBOWL_GLASS.get(), 1)
+				.requires(TofuItems.TOFUSOMEN.get())
+				.requires(TofuItems.GLASSBOWL.get())
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.requires(TofuItems.BOTTLE_DASHI.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUSOMEN.get()))
 				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(TofuItems.HIYAYAKKO.get(), 1)

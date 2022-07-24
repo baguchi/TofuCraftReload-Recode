@@ -188,6 +188,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		singleTex(TofuItems.TOFUCOOKIE.get());
 		singleTex(TofuItems.TTTBURGER.get());
+		singleTex(TofuItems.MEAT_WRAPPED_YUBA.get());
 		singleTex(TofuItems.SOYSTICK.get());
 		singleTex(TofuItems.SALTYMELON.get());
 
@@ -236,6 +237,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFUFISH_SOYMILK_BUCKET.get());
 
 		singleTex(TofuItems.GLASSBOWL.get());
+		singleTex(TofuItems.TOFUSOMEN.get());
+		singleTex(TofuItems.TOFUSOMENBOWL_GLASS.get());
 		singleTex(TofuItems.HIYAYAKKO.get());
 		singleTex(TofuItems.NATTOHIYAYAKKO.get());
 
