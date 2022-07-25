@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "W": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "pattern": [
+    "G",
+    "W"
+  ],
+  "result": {
+    "item": "tofucraft:blocksproutsjar"
+  }
+}
