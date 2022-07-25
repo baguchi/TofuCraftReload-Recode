@@ -18,8 +18,9 @@ public class TofuFoods {
 	public static final FoodProperties TOFUZUNDA = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUMISO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).fast().build();
 	public static final FoodProperties TOFUDRIED = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).fast().build();
-	public static final FoodProperties TOFUFRIED = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUSMOKE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).fast().build();
+	public static final FoodProperties TOFUSESAME = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).fast().build();
+	public static final FoodProperties TOFUFRIED = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUFRIED_POUCH = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
 	public static final FoodProperties AGEDASHI_TOFU = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).fast().build();
 	public static final FoodProperties TOFUANNIN = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).fast().build();
