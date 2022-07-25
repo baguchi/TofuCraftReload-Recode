@@ -1,6 +1,6 @@
 {
   "parent": "block/block",
-  "render_type": "cutout",
+  "render_type": "translucent",
   "textures": {
     "texture": "block/water_still",
     "particle": "#texture"

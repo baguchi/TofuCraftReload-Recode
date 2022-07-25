@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stat=using": {
+      "model": "tofucraft:block/nattobed"
+    },
+    "stat=used": {
+      "model": "tofucraft:block/nattobed_fin"
+    }
+  }
+}

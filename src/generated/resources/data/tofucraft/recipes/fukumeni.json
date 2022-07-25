@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:salt"
+    },
+    {
+      "item": "tofucraft:bottle_dashi"
+    },
+    {
+      "item": "tofucraft:tofufried"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "tofucraft:fukumeni"
+  }
+}

@@ -832,10 +832,12 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		@Nullable
 		public static Roles get(BlockState blockState) {
 			for (Roles role : values()) {
-				Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(role.getPoiType());
+				if (role != TOFUNIAN) {
+					Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(role.getPoiType());
 
-				if (role != TOFUNIAN && poiTypeHolder.isPresent() && poiTypeHolder.get().value().is(blockState)) {
-					return role;
+					if (poiTypeHolder.isPresent() && poiTypeHolder.get().value().is(blockState)) {
+						return role;
+					}
 				}
 			}
 			return null;

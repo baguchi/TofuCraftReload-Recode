@@ -1,10 +1,16 @@
 package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -114,6 +120,9 @@ public class BlockstateGenerator extends BlockStateProvider {
 		crossBlock(TofuBlocks.SAPLING_TOFU.get());
 		simpleLeavesBlock(TofuBlocks.LEAVES_TOFU.get());
 
+		crossBlock(TofuBlocks.SAPLING_APRICOT.get());
+		simpleLeavesBlock(TofuBlocks.LEAVES_APRICOT.get());
+
 		crossBlock(TofuBlocks.LEEK.get());
 
 		simpleBlock(TofuBlocks.TOFU_PORTAL.get());
@@ -123,6 +132,9 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFUSLAB_EGG.get(), TofuBlocks.EGGTOFU.get());
 
 		crossBlock(TofuBlocks.ANTENNA_BASIC.get());
+
+		cake(TofuBlocks.TOFUCAKE, "tofucake");
+		cake(TofuBlocks.ZUNDATOFUCAKE, "zundatofucake");
 	}
 
 	public ModelFile cubeLeavesAll(Block block) {
@@ -134,8 +146,8 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 	public void torchBlock(Block block, Block wall) {
-		ModelFile torch = models().torch(name(block), texture(name(block)));
-		ModelFile torchwall = models().torchWall(name(wall), texture(name(block)));
+		ModelFile torch = models().torch(name(block), texture(name(block))).renderType("minecraft:cutout");
+		ModelFile torchwall = models().torchWall(name(wall), texture(name(block))).renderType("minecraft:cutout");
 		simpleBlock(block, torch);
 		getVariantBuilder(wall).forAllStates(state ->
 				ConfiguredModel.builder()
@@ -161,6 +173,73 @@ public class BlockstateGenerator extends BlockStateProvider {
 				ConfiguredModel.builder()
 						.modelFile(model)
 						.build());
+	}
+
+
+	public void cake(Supplier<? extends TofuCakeBlock> block, String name) {
+		cakeBlockInternal(block.get(), name(block.get()), texture(name + "_bottom"), texture(name + "_top"), texture(name + "_side"), texture(name + "_inner"));
+	}
+
+	private void cakeBlockInternal(TofuCakeBlock block, String baseName, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation inside) {
+		ModelFile cake = cake(baseName + "_uneaten", bottom, top, side);
+		ModelFile sliced1 = slicedCake(baseName + "_slice1", "cake_slice1", bottom, top, side, inside);
+		ModelFile sliced2 = slicedCake(baseName + "_slice2", "cake_slice2", bottom, top, side, inside);
+		ModelFile sliced3 = slicedCake(baseName + "_slice3", "cake_slice3", bottom, top, side, inside);
+		ModelFile sliced4 = slicedCake(baseName + "_slice4", "cake_slice4", bottom, top, side, inside);
+		ModelFile sliced5 = slicedCake(baseName + "_slice5", "cake_slice5", bottom, top, side, inside);
+		ModelFile sliced6 = slicedCake(baseName + "_slice6", "cake_slice6", bottom, top, side, inside);
+
+		cakeBlock(block, cake, sliced1, sliced2, sliced3, sliced4, sliced5, sliced6);
+	}
+
+	public void cakeBlock(TofuCakeBlock block, ModelFile uneat, ModelFile sliced1, ModelFile sliced2, ModelFile sliced3, ModelFile sliced4, ModelFile sliced5, ModelFile sliced6) {
+		getVariantBuilder(block).forAllStatesExcept(state -> {
+			int bite = ((int) state.getValue(TofuCakeBlock.BITES));
+			ModelFile file;
+			switch (bite) {
+				case 0:
+					file = uneat;
+					break;
+				case 1:
+					file = sliced1;
+					break;
+				case 2:
+					file = sliced2;
+					break;
+				case 3:
+					file = sliced3;
+					break;
+				case 4:
+					file = sliced4;
+					break;
+				case 5:
+					file = sliced5;
+					break;
+				default:
+					file = sliced6;
+					break;
+			}
+
+			return ConfiguredModel.builder().modelFile(file)
+					.build();
+		}, DoorBlock.POWERED);
+	}
+
+	private ModelBuilder<?> slicedCake(String name, String model, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation inside) {
+		return models().withExistingParent(name, "block/" + model)
+				.texture("particle", top)
+				.texture("bottom", bottom)
+				.texture("top", top)
+				.texture("side", side)
+				.texture("inside", inside);
+	}
+
+	private ModelBuilder<?> cake(String name, ResourceLocation bottom, ResourceLocation top, ResourceLocation side) {
+		return models().withExistingParent(name, "block/" + "cake")
+				.texture("particle", top)
+				.texture("bottom", bottom)
+				.texture("top", top)
+				.texture("side", side);
 	}
 
 	public void door(Supplier<? extends DoorBlock> block, String name) {
@@ -213,11 +292,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 	public void trapdoor(Supplier<? extends TrapDoorBlock> block) {
-		trapdoorBlock(block.get(), texture(name(block.get())), true);
-	}
-
-	public void trapdoor(Supplier<? extends TrapDoorBlock> block, String name) {
-		trapdoorBlock(block.get(), texture(name + "_trapdoor"), true);
+		trapdoor(block.get(), texture(name(block.get())), true);
 	}
 
 	public void trapdoor(TrapDoorBlock block, ResourceLocation texture, boolean orientable) {
@@ -226,9 +301,9 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 
 	private void trapdoorBlockInternal(TrapDoorBlock block, String baseName, ResourceLocation texture, boolean orientable) {
-		ModelFile bottom = orientable ? models().trapdoorOrientableBottom(baseName + "_bottom", texture) : models().trapdoorBottom(baseName + "_bottom", texture).renderType("minecraft:cutout");
-		ModelFile top = orientable ? models().trapdoorOrientableTop(baseName + "_top", texture) : models().trapdoorTop(baseName + "_top", texture).renderType("minecraft:cutout");
-		ModelFile open = orientable ? models().trapdoorOrientableOpen(baseName + "_open", texture) : models().trapdoorOpen(baseName + "_open", texture).renderType("minecraft:cutout");
+		ModelFile bottom = orientable ? models().trapdoorOrientableBottom(baseName + "_bottom", texture).renderType("minecraft:cutout") : models().trapdoorBottom(baseName + "_bottom", texture).renderType("minecraft:cutout");
+		ModelFile top = orientable ? models().trapdoorOrientableTop(baseName + "_top", texture).renderType("minecraft:cutout") : models().trapdoorTop(baseName + "_top", texture).renderType("minecraft:cutout");
+		ModelFile open = orientable ? models().trapdoorOrientableOpen(baseName + "_open", texture).renderType("minecraft:cutout") : models().trapdoorOpen(baseName + "_open", texture).renderType("minecraft:cutout");
 		trapdoorBlock(block, bottom, top, open, orientable);
 	}
 

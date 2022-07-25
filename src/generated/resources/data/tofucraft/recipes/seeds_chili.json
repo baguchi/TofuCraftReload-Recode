@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:chili"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:seeds_chili"
+  }
+}

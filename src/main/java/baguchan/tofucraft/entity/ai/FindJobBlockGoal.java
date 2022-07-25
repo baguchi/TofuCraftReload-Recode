@@ -12,6 +12,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,12 +21,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class FindJobBlockGoal extends MoveToBlockGoal {
 	private final Tofunian creature;
 	private boolean findBlock;
 	private ResourceKey<PoiType> poiTypeResourceKey;
+
+	public static final Predicate<Holder<PoiType>> ACQUIRABLE_JOBS = (p_238239_) -> {
+		return p_238239_.is(PoiTypes.FARMER) || p_238239_.is(PoiTypes.ARMORER) || p_238239_.is(PoiTypes.LEATHERWORKER);
+	};
 
 	public FindJobBlockGoal(Tofunian creature, double speedIn, int length) {
 		super(creature, speedIn, length);
