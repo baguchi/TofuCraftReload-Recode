@@ -150,12 +150,14 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFUSMOKE.get());
 		singleTex(TofuItems.TOFUSESAME.get());
 		singleTex(TofuItems.TOFUFRIED_POUCH.get());
+		singleTex(TofuItems.TOFUANNIN.get());
+		singleTex(TofuItems.TOFUSTRAWBERRY.get());
+
 		singleTex(TofuItems.AGEDASHI_TOFU.get());
 		singleTex(TofuItems.TOFU_STEAK.get());
 		singleTex(TofuItems.OAGE.get());
 		singleTex(TofuItems.TOFU_MINCED.get());
 
-		singleTex(TofuItems.TOFUANNIN.get());
 
 		singleTex(TofuItems.BITTERN_BOTTLE.get());
 		singleTex(TofuItems.SALT.get());

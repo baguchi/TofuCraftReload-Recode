@@ -103,6 +103,8 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> MISOTOFU = register("blocktofumiso", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> DRIEDTOFU = register("blocktofudried", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 
+	public static final RegistryObject<Block> EGGTOFU = register("blocktofuegg", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
+
 	public static final RegistryObject<Block> SCULKED_TOFU_SOUL = register("sculked_tofu_soul", () -> new TofuBlock(BlockBehaviour.Properties.of(Material.SCULK).strength(2.0F, 10.0F).requiresCorrectToolForDrops().randomTicks().lightLevel(state -> {
 		return 8;
 	}).sound(SoundType.SCULK_CATALYST)));
@@ -130,6 +132,7 @@ public class TofuBlocks {
 	public static final RegistryObject<StairBlock> TOFUSTAIR_SOULBRICK = register("tofustair_soulbrick", () -> new StairBlock(SOULTOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.copy(SOULTOFU_BRICK.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_MISO = register("tofustair_miso", () -> new StairBlock(MISOTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(MISOTOFU.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_DRIED = register("tofustair_dried", () -> new StairBlock(DRIEDTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(DRIEDTOFU.get())));
+	public static final RegistryObject<StairBlock> TOFUSTAIR_EGG = register("tofustair_egg", () -> new StairBlock(EGGTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(EGGTOFU.get())));
 
 
 	public static final RegistryObject<SlabBlock> TOFUSLAB_KINU = register("tofuslab_kinu", () -> new SlabBlock(BlockBehaviour.Properties.copy(KINUTOFU.get())));
@@ -145,6 +148,8 @@ public class TofuBlocks {
 	public static final RegistryObject<SlabBlock> TOFUSLAB_SOULBRICK = register("tofuslab_soulbrick", () -> new SlabBlock(BlockBehaviour.Properties.copy(SOULTOFU_BRICK.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_MISO = register("tofuslab_miso", () -> new SlabBlock(BlockBehaviour.Properties.copy(MISOTOFU.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_DRIED = register("tofuslab_dried", () -> new SlabBlock(BlockBehaviour.Properties.copy(DRIEDTOFU.get())));
+	public static final RegistryObject<SlabBlock> TOFUSLAB_EGG = register("tofuslab_egg", () -> new SlabBlock(BlockBehaviour.Properties.copy(EGGTOFU.get())));
+
 
 	public static final RegistryObject<Block> TOFUTORCH_KINU = register("tofutorch_kinu", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
 			.noCollission().noOcclusion().sound(SoundType.SNOW), ParticleTypes.FLAME));
@@ -248,10 +253,6 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> TF_AGGREGATOR = register("tf_aggregator", () -> new TFAggregator(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
 		return p_50872_.getValue(TFAggregator.LIT) ? 13 : 0;
 	})));
-
-	public static final RegistryObject<Block> EGGTOFU = register("blocktofuegg", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
-	public static final RegistryObject<StairBlock> TOFUSTAIR_EGG = register("tofustair_egg", () -> new StairBlock(EGGTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(EGGTOFU.get())));
-	public static final RegistryObject<SlabBlock> TOFUSLAB_EGG = register("tofuslab_egg", () -> new SlabBlock(BlockBehaviour.Properties.copy(EGGTOFU.get())));
 
 	private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
 		RegistryObject<T> register = BLOCKS.register(name, block);
