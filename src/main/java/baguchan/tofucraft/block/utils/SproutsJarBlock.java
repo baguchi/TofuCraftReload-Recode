@@ -162,15 +162,15 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 		int l = stat.getMeta();
 		if (stat == Stat.SPROUTS_0) {
 			if (canGrowing(worldIn, pos))
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.SPROUTS_1), 1);
+				worldIn.setBlock(pos, state.setValue(STAT, Stat.SPROUTS_1), 3);
 		}
 		if (stat == Stat.SPROUTS_1) {
 			if (canGrowing(worldIn, pos))
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.SPROUTS_2), 1);
+				worldIn.setBlock(pos, state.setValue(STAT, Stat.SPROUTS_2), 3);
 		}
 		if (stat == Stat.SPROUTS_2) {
 			if (canGrowing(worldIn, pos))
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.SPROUTS_3), 1);
+				worldIn.setBlock(pos, state.setValue(STAT, Stat.SPROUTS_3), 3);
 		}
 	}
 
