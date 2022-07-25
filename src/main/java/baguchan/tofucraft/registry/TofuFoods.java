@@ -45,6 +45,8 @@ public class TofuFoods {
 	public static final FoodProperties SOYSTICK = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).fast().build();
 
 	public static final FoodProperties MISOSOUP = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
+	public static final FoodProperties MOYASHIITAME = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.55F).build();
+	public static final FoodProperties MOYASHIOHITASHI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.55F).build();
 	public static final FoodProperties SALTYMELON = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.35F).build();
 
 	public static final FoodProperties CHILI = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();

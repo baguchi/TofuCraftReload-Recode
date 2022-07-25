@@ -152,6 +152,8 @@ public class TofuItems {
 
 	public static final RegistryObject<Item> SOYSTICK = ITEMS.register("soystick", () -> new Item((new Item.Properties()).food(TofuFoods.SOYSTICK).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> MISOSOUP = ITEMS.register("misosoup", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.MISOSOUP).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> MOYASHIITAME = ITEMS.register("moyashiitame", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.MOYASHIITAME).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> MOYASHIOHITASHI = ITEMS.register("moyashiohitashi", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.MOYASHIOHITASHI).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> SALTYMELON = ITEMS.register("saltymelon", () -> new Item((new Item.Properties()).food(TofuFoods.SALTYMELON).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 	public static final RegistryObject<Item> SOYMILK = ITEMS.register("soymilk", () -> new SoymilkBottleItem(MobEffects.REGENERATION, MobEffects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(TofuCreativeModeTab.TOFUCRAFT)));
