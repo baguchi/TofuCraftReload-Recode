@@ -40,7 +40,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
-	public static VoxelShape SPROUTSJAR_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D);
+	public static VoxelShape SPROUTSJAR_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
 
 	public static final EnumProperty<SproutsJarBlock.Stat> STAT = EnumProperty.create("stat", SproutsJarBlock.Stat.class);
 
@@ -68,7 +68,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 			if (stat == SproutsJarBlock.Stat.EMPTY) {
 				worldIn.setBlock(currentPos, stateIn.setValue(STAT, SproutsJarBlock.Stat.WATER), 3);
 			} else if (stat == Stat.SPROUTS_3) {
-				ItemStack sprouts = new ItemStack(TofuItems.SALT.get(), 1);
+				ItemStack sprouts = new ItemStack(TofuItems.SPROUTS.get(), 1);
 				if (worldIn instanceof Level) {
 					float f = 0.7F;
 					double d0 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;

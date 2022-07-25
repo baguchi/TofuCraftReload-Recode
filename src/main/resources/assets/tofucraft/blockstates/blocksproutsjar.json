@@ -1,0 +1,120 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "tofucraft:block/sprouts_jar"
+      }
+    },
+    {
+      "when": {
+        "stat": "water"
+      },
+      "apply": {
+        "model": "tofucraft:block/jar_contentwater"
+      }
+    },
+    {
+      "when": {
+        "stat": "sprouts_0"
+      },
+      "apply": {
+        "model": "tofucraft:block/jar_contentwater"
+      }
+    },
+    {
+      "when": {
+        "stat": "sprouts_1"
+      },
+      "apply": {
+        "model": "tofucraft:block/jar_contentwater"
+      }
+    },
+    {
+      "when": {
+        "stat": "sprouts_2"
+      },
+      "apply": {
+        "model": "tofucraft:block/jar_contentwater"
+      }
+    },
+    {
+      "when": {
+        "stat": "sprouts_3"
+      },
+      "apply": {
+        "model": "tofucraft:block/jar_contentwater"
+      }
+    },
+    {
+      "when": {
+        "stat": "sprouts_0"
+      },
+      "apply": {
+        "model": "tofucraft:block/jars_sprouts_0"
+      }
+    },
+    {
+      "when": {
+        "stat": "sprouts_1"
+      },
+      "apply": {
+        "model": "tofucraft:block/jars_sprouts_1"
+      }
+    },
+    {
+      "when": {
+        "stat": "sprouts_2"
+      },
+      "apply": {
+        "model": "tofucraft:block/jars_sprouts_1"
+      }
+    },
+    {
+      "when": {
+        "stat": "sprouts_3"
+      },
+      "apply": {
+        "model": "tofucraft:block/jars_sprouts_2"
+      }
+    },
+    {
+      "when": {
+        "north": "false"
+      },
+      "apply": {
+        "model": "tofucraft:block/jar_edge_glass",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "false"
+      },
+      "apply": {
+        "model": "tofucraft:block/jar_edge_glass",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "south": "false"
+      },
+      "apply": {
+        "model": "tofucraft:block/jar_edge_glass",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "false"
+      },
+      "apply": {
+        "model": "tofucraft:block/jar_edge_glass",
+        "y": 270,
+        "uvlock": true
+      }
+    }
+  ]
+}

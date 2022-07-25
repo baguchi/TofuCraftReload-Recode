@@ -7,14 +7,22 @@ import baguchan.tofucraft.client.overlay.TofuPortalOverlay;
 import baguchan.tofucraft.client.render.FukumameRender;
 import baguchan.tofucraft.client.render.NetherFukumameRender;
 import baguchan.tofucraft.client.render.SoulFukumameRender;
-import baguchan.tofucraft.client.render.entity.*;
+import baguchan.tofucraft.client.render.entity.TofuCowRender;
+import baguchan.tofucraft.client.render.entity.TofuFishRender;
+import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
+import baguchan.tofucraft.client.render.entity.TofuSpiderRender;
+import baguchan.tofucraft.client.render.entity.TofunianRender;
 import baguchan.tofucraft.client.render.item.TofuShieldBWLR;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchan.tofucraft.client.screen.TFAggreatorScreen;
 import baguchan.tofucraft.client.screen.TFStorageScreen;
-import baguchan.tofucraft.registry.*;
+import baguchan.tofucraft.registry.TofuBlockEntitys;
+import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuContainers;
+import baguchan.tofucraft.registry.TofuEntityTypes;
+import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.Sheets;
@@ -61,7 +69,7 @@ public class ClientRegistrar {
 	public static void registerColor(RegisterColorHandlersEvent.Block event) {
 		event.register((p_92621_, p_92622_, p_92623_, p_92624_) -> {
 			return p_92622_ != null && p_92623_ != null ? BiomeColors.getAverageWaterColor(p_92622_, p_92623_) : -1;
-		}, TofuBlocks.SALTPAN.get());
+		}, TofuBlocks.SALTPAN.get(), TofuBlocks.SPROUTSJAR.get());
 	}
 
 	@SubscribeEvent
