@@ -485,7 +485,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuTags.Items.SALT))
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.MISOSOUP.get())
-				.requires(Ingredient.of(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get()))
+				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(TofuItems.MISO.get())
 				.requires(Items.BOWL)
 				.requires(TofuItems.BOTTLE_DASHI.get())
