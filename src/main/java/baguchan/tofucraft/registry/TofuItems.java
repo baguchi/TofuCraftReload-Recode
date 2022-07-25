@@ -103,7 +103,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> SEEDS_CHILI = ITEMS.register("seeds_chili", () -> new ItemNameBlockItem(TofuBlocks.CHILI_CROP.get(), (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> CHILI = ITEMS.register("chili", () -> new Item((new Item.Properties()).food(TofuFoods.CHILI).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> DOUBANJIANG = ITEMS.register("doubanjiang", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
-	public static final RegistryObject<Item> MABODOFU = ITEMS.register("mabodofu", () -> new Item((new Item.Properties()).food(TofuFoods.MABODOFU).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> MABODOFU = ITEMS.register("mabodofu", () -> new ReturnableDishItem(Items.BOWL, (new Item.Properties()).food(TofuFoods.MABODOFU).stacksTo(16).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 	public static final RegistryObject<Item> FUKUMENI = ITEMS.register("fukumeni", () -> new Item((new Item.Properties()).food(TofuFoods.FUKUMENI).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> KOYADOFUSTEW = ITEMS.register("koyadofustew", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.KOYADOFUSTEW).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -182,7 +182,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> SOUL_MANJU = ITEMS.register("soulmanju", () -> new Item((new Item.Properties()).food(TofuFoods.SOUL_MANJU).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> ZUNDA_MOCHI = ITEMS.register("zunda_mochi", () -> new Item((new Item.Properties()).food(TofuFoods.ZUNDA_MOCHI).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> KINAKO_MOCHI = ITEMS.register("kinako_mochi", () -> new Item((new Item.Properties()).food(TofuFoods.KINAKO_MOCHI).tab(TofuCreativeModeTab.TOFUCRAFT)));
-	public static final RegistryObject<Item> CRIMSON_SOUP = ITEMS.register("crimson_soup", () -> new Item((new Item.Properties()).food(TofuFoods.CRIMSON_SOUP).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> CRIMSON_SOUP = ITEMS.register("crimson_soup", () -> new ReturnableDishItem(Items.BOWL, (new Item.Properties()).food(TofuFoods.CRIMSON_SOUP).stacksTo(16).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 
 	public static final RegistryObject<Item> ONIGIRI = ITEMS.register("onigiri", () -> new Item((new Item.Properties()).food(TofuFoods.ONIGIRI).tab(TofuCreativeModeTab.TOFUCRAFT)));
