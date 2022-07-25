@@ -8,6 +8,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -141,6 +142,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(TofuItems.BOTTLE_SOYOIL.get())
 				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYOIL.get()))
+				.save(consumer);
+
+		SimpleCookingRecipeBuilder.smoking(Ingredient.of(TofuItems.TOFUDRIED.get()), TofuItems.TOFUSMOKE.get(), 0.1F, 600)
+				.unlockedBy("has_item", has(TofuItems.TOFUDRIED.get()))
 				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(TofuItems.TOFUFRIED_POUCH.get(), 1)
