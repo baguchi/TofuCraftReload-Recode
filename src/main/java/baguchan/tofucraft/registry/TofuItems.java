@@ -110,6 +110,8 @@ public class TofuItems {
 
 	public static final RegistryObject<Item> MISO = ITEMS.register("miso", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> BOTTLE_SOYSAUSE = ITEMS.register("bottle_soysause", () -> new Item((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> NANBAN = ITEMS.register("nanban", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.NANBAN).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> NANBANTOFU = ITEMS.register("nanbantofu", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.NANBAN).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> NATTO = ITEMS.register("natto", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 	public static final RegistryObject<Item> STARCH = ITEMS.register("starch", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -127,6 +129,8 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFU_CHIKUWA = ITEMS.register("tofu_chikuwa", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU_CHIKUWA).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 	public static final RegistryObject<Item> APRICOT = ITEMS.register("apricot", () -> new Item((new Item.Properties()).food(TofuFoods.APRICOT).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> APRICOTJERRY_BOTTLE = ITEMS.register("apricotjerry_bottle", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> APRICOTJERRY_BREAD = ITEMS.register("apricotjerry_bread", () -> new Item((new Item.Properties()).food(TofuFoods.APRICOT_BREAD).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> APRICOTSEED = ITEMS.register("apricotseed", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> KYONINSO = ITEMS.register("kyoninso", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 

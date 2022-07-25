@@ -17,6 +17,8 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
@@ -28,7 +30,7 @@ public class TofuTrades {
 		p_221237_0_.put(Tofunian.Roles.TOFUCOOK, gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.SEEDS_SOYBEANS.get(), 16, 14, 1), new ItemsForZundaRubyTrade(TofuItems.TOFUGRILLED.get(), 1, 10, 2), new ItemsForZundaRubyTrade(TofuItems.SEEDS_CHILI.get(), 1, 8, 1)}
 				, 2, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.TOFUKINU.get(), 28, 9, 6), new ItemsForZundaRubyTrade(TofuBlocks.ISHITOFU_BRICK.get(), 1, 12, 4, 8), new ItemsForZundaRubyTrade(TofuItems.KINAKO_MANJU.get(), 1, 6, 8, 6)}
 				, 3, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuItems.TOFUCOOKIE.get(), 1, 12, 6, 13), new ItemsForZundaRubyTrade(TofuItems.TOFUMISO.get(), 1, 6, 6, 13)}
-				, 4, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.YUBA.get(), 18, 12, 15), new ZundaRubyForItemsTrade(TofuBlocks.LEEK_STEM.get(), 16, 8, 15)}
+				, 4, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.YUBA.get(), 18, 12, 15), new ZundaRubyForItemsTrade(TofuBlocks.LEEK_STEM.get(), 16, 8, 15), new FairTrade(TofuItems.APRICOT.get(), TofuItems.APRICOTJERRY_BOTTLE.get(), 16, 2)}
 				, 5, new VillagerTrades.ItemListing[]{new ItemsForZundaRubyTrade(TofuBlocks.TOFUCAKE.get().asItem(), 3, 1, 20)})));
 		p_221237_0_.put(Tofunian.Roles.TOFUSMITH, gatAsIntMap(ImmutableMap.of(1, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.TOFUISHI.get(), 16, 8, 2), new ItemsForZundaRubyTrade(TofuItems.TOFU_SOLID_PICKAXE.get(), 1, 1, 3), new ItemsForZundaRubyTrade(TofuItems.TOFU_SOLID_SHOVEL.get(), 1, 1, 3)}
 				, 2, new VillagerTrades.ItemListing[]{new ZundaRubyForItemsTrade(TofuItems.TOFUMETAL.get(), 8, 8, 6), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_PICKAXE.get(), 6, 1, 4, 10), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_SHOVEL.get(), 6, 1, 4, 10), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_SWORD.get(), 6, 1, 4, 10), new ItemsForZundaRubyTrade(TofuItems.TOFU_METAL_AXE.get(), 6, 1, 4, 10)}
@@ -158,6 +160,26 @@ public class TofuTrades {
 
 		public MerchantOffer getOffer(Entity trader, RandomSource rand) {
 			return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY.get(), this.rubyCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+		}
+	}
+
+	static class FairTrade implements VillagerTrades.ItemListing {
+		private final Item sellingItem;
+		private final Item targetItem;
+		private final int maxUses;
+		private final int xpValue;
+
+		public FairTrade(Item sellingItem, Item targetItem, int maxUses, int xpValue) {
+			this.sellingItem = sellingItem;
+			this.targetItem = targetItem;
+			this.maxUses = maxUses;
+			this.xpValue = xpValue;
+		}
+
+		@Nullable
+		@Override
+		public MerchantOffer getOffer(@NotNull Entity entity, @NotNull RandomSource randomSource) {
+			return new MerchantOffer(new ItemStack(targetItem), new ItemStack(sellingItem), maxUses, xpValue, 0.05f);
 		}
 	}
 }
