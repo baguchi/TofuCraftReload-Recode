@@ -308,27 +308,32 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.TOFU_KINU_PICKAXE.get());
 		singleTexTool(TofuItems.TOFU_KINU_AXE.get());
 		singleTexTool(TofuItems.TOFU_KINU_SHOVEL.get());
+		singleTexTool(TofuItems.TOFU_KINU_HOE.get());
 
 		singleTexTool(TofuItems.TOFU_MOMEN_SWORD.get());
 		singleTexTool(TofuItems.TOFU_MOMEN_PICKAXE.get());
 		singleTexTool(TofuItems.TOFU_MOMEN_AXE.get());
 		singleTexTool(TofuItems.TOFU_MOMEN_SHOVEL.get());
+		singleTexTool(TofuItems.TOFU_MOMEN_HOE.get());
 
 		singleTexTool(TofuItems.TOFU_SOLID_SWORD.get());
 		singleTexTool(TofuItems.TOFU_SOLID_PICKAXE.get());
 		singleTexTool(TofuItems.TOFU_SOLID_AXE.get());
 		singleTexTool(TofuItems.TOFU_SOLID_SHOVEL.get());
+		singleTexTool(TofuItems.TOFU_SOLID_HOE.get());
 
 		singleTexTool(TofuItems.TOFU_METAL_SWORD.get());
 		singleTexTool(TofuItems.TOFU_METAL_PICKAXE.get());
 		singleTexTool(TofuItems.TOFU_METAL_AXE.get());
 		singleTexTool(TofuItems.TOFU_METAL_SHOVEL.get());
+		singleTexTool(TofuItems.TOFU_METAL_HOE.get());
 		singleTexTool(TofuItems.TOFU_METAL_SHEARS.get());
 
 		singleTexTool(TofuItems.TOFU_DIAMOND_SWORD.get());
 		singleTexTool(TofuItems.TOFU_DIAMOND_PICKAXE.get());
 		singleTexTool(TofuItems.TOFU_DIAMOND_AXE.get());
 		singleTexTool(TofuItems.TOFU_DIAMOND_SHOVEL.get());
+		singleTexTool(TofuItems.TOFU_DIAMOND_HOE.get());
 
 		singleTex(TofuItems.ARMOR_TOFU_KINUHELMET.get());
 		singleTex(TofuItems.ARMOR_TOFU_KINUCHESTPLATE.get());

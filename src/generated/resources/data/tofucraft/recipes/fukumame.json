@@ -1,18 +1,19 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "tofucraft:salt"
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "tofucraft:soybeans_parched"
     },
-    {
-      "item": "tofucraft:bottle_dashi"
-    },
-    {
-      "item": "tofucraft:tofufried"
+    "X": {
+      "item": "minecraft:bowl"
     }
+  },
+  "pattern": [
+    "###",
+    "###",
+    " X "
   ],
   "result": {
-    "count": 8,
     "item": "tofucraft:fukumame"
   }
 }

@@ -37,6 +37,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuDiamondSmithing(consumer, Items.DIAMOND_PICKAXE, TofuItems.TOFU_DIAMOND_PICKAXE);
 		tofuDiamondSmithing(consumer, Items.DIAMOND_AXE, TofuItems.TOFU_DIAMOND_AXE);
 		tofuDiamondSmithing(consumer, Items.DIAMOND_SHOVEL, TofuItems.TOFU_DIAMOND_SHOVEL);
+		tofuDiamondSmithing(consumer, Items.DIAMOND_HOE, TofuItems.TOFU_DIAMOND_HOE);
+
 
 		tofuDiamondSmithing(consumer, Items.DIAMOND_HELMET, TofuItems.ARMOR_TOFU_DIAMONDHELMET);
 		tofuDiamondSmithing(consumer, Items.DIAMOND_CHESTPLATE, TofuItems.ARMOR_TOFU_DIAMONDCHESTPLATE);
@@ -56,7 +58,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		pickaxeItem(consumer, "tofu_metal_pickaxe", TofuItems.TOFU_METAL_PICKAXE, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
 		axeItem(consumer, "tofu_metal_axe", TofuItems.TOFU_METAL_AXE, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
 		shovelItem(consumer, "tofu_metal_shovel", TofuItems.TOFU_METAL_SHOVEL, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
-
+		hoeItem(consumer, "tofu_metal_hoe", TofuItems.TOFU_METAL_HOE, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
 
 		helmetItem(consumer, "tofu_solid_helmet", TofuItems.ARMOR_TOFU_SOLIDHELMET, TofuBlocks.ISHITOFU);
 		chestplateItem(consumer, "tofu_solid_chestplate", TofuItems.ARMOR_TOFU_SOLIDCHESTPLATE, TofuBlocks.ISHITOFU);
@@ -67,6 +69,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		pickaxeItem(consumer, "tofu_solid_pickaxe", TofuItems.TOFU_SOLID_PICKAXE, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 		axeItem(consumer, "tofu_solid_axe", TofuItems.TOFU_SOLID_AXE, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 		shovelItem(consumer, "tofu_solid_shovel", TofuItems.TOFU_SOLID_SHOVEL, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
+		hoeItem(consumer, "tofu_solid_hoe", TofuItems.TOFU_SOLID_HOE, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 
 
 		helmetItem(consumer, "tofu_momen_helmet", TofuItems.ARMOR_TOFU_MOMENHELMET, TofuBlocks.MOMENTOFU);
@@ -78,6 +81,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		pickaxeItem(consumer, "tofu_momen_pickaxe", TofuItems.TOFU_MOMEN_PICKAXE, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
 		axeItem(consumer, "tofu_momen_axe", TofuItems.TOFU_MOMEN_AXE, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
 		shovelItem(consumer, "tofu_momen_shovel", TofuItems.TOFU_MOMEN_SHOVEL, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
+		hoeItem(consumer, "tofu_momen_hoe", TofuItems.TOFU_MOMEN_HOE, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
+
 		ShapedRecipeBuilder.shaped(TofuItems.TOFU_METAL_SHEARS.get())
 				.pattern(" #")
 				.pattern("# ")
@@ -95,6 +100,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		pickaxeItem(consumer, "tofu_kinu_pickaxe", TofuItems.TOFU_KINU_PICKAXE, TofuBlocks.KINUTOFU, Tags.Items.RODS_WOODEN);
 		axeItem(consumer, "tofu_kinu_axe", TofuItems.TOFU_KINU_AXE, TofuBlocks.KINUTOFU, Tags.Items.RODS_WOODEN);
 		shovelItem(consumer, "tofu_kinu_shovel", TofuItems.TOFU_KINU_SHOVEL, TofuBlocks.KINUTOFU, Tags.Items.RODS_WOODEN);
+		hoeItem(consumer, "tofu_kinu_hoe", TofuItems.TOFU_KINU_HOE, TofuBlocks.KINUTOFU, Tags.Items.RODS_WOODEN);
+
 
 		ladderItem(consumer, TofuBlocks.TOFULADDER_KINU, TofuItems.TOFUKINU);
 		ladderItem(consumer, TofuBlocks.TOFULADDER_MOMEN, TofuItems.TOFUMOMEN);

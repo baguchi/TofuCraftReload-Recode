@@ -163,6 +163,17 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.save(consumer, locEquip(name));
 	}
 
+	protected final void hoeItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material, TagKey<Item> handle) {
+		ShapedRecipeBuilder.shaped(result.get())
+				.pattern("##")
+				.pattern(" X")
+				.pattern(" X")
+				.define('#', material.get())
+				.define('X', handle)
+				.unlockedBy("has_item", has(material.get()))
+				.save(consumer, locEquip(name));
+	}
+
 	protected final void tofuBlockItem(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
 		ShapedRecipeBuilder.shaped(result.get())
 				.pattern("##")

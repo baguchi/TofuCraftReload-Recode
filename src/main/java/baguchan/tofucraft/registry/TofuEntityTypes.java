@@ -1,7 +1,12 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.entity.*;
+import baguchan.tofucraft.entity.TofuCow;
+import baguchan.tofucraft.entity.TofuFish;
+import baguchan.tofucraft.entity.TofuGandlem;
+import baguchan.tofucraft.entity.TofuSlime;
+import baguchan.tofucraft.entity.TofuSpider;
+import baguchan.tofucraft.entity.Tofunian;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
@@ -24,7 +29,7 @@ public class TofuEntityTypes {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, TofuCraftReload.MODID);
 
 	public static final RegistryObject<EntityType<Tofunian>> TOFUNIAN = ENTITIES.register("tofunian", () -> EntityType.Builder.of(Tofunian::new, MobCategory.CREATURE)
-			.sized(0.6F, 1.2F).build("tofucraft:tofunian"));
+			.sized(0.6F, 1.2F).clientTrackingRange(10).build("tofucraft:tofunian"));
 
 	/*public static final EntityType<TravelerTofunianEntity> TRAVELER_TOFUNIAN = EntityType.Builder.of(TravelerTofunianEntity::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.2F).build("tofucraft:traveler_tofunian");*/
@@ -34,6 +39,10 @@ public class TofuEntityTypes {
 
 	public static final RegistryObject<EntityType<TofuFish>> TOFUFISH = ENTITIES.register("tofufish", () -> EntityType.Builder.of(TofuFish::new, MobCategory.WATER_AMBIENT)
 			.sized(0.5F, 0.3F).setTrackingRange(4).build("tofucraft:tofufish"));
+
+	public static final RegistryObject<EntityType<TofuGandlem>> TOFU_GANDLEM = ENTITIES.register("tofu_gandlem", () -> EntityType.Builder.of(TofuGandlem::new, MobCategory.CREATURE)
+			.sized(0.6F, 1.6F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_gandlem"));
+
 
 	public static final RegistryObject<EntityType<TofuSlime>> TOFUSLIME = ENTITIES.register("tofuslime", () -> EntityType.Builder.of(TofuSlime::new, MobCategory.MONSTER)
 			.sized(2.04F, 2.04F).build("tofucraft:tofuslime"));
@@ -60,12 +69,13 @@ public class TofuEntityTypes {
 		event.put(TOFUFISH.get(), AbstractFish.createAttributes().build());
 		event.put(TOFUSLIME.get(), Monster.createMonsterAttributes().build());
 		event.put(TOFUSPIDER.get(), TofuSpider.createAttributes().build());
+		event.put(TOFU_GANDLEM.get(), TofuGandlem.createAttributes().build());
 
 		SpawnPlacements.register(TOFUCOW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCow::checkTofuAnimalSpawnRules);
 		SpawnPlacements.register(TOFUNIAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
 		SpawnPlacements.register(TOFUSLIME.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSlime::checkMonsterSpawnRules);
 		SpawnPlacements.register(TOFUSPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSpider::checkMonsterSpawnRules);
 		SpawnPlacements.register(TOFUFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuFish::checkTofuFishSpawnRules);
-
+		SpawnPlacements.register(TOFU_GANDLEM.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
 	}
 }

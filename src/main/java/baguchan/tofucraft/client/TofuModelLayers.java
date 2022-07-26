@@ -10,4 +10,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class TofuModelLayers {
 	public static final ModelLayerLocation TOFUNIAN = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "tofunian"), "tofunian");
 	public static final ModelLayerLocation TOFUSPIDER = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "tofuspider"), "tofuspider");
+	public static final ModelLayerLocation TOFU_GANDLEM = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "tofu_gandlem"), "tofu_gandlem");
+
 }
