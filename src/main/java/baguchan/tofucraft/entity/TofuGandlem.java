@@ -4,6 +4,7 @@ import baguchan.tofucraft.entity.ai.SpinAttackGoal;
 import baguchan.tofucraft.entity.control.StafeableFlyingMoveControl;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -43,6 +44,8 @@ import java.util.List;
 public class TofuGandlem extends Monster implements RangedAttackMob {
 	private static final EntityDataAccessor<Boolean> DATA_ID_SHOOT = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> DATA_ID_RUSH = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> DATA_ID_SLEEP = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
+
 
 	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(200, 600);
 
@@ -51,8 +54,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	public final AnimationState attackAnimationState = new AnimationState();
 	public final AnimationState shootAnimationState = new AnimationState();
 	public final AnimationState shootingAnimationState = new AnimationState();
-
 	public final AnimationState rushAnimationState = new AnimationState();
+	public final AnimationState deathAnimationState = new AnimationState();
 
 	public TofuGandlem(EntityType<? extends TofuGandlem> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
@@ -64,17 +67,18 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		super.defineSynchedData();
 		this.entityData.define(DATA_ID_SHOOT, false);
 		this.entityData.define(DATA_ID_RUSH, false);
+		this.entityData.define(DATA_ID_SLEEP, false);
 	}
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(7, new SpinAttackGoal(this, RUSH_COOLDOWN));
-		this.goalSelector.addGoal(8, new AttackGoal(this));
-		this.goalSelector.addGoal(9, new WaterAvoidingRandomFlyingGoal(this, 0.9D));
-		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 6.0F));
-		this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Mob.class, 6.0F));
+		this.goalSelector.addGoal(1, new SpinAttackGoal(this, RUSH_COOLDOWN));
+		this.goalSelector.addGoal(2, new AttackGoal(this));
+		this.goalSelector.addGoal(3, new WaterAvoidingRandomFlyingGoal(this, 0.9D));
+		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Mob.class, 6.0F));
 
-		this.goalSelector.addGoal(12, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, true));
@@ -105,6 +109,23 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		this.entityData.set(DATA_ID_RUSH, rush);
 	}
 
+	public boolean isSleep() {
+		return this.entityData.get(DATA_ID_SLEEP);
+	}
+
+	public void setSleep(boolean rush) {
+		this.entityData.set(DATA_ID_SLEEP, rush);
+	}
+
+	public void addAdditionalSaveData(CompoundTag compound) {
+		super.addAdditionalSaveData(compound);
+		compound.putBoolean("Sleep", this.isSleep());
+	}
+
+	public void readAdditionalSaveData(CompoundTag compound) {
+		super.readAdditionalSaveData(compound);
+		this.setSleep(compound.getBoolean("Sleep"));
+	}
 
 	@Override
 	protected boolean shouldDespawnInPeaceful() {
@@ -116,10 +137,14 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		return false;
 	}
 
+	public int getAmbientSoundInterval() {
+		return 120;
+	}
+
 	@Override
 	public void tick() {
 		if (this.level.isClientSide()) {
-			if (this.isAlive()) {
+			if (this.isAlive() && !this.isSleep()) {
 				this.idleAnimationState.startIfStopped(this.tickCount);
 			} else {
 				this.idleAnimationState.stop();
@@ -183,6 +208,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			this.shootingAnimationState.start(this.tickCount);
 		} else if (p_70103_1_ == 6) {
 			this.rushAnimationState.start(this.tickCount);
+		} else if (p_70103_1_ == 7) {
+			this.deathAnimationState.start(this.tickCount);
 		} else {
 			super.handleEntityEvent(p_70103_1_);
 		}
@@ -204,8 +231,9 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	public void aiStep() {
 		super.aiStep();
-
-		this.calculateFlapping();
+		if (this.isAlive() && !this.isSleep()) {
+			this.calculateFlapping();
+		}
 	}
 
 	private void calculateFlapping() {
@@ -213,7 +241,31 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		if (!this.onGround && vec3.y < 0.0D) {
 			this.setDeltaMovement(vec3.multiply(1.0D, 0.6D, 1.0D));
 		}
+	}
 
+
+	@Override
+	public void die(DamageSource p_21014_) {
+		super.die(p_21014_);
+		if (!this.level.isClientSide()) {
+			this.level.broadcastEntityEvent(this, (byte) 7);
+		}
+	}
+
+	@Override
+	protected void tickDeath() {
+		++this.deathTime;
+		if (this.deathTime == 38) {
+			this.playSound(SoundEvents.ITEM_BREAK, 1.0F, 1.4F);
+		}
+		if (this.deathTime == 40) {
+			this.playSound(SoundEvents.ITEM_BREAK, 1.0F, 1.35F);
+		}
+
+		if (this.deathTime == 60 && !this.level.isClientSide()) {
+			this.level.broadcastEntityEvent(this, (byte) 60);
+			this.remove(Entity.RemovalReason.KILLED);
+		}
 	}
 
 	public boolean causeFallDamage(float p_148989_, float p_148990_, DamageSource p_148991_) {
