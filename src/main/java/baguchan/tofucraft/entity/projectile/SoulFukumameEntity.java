@@ -21,7 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 
 public class SoulFukumameEntity extends ThrowableProjectile {
-	public float damage = 1;
+	public float damage = 2.5F;
 	public SoulFukumameEntity(EntityType<? extends SoulFukumameEntity> p_i50154_1_, Level p_i50154_2_) {
 		super(p_i50154_1_, p_i50154_2_);
 	}

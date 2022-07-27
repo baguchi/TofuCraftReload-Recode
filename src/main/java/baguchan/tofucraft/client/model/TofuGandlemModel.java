@@ -69,6 +69,7 @@ public class TofuGandlemModel<T extends TofuGandlem> extends HierarchicalModel<T
 		this.animate(entity.attackAnimationState, TofuGandlemAnimation.ATTACK, ageInTicks);
 		this.animate(entity.shootAnimationState, TofuGandlemAnimation.SHOOT, ageInTicks);
 		this.animate(entity.shootingAnimationState, TofuGandlemAnimation.SHOOTING, ageInTicks);
+		this.animate(entity.rushAnimationState, TofuGandlemAnimation.RUSH, ageInTicks);
 		this.animate(entity.idleAnimationState, TofuGandlemAnimation.IDLE, ageInTicks);
 	}
 

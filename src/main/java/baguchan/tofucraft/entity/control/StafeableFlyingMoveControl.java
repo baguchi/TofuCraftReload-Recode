@@ -1,4 +1,4 @@
-package baguchan.tofucraft.entity.movecontrol;
+package baguchan.tofucraft.entity.control;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -58,10 +58,9 @@ public class StafeableFlyingMoveControl extends MoveControl {
 			BlockState blockstate = this.mob.level.getBlockState(blockpos);
 			VoxelShape voxelshape = blockstate.getCollisionShape(this.mob.level, blockpos);
 			if (d0 * d0 + d1 * d1 < (double) Math.max(1.0F, this.mob.getBbWidth()) || !voxelshape.isEmpty() && this.mob.getY() < voxelshape.max(Direction.Axis.Y) + (double) blockpos.getY() && !blockstate.is(BlockTags.DOORS) && !blockstate.is(BlockTags.FENCES)) {
-				this.mob.getJumpControl().jump();
-			} else {
-				this.operation = MoveControl.Operation.WAIT;
+				this.mob.setYya(0.05F);
 			}
+			this.operation = MoveControl.Operation.WAIT;
 		} else if (this.operation == MoveControl.Operation.MOVE_TO) {
 			this.operation = MoveControl.Operation.WAIT;
 			this.mob.setNoGravity(true);
@@ -95,7 +94,7 @@ public class StafeableFlyingMoveControl extends MoveControl {
 			if (!this.hoversInPlace) {
 				this.mob.setNoGravity(false);
 			}
-
+			this.mob.setXxa(0.0F);
 			this.mob.setYya(0.0F);
 			this.mob.setZza(0.0F);
 		}

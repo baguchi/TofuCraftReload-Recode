@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.entity.movecontrol.StafeableFlyingMoveControl;
+import baguchan.tofucraft.entity.ai.SpinAttackGoal;
+import baguchan.tofucraft.entity.control.StafeableFlyingMoveControl;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -8,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
@@ -27,22 +29,30 @@ import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.EnumSet;
+import java.util.List;
 
 public class TofuGandlem extends Monster implements RangedAttackMob {
 	private static final EntityDataAccessor<Boolean> DATA_ID_SHOOT = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> DATA_ID_RUSH = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
+
+	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(200, 600);
 
 
 	public final AnimationState idleAnimationState = new AnimationState();
 	public final AnimationState attackAnimationState = new AnimationState();
 	public final AnimationState shootAnimationState = new AnimationState();
 	public final AnimationState shootingAnimationState = new AnimationState();
+
+	public final AnimationState rushAnimationState = new AnimationState();
 
 	public TofuGandlem(EntityType<? extends TofuGandlem> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
@@ -53,10 +63,12 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(DATA_ID_SHOOT, false);
+		this.entityData.define(DATA_ID_RUSH, false);
 	}
 
 	@Override
 	protected void registerGoals() {
+		this.goalSelector.addGoal(7, new SpinAttackGoal(this, RUSH_COOLDOWN));
 		this.goalSelector.addGoal(8, new AttackGoal(this));
 		this.goalSelector.addGoal(9, new WaterAvoidingRandomFlyingGoal(this, 0.9D));
 		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -81,8 +93,27 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		return this.entityData.get(DATA_ID_SHOOT);
 	}
 
-	public void setShoot(boolean p_32862_) {
-		this.entityData.set(DATA_ID_SHOOT, p_32862_);
+	public void setShoot(boolean shoot) {
+		this.entityData.set(DATA_ID_SHOOT, shoot);
+	}
+
+	public boolean isRush() {
+		return this.entityData.get(DATA_ID_RUSH);
+	}
+
+	public void setRush(boolean rush) {
+		this.entityData.set(DATA_ID_RUSH, rush);
+	}
+
+
+	@Override
+	protected boolean shouldDespawnInPeaceful() {
+		return false;
+	}
+
+	@Override
+	public boolean removeWhenFarAway(double p_21542_) {
+		return false;
 	}
 
 	@Override
@@ -102,7 +133,46 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			}
 		}
 
+		if (this.isAlive() && this.isRush()) {
+			Vec3 movement = this.getDeltaMovement();
+			this.checkRushAttack(this.getBoundingBox(), this.getBoundingBox().expandTowards(movement.x, movement.y, movement.z));
+		}
+
 		super.tick();
+	}
+
+	protected void checkRushAttack(AABB p_21072_, AABB p_21073_) {
+		AABB aabb = p_21072_.minmax(p_21073_);
+		List<Entity> list = this.level.getEntities(this, aabb);
+		if (!list.isEmpty()) {
+			for (int i = 0; i < list.size(); ++i) {
+				Entity entity = list.get(i);
+				this.rushAttack(entity);
+				break;
+			}
+		} else if (this.horizontalCollision && this.tickCount % 3 == 0) {
+			this.playSound(SoundEvents.PLAYER_ATTACK_KNOCKBACK, 2.0F, 1.0F);
+		}
+
+	}
+
+	public void rushAttack(Entity p_36347_) {
+		if (p_36347_.isAttackable()) {
+			p_36347_.hurt(DamageSource.mobAttack(this), 16.0F);
+			float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
+			i += EnchantmentHelper.getKnockbackBonus(this) + 0.65F;
+
+			if (i > 0) {
+				if (p_36347_ instanceof LivingEntity) {
+					((LivingEntity) p_36347_).knockback((double) ((float) i * 0.5F), (double) Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), (double) (-Mth.cos(this.getYRot() * ((float) Math.PI / 180F))));
+				} else {
+					p_36347_.push((double) (-Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * (float) i * 0.5F), 0.1D, (double) (Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * (float) i * 0.5F));
+				}
+
+				this.setDeltaMovement(this.getDeltaMovement().multiply(0.6D, 1.0D, 0.6D));
+				this.setSprinting(false);
+			}
+		}
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -111,6 +181,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			this.attackAnimationState.start(this.tickCount);
 		} else if (p_70103_1_ == 5) {
 			this.shootingAnimationState.start(this.tickCount);
+		} else if (p_70103_1_ == 6) {
+			this.rushAnimationState.start(this.tickCount);
 		} else {
 			super.handleEntityEvent(p_70103_1_);
 		}
@@ -152,16 +224,15 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 30F).add(Attributes.MOVEMENT_SPEED, 0.26D).add(Attributes.FLYING_SPEED, 0.25F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 10.0F).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 10.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 30F).add(Attributes.MOVEMENT_SPEED, 0.26D).add(Attributes.FLYING_SPEED, 0.25F).add(Attributes.ATTACK_KNOCKBACK, 0.25F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 10.0F).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 8.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
 		return p_28882_;
 	}
-
 	@Override
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
-		this.playSound(SoundEvents.SHULKER_SHOOT, 1.0F, 1.0F);
+		this.playSound(SoundEvents.SHULKER_SHOOT, 3.0F, 1.0F);
 		for (int i = 0; i < 4; i++) {
 			FukumameEntity fukumame = new FukumameEntity(this.level, this);
 			double d1 = p_29912_.getX() - this.getX();
@@ -226,7 +297,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 						this.gandlem.setShoot(false);
 					}
 
-					if (d0 < 6.0D + this.gandlem.getBbWidth() && this.attackTime <= 0) {
+					if (d0 < 5.0D + this.gandlem.getBbWidth() && this.attackTime <= 0) {
 						this.attackTime = 20;
 						this.gandlem.doHurtTarget(livingentity);
 					}
@@ -240,11 +311,11 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 					if (this.attackTime <= 0) {
 						++this.attackStep;
 						if (this.attackStep == 1) {
-							this.attackTime = 25;
+							this.attackTime = 30;
 						} else if (this.attackStep <= 4) {
-							this.attackTime = 5;
+							this.attackTime = 8;
 						} else {
-							this.attackTime = 25;
+							this.attackTime = 30;
 							this.attackStep = 0;
 						}
 
@@ -293,6 +364,10 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 				super.tick();
 			}
+		}
+
+		public boolean requiresUpdateEveryTick() {
+			return true;
 		}
 
 		private double getFollowDistance() {
