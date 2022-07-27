@@ -1,4 +1,4 @@
-package baguchan.tofucraft.entity.ai;
+package baguchan.tofucraft.entity.goal;
 
 import baguchan.tofucraft.entity.TofuGandlem;
 import net.minecraft.sounds.SoundEvents;
@@ -81,7 +81,7 @@ public class SpinAttackGoal extends Goal {
 			float f2 = -Mth.sin(f * ((float) Math.PI / 180F));
 			float f3 = Mth.cos(f7 * ((float) Math.PI / 180F)) * Mth.cos(f * ((float) Math.PI / 180F));
 			float f4 = Mth.sqrt(f1 * f1 + f2 * f2 + f3 * f3);
-			float f5 = 0.8F * ((2.0F) / 4.0F);
+			float f5 = 0.8F * ((2.75F) / 4.0F);
 			f1 *= f5 / f4;
 			f2 *= f5 / f4;
 			f3 *= f5 / f4;

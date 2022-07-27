@@ -1,7 +1,7 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.entity.ai.SpinAttackGoal;
 import baguchan.tofucraft.entity.control.StafeableFlyingMoveControl;
+import baguchan.tofucraft.entity.goal.SpinAttackGoal;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -47,7 +47,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	private static final EntityDataAccessor<Boolean> DATA_ID_SLEEP = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
 
 
-	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(200, 600);
+	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(100, 400);
 
 
 	public final AnimationState idleAnimationState = new AnimationState();
@@ -72,9 +72,10 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(1, new SpinAttackGoal(this, RUSH_COOLDOWN));
-		this.goalSelector.addGoal(2, new AttackGoal(this));
-		this.goalSelector.addGoal(3, new WaterAvoidingRandomFlyingGoal(this, 0.9D));
+		this.goalSelector.addGoal(1, new DoNothingGoal());
+		this.goalSelector.addGoal(2, new SpinAttackGoal(this, RUSH_COOLDOWN));
+		this.goalSelector.addGoal(3, new AttackGoal(this));
+		this.goalSelector.addGoal(4, new WaterAvoidingRandomFlyingGoal(this, 0.9D));
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Mob.class, 6.0F));
 
@@ -247,6 +248,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	@Override
 	public void die(DamageSource p_21014_) {
 		super.die(p_21014_);
+		this.playSound(SoundEvents.BEACON_DEACTIVATE, 2.0F, 1.0F);
+
 		if (!this.level.isClientSide()) {
 			this.level.broadcastEntityEvent(this, (byte) 7);
 		}
@@ -262,7 +265,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			this.playSound(SoundEvents.ITEM_BREAK, 1.0F, 1.35F);
 		}
 
-		if (this.deathTime == 60 && !this.level.isClientSide()) {
+		if (this.deathTime == 100 && !this.level.isClientSide()) {
 			this.level.broadcastEntityEvent(this, (byte) 60);
 			this.remove(Entity.RemovalReason.KILLED);
 		}
@@ -276,7 +279,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 30F).add(Attributes.MOVEMENT_SPEED, 0.26D).add(Attributes.FLYING_SPEED, 0.25F).add(Attributes.ATTACK_KNOCKBACK, 0.25F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 10.0F).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 8.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.26D).add(Attributes.FLYING_SPEED, 0.25F).add(Attributes.ATTACK_KNOCKBACK, 0.25F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 10.0F).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 8.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
@@ -401,16 +404,16 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 					}
 
 					if (this.strafingTime > -1) {
-						if (d0 > (double) (this.getFollowDistance() * this.getFollowDistance() * 0.7F)) {
+						if (d0 > (double) (this.getFollowDistance() * this.getFollowDistance() * 0.6F)) {
 							this.strafingBackwards = false;
-						} else if (d0 < (double) (this.getFollowDistance() * this.getFollowDistance() * 0.45F)) {
+						} else if (d0 < (double) (this.getFollowDistance() * this.getFollowDistance() * 0.4F)) {
 							this.strafingBackwards = true;
 						}
 
 						this.gandlem.getMoveControl().strafe(this.strafingBackwards ? -0.35F : 0.35F, this.strafingClockwise ? 0.35F : -0.35F);
 					}
 
-				} else if (this.lastSeen < 10 || d0 >= this.getFollowDistance() * this.getFollowDistance() * 0.85F) {
+				} else if (this.lastSeen < 200 && d0 > this.getFollowDistance() * this.getFollowDistance() || d0 <= this.getFollowDistance() * this.getFollowDistance()) {
 					this.gandlem.getNavigation().moveTo(livingentity.getX(), livingentity.getY(), livingentity.getZ(), 1.1F);
 				}
 
@@ -424,6 +427,16 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 		private double getFollowDistance() {
 			return this.gandlem.getAttributeValue(Attributes.FOLLOW_RANGE);
+		}
+	}
+
+	class DoNothingGoal extends Goal {
+		public DoNothingGoal() {
+			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.JUMP, Goal.Flag.LOOK));
+		}
+
+		public boolean canUse() {
+			return TofuGandlem.this.isSleep();
 		}
 	}
 }

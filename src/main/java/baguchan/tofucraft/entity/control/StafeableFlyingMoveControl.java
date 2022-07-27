@@ -63,7 +63,12 @@ public class StafeableFlyingMoveControl extends MoveControl {
 			this.operation = MoveControl.Operation.WAIT;
 		} else if (this.operation == MoveControl.Operation.MOVE_TO) {
 			this.operation = MoveControl.Operation.WAIT;
-			this.mob.setNoGravity(true);
+			if (!this.mob.isAlive()) {
+				this.mob.setNoGravity(false);
+			} else {
+				this.mob.setNoGravity(true);
+			}
+
 			double d0 = this.wantedX - this.mob.getX();
 			double d1 = this.wantedY - this.mob.getY();
 			double d2 = this.wantedZ - this.mob.getZ();
