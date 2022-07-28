@@ -235,6 +235,10 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		if (this.isAlive() && !this.isSleep()) {
 			this.calculateFlapping();
 		}
+
+		if (this.isSleep() && this.getTarget() != null && this.distanceToSqr(this.getTarget()) < 32) {
+			this.setSleep(false);
+		}
 	}
 
 	private void calculateFlapping() {
@@ -279,7 +283,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.26D).add(Attributes.FLYING_SPEED, 0.25F).add(Attributes.ATTACK_KNOCKBACK, 0.75F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 10.0F).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 8.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.26D).add(Attributes.FLYING_SPEED, 0.25F).add(Attributes.ATTACK_KNOCKBACK, 0.75F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 12.0F).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 8.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {

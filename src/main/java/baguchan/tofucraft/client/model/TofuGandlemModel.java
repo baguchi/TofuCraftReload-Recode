@@ -63,8 +63,14 @@ public class TofuGandlemModel<T extends TofuGandlem> extends HierarchicalModel<T
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 
-		this.head.yRot = netHeadYaw * 0.017453292F;
-		this.head.xRot = headPitch * 0.017453292F;
+
+		if (entity.isSleep()) {
+			this.head.xRot = 0.4F;
+			this.head.yRot = 0.0F;
+		} else {
+			this.head.xRot = headPitch * 0.017453292F;
+			this.head.yRot = netHeadYaw * 0.017453292F;
+		}
 
 		this.animate(entity.attackAnimationState, TofuGandlemAnimation.ATTACK, ageInTicks);
 		this.animate(entity.shootAnimationState, TofuGandlemAnimation.SHOOT, ageInTicks);
