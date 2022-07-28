@@ -1,14 +1,9 @@
 package baguchan.tofucraft.entity.control;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class StafeableFlyingMoveControl extends MoveControl {
 	private final int maxTurn;
@@ -22,6 +17,7 @@ public class StafeableFlyingMoveControl extends MoveControl {
 
 	public void tick() {
 		if (this.operation == MoveControl.Operation.STRAFE) {
+			this.operation = MoveControl.Operation.WAIT;
 			if (!this.hoversInPlace) {
 				this.mob.setNoGravity(false);
 			}
@@ -54,20 +50,10 @@ public class StafeableFlyingMoveControl extends MoveControl {
 			this.mob.setZza(this.strafeForwards);
 			this.mob.setXxa(this.strafeRight);
 
-			BlockPos blockpos = this.mob.blockPosition();
-			BlockState blockstate = this.mob.level.getBlockState(blockpos);
-			VoxelShape voxelshape = blockstate.getCollisionShape(this.mob.level, blockpos);
-			if (d0 * d0 + d1 * d1 < (double) Math.max(1.0F, this.mob.getBbWidth()) || !voxelshape.isEmpty() && this.mob.getY() < voxelshape.max(Direction.Axis.Y) + (double) blockpos.getY() && !blockstate.is(BlockTags.DOORS) && !blockstate.is(BlockTags.FENCES)) {
-				this.mob.setYya(0.05F);
-			}
-			this.operation = MoveControl.Operation.WAIT;
 		} else if (this.operation == MoveControl.Operation.MOVE_TO) {
 			this.operation = MoveControl.Operation.WAIT;
-			if (!this.mob.isAlive()) {
-				this.mob.setNoGravity(false);
-			} else {
-				this.mob.setNoGravity(true);
-			}
+			this.mob.setNoGravity(true);
+
 
 			double d0 = this.wantedX - this.mob.getX();
 			double d1 = this.wantedY - this.mob.getY();

@@ -149,9 +149,10 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 				this.idleAnimationState.startIfStopped(this.tickCount);
 			} else {
 				this.idleAnimationState.stop();
+				this.rushAnimationState.stop();
 			}
 
-			if (this.isShoot()) {
+			if (this.isAlive() && this.isShoot()) {
 				this.shootAnimationState.startIfStopped(this.tickCount);
 			} else {
 				this.shootAnimationState.stop();
