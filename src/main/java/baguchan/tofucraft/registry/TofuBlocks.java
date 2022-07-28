@@ -28,6 +28,7 @@ import baguchan.tofucraft.block.utils.MisoBarrelBlock;
 import baguchan.tofucraft.block.utils.NoWeightBaseBlock;
 import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
 import baguchan.tofucraft.block.utils.SaltPanBlock;
+import baguchan.tofucraft.block.utils.SoymilkCauldronBlock;
 import baguchan.tofucraft.block.utils.SproutsJarBlock;
 import baguchan.tofucraft.block.utils.TofuBedBlock;
 import baguchan.tofucraft.block.utils.TofuChestBlock;
@@ -242,6 +243,8 @@ public class TofuBlocks {
 
 	public static final RegistryObject<TofuCakeBlock> TOFUCAKE = register("tofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.1F));
 	public static final RegistryObject<TofuCakeBlock> ZUNDATOFUCAKE = register("zundatofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.2F));
+
+	public static final RegistryObject<SoymilkCauldronBlock> SOYMILK_CAULDRON = noItemRegister("soymilk_cauldron", () -> new SoymilkCauldronBlock(BlockBehaviour.Properties.of(Material.METAL).strength(2.0F).noOcclusion().requiresCorrectToolForDrops().randomTicks().sound(SoundType.METAL)));
 
 	public static final RegistryObject<Block> TOFUBED = register("tofubed", () -> new TofuBedBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.2F).noOcclusion().sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> TOFUCHEST = register("tofuchest", () -> new TofuChestBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).noOcclusion().sound(SoundType.STONE), TofuBlockEntitys.TOFUCHEST::get));

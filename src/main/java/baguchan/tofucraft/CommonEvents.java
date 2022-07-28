@@ -4,6 +4,7 @@ import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.entity.TofuGandlem;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
+import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuStructures;
@@ -13,6 +14,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
@@ -34,6 +37,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.village.VillageSiegeEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -94,6 +98,16 @@ public class CommonEvents {
 	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		Player playerEntity = event.getEntity();
 		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel(), false)));
+	}
+
+	@SubscribeEvent
+	public static void onBlockUsed(PlayerInteractEvent.RightClickBlock event) {
+		if (event.getItemStack().is(TofuItems.BUCKET_SOYMILK.get()) && event.getLevel().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+			event.getLevel().setBlock(event.getPos(), TofuBlocks.SOYMILK_CAULDRON.get().defaultBlockState(), 2);
+			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
+			event.setCancellationResult(InteractionResult.SUCCESS);
+			event.setCanceled(true);
+		}
 	}
 
 	@SubscribeEvent

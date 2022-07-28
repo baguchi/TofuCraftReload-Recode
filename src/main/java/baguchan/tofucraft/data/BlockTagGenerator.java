@@ -44,7 +44,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.SALT_FURNACE.get()
 				, TofuBlocks.TF_STORAGE.get()
 				, TofuBlocks.ANTENNA_BASIC.get()
-				, TofuBlocks.SCULK_BONE.get(), TofuBlocks.SCULKED_TOFU_SOUL.get());
+				, TofuBlocks.SCULK_BONE.get(), TofuBlocks.SCULKED_TOFU_SOUL.get()
+				, TofuBlocks.SOYMILK_CAULDRON.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(TofuBlocks.SALTPAN.get()
 				, TofuBlocks.LEEK_GREEN_STEM.get(), TofuBlocks.LEEK_STEM.get()
 				, TofuBlocks.TOFU_STEM.get(), TofuBlocks.TOFU_STEM_PLANKS.get()

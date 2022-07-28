@@ -76,6 +76,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		this.add(TofuBlocks.RICE_CROP.get(), createCropDrops(TofuBlocks.RICE_CROP.get(), TofuItems.RICE.get(), TofuItems.SEEDS_RICE.get(), lootitemcondition$builder7));
 		registerEmpty(TofuBlocks.RICE_ROOT.get());
 
+		dropOther(TofuBlocks.SOYMILK_CAULDRON.get(), Blocks.CAULDRON);
 
 		registerTofuDrop(TofuBlocks.KINUTOFU.get(), TofuItems.TOFUKINU.get());
 		registerTofuDrop(TofuBlocks.MOMENTOFU.get(), TofuItems.TOFUMOMEN.get());
