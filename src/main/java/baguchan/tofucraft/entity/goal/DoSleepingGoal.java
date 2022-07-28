@@ -1,4 +1,4 @@
-package baguchan.tofucraft.entity.ai;
+package baguchan.tofucraft.entity.goal;
 
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;

@@ -1,4 +1,4 @@
-package baguchan.tofucraft.entity.ai;
+package baguchan.tofucraft.entity.goal;
 
 import baguchan.tofucraft.entity.Tofunian;
 import net.minecraft.core.BlockPos;

@@ -376,7 +376,7 @@
   "entity.tofucraft.tofucreeper": "トーフクリーパー",
   "entity.tofucraft.tofuturret": "トーフタレット",
   "entity.tofucraft.tofumind": "トーフマインド",
-  "entity.tofucraft.tofugandlem": "トーフガンドレム",
+  "entity.tofucraft.tofu_gandlem": "トーフガンドレム",
   "entity.tofucraft.fukumame": "福豆",
   "entity.tofucraft.nether_fukumame": "地獄豆",
   "entity.tofucraft.soul_fukumame": "魂豆",
@@ -484,5 +484,6 @@
   "tofucraft.jei.bittern": "にがりで固める工程",
   "tofucraft.jei.harden": "重みで固める工程",
   "block.tofucraft.sculked_tofu_soul": "Sculked Soul Tofu",
-  "block.tofucraft.sculk_bone": "Sculk Bone"
+  "block.tofucraft.sculk_bone": "Sculk Bone",
+  "tofucraft.need_defeat_boss": "ボスを先に倒す必要があります"
 }

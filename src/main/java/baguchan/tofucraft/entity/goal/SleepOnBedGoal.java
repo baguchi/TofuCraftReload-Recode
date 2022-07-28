@@ -1,4 +1,4 @@
-package baguchan.tofucraft.entity.ai;
+package baguchan.tofucraft.entity.goal;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;

@@ -1,15 +1,15 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.entity.ai.CropHarvestGoal;
-import baguchan.tofucraft.entity.ai.DoSleepingGoal;
-import baguchan.tofucraft.entity.ai.FindJobBlockGoal;
-import baguchan.tofucraft.entity.ai.MakeFoodGoal;
-import baguchan.tofucraft.entity.ai.OpenTofuDoorGoal;
-import baguchan.tofucraft.entity.ai.RestockGoal;
-import baguchan.tofucraft.entity.ai.ShareItemAndGossipGoal;
-import baguchan.tofucraft.entity.ai.TofunianLoveGoal;
-import baguchan.tofucraft.entity.ai.TofunianSleepOnBedGoal;
-import baguchan.tofucraft.entity.ai.WakeUpGoal;
+import baguchan.tofucraft.entity.goal.CropHarvestGoal;
+import baguchan.tofucraft.entity.goal.DoSleepingGoal;
+import baguchan.tofucraft.entity.goal.FindJobBlockGoal;
+import baguchan.tofucraft.entity.goal.MakeFoodGoal;
+import baguchan.tofucraft.entity.goal.OpenTofuDoorGoal;
+import baguchan.tofucraft.entity.goal.RestockGoal;
+import baguchan.tofucraft.entity.goal.ShareItemAndGossipGoal;
+import baguchan.tofucraft.entity.goal.TofunianLoveGoal;
+import baguchan.tofucraft.entity.goal.TofunianSleepOnBedGoal;
+import baguchan.tofucraft.entity.goal.WakeUpGoal;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;

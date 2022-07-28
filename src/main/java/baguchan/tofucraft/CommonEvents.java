@@ -2,16 +2,21 @@ package baguchan.tofucraft;
 
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
+import baguchan.tofucraft.entity.TofuGandlem;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
+import baguchan.tofucraft.registry.TofuStructures;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
@@ -20,6 +25,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.TorchBlock;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -88,36 +96,54 @@ public class CommonEvents {
 		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel(), false)));
 	}
 
-	/*@SubscribeEvent
-	public static void onFluidPlaceEvent(BlockEvent.FluidPlaceBlockEvent event) {
-		FluidState fluidState = event.getLevel().getFluidState(event.getLiquidPos());
-		if (fluidState.getType() == TofuFluids.SOYMILK || fluidState.getType() == TofuFluids.SOYMILK_FLOW)
-			event.setNewState(TofuBlocks.TOFU_TERRAIN.defaultBlockState());
-	}*/
-
-	/*private static final Map<ServerWorld, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
-
 	@SubscribeEvent
-	public static void worldLoad(WorldEvent.Load evt) {
-		if (!evt.getLevel().isClientSide() && evt.getLevel() instanceof ServerWorld)
-			TRAVELER_TOFUNIAN_SPAWNER_MAP.put((ServerWorld) evt.getLevel(), new TravelerTofunianSpawner((ServerWorld) evt.getLevel()));
-	}
+	public static void onBlockBreaked(BlockEvent.BreakEvent event) {
+		if (event.getPlayer() instanceof ServerPlayer) {
+			LevelAccessor world = event.getPlayer().level;
+			if (world instanceof ServerLevel) {
+				ServerLevel serverLevel = (ServerLevel) world;
+				Structure structure = serverLevel.registryAccess().registryOrThrow(Registry.STRUCTURE_REGISTRY).get(TofuStructures.TOFU_CASTLE);
+				if (structure != null) {
+					StructureStart structureStart = serverLevel.structureManager().getStructureAt(event.getPos(), structure);
+					if (structureStart.isValid()) {
+						TofuGandlem gandlem = serverLevel.getNearestEntity(TofuGandlem.class, TargetingConditions.forNonCombat(), (LivingEntity) event.getPlayer(), event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), event.getPlayer().getBoundingBox().inflate(32.0F));
 
-	@SubscribeEvent
-	public static void worldUnload(WorldEvent.Unload evt) {
-		if (!evt.getLevel().isClientSide() && evt.getLevel() instanceof ServerWorld)
-			TRAVELER_TOFUNIAN_SPAWNER_MAP.remove(evt.getLevel());
-	}
-
-	@SubscribeEvent
-	public static void onServerTick(TickEvent.WorldTickEvent tick) {
-		if (!tick.world.isClientSide && tick.world instanceof ServerWorld) {
-			ServerWorld serverWorld = (ServerWorld) tick.world;
-			TravelerTofunianSpawner spawner = TRAVELER_TOFUNIAN_SPAWNER_MAP.get(serverWorld);
-			if (spawner != null)
-				spawner.tick();
+						if (gandlem != null) {
+							ServerPlayer player = (ServerPlayer) event.getPlayer();
+							if (!player.isCreative() && !(event.getState().getBlock() instanceof TorchBlock)) {
+								player.displayClientMessage(Component.translatable("tofucraft.need_defeat_boss"), true);
+								event.setCanceled(true);
+							}
+						}
+					}
+				}
+			}
 		}
-	}*/
+	}
+
+	@SubscribeEvent
+	public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
+		if (event.getEntity() instanceof ServerPlayer) {
+			LevelAccessor world = event.getEntity().level;
+			if (world instanceof ServerLevel) {
+				ServerLevel serverLevel = (ServerLevel) world;
+				Structure structure = serverLevel.registryAccess().registryOrThrow(Registry.STRUCTURE_REGISTRY).get(TofuStructures.TOFU_CASTLE);
+				if (structure != null) {
+					StructureStart structureStart = serverLevel.structureManager().getStructureAt(event.getPos(), structure);
+					if (structureStart.isValid()) {
+						TofuGandlem gandlem = serverLevel.getNearestEntity(TofuGandlem.class, TargetingConditions.forNonCombat(), (LivingEntity) event.getEntity(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), event.getEntity().getBoundingBox().inflate(32.0F));
+						if (gandlem != null) {
+							ServerPlayer player = (ServerPlayer) event.getEntity();
+							if (!player.isCreative() && !(event.getState().getBlock() instanceof TorchBlock)) {
+								player.displayClientMessage(Component.translatable("tofucraft.need_defeat_boss"), true);
+								event.setCanceled(true);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
 	/*
 	 * This Event make mob cannot spawn when morijio is near

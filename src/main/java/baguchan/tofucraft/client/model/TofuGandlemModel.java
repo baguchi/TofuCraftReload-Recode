@@ -2,7 +2,9 @@ package baguchan.tofucraft.client.model;// Made with Blockbench 4.3.0
 // Exported for Minecraft version 1.17 - 1.18 with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
+import baguchan.tofucraft.client.animation.definitions.TofuGandlemAnimation;
 import baguchan.tofucraft.entity.TofuGandlem;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -12,12 +14,24 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
+import java.util.List;
+
 public class TofuGandlemModel<T extends TofuGandlem> extends HierarchicalModel<T> {
-	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
+	private final ModelPart baseRoot;
 	private final ModelPart root;
+	private final ModelPart head;
+	private final ModelPart core;
+	private final ModelPart core2;
+
+	private final List<ModelPart> coreModelParts;
 
 	public TofuGandlemModel(ModelPart root) {
+		this.baseRoot = root;
 		this.root = root.getChild("root");
+		this.head = this.root.getChild("head");
+		this.core = this.root.getChild("core");
+		this.core2 = this.root.getChild("core2");
+		this.coreModelParts = ImmutableList.of(this.core, this.core2);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -47,11 +61,31 @@ public class TofuGandlemModel<T extends TofuGandlem> extends HierarchicalModel<T
 
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.root().getAllParts().forEach(ModelPart::resetPose);
 
+
+		if (entity.isSleep()) {
+			this.head.xRot = 0.4F;
+			this.head.yRot = 0.0F;
+		} else {
+			this.head.xRot = headPitch * 0.017453292F;
+			this.head.yRot = netHeadYaw * 0.017453292F;
+		}
+
+		this.animate(entity.attackAnimationState, TofuGandlemAnimation.ATTACK, ageInTicks);
+		this.animate(entity.shootAnimationState, TofuGandlemAnimation.SHOOT, ageInTicks);
+		this.animate(entity.shootingAnimationState, TofuGandlemAnimation.SHOOTING, ageInTicks);
+		this.animate(entity.rushAnimationState, TofuGandlemAnimation.RUSH, ageInTicks);
+		this.animate(entity.idleAnimationState, TofuGandlemAnimation.IDLE, ageInTicks);
+		this.animate(entity.deathAnimationState, TofuGandlemAnimation.DEATH, ageInTicks);
+	}
+
+	public List<ModelPart> getCoreModelParts() {
+		return coreModelParts;
 	}
 
 	@Override
 	public ModelPart root() {
-		return this.root;
+		return this.baseRoot;
 	}
 }

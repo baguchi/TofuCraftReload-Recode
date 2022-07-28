@@ -1,0 +1,15 @@
+{
+  "name": "tofucraft:tofu_castle/main2",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "tofucraft:tofu_castle/tofucastle_main_2",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

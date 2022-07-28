@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "tofucraft:tofu_castle",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 16324620,
+    "spacing": 34,
+    "separation": 6
+  }
+}

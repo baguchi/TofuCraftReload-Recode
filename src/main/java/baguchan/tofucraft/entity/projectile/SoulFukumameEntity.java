@@ -5,6 +5,7 @@ import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -20,6 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 
 public class SoulFukumameEntity extends ThrowableProjectile {
+	public float damage = 2.5F;
 	public SoulFukumameEntity(EntityType<? extends SoulFukumameEntity> p_i50154_1_, Level p_i50154_2_) {
 		super(p_i50154_1_, p_i50154_2_);
 	}
@@ -62,9 +64,10 @@ public class SoulFukumameEntity extends ThrowableProjectile {
 		super.onHitEntity(p_37404_);
 		Entity entity = p_37404_.getEntity();
 		int i = 1;
-		entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) i);
+		entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) this.damage);
 		entity.invulnerableTime = 5;
 	}
+
 
 	protected void onHit(HitResult p_37406_) {
 		super.onHit(p_37406_);
@@ -72,6 +75,19 @@ public class SoulFukumameEntity extends ThrowableProjectile {
 		if (!this.level.isClientSide) {
 			this.level.broadcastEntityEvent(this, (byte) 3);
 			this.discard();
+		}
+
+	}
+
+	public void addAdditionalSaveData(CompoundTag p_37222_) {
+		super.addAdditionalSaveData(p_37222_);
+		p_37222_.putFloat("Damage", (byte) this.damage);
+	}
+
+	public void readAdditionalSaveData(CompoundTag p_37220_) {
+		super.readAdditionalSaveData(p_37220_);
+		if (p_37220_.contains("Damage", 99)) {
+			this.damage = p_37220_.getFloat("Damage");
 		}
 
 	}
