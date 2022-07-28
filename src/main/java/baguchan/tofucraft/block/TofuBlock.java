@@ -56,7 +56,7 @@ public class TofuBlock extends Block {
 					worldIn.setBlock(pos, TofuBlocks.DRIEDTOFU.get().defaultBlockState(), 2);
 				}
 			}
-		} else if (isUnderWithConditionBlock(worldIn, pos, Blocks.SCULK)) {
+		} else if (isUnderWithConditionBlock(worldIn, pos, Blocks.SCULK) && state.hasProperty(HARDNESS)) {
 			int i = state.getValue(HARDNESS);
 			if (this == TofuBlocks.SOULTOFU.get()) {
 				if (random.nextInt(3) == 0) {
@@ -68,7 +68,7 @@ public class TofuBlock extends Block {
 				}
 			}
 
-			if (this == TofuBlocks.SCULKED_TOFU_SOUL.get()) {
+			if (this == TofuBlocks.SCULKED_TOFU_SOUL.get() && state.hasProperty(HARDNESS)) {
 				if (random.nextInt(6) == 0) {
 					if (i < 7) {
 						worldIn.setBlock(pos, state.setValue(HARDNESS, i + 1), 2);
@@ -78,7 +78,7 @@ public class TofuBlock extends Block {
 				}
 			}
 
-		} else if (isUnderWeight(worldIn, pos)) {
+		} else if (isUnderWeight(worldIn, pos) && state.hasProperty(HARDNESS)) {
 			int i = state.getValue(HARDNESS);
 			if (random.nextInt(4) == 0) {
 				if (i < 7) {
