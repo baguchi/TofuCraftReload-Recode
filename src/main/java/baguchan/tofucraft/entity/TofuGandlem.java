@@ -237,9 +237,11 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			this.calculateFlapping();
 		}
 
-		if (this.isSleep() && this.getTarget() != null && this.distanceToSqr(this.getTarget()) < 32) {
+		if (this.isSleep() && this.getTarget() != null) {
 			this.setSleep(false);
+			this.playSound(SoundEvents.BEACON_ACTIVATE, 3.0F, 1.0F);
 		}
+
 	}
 
 	private void calculateFlapping() {

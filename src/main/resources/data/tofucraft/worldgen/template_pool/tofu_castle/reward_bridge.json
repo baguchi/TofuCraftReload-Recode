@@ -5,7 +5,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "tofucraft:tofu_castle/tofucastle_reward_bridge",
+        "location": "tofucraft:tofu_castle/bridge/tofucastle_reward_bridge",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
