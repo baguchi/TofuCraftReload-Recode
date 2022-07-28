@@ -9,7 +9,24 @@ import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.message.TFStorageSoymilkMessage;
-import baguchan.tofucraft.registry.*;
+import baguchan.tofucraft.registry.TofuAdvancements;
+import baguchan.tofucraft.registry.TofuBiomeModifiers;
+import baguchan.tofucraft.registry.TofuBiomes;
+import baguchan.tofucraft.registry.TofuBlockEntitys;
+import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuCarvers;
+import baguchan.tofucraft.registry.TofuContainers;
+import baguchan.tofucraft.registry.TofuDimensionSettings;
+import baguchan.tofucraft.registry.TofuEntityTypes;
+import baguchan.tofucraft.registry.TofuFeatures;
+import baguchan.tofucraft.registry.TofuFluidTypes;
+import baguchan.tofucraft.registry.TofuFluids;
+import baguchan.tofucraft.registry.TofuFoliagePlacerType;
+import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuPoiTypes;
+import baguchan.tofucraft.registry.TofuProfessions;
+import baguchan.tofucraft.registry.TofuRecipes;
+import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.carver.TofuConfiguredWorldCarvers;
 import baguchan.tofucraft.world.gen.features.ModNetherFeatures;
@@ -76,6 +93,7 @@ public class TofuCraftReload {
 		TofuFluidTypes.FLUID_TYPES.register(modBus);
 		TofuFluids.FLUIDS.register(modBus);
 
+
 		TofuItems.ITEMS.register(modBus);
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
@@ -96,6 +114,7 @@ public class TofuCraftReload {
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
+		TofuAdvancements.init();
 		TofuItems.registerDispenserItem();
 		TofuItems.registerCompostableItem();
 		ModNetherFeatures.init();

@@ -1,0 +1,23 @@
+{
+  "parent": "tofucraft:tofucraft/make_tofu",
+  "display": {
+    "icon": {
+      "item": "tofucraft:chili"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.sniffed_revenge.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.sniffed_revenge.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "chili": {
+      "trigger": "tofucraft:chili_distraction"
+    }
+  }
+}

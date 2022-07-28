@@ -10,6 +10,21 @@
         {
           "type": "minecraft:item",
           "weight": 2,
+          "name": "tofucraft:chili",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
           "name": "tofucraft:seeds_chili",
           "functions": [
             {

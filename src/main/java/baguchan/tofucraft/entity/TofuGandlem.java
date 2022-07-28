@@ -60,6 +60,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	public TofuGandlem(EntityType<? extends TofuGandlem> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
 		this.moveControl = new StafeableFlyingMoveControl(this, 20, false);
+		this.xpReward = 60;
 	}
 
 	@Override

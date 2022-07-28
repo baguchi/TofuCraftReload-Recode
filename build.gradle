@@ -1,16 +1,23 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: "org.spongepowered", name: "mixingradle", version: "0.7-SNAPSHOT"
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: "org.spongepowered.mixin"
+
+mixin {
+    add sourceSets.main, "tofucraft.refmap.json"
+}
 
 version = '1.19-2.3.1.0'
 group = 'baguchan.tofucraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -53,6 +60,8 @@ minecraft {
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
+            property "mixin.env.remapRefMap", "true"
+            arg "-mixin.config=tofucraft.mixins.json"
 
             mods {
                 tofucraft {
@@ -75,6 +84,8 @@ minecraft {
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
+            property "mixin.env.remapRefMap", "true"
+            arg "-mixin.config=tofucraft.mixins.json"
 
             mods {
                 tofucraft {
@@ -137,8 +148,8 @@ dependencies {
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-1.19-forge:11.0.0.215")
 
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     //implementation fg.deobf("curse.maven:mysterious-mountain-lib-368098:3788751")
-    //annotationProcessor("org.spongepowered:mixin:0.8.4:processor")
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
     // compile "some.group:artifact:version"
@@ -163,13 +174,14 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "tofucraft",
-            "Specification-Vendor": "baguchan",
-            "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"baguchan",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Specification-Title"     : "tofucraft",
+                "Specification-Vendor"    : "baguchan",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "baguchan",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs"            : "tofucraft.mixins.json"
         ])
     }
 }

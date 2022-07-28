@@ -6,6 +6,7 @@ import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
 import baguchan.tofucraft.item.BitternItem;
 import baguchan.tofucraft.item.BugleItem;
+import baguchan.tofucraft.item.ChiliItem;
 import baguchan.tofucraft.item.FukumameItem;
 import baguchan.tofucraft.item.HoneySoymilkBottleItem;
 import baguchan.tofucraft.item.KoujiBaseItem;
@@ -102,7 +103,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> MINCEDPOTATO = ITEMS.register("mincedpotato", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 	public static final RegistryObject<Item> SEEDS_CHILI = ITEMS.register("seeds_chili", () -> new ItemNameBlockItem(TofuBlocks.CHILI_CROP.get(), (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
-	public static final RegistryObject<Item> CHILI = ITEMS.register("chili", () -> new Item((new Item.Properties()).food(TofuFoods.CHILI).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> CHILI = ITEMS.register("chili", () -> new ChiliItem((new Item.Properties()).food(TofuFoods.CHILI).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> DOUBANJIANG = ITEMS.register("doubanjiang", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> MABODOFU = ITEMS.register("mabodofu", () -> new ReturnableDishItem(Items.BOWL, (new Item.Properties()).food(TofuFoods.MABODOFU).stacksTo(16).tab(TofuCreativeModeTab.TOFUCRAFT)));
 

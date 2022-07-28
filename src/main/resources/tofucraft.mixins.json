@@ -1,13 +1,15 @@
 {
   "required": true,
   "package": "baguchan.tofucraft.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "refmap": "tofucraft.refmap.json",
   "mixins": [
-    "WorldGenSettingsMixin"
+    "WardenAiMixin",
+    "WardenMixin"
   ],
   "client": [
-    "client.MinecraftMixin"
+    "client.MinecraftMixin",
+    "client.WardenModelMixin"
   ],
   "injectors": {
     "defaultRequire": 1
