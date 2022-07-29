@@ -147,7 +147,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(TofuItems.EDAMAME_RICE.get(), 1)
-				.requires(TofuTags.Items.RICE)
+				.requires(TofuItems.ONIGIRI.get())
 				.requires(TofuItems.EDAMAME.get())
 				.requires(Items.BOWL)
 				.unlockedBy("has_item", has(TofuItems.EDAMAME.get()))
