@@ -3,14 +3,14 @@
   "pools": [
     {
       "rolls": {
-        "min": 4.0,
-        "max": 6.0,
+        "min": 6.0,
+        "max": 8.0,
         "type": "minecraft:uniform"
       },
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 15,
+          "weight": 10,
           "name": "tofucraft:apricot",
           "functions": [
             {
@@ -41,7 +41,7 @@
         {
           "type": "minecraft:item",
           "weight": 5,
-          "name": "tofucraft:zundaruby",
+          "name": "tofucraft:sapling_apricot",
           "functions": [
             {
               "function": "minecraft:set_count",

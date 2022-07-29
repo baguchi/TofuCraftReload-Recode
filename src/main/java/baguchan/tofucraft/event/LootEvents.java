@@ -45,15 +45,5 @@ public class LootEvents {
 			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/seeds_chili_ancient_city")).setWeight(10).setQuality(5)).name("seeds_chili_ancient_city").build();
 			event.getTable().addPool(pool);
 		}
-
-		if (SHIP_SUPPLY_LOOT.contains(event.getName())) {
-			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/sapling_apricot_ship")).setWeight(10).setQuality(5)).name("sapling_apricot_ship").build();
-			event.getTable().addPool(pool);
-		}
-
-		if (DUNGEONS_ROOT.contains(event.getName())) {
-			LootPool pool = LootPool.lootPool().add(LootTableReference.lootTableReference(new ResourceLocation("tofucraft", "injections/sapling_apricot_dungeons")).setWeight(10).setQuality(5)).name("sapling_apricot_dungeons").build();
-			event.getTable().addPool(pool);
-		}
 	}
 }
