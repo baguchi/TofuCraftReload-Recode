@@ -368,7 +368,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("WWW")
 				.define('S', TofuItems.SEEDS_SOYBEANS.get())
 				.define('W', Tags.Items.CROPS_WHEAT)
-				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()));
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()))
+				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.TOFUCAKE.get())
 				.pattern("###")
