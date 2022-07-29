@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "tofucraft:seeds_soybeans"
+    },
+    "W": {
+      "tag": "forge:crops/wheat"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "SSS",
+    "WWW"
+  ],
+  "result": {
+    "item": "tofucraft:nattobed"
+  }
+}
