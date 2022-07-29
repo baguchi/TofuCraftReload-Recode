@@ -3,7 +3,7 @@
     {
       "rolls": {
         "min": 0.0,
-        "max": 2.0,
+        "max": 3.0,
         "type": "minecraft:uniform"
       },
       "entries": [
@@ -39,7 +39,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 3,
+          "weight": 1,
           "name": "minecraft:air"
         }
       ]
