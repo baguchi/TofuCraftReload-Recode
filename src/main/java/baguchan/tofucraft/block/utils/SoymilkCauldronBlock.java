@@ -50,6 +50,7 @@ public class SoymilkCauldronBlock extends Block {
 			itemEntity.setPickUpDelay(10);
 			worldIn.addFreshEntity(itemEntity);
 			worldIn.setBlock(pos, Blocks.CAULDRON.defaultBlockState(), 2);
+			return InteractionResult.SUCCESS;
 		} else if (itemHeld.is(Items.BUCKET)) {
 			ItemStack bucket = new ItemStack(TofuItems.BUCKET_SOYMILK.get());
 			worldIn.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -61,6 +62,7 @@ public class SoymilkCauldronBlock extends Block {
 				itemHeld.shrink(1);
 			}
 			worldIn.setBlock(pos, Blocks.CAULDRON.defaultBlockState(), 2);
+			return InteractionResult.SUCCESS;
 		}
 
 		return super.use(state, worldIn, pos, player, handIn, hit);
