@@ -816,12 +816,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapelessRecipeBuilder.shapeless(TofuItems.FUKUMENI.get(), 8)
 				.requires(TofuItems.SALT.get())
 				.requires(TofuItems.BOTTLE_DASHI.get())
-				.requires(TofuItems.TOFUFRIED.get())
-				.unlockedBy("has_item", has(TofuItems.TOFUFRIED.get()))
+				.requires(TofuItems.TOFUDRIED.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUDRIED.get()))
 				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(TofuItems.KOYADOFUSTEW.get(), 1)
-				.requires(TofuItems.TOFUFRIED.get())
+				.requires(TofuItems.TOFUDRIED.get())
 				.requires(Items.BROWN_MUSHROOM)
 				.requires(TofuItems.BOTTLE_DASHI.get())
 				.requires(Items.BOWL)

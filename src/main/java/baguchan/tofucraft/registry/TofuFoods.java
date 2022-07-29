@@ -27,6 +27,9 @@ public class TofuFoods {
 	public static final FoodProperties TOFUSTRAWBERRY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).fast().build();
 
 	public static final FoodProperties SPROUTS = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
+	public static final FoodProperties NATTO = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
+	public static final FoodProperties YUBA = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
+
 
 	public static final FoodProperties CHIKUWA = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).fast().build();
 	public static final FoodProperties TOFU_CHIKUWA = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).build();

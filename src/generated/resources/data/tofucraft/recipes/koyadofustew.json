@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "tofucraft:tofufried"
+      "item": "tofucraft:tofudried"
     },
     {
       "item": "minecraft:brown_mushroom"
