@@ -21,7 +21,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 
 public class FukumameEntity extends ThrowableProjectile {
-	public float damage = 1;
+	public float damage = 2;
 
 	public FukumameEntity(EntityType<? extends FukumameEntity> p_i50154_1_, Level p_i50154_2_) {
 		super(p_i50154_1_, p_i50154_2_);
@@ -39,6 +39,10 @@ public class FukumameEntity extends ThrowableProjectile {
 		super(p_i50154_1_, x, y, z, worldIn);
 	}
 
+	public FukumameEntity(EntityType<? extends FukumameEntity> entityType, LivingEntity throwerIn, Level worldIn) {
+		super(entityType, throwerIn, worldIn);
+	}
+
 	protected void defineSynchedData() {
 	}
 
@@ -54,7 +58,7 @@ public class FukumameEntity extends ThrowableProjectile {
 	protected void onHitEntity(EntityHitResult p_37404_) {
 		super.onHitEntity(p_37404_);
 		Entity entity = p_37404_.getEntity();
-		int i = 1;
+		int i = 2;
 		entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) this.damage);
 		entity.invulnerableTime = 5;
 	}

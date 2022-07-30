@@ -10,6 +10,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 
 public class NetherFukumameItem extends Item {
@@ -25,6 +28,7 @@ public class NetherFukumameItem extends Item {
 			for (int i = 0; i < 5; i++) {
 				NetherFukumameEntity fukumamentity = new NetherFukumameEntity(levelIn, playerIn);
 				float d0 = levelIn.random.nextFloat() * 20.0F - 10.0F;
+				fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER_ARROWS, playerIn) * 0.5F;
 				fukumamentity.shootFromRotation(playerIn, playerIn.getXRot() + d0 * 0.325F, playerIn.getYRot() + d0, 0.0F, 1.5F, 0.8F);
 				levelIn.addFreshEntity(fukumamentity);
 			}
@@ -34,5 +38,15 @@ public class NetherFukumameItem extends Item {
 		if (!playerIn.level.isClientSide)
 			itemstack.hurtAndBreak(1, (LivingEntity) playerIn, playerEntity -> playerEntity.broadcastBreakEvent(handIn));
 		return InteractionResultHolder.sidedSuccess(itemstack, levelIn.isClientSide());
+	}
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		return enchantment == Enchantments.POWER_ARROWS || super.canApplyAtEnchantingTable(stack, enchantment);
+	}
+
+	@Override
+	public int getEnchantmentValue(ItemStack stack) {
+		return 3;
 	}
 }
