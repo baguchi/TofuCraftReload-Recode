@@ -51,15 +51,13 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFU_STEM.get(), TofuBlocks.TOFU_STEM_PLANKS.get()
 				, TofuBlocks.MORIJIO.get()
 				, TofuBlocks.BARREL_MISO.get());
-		tag(BlockTags.MINEABLE_WITH_HOE).add(TofuBlocks.RICE_ROOT.get());
+		tag(BlockTags.MINEABLE_WITH_HOE).add(TofuBlocks.RICE_ROOT.get(), TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get());
 
 		tag(BlockTags.NEEDS_STONE_TOOL)
 				.add(TofuBlocks.METALTOFU.get(), TofuBlocks.TOFUSTAIR_METAL.get(), TofuBlocks.TOFUSLAB_METAL.get(), TofuBlocks.TOFULADDER_METAL.get(), TofuBlocks.TOFUFENCE_METAL.get(), TofuBlocks.TOFUDOOR_METAL.get(), TofuBlocks.TOFUTRAPDOOR_METAL.get());
 		tag(BlockTags.NEEDS_IRON_TOOL)
 				.add(TofuBlocks.DIAMONDTOFU.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get())
-				.add(TofuBlocks.SCULK_BONE.get());
-		tag(BlockTags.NEEDS_DIAMOND_TOOL)
-				.add(TofuBlocks.SCULKED_TOFU_SOUL.get());
+				.add(TofuBlocks.SCULK_BONE.get(), TofuBlocks.SCULKED_TOFU_SOUL.get());
 		tag(BlockTags.PIGLIN_REPELLENTS).add(TofuBlocks.SOYBEAN_SOUL.get());
 
 		tag(TofuTags.Blocks.SOFT_TOFU).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
@@ -78,6 +76,6 @@ public class BlockTagGenerator extends BlockTagsProvider {
 
 		tag(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get())
 				.add(TofuBlocks.TOFUSLATE.get());
-
+		tag(BlockTags.LEAVES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get());
 	}
 }
