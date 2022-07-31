@@ -91,7 +91,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 						++this.attackStep;
 						if (this.attackStep == 1) {
 							this.attackTime = 20;
-						} else if (this.attackStep <= 3) {
+						} else if (this.attackStep <= 2) {
 							this.attackTime = 10;
 						} else {
 							this.attackTime = 30;
