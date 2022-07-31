@@ -125,7 +125,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 		crossBlock(TofuBlocks.LEEK.get());
 
-		simpleBlock(TofuBlocks.TOFU_PORTAL.get());
+		translucentBlock(TofuBlocks.TOFU_PORTAL.get());
 
 		simpleBlock(TofuBlocks.EGGTOFU.get());
 		stairs(TofuBlocks.TOFUSTAIR_EGG.get(), TofuBlocks.EGGTOFU.get());
@@ -143,6 +143,14 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 	public void simpleLeavesBlock(Block block) {
 		simpleBlock(block, cubeLeavesAll(block));
+	}
+
+	public void translucentBlock(Block block) {
+		simpleBlock(block, translucentCubeAll(block));
+	}
+
+	private ModelFile translucentCubeAll(Block block) {
+		return models().cubeAll(name(block), blockTexture(block)).renderType("minecraft:translucent");
 	}
 
 	public void torchBlock(Block block, Block wall) {
