@@ -170,7 +170,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(4, new CropHarvestGoal(this, 0.9F));
 		this.goalSelector.addGoal(5, new MakeFoodGoal(this, 0.9F, 6));
 		this.goalSelector.addGoal(6, new RestockGoal(this, 0.9F, 6));
-		this.goalSelector.addGoal(7, new MoveToGoal(this, 36.0D, 1.0D));
+		this.goalSelector.addGoal(7, new MoveToGoal(this, 40.0D, 1.0D));
 		this.goalSelector.addGoal(8, new FindJobBlockGoal(this, 0.85F, 6));
 		this.goalSelector.addGoal(9, new TofunianLoveGoal(this, 0.8F));
 		this.goalSelector.addGoal(10, new RandomStrollGoal(this, 0.9D));
