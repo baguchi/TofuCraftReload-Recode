@@ -6,6 +6,7 @@ import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.world.TofuLevelTeleporter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -112,8 +113,21 @@ public class TofuPortalBlock extends Block {
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		int random = rand.nextInt(100);
-		if (random == 0)
+		if (random == 0) {
 			worldIn.playLocalSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT, SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+		}
+
+		for (int i = 0; i < 4; ++i) {
+			double d0 = (double) pos.getX() + rand.nextDouble();
+			double d1 = (double) pos.getY() + rand.nextDouble();
+			double d2 = (double) pos.getZ() + rand.nextDouble();
+			double d3 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+			double d4 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+			double d5 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+			int j = rand.nextInt(2) * 2 - 1;
+
+			worldIn.addParticle(ParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
+		}
 	}
 
 	public static class Size {

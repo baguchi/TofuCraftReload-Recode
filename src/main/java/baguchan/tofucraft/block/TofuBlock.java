@@ -1,6 +1,7 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -33,7 +34,7 @@ public class TofuBlock extends Block {
 			double d0 = pos.getX() + 0.5D + rand.nextFloat() * d4;
 			double d1 = (pos.getY() + rand.nextFloat());
 			double d2 = pos.getZ() + 0.5D + rand.nextFloat() * d4;
-			worldIn.addParticle(ParticleTypes.DRIPPING_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+			worldIn.addParticle(TofuParticleTypes.DRIP_SOYMILK_HANG.get(), d0, d1, d2, 0.0D, 0.0D, 0.0D);
 		}
 
 		if (this == TofuBlocks.SOULTOFU.get() || this == TofuBlocks.SCULKED_TOFU_SOUL.get()) {

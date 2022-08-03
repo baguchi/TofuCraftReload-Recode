@@ -4,8 +4,10 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.material.WaterFluid;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidType;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class SoyMilkFluid extends WaterFluid {
 	public Fluid getFlowing() {
@@ -33,6 +36,12 @@ public abstract class SoyMilkFluid extends WaterFluid {
 
 	public Item getBucket() {
 		return TofuItems.BUCKET_SOYMILK.get();
+	}
+
+	@Nullable
+	@Override
+	public ParticleOptions getDripParticle() {
+		return TofuParticleTypes.DRIP_SOYMILK_HANG.get();
 	}
 
 	@OnlyIn(Dist.CLIENT)

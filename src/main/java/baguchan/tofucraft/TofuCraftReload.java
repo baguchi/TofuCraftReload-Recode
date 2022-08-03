@@ -24,6 +24,7 @@ import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuFoliagePlacerType;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
@@ -106,6 +107,7 @@ public class TofuCraftReload {
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
 		TofuFeatures.FEATURES.register(modBus);
 		TofuSounds.SOUND_EVENTS.register(modBus);
+		TofuParticleTypes.PARTICLE_TYPES.register(modBus);
 
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 
