@@ -80,7 +80,8 @@ public class TofuBlock extends Block {
 
 		} else if (isUnderWeight(worldIn, pos) && state.hasProperty(HARDNESS)) {
 			int i = state.getValue(HARDNESS);
-			if (random.nextInt(4) == 0) {
+			int hardness = this == TofuBlocks.MOMENTOFU.get() ? 3 : 4;
+			if (random.nextInt(hardness) == 0) {
 				if (i < 7) {
 					worldIn.setBlock(pos, state.setValue(HARDNESS, i + 1), 2);
 				} else {
