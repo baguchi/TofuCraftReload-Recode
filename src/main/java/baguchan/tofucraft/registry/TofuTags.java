@@ -1,11 +1,13 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -48,6 +50,14 @@ public class TofuTags {
 
 		private static TagKey<Fluid> tag(String name) {
 			return FluidTags.create(new ResourceLocation(TofuCraftReload.MODID, name));
+		}
+	}
+
+	public static class PoiTypes {
+		public static final TagKey<PoiType> TOFUNIAN_JOB = tag("tofunian_job");
+
+		private static TagKey<PoiType> tag(String name) {
+			return TagKey.create(Registry.POINT_OF_INTEREST_TYPE_REGISTRY, new ResourceLocation(TofuCraftReload.MODID, name));
 		}
 	}
 }

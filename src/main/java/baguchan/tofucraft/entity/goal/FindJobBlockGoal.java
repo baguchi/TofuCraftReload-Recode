@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity.goal;
 
 import baguchan.tofucraft.entity.Tofunian;
+import baguchan.tofucraft.registry.TofuTags;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -12,8 +13,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
-import net.minecraft.world.entity.ai.village.poi.PoiTypes;
-import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -25,13 +24,13 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class FindJobBlockGoal extends MoveToBlockGoal {
+	public static final Predicate<Holder<PoiType>> ALL_ACQUIRABLE_JOBS = (p_238239_) -> {
+		return p_238239_.is(TofuTags.PoiTypes.TOFUNIAN_JOB);
+	};
+
 	private final Tofunian creature;
 	private boolean findBlock;
 	private ResourceKey<PoiType> poiTypeResourceKey;
-
-	public static final Predicate<Holder<PoiType>> ACQUIRABLE_JOBS = (p_238239_) -> {
-		return p_238239_.is(PoiTypes.FARMER) || p_238239_.is(PoiTypes.ARMORER) || p_238239_.is(PoiTypes.LEATHERWORKER);
-	};
 
 	public FindJobBlockGoal(Tofunian creature, double speedIn, int length) {
 		super(creature, speedIn, length);
@@ -85,9 +84,9 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	@Override
 	protected boolean findNearestBlock() {
 		if (this.creature.level instanceof ServerLevel) {
-			Set<Pair<Holder<PoiType>, BlockPos>> set = ((ServerLevel) this.creature.level).getPoiManager().findAllClosestFirstWithType(VillagerProfession.ALL_ACQUIRABLE_JOBS, predicate -> {
+			Set<Pair<Holder<PoiType>, BlockPos>> set = ((ServerLevel) this.creature.level).getPoiManager().findAllClosestFirstWithType(ALL_ACQUIRABLE_JOBS, predicate -> {
 				return Tofunian.Roles.get(this.creature.level.getBlockState(predicate)) != null;
-			}, this.creature.blockPosition(), 16, PoiManager.Occupancy.HAS_SPACE).limit(5L).collect(Collectors.toSet());
+			}, this.creature.blockPosition(), 32, PoiManager.Occupancy.HAS_SPACE).limit(5L).collect(Collectors.toSet());
 			if (!set.isEmpty()) {
 
 				/*
