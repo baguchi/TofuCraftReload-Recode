@@ -169,6 +169,16 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		super.tick();
 	}
 
+	@Override
+	public boolean hurt(DamageSource p_21016_, float p_21017_) {
+		if (p_21016_.getDirectEntity() instanceof LivingEntity) {
+			if (this.isSleep()) {
+				this.setSleep(false);
+			}
+		}
+		return super.hurt(p_21016_, p_21017_);
+	}
+
 	protected void checkRushAttack(AABB p_21072_, AABB p_21073_) {
 		AABB aabb = p_21072_.minmax(p_21073_);
 		List<Entity> list = this.level.getEntities(this, aabb);
