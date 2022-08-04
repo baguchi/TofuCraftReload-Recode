@@ -1,6 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.entity.ShuDofuSpider;
 import baguchan.tofucraft.entity.TofuCow;
 import baguchan.tofucraft.entity.TofuFish;
 import baguchan.tofucraft.entity.TofuGandlem;
@@ -59,6 +60,9 @@ public class TofuEntityTypes {
 	public static final RegistryObject<EntityType<SoulFukumameEntity>> SOUL_FUKUMAME = ENTITIES.register("soul_fukumame", () -> EntityType.Builder.<SoulFukumameEntity>of(SoulFukumameEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).build("tofucraft:soul_fukumame"));
 
+	public static final RegistryObject<EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
+			.sized(3.5F, 2.9F).clientTrackingRange(10).fireImmune().build("tofucraft:shudofuspider"));
+
 	/*public static final EntityType<ZundaArrowEntity> ZUNDA_ARROW = EntityType.Builder.<ZundaArrowEntity>of(ZundaArrowEntity::new, MobCategory.MISC)
 			.sized(0.5F, 0.5F).build("tofucraft:zunda_arrow");*/
 
@@ -70,6 +74,7 @@ public class TofuEntityTypes {
 		event.put(TOFUSLIME.get(), Monster.createMonsterAttributes().build());
 		event.put(TOFUSPIDER.get(), TofuSpider.createAttributes().build());
 		event.put(TOFU_GANDLEM.get(), TofuGandlem.createAttributes().build());
+		event.put(SHUDOFUSPIDER.get(), ShuDofuSpider.createAttributes().build());
 
 		SpawnPlacements.register(TOFUCOW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCow::checkTofuAnimalSpawnRules);
 		SpawnPlacements.register(TOFUNIAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
