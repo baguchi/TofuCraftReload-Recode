@@ -34,6 +34,15 @@ public class TofuBlock extends Block {
 			double d0 = pos.getX() + 0.5D + rand.nextFloat() * d4;
 			double d1 = (pos.getY() + rand.nextFloat());
 			double d2 = pos.getZ() + 0.5D + rand.nextFloat() * d4;
+			worldIn.addParticle(ParticleTypes.DRIPPING_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+		}
+
+		if (isUnderWeight(worldIn, pos) &&
+				rand.nextInt(10) == 0) {
+			double d4 = rand.nextBoolean() ? 0.8D : -0.8D;
+			double d0 = pos.getX() + 0.5D + rand.nextFloat() * d4;
+			double d1 = (pos.getY() + rand.nextFloat());
+			double d2 = pos.getZ() + 0.5D + rand.nextFloat() * d4;
 			worldIn.addParticle(TofuParticleTypes.DRIP_SOYMILK_HANG.get(), d0, d1, d2, 0.0D, 0.0D, 0.0D);
 		}
 
