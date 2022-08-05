@@ -170,82 +170,99 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		var direction = entity.getDirection();
 		var pos = entity.blockPosition();
+		var air = Blocks.AIR.defaultBlockState();
 		if (direction == Direction.NORTH) {
-			var rBlock = entity.level.getBlockState(pos.below().east());
-			if (rBlock == Blocks.AIR.defaultBlockState()) {
-				this.leg1.zRot = -0.12F;
-				this.leg3.zRot = -0.12F;
-				this.leg5.zRot = -0.12F;
-				this.bone.zRot = -1.2F;
-				this.bone13.zRot = -1.2F;
-				this.bone23.zRot = -1.2F;
-			}
-			var lBlock = entity.level.getBlockState(pos.below().west());
-			if (lBlock == Blocks.AIR.defaultBlockState()) {
+			var rBlock = entity.level.getBlockState(pos.below().west().west());
+			var rBlockF = entity.level.getBlockState(pos.below().west().west().north());
+			var rBlockB = entity.level.getBlockState(pos.below().west().west().south());
+			if (rBlock == air && rBlockF == air && rBlockB == air) {
 				this.leg2.zRot = 0.12F;
 				this.leg4.zRot = 0.12F;
 				this.leg6.zRot = 0.12F;
 				this.bone8.zRot = 1.2F;
 				this.bone18.zRot = 1.2F;
 				this.bone28.zRot = 1.2F;
+			}
+			var lBlock = entity.level.getBlockState(pos.below().east().east());
+			var lBlockF = entity.level.getBlockState(pos.below().east().east().north());
+			var lBlockB = entity.level.getBlockState(pos.below().east().east().south());
+			if (lBlock == air && lBlockF == air && lBlockB == air) {
+				this.leg1.zRot = -0.12F;
+				this.leg3.zRot = -0.12F;
+				this.leg5.zRot = -0.12F;
+				this.bone.zRot = -1.2F;
+				this.bone13.zRot = -1.2F;
+				this.bone23.zRot = -1.2F;
 			}
 
 		} else if (direction == Direction.EAST) {
-			var rBlock = entity.level.getBlockState(pos.below().south());
-			if (rBlock == Blocks.AIR.defaultBlockState()) {
-				this.leg1.zRot = -0.12F;
-				this.leg3.zRot = -0.12F;
-				this.leg5.zRot = -0.12F;
-				this.bone.zRot = -1.2F;
-				this.bone13.zRot = -1.2F;
-				this.bone23.zRot = -1.2F;
-			}
-			var lBlock = entity.level.getBlockState(pos.below().north());
-			if (lBlock == Blocks.AIR.defaultBlockState()) {
+			var rBlock = entity.level.getBlockState(pos.below().north().north());
+			var rBlockF = entity.level.getBlockState(pos.below().north().north().east());
+			var rBlockB = entity.level.getBlockState(pos.below().north().north().west());
+			if (rBlock == air && rBlockF == air && rBlockB == air) {
 				this.leg2.zRot = 0.12F;
 				this.leg4.zRot = 0.12F;
 				this.leg6.zRot = 0.12F;
 				this.bone8.zRot = 1.2F;
 				this.bone18.zRot = 1.2F;
 				this.bone28.zRot = 1.2F;
+			}
+			var lBlock = entity.level.getBlockState(pos.below().south().south());
+			var lBlockF = entity.level.getBlockState(pos.below().south().south().east());
+			var lBlockB = entity.level.getBlockState(pos.below().south().south().west());
+			if (lBlock == air && lBlockF == air && lBlockB == air) {
+				this.leg1.zRot = -0.12F;
+				this.leg3.zRot = -0.12F;
+				this.leg5.zRot = -0.12F;
+				this.bone.zRot = -1.2F;
+				this.bone13.zRot = -1.2F;
+				this.bone23.zRot = -1.2F;
 			}
 		} else if (direction == Direction.WEST) {
-			var rBlock = entity.level.getBlockState(pos.below().north());
-			if (rBlock == Blocks.AIR.defaultBlockState()) {
-				this.leg1.zRot = -0.12F;
-				this.leg3.zRot = -0.12F;
-				this.leg5.zRot = -0.12F;
-				this.bone.zRot = -1.2F;
-				this.bone13.zRot = -1.2F;
-				this.bone23.zRot = -1.2F;
-			}
-			var lBlock = entity.level.getBlockState(pos.below().south());
-			if (lBlock == Blocks.AIR.defaultBlockState()) {
+			var rBlock = entity.level.getBlockState(pos.below().south().south());
+			var rBlockF = entity.level.getBlockState(pos.below().south().south().west());
+			var rBlockB = entity.level.getBlockState(pos.below().south().south().east());
+			if (rBlock == air && rBlockF == air && rBlockB == air) {
 				this.leg2.zRot = 0.12F;
 				this.leg4.zRot = 0.12F;
 				this.leg6.zRot = 0.12F;
 				this.bone8.zRot = 1.2F;
 				this.bone18.zRot = 1.2F;
 				this.bone28.zRot = 1.2F;
+			}
+			var lBlock = entity.level.getBlockState(pos.below().north().north());
+			var lBlockF = entity.level.getBlockState(pos.below().north().north().west());
+			var lBlockB = entity.level.getBlockState(pos.below().north().north().east());
+			if (lBlock == air && lBlockF == air && lBlockB == air) {
+				this.leg1.zRot = -0.12F;
+				this.leg3.zRot = -0.12F;
+				this.leg5.zRot = -0.12F;
+				this.bone.zRot = -1.2F;
+				this.bone13.zRot = -1.2F;
+				this.bone23.zRot = -1.2F;
 			}
 		} else if (direction == Direction.SOUTH) {
-			var rBlock = entity.level.getBlockState(pos.below().west());
-			if (rBlock == Blocks.AIR.defaultBlockState()) {
-				this.leg1.zRot = -0.12F;
-				this.leg3.zRot = -0.12F;
-				this.leg5.zRot = -0.12F;
-				this.bone.zRot = -1.2F;
-				this.bone13.zRot = -1.2F;
-				this.bone23.zRot = -1.2F;
-			}
-			var lBlock = entity.level.getBlockState(pos.below().east());
-			if (lBlock == Blocks.AIR.defaultBlockState()) {
+			var rBlock = entity.level.getBlockState(pos.below().east().east());
+			var rBlockF = entity.level.getBlockState(pos.below().east().east().south());
+			var rBlockB = entity.level.getBlockState(pos.below().east().east().north());
+			if (rBlock == air && rBlockF == air && rBlockB == air) {
 				this.leg2.zRot = 0.12F;
 				this.leg4.zRot = 0.12F;
 				this.leg6.zRot = 0.12F;
 				this.bone8.zRot = 1.2F;
 				this.bone18.zRot = 1.2F;
 				this.bone28.zRot = 1.2F;
+			}
+			var lBlock = entity.level.getBlockState(pos.below().west().west());
+			var lBlockF = entity.level.getBlockState(pos.below().west().west().south());
+			var lBlockB = entity.level.getBlockState(pos.below().west().west().north());
+			if (lBlock == air && lBlockF == air && lBlockB == air) {
+				this.leg1.zRot = -0.12F;
+				this.leg3.zRot = -0.12F;
+				this.leg5.zRot = -0.12F;
+				this.bone.zRot = -1.2F;
+				this.bone13.zRot = -1.2F;
+				this.bone23.zRot = -1.2F;
 			}
 		}
 
