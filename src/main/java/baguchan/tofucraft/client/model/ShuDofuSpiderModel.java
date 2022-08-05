@@ -13,6 +13,8 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Blocks;
 
 public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
@@ -25,6 +27,12 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 	private final ModelPart leg4;
 	private final ModelPart leg5;
 	private final ModelPart leg6;
+	private final ModelPart bone;
+	private final ModelPart bone13;
+	private final ModelPart bone23;
+	private final ModelPart bone8;
+	private final ModelPart bone18;
+	private final ModelPart bone28;
 
 
 	public ShuDofuSpiderModel(ModelPart root) {
@@ -38,6 +46,12 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 		this.leg4 = this.root.getChild("leg4");
 		this.leg5 = this.root.getChild("leg5");
 		this.leg6 = this.root.getChild("leg6");
+		this.bone = this.leg1.getChild("bone");
+		this.bone13 = this.leg3.getChild("bone13");
+		this.bone23 = this.leg5.getChild("bone23");
+		this.bone8 = this.leg2.getChild("bone8");
+		this.bone18 = this.leg4.getChild("bone18");
+		this.bone28 = this.leg6.getChild("bone28");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -154,6 +168,88 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
+		var direction = entity.getDirection();
+		var pos = entity.blockPosition();
+		if (direction == Direction.NORTH) {
+			var rBlock = entity.level.getBlockState(pos.below().east());
+			if (rBlock == Blocks.AIR.defaultBlockState()) {
+				this.leg1.zRot = -0.12F;
+				this.leg3.zRot = -0.12F;
+				this.leg5.zRot = -0.12F;
+				this.bone.zRot = -1.2F;
+				this.bone13.zRot = -1.2F;
+				this.bone23.zRot = -1.2F;
+			}
+			var lBlock = entity.level.getBlockState(pos.below().west());
+			if (lBlock == Blocks.AIR.defaultBlockState()) {
+				this.leg2.zRot = 0.12F;
+				this.leg4.zRot = 0.12F;
+				this.leg6.zRot = 0.12F;
+				this.bone8.zRot = 1.2F;
+				this.bone18.zRot = 1.2F;
+				this.bone28.zRot = 1.2F;
+			}
+
+		} else if (direction == Direction.EAST) {
+			var rBlock = entity.level.getBlockState(pos.below().south());
+			if (rBlock == Blocks.AIR.defaultBlockState()) {
+				this.leg1.zRot = -0.12F;
+				this.leg3.zRot = -0.12F;
+				this.leg5.zRot = -0.12F;
+				this.bone.zRot = -1.2F;
+				this.bone13.zRot = -1.2F;
+				this.bone23.zRot = -1.2F;
+			}
+			var lBlock = entity.level.getBlockState(pos.below().north());
+			if (lBlock == Blocks.AIR.defaultBlockState()) {
+				this.leg2.zRot = 0.12F;
+				this.leg4.zRot = 0.12F;
+				this.leg6.zRot = 0.12F;
+				this.bone8.zRot = 1.2F;
+				this.bone18.zRot = 1.2F;
+				this.bone28.zRot = 1.2F;
+			}
+		} else if (direction == Direction.WEST) {
+			var rBlock = entity.level.getBlockState(pos.below().north());
+			if (rBlock == Blocks.AIR.defaultBlockState()) {
+				this.leg1.zRot = -0.12F;
+				this.leg3.zRot = -0.12F;
+				this.leg5.zRot = -0.12F;
+				this.bone.zRot = -1.2F;
+				this.bone13.zRot = -1.2F;
+				this.bone23.zRot = -1.2F;
+			}
+			var lBlock = entity.level.getBlockState(pos.below().south());
+			if (lBlock == Blocks.AIR.defaultBlockState()) {
+				this.leg2.zRot = 0.12F;
+				this.leg4.zRot = 0.12F;
+				this.leg6.zRot = 0.12F;
+				this.bone8.zRot = 1.2F;
+				this.bone18.zRot = 1.2F;
+				this.bone28.zRot = 1.2F;
+			}
+		} else if (direction == Direction.SOUTH) {
+			var rBlock = entity.level.getBlockState(pos.below().west());
+			if (rBlock == Blocks.AIR.defaultBlockState()) {
+				this.leg1.zRot = -0.12F;
+				this.leg3.zRot = -0.12F;
+				this.leg5.zRot = -0.12F;
+				this.bone.zRot = -1.2F;
+				this.bone13.zRot = -1.2F;
+				this.bone23.zRot = -1.2F;
+			}
+			var lBlock = entity.level.getBlockState(pos.below().east());
+			if (lBlock == Blocks.AIR.defaultBlockState()) {
+				this.leg2.zRot = 0.12F;
+				this.leg4.zRot = 0.12F;
+				this.leg6.zRot = 0.12F;
+				this.bone8.zRot = 1.2F;
+				this.bone18.zRot = 1.2F;
+				this.bone28.zRot = 1.2F;
+			}
+		}
+
+
 		this.animate(entity.idleAnimationState, ShuDofuSpiderAnimation.IDLE, ageInTicks);
 		this.animate(entity.walkAnimationState, ShuDofuSpiderAnimation.WALK, ageInTicks);
 	}

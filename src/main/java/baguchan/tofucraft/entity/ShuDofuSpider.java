@@ -14,6 +14,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -45,8 +46,8 @@ public class ShuDofuSpider extends Monster {
 
 		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, true));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, true, null));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, 10, true, true, null));
 	}
 
 	protected float getStandingEyeHeight(Pose p_33799_, EntityDimensions p_33800_) {
@@ -140,13 +141,14 @@ public class ShuDofuSpider extends Monster {
 		return p_28882_;
 	}
 
-	static class AttackGoal extends Goal {
+	static class AttackGoal extends MeleeAttackGoal {
 		private final ShuDofuSpider spider;
 		private int attackStep;
 		private int attackTime;
 		private int lastSeen;
 
 		public AttackGoal(ShuDofuSpider p_32247_) {
+			super(p_32247_, 0.8D, true);
 			this.spider = p_32247_;
 			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		}
@@ -156,54 +158,20 @@ public class ShuDofuSpider extends Monster {
 			return livingentity != null && livingentity.isAlive() && this.spider.canAttack(livingentity);
 		}
 
+		protected double getAttackReachSqr(LivingEntity p_33825_) {
+			return (double) (2.0F + p_33825_.getBbWidth());
+		}
+
 		public void tick() {
-			--this.attackTime;
-			LivingEntity livingentity = this.spider.getTarget();
-			if (livingentity != null) {
-				boolean flag = this.spider.getSensing().hasLineOfSight(livingentity);
-				if (flag) {
-					this.lastSeen = 0;
-				} else {
-					++this.lastSeen;
-				}
-
-				double d0 = this.spider.distanceToSqr(livingentity);
-				if (d0 < 32.0D) {
-					if (!flag) {
-						return;
-					}
-					this.attackStep = 0;
-
-					if (d0 < 4.0D + this.spider.getBbWidth() && this.attackTime <= 0) {
-						this.attackTime = 20;
-						this.spider.doHurtTarget(livingentity);
-					}
-
-					this.spider.getLookControl().setLookAt(livingentity, 10.0F, 10.0F);
-					this.spider.getNavigation().moveTo(this.spider.getTarget(), 1.0F);
-				} else if (d0 < this.getFollowDistance() * this.getFollowDistance() && flag) {
-					if (this.attackTime <= 0) {
-						++this.attackStep;
-						if (this.attackStep == 1) {
-							this.attackTime = 20;
-						} else if (this.attackStep <= 2) {
-							this.attackTime = 10;
-						} else {
-							this.attackTime = 30;
-							this.attackStep = 0;
-						}
-
-					}
-
-					this.spider.getLookControl().setLookAt(livingentity, 10.0F, 10.0F);
-					this.spider.getNavigation().stop();
-				} else if (this.lastSeen < 5) {
-					this.spider.getNavigation().moveTo(livingentity.getX(), livingentity.getY(), livingentity.getZ(), 1.0F);
-				}
-
-				super.tick();
+			super.tick();
+			var entity = this.spider;
+			var entityTarget = entity.getTarget();
+			if (entityTarget != null) {
+				entity.lookAt(entityTarget, 30F, 30F);
 			}
-
+			if (entityTarget != null && entity.distanceTo(entityTarget) <= 4.0F) {
+				entity.doHurtTarget(entityTarget);
+			}
 		}
 
 		public boolean requiresUpdateEveryTick() {
