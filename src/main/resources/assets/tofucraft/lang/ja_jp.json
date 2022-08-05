@@ -448,7 +448,7 @@
   "container.tofucraft.tf_storage": "TFストレージ",
   "container.tofucraft.tfoven.name": "TFオーブン",
   "container.tofucraft.tfadvanced_aggregator": "TFアドバンスドアグレガーター",
-  "container.tofucraft.tfaggregator": "TFアグレガーター",
+  "container.tofucraft.tf_aggregator": "TFアグレガーター",
   "tooltip.tofucraft.energy": "トーフフォースエネルギー: %d/%d",
   "tooltip.tofucraft.tofuforce.broken": "破損",
   "death.attack.tofucraft.tofuforce": "%1$s は %2$s のトーフフォースにやられた",

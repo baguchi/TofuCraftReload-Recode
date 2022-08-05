@@ -14,7 +14,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofunianClothLayer extends RenderLayer<Tofunian, TofunianModel<Tofunian>> {
-	public static final ResourceLocation BAGU_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/bagu_chan.png");
+	public static final ResourceLocation BAGU_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagu_chan.png");
+	public static final ResourceLocation ZUNDAMON_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/secret/zundamon.png");
+
 
 	public TofunianClothLayer(RenderLayerParent<Tofunian, TofunianModel<Tofunian>> tofunianRender) {
 		super(tofunianRender);
@@ -31,6 +33,10 @@ public class TofunianClothLayer extends RenderLayer<Tofunian, TofunianModel<Tofu
 		String s = ChatFormatting.stripFormatting(entity.getName().getString());
 		if (s != null && "bagu_chan".equals(s)) {
 			return BAGU_LOCATION;
+		}
+
+		if (s != null && ("zundamon".equals(s))) {
+			return ZUNDAMON_LOCATION;
 		}
 
 		String cloth = "";
