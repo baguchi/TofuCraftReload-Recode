@@ -143,9 +143,6 @@ public class ShuDofuSpider extends Monster {
 
 	static class AttackGoal extends MeleeAttackGoal {
 		private final ShuDofuSpider spider;
-		private int attackStep;
-		private int attackTime;
-		private int lastSeen;
 
 		public AttackGoal(ShuDofuSpider p_32247_) {
 			super(p_32247_, 0.8D, true);
@@ -166,6 +163,7 @@ public class ShuDofuSpider extends Monster {
 			super.tick();
 			var entity = this.spider;
 			var entityTarget = entity.getTarget();
+
 			if (entityTarget != null) {
 				entity.lookAt(entityTarget, 30F, 30F);
 			}

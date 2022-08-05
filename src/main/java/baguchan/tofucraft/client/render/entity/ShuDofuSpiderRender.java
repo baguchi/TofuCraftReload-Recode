@@ -14,6 +14,7 @@ public class ShuDofuSpiderRender<T extends ShuDofuSpider> extends MobRenderer<T,
 
 	public ShuDofuSpiderRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_, new ShuDofuSpiderModel<>(p_173956_.bakeLayer(TofuModelLayers.SHUDOFUSPIDER)), 0.5F);
+
 	}
 
 	protected float getFlipDegrees(T p_115337_) {
