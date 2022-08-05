@@ -16,8 +16,6 @@ import java.util.Set;
 
 public class TofuPoiTypes {
 	public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, TofuCraftReload.MODID);
-
-
 	public static final ResourceKey<PoiType> TOFU_CRAFTSMAN = createKey("tofu_craftsman");
 	public static final ResourceKey<PoiType> MORIJIO = createKey("morijio");
 
