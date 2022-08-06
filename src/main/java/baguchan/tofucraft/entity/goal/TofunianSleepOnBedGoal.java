@@ -13,6 +13,9 @@ public class TofunianSleepOnBedGoal extends SleepOnBedGoal {
 
 	public void tick() {
 		super.tick();
+		if (isReachedTarget()) {
+			this.creature.setTofunainHome(this.blockPos);
+		}
 	}
 
 	protected boolean findNearestBlock() {
