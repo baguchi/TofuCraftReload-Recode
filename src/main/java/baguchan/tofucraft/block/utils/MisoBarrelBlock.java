@@ -22,7 +22,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class MisoBarrelBlock extends WeightBaseBlock {
 	public final RegistryObject<Item> finishedBottleItem;
-	public static final IntegerProperty FLUIDS = IntegerProperty.create("fluids", 0, 3);
+	public static final IntegerProperty FLUIDS = IntegerProperty.create("fluids", 0, 6);
 
 
 	public MisoBarrelBlock(RegistryObject<Item> finishedBottleItem, Properties properties) {
@@ -42,7 +42,7 @@ public class MisoBarrelBlock extends WeightBaseBlock {
 			}
 
 			if (time >= 5 && stat == Stat.USING) {
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.USED).setValue(FLUIDS, 3), 3);
+				worldIn.setBlock(pos, state.setValue(STAT, Stat.USED).setValue(FLUIDS, 6), 3);
 			}
 		}
 	}
@@ -63,7 +63,7 @@ public class MisoBarrelBlock extends WeightBaseBlock {
 					worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, nigari));
 				itemHeld.shrink(1);
 			}
-			worldIn.setBlock(pos, state.setValue(STAT, Stat.USED), 3);
+			worldIn.setBlock(pos, state.setValue(STAT, Stat.USED).setValue(FLUIDS, fluidsAmounts - 1), 3);
 			return InteractionResult.SUCCESS;
 		}
 		return InteractionResult.PASS;
