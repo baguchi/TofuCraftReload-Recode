@@ -15,6 +15,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.Mob;
@@ -33,15 +34,16 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.common.IExtensibleEnum;
 
+import javax.annotation.Nullable;
+
 public class TofuPig extends Pig {
-	private static final Ingredient FOOD_ITEMS = Ingredient.of(TofuItems.LEEK.get());
+	private static final Ingredient FOOD_ITEMS = Ingredient.of(TofuItems.LEEK.get(), Items.CARROT);
 
 	private static final EntityDataAccessor<String> TOFUPIG_TYPE = SynchedEntityData.defineId(TofuPig.class, EntityDataSerializers.STRING);
 
@@ -53,7 +55,6 @@ public class TofuPig extends Pig {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, Ingredient.of(Items.CARROT_ON_A_STICK), false));
 		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, FOOD_ITEMS, false));
 		this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
@@ -73,22 +74,40 @@ public class TofuPig extends Pig {
 		ItemStack var3 = p_28298_.getItemInHand(p_28299_);
 		if (var3.is(TofuItems.TOFUMETAL.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
 			p_28298_.playSound(SoundEvents.ANVIL_USE, 1.0F, 1.0F);
-			ItemStack var4 = ItemUtils.createFilledResult(var3, p_28298_, TofuItems.BUCKET_SOYMILK.get().getDefaultInstance());
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.METAL);
 			return InteractionResult.sidedSuccess(this.level.isClientSide);
 		} else if (var3.is(TofuItems.TOFUGRILLED.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
 			p_28298_.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.0F);
-			ItemStack var4 = ItemUtils.createFilledResult(var3, p_28298_, TofuItems.BUCKET_SOYMILK.get().getDefaultInstance());
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.GRILLED);
+			return InteractionResult.sidedSuccess(this.level.isClientSide);
+		} else if (var3.is(TofuItems.TOFUZUNDA.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
+			p_28298_.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.0F);
+			var3.shrink(1);
+			this.setTofuPigType(TofuPigType.ZUNDA);
 			return InteractionResult.sidedSuccess(this.level.isClientSide);
 		} else {
 			return super.mobInteract(p_28298_, p_28299_);
 		}
 	}
 
-	@Override
+	@Nullable
+	public Entity getControllingPassenger() {
+		Entity entity = this.getFirstPassenger();
+		return entity != null && this.canBeControlledBy(entity) ? entity : null;
+	}
+
+	private boolean canBeControlledBy(Entity p_218248_) {
+		if (this.isSaddled() && p_218248_ instanceof Player player && this.getTofuPigType() == TofuPigType.ZUNDA) {
+			return player.getMainHandItem().is(TofuItems.ZUNDAMUSROOM_ON_A_STICK.get()) || player.getOffhandItem().is(TofuItems.ZUNDAMUSROOM_ON_A_STICK.get());
+		} else if (this.isSaddled() && p_218248_ instanceof Player player) {
+			return player.getMainHandItem().is(Items.CARROT_ON_A_STICK) || player.getOffhandItem().is(Items.CARROT_ON_A_STICK);
+		} else {
+			return false;
+		}
+	}
+
 	public void thunderHit(ServerLevel p_29473_, LightningBolt p_29474_) {
 	}
 
@@ -113,7 +132,8 @@ public class TofuPig extends Pig {
 	public enum TofuPigType implements IExtensibleEnum {
 		NORMAL,
 		METAL,
-		GRILLED;
+		GRILLED,
+		ZUNDA;
 
 		private TofuPigType() {
 
@@ -137,22 +157,31 @@ public class TofuPig extends Pig {
 		return TofuEntityTypes.TOFUPIG.get().create(p_148890_);
 	}
 
+	@Override
 	public void addAdditionalSaveData(CompoundTag compound) {
+		super.addAdditionalSaveData(compound);
 		compound.putString("TofuPigType", getTofuPigType().name());
 	}
 
+	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
+		super.readAdditionalSaveData(compound);
 		if (compound.contains("TofuPigType")) {
 			setTofuPigType(TofuPig.TofuPigType.get(compound.getString("TofuPigType")));
 		}
 	}
 
+	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(TOFUPIG_TYPE, TofuPig.TofuPigType.NORMAL.name());
 	}
 
+	public float getSteeringSpeed() {
+		return (float) this.getAttributeValue(Attributes.MOVEMENT_SPEED) * 0.35F;
+	}
+
 	public boolean isFood(ItemStack p_27600_) {
-		return p_27600_.is(TofuItems.LEEK.get());
+		return FOOD_ITEMS.test(p_27600_);
 	}
 }

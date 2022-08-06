@@ -27,6 +27,7 @@ public class TofuPigTypeLayer extends RenderLayer<TofuPig, PigModel<TofuPig>> {
 	@Override
 	public ResourceLocation getTextureLocation(TofuPig entity) {
 		String type = "";
+
 		if (entity.getTofuPigType() != TofuPig.TofuPigType.NORMAL)
 			type = entity.getTofuPigType().name().toLowerCase();
 		return new ResourceLocation("tofucraft:textures/entity/tofupig/tofupig_" + type + ".png");
