@@ -1,8 +1,8 @@
 package baguchan.tofucraft.entity.goal;
 
+import baguchan.tofucraft.entity.Tofunian;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BedBlock;
@@ -10,9 +10,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
 
 public class SleepOnBedGoal extends MoveToBlockGoal {
-	private final PathfinderMob creature;
+	private final Tofunian creature;
 
-	public SleepOnBedGoal(PathfinderMob creature, double speedIn, int length) {
+	public SleepOnBedGoal(Tofunian creature, double speedIn, int length) {
 		super(creature, speedIn, length);
 		this.creature = creature;
 	}
@@ -36,6 +36,11 @@ public class SleepOnBedGoal extends MoveToBlockGoal {
 	}
 
 	protected boolean findNearestBlock() {
+		if (this.creature.getTofunainHome() != null) {
+			this.blockPos = this.creature.getTofunainJobBlock();
+			return true;
+		}
+
 		return super.findNearestBlock();
 	}
 
