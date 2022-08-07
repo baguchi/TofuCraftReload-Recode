@@ -1,7 +1,9 @@
 package baguchan.tofucraft.entity;
 
+import baguchan.tofucraft.client.particle.ParticleZundaCloud;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -14,10 +16,13 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -38,12 +43,16 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.IExtensibleEnum;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
-public class TofuPig extends Pig {
+public class TofuPig extends Pig implements ItemInteractable {
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(TofuItems.LEEK.get(), Items.CARROT);
+	private static final EntityDataAccessor<Integer> DATA_HEALING_TIME = SynchedEntityData.defineId(TofuPig.class, EntityDataSerializers.INT);
+	private final ItemBasedInteractable healilng = new ItemBasedInteractable(this.entityData, DATA_HEALING_TIME);
 
 	private static final EntityDataAccessor<String> TOFUPIG_TYPE = SynchedEntityData.defineId(TofuPig.class, EntityDataSerializers.STRING);
 
@@ -100,7 +109,7 @@ public class TofuPig extends Pig {
 
 	private boolean canBeControlledBy(Entity p_218248_) {
 		if (this.isSaddled() && p_218248_ instanceof Player player && this.getTofuPigType() == TofuPigType.ZUNDA) {
-			return player.getMainHandItem().is(TofuItems.ZUNDAMUSROOM_ON_A_STICK.get()) || player.getOffhandItem().is(TofuItems.ZUNDAMUSROOM_ON_A_STICK.get());
+			return player.getMainHandItem().is(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get()) || player.getOffhandItem().is(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get());
 		} else if (this.isSaddled() && p_218248_ instanceof Player player) {
 			return player.getMainHandItem().is(Items.CARROT_ON_A_STICK) || player.getOffhandItem().is(Items.CARROT_ON_A_STICK);
 		} else {
@@ -109,6 +118,19 @@ public class TofuPig extends Pig {
 	}
 
 	public void thunderHit(ServerLevel p_29473_, LightningBolt p_29474_) {
+	}
+
+	public boolean isActivated() {
+		return this.healilng.on;
+	}
+
+	@Override
+	public void tick() {
+		if (this.isActivated() && this.getTofuPigType() == TofuPigType.ZUNDA) {
+			this.healEffect();
+			this.healilng.deActive();
+		}
+		super.tick();
 	}
 
 	@Override
@@ -129,13 +151,17 @@ public class TofuPig extends Pig {
 		return TofuPig.TofuPigType.get(this.entityData.get(TOFUPIG_TYPE));
 	}
 
+	public boolean canHeal() {
+		return this.healilng.active(this.getRandom());
+	}
+
 	public enum TofuPigType implements IExtensibleEnum {
 		NORMAL,
 		METAL,
 		GRILLED,
 		ZUNDA;
 
-		private TofuPigType() {
+		TofuPigType() {
 
 		}
 
@@ -149,6 +175,26 @@ public class TofuPig extends Pig {
 
 		public static TofuPig.TofuPigType create(String name) {
 			throw new IllegalStateException("Enum not extended");
+		}
+	}
+
+	private void healEffect() {
+		float radius = 5;
+		AABB box = new AABB(new BlockPos(this.getX() - radius, this.getY() - 1, this.getZ() - radius), new BlockPos(this.getX() + radius, this.getY() + 3, this.getZ() + radius));
+		List<LivingEntity> hitEntities = this.level.getEntitiesOfClass(LivingEntity.class, box);
+		for (LivingEntity hitEntity : hitEntities) {
+			hitEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200));
+		}
+		if (this.level.isClientSide) {
+			int count = 20;
+			for (int i = 1; i <= count; i++) {
+				double yaw = i * 365.f / count;
+				double speed = 0.5;
+				double xSpeed = speed * Math.cos(Math.toRadians(yaw));
+				double zSpeed = speed * Math.sin(Math.toRadians(yaw));
+				this.level.addParticle(new ParticleZundaCloud.CloudData(TofuParticleTypes.ZUNDA_CLOUD.get(), 40f, 20, ParticleZundaCloud.EnumCloudBehavior.GROW, 1f), this.getX(), this.getY(), this.getZ(), xSpeed, 0, zSpeed);
+				System.out.println(true);
+			}
 		}
 	}
 
@@ -172,9 +218,19 @@ public class TofuPig extends Pig {
 	}
 
 	@Override
+	public void onSyncedDataUpdated(EntityDataAccessor<?> p_29480_) {
+		if (DATA_HEALING_TIME.equals(p_29480_) && this.level.isClientSide) {
+			this.healilng.onSynced();
+		}
+
+		super.onSyncedDataUpdated(p_29480_);
+	}
+
+	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(TOFUPIG_TYPE, TofuPig.TofuPigType.NORMAL.name());
+		this.entityData.define(DATA_HEALING_TIME, 0);
 	}
 
 	public float getSteeringSpeed() {
