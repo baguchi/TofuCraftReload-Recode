@@ -63,6 +63,12 @@
         "weight": 10,
         "minCount": 2,
         "maxCount": 4
+      },
+      {
+        "type": "tofucraft:tofupig",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
       }
     ],
     "ambient": [

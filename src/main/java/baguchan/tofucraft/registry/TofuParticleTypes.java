@@ -1,9 +1,11 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.client.particle.ParticleZundaCloud;
 import baguchan.tofucraft.client.particle.SoymilkDripParticle;
 import baguchan.tofucraft.client.particle.SoymilkSplashParticle;
 import baguchan.tofucraft.client.particle.TofuPortalParticle;
+import com.mojang.serialization.Codec;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
@@ -26,7 +28,12 @@ public class TofuParticleTypes {
 	public static final RegistryObject<SimpleParticleType> DRIP_SOYMILK_HANG = PARTICLE_TYPES.register("drip_soymilk_hang", () -> new SimpleParticleType(false));
 	public static final RegistryObject<SimpleParticleType> DRIP_SOYMILK_FALL = PARTICLE_TYPES.register("drip_soymilk_fall", () -> new SimpleParticleType(false));
 	public static final RegistryObject<SimpleParticleType> SOYMILK_SPLASH = PARTICLE_TYPES.register("soymilk_splash", () -> new SimpleParticleType(false));
-
+	public static final RegistryObject<ParticleType<ParticleZundaCloud.CloudData>> ZUNDA_CLOUD = PARTICLE_TYPES.register("zunda_cloud", () -> new ParticleType<ParticleZundaCloud.CloudData>(false, ParticleZundaCloud.CloudData.DESERIALIZER) {
+		@Override
+		public Codec<ParticleZundaCloud.CloudData> codec() {
+			return ParticleZundaCloud.CloudData.CODEC(ZUNDA_CLOUD.get());
+		}
+	});
 
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
@@ -37,6 +44,7 @@ public class TofuParticleTypes {
 		event.register(TofuParticleTypes.DRIP_SOYMILK_HANG.get(), SoymilkDripParticle.SoymilkHangProvider::new);
 		event.register(TofuParticleTypes.DRIP_SOYMILK_FALL.get(), SoymilkDripParticle.SoymilkFallProvider::new);
 		event.register(TofuParticleTypes.SOYMILK_SPLASH.get(), SoymilkSplashParticle.Provider::new);
+		event.register(TofuParticleTypes.ZUNDA_CLOUD.get(), ParticleZundaCloud.CloudFactory::new);
 
 	}
 }

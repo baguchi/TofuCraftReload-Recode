@@ -963,6 +963,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuItems.SEEDS_SOYBEANS_SOUL.get())
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get())
+				.pattern("# ")
+				.pattern(" M")
+				.define('#', Items.FISHING_ROD)
+				.define('M', TofuBlocks.ZUNDATOFU_MUSHROOM.get())
+				.unlockedBy("has_item", has(TofuBlocks.ZUNDATOFU_MUSHROOM.get()))
+				.save(consumer);
 		ShapedRecipeBuilder.shaped(TofuBlocks.TOFUBED.get())
 				.pattern("###")
 				.pattern("PPP")

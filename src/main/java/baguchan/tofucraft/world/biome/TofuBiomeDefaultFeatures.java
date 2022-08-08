@@ -22,6 +22,7 @@ public class TofuBiomeDefaultFeatures {
 
 	public static void tofuCreatureSpawns(MobSpawnSettings.Builder p_126813_) {
 		p_126813_.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUCOW.get(), 100, 4, 4));
+		p_126813_.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUPIG.get(), 200, 4, 4));
 	}
 
 	public static void tofuWaterCreatureSpawns(MobSpawnSettings.Builder p_126813_) {
