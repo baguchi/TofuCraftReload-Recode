@@ -978,6 +978,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.YUBA.get()))
 				.save(consumer);
 
+		ShapedRecipeBuilder.shaped(TofuBlocks.FOODPLATE.get())
+				.pattern("CCC")
+				.define('C', Items.CLAY_BALL)
+				.unlockedBy("has_item", has(Items.CLAY_BALL))
+				.save(consumer);
+
 		tofuBlockItem(consumer, TofuBlocks.EGGTOFU, TofuItems.TOFUEGG);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_EGG, TofuBlocks.EGGTOFU);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_EGG, TofuBlocks.EGGTOFU);

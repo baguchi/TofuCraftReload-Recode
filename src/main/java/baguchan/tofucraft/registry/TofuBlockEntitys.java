@@ -1,6 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.blockentity.FoodPlateBlockEntity;
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
@@ -24,6 +25,7 @@ public class TofuBlockEntitys {
 	public static final RegistryObject<BlockEntityType<TFStorageBlockEntity>> TF_STORAGE = BLOCK_ENTITIES.register("tf_storage", () -> register("tofucraft:tf_storage", BlockEntityType.Builder.of(TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE.get())));
 	public static final RegistryObject<BlockEntityType<TFAggregatorBlockEntity>> TF_AGGREGATOR = BLOCK_ENTITIES.register("tf_aggregator", () -> register("tofucraft:tf_storage", BlockEntityType.Builder.of(TFAggregatorBlockEntity::new, TofuBlocks.TF_AGGREGATOR.get())));
 
+	public static final RegistryObject<BlockEntityType<FoodPlateBlockEntity>> FOODPLATE = BLOCK_ENTITIES.register("foodplate.json", () -> register("tofucraft:foodplate.json", BlockEntityType.Builder.of(FoodPlateBlockEntity::new, TofuBlocks.FOODPLATE.get())));
 
 	private static <T extends BlockEntity> BlockEntityType<T> register(String p_200966_0_, BlockEntityType.Builder<T> p_200966_1_) {
 		Type<?> type = Util.fetchChoiceType(References.BLOCK_ENTITY, p_200966_0_);

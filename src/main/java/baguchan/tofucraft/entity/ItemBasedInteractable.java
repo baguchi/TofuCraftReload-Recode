@@ -5,10 +5,9 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.RandomSource;
 
 public class ItemBasedInteractable {
-	private static final int HEALING_TIME = 100;
 	private final SynchedEntityData entityData;
 	private final EntityDataAccessor<Integer> healTimeAccessor;
-	public boolean on;
+	public boolean on = false;
 	public int healTime;
 	public int healTimeTotal;
 

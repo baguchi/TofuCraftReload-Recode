@@ -188,12 +188,11 @@ public class TofuPig extends Pig implements ItemInteractable {
 		if (this.level.isClientSide) {
 			int count = 20;
 			for (int i = 1; i <= count; i++) {
-				double yaw = i * 365.f / count;
+				double yaw = i * 365f / count;
 				double speed = 0.5;
 				double xSpeed = speed * Math.cos(Math.toRadians(yaw));
 				double zSpeed = speed * Math.sin(Math.toRadians(yaw));
 				this.level.addParticle(new ParticleZundaCloud.CloudData(TofuParticleTypes.ZUNDA_CLOUD.get(), 40f, 20, ParticleZundaCloud.EnumCloudBehavior.GROW, 1f), this.getX(), this.getY(), this.getZ(), xSpeed, 0, zSpeed);
-				System.out.println(true);
 			}
 		}
 	}
@@ -240,4 +239,5 @@ public class TofuPig extends Pig implements ItemInteractable {
 	public boolean isFood(ItemStack p_27600_) {
 		return FOOD_ITEMS.test(p_27600_);
 	}
+
 }
