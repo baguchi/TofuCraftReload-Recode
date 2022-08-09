@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tofucraft:block/foodplate"
+    },
+    "facing=south": {
+      "model": "tofucraft:block/foodplate"
+    },
+    "facing=north": {
+      "model": "tofucraft:block/foodplate"
+    },
+    "facing=west": {
+      "model": "tofucraft:block/foodplate"
+    }
+  }
+}
