@@ -25,13 +25,15 @@ public class ReturnableDishItem extends Item {
 			CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, itemStack);
 			serverPlayer.awardStat(Stats.ITEM_USED.get(this));
 		}
-		if (itemStack.isEmpty()) {
-			resultItem = new ItemStack(dishItem);
-		}
+
 		if (livingEntity instanceof Player player && !player.getAbilities().instabuild) {
-			ItemStack itemstack = new ItemStack(dishItem);
-			if (!player.getInventory().add(itemstack)) {
-				player.drop(itemstack, false);
+			if (itemStack.isEmpty()) {
+				resultItem = new ItemStack(dishItem);
+			} else {
+				ItemStack itemstack = new ItemStack(dishItem);
+				if (!player.getInventory().add(itemstack)) {
+					player.drop(itemstack, false);
+				}
 			}
 		}
 		return resultItem;

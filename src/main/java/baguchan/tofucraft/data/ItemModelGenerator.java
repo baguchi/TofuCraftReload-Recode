@@ -297,7 +297,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.FUKUMAME.get());
 		singleTexTool(TofuItems.NETHER_FUKUMAME.get());
 		singleTexTool(TofuItems.SOUL_FUKUMAME.get());
-		singleTexTool(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get());
+		singleTexRodTool(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get());
 
 
 		singleTexTool(TofuItems.TOFUGEM.get());
@@ -402,6 +402,18 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder tool(String name, ResourceLocation... layers) {
 		ItemModelBuilder builder = withExistingParent(name, "item/handheld");
+		for (int i = 0; i < layers.length; i++) {
+			builder = builder.texture("layer" + i, layers[i]);
+		}
+		return builder;
+	}
+
+	private ItemModelBuilder singleTexRodTool(Item item) {
+		return toolRod(ForgeRegistries.ITEMS.getKey(item).getPath(), prefix("item/" + ForgeRegistries.ITEMS.getKey(item).getPath()));
+	}
+
+	private ItemModelBuilder toolRod(String name, ResourceLocation... layers) {
+		ItemModelBuilder builder = withExistingParent(name, "item/handheld_rod");
 		for (int i = 0; i < layers.length; i++) {
 			builder = builder.texture("layer" + i, layers[i]);
 		}
