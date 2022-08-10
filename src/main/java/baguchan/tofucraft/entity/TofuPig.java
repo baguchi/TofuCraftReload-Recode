@@ -25,6 +25,7 @@ import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.BreedGoal;
@@ -183,7 +184,11 @@ public class TofuPig extends Pig implements ItemInteractable {
 		AABB box = new AABB(new BlockPos(this.getX() - radius, this.getY() - 1, this.getZ() - radius), new BlockPos(this.getX() + radius, this.getY() + 3, this.getZ() + radius));
 		List<LivingEntity> hitEntities = this.level.getEntitiesOfClass(LivingEntity.class, box);
 		for (LivingEntity hitEntity : hitEntities) {
-			hitEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200));
+			if (hitEntity.getMobType() == MobType.UNDEAD) {
+				hitEntity.hurt(DamageSource.STARVE, 6);
+			} else {
+				hitEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200));
+			}
 		}
 		if (this.level.isClientSide) {
 			int count = 20;
