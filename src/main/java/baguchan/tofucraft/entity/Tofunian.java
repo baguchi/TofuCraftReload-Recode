@@ -88,7 +88,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -791,6 +793,10 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public void setGossips(Tag p_35456_) {
 		this.gossips.update(new Dynamic<>(NbtOps.INSTANCE, p_35456_));
+	}
+
+	public float getWalkTargetValue(BlockPos p_27573_, LevelReader p_27574_) {
+		return p_27574_.getBlockState(p_27573_.below()).is(Blocks.GRASS_BLOCK) ? 10.0F : p_27574_.getPathfindingCostFromLightLevels(p_27573_);
 	}
 
 	@Override
