@@ -10,6 +10,7 @@ import baguchan.tofucraft.entity.goal.ShareItemAndGossipGoal;
 import baguchan.tofucraft.entity.goal.TofunianLoveGoal;
 import baguchan.tofucraft.entity.goal.TofunianSleepOnBedGoal;
 import baguchan.tofucraft.entity.goal.WakeUpGoal;
+import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
@@ -35,6 +36,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleContainer;
@@ -48,7 +50,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ReputationEventHandler;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -84,6 +88,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -107,6 +112,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
+	private static final EntityDataAccessor<String> TOFUNIAN_TYPE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 
 	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK.get(), 3, TofuItems.TOFUCOOKIE.get(), 3, TofuItems.TOFUGRILLED.get(), 1);
 
@@ -156,21 +162,21 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new OpenTofuDoorGoal(this, true));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Evoker.class, 12.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Vindicator.class, 8.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Vex.class, 8.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Pillager.class, 15.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Illusioner.class, 12.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zoglin.class, 10.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.2D, 1.25D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Evoker.class, 12.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Vindicator.class, 8.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Vex.class, 8.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Pillager.class, 15.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Illusioner.class, 12.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zoglin.class, 10.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new PanicGoal(this, 1.3D));
 		this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
 		this.goalSelector.addGoal(2, new TofunianSleepOnBedGoal(this, 0.85F, 6));
 		this.goalSelector.addGoal(3, new GetItemGoal<>(this));
 		this.goalSelector.addGoal(4, new CropHarvestGoal(this, 0.9F));
 		this.goalSelector.addGoal(5, new MakeFoodGoal(this, 0.9F, 6));
 		this.goalSelector.addGoal(6, new RestockGoal(this, 0.9F, 6));
-		this.goalSelector.addGoal(7, new MoveToGoal(this, 40.0D, 1.0D));
+		this.goalSelector.addGoal(7, new MoveToGoal(this, 42.0D, 1.0D));
 		this.goalSelector.addGoal(8, new FindJobBlockGoal(this, 0.85F, 6));
 		this.goalSelector.addGoal(9, new TofunianLoveGoal(this, 0.8F));
 		this.goalSelector.addGoal(10, new RandomStrollGoal(this, 0.9D));
@@ -195,6 +201,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		super.defineSynchedData();
 		this.entityData.define(ROLE, Roles.TOFUNIAN.name());
 		this.entityData.define(ACTION, Actions.NORMAL.name());
+		this.entityData.define(TOFUNIAN_TYPE, TofunianType.NORMAL.name());
 	}
 
 	public Actions getAction() {
@@ -211,6 +218,14 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public Roles getRole() {
 		return Roles.get(this.entityData.get(ROLE));
+	}
+
+	public void setTofunianType(TofunianType type) {
+		this.entityData.set(TOFUNIAN_TYPE, type.name());
+	}
+
+	public TofunianType getTofunianType() {
+		return TofunianType.get(this.entityData.get(TOFUNIAN_TYPE));
 	}
 
 	public void setTofunainHome(@Nullable BlockPos pos) {
@@ -338,6 +353,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 		if (offer.shouldRewardExp())
 			getLevel().addFreshEntity(new ExperienceOrb(getLevel(), getX(), getY() + 0.5D, getZ(), i));
+	}
+
+	@Override
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, MobSpawnType p_35284_, @org.jetbrains.annotations.Nullable SpawnGroupData p_35285_, @org.jetbrains.annotations.Nullable CompoundTag p_35286_) {
+		if (p_35282_.getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
+			this.setTofunianType(TofunianType.ZUNDA);
+		}
+
+		return super.finalizeSpawn(p_35282_, p_35283_, p_35284_, p_35285_, p_35286_);
 	}
 
 	public InteractionResult mobInteract(Player p_35472_, InteractionHand p_35473_) {
@@ -532,6 +556,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			compound.put("TofunianJobBlock", NbtUtils.writeBlockPos(this.tofunainJobBlock));
 		}
 		compound.putString("Roles", getRole().name());
+		compound.putString("TofunianType", getTofunianType().name());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
@@ -562,6 +587,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 		if (compound.contains("Roles")) {
 			setRole(Roles.get(compound.getString("Roles")));
+		}
+		if (compound.contains("TofunianType")) {
+			setTofunianType(TofunianType.get(compound.getString("TofunianType")));
 		}
 		setCanPickUpLoot(true);
 	}
@@ -768,6 +796,27 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Override
 	protected Component getTypeName() {
 		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().name().toLowerCase(Locale.ROOT));
+	}
+
+	public enum TofunianType implements IExtensibleEnum {
+		NORMAL,
+		ZUNDA;
+
+		private TofunianType() {
+
+		}
+
+		public static TofunianType get(String nameIn) {
+			for (TofunianType role : values()) {
+				if (role.name().equals(nameIn))
+					return role;
+			}
+			return NORMAL;
+		}
+
+		public static TofunianType create(String name) {
+			throw new IllegalStateException("Enum not extended");
+		}
 	}
 
 	public enum Actions implements IExtensibleEnum {

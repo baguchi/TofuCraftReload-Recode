@@ -39,6 +39,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SuppressWarnings("LossyEncoding")
 public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements MenuProvider {
@@ -49,8 +51,8 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
     private final Object2IntOpenHashMap<ResourceLocation> experienceTracker;
     private int recipeTime;
     private int recipeTimeTotal;
-    private ResourceLocation lastRecipeID;
-    private boolean checkNewRecipe;
+	private ResourceLocation lastRecipeID;
+	private boolean checkNewRecipe = true;
 
     protected final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -137,25 +139,26 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
 
 
         if (lastRecipeID != null) {
-            Recipe<?> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
-                return recipe.getType() == TofuRecipes.RECIPETYPE_AGGREGATOR && recipe.getId().equals(lastRecipeID);
-            }).findFirst().get();
-            if (tofuRecipe instanceof AggregatorRecipe) {
-                if (tofuRecipe.getIngredients().contains(inventoryWrapper.getStackInSlot(0))) {
-                    return Optional.of((AggregatorRecipe) tofuRecipe);
-                }
-            }
-        }
+			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
+				return recipe.getType() == TofuRecipes.RECIPETYPE_AGGREGATOR && recipe.getId().toString().contains(lastRecipeID.toString());
+			});
+			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
+				if (recipe instanceof AggregatorRecipe && ((AggregatorRecipe) recipe).inputItems.test(inventoryWrapper.getStackInSlot(0))) {
+					return Optional.of((AggregatorRecipe) recipe);
+				}
+			}
+		}
 
         if (checkNewRecipe) {
-            Optional<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
-                return recipe.getType() == TofuRecipes.RECIPETYPE_AGGREGATOR && recipe.getId().equals(lastRecipeID);
-            }).findFirst();
-            if (tofuRecipe.isPresent()) {
-                lastRecipeID = tofuRecipe.get().getId();
-                return Optional.of((AggregatorRecipe) tofuRecipe.get());
-            }
-        }
+			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
+				return recipe.getType() == TofuRecipes.RECIPETYPE_AGGREGATOR;
+			});
+			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
+				if (recipe instanceof AggregatorRecipe && ((AggregatorRecipe) recipe).inputItems.test(inventoryWrapper.getStackInSlot(0))) {
+					return Optional.of((AggregatorRecipe) recipe);
+				}
+			}
+		}
 
         checkNewRecipe = false;
         return Optional.empty();

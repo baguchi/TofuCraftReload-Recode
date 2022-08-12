@@ -9,7 +9,16 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
+import net.minecraft.world.level.levelgen.placement.CountPlacement;
+import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.NoiseThresholdCountPlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 
 import java.util.List;
 
@@ -26,6 +35,8 @@ public class TofuWorldPlacements {
 
 	public static final Holder<PlacedFeature> PATCH_LEEK = PlacementUtils.register("tofucraft:patch_leek", TofuWorldFeatures.LEEK, NoiseThresholdCountPlacement.of(-0.8D, 5, 10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 	public static final Holder<PlacedFeature> PATCH_LEEK_WASTE = PlacementUtils.register("tofucraft:patch_leek_waste", TofuWorldFeatures.LEEK, CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+
+	public static final Holder<PlacedFeature> LEEK_BONEMEAL = PlacementUtils.register("tofucraft:leek_bonemeal", TofuWorldFeatures.LEEK, PlacementUtils.isEmpty());
 
 	public static final Holder<PlacedFeature> BEG_LEEK = PlacementUtils.register("tofucraft:big_leek", TofuWorldFeatures.BIG_LEEK, PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 

@@ -13,6 +13,12 @@
       "min_delay": 12000,
       "max_delay": 24000,
       "replace_current_music": false
+    },
+    "particle": {
+      "options": {
+        "type": "minecraft:spore_blossom_air"
+      },
+      "probability": 0.015
     }
   },
   "carvers": {
@@ -54,6 +60,12 @@
     "creature": [
       {
         "type": "tofucraft:tofucow",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "tofucraft:tofupig",
         "weight": 10,
         "minCount": 2,
         "maxCount": 4

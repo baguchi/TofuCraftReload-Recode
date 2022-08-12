@@ -3,6 +3,7 @@ package baguchan.tofucraft.client.render.entity;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.client.TofuModelLayers;
 import baguchan.tofucraft.client.model.TofunianModel;
+import baguchan.tofucraft.client.render.layer.TofunianClothLayer;
 import baguchan.tofucraft.client.render.layer.TofunianItemInHandLayer;
 import baguchan.tofucraft.client.render.layer.TofunianRoleLayer;
 import baguchan.tofucraft.entity.Tofunian;
@@ -19,6 +20,7 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianModel<Tofunian
 
 	public TofunianRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_, new TofunianModel<>(p_173956_.bakeLayer(TofuModelLayers.TOFUNIAN)), 0.5F);
+		this.addLayer(new TofunianClothLayer(this));
 		this.addLayer(new TofunianRoleLayer(this));
 		this.addLayer(new TofunianItemInHandLayer<>(this));
 	}

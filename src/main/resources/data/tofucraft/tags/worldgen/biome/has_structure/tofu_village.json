@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "tofucraft:tofu_plains"
+    "tofucraft:tofu_plains",
+    "tofucraft:zunda_forest"
   ]
 }

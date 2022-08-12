@@ -3,10 +3,10 @@ package baguchan.tofucraft.block;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuDimensions;
+import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.world.TofuLevelTeleporter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -126,7 +126,7 @@ public class TofuPortalBlock extends Block {
 			double d5 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
 			int j = rand.nextInt(2) * 2 - 1;
 
-			worldIn.addParticle(ParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
+			worldIn.addParticle(TofuParticleTypes.TOFU_PORTAL.get(), d0, d1, d2, d3, d4, d5);
 		}
 	}
 

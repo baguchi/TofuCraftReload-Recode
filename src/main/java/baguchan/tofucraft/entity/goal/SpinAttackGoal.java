@@ -85,7 +85,7 @@ public class SpinAttackGoal extends Goal {
 			f1 *= f5 / f4;
 			f2 *= f5 / f4;
 			f3 *= f5 / f4;
-			this.gandlem.push((double) f1, (double) f2, (double) f3);
+			this.gandlem.setDeltaMovement((double) f1, (double) f2, (double) f3);
 		}
 
 		if (this.attackTime == 40) {

@@ -38,6 +38,8 @@ public class TofuFoods {
 
 	public static final FoodProperties TOFU_HAMBURG = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
 
+	public static final FoodProperties SOYMEAT = (new FoodProperties.Builder().nutrition(1).saturationMod(0.1F).build());
+
 	public static final FoodProperties RAW_TOFUFISH = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
 
 	public static final FoodProperties COOKED_TOFUFISH = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.6F).build();

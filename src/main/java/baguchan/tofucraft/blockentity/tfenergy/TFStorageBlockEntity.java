@@ -103,7 +103,8 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 	public static void tick(Level level, BlockPos p_155015_, BlockState p_155016_, TFStorageBlockEntity tfStorageBlockEntity) {
 		if (!level.isClientSide() && tfStorageBlockEntity.getEnergyStored() > 0) {
 			if (tfStorageBlockEntity.isValid()) {
-				if (!tfStorageBlockEntity.isCached) tfStorageBlockEntity.onCache();
+				if (!tfStorageBlockEntity.isCached || tfStorageBlockEntity.findCooldown <= 0)
+					tfStorageBlockEntity.onCache();
 				if (tfStorageBlockEntity.cache.size() > 0) {
 					List<BlockEntity> toSend = new ArrayList<>();
 

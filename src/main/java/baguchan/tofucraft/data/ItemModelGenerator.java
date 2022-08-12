@@ -212,6 +212,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.RAW_TOFU_FISH.get());
 		singleTex(TofuItems.COOKED_TOFU_FISH.get());
 		singleTex(TofuItems.MISODENGAKU.get());
+		singleTex(TofuItems.SOYMEAT.get());
 
 		singleTex(TofuItems.TOFUCOOKIE.get());
 		singleTex(TofuItems.TTTBURGER.get());
@@ -296,6 +297,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.FUKUMAME.get());
 		singleTexTool(TofuItems.NETHER_FUKUMAME.get());
 		singleTexTool(TofuItems.SOUL_FUKUMAME.get());
+		singleTexTool(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get());
 
 
 		singleTexTool(TofuItems.TOFUGEM.get());
@@ -362,6 +364,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		egg(TofuItems.TOFUNIAN_SPAWNEGG.get());
 		egg(TofuItems.TOFUCOW_SPAWNEGG.get());
+		egg(TofuItems.TOFUPIG_SPAWNEGG.get());
 		egg(TofuItems.TOFUSLIME_SPAWNEGG.get());
 		egg(TofuItems.TOFUSPIDER_SPAWNEGG.get());
 

@@ -20,6 +20,7 @@ import baguchan.tofucraft.item.SoymilkBottleItem;
 import baguchan.tofucraft.item.TofuScoopItem;
 import baguchan.tofucraft.item.TofuShieldItem;
 import baguchan.tofucraft.item.TofuStickItem;
+import baguchan.tofucraft.item.ZundaOnAStickItem;
 import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -163,6 +164,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFUCOOKIE = ITEMS.register("tofucookie", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUCOOKIE).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TTTBURGER = ITEMS.register("tttburger", () -> new Item((new Item.Properties()).food(TofuFoods.TTTBURGER).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> MEAT_WRAPPED_YUBA = ITEMS.register("meatwrapped_yuba", () -> new Item((new Item.Properties()).food(TofuFoods.MEAT_WRAPPED_YUBA).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> SOYMEAT = ITEMS.register("soymeat", () -> new Item((new Item.Properties()).food(TofuFoods.SOYMEAT).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 	public static final RegistryObject<Item> SOYSTICK = ITEMS.register("soystick", () -> new Item((new Item.Properties()).food(TofuFoods.SOYSTICK).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> MISOSOUP = ITEMS.register("misosoup", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.MISOSOUP).stacksTo(1).tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -303,6 +305,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> FUKUMAME = ITEMS.register("fukumame", () -> new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> NETHER_FUKUMAME = ITEMS.register("nether_fukumame", () -> new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> SOUL_FUKUMAME = ITEMS.register("soul_fukumame", () -> new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> ZUNDAMUSHROOM_ON_A_STICK = ITEMS.register("zundamushroom_on_a_stick", () -> new ZundaOnAStickItem<>((new Item.Properties()).durability(25).tab(TofuCreativeModeTab.TOFUCRAFT), TofuEntityTypes.TOFUPIG.get(), 7));
 
 	public static final RegistryObject<Item> TOFUGEM = ITEMS.register("tofugem", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TF_CAPACITOR = ITEMS.register("tf_capacitor", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -313,6 +316,7 @@ public class TofuItems {
 
 	public static final RegistryObject<Item> TOFUNIAN_SPAWNEGG = ITEMS.register("tofunian_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUCOW_SPAWNEGG = ITEMS.register("tofucow_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUCOW, 15460584, 10724259, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> TOFUPIG_SPAWNEGG = ITEMS.register("tofupig_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUPIG, 15460584, 10066329, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUSLIME_SPAWNEGG = ITEMS.register("tofuslime_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUSPIDER_SPAWNEGG = ITEMS.register("tofuspider_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUSPIDER, 15460584, 3026478, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
@@ -328,9 +332,9 @@ public class TofuItems {
 		ComposterBlock.COMPOSTABLES.put(TofuItems.EDAMAME.get(), 0.1F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.BOILED_EDAMAME.get(), 0.1F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_SOYBEANS.get(), 0.3F);
-		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_SOYBEANS_NETHER.get(), 0.3F);
-		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_SOYBEANS_SOUL.get(), 0.3F);
-		ComposterBlock.COMPOSTABLES.put(TofuItems.LEEK.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_SOYBEANS_NETHER.get(), 0.4F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_SOYBEANS_SOUL.get(), 0.4F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.LEEK.get(), 0.5F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUKINU.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUMOMEN.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUDRIED.get(), 0.3F);

@@ -1,5 +1,6 @@
 package baguchan.tofucraft.block.tfenergy;
 
+import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchan.tofucraft.blockentity.tfenergy.TFAggregatorBlockEntity;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
@@ -11,6 +12,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -26,6 +28,10 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.network.NetworkHooks;
 
 public class TFAggregator extends BaseEntityBlock {
@@ -45,14 +51,25 @@ public class TFAggregator extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand handIn,
                                  BlockHitResult result) {
-        if (!world.isClientSide) {
-            BlockEntity tileEntity = world.getBlockEntity(pos);
-            if (tileEntity instanceof TFAggregatorBlockEntity blockEntity) {
-                NetworkHooks.openScreen((ServerPlayer) player, blockEntity, pos);
-            }
-        }
-        return InteractionResult.SUCCESS;
-    }
+		boolean flag = false;
+		ItemStack stack = player.getItemInHand(handIn);
+		BlockEntity blockentity = world.getBlockEntity(pos);
+		if (blockentity instanceof SaltFurnaceBlockEntity) {
+			IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1)).orElse(null);
+			if (handler != null && handler instanceof net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper) {
+				FluidUtil.interactWithFluidHandler(player, handIn, blockentity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null));
+				return InteractionResult.SUCCESS;
+			}
+		}
+
+		if (!world.isClientSide) {
+			BlockEntity tileEntity = world.getBlockEntity(pos);
+			if (tileEntity instanceof TFAggregatorBlockEntity blockEntity) {
+				NetworkHooks.openScreen((ServerPlayer) player, blockEntity, pos);
+			}
+		}
+		return InteractionResult.SUCCESS;
+	}
 
     @Override
     public void onRemove(BlockState p_48713_, Level p_48714_, BlockPos p_48715_, BlockState p_48716_, boolean p_48717_) {

@@ -1,6 +1,7 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.world.placement.TofuWorldPlacements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -54,6 +55,10 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 					}
 
 					placedfeature = ((RandomPatchConfiguration) list.get(0).config()).feature().value();
+					placedfeature.place(p_53687_, p_53687_.getChunkSource().getGenerator(), p_53688_, blockpos1);
+				}
+				if (p_53688_.nextInt(6) == 0) {
+					placedfeature = TofuWorldPlacements.LEEK_BONEMEAL.get();
 					placedfeature.place(p_53687_, p_53687_.getChunkSource().getGenerator(), p_53688_, blockpos1);
 				}
 			}

@@ -19,6 +19,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
@@ -47,7 +48,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	private static final EntityDataAccessor<Boolean> DATA_ID_SLEEP = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
 
 
-	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(100, 400);
+	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(100, 300);
 
 
 	public final AnimationState idleAnimationState = new AnimationState();
@@ -73,14 +74,15 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(1, new DoNothingGoal());
-		this.goalSelector.addGoal(2, new SpinAttackGoal(this, RUSH_COOLDOWN));
-		this.goalSelector.addGoal(3, new AttackGoal(this));
-		this.goalSelector.addGoal(4, new WaterAvoidingRandomFlyingGoal(this, 0.9D));
-		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
-		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Mob.class, 6.0F));
+		this.goalSelector.addGoal(1, new FloatGoal(this));
+		this.goalSelector.addGoal(2, new DoNothingGoal());
+		this.goalSelector.addGoal(3, new SpinAttackGoal(this, RUSH_COOLDOWN));
+		this.goalSelector.addGoal(4, new AttackGoal(this));
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 0.9D));
+		this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Mob.class, 6.0F));
 
-		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, true));
@@ -167,6 +169,16 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		}
 
 		super.tick();
+	}
+
+	@Override
+	public boolean hurt(DamageSource p_21016_, float p_21017_) {
+		if (p_21016_.getDirectEntity() instanceof LivingEntity) {
+			if (this.isSleep()) {
+				this.setSleep(false);
+			}
+		}
+		return super.hurt(p_21016_, p_21017_);
 	}
 
 	protected void checkRushAttack(AABB p_21072_, AABB p_21073_) {
