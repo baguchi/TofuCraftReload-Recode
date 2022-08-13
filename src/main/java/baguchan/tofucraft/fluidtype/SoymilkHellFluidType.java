@@ -59,7 +59,7 @@ public class SoymilkHellFluidType extends FluidType {
 				float brightness = LightTexture.getBrightness(mc.player.level.dimensionType(), mc.player.level.getMaxLocalRawBrightness(playerEyePos));
 				RenderSystem.enableBlend();
 				RenderSystem.defaultBlendFunc();
-				RenderSystem.setShaderColor(brightness, brightness, brightness, 0.5F);
+				RenderSystem.setShaderColor(brightness, brightness, brightness, 0.75F);
 				float uOffset = -mc.player.getYRot() / 64.0F;
 				float vOffset = mc.player.getXRot() / 64.0F;
 				Matrix4f pose = stack.last().pose();
