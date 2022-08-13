@@ -429,6 +429,8 @@
   "advancements.tofucraft.sniffed_revenge.description": "ウォーデンに嗅がれた仕返しをするために、トウガラシをウォーデンに向けて投げる",
   "advancements.tofucraft.find_tofu_castle.title": "謎の古代構造物",
   "advancements.tofucraft.find_tofu_castle.description": "豆腐キャッスルを見つける",
+  "advancements.tofucraft.tofupig_pop.title": "枝豆の匂い",
+  "advancements.tofucraft.tofupig_pop.description": "ずんだマッシュルーム付きの棒を豆腐豚に使う",
   "tofucraft.radar.result.success": "豆腐スライムチャンクが見つかりました",
   "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした",
   "itemGroup.tofucraft": "TofuCraft",
