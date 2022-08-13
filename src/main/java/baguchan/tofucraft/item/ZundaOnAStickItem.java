@@ -35,6 +35,8 @@ public class ZundaOnAStickItem<T extends Entity & ItemSteerable> extends Item {
 			if (p_41315_.isPassenger() && entity instanceof ItemInteractable && entity.getType() == this.canInteractWith && entity instanceof TofuPig pig) {
 				ItemInteractable itemInteractable = (ItemInteractable) entity;
 				if (pig.getTofuPigType() == TofuPig.TofuPigType.ZUNDA && itemInteractable.canHeal()) {
+
+					((TofuPig) entity).boost();
 					p_41315_.getCooldowns().addCooldown(itemstack.getItem(), 200);
 					itemstack.hurtAndBreak(this.consumeItemDamage, p_41315_, (p_41312_) -> {
 						p_41312_.broadcastBreakEvent(p_41316_);
