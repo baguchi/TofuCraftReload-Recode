@@ -66,6 +66,10 @@ public class TofuEntityTypes {
 	/*public static final EntityType<ZundaArrowEntity> ZUNDA_ARROW = EntityType.Builder.<ZundaArrowEntity>of(ZundaArrowEntity::new, MobCategory.MISC)
 			.sized(0.5F, 0.5F).build("tofucraft:zunda_arrow");*/
 
+	public static final SpawnPlacements.Type IN_SOYMILK = SpawnPlacements.Type.create("in_soymilk", (levelReader, pos, entityType) -> {
+		return levelReader.getFluidState(pos).is(TofuTags.Fluids.SOYMILK);
+	});
+
 	@SubscribeEvent
 	public static void registerEntityAttribute(EntityAttributeCreationEvent event) {
 		event.put(TOFUCOW.get(), TofuCow.createAttributes().build());
@@ -81,7 +85,7 @@ public class TofuEntityTypes {
 		SpawnPlacements.register(TOFUNIAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
 		SpawnPlacements.register(TOFUSLIME.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSlime::checkMonsterSpawnRules);
 		SpawnPlacements.register(TOFUSPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSpider::checkMonsterSpawnRules);
-		SpawnPlacements.register(TOFUFISH.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuFish::checkTofuFishSpawnRules);
+		SpawnPlacements.register(TOFUFISH.get(), IN_SOYMILK, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuFish::checkTofuFishSpawnRules);
 		SpawnPlacements.register(TOFU_GANDLEM.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
 	}
 }
