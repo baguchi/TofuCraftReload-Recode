@@ -20,7 +20,7 @@ import baguchan.tofucraft.item.SoymilkBottleItem;
 import baguchan.tofucraft.item.TofuScoopItem;
 import baguchan.tofucraft.item.TofuShieldItem;
 import baguchan.tofucraft.item.TofuStickItem;
-import baguchan.tofucraft.item.ZundaOnAStickItem;
+import baguchan.tofucraft.item.ZundaMushroomOnAStickItem;
 import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -305,7 +305,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> FUKUMAME = ITEMS.register("fukumame", () -> new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> NETHER_FUKUMAME = ITEMS.register("nether_fukumame", () -> new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> SOUL_FUKUMAME = ITEMS.register("soul_fukumame", () -> new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuCreativeModeTab.TOFUCRAFT)));
-	public static final RegistryObject<Item> ZUNDAMUSHROOM_ON_A_STICK = ITEMS.register("zundamushroom_on_a_stick", () -> new ZundaOnAStickItem<>((new Item.Properties()).durability(25).tab(TofuCreativeModeTab.TOFUCRAFT), TofuEntityTypes.TOFUPIG.get(), 7));
+	public static final RegistryObject<Item> ZUNDAMUSHROOM_ON_A_STICK = ITEMS.register("zundamushroom_on_a_stick", () -> new ZundaMushroomOnAStickItem<>((new Item.Properties()).durability(25).tab(TofuCreativeModeTab.TOFUCRAFT), TofuEntityTypes.TOFUPIG.get(), 7));
 
 	public static final RegistryObject<Item> TOFUGEM = ITEMS.register("tofugem", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TF_CAPACITOR = ITEMS.register("tf_capacitor", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
