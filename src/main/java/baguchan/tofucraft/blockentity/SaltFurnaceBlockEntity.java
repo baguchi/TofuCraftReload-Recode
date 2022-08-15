@@ -124,11 +124,13 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	LazyOptional<? extends IItemHandler>[] handlers;
 	private final LazyOptional<IFluidHandler> holder;
+	private final LazyOptional<IFluidHandler> holder2;
 
 	public SaltFurnaceBlockEntity(BlockPos p_155545_, BlockState p_155546_) {
 		super(TofuBlockEntitys.SALT_FURNACE.get(), p_155545_, p_155546_);
 		this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 		this.holder = LazyOptional.of(() -> this.waterTank);
+		this.holder2 = LazyOptional.of(() -> this.bitternTank);
 	}
 
 	private boolean isLit() {
@@ -463,8 +465,14 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 				return this.handlers[1].cast();
 			return this.handlers[2].cast();
 		}
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return this.holder.cast();
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+			if (facing == Direction.UP) {
+				return this.holder.cast();
+			} else {
+				return this.holder2.cast();
+			}
+		}
+
 		return super.getCapability(capability, facing);
 	}
 
@@ -475,6 +483,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			this.handlers[x].invalidate();
 		}
 		this.holder.invalidate();
+		this.holder2.invalidate();
 	}
 
 	@Override
