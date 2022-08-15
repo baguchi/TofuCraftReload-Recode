@@ -38,14 +38,14 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 	public ShuDofuSpiderModel(ModelPart root) {
 		super(RenderType::entityTranslucent);
 		this.root = root.getChild("root");
-		this.head = this.root.getChild("head");
 		this.neck = this.root.getChild("neck");
-		this.leg1 = this.root.getChild("leg1");
-		this.leg2 = this.root.getChild("leg2");
-		this.leg3 = this.root.getChild("leg3");
-		this.leg4 = this.root.getChild("leg4");
-		this.leg5 = this.root.getChild("leg5");
-		this.leg6 = this.root.getChild("leg6");
+		this.head = this.neck.getChild("head");
+		this.leg1 = this.neck.getChild("leg1");
+		this.leg2 = this.neck.getChild("leg2");
+		this.leg3 = this.neck.getChild("leg3");
+		this.leg4 = this.neck.getChild("leg4");
+		this.leg5 = this.neck.getChild("leg5");
+		this.leg6 = this.neck.getChild("leg6");
 		this.bone = this.leg1.getChild("bone");
 		this.bone13 = this.leg3.getChild("bone13");
 		this.bone23 = this.leg5.getChild("bone23");
@@ -59,14 +59,6 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
 		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
-
-		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(119, 0).addBox(-10.0F, -8.0F, -16.0F, 20.0F, 16.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.16F, -18.68F, -7.92F));
-
-		PartDefinition tooth_left = head.addOrReplaceChild("tooth_left", CubeListBuilder.create().texOffs(0, 0).addBox(-1.8214F, -2.3333F, -12.1785F, 4.0F, 4.0F, 11.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 3).addBox(-4.8714F, -2.0033F, -11.8985F, 3.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(5.9835F, 5.6019F, -13.0492F, 0.2618F, -0.3927F, 0.0F));
-
-		PartDefinition tooth_right = head.addOrReplaceChild("tooth_right", CubeListBuilder.create().texOffs(0, 15).addBox(-1.6602F, -2.5401F, -11.5281F, 4.0F, 4.0F, 11.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 0).addBox(2.2898F, -2.2101F, -11.2481F, 3.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.27F, 5.97F, -13.42F, 0.2618F, 0.3927F, 0.0F));
 
 		PartDefinition neck = root.addOrReplaceChild("neck", CubeListBuilder.create().texOffs(156, 32).addBox(-9.0F, -8.5F, -5.5F, 18.0F, 17.0F, 11.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.02F, -17.54F, -3.52F, 0.0873F, 0.0F, 0.0F));
 
@@ -84,8 +76,16 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 
 		PartDefinition bone7 = body.addOrReplaceChild("bone7", CubeListBuilder.create().texOffs(0, 70).addBox(-16.5F, -12.5F, -14.5F, 33.0F, 25.0F, 29.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.7532F, 17.9781F));
 
-		PartDefinition leg1 = root.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(175, 0).addBox(-15.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
-				.texOffs(201, 117).addBox(-22.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.97F, -19.68F, -5.1F, -0.2058F, -0.284F, 0.6404F));
+		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(119, 0).addBox(-10.0F, -8.0F, -16.0F, 20.0F, 16.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.18F, -1.14F, -4.4F));
+
+		PartDefinition tooth_left = head.addOrReplaceChild("tooth_left", CubeListBuilder.create().texOffs(0, 0).addBox(-1.8214F, -2.3333F, -12.1785F, 4.0F, 4.0F, 11.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 3).addBox(-4.8714F, -2.0033F, -11.8985F, 3.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(5.9835F, 5.6019F, -13.0492F, 0.2618F, -0.3927F, 0.0F));
+
+		PartDefinition tooth_right = head.addOrReplaceChild("tooth_right", CubeListBuilder.create().texOffs(0, 15).addBox(-1.6602F, -2.5401F, -11.5281F, 4.0F, 4.0F, 11.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 0).addBox(2.2898F, -2.2101F, -11.2481F, 3.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.27F, 5.97F, -13.42F, 0.2618F, 0.3927F, 0.0F));
+
+		PartDefinition leg1 = neck.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(175, 0).addBox(-15.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
+				.texOffs(201, 117).addBox(-22.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.99F, -2.14F, -1.58F, -0.2058F, -0.284F, 0.6404F));
 
 		PartDefinition bone = leg1.addOrReplaceChild("bone", CubeListBuilder.create().texOffs(140, 149).addBox(-21.5F, -3.0F, -5.0F, 25.0F, 8.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-26.7604F, -1.3313F, -0.784F, 0.0F, 0.0F, -1.9199F));
 
@@ -97,8 +97,8 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 
 		PartDefinition bone3 = bone5.addOrReplaceChild("bone3", CubeListBuilder.create().texOffs(133, 198).addBox(-7.1272F, -2.9364F, -2.5897F, 18.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-8.2304F, -0.0113F, 1.616F, 0.0F, -0.0873F, 0.0F));
 
-		PartDefinition leg2 = root.addOrReplaceChild("leg2", CubeListBuilder.create().texOffs(138, 167).addBox(0.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
-				.texOffs(200, 143).addBox(15.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(6.97F, -19.68F, -5.1F, -0.2058F, 0.284F, -0.6404F));
+		PartDefinition leg2 = neck.addOrReplaceChild("leg2", CubeListBuilder.create().texOffs(138, 167).addBox(0.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
+				.texOffs(200, 143).addBox(15.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(6.95F, -2.14F, -1.58F, -0.2058F, 0.284F, -0.6404F));
 
 		PartDefinition bone8 = leg2.addOrReplaceChild("bone8", CubeListBuilder.create().texOffs(70, 149).addBox(-3.5F, -3.0F, -5.0F, 25.0F, 8.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(26.7604F, -1.3313F, -0.784F, 0.0F, 0.0F, 1.9199F));
 
@@ -110,8 +110,8 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 
 		PartDefinition bone12 = bone9.addOrReplaceChild("bone12", CubeListBuilder.create().texOffs(87, 194).addBox(-10.8728F, -2.9364F, -2.5897F, 18.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(8.2304F, -0.0113F, 1.616F, 0.0F, 0.0873F, 0.0F));
 
-		PartDefinition leg3 = root.addOrReplaceChild("leg3", CubeListBuilder.create().texOffs(46, 167).addBox(-15.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
-				.texOffs(70, 134).addBox(-22.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.97F, -19.68F, 2.9F, 0.0F, 0.0F, 0.6109F));
+		PartDefinition leg3 = neck.addOrReplaceChild("leg3", CubeListBuilder.create().texOffs(46, 167).addBox(-15.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
+				.texOffs(70, 134).addBox(-22.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.99F, -2.14F, 6.42F, 0.0F, 0.0F, 0.6109F));
 
 		PartDefinition bone13 = leg3.addOrReplaceChild("bone13", CubeListBuilder.create().texOffs(124, 88).addBox(-21.5F, -3.0F, -5.0F, 25.0F, 8.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-26.7604F, -1.3313F, -0.784F, 0.0F, 0.0F, -1.9199F));
 
@@ -123,8 +123,8 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 
 		PartDefinition bone17 = bone14.addOrReplaceChild("bone17", CubeListBuilder.create().texOffs(190, 188).addBox(-7.1272F, -2.9364F, -2.5897F, 18.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-8.2304F, -0.0113F, 1.616F, 0.0F, -0.0873F, 0.0F));
 
-		PartDefinition leg4 = root.addOrReplaceChild("leg4", CubeListBuilder.create().texOffs(92, 167).addBox(0.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 199).addBox(15.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(6.97F, -19.68F, 2.9F, 0.0F, 0.0F, -0.6109F));
+		PartDefinition leg4 = neck.addOrReplaceChild("leg4", CubeListBuilder.create().texOffs(92, 167).addBox(0.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 199).addBox(15.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(6.95F, -2.14F, 6.42F, 0.0F, 0.0F, -0.6109F));
 
 		PartDefinition bone18 = leg4.addOrReplaceChild("bone18", CubeListBuilder.create().texOffs(0, 142).addBox(-3.5F, -3.0F, -5.0F, 25.0F, 8.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(26.7604F, -1.3313F, -0.784F, 0.0F, 0.0F, 1.9199F));
 
@@ -136,8 +136,8 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 
 		PartDefinition bone22 = bone19.addOrReplaceChild("bone22", CubeListBuilder.create().texOffs(193, 60).addBox(-10.8728F, -2.9364F, -2.5897F, 18.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(8.2304F, -0.0113F, 1.616F, 0.0F, 0.0873F, 0.0F));
 
-		PartDefinition leg5 = root.addOrReplaceChild("leg5", CubeListBuilder.create().texOffs(0, 160).addBox(-9.7701F, 1.4407F, -3.8452F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 82).addBox(-16.7701F, 2.4407F, -2.8452F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-9.4174F, -25.9627F, 11.4045F, 0.1789F, 0.2489F, 0.6333F));
+		PartDefinition leg5 = neck.addOrReplaceChild("leg5", CubeListBuilder.create().texOffs(0, 160).addBox(-9.7701F, 1.4407F, -3.8452F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 82).addBox(-16.7701F, 2.4407F, -2.8452F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-9.4374F, -8.4227F, 14.9245F, 0.1789F, 0.2489F, 0.6333F));
 
 		PartDefinition bone23 = leg5.addOrReplaceChild("bone23", CubeListBuilder.create().texOffs(0, 124).addBox(-21.5F, -3.0F, -5.0F, 25.0F, 8.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-21.1205F, 2.3894F, -0.5292F, 0.0F, 0.0F, -1.9199F));
 
@@ -149,8 +149,8 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 
 		PartDefinition bone27 = bone24.addOrReplaceChild("bone27", CubeListBuilder.create().texOffs(144, 188).addBox(-7.1272F, -2.9364F, -2.5897F, 18.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-8.2304F, -0.0113F, 1.616F, 0.0F, -0.0873F, 0.0F));
 
-		PartDefinition leg6 = root.addOrReplaceChild("leg6", CubeListBuilder.create().texOffs(155, 62).addBox(0.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 70).addBox(15.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(6.97F, -19.68F, 10.9F, 0.1789F, -0.2489F, -0.6333F));
+		PartDefinition leg6 = neck.addOrReplaceChild("leg6", CubeListBuilder.create().texOffs(155, 62).addBox(0.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
+				.texOffs(0, 70).addBox(15.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(6.95F, -2.14F, 14.42F, 0.1789F, -0.2489F, -0.6333F));
 
 		PartDefinition bone28 = leg6.addOrReplaceChild("bone28", CubeListBuilder.create().texOffs(95, 70).addBox(-3.5F, -3.0F, -5.0F, 25.0F, 8.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(26.7604F, -1.3313F, -0.784F, 0.0F, 0.0F, 1.9199F));
 
@@ -171,98 +171,103 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 		var direction = entity.getDirection();
 		var pos = entity.blockPosition();
 		var air = Blocks.AIR.defaultBlockState();
-		if (direction == Direction.NORTH) {
-			var rBlock = entity.level.getBlockState(pos.below().west().west());
-			var rBlockF = entity.level.getBlockState(pos.below().west().west().north());
-			var rBlockB = entity.level.getBlockState(pos.below().west().west().south());
-			if (rBlock == air && rBlockF == air && rBlockB == air) {
-				this.leg2.zRot = 0.12F;
-				this.leg4.zRot = 0.12F;
-				this.leg6.zRot = 0.12F;
-				this.bone8.zRot = 1.2F;
-				this.bone18.zRot = 1.2F;
-				this.bone28.zRot = 1.2F;
-			}
-			var lBlock = entity.level.getBlockState(pos.below().east().east());
-			var lBlockF = entity.level.getBlockState(pos.below().east().east().north());
-			var lBlockB = entity.level.getBlockState(pos.below().east().east().south());
-			if (lBlock == air && lBlockF == air && lBlockB == air) {
-				this.leg1.zRot = -0.12F;
-				this.leg3.zRot = -0.12F;
-				this.leg5.zRot = -0.12F;
-				this.bone.zRot = -1.2F;
-				this.bone13.zRot = -1.2F;
-				this.bone23.zRot = -1.2F;
-			}
+		this.head.xRot = headPitch * 0.017453292F;
+		this.head.yRot = netHeadYaw * 0.017453292F;
+		if (!entity.isJump()) {
+			if (direction == Direction.NORTH) {
 
-		} else if (direction == Direction.EAST) {
-			var rBlock = entity.level.getBlockState(pos.below().north().north());
-			var rBlockF = entity.level.getBlockState(pos.below().north().north().east());
-			var rBlockB = entity.level.getBlockState(pos.below().north().north().west());
-			if (rBlock == air && rBlockF == air && rBlockB == air) {
-				this.leg2.zRot = 0.12F;
-				this.leg4.zRot = 0.12F;
-				this.leg6.zRot = 0.12F;
-				this.bone8.zRot = 1.2F;
-				this.bone18.zRot = 1.2F;
-				this.bone28.zRot = 1.2F;
-			}
-			var lBlock = entity.level.getBlockState(pos.below().south().south());
-			var lBlockF = entity.level.getBlockState(pos.below().south().south().east());
-			var lBlockB = entity.level.getBlockState(pos.below().south().south().west());
-			if (lBlock == air && lBlockF == air && lBlockB == air) {
-				this.leg1.zRot = -0.12F;
-				this.leg3.zRot = -0.12F;
-				this.leg5.zRot = -0.12F;
-				this.bone.zRot = -1.2F;
-				this.bone13.zRot = -1.2F;
-				this.bone23.zRot = -1.2F;
-			}
-		} else if (direction == Direction.WEST) {
-			var rBlock = entity.level.getBlockState(pos.below().south().south());
-			var rBlockF = entity.level.getBlockState(pos.below().south().south().west());
-			var rBlockB = entity.level.getBlockState(pos.below().south().south().east());
-			if (rBlock == air && rBlockF == air && rBlockB == air) {
-				this.leg2.zRot = 0.12F;
-				this.leg4.zRot = 0.12F;
-				this.leg6.zRot = 0.12F;
-				this.bone8.zRot = 1.2F;
-				this.bone18.zRot = 1.2F;
-				this.bone28.zRot = 1.2F;
-			}
-			var lBlock = entity.level.getBlockState(pos.below().north().north());
-			var lBlockF = entity.level.getBlockState(pos.below().north().north().west());
-			var lBlockB = entity.level.getBlockState(pos.below().north().north().east());
-			if (lBlock == air && lBlockF == air && lBlockB == air) {
-				this.leg1.zRot = -0.12F;
-				this.leg3.zRot = -0.12F;
-				this.leg5.zRot = -0.12F;
-				this.bone.zRot = -1.2F;
-				this.bone13.zRot = -1.2F;
-				this.bone23.zRot = -1.2F;
-			}
-		} else if (direction == Direction.SOUTH) {
-			var rBlock = entity.level.getBlockState(pos.below().east().east());
-			var rBlockF = entity.level.getBlockState(pos.below().east().east().south());
-			var rBlockB = entity.level.getBlockState(pos.below().east().east().north());
-			if (rBlock == air && rBlockF == air && rBlockB == air) {
-				this.leg2.zRot = 0.12F;
-				this.leg4.zRot = 0.12F;
-				this.leg6.zRot = 0.12F;
-				this.bone8.zRot = 1.2F;
-				this.bone18.zRot = 1.2F;
-				this.bone28.zRot = 1.2F;
-			}
-			var lBlock = entity.level.getBlockState(pos.below().west().west());
-			var lBlockF = entity.level.getBlockState(pos.below().west().west().south());
-			var lBlockB = entity.level.getBlockState(pos.below().west().west().north());
-			if (lBlock == air && lBlockF == air && lBlockB == air) {
-				this.leg1.zRot = -0.12F;
-				this.leg3.zRot = -0.12F;
-				this.leg5.zRot = -0.12F;
-				this.bone.zRot = -1.2F;
-				this.bone13.zRot = -1.2F;
-				this.bone23.zRot = -1.2F;
+				var rBlock = entity.level.getBlockState(pos.below().west().west());
+				var rBlockF = entity.level.getBlockState(pos.below().west().west().north());
+				var rBlockB = entity.level.getBlockState(pos.below().west().west().south());
+				if (rBlock == air && rBlockF == air && rBlockB == air) {
+					this.leg2.zRot = 0.12F;
+					this.leg4.zRot = 0.12F;
+					this.leg6.zRot = 0.12F;
+					this.bone8.zRot = 1.2F;
+					this.bone18.zRot = 1.2F;
+					this.bone28.zRot = 1.2F;
+				}
+				var lBlock = entity.level.getBlockState(pos.below().east().east());
+				var lBlockF = entity.level.getBlockState(pos.below().east().east().north());
+				var lBlockB = entity.level.getBlockState(pos.below().east().east().south());
+				if (lBlock == air && lBlockF == air && lBlockB == air) {
+					this.leg1.zRot = -0.12F;
+					this.leg3.zRot = -0.12F;
+					this.leg5.zRot = -0.12F;
+					this.bone.zRot = -1.2F;
+					this.bone13.zRot = -1.2F;
+					this.bone23.zRot = -1.2F;
+				}
+
+			} else if (direction == Direction.EAST) {
+				var rBlock = entity.level.getBlockState(pos.below().north().north());
+				var rBlockF = entity.level.getBlockState(pos.below().north().north().east());
+				var rBlockB = entity.level.getBlockState(pos.below().north().north().west());
+				if (rBlock == air && rBlockF == air && rBlockB == air) {
+					this.leg2.zRot = 0.12F;
+					this.leg4.zRot = 0.12F;
+					this.leg6.zRot = 0.12F;
+					this.bone8.zRot = 1.2F;
+					this.bone18.zRot = 1.2F;
+					this.bone28.zRot = 1.2F;
+				}
+				var lBlock = entity.level.getBlockState(pos.below().south().south());
+				var lBlockF = entity.level.getBlockState(pos.below().south().south().east());
+				var lBlockB = entity.level.getBlockState(pos.below().south().south().west());
+				if (lBlock == air && lBlockF == air && lBlockB == air) {
+					this.leg1.zRot = -0.12F;
+					this.leg3.zRot = -0.12F;
+					this.leg5.zRot = -0.12F;
+					this.bone.zRot = -1.2F;
+					this.bone13.zRot = -1.2F;
+					this.bone23.zRot = -1.2F;
+				}
+			} else if (direction == Direction.WEST) {
+				var rBlock = entity.level.getBlockState(pos.below().south().south());
+				var rBlockF = entity.level.getBlockState(pos.below().south().south().west());
+				var rBlockB = entity.level.getBlockState(pos.below().south().south().east());
+				if (rBlock == air && rBlockF == air && rBlockB == air) {
+					this.leg2.zRot = 0.12F;
+					this.leg4.zRot = 0.12F;
+					this.leg6.zRot = 0.12F;
+					this.bone8.zRot = 1.2F;
+					this.bone18.zRot = 1.2F;
+					this.bone28.zRot = 1.2F;
+				}
+				var lBlock = entity.level.getBlockState(pos.below().north().north());
+				var lBlockF = entity.level.getBlockState(pos.below().north().north().west());
+				var lBlockB = entity.level.getBlockState(pos.below().north().north().east());
+				if (lBlock == air && lBlockF == air && lBlockB == air) {
+					this.leg1.zRot = -0.12F;
+					this.leg3.zRot = -0.12F;
+					this.leg5.zRot = -0.12F;
+					this.bone.zRot = -1.2F;
+					this.bone13.zRot = -1.2F;
+					this.bone23.zRot = -1.2F;
+				}
+			} else if (direction == Direction.SOUTH) {
+				var rBlock = entity.level.getBlockState(pos.below().east().east());
+				var rBlockF = entity.level.getBlockState(pos.below().east().east().south());
+				var rBlockB = entity.level.getBlockState(pos.below().east().east().north());
+				if (rBlock == air && rBlockF == air && rBlockB == air) {
+					this.leg2.zRot = 0.12F;
+					this.leg4.zRot = 0.12F;
+					this.leg6.zRot = 0.12F;
+					this.bone8.zRot = 1.2F;
+					this.bone18.zRot = 1.2F;
+					this.bone28.zRot = 1.2F;
+				}
+				var lBlock = entity.level.getBlockState(pos.below().west().west());
+				var lBlockF = entity.level.getBlockState(pos.below().west().west().south());
+				var lBlockB = entity.level.getBlockState(pos.below().west().west().north());
+				if (lBlock == air && lBlockF == air && lBlockB == air) {
+					this.leg1.zRot = -0.12F;
+					this.leg3.zRot = -0.12F;
+					this.leg5.zRot = -0.12F;
+					this.bone.zRot = -1.2F;
+					this.bone13.zRot = -1.2F;
+					this.bone23.zRot = -1.2F;
+				}
 			}
 		}
 
@@ -271,6 +276,7 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 		this.animate(entity.walkAnimationState, ShuDofuSpiderAnimation.WALK, ageInTicks);
 		this.animate(entity.attackAnimationState, ShuDofuSpiderAnimation.SWIPE, ageInTicks);
 		this.animate(entity.deathAnimationState, ShuDofuSpiderAnimation.DEATH, ageInTicks);
+		this.animate(entity.jumpAnimationState, ShuDofuSpiderAnimation.JUMP_ATTACK, ageInTicks);
 	}
 
 	@Override
