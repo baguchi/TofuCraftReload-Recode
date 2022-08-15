@@ -8,7 +8,7 @@
   "type": "create:filling",
   "ingredients": [
     {
-      "fluid": "tofucraft:soymilk",
+      "fluid": "tofucraft:bittern",
       "amount": 250
     },
     {
@@ -17,7 +17,7 @@
   ],
   "results": [
     {
-      "item": "tofucraft:soymilk"
+      "item": "tofucraft:bittern_bottle"
     }
   ]
 }
