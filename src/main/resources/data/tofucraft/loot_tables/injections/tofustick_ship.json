@@ -9,18 +9,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 0.0,
-                "max": 1.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
+          "weight": 2,
           "name": "tofucraft:tofustick"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "minecraft:air"
         }
       ]
     }
