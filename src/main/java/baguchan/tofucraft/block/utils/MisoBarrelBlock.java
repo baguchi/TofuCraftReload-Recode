@@ -64,7 +64,7 @@ public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
 					worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, nigari));
 				itemHeld.shrink(1);
 			}
-			worldIn.setBlock(pos, state.setValue(STAT, Stat.USED), 3);
+			worldIn.setBlock(pos, state.setValue(STAT, Stat.USED).setValue(FLUIDS, fluidsAmounts - 1), 3);
 			return InteractionResult.SUCCESS;
 		}
 		return InteractionResult.PASS;
