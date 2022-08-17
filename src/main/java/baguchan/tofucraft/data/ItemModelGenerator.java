@@ -381,6 +381,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.EGGTOFU.get());
 		toBlock(TofuBlocks.TOFUSTAIR_EGG.get());
 		toBlock(TofuBlocks.TOFUSLAB_EGG.get());
+
+		singleTex(TofuItems.NATTO_COBWEB.get());
 	}
 
 	public ItemModelBuilder torchItem(Block item) {

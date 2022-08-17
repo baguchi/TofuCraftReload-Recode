@@ -1,7 +1,6 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.client.particle.ParticleStink;
-import baguchan.tofucraft.client.particle.ParticleZundaCloud;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -10,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -33,6 +33,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -162,12 +163,14 @@ public class ShuDofuSpider extends Monster {
 				this.impactTime = this.jumpTime + 40;
 			}
 			if (this.jumpTime >= this.impactTime && this.onGround) {
-				int count = 10;
-				//for (int i = 1; i <= count; i++) {
-				//double yaw = i * 365f / count;
-				this.level.addParticle(new ParticleZundaCloud.CloudData(TofuParticleTypes.ZUNDA_CLOUD.get(), 50f, 20, ParticleZundaCloud.EnumCloudBehavior.GROW, 1f), this.getX(), this.getY(), this.getZ(), 0, 0, 0);
-				//}
-				float radius = 5;
+				var world = ((ServerLevel) this.level);
+				int count = 36;
+				float distance = 4;
+				for (int i = 1; i <= count; i++) {
+					double yaw = i * 360f / count;
+					world.sendParticles(new ParticleStink.StinkData(TofuParticleTypes.STINK.get(), 20f, 20, ParticleStink.EnumStinkBehavior.GROW, 1.0f), this.getX() + Math.cos(Math.toRadians(yaw)) * distance, this.getY(), this.getZ() + Math.sin(Math.toRadians(yaw)) * distance, 0, 0, 0, 0, 0);
+				}
+				float radius = 4;
 				AABB hitBox = new AABB(new BlockPos(ShuDofuSpider.this.getX() - radius, ShuDofuSpider.this.getY() - 1, ShuDofuSpider.this.getZ() - radius), new BlockPos(ShuDofuSpider.this.getX() + radius, ShuDofuSpider.this.getY() + 2, ShuDofuSpider.this.getZ() + radius));
 				List<LivingEntity> entitiesHit = ShuDofuSpider.this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
 				for (LivingEntity entity : entitiesHit) {
@@ -175,6 +178,7 @@ public class ShuDofuSpider extends Monster {
 						entity.hurt(DamageSource.mobAttack(ShuDofuSpider.this), 30.0F);
 					}
 				}
+				playSound(SoundEvents.WITHER_BREAK_BLOCK, 1.0f, 1.0f);
 				this.impactTime = 0;
 				this.jumpTime = 0;
 				this.setJumpAnimation(false);
@@ -264,6 +268,15 @@ public class ShuDofuSpider extends Monster {
 		}
 	}
 
+	@Override
+	public boolean hurt(DamageSource p_31461_, float p_31462_) {
+		Entity entity = p_31461_.getDirectEntity();
+		if (entity instanceof Projectile) {
+			return false;
+		}
+		return super.hurt(p_31461_, p_31462_);
+	}
+
 	public boolean isPushable() {
 		return false;
 	}
@@ -276,7 +289,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 400.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.5D).add(Attributes.ATTACK_KNOCKBACK, 0.75F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 12.0F).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 8.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.5D).add(Attributes.ATTACK_KNOCKBACK, 1.00F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 12.0D).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 8.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
