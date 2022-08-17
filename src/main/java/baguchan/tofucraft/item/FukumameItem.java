@@ -28,7 +28,7 @@ public class FukumameItem extends Item {
 			for (int i = 0; i < 5; i++) {
 				FukumameEntity fukumamentity = new FukumameEntity(levelIn, playerIn);
 				float d0 = levelIn.random.nextFloat() * 20.0F - 10.0F;
-				fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER_ARROWS, playerIn) * 0.5F;
+				fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER_ARROWS, playerIn) * 0.25F;
 				fukumamentity.shootFromRotation(playerIn, playerIn.getXRot() + d0 * 0.325F, playerIn.getYRot() + d0, 0.0F, 1.5F, 0.8F);
 				levelIn.addFreshEntity(fukumamentity);
 			}
