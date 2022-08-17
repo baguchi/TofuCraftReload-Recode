@@ -34,8 +34,9 @@ public class NattoCobWebEntity extends Entity {
 		noCulling = true;
 	}
 
-	public NattoCobWebEntity(Level level) {
-		super(TofuEntityTypes.NATTO_COBWEB.get(), level);
+	public NattoCobWebEntity(Level level, double x, double y, double z) {
+		this(TofuEntityTypes.NATTO_COBWEB.get(), level);
+		this.setPos(x, y, z);
 	}
 
 	@Override

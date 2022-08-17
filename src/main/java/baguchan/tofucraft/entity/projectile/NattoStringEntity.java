@@ -49,8 +49,7 @@ public class NattoStringEntity extends ThrowableProjectile {
 		playSound(SoundEvents.SLIME_JUMP_SMALL, 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F);
 		if (!this.level.isClientSide) {
 			this.level.broadcastEntityEvent(this, (byte) 80);
-			//TODO summonNattoCobwebEntity
-			level.addFreshEntity(new NattoCobWebEntity(this.level));
+			level.addFreshEntity(new NattoCobWebEntity(this.level, getX(), getY(), getZ()));
 			this.discard();
 		}
 	}
