@@ -128,6 +128,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 			double d2 = p_29912_.getEyeY() - this.getEyeY();
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
+			fukumame.damage = 1.0F;
 			fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
 
 			this.level.addFreshEntity(fukumame);

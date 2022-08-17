@@ -52,7 +52,7 @@ import java.util.List;
 public class TofuPig extends Pig implements ItemInteractable {
 	private static final Ingredient FOOD_ITEMS = Ingredient.of(TofuItems.LEEK.get(), Items.CARROT);
 	private static final EntityDataAccessor<Integer> DATA_HEALING_TIME = SynchedEntityData.defineId(TofuPig.class, EntityDataSerializers.INT);
-	private final ItemBasedInteractable healilng = new ItemBasedInteractable(this.entityData, DATA_HEALING_TIME);
+	private final ItemBasedInteractable healilng = new HealInteractable(this.entityData, DATA_HEALING_TIME);
 
 	private static final EntityDataAccessor<String> TOFUPIG_TYPE = SynchedEntityData.defineId(TofuPig.class, EntityDataSerializers.STRING);
 

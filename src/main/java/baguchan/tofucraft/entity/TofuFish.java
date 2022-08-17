@@ -1,7 +1,6 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -16,7 +15,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.animal.AbstractFish;
-import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -24,12 +22,10 @@ import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.fluids.FluidType;
 
 import java.util.Optional;
 
-public class TofuFish extends AbstractSchoolingFish {
-	private boolean wasTouchingSoymilk;
+public class TofuFish extends AbstractTofuFish {
 
 	public TofuFish(EntityType<? extends TofuFish> p_27523_, Level p_27524_) {
 		super(p_27523_, p_27524_);
@@ -51,31 +47,12 @@ public class TofuFish extends AbstractSchoolingFish {
 		return SoundEvents.COD_HURT;
 	}
 
-	@Override
-	public void tick() {
-		super.tick();
-		if (this.isInFluidType(TofuFluidTypes.SOYMILK.get()) || (this.isInFluidType(TofuFluidTypes.SOYMILK_HELL.get()) || (this.isInFluidType(TofuFluidTypes.SOYMILK_SOUL.get())))) {
-			this.wasTouchingSoymilk = true;
-		} else {
-			this.wasTouchingSoymilk = false;
-		}
-	}
-
-	//override isInWater because most method using this
-	@Override
-	public boolean isInWater() {
-		return super.isInWater() || wasTouchingSoymilk;
-	}
 
 	@Override
 	protected SoundEvent getFlopSound() {
 		return SoundEvents.COD_FLOP;
 	}
 
-	@Override
-	public boolean canDrownInFluidType(FluidType type) {
-		return false;
-	}
 
 	protected InteractionResult mobInteract(Player p_27477_, InteractionHand p_27478_) {
 		return bucketMobPickup(p_27477_, p_27478_, this).orElse(super.mobInteract(p_27477_, p_27478_));

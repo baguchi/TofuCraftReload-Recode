@@ -50,7 +50,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.LEEK_GREEN_STEM.get(), TofuBlocks.LEEK_STEM.get()
 				, TofuBlocks.TOFU_STEM.get(), TofuBlocks.TOFU_STEM_PLANKS.get()
 				, TofuBlocks.MORIJIO.get()
-				, TofuBlocks.BARREL_MISO.get());
+				, TofuBlocks.BARREL_MISO.get(), TofuBlocks.BARREL_MISOTOFU.get());
 		tag(BlockTags.MINEABLE_WITH_HOE).add(TofuBlocks.RICE_ROOT.get(), TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get());
 
 		tag(BlockTags.NEEDS_STONE_TOOL)

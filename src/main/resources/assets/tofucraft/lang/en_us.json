@@ -433,6 +433,8 @@
   "advancements.tofucraft.sniffed_revenge.description": "Drop chili towards warden to get revenge sniffed by Warden",
   "advancements.tofucraft.find_tofu_castle.title": "Mysterious Ancient Structure",
   "advancements.tofucraft.find_tofu_castle.description": "Find Tofu Castle",
+  "advancements.tofucraft.tofupig_pop.title": "Smelly Pig",
+  "advancements.tofucraft.tofupig_pop.description": "Using ZundaMushroom On Stick on TofuPig",
   "tofucraft.radar.result.success": "Success to Found TofuSlime Chunk",
   "tofucraft.radar.result.failed": "Not Found TofuSlime Chunk",
   "itemGroup.tofucraft": "TofuCraft",
