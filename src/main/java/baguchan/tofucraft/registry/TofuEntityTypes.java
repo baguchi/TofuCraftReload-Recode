@@ -92,6 +92,7 @@ public class TofuEntityTypes {
 		event.put(TOFUSPIDER.get(), TofuSpider.createAttributes().build());
 		event.put(TOFU_GANDLEM.get(), TofuGandlem.createAttributes().build());
 		event.put(SHUDOFUSPIDER.get(), ShuDofuSpider.createAttributes().build());
+		event.put(NATTO_COBWEB.get(), NattoCobWebEntity.createAttributes().build());
 
 		SpawnPlacements.register(TOFUCOW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCow::checkTofuAnimalSpawnRules);
 		SpawnPlacements.register(TOFUPIG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuPig::checkTofuAnimalSpawnRules);

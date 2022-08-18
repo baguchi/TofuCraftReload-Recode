@@ -1,6 +1,5 @@
 package baguchan.tofucraft.client.render.entity.effect;
 
-import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.registry.TofuItems;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -22,9 +21,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
-	public static final ResourceLocation NATTOCOBWEB_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/item/natto_cobweb.png");
-	private static final float TEXTURE_WIDTH = 16;
-	private static final float TEXTURE_HEIGHT = 16;
 	private final ItemRenderer itemRenderer;
 
 	public NattoCobWebRender(EntityRendererProvider.Context context) {
@@ -35,17 +31,31 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 
 	@Override
 	public void render(NattoCobWebEntity entity, float yaw, float delta, PoseStack stack, MultiBufferSource buffer, int packedLightIn) {
-		stack.pushPose();
-		stack.scale(6.0F, 6.0F, 6.0F);
-		stack.translate(0.0F, 0.0F, -0.15F);
-		stack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+		boolean isSpawing = entity.isSpawing();
+		if (isSpawing) {
+			stack.pushPose();
+			stack.scale(5.5F, 6.0F, 5.5F);
+			stack.translate(0.0F, 0.0F, -0.125F);
+			stack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+
+			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
+			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level, (LivingEntity) null, entity.getId());
+
+			this.itemRenderer.render(itemStack, ItemTransforms.TransformType.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
+			stack.popPose();
+		} else {
+			stack.pushPose();
+			stack.scale(6.0F, 6.0F, 6.0F);
+			stack.translate(0.0F, 0.0F, -0.125F);
+			stack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
 
 
-		ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
-		BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level, (LivingEntity) null, entity.getId());
+			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
+			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level, (LivingEntity) null, entity.getId());
 
-		this.itemRenderer.render(itemStack, ItemTransforms.TransformType.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
-		stack.popPose();
+			this.itemRenderer.render(itemStack, ItemTransforms.TransformType.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
+			stack.popPose();
+		}
 		super.render(entity, yaw, delta, stack, buffer, packedLightIn);
 	}
 

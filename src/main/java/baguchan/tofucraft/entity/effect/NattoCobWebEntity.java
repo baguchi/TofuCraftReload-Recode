@@ -4,18 +4,23 @@ import baguchan.tofucraft.entity.ShuDofuSpider;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -31,11 +36,13 @@ import net.minecraftforge.network.NetworkHooks;
 
 import java.util.List;
 
-public class NattoCobWebEntity extends Entity {
+public class NattoCobWebEntity extends LivingEntity {
+	private final NonNullList<ItemStack> handItems = NonNullList.withSize(2, ItemStack.EMPTY);
+	private final NonNullList<ItemStack> armorItems = NonNullList.withSize(4, ItemStack.EMPTY);
 	private int lifeTime;
 	private static final int discardTime = 400;
 
-	public NattoCobWebEntity(EntityType<?> p_19870_, Level p_19871_) {
+	public NattoCobWebEntity(EntityType<? extends NattoCobWebEntity> p_19870_, Level p_19871_) {
 		super(p_19870_, p_19871_);
 		noCulling = true;
 	}
@@ -49,11 +56,15 @@ public class NattoCobWebEntity extends Entity {
 	public void tick() {
 		downGround();
 		stepSlow();
-		if (lifeTime >= discardTime || !level.canSeeSkyFromBelowWater(blockPosition())) {
+		if (lifeTime >= discardTime) {
 			this.discard();
 		}
 		lifeTime++;
 		super.tick();
+	}
+
+	public HumanoidArm getMainArm() {
+		return HumanoidArm.RIGHT;
 	}
 
 	public void downGround() {
@@ -96,15 +107,27 @@ public class NattoCobWebEntity extends Entity {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D);
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
 	}
 
+	public boolean isSpawing() {
+		return lifeTime < 4;
+	}
+
+	@Override
+	protected void tickDeath() {
+		++this.deathTime;
+		if (this.deathTime == 3 && !this.level.isClientSide()) {
+			this.discard();
+		}
+
+	}
 
 	@Override
 	public boolean hurt(DamageSource p_31461_, float p_31462_) {
 		if (this.isInvulnerableTo(p_31461_)) {
 			return false;
-		} else if (p_31461_ != DamageSource.DROWN && p_31461_ != DamageSource.IN_FIRE && p_31461_ != DamageSource.ON_FIRE && !(p_31461_.getEntity() instanceof ShuDofuSpider)) {
+		} else if (p_31461_ != DamageSource.FALLING_BLOCK && p_31461_ != DamageSource.IN_WALL && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.DROWN && p_31461_ != DamageSource.IN_FIRE && p_31461_ != DamageSource.ON_FIRE && !(p_31461_.getEntity() instanceof ShuDofuSpider)) {
 			Entity entity = p_31461_.getDirectEntity();
 			if (entity instanceof Projectile) {
 				return false;
@@ -115,19 +138,90 @@ public class NattoCobWebEntity extends Entity {
 		}
 	}
 
-	@Override
+	protected void pushEntities() {
+	}
+
+	public Iterable<ItemStack> getHandSlots() {
+		return this.handItems;
+	}
+
+	public Iterable<ItemStack> getArmorSlots() {
+		return this.armorItems;
+	}
+
+	public ItemStack getItemBySlot(EquipmentSlot p_31612_) {
+		switch (p_31612_.getType()) {
+			case HAND:
+				return this.handItems.get(p_31612_.getIndex());
+			case ARMOR:
+				return this.armorItems.get(p_31612_.getIndex());
+			default:
+				return ItemStack.EMPTY;
+		}
+	}
+
+	public void setItemSlot(EquipmentSlot p_31584_, ItemStack p_31585_) {
+		this.verifyEquippedItem(p_31585_);
+		switch (p_31584_.getType()) {
+			case HAND:
+				this.onEquipItem(p_31584_, this.handItems.set(p_31584_.getIndex(), p_31585_), p_31585_);
+				break;
+			case ARMOR:
+				this.onEquipItem(p_31584_, this.armorItems.set(p_31584_.getIndex(), p_31585_), p_31585_);
+		}
+
+	}
+
+	public void addAdditionalSaveData(CompoundTag p_31619_) {
+		super.addAdditionalSaveData(p_31619_);
+		ListTag listtag = new ListTag();
+		for (ItemStack itemstack : this.armorItems) {
+			CompoundTag compoundtag = new CompoundTag();
+			if (!itemstack.isEmpty()) {
+				itemstack.save(compoundtag);
+			}
+
+			listtag.add(compoundtag);
+		}
+
+		p_31619_.put("ArmorItems", listtag);
+		ListTag listtag1 = new ListTag();
+
+		for (ItemStack itemstack1 : this.handItems) {
+			CompoundTag compoundtag1 = new CompoundTag();
+			if (!itemstack1.isEmpty()) {
+				itemstack1.save(compoundtag1);
+			}
+
+			listtag1.add(compoundtag1);
+		}
+	}
+
+	public void readAdditionalSaveData(CompoundTag p_31600_) {
+		super.readAdditionalSaveData(p_31600_);
+		if (p_31600_.contains("ArmorItems", 9)) {
+			ListTag listtag = p_31600_.getList("ArmorItems", 10);
+
+			for (int i = 0; i < this.armorItems.size(); ++i) {
+				this.armorItems.set(i, ItemStack.of(listtag.getCompound(i)));
+			}
+		}
+
+		if (p_31600_.contains("HandItems", 9)) {
+			ListTag listtag1 = p_31600_.getList("HandItems", 10);
+
+			for (int j = 0; j < this.handItems.size(); ++j) {
+				this.handItems.set(j, ItemStack.of(listtag1.getCompound(j)));
+			}
+		}
+	}
+
+	public boolean isPushable() {
+		return false;
+	}
+
 	protected void defineSynchedData() {
-
-	}
-
-	@Override
-	protected void readAdditionalSaveData(CompoundTag p_20052_) {
-
-	}
-
-	@Override
-	protected void addAdditionalSaveData(CompoundTag p_20139_) {
-
+		super.defineSynchedData();
 	}
 
 	@Override
