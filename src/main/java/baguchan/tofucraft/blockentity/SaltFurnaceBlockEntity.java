@@ -467,8 +467,10 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			if (facing == Direction.UP) {
 				return this.holder.cast();
-			} else {
+			} else if (facing != null) {
 				return this.holder2.cast();
+			} else {
+				return this.holder.cast();
 			}
 		}
 
