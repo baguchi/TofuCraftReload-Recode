@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.client.particle.ParticleStink;
+import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.BlockPos;
@@ -25,11 +26,12 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.JumpGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
@@ -38,6 +40,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -51,11 +54,13 @@ public class ShuDofuSpider extends Monster {
 	private static final EntityDataAccessor<Boolean> DATA_ID_JUMP = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> ATTACK_ANIMATION = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> JUMP_ANIMATION = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> DATA_ID_RANGED = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 
 	private int attackTime;
 	private int jumpTime;
 	private int impactTime;
 	private int stinkTime;
+	private int rangedTime;
 
 	public final AnimationState idleAnimationState = new AnimationState();
 	public final AnimationState attackAnimationState = new AnimationState();
@@ -76,14 +81,17 @@ public class ShuDofuSpider extends Monster {
 		this.entityData.define(ATTACK_ANIMATION, false);
 		this.entityData.define(JUMP_ANIMATION, false);
 		this.entityData.define(DATA_ID_JUMP, false);
+		this.entityData.define(DATA_ID_RANGED, false);
 	}
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 6.0F));
-		this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Mob.class, 6.0F));
-		this.goalSelector.addGoal(3, new ShuDofuSpider.JumpAttackGoal());
+		this.goalSelector.addGoal(1, new FloatGoal(this));
+		this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Mob.class, 6.0F));
 		this.goalSelector.addGoal(4, new ShuDofuSpider.AttackGoal(this));
+		this.goalSelector.addGoal(4, new ShuDofuSpider.JumpAttackGoal());
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.8D));
 
 		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 
@@ -121,6 +129,11 @@ public class ShuDofuSpider extends Monster {
 			this.level.addParticle(new ParticleStink.StinkData(TofuParticleTypes.STINK.get(), 45f, 20, ParticleStink.EnumStinkBehavior.GROW, 2.0f), this.getX(), this.getY() + 1.0, this.getZ(), 0, 0, 0);
 			this.stinkTime = this.random.nextInt(0, 20);
 		}
+		if (this.isAlive() && !this.isMovingOnLand()) {
+			this.idleAnimationState.startIfStopped(this.tickCount);
+		} else {
+			this.idleAnimationState.stop();
+		}
 		if (this.isAlive() && this.isMovingOnLand()) {
 			this.walkAnimationState.startIfStopped(this.tickCount);
 		} else {
@@ -130,16 +143,12 @@ public class ShuDofuSpider extends Monster {
 			++this.attackTime;
 			if (this.attackTime == 10) {
 				this.level.broadcastEntityEvent(this, (byte) 100);
-				float speed = 0.25f;
-				var yaw = (float) Math.toRadians(this.getYHeadRot() + 90);
-				Vec3 m = this.getDeltaMovement().add(speed * Math.cos(yaw), 0, speed * Math.sin(yaw));
-				this.setDeltaMovement(m.x, 0.2, m.z);
 			}
 			if (this.attackTime == 14) {
 				float radius = 2;
 				float swipePosX = (float) (this.getX() + radius * Math.cos(Math.toRadians(this.getYHeadRot() + 90)));
 				float swipePosZ = (float) (this.getZ() + radius * Math.sin(Math.toRadians(this.getYHeadRot() + 90)));
-				AABB hitBox = new AABB(new BlockPos(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1, 1.5, 1);
+				AABB hitBox = new AABB(new BlockPos(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1.5, 1.5, 1.5);
 				List<LivingEntity> entitiesHit = this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
 				for (LivingEntity entity : entitiesHit) {
 					if (entity != this) {
@@ -148,6 +157,28 @@ public class ShuDofuSpider extends Monster {
 				}
 				this.attackTime = 0;
 				this.setAttackAnimation(false);
+			}
+		}
+
+		if (this.isAlive() && this.isRanged() && this.getTarget() != null) {
+			++this.rangedTime;
+			/*if(this.rangedTime < 25) {
+				this.setDeltaMovement(this.getDeltaMovement().multiply(0.1, 1, 0.1));
+			}*/
+			if (this.rangedTime == 1) {
+				this.level.broadcastEntityEvent(this, (byte) 103);
+			}
+			if (this.rangedTime == 30) {
+				if (this.random.nextInt(2) == 1) {
+					this.performRangedAttack(this.getTarget());
+					this.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+				} else {
+					this.performBreathAttack(this.getTarget());
+				}
+			}
+			if (this.rangedTime == 50) {
+				this.rangedTime = 0;
+				this.setRanged(false);
 			}
 		}
 
@@ -189,7 +220,7 @@ public class ShuDofuSpider extends Monster {
 		super.tick();
 	}
 
-	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
+	public void performRangedAttack(LivingEntity p_29912_) {
 		this.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 1.0F);
 		for (int i = 0; i < 3; i++) {
 			NattoStringEntity natto = new NattoStringEntity(this.level, this);
@@ -197,10 +228,20 @@ public class ShuDofuSpider extends Monster {
 			double d2 = p_29912_.getEyeY() - this.getEyeY();
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
-			natto.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
+			natto.shoot(d1 + f, d2, d3 + f, 1.0F, 2.0F + this.random.nextInt(10) + 5);
 
 			this.level.addFreshEntity(natto);
 		}
+	}
+
+	public void performBreathAttack(LivingEntity p_29912_) {
+		NattoBallEntity ball = new NattoBallEntity(this.level, this);
+		double d1 = p_29912_.getX() - this.getX();
+		double d2 = p_29912_.getEyeY() - this.getEyeY();
+		double d3 = p_29912_.getZ() - this.getZ();
+		ball.shoot(d1, d2, d3, 1.0F, 10F);
+
+		this.level.addFreshEntity(ball);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -240,13 +281,13 @@ public class ShuDofuSpider extends Monster {
 		if (p_36347_.isAttackable()) {
 			p_36347_.hurt(DamageSource.mobAttack(this), 18.0F);
 			float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
-			i += EnchantmentHelper.getKnockbackBonus(this) + 0.65F;
+			i += EnchantmentHelper.getKnockbackBonus(this) + 1.5F;
 
 			if (i > 0) {
 				if (p_36347_ instanceof LivingEntity) {
-					((LivingEntity) p_36347_).knockback((double) ((float) i * 0.5F), (double) Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), (double) (-Mth.cos(this.getYRot() * ((float) Math.PI / 180F))));
+					((LivingEntity) p_36347_).knockback((double) ((float) i), (double) Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), (double) (-Mth.cos(this.getYRot() * ((float) Math.PI / 180F))));
 				} else {
-					p_36347_.push((double) (-Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * (float) i * 0.5F), 0.1D, (double) (Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * (float) i * 0.5F));
+					p_36347_.push((double) (-Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * (float) i), 0.1D, (double) (Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * (float) i));
 				}
 
 				this.setSprinting(false);
@@ -320,21 +361,32 @@ public class ShuDofuSpider extends Monster {
 		return p_28882_;
 	}
 
-	static class AttackGoal extends MeleeAttackGoal {
+	static class AttackGoal extends Goal {
 		private final ShuDofuSpider spider;
 		private int attackTime;
 		private int attackStep;
 		private int lastSeen;
+		private Path path;
 
 		public AttackGoal(ShuDofuSpider p_32247_) {
-			super(p_32247_, 0.8D, true);
 			this.spider = p_32247_;
 			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 		}
 
 		public boolean canUse() {
 			LivingEntity livingentity = this.spider.getTarget();
-			return livingentity != null && livingentity.isAlive() && this.spider.canAttack(livingentity);
+			if (livingentity == null) {
+				return false;
+			} else if (!livingentity.isAlive()) {
+				return false;
+			} else {
+				this.path = this.spider.getNavigation().createPath(livingentity, 0);
+				if (this.path != null) {
+					return true;
+				} else {
+					return this.spider.canAttack(livingentity);
+				}
+			}
 		}
 
 		public void start() {
@@ -345,8 +397,8 @@ public class ShuDofuSpider extends Monster {
 			this.lastSeen = 0;
 		}
 
-		protected double getAttackReachSqr(LivingEntity p_33825_) {
-			return (double) (2.0F + p_33825_.getBbWidth());
+		protected double getAttackReachSqr(LivingEntity p_29587_) {
+			return (double) (4.0F + p_29587_.getBbWidth());
 		}
 
 		public void tick() {
@@ -359,16 +411,18 @@ public class ShuDofuSpider extends Monster {
 				boolean flag = this.spider.getSensing().hasLineOfSight(entityTarget);
 
 				double d0 = this.spider.distanceToSqr(entityTarget);
-				if (d0 < 32.0D) {
-					if (!flag) {
-						return;
-					}
-					if (entity.distanceTo(entityTarget) <= 4.5F && attackTime <= 0) {
-						entity.setAttackAnimation(true);
-						this.attackTime = 40;
-						this.attackStep = 0;
-					}
-				} else if (d0 < this.getFollowDistance() * this.getFollowDistance() && flag) {
+				if (!this.spider.isRanged()) {
+					this.spider.getNavigation().moveTo(this.path, 0.8);
+				}
+				if (!flag) {
+					return;
+				}
+				if (entity.distanceTo(entityTarget) <= 4F && attackTime <= 10) {
+					entity.setAttackAnimation(true);
+					this.attackTime = 20;
+					this.attackStep = 0;
+				}
+				if (d0 < this.getFollowDistance() * this.getFollowDistance() && flag) {
 					if (this.attackTime <= 0) {
 						++this.attackStep;
 						if (this.attackStep == 1) {
@@ -381,9 +435,10 @@ public class ShuDofuSpider extends Monster {
 						}
 
 						if (this.attackStep > 1) {
-							this.spider.performRangedAttack(entityTarget, attackTime);
-
-							this.spider.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 0.4F / (this.spider.getRandom().nextFloat() * 0.4F + 0.8F));
+							System.out.println(entity.isRanged());
+							if (!entity.isRanged()) {
+								this.spider.setRanged(true);
+							}
 						}
 					}
 					entity.getLookControl().setLookAt(entityTarget, 10.0F, 10.0F);
@@ -401,7 +456,6 @@ public class ShuDofuSpider extends Monster {
 			return this.spider.getAttributeValue(Attributes.FOLLOW_RANGE);
 		}
 	}
-
 
 	public class JumpAttackGoal extends JumpGoal {
 		private int attackTime;
@@ -552,8 +606,36 @@ public class ShuDofuSpider extends Monster {
 		return this.entityData.get(DATA_ID_JUMP);
 	}
 
-	protected double getAttackReachSqr(LivingEntity p_25556_) {
-		return (double) (this.getBbWidth() * 2.0F * this.getBbWidth() * 2.0F + p_25556_.getBbWidth());
+	public void setRanged(boolean ranged) {
+		this.entityData.set(DATA_ID_RANGED, ranged);
+	}
+
+	public boolean isRanged() {
+		return this.entityData.get(DATA_ID_RANGED);
+	}
+
+	private double getHeadX(int p_31515_) {
+		if (p_31515_ <= 0) {
+			return this.getX();
+		} else {
+			float f = (this.yBodyRot + (float) (180 * (p_31515_ - 1))) * ((float) Math.PI / 180F);
+			float f1 = Mth.cos(f);
+			return this.getX() + (double) f1 * 1.3D;
+		}
+	}
+
+	private double getHeadY(int p_31517_) {
+		return p_31517_ <= 0 ? this.getY() + 3.0D : this.getY() + 2.2D;
+	}
+
+	private double getHeadZ(int p_31519_) {
+		if (p_31519_ <= 0) {
+			return this.getZ();
+		} else {
+			float f = (this.yBodyRot + (float) (180 * (p_31519_ - 1))) * ((float) Math.PI / 180F);
+			float f1 = Mth.sin(f);
+			return this.getZ() + (double) f1 * 1.3D;
+		}
 	}
 
 }

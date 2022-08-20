@@ -40,7 +40,7 @@ public class NattoCobWebEntity extends LivingEntity {
 	private final NonNullList<ItemStack> handItems = NonNullList.withSize(2, ItemStack.EMPTY);
 	private final NonNullList<ItemStack> armorItems = NonNullList.withSize(4, ItemStack.EMPTY);
 	private int lifeTime;
-	private static final int discardTime = 400;
+	private static final int discardTime = 600;
 
 	public NattoCobWebEntity(EntityType<? extends NattoCobWebEntity> p_19870_, Level p_19871_) {
 		super(p_19870_, p_19871_);

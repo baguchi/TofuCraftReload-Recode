@@ -7,6 +7,7 @@ import baguchan.tofucraft.client.model.TofuSpiderModel;
 import baguchan.tofucraft.client.model.TofunianModel;
 import baguchan.tofucraft.client.overlay.TofuPortalOverlay;
 import baguchan.tofucraft.client.render.FukumameRender;
+import baguchan.tofucraft.client.render.NattoBallRender;
 import baguchan.tofucraft.client.render.NattoStringRender;
 import baguchan.tofucraft.client.render.NetherFukumameRender;
 import baguchan.tofucraft.client.render.SoulFukumameRender;
@@ -98,6 +99,7 @@ public class ClientRegistrar {
 
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_STRNIG.get(), (context) -> new NattoStringRender<>(context, 1.0F, true));
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_COBWEB.get(), NattoCobWebRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.NATTO_BALL.get(), NattoBallRender::new);
 	}
 
 	@SubscribeEvent

@@ -22,6 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Locale;
 
+@OnlyIn(Dist.CLIENT)
 public class ParticleStink extends TextureSheetParticle {
 
 	private final float scale;

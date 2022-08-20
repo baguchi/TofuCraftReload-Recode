@@ -1,6 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.client.particle.ParticleSimpleStink;
 import baguchan.tofucraft.client.particle.ParticleStink;
 import baguchan.tofucraft.client.particle.ParticleZundaCloud;
 import baguchan.tofucraft.client.particle.SoymilkDripParticle;
@@ -35,6 +36,7 @@ public class TofuParticleTypes {
 			return ParticleZundaCloud.CloudData.CODEC(ZUNDA_CLOUD.get());
 		}
 	});
+	public static final RegistryObject<SimpleParticleType> SIMPLE_STINKE = PARTICLE_TYPES.register("simple_stink", () -> new SimpleParticleType(false));
 	public static final RegistryObject<ParticleType<ParticleStink.StinkData>> STINK = PARTICLE_TYPES.register("stink", () -> new ParticleType<ParticleStink.StinkData>(false, ParticleStink.StinkData.DESERIALIZER) {
 		@Override
 		public Codec<ParticleStink.StinkData> codec() {
@@ -53,6 +55,7 @@ public class TofuParticleTypes {
 		event.register(TofuParticleTypes.SOYMILK_SPLASH.get(), SoymilkSplashParticle.Provider::new);
 		event.register(TofuParticleTypes.ZUNDA_CLOUD.get(), ParticleZundaCloud.CloudFactory::new);
 		event.register(TofuParticleTypes.STINK.get(), ParticleStink.StinkFactory::new);
+		event.register(TofuParticleTypes.SIMPLE_STINKE.get(), ParticleSimpleStink.Provider::new);
 
 	}
 }
