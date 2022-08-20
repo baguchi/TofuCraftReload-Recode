@@ -66,7 +66,21 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 
 		PartDefinition bone6 = neck.addOrReplaceChild("bone6", CubeListBuilder.create().texOffs(0, 61).addBox(-13.0F, -10.2693F, -1.4327F, 26.0F, 21.0F, 21.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.26F, -1.22F, 4.66F, 0.1745F, 0.0F, 0.0F));
 
-		PartDefinition neck_back_r1 = bone6.addOrReplaceChild("neck_back_r1", CubeListBuilder.create().texOffs(76, 85).addBox(-11.0F, -12.0F, -10.5F, 22.0F, 16.0F, 18.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.2693F, 24.0673F, 0.4363F, 0.0F, 0.0F));
+		PartDefinition bone46 = bone6.addOrReplaceChild("bone46", CubeListBuilder.create(), PartPose.offset(0.0F, -2.2606F, 16.0174F));
+
+		PartDefinition neck_back_r1 = bone46.addOrReplaceChild("neck_back_r1", CubeListBuilder.create().texOffs(76, 85).addBox(-11.0F, -12.0F, -10.5F, 22.0F, 16.0F, 18.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.9913F, 8.0499F, 0.4363F, 0.0F, 0.0F));
+
+		PartDefinition body = bone46.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offsetAndRotation(0.24F, 0.0913F, -2.2901F, 0.0436F, 0.0F, 0.0F));
+
+		PartDefinition bone7 = body.addOrReplaceChild("bone7", CubeListBuilder.create(), PartPose.offset(0.0F, 0.7532F, 17.9781F));
+
+		PartDefinition neck_back_r2 = bone7.addOrReplaceChild("neck_back_r2", CubeListBuilder.create().texOffs(47, 110).mirror().addBox(-13.4349F, -3.2201F, 0.1493F, 11.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.3202F, -35.0959F, 3.8054F, 1.552F, -0.7457F, -1.5947F));
+
+		PartDefinition neck_back_r3 = bone7.addOrReplaceChild("neck_back_r3", CubeListBuilder.create().texOffs(47, 110).mirror().addBox(-12.3324F, -3.707F, -1.8272F, 11.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(8.3202F, -31.3915F, 0.976F, 1.4792F, -0.7562F, -1.2059F));
+
+		PartDefinition neck_back_r4 = bone7.addOrReplaceChild("neck_back_r4", CubeListBuilder.create().texOffs(47, 110).addBox(1.3324F, -3.707F, -1.8272F, 11.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-8.3202F, -31.3915F, 0.976F, 1.4792F, 0.7562F, 1.2059F));
+
+		PartDefinition body_r1 = bone7.addOrReplaceChild("body_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-16.5F, -16.5F, -18.5F, 33.0F, 26.0F, 35.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -12.8923F, 10.3301F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition bone33 = bone6.addOrReplaceChild("bone33", CubeListBuilder.create().texOffs(122, 119).addBox(-5.8247F, -0.6409F, 0.7162F, 11.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-6.75F, -16.0193F, 8.5673F, -0.519F, 0.4801F, 0.0085F));
 
@@ -75,13 +89,6 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 		PartDefinition bone35 = bone6.addOrReplaceChild("bone35", CubeListBuilder.create().texOffs(0, 61).addBox(-5.8247F, 1.3591F, 0.7162F, 10.0F, 5.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.75F, -16.0193F, 3.5673F, -0.519F, 0.4801F, 0.0085F));
 
 		PartDefinition bone36 = bone6.addOrReplaceChild("bone36", CubeListBuilder.create().texOffs(0, 30).addBox(-4.1753F, 1.3591F, 0.7162F, 10.0F, 5.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(5.23F, -16.0193F, 3.5673F, -0.519F, -0.4801F, -0.0085F));
-
-		PartDefinition body = bone6.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offsetAndRotation(0.24F, -2.1693F, 13.7273F, 0.0436F, 0.0F, 0.0F));
-
-		PartDefinition bone7 = body.addOrReplaceChild("bone7", CubeListBuilder.create(), PartPose.offset(0.0F, 0.7532F, 17.9781F));
-
-		PartDefinition body_r1 = bone7.addOrReplaceChild("body_r1", CubeListBuilder.create().texOffs(40, 103).addBox(-4.5F, -4.5F, 16.5F, 9.0F, 0.0F, 7.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 0).addBox(-16.5F, -16.5F, -18.5F, 33.0F, 26.0F, 35.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -12.8923F, 10.3301F, 0.7854F, 0.0F, 0.0F));
 
 		PartDefinition head = neck.addOrReplaceChild("head", CubeListBuilder.create().texOffs(101, 0).addBox(-10.0F, -8.0F, -16.0F, 20.0F, 16.0F, 16.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.18F, -6.14F, -4.4F, 0.0873F, 0.0F, 0.0F));
 
@@ -143,13 +150,13 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 		PartDefinition leg4 = neck.addOrReplaceChild("leg4", CubeListBuilder.create().texOffs(156, 92).addBox(0.41F, -2.28F, -4.1F, 15.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
 				.texOffs(52, 191).addBox(15.41F, -1.28F, -3.1F, 7.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(6.95F, -2.14F, 6.42F, 0.0F, 0.0F, -0.6109F));
 
-		PartDefinition bone18 = leg4.addOrReplaceChild("bone18", CubeListBuilder.create().texOffs(0, 131).addBox(-12.5F, -2.9122F, -4.9718F, 25.0F, 8.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(23.7647F, 7.1559F, -0.8122F, 0.0F, 0.0F, 1.9199F));
+		PartDefinition bone18 = leg4.addOrReplaceChild("bone18", CubeListBuilder.create().texOffs(0, 131).addBox(-4.8961F, -3.5751F, -5.0F, 25.0F, 8.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(25.7425F, -0.2161F, -0.784F, 0.0F, 0.0F, 1.9199F));
 
-		PartDefinition bone42 = bone18.addOrReplaceChild("bone42", CubeListBuilder.create(), PartPose.offset(0.0F, -0.7123F, 7.2385F));
+		PartDefinition bone42 = bone18.addOrReplaceChild("bone42", CubeListBuilder.create(), PartPose.offset(7.6039F, -1.3751F, 7.2104F));
 
-		PartDefinition bone43 = bone18.addOrReplaceChild("bone43", CubeListBuilder.create(), PartPose.offset(0.9957F, -8.2012F, -7.2994F));
+		PartDefinition bone43 = bone18.addOrReplaceChild("bone43", CubeListBuilder.create(), PartPose.offset(8.5996F, -8.8641F, -7.3276F));
 
-		PartDefinition bone19 = bone18.addOrReplaceChild("bone19", CubeListBuilder.create(), PartPose.offset(9.2696F, 1.0991F, -0.0878F));
+		PartDefinition bone19 = bone18.addOrReplaceChild("bone19", CubeListBuilder.create(), PartPose.offset(16.8735F, 0.4363F, -0.116F));
 
 		PartDefinition bone38 = bone19.addOrReplaceChild("bone38", CubeListBuilder.create(), PartPose.offsetAndRotation(-0.9659F, -0.2588F, 0.0F, 0.0F, 0.0F, 0.2618F));
 

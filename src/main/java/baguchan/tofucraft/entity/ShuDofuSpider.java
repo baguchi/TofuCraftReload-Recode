@@ -174,6 +174,7 @@ public class ShuDofuSpider extends Monster {
 					this.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
 				} else {
 					this.performBreathAttack(this.getTarget());
+					this.playSound(SoundEvents.ENDER_DRAGON_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
 				}
 			}
 			if (this.rangedTime == 50) {
@@ -225,7 +226,7 @@ public class ShuDofuSpider extends Monster {
 		for (int i = 0; i < 3; i++) {
 			NattoStringEntity natto = new NattoStringEntity(this.level, this);
 			double d1 = p_29912_.getX() - this.getX();
-			double d2 = p_29912_.getEyeY() - this.getEyeY();
+			double d2 = p_29912_.getY() - this.getEyeY();
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 			natto.shoot(d1 + f, d2, d3 + f, 1.0F, 2.0F + this.random.nextInt(10) + 5);
@@ -237,7 +238,7 @@ public class ShuDofuSpider extends Monster {
 	public void performBreathAttack(LivingEntity p_29912_) {
 		NattoBallEntity ball = new NattoBallEntity(this.level, this);
 		double d1 = p_29912_.getX() - this.getX();
-		double d2 = p_29912_.getEyeY() - this.getEyeY();
+		double d2 = p_29912_.getY() - this.getEyeY();
 		double d3 = p_29912_.getZ() - this.getZ();
 		ball.shoot(d1, d2, d3, 1.0F, 10F);
 
@@ -306,7 +307,7 @@ public class ShuDofuSpider extends Monster {
 		this.playSound(SoundEvents.SPIDER_DEATH, 1.0F, 0.6F);
 
 		if (!this.level.isClientSide()) {
-			this.level.broadcastEntityEvent(this, (byte) 7);
+			this.level.broadcastEntityEvent(this, (byte) 101);
 		}
 	}
 
@@ -354,7 +355,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.5D).add(Attributes.ATTACK_KNOCKBACK, 1.00F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 12.0D).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 10.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.5D).add(Attributes.ATTACK_KNOCKBACK, 1.00F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 12.0D).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 20.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
@@ -430,7 +431,7 @@ public class ShuDofuSpider extends Monster {
 						} else if (this.attackStep <= 2) {
 							this.attackTime = 10;
 						} else {
-							this.attackTime = 30;
+							this.attackTime = 20;
 							this.attackStep = 0;
 						}
 
