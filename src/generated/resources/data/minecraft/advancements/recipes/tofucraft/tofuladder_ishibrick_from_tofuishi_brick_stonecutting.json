@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:tofuladder_ishibrick_from_tofuishi_brick_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tofuishi_brick": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:tofuishi_brick"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_tofuishi_brick",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:tofuladder_ishibrick_from_tofuishi_brick_stonecutting"
+    ]
+  }
+}

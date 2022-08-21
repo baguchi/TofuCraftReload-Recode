@@ -291,15 +291,19 @@ public class CraftingGenerator extends CraftingDataHelper {
 		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSLAB_ISHI.get(), TofuBlocks.ISHITOFU.get());
 		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSTAIR_ISHI.get(), TofuBlocks.ISHITOFU.get());
 		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_BRICK.get(), TofuBlocks.ISHITOFU.get());
-		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_CHISELED_BRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
-		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
-		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
-		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
-
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFULADDER_ISHI.get(), TofuBlocks.ISHITOFU.get(), 3);
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFULADDER_ISHIBRICK.get(), TofuBlocks.ISHITOFU.get(), 3);
 		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_CHISELED_BRICK.get(), TofuBlocks.ISHITOFU.get());
 		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(), TofuBlocks.ISHITOFU.get());
 		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.ISHITOFU.get());
 		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.ISHITOFU.get());
+
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFULADDER_ISHI.get(), TofuBlocks.ISHITOFU_BRICK.get(), 3);
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFULADDER_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get(), 3);
+		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_CHISELED_BRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
 
 
 		makeTorch(consumer, TofuBlocks.TOFUTORCH_KINU, TofuItems.TOFUKINU);
