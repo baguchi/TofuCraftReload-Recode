@@ -383,7 +383,7 @@ public class ShuDofuSpider extends Monster {
 	public boolean hurt(DamageSource p_31461_, float p_31462_) {
 		if (this.isInvulnerableTo(p_31461_)) {
 			return false;
-		} else if (!(p_31461_.getEntity() instanceof ShuDofuSpider)) {
+		} else if (!(p_31461_.getEntity() instanceof ShuDofuSpider) && p_31461_ != DamageSource.SWEET_BERRY_BUSH && p_31461_ != DamageSource.CACTUS && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.IN_WALL) {
 			Entity entity = p_31461_.getDirectEntity();
 			if (entity instanceof Projectile) {
 				return false;
