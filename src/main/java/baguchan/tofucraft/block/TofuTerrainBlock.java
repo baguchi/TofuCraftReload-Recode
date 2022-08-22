@@ -5,6 +5,7 @@ import baguchan.tofucraft.world.placement.TofuWorldPlacements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -13,6 +14,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -64,5 +68,10 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 			}
 		}
 
+	}
+
+	@Override
+	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
+		return toolAction == ToolActions.HOE_TILL ? TofuBlocks.TOFU_FARMLAND.get().defaultBlockState() : null;
 	}
 }

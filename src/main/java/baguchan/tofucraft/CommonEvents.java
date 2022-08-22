@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,6 +28,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -209,8 +211,11 @@ public class CommonEvents {
 		if (!event.getPlayer().isCreative() && (
 				event.getLevel().getBlockState(event.getPos()).is(Blocks.FERN) || event.getLevel().getBlockState(event.getPos()).is(Blocks.TALL_GRASS) || event.getLevel().getBlockState(event.getPos()).is(Blocks.GRASS)) &&
 				event.getLevel() instanceof Level && ((Level) event.getLevel()).random.nextFloat() < 0.075F) {
-			ItemEntity entity = new ItemEntity((Level) event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(((Level) event.getLevel()).random.nextBoolean() ? TofuItems.SEEDS_SOYBEANS.get() : TofuItems.SEEDS_RICE.get()));
-			event.getLevel().addFreshEntity(entity);
+			if (!(event.getPlayer().getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof ShearsItem)) {
+				ItemEntity entity = new ItemEntity((Level) event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(((Level) event.getLevel()).random.nextBoolean() ? TofuItems.SEEDS_SOYBEANS.get() : TofuItems.SEEDS_RICE.get()));
+				entity.setDefaultPickUpDelay();
+				event.getLevel().addFreshEntity(entity);
+			}
 		}
 	}
 

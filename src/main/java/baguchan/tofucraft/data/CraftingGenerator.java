@@ -242,8 +242,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuBlocks.TOFUSLAB_ISHIBRICK.get())
 				.unlockedBy("has_item", has(TofuBlocks.TOFUSLAB_ISHIBRICK.get()))
 				.save(consumer);
-		cuttingRecipe(consumer, TofuBlocks.ISHITOFU_BRICK, TofuBlocks.ISHITOFU_CHISELED_BRICK);
-
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_KINU, TofuBlocks.KINUTOFU);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.MOMENTOFU);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_ISHI, TofuBlocks.ISHITOFU);
@@ -291,6 +289,27 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_METAL, TofuItems.TOFUMETAL);
 		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_HELL, TofuItems.TOFUHELL);
 		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_SOUL, TofuItems.TOFUSOUL);
+
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUTRAPDOOR_ISHI.get(), TofuBlocks.ISHITOFU.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUFENCE_ISHI.get(), TofuBlocks.ISHITOFU.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUDOOR_ISHI.get(), TofuBlocks.ISHITOFU.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSLAB_ISHI.get(), TofuBlocks.ISHITOFU.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSTAIR_ISHI.get(), TofuBlocks.ISHITOFU.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_BRICK.get(), TofuBlocks.ISHITOFU.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFULADDER_ISHI.get(), TofuBlocks.ISHITOFU.get(), 3);
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFULADDER_ISHIBRICK.get(), TofuBlocks.ISHITOFU.get(), 3);
+		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_CHISELED_BRICK.get(), TofuBlocks.ISHITOFU.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(), TofuBlocks.ISHITOFU.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.ISHITOFU.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.ISHITOFU.get());
+
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFULADDER_ISHI.get(), TofuBlocks.ISHITOFU_BRICK.get(), 3);
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFULADDER_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get(), 3);
+		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_CHISELED_BRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
+		stonecutterResultFromBase(consumer, TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
+
 
 		makeTorch(consumer, TofuBlocks.TOFUTORCH_KINU, TofuItems.TOFUKINU);
 		makeTorch(consumer, TofuBlocks.TOFUTORCH_MOMEN, TofuItems.TOFUMOMEN);
