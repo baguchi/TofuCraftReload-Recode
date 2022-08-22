@@ -3,6 +3,7 @@ package baguchan.tofucraft.entity;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuEntityTypes;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -23,12 +24,14 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.monster.ZombieVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -75,6 +78,31 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 			this.conversionTime -= 1;
 			if (this.conversionTime <= 0 && net.minecraftforge.event.ForgeEventFactory.canLivingConvert(this, TofuEntityTypes.SHUDOFUSPIDER.get(), (timer) -> this.conversionTime = timer)) {
 				this.finishConversion((ServerLevel) this.level);
+				if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this)) {
+					int j1 = Mth.floor(this.getY());
+					int i2 = Mth.floor(this.getX());
+					int j2 = Mth.floor(this.getZ());
+					boolean flag = false;
+
+					for (int j = -1; j <= 1; ++j) {
+						for (int k2 = -1; k2 <= 1; ++k2) {
+							for (int k = 0; k <= 3; ++k) {
+								int l2 = i2 + j;
+								int l = j1 + k;
+								int i1 = j2 + k2;
+								BlockPos blockpos = new BlockPos(l2, l, i1);
+								BlockState blockstate = this.level.getBlockState(blockpos);
+								if (WitherBoss.canDestroy(blockstate) && net.minecraftforge.event.ForgeEventFactory.onEntityDestroyBlock(this, blockpos, blockstate)) {
+									flag = this.level.destroyBlock(blockpos, true, this) || flag;
+								}
+							}
+						}
+					}
+
+					if (flag) {
+						this.level.levelEvent((Player) null, 1022, this.blockPosition(), 0);
+					}
+				}
 			}
 		}
 
