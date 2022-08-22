@@ -1,0 +1,23 @@
+{
+  "parent": "tofucraft:tofucraft/tofu_world",
+  "display": {
+    "icon": {
+      "item": "minecraft:echo_shard"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.nightmares_echo.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.nightmares_echo.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "chili": {
+      "trigger": "tofucraft:nightmares_echo"
+    }
+  }
+}

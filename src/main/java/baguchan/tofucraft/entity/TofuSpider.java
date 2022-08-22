@@ -1,26 +1,51 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.tofucraft.registry.TofuAdvancements;
+import baguchan.tofucraft.registry.TofuEntityTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.monster.ZombieVillager;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 import java.util.EnumSet;
+import java.util.List;
 
 public class TofuSpider extends Spider implements RangedAttackMob {
+	private static final EntityDataAccessor<Boolean> DATA_CONVERTING_ID = SynchedEntityData.defineId(ZombieVillager.class, EntityDataSerializers.BOOLEAN);
+
+	private int conversionTime;
+
 	public TofuSpider(EntityType<? extends TofuSpider> p_33786_, Level p_33787_) {
 		super(p_33786_, p_33787_);
 		this.xpReward = 4;
+	}
+
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DATA_CONVERTING_ID, false);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -31,6 +56,63 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	protected void registerGoals() {
 		super.registerGoals();
 		this.goalSelector.addGoal(2, new TofuSpiderAttackGoal(this));
+	}
+
+	public void addAdditionalSaveData(CompoundTag p_34397_) {
+		super.addAdditionalSaveData(p_34397_);
+		p_34397_.putInt("ConversionTime", this.isConverting() ? this.conversionTime : -1);
+	}
+
+	public void readAdditionalSaveData(CompoundTag p_34387_) {
+		super.readAdditionalSaveData(p_34387_);
+		if (p_34387_.contains("ConversionTime", 99) && p_34387_.getInt("ConversionTime") > -1) {
+			this.startConverting(p_34387_.getInt("ConversionTime"));
+		}
+	}
+
+	public void tick() {
+		if (!this.level.isClientSide && this.isAlive() && this.isConverting()) {
+			this.conversionTime -= 1;
+			if (this.conversionTime <= 0 && net.minecraftforge.event.ForgeEventFactory.canLivingConvert(this, TofuEntityTypes.SHUDOFUSPIDER.get(), (timer) -> this.conversionTime = timer)) {
+				this.finishConversion((ServerLevel) this.level);
+			}
+		}
+
+		super.tick();
+	}
+
+	private void finishConversion(ServerLevel p_34399_) {
+		ShuDofuSpider shudofuSpider = this.convertTo(TofuEntityTypes.SHUDOFUSPIDER.get(), false);
+		shudofuSpider.finalizeSpawn(p_34399_, p_34399_.getCurrentDifficultyAt(shudofuSpider.blockPosition()), MobSpawnType.CONVERSION, (SpawnGroupData) null, (CompoundTag) null);
+
+		List<Player> players = this.level.getNearbyPlayers(TargetingConditions.forNonCombat(), this, this.getBoundingBox().inflate(60D));
+
+		for (Player player : players) {
+			if (player instanceof ServerPlayer serverPlayer) {
+				TofuAdvancements.NIGHTMARES_ECHO.trigger(serverPlayer);
+			}
+		}
+
+		shudofuSpider.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0));
+		if (!this.isSilent()) {
+			this.playSound(SoundEvents.WITHER_SPAWN, 4.0F, 1.0F);
+		}
+		net.minecraftforge.event.ForgeEventFactory.onLivingConvert(this, shudofuSpider);
+	}
+
+	public boolean removeWhenFarAway(double p_34414_) {
+		return !this.isConverting();
+	}
+
+	public boolean isConverting() {
+		return this.getEntityData().get(DATA_CONVERTING_ID);
+	}
+
+	public void startConverting(int p_34385_) {
+		this.getEntityData().set(DATA_CONVERTING_ID, true);
+		this.removeEffect(MobEffects.WEAKNESS);
+		this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, p_34385_, Math.min(this.level.getDifficulty().getId() - 1, 0)));
+		this.level.broadcastEntityEvent(this, (byte) 16);
 	}
 
 	protected float getStandingEyeHeight(Pose p_33799_, EntityDimensions p_33800_) {
