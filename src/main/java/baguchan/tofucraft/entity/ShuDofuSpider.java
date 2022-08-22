@@ -45,6 +45,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fluids.FluidType;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -374,10 +375,15 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	@Override
+	public boolean canDrownInFluidType(FluidType type) {
+		return false;
+	}
+
+	@Override
 	public boolean hurt(DamageSource p_31461_, float p_31462_) {
 		if (this.isInvulnerableTo(p_31461_)) {
 			return false;
-		} else if (p_31461_ != DamageSource.DROWN && p_31461_ != DamageSource.IN_FIRE && p_31461_ != DamageSource.ON_FIRE && !(p_31461_.getEntity() instanceof ShuDofuSpider)) {
+		} else if (!(p_31461_.getEntity() instanceof ShuDofuSpider)) {
 			Entity entity = p_31461_.getDirectEntity();
 			if (entity instanceof Projectile) {
 				return false;
