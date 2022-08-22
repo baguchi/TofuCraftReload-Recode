@@ -45,7 +45,7 @@ public class BugleItem extends Item {
 					p_41414_.getOffhandItem().shrink(1);
 					List<TofuSpider> entities = p_41413_.getNearbyEntities(TofuSpider.class, TARGETING, p_41414_, p_41414_.getBoundingBox().inflate(18.0D));
 
-					p_41414_.playSound(SoundEvents.SCULK_CATALYST_BLOOM, 3.0F, 1.0F);
+					p_41414_.playSound(SoundEvents.SCULK_SHRIEKER_SHRIEK, 4.0F, 1.0F);
 					if (!entities.isEmpty()) {
 						Collections.shuffle(entities);
 						entities.get(0).startConverting(300);
