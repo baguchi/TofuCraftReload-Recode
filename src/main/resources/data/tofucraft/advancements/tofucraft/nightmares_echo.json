@@ -1,5 +1,5 @@
 {
-  "parent": "tofucraft:tofucraft/tofu_world",
+  "parent": "tofucraft:tofucraft/tofuworld",
   "display": {
     "icon": {
       "item": "minecraft:echo_shard"

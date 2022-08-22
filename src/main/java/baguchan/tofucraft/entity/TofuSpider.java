@@ -85,7 +85,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		ShuDofuSpider shudofuSpider = this.convertTo(TofuEntityTypes.SHUDOFUSPIDER.get(), false);
 		shudofuSpider.finalizeSpawn(p_34399_, p_34399_.getCurrentDifficultyAt(shudofuSpider.blockPosition()), MobSpawnType.CONVERSION, (SpawnGroupData) null, (CompoundTag) null);
 
-		List<Player> players = this.level.getNearbyPlayers(TargetingConditions.forNonCombat(), this, this.getBoundingBox().inflate(60D));
+		List<Player> players = p_34399_.getNearbyPlayers(TargetingConditions.forNonCombat().ignoreInvisibilityTesting().ignoreLineOfSight(), this, this.getBoundingBox().inflate(60D));
 
 		for (Player player : players) {
 			if (player instanceof ServerPlayer serverPlayer) {
