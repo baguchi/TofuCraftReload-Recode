@@ -183,7 +183,9 @@ public class TofuPig extends Pig implements ItemInteractable {
 		AABB box = new AABB(new BlockPos(this.getX() - radius, this.getY() - 1, this.getZ() - radius), new BlockPos(this.getX() + radius, this.getY() + 3, this.getZ() + radius));
 		List<LivingEntity> hitEntities = this.level.getEntitiesOfClass(LivingEntity.class, box);
 		for (LivingEntity hitEntity : hitEntities) {
-			hitEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200));
+			if (!hitEntity.level.isClientSide) {
+				hitEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200));
+			}
 		}
 		if (this.level.isClientSide) {
 			int count = 20;
