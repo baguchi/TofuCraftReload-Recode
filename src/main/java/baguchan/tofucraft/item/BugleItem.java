@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,12 +37,13 @@ public class BugleItem extends Item {
 			}
 		}
 		if (i >= 20) {
+			p_41413_.gameEvent(p_41414_, GameEvent.INSTRUMENT_PLAY, p_41414_.position());
 			if (p_41414_.getOffhandItem().is(Items.ECHO_SHARD)) {
 				if (p_41414_ instanceof Player) {
 					Player playerentity = (Player) p_41414_;
 					playerentity.getCooldowns().addCooldown(this, 600);
 					p_41414_.getOffhandItem().shrink(1);
-					List<TofuSpider> entities = p_41413_.getNearbyEntities(TofuSpider.class, TARGETING, p_41414_, p_41414_.getBoundingBox().inflate(32.0D));
+					List<TofuSpider> entities = p_41413_.getNearbyEntities(TofuSpider.class, TARGETING, p_41414_, p_41414_.getBoundingBox().inflate(18.0D));
 
 					p_41414_.playSound(SoundEvents.SCULK_CATALYST_BLOOM, 3.0F, 1.0F);
 					Collections.shuffle(entities);
