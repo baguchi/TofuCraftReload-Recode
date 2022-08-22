@@ -110,8 +110,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 
 	public void startConverting(int p_34385_) {
 		this.getEntityData().set(DATA_CONVERTING_ID, true);
-		this.removeEffect(MobEffects.WEAKNESS);
-		this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, p_34385_, Math.min(this.level.getDifficulty().getId() - 1, 0)));
+		this.conversionTime = p_34385_;
 		this.level.broadcastEntityEvent(this, (byte) 16);
 	}
 
