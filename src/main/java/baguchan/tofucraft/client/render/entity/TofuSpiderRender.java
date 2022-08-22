@@ -25,6 +25,11 @@ public class TofuSpiderRender extends MobRenderer<TofuSpider, TofuSpiderModel<To
 		p_116315_.scale(var4, var4, var4);
 	}
 
+	@Override
+	protected boolean isShaking(TofuSpider p_115304_) {
+		return super.isShaking(p_115304_) || p_115304_.isConverting();
+	}
+
 	public ResourceLocation getTextureLocation(TofuSpider p_114029_) {
 		return LOCATION;
 	}

@@ -1,13 +1,17 @@
 package baguchan.tofucraft.client;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.client.model.ShuDofuSpiderModel;
 import baguchan.tofucraft.client.model.TofuGandlemModel;
 import baguchan.tofucraft.client.model.TofuSpiderModel;
 import baguchan.tofucraft.client.model.TofunianModel;
 import baguchan.tofucraft.client.overlay.TofuPortalOverlay;
 import baguchan.tofucraft.client.render.FukumameRender;
+import baguchan.tofucraft.client.render.NattoBallRender;
+import baguchan.tofucraft.client.render.NattoStringRender;
 import baguchan.tofucraft.client.render.NetherFukumameRender;
 import baguchan.tofucraft.client.render.SoulFukumameRender;
+import baguchan.tofucraft.client.render.entity.ShuDofuSpiderRender;
 import baguchan.tofucraft.client.render.entity.TofuCowRender;
 import baguchan.tofucraft.client.render.entity.TofuFishRender;
 import baguchan.tofucraft.client.render.entity.TofuGandlemRender;
@@ -15,6 +19,7 @@ import baguchan.tofucraft.client.render.entity.TofuPigRender;
 import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
 import baguchan.tofucraft.client.render.entity.TofuSpiderRender;
 import baguchan.tofucraft.client.render.entity.TofunianRender;
+import baguchan.tofucraft.client.render.entity.effect.NattoCobWebRender;
 import baguchan.tofucraft.client.render.item.TofuShieldBWLR;
 import baguchan.tofucraft.client.render.tileentity.FoodPlateRender;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
@@ -86,10 +91,15 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.TOFUSLIME.get(), TofuSlimeRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUSPIDER.get(), TofuSpiderRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_GANDLEM.get(), TofuGandlemRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.SHUDOFUSPIDER.get(), ShuDofuSpiderRender::new);
 
 		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME.get(), FukumameRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.NETHER_FUKUMAME.get(), NetherFukumameRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.SOUL_FUKUMAME.get(), SoulFukumameRender::new);
+
+		event.registerEntityRenderer(TofuEntityTypes.NATTO_STRNIG.get(), (context) -> new NattoStringRender<>(context, 1.0F, true));
+		event.registerEntityRenderer(TofuEntityTypes.NATTO_COBWEB.get(), NattoCobWebRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.NATTO_BALL.get(), NattoBallRender::new);
 	}
 
 	@SubscribeEvent
@@ -97,6 +107,7 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.TOFUNIAN, TofunianModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFUSPIDER, TofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFU_GANDLEM, TofuGandlemModel::createBodyLayer);
+		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
 	}
 
 	@SubscribeEvent

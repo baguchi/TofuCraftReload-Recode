@@ -1,6 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.entity.ShuDofuSpider;
 import baguchan.tofucraft.entity.TofuCow;
 import baguchan.tofucraft.entity.TofuFish;
 import baguchan.tofucraft.entity.TofuGandlem;
@@ -8,7 +9,10 @@ import baguchan.tofucraft.entity.TofuPig;
 import baguchan.tofucraft.entity.TofuSlime;
 import baguchan.tofucraft.entity.TofuSpider;
 import baguchan.tofucraft.entity.Tofunian;
+import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.tofucraft.entity.projectile.NattoBallEntity;
+import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
 import net.minecraft.world.entity.EntityType;
@@ -63,6 +67,18 @@ public class TofuEntityTypes {
 	public static final RegistryObject<EntityType<SoulFukumameEntity>> SOUL_FUKUMAME = ENTITIES.register("soul_fukumame", () -> EntityType.Builder.<SoulFukumameEntity>of(SoulFukumameEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).build("tofucraft:soul_fukumame"));
 
+	public static final RegistryObject<EntityType<NattoStringEntity>> NATTO_STRNIG = ENTITIES.register("natto_string", () -> EntityType.Builder.<NattoStringEntity>of(NattoStringEntity::new, MobCategory.MISC)
+			.sized(0.2F, 0.2F).build("tofucraft:natto_string"));
+
+	public static final RegistryObject<EntityType<NattoCobWebEntity>> NATTO_COBWEB = ENTITIES.register("natto_cobweb", () -> EntityType.Builder.<NattoCobWebEntity>of(NattoCobWebEntity::new, MobCategory.MISC)
+			.sized(3F, 0.1F).build("tofucraft:natto_cobweb"));
+
+	public static final RegistryObject<EntityType<NattoBallEntity>> NATTO_BALL = ENTITIES.register("natto_ball", () -> EntityType.Builder.<NattoBallEntity>of(NattoBallEntity::new, MobCategory.MISC)
+			.sized(0.35F, 0.35F).build("tofucraft:natto_ball"));
+
+	public static final RegistryObject<EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
+			.sized(3.5F, 2.9F).clientTrackingRange(10).fireImmune().build("tofucraft:shudofuspider"));
+
 	/*public static final EntityType<ZundaArrowEntity> ZUNDA_ARROW = EntityType.Builder.<ZundaArrowEntity>of(ZundaArrowEntity::new, MobCategory.MISC)
 			.sized(0.5F, 0.5F).build("tofucraft:zunda_arrow");*/
 
@@ -79,6 +95,8 @@ public class TofuEntityTypes {
 		event.put(TOFUSLIME.get(), Monster.createMonsterAttributes().build());
 		event.put(TOFUSPIDER.get(), TofuSpider.createAttributes().build());
 		event.put(TOFU_GANDLEM.get(), TofuGandlem.createAttributes().build());
+		event.put(SHUDOFUSPIDER.get(), ShuDofuSpider.createAttributes().build());
+		event.put(NATTO_COBWEB.get(), NattoCobWebEntity.createAttributes().build());
 
 		SpawnPlacements.register(TOFUCOW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCow::checkTofuAnimalSpawnRules);
 		SpawnPlacements.register(TOFUPIG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuPig::checkTofuAnimalSpawnRules);

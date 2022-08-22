@@ -79,6 +79,8 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFUMISO = ITEMS.register("tofumiso", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUMISO).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUDRIED = ITEMS.register("tofudried", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUDRIED).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUSMOKE = ITEMS.register("smoketofu", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUSMOKE).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> SHUDOFU = ITEMS.register("shudofu", () -> new Item((new Item.Properties()).food(TofuFoods.SHUDOFU).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
 	public static final RegistryObject<Item> TOFUSESAME = ITEMS.register("tofusesame", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUSESAME).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUFRIED = ITEMS.register("tofufried", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUFRIED).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUFRIED_POUCH = ITEMS.register("tofufried_pouch", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUFRIED_POUCH).tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -319,6 +321,8 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFUPIG_SPAWNEGG = ITEMS.register("tofupig_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUPIG, 15460584, 10066329, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUSLIME_SPAWNEGG = ITEMS.register("tofuslime_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUSPIDER_SPAWNEGG = ITEMS.register("tofuspider_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUSPIDER, 15460584, 3026478, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
+	public static final RegistryObject<Item> NATTO_COBWEB = ITEMS.register("natto_cobweb", () -> new Item((new Item.Properties())));
 
 	//Tofu delight item
 	public static final RegistryObject<Item> TOMATO_SOYBEAN_STEW = ITEMS.register("tomato_soybean_stew", () -> new ReturnableDishItem(Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.TOMATO_SOYBEAN_STEW).tab(TofuCreativeModeTab.TOFU_DELIGHT)));

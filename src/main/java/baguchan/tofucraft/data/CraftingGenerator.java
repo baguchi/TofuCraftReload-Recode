@@ -90,6 +90,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
 				.save(consumer);
 
+		ShapedRecipeBuilder.shaped(TofuItems.BUGLE.get())
+				.pattern("  #")
+				.pattern("###")
+				.define('#', Items.IRON_INGOT)
+				.unlockedBy("has_item", has(Items.IRON_INGOT))
+				.save(consumer);
+
 
 		helmetItem(consumer, "tofu_kinu_helmet", TofuItems.ARMOR_TOFU_KINUHELMET, TofuBlocks.KINUTOFU);
 		chestplateItem(consumer, "tofu_kinu_chestplate", TofuItems.ARMOR_TOFU_KINUCHESTPLATE, TofuBlocks.KINUTOFU);

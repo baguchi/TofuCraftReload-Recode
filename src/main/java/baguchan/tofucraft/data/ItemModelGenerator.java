@@ -148,6 +148,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFUDRIED.get());
 		singleTex(TofuItems.TOFUFRIED.get());
 		singleTex(TofuItems.TOFUSMOKE.get());
+		singleTex(TofuItems.SHUDOFU.get());
 		singleTex(TofuItems.TOFUSESAME.get());
 		singleTex(TofuItems.TOFUFRIED_POUCH.get());
 		singleTex(TofuItems.TOFUANNIN.get());
@@ -381,6 +382,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.EGGTOFU.get());
 		toBlock(TofuBlocks.TOFUSTAIR_EGG.get());
 		toBlock(TofuBlocks.TOFUSLAB_EGG.get());
+
+		singleTex(TofuItems.NATTO_COBWEB.get());
 	}
 
 	public ItemModelBuilder torchItem(Block item) {
