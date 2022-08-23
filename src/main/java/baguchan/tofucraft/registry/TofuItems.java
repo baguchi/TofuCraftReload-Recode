@@ -10,6 +10,7 @@ import baguchan.tofucraft.item.ChiliItem;
 import baguchan.tofucraft.item.FukumameItem;
 import baguchan.tofucraft.item.HoneySoymilkBottleItem;
 import baguchan.tofucraft.item.KoujiBaseItem;
+import baguchan.tofucraft.item.NattoCobWebItem;
 import baguchan.tofucraft.item.NetherFukumameItem;
 import baguchan.tofucraft.item.RamuneSoymilkBottleItem;
 import baguchan.tofucraft.item.ReturnableDishItem;
@@ -322,7 +323,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFUSLIME_SPAWNEGG = ITEMS.register("tofuslime_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUSLIME, 15460584, 3026478, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> TOFUSPIDER_SPAWNEGG = ITEMS.register("tofuspider_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUSPIDER, 15460584, 3026478, (new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
-	public static final RegistryObject<Item> NATTO_COBWEB = ITEMS.register("natto_cobweb", () -> new Item((new Item.Properties())));
+	public static final RegistryObject<Item> NATTO_COBWEB = ITEMS.register("natto_cobweb", () -> new NattoCobWebItem((new Item.Properties().tab(TofuCreativeModeTab.TOFUCRAFT))));
 
 	//Tofu delight item
 	public static final RegistryObject<Item> TOMATO_SOYBEAN_STEW = ITEMS.register("tomato_soybean_stew", () -> new ReturnableDishItem(Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.TOMATO_SOYBEAN_STEW).tab(TofuCreativeModeTab.TOFU_DELIGHT)));
