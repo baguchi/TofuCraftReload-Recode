@@ -28,6 +28,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -110,6 +111,17 @@ public class CommonEvents {
 		if (event.getItemStack().is(TofuItems.BUCKET_SOYMILK.get()) && event.getLevel().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
 			event.getLevel().setBlock(event.getPos(), TofuBlocks.SOYMILK_CAULDRON.get().defaultBlockState(), 2);
 			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
+			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
+			if (!event.getEntity().isCreative()) {
+				event.getItemStack().shrink(1);
+			}
+			if (event.getItemStack().isEmpty()) {
+				event.getEntity().setItemInHand(event.getHand(), itemstack2);
+			} else if (!event.getEntity().isCreative() &&
+					!event.getEntity().getInventory().add(itemstack2)) {
+				event.getEntity().drop(itemstack2, false);
+			}
+
 			event.setCancellationResult(InteractionResult.SUCCESS);
 			event.setCanceled(true);
 		}
