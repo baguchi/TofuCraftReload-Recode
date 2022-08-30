@@ -105,7 +105,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 
 		if (tfStorageBlockEntity.getEnergyStored() > 0) {
 			if (tfStorageBlockEntity.isValid()) {
-				if (!tfStorageBlockEntity.isCached || tfStorageBlockEntity.findCooldown <= 0)
+				if (!tfStorageBlockEntity.isCached || --tfStorageBlockEntity.findCooldown <= 0)
 					tfStorageBlockEntity.onCache();
 				if (tfStorageBlockEntity.cache.size() > 0) {
 					List<BlockEntity> toSend = new ArrayList<>();
@@ -121,7 +121,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 							tfStorageBlockEntity.drain(((ITofuEnergy) te).receive(Math.min(packSize, tfStorageBlockEntity.getEnergyStored()), false), false);
 						}
 					}
-
 				}
 			} else {
 				tfStorageBlockEntity.cache.clear();
