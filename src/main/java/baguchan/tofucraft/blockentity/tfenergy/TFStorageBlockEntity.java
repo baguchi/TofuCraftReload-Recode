@@ -129,47 +129,45 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 
 		boolean worked = false;
 
-
-		if (level.isClientSide()) return;
-
 		if (!level.isClientSide) {
 			if (tfStorageBlockEntity.prevFluid != tfStorageBlockEntity.tank.getFluidAmount()) {
 				LevelChunk chunk = level.getChunkAt(p_155015_);
 				TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new TFStorageSoymilkMessage(p_155015_, tfStorageBlockEntity.tank.getFluid()));
 				tfStorageBlockEntity.prevFluid = tfStorageBlockEntity.tank.getFluidAmount();
-			}
-		}
 
-		//Transform workload to power
-		if (tfStorageBlockEntity.workload > 0 && tfStorageBlockEntity.getEnergyStored() < tfStorageBlockEntity.getMaxEnergyStored()) {
-			tfStorageBlockEntity.workload -= tfStorageBlockEntity.receive(Math.min(tfStorageBlockEntity.workload, POWER), false);
-			worked = true;
-		}
 
-		//Consume beans inside machine
-		ItemStack from = tfStorageBlockEntity.inventory.get(0);
-		FluidStack milk = tfStorageBlockEntity.getTank().getFluid();
-		if (tfStorageBlockEntity.workload == 0) {
-			if (from.getItem() instanceof IEnergyExtractable) {
-				IEnergyExtractable symbol = (IEnergyExtractable) from.getItem();
-				tfStorageBlockEntity.workload += symbol.drain(from, POWER * 20, false);
-			} else if (TofuEnergyMap.getFuel(from) != -1) {
-				tfStorageBlockEntity.workload += TofuEnergyMap.getFuel(from);
-				from.shrink(1);
-			}
-
-			if (milk != null) {
-				Map.Entry<FluidStack, Integer> recipe = TofuEnergyMap.getLiquidFuel(milk);
-				if (recipe != null) {
-					tfStorageBlockEntity.tank.drain(recipe.getValue(), IFluidHandler.FluidAction.EXECUTE);
-					tfStorageBlockEntity.workload += recipe.getValue();
+				//Transform workload to power
+				if (tfStorageBlockEntity.workload > 0 && tfStorageBlockEntity.getEnergyStored() < tfStorageBlockEntity.getMaxEnergyStored()) {
+					tfStorageBlockEntity.workload -= tfStorageBlockEntity.receive(Math.min(tfStorageBlockEntity.workload, POWER), false);
+					worked = true;
 				}
-			}
-			tfStorageBlockEntity.current_workload = tfStorageBlockEntity.workload;
-		}
 
-		final BlockState state = level.getBlockState(p_155015_);
-		level.setBlock(p_155015_, state.setValue(TFStorageBlock.LIT, worked), 3);
+				//Consume beans inside machine
+				ItemStack from = tfStorageBlockEntity.inventory.get(0);
+				FluidStack milk = tfStorageBlockEntity.getTank().getFluid();
+				if (tfStorageBlockEntity.workload == 0) {
+					if (from.getItem() instanceof IEnergyExtractable) {
+						IEnergyExtractable symbol = (IEnergyExtractable) from.getItem();
+						tfStorageBlockEntity.workload += symbol.drain(from, POWER * 20, false);
+					} else if (TofuEnergyMap.getFuel(from) != -1) {
+						tfStorageBlockEntity.workload += TofuEnergyMap.getFuel(from);
+						from.shrink(1);
+					}
+
+					if (milk != null) {
+						Map.Entry<FluidStack, Integer> recipe = TofuEnergyMap.getLiquidFuel(milk);
+						if (recipe != null) {
+							tfStorageBlockEntity.tank.drain(recipe.getValue(), IFluidHandler.FluidAction.EXECUTE);
+							tfStorageBlockEntity.workload += recipe.getValue();
+						}
+					}
+					tfStorageBlockEntity.current_workload = tfStorageBlockEntity.workload;
+				}
+
+				final BlockState state = level.getBlockState(p_155015_);
+				level.setBlock(p_155015_, state.setValue(TFStorageBlock.LIT, worked), 3);
+			}
+		}
 	}
 
 	public FluidTank getTank() {
