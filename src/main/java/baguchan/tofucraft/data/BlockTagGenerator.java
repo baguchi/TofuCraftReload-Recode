@@ -43,6 +43,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFUSLATE.get()
 				, TofuBlocks.SALT_FURNACE.get()
 				, TofuBlocks.TF_STORAGE.get()
+				, TofuBlocks.TF_AGGREGATOR.get()
 				, TofuBlocks.ANTENNA_BASIC.get()
 				, TofuBlocks.SCULK_BONE.get(), TofuBlocks.SCULKED_TOFU_SOUL.get()
 				, TofuBlocks.SOYMILK_CAULDRON.get());
