@@ -95,7 +95,7 @@ public class TFAggregatorBlockEntity extends WorkerBaseBlockEntity implements Me
     };
 
     public TFAggregatorBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
-        super(TofuBlockEntitys.TF_AGGREGATOR.get(), p_155229_, p_155230_, 50000);
+        super(TofuBlockEntitys.TF_AGGREGATOR.get(), p_155229_, p_155230_, 10000);
 
         this.inventory = createHandler();
         this.inputHandler = LazyOptional.of(() -> new TFOvenItemHandler(inventory, Direction.UP));
