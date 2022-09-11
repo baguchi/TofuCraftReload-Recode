@@ -25,7 +25,7 @@ displayURL = "https://www.curseforge.com/minecraft/mc-mods/tofucraftreload" #opt
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile = "logo.png" #optional
 # A text field displayed in the mod UI
-credits = "iduki and turtton helping Revamped Content. 46mofu for add new texture. @siu_lab helping translation and making showcase!" #optional
+credits = "iduki and turtton helping Revamped Content. 46mofu for add new texture. @siu_lab helping translation and making showcase! and Rutl-Tri made tofu world music!" #optional
 # A text field displayed in the mod UI
 authors = "bagu_chan, 0999312" #optional
 # The description text for the mod (multi line!) (#mandatory)
