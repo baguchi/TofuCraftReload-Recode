@@ -73,8 +73,8 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material.get()), result.get(), xp, 600).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + recipeName));
 	}
 
-	public static void cuttingRecipe(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> cuttingItem, Supplier<? extends ItemLike> result) {
-		SingleItemRecipeBuilder.stonecutting(Ingredient.of(cuttingItem.get()), result.get()).unlockedBy("has_item", has(cuttingItem.get())).save(consumer, TofuCraftReload.prefix("cutting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+	public static void cuttingRecipe(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> cuttingItem, Supplier<? extends ItemLike> result, int count) {
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(cuttingItem.get()), result.get(), count).unlockedBy("has_item", has(cuttingItem.get())).save(consumer, TofuCraftReload.prefix("cutting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
 	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, Supplier<Item> result) {
@@ -222,7 +222,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 
 	public void makeStairsCraftingOrCutting(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> stairsOut, Supplier<? extends ItemLike> blockIn) {
 		makeStairs(consumer, stairsOut, blockIn);
-		cuttingRecipe(consumer, blockIn, stairsOut);
+		cuttingRecipe(consumer, blockIn, stairsOut, 2);
 	}
 
 	public void makeSlab(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> slabOut, Supplier<? extends ItemLike> blockIn) {
@@ -234,7 +234,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 
 	public void makeSlabCraftingOrCutting(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> slabOut, Supplier<? extends ItemLike> blockIn) {
 		makeSlab(consumer, slabOut, blockIn);
-		cuttingRecipe(consumer, blockIn, slabOut);
+		cuttingRecipe(consumer, blockIn, slabOut, 2);
 	}
 
 	public void makeFence(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> fenceOut, Supplier<? extends ItemLike> blockIn) {
