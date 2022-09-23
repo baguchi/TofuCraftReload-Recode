@@ -29,7 +29,6 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
-import baguchan.tofucraft.registry.TofuStructures;
 import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.carver.TofuConfiguredWorldCarvers;
 import baguchan.tofucraft.world.gen.features.ModNetherFeatures;
@@ -117,7 +116,6 @@ public class TofuCraftReload {
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup));
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new CraftingEvents());
-		MinecraftForge.EVENT_BUS.addListener(TofuStructures::addNewVillageBuilding);
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
