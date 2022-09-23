@@ -29,6 +29,7 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
+import baguchan.tofucraft.registry.TofuStructures;
 import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.carver.TofuConfiguredWorldCarvers;
 import baguchan.tofucraft.world.gen.features.ModNetherFeatures;
@@ -37,6 +38,7 @@ import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
 import baguchan.tofucraft.world.placement.ModNetherPlacements;
 import baguchan.tofucraft.world.placement.TofuWorldPlacements;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
@@ -115,21 +117,25 @@ public class TofuCraftReload {
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup));
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new CraftingEvents());
+		MinecraftForge.EVENT_BUS.addListener(TofuStructures::addNewVillageBuilding);
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
-		TofuAdvancements.init();
-		TofuItems.registerDispenserItem();
-		TofuItems.registerCompostableItem();
-		TofuItems.registerAnimalFeed();
-		ModNetherFeatures.init();
-		ModNetherPlacements.init();
-		ModTreeFeatures.init();
-		TofuWorldFeatures.init();
-		TofuWorldPlacements.init();
-		TofuEnergyMap.init();
-		TofuBiomes.init();
-		TofuConfiguredWorldCarvers.init();
+		event.enqueueWork(() -> {
+			TofuAdvancements.init();
+			TofuItems.registerDispenserItem();
+			TofuItems.registerCompostableItem();
+			TofuItems.registerAnimalFeed();
+			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift"));
+			ModNetherFeatures.init();
+			ModNetherPlacements.init();
+			ModTreeFeatures.init();
+			TofuWorldFeatures.init();
+			TofuWorldPlacements.init();
+			TofuEnergyMap.init();
+			TofuBiomes.init();
+			TofuConfiguredWorldCarvers.init();
+		});
 	}
 
 
