@@ -32,6 +32,7 @@ import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ArmorItem;
@@ -50,6 +51,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -58,9 +60,12 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.Arrays;
 
 import static baguchan.tofucraft.TofuCraftReload.MODID;
 
@@ -440,5 +445,12 @@ public class TofuItems {
 				});
 			}
 		});
+	}
+
+	public static void registerAnimalFeed() {
+		Ingredient newChickenFood = Ingredient.of(TofuItems.SEEDS_RICE.get());
+		Chicken.FOOD_ITEMS = new CompoundIngredient(Arrays.asList(Chicken.FOOD_ITEMS, newChickenFood))
+		{
+		};
 	}
 }

@@ -121,6 +121,7 @@ public class TofuCraftReload {
 		TofuAdvancements.init();
 		TofuItems.registerDispenserItem();
 		TofuItems.registerCompostableItem();
+		TofuItems.registerAnimalFeed();
 		ModNetherFeatures.init();
 		ModNetherPlacements.init();
 		ModTreeFeatures.init();
@@ -174,7 +175,6 @@ public class TofuCraftReload {
 		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/desert/houses"),
 				new ResourceLocation("tofucraft:village/tofu_craftsman_house_desert_1"), 8);
 	}
-
 
 	public static ResourceLocation prefix(String name) {
 		return new ResourceLocation(TofuCraftReload.MODID, name.toLowerCase(Locale.ROOT));
