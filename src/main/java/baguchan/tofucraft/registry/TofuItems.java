@@ -350,7 +350,8 @@ public class TofuItems {
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUDRIED.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUEGG.get(), 0.35F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_CHILI.get(), 0.3F);
-		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_RICE.get(),0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_RICE.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.RICE.get(), 0.4F);
 		ComposterBlock.COMPOSTABLES.put(TofuBlocks.SAPLING_APRICOT.get().asItem(), 0.3F);
 	}
 
@@ -448,7 +449,7 @@ public class TofuItems {
 	}
 
 	public static void registerAnimalFeed() {
-		Ingredient newChickenFood = Ingredient.of(TofuItems.SEEDS_RICE.get());
+		Ingredient newChickenFood = Ingredient.of(TofuItems.SEEDS_RICE.get(), TofuItems.SEEDS_SOYBEANS.get());
 		Chicken.FOOD_ITEMS = new CompoundIngredient(Arrays.asList(Chicken.FOOD_ITEMS, newChickenFood))
 		{
 		};
