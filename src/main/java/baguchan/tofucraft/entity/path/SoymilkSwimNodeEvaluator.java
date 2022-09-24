@@ -24,11 +24,11 @@ public class SoymilkSwimNodeEvaluator extends SwimNodeEvaluator {
 				for (int k = p_77475_; k < p_77475_ + p_77479_; ++k) {
 					FluidState fluidstate = p_77472_.getFluidState(blockpos$mutableblockpos.set(i, j, k));
 					BlockState blockstate = p_77472_.getBlockState(blockpos$mutableblockpos.set(i, j, k));
-					if (fluidstate.isEmpty() && blockstate.isPathfindable(p_77472_, blockpos$mutableblockpos.below(), PathComputationType.WATER) && blockstate.isAir()) {
+					if (fluidstate.isEmpty() && (blockstate.isPathfindable(p_77472_, blockpos$mutableblockpos.below(), PathComputationType.WATER) || p_77472_.getFluidState(blockpos$mutableblockpos).is(TofuFluids.SOYMILK.get())) && blockstate.isAir()) {
 						return BlockPathTypes.BREACH;
 					}
 
-					if (!fluidstate.is(FluidTags.WATER) && fluidstate.is(TofuFluids.SOYMILK.get())) {
+					if (!fluidstate.is(FluidTags.WATER) && !fluidstate.is(TofuFluids.SOYMILK.get())) {
 						return BlockPathTypes.BLOCKED;
 					}
 				}
@@ -36,6 +36,6 @@ public class SoymilkSwimNodeEvaluator extends SwimNodeEvaluator {
 		}
 
 		BlockState blockstate1 = p_77472_.getBlockState(blockpos$mutableblockpos);
-		return blockstate1.isPathfindable(p_77472_, blockpos$mutableblockpos, PathComputationType.WATER) ? BlockPathTypes.WATER : BlockPathTypes.BLOCKED;
+		return blockstate1.isPathfindable(p_77472_, blockpos$mutableblockpos, PathComputationType.WATER) || p_77472_.getFluidState(blockpos$mutableblockpos).is(TofuFluids.SOYMILK.get()) ? BlockPathTypes.WATER : BlockPathTypes.BLOCKED;
 	}
 }
