@@ -5,7 +5,8 @@
   "refmap": "tofucraft.refmap.json",
   "mixins": [
     "WardenAiMixin",
-    "WardenMixin"
+    "WardenMixin",
+    "CowMixin"
   ],
   "client": [
     "client.MinecraftMixin",
