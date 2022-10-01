@@ -34,17 +34,17 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.network.NetworkHooks;
 
-public class TFAggregator extends BaseEntityBlock {
-    public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    
-    public TFAggregator(Properties p_49224_) {
-        super(p_49224_);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
-    }
+public class TFAggregatorBlock extends BaseEntityBlock {
+	public static final BooleanProperty LIT = BlockStateProperties.LIT;
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    @Override
-    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+	public TFAggregatorBlock(Properties p_49224_) {
+		super(p_49224_);
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
+	}
+
+	@Override
+	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
         return TofuBlockEntitys.TF_AGGREGATOR.get().create(p_153215_, p_153216_);
     }
     
