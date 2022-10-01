@@ -1037,7 +1037,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Items.STICK))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(TofuItems.TF_CAPACITOR.get())
+		/*ShapedRecipeBuilder.shaped(TofuItems.TF_CAPACITOR.get())
 				.pattern(" M ")
 				.pattern("RGR")
 				.pattern(" M ")
@@ -1101,7 +1101,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('T', TofuItems.TOFUMETAL.get())
 				.define('C', TofuItems.TF_CIRCUIT.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
-				.save(consumer);
+				.save(consumer);*/
 
 		ShapedRecipeBuilder.shaped(TofuBlocks.SPROUTSJAR.get())
 				.pattern("G")

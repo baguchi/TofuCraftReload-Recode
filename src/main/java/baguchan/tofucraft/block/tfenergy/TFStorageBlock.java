@@ -31,8 +31,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.network.PacketDistributor;
@@ -69,7 +69,7 @@ public class TFStorageBlock extends BaseEntityBlock {
 		if (blockentity instanceof TFStorageBlockEntity) {
 			IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1)).orElse(null);
 			if (handler != null && handler instanceof net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper) {
-				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, blockentity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null));
+				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, blockentity.getCapability(ForgeCapabilities.FLUID_HANDLER).orElse(null));
 				flag = true;
 			}
 
