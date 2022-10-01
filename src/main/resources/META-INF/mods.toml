@@ -6,7 +6,7 @@
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
 modLoader = "javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion = "[41,)" #mandatory (33 is current forge version)
+loaderVersion = "[43,)" #mandatory (33 is current forge version)
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="http://my.issue.tracker/" #optional
 license = "All rights reserved"
@@ -30,7 +30,7 @@ credits = "iduki and turtton helping Revamped Content. 46mofu for add new textur
 authors = "bagu_chan, 0999312" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description = '''
-TofuCraft in 1.19!
+TofuCraft in 1.19.2!
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.tofucraft]] #optional
@@ -39,7 +39,7 @@ modId = "forge" #mandatory
 # Does this dependency have to exist - if not, ordering below must be specified
 mandatory = true #mandatory
 # The version range of the dependency
-versionRange = "[41.0.94,)" #mandatory
+versionRange = "[43.2.27,)" #mandatory
 # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
 ordering = "NONE"
 # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -48,6 +48,6 @@ side = "BOTH"
 [[dependencies.tofucraft]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.19,]"
+versionRange = "[1.19.2,]"
 ordering = "NONE"
 side = "BOTH"
