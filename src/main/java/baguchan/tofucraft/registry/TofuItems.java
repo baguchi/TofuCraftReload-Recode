@@ -449,7 +449,7 @@ public class TofuItems {
 	}
 
 	public static void registerAnimalFeed() {
-		Ingredient newChickenFood = Ingredient.of(TofuItems.SEEDS_RICE.get(), TofuItems.SEEDS_SOYBEANS.get());
+		Ingredient newChickenFood = Ingredient.of(TofuItems.SEEDS_RICE.get(), TofuItems.SOYBEAN_PARCHED.get());
 		Chicken.FOOD_ITEMS = new CompoundIngredient(Arrays.asList(Chicken.FOOD_ITEMS, newChickenFood))
 		{
 		};
