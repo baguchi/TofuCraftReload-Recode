@@ -14,12 +14,18 @@ public abstract class DamageableProjectileDispenseBehavior extends AbstractProje
 		Level level = p_123366_.getLevel();
 		Position position = DispenserBlock.getDispensePosition(p_123366_);
 		Direction direction = p_123366_.getBlockState().getValue(DispenserBlock.FACING);
-		Projectile projectile = this.getProjectile(level, position, p_123367_);
-		projectile.shoot((double) direction.getStepX(), (double) ((float) direction.getStepY() + 0.1F), (double) direction.getStepZ(), this.getPower(), this.getUncertainty());
-		level.addFreshEntity(projectile);
+		for (int i = 0; i < shootCount(); i++) {
+			Projectile projectile = this.getProjectile(level, position, p_123367_);
+			projectile.shoot((double) direction.getStepX(), (double) ((float) direction.getStepY() + 0.1F), (double) direction.getStepZ(), this.getPower(), this.getUncertainty());
+			level.addFreshEntity(projectile);
+		}
 		if (p_123367_.hurt(1, p_123366_.getLevel().getRandom(), null)) {
 			p_123367_.setCount(0);
 		}
 		return p_123367_;
+	}
+
+	protected int shootCount() {
+		return 1;
 	}
 }

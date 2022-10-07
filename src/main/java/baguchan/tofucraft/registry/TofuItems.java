@@ -431,6 +431,10 @@ public class TofuItems {
 				return Util.make(new FukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
 				});
 			}
+
+			protected int shootCount() {
+				return 6;
+			}
 		});
 		DispenserBlock.registerBehavior(NETHER_FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
 			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
@@ -438,12 +442,18 @@ public class TofuItems {
 				});
 			}
 
-
+			protected int shootCount() {
+				return 6;
+			}
 		});
 		DispenserBlock.registerBehavior(SOUL_FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
 			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
 				return Util.make(new SoulFukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
 				});
+			}
+
+			protected int shootCount() {
+				return 6;
 			}
 		});
 	}
