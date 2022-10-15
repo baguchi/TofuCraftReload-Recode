@@ -32,18 +32,26 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuContainers;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -51,6 +59,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ClientRegistrar {
+	private static final ResourceLocation TEXTURE_SOYHEARTS = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/soy_hearts.png");
 
 	public static void renderEntity() {
 	}
@@ -73,6 +82,71 @@ public class ClientRegistrar {
 		MenuScreens.register(TofuContainers.SALT_FURNACE.get(), SaltFurnaceScreen::new);
 		MenuScreens.register(TofuContainers.TF_STORAGE.get(), TFStorageScreen::new);
 		MenuScreens.register(TofuContainers.TF_AGGREGATOR.get(), TFAggreatorScreen::new);
+	}
+
+	@SubscribeEvent
+	public static void registerOverlays(RegisterGuiOverlaysEvent event) {
+		event.registerAbove(new ResourceLocation("player_health"), "soy_health", (gui, pStack, partialTicks, screenWidth, screenHeight) -> {
+			Minecraft minecraft = Minecraft.getInstance();
+			LocalPlayer player = minecraft.player;
+			int[] lastHealth = {0};
+			int[] lastOverallHealth = {0};
+			if (player != null) {
+				renderSoyHearts(pStack, gui, player, screenWidth, screenHeight, lastHealth, lastOverallHealth);
+			}
+		});
+	}
+
+	private static void renderSoyHearts(PoseStack poseStack, ForgeGui gui, LocalPlayer player, int width, int height, int[] lastHealth, int[] lastOverallHealth) {
+		if (gui.shouldDrawSurvivalElements()) {
+			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
+				if (cap.getSoyHealth() > 0) {
+					RenderSystem.setShader(GameRenderer::getPositionTexShader);
+					RenderSystem.setShaderTexture(0, TEXTURE_SOYHEARTS);
+					RenderSystem.enableBlend();
+
+					int left = width / 2 - 91;
+					int top = height - gui.leftHeight;
+
+
+					renderHearts(poseStack, player, gui, left, top, -1, cap.getSoyHealth(), cap.getSoyMaxHealth(), cap.getSoyHealth());
+
+					RenderSystem.disableBlend();
+					gui.leftHeight += 10;
+				}
+			});
+		}
+	}
+
+	private static void renderHearts(PoseStack poseStack, Player player, ForgeGui gui, int left, int top, int regen, float displayHealth, float maxDefaultHealth, float lastHealth) {
+		int hearts = Mth.ceil((double) maxDefaultHealth / 2.0D);
+		for (int i = hearts - 1; i >= 0; --i) {
+			int j1 = i / 10;
+			int k1 = i % 10;
+			int l1 = left + k1 * 8;
+			int i2 = top - j1 * 11;
+			int j = i * 2;
+			if (j < maxDefaultHealth) {
+				boolean flag2 = j + 1 == lastHealth;
+				renderHeart(gui, poseStack, 0, l1, i2, 0, false, false);
+			}
+			if (j < displayHealth) {
+				boolean flag3 = j + 1 == lastHealth;
+				renderHeart(gui, poseStack, 2, l1, i2, 0, false, false);
+			}
+		}
+	}
+
+	private static void renderHeart(ForgeGui gui, PoseStack p_168701_, int heartContainer, int p_168703_, int p_168704_, int p_168705_, boolean p_168706_, boolean p_168707_) {
+		int i;
+		if (heartContainer == 0) {
+			i = p_168706_ ? 1 : 0;
+		} else {
+			int j = p_168707_ ? 1 : 0;
+			int k = 0;
+			i = j + k;
+		}
+		gui.blit(p_168701_, p_168703_, p_168704_, 16 + (heartContainer * 2 + i) * 9, p_168705_, 9, 9);
 	}
 
 	@SubscribeEvent

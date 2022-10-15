@@ -3,6 +3,7 @@ package baguchan.tofucraft;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.entity.TofuGandlem;
+import baguchan.tofucraft.message.SoyHealthMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuDimensions;
@@ -40,6 +41,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -96,14 +98,18 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
 		Player player = event.getEntity();
-		if (player instanceof ServerPlayer)
+		if (player instanceof ServerPlayer) {
 			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new SoyMilkDrinkedMessage(player, handler.getSoyHealthLevel(), false)));
+			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new SoyHealthMessage(player, handler.getSoyHealth(), handler.getSoyMaxHealth())));
+
+		}
 	}
 
 	@SubscribeEvent
 	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		Player playerEntity = event.getEntity();
 		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel(), false)));
+		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyHealthMessage(playerEntity, handler.getSoyHealth(), handler.getSoyMaxHealth())));
 	}
 
 	@SubscribeEvent
@@ -238,5 +244,22 @@ public class CommonEvents {
 			level.serverLevelData = levelData;
 			level.levelData = levelData;
 		}
+	}
+
+	@SubscribeEvent
+	public static void onEntityHurt(LivingHurtEvent event) {
+		LivingEntity livingEntity = event.getEntity();
+		livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
+			if (cap.getSoyHealth() > 0) {
+				if (cap.getSoyHealth() - event.getAmount() * 0.75F >= 0) {
+					cap.setSoyHealth(livingEntity, cap.getSoyHealth() - event.getAmount() * 0.5F, cap.getSoyMaxHealth());
+					event.setAmount(0);
+				} else {
+					float remainDamage = event.getAmount() * 0.75F - cap.getSoyHealth();
+					cap.setSoyHealth(livingEntity, 0, cap.getSoyMaxHealth());
+					event.setAmount(remainDamage);
+				}
+			}
+		});
 	}
 }

@@ -527,7 +527,6 @@ public class ShuDofuSpider extends Monster {
 					if (livingentity.getMotionDirection() != livingentity.getDirection()) {
 						return false;
 					} else {
-						System.out.println("grasp");
 						boolean flag = ShuDofuSpider.isPathClear(this.spider, livingentity);
 						if (!flag) {
 							this.spider.getNavigation().createPath(livingentity, 0);

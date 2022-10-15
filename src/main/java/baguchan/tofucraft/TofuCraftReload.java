@@ -8,6 +8,7 @@ import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.event.CraftingEvents;
 import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
+import baguchan.tofucraft.message.SoyHealthMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.message.TFStorageSoymilkMessage;
 import baguchan.tofucraft.registry.TofuAdvancements;
@@ -142,15 +143,19 @@ public class TofuCraftReload {
 				.encoder(SoyMilkDrinkedMessage::serialize).decoder(SoyMilkDrinkedMessage::deserialize)
 				.consumerMainThread(SoyMilkDrinkedMessage::handle)
 				.add();
-		CHANNEL.messageBuilder(SaltFurnaceBitternMessage.class, 1)
+		CHANNEL.messageBuilder(SoyHealthMessage.class, 1)
+				.encoder(SoyHealthMessage::serialize).decoder(SoyHealthMessage::deserialize)
+				.consumerMainThread(SoyHealthMessage::handle)
+				.add();
+		CHANNEL.messageBuilder(SaltFurnaceBitternMessage.class, 2)
 				.encoder(SaltFurnaceBitternMessage::writePacketData).decoder(SaltFurnaceBitternMessage::readPacketData)
 				.consumerMainThread(SaltFurnaceBitternMessage::handle)
 				.add();
-		CHANNEL.messageBuilder(SaltFurnaceWaterMessage.class, 2)
+		CHANNEL.messageBuilder(SaltFurnaceWaterMessage.class, 3)
 				.encoder(SaltFurnaceWaterMessage::writePacketData).decoder(SaltFurnaceWaterMessage::readPacketData)
 				.consumerMainThread(SaltFurnaceWaterMessage::handle)
 				.add();
-		CHANNEL.messageBuilder(TFStorageSoymilkMessage.class, 3)
+		CHANNEL.messageBuilder(TFStorageSoymilkMessage.class, 4)
 				.encoder(TFStorageSoymilkMessage::writePacketData).decoder(TFStorageSoymilkMessage::readPacketData)
 				.consumerMainThread(TFStorageSoymilkMessage::handle)
 				.add();

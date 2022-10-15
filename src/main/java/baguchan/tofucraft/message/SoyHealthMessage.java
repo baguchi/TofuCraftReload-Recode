@@ -10,45 +10,45 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class SoyMilkDrinkedMessage {
+public class SoyHealthMessage {
 	private final int entityId;
 
-	private final int level;
-	private final boolean canUpdate;
+	private final float health;
+	private final float maxHealth;
 
-	public SoyMilkDrinkedMessage(LivingEntity entity, int level, boolean canUpdate) {
+	public SoyHealthMessage(LivingEntity entity, float health, float maxHealth) {
 		this.entityId = entity.getId();
-		this.level = level;
-		this.canUpdate = canUpdate;
+		this.health = health;
+		this.maxHealth = maxHealth;
 	}
 
-	public SoyMilkDrinkedMessage(int id, int level, boolean canUpdate) {
+	public SoyHealthMessage(int id, float health, float maxHealth) {
 		this.entityId = id;
-		this.level = level;
-		this.canUpdate = canUpdate;
+		this.health = health;
+		this.maxHealth = maxHealth;
 	}
 
 	public void serialize(FriendlyByteBuf buffer) {
 		buffer.writeInt(this.entityId);
-		buffer.writeInt(this.level);
-		buffer.writeBoolean(this.canUpdate);
+		buffer.writeFloat(this.health);
+		buffer.writeFloat(this.maxHealth);
 	}
 
-	public static SoyMilkDrinkedMessage deserialize(FriendlyByteBuf buffer) {
+	public static SoyHealthMessage deserialize(FriendlyByteBuf buffer) {
 		int entityId = buffer.readInt();
-		int level = buffer.readInt();
-		boolean update = buffer.readBoolean();
-		return new SoyMilkDrinkedMessage(entityId, level, update);
+		float health = buffer.readFloat();
+		float maxHealth = buffer.readFloat();
+		return new SoyHealthMessage(entityId, health, maxHealth);
 	}
 
-	public static boolean handle(SoyMilkDrinkedMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
+	public static boolean handle(SoyHealthMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
 		NetworkEvent.Context context = contextSupplier.get();
 		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
 			context.enqueueWork(() -> {
 				Entity entity = (Minecraft.getInstance()).player.level.getEntity(message.entityId);
 				if (entity != null && entity instanceof LivingEntity)
 					entity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent((cap) -> {
-						cap.setSoyHealthLevel((LivingEntity) entity, message.level, message.canUpdate);
+						cap.setSoyHealth((LivingEntity) entity, message.health, message.maxHealth);
 					});
 			});
 		}

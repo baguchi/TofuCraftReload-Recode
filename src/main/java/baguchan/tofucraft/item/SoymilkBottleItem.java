@@ -12,7 +12,11 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
 public class SoymilkBottleItem extends Item {
@@ -30,17 +34,21 @@ public class SoymilkBottleItem extends Item {
 	public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
 		super.finishUsingItem(p_41409_, p_41410_, p_41411_);
 		p_41411_.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
-			if (p_41410_.getDayTime() > cap.getRemainTick() + 12000L) {
-				if (cap.getSoyHealthLevel() < 1) {
-					cap.setSoyHealth(p_41411_, 1, true);
-				} else {
-					cap.setSoyHealth(p_41411_, cap.getSoyHealthLevel() + 1, true);
-				}
-				if (cap.getSoyHealthLevel() > 4 && !p_41410_.isClientSide) {
-					p_41411_.addEffect(new MobEffectInstance(this.getSecondEffect(), 24000, 0));
-				}
-			}
 			if (!p_41410_.isClientSide) {
+				if (p_41410_.getDayTime() > cap.getRemainTick() + 12000L) {
+					if (cap.getSoyHealthLevel() < 1) {
+						cap.setSoyHealthLevel(p_41411_, 1, true);
+					} else {
+						cap.setSoyHealthLevel(p_41411_, cap.getSoyHealthLevel() + 1, true);
+					}
+					if (cap.getSoyHealthLevel() > 4) {
+						p_41411_.addEffect(new MobEffectInstance(this.getSecondEffect(), 24000, 0));
+					}
+					if (cap.getSoyHealthLevel() > 1) {
+						cap.setSoyHealth(p_41411_, cap.getSoyHealth() + 1, cap.getSoyMaxHealth() + 1);
+					}
+				}
+
 				p_41411_.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel(), 0));
 			}
 		});
@@ -49,7 +57,9 @@ public class SoymilkBottleItem extends Item {
 			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, p_41409_);
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
-		p_41409_.shrink(1);
+		if (!(p_41411_ instanceof Player) || !((Player) p_41411_).getAbilities().instabuild) {
+			p_41409_.shrink(1);
+		}
 		if (p_41409_.isEmpty())
 			return new ItemStack(Items.GLASS_BOTTLE);
 		if (p_41411_ instanceof Player && !((Player) p_41411_).getAbilities().instabuild) {
