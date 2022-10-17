@@ -4,6 +4,7 @@ import baguchan.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
+import baguchan.tofucraft.entity.projectile.ZundaArrow;
 import baguchan.tofucraft.item.BitternItem;
 import baguchan.tofucraft.item.BugleItem;
 import baguchan.tofucraft.item.ChiliItem;
@@ -21,6 +22,7 @@ import baguchan.tofucraft.item.SoymilkBottleItem;
 import baguchan.tofucraft.item.TofuScoopItem;
 import baguchan.tofucraft.item.TofuShieldItem;
 import baguchan.tofucraft.item.TofuStickItem;
+import baguchan.tofucraft.item.ZundaArrowItem;
 import baguchan.tofucraft.item.ZundaMushroomOnAStickItem;
 import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.Util;
@@ -313,6 +315,9 @@ public class TofuItems {
 	public static final RegistryObject<Item> FUKUMAME = ITEMS.register("fukumame", () -> new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> NETHER_FUKUMAME = ITEMS.register("nether_fukumame", () -> new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> SOUL_FUKUMAME = ITEMS.register("soul_fukumame", () -> new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
+	public static final RegistryObject<Item> ZUNDA_ARROW = ITEMS.register("zunda_arrow", () -> new ZundaArrowItem((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
 	public static final RegistryObject<Item> ZUNDAMUSHROOM_ON_A_STICK = ITEMS.register("zundamushroom_on_a_stick", () -> new ZundaMushroomOnAStickItem<>((new Item.Properties()).durability(25).tab(TofuCreativeModeTab.TOFUCRAFT), TofuEntityTypes.TOFUPIG.get(), 7));
 
 	public static final RegistryObject<Item> TOFUGEM = ITEMS.register("tofugem", () -> new Item((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -454,6 +459,13 @@ public class TofuItems {
 
 			protected int shootCount() {
 				return 6;
+			}
+		});
+
+		DispenserBlock.registerBehavior(ZUNDA_ARROW.get(), new DamageableProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
+				return Util.make(new ZundaArrow(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
+				});
 			}
 		});
 	}

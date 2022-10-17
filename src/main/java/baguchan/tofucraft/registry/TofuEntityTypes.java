@@ -15,6 +15,7 @@ import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
+import baguchan.tofucraft.entity.projectile.ZundaArrow;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -69,6 +70,10 @@ public class TofuEntityTypes {
 
 	public static final RegistryObject<EntityType<NattoStringEntity>> NATTO_STRNIG = ENTITIES.register("natto_string", () -> EntityType.Builder.<NattoStringEntity>of(NattoStringEntity::new, MobCategory.MISC)
 			.sized(0.2F, 0.2F).updateInterval(20).build("tofucraft:natto_string"));
+
+	public static final RegistryObject<EntityType<ZundaArrow>> ZUNDA_ARROW = ENTITIES.register("zunda_arrow", () -> EntityType.Builder.<ZundaArrow>of(ZundaArrow::new, MobCategory.MISC)
+			.sized(0.5F, 0.5F).updateInterval(20).build("tofucraft:zunda_arrow"));
+
 
 	public static final RegistryObject<EntityType<NattoCobWebEntity>> NATTO_COBWEB = ENTITIES.register("natto_cobweb", () -> EntityType.Builder.<NattoCobWebEntity>of(NattoCobWebEntity::new, MobCategory.MISC)
 			.sized(3F, 0.1F).build("tofucraft:natto_cobweb"));
