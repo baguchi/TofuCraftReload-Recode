@@ -308,6 +308,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.FUKUMAME.get());
 		singleTexTool(TofuItems.NETHER_FUKUMAME.get());
 		singleTexTool(TofuItems.SOUL_FUKUMAME.get());
+		bowItem(TofuItems.ZUNDA_BOW);
 		singleTexTool(TofuItems.ZUNDA_ARROW.get());
 		singleTexRodTool(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get());
 
@@ -438,13 +439,13 @@ public class ItemModelGenerator extends ItemModelProvider {
 		return generated(ForgeRegistries.ITEMS.getKey(item.asItem()).getPath(), prefix("item/" + ForgeRegistries.ITEMS.getKey(item.asItem()).getPath()));
 	}
 
-	public ItemModelBuilder bowItem(Supplier<? extends Item> item, String location) {
+	public ItemModelBuilder bowItem(Supplier<? extends Item> item) {
 		ResourceLocation id = ForgeRegistries.ITEMS.getKey(item.get());
-		withExistingParent(id.getPath() + "_pulling_0", mcLoc("item/bow")).texture("layer0", modLoc("item/" + location + id.getPath() + "_pulling_0"));
-		withExistingParent(id.getPath() + "_pulling_1", mcLoc("item/bow")).texture("layer0", modLoc("item/" + location + id.getPath() + "_pulling_1"));
-		withExistingParent(id.getPath() + "_pulling_2", mcLoc("item/bow")).texture("layer0", modLoc("item/" + location + id.getPath() + "_pulling_2"));
+		withExistingParent(id.getPath() + "_pulling_0", mcLoc("item/bow")).texture("layer0", modLoc("item/" + id.getPath() + "_pulling_0"));
+		withExistingParent(id.getPath() + "_pulling_1", mcLoc("item/bow")).texture("layer0", modLoc("item/" + id.getPath() + "_pulling_1"));
+		withExistingParent(id.getPath() + "_pulling_2", mcLoc("item/bow")).texture("layer0", modLoc("item/" + id.getPath() + "_pulling_2"));
 		return withExistingParent(id.getPath(), mcLoc("item/bow"))
-				.texture("layer0", modLoc("item/" + location + id.getPath()))
+				.texture("layer0", modLoc("item/" + id.getPath()))
 				.override().predicate(new ResourceLocation("pulling"), 1).model(getExistingFile(modLoc("item/" + id.getPath() + "_pulling_0"))).end()
 				.override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.65F).model(getExistingFile(modLoc("item/" + id.getPath() + "_pulling_1"))).end()
 				.override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.9F).model(getExistingFile(modLoc("item/" + id.getPath() + "_pulling_2"))).end();

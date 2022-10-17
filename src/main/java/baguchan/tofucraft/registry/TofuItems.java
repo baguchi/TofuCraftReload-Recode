@@ -41,6 +41,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.BowlFoodItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.DispensibleContainerItem;
@@ -317,6 +318,8 @@ public class TofuItems {
 	public static final RegistryObject<Item> FUKUMAME = ITEMS.register("fukumame", () -> new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> NETHER_FUKUMAME = ITEMS.register("nether_fukumame", () -> new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> SOUL_FUKUMAME = ITEMS.register("soul_fukumame", () -> new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
+	public static final RegistryObject<Item> ZUNDA_BOW = ITEMS.register("zunda_bow", () -> new BowItem((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 	public static final RegistryObject<Item> ZUNDA_ARROW = ITEMS.register("zunda_arrow", () -> new ZundaArrowItem((new Item.Properties()).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
