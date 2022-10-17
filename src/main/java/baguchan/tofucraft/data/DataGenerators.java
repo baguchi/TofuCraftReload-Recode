@@ -14,8 +14,9 @@ public class DataGenerators {
 		BlockTagsProvider blocktags = new BlockTagGenerator(event.getGenerator(), event.getExistingFileHelper());
 		event.getGenerator().addProvider(event.includeServer(), blocktags);
 		event.getGenerator().addProvider(event.includeServer(), new ItemTagGenerator(event.getGenerator(), blocktags, event.getExistingFileHelper()));
-		event.getGenerator().addProvider(event.includeServer(), new FluidTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
 		event.getGenerator().addProvider(event.includeServer(), new EntityTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
+
+		event.getGenerator().addProvider(event.includeServer(), new FluidTagGenerator(event.getGenerator(), event.getExistingFileHelper()));
 		event.getGenerator().addProvider(event.includeServer(), new LootGenerator(event.getGenerator()));
 		event.getGenerator().addProvider(event.includeServer(), new CraftingGenerator(event.getGenerator()));
 	}
