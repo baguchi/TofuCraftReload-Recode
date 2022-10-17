@@ -85,7 +85,7 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 			}
 		}
 
-		if (livingEntity.tickCount % 600 == 0) {
+		if (livingEntity.tickCount % 400 == 0) {
 			this.setSoyHealth(livingEntity, this.soyHealth + 1, this.soyMaxHealth);
 		}
 	}
