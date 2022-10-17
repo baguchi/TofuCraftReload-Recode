@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "tag": "minecraft:coals"
+    },
+    "M": {
+      "item": "tofucraft:tofuzunda"
+    }
+  },
+  "pattern": [
+    "C",
+    "M"
+  ],
+  "result": {
+    "count": 4,
+    "item": "tofucraft:tofutorch_zunda"
+  }
+}

@@ -52,6 +52,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSTAIR_MOMEN.get());
 		toBlock(TofuBlocks.TOFUSTAIR_ISHI.get());
 		toBlock(TofuBlocks.TOFUSTAIR_METAL.get());
+		toBlock(TofuBlocks.TOFUSTAIR_GRILLED.get());
 		toBlock(TofuBlocks.TOFUSTAIR_ZUNDA.get());
 		toBlock(TofuBlocks.TOFUSTAIR_HELL.get());
 		toBlock(TofuBlocks.TOFUSTAIR_SOUL.get());
@@ -65,6 +66,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSLAB_MOMEN.get());
 		toBlock(TofuBlocks.TOFUSLAB_ISHI.get());
 		toBlock(TofuBlocks.TOFUSLAB_METAL.get());
+		toBlock(TofuBlocks.TOFUSLAB_GRILLED.get());
 		toBlock(TofuBlocks.TOFUSLAB_ZUNDA.get());
 		toBlock(TofuBlocks.TOFUSLAB_HELL.get());
 		toBlock(TofuBlocks.TOFUSLAB_SOUL.get());
@@ -80,6 +82,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		wall(TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
 		wall(TofuBlocks.TOFUFENCE_HELL, TofuBlocks.HELLTOFU);
 		wall(TofuBlocks.TOFUFENCE_SOUL, TofuBlocks.SOULTOFU);
+		wall(TofuBlocks.TOFUFENCE_GRILLED, TofuBlocks.GRILLEDTOFU);
+		wall(TofuBlocks.TOFUFENCE_ZUNDA, TofuBlocks.ZUNDATOFU);
 
 		singleTex(TofuBlocks.TOFUDOOR_KINU.get());
 		singleTex(TofuBlocks.TOFUDOOR_MOMEN.get());
@@ -87,6 +91,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.TOFUDOOR_METAL.get());
 		singleTex(TofuBlocks.TOFUDOOR_HELL.get());
 		singleTex(TofuBlocks.TOFUDOOR_SOUL.get());
+		singleTex(TofuBlocks.TOFUDOOR_GRILLED.get());
+		singleTex(TofuBlocks.TOFUDOOR_ZUNDA.get());
 
 		toBlockModel(TofuBlocks.TOFUTRAPDOOR_KINU.get(), "tofutrapdoor_kinu_bottom");
 		toBlockModel(TofuBlocks.TOFUTRAPDOOR_MOMEN.get(), "tofutrapdoor_momen_bottom");
@@ -94,11 +100,15 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlockModel(TofuBlocks.TOFUTRAPDOOR_METAL.get(), "tofutrapdoor_metal_bottom");
 		toBlockModel(TofuBlocks.TOFUTRAPDOOR_HELL.get(), "tofutrapdoor_hell_bottom");
 		toBlockModel(TofuBlocks.TOFUTRAPDOOR_SOUL.get(), "tofutrapdoor_soul_bottom");
+		toBlockModel(TofuBlocks.TOFUTRAPDOOR_GRILLED.get(), "tofutrapdoor_grilled_bottom");
+		toBlockModel(TofuBlocks.TOFUTRAPDOOR_ZUNDA.get(), "tofutrapdoor_zunda_bottom");
 
 		torchItem(TofuBlocks.TOFUTORCH_KINU.get());
 		torchItem(TofuBlocks.TOFUTORCH_MOMEN.get());
 		torchItem(TofuBlocks.TOFUTORCH_ISHI.get());
 		torchItem(TofuBlocks.TOFUTORCH_METAL.get());
+		torchItem(TofuBlocks.TOFUTORCH_GRILLED.get());
+		torchItem(TofuBlocks.TOFUTORCH_ZUNDA.get());
 
 		toBlock(TofuBlocks.TOFU_TERRAIN.get());
 		toBlock(TofuBlocks.TOFU_TERRAIN_ZUNDA.get());

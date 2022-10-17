@@ -115,6 +115,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ladderItem(consumer, TofuBlocks.TOFULADDER_ISHI, TofuItems.TOFUISHI);
 		ladderItem(consumer, TofuBlocks.TOFULADDER_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
 		ladderItem(consumer, TofuBlocks.TOFULADDER_METAL, TofuItems.TOFUMETAL);
+		ladderItem(consumer, TofuBlocks.TOFULADDER_GRILLED, TofuItems.TOFUGRILLED);
+		ladderItem(consumer, TofuBlocks.TOFULADDER_ZUNDA, TofuItems.TOFUZUNDA);
 
 		tofuBlockItem(consumer, TofuBlocks.MOMENTOFU, TofuItems.TOFUKINU, "tofumomen_from_kinu");
 		tofuBlockItem(consumer, TofuBlocks.MOMENTOFU, TofuItems.TOFUMOMEN);
@@ -246,6 +248,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.MOMENTOFU);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_ISHI, TofuBlocks.ISHITOFU);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.METALTOFU);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_GRILLED, TofuBlocks.GRILLEDTOFU);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_ZUNDA, TofuBlocks.ZUNDATOFU);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_HELL, TofuBlocks.HELLTOFU);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_SOUL, TofuBlocks.SOULTOFU);
@@ -259,6 +262,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.MOMENTOFU);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_ISHI, TofuBlocks.ISHITOFU);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_METAL, TofuBlocks.METALTOFU);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_GRILLED, TofuBlocks.GRILLEDTOFU);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_ZUNDA, TofuBlocks.ZUNDATOFU);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_HELL, TofuBlocks.HELLTOFU);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_SOUL, TofuBlocks.SOULTOFU);
@@ -275,6 +279,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeFence(consumer, TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
 		makeFence(consumer, TofuBlocks.TOFUFENCE_HELL, TofuBlocks.HELLTOFU);
 		makeFence(consumer, TofuBlocks.TOFUFENCE_SOUL, TofuBlocks.SOULTOFU);
+		makeFence(consumer, TofuBlocks.TOFUFENCE_GRILLED, TofuBlocks.GRILLEDTOFU);
+		makeFence(consumer, TofuBlocks.TOFUFENCE_ZUNDA, TofuBlocks.ZUNDATOFU);
 
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_KINU, TofuBlocks.KINUTOFU);
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_MOMEN, TofuBlocks.MOMENTOFU);
@@ -282,6 +288,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_METAL, TofuBlocks.METALTOFU);
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_HELL, TofuBlocks.HELLTOFU);
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_SOUL, TofuBlocks.SOULTOFU);
+		makeDoor(consumer, TofuBlocks.TOFUDOOR_GRILLED, TofuBlocks.GRILLEDTOFU);
+		makeDoor(consumer, TofuBlocks.TOFUDOOR_ZUNDA, TofuBlocks.ZUNDATOFU);
 
 		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_KINU, TofuItems.TOFUKINU);
 		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_MOMEN, TofuItems.TOFUMOMEN);
@@ -289,6 +297,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_METAL, TofuItems.TOFUMETAL);
 		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_HELL, TofuItems.TOFUHELL);
 		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_SOUL, TofuItems.TOFUSOUL);
+		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_GRILLED, TofuItems.TOFUGRILLED);
+		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_ZUNDA, TofuItems.TOFUZUNDA);
 
 		stonecutterResultFromBase(consumer, TofuBlocks.TOFUTRAPDOOR_ISHI.get(), TofuBlocks.ISHITOFU.get());
 		stonecutterResultFromBase(consumer, TofuBlocks.TOFUFENCE_ISHI.get(), TofuBlocks.ISHITOFU.get());
@@ -315,6 +325,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeTorch(consumer, TofuBlocks.TOFUTORCH_MOMEN, TofuItems.TOFUMOMEN);
 		makeTorch(consumer, TofuBlocks.TOFUTORCH_ISHI, TofuItems.TOFUISHI);
 		makeTorch(consumer, TofuBlocks.TOFUTORCH_METAL, TofuItems.TOFUMETAL);
+		makeTorch(consumer, TofuBlocks.TOFUTORCH_GRILLED, TofuItems.TOFUGRILLED);
+		makeTorch(consumer, TofuBlocks.TOFUTORCH_ZUNDA, TofuItems.TOFUZUNDA);
 
 		foodCooking(TofuItems.TOFUKINU, TofuItems.TOFUGRILLED, 0.1F, consumer, "grilled_from_kinu");
 		foodCooking(TofuItems.TOFUMOMEN, TofuItems.TOFUGRILLED, 0.1F, consumer, "grilled_from_momen");
