@@ -252,11 +252,11 @@ public class CommonEvents {
 		livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
 			if (cap.getSoyHealth() > 0) {
 				if (event.getSource().isProjectile() || event.getSource().isFall()) {
-					if (cap.getSoyHealth() - event.getAmount() * 0.5F >= 0) {
+					if (cap.getSoyHealth() - event.getAmount() * 0.75F >= 0) {
 						cap.setSoyHealth(livingEntity, cap.getSoyHealth() - event.getAmount() * 0.5F, cap.getSoyMaxHealth());
 						event.setAmount(0);
 					} else {
-						float remainDamage = event.getAmount() * 0.5F - cap.getSoyHealth();
+						float remainDamage = event.getAmount() * 0.75F - cap.getSoyHealth();
 						cap.setSoyHealth(livingEntity, 0, cap.getSoyMaxHealth());
 						event.setAmount(remainDamage);
 					}
