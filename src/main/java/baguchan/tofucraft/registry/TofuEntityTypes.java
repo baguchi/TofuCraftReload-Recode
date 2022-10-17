@@ -59,16 +59,16 @@ public class TofuEntityTypes {
 			.sized(0.95F, 0.55F).build("tofucraft:tofuspider"));
 
 	public static final RegistryObject<EntityType<FukumameEntity>> FUKUMAME = ENTITIES.register("fukumame", () -> EntityType.Builder.<FukumameEntity>of(FukumameEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F).build("tofucraft:fukumame"));
+			.sized(0.25F, 0.25F).updateInterval(20).build("tofucraft:fukumame"));
 
 	public static final RegistryObject<EntityType<NetherFukumameEntity>> NETHER_FUKUMAME = ENTITIES.register("nether_fukumame", () -> EntityType.Builder.<NetherFukumameEntity>of(NetherFukumameEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F).build("tofucraft:nether_fukumame"));
+			.sized(0.25F, 0.25F).updateInterval(20).build("tofucraft:nether_fukumame"));
 
 	public static final RegistryObject<EntityType<SoulFukumameEntity>> SOUL_FUKUMAME = ENTITIES.register("soul_fukumame", () -> EntityType.Builder.<SoulFukumameEntity>of(SoulFukumameEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F).build("tofucraft:soul_fukumame"));
+			.sized(0.25F, 0.25F).updateInterval(20).build("tofucraft:soul_fukumame"));
 
 	public static final RegistryObject<EntityType<NattoStringEntity>> NATTO_STRNIG = ENTITIES.register("natto_string", () -> EntityType.Builder.<NattoStringEntity>of(NattoStringEntity::new, MobCategory.MISC)
-			.sized(0.2F, 0.2F).build("tofucraft:natto_string"));
+			.sized(0.2F, 0.2F).updateInterval(20).build("tofucraft:natto_string"));
 
 	public static final RegistryObject<EntityType<NattoCobWebEntity>> NATTO_COBWEB = ENTITIES.register("natto_cobweb", () -> EntityType.Builder.<NattoCobWebEntity>of(NattoCobWebEntity::new, MobCategory.MISC)
 			.sized(3F, 0.1F).build("tofucraft:natto_cobweb"));
