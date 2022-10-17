@@ -56,6 +56,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		stairs(TofuBlocks.TOFUSTAIR_MOMEN.get(), TofuBlocks.MOMENTOFU.get());
 		stairs(TofuBlocks.TOFUSTAIR_ISHI.get(), TofuBlocks.ISHITOFU.get());
 		stairs(TofuBlocks.TOFUSTAIR_METAL.get(), TofuBlocks.METALTOFU.get());
+		stairs(TofuBlocks.TOFUSTAIR_GRILLED.get(), TofuBlocks.GRILLEDTOFU.get());
 		stairs(TofuBlocks.TOFUSTAIR_ZUNDA.get(), TofuBlocks.ZUNDATOFU.get());
 		stairs(TofuBlocks.TOFUSTAIR_HELL.get(), TofuBlocks.HELLTOFU.get());
 		stairs(TofuBlocks.TOFUSTAIR_SOUL.get(), TofuBlocks.SOULTOFU.get());
@@ -69,6 +70,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFUSLAB_MOMEN.get(), TofuBlocks.MOMENTOFU.get());
 		slab(TofuBlocks.TOFUSLAB_ISHI.get(), TofuBlocks.ISHITOFU.get());
 		slab(TofuBlocks.TOFUSLAB_METAL.get(), TofuBlocks.METALTOFU.get());
+		slab(TofuBlocks.TOFUSLAB_GRILLED.get(), TofuBlocks.GRILLEDTOFU.get());
 		slab(TofuBlocks.TOFUSLAB_ZUNDA.get(), TofuBlocks.ZUNDATOFU.get());
 		slab(TofuBlocks.TOFUSLAB_HELL.get(), TofuBlocks.HELLTOFU.get());
 		slab(TofuBlocks.TOFUSLAB_SOUL.get(), TofuBlocks.SOULTOFU.get());
@@ -84,6 +86,8 @@ public class BlockstateGenerator extends BlockStateProvider {
 		wall(TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
 		wall(TofuBlocks.TOFUFENCE_HELL, TofuBlocks.HELLTOFU);
 		wall(TofuBlocks.TOFUFENCE_SOUL, TofuBlocks.SOULTOFU);
+		wall(TofuBlocks.TOFUFENCE_GRILLED, TofuBlocks.GRILLEDTOFU);
+		wall(TofuBlocks.TOFUFENCE_ZUNDA, TofuBlocks.ZUNDATOFU);
 
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_KINU, "kinu");
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_MOMEN, "momen");
@@ -91,6 +95,8 @@ public class BlockstateGenerator extends BlockStateProvider {
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_METAL, "metal");
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_HELL, "hell");
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_SOUL, "soul");
+		ancientFormatDoor(TofuBlocks.TOFUDOOR_GRILLED, "grilled");
+		ancientFormatDoor(TofuBlocks.TOFUDOOR_ZUNDA, "zunda");
 
 		trapdoor(TofuBlocks.TOFUTRAPDOOR_KINU);
 		trapdoor(TofuBlocks.TOFUTRAPDOOR_MOMEN);
@@ -98,11 +104,15 @@ public class BlockstateGenerator extends BlockStateProvider {
 		trapdoor(TofuBlocks.TOFUTRAPDOOR_METAL);
 		trapdoor(TofuBlocks.TOFUTRAPDOOR_HELL);
 		trapdoor(TofuBlocks.TOFUTRAPDOOR_SOUL);
+		trapdoor(TofuBlocks.TOFUTRAPDOOR_GRILLED);
+		trapdoor(TofuBlocks.TOFUTRAPDOOR_ZUNDA);
 
 		torchBlock(TofuBlocks.TOFUTORCH_KINU.get(), TofuBlocks.WALLTOFUTORCH_KINU.get());
 		torchBlock(TofuBlocks.TOFUTORCH_MOMEN.get(), TofuBlocks.WALLTOFUTORCH_MOMEN.get());
 		torchBlock(TofuBlocks.TOFUTORCH_ISHI.get(), TofuBlocks.WALLTOFUTORCH_ISHI.get());
 		torchBlock(TofuBlocks.TOFUTORCH_METAL.get(), TofuBlocks.WALLTOFUTORCH_METAL.get());
+		torchBlock(TofuBlocks.TOFUTORCH_GRILLED.get(), TofuBlocks.WALLTOFUTORCH_GRILLED.get());
+		torchBlock(TofuBlocks.TOFUTORCH_ZUNDA.get(), TofuBlocks.WALLTOFUTORCH_ZUNDA.get());
 
 		simpleBlock(TofuBlocks.TOFU_TERRAIN.get());
 		simpleBlock(TofuBlocks.TOFUSLATE.get());

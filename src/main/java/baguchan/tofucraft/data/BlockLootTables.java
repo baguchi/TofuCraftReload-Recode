@@ -105,6 +105,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUSTAIR_MOMEN.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_ISHI.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_METAL.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_GRILLED.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_ZUNDA.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_HELL.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_SOUL.get());
@@ -118,6 +119,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		registerSlab(TofuBlocks.TOFUSLAB_MOMEN.get());
 		registerSlab(TofuBlocks.TOFUSLAB_ISHI.get());
 		registerSlab(TofuBlocks.TOFUSLAB_METAL.get());
+		registerSlab(TofuBlocks.TOFUSLAB_GRILLED.get());
 		registerSlab(TofuBlocks.TOFUSLAB_ZUNDA.get());
 		registerSlab(TofuBlocks.TOFUSLAB_HELL.get());
 		registerSlab(TofuBlocks.TOFUSLAB_SOUL.get());
@@ -133,6 +135,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUFENCE_METAL.get());
 		dropSelf(TofuBlocks.TOFUFENCE_HELL.get());
 		dropSelf(TofuBlocks.TOFUFENCE_SOUL.get());
+		dropSelf(TofuBlocks.TOFUFENCE_GRILLED.get());
+		dropSelf(TofuBlocks.TOFUFENCE_ZUNDA.get());
 
 		this.add(TofuBlocks.TOFUDOOR_KINU.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		this.add(TofuBlocks.TOFUDOOR_MOMEN.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
@@ -140,6 +144,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		this.add(TofuBlocks.TOFUDOOR_METAL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		this.add(TofuBlocks.TOFUDOOR_HELL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		this.add(TofuBlocks.TOFUDOOR_SOUL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFUDOOR_GRILLED.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFUDOOR_ZUNDA.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 
 		dropSelf(TofuBlocks.TOFUTRAPDOOR_KINU.get());
 		dropSelf(TofuBlocks.TOFUTRAPDOOR_MOMEN.get());
@@ -147,21 +153,29 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUTRAPDOOR_METAL.get());
 		dropSelf(TofuBlocks.TOFUTRAPDOOR_HELL.get());
 		dropSelf(TofuBlocks.TOFUTRAPDOOR_SOUL.get());
+		dropSelf(TofuBlocks.TOFUTRAPDOOR_GRILLED.get());
+		dropSelf(TofuBlocks.TOFUTRAPDOOR_ZUNDA.get());
 
 		dropSelf(TofuBlocks.TOFUTORCH_KINU.get());
 		dropSelf(TofuBlocks.TOFUTORCH_MOMEN.get());
 		dropSelf(TofuBlocks.TOFUTORCH_ISHI.get());
 		dropSelf(TofuBlocks.TOFUTORCH_METAL.get());
+		dropSelf(TofuBlocks.TOFUTORCH_GRILLED.get());
+		dropSelf(TofuBlocks.TOFUTORCH_ZUNDA.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_KINU.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_MOMEN.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_ISHI.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_METAL.get());
+		dropSelf(TofuBlocks.WALLTOFUTORCH_GRILLED.get());
+		dropSelf(TofuBlocks.WALLTOFUTORCH_ZUNDA.get());
 
 		dropSelf(TofuBlocks.TOFULADDER_KINU.get());
 		dropSelf(TofuBlocks.TOFULADDER_MOMEN.get());
 		dropSelf(TofuBlocks.TOFULADDER_ISHI.get());
 		dropSelf(TofuBlocks.TOFULADDER_ISHIBRICK.get());
 		dropSelf(TofuBlocks.TOFULADDER_METAL.get());
+		dropSelf(TofuBlocks.TOFULADDER_GRILLED.get());
+		dropSelf(TofuBlocks.TOFULADDER_ZUNDA.get());
 
 		dropSelf(TofuBlocks.TOFU_TERRAIN.get());
 		dropSelf(TofuBlocks.TOFU_TERRAIN_ZUNDA.get());

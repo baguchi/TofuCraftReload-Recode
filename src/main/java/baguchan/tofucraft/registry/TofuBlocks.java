@@ -127,6 +127,8 @@ public class TofuBlocks {
 	public static final RegistryObject<StairBlock> TOFUSTAIR_MOMEN = register("tofustair_momen", () -> new StairBlock(MOMENTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(MOMENTOFU.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_ISHI = register("tofustair_ishi", () -> new StairBlock(ISHITOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(ISHITOFU.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_METAL = register("tofustair_metal", () -> new StairBlock(METALTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(METALTOFU.get())));
+	public static final RegistryObject<StairBlock> TOFUSTAIR_GRILLED = register("tofustair_grilled", () -> new StairBlock(GRILLEDTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(GRILLEDTOFU.get())));
+
 	public static final RegistryObject<StairBlock> TOFUSTAIR_ZUNDA = register("tofustair_zunda", () -> new StairBlock(ZUNDATOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(ZUNDATOFU.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_HELL = register("tofustair_hell", () -> new StairBlock(HELLTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(HELLTOFU.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_SOUL = register("tofustair_soul", () -> new StairBlock(SOULTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(SOULTOFU.get())));
@@ -143,6 +145,8 @@ public class TofuBlocks {
 	public static final RegistryObject<SlabBlock> TOFUSLAB_MOMEN = register("tofuslab_momen", () -> new SlabBlock(BlockBehaviour.Properties.copy(MOMENTOFU.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_ISHI = register("tofuslab_ishi", () -> new SlabBlock(BlockBehaviour.Properties.copy(ISHITOFU.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_METAL = register("tofuslab_metal", () -> new SlabBlock(BlockBehaviour.Properties.copy(METALTOFU.get())));
+	public static final RegistryObject<SlabBlock> TOFUSLAB_GRILLED = register("tofuslab_grilled", () -> new SlabBlock(BlockBehaviour.Properties.copy(GRILLEDTOFU.get())));
+
 	public static final RegistryObject<SlabBlock> TOFUSLAB_ZUNDA = register("tofuslab_zunda", () -> new SlabBlock(BlockBehaviour.Properties.copy(ZUNDATOFU.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_HELL = register("tofuslab_hell", () -> new SlabBlock(BlockBehaviour.Properties.copy(HELLTOFU.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_SOUL = register("tofuslab_soul", () -> new SlabBlock(BlockBehaviour.Properties.copy(SOULTOFU.get())));
@@ -156,27 +160,39 @@ public class TofuBlocks {
 
 
 	public static final RegistryObject<Block> TOFUTORCH_KINU = register("tofutorch_kinu", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
-			.noCollission().noOcclusion().sound(SoundType.SNOW), ParticleTypes.FLAME));
+			.noCollission().sound(SoundType.SNOW), ParticleTypes.FLAME));
 	public static final RegistryObject<Block> TOFUTORCH_MOMEN = register("tofutorch_momen", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
-			.noCollission().noOcclusion().sound(SoundType.SNOW), ParticleTypes.FLAME));
+			.noCollission().sound(SoundType.SNOW), ParticleTypes.FLAME));
 	public static final RegistryObject<Block> TOFUTORCH_ISHI = register("tofutorch_ishi", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 6.0F).lightLevel(state -> 14)
-			.noCollission().noOcclusion().sound(SoundType.STONE), ParticleTypes.FLAME));
+			.noCollission().sound(SoundType.STONE), ParticleTypes.FLAME));
 	public static final RegistryObject<Block> TOFUTORCH_METAL = register("tofutorch_metal", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 7.5F).lightLevel(state -> 14)
-			.noCollission().noOcclusion().sound(SoundType.METAL), ParticleTypes.FLAME));
+			.noCollission().sound(SoundType.METAL), ParticleTypes.FLAME));
+	public static final RegistryObject<Block> TOFUTORCH_GRILLED = register("tofutorch_grilled", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
+			.noOcclusion().sound(SoundType.SNOW), ParticleTypes.FLAME));
+	public static final RegistryObject<Block> TOFUTORCH_ZUNDA = register("tofutorch_zunda", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
+			.noOcclusion().sound(SoundType.SNOW), ParticleTypes.FLAME));
 
 	public static final RegistryObject<Block> WALLTOFUTORCH_KINU = BLOCKS.register("walltofutorch_kinu", () -> new WallTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
-			.noCollission().noOcclusion().sound(SoundType.SNOW).lootFrom(TOFUTORCH_KINU), ParticleTypes.FLAME));
+			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_KINU), ParticleTypes.FLAME));
 	public static final RegistryObject<Block> WALLTOFUTORCH_MOMEN = BLOCKS.register("walltofutorch_momen", () -> new WallTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
-			.noCollission().noOcclusion().sound(SoundType.SNOW).lootFrom(TOFUTORCH_MOMEN), ParticleTypes.FLAME));
+			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_MOMEN), ParticleTypes.FLAME));
 	public static final RegistryObject<Block> WALLTOFUTORCH_ISHI = BLOCKS.register("walltofutorch_ishi", () -> new WallTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 6.0F).lightLevel(state -> 14)
-			.noCollission().noOcclusion().sound(SoundType.STONE).lootFrom(TOFUTORCH_ISHI), ParticleTypes.FLAME));
+			.noCollission().sound(SoundType.STONE).lootFrom(TOFUTORCH_ISHI), ParticleTypes.FLAME));
 	public static final RegistryObject<Block> WALLTOFUTORCH_METAL = BLOCKS.register("walltofutorch_metal", () -> new WallTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 7.5F).lightLevel(state -> 14)
-			.noCollission().noOcclusion().sound(SoundType.METAL).lootFrom(TOFUTORCH_METAL), ParticleTypes.FLAME));
+			.noCollission().sound(SoundType.METAL).lootFrom(TOFUTORCH_METAL), ParticleTypes.FLAME));
+	public static final RegistryObject<Block> WALLTOFUTORCH_GRILLED = BLOCKS.register("walltofutorch_grilled", () -> new WallTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
+			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_GRILLED), ParticleTypes.FLAME));
+	public static final RegistryObject<Block> WALLTOFUTORCH_ZUNDA = BLOCKS.register("walltofutorch_zunda", () -> new WallTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.0F, 0.5F).lightLevel(state -> 14)
+			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_ZUNDA), ParticleTypes.FLAME));
 
 	public static final RegistryObject<Block> TOFULADDER_KINU = register("tofuladder_kinu", () -> new LadderBlock(BlockBehaviour.Properties.copy(KINUTOFU.get()).noOcclusion()));
 	public static final RegistryObject<Block> TOFULADDER_MOMEN = register("tofuladder_momen", () -> new LadderBlock(BlockBehaviour.Properties.copy(MOMENTOFU.get()).noOcclusion()));
 	public static final RegistryObject<Block> TOFULADDER_ISHI = register("tofuladder_ishi", () -> new LadderBlock(BlockBehaviour.Properties.copy(ISHITOFU.get()).noOcclusion()));
 	public static final RegistryObject<Block> TOFULADDER_METAL = register("tofuladder_metal", () -> new LadderBlock(BlockBehaviour.Properties.copy(METALTOFU.get()).noOcclusion()));
+
+	public static final RegistryObject<Block> TOFULADDER_GRILLED = register("tofuladder_grilled", () -> new LadderBlock(BlockBehaviour.Properties.copy(GRILLEDTOFU.get()).noOcclusion()));
+	public static final RegistryObject<Block> TOFULADDER_ZUNDA = register("tofuladder_zunda", () -> new LadderBlock(BlockBehaviour.Properties.copy(ZUNDATOFU.get()).noOcclusion()));
+
 	public static final RegistryObject<Block> TOFULADDER_ISHIBRICK = register("tofuladder_ishibrick", () -> new LadderBlock(BlockBehaviour.Properties.copy(ISHITOFU_BRICK.get()).noOcclusion()));
 
 	public static final RegistryObject<WallBlock> TOFUFENCE_KINU = register("tofufence_kinu", () -> new WallBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.1F, 0.2F).sound(SoundType.SNOW).noOcclusion()));
@@ -185,6 +201,8 @@ public class TofuBlocks {
 	public static final RegistryObject<WallBlock> TOFUFENCE_METAL = register("tofufence_metal", () -> new WallBlock(BlockBehaviour.Properties.copy(METALTOFU.get()).noOcclusion()));
 	public static final RegistryObject<WallBlock> TOFUFENCE_HELL = register("tofufence_hell", () -> new WallBlock(BlockBehaviour.Properties.copy(HELLTOFU.get()).noOcclusion()));
 	public static final RegistryObject<WallBlock> TOFUFENCE_SOUL = register("tofufence_soul", () -> new WallBlock(BlockBehaviour.Properties.copy(SOULTOFU.get()).noOcclusion()));
+	public static final RegistryObject<WallBlock> TOFUFENCE_GRILLED = register("tofufence_grilled", () -> new WallBlock(BlockBehaviour.Properties.copy(GRILLEDTOFU.get()).noOcclusion()));
+	public static final RegistryObject<WallBlock> TOFUFENCE_ZUNDA = register("tofufence_zunda", () -> new WallBlock(BlockBehaviour.Properties.copy(ZUNDATOFU.get()).noOcclusion()));
 
 
 	public static final RegistryObject<DoorBlock> TOFUDOOR_KINU = register("tofudoor_kinu", () -> new TofuDoorBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.2F, 0.4F).sound(SoundType.SNOW).noOcclusion()));
@@ -193,6 +211,8 @@ public class TofuBlocks {
 	public static final RegistryObject<DoorBlock> TOFUDOOR_METAL = register("tofudoor_metal", () -> new TofuDoorBlock(BlockBehaviour.Properties.copy(METALTOFU.get()).noOcclusion()));
 	public static final RegistryObject<DoorBlock> TOFUDOOR_HELL = register("tofudoor_hell", () -> new TofuDoorBlock(BlockBehaviour.Properties.copy(HELLTOFU.get()).noOcclusion()));
 	public static final RegistryObject<DoorBlock> TOFUDOOR_SOUL = register("tofudoor_soul", () -> new TofuDoorBlock(BlockBehaviour.Properties.copy(SOULTOFU.get()).noOcclusion()));
+	public static final RegistryObject<DoorBlock> TOFUDOOR_GRILLED = register("tofudoor_grilled", () -> new TofuDoorBlock(BlockBehaviour.Properties.copy(GRILLEDTOFU.get()).noOcclusion()));
+	public static final RegistryObject<DoorBlock> TOFUDOOR_ZUNDA = register("tofudoor_zunda", () -> new TofuDoorBlock(BlockBehaviour.Properties.copy(ZUNDATOFU.get()).noOcclusion()));
 
 	public static final RegistryObject<TrapDoorBlock> TOFUTRAPDOOR_KINU = register("tofutrapdoor_kinu", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.2F, 0.4F).sound(SoundType.SNOW).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false)));
 	public static final RegistryObject<TrapDoorBlock> TOFUTRAPDOOR_MOMEN = register("tofutrapdoor_momen", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.5F, 1.0F).sound(SoundType.SNOW).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false)));
@@ -200,6 +220,8 @@ public class TofuBlocks {
 	public static final RegistryObject<TrapDoorBlock> TOFUTRAPDOOR_METAL = register("tofutrapdoor_metal", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(METALTOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false)));
 	public static final RegistryObject<TrapDoorBlock> TOFUTRAPDOOR_HELL = register("tofutrapdoor_hell", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(HELLTOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false)));
 	public static final RegistryObject<TrapDoorBlock> TOFUTRAPDOOR_SOUL = register("tofutrapdoor_soul", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(SOULTOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false)));
+	public static final RegistryObject<TrapDoorBlock> TOFUTRAPDOOR_GRILLED = register("tofutrapdoor_grilled", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(GRILLEDTOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false)));
+	public static final RegistryObject<TrapDoorBlock> TOFUTRAPDOOR_ZUNDA = register("tofutrapdoor_zunda", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(ZUNDATOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false)));
 
 
 	public static final RegistryObject<Block> TOFU_TERRAIN = register("tofu_terrain", () -> new TofuTerrainBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.4F, 0.5F).sound(SoundType.SNOW)));
@@ -228,7 +250,7 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> TOFU_STEM_PLANKS = register("tofustem_planks", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 
 
-	public static final RegistryObject<TofuPortalBlock> TOFU_PORTAL = BLOCKS.register("tofuportal", () -> new TofuPortalBlock(BlockBehaviour.Properties.of(Material.PORTAL).strength(-1.0F).noCollission().noOcclusion().noLootTable().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
+	public static final RegistryObject<TofuPortalBlock> TOFU_PORTAL = BLOCKS.register("tofuportal", () -> new TofuPortalBlock(BlockBehaviour.Properties.of(Material.PORTAL).strength(-1.0F).noCollission().noLootTable().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
 		return 11;
 	})));
 	public static final RegistryObject<Block> TOFU_FARMLAND = register("tofu_farmland", () -> new TofuFarmlandBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.5F, 1.0F).noOcclusion().sound(SoundType.SNOW)));
@@ -291,6 +313,10 @@ public class TofuBlocks {
 				return new StandingAndWallBlockItem(TOFUTORCH_ISHI.get(), WALLTOFUTORCH_ISHI.get(), new Item.Properties().tab(tab));
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_METAL.get()) {
 				return new StandingAndWallBlockItem(TOFUTORCH_METAL.get(), WALLTOFUTORCH_METAL.get(), new Item.Properties().tab(tab));
+			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_GRILLED.get()) {
+				return new StandingAndWallBlockItem(TOFUTORCH_GRILLED.get(), WALLTOFUTORCH_GRILLED.get(), new Item.Properties().tab(tab));
+			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_ZUNDA.get()) {
+				return new StandingAndWallBlockItem(TOFUTORCH_ZUNDA.get(), WALLTOFUTORCH_ZUNDA.get(), new Item.Properties().tab(tab));
 			} else if (Objects.requireNonNull(block.get()) == TOFUBED.get()) {
 				return new BedItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(tab).stacksTo(1)) {
 					@Override
