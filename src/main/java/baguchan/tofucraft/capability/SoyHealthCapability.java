@@ -79,9 +79,9 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 			if (livingEntity.level.getDayTime() > this.lastTick + 24000L) {
 				if (this.soyHealthLevel > 0) {
 					this.setSoyHealthLevel(livingEntity, this.soyHealthLevel - 2, false);
-					this.setSoyHealth(livingEntity, this.soyHealth - 1, this.soyMaxHealth - 1);
 					this.lastTick = livingEntity.level.getDayTime();
 				}
+				this.setSoyHealth(livingEntity, this.soyHealth - 1, this.soyMaxHealth - 1);
 			}
 		}
 

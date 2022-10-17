@@ -45,7 +45,7 @@ public class SoymilkBottleItem extends Item {
 						p_41411_.addEffect(new MobEffectInstance(this.getSecondEffect(), 24000, 0));
 					}
 					if (cap.getSoyHealthLevel() > 1) {
-						cap.setSoyHealth(p_41411_, cap.getSoyHealth() + 1, cap.getSoyMaxHealth() + 1);
+						cap.setSoyHealth(p_41411_, cap.getSoyHealth() + 2, cap.getSoyMaxHealth() + 2);
 					}
 				}
 
