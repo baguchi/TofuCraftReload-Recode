@@ -29,6 +29,7 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.sounds.SoundEvents;
@@ -36,6 +37,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
@@ -357,6 +359,12 @@ public class TofuItems {
 		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_CHILI.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_RICE.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.RICE.get(), 0.4F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUCOOKIE.get(), 0.85F);
+		ComposterBlock.COMPOSTABLES.put(TofuBlocks.TOFUCAKE.get(), 1.0F);
+		ComposterBlock.COMPOSTABLES.put(TofuBlocks.ZUNDATOFUCAKE.get(), 1.0F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUCOOKIE.get(), 0.85F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.ONIGIRI.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.ONIGIRI_SALT.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuBlocks.SAPLING_APRICOT.get().asItem(), 0.3F);
 	}
 
@@ -462,10 +470,11 @@ public class TofuItems {
 			}
 		});
 
-		DispenserBlock.registerBehavior(ZUNDA_ARROW.get(), new DamageableProjectileDispenseBehavior() {
-			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
-				return Util.make(new ZundaArrow(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
-				});
+		DispenserBlock.registerBehavior(ZUNDA_ARROW.get(), new AbstractProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level p_123456_, Position p_123457_, ItemStack p_123458_) {
+				AbstractArrow abstractarrow = new ZundaArrow(p_123456_, p_123457_.x(), p_123457_.y(), p_123457_.z());
+				abstractarrow.pickup = AbstractArrow.Pickup.ALLOWED;
+				return abstractarrow;
 			}
 		});
 	}
