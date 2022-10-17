@@ -438,12 +438,16 @@ public class ItemModelGenerator extends ItemModelProvider {
 		return generated(ForgeRegistries.ITEMS.getKey(item.asItem()).getPath(), prefix("item/" + ForgeRegistries.ITEMS.getKey(item.asItem()).getPath()));
 	}
 
-	private ItemModelBuilder bowItem(String name, ResourceLocation... layers) {
-		ItemModelBuilder builder = withExistingParent(name, "item/bow");
-		for (int i = 0; i < layers.length; i++) {
-			builder = builder.texture("layer" + i, layers[i]);
-		}
-		return builder;
+	public ItemModelBuilder bowItem(Supplier<? extends Item> item, String location) {
+		ResourceLocation id = ForgeRegistries.ITEMS.getKey(item.get());
+		withExistingParent(id.getPath() + "_pulling_0", mcLoc("item/bow")).texture("layer0", modLoc("item/" + location + id.getPath() + "_pulling_0"));
+		withExistingParent(id.getPath() + "_pulling_1", mcLoc("item/bow")).texture("layer0", modLoc("item/" + location + id.getPath() + "_pulling_1"));
+		withExistingParent(id.getPath() + "_pulling_2", mcLoc("item/bow")).texture("layer0", modLoc("item/" + location + id.getPath() + "_pulling_2"));
+		return withExistingParent(id.getPath(), mcLoc("item/bow"))
+				.texture("layer0", modLoc("item/" + location + id.getPath()))
+				.override().predicate(new ResourceLocation("pulling"), 1).model(getExistingFile(modLoc("item/" + id.getPath() + "_pulling_0"))).end()
+				.override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.65F).model(getExistingFile(modLoc("item/" + id.getPath() + "_pulling_1"))).end()
+				.override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.9F).model(getExistingFile(modLoc("item/" + id.getPath() + "_pulling_2"))).end();
 	}
 
 	private void woodenButton(Block button, String variant) {
