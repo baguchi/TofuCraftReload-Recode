@@ -993,8 +993,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("###")
 				.pattern("#X#")
 				.pattern("###")
-				.define('X', Items.ARROW)
-				.define('#', TofuItems.ZUNDAMA.get())
+				.define('X', TofuItems.ZUNDAMA.get())
+				.define('#', Items.ARROW)
 				.unlockedBy("has_item", has(TofuItems.ZUNDAMA.get()))
 				.save(consumer);
 		ShapedRecipeBuilder.shaped(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get())
