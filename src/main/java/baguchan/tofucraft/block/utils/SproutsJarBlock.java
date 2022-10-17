@@ -186,7 +186,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	public boolean canGrowing(Level world, BlockPos pos) {
-		return world.getRawBrightness(pos, 0) < 6;
+		return world.getRawBrightness(pos, 0) <= 8;
 	}
 
 	@Override
