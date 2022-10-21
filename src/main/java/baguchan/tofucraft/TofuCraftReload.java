@@ -30,7 +30,6 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
-import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.carver.TofuConfiguredWorldCarvers;
 import baguchan.tofucraft.world.gen.features.ModNetherFeatures;
 import baguchan.tofucraft.world.gen.features.ModTreeFeatures;
@@ -44,9 +43,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
-import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -170,20 +167,6 @@ public class TofuCraftReload {
 	private void processIMC(InterModProcessEvent event) {
 	}
 
-	@SubscribeEvent
-	public void onServerAboutToStartEvent(ServerStartedEvent event) {
-		// SETUP Tofu Worker House
-		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/plains/houses"),
-				new ResourceLocation("tofucraft:village/tofu_craftsman_house_plains_1"), 8);
-		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/taiga/houses"),
-				new ResourceLocation("tofucraft:village/tofu_craftsman_house_taiga_1"), 8);
-		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/savanna/houses"),
-				new ResourceLocation("tofucraft:village/tofu_craftsman_house_savanna_1"), 8);
-		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/snowy/houses"),
-				new ResourceLocation("tofucraft:village/tofu_craftsman_house_snowy_1"), 8);
-		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/desert/houses"),
-				new ResourceLocation("tofucraft:village/tofu_craftsman_house_desert_1"), 8);
-	}
 
 	public static ResourceLocation prefix(String name) {
 		return new ResourceLocation(TofuCraftReload.MODID, name.toLowerCase(Locale.ROOT));

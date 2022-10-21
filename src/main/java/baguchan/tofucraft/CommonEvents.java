@@ -10,6 +10,7 @@ import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuStructures;
+import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.TofuLevelData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
@@ -47,6 +48,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.event.village.VillageSiegeEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -272,5 +274,20 @@ public class CommonEvents {
 				}
 			}
 		});
+	}
+
+	@SubscribeEvent
+	public static void onServerAboutToStartEvent(ServerStartedEvent event) {
+		// SETUP Tofu Worker House
+		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/plains/houses"),
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_plains_1"), 8);
+		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/taiga/houses"),
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_taiga_1"), 8);
+		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/savanna/houses"),
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_savanna_1"), 8);
+		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/snowy/houses"),
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_snowy_1"), 8);
+		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/desert/houses"),
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_desert_1"), 8);
 	}
 }
