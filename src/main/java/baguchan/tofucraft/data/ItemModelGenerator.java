@@ -309,7 +309,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.NETHER_FUKUMAME.get());
 		singleTexTool(TofuItems.SOUL_FUKUMAME.get());
 		bowItem(TofuItems.ZUNDA_BOW);
-		singleTexTool(TofuItems.ZUNDA_ARROW.get());
+		singleTex(TofuItems.ZUNDA_ARROW.get());
 		singleTexRodTool(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get());
 
 
