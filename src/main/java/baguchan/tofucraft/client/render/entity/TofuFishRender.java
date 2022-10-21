@@ -1,11 +1,11 @@
 package baguchan.tofucraft.client.render.entity;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.client.TofuModelLayers;
+import baguchan.tofucraft.client.model.TofuFishModel;
 import baguchan.tofucraft.entity.TofuFish;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import net.minecraft.client.model.CodModel;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -14,11 +14,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class TofuFishRender extends MobRenderer<TofuFish, CodModel<TofuFish>> {
+public class TofuFishRender extends MobRenderer<TofuFish, TofuFishModel<TofuFish>> {
 	private static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofufish.png");
 
 	public TofuFishRender(EntityRendererProvider.Context p_173954_) {
-		super(p_173954_, new CodModel<>(p_173954_.bakeLayer(ModelLayers.COD)), 0.3F);
+		super(p_173954_, new TofuFishModel<>(p_173954_.bakeLayer(TofuModelLayers.TOFUFISH)), 0.3F);
 	}
 
 	public ResourceLocation getTextureLocation(TofuFish p_114015_) {

@@ -47,7 +47,7 @@ public class TofuEntityTypes {
 			.sized(0.9F, 0.9F).build("tofucraft:tofupig"));
 
 	public static final RegistryObject<EntityType<TofuFish>> TOFUFISH = ENTITIES.register("tofufish", () -> EntityType.Builder.of(TofuFish::new, MobCategory.WATER_AMBIENT)
-			.sized(0.5F, 0.3F).setTrackingRange(4).build("tofucraft:tofufish"));
+			.sized(0.5F, 0.35F).setTrackingRange(4).build("tofucraft:tofufish"));
 
 	public static final RegistryObject<EntityType<TofuGandlem>> TOFU_GANDLEM = ENTITIES.register("tofu_gandlem", () -> EntityType.Builder.of(TofuGandlem::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.6F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_gandlem"));
