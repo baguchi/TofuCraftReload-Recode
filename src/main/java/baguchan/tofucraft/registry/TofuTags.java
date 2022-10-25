@@ -36,6 +36,8 @@ public class TofuTags {
 		public static final TagKey<Item> SOYMILK = forgeTag("soy_milk");
 		public static final TagKey<Item> MILK_SOYMILK = forgeTag("milk/soy_milk");
 
+		public static final TagKey<Item> RICE_BLOCK = forgeTag("block/rice_block");
+
 		private static TagKey<Item> tag(String name) {
 			return ItemTags.create(new ResourceLocation(TofuCraftReload.MODID, name));
 		}

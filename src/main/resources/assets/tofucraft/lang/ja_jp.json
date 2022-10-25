@@ -518,5 +518,6 @@
   "item.tofucraft.tofu_book": "豆腐職人ガイド",
   "tofucraft.jei.bittern": "にがりで固める工程",
   "tofucraft.jei.harden": "重みで固める工程",
-  "tofucraft.need_defeat_boss": "ボスを先に倒す必要があります"
+  "tofucraft.need_defeat_boss": "ボスを先に倒す必要があります",
+  "block.tofucraft.rice_block": "米俵"
 }

@@ -315,5 +315,6 @@
   "death.attack.tofucraft.tofuforce.item": "%2$s借助%3$s的豆腐能击杀了%1$s",
   "item.tofucraft.tofu_gauntlet.mode": "模式",
   "item.tofucraft.tofu_gauntlet.soyshot": "发射大豆",
-  "item.tofucraft.tofu_gauntlet.homing_shot": "制导发射"
+  "item.tofucraft.tofu_gauntlet.homing_shot": "制导发射",
+  "block.tofucraft.rice_block": "米俵"
 }

@@ -518,5 +518,6 @@
   "item.tofucraft.tofu_book": "TofuBook",
   "tofucraft.jei.bittern": "Bittern",
   "tofucraft.jei.harden": "Harden",
-  "tofucraft.need_defeat_boss": "Need To Defeat Boss first"
+  "tofucraft.need_defeat_boss": "Need To Defeat Boss first",
+  "block.tofucraft.rice_block": "Rice bale"
 }
