@@ -60,7 +60,6 @@ minecraft {
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
-            property "mixin.env.remapRefMap", "true"
             arg "-mixin.config=tofucraft.mixins.json"
 
             mods {
@@ -84,7 +83,6 @@ minecraft {
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
-            property "mixin.env.remapRefMap", "true"
             arg "-mixin.config=tofucraft.mixins.json"
 
             mods {
