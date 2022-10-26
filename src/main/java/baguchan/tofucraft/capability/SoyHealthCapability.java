@@ -28,7 +28,7 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 	//when can update is true. update last tick
 	public void setSoyHealthLevel(LivingEntity entity, int level, boolean canUpdate) {
 		if (canUpdate) {
-			this.lastTick = entity.level.getDayTime();
+			this.lastTick = entity.level.getGameTime();
 			if (entity instanceof Player) {
 				((Player) entity).displayClientMessage(Component.translatable("item.tofucraft.soymilk.drink_day", level), true);
 			}
@@ -76,10 +76,10 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 
 	public void tick(LivingEntity livingEntity) {
 		if (!livingEntity.level.isClientSide()) {
-			if (livingEntity.level.getDayTime() > this.lastTick + 24000L) {
+			if (livingEntity.level.getGameTime() > this.lastTick + 24000L) {
 				if (this.soyHealthLevel > 0) {
 					this.setSoyHealthLevel(livingEntity, this.soyHealthLevel - 2, false);
-					this.lastTick = livingEntity.level.getDayTime();
+					this.lastTick = livingEntity.level.getGameTime();
 				}
 				this.setSoyHealth(livingEntity, this.soyHealth - 1, this.soyMaxHealth - 1);
 			}
