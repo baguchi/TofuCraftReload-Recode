@@ -6,6 +6,7 @@ import baguchan.tofucraft.block.FoodPlateBlock;
 import baguchan.tofucraft.block.KinuTofuBlock;
 import baguchan.tofucraft.block.LeekBlock;
 import baguchan.tofucraft.block.MorijioBlock;
+import baguchan.tofucraft.block.RiceBlock;
 import baguchan.tofucraft.block.TofuBlock;
 import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.block.TofuFarmlandBlock;
@@ -283,6 +284,13 @@ public class TofuBlocks {
 	})));
 
 	public static final RegistryObject<Block> FOODPLATE = register("foodplate", () -> new FoodPlateBlock(BlockBehaviour.Properties.of(Material.METAL).strength(1.0F).sound(SoundType.METAL)));
+
+	public static final RegistryObject<Block> RICE_BLOCK = register("rice_block",
+			() -> new RiceBlock(BlockBehaviour.Properties.of(Material.GRASS)
+					.strength(2.0F)
+					.sound(SoundType.GRASS)
+					.noOcclusion())
+	);
 
 	private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
 		RegistryObject<T> register = BLOCKS.register(name, block);

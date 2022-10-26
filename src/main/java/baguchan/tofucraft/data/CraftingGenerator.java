@@ -1057,6 +1057,20 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Items.STICK))
 				.save(consumer);
 
+		// Rice Block
+		ShapedRecipeBuilder.shaped(TofuItems.RICE_BURGER.get())
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.RICE.get())
+				.unlockedBy("has_item", has(TofuItems.RICE.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.RICE.get(), 9)
+				.requires(TofuTags.Items.RICE_BLOCK)
+				.unlockedBy("has_item", has(TofuTags.Items.RICE_BLOCK))
+				.save(consumer);
+
 		/*ShapedRecipeBuilder.shaped(TofuItems.TF_CAPACITOR.get())
 				.pattern(" M ")
 				.pattern("RGR")

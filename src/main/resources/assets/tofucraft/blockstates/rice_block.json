@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "tofucraft:block/rice_block" },
+    "facing=east": { "model": "tofucraft:block/rice_block", "y": 90 },
+    "facing=south": { "model": "tofucraft:block/rice_block", "y": 180 },
+    "facing=west": { "model": "tofucraft:block/rice_block", "y": 270 }
+  }
+}
