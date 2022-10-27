@@ -57,16 +57,18 @@ public class SoymilkBottleItem extends Item {
 			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, p_41409_);
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
-		if (!(p_41411_ instanceof Player) || !((Player) p_41411_).getAbilities().instabuild) {
-			p_41409_.shrink(1);
-		}
-		if (p_41409_.isEmpty())
+		if (p_41409_.isEmpty()) {
 			return new ItemStack(Items.GLASS_BOTTLE);
-		if (p_41411_ instanceof Player && !((Player) p_41411_).getAbilities().instabuild) {
-			ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
-			Player playerentity = (Player) p_41411_;
-			if (!playerentity.getInventory().add(itemstack)) {
-				playerentity.drop(itemstack, false);
+		} else {
+			if (!(p_41411_ instanceof Player) || !((Player) p_41411_).getAbilities().instabuild) {
+				p_41409_.shrink(1);
+			}
+			if (p_41411_ instanceof Player && !((Player) p_41411_).getAbilities().instabuild) {
+				ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
+				Player playerentity = (Player) p_41411_;
+				if (!playerentity.getInventory().add(itemstack)) {
+					playerentity.drop(itemstack, false);
+				}
 			}
 		}
 		return p_41409_;
