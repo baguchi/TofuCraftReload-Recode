@@ -8,6 +8,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -48,4 +49,11 @@ public class NetherFukumameEntity extends FukumameEntity {
 		this.level.broadcastEntityEvent(this, (byte) 4);
 	}
 
+	@Override
+	protected void onHitEntity(EntityHitResult p_37404_) {
+		super.onHitEntity(p_37404_);
+		if (this.getRemainingFireTicks() > 0) {
+			p_37404_.getEntity().setSecondsOnFire(8);
+		}
+	}
 }
