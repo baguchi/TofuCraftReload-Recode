@@ -1,5 +1,6 @@
 package baguchan.tofucraft.item;
 
+import baguchan.tofucraft.compat.CompatHandler;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class SoulFukumameItem extends Item {
 	public SoulFukumameItem(Properties properties) {
@@ -26,7 +28,7 @@ public class SoulFukumameItem extends Item {
 		levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (playerIn.getRandom().nextFloat() * 0.4F + 0.8F));
 		if (!levelIn.isClientSide) {
 			for (int i = 0; i < 5; i++) {
-				SoulFukumameEntity fukumamentity = new SoulFukumameEntity(levelIn, playerIn);
+				SoulFukumameEntity fukumamentity = new SoulFukumameEntity(levelIn, playerIn, itemstack);
 				fukumamentity.damage = 3.0F;
 				fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER_ARROWS, playerIn) * 0.5F;
 				float d0 = levelIn.random.nextFloat() * 20.0F - 10.0F;
@@ -43,7 +45,7 @@ public class SoulFukumameItem extends Item {
 
 	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-		return enchantment == Enchantments.POWER_ARROWS || super.canApplyAtEnchantingTable(stack, enchantment);
+		return enchantment == Enchantments.POWER_ARROWS || ForgeRegistries.ENCHANTMENTS.getKey(enchantment).compareTo(CompatHandler.HUNTERILLAGER_BOUNCE.location()) == 0 || super.canApplyAtEnchantingTable(stack, enchantment);
 	}
 
 	@Override

@@ -21,6 +21,10 @@ public class NetherFukumameEntity extends FukumameEntity {
 		super(TofuEntityTypes.NETHER_FUKUMAME.get(), throwerIn, worldIn);
 	}
 
+	public NetherFukumameEntity(Level worldIn, LivingEntity throwerIn, ItemStack stack) {
+		super(TofuEntityTypes.NETHER_FUKUMAME.get(), throwerIn, worldIn);
+	}
+
 	public NetherFukumameEntity(Level worldIn, double x, double y, double z) {
 		super(TofuEntityTypes.NETHER_FUKUMAME.get(), worldIn, x, y, z);
 	}
@@ -51,9 +55,9 @@ public class NetherFukumameEntity extends FukumameEntity {
 
 	@Override
 	protected void onHitEntity(EntityHitResult p_37404_) {
-		super.onHitEntity(p_37404_);
 		if (this.getRemainingFireTicks() > 0) {
 			p_37404_.getEntity().setSecondsOnFire(8);
 		}
+		super.onHitEntity(p_37404_);
 	}
 }
