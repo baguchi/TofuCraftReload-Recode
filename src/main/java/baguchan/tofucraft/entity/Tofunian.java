@@ -2,6 +2,7 @@ package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.entity.goal.CropHarvestGoal;
 import baguchan.tofucraft.entity.goal.DoSleepingGoal;
+import baguchan.tofucraft.entity.goal.EatItemGoal;
 import baguchan.tofucraft.entity.goal.FindJobBlockGoal;
 import baguchan.tofucraft.entity.goal.MakeFoodGoal;
 import baguchan.tofucraft.entity.goal.OpenTofuDoorGoal;
@@ -179,19 +180,22 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.3D));
 		this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
 		this.goalSelector.addGoal(2, new TofunianSleepOnBedGoal(this, 0.85F, 6));
-		this.goalSelector.addGoal(3, new GetItemGoal<>(this));
-		this.goalSelector.addGoal(4, new CropHarvestGoal(this, 0.9F));
-		this.goalSelector.addGoal(5, new MakeFoodGoal(this, 0.9F, 6));
-		this.goalSelector.addGoal(6, new RestockGoal(this, 0.9F, 6));
-		this.goalSelector.addGoal(7, new MoveToGoal(this, 42.0D, 1.0D));
-		this.goalSelector.addGoal(8, new FindJobBlockGoal(this, 0.85F, 6));
-		this.goalSelector.addGoal(9, new TofunianLoveGoal(this, 0.8F));
-		this.goalSelector.addGoal(10, new RandomStrollGoal(this, 0.9D));
-		this.goalSelector.addGoal(11, new MoveToGoal(this, 26.0D, 1.0D));
-		this.goalSelector.addGoal(12, new InteractGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(13, new ShareItemAndGossipGoal(this, 0.9F));
-		this.goalSelector.addGoal(14, new LookAtPlayerGoal(this, Mob.class, 8.0F));
-		this.goalSelector.addGoal(15, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(3, new EatItemGoal<>(this, null, (p_35882_) -> {
+			return getHealth() < getMaxHealth();
+		}));
+		this.goalSelector.addGoal(4, new GetItemGoal<>(this));
+		this.goalSelector.addGoal(5, new CropHarvestGoal(this, 0.9F));
+		this.goalSelector.addGoal(6, new MakeFoodGoal(this, 0.9F, 6));
+		this.goalSelector.addGoal(7, new RestockGoal(this, 0.9F, 6));
+		this.goalSelector.addGoal(8, new MoveToGoal(this, 42.0D, 1.0D));
+		this.goalSelector.addGoal(9, new FindJobBlockGoal(this, 0.85F, 6));
+		this.goalSelector.addGoal(10, new TofunianLoveGoal(this, 0.8F));
+		this.goalSelector.addGoal(11, new RandomStrollGoal(this, 0.9D));
+		this.goalSelector.addGoal(12, new MoveToGoal(this, 26.0D, 1.0D));
+		this.goalSelector.addGoal(13, new InteractGoal(this, Player.class, 3.0F, 1.0F));
+		this.goalSelector.addGoal(14, new ShareItemAndGossipGoal(this, 0.9F));
+		this.goalSelector.addGoal(15, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		this.goalSelector.addGoal(16, new RandomLookAroundGoal(this));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -647,28 +651,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return (this.foodLevel < 12);
 	}
 
-	private void eatUntilFull() {
-		if (hungry() && countFoodPointsInInventory() != 0)
-			for (int i = 0; i < getInventory().getContainerSize(); i++) {
-				ItemStack itemstack = getInventory().getItem(i);
-				if (!itemstack.isEmpty()) {
-					Integer integer = FOOD_POINTS.get(itemstack.getItem());
-					if (integer != null) {
-						int j = itemstack.getCount();
-						for (int k = j; k > 0; k--) {
-							this.foodLevel = (byte) (this.foodLevel + integer.intValue());
-							getInventory().removeItem(i, 1);
-							if (!hungry())
-								return;
-						}
-					}
-				}
-			}
-	}
-
 	public boolean wantsToPickUp(ItemStack p_230293_1_) {
 		Item item = p_230293_1_.getItem();
-		return (WANTED_ITEMS.contains(item) && getInventory().canAddItem(p_230293_1_));
+		return (WANTED_ITEMS.contains(item) && this.getInventory().canAddItem(p_230293_1_));
 	}
 
 	public boolean hasExcessFood() {
@@ -680,29 +665,50 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public boolean hasFarmSeeds() {
-		return getInventory().hasAnyOf(ImmutableSet.of(TofuItems.SEEDS_SOYBEANS.get()));
+		return this.getInventory().hasAnyOf(ImmutableSet.of(TofuItems.SEEDS_SOYBEANS.get()));
 	}
 
 	private int countFoodPointsInInventory() {
-		SimpleContainer inventory = getInventory();
+		SimpleContainer inventory = this.getInventory();
 		return FOOD_POINTS.entrySet().stream().mapToInt(p_226553_1_ -> inventory.countItem(p_226553_1_.getKey()) * p_226553_1_.getValue().intValue())
 
 				.sum();
 	}
 
 	public void cookingFood() {
-		for (int i = 0; i < getInventory().getContainerSize(); i++) {
-			ItemStack itemstack = getInventory().getItem(i);
+		for (int i = 0; i < this.getInventory().getContainerSize(); i++) {
+			ItemStack itemstack = this.getInventory().getItem(i);
 			if (!itemstack.isEmpty() &&
 					itemstack.getItem() == TofuItems.SEEDS_SOYBEANS.get()) {
-				getInventory().removeItem(i, 1);
+				this.getInventory().removeItem(i, 1);
 				cookResult();
 			}
 		}
 	}
 
+	public boolean eatFood() {
+		if (this.getInventory().isEmpty()) {
+			return false;
+		}
+		for (int i = 0; i < this.getInventory().getContainerSize(); i++) {
+			ItemStack itemstack = this.getInventory().getItem(i);
+			if (!itemstack.isEmpty() && FOOD_POINTS.containsKey(itemstack.getItem())) {
+				this.setItemInHand(InteractionHand.MAIN_HAND, itemstack.split(1));
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private void cookResult() {
-		getInventory().addItem(new ItemStack(TofuItems.TOFUGRILLED.get()));
+		this.getInventory().addItem(new ItemStack(TofuItems.TOFUGRILLED.get()));
+	}
+
+	public ItemStack eat(Level p_36185_, ItemStack p_36186_) {
+		this.heal(p_36186_.getFoodProperties(this).getNutrition());
+		this.playSound(SoundEvents.PLAYER_BURP, 0.5F, p_36185_.random.nextFloat() * 0.1F + 0.9F);
+
+		return super.eat(p_36185_, p_36186_);
 	}
 
 	public void updateTrades() {
