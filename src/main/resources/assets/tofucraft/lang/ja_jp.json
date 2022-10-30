@@ -523,5 +523,6 @@
   "tofucraft.jei.bittern": "にがりで固める工程",
   "tofucraft.jei.harden": "重みで固める工程",
   "tofucraft.need_defeat_boss": "ボスを先に倒す必要があります",
-  "block.tofucraft.rice_block": "米俵"
+  "block.tofucraft.rice_block": "米俵",
+  "tofucraft.config.travelerTofunianSpawn": "豆腐商人をスポーンさせる"
 }

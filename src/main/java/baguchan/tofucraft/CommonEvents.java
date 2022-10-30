@@ -12,6 +12,7 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuStructures;
 import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.TofuLevelData;
+import baguchan.tofucraft.world.TravelerTofunianSpawner;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
@@ -19,20 +20,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ShearsItem;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
@@ -41,6 +38,7 @@ import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -55,10 +53,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.network.PacketDistributor;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
+	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
 
 	@SubscribeEvent
 	public static void onRegisterEntityCapabilities(RegisterCapabilitiesEvent event) {
@@ -227,19 +228,6 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onBlockDrop(BlockEvent.BreakEvent event) {
-		if (!event.getPlayer().isCreative() && (
-				event.getLevel().getBlockState(event.getPos()).is(Blocks.FERN) || event.getLevel().getBlockState(event.getPos()).is(Blocks.TALL_GRASS) || event.getLevel().getBlockState(event.getPos()).is(Blocks.GRASS)) &&
-				event.getLevel() instanceof Level && ((Level) event.getLevel()).random.nextFloat() < 0.075F) {
-			if (!(event.getPlayer().getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof ShearsItem)) {
-				ItemEntity entity = new ItemEntity((Level) event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(((Level) event.getLevel()).random.nextBoolean() ? TofuItems.SEEDS_SOYBEANS.get() : TofuItems.SEEDS_RICE.get()));
-				entity.setDefaultPickUpDelay();
-				event.getLevel().addFreshEntity(entity);
-			}
-		}
-	}
-
-	@SubscribeEvent
 	public static void onWorldLoad(LevelEvent.Load event) {
 		if (event.getLevel() instanceof ServerLevel level && level.dimension().location().equals(TofuDimensions.tofu_world.location())) {
 			TofuLevelData levelData = new TofuLevelData(level.getServer().getWorldData(), level.getServer().getWorldData().overworldData());
@@ -274,6 +262,16 @@ public class CommonEvents {
 				}
 			}
 		});
+	}
+
+	@SubscribeEvent
+	public void onServerTick(TickEvent.LevelTickEvent tick) {
+		if (!tick.level.isClientSide && tick.level instanceof ServerLevel serverWorld) {
+			TRAVELER_TOFUNIAN_SPAWNER_MAP.computeIfAbsent(serverWorld,
+					k -> new TravelerTofunianSpawner(serverWorld));
+			TravelerTofunianSpawner spawner = TRAVELER_TOFUNIAN_SPAWNER_MAP.get(serverWorld);
+			spawner.tick();
+		}
 	}
 
 	@SubscribeEvent

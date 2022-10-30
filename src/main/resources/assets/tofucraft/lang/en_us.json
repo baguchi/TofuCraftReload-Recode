@@ -523,5 +523,6 @@
   "tofucraft.jei.bittern": "Bittern",
   "tofucraft.jei.harden": "Harden",
   "tofucraft.need_defeat_boss": "Need To Defeat Boss first",
-  "block.tofucraft.rice_block": "Rice bale"
+  "block.tofucraft.rice_block": "Rice bale",
+  "tofucraft.config.travelerTofunianSpawn": "Traveler Tofunian Spawn"
 }

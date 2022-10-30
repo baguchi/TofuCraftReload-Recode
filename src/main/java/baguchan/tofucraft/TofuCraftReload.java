@@ -25,6 +25,7 @@ import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuFoliagePlacerType;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuLootModifiers;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
@@ -45,7 +46,9 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -102,6 +105,7 @@ public class TofuCraftReload {
 		TofuItems.ITEMS.register(modBus);
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
+		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuContainers.MENU_TYPES.register(modBus);
 		TofuBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modBus);
@@ -118,6 +122,7 @@ public class TofuCraftReload {
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup));
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new CraftingEvents());
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TofuConfig.COMMON_SPEC);
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
