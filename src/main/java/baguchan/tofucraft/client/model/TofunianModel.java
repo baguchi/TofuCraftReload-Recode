@@ -127,10 +127,6 @@ public class TofunianModel<T extends Tofunian> extends HierarchicalModel<T> impl
 		return p_102923_ == HumanoidArm.LEFT ? this.leftArm : this.rightArm;
 	}
 
-	public ModelPart getHat() {
-		return this.hat;
-	}
-
 	public ModelPart getHead() {
 		return this.head;
 	}

@@ -4,12 +4,14 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.client.TofuModelLayers;
 import baguchan.tofucraft.client.model.TofunianModel;
 import baguchan.tofucraft.client.render.layer.TofunianClothLayer;
+import baguchan.tofucraft.client.render.layer.TofunianEyeLayer;
 import baguchan.tofucraft.client.render.layer.TofunianItemInHandLayer;
 import baguchan.tofucraft.client.render.layer.TofunianRoleLayer;
 import baguchan.tofucraft.entity.Tofunian;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -20,6 +22,8 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianModel<Tofunian
 
 	public TofunianRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_, new TofunianModel<>(p_173956_.bakeLayer(TofuModelLayers.TOFUNIAN)), 0.5F);
+		this.addLayer(new CustomHeadLayer<>(this, p_173956_.getModelSet(), p_173956_.getItemInHandRenderer()));
+		this.addLayer(new TofunianEyeLayer(this));
 		this.addLayer(new TofunianClothLayer(this));
 		this.addLayer(new TofunianRoleLayer(this));
 		this.addLayer(new TofunianItemInHandLayer<>(this));
