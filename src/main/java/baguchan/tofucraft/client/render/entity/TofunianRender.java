@@ -30,6 +30,7 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianModel<Tofunian
 	}
 
 	protected void scale(Tofunian p_116314_, PoseStack p_116315_, float p_116316_) {
+		super.scale(p_116314_, p_116315_, p_116316_);
 		float var4 = p_116314_.getScale();
 		if (p_116314_.isBaby()) {
 			this.shadowRadius = 0.25F;
