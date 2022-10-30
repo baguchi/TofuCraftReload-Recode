@@ -299,8 +299,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public void tofunianHalloween() {
-		if (this.getId() % (5) != 0) return;
 		if (isHalloween() && !isBaby()) {
+			if (this.getId() % (5) != 0) return;
 			if (this.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
 				this.equipItemIfPossible(new ItemStack(Items.CARVED_PUMPKIN));
 				this.playSound(SoundEvents.ARMOR_EQUIP_GENERIC);
