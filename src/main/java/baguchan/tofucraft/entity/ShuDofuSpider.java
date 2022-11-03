@@ -285,7 +285,7 @@ public class ShuDofuSpider extends Monster {
 	@Override
 	public boolean doHurtTarget(Entity entity) {
 		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-		this.heal(f / 3);
+		this.heal(f / 3.25F);
 		return super.doHurtTarget(entity);
 	}
 
