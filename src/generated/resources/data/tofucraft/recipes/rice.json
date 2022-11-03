@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "tofucraft:rice_block"
+      "tag": "forge:block/rice_block"
     }
   ],
   "result": {

@@ -1063,7 +1063,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 
 		// Rice Block
-		ShapedRecipeBuilder.shaped(TofuItems.RICE_BURGER.get())
+		ShapedRecipeBuilder.shaped(TofuBlocks.RICE_BLOCK.get())
 				.pattern("###")
 				.pattern("###")
 				.pattern("###")
