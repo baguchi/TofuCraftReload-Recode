@@ -993,6 +993,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuItems.SEEDS_SOYBEANS_NETHER.get())
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER.get()))
 				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.INFERNO_NETHER_FUKUMAME.get(), 1)
+				.requires(TofuItems.NETHER_FUKUMAME.get())
+				.requires(Items.BLAZE_POWDER)
+				.unlockedBy("has_item", has(TofuItems.NETHER_FUKUMAME.get()))
+				.save(consumer);
 		ShapedRecipeBuilder.shaped(TofuItems.SOUL_FUKUMAME.get())
 				.pattern("###")
 				.pattern("###")

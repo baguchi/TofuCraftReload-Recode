@@ -10,6 +10,7 @@ import baguchan.tofucraft.item.BugleItem;
 import baguchan.tofucraft.item.ChiliItem;
 import baguchan.tofucraft.item.FukumameItem;
 import baguchan.tofucraft.item.HoneySoymilkBottleItem;
+import baguchan.tofucraft.item.InfernoNetherFukumameItem;
 import baguchan.tofucraft.item.KoujiBaseItem;
 import baguchan.tofucraft.item.NattoCobWebItem;
 import baguchan.tofucraft.item.NetherFukumameItem;
@@ -29,6 +30,7 @@ import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
@@ -317,6 +319,8 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFUSTICK = ITEMS.register("tofustick", () -> new TofuStickItem((new Item.Properties()).stacksTo(1).durability(264).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> FUKUMAME = ITEMS.register("fukumame", () -> new FukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> NETHER_FUKUMAME = ITEMS.register("nether_fukumame", () -> new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> INFERNO_NETHER_FUKUMAME = ITEMS.register("inferno_nether_fukumame", () -> new InfernoNetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64).tab(TofuCreativeModeTab.TOFUCRAFT)));
+
 	public static final RegistryObject<Item> SOUL_FUKUMAME = ITEMS.register("soul_fukumame", () -> new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON).tab(TofuCreativeModeTab.TOFUCRAFT)));
 
 	public static final RegistryObject<Item> ZUNDA_BOW = ITEMS.register("zunda_bow", () -> new ZundaBowItem((new Item.Properties()).durability(426).tab(TofuCreativeModeTab.TOFUCRAFT)));
@@ -459,6 +463,32 @@ public class TofuItems {
 			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
 				return Util.make(new NetherFukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
 				});
+			}
+
+			protected int shootCount() {
+				return 6;
+			}
+		});
+		DispenserBlock.registerBehavior(INFERNO_NETHER_FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
+			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
+				return Util.make(new NetherFukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
+				});
+			}
+
+			public ItemStack execute(BlockSource p_123366_, ItemStack p_123367_) {
+				Level level = p_123366_.getLevel();
+				Position position = DispenserBlock.getDispensePosition(p_123366_);
+				Direction direction = p_123366_.getBlockState().getValue(DispenserBlock.FACING);
+				for (int i = 0; i < shootCount(); i++) {
+					Projectile projectile = this.getProjectile(level, position, p_123367_);
+					projectile.shoot((double) direction.getStepX(), (double) ((float) direction.getStepY() + 0.1F), (double) direction.getStepZ(), this.getPower(), this.getUncertainty());
+					projectile.setSecondsOnFire(60);
+					level.addFreshEntity(projectile);
+				}
+				if (p_123367_.hurt(1, p_123366_.getLevel().getRandom(), null)) {
+					p_123367_.setCount(0);
+				}
+				return p_123367_;
 			}
 
 			protected int shootCount() {
