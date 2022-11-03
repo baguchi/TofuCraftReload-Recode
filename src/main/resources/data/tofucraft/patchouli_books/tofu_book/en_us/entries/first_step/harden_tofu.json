@@ -11,7 +11,8 @@
     {
       "type": "crafting",
       "title": "TofuMomen",
-      "recipe": "tofucraft:blocktofumomen"
+      "recipe": "tofucraft:blocktofumomen",
+      "text": "Tofu moment"
     },
     {
       "type": "multiblock",

@@ -11,7 +11,8 @@
     {
       "type": "crafting",
       "title": "豆腐木綿",
-      "recipe": "tofucraft:blocktofumomen"
+      "recipe": "tofucraft:blocktofumomen",
+      "text": "豆腐 moment."
     },
     {
       "type": "multiblock",

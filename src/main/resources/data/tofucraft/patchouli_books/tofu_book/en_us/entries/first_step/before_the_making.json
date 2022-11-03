@@ -11,7 +11,8 @@
     {
       "type": "crafting",
       "title": "SoyMilk Bucket",
-      "recipe": "tofucraft:bucket_soymilk"
+      "recipe": "tofucraft:bucket_soymilk",
+      "text": "Soymilk is simulator like water.$(br2)but bit different."
     },
     {
       "type": "image",
