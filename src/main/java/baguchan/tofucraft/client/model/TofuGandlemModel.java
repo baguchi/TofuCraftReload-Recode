@@ -78,6 +78,9 @@ public class TofuGandlemModel<T extends TofuGandlem> extends HierarchicalModel<T
 		this.animate(entity.rushAnimationState, TofuGandlemAnimation.RUSH, ageInTicks);
 		this.animate(entity.idleAnimationState, TofuGandlemAnimation.IDLE, ageInTicks);
 		this.animate(entity.deathAnimationState, TofuGandlemAnimation.DEATH, ageInTicks);
+		this.animate(entity.chargeAnimationState, TofuGandlemAnimation.CHARGE, ageInTicks);
+		this.animate(entity.chargeStopAnimationState, TofuGandlemAnimation.CHARGE_STOP, ageInTicks);
+		this.animate(entity.chargeFailAnimationState, TofuGandlemAnimation.CHARGE_FAIL, ageInTicks);
 	}
 
 	public List<ModelPart> getCoreModelParts() {
