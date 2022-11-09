@@ -49,7 +49,7 @@ public class TofuDimensionSettings {
 				BlockTags.INFINIBURN_OVERWORLD, //infiburn
 				BuiltinDimensionTypes.OVERWORLD_EFFECTS, // DimensionRenderInfo
 				0f, // Wish this could be set to -0.05 since it'll make the world truly blacked out if an area is not sky-lit (see: Dark Forests) Sadly this also messes up night vision so it gets 0
-				new DimensionType.MonsterSettings(false, false, UniformInt.of(0, 7), 7)
+				new DimensionType.MonsterSettings(false, true, UniformInt.of(0, 7), 7)
 		);
 	}
 
