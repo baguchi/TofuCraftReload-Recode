@@ -1,0 +1,80 @@
+{
+  "parent": "tofucraft:tofucraft/tofuworld",
+  "criteria": {
+    "diamond_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:tofu_diamond_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diamond_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:tofu_diamond_chestplate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diamond_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:tofu_diamond_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diamond_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:tofu_diamond_leggings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.tofucraft.more_shiny_gear.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "tofucraft:tofu_diamond_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.tofucraft.more_shiny_gear.title"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "requirements": [
+    [
+      "diamond_helmet",
+      "diamond_chestplate",
+      "diamond_leggings",
+      "diamond_boots"
+    ]
+  ]
+}
