@@ -18,7 +18,7 @@ public class SeedAndRootItem extends PlaceOnWaterBlockItem {
 	protected boolean placeBlock(BlockPlaceContext p_40578_, BlockState p_40579_) {
 		if (p_40578_.getLevel().getFluidState(p_40578_.getClickedPos().below()).is(Fluids.WATER) && p_40578_.getLevel().getBlockState(p_40578_.getClickedPos().below()).is(Blocks.WATER) && this.root.defaultBlockState().canSurvive(p_40578_.getLevel(), p_40578_.getClickedPos().below())) {
 			p_40578_.getLevel().setBlock(p_40578_.getClickedPos().below(), this.root.defaultBlockState(), 11);
-			return p_40578_.getLevel().setBlock(p_40578_.getClickedPos(), p_40579_, 11);
+			return p_40578_.getLevel().setBlock(p_40578_.getClickedPos(), p_40579_, 27);
 		} else {
 			return false;
 		}
