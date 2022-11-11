@@ -52,7 +52,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 
 	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(100, 300);
-	private static final UniformInt CHARGE_COOLDOWN = UniformInt.of(400, 600);
+	private static final UniformInt CHARGE_COOLDOWN = UniformInt.of(100, 200);
 
 
 	public final AnimationState idleAnimationState = new AnimationState();
@@ -196,11 +196,13 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("Sleep", this.isSleep());
+		compound.putBoolean("FullCharge", this.isFullCharge());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.setSleep(compound.getBoolean("Sleep"));
+		this.setFullCharge(compound.getBoolean("FullCharge"));
 	}
 
 	@Override
@@ -259,13 +261,13 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			}
 		}
 
-		if (this.isCharging() && this.random.nextFloat() < 0.015F * p_21017_) {
+		if (this.isCharging() && this.random.nextFloat() < 0.005F * p_21017_) {
 			this.setCharging(false);
 			this.setChargeFailed(true);
 			this.playSound(SoundEvents.SHIELD_BREAK, 2.0F, 1.0F);
 		}
 
-		if (this.isFullCharge() && this.random.nextFloat() < 0.02F * p_21017_) {
+		if (this.isFullCharge() && this.random.nextFloat() < 0.005F * p_21017_) {
 			this.setFullCharge(false);
 			this.setChargeFailed(true);
 			this.playSound(SoundEvents.SHIELD_BREAK, 2.0F, 1.0F);
@@ -410,7 +412,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.26D).add(Attributes.FLYING_SPEED, 0.25F).add(Attributes.ATTACK_KNOCKBACK, 0.75F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 12.0F).add(Attributes.ARMOR_TOUGHNESS, 4.0F).add(Attributes.ATTACK_DAMAGE, 8.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 340.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.26D).add(Attributes.FLYING_SPEED, 0.25F).add(Attributes.ATTACK_KNOCKBACK, 0.9F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 12.0F).add(Attributes.ARMOR_TOUGHNESS, 4.0F).add(Attributes.ATTACK_DAMAGE, 8.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
