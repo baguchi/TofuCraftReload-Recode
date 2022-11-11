@@ -363,7 +363,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			this.playSound(SoundEvents.BEACON_ACTIVATE, 3.0F, 1.0F);
 		}
 
-		if (!this.level.isClientSide && this.isAlive() && this.tickCount % 10 == 0 && this.isCharging()) {
+		if (!this.level.isClientSide && this.isAlive() && this.tickCount % 6 == 0 && this.isCharging()) {
 			this.heal(4.0F);
 		}
 	}

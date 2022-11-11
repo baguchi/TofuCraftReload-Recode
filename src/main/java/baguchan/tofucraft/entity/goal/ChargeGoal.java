@@ -29,15 +29,17 @@ public class ChargeGoal extends Goal {
 			return false;
 		} else {
 			if (cooldown > this.maxCooldown) {
-				this.cooldown = 0;
-				this.maxCooldown = timeBetweenCooldown.sample(this.gandlem.getRandom());
-				return this.gandlem.getHealth() < this.gandlem.getMaxHealth() / 2 && !this.gandlem.isRush();
+				if (this.gandlem.getHealth() < this.gandlem.getMaxHealth() / 2 && !this.gandlem.isRush()) {
+					this.cooldown = 0;
+					this.maxCooldown = timeBetweenCooldown.sample(this.gandlem.getRandom());
+					return true;
+				}
 			} else {
 				++this.cooldown;
 				return false;
 			}
 		}
-
+		return false;
 	}
 
 	@Override
