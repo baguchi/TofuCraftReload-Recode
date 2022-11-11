@@ -51,7 +51,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	private static final EntityDataAccessor<Byte> DATA_CHARGE_FLAGS_ID = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BYTE);
 
 
-	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(100, 300);
+	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(200, 400);
 	private static final UniformInt CHARGE_COOLDOWN = UniformInt.of(100, 200);
 
 
