@@ -26,10 +26,6 @@ public class TofuSounds {
 	public static final RegistryObject<SoundEvent> TOFUNIAN_HURT = createEvent("mob.tofunian.hurt");
 	public static final RegistryObject<SoundEvent> TOFUNIAN_DEATH = createEvent("mob.tofunian.death");
 
-	public static final RegistryObject<SoundEvent> ZOMBIE_TOFUNIAN_IDLE = createEvent("mob.zombie_tofunian.idle");
-	public static final RegistryObject<SoundEvent> ZOMBIE_TOFUNIAN_HURT = createEvent("mob.zombie_tofunian.hurt");
-	public static final RegistryObject<SoundEvent> ZOMBIE_TOFUNIAN_DEATH = createEvent("mob.zombie_tofunian.death");
-
 	public static final RegistryObject<SoundEvent> SOUL_BREATH = createEvent("block.soybean_soul.soul_breath");
 	public static final RegistryObject<SoundEvent> SOYBEAN_CRACK = createEvent("item.soybean.crack");
 
