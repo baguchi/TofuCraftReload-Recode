@@ -9,7 +9,7 @@ modLoader = "javafml" #mandatory
 loaderVersion = "[43,)" #mandatory (33 is current forge version)
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="http://my.issue.tracker/" #optional
-license = "All rights reserved"
+license = "MIT License"
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
