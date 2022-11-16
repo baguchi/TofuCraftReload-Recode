@@ -79,5 +79,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		tag(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get())
 				.add(TofuBlocks.TOFUSLATE.get());
 		tag(BlockTags.LEAVES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get());
+		tag(BlockTags.CROPS).add(TofuBlocks.RICE_CROP.get()).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get()).add(TofuBlocks.LEEK_CROP.get());
+		tag(BlockTags.SAPLINGS).add(TofuBlocks.SAPLING_TOFU.get(), TofuBlocks.SAPLING_APRICOT.get());
+		tag(BlockTags.LOGS).add(TofuBlocks.ISHITOFU.get());
 	}
 }
