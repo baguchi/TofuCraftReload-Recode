@@ -149,6 +149,8 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.2.0.256")
 
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+
+    //implementation fg.deobf("curse.maven:farmers_delight-398521:${project.farmersDelight}")
     //implementation fg.deobf("curse.maven:mysterious-mountain-lib-368098:3788751")
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
