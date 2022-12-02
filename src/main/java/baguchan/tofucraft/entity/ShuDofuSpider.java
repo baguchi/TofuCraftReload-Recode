@@ -71,6 +71,8 @@ public class ShuDofuSpider extends Monster {
 	public final AnimationState deathAnimationState = new AnimationState();
 	public final AnimationState jumpAnimationState = new AnimationState();
 
+	public final AnimationState graspAnimationState = new AnimationState();
+
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
 
 	public ShuDofuSpider(EntityType<? extends ShuDofuSpider> p_27508_, Level p_27509_) {
@@ -95,7 +97,7 @@ public class ShuDofuSpider extends Monster {
 		this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Mob.class, 6.0F));
 		this.goalSelector.addGoal(4, new ShuDofuSpider.AttackGoal(this));
 		this.goalSelector.addGoal(4, new ShuDofuSpider.JumpAttackGoal());
-		//this.goalSelector.addGoal(3, new ShuDofuSpider.graspAttackGoal(this));
+		this.goalSelector.addGoal(3, new ShuDofuSpider.graspAttackGoal(this));
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.8D));
 
 		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
@@ -128,6 +130,41 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	@Override
+	public void positionRider(Entity passenger) {
+		if (this.isGraspAnim()) {
+			if (!this.getPassengers().isEmpty()) {
+				Vec3 riderPos = this.getRiderPosition();
+
+				this.getPassengers().get(0).setPos(riderPos.x(), riderPos.y(), riderPos.z());
+			}
+		} else {
+			super.positionRider(passenger);
+		}
+	}
+
+	@Override
+	public boolean canRiderInteract() {
+		return true;
+	}
+
+	private Vec3 getRiderPosition() {
+		if (!this.getPassengers().isEmpty()) {
+			float distance = 3.0F;
+
+			double dx = Math.cos((this.getYRot() + 90) * Math.PI / 180.0D) * distance;
+			double dz = Math.sin((this.getYRot() + 90) * Math.PI / 180.0D) * distance;
+
+			return new Vec3(this.getX() + dx, this.getY() + this.getPassengersRidingOffset() + this.getPassengers().get(0).getMyRidingOffset(), this.getZ() + dz);
+		} else {
+			return new Vec3(this.getX(), this.getY(), this.getZ());
+		}
+	}
+
+	public double getPassengersRidingOffset() {
+		return this.isGraspAnim() ? (double) this.getDimensions(this.getPose()).height * 0.15D : super.getPassengersRidingOffset();
+	}
+
+	@Override
 	public void tick() {
 		++this.stinkTime;
 		if (this.stinkTime == 120) {
@@ -139,6 +176,12 @@ public class ShuDofuSpider extends Monster {
 		} else {
 			this.idleAnimationState.stop();
 		}
+		if (this.isAlive() && this.isGraspAnim()) {
+			this.graspAnimationState.startIfStopped(this.tickCount);
+		} else {
+			this.graspAnimationState.stop();
+		}
+
 		if (this.isAlive() && this.isMovingOnLand()) {
 			this.walkAnimationState.startIfStopped(this.tickCount);
 		} else {
@@ -167,9 +210,6 @@ public class ShuDofuSpider extends Monster {
 
 		if (this.isAlive() && this.isRanged() && this.getTarget() != null) {
 			++this.rangedTime;
-			/*if(this.rangedTime < 25) {
-				this.setDeltaMovement(this.getDeltaMovement().multiply(0.1, 1, 0.1));
-			}*/
 			if (this.rangedTime == 1) {
 				this.level.broadcastEntityEvent(this, (byte) 103);
 			}
@@ -188,22 +228,22 @@ public class ShuDofuSpider extends Monster {
 			}
 		}
 
-		/*
 		if (this.isAlive() && this.isGraspAnim() && this.getTarget() != null){
 			++this.graspTime;
 			if(this.graspTime == 1){
 				this.level.broadcastEntityEvent(this,(byte) 104);
 			}
-			if(this.graspTime > 2){
+			if (this.graspTime > 2) {
 				Vec3 movement = this.getDeltaMovement();
-				this.checkGraspAttack(this.getBoundingBox(), this.getBoundingBox().expandTowards(movement.x, movement.y, movement.z));
+				this.checkGraspAttack(this.getBoundingBox(), this.getBoundingBox().expandTowards(movement.x, movement.y, movement.z).inflate(1.0F));
 			}
-			if(this.graspTime == 10){
+			if (this.graspTime == 100) {
 				this.graspTime = 0;
 				this.setGraspAnimation(false);
+				this.ejectPassengers();
 			}
 		}
-		*/
+
 
 		if (this.isAlive() && this.isJumpAnim() && this.getTarget() != null) {
 			++this.jumpTime;
@@ -282,13 +322,6 @@ public class ShuDofuSpider extends Monster {
 		}
 	}
 
-	@Override
-	public boolean doHurtTarget(Entity entity) {
-		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-		this.heal(f / 3.25F);
-		return super.doHurtTarget(entity);
-	}
-
 	protected void checkJumpAttack(AABB p_21072_, AABB p_21073_) {
 		AABB aabb = p_21072_.minmax(p_21073_);
 		List<Entity> list = this.level.getEntities(this, aabb);
@@ -334,12 +367,14 @@ public class ShuDofuSpider extends Monster {
 
 	public void graspAttack(Entity p_36347_) {
 		if (p_36347_.isAttackable()) {
-			p_36347_.hurt(DamageSource.mobAttack(this), 16.0F);
+			float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
+			if (p_36347_.hurt(DamageSource.mobAttack(this), f * 0.65F)) {
+				this.heal(f / 1.75F);
+			}
+
 			if (this.getPassengers().isEmpty()) {
-				if (p_36347_.getVehicle() == null) {
-					p_36347_.stopRiding();
-					p_36347_.startRiding(this, true);
-				}
+				p_36347_.stopRiding();
+				p_36347_.startRiding(this, true);
 			}
 			this.setSprinting(false);
 		}
@@ -553,7 +588,7 @@ public class ShuDofuSpider extends Monster {
 				this.spider.setGraspAnimation(true);
 				this.spider.getLookControl().setLookAt(livingentity, 60.0F, 60F);
 				Vec3 vec3 = (new Vec3(livingentity.getX() - this.spider.getX(), livingentity.getY() - this.spider.getY(), livingentity.getZ() - this.spider.getZ())).normalize();
-				this.spider.setDeltaMovement(this.spider.getDeltaMovement().add(vec3.x * 1.2D, 0D, vec3.z * 1.2D));
+				this.spider.setDeltaMovement(this.spider.getDeltaMovement().add(vec3.x * 1.25D, 0.3D, vec3.z * 1.25D));
 			}
 
 			this.spider.getNavigation().stop();
@@ -703,7 +738,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public void setGraspAnimation(boolean grasp) {
-		this.entityData.set(ATTACK_ANIMATION, grasp);
+		this.entityData.set(GRASP_ANIMATION, grasp);
 	}
 
 	public boolean isGraspAnim() {

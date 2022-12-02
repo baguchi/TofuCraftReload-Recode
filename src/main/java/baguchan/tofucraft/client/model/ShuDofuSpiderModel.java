@@ -303,6 +303,7 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 		this.animate(entity.attackAnimationState, ShuDofuSpiderAnimation.SWIPE, ageInTicks);
 		this.animate(entity.deathAnimationState, ShuDofuSpiderAnimation.DEATH, ageInTicks);
 		this.animate(entity.jumpAnimationState, ShuDofuSpiderAnimation.JUMP_ATTACK, ageInTicks);
+		this.animate(entity.graspAnimationState, ShuDofuSpiderAnimation.GRASP, ageInTicks);
 	}
 
 	@Override
