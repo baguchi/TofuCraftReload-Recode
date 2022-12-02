@@ -426,9 +426,9 @@ public class ShuDofuSpider extends Monster {
 		} else if (p_31461_ != DamageSource.SWEET_BERRY_BUSH && p_31461_ != DamageSource.CACTUS && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.IN_WALL) {
 			Entity entity = p_31461_.getDirectEntity();
 			if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getPierceLevel() > 0) {
-				return super.hurt(p_31461_, p_31462_ * 0.1F * ((AbstractArrow) entity).getPierceLevel());
+				return super.hurt(p_31461_, p_31462_ * 0.125F * ((AbstractArrow) entity).getPierceLevel());
 			} else if (entity instanceof AbstractArrow && ((AbstractArrow) entity).isCritArrow()) {
-				return super.hurt(p_31461_, p_31462_ * 0.1F);
+				return super.hurt(p_31461_, p_31462_ * 0.125F);
 			} else if (entity instanceof Projectile) {
 				return false;
 			}
@@ -575,7 +575,7 @@ public class ShuDofuSpider extends Monster {
 						if (!flag) {
 							this.spider.getNavigation().createPath(livingentity, 0);
 						}
-						this.attackTime = 600;
+						this.attackTime = 400;
 						return flag;
 					}
 				} else {
