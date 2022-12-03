@@ -52,7 +52,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 
 	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(200, 400);
-	private static final UniformInt CHARGE_COOLDOWN = UniformInt.of(100, 200);
+	private static final UniformInt CHARGE_COOLDOWN = UniformInt.of(100, 300);
 
 
 	public final AnimationState idleAnimationState = new AnimationState();

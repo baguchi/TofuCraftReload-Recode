@@ -503,6 +503,8 @@ public class ShuDofuSpider extends Monster {
 				return false;
 			} else if (this.spider.isGraspAnim()) {
 				return false;
+			} else if (this.spider.isJumpAnim()) {
+				return false;
 			} else {
 				this.path = this.spider.getNavigation().createPath(livingentity, 0);
 				if (this.path != null) {
@@ -643,7 +645,7 @@ public class ShuDofuSpider extends Monster {
 
 		public boolean canUse() {
 			if (attackTime == 0) {
-				if (ShuDofuSpider.this.getHealth() <= ShuDofuSpider.this.getMaxHealth() / 2 && !ShuDofuSpider.this.isGraspAnim()) {
+				if (ShuDofuSpider.this.getHealth() <= ShuDofuSpider.this.getMaxHealth() / 1.5F && !ShuDofuSpider.this.isGraspAnim()) {
 					LivingEntity livingentity = ShuDofuSpider.this.getTarget();
 					if (livingentity != null && livingentity.isAlive() && 10 >= ShuDofuSpider.this.distanceTo(livingentity)) {
 						if (ShuDofuSpider.this.random.nextInt(2) == 0) {

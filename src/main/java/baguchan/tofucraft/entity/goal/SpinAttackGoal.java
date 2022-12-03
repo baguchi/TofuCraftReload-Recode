@@ -33,7 +33,7 @@ public class SpinAttackGoal extends Goal {
 			if (cooldown > this.maxCooldown) {
 
 				LivingEntity livingentity = this.gandlem.getTarget();
-				if (livingentity != null && livingentity.isAlive() && this.gandlem.canAttack(livingentity) && this.gandlem.hasLineOfSight(livingentity) && this.gandlem.isCharging()) {
+				if (livingentity != null && livingentity.isAlive() && this.gandlem.canAttack(livingentity) && this.gandlem.hasLineOfSight(livingentity) && !this.gandlem.isCharging()) {
 					this.cooldown = 0;
 					this.maxCooldown = timeBetweenCooldown.sample(this.gandlem.getRandom());
 					return true;
