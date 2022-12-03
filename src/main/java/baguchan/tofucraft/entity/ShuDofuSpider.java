@@ -24,6 +24,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -51,6 +53,7 @@ import net.minecraftforge.fluids.FluidType;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.UUID;
 
 public class ShuDofuSpider extends Monster {
 	private static final EntityDataAccessor<Boolean> DATA_ID_JUMP = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -58,6 +61,15 @@ public class ShuDofuSpider extends Monster {
 	private static final EntityDataAccessor<Boolean> JUMP_ANIMATION = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> DATA_ID_RANGED = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> GRASP_ANIMATION = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> ANGRY = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
+
+
+	private static final UUID ATTACK_MODIFIER_UUID = UUID.fromString("084afd3c-89c3-f8bd-1c76-c9a7a507c9f3");
+	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(ATTACK_MODIFIER_UUID, "attack boost", 0.1D, AttributeModifier.Operation.MULTIPLY_BASE);
+
+	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("216e1242-75c7-8114-0500-6fc7e324dae6");
+	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ARMOR_MODIFIER_UUID, "armor boost", -0.25D, AttributeModifier.Operation.MULTIPLY_BASE);
+
 
 	private int attackTime;
 	private int jumpTime;
@@ -89,6 +101,7 @@ public class ShuDofuSpider extends Monster {
 		this.entityData.define(DATA_ID_JUMP, false);
 		this.entityData.define(DATA_ID_RANGED, false);
 		this.entityData.define(GRASP_ANIMATION, false);
+		this.entityData.define(ANGRY, false);
 	}
 
 	@Override
@@ -274,7 +287,7 @@ public class ShuDofuSpider extends Monster {
 						entity.hurt(DamageSource.mobAttack(ShuDofuSpider.this), 30.0F);
 					}
 				}
-				playSound(SoundEvents.WITHER_BREAK_BLOCK, 1.0f, 1.0f);
+				playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0f, 1.0f);
 				this.impactTime = 0;
 				this.jumpTime = 0;
 				this.setJumpAnimation(false);
@@ -285,7 +298,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public void performRangedAttack(LivingEntity p_29912_) {
-		this.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 1.0F);
+		this.playSound(SoundEvents.LLAMA_SPIT, 2.0F, 1.0F);
 		for (int i = 0; i < 3; i++) {
 			NattoStringEntity natto = new NattoStringEntity(this.level, this);
 			double d1 = p_29912_.getX() - this.getX();
@@ -374,7 +387,7 @@ public class ShuDofuSpider extends Monster {
 		if (p_36347_.isAttackable()) {
 			float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			if (p_36347_.hurt(DamageSource.mobAttack(this), f * 0.25F)) {
-				this.heal(f * 0.2F);
+				this.heal(f * 0.25F);
 			}
 
 			if (this.getPassengers().isEmpty()) {
@@ -426,12 +439,18 @@ public class ShuDofuSpider extends Monster {
 		} else if (p_31461_ != DamageSource.SWEET_BERRY_BUSH && p_31461_ != DamageSource.CACTUS && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.IN_WALL) {
 			Entity entity = p_31461_.getDirectEntity();
 			if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getPierceLevel() > 0) {
-				return super.hurt(p_31461_, p_31462_ * 0.125F * ((AbstractArrow) entity).getPierceLevel());
+				return super.hurt(p_31461_, p_31462_ * 0.15F * ((AbstractArrow) entity).getPierceLevel());
 			} else if (entity instanceof AbstractArrow && ((AbstractArrow) entity).isCritArrow()) {
-				return super.hurt(p_31461_, p_31462_ * 0.125F);
+				return super.hurt(p_31461_, p_31462_ * 0.15F);
 			} else if (entity instanceof Projectile) {
 				return false;
 			}
+
+			if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
+				setAngry(true);
+				this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
+			}
+
 			return super.hurt(p_31461_, p_31462_);
 		} else {
 			return false;
@@ -453,7 +472,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.4D).add(Attributes.ATTACK_KNOCKBACK, 1.00F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 14.0D).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 20.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 32F).add(Attributes.MOVEMENT_SPEED, 0.4D).add(Attributes.ATTACK_KNOCKBACK, 1.00F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 14.0D).add(Attributes.ARMOR_TOUGHNESS, 2.0F).add(Attributes.ATTACK_DAMAGE, 20.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
@@ -567,7 +586,7 @@ public class ShuDofuSpider extends Monster {
 		public boolean canUse() {
 			if (attackTime == 0) {
 				LivingEntity livingentity = this.spider.getTarget();
-				if (livingentity != null && this.spider.getHealth() < this.spider.getMaxHealth() / 2 && livingentity.isAlive() && 10 >= this.spider.distanceTo(livingentity)) {
+				if (livingentity != null && this.spider.isAngry() && livingentity.isAlive() && 10 >= this.spider.distanceTo(livingentity)) {
 					if (livingentity.getMotionDirection() != livingentity.getDirection()) {
 						return false;
 					} else {
@@ -575,7 +594,7 @@ public class ShuDofuSpider extends Monster {
 						if (!flag) {
 							this.spider.getNavigation().createPath(livingentity, 0);
 						}
-						this.attackTime = 400;
+						this.attackTime = 350;
 						return flag;
 					}
 				} else {
@@ -726,8 +745,16 @@ public class ShuDofuSpider extends Monster {
 		this.bossEvent.removePlayer(p_31488_);
 	}
 
+
+	@Override
+	public void addAdditionalSaveData(CompoundTag p_21484_) {
+		super.addAdditionalSaveData(p_21484_);
+		p_21484_.putBoolean("Angry", this.isAngry());
+	}
+
 	public void readAdditionalSaveData(CompoundTag p_31474_) {
 		super.readAdditionalSaveData(p_31474_);
+		this.setAngry(p_31474_.getBoolean("Angry"));
 		if (this.hasCustomName()) {
 			this.bossEvent.setName(this.getDisplayName());
 		}
@@ -778,5 +805,21 @@ public class ShuDofuSpider extends Monster {
 		return this.entityData.get(DATA_ID_RANGED);
 	}
 
+	public void setAngry(boolean angry) {
+		this.entityData.set(ANGRY, angry);
+		if (this.level != null && !this.level.isClientSide) {
+			AttributeInstance attributeinstance = this.getAttribute(Attributes.ATTACK_DAMAGE);
+			attributeinstance.removeModifier(ATTACK_MODIFIER);
+			AttributeInstance attributeinstance2 = this.getAttribute(Attributes.ARMOR);
+			attributeinstance2.removeModifier(ARMOR_MODIFIER);
+			if (angry) {
+				attributeinstance.addTransientModifier(ATTACK_MODIFIER);
+				attributeinstance2.addTransientModifier(ARMOR_MODIFIER);
+			}
+		}
+	}
 
+	public boolean isAngry() {
+		return this.entityData.get(ANGRY);
+	}
 }
