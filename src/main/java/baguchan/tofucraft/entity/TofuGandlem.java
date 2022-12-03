@@ -277,10 +277,10 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 
 		if (p_21016_.isProjectile()) {
-			return super.hurt(p_21016_, p_21017_ * 0.75F);
+			return super.hurt(p_21016_, p_21017_ * 0.5F);
 		}
 
-		return super.hurt(p_21016_, p_21017_);
+		return super.hurt(p_21016_, p_21017_ * 0.75F);
 	}
 
 	protected void checkRushAttack(AABB p_21072_, AABB p_21073_) {
