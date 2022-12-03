@@ -251,7 +251,7 @@ public class ShuDofuSpider extends Monster {
 				Vec3 movement = this.getDeltaMovement();
 				this.checkGraspAttack(this.getBoundingBox(), this.getBoundingBox().expandTowards(movement.x, movement.y, movement.z).inflate(1.0F));
 			}
-			if (this.graspTime == 100) {
+			if (this.graspTime == 80) {
 				this.graspTime = 0;
 				this.setGraspAnimation(false);
 				this.ejectPassengers();
@@ -295,6 +295,11 @@ public class ShuDofuSpider extends Monster {
 		}
 
 		super.tick();
+	}
+
+	@Override
+	public boolean canDisableShield() {
+		return this.isGraspAnim();
 	}
 
 	public void performRangedAttack(LivingEntity p_29912_) {
@@ -436,19 +441,18 @@ public class ShuDofuSpider extends Monster {
 	public boolean hurt(DamageSource p_31461_, float p_31462_) {
 		if (this.isInvulnerableTo(p_31461_)) {
 			return false;
-		} else if (p_31461_ != DamageSource.SWEET_BERRY_BUSH && p_31461_ != DamageSource.CACTUS && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.IN_WALL) {
+		} else if (p_31461_ != DamageSource.SWEET_BERRY_BUSH && p_31461_ != DamageSource.CACTUS && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.IN_WALL && !p_31461_.isMagic()) {
 			Entity entity = p_31461_.getDirectEntity();
-			if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getPierceLevel() > 0) {
-				return super.hurt(p_31461_, p_31462_ * 0.15F * ((AbstractArrow) entity).getPierceLevel());
-			} else if (entity instanceof AbstractArrow && ((AbstractArrow) entity).isCritArrow()) {
-				return super.hurt(p_31461_, p_31462_ * 0.15F);
-			} else if (entity instanceof Projectile) {
-				return false;
-			}
 
 			if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
 				setAngry(true);
 				this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
+			}
+
+			if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getPierceLevel() > 0) {
+				return super.hurt(p_31461_, p_31462_ * 0.15F * ((AbstractArrow) entity).getPierceLevel());
+			} else if (entity instanceof Projectile) {
+				return false;
 			}
 
 			return super.hurt(p_31461_, p_31462_);
@@ -639,7 +643,7 @@ public class ShuDofuSpider extends Monster {
 
 		public boolean canUse() {
 			if (attackTime == 0) {
-				if (ShuDofuSpider.this.getHealth() <= ShuDofuSpider.this.getMaxHealth() / 2) {
+				if (ShuDofuSpider.this.getHealth() <= ShuDofuSpider.this.getMaxHealth() / 2 && !ShuDofuSpider.this.isGraspAnim()) {
 					LivingEntity livingentity = ShuDofuSpider.this.getTarget();
 					if (livingentity != null && livingentity.isAlive() && 10 >= ShuDofuSpider.this.distanceTo(livingentity)) {
 						if (ShuDofuSpider.this.random.nextInt(2) == 0) {
