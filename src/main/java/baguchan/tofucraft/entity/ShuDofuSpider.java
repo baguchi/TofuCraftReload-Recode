@@ -210,7 +210,7 @@ public class ShuDofuSpider extends Monster {
 				float radius = 2;
 				float swipePosX = (float) (this.getX() + radius * Math.cos(Math.toRadians(this.getYHeadRot() + 90)));
 				float swipePosZ = (float) (this.getZ() + radius * Math.sin(Math.toRadians(this.getYHeadRot() + 90)));
-				AABB hitBox = new AABB(new BlockPos(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1.5, 1.5, 1.5);
+				AABB hitBox = new AABB(new BlockPos(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1.55, 1.55, 1.55);
 				List<LivingEntity> entitiesHit = this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
 				for (LivingEntity entity : entitiesHit) {
 					if (entity != this) {
@@ -384,7 +384,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public void graspAttack(Entity p_36347_) {
-		if (p_36347_.isAttackable()) {
+		if (p_36347_ instanceof LivingEntity) {
 			float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			if (p_36347_.hurt(DamageSource.mobAttack(this), f * 0.25F)) {
 				this.heal(f * 0.25F);
