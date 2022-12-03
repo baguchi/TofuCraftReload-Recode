@@ -38,8 +38,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.ZUNDATOFU.get());
 		toBlock(TofuBlocks.MISOTOFU.get());
 		toBlock(TofuBlocks.DRIEDTOFU.get());
-		toBlock(TofuBlocks.SCULK_BONE.get());
-		toBlock(TofuBlocks.SCULKED_TOFU_SOUL.get());
 
 		toBlock(TofuBlocks.HELLTOFU.get());
 		toBlock(TofuBlocks.HELLTOFU_BRICK.get());
@@ -159,6 +157,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFUFRIED.get());
 		singleTex(TofuItems.TOFUSMOKE.get());
 		singleTex(TofuItems.SHUDOFU.get());
+		singleTex(TofuItems.SOY_SCULK_BONE.get());
 		singleTex(TofuItems.TOFUSESAME.get());
 		singleTex(TofuItems.TOFUFRIED_POUCH.get());
 		singleTex(TofuItems.TOFUANNIN.get());
@@ -371,10 +370,15 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.ARMOR_TOFU_METALLEGGINGS.get());
 		singleTex(TofuItems.ARMOR_TOFU_METALBOOTS.get());
 
-		singleTex(TofuItems.ARMOR_TOFU_DIAMONDHELMET.get());
-		singleTex(TofuItems.ARMOR_TOFU_DIAMONDCHESTPLATE.get());
-		singleTex(TofuItems.ARMOR_TOFU_DIAMONDLEGGINGS.get());
-		singleTex(TofuItems.ARMOR_TOFU_DIAMONDBOOTS.get());
+		singleTex(TofuItems.TOFU_DIAMOND_HELMET.get());
+		singleTex(TofuItems.TOFU_DIAMOND_CHESTPLATE.get());
+		singleTex(TofuItems.TOFU_DIAMOND_LEGGINGS.get());
+		singleTex(TofuItems.TOFU_DIAMOND_BOOTS.get());
+
+		singleTex(TofuItems.SCULK_BONE_HELMET.get());
+		singleTex(TofuItems.SCULK_BONE_CHESTPLATE.get());
+		singleTex(TofuItems.SCULK_BONE_LEGGINGS.get());
+		singleTex(TofuItems.SCULK_BONE_BOOTS.get());
 
 		egg(TofuItems.TOFUNIAN_SPAWNEGG.get());
 		egg(TofuItems.TRAVELER_TOFUNIAN_SPAWNEGG.get());

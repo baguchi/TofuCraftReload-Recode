@@ -40,10 +40,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuDiamondSmithing(consumer, Items.DIAMOND_HOE, TofuItems.TOFU_DIAMOND_HOE);
 
 
-		tofuDiamondSmithing(consumer, Items.DIAMOND_HELMET, TofuItems.ARMOR_TOFU_DIAMONDHELMET);
-		tofuDiamondSmithing(consumer, Items.DIAMOND_CHESTPLATE, TofuItems.ARMOR_TOFU_DIAMONDCHESTPLATE);
-		tofuDiamondSmithing(consumer, Items.DIAMOND_LEGGINGS, TofuItems.ARMOR_TOFU_DIAMONDLEGGINGS);
-		tofuDiamondSmithing(consumer, Items.DIAMOND_BOOTS, TofuItems.ARMOR_TOFU_DIAMONDBOOTS);
+		tofuDiamondSmithing(consumer, Items.DIAMOND_HELMET, TofuItems.TOFU_DIAMOND_HELMET);
+		tofuDiamondSmithing(consumer, Items.DIAMOND_CHESTPLATE, TofuItems.TOFU_DIAMOND_CHESTPLATE);
+		tofuDiamondSmithing(consumer, Items.DIAMOND_LEGGINGS, TofuItems.TOFU_DIAMOND_LEGGINGS);
+		tofuDiamondSmithing(consumer, Items.DIAMOND_BOOTS, TofuItems.TOFU_DIAMOND_BOOTS);
+
+		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.SCULK_BONE_HELMET);
+		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), TofuItems.SCULK_BONE_CHESTPLATE);
+		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_LEGGINGS.get(), TofuItems.SCULK_BONE_LEGGINGS);
+		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_BOOTS.get(), TofuItems.SCULK_BONE_BOOTS);
+
+
 		/*swordItem(consumer, "tofu_diamond_sword", TofuItems.TOFU_DIAMOND_SWORD, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
 		pickaxeItem(consumer, "tofu_diamond_pickaxe", TofuItems.TOFU_DIAMOND_PICKAXE, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
 		axeItem(consumer, "tofu_diamond_axe", TofuItems.TOFU_DIAMOND_AXE, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);

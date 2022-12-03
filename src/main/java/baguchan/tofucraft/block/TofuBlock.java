@@ -65,17 +65,6 @@ public class TofuBlock extends Block {
 				}
 			}
 		}
-
-		if (this == TofuBlocks.SOULTOFU.get() || this == TofuBlocks.SCULKED_TOFU_SOUL.get()) {
-			if (isUnderWithConditionBlock(worldIn, pos, Blocks.SCULK) &&
-					rand.nextInt(3) == 0) {
-				double d4 = rand.nextBoolean() ? 0.8D : -0.8D;
-				double d0 = pos.getX() + 0.5D + rand.nextFloat() * d4;
-				double d1 = (pos.getY() + rand.nextFloat());
-				double d2 = pos.getZ() + 0.5D + rand.nextFloat() * d4;
-				worldIn.addParticle(ParticleTypes.SCULK_CHARGE_POP, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-			}
-		}
 	}
 
 	private static void spawnDripParticle(Level p_154072_, BlockPos p_154073_, BlockState p_154074_) {
@@ -96,28 +85,6 @@ public class TofuBlock extends Block {
 					worldIn.setBlock(pos, TofuBlocks.DRIEDTOFU.get().defaultBlockState(), 2);
 				}
 			}
-		} else if (isUnderWithConditionBlock(worldIn, pos, Blocks.SCULK) && state.hasProperty(HARDNESS)) {
-			int i = state.getValue(HARDNESS);
-			if (this == TofuBlocks.SOULTOFU.get()) {
-				if (random.nextInt(3) == 0) {
-					if (i < 7) {
-						worldIn.setBlock(pos, state.setValue(HARDNESS, i + 1), 2);
-					} else {
-						worldIn.setBlock(pos, TofuBlocks.SCULKED_TOFU_SOUL.get().defaultBlockState(), 2);
-					}
-				}
-			}
-
-			if (this == TofuBlocks.SCULKED_TOFU_SOUL.get() && state.hasProperty(HARDNESS)) {
-				if (random.nextInt(6) == 0) {
-					if (i < 7) {
-						worldIn.setBlock(pos, state.setValue(HARDNESS, i + 1), 2);
-					} else {
-						worldIn.setBlock(pos, TofuBlocks.SCULK_BONE.get().defaultBlockState(), 2);
-					}
-				}
-			}
-
 		} else if (isUnderWeight(worldIn, pos) && state.hasProperty(HARDNESS)) {
 			boolean dripStoneFlag = this.isMoreHardenCondition(worldIn, pos);
 			int i = state.getValue(HARDNESS);

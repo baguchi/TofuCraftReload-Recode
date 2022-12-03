@@ -110,12 +110,6 @@ public class TofuBlocks {
 
 	public static final RegistryObject<Block> EGGTOFU = register("blocktofuegg", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 
-	public static final RegistryObject<Block> SCULKED_TOFU_SOUL = register("sculked_tofu_soul", () -> new TofuBlock(BlockBehaviour.Properties.of(Material.SCULK).strength(2.0F, 10.0F).requiresCorrectToolForDrops().randomTicks().lightLevel(state -> {
-		return 8;
-	}).sound(SoundType.SCULK_CATALYST)));
-	public static final RegistryObject<Block> SCULK_BONE = register("sculk_bone", () -> new Block(BlockBehaviour.Properties.of(Material.SCULK).strength(45.0F, 1000.0F).requiresCorrectToolForDrops().sound(SoundType.SCULK_CATALYST)));
-
-
 	public static final RegistryObject<Block> HELLTOFU = register("blocktofuhell", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> HELLTOFU_BRICK = register("tofuhell_brick", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> HELLTOFU_SMOOTH_BRICK = register("tofuhell_smooth_brick", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
