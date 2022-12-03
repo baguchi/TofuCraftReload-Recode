@@ -201,7 +201,7 @@ public class ShuDofuSpider extends Monster {
 		} else {
 			this.walkAnimationState.stop();
 		}
-		if (this.isAlive() && this.isAttackAnim() && this.getTarget() != null) {
+		if (this.isAlive() && !this.isGraspAnim() && this.isAttackAnim() && this.getTarget() != null) {
 			++this.attackTime;
 			if (this.attackTime == 10) {
 				this.level.broadcastEntityEvent(this, (byte) 100);
@@ -386,8 +386,8 @@ public class ShuDofuSpider extends Monster {
 	public void graspAttack(Entity p_36347_) {
 		if (p_36347_ instanceof LivingEntity) {
 			float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-			if (p_36347_.hurt(DamageSource.mobAttack(this), f * 0.25F)) {
-				this.heal(f * 0.25F);
+			if (p_36347_.hurt(DamageSource.mobAttack(this), f * 0.2F)) {
+				this.heal(f * 0.2F);
 			}
 
 			if (this.getPassengers().isEmpty()) {
@@ -472,7 +472,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 32F).add(Attributes.MOVEMENT_SPEED, 0.4D).add(Attributes.ATTACK_KNOCKBACK, 1.00F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 14.0D).add(Attributes.ARMOR_TOUGHNESS, 2.0F).add(Attributes.ATTACK_DAMAGE, 20.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 32F).add(Attributes.MOVEMENT_SPEED, 0.4D).add(Attributes.ATTACK_KNOCKBACK, 1.00F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 14.0D).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 20.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
@@ -496,6 +496,8 @@ public class ShuDofuSpider extends Monster {
 			if (livingentity == null) {
 				return false;
 			} else if (!livingentity.isAlive()) {
+				return false;
+			} else if (this.spider.isGraspAnim()) {
 				return false;
 			} else {
 				this.path = this.spider.getNavigation().createPath(livingentity, 0);
