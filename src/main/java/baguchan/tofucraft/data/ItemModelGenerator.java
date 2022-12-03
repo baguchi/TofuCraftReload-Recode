@@ -382,6 +382,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		egg(TofuItems.TOFUNIAN_SPAWNEGG.get());
 		egg(TofuItems.TRAVELER_TOFUNIAN_SPAWNEGG.get());
+		egg(TofuItems.TOFU_GANDLEM_SPAWNEGG.get());
+		egg(TofuItems.SHUDOFUSPIDER_SPAWNEGG.get());
 		egg(TofuItems.TOFUCOW_SPAWNEGG.get());
 		egg(TofuItems.TOFUPIG_SPAWNEGG.get());
 		egg(TofuItems.TOFUSLIME_SPAWNEGG.get());
