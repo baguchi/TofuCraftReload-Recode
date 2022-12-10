@@ -25,7 +25,6 @@ public class TofuChestRenderer<T extends BlockEntity & LidBlockEntity> extends C
 
 		MATERIALS = builder.build();
 	}
-
 	public TofuChestRenderer(BlockEntityRendererProvider.Context p_173607_) {
 		super(p_173607_);
 	}
