@@ -18,7 +18,6 @@ import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuCarvers;
 import baguchan.tofucraft.registry.TofuContainers;
-import baguchan.tofucraft.registry.TofuDimensionSettings;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuFeatures;
 import baguchan.tofucraft.registry.TofuFluidTypes;
@@ -31,12 +30,6 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
-import baguchan.tofucraft.world.carver.TofuConfiguredWorldCarvers;
-import baguchan.tofucraft.world.gen.features.ModNetherFeatures;
-import baguchan.tofucraft.world.gen.features.ModTreeFeatures;
-import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
-import baguchan.tofucraft.world.placement.ModNetherPlacements;
-import baguchan.tofucraft.world.placement.TofuWorldPlacements;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
 import net.minecraftforge.api.distmarker.Dist;
@@ -97,20 +90,17 @@ public class TofuCraftReload {
 		TofuBiomes.BIOMES.register(modBus);
 		TofuCarvers.WORLD_CARVER.register(modBus);
 		TofuBlocks.BLOCKS.register(modBus);
+		TofuItems.ITEMS.register(modBus);
 		TofuEntityTypes.ENTITIES.register(modBus);
 		TofuFluidTypes.FLUID_TYPES.register(modBus);
 		TofuFluids.FLUIDS.register(modBus);
 
-
-		TofuItems.ITEMS.register(modBus);
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
 		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuContainers.MENU_TYPES.register(modBus);
 		TofuBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modBus);
-		TofuDimensionSettings.NOISE_GENERATORS.register(modBus);
-		TofuDimensionSettings.DIMENSION_TYPES.register(modBus);
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
 		TofuFeatures.FEATURES.register(modBus);
 		TofuSounds.SOUND_EVENTS.register(modBus);
@@ -132,14 +122,8 @@ public class TofuCraftReload {
 			TofuItems.registerCompostableItem();
 			TofuItems.registerAnimalFeed();
 			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift"));
-			ModNetherFeatures.init();
-			ModNetherPlacements.init();
-			ModTreeFeatures.init();
-			TofuWorldFeatures.init();
-			TofuWorldPlacements.init();
 			TofuEnergyMap.init();
 			TofuBiomes.init();
-			TofuConfiguredWorldCarvers.init();
 		});
 	}
 

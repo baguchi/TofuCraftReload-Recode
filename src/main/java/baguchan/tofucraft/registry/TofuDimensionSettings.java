@@ -5,32 +5,29 @@ import baguchan.tofucraft.world.biome.TofuBiomeBuilder;
 import baguchan.tofucraft.world.gen.TofuNoiseRouterData;
 import baguchan.tofucraft.world.gen.TofuSurfaceRuleData;
 import com.mojang.serialization.DataResult;
-import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 import net.minecraft.world.level.levelgen.NoiseSettings;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.OptionalLong;
 
 public class TofuDimensionSettings {
-	public static final DeferredRegister<NoiseGeneratorSettings> NOISE_GENERATORS = DeferredRegister.create(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY, TofuCraftReload.MODID);
-	public static final DeferredRegister<DimensionType> DIMENSION_TYPES = DeferredRegister.create(Registry.DIMENSION_TYPE_REGISTRY, TofuCraftReload.MODID);
+	public static final ResourceKey<DimensionType> TOFU_WORLD_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(TofuCraftReload.MODID, "tofu_world_type"));
 
-	public static final RegistryObject<NoiseGeneratorSettings> TOFU_NOISE_GEN = NOISE_GENERATORS.register("tofu_world_noise", TofuDimensionSettings::tofuWorld);
-	public static final RegistryObject<DimensionType> TOFU_DIM_TYPE = DIMENSION_TYPES.register("tofu_world_type", TofuDimensionSettings::tofuDimType);
+	public static final ResourceKey<NoiseGeneratorSettings> TOFU_WORLD = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(TofuCraftReload.MODID, "tofu_world"));
 
 
 	static final NoiseSettings TOFU_NOISE_SETTINGS = create(-64, 384, 1, 2);
 
-	public static NoiseGeneratorSettings tofuWorld() {
-		return new NoiseGeneratorSettings(TOFU_NOISE_SETTINGS, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), TofuBlocks.SOYMILK.get().defaultBlockState(), TofuNoiseRouterData.tofuworld(BuiltinRegistries.DENSITY_FUNCTION, false, false), TofuSurfaceRuleData.tofuWorld(), (new TofuBiomeBuilder()).spawnTarget(), 64, false, true, false, false);
+	public static NoiseGeneratorSettings tofuWorld(BootstapContext<NoiseGeneratorSettings> p_256478_) {
+		return new NoiseGeneratorSettings(TOFU_NOISE_SETTINGS, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), TofuBlocks.SOYBEAN.get().defaultBlockState(), TofuNoiseRouterData.tofuworld(p_256478_.lookup(Registries.DENSITY_FUNCTION), p_256478_.lookup(Registries.NOISE), false, false), TofuSurfaceRuleData.tofuWorld(), (new TofuBiomeBuilder()).spawnTarget(), 63, false, true, true, false);
 	}
 
 	private static DimensionType tofuDimType() {
@@ -71,8 +68,11 @@ public class TofuDimensionSettings {
 		return noisesettings;
 	}
 
+	public static void bootstrapNoiseGen(BootstapContext<NoiseGeneratorSettings> p_256365_) {
+		p_256365_.register(TofuDimensionSettings.TOFU_WORLD, TofuDimensionSettings.tofuWorld(p_256365_));
+	}
 
-	public static void register(ResourceKey<NoiseGeneratorSettings> p_198263_, NoiseGeneratorSettings p_198264_) {
-		BuiltinRegistries.register(BuiltinRegistries.NOISE_GENERATOR_SETTINGS, p_198263_.location(), p_198264_);
+	public static void bootstrapDimensionType(BootstapContext<DimensionType> p_256376_) {
+		p_256376_.register(TOFU_WORLD_TYPE, TofuDimensionSettings.tofuDimType());
 	}
 }

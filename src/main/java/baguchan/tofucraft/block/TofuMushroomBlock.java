@@ -3,29 +3,31 @@ package baguchan.tofucraft.block;
 import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.function.Supplier;
+import java.util.Optional;
 
 public class TofuMushroomBlock extends BushBlock implements BonemealableBlock {
 	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
 
-	private final Supplier<Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>>> featureSupplier;
+	private final ResourceKey<ConfiguredFeature<?, ?>> feature;
 
-	public TofuMushroomBlock(Properties properties, Supplier<Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>>> p_153984_) {
+	public TofuMushroomBlock(Properties properties, ResourceKey<ConfiguredFeature<?, ?>> p_153984_) {
 		super(properties);
-		this.featureSupplier = p_153984_;
+		this.feature = p_153984_;
 	}
 
 	@Override
@@ -38,19 +40,21 @@ public class TofuMushroomBlock extends BushBlock implements BonemealableBlock {
 		return p_51042_.is(TofuTags.Blocks.TOFU_TERRAIN);
 	}
 
-	public boolean growMushroom(ServerLevel p_54860_, BlockPos p_54861_, BlockState p_54862_, RandomSource p_54863_) {
-		p_54860_.removeBlock(p_54861_, false);
-		if (this.featureSupplier.get().value().place(p_54860_, p_54860_.getChunkSource().getGenerator(), p_54863_, p_54861_)) {
-			return true;
-		} else {
-			p_54860_.setBlock(p_54861_, p_54862_, 3);
-			return false;
-		}
+	private Optional<? extends Holder<ConfiguredFeature<?, ?>>> getFeature(LevelReader p_256589_) {
+		return p_256589_.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(this.feature);
+	}
+
+	public void growMushroom(ServerLevel p_54860_, BlockPos p_54861_, BlockState p_54862_, RandomSource p_54863_) {
+		this.getFeature(p_54860_).ifPresent((p_256352_) -> {
+			net.minecraftforge.event.level.SaplingGrowTreeEvent event = net.minecraftforge.event.ForgeEventFactory.blockGrowFeature(p_54860_, p_54863_, p_54861_, p_256352_);
+			if (event.getResult().equals(net.minecraftforge.eventbus.api.Event.Result.DENY)) return;
+			p_256352_.value().place(p_54860_, p_54860_.getChunkSource().getGenerator(), p_54863_, p_54861_);
+		});
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(BlockGetter p_50897_, BlockPos p_50898_, BlockState p_50899_, boolean p_50900_) {
-		return true;
+	public boolean isValidBonemealTarget(LevelReader p_256559_, BlockPos p_50898_, BlockState p_50899_, boolean p_50900_) {
+		return false;
 	}
 
 	@Override

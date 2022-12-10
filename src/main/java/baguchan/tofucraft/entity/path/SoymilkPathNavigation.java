@@ -34,7 +34,7 @@ public class SoymilkPathNavigation extends PathNavigation {
 	}
 
 	protected boolean canMoveDirectly(Vec3 p_186138_, Vec3 p_186139_) {
-		return isClearForMovementBetween(this.mob, p_186138_, p_186139_);
+		return isClearForMovementBetween(this.mob, p_186138_, p_186139_, false);
 	}
 
 	public boolean isStableDestination(BlockPos p_26608_) {

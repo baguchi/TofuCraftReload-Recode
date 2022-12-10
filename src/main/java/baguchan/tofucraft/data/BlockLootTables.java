@@ -7,6 +7,8 @@ import baguchan.tofucraft.block.utils.WeightBaseBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -34,11 +36,18 @@ import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import java.util.HashSet;
 import java.util.Set;
 
-public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
+public class BlockLootTables extends BlockLootSubProvider {
 	private final Set<Block> knownBlocks = new HashSet<>();
 	// [VanillaCopy] super
 	private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
 	private static final float[] RARE_SAPLING_DROP_RATES = new float[]{0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F};
+
+	private static final Set<Item> EXPLOSION_RESISTANT = Set.of();
+
+
+	protected BlockLootTables() {
+		super(EXPLOSION_RESISTANT, FeatureFlags.REGISTRY.allFlags());
+	}
 
 	@Override
 	protected void add(Block block, LootTable.Builder builder) {
@@ -47,7 +56,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 	}
 
 	@Override
-	protected void addTables() {
+	protected void generate() {
 		LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 6));
 		LootItemCondition.Builder lootitemcondition$builder1 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 7));
 		LootItemCondition.Builder lootitemcondition$builder_extra = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 5));
@@ -234,11 +243,11 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		registerSlab(TofuBlocks.TOFUSLAB_EGG.get());
 	}
 
-	protected static LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {
+	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {
 		return createSilkTouchDispatchTable(p_124140_, applyExplosionDecay(p_124140_, LootItem.lootTableItem(p_124141_).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))).apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
 	}
 
-	protected static LootTable.Builder createApricotLeavesDrop(Block p_124264_, Block p_124265_, float... p_124266_) {
+	protected LootTable.Builder createApricotLeavesDrop(Block p_124264_, Block p_124265_, float... p_124266_) {
 		return createLeavesDrops(p_124264_, p_124265_, p_124266_).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(applyExplosionCondition(TofuBlocks.LEAVES_APRICOT.get(), LootItem.lootTableItem(TofuItems.APRICOT.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
 	}
 
@@ -257,8 +266,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 
 
 	// [VanillaCopy] super.droppingWithChancesAndSticks, but non-silk touch parameter can be an item instead of a block
-	private static LootTable.Builder silkAndStick(Block block, ItemLike nonSilk, float... nonSilkFortune) {
-		LootItemCondition.Builder NOT_SILK_TOUCH_OR_SHEARS = ObfuscationReflectionHelper.getPrivateValue(net.minecraft.data.loot.BlockLoot.class, null, "HAS_NO_SHEARS_OR_SILK_TOUCH");
+	private LootTable.Builder silkAndStick(Block block, ItemLike nonSilk, float... nonSilkFortune) {
+		LootItemCondition.Builder NOT_SILK_TOUCH_OR_SHEARS = ObfuscationReflectionHelper.getPrivateValue(BlockLootSubProvider.class, null, "HAS_NO_SHEARS_OR_SILK_TOUCH");
 		return createSilkTouchOrShearsDispatchTable(block, applyExplosionCondition(block, LootItem.lootTableItem(nonSilk.asItem())).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, nonSilkFortune))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(applyExplosionDecay(block, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
 	}
 

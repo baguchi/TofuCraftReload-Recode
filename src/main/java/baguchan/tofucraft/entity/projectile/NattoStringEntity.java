@@ -3,7 +3,6 @@ package baguchan.tofucraft.entity.projectile;
 import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -12,7 +11,6 @@ import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.network.NetworkHooks;
 
 public class NattoStringEntity extends ThrowableProjectile {
 	public float damage = 2;
@@ -63,10 +61,5 @@ public class NattoStringEntity extends ThrowableProjectile {
 			this.damage = p_37220_.getFloat("Damage");
 		}
 
-	}
-
-	@Override
-	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

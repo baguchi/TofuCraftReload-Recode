@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 0.5,
+    "size": 12,
+    "targets": [
+      {
+        "state": {
+          "Name": "tofucraft:ore_tofu_diamond"
+        },
+        "target": {
+          "block": "tofucraft:tofu_terrain",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
+          "Name": "tofucraft:tofuslate_tofu_diamond_ore"
+        },
+        "target": {
+          "block": "tofucraft:tofuslate",
+          "predicate_type": "minecraft:block_match"
+        }
+      }
+    ]
+  }
+}

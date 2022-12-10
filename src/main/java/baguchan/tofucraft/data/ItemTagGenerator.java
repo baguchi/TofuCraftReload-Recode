@@ -4,21 +4,24 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuTags;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
+
 public class ItemTagGenerator extends ItemTagsProvider {
-	public ItemTagGenerator(DataGenerator generator, BlockTagsProvider provider, ExistingFileHelper exFileHelper) {
-		super(generator, provider, TofuCraftReload.MODID, exFileHelper);
+	public ItemTagGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, BlockTagsProvider provider, ExistingFileHelper exFileHelper) {
+		super(packOutput, lookupProvider, provider, TofuCraftReload.MODID, exFileHelper);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected void addTags() {
+	protected void addTags(HolderLookup.Provider p_256380_) {
 		tag(ItemTags.PLANKS).add(TofuBlocks.TOFU_STEM_PLANKS.get().asItem());
 
 		tag(TofuTags.Items.DUST_SALT).add(TofuItems.SALT.get());

@@ -5,7 +5,7 @@ import baguchan.tofucraft.client.TofuModelLayers;
 import baguchan.tofucraft.client.model.TofuFishModel;
 import baguchan.tofucraft.entity.TofuFish;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -28,10 +28,10 @@ public class TofuFishRender extends MobRenderer<TofuFish, TofuFishModel<TofuFish
 	protected void setupRotations(TofuFish p_114017_, PoseStack p_114018_, float p_114019_, float p_114020_, float p_114021_) {
 		super.setupRotations(p_114017_, p_114018_, p_114019_, p_114020_, p_114021_);
 		float f = 4.3F * Mth.sin(0.6F * p_114019_);
-		p_114018_.mulPose(Vector3f.YP.rotationDegrees(f));
+		p_114018_.mulPose(Axis.YP.rotationDegrees(f));
 		if (!p_114017_.isInWater()) {
 			p_114018_.translate((double) 0.1F, (double) 0.1F, (double) -0.1F);
-			p_114018_.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
+			p_114018_.mulPose(Axis.ZP.rotationDegrees(90.0F));
 		}
 
 	}

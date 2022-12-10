@@ -1,7 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -59,7 +59,7 @@ public class TofuTags {
 		public static final TagKey<PoiType> TOFUNIAN_JOB = tag("tofunian_job");
 
 		private static TagKey<PoiType> tag(String name) {
-			return TagKey.create(Registry.POINT_OF_INTEREST_TYPE_REGISTRY, new ResourceLocation(TofuCraftReload.MODID, name));
+			return TagKey.create(Registries.POINT_OF_INTEREST_TYPE, new ResourceLocation(TofuCraftReload.MODID, name));
 		}
 	}
 }

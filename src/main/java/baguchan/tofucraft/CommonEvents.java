@@ -14,7 +14,7 @@ import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.TofuLevelData;
 import baguchan.tofucraft.world.TravelerTofunianSpawner;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -142,7 +142,7 @@ public class CommonEvents {
 			LevelAccessor world = event.getPlayer().level;
 			if (world instanceof ServerLevel) {
 				ServerLevel serverLevel = (ServerLevel) world;
-				Structure structure = serverLevel.registryAccess().registryOrThrow(Registry.STRUCTURE_REGISTRY).get(TofuStructures.TOFU_CASTLE);
+				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
 				if (structure != null) {
 					StructureStart structureStart = serverLevel.structureManager().getStructureAt(event.getPos(), structure);
 					if (structureStart.isValid()) {
@@ -167,7 +167,7 @@ public class CommonEvents {
 			LevelAccessor world = event.getEntity().level;
 			if (world instanceof ServerLevel) {
 				ServerLevel serverLevel = (ServerLevel) world;
-				Structure structure = serverLevel.registryAccess().registryOrThrow(Registry.STRUCTURE_REGISTRY).get(TofuStructures.TOFU_CASTLE);
+				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
 				if (structure != null) {
 					StructureStart structureStart = serverLevel.structureManager().getStructureAt(event.getPos(), structure);
 					if (structureStart.isValid()) {

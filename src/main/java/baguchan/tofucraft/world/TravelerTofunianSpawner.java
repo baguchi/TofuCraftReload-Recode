@@ -4,8 +4,6 @@ import baguchan.tofucraft.TofuConfig;
 import baguchan.tofucraft.entity.TravelerTofunian;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.Mth;
@@ -94,7 +92,7 @@ public class TravelerTofunianSpawner {
 						return false;
 					}
 
-					TravelerTofunian tofunian = TofuEntityTypes.TRAVELER_TOFUNIAN.get().spawn(world, (CompoundTag) null, (Component) null, (Player) null, blockpos2, MobSpawnType.EVENT, false, false);
+					TravelerTofunian tofunian = TofuEntityTypes.TRAVELER_TOFUNIAN.get().spawn(world, blockpos2, MobSpawnType.EVENT);
 					if (tofunian != null) {
 						if (worldinfo != null) {
 							worldinfo.setTravelerUUID(tofunian.getUUID());

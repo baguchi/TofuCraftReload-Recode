@@ -2,9 +2,7 @@ package baguchan.tofucraft.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -14,6 +12,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class AbstractSoybeanRender<T extends ThrowableProjectile> extends EntityRenderer<T> {
@@ -23,8 +23,8 @@ public abstract class AbstractSoybeanRender<T extends ThrowableProjectile> exten
 
 	public void render(T p_113839_, float p_113840_, float p_113841_, PoseStack p_113842_, MultiBufferSource p_113843_, int p_113844_) {
 		p_113842_.pushPose();
-		p_113842_.mulPose(Vector3f.YP.rotationDegrees(Mth.lerp(p_113841_, p_113839_.yRotO, p_113839_.getYRot()) - 90.0F));
-		p_113842_.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(p_113841_, p_113839_.xRotO, p_113839_.getXRot())));
+		p_113842_.mulPose(Axis.YP.rotationDegrees(Mth.lerp(p_113841_, p_113839_.yRotO, p_113839_.getYRot()) - 90.0F));
+		p_113842_.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(p_113841_, p_113839_.xRotO, p_113839_.getXRot())));
 		float var8 = 0.0F;
 		float var9 = 0.5F;
 		float var10 = 0.0F;
@@ -37,10 +37,10 @@ public abstract class AbstractSoybeanRender<T extends ThrowableProjectile> exten
 		float var17 = p_113841_;
 		if (var17 > 0.0F) {
 			float var18 = -Mth.sin(var17 * 3.0F) * var17;
-			p_113842_.mulPose(Vector3f.ZP.rotationDegrees(var18));
+			p_113842_.mulPose(Axis.ZP.rotationDegrees(var18));
 		}
 
-		p_113842_.mulPose(Vector3f.XP.rotationDegrees(45.0F));
+		p_113842_.mulPose(Axis.XP.rotationDegrees(45.0F));
 		p_113842_.scale(0.05625F, 0.05625F, 0.05625F);
 		p_113842_.translate(-4.0D, 0.0D, 0.0D);
 		VertexConsumer var23 = p_113843_.getBuffer(RenderType.entityCutout(this.getTextureLocation(p_113839_)));
@@ -57,7 +57,7 @@ public abstract class AbstractSoybeanRender<T extends ThrowableProjectile> exten
 		this.vertex(var20, var21, var23, -7, -2, -2, 0.0F, 0.3125F, 1, 0, 0, p_113844_);
 
 		for (int var22 = 0; var22 < 4; ++var22) {
-			p_113842_.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+			p_113842_.mulPose(Axis.XP.rotationDegrees(90.0F));
 			this.vertex(var20, var21, var23, -8, -2, 0, 0.0F, 0.0F, 0, 1, 0, p_113844_);
 			this.vertex(var20, var21, var23, 8, -2, 0, 0.5F, 0.0F, 0, 1, 0, p_113844_);
 			this.vertex(var20, var21, var23, 8, 2, 0, 0.5F, 0.15625F, 0, 1, 0, p_113844_);

@@ -1,10 +1,15 @@
 package baguchan.tofucraft.recipe;
 
 import com.google.common.collect.Lists;
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -178,7 +183,7 @@ public class FluidIngredient implements Predicate<FluidStack> {
 			return new FluidIngredient.FluidValue(new FluidStack(fluid, 1000));
 		} else if (p_43920_.has("tag")) {
 			ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.getAsString(p_43920_, "tag"));
-			TagKey<Fluid> tagkey = TagKey.create(Registry.FLUID_REGISTRY, resourcelocation);
+			TagKey<Fluid> tagkey = TagKey.create(Registries.FLUID, resourcelocation);
 			return new FluidIngredient.TagValue(tagkey);
 		} else {
 			throw new JsonParseException("An Fluidingredient entry needs either a tag or an fluid");
@@ -187,7 +192,7 @@ public class FluidIngredient implements Predicate<FluidStack> {
 
 	public static Fluid fluidFromJson(JsonObject p_151279_) {
 		String s = GsonHelper.getAsString(p_151279_, "fluid");
-		Fluid fluid = Registry.FLUID.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+		Fluid fluid = BuiltInRegistries.FLUID.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
 			return new JsonSyntaxException("Unknown fluid '" + s + "'");
 		});
 		if (fluid == Fluids.EMPTY) {
@@ -217,7 +222,7 @@ public class FluidIngredient implements Predicate<FluidStack> {
 
 		public JsonObject serialize() {
 			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("fluid", Registry.FLUID.getKey(this.fluid.getFluid()).toString());
+			jsonobject.addProperty("fluid", BuiltInRegistries.FLUID.getKey(this.fluid.getFluid()).toString());
 			return jsonobject;
 		}
 	}
@@ -232,7 +237,7 @@ public class FluidIngredient implements Predicate<FluidStack> {
 		public Collection<FluidStack> getFluids() {
 			List<FluidStack> list = Lists.newArrayList();
 
-			for (Holder<Fluid> holder : Registry.FLUID.getTagOrEmpty(this.tag)) {
+			for (Holder<Fluid> holder : BuiltInRegistries.FLUID.getTagOrEmpty(this.tag)) {
 				list.add(new FluidStack(holder.value(), 1000));
 			}
 

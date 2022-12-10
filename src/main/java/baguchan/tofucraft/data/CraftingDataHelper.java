@@ -3,8 +3,9 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
@@ -27,7 +28,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public abstract class CraftingDataHelper extends RecipeProvider {
-	public CraftingDataHelper(DataGenerator generator) {
+	public CraftingDataHelper(PackOutput generator) {
 		super(generator);
 	}
 
@@ -58,36 +59,36 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void foodCooking(Supplier<? extends ItemLike> material, Supplier<? extends ItemLike> result, float xp, Consumer<FinishedRecipe> consumer) {
-		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
-		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
-		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material.get()), result.get(), xp, 600).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 600).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
 	protected final void foodCookingButNoCampfire(Supplier<? extends ItemLike> material, Supplier<? extends ItemLike> result, float xp, Consumer<FinishedRecipe> consumer) {
-		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
-		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
 	protected final void foodCooking(Supplier<? extends ItemLike> material, Supplier<? extends ItemLike> result, float xp, Consumer<FinishedRecipe> consumer, String recipeName) {
-		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + recipeName));
-		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + recipeName));
-		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material.get()), result.get(), xp, 600).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + recipeName));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + recipeName));
+		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + recipeName));
+		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 600).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + recipeName));
 	}
 
 	public static void cuttingRecipe(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> cuttingItem, Supplier<? extends ItemLike> result, int count) {
-		SingleItemRecipeBuilder.stonecutting(Ingredient.of(cuttingItem.get()), result.get(), count).unlockedBy("has_item", has(cuttingItem.get())).save(consumer, TofuCraftReload.prefix("cutting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(cuttingItem.get()), RecipeCategory.BUILDING_BLOCKS, result.get(), count).unlockedBy("has_item", has(cuttingItem.get())).save(consumer, TofuCraftReload.prefix("cutting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
 	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, Supplier<Item> result) {
-		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), result.get()).unlocks("has_tofudiamond", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, TofuCraftReload.prefix("smithing_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), RecipeCategory.TOOLS, result.get()).unlocks("has_tofudiamond", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, TofuCraftReload.prefix("smithing_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
 	public static void sculkSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, Supplier<Item> result) {
-		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, TofuCraftReload.prefix("smithing_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), RecipeCategory.COMBAT, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, TofuCraftReload.prefix("smithing_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
 	protected final void helmetItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
 				.pattern("###")
 				.pattern("# #")
 				.define('#', material.get())
@@ -96,7 +97,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void chestplateItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
 				.pattern("# #")
 				.pattern("###")
 				.pattern("###")
@@ -106,7 +107,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void leggingsItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
 				.pattern("###")
 				.pattern("# #")
 				.pattern("# #")
@@ -116,7 +117,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void bootsItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
 				.pattern("# #")
 				.pattern("# #")
 				.define('#', material.get())
@@ -125,7 +126,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void pickaxeItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material, TagKey<Item> handle) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
 				.pattern("###")
 				.pattern(" X ")
 				.pattern(" X ")
@@ -136,7 +137,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void swordItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material, TagKey<Item> handle) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
 				.pattern("#")
 				.pattern("#")
 				.pattern("X")
@@ -147,7 +148,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void axeItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material, TagKey<Item> handle) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
 				.pattern("##")
 				.pattern("#X")
 				.pattern(" X")
@@ -158,7 +159,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void shovelItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material, TagKey<Item> handle) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
 				.pattern("#")
 				.pattern("X")
 				.pattern("X")
@@ -169,7 +170,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void hoeItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material, TagKey<Item> handle) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, result.get())
 				.pattern("##")
 				.pattern(" X")
 				.pattern(" X")
@@ -180,7 +181,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void tofuBlockItem(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get())
 				.pattern("##")
 				.pattern("##")
 				.define('#', material.get())
@@ -189,7 +190,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void tofuBlockItem(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material, String name) {
-		ShapedRecipeBuilder.shaped(result.get())
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get())
 				.pattern("##")
 				.pattern("##")
 				.define('#', material.get())
@@ -198,7 +199,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void ladderItem(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
-		ShapedRecipeBuilder.shaped(result.get(), 6)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 6)
 				.pattern("# #")
 				.pattern("###")
 				.pattern("# #")
@@ -208,7 +209,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void decorationTofuBlockItem(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
-		ShapedRecipeBuilder.shaped(result.get(), 4)
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result.get(), 4)
 				.pattern("##")
 				.pattern("##")
 				.define('#', material.get())
@@ -217,7 +218,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	public void makeStairs(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> stairsOut, Supplier<? extends ItemLike> blockIn) {
-		ShapedRecipeBuilder.shaped(stairsOut.get(), 4)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stairsOut.get(), 4)
 				.pattern("M  ")
 				.pattern("MM ")
 				.pattern("MMM")
@@ -231,7 +232,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	public void makeSlab(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> slabOut, Supplier<? extends ItemLike> blockIn) {
-		ShapedRecipeBuilder.shaped(slabOut.get(), 6)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slabOut.get(), 6)
 				.pattern("MMM")
 				.define('M', blockIn.get())
 				.unlockedBy("has_item", has(blockIn.get())).save(consumer);
@@ -243,7 +244,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	public void makeFence(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> fenceOut, Supplier<? extends ItemLike> blockIn) {
-		ShapedRecipeBuilder.shaped(fenceOut.get(), 6)
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, fenceOut.get(), 6)
 				.pattern("MMM")
 				.pattern("MMM")
 				.define('M', blockIn.get())
@@ -251,7 +252,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	public void makeTorch(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> torchOut, Supplier<? extends ItemLike> itemIn) {
-		ShapedRecipeBuilder.shaped(torchOut.get(), 4)
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, torchOut.get(), 4)
 				.pattern("C")
 				.pattern("M")
 				.define('C', ItemTags.COALS)
@@ -260,7 +261,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	public void makeDoor(Consumer<FinishedRecipe> consumer, Supplier<? extends Block> doorOut, Supplier<? extends Block> plankIn) {
-		ShapedRecipeBuilder.shaped(doorOut.get(), 3)
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, doorOut.get(), 3)
 				.pattern("PP")
 				.pattern("PP")
 				.pattern("PP")
@@ -269,7 +270,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	public void makeTrapdoor(Consumer<FinishedRecipe> consumer, Supplier<? extends Block> trapdoorOut, Supplier<? extends ItemLike> plankIn) {
-		ShapedRecipeBuilder.shaped(trapdoorOut.get(), 2)
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, trapdoorOut.get(), 2)
 				.pattern("PPP")
 				.pattern("PPP")
 				.define('P', plankIn.get())

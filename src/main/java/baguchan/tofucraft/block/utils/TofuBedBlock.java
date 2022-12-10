@@ -17,12 +17,24 @@ import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.CollisionGetter;
+import net.minecraft.world.level.ExplosionDamageCalculator;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoubleBlockCombiner;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.AABB;
@@ -77,7 +89,8 @@ public class TofuBedBlock extends BedBlock {
 					p_49516_.removeBlock(var7, false);
 				}
 
-				p_49516_.explode((Entity) null, DamageSource.badRespawnPointExplosion(), (ExplosionDamageCalculator) null, (double) p_49517_.getX() + 0.5D, (double) p_49517_.getY() + 0.5D, (double) p_49517_.getZ() + 0.5D, 5.0F, true, Explosion.BlockInteraction.DESTROY);
+				Vec3 vec3 = p_49517_.getCenter();
+				p_49516_.explode((Entity) null, DamageSource.badRespawnPointExplosion(vec3), (ExplosionDamageCalculator) null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
 				return InteractionResult.SUCCESS;
 			} else if ((Boolean) p_49515_.getValue(OCCUPIED)) {
 				if (!this.kickVillagerOutOfBed(p_49516_, p_49517_)) {

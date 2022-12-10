@@ -3,18 +3,21 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuTags;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
+
 public class BlockTagGenerator extends BlockTagsProvider {
-	public BlockTagGenerator(DataGenerator generator, ExistingFileHelper exFileHelper) {
-		super(generator, TofuCraftReload.MODID, exFileHelper);
+	public BlockTagGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper exFileHelper) {
+		super(packOutput, lookupProvider, TofuCraftReload.MODID, exFileHelper);
 	}
 
 	@Override
-	protected void addTags() {
+	protected void addTags(HolderLookup.Provider p_256380_) {
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
 				, TofuBlocks.GRILLEDTOFU.get(), TofuBlocks.ZUNDATOFU.get()
 				, TofuBlocks.TOFUSTAIR_KINU.get(), TofuBlocks.TOFUSTAIR_MOMEN.get(), TofuBlocks.TOFUSTAIR_ZUNDA.get(), TofuBlocks.TOFUSTAIR_HELL.get(), TofuBlocks.TOFUSTAIR_SOUL.get()
@@ -74,7 +77,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(TofuBlocks.SOULTOFU.get());
 		tag(BlockTags.SOUL_SPEED_BLOCKS).add(TofuBlocks.SOULTOFU.get());
 
-		tag(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get())
+		tag(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.SOYMILK.get())
 				.add(TofuBlocks.TOFUSLATE.get());
 		tag(BlockTags.LEAVES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get());
 		tag(BlockTags.CROPS).add(TofuBlocks.RICE_CROP.get()).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get()).add(TofuBlocks.LEEK_CROP.get());

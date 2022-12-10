@@ -23,7 +23,6 @@ import baguchan.tofucraft.client.render.entity.TofuSpiderRender;
 import baguchan.tofucraft.client.render.entity.TofunianRender;
 import baguchan.tofucraft.client.render.entity.TravelerTofunianRender;
 import baguchan.tofucraft.client.render.entity.effect.NattoCobWebRender;
-import baguchan.tofucraft.client.render.item.TofuShieldBWLR;
 import baguchan.tofucraft.client.render.tileentity.FoodPlateRender;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
@@ -42,7 +41,6 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
@@ -53,7 +51,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -200,7 +197,8 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
 	}
 
-	@SubscribeEvent
+	//TODO
+	/*@SubscribeEvent
 	public static void onTextureStitch(TextureStitchEvent.Pre event) {
 		if (event.getAtlas().location().equals(Sheets.BED_SHEET)) {
 			event.addSprite(TofuBedRenderer.BED_TEXTURES);
@@ -213,7 +211,7 @@ public class ClientRegistrar {
 		if (event.getAtlas().location().equals(Sheets.SHIELD_SHEET)) {
 			event.addSprite(TofuShieldBWLR.SHIELD.texture());
 		}
-	}
+	}*/
 
 	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiOverlaysEvent event) {

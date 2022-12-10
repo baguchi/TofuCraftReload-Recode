@@ -14,15 +14,17 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Supplier;
+
 public class ReturnableDishItem extends Item {
-	private final Item dishItem;
+	private final Supplier<Item> dishItem;
 	private final boolean comfortable;
 
-	public ReturnableDishItem(Item dishItem, Properties p_41383_) {
+	public ReturnableDishItem(Supplier<Item> dishItem, Properties p_41383_) {
 		this(dishItem, p_41383_, true);
 	}
 
-	public ReturnableDishItem(Item dishItem, Properties p_41383_, boolean comfortable) {
+	public ReturnableDishItem(Supplier<Item> dishItem, Properties p_41383_, boolean comfortable) {
 		super(p_41383_);
 		this.dishItem = dishItem;
 		this.comfortable = comfortable;
@@ -45,9 +47,9 @@ public class ReturnableDishItem extends Item {
 
 		if (livingEntity instanceof Player player && !player.getAbilities().instabuild) {
 			if (itemStack.isEmpty()) {
-				resultItem = new ItemStack(dishItem);
+				resultItem = new ItemStack(dishItem.get());
 			} else {
-				ItemStack itemstack = new ItemStack(dishItem);
+				ItemStack itemstack = new ItemStack(dishItem.get());
 				if (!player.getInventory().add(itemstack)) {
 					player.drop(itemstack, false);
 				}

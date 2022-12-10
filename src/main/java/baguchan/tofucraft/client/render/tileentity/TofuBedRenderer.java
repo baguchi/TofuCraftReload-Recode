@@ -5,7 +5,7 @@ import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
@@ -83,9 +83,9 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity> 
 	private void renderPiece(PoseStack p_173542_, MultiBufferSource p_173543_, ModelPart p_173544_, Direction p_173545_, Material p_173546_, int p_173547_, int p_173548_, boolean p_173549_) {
 		p_173542_.pushPose();
 		p_173542_.translate(0.0D, 0.5625D, p_173549_ ? -1.0D : 0.0D);
-		p_173542_.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+		p_173542_.mulPose(Axis.XP.rotationDegrees(90.0F));
 		p_173542_.translate(0.5D, 0.5D, 0.5D);
-		p_173542_.mulPose(Vector3f.ZP.rotationDegrees(180.0F + p_173545_.toYRot()));
+		p_173542_.mulPose(Axis.ZP.rotationDegrees(180.0F + p_173545_.toYRot()));
 		p_173542_.translate(-0.5D, -0.5D, -0.5D);
 		VertexConsumer var9 = p_173546_.buffer(p_173543_, RenderType::entitySolid);
 		p_173544_.render(p_173542_, var9, p_173547_, p_173548_);

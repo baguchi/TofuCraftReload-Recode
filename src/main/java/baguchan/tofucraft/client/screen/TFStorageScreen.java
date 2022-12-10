@@ -5,7 +5,11 @@ import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
 import baguchan.tofucraft.inventory.TFStorageMenu;
 import baguchan.tofucraft.registry.TofuFluids;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -78,15 +82,15 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		float u1 = sprite.getU0();
 		float v1 = sprite.getV0();
 		do {
-			int currentHeight = Math.min(sprite.getHeight(), height);
+			int currentHeight = Math.min(sprite.getX(), height);
 			height -= currentHeight;
-			float v2 = sprite.getV((16 * currentHeight) / (float) sprite.getHeight());
+			float v2 = sprite.getV((16 * currentHeight) / (float) sprite.getX());
 			int x2 = x;
 			int width2 = width;
 			do {
-				int currentWidth = Math.min(sprite.getWidth(), width2);
+				int currentWidth = Math.min(sprite.getY(), width2);
 				width2 -= currentWidth;
-				float u2 = sprite.getU((16 * currentWidth) / (float) sprite.getWidth());
+				float u2 = sprite.getU((16 * currentWidth) / (float) sprite.getY());
 				bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
 				bufferbuilder.vertex(x2, y, depth).uv(u1, v1).color(255, 255, 255, 255).endVertex();
 				bufferbuilder.vertex(x2, y + currentHeight, depth).uv(u1, v2).color(255, 255, 255, 255).endVertex();

@@ -13,9 +13,9 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -126,7 +126,7 @@ public class ParticleZundaCloud extends TextureSheetParticle {
 		@SuppressWarnings("deprecation")
 		@Override
 		public String writeToString() {
-			return String.format(Locale.ROOT, "zundacloud", Registry.PARTICLE_TYPE.getKey(this.getType()), this.scale, this.duration, this.shake);
+			return String.format(Locale.ROOT, "zundacloud", BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()), this.scale, this.duration, this.shake);
 		}
 
 		@Override

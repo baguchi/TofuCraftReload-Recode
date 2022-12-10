@@ -5,8 +5,7 @@ import baguchan.tofucraft.world.biome.TofuBiomeBuilder;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
-import net.minecraft.data.worldgen.biome.OverworldBiomes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -34,7 +33,7 @@ public class TofuBiomes {
 	public static final MultiNoiseBiomeSource.Preset TOFU_WORLD = new MultiNoiseBiomeSource.Preset(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), (p_204281_) -> {
 		ImmutableList.Builder<Pair<Climate.ParameterPoint, Holder<Biome>>> builder = ImmutableList.builder();
 		(new TofuBiomeBuilder()).addBiomes((p_204279_) -> {
-			builder.add(p_204279_.mapSecond(p_204281_::getOrCreateHolderOrThrow));
+			builder.add(p_204279_.mapSecond(p_204281_::getOrThrow));
 		});
 		return new Climate.ParameterList<>(builder.build());
 	});
@@ -43,7 +42,6 @@ public class TofuBiomes {
 	}
 
 	private static ResourceKey<Biome> register(String p_48229_) {
-		BIOMES.register(p_48229_, OverworldBiomes::theVoid);
-		return ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(TofuCraftReload.MODID, p_48229_));
+		return ResourceKey.create(Registries.BIOME, new ResourceLocation(TofuCraftReload.MODID, p_48229_));
 	}
 }

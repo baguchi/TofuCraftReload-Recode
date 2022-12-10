@@ -3,7 +3,7 @@ package baguchan.tofucraft.client.render.tileentity;
 import baguchan.tofucraft.block.FoodPlateBlock;
 import baguchan.tofucraft.blockentity.FoodPlateBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -43,15 +43,15 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	public void renderItemLayingDown(PoseStack matrixStackIn, Direction direction) {
 		matrixStackIn.translate(0.5D, 0.07D, 0.5D);
 		float f = -direction.toYRot();
-		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(f));
-		matrixStackIn.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
+		matrixStackIn.mulPose(Axis.XP.rotationDegrees(90.0F));
 		matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 	}
 
 	public void renderBlock(PoseStack matrixStackIn, Direction direction) {
 		matrixStackIn.translate(0.5D, 0.25D, 0.5D);
 		float f = -direction.toYRot();
-		matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(f));
+		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
 		matrixStackIn.scale(0.8F, 0.8F, 0.8F);
 	}
 }

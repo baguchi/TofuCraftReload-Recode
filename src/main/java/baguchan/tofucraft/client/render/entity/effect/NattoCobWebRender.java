@@ -3,7 +3,7 @@ package baguchan.tofucraft.client.render.entity.effect;
 import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.registry.TofuItems;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -36,7 +36,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 			stack.pushPose();
 			stack.scale(5.5F, 6.0F, 5.5F);
 			stack.translate(0.0F, 0.0F, -0.125F);
-			stack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
 
 			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
 			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level, (LivingEntity) null, entity.getId());
@@ -47,7 +47,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 			stack.pushPose();
 			stack.scale(6.0F, 6.0F, 6.0F);
 			stack.translate(0.0F, 0.0F, -0.125F);
-			stack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
 
 
 			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());

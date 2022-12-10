@@ -3,7 +3,6 @@ package baguchan.tofucraft.entity.projectile;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
@@ -14,7 +13,6 @@ import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.network.NetworkHooks;
 
 import java.util.List;
 
@@ -77,10 +75,5 @@ public class NattoBallEntity extends ThrowableProjectile {
 
 	protected boolean shouldBurn() {
 		return false;
-	}
-
-	@Override
-	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 }

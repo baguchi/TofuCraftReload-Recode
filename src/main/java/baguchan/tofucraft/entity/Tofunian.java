@@ -570,7 +570,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putByte("FoodLevel", this.foodLevel);
-		compound.put("Gossips", this.gossips.store(NbtOps.INSTANCE).getValue());
+		compound.put("Gossips", this.gossips.store(NbtOps.INSTANCE).copy());
 		compound.putInt("Xp", this.xp);
 		compound.putInt("Level", this.tofunianLevel);
 		compound.putLong("LastRestock", this.lastRestock);

@@ -1,9 +1,12 @@
 package baguchan.tofucraft.world.gen.features;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.world.gen.foliage.TofuFoliagePlacer;
-import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -15,10 +18,10 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 
 public class ModTreeFeatures {
-	public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> TOFU_TREE = FeatureUtils.register("tofucraft:tofu_tree", Feature.TREE, createTofuTree().build());
-	public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> TOFU_TREE_BIG = FeatureUtils.register("tofucraft:tofu_tree_big", Feature.TREE, createTofuTreeBig().build());
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_TREE = registerKey("tofu_tree");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_TREE_BIG = registerKey("tofu_tree_big");
 
-	public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> APRICOT_TREE = FeatureUtils.register("tofucraft:apricot_tree", Feature.TREE, createApricotTree().build());
+	public static final ResourceKey<ConfiguredFeature<?, ?>> APRICOT_TREE = registerKey("apricot_tree");
 
 	private static TreeConfiguration.TreeConfigurationBuilder createTofuTree() {
 		return createStraightBlobTree(TofuBlocks.ISHITOFU.get(), TofuBlocks.LEAVES_TOFU.get(), 4, 2, 2).ignoreVines().dirt(BlockStateProvider.simple(TofuBlocks.TOFU_TERRAIN.get()));
@@ -43,7 +46,13 @@ public class ModTreeFeatures {
 
 	}
 
-	public static void init() {
+	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
+		return ResourceKey.create(Registries.CONFIGURED_FEATURE, TofuCraftReload.prefix(name));
+	}
 
+	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+		FeatureUtils.register(context, TOFU_TREE, Feature.TREE, createTofuTree().build());
+		FeatureUtils.register(context, TOFU_TREE_BIG, Feature.TREE, createTofuTreeBig().build());
+		FeatureUtils.register(context, APRICOT_TREE, Feature.TREE, createApricotTree().build());
 	}
 }
