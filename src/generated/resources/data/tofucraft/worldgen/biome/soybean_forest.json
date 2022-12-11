@@ -1,0 +1,82 @@
+{
+  "carvers": {
+    "air": [
+      "tofucraft:tofu_cave",
+      "tofucraft:tofu_cave_extra_underground",
+      "tofucraft:tofu_canyon"
+    ]
+  },
+  "downfall": 0.0,
+  "effects": {
+    "fog_color": 9671612,
+    "foliage_color": 11665355,
+    "grass_color": 11665355,
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": true,
+      "sound": "tofucraft:music.milky_earth"
+    },
+    "sky_color": 12632319,
+    "water_color": 4159204,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "tofucraft:ore_tofu_diamond",
+      "tofucraft:ore_tofu_diamond_buried",
+      "tofucraft:ore_tofu_diamond_large"
+    ],
+    [],
+    [],
+    [
+      "tofucraft:big_leek",
+      "tofucraft:patch_leek"
+    ]
+  ],
+  "precipitation": "none",
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "tofucraft:tofucow",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "tofucraft:tofupig",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 200
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "tofucraft:tofuslime",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "tofucraft:tofuspider",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 10
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.8
+}

@@ -8,12 +8,9 @@ import baguchan.tofucraft.client.particle.SoymilkDripParticle;
 import baguchan.tofucraft.client.particle.SoymilkSplashParticle;
 import baguchan.tofucraft.client.particle.TofuPortalParticle;
 import com.mojang.serialization.Codec;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -44,11 +41,8 @@ public class TofuParticleTypes {
 		}
 	});
 
-	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
 	public static void registerFactories(RegisterParticleProvidersEvent event) {
-		ParticleEngine particles = Minecraft.getInstance().particleEngine;
-
 		event.register(TofuParticleTypes.TOFU_PORTAL.get(), TofuPortalParticle.Provider::new);
 		event.register(TofuParticleTypes.DRIP_SOYMILK_HANG.get(), SoymilkDripParticle.SoymilkHangProvider::new);
 		event.register(TofuParticleTypes.DRIP_SOYMILK_FALL.get(), SoymilkDripParticle.SoymilkFallProvider::new);
@@ -56,6 +50,5 @@ public class TofuParticleTypes {
 		event.register(TofuParticleTypes.ZUNDA_CLOUD.get(), ParticleZundaCloud.CloudFactory::new);
 		event.register(TofuParticleTypes.STINK.get(), ParticleStink.StinkFactory::new);
 		event.register(TofuParticleTypes.SIMPLE_STINKE.get(), ParticleSimpleStink.Provider::new);
-
 	}
 }
