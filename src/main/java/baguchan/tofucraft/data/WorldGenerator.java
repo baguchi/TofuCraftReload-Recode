@@ -1,10 +1,10 @@
 package baguchan.tofucraft.data;
 
+import baguchan.tofucraft.data.resources.ModConfiguredFeatures;
+import baguchan.tofucraft.data.resources.TofuConfiguredWorldCarvers;
+import baguchan.tofucraft.data.resources.TofuNoiseBuilder;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuDimensionTypes;
-import baguchan.tofucraft.registry.TofuNoiseSettings;
-import baguchan.tofucraft.world.carver.TofuConfiguredWorldCarvers;
-import baguchan.tofucraft.world.gen.ModWorldFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.RegistrySetBuilder;
@@ -17,11 +17,11 @@ import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 public class WorldGenerator extends DatapackBuiltinEntriesProvider {
 
 	public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-			.add(Registries.CONFIGURED_FEATURE, ModWorldFeatures::bootstrapConfiguredFeature)
-			.add(Registries.PLACED_FEATURE, ModWorldFeatures::bootstrapPlacedFeature)
+			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrapConfiguredFeature)
+			.add(Registries.PLACED_FEATURE, ModConfiguredFeatures::bootstrapPlacedFeature)
 			.add(Registries.BIOME, TofuBiomes::bootstrap)
 			.add(Registries.CONFIGURED_CARVER, TofuConfiguredWorldCarvers::bootstrap)
-			.add(Registries.NOISE_SETTINGS, TofuNoiseSettings::bootstrap)
+			.add(Registries.NOISE_SETTINGS, TofuNoiseBuilder::bootstrap)
 			.add(Registries.DIMENSION_TYPE, TofuDimensionTypes::bootstrap);
 
 

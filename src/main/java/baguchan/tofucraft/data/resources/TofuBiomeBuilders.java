@@ -1,6 +1,7 @@
-package baguchan.tofucraft.world.biome;
+package baguchan.tofucraft.data.resources;
 
 import baguchan.tofucraft.registry.TofuSounds;
+import baguchan.tofucraft.world.biome.TofuBiomeDefaultFeatures;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.sounds.Music;
 import net.minecraft.world.level.biome.Biome;

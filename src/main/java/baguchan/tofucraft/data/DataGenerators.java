@@ -20,8 +20,10 @@ public class DataGenerators {
 		PackOutput packOutput = generator.getPackOutput();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-		event.getGenerator().addProvider(event.includeClient(), new BlockstateGenerator(event.getGenerator(), event.getExistingFileHelper()));
-		event.getGenerator().addProvider(event.includeClient(), new ItemModelGenerator(event.getGenerator(), event.getExistingFileHelper()));
+		event.getGenerator().addProvider(event.includeClient(), new BlockstateGenerator(packOutput, event.getExistingFileHelper()));
+		event.getGenerator().addProvider(event.includeClient(), new ItemModelGenerator(packOutput, event.getExistingFileHelper()));
+
+		event.getGenerator().addProvider(event.includeServer(), new WorldGenerator(packOutput));
 		BlockTagsProvider blocktags = new BlockTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper());
 		event.getGenerator().addProvider(event.includeServer(), blocktags);
 		event.getGenerator().addProvider(event.includeServer(), new ItemTagGenerator(packOutput, lookupProvider, blocktags, event.getExistingFileHelper()));
@@ -30,6 +32,5 @@ public class DataGenerators {
 		event.getGenerator().addProvider(event.includeServer(), TofuLootTableProvider.create(packOutput));
 		event.getGenerator().addProvider(event.includeServer(), new CraftingGenerator(packOutput));
 
-		event.getGenerator().addProvider(event.includeServer(), new WorldGenerator(packOutput));
 	}
 }

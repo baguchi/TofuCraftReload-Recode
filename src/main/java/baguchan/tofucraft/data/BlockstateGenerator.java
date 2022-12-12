@@ -3,7 +3,7 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
 public class BlockstateGenerator extends BlockStateProvider {
-	public BlockstateGenerator(DataGenerator gen, ExistingFileHelper exFileHelper) {
+	public BlockstateGenerator(PackOutput gen, ExistingFileHelper exFileHelper) {
 		super(gen, TofuCraftReload.MODID, exFileHelper);
 	}
 

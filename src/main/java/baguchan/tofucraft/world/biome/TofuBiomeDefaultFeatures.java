@@ -1,7 +1,7 @@
 package baguchan.tofucraft.world.biome;
 
+import baguchan.tofucraft.data.resources.TofuConfiguredWorldCarvers;
 import baguchan.tofucraft.registry.TofuEntityTypes;
-import baguchan.tofucraft.world.carver.TofuConfiguredWorldCarvers;
 import baguchan.tofucraft.world.placement.TofuWorldPlacements;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;

@@ -1,4 +1,4 @@
-package baguchan.tofucraft.world.carver;
+package baguchan.tofucraft.data.resources;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuTags;

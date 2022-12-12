@@ -1,4 +1,4 @@
-package baguchan.tofucraft.world.gen;
+package baguchan.tofucraft.data.resources;
 
 import baguchan.tofucraft.world.gen.features.ModNetherFeatures;
 import baguchan.tofucraft.world.gen.features.ModTreeFeatures;
@@ -10,7 +10,7 @@ import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
-public class ModWorldFeatures {
+public class ModConfiguredFeatures {
 	public static void bootstrapConfiguredFeature(BootstapContext<ConfiguredFeature<?, ?>> context) {
 		ModNetherFeatures.bootstrap(context);
 		ModTreeFeatures.bootstrap(context);

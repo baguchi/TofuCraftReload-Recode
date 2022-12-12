@@ -1,8 +1,8 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.data.resources.TofuBiomeBuilders;
 import baguchan.tofucraft.world.biome.TofuBiomeBuilder;
-import baguchan.tofucraft.world.biome.TofuBiomeBuilders;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Holder;
