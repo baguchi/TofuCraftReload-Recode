@@ -39,7 +39,7 @@ public class TofuNoiseBuilder {
 	private static final ResourceKey<DensityFunction> SPAGHETTI_2D = createKey("overworld/caves/spaghetti_2d");
 
 	public static NoiseGeneratorSettings tofuWorld(BootstapContext<NoiseGeneratorSettings> p_256478_) {
-		return new NoiseGeneratorSettings(new NoiseSettings(-64, 384, 1, 2), TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), TofuBlocks.SOYBEAN.get().defaultBlockState(), TofuNoiseBuilder.overworld(p_256478_.lookup(Registries.DENSITY_FUNCTION), p_256478_.lookup(Registries.NOISE), false, false), TofuSurfaceRuleData.tofuWorld(), List.of(), 63, false, true, false, false);
+		return new NoiseGeneratorSettings(new NoiseSettings(-64, 384, 1, 2), TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), TofuBlocks.SOYMILK.get().defaultBlockState(), TofuNoiseBuilder.overworld(p_256478_.lookup(Registries.DENSITY_FUNCTION), p_256478_.lookup(Registries.NOISE), false, false), TofuSurfaceRuleData.tofuWorld(), List.of(), 63, false, true, false, false);
 	}
 
 	public static void bootstrap(BootstapContext<NoiseGeneratorSettings> p_256365_) {

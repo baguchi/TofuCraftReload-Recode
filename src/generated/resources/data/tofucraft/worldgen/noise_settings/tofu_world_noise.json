@@ -4,9 +4,9 @@
     "Name": "tofucraft:tofu_terrain"
   },
   "default_fluid": {
-    "Name": "tofucraft:soybean",
+    "Name": "tofucraft:soymilk",
     "Properties": {
-      "age": "0"
+      "level": "0"
     }
   },
   "disable_mob_generation": false,

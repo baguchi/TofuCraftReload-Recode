@@ -24,9 +24,7 @@ public class TofuCreativeModeTab {
 
 	@SubscribeEvent
 	public static void registerCreativeModeTabsItem(CreativeModeTabEvent.BuildContents event) {
-		TofuItems.creativeTabItems.stream().map(itemSupplier -> {
-			return itemSupplier.get();
-		}).forEach((item) -> {
+		TofuItems.creativeTabItems.forEach((item) -> {
 			if (event.getTab() == TOFUCRAFT_CREATIVE_TAB)
 				event.accept(item);
 		});
