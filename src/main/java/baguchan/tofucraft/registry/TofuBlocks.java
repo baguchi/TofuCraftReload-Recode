@@ -287,7 +287,6 @@ public class TofuBlocks {
 		RegistryObject<T> register = BLOCKS.register(name, block);
 		Supplier<? extends Item> itemSupplier = item.apply(register);
 		TofuItems.ITEMS.register(name, itemSupplier);
-		TofuItems.creativeTabItems.add((Supplier<Item>) itemSupplier);
 		return register;
 	}
 

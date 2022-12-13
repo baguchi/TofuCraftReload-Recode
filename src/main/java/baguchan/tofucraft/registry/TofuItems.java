@@ -36,6 +36,7 @@ import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -69,18 +70,19 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.common.crafting.CompoundIngredient;
+import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.apache.commons.compress.utils.Lists;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = TofuCraftReload.MODID)
 public class TofuItems {
-	public static final List<Supplier<Item>> creativeTabItems = Lists.newArrayList();
-
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TofuCraftReload.MODID);
 
 	public static final RegistryObject<Item> TOFUKINU = ITEMS.register("tofukinu", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU)));
@@ -289,25 +291,25 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFU_DIAMOND_HOE = ITEMS.register("tofu_diamond_hoe", () -> new HoeItem(TofuItemTier.TOFUDIAMOND, -4, 0.0F, (new Item.Properties())));
 
 
-	public static final RegistryObject<Item> ARMOR_TOFU_KINUHELMET = ITEMS.register("tofu_kinu_helmet", () -> new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.HEAD, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_KINUCHESTPLATE = ITEMS.register("tofu_kinu_chestplate", () -> new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.CHEST, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_KINULEGGINGS = ITEMS.register("tofu_kinu_leggings", () -> new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.LEGS, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_KINUBOOTS = ITEMS.register("tofu_kinu_boots", () -> new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.FEET, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_KINU_HELMET = ITEMS.register("tofu_kinu_helmet", () -> new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.HEAD, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_KINU_CHESTPLATE = ITEMS.register("tofu_kinu_chestplate", () -> new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.CHEST, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_KINU_LEGGINGS = ITEMS.register("tofu_kinu_leggings", () -> new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.LEGS, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_KINU_BOOTS = ITEMS.register("tofu_kinu_boots", () -> new ArmorItem(TofuArmorMaterial.KINU, EquipmentSlot.FEET, (new Item.Properties())));
 
-	public static final RegistryObject<Item> ARMOR_TOFU_MOMENHELMET = ITEMS.register("tofu_momen_helmet", () -> new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.HEAD, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_MOMENCHESTPLATE = ITEMS.register("tofu_momen_chestplate", () -> new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.CHEST, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_MOMENLEGGINGS = ITEMS.register("tofu_momen_leggings", () -> new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.LEGS, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_MOMENBOOTS = ITEMS.register("tofu_momen_boots", () -> new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.FEET, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_MOMEN_HELMET = ITEMS.register("tofu_momen_helmet", () -> new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.HEAD, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_MOMEN_CHESTPLATE = ITEMS.register("tofu_momen_chestplate", () -> new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.CHEST, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_MOMEN_LEGGINGS = ITEMS.register("tofu_momen_leggings", () -> new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.LEGS, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_MOMEN_BOOTS = ITEMS.register("tofu_momen_boots", () -> new ArmorItem(TofuArmorMaterial.MOMEN, EquipmentSlot.FEET, (new Item.Properties())));
 
 	public static final RegistryObject<Item> ARMOR_TOFU_SOLIDHELMET = ITEMS.register("tofu_solid_helmet", () -> new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.HEAD, (new Item.Properties())));
 	public static final RegistryObject<Item> ARMOR_TOFU_SOLIDCHESTPLATE = ITEMS.register("tofu_solid_chestplate", () -> new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.CHEST, (new Item.Properties())));
 	public static final RegistryObject<Item> ARMOR_TOFU_SOLIDLEGGINGS = ITEMS.register("tofu_solid_leggings", () -> new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.LEGS, (new Item.Properties())));
 	public static final RegistryObject<Item> ARMOR_TOFU_SOLIDBOOTS = ITEMS.register("tofu_solid_boots", () -> new ArmorItem(TofuArmorMaterial.SOLID, EquipmentSlot.FEET, (new Item.Properties())));
 
-	public static final RegistryObject<Item> ARMOR_TOFU_METALHELMET = ITEMS.register("tofu_metal_helmet", () -> new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.HEAD, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_METALCHESTPLATE = ITEMS.register("tofu_metal_chestplate", () -> new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.CHEST, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_METALLEGGINGS = ITEMS.register("tofu_metal_leggings", () -> new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.LEGS, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_METALBOOTS = ITEMS.register("tofu_metal_boots", () -> new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.FEET, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_METAL_HELMET = ITEMS.register("tofu_metal_helmet", () -> new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.HEAD, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_METAL_CHESTPLATE = ITEMS.register("tofu_metal_chestplate", () -> new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.CHEST, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_METAL_LEGGINGS = ITEMS.register("tofu_metal_leggings", () -> new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.LEGS, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_METAL_BOOTS = ITEMS.register("tofu_metal_boots", () -> new ArmorItem(TofuArmorMaterial.METAL, EquipmentSlot.FEET, (new Item.Properties())));
 
 	public static final RegistryObject<Item> TOFU_DIAMOND_HELMET = ITEMS.register("tofu_diamond_helmet", () -> new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlot.HEAD, (new Item.Properties())));
 	public static final RegistryObject<Item> TOFU_DIAMOND_CHESTPLATE = ITEMS.register("tofu_diamond_chestplate", () -> new ArmorItem(TofuArmorMaterial.DIAMOND, EquipmentSlot.CHEST, (new Item.Properties())));
@@ -367,8 +369,311 @@ public class TofuItems {
 	public static final RegistryObject<Item> SOYSAUSE_RAMEN = register("soysause_ramen", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SOYSAUSE_RAMEN)));
 
 	private static RegistryObject<Item> register(String name, Supplier<Item> item) {
-		creativeTabItems.add(item);
 		return ITEMS.register(name, item);
+	}
+
+	@SubscribeEvent
+	public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
+		event.registerCreativeModeTab(new ResourceLocation(TofuCraftReload.MODID, "tofu")
+				, (builder) -> {
+					TofuCreativeModeTab.TOFUS = builder.icon(() -> {
+						return new ItemStack(TofuItems.TOFUKINU.get());
+					}).displayItems((features, output, hasPermissions) ->
+							output.acceptAll(Stream.of(
+											TOFUKINU,
+											TOFUMOMEN,
+											TOFUISHI,
+											TOFUMETAL,
+											TOFUDIAMOND,
+											TOFUMISO,
+											TOFUANNIN,
+											TOFUDRIED,
+											TOFUEGG,
+											TOFUZUNDA,
+											TOFUSESAME,
+											TOFUSMOKE,
+											TOFUGRILLED,
+											TOFUFRIED,
+											TOFUFRIED_POUCH)
+									.map(item -> item.get().getDefaultInstance())
+									.toList())).build();
+				});
+		event.registerCreativeModeTab(new ResourceLocation(TofuCraftReload.MODID, "tofu_building_blocks")
+				, (builder) -> {
+					TofuCreativeModeTab.TOFU_BUILDING_BLOCKS = builder.icon(() -> {
+						return new ItemStack(TofuBlocks.ISHITOFU_BRICK.get());
+					}).displayItems((features, output, hasPermissions) ->
+							output.acceptAll(Stream.of(
+											TofuBlocks.KINUTOFU,
+											TofuBlocks.TOFUSLAB_KINU,
+											TofuBlocks.TOFUSTAIR_KINU,
+											TofuBlocks.TOFUFENCE_KINU,
+											TofuBlocks.TOFUDOOR_KINU,
+											TofuBlocks.TOFUTRAPDOOR_KINU,
+											TofuBlocks.TOFULADDER_KINU,
+											TofuBlocks.MOMENTOFU,
+											TofuBlocks.TOFUSLAB_MOMEN,
+											TofuBlocks.TOFUSTAIR_MOMEN,
+											TofuBlocks.TOFUFENCE_MOMEN,
+											TofuBlocks.TOFUDOOR_MOMEN,
+											TofuBlocks.TOFUTRAPDOOR_MOMEN,
+											TofuBlocks.TOFULADDER_MOMEN,
+											TofuBlocks.ISHITOFU,
+											TofuBlocks.TOFUSLAB_ISHI,
+											TofuBlocks.TOFUSTAIR_ISHI,
+											TofuBlocks.TOFUFENCE_ISHI,
+											TofuBlocks.TOFUDOOR_ISHI,
+											TofuBlocks.TOFUTRAPDOOR_ISHI,
+											TofuBlocks.TOFULADDER_ISHI,
+											TofuBlocks.ISHITOFU_BRICK,
+											TofuBlocks.TOFUSLAB_ISHIBRICK,
+											TofuBlocks.TOFUSTAIR_ISHIBRICK,
+											TofuBlocks.TOFULADDER_ISHIBRICK,
+											TofuBlocks.ISHITOFU_CHISELED_BRICK,
+											TofuBlocks.ISHITOFU_SMOOTH_BRICK,
+											TofuBlocks.METALTOFU,
+											TofuBlocks.TOFUSLAB_METAL,
+											TofuBlocks.TOFUSTAIR_METAL,
+											TofuBlocks.TOFUFENCE_METAL,
+											TofuBlocks.TOFUDOOR_METAL,
+											TofuBlocks.TOFUTRAPDOOR_METAL,
+											TofuBlocks.TOFULADDER_METAL,
+											TofuBlocks.DIAMONDTOFU,
+											TofuBlocks.EGGTOFU,
+											TofuBlocks.TOFUSLAB_EGG,
+											TofuBlocks.TOFUSTAIR_EGG,
+											TofuBlocks.GRILLEDTOFU,
+											TofuBlocks.TOFUSLAB_GRILLED,
+											TofuBlocks.TOFUSTAIR_GRILLED,
+											TofuBlocks.TOFUFENCE_GRILLED,
+											TofuBlocks.TOFUDOOR_GRILLED,
+											TofuBlocks.TOFUTRAPDOOR_GRILLED,
+											TofuBlocks.TOFULADDER_GRILLED,
+											TofuBlocks.DRIEDTOFU,
+											TofuBlocks.TOFUSLAB_DRIED,
+											TofuBlocks.TOFUSTAIR_DRIED,
+											TofuBlocks.ZUNDATOFU,
+											TofuBlocks.TOFUSLAB_ZUNDA,
+											TofuBlocks.TOFUSTAIR_ZUNDA,
+											TofuBlocks.TOFUFENCE_ZUNDA,
+											TofuBlocks.TOFUDOOR_ZUNDA,
+											TofuBlocks.TOFUTRAPDOOR_ZUNDA,
+											TofuBlocks.TOFULADDER_ZUNDA,
+											TofuBlocks.HELLTOFU,
+											TofuBlocks.TOFUSLAB_HELL,
+											TofuBlocks.TOFUSTAIR_HELL,
+											TofuBlocks.TOFUFENCE_HELL,
+											TofuBlocks.TOFUDOOR_HELL,
+											TofuBlocks.TOFUTRAPDOOR_HELL,
+											TofuBlocks.HELLTOFU_BRICK,
+											TofuBlocks.HELLTOFU_SMOOTH_BRICK,
+											TofuBlocks.SOULTOFU,
+											TofuBlocks.TOFUSLAB_SOUL,
+											TofuBlocks.TOFUSTAIR_SOUL,
+											TofuBlocks.TOFUFENCE_SOUL,
+											TofuBlocks.TOFUDOOR_SOUL,
+											TofuBlocks.TOFUTRAPDOOR_SOUL,
+											TofuBlocks.SOULTOFU_BRICK,
+											TofuBlocks.SOULTOFU_SMOOTH_BRICK,
+											TofuBlocks.TOFU_TERRAIN,
+											TofuBlocks.TOFU_TERRAIN_ZUNDA,
+											TofuBlocks.ORE_TOFUGEM,
+											TofuBlocks.ORE_TOFU_DIAMOND,
+											TofuBlocks.TOFUSLATE,
+											TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE,
+											TofuBlocks.TOFU_BEDROCK,
+											TofuBlocks.LEEK,
+											TofuBlocks.LEEK_GREEN_STEM,
+											TofuBlocks.LEEK_STEM,
+											TofuBlocks.TOFU_STEM,
+											TofuBlocks.TOFU_STEM_PLANKS,
+											TofuBlocks.ZUNDATOFU_MUSHROOM,
+											TofuBlocks.SAPLING_TOFU,
+											TofuBlocks.LEAVES_TOFU,
+											TofuBlocks.SAPLING_APRICOT,
+											TofuBlocks.LEAVES_APRICOT,
+											TofuBlocks.BARREL_MISO,
+											TofuBlocks.BARREL_MISOTOFU,
+											TofuBlocks.NATTOBED,
+											TofuBlocks.TOFUBED,
+											TofuBlocks.TOFUCHEST,
+											TofuBlocks.TOFUCAKE,
+											TofuBlocks.ZUNDATOFUCAKE)
+									.map(item -> item.get().asItem().getDefaultInstance())
+									.toList())).build();
+				});
+		event.registerCreativeModeTab(new ResourceLocation(TofuCraftReload.MODID, "tofu_foods")
+				, (builder) -> {
+					TofuCreativeModeTab.TOFU_FOODS = builder.icon(() -> {
+						return new ItemStack(TofuItems.TOFUCOOKIE.get());
+					}).displayItems((features, output, hasPermissions) ->
+							output.acceptAll(Stream.of(
+											TofuItems.SOYSTICK,
+											TOFUCOOKIE,
+											MOYASHIOHITASHI,
+											MOYASHIITAME,
+											TofuItems.CHIKUWA,
+											TofuItems.TOFU_CHIKUWA,
+											TofuItems.EDAMAME,
+											TofuItems.BOILED_EDAMAME,
+											TofuItems.KINAKO_MANJU,
+											TofuItems.KINAKO_MOCHI,
+											TofuItems.ZUNDA_MANJU,
+											TofuItems.ZUNDA_MOCHI,
+											TofuItems.NETHER_MANJU,
+											TofuItems.SOUL_MANJU,
+											TofuItems.GOHEIMOCHI,
+											TofuItems.APRICOTJERRY_BREAD,
+											TofuItems.KOYADOFUSTEW,
+											TofuItems.MABODOFU,
+											TofuItems.TOMATO_SOYBEAN_STEW,
+											TofuItems.KOYADOFUSTEW,
+											TofuItems.TASTYBEEFSTEW,
+											TofuItems.TASTYSTEW,
+											TofuItems.CRIMSON_SOUP,
+											TofuItems.MISOSOUP,
+											TofuItems.NANBAN,
+											TofuItems.NANBANTOFU,
+											TofuItems.NIKUJAGA,
+											TofuItems.OAGE,
+											TofuItems.INARI,
+											TofuItems.OKARASTICK,
+											TofuItems.ONIGIRI,
+											TofuItems.ONIGIRI_SALT,
+											TofuItems.YAKIONIGIRI_MISO,
+											TofuItems.YAKIONIGIRI_SHOYU,
+											TofuItems.RAW_TOFU_FISH,
+											TofuItems.COOKED_TOFU_FISH,
+											TofuItems.RICE_BURGER,
+											TofuItems.RICE_TOFU,
+											TofuItems.RICE_SOBORO_TOFU,
+											TofuItems.RICE_NATTO,
+											TofuItems.RICE_NATTO_LEEK,
+											TofuItems.EDAMAME_RICE,
+											TofuItems.YUBA,
+											TofuItems.YUDOFU,
+											TofuItems.MEAT_WRAPPED_YUBA,
+											TofuItems.SOYMEAT,
+											TofuItems.SOY_CHEESE,
+											TofuItems.SOY_CHOCOLATE,
+											TofuItems.TOFUNIAN_SOY_CHOCOLATE,
+											TofuItems.TOFU_STEAK,
+											TofuItems.TOFU_HAMBURG_RAW,
+											TofuItems.TOFU_HAMBURG,
+											TofuItems.TOFUSOMEN,
+											TofuItems.TOFUSOMENBOWL_GLASS,
+											TofuItems.PUDDING,
+											TofuItems.PUDDING_SOYMILK,
+											TofuItems.SOYMILK,
+											TofuItems.SOYMILK_ANNIN,
+											TofuItems.SOYMILK_APPLE,
+											TofuItems.SOYMILK_COCOA,
+											TofuItems.SOYMILK_FRUITS,
+											TofuItems.SOYMILK_HONEY,
+											TofuItems.SOYMILK_KINAKO,
+											TofuItems.SOYMILK_PUDDING,
+											TofuItems.SOYMILK_PUMPKIN,
+											TofuItems.SOYMILK_RAMUNE,
+											TofuItems.SOYMILK_SAKURA,
+											TofuItems.SOYMILK_STRAWBERRY,
+											TofuItems.SOYMILK_TEA)
+									.map(item -> item.get().getDefaultInstance())
+									.toList())).build();
+				});
+		event.registerCreativeModeTab(new ResourceLocation(TofuCraftReload.MODID, "misc")
+				, (builder) -> {
+					TofuCreativeModeTab.TOFU_MISC = builder.icon(() -> {
+						return new ItemStack(TofuItems.BUCKET_SOYMILK.get());
+					}).displayItems((features, output, hasPermissions) ->
+							output.acceptAll(Stream.of(
+											BUCKET_SOYMILK,
+											BUCKET_SOYMILK_NETHER,
+											BUCKET_SOYMILK_SOUL,
+											BUCKET_BITTERN,
+											TOFUFISH_SOYMILK_BUCKET,
+											TOFUFISH_BUCKET,
+											BITTERN_BOTTLE,
+											BOTTLE_DASHI,
+											BOTTLE_SOYOIL,
+											BOTTLE_SOYSAUSE,
+											APRICOT,
+											APRICOTSEED,
+											APRICOTJERRY_BOTTLE,
+											SEEDS_SOYBEANS,
+											SEEDS_SOYBEANS_NETHER,
+											SEEDS_SOYBEANS_SOUL,
+											SEEDS_RICE,
+											SEEDS_CHILI,
+											CHILI,
+											RICE,
+											SOYBEAN_PARCHED,
+											KINAKO,
+											EDAMAME,
+											KINAKO,
+											TOFUCOW_SPAWNEGG,
+											TOFUFISH_SPAWNEGG,
+											TOFUPIG_SPAWNEGG,
+											TOFUNIAN_SPAWNEGG,
+											TRAVELER_TOFUNIAN_SPAWNEGG,
+											TOFUSLIME_SPAWNEGG,
+											TOFUSPIDER_SPAWNEGG,
+											TOFU_GANDLEM_SPAWNEGG,
+											SHUDOFUSPIDER_SPAWNEGG)
+									.map(item -> item.get().getDefaultInstance())
+									.toList())).build();
+				});
+		event.registerCreativeModeTab(new ResourceLocation(TofuCraftReload.MODID, "tools")
+				, (builder) -> {
+					TofuCreativeModeTab.TOFU_TOOLS = builder.icon(() -> {
+						return new ItemStack(TofuItems.TOFU_MOMEN_SWORD.get());
+					}).displayItems((features, output, hasPermissions) -> output.acceptAll(Stream.of(
+									TofuItems.BUGLE,
+									TofuItems.TOFUSTICK,
+									TofuItems.TOFU_KINU_SWORD,
+									TofuItems.TOFU_KINU_AXE,
+									TofuItems.TOFU_KINU_PICKAXE,
+									TofuItems.TOFU_KINU_SHOVEL,
+									TofuItems.TOFU_KINU_HOE,
+									TofuItems.TOFU_MOMEN_SWORD,
+									TofuItems.TOFU_MOMEN_AXE,
+									TofuItems.TOFU_MOMEN_PICKAXE,
+									TofuItems.TOFU_MOMEN_SHOVEL,
+									TofuItems.TOFU_MOMEN_HOE,
+									TofuItems.TOFU_METAL_SWORD,
+									TofuItems.TOFU_METAL_AXE,
+									TofuItems.TOFU_METAL_PICKAXE,
+									TofuItems.TOFU_METAL_SHOVEL,
+									TofuItems.TOFU_METAL_HOE,
+									TofuItems.TOFU_SHIELD,
+									TofuItems.TOFU_METAL_SHEARS,
+									TofuItems.TOFU_DIAMOND_SWORD,
+									TofuItems.TOFU_DIAMOND_AXE,
+									TofuItems.TOFU_DIAMOND_PICKAXE,
+									TofuItems.TOFU_DIAMOND_SHOVEL,
+									TofuItems.TOFU_DIAMOND_HOE,
+									TofuItems.TOFU_KINU_HELMET,
+									TofuItems.TOFU_KINU_CHESTPLATE,
+									TofuItems.TOFU_KINU_LEGGINGS,
+									TofuItems.TOFU_KINU_BOOTS,
+									TofuItems.TOFU_MOMEN_HELMET,
+									TofuItems.TOFU_MOMEN_CHESTPLATE,
+									TofuItems.TOFU_MOMEN_LEGGINGS,
+									TofuItems.TOFU_MOMEN_BOOTS,
+									TofuItems.TOFU_METAL_HELMET,
+									TofuItems.TOFU_METAL_CHESTPLATE,
+									TofuItems.TOFU_METAL_LEGGINGS,
+									TofuItems.TOFU_METAL_BOOTS,
+									TofuItems.TOFU_DIAMOND_HELMET,
+									TofuItems.TOFU_DIAMOND_CHESTPLATE,
+									TofuItems.TOFU_DIAMOND_LEGGINGS,
+									TofuItems.TOFU_DIAMOND_BOOTS,
+									TofuItems.SCULK_BONE_HELMET,
+									TofuItems.SCULK_BONE_CHESTPLATE,
+									TofuItems.SCULK_BONE_LEGGINGS,
+									TofuItems.SCULK_BONE_BOOTS)
+							.map(item -> item.get().getDefaultInstance())
+							.toList())).build();
+				});
 	}
 
 
@@ -534,8 +839,7 @@ public class TofuItems {
 
 	public static void registerAnimalFeed() {
 		Ingredient newChickenFood = Ingredient.of(TofuItems.SEEDS_RICE.get(), TofuItems.SOYBEAN_PARCHED.get());
-		Chicken.FOOD_ITEMS = new CompoundIngredient(Arrays.asList(Chicken.FOOD_ITEMS, newChickenFood))
-		{
+		Chicken.FOOD_ITEMS = new CompoundIngredient(Arrays.asList(Chicken.FOOD_ITEMS, newChickenFood)) {
 		};
 	}
 }

@@ -57,10 +57,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 		axeItem(consumer, "tofu_diamond_axe", TofuItems.TOFU_DIAMOND_AXE, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
 		shovelItem(consumer, "tofu_diamond_shovel", TofuItems.TOFU_DIAMOND_SHOVEL, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
 		*/
-		helmetItem(consumer, "tofu_metal_helmet", TofuItems.ARMOR_TOFU_METALHELMET, TofuBlocks.METALTOFU);
-		chestplateItem(consumer, "tofu_metal_chestplate", TofuItems.ARMOR_TOFU_METALCHESTPLATE, TofuBlocks.METALTOFU);
-		leggingsItem(consumer, "tofu_metal_leggings", TofuItems.ARMOR_TOFU_METALLEGGINGS, TofuBlocks.METALTOFU);
-		bootsItem(consumer, "tofu_metal_boots", TofuItems.ARMOR_TOFU_METALBOOTS, TofuBlocks.METALTOFU);
+		helmetItem(consumer, "tofu_metal_helmet", TofuItems.TOFU_METAL_HELMET, TofuBlocks.METALTOFU);
+		chestplateItem(consumer, "tofu_metal_chestplate", TofuItems.TOFU_METAL_CHESTPLATE, TofuBlocks.METALTOFU);
+		leggingsItem(consumer, "tofu_metal_leggings", TofuItems.TOFU_METAL_LEGGINGS, TofuBlocks.METALTOFU);
+		bootsItem(consumer, "tofu_metal_boots", TofuItems.TOFU_METAL_BOOTS, TofuBlocks.METALTOFU);
 
 		swordItem(consumer, "tofu_metal_sword", TofuItems.TOFU_METAL_SWORD, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
 		pickaxeItem(consumer, "tofu_metal_pickaxe", TofuItems.TOFU_METAL_PICKAXE, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
@@ -80,10 +80,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 		hoeItem(consumer, "tofu_solid_hoe", TofuItems.TOFU_SOLID_HOE, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 
 
-		helmetItem(consumer, "tofu_momen_helmet", TofuItems.ARMOR_TOFU_MOMENHELMET, TofuBlocks.MOMENTOFU);
-		chestplateItem(consumer, "tofu_momen_chestplate", TofuItems.ARMOR_TOFU_MOMENCHESTPLATE, TofuBlocks.MOMENTOFU);
-		leggingsItem(consumer, "tofu_momen_leggings", TofuItems.ARMOR_TOFU_MOMENLEGGINGS, TofuBlocks.MOMENTOFU);
-		bootsItem(consumer, "tofu_momen_boots", TofuItems.ARMOR_TOFU_MOMENBOOTS, TofuBlocks.MOMENTOFU);
+		helmetItem(consumer, "tofu_momen_helmet", TofuItems.TOFU_MOMEN_HELMET, TofuBlocks.MOMENTOFU);
+		chestplateItem(consumer, "tofu_momen_chestplate", TofuItems.TOFU_MOMEN_CHESTPLATE, TofuBlocks.MOMENTOFU);
+		leggingsItem(consumer, "tofu_momen_leggings", TofuItems.TOFU_MOMEN_LEGGINGS, TofuBlocks.MOMENTOFU);
+		bootsItem(consumer, "tofu_momen_boots", TofuItems.TOFU_MOMEN_BOOTS, TofuBlocks.MOMENTOFU);
 
 		swordItem(consumer, "tofu_momen_sword", TofuItems.TOFU_MOMEN_SWORD, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
 		pickaxeItem(consumer, "tofu_momen_pickaxe", TofuItems.TOFU_MOMEN_PICKAXE, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
@@ -106,10 +106,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 
 
-		helmetItem(consumer, "tofu_kinu_helmet", TofuItems.ARMOR_TOFU_KINUHELMET, TofuBlocks.KINUTOFU);
-		chestplateItem(consumer, "tofu_kinu_chestplate", TofuItems.ARMOR_TOFU_KINUCHESTPLATE, TofuBlocks.KINUTOFU);
-		leggingsItem(consumer, "tofu_kinu_leggings", TofuItems.ARMOR_TOFU_KINULEGGINGS, TofuBlocks.KINUTOFU);
-		bootsItem(consumer, "tofu_kinu_boots", TofuItems.ARMOR_TOFU_KINUBOOTS, TofuBlocks.KINUTOFU);
+		helmetItem(consumer, "tofu_kinu_helmet", TofuItems.TOFU_KINU_HELMET, TofuBlocks.KINUTOFU);
+		chestplateItem(consumer, "tofu_kinu_chestplate", TofuItems.TOFU_KINU_CHESTPLATE, TofuBlocks.KINUTOFU);
+		leggingsItem(consumer, "tofu_kinu_leggings", TofuItems.TOFU_KINU_LEGGINGS, TofuBlocks.KINUTOFU);
+		bootsItem(consumer, "tofu_kinu_boots", TofuItems.TOFU_KINU_BOOTS, TofuBlocks.KINUTOFU);
 
 		swordItem(consumer, "tofu_kinu_sword", TofuItems.TOFU_KINU_SWORD, TofuBlocks.KINUTOFU, Tags.Items.RODS_WOODEN);
 		pickaxeItem(consumer, "tofu_kinu_pickaxe", TofuItems.TOFU_KINU_PICKAXE, TofuBlocks.KINUTOFU, Tags.Items.RODS_WOODEN);

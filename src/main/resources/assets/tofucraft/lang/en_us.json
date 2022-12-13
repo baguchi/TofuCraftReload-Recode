@@ -535,5 +535,9 @@
   "tofucraft.jei.harden": "Harden",
   "tofucraft.need_defeat_boss": "Need To Defeat Boss first",
   "block.tofucraft.rice_block": "Rice bale",
-  "tofucraft.config.travelerTofunianSpawn": "Traveler Tofunian Spawn"
+  "tofucraft.config.travelerTofunianSpawn": "Traveler Tofunian Spawn",
+  "itemGroup.tofucraft.tofu": "Tofus",
+  "itemGroup.tofucraft.tofucraft_foods": "TofuCraft's Food",
+  "itemGroup.tofucraft.misc": "TofuCraft's Misc",
+  "itemGroup.tofucraft.tools": "TofuCraft's Tools"
 }

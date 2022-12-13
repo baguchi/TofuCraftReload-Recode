@@ -16,11 +16,9 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BrightnessCombiner;
-import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
@@ -34,9 +32,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity> {
-	public static final ResourceLocation BED_TEXTURES = new ResourceLocation(TofuCraftReload.MODID, "entity/tofubed");
-	public static final Material BED_TEXTURES_MATERIAL = new Material(Sheets.BED_SHEET, BED_TEXTURES);
-
+	public static final ResourceLocation BED_TEXTURES = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofubed.png");
 	private final ModelPart headRoot;
 	private final ModelPart footRoot;
 
@@ -64,7 +60,6 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity> 
 	}
 
 	public void render(TofuBedBlockEntity p_112205_, float p_112206_, PoseStack p_112207_, MultiBufferSource p_112208_, int p_112209_, int p_112210_) {
-		Material var7 = BED_TEXTURES_MATERIAL;
 		Level var8 = p_112205_.getLevel();
 		if (var8 != null) {
 			BlockState var9 = p_112205_.getBlockState();
@@ -72,22 +67,22 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity> 
 				return false;
 			});
 			int var11 = ((Int2IntFunction) var10.apply(new BrightnessCombiner())).get(p_112209_);
-			this.renderPiece(p_112207_, p_112208_, var9.getValue(BedBlock.PART) == BedPart.HEAD ? this.headRoot : this.footRoot, (Direction) var9.getValue(BedBlock.FACING), var7, var11, p_112210_, false);
+			this.renderPiece(p_112207_, p_112208_, var9.getValue(BedBlock.PART) == BedPart.HEAD ? this.headRoot : this.footRoot, (Direction) var9.getValue(BedBlock.FACING), var11, p_112210_, false);
 		} else {
-			this.renderPiece(p_112207_, p_112208_, this.headRoot, Direction.SOUTH, var7, p_112209_, p_112210_, false);
-			this.renderPiece(p_112207_, p_112208_, this.footRoot, Direction.SOUTH, var7, p_112209_, p_112210_, true);
+			this.renderPiece(p_112207_, p_112208_, this.headRoot, Direction.SOUTH, p_112209_, p_112210_, false);
+			this.renderPiece(p_112207_, p_112208_, this.footRoot, Direction.SOUTH, p_112209_, p_112210_, true);
 		}
 
 	}
 
-	private void renderPiece(PoseStack p_173542_, MultiBufferSource p_173543_, ModelPart p_173544_, Direction p_173545_, Material p_173546_, int p_173547_, int p_173548_, boolean p_173549_) {
+	private void renderPiece(PoseStack p_173542_, MultiBufferSource p_173543_, ModelPart p_173544_, Direction p_173545_, int p_173547_, int p_173548_, boolean p_173549_) {
 		p_173542_.pushPose();
 		p_173542_.translate(0.0D, 0.5625D, p_173549_ ? -1.0D : 0.0D);
 		p_173542_.mulPose(Axis.XP.rotationDegrees(90.0F));
 		p_173542_.translate(0.5D, 0.5D, 0.5D);
 		p_173542_.mulPose(Axis.ZP.rotationDegrees(180.0F + p_173545_.toYRot()));
 		p_173542_.translate(-0.5D, -0.5D, -0.5D);
-		VertexConsumer var9 = p_173546_.buffer(p_173543_, RenderType::entitySolid);
+		VertexConsumer var9 = p_173543_.getBuffer(RenderType.entitySolid(BED_TEXTURES));
 		p_173544_.render(p_173542_, var9, p_173547_, p_173548_);
 		p_173542_.popPose();
 	}

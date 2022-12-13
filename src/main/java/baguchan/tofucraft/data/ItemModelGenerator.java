@@ -350,25 +350,25 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.TOFU_DIAMOND_SHOVEL.get());
 		singleTexTool(TofuItems.TOFU_DIAMOND_HOE.get());
 
-		singleTex(TofuItems.ARMOR_TOFU_KINUHELMET.get());
-		singleTex(TofuItems.ARMOR_TOFU_KINUCHESTPLATE.get());
-		singleTex(TofuItems.ARMOR_TOFU_KINULEGGINGS.get());
-		singleTex(TofuItems.ARMOR_TOFU_KINUBOOTS.get());
+		singleTex(TofuItems.TOFU_KINU_HELMET.get());
+		singleTex(TofuItems.TOFU_KINU_CHESTPLATE.get());
+		singleTex(TofuItems.TOFU_KINU_LEGGINGS.get());
+		singleTex(TofuItems.TOFU_KINU_BOOTS.get());
 
-		singleTex(TofuItems.ARMOR_TOFU_MOMENHELMET.get());
-		singleTex(TofuItems.ARMOR_TOFU_MOMENCHESTPLATE.get());
-		singleTex(TofuItems.ARMOR_TOFU_MOMENLEGGINGS.get());
-		singleTex(TofuItems.ARMOR_TOFU_MOMENBOOTS.get());
+		singleTex(TofuItems.TOFU_MOMEN_HELMET.get());
+		singleTex(TofuItems.TOFU_MOMEN_CHESTPLATE.get());
+		singleTex(TofuItems.TOFU_MOMEN_LEGGINGS.get());
+		singleTex(TofuItems.TOFU_MOMEN_BOOTS.get());
 
 		singleTex(TofuItems.ARMOR_TOFU_SOLIDHELMET.get());
 		singleTex(TofuItems.ARMOR_TOFU_SOLIDCHESTPLATE.get());
 		singleTex(TofuItems.ARMOR_TOFU_SOLIDLEGGINGS.get());
 		singleTex(TofuItems.ARMOR_TOFU_SOLIDBOOTS.get());
 
-		singleTex(TofuItems.ARMOR_TOFU_METALHELMET.get());
-		singleTex(TofuItems.ARMOR_TOFU_METALCHESTPLATE.get());
-		singleTex(TofuItems.ARMOR_TOFU_METALLEGGINGS.get());
-		singleTex(TofuItems.ARMOR_TOFU_METALBOOTS.get());
+		singleTex(TofuItems.TOFU_METAL_HELMET.get());
+		singleTex(TofuItems.TOFU_METAL_CHESTPLATE.get());
+		singleTex(TofuItems.TOFU_METAL_LEGGINGS.get());
+		singleTex(TofuItems.TOFU_METAL_BOOTS.get());
 
 		singleTex(TofuItems.TOFU_DIAMOND_HELMET.get());
 		singleTex(TofuItems.TOFU_DIAMOND_CHESTPLATE.get());
