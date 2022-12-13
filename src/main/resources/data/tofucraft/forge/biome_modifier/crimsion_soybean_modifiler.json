@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#tofucraft:more_nether_soybean",
+  "step": "vegetal_decoration",
+  "features": "tofucraft:patch_nether_soybean_crimson"
+}

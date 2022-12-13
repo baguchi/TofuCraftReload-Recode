@@ -19,10 +19,11 @@ public class WorldGenerator extends DatapackBuiltinEntriesProvider {
 	public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
 			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrapConfiguredFeature)
 			.add(Registries.PLACED_FEATURE, ModConfiguredFeatures::bootstrapPlacedFeature)
-			.add(Registries.BIOME, TofuBiomes::bootstrap)
 			.add(Registries.CONFIGURED_CARVER, TofuConfiguredWorldCarvers::bootstrap)
 			.add(Registries.NOISE_SETTINGS, TofuNoiseBuilder::bootstrap)
-			.add(Registries.DIMENSION_TYPE, TofuDimensionTypes::bootstrap);
+			.add(Registries.DIMENSION_TYPE, TofuDimensionTypes::bootstrap)
+			.add(Registries.LEVEL_STEM, TofuDimensionTypes::bootstrapStem)
+			.add(Registries.BIOME, TofuBiomes::bootstrap);
 
 
 	public WorldGenerator(PackOutput output) {
