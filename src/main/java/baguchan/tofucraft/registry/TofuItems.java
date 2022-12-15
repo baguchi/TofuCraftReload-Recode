@@ -36,6 +36,7 @@ import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
@@ -378,7 +379,7 @@ public class TofuItems {
 				, (builder) -> {
 					TofuCreativeModeTab.TOFUS = builder.icon(() -> {
 						return new ItemStack(TofuItems.TOFUKINU.get());
-					}).displayItems((features, output, hasPermissions) ->
+					}).title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu" + ".main_tab")).displayItems((features, output, hasPermissions) ->
 							output.acceptAll(Stream.of(
 											TOFUKINU,
 											TOFUMOMEN,
@@ -402,7 +403,7 @@ public class TofuItems {
 				, (builder) -> {
 					TofuCreativeModeTab.TOFU_BUILDING_BLOCKS = builder.icon(() -> {
 						return new ItemStack(TofuBlocks.ISHITOFU_BRICK.get());
-					}).displayItems((features, output, hasPermissions) ->
+					}).title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_building_blocks" + ".main_tab")).displayItems((features, output, hasPermissions) ->
 							output.acceptAll(Stream.of(
 											TofuBlocks.KINUTOFU,
 											TofuBlocks.TOFUSLAB_KINU,
@@ -506,7 +507,7 @@ public class TofuItems {
 				, (builder) -> {
 					TofuCreativeModeTab.TOFU_FOODS = builder.icon(() -> {
 						return new ItemStack(TofuItems.TOFUCOOKIE.get());
-					}).displayItems((features, output, hasPermissions) ->
+					}).title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_foods" + ".main_tab")).displayItems((features, output, hasPermissions) ->
 							output.acceptAll(Stream.of(
 											TofuItems.SOYSTICK,
 											TOFUCOOKIE,
@@ -584,7 +585,7 @@ public class TofuItems {
 				, (builder) -> {
 					TofuCreativeModeTab.TOFU_MISC = builder.icon(() -> {
 						return new ItemStack(TofuItems.BUCKET_SOYMILK.get());
-					}).displayItems((features, output, hasPermissions) ->
+					}).title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".misc" + ".main_tab")).displayItems((features, output, hasPermissions) ->
 							output.acceptAll(Stream.of(
 											BUCKET_SOYMILK,
 											BUCKET_SOYMILK_NETHER,
@@ -626,7 +627,7 @@ public class TofuItems {
 				, (builder) -> {
 					TofuCreativeModeTab.TOFU_TOOLS = builder.icon(() -> {
 						return new ItemStack(TofuItems.TOFU_MOMEN_SWORD.get());
-					}).displayItems((features, output, hasPermissions) -> output.acceptAll(Stream.of(
+					}).title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tools" + ".main_tab")).displayItems((features, output, hasPermissions) -> output.acceptAll(Stream.of(
 									TofuItems.BUGLE,
 									TofuItems.TOFUSTICK,
 									TofuItems.TOFU_KINU_SWORD,

@@ -537,7 +537,13 @@
   "block.tofucraft.rice_block": "Rice bale",
   "tofucraft.config.travelerTofunianSpawn": "Traveler Tofunian Spawn",
   "itemGroup.tofucraft.tofu": "Tofus",
-  "itemGroup.tofucraft.tofucraft_foods": "TofuCraft's Food",
+  "itemGroup.tofucraft.tofu_foods": "TofuCraft's Food",
   "itemGroup.tofucraft.misc": "TofuCraft's Misc",
-  "itemGroup.tofucraft.tools": "TofuCraft's Tools"
+  "itemGroup.tofucraft.tools": "TofuCraft's Tools",
+  "itemGroup.tofucraft.tofu_building_blocks": "Tofu Building Blocks",
+  "itemGroup.tofucraft.tofu.main_tab": "Tofus",
+  "itemGroup.tofucraft.tofu_foods.main_tab": "TofuCraft's Food",
+  "itemGroup.tofucraft.misc.main_tab": "TofuCraft's Misc",
+  "itemGroup.tofucraft.tools.main_tab": "TofuCraft's Tools",
+  "itemGroup.tofucraft.tofu_building_blocks.main_tab": "Tofu Building Blocks"
 }

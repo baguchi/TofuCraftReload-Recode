@@ -1,0 +1,11 @@
+{
+  "type": "tofucraft:tofu_world_type",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "preset": "tofucraft:tofu_world"
+    },
+    "settings": "tofucraft:tofu_world_noise"
+  }
+}
