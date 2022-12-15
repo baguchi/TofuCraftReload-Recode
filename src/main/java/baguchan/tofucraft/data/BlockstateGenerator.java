@@ -1,6 +1,7 @@
 package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.block.CandleTofuCakeBlock;
 import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.data.PackOutput;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -22,6 +24,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class BlockstateGenerator extends BlockStateProvider {
@@ -144,6 +147,37 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 		cake(TofuBlocks.TOFUCAKE, "tofucake");
 		cake(TofuBlocks.ZUNDATOFUCAKE, "zundatofucake");
+
+		CandleTofuCakeBlock.getCandleCakes().forEach((block -> this.candleCake((CandleTofuCakeBlock) block)));
+	}
+
+	public void candleCake(CandleTofuCakeBlock block) {
+		Block candle = block.getCandle();
+		Block cake = block.getCake();
+
+		ModelFile candleCake = models().withExistingParent(name(block), "block/template_cake_with_candle")
+				.texture("candle", blockTexture(candle))
+				.texture("bottom", suffix(blockTexture(cake), "_bottom"))
+				.texture("side", suffix(blockTexture(cake), "_side"))
+				.texture("top", suffix(blockTexture(cake), "_top"))
+				.texture("particle", suffix(blockTexture(cake), "_side"));
+
+		ModelFile candleCakeLit = models().withExistingParent(name(block) + "_lit", "block/template_cake_with_candle")
+				.texture("candle", suffix(blockTexture(candle), "_lit"))
+				.texture("bottom", suffix(blockTexture(cake), "_bottom"))
+				.texture("side", suffix(blockTexture(cake), "_side"))
+				.texture("top", suffix(blockTexture(cake), "_top"))
+				.texture("particle", suffix(blockTexture(cake), "_side"));
+
+		this.candleCakeBlock(block, (state -> state.getValue(BlockStateProperties.LIT) ? candleCakeLit : candleCake));
+	}
+
+	public void candleCakeBlock(Block block, Function<BlockState, ModelFile> modelFunc) {
+		this.getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).build());
+	}
+
+	private ResourceLocation suffix(ResourceLocation rl, String suffix) {
+		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
 	}
 
 	public ModelFile cubeLeavesAll(Block block) {
@@ -193,11 +227,11 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 
-	public void cake(Supplier<? extends TofuCakeBlock> block, String name) {
+	public void cake(Supplier<? extends Block> block, String name) {
 		cakeBlockInternal(block.get(), name(block.get()), texture(name + "_bottom"), texture(name + "_top"), texture(name + "_side"), texture(name + "_inner"));
 	}
 
-	private void cakeBlockInternal(TofuCakeBlock block, String baseName, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation inside) {
+	private void cakeBlockInternal(Block block, String baseName, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation inside) {
 		ModelFile cake = cake(baseName + "_uneaten", bottom, top, side);
 		ModelFile sliced1 = slicedCake(baseName + "_slice1", "cake_slice1", bottom, top, side, inside);
 		ModelFile sliced2 = slicedCake(baseName + "_slice2", "cake_slice2", bottom, top, side, inside);
@@ -209,7 +243,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		cakeBlock(block, cake, sliced1, sliced2, sliced3, sliced4, sliced5, sliced6);
 	}
 
-	public void cakeBlock(TofuCakeBlock block, ModelFile uneat, ModelFile sliced1, ModelFile sliced2, ModelFile sliced3, ModelFile sliced4, ModelFile sliced5, ModelFile sliced6) {
+	public void cakeBlock(Block block, ModelFile uneat, ModelFile sliced1, ModelFile sliced2, ModelFile sliced3, ModelFile sliced4, ModelFile sliced5, ModelFile sliced6) {
 		getVariantBuilder(block).forAllStatesExcept(state -> {
 			int bite = ((int) state.getValue(TofuCakeBlock.BITES));
 			ModelFile file;

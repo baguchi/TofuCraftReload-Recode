@@ -2,7 +2,10 @@ package baguchan.tofucraft.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +17,8 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CakeBlock;
+import net.minecraft.world.level.block.CandleBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -24,7 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class TofuCakeBlock extends Block {
+public class TofuCakeBlock extends CakeBlock {
 	public static final int MAX_BITES = 6;
 	public static final IntegerProperty BITES = BlockStateProperties.BITES;
 
@@ -48,8 +53,23 @@ public class TofuCakeBlock extends Block {
 		ItemStack itemstack = p_51205_.getItemInHand(p_51206_);
 		Item item = itemstack.getItem();
 
+		if (itemstack.is(ItemTags.CANDLES) && p_51202_.getValue(BITES) == 0) {
+			Block block = Block.byItem(item);
+			if (block instanceof CandleBlock && CandleTofuCakeBlock.hasEntry(block, this)) {
+				if (!p_51205_.isCreative()) {
+					itemstack.shrink(1);
+				}
+
+				p_51203_.playSound(null, p_51204_, SoundEvents.CAKE_ADD_CANDLE, SoundSource.BLOCKS, 1.0F, 1.0F);
+				p_51203_.setBlockAndUpdate(p_51204_, CandleTofuCakeBlock.byCandle(block, this));
+				p_51203_.gameEvent(p_51205_, GameEvent.BLOCK_CHANGE, p_51204_);
+				p_51205_.awardStat(Stats.ITEM_USED.get(item));
+				return InteractionResult.SUCCESS;
+			}
+		}
+
 		if (p_51203_.isClientSide) {
-			if (eat(p_51203_, p_51204_, p_51202_, p_51205_).consumesAction()) {
+			if (eatSlice(p_51203_, p_51204_, p_51202_, p_51205_).consumesAction()) {
 				return InteractionResult.SUCCESS;
 			}
 
@@ -58,10 +78,10 @@ public class TofuCakeBlock extends Block {
 			}
 		}
 
-		return eat(p_51203_, p_51204_, p_51202_, p_51205_);
+		return eatSlice(p_51203_, p_51204_, p_51202_, p_51205_);
 	}
 
-	protected InteractionResult eat(LevelAccessor p_51186_, BlockPos p_51187_, BlockState p_51188_, Player p_51189_) {
+	public InteractionResult eatSlice(LevelAccessor p_51186_, BlockPos p_51187_, BlockState p_51188_, Player p_51189_) {
 		if (!p_51189_.canEat(false)) {
 			return InteractionResult.PASS;
 		} else {

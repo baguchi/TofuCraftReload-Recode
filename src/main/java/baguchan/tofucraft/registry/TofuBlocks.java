@@ -2,6 +2,7 @@ package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.block.BurnableRotatedPillarBlock;
+import baguchan.tofucraft.block.CandleTofuCakeBlock;
 import baguchan.tofucraft.block.FoodPlateBlock;
 import baguchan.tofucraft.block.KinuTofuBlock;
 import baguchan.tofucraft.block.LeekBlock;
@@ -258,8 +259,45 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> NATTOBED = register("nattobed", () -> new NoWeightBaseBlock(BlockBehaviour.Properties.of(TofuMaterial.NATTO).strength(1.0F, 2.0F).randomTicks().sound(SoundType.GRASS)));
 
 
-	public static final RegistryObject<TofuCakeBlock> TOFUCAKE = register("tofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.1F));
-	public static final RegistryObject<TofuCakeBlock> ZUNDATOFUCAKE = register("zundatofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.2F));
+	public static final RegistryObject<Block> TOFUCAKE = register("tofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.1F));
+	public static final RegistryObject<Block> ZUNDATOFUCAKE = register("zundatofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of(Material.CAKE).strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.2F));
+
+	public static final RegistryObject<Block> TOFU_CANDLE_CAKE = noItemRegister("candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> WHITE_TOFU_CANDLE_CAKE = noItemRegister("white_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.WHITE_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> ORANGE_TOFU_CANDLE_CAKE = noItemRegister("orange_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.ORANGE_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> MAGENTA_TOFU_CANDLE_CAKE = noItemRegister("magenta_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.MAGENTA_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> LIGHT_BLUE_TOFU_CANDLE_CAKE = noItemRegister("light_blue_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.LIGHT_BLUE_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> YELLOW_TOFU_CANDLE_CAKE = noItemRegister("yellow_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.YELLOW_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> LIME_TOFU_CANDLE_CAKE = noItemRegister("lime_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.LIME_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> PINK_TOFU_CANDLE_CAKE = noItemRegister("pink_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.PINK_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> GRAY_TOFU_CANDLE_CAKE = noItemRegister("gray_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.GRAY_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> LIGHT_GRAY_TOFU_CANDLE_CAKE = noItemRegister("light_gray_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.LIGHT_GRAY_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> CYAN_TOFU_CANDLE_CAKE = noItemRegister("cyan_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.CYAN_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> PURPLE_TOFU_CANDLE_CAKE = noItemRegister("purple_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.PURPLE_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> BLUE_TOFU_CANDLE_CAKE = noItemRegister("blue_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.BLUE_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> BROWN_TOFU_CANDLE_CAKE = noItemRegister("brown_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.BROWN_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> GREEN_TOFU_CANDLE_CAKE = noItemRegister("green_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.GREEN_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> RED_TOFU_CANDLE_CAKE = noItemRegister("red_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.RED_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> BLACK_TOFU_CANDLE_CAKE = noItemRegister("black_candle_tofu_cake", () -> new CandleTofuCakeBlock(TOFUCAKE, Blocks.BLACK_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+
+	public static final RegistryObject<Block> ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> WHITE_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("white_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.WHITE_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> ORANGE_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("orange_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.ORANGE_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> MAGENTA_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("magenta_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.MAGENTA_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> LIGHT_BLUE_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("light_blue_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.LIGHT_BLUE_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> YELLOW_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("yellow_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.YELLOW_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> LIME_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("lime_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.LIME_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> PINK_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("pink_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.PINK_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> GRAY_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("gray_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.GRAY_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> LIGHT_GRAY_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("light_gray_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.LIGHT_GRAY_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> CYAN_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("cyan_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.CYAN_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> PURPLE_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("purple_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.PURPLE_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> BLUE_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("blue_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.BLUE_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> BROWN_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("brown_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.BROWN_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> GREEN_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("green_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.GREEN_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> RED_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("red_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.RED_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+	public static final RegistryObject<Block> BLACK_ZUNDA_TOFU_CANDLE_CAKE = noItemRegister("black_candle_zundatofu_cake", () -> new CandleTofuCakeBlock(ZUNDATOFUCAKE, Blocks.BLACK_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
+
 
 	public static final RegistryObject<SoymilkCauldronBlock> SOYMILK_CAULDRON = noItemRegister("soymilk_cauldron", () -> new SoymilkCauldronBlock(BlockBehaviour.Properties.of(Material.METAL).strength(2.0F).noOcclusion().requiresCorrectToolForDrops().randomTicks().sound(SoundType.METAL)));
 
