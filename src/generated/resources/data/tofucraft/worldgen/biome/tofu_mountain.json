@@ -29,6 +29,8 @@
     [],
     [],
     [
+      "tofucraft:ore_kinu_tofu",
+      "tofucraft:ore_minced_tofu",
       "tofucraft:ore_tofu_diamond",
       "tofucraft:ore_tofu_diamond_buried",
       "tofucraft:ore_tofu_diamond_large"
@@ -36,8 +38,6 @@
     [],
     [],
     [
-      "tofucraft:ore_kinu_tofu",
-      "tofucraft:ore_minced_tofu",
       "tofucraft:tofu_trees_plains",
       "tofucraft:patch_leek"
     ]
