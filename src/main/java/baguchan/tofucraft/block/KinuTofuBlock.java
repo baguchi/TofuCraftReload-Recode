@@ -1,5 +1,6 @@
 package baguchan.tofucraft.block;
 
+import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -59,6 +60,11 @@ public class KinuTofuBlock extends Block {
 
 	@Override
 	public @Nullable BlockPathTypes getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
-		return super.getBlockPathType(state, level, pos, mob);
+		return TofuEntityTypes.UNSTABLE_TOFU_PATH;
+	}
+
+	@Override
+	public @Nullable BlockPathTypes getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, BlockPathTypes originalType) {
+		return TofuEntityTypes.UNSTABLE_TOFU_PATH;
 	}
 }

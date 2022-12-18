@@ -24,6 +24,7 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -91,6 +92,8 @@ public class TofuEntityTypes {
 	public static final SpawnPlacements.Type IN_SOYMILK = SpawnPlacements.Type.create("in_soymilk", (levelReader, pos, entityType) -> {
 		return levelReader.getFluidState(pos).is(TofuTags.Fluids.SOYMILK);
 	});
+
+	public static final BlockPathTypes UNSTABLE_TOFU_PATH = BlockPathTypes.create("tofucraft:unstable_tofu", 4.0F);
 
 	@SubscribeEvent
 	public static void registerEntityAttribute(EntityAttributeCreationEvent event) {
