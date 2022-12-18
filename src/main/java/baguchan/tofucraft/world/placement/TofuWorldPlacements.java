@@ -47,7 +47,7 @@ public class TofuWorldPlacements {
 
 	public static final ResourceKey<PlacedFeature> LEEK_BONEMEAL = registerKey("leek_bonemeal");
 
-	public static final ResourceKey<PlacedFeature> BEG_LEEK = registerKey("big_leek");
+	public static final ResourceKey<PlacedFeature> BIG_LEEK = registerKey("big_leek");
 
 	public static final ResourceKey<PlacedFeature> TOFU_BUILDING = registerKey("tofu_building");
 
@@ -66,7 +66,7 @@ public class TofuWorldPlacements {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeature = context.lookup(Registries.CONFIGURED_FEATURE);
 
 		PlacementUtils.register(context, ORE_KINU_TOFU, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_KINU_TOFU), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top())));
-		PlacementUtils.register(context, ORE_MINCED_TOFU, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_MINCED_TOFU), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top())));
+		PlacementUtils.register(context, ORE_MINCED_TOFU, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_MINCED_TOFU), commonOrePlacement(16, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top())));
 
 		PlacementUtils.register(context, ORE_TOFU_DIAMOND, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_SMALL), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 		PlacementUtils.register(context, ORE_TOFU_DIAMOND_LARGE, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_LARGE), rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
@@ -81,7 +81,7 @@ public class TofuWorldPlacements {
 
 		PlacementUtils.register(context, LEEK_BONEMEAL, configuredFeature.getOrThrow(TofuWorldFeatures.LEEK), PlacementUtils.isEmpty());
 
-		PlacementUtils.register(context, BEG_LEEK, configuredFeature.getOrThrow(TofuWorldFeatures.BIG_LEEK), PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, BIG_LEEK, configuredFeature.getOrThrow(TofuWorldFeatures.BIG_LEEK), PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
 		PlacementUtils.register(context, TOFU_BUILDING, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_BUILDING), PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
