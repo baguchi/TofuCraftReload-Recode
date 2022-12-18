@@ -405,6 +405,10 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSTAIR_EGG.get());
 		toBlock(TofuBlocks.TOFUSLAB_EGG.get());
 
+		toBlock(TofuBlocks.SESAMETOFU.get());
+		toBlock(TofuBlocks.TOFUSTAIR_SESAME.get());
+		toBlock(TofuBlocks.TOFUSLAB_SESAME.get());
+
 		singleTex(TofuItems.NATTO_COBWEB.get());
 	}
 

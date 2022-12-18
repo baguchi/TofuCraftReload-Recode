@@ -145,6 +145,10 @@ public class BlockstateGenerator extends BlockStateProvider {
 		stairs(TofuBlocks.TOFUSTAIR_EGG.get(), TofuBlocks.EGGTOFU.get());
 		slab(TofuBlocks.TOFUSLAB_EGG.get(), TofuBlocks.EGGTOFU.get());
 
+		simpleBlock(TofuBlocks.SESAMETOFU.get());
+		stairs(TofuBlocks.TOFUSTAIR_SESAME.get(), TofuBlocks.SESAMETOFU.get());
+		slab(TofuBlocks.TOFUSLAB_SESAME.get(), TofuBlocks.SESAMETOFU.get());
+
 		crossBlock(TofuBlocks.ANTENNA_BASIC.get());
 
 		cake(TofuBlocks.TOFUCAKE, "tofucake");

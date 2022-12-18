@@ -1049,6 +1049,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_EGG, TofuBlocks.EGGTOFU);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_EGG, TofuBlocks.EGGTOFU);
 
+		tofuBlockItem(consumer, TofuBlocks.SESAMETOFU, TofuItems.TOFUSESAME);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_SESAME, TofuBlocks.SESAMETOFU);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_SESAME, TofuBlocks.SESAMETOFU);
+
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.KOUJI_BASE.get(), 1)
 				.requires(TofuTags.Items.SOYBEAN)
 				.requires(Items.WHEAT)
