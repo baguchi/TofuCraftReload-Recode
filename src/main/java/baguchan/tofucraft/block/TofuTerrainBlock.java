@@ -32,11 +32,12 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 	public boolean isValidBonemealTarget(LevelReader p_256559_, BlockPos p_50898_, BlockState p_50899_, boolean p_50900_) {
 		return false;
 	}
-
+	@Override
 	public boolean isBonemealSuccess(Level p_53697_, RandomSource p_53698_, BlockPos p_53699_, BlockState p_53700_) {
 		return true;
 	}
 
+	@Override
 	public void performBonemeal(ServerLevel p_221270_, RandomSource p_221271_, BlockPos p_221272_, BlockState p_221273_) {
 		BlockPos blockpos = p_221272_.above();
 		BlockState blockstate = TofuBlocks.LEEK.get().defaultBlockState();

@@ -36,6 +36,8 @@
     [],
     [],
     [
+      "tofucraft:ore_kinu_tofu",
+      "tofucraft:ore_minced_tofu",
       "tofucraft:tofu_trees_plains",
       "tofucraft:patch_leek"
     ]

@@ -6,6 +6,7 @@ import baguchan.tofucraft.block.CandleTofuCakeBlock;
 import baguchan.tofucraft.block.FoodPlateBlock;
 import baguchan.tofucraft.block.KinuTofuBlock;
 import baguchan.tofucraft.block.LeekBlock;
+import baguchan.tofucraft.block.MincedTofuBlock;
 import baguchan.tofucraft.block.MorijioBlock;
 import baguchan.tofucraft.block.RiceBlock;
 import baguchan.tofucraft.block.TofuBlock;
@@ -117,6 +118,7 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> SOULTOFU = register("blocktofusoul", () -> new TofuBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).randomTicks().sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> SOULTOFU_BRICK = register("tofusoul_brick", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SOULTOFU_SMOOTH_BRICK = register("tofusoul_smooth_brick", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> MINCEDTOFU = register("blocktofuminced", () -> new MincedTofuBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.2F, 0.3F).sound(SoundType.SNOW)));
 
 	public static final RegistryObject<StairBlock> TOFUSTAIR_KINU = register("tofustair_kinu", () -> new StairBlock(KINUTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(KINUTOFU.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_MOMEN = register("tofustair_momen", () -> new StairBlock(MOMENTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(MOMENTOFU.get())));

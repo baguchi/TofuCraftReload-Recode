@@ -53,6 +53,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.SOULTOFU.get());
 		simpleBlock(TofuBlocks.SOULTOFU_BRICK.get());
 		simpleBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK.get());
+		simpleBlock(TofuBlocks.MINCEDTOFU.get());
 
 		stairs(TofuBlocks.TOFUSTAIR_KINU.get(), TofuBlocks.KINUTOFU.get());
 		stairs(TofuBlocks.TOFUSTAIR_MOMEN.get(), TofuBlocks.MOMENTOFU.get());

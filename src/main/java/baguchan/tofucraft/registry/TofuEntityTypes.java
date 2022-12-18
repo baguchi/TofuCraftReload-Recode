@@ -94,6 +94,7 @@ public class TofuEntityTypes {
 	});
 
 	public static final BlockPathTypes UNSTABLE_TOFU_PATH = BlockPathTypes.create("tofucraft:unstable_tofu", 4.0F);
+	public static final BlockPathTypes MINCED_TOFU_PATH = BlockPathTypes.create("tofucraft:minced_tofu", -1.0F);
 
 	@SubscribeEvent
 	public static void registerEntityAttribute(EntityAttributeCreationEvent event) {

@@ -31,6 +31,9 @@ import java.util.List;
 public class TofuWorldPlacements {
 	public static final PlacementModifier TREE_THRESHOLD = SurfaceWaterDepthFilter.forMaxDepth(0);
 
+	public static final ResourceKey<PlacedFeature> ORE_KINU_TOFU = registerKey("ore_kinu_tofu");
+	public static final ResourceKey<PlacedFeature> ORE_MINCED_TOFU = registerKey("ore_minced_tofu");
+
 	public static final ResourceKey<PlacedFeature> ORE_TOFU_DIAMOND = registerKey("ore_tofu_diamond");
 	public static final ResourceKey<PlacedFeature> ORE_TOFU_DIAMOND_LARGE = registerKey("ore_tofu_diamond_large");
 	public static final ResourceKey<PlacedFeature> ORE_TOFU_DIAMOND_BURIED = registerKey("ore_tofu_diamond_buried");
@@ -61,6 +64,10 @@ public class TofuWorldPlacements {
 
 	public static void bootstrap(BootstapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeature = context.lookup(Registries.CONFIGURED_FEATURE);
+
+
+		PlacementUtils.register(context, ORE_KINU_TOFU, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_KINU_TOFU), commonOrePlacement(7, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top())));
+		PlacementUtils.register(context, ORE_MINCED_TOFU, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_MINCED_TOFU), commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top())));
 
 		PlacementUtils.register(context, ORE_TOFU_DIAMOND, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_SMALL), commonOrePlacement(20, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 		PlacementUtils.register(context, ORE_TOFU_DIAMOND_LARGE, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_LARGE), rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));

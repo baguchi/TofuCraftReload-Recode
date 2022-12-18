@@ -476,6 +476,7 @@ public class TofuItems {
 											TofuBlocks.TOFUTRAPDOOR_SOUL,
 											TofuBlocks.SOULTOFU_BRICK,
 											TofuBlocks.SOULTOFU_SMOOTH_BRICK,
+											TofuBlocks.MINCEDTOFU,
 											TofuBlocks.TOFU_TERRAIN,
 											TofuBlocks.TOFU_TERRAIN_ZUNDA,
 											TofuBlocks.ORE_TOFUGEM,

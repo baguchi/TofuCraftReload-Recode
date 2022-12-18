@@ -90,7 +90,7 @@ public class TofuBiomeBuilders {
 	public static Biome tofuMountainBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
 		MobSpawnSettings.Builder builder1 = new MobSpawnSettings.Builder();
-		TofuBiomeDefaultFeatures.addPlainsFeatures(builder);
+		TofuBiomeDefaultFeatures.addMountainFeatures(builder);
 		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
 		return makeDefaultBiome(builder, builder1, TofuSounds.MILKY_EARTH_BGM);
 	}
