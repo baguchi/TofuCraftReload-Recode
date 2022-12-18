@@ -30,7 +30,7 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 
 	@Override
 	public boolean isValidBonemealTarget(LevelReader p_256559_, BlockPos p_50898_, BlockState p_50899_, boolean p_50900_) {
-		return false;
+		return true;
 	}
 	@Override
 	public boolean isBonemealSuccess(Level p_53697_, RandomSource p_53698_, BlockPos p_53699_, BlockState p_53700_) {

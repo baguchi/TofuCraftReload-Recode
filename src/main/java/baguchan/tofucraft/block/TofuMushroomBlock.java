@@ -45,6 +45,7 @@ public class TofuMushroomBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	public void growMushroom(ServerLevel p_54860_, BlockPos p_54861_, BlockState p_54862_, RandomSource p_54863_) {
+		p_54860_.removeBlock(p_54861_, true);
 		this.getFeature(p_54860_).ifPresent((p_256352_) -> {
 			net.minecraftforge.event.level.SaplingGrowTreeEvent event = net.minecraftforge.event.ForgeEventFactory.blockGrowFeature(p_54860_, p_54863_, p_54861_, p_256352_);
 			if (event.getResult().equals(net.minecraftforge.eventbus.api.Event.Result.DENY)) return;
@@ -54,7 +55,7 @@ public class TofuMushroomBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	public boolean isValidBonemealTarget(LevelReader p_256559_, BlockPos p_50898_, BlockState p_50899_, boolean p_50900_) {
-		return false;
+		return true;
 	}
 
 	@Override
