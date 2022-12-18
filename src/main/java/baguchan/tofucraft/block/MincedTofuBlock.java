@@ -9,17 +9,45 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import static net.minecraft.world.level.block.PowderSnowBlock.canEntityWalkOnPowderSnow;
+
 public class MincedTofuBlock extends FallingBlock {
+	private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, (double) 0.9F, 1.0D);
+
 	public MincedTofuBlock(Properties properties) {
 		super(properties);
+	}
+
+	@Override
+	public VoxelShape getCollisionShape(BlockState p_154285_, BlockGetter p_154286_, BlockPos p_154287_, CollisionContext p_154288_) {
+		if (p_154288_ instanceof EntityCollisionContext entitycollisioncontext) {
+			Entity entity = entitycollisioncontext.getEntity();
+			if (entity != null) {
+				if (entity.fallDistance > 2.5F) {
+					return FALLING_COLLISION_SHAPE;
+				}
+
+				boolean flag = entity instanceof FallingBlockEntity;
+				if (flag || canEntityWalkOnPowderSnow(entity) && p_154288_.isAbove(Shapes.block(), p_154287_, false) && !p_154288_.isDescending()) {
+					return super.getCollisionShape(p_154285_, p_154286_, p_154287_, p_154288_);
+				}
+			}
+		}
+
+		return Shapes.empty();
 	}
 
 	public void entityInside(BlockState p_154263_, Level p_154264_, BlockPos p_154265_, Entity p_154266_) {
