@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
@@ -127,7 +128,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		logBlock(TofuBlocks.LEEK_GREEN_STEM.get());
 		logBlock(TofuBlocks.LEEK_STEM.get());
 		crossBlock(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
-		logBlock(TofuBlocks.TOFU_STEM.get());
+		logGlowBlock(TofuBlocks.TOFU_STEM.get());
 		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS.get());
 
 		crossBlock(TofuBlocks.SAPLING_TOFU.get());
@@ -150,6 +151,28 @@ public class BlockstateGenerator extends BlockStateProvider {
 		cake(TofuBlocks.ZUNDATOFUCAKE, "zundatofucake");
 
 		CandleTofuCakeBlock.getCandleCakes().forEach((block -> this.candleCake((CandleTofuCakeBlock) block)));
+	}
+
+	public void logGlowBlock(RotatedPillarBlock block) {
+		axisGlowBlock(block);
+	}
+
+	public void axisGlowBlock(RotatedPillarBlock block) {
+		ModelFile glow_column = models().withExistingParent(name(block), TofuCraftReload.prefix("block/glow_column"))
+				.texture("end", suffix(blockTexture(block), "_top"))
+				.texture("side", blockTexture(block))
+				.texture("glowtop", suffix(blockTexture(block), "_top_emissive"))
+				.texture("glowside", suffix(blockTexture(block), "_emissive")).renderType("minecraft:cutout");
+
+		ModelFile glow_column_horizontal = models().withExistingParent(name(block) + "_horizontal", TofuCraftReload.prefix("block/glow_column_horizontal"))
+				.texture("end", suffix(blockTexture(block), "_top"))
+				.texture("side", blockTexture(block))
+				.texture("glowtop", suffix(blockTexture(block), "_top_emissive"))
+				.texture("glowside", suffix(blockTexture(block), "_emissive")).renderType("minecraft:cutout");
+
+		axisBlock(block,
+				glow_column,
+				glow_column_horizontal);
 	}
 
 	public void candleCake(CandleTofuCakeBlock block) {
@@ -365,6 +388,10 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 	protected String name(Block block) {
 		return ForgeRegistries.BLOCKS.getKey(block).getPath();
+	}
+
+	private ResourceLocation extend(ResourceLocation rl, String suffix) {
+		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
 	}
 
 	@Nonnull
