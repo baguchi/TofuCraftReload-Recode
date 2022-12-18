@@ -15,7 +15,7 @@
       "max_delay": 24000,
       "min_delay": 12000,
       "replace_current_music": true,
-      "sound": "tofucraft:music.milky_earth"
+      "sound": "tofucraft:music.soft"
     },
     "sky_color": 12632319,
     "water_color": 4159204,
@@ -36,8 +36,8 @@
     [],
     [],
     [
-      "tofucraft:big_zunda_tofu_mushroom",
-      "tofucraft:patch_zunda_tofu_mushroom"
+      "tofucraft:tofu_trees_plains",
+      "tofucraft:patch_leek"
     ]
   ],
   "precipitation": "none",
@@ -60,9 +60,29 @@
       }
     ],
     "misc": [],
-    "monster": [],
+    "monster": [
+      {
+        "type": "tofucraft:tofuslime",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "tofucraft:tofuspider",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 10
+      }
+    ],
     "underground_water_creature": [],
-    "water_ambient": [],
+    "water_ambient": [
+      {
+        "type": "tofucraft:tofufish",
+        "maxCount": 6,
+        "minCount": 3,
+        "weight": 10
+      }
+    ],
     "water_creature": []
   },
   "temperature": 0.8

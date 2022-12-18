@@ -56,7 +56,7 @@ public class TofuBiomes {
 		context.register(TOFU_MOUNTAIN, TofuBiomeBuilders.tofuMountainBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(TOFU_OCEAN, TofuBiomeBuilders.tofuOceanBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(TOFU_BEACH, TofuBiomeBuilders.tofuBeachBiome(placedFeatures, vanillaConfiguredCarvers));
-		context.register(TOFU_RIVER, TofuBiomeBuilders.zundaForestBiome(placedFeatures, vanillaConfiguredCarvers));
+		context.register(TOFU_RIVER, TofuBiomeBuilders.tofuRiverBiome(placedFeatures, vanillaConfiguredCarvers));
 	}
 
 	private static ResourceKey<Biome> register(String p_48229_) {

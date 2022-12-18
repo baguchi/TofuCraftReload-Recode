@@ -4,19 +4,21 @@ import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.world.biome.TofuBiomeDefaultFeatures;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.sounds.Music;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraftforge.registries.RegistryObject;
 
 public class TofuBiomeBuilders {
 	public static Biome zundaForestBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
 		MobSpawnSettings.Builder builder1 = new MobSpawnSettings.Builder();
 		TofuBiomeDefaultFeatures.addZundaForestFeatures(builder);
-		return makeDefaultBiome(builder, builder1);
+		return makeDefaultBiome(builder, builder1, TofuSounds.GREEN_BRANCH_BGM);
 	}
 
 	public static Biome soybeanForestBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
@@ -40,7 +42,7 @@ public class TofuBiomeBuilders {
 		MobSpawnSettings.Builder builder1 = new MobSpawnSettings.Builder();
 		TofuBiomeDefaultFeatures.addWasteFeatures(builder);
 		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
-		return makeDefaultBiome(builder, builder1);
+		return makeDefaultBiome(builder, builder1, TofuSounds.ROUGH_GROUND_BGM);
 	}
 
 	public static Biome tofuBeachBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
@@ -56,7 +58,7 @@ public class TofuBiomeBuilders {
 		MobSpawnSettings.Builder builder1 = new MobSpawnSettings.Builder();
 		TofuBiomeDefaultFeatures.addForestFeatures(builder);
 		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
-		return makeDefaultBiome(builder, builder1);
+		return makeDefaultBiome(builder, builder1, TofuSounds.ROUGH_GROUND_BGM);
 	}
 
 	public static Biome tofuPlainBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
@@ -90,10 +92,14 @@ public class TofuBiomeBuilders {
 		MobSpawnSettings.Builder builder1 = new MobSpawnSettings.Builder();
 		TofuBiomeDefaultFeatures.addPlainsFeatures(builder);
 		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
-		return makeDefaultBiome(builder, builder1);
+		return makeDefaultBiome(builder, builder1, TofuSounds.MILKY_EARTH_BGM);
 	}
 
 	public static Biome makeDefaultBiome(BiomeGenerationSettings.Builder builder, MobSpawnSettings.Builder mobSpawnSetting) {
+		return makeDefaultBiome(builder, mobSpawnSetting, TofuSounds.SOFT_BGM);
+	}
+
+	public static Biome makeDefaultBiome(BiomeGenerationSettings.Builder builder, MobSpawnSettings.Builder mobSpawnSetting, RegistryObject<SoundEvent> soundEvent) {
 		TofuBiomeDefaultFeatures.addDefaultCarvers(builder);
 		TofuBiomeDefaultFeatures.addDefaultOres(builder);
 		TofuBiomeDefaultFeatures.tofuCreatureSpawns(mobSpawnSetting);
@@ -109,7 +115,7 @@ public class TofuBiomeBuilders {
 						.grassColorOverride(0xb1_ff_cb)
 						.foliageColorOverride(0xb1_ff_cb)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
-						.backgroundMusic(new Music(TofuSounds.MILKY_EARTH_BGM.getHolder().orElseThrow(), 12000, 24000, true))
+						.backgroundMusic(new Music(soundEvent.getHolder().orElseThrow(), 12000, 24000, true))
 						.build(),
 				mobSpawnSetting.build(),
 				builder.build(),
