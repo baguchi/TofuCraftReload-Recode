@@ -31,7 +31,11 @@ public class RamuneSoymilkBottleItem extends SoymilkBottleItem {
 			effectList = BuiltInRegistries.MOB_EFFECT
 					.stream()
 					.filter(mobEffect -> mobEffect.getCategory() != MobEffectCategory.HARMFUL)
+					.filter(mobEffect -> mobEffect.getCategory() != MobEffectCategory.NEUTRAL)
 					.filter(mobEffect -> mobEffect != MobEffects.HEAL)
+					.filter(mobEffect -> mobEffect != MobEffects.HERO_OF_THE_VILLAGE)
+					.filter(mobEffect -> mobEffect != MobEffects.DOLPHINS_GRACE)
+					.filter(mobEffect -> mobEffect != MobEffects.CONDUIT_POWER)
 					.toList();
 		}
 		return effectList.get(random.nextInt(effectList.size()));
