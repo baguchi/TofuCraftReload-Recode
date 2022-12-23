@@ -112,8 +112,8 @@ public class TofuBiomeBuilders {
 						.skyColor(0xc0_c0_ff)
 						.waterColor(0x3f_76_e4)
 						.waterFogColor(0x05_05_33)
-						.grassColorOverride(0xb1_ff_cb)
-						.foliageColorOverride(0xb1_ff_cb)
+						.grassColorOverride(7115607)
+						.foliageColorOverride(7115607)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
 						.backgroundMusic(new Music(soundEvent.getHolder().orElseThrow(), 12000, 24000, true))
 						.build(),
