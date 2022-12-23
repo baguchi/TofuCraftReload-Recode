@@ -12,6 +12,7 @@ import baguchan.tofucraft.block.RiceBlock;
 import baguchan.tofucraft.block.TofuBlock;
 import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.block.TofuFarmlandBlock;
+import baguchan.tofucraft.block.TofuGemBlock;
 import baguchan.tofucraft.block.TofuLeavesBlock;
 import baguchan.tofucraft.block.TofuMushroomBlock;
 import baguchan.tofucraft.block.TofuPortalBlock;
@@ -104,6 +105,8 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> ISHITOFU_CHISELED_BRICK = register("tofuishi_chiseled_brick", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> METALTOFU = register("blocktofumetal", () -> new Block(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> DIAMONDTOFU = register("blocktofudiamond", () -> new Block(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> TOFU_GEM_BLOCK = register("tofu_gem_block", () -> new TofuGemBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL)));
+
 	public static final RegistryObject<Block> GRILLEDTOFU = register("blocktofugrilled", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> ZUNDATOFU = register("blocktofuzunda", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> MISOTOFU = register("blocktofumiso", () -> new Block(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.35F, 0.5F).sound(SoundType.SNOW)));

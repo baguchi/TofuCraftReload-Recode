@@ -125,22 +125,20 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1.0,
+        "max": 2.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
         {
           "type": "minecraft:item",
           "weight": 3,
-          "name": "tofucraft:zunda_bow",
-          "functions": [
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": {
-                "type": "minecraft:uniform",
-                "min": 30,
-                "max": 50
-              },
-              "treasure": false
-            }
-          ]
+          "name": "tofucraft:zunda_bow"
         }
       ]
     }

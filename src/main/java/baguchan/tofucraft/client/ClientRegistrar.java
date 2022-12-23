@@ -4,6 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.client.model.ShuDofuSpiderModel;
 import baguchan.tofucraft.client.model.TofuFishModel;
 import baguchan.tofucraft.client.model.TofuGandlemModel;
+import baguchan.tofucraft.client.model.TofuGolemModel;
 import baguchan.tofucraft.client.model.TofuSpiderModel;
 import baguchan.tofucraft.client.model.TofunianModel;
 import baguchan.tofucraft.client.overlay.TofuPortalOverlay;
@@ -17,6 +18,7 @@ import baguchan.tofucraft.client.render.entity.ShuDofuSpiderRender;
 import baguchan.tofucraft.client.render.entity.TofuCowRender;
 import baguchan.tofucraft.client.render.entity.TofuFishRender;
 import baguchan.tofucraft.client.render.entity.TofuGandlemRender;
+import baguchan.tofucraft.client.render.entity.TofuGolemRender;
 import baguchan.tofucraft.client.render.entity.TofuPigRender;
 import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
 import baguchan.tofucraft.client.render.entity.TofuSpiderRender;
@@ -173,6 +175,7 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.TOFUNIAN.get(), TofunianRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TRAVELER_TOFUNIAN.get(), TravelerTofunianRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUFISH.get(), TofuFishRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_GOLEM.get(), TofuGolemRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUSLIME.get(), TofuSlimeRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUSPIDER.get(), TofuSpiderRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_GANDLEM.get(), TofuGandlemRender::new);
@@ -193,25 +196,10 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.TOFUNIAN, TofunianModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFUSPIDER, TofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFUFISH, TofuFishModel::createBodyLayer);
+		event.registerLayerDefinition(TofuModelLayers.TOFU_GOLEM, TofuGolemModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFU_GANDLEM, TofuGandlemModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
 	}
-
-	//TODO
-	/*@SubscribeEvent
-	public static void onTextureStitch(TextureStitchEvent.Pre event) {
-		if (event.getAtlas().location().equals(Sheets.BED_SHEET)) {
-			event.addSprite(TofuBedRenderer.BED_TEXTURES);
-		}
-		if (event.getAtlas().location().equals(Sheets.CHEST_SHEET)) {
-			event.addSprite(TofuChestRenderer.CHEST_LOCATION.texture());
-			event.addSprite(TofuChestRenderer.CHEST_LOCATION_LEFT.texture());
-			event.addSprite(TofuChestRenderer.CHEST_LOCATION_RIGHT.texture());
-		}
-		if (event.getAtlas().location().equals(Sheets.SHIELD_SHEET)) {
-			event.addSprite(TofuShieldBWLR.SHIELD.texture());
-		}
-	}*/
 
 	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiOverlaysEvent event) {

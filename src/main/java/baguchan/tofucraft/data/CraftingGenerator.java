@@ -133,6 +133,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 		decorationTofuBlockItem(consumer, TofuBlocks.ISHITOFU_SMOOTH_BRICK, TofuBlocks.ISHITOFU_BRICK);
 		tofuBlockItem(consumer, TofuBlocks.METALTOFU, TofuItems.TOFUMETAL);
 		tofuBlockItem(consumer, TofuBlocks.DIAMONDTOFU, TofuItems.TOFUDIAMOND);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.TOFU_GEM_BLOCK.get())
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.TOFUGEM.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuItems.TOFUDIAMOND.get())
 				.pattern("###")
 				.pattern("###")
