@@ -30,7 +30,7 @@ public class DataGenerators {
 		event.getGenerator().addProvider(event.includeServer(), new FluidTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
 		event.getGenerator().addProvider(event.includeServer(), TofuLootTableProvider.create(packOutput));
 		event.getGenerator().addProvider(event.includeServer(), new CraftingGenerator(packOutput));
-		event.getGenerator().addProvider(event.includeServer(), new WorldGenerator(packOutput));
+		event.getGenerator().addProvider(event.includeServer(), new WorldGenerator(packOutput, lookupProvider));
 		event.getGenerator().addProvider(event.includeServer(), WorldGenerator.createLevelStem(packOutput, existingFileHelper));
 
 	}
