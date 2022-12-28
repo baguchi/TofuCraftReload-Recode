@@ -682,7 +682,12 @@ public class TofuItems {
 									TofuItems.SCULK_BONE_HELMET,
 									TofuItems.SCULK_BONE_CHESTPLATE,
 									TofuItems.SCULK_BONE_LEGGINGS,
-									TofuItems.SCULK_BONE_BOOTS)
+									TofuItems.SCULK_BONE_BOOTS,
+									TofuItems.ZUNDA_ARROW,
+									TofuItems.ZUNDA_BOW,
+									TofuItems.FUKUMAME,
+									TofuItems.NETHER_FUKUMAME,
+									TofuItems.SOUL_FUKUMAME)
 							.map(item -> item.get().getDefaultInstance())
 							.toList())).build();
 				});
