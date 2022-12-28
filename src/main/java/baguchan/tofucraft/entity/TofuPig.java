@@ -126,12 +126,9 @@ public class TofuPig extends Pig implements ItemInteractable {
 
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @org.jetbrains.annotations.Nullable SpawnGroupData p_146749_, @org.jetbrains.annotations.Nullable CompoundTag p_146750_) {
-		if (p_146748_ == MobSpawnType.COMMAND || p_146748_ == MobSpawnType.SPAWN_EGG || p_146748_ == MobSpawnType.SPAWNER || p_146748_ == MobSpawnType.DISPENSER) {
-			if (p_146746_.getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
-				this.setTofuPigType(TofuPigType.ZUNDA);
-			}
+		if (p_146746_.getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
+			this.setTofuPigType(TofuPigType.ZUNDA);
 		}
-
 		return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
 	}
 
