@@ -1,6 +1,7 @@
 package baguchan.tofucraft.client.render.entity;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.entity.TofuSlime;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.SlimeRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -20,5 +21,13 @@ public class TofuSlimeRender extends SlimeRenderer {
 	@Override
 	public ResourceLocation getTextureLocation(Slime p_114029_) {
 		return LOCATION;
+	}
+
+	@Override
+	protected boolean isShaking(Slime p_115304_) {
+		if (p_115304_ instanceof TofuSlime tofuSlime) {
+			return tofuSlime.isZundaConverting();
+		}
+		return super.isShaking(p_115304_);
 	}
 }
