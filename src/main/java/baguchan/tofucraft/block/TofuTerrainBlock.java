@@ -29,6 +29,7 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 		return p_53692_.getBlockState(p_53693_.above()).isAir();
 	}
 
+	@Override
 	public boolean isBonemealSuccess(Level p_53697_, RandomSource p_53698_, BlockPos p_53699_, BlockState p_53700_) {
 		return true;
 	}

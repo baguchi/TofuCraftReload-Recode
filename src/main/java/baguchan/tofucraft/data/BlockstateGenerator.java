@@ -1,16 +1,19 @@
 package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.block.CandleTofuCakeBlock;
 import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -22,6 +25,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class BlockstateGenerator extends BlockStateProvider {
@@ -123,7 +127,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		logBlock(TofuBlocks.LEEK_GREEN_STEM.get());
 		logBlock(TofuBlocks.LEEK_STEM.get());
 		crossBlock(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
-		logBlock(TofuBlocks.TOFU_STEM.get());
+		axisGlowBlock(TofuBlocks.TOFU_STEM.get());
 		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS.get());
 
 		crossBlock(TofuBlocks.SAPLING_TOFU.get());
@@ -142,8 +146,64 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 		crossBlock(TofuBlocks.ANTENNA_BASIC.get());
 
+		simpleBlock(TofuBlocks.SESAMETOFU.get());
+		stairs(TofuBlocks.TOFUSTAIR_SESAME.get(), TofuBlocks.SESAMETOFU.get());
+		slab(TofuBlocks.TOFUSLAB_SESAME.get(), TofuBlocks.SESAMETOFU.get());
+
 		cake(TofuBlocks.TOFUCAKE, "tofucake");
 		cake(TofuBlocks.ZUNDATOFUCAKE, "zundatofucake");
+		CandleTofuCakeBlock.getCandleCakes().forEach((block -> this.candleCake((CandleTofuCakeBlock) block)));
+	}
+
+	public void logGlowBlock(RotatedPillarBlock block) {
+		axisGlowBlock(block);
+	}
+
+	public void axisGlowBlock(RotatedPillarBlock block) {
+		ModelFile glow_column = models().withExistingParent(name(block), TofuCraftReload.prefix("block/glow_column"))
+				.texture("end", suffix(blockTexture(block), "_top"))
+				.texture("side", blockTexture(block))
+				.texture("glowtop", suffix(blockTexture(block), "_top_emissive"))
+				.texture("glowside", suffix(blockTexture(block), "_emissive")).renderType("minecraft:cutout");
+
+		ModelFile glow_column_horizontal = models().withExistingParent(name(block) + "_horizontal", TofuCraftReload.prefix("block/glow_column_horizontal"))
+				.texture("end", suffix(blockTexture(block), "_top"))
+				.texture("side", blockTexture(block))
+				.texture("glowtop", suffix(blockTexture(block), "_top_emissive"))
+				.texture("glowside", suffix(blockTexture(block), "_emissive")).renderType("minecraft:cutout");
+
+		axisBlock(block,
+				glow_column,
+				glow_column_horizontal);
+	}
+
+	public void candleCake(CandleTofuCakeBlock block) {
+		Block candle = block.getCandle();
+		Block cake = block.getCake();
+
+		ModelFile candleCake = models().withExistingParent(name(block), "block/template_cake_with_candle")
+				.texture("candle", blockTexture(candle))
+				.texture("bottom", suffix(blockTexture(cake), "_bottom"))
+				.texture("side", suffix(blockTexture(cake), "_side"))
+				.texture("top", suffix(blockTexture(cake), "_top"))
+				.texture("particle", suffix(blockTexture(cake), "_side"));
+
+		ModelFile candleCakeLit = models().withExistingParent(name(block) + "_lit", "block/template_cake_with_candle")
+				.texture("candle", suffix(blockTexture(candle), "_lit"))
+				.texture("bottom", suffix(blockTexture(cake), "_bottom"))
+				.texture("side", suffix(blockTexture(cake), "_side"))
+				.texture("top", suffix(blockTexture(cake), "_top"))
+				.texture("particle", suffix(blockTexture(cake), "_side"));
+
+		this.candleCakeBlock(block, (state -> state.getValue(BlockStateProperties.LIT) ? candleCakeLit : candleCake));
+	}
+
+	public void candleCakeBlock(Block block, Function<BlockState, ModelFile> modelFunc) {
+		this.getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).build());
+	}
+
+	private ResourceLocation suffix(ResourceLocation rl, String suffix) {
+		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
 	}
 
 	public ModelFile cubeLeavesAll(Block block) {
@@ -193,11 +253,11 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 
-	public void cake(Supplier<? extends TofuCakeBlock> block, String name) {
+	public void cake(Supplier<? extends Block> block, String name) {
 		cakeBlockInternal(block.get(), name(block.get()), texture(name + "_bottom"), texture(name + "_top"), texture(name + "_side"), texture(name + "_inner"));
 	}
 
-	private void cakeBlockInternal(TofuCakeBlock block, String baseName, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation inside) {
+	private void cakeBlockInternal(Block block, String baseName, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation inside) {
 		ModelFile cake = cake(baseName + "_uneaten", bottom, top, side);
 		ModelFile sliced1 = slicedCake(baseName + "_slice1", "cake_slice1", bottom, top, side, inside);
 		ModelFile sliced2 = slicedCake(baseName + "_slice2", "cake_slice2", bottom, top, side, inside);
@@ -209,7 +269,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		cakeBlock(block, cake, sliced1, sliced2, sliced3, sliced4, sliced5, sliced6);
 	}
 
-	public void cakeBlock(TofuCakeBlock block, ModelFile uneat, ModelFile sliced1, ModelFile sliced2, ModelFile sliced3, ModelFile sliced4, ModelFile sliced5, ModelFile sliced6) {
+	public void cakeBlock(Block block, ModelFile uneat, ModelFile sliced1, ModelFile sliced2, ModelFile sliced3, ModelFile sliced4, ModelFile sliced5, ModelFile sliced6) {
 		getVariantBuilder(block).forAllStatesExcept(state -> {
 			int bite = ((int) state.getValue(TofuCakeBlock.BITES));
 			ModelFile file;

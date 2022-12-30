@@ -1,7 +1,10 @@
 {
-  "parent": "minecraft:block/cube_column",
+  "parent": "tofucraft:block/glow_column",
+  "render_type": "minecraft:cutout",
   "textures": {
     "end": "tofucraft:block/tofustem_top",
+    "glowside": "tofucraft:block/tofustem_emissive",
+    "glowtop": "tofucraft:block/tofustem_top_emissive",
     "side": "tofucraft:block/tofustem"
   }
 }

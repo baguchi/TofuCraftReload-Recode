@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "tofucraft:block/orange_candle_zundatofu_cake"
+    },
+    "lit=true": {
+      "model": "tofucraft:block/orange_candle_zundatofu_cake_lit"
+    }
+  }
+}

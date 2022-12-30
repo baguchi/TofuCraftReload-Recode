@@ -1,16 +1,22 @@
 package baguchan.tofucraft.block;
 
+import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
 
 public class KinuTofuBlock extends Block {
 	public KinuTofuBlock(Properties properties) {
@@ -51,5 +57,15 @@ public class KinuTofuBlock extends Block {
 		float baseHardness = baseBlock.getDestroySpeed(world, pos.below());
 		boolean isBaseValid = (baseBlock.isCollisionShapeFullBlock(world, pos) && (baseBlock.getMaterial() == Material.STONE || baseBlock.getMaterial() == Material.METAL || baseHardness >= 1.0F || baseHardness < 0.0F));
 		return (isWeightValid && isBaseValid);
+	}
+
+	@Override
+	public @Nullable BlockPathTypes getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+		return TofuEntityTypes.UNSTABLE_TOFU_PATH;
+	}
+
+	@Override
+	public @Nullable BlockPathTypes getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, BlockPathTypes originalType) {
+		return TofuEntityTypes.UNSTABLE_TOFU_PATH;
 	}
 }

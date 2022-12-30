@@ -38,6 +38,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.SpawnUtil;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -96,6 +97,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -800,7 +802,32 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			this.gossips.transferFrom(p_35413_.gossips, this.random, 10);
 			this.lastGossipTime = p_35414_;
 			p_35413_.lastGossipTime = p_35414_;
-			//this.spawnGolemIfNeeded(p_35412_, p_35414_, 5);
+			this.spawnGolemIfNeeded(p_35412_, p_35414_, 3);
+		}
+	}
+
+	public void spawnGolemIfNeeded(ServerLevel p_35398_, long p_35399_, int p_35400_) {
+		if (this.wantsToSpawnGolem(p_35398_, p_35399_)) {
+			AABB aabb = this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D);
+			List<Tofunian> list = p_35398_.getEntitiesOfClass(Tofunian.class, aabb);
+			List<Tofunian> list1 = list.stream().filter((p_186293_) -> {
+				return p_186293_.wantsToSpawnGolem(p_35398_, p_35399_);
+			}).limit(5L).collect(Collectors.toList());
+			if (list1.size() >= p_35400_) {
+				if (SpawnUtil.trySpawnMob(TofuEntityTypes.TOFU_GOLEM.get(), MobSpawnType.MOB_SUMMONED, p_35398_, this.blockPosition(), 10, 8, 6, SpawnUtil.Strategy.LEGACY_IRON_GOLEM).isPresent()) {
+				}
+			}
+		}
+	}
+
+	private boolean wantsToSpawnGolem(ServerLevel p_35398_, long p_35399_) {
+		AABB aabb = this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D);
+		List<TofuGolem> list = p_35398_.getEntitiesOfClass(TofuGolem.class, aabb);
+
+		if (list.isEmpty()) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
