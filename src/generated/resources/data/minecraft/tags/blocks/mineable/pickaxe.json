@@ -37,6 +37,7 @@
     "tofucraft:tf_storage",
     "tofucraft:tf_aggregator",
     "tofucraft:antenna_basic",
-    "tofucraft:soymilk_cauldron"
+    "tofucraft:soymilk_cauldron",
+    "tofucraft:tofu_gem_block"
   ]
 }

@@ -1160,5 +1160,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('W', ItemTags.WOOL)
 				.unlockedBy("has_item", has(Blocks.GLASS))
 				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(TofuBlocks.TOFU_GEM_BLOCK.get())
+				.pattern("GGG")
+				.pattern("GGG")
+				.pattern("GGG")
+				.define('G', TofuItems.TOFUGEM.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
 	}
 }

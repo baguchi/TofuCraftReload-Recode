@@ -45,7 +45,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TF_STORAGE.get()
 				, TofuBlocks.TF_AGGREGATOR.get()
 				, TofuBlocks.ANTENNA_BASIC.get()
-				, TofuBlocks.SOYMILK_CAULDRON.get());
+				, TofuBlocks.SOYMILK_CAULDRON.get()
+				, TofuBlocks.TOFU_GEM_BLOCK.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(TofuBlocks.SALTPAN.get()
 				, TofuBlocks.LEEK_GREEN_STEM.get(), TofuBlocks.LEEK_STEM.get()
 				, TofuBlocks.TOFU_STEM.get(), TofuBlocks.TOFU_STEM_PLANKS.get()

@@ -235,6 +235,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		registerTofuDrop(TofuBlocks.SESAMETOFU.get(), TofuItems.TOFUSESAME.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_SESAME.get());
 		registerSlab(TofuBlocks.TOFUSLAB_SESAME.get());
+		dropSelf(TofuBlocks.TOFU_GEM_BLOCK.get());
 	}
 
 	protected static LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {
