@@ -3,6 +3,7 @@ package baguchan.tofucraft.utils;
 import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.HardenRecipe;
 import baguchan.tofucraft.registry.TofuRecipes;
+import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
@@ -10,6 +11,8 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
 import java.util.stream.Collectors;
@@ -54,5 +57,14 @@ public class RecipeHelper {
 		}
 
 		return null;
+	}
+
+	public static RecipeManager getManager() {
+		return getManager(null);
+	}
+
+	public static RecipeManager getManager(@Nullable RecipeManager manager) {
+
+		return manager != null ? manager : DistExecutor.runForDist(() -> () -> Minecraft.getInstance().player.connection.getRecipeManager(), () -> () -> ServerLifecycleHooks.getCurrentServer().getRecipeManager());
 	}
 }
