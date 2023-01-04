@@ -109,7 +109,7 @@ public class TofuBlock extends Block {
 				if (i < 7) {
 					worldIn.setBlock(pos, state.setValue(HARDNESS, i + 1), 2);
 				} else {
-					ItemStack result = RecipeHelper.getTofu(state.getBlock());
+					ItemStack result = RecipeHelper.getTofu(worldIn, state.getBlock());
 					if (result != null)
 						worldIn.setBlock(pos, Block.byItem(result.getItem()).defaultBlockState(), 2);
 				}

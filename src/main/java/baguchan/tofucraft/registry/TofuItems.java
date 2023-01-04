@@ -744,7 +744,7 @@ public class TofuItems {
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
 				BlockPos blockpos = p_123561_.getPos().relative(p_123561_.getBlockState().getValue(DispenserBlock.FACING));
 				FluidState fluidState = p_123561_.getLevel().getFluidState(blockpos);
-				ItemStack result = RecipeHelper.getBitternResult(fluidState.getType());
+				ItemStack result = RecipeHelper.getBitternResult(p_123561_.getLevel(), fluidState.getType());
 				if (result != null) {
 					p_123561_.getLevel().setBlock(blockpos, Block.byItem(result.getItem()).defaultBlockState(), 11);
 					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));
