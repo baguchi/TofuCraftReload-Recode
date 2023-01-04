@@ -4,6 +4,7 @@ import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.HardenRecipe;
 import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.client.Minecraft;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -22,11 +23,11 @@ public class RecipeHelper {
 	 * This method use in not condition type tofu recipe(like ishi tofu and metal tofu)
 	 */
 	@Nullable
-	public static ItemStack getTofu(Block block) {
+	public static ItemStack getTofu(ServerLevel serverLevel, Block block) {
 
-		final RecipeManager manager = getManager();
+		final RecipeManager manager = serverLevel.getRecipeManager();
 
-		if (manager != null && block.asItem() != null) {
+		if (block.asItem() != null) {
 			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
 				return recipe.getType() == TofuRecipes.RECIPETYPE_HARDER;
 			});
@@ -41,10 +42,10 @@ public class RecipeHelper {
 	}
 
 	@Nullable
-	public static ItemStack getBitternResult(Fluid fluid) {
-		final RecipeManager manager = getManager();
+	public static ItemStack getBitternResult(ServerLevel serverLevel, Fluid fluid) {
+		final RecipeManager manager = serverLevel.getRecipeManager();
 
-		if (manager != null && fluid != null) {
+		if (fluid != null) {
 			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
 				return recipe.getType() == TofuRecipes.RECIPETYPE_BITTERN;
 			});
