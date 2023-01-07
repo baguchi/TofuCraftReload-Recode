@@ -57,6 +57,7 @@ public class FukumameEntity extends ThrowableProjectile {
 
 	public FukumameEntity(Level worldIn, double x, double y, double z) {
 		super(TofuEntityTypes.FUKUMAME.get(), x, y, z, worldIn);
+
 	}
 
 	public FukumameEntity(EntityType<? extends FukumameEntity> p_i50154_1_, Level worldIn, double x, double y, double z) {
