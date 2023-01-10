@@ -207,6 +207,10 @@ public class TofuItems {
 	public static final RegistryObject<Item> SOYMILK_SAKURA = ITEMS.register("soymilk_sakura", () -> new SoymilkBottleItem(MobEffects.DAMAGE_RESISTANCE, MobEffects.FIRE_RESISTANCE, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final RegistryObject<Item> SOYMILK_STRAWBERRY = ITEMS.register("soymilk_strawberry", () -> new SoymilkBottleItem(MobEffects.DIG_SPEED, MobEffects.MOVEMENT_SPEED, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final RegistryObject<Item> SOYMILK_TEA = ITEMS.register("soymilk_tea", () -> new SoymilkBottleItem(MobEffects.WATER_BREATHING, MobEffects.DOLPHINS_GRACE, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final RegistryObject<Item> SOYMILK_HELL_BOTTLE = ITEMS.register("soymilk_hell_bottle", () -> new SoymilkBottleItem(MobEffects.FIRE_RESISTANCE, MobEffects.DAMAGE_RESISTANCE, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final RegistryObject<Item> SOYMILK_SOUL_BOTTLE = ITEMS.register("soymilk_soul_bottle", () -> new SoymilkBottleItem(MobEffects.ABSORPTION, MobEffects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
+
+
 	public static final RegistryObject<Item> KINAKO_MANJU = ITEMS.register("kinakomanju", () -> new Item((new Item.Properties()).food(TofuFoods.KINAKO_MANJU)));
 	public static final RegistryObject<Item> ZUNDA_MANJU = ITEMS.register("zundamanju", () -> new Item((new Item.Properties()).food(TofuFoods.ZUNDA_MANJU)));
 	public static final RegistryObject<Item> NETHER_MANJU = ITEMS.register("nethermanju", () -> new Item((new Item.Properties()).food(TofuFoods.NETHER_MANJU)));
@@ -375,6 +379,9 @@ public class TofuItems {
 
 	public static final RegistryObject<Item> SUKIYAKI = register("sukiyaki", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SUKIYAKI)));
 	public static final RegistryObject<Item> TOFU_BUNS_BURGER = register("tofu_buns_burger", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU_BUNS_BURGER)));
+
+	public static final RegistryObject<Item> STEAMED_BREAD = register("steamed_bread", () -> new Item((new Item.Properties()).food(TofuFoods.STEAMED_BREAD)));
+	public static final RegistryObject<Item> STEAMED_BREAD_COCOA = register("steamed_bread_cocoa", () -> new Item((new Item.Properties()).food(TofuFoods.STEAMED_BREAD)));
 
 
 	private static RegistryObject<Item> register(String name, Supplier<Item> item) {
@@ -597,12 +604,16 @@ public class TofuItems {
 											TofuItems.SOYMILK_SAKURA,
 											TofuItems.SOYMILK_STRAWBERRY,
 											TofuItems.SOYMILK_TEA,
+											TofuItems.SOYMILK_HELL_BOTTLE,
+											TofuItems.SOYMILK_SOUL_BOTTLE,
 											TofuItems.HELL_MABOU,
 											TofuItems.RED_SOUP,
 											TofuItems.HELL_RED_SOUP,
 											TofuItems.SUKIYAKI,
 											TofuItems.TOFU_BUNS_BURGER,
-											TofuItems.TTTBURGER)
+											TofuItems.TTTBURGER,
+											TofuItems.STEAMED_BREAD,
+											TofuItems.STEAMED_BREAD_COCOA)
 									.map(item -> item.get().getDefaultInstance())
 									.toList())).build();
 				});

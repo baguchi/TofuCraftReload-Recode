@@ -1212,5 +1212,32 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('M', TofuItems.TOFU_HAMBURG.get())
 				.unlockedBy("has_item", has(TofuItems.TOFU_HAMBURG.get()))
 				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.STEAMED_BREAD.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
+				.requires(Tags.Items.EGGS)
+				.requires(Items.SUGAR)
+				.requires(Items.WHEAT)
+				.requires(Items.HONEY_BOTTLE)
+				.unlockedBy("has_item", has(TofuTags.Items.MILK_SOYMILK))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.STEAMED_BREAD_COCOA.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
+				.requires(Tags.Items.EGGS)
+				.requires(Items.SUGAR)
+				.requires(Items.WHEAT)
+				.requires(Items.COCOA_BEANS)
+				.unlockedBy("has_item", has(TofuTags.Items.MILK_SOYMILK))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOYMILK_SOUL_BOTTLE.get(), 3)
+				.requires(TofuItems.BUCKET_SOYMILK_SOUL.get())
+				.requires(Items.GLASS_BOTTLE, 3)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK_SOUL.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOYMILK_HELL_BOTTLE.get(), 3)
+				.requires(TofuItems.BUCKET_SOYMILK_NETHER.get())
+				.requires(Items.GLASS_BOTTLE, 3)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK_NETHER.get()))
+				.save(consumer);
 	}
 }
