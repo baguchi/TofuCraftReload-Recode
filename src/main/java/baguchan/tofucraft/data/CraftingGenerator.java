@@ -1170,5 +1170,47 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('W', ItemTags.WOOL)
 				.unlockedBy("has_item", has(Blocks.GLASS))
 				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.HELL_MABOU.get())
+				.requires(TofuItems.TOFUHELL.get())
+				.requires(TofuItems.DOUBANJIANG.get())
+				.requires(TofuItems.CHILI.get())
+				.requires(Items.BOWL)
+				.unlockedBy("has_item", has(TofuItems.DOUBANJIANG.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.RED_SOUP.get())
+				.requires(TofuItems.TOFUHELL.get())
+				.requires(Items.COOKED_COD)
+				.requires(Items.CARROT)
+				.requires(Items.BEETROOT)
+				.requires(Items.BOWL)
+				.unlockedBy("has_item", has(TofuItems.TOFUHELL.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.HELL_RED_SOUP.get())
+				.requires(TofuItems.TOFUHELL.get())
+				.requires(Items.COOKED_COD)
+				.requires(Items.CARROT)
+				.requires(Items.BEETROOT)
+				.requires(Items.BOWL)
+				.requires(TofuItems.DOUBANJIANG.get())
+				.requires(TofuItems.CHILI.get(), 2)
+				.unlockedBy("has_item", has(TofuItems.DOUBANJIANG.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SUKIYAKI.get())
+				.requires(TofuItems.TOFUGRILLED.get(), 2)
+				.requires(Items.COOKED_PORKCHOP)
+				.requires(Items.BOWL)
+				.unlockedBy("has_item", has(TofuItems.TOFUGRILLED.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, TofuItems.TOFU_BUNS_BURGER.get())
+				.pattern("G")
+				.pattern("M")
+				.pattern("G")
+				.define('G', TofuItems.TOFUGRILLED.get())
+				.define('M', TofuItems.TOFU_HAMBURG.get())
+				.unlockedBy("has_item", has(TofuItems.TOFU_HAMBURG.get()))
+				.save(consumer);
 	}
 }

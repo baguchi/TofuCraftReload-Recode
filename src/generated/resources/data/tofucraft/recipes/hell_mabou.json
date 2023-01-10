@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tofucraft:tofuhell"
+    },
+    {
+      "item": "tofucraft:doubanjiang"
+    },
+    {
+      "item": "tofucraft:chili"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:hell_mabou"
+  }
+}

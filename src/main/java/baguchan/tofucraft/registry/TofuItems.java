@@ -369,6 +369,14 @@ public class TofuItems {
 	public static final RegistryObject<Item> BOTTLE_SOYOIL = ITEMS.register("bottle_soyoil", () -> new Item((new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final RegistryObject<Item> SOYSAUSE_RAMEN = register("soysause_ramen", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SOYSAUSE_RAMEN)));
 
+	public static final RegistryObject<Item> HELL_MABOU = register("hell_mabou", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.HELL_MABOU)));
+	public static final RegistryObject<Item> RED_SOUP = register("red_soup", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.RED_SOUP)));
+	public static final RegistryObject<Item> HELL_RED_SOUP = register("hell_red_soup", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.HELL_RED_SOUP)));
+
+	public static final RegistryObject<Item> SUKIYAKI = register("sukiyaki", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SUKIYAKI)));
+	public static final RegistryObject<Item> TOFU_BUNS_BURGER = register("tofu_buns_burger", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU_BUNS_BURGER)));
+
+
 	private static RegistryObject<Item> register(String name, Supplier<Item> item) {
 		return ITEMS.register(name, item);
 	}
@@ -588,7 +596,13 @@ public class TofuItems {
 											TofuItems.SOYMILK_RAMUNE,
 											TofuItems.SOYMILK_SAKURA,
 											TofuItems.SOYMILK_STRAWBERRY,
-											TofuItems.SOYMILK_TEA)
+											TofuItems.SOYMILK_TEA,
+											TofuItems.HELL_MABOU,
+											TofuItems.RED_SOUP,
+											TofuItems.HELL_RED_SOUP,
+											TofuItems.SUKIYAKI,
+											TofuItems.TOFU_BUNS_BURGER,
+											TofuItems.TTTBURGER)
 									.map(item -> item.get().getDefaultInstance())
 									.toList())).build();
 				});

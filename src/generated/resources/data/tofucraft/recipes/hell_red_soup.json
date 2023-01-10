@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tofucraft:tofuhell"
+    },
+    {
+      "item": "minecraft:cooked_cod"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "tofucraft:doubanjiang"
+    },
+    {
+      "item": "tofucraft:chili"
+    },
+    {
+      "item": "tofucraft:chili"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:hell_red_soup"
+  }
+}
