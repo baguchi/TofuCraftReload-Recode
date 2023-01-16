@@ -117,6 +117,13 @@ public class TofuFoods {
 	public static final FoodProperties SOYSAUSE_RAMEN = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.85F).build();
 	public static final FoodProperties SOY_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).build();
 
+	public static final FoodProperties HELL_MABOU = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2400), 1.0F).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200), 1.0F).build();
+	public static final FoodProperties RED_SOUP = (new FoodProperties.Builder()).nutrition(10).saturationMod(1.0F).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1.0F).build();
+	public static final FoodProperties HELL_RED_SOUP = (new FoodProperties.Builder()).nutrition(10).saturationMod(1.0F).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 6000), 1.0F).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 3600), 1.0F).build();
+	public static final FoodProperties SUKIYAKI = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.85F).build();
+	public static final FoodProperties TOFU_BUNS_BURGER = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build();
+	public static final FoodProperties STEAMED_BREAD = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
+
 
 	private static FoodProperties.Builder stew(int p_150384_) {
 		return (new FoodProperties.Builder()).nutrition(p_150384_).saturationMod(0.6F);

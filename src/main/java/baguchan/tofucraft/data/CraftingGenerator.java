@@ -1161,6 +1161,75 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Blocks.GLASS))
 				.save(consumer);
 
+		ShapelessRecipeBuilder.shapeless(TofuItems.HELL_MABOU.get())
+				.requires(TofuItems.TOFUHELL.get())
+				.requires(TofuItems.DOUBANJIANG.get())
+				.requires(TofuItems.CHILI.get())
+				.requires(Items.BOWL)
+				.unlockedBy("has_item", has(TofuItems.DOUBANJIANG.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.RED_SOUP.get())
+				.requires(TofuItems.TOFUHELL.get())
+				.requires(Items.COOKED_COD)
+				.requires(Items.CARROT)
+				.requires(Items.BEETROOT)
+				.requires(Items.BOWL)
+				.unlockedBy("has_item", has(TofuItems.TOFUHELL.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.HELL_RED_SOUP.get())
+				.requires(TofuItems.TOFUHELL.get())
+				.requires(Items.COOKED_COD)
+				.requires(Items.CARROT)
+				.requires(Items.BEETROOT)
+				.requires(Items.BOWL)
+				.requires(TofuItems.DOUBANJIANG.get())
+				.requires(TofuItems.CHILI.get(), 2)
+				.unlockedBy("has_item", has(TofuItems.DOUBANJIANG.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SUKIYAKI.get())
+				.requires(TofuItems.TOFUGRILLED.get(), 2)
+				.requires(Items.COOKED_PORKCHOP)
+				.requires(Items.BOWL)
+				.unlockedBy("has_item", has(TofuItems.TOFUGRILLED.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(TofuItems.TOFU_BUNS_BURGER.get())
+				.pattern("G")
+				.pattern("M")
+				.pattern("G")
+				.define('G', TofuItems.TOFUGRILLED.get())
+				.define('M', TofuItems.TOFU_HAMBURG.get())
+				.unlockedBy("has_item", has(TofuItems.TOFU_HAMBURG.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(TofuItems.STEAMED_BREAD.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
+				.requires(Tags.Items.EGGS)
+				.requires(Items.SUGAR)
+				.requires(Items.WHEAT)
+				.requires(Items.HONEY_BOTTLE)
+				.unlockedBy("has_item", has(TofuTags.Items.MILK_SOYMILK))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.STEAMED_BREAD_COCOA.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
+				.requires(Tags.Items.EGGS)
+				.requires(Items.SUGAR)
+				.requires(Items.WHEAT)
+				.requires(Items.COCOA_BEANS)
+				.unlockedBy("has_item", has(TofuTags.Items.MILK_SOYMILK))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_SOUL_BOTTLE.get(), 3)
+				.requires(TofuItems.BUCKET_SOYMILK_SOUL.get())
+				.requires(Items.GLASS_BOTTLE, 3)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK_SOUL.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.SOYMILK_HELL_BOTTLE.get(), 3)
+				.requires(TofuItems.BUCKET_SOYMILK_NETHER.get())
+				.requires(Items.GLASS_BOTTLE, 3)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK_NETHER.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(TofuBlocks.TOFU_GEM_BLOCK.get())
 				.pattern("GGG")
 				.pattern("GGG")
