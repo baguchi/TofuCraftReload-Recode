@@ -1189,7 +1189,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.SUKIYAKI.get())
 				.requires(TofuItems.TOFUGRILLED.get(), 2)
-				.requires(Items.COOKED_PORKCHOP)
+				.requires(Items.COOKED_BEEF)
 				.requires(Items.BOWL)
 				.unlockedBy("has_item", has(TofuItems.TOFUGRILLED.get()))
 				.save(consumer);
