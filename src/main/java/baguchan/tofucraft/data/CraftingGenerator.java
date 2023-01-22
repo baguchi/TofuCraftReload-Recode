@@ -1097,6 +1097,28 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuTags.Items.RICE_BLOCK))
 				.save(consumer);
 
+		// kinako_bread
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.KINAKO_BREAD.get(), 3)
+				.requires(TofuItems.KINAKO.get())
+				.requires(Items.BREAD)
+				.requires(Items.BREAD)
+				.requires(Items.BREAD)
+				.requires(TofuItems.BOTTLE_SOYOIL.get())
+				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYOIL.get()))
+				.save(consumer);
+
+		// edamame_tempura
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.EDAMAME_TEMPLA.get(), 6)
+				.requires(TofuItems.BOILED_EDAMAME.get())
+				.requires(TofuItems.BOILED_EDAMAME.get())
+				.requires(Items.WHEAT)
+				.requires(Items.WHEAT)
+				.requires(Items.WHEAT)
+				.requires(TofuItems.SALT.get())
+				.requires(TofuItems.BOTTLE_SOYOIL.get())
+				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYOIL.get()))
+				.save(consumer);
+
 		/*ShapedRecipeBuilder.shaped(TofuItems.TF_CAPACITOR.get())
 				.pattern(" M ")
 				.pattern("RGR")

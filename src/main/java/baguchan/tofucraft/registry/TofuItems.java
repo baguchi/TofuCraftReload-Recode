@@ -371,23 +371,25 @@ public class TofuItems {
 
 	public static final RegistryObject<Item> BOTTLE_DASHI = ITEMS.register("bottle_dashi", () -> new Item((new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final RegistryObject<Item> BOTTLE_SOYOIL = ITEMS.register("bottle_soyoil", () -> new Item((new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
-	public static final RegistryObject<Item> SOYSAUSE_RAMEN = register("soysause_ramen", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SOYSAUSE_RAMEN)));
+	public static final RegistryObject<Item> SOYSAUSE_RAMEN = ITEMS.register("soysause_ramen", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SOYSAUSE_RAMEN)));
 
-	public static final RegistryObject<Item> HELL_MABOU = register("hell_mabou", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.HELL_MABOU)));
-	public static final RegistryObject<Item> RED_SOUP = register("red_soup", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.RED_SOUP)));
-	public static final RegistryObject<Item> HELL_RED_SOUP = register("hell_red_soup", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.HELL_RED_SOUP)));
+	public static final RegistryObject<Item> HELL_MABOU = ITEMS.register("hell_mabou", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.HELL_MABOU)));
+	public static final RegistryObject<Item> RED_SOUP = ITEMS.register("red_soup", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.RED_SOUP)));
+	public static final RegistryObject<Item> HELL_RED_SOUP = ITEMS.register("hell_red_soup", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.HELL_RED_SOUP)));
 
-	public static final RegistryObject<Item> SUKIYAKI = register("sukiyaki", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SUKIYAKI)));
-	public static final RegistryObject<Item> TOFU_BUNS_BURGER = register("tofu_buns_burger", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU_BUNS_BURGER)));
+	public static final RegistryObject<Item> SUKIYAKI = ITEMS.register("sukiyaki", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SUKIYAKI)));
+	public static final RegistryObject<Item> TOFU_BUNS_BURGER = ITEMS.register("tofu_buns_burger", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU_BUNS_BURGER)));
 
-	public static final RegistryObject<Item> STEAMED_BREAD = register("steamed_bread", () -> new Item((new Item.Properties()).food(TofuFoods.STEAMED_BREAD)));
-	public static final RegistryObject<Item> STEAMED_BREAD_COCOA = register("steamed_bread_cocoa", () -> new Item((new Item.Properties()).food(TofuFoods.STEAMED_BREAD)));
+	public static final RegistryObject<Item> STEAMED_BREAD = ITEMS.register("steamed_bread", () -> new Item((new Item.Properties()).food(TofuFoods.STEAMED_BREAD)));
+	public static final RegistryObject<Item> STEAMED_BREAD_COCOA = ITEMS.register("steamed_bread_cocoa", () -> new Item((new Item.Properties()).food(TofuFoods.STEAMED_BREAD)));
 
+	public static final RegistryObject<Item> KINAKO_BREAD = ITEMS.register("kinako_bread", () -> new Item((new Item.Properties()).food(TofuFoods.KINAKO_BREAD)));
+
+	public static final RegistryObject<Item> EDAMAME_TEMPLA = ITEMS.register("edamame_templa", () -> new Item((new Item.Properties()).food(TofuFoods.EDAMAME_TEMPLA)));
 
 	private static RegistryObject<Item> register(String name, Supplier<Item> item) {
 		return ITEMS.register(name, item);
 	}
-
 	@SubscribeEvent
 	public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
 		event.registerCreativeModeTab(new ResourceLocation(TofuCraftReload.MODID, "tofu")
@@ -613,7 +615,8 @@ public class TofuItems {
 											TofuItems.TOFU_BUNS_BURGER,
 											TofuItems.TTTBURGER,
 											TofuItems.STEAMED_BREAD,
-											TofuItems.STEAMED_BREAD_COCOA)
+											TofuItems.STEAMED_BREAD_COCOA,
+											TofuItems.KINAKO_BREAD)
 									.map(item -> item.get().getDefaultInstance())
 									.toList())).build();
 				});
@@ -740,6 +743,7 @@ public class TofuItems {
 		ComposterBlock.COMPOSTABLES.put(TofuItems.ONIGIRI.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.ONIGIRI_SALT.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuBlocks.SAPLING_APRICOT.get().asItem(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuBlocks.SAPLING_TOFU.get().asItem(), 0.3F);
 	}
 
 	public static void registerDispenserItem() {
