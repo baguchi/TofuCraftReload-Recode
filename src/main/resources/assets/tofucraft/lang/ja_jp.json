@@ -506,7 +506,7 @@
   "item.tofucraft.tofu_gauntlet.soyshot": "ソイショット",
   "item.tofucraft.tofu_gauntlet.homing_shot": "ホーミングショット",
   "biome.tofucraft.tofu_waste": "豆腐の荒野",
-  "biome.tofucraft.tofu_plain": "豆腐草原",
+  "biome.tofucraft.tofu_plains": "豆腐草原",
   "biome.tofucraft.tofu_forest": "豆腐の森",
   "biome.tofucraft.tofu_mountain": "豆腐の山",
   "biome.tofucraft.zunda_forest": "ずんだの森",
@@ -547,5 +547,16 @@
   "tofucraft.jei.harden": "重みで固める工程",
   "tofucraft.need_defeat_boss": "ボスを先に倒す必要があります",
   "block.tofucraft.rice_block": "米俵",
-  "tofucraft.config.travelerTofunianSpawn": "豆腐商人をスポーンさせる"
+  "tofucraft.config.travelerTofunianSpawn": "豆腐商人をスポーンさせる",
+  "item.tofucraft.kinako_bread": "きなこ揚げパン",
+  "itemGroup.tofucraft.tofu": "Tofus",
+  "itemGroup.tofucraft.tofu_foods": "TofuCraft's Food",
+  "itemGroup.tofucraft.misc": "TofuCraft's Misc",
+  "itemGroup.tofucraft.tools": "TofuCraft's Tools",
+  "itemGroup.tofucraft.tofu_building_blocks": "Tofu Building Blocks",
+  "itemGroup.tofucraft.tofu.main_tab": "Tofus",
+  "itemGroup.tofucraft.tofu_foods.main_tab": "TofuCraft's Food",
+  "itemGroup.tofucraft.misc.main_tab": "TofuCraft's Misc",
+  "itemGroup.tofucraft.tools.main_tab": "TofuCraft's Tools",
+  "itemGroup.tofucraft.tofu_building_blocks.main_tab": "Tofu Building Blocks"
 }

@@ -506,7 +506,7 @@
   "item.tofucraft.tofu_gauntlet.soyshot": "Soy Shot",
   "item.tofucraft.tofu_gauntlet.homing_shot": "Homing Shot",
   "biome.tofucraft.tofu_waste": "Tofu Waste",
-  "biome.tofucraft.tofu_plain": "Tofu Plain",
+  "biome.tofucraft.tofu_plains": "Tofu Plain",
   "biome.tofucraft.tofu_forest": "Tofu Forest",
   "biome.tofucraft.tofu_mountain": "Tofu Mountain",
   "biome.tofucraft.zunda_forest": "Zunda Forest",
@@ -557,5 +557,6 @@
   "itemGroup.tofucraft.tofu_foods.main_tab": "TofuCraft's Food",
   "itemGroup.tofucraft.misc.main_tab": "TofuCraft's Misc",
   "itemGroup.tofucraft.tools.main_tab": "TofuCraft's Tools",
-  "itemGroup.tofucraft.tofu_building_blocks.main_tab": "Tofu Building Blocks"
+  "itemGroup.tofucraft.tofu_building_blocks.main_tab": "Tofu Building Blocks",
+  "item.tofucraft.kinako_bread": "KinakoBread"
 }
