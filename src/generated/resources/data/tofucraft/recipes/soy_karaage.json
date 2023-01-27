@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tofucraft:soymeat"
+    },
+    {
+      "item": "tofucraft:bottle_soysause"
+    },
+    {
+      "item": "tofucraft:bottle_soyoil"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:soy_karaage"
+  }
+}

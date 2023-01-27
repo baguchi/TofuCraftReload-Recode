@@ -386,10 +386,14 @@ public class TofuItems {
 	public static final RegistryObject<Item> KINAKO_BREAD = ITEMS.register("kinako_bread", () -> new Item((new Item.Properties()).food(TofuFoods.KINAKO_BREAD)));
 
 	public static final RegistryObject<Item> EDAMAME_TEMPLA = ITEMS.register("edamame_templa", () -> new Item((new Item.Properties()).food(TofuFoods.EDAMAME_TEMPLA)));
+	public static final RegistryObject<Item> NEGIMA = ITEMS.register("negima", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.NEGIMA)));
+	public static final RegistryObject<Item> SOY_KARAAGE = ITEMS.register("soy_karaage", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_KARAAGE)));
+	public static final RegistryObject<Item> SOYMEATDON = ITEMS.register("soymeatdon", () -> new Item((new Item.Properties()).food(TofuFoods.SOYMEATDON)));
 
 	private static RegistryObject<Item> register(String name, Supplier<Item> item) {
 		return ITEMS.register(name, item);
 	}
+
 	@SubscribeEvent
 	public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
 		event.registerCreativeModeTab(new ResourceLocation(TofuCraftReload.MODID, "tofu")
@@ -618,7 +622,10 @@ public class TofuItems {
 										TofuItems.STEAMED_BREAD,
 										TofuItems.STEAMED_BREAD_COCOA,
 										TofuItems.KINAKO_BREAD,
-										TofuItems.EDAMAME_TEMPLA)
+										TofuItems.EDAMAME_TEMPLA,
+										TofuItems.NEGIMA,
+										TofuItems.SOY_KARAAGE,
+										TofuItems.SOYMEATDON)
 								.map(item -> item.get().getDefaultInstance())
 								.toList());
 					}).build();

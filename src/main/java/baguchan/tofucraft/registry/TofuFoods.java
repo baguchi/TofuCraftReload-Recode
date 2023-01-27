@@ -128,6 +128,9 @@ public class TofuFoods {
 	public static final FoodProperties KINAKO_BREAD = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.65F).build();
 
 	public static final FoodProperties EDAMAME_TEMPLA = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.2F).fast().build();
+	public static final FoodProperties NEGIMA = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.65F).build();
+	public static final FoodProperties SOY_KARAAGE = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.6F).fast().build();
+	public static final FoodProperties SOYMEATDON = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.8F).build();
 
 	private static FoodProperties.Builder stew(int p_150384_) {
 		return (new FoodProperties.Builder()).nutrition(p_150384_).saturationMod(0.6F);

@@ -1109,7 +1109,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 
 		// kinako_bread
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.KINAKO_BREAD.get(), 3)
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.KINAKO_BREAD.get(), 3)
 				.requires(TofuItems.KINAKO.get())
 				.requires(Items.BREAD)
 				.requires(Items.BREAD)
@@ -1119,7 +1119,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 
 		// edamame_tempura
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.EDAMAME_TEMPLA.get(), 6)
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.EDAMAME_TEMPLA.get(), 6)
 				.requires(TofuItems.BOILED_EDAMAME.get())
 				.requires(TofuItems.BOILED_EDAMAME.get())
 				.requires(Items.WHEAT)
@@ -1129,6 +1129,27 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.BOTTLE_SOYOIL.get())
 				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYOIL.get()))
 				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.NEGIMA.get(), 1)
+				.requires(TofuItems.LEEK.get())
+				.requires(TofuItems.SOYMEAT.get())
+				.requires(Items.STICK)
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.unlockedBy("has_item", has(TofuItems.SOYMEAT.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOY_KARAAGE.get(), 1)
+				.requires(TofuItems.SOYMEAT.get())
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.requires(TofuItems.BOTTLE_SOYOIL.get())
+				.unlockedBy("has_item", has(TofuItems.SOYMEAT.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOYMEATDON.get(), 1)
+				.requires(TofuItems.SOYMEAT.get())
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.requires(TofuItems.LEEK.get())
+				.requires(TofuItems.RICE.get())
+				.unlockedBy("has_item", has(TofuItems.SOYMEAT.get()))
+				.save(consumer);
+
 
 		/*ShapedRecipeBuilder.shaped(TofuItems.TF_CAPACITOR.get())
 				.pattern(" M ")
