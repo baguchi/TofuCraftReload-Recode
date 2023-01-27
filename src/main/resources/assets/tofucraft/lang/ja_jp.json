@@ -375,6 +375,7 @@
   "block.tofucraft.zundama_block": "ずんだブロック",
   "block.tofucraft.tofucake": "豆腐ケーキ",
   "block.tofucraft.zundatofucake": "ずんだ豆腐ケーキ",
+  "block.tofucraft.soycheese_tart": "豆乳チーズタルト",
   "block.tofucraft.tofu_terrain": "自然の豆腐",
   "block.tofucraft.tofu_terrain_zunda": "自然のずんだ豆腐",
   "block.tofucraft.tofuslate": "豆腐深層岩",
@@ -558,5 +559,6 @@
   "itemGroup.tofucraft.tofu_foods.main_tab": "TofuCraft's Food",
   "itemGroup.tofucraft.misc.main_tab": "TofuCraft's Misc",
   "itemGroup.tofucraft.tools.main_tab": "TofuCraft's Tools",
-  "itemGroup.tofucraft.tofu_building_blocks.main_tab": "Tofu Building Blocks"
+  "itemGroup.tofucraft.tofu_building_blocks.main_tab": "Tofu Building Blocks",
+  "item.tofucraft.edamame_templa": "枝豆天ぷら"
 }

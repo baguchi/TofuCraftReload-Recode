@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:soy_cheese"
+    },
+    "E": {
+      "tag": "forge:eggs"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "pattern": [
+    "###",
+    "SES",
+    "WWW"
+  ],
+  "result": {
+    "item": "tofucraft:soycheese_tart"
+  }
+}

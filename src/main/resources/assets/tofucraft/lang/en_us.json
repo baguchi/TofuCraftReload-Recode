@@ -375,6 +375,7 @@
   "block.tofucraft.zundama_block": "Zundama Block",
   "block.tofucraft.tofucake": "TofuCake",
   "block.tofucraft.zundatofucake": "Zunda TofuCake",
+  "block.tofucraft.soycheese_tart": "SoyCheese Tart",
   "block.tofucraft.tofu_terrain": "Tofu Terrain",
   "block.tofucraft.tofu_terrain_zunda": "Zunda Tofu Terrain",
   "block.tofucraft.tofuslate": "Tofu Slate",
@@ -558,5 +559,6 @@
   "itemGroup.tofucraft.misc.main_tab": "TofuCraft's Misc",
   "itemGroup.tofucraft.tools.main_tab": "TofuCraft's Tools",
   "itemGroup.tofucraft.tofu_building_blocks.main_tab": "Tofu Building Blocks",
-  "item.tofucraft.kinako_bread": "KinakoBread"
+  "item.tofucraft.kinako_bread": "KinakoBread",
+  "item.tofucraft.edamame_templa": "Edamame Templa"
 }

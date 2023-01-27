@@ -231,6 +231,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		registerEmpty(TofuBlocks.TOFUCAKE.get());
 		registerEmpty(TofuBlocks.ZUNDATOFUCAKE.get());
+		registerEmpty(TofuBlocks.SOYCHEESE_TART.get());
 
 		this.add(TofuBlocks.TOFUBED.get(), (p_124233_) -> {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);

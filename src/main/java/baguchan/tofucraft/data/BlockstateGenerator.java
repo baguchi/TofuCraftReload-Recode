@@ -154,6 +154,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 		cake(TofuBlocks.TOFUCAKE, "tofucake");
 		cake(TofuBlocks.ZUNDATOFUCAKE, "zundatofucake");
+		cake(TofuBlocks.SOYCHEESE_TART, "soycheese_tart");
 
 		CandleTofuCakeBlock.getCandleCakes().forEach((block -> this.candleCake((CandleTofuCakeBlock) block)));
 	}

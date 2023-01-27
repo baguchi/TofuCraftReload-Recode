@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "tofucraft:block/white_candle_soycheese_candle_tart"
+    },
+    "lit=true": {
+      "model": "tofucraft:block/white_candle_soycheese_candle_tart_lit"
+    }
+  }
+}

@@ -73,6 +73,21 @@ Describe the steps to reproduce the problem -->
 3. etc...
 
 #### 反映Bug的图片 - Pictures:
+
 <!-- 如果是截图，可上传至 https://im.sb/ ; 如果是视频，可以考虑转码成10M以内的GIF动图然后上传至 https://upload.cc/ 
 If you want to include pictures you can upload them somewhere and then include them by adding "![](http://your-picture-link-goes-here.jpg)" below -->
 ![](在此处填入你的图片链接，没有图片请删除此行 Paste your picture link here, or delete this line)
+
+## Credit
+
+iduki and turtton helping Revamped Content
+
+46mofu for add new texture.
+
+@siu_lab helping translation and making showcase
+
+Rutl-Tri made tofu world music! (https://twitter.com/RoundDelta)
+
+@MajinThorin753 make classic texture!
+
+@uind_w helped Texture too!
