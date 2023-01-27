@@ -4,6 +4,7 @@ import baguchan.tofucraft.client.particle.ParticleStink;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.registry.TofuParticleTypes;
+import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -13,6 +14,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
@@ -139,8 +141,24 @@ public class ShuDofuSpider extends Monster {
 		return false;
 	}
 
-	public int getAmbientSoundInterval() {
-		return 120;
+	@Override
+	public float getVoicePitch() {
+		return (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 0.6F;
+	}
+
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return TofuSounds.TOFUSPIDER_AMBIENT.get();
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource p_33814_) {
+		return TofuSounds.TOFUSPIDER_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return TofuSounds.TOFUSPIDER_DEATH.get();
 	}
 
 	@Override
@@ -230,7 +248,7 @@ public class ShuDofuSpider extends Monster {
 			if (this.rangedTime == 30) {
 				if (this.random.nextInt(2) == 1) {
 					this.performRangedAttack(this.getTarget());
-					this.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+					this.playSound(TofuSounds.TOFUSPIDER_SPIT.get(), 2.0F, (float) (0.6F + this.random.nextDouble() * 0.2F));
 				} else {
 					this.performBreathAttack(this.getTarget());
 					this.playSound(SoundEvents.ENDER_DRAGON_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
@@ -303,7 +321,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public void performRangedAttack(LivingEntity p_29912_) {
-		this.playSound(SoundEvents.LLAMA_SPIT, 2.0F, 1.0F);
+		this.playSound(TofuSounds.TOFUSPIDER_SPIT.get(), 2.0F, (float) (0.6F + this.random.nextDouble() * 0.2F));
 		for (int i = 0; i < 3; i++) {
 			NattoStringEntity natto = new NattoStringEntity(this.level, this);
 			double d1 = p_29912_.getX() - this.getX();
