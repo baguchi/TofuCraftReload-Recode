@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.client.particle.ParticleStink;
+import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.registry.TofuParticleTypes;
@@ -407,7 +408,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public void graspAttack(Entity p_36347_) {
-		if (p_36347_ instanceof LivingEntity) {
+		if (p_36347_ instanceof LivingEntity && !(p_36347_ instanceof NattoCobWebEntity)) {
 			float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			if (p_36347_.hurt(DamageSource.mobAttack(this), f * 0.2F)) {
 				this.heal(f * 0.2F);
