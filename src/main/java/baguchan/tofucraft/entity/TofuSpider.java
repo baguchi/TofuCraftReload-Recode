@@ -3,6 +3,7 @@ package baguchan.tofucraft.entity;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuEntityTypes;
+import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -10,8 +11,10 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityDimensions;
@@ -141,6 +144,21 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		this.level.broadcastEntityEvent(this, (byte) 16);
 	}
 
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return TofuSounds.TOFUSPIDER_AMBIENT.get();
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource p_33814_) {
+		return TofuSounds.TOFUSPIDER_HURT.get();
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return TofuSounds.TOFUSPIDER_DEATH.get();
+	}
+
 	protected float getStandingEyeHeight(Pose p_33799_, EntityDimensions p_33800_) {
 		return 0.35F;
 	}
@@ -209,7 +227,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 						if (this.attackStep > 1) {
 							this.spider.performRangedAttack(livingentity, attackTime);
 
-							this.spider.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 0.4F / (this.spider.getRandom().nextFloat() * 0.4F + 0.8F));
+							this.spider.playSound(TofuSounds.TOFUSPIDER_SPIT.get(), 1.0F, 0.4F / (this.spider.getRandom().nextFloat() * 0.4F + 0.8F));
 						}
 					}
 
@@ -229,7 +247,6 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	}
 
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
-		this.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 1.0F);
 		for (int i = 0; i < 3; i++) {
 			FukumameEntity fukumame = new FukumameEntity(this.level, this);
 			double d1 = p_29912_.getX() - this.getX();

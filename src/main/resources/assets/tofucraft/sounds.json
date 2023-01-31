@@ -99,5 +99,29 @@
       "tofucraft:item/soybean/soybean_cracking2"
     ],
     "subtitle": "subtitles.block.soybean.soybean_crack"
+  },
+  "mob.tofuspider.ambient": {
+    "sounds": [
+      "tofucraft:mob/tofuspider/tofuspider_idle"
+    ],
+    "subtitle": "subtitles.entity.tofuspider.idle"
+  },
+  "mob.tofuspider.hurt": {
+    "sounds": [
+      "tofucraft:mob/tofuspider/tofuspider_hurt"
+    ],
+    "subtitle": "subtitles.entity.tofuspider.hurt"
+  },
+  "mob.tofuspider.death": {
+    "sounds": [
+      "tofucraft:mob/tofuspider/tofuspider_death"
+    ],
+    "subtitle": "subtitles.entity.tofuspider.death"
+  },
+  "mob.tofuspider.spit": {
+    "sounds": [
+      "tofucraft:mob/tofuspider/tofuspider_spit"
+    ],
+    "subtitle": "subtitles.entity.tofuspider.spit"
   }
 }
