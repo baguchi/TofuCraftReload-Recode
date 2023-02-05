@@ -16,8 +16,8 @@ public enum TofuArmorMaterial implements ArmorMaterial {
 	MOMEN("tofucraft:momen", 1, new int[]{0, 1, 1, 0}, 10, SoundEvents.SNOW_BREAK, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMOMEN.get())),
 	SOLID("tofucraft:solid", 10, new int[]{1, 4, 5, 2}, 12, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUISHI.get())),
 	METAL("tofucraft:metal", 14, new int[]{2, 5, 6, 2}, 14, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMETAL.get())),
-	DIAMOND("tofucraft:diamond", 36, new int[]{4, 7, 9, 4}, 18, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.1F, 0.05F, () -> Ingredient.of(TofuItems.TOFUDIAMOND.get())),
-	SCULK_BONE("tofucraft:sculk_bone", 40, new int[]{4, 7, 9, 4}, 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.5F, 0.1F, () -> Ingredient.of(TofuItems.SOY_SCULK_BONE.get()));
+	DIAMOND("tofucraft:diamond", 36, new int[]{4, 7, 9, 4}, 18, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.5F, 0.05F, () -> Ingredient.of(TofuItems.TOFUDIAMOND.get())),
+	SCULK_BONE("tofucraft:sculk_bone", 40, new int[]{4, 7, 9, 4}, 20, SoundEvents.ARMOR_EQUIP_DIAMOND, 4.0F, 0.1F, () -> Ingredient.of(TofuItems.SOY_SCULK_BONE.get()));
 
 	private static final int[] HEALTH_PER_SLOT;
 

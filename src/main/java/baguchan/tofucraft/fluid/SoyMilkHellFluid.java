@@ -5,10 +5,12 @@ import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -53,6 +55,11 @@ public abstract class SoyMilkHellFluid extends WaterFluid {
 
 	public boolean isSame(Fluid p_207187_1_) {
 		return p_207187_1_ == TofuFluids.SOYMILK_HELL.get() || p_207187_1_ == TofuFluids.SOYMILK_HELL_FLOW.get();
+	}
+
+	@Override
+	public boolean canBeReplacedWith(FluidState p_76233_, BlockGetter p_76234_, BlockPos p_76235_, Fluid p_76236_, Direction p_76237_) {
+		return !this.isSame(p_76236_);
 	}
 
 
