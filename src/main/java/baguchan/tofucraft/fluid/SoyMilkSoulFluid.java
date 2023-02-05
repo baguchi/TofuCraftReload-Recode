@@ -5,10 +5,12 @@ import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,6 +42,11 @@ public abstract class SoyMilkSoulFluid extends WaterFluid {
 				p_204522_1_.playLocalSound((double) p_204522_2_.getX() + 0.5D, (double) p_204522_2_.getY() + 0.5D, (double) p_204522_2_.getZ() + 0.5D, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, p_204522_4_.nextFloat() * 0.25F + 0.75F, p_204522_4_.nextFloat() + 0.5F, false);
 			}
 		}
+	}
+
+	@Override
+	public boolean canBeReplacedWith(FluidState p_76233_, BlockGetter p_76234_, BlockPos p_76235_, Fluid p_76236_, Direction p_76237_) {
+		return !this.isSame(p_76236_);
 	}
 
 	protected boolean canConvertToSource() {

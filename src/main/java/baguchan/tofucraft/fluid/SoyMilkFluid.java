@@ -66,8 +66,8 @@ public abstract class SoyMilkFluid extends WaterFluid {
 	}
 
 	@Override
-	public boolean canBeReplacedWith(FluidState p_76458_, BlockGetter p_76459_, BlockPos p_76460_, Fluid p_76461_, Direction p_76462_) {
-		return super.canBeReplacedWith(p_76458_, p_76459_, p_76460_, p_76461_, p_76462_);
+	public boolean canBeReplacedWith(FluidState p_76233_, BlockGetter p_76234_, BlockPos p_76235_, Fluid p_76236_, Direction p_76237_) {
+		return !this.isSame(p_76236_);
 	}
 
 	protected float getExplosionResistance() {
