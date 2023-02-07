@@ -78,6 +78,8 @@ public class TofuPortalBlock extends Block {
 					attemptSendPlayer(p_196262_4_, p_196262_2_);
 					handler.setPortalTimer(0);
 				}
+			} else {
+				handler.tofuPortalCooldown = 200;
 			}
 		});
 
