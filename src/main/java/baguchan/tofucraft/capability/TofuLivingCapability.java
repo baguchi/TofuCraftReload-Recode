@@ -22,7 +22,7 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 
 	public boolean isInTofuPortal = false;
 	public int tofuPortalTimer = 0;
-	public int tofuPortalCooldown;
+	public int tofuPortalCooldown = 200;
 	public float prevPortalAnimTime, portalAnimTime = 0.0F;
 
 	public void tick(Entity entity) {
