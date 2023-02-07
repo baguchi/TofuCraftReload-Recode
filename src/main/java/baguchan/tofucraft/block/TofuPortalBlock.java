@@ -74,13 +74,14 @@ public class TofuPortalBlock extends Block {
 			handler.setInPortal(true);
 			if (handler.tofuPortalCooldown <= 0) {
 				int waitTime = handler.getPortalTimer();
-				if (waitTime >= 80 || !(p_196262_4_ instanceof Player)) {
+				if (waitTime >= 80 || !(p_196262_4_ instanceof Player) || ((Player) p_196262_4_).isCreative()) {
 					attemptSendPlayer(p_196262_4_, p_196262_2_);
 					handler.setPortalTimer(0);
 				}
+			} else {
+				handler.tofuPortalCooldown = 200;
 			}
 		});
-
 	}
 
 	private static ResourceKey<Level> getDestination(Entity entity) {
