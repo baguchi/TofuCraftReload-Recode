@@ -23,6 +23,7 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 	public boolean isInTofuPortal = false;
 	public int tofuPortalTimer = 0;
 	public float prevPortalAnimTime, portalAnimTime = 0.0F;
+	public int tofuPortalCooldown = 200;
 
 	public void tick(Entity entity) {
 		if (entity.level.isClientSide) {
@@ -41,6 +42,10 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 					playPortalSound(mc);
 				}
 			}
+		}
+
+		if (this.tofuPortalCooldown > 0) {
+			--this.tofuPortalCooldown;
 		}
 
 		if (this.isInTofuPortal) {

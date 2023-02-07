@@ -14,6 +14,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -71,10 +72,12 @@ public class TofuPortalBlock extends Block {
 
 		p_196262_4_.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(handler -> {
 			handler.setInPortal(true);
-			int waitTime = handler.getPortalTimer();
-			if (waitTime >= 80) {
-				attemptSendPlayer(p_196262_4_, p_196262_2_);
-				handler.setPortalTimer(0);
+			if (handler.tofuPortalCooldown <= 0) {
+				int waitTime = handler.getPortalTimer();
+				if (waitTime >= 80 || !(p_196262_4_ instanceof Player) || ((Player) p_196262_4_).isCreative()) {
+					attemptSendPlayer(p_196262_4_, p_196262_2_);
+					handler.setPortalTimer(0);
+				}
 			}
 		});
 
