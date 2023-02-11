@@ -21,19 +21,20 @@
       "multiblock": {
         "pattern": [
           [
-            "  S  "
+            "S"
           ],
           [
-            "  B  "
+            "0"
           ],
           [
-            "  S  "
+            "S"
           ]
         ],
         "mapping": {
           "S": "minecraft:cobblestone",
-          "B": "tofucraft:blocktofumomen"
-        }
+          "0": "tofucraft:blocktofumomen"
+        },
+        "symmetrical": true
       }
     },
     {

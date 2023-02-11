@@ -11,6 +11,7 @@ import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyHealthMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.message.TFStorageSoymilkMessage;
+import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBiomeModifiers;
 import baguchan.tofucraft.registry.TofuBiomes;
@@ -123,6 +124,7 @@ public class TofuCraftReload {
 			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift"));
 			TofuEnergyMap.init();
 			TofuBiomes.init();
+			ModInteractionInformations.init();
 		});
 	}
 
