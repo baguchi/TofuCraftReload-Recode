@@ -33,7 +33,8 @@
         "mapping": {
           "S": "minecraft:cobblestone",
           "0": "tofucraft:blocktofumomen"
-        }
+        },
+        "symmetrical": true
       }
     },
     {

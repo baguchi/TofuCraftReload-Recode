@@ -5,17 +5,17 @@
   "priority": true,
   "pages": [
     {
-      "type": "text",
+      "type": "patchouli:text",
       "text": "Some preparation is required before making tofu.$(br2)First you have to prepare a soymilk bucket and a Bittern Bottle to harden it."
     },
     {
-      "type": "crafting",
+      "type": "patchouli:crafting",
       "title": "SoyMilk Bucket",
       "recipe": "tofucraft:bucket_soymilk",
       "text": "Soymilk is simulator like water.$(br2)but bit different."
     },
     {
-      "type": "image",
+      "type": "patchouli:image",
       "images": [
         "tofucraft:textures/gui/page/before_the_making.png"
       ],
@@ -40,7 +40,7 @@
       "text": "Salf Furnace is an easy-to-understand gui instead of using iron.$(br2)You need to put water on water bucket."
     },
     {
-      "type": "text",
+      "type": "patchouli:text",
       "text": "when using BitternBottle for soymilk. soymilk turned kinu tofu!"
     }
   ]

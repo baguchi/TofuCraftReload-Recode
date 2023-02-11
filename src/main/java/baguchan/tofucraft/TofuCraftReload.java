@@ -11,6 +11,7 @@ import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyHealthMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.message.TFStorageSoymilkMessage;
+import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBiomeModifiers;
 import baguchan.tofucraft.registry.TofuBiomes;
@@ -140,6 +141,7 @@ public class TofuCraftReload {
 			TofuEnergyMap.init();
 			TofuBiomes.init();
 			TofuConfiguredWorldCarvers.init();
+			ModInteractionInformations.init();
 		});
 	}
 
