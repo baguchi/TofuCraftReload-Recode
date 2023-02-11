@@ -44,10 +44,10 @@ public abstract class SoyMilkHellFluid extends WaterFluid {
 		}
 	}
 
-	protected boolean canConvertToSource() {
+	@Override
+	public boolean canConvertToSource(FluidState state, Level level, BlockPos pos) {
 		return false;
 	}
-
 
 	public BlockState createLegacyBlock(FluidState p_204527_1_) {
 		return TofuBlocks.SOYMILK_HELL.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_204527_1_)));

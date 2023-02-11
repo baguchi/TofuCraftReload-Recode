@@ -53,7 +53,8 @@ public abstract class SoyMilkFluid extends WaterFluid {
 		}
 	}
 
-	protected boolean canConvertToSource() {
+	@Override
+	public boolean canConvertToSource(FluidState state, Level level, BlockPos pos) {
 		return false;
 	}
 
