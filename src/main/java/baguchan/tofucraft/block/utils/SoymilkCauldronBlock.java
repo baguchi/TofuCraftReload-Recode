@@ -1,6 +1,5 @@
 package baguchan.tofucraft.block.utils;
 
-import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -10,13 +9,13 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -27,21 +26,28 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.function.Supplier;
+
 public class SoymilkCauldronBlock extends Block {
 	public static final BooleanProperty SOYCHEESE = BooleanProperty.create("soycheese");
 
 	private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), box(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), BooleanOp.ONLY_FIRST);
 
-	public SoymilkCauldronBlock(BlockBehaviour.Properties p_151946_) {
+	private final Supplier<Item> itemSupplier;
+	private final Supplier<Item> cheeseSupplier;
+
+	public SoymilkCauldronBlock(Properties p_151946_, Supplier<Item> itemSupplier, Supplier<Item> cheeseSupplier) {
 		super(p_151946_);
+		this.itemSupplier = itemSupplier;
+		this.cheeseSupplier = cheeseSupplier;
 		this.registerDefaultState(this.stateDefinition.any().setValue(SOYCHEESE, false));
 	}
 
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		if (state.getValue(SOYCHEESE)) {
-			ItemStack cheese = new ItemStack(TofuItems.SOY_CHEESE.get(), 4);
+			ItemStack cheese = new ItemStack(this.cheeseSupplier.get(), 4);
 			float f = 0.7F;
 			double d0 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
 			double d1 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
@@ -52,7 +58,7 @@ public class SoymilkCauldronBlock extends Block {
 			worldIn.setBlock(pos, Blocks.CAULDRON.defaultBlockState(), 2);
 			return InteractionResult.SUCCESS;
 		} else if (itemHeld.is(Items.BUCKET)) {
-			ItemStack bucket = new ItemStack(TofuItems.BUCKET_SOYMILK.get());
+			ItemStack bucket = new ItemStack(itemSupplier.get());
 			worldIn.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 			if (itemHeld.getCount() == 1) {
 				player.setItemInHand(handIn, bucket);

@@ -143,6 +143,8 @@ public class TofuItems {
 	public static final RegistryObject<Item> NANBANTOFU = ITEMS.register("nanbantofu", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.NANBANTOFU).stacksTo(1)));
 
 	public static final RegistryObject<Item> SOY_CHEESE = ITEMS.register("soy_cheese", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_CHEESE)));
+	public static final RegistryObject<Item> SOY_NETHER_CHEESE = ITEMS.register("soy_nether_cheese", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_NETHER_CHEESE)));
+	public static final RegistryObject<Item> SOY_SOUL_CHEESE = ITEMS.register("soy_soul_cheese", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_SOUL_CHEESE)));
 
 	public static final RegistryObject<Item> YUDOFU = ITEMS.register("yudofu", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.YUDOFU)));
 	public static final RegistryObject<Item> EDAMAME_RICE = ITEMS.register("edamame_rice", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.EDAMAME_RICE)));
@@ -589,6 +591,10 @@ public class TofuItems {
 										TofuItems.MEAT_WRAPPED_YUBA,
 										TofuItems.SOYMEAT,
 										TofuItems.SOY_CHEESE,
+										TofuItems.SOY_NETHER_CHEESE,
+										TofuItems.SOY_SOUL_CHEESE,
+										TofuItems.SOY_NETHER_CHEESE,
+										TofuItems.SOY_SOUL_CHEESE,
 										TofuItems.SOY_CHOCOLATE,
 										TofuItems.TOFUNIAN_SOY_CHOCOLATE,
 										TofuItems.TOFU_STEAK,

@@ -124,6 +124,8 @@ public class TofuFoods {
 	public static final FoodProperties STEAMED_BREAD = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
 
 	public static final FoodProperties SOY_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).build();
+	public static final FoodProperties SOY_NETHER_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200), 1.0F).build();
+	public static final FoodProperties SOY_SOUL_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200), 1.0F).build();
 
 	public static final FoodProperties KINAKO_BREAD = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.65F).build();
 

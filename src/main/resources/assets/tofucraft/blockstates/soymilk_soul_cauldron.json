@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "soycheese=true": {
+      "model": "tofucraft:block/soy_soul_cheese_cauldron"
+    },
+    "soycheese=false": {
+      "model": "tofucraft:block/soymilk_soul_cauldron"
+    }
+  }
+}

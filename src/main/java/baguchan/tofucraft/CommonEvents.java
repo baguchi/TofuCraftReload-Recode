@@ -134,6 +134,40 @@ public class CommonEvents {
 			event.setCancellationResult(InteractionResult.SUCCESS);
 			event.setCanceled(true);
 		}
+		if (event.getItemStack().is(TofuItems.BUCKET_SOYMILK_NETHER.get()) && event.getLevel().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+			event.getLevel().setBlock(event.getPos(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get().defaultBlockState(), 2);
+			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
+			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
+			if (!event.getEntity().isCreative()) {
+				event.getItemStack().shrink(1);
+			}
+			if (event.getItemStack().isEmpty()) {
+				event.getEntity().setItemInHand(event.getHand(), itemstack2);
+			} else if (!event.getEntity().isCreative() &&
+					!event.getEntity().getInventory().add(itemstack2)) {
+				event.getEntity().drop(itemstack2, false);
+			}
+
+			event.setCancellationResult(InteractionResult.SUCCESS);
+			event.setCanceled(true);
+		}
+		if (event.getItemStack().is(TofuItems.BUCKET_SOYMILK_SOUL.get()) && event.getLevel().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+			event.getLevel().setBlock(event.getPos(), TofuBlocks.SOYMILK_SOUL_CAULDRON.get().defaultBlockState(), 2);
+			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
+			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
+			if (!event.getEntity().isCreative()) {
+				event.getItemStack().shrink(1);
+			}
+			if (event.getItemStack().isEmpty()) {
+				event.getEntity().setItemInHand(event.getHand(), itemstack2);
+			} else if (!event.getEntity().isCreative() &&
+					!event.getEntity().getInventory().add(itemstack2)) {
+				event.getEntity().drop(itemstack2, false);
+			}
+
+			event.setCancellationResult(InteractionResult.SUCCESS);
+			event.setCanceled(true);
+		}
 	}
 
 	@SubscribeEvent

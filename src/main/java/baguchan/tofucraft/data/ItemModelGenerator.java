@@ -418,6 +418,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.STEAMED_BREAD_COCOA.get());
 
 		singleTex(TofuItems.SOY_CHEESE.get());
+		singleTex(TofuItems.SOY_NETHER_CHEESE.get());
+		singleTex(TofuItems.SOY_SOUL_CHEESE.get());
 
 		toBlock(TofuBlocks.EGGTOFU.get());
 		toBlock(TofuBlocks.TOFUSTAIR_EGG.get());
