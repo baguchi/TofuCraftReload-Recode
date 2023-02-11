@@ -74,13 +74,12 @@ public class TofuData extends SavedData {
 		this.travelerUUID = id;
 	}
 
-
 	@Override
 	public CompoundTag save(CompoundTag compound) {
-		compound.putInt("SpawnDelay", this.travelerSpawnDelay);
-		compound.putFloat("SpawnChance", this.travelerSpawnChance);
+		compound.putInt("TravelerSpawnDelay", this.travelerSpawnDelay);
+		compound.putFloat("TravelerSpawnChance", this.travelerSpawnChance);
 		if (this.travelerUUID != null) {
-			compound.putString("Id", this.travelerUUID.toString());
+			compound.putString("TravelerUUID", this.travelerUUID.toString());
 		}
 		return compound;
 	}
