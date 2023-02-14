@@ -1,5 +1,6 @@
 package baguchan.tofucraft.entity;
 
+import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.registry.TofuTrades;
 import net.minecraft.core.BlockPos;
@@ -91,7 +92,7 @@ public class TravelerTofunian extends AbstractTofunian {
 
 	public InteractionResult mobInteract(Player p_35856_, InteractionHand p_35857_) {
 		ItemStack itemstack = p_35856_.getItemInHand(p_35857_);
-		if (!itemstack.is(Items.VILLAGER_SPAWN_EGG) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
+		if (!itemstack.is(TofuItems.TRAVELER_TOFUNIAN_SPAWNEGG.get()) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
 			if (p_35857_ == InteractionHand.MAIN_HAND) {
 				p_35856_.awardStat(Stats.TALKED_TO_VILLAGER);
 			}
