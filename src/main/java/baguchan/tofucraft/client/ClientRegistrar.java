@@ -16,6 +16,7 @@ import baguchan.tofucraft.client.render.SoulFukumameRender;
 import baguchan.tofucraft.client.render.ZundaArrowRender;
 import baguchan.tofucraft.client.render.entity.ShuDofuSpiderRender;
 import baguchan.tofucraft.client.render.entity.TofuCowRender;
+import baguchan.tofucraft.client.render.entity.TofuCreeperRender;
 import baguchan.tofucraft.client.render.entity.TofuFishRender;
 import baguchan.tofucraft.client.render.entity.TofuGandlemRender;
 import baguchan.tofucraft.client.render.entity.TofuGolemRender;
@@ -177,6 +178,7 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.TOFUFISH.get(), TofuFishRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_GOLEM.get(), TofuGolemRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUSLIME.get(), TofuSlimeRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFUCREEPER.get(), TofuCreeperRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUSPIDER.get(), TofuSpiderRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_GANDLEM.get(), TofuGandlemRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.SHUDOFUSPIDER.get(), ShuDofuSpiderRender::new);

@@ -17,7 +17,8 @@ public class TofuBiomeDefaultFeatures {
 
 	public static void tofuMonsterSpawns(MobSpawnSettings.Builder p_126813_) {
 		p_126813_.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUSLIME.get(), 100, 4, 4));
-		p_126813_.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUSPIDER.get(), 10, 4, 4));
+		p_126813_.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUCREEPER.get(), 10, 2, 3));
+		p_126813_.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUSPIDER.get(), 30, 2, 3));
 	}
 
 	public static void tofuCreatureSpawns(MobSpawnSettings.Builder p_126813_) {
