@@ -41,27 +41,6 @@
           ]
         }
       ]
-    },
-    {
-      "name": "tofu_slime_s",
-      "conditions": [
-        {
-          "condition": "killed_by_player"
-        },
-        {
-          "condition": "random_chance_with_looting",
-          "chance": 0.005,
-          "looting_multiplier": 0.005
-        }
-      ],
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "item",
-          "name": "tofucraft:tofustick",
-          "weight": 1
-        }
-      ]
     }
   ]
 }
