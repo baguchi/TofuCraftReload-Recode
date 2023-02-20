@@ -13,6 +13,7 @@ import baguchan.tofucraft.entity.TofuSpider;
 import baguchan.tofucraft.entity.Tofunian;
 import baguchan.tofucraft.entity.TravelerTofunian;
 import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
+import baguchan.tofucraft.entity.projectile.FallingTofuEntity;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
@@ -86,10 +87,13 @@ public class TofuEntityTypes {
 
 
 	public static final RegistryObject<EntityType<NattoCobWebEntity>> NATTO_COBWEB = ENTITIES.register("natto_cobweb", () -> EntityType.Builder.<NattoCobWebEntity>of(NattoCobWebEntity::new, MobCategory.MISC)
-			.sized(3F, 0.1F).build("tofucraft:natto_cobweb"));
+			.sized(3F, 0.1F).updateInterval(10).build("tofucraft:natto_cobweb"));
 
 	public static final RegistryObject<EntityType<NattoBallEntity>> NATTO_BALL = ENTITIES.register("natto_ball", () -> EntityType.Builder.<NattoBallEntity>of(NattoBallEntity::new, MobCategory.MISC)
-			.sized(0.35F, 0.35F).build("tofucraft:natto_ball"));
+			.sized(0.35F, 0.35F).updateInterval(20).build("tofucraft:natto_ball"));
+
+	public static final RegistryObject<EntityType<FallingTofuEntity>> FALLING_TOFU = ENTITIES.register("falling_tofu", () -> EntityType.Builder.<FallingTofuEntity>of(FallingTofuEntity::new, MobCategory.MISC)
+			.sized(1.0F, 1.0F).updateInterval(20).build("tofucraft:falling_tofu"));
 
 	public static final RegistryObject<EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
 			.sized(3.5F, 2.9F).clientTrackingRange(10).fireImmune().build("tofucraft:shudofuspider"));
