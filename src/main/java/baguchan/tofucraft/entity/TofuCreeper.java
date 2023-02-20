@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.registry.TofuBlocks;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.EntityType;
@@ -27,12 +28,13 @@ public class TofuCreeper extends Creeper {
 	}
 
 	private void spawnTofu() {
-		for (int i = 0; i < 4; i++) {
-			FallingBlockEntity fallingBlock = FallingBlockEntity.fall(this.level, this.blockPosition(), TofuBlocks.TOFU_TERRAIN.get().defaultBlockState());
-			fallingBlock.setDeltaMovement(this.random.nextFloat() - this.random.nextFloat(), this.random.nextFloat() * 0.8F + 0.1F, this.random.nextFloat() - this.random.nextFloat());
-			this.level.addFreshEntity(fallingBlock);
+		if (level instanceof ServerLevel serverLevel) {
+			for (int i = 0; i < 4; i++) {
+				FallingBlockEntity fallingBlock = FallingBlockEntity.fall(serverLevel, this.blockPosition(), TofuBlocks.TOFU_TERRAIN.get().defaultBlockState());
+				fallingBlock.setDeltaMovement(this.random.nextFloat() - this.random.nextFloat(), this.random.nextFloat() * 0.5F + 0.35F, this.random.nextFloat() - this.random.nextFloat());
+				serverLevel.addFreshEntityWithPassengers(fallingBlock);
+			}
 		}
-
 	}
 
 	private void spawnLingeringCloud() {

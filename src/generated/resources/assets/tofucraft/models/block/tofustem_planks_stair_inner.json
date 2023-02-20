@@ -1,0 +1,8 @@
+{
+  "parent" : "minecraft:block/inner_stairs",
+  "textures" : {
+    "bottom" : "tofucraft:block/tofustem_planks",
+    "side" : "tofucraft:block/tofustem_planks",
+    "top" : "tofucraft:block/tofustem_planks"
+  }
+}

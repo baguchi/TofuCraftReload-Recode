@@ -373,6 +373,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuBlocks.TOFU_STEM.get()))
 				.save(consumer);
 
+		makeStairs(consumer, TofuBlocks.TOFU_STEM_PLANKS_STAIR, TofuBlocks.TOFU_STEM);
+		makeSlab(consumer, TofuBlocks.TOFU_STEM_PLANKS_SLAB, TofuBlocks.TOFU_STEM);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SALT_FURNACE.get())
 				.pattern("###")
 				.pattern("# #")

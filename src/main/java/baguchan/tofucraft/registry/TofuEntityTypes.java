@@ -110,7 +110,7 @@ public class TofuEntityTypes {
 		event.put(TOFUFISH.get(), AbstractFish.createAttributes().build());
 		event.put(TOFU_GOLEM.get(), TofuGolem.createAttributes().build());
 		event.put(TOFUSLIME.get(), Monster.createMonsterAttributes().build());
-		event.put(TOFUCREEPER.get(), Monster.createMonsterAttributes().build());
+		event.put(TOFUCREEPER.get(), TofuCreeper.createAttributes().build());
 		event.put(TOFUSPIDER.get(), TofuSpider.createAttributes().build());
 		event.put(TOFU_GANDLEM.get(), TofuGandlem.createAttributes().build());
 		event.put(SHUDOFUSPIDER.get(), ShuDofuSpider.createAttributes().build());

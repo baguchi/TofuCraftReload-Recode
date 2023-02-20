@@ -123,7 +123,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		itemBlockFlat(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
 		toBlock(TofuBlocks.TOFU_STEM.get());
 		toBlock(TofuBlocks.TOFU_STEM_PLANKS.get());
-
+		toBlock(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get());
+		toBlock(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get());
 		itemBlockFlat(TofuBlocks.SAPLING_TOFU.get());
 		toBlock(TofuBlocks.LEAVES_TOFU.get());
 

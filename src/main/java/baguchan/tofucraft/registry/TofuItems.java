@@ -524,6 +524,8 @@ public class TofuItems {
 											TofuBlocks.LEEK_STEM,
 											TofuBlocks.TOFU_STEM,
 											TofuBlocks.TOFU_STEM_PLANKS,
+											TofuBlocks.TOFU_STEM_PLANKS_STAIR,
+											TofuBlocks.TOFU_STEM_PLANKS_SLAB,
 											TofuBlocks.ZUNDATOFU_MUSHROOM,
 											TofuBlocks.SAPLING_TOFU,
 											TofuBlocks.LEAVES_TOFU,

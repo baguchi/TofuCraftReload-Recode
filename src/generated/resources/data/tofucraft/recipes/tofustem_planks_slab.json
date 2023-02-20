@@ -1,0 +1,16 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "building",
+  "key" : {
+    "M" : {
+      "item" : "tofucraft:tofustem"
+    }
+  },
+  "pattern" : [
+    "MMM"
+  ],
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofustem_planks_slab"
+  }
+}
