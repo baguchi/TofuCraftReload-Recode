@@ -88,6 +88,7 @@ public class ShuDofuSpider extends Monster {
 	public final AnimationState jumpAnimationState = new AnimationState();
 
 	public final AnimationState graspAnimationState = new AnimationState();
+	public final AnimationState jumpPreAnimationState = new AnimationState();
 
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
 
@@ -376,7 +377,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public void jumpAttack(Entity p_36347_) {
-		if (p_36347_.isAttackable()) {
+		if (p_36347_.isAttackable() && !this.isAlliedTo(p_36347_)) {
 			p_36347_.hurt(DamageSource.mobAttack(this), 18.0F);
 			float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
 			i += EnchantmentHelper.getKnockbackBonus(this) + 1.5F;
@@ -408,7 +409,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public void graspAttack(Entity p_36347_) {
-		if (p_36347_ instanceof LivingEntity && !(p_36347_ instanceof NattoCobWebEntity)) {
+		if (p_36347_ instanceof LivingEntity && !(p_36347_ instanceof NattoCobWebEntity) && !this.isAlliedTo(p_36347_)) {
 			float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			if (p_36347_.hurt(DamageSource.mobAttack(this), f * 0.2F)) {
 				this.heal(f * 0.2F);
@@ -460,7 +461,7 @@ public class ShuDofuSpider extends Monster {
 	public boolean hurt(DamageSource p_31461_, float p_31462_) {
 		if (this.isInvulnerableTo(p_31461_)) {
 			return false;
-		} else if (p_31461_ != DamageSource.SWEET_BERRY_BUSH && p_31461_ != DamageSource.CACTUS && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.IN_WALL && !p_31461_.isMagic()) {
+		} else if (p_31461_ != DamageSource.SWEET_BERRY_BUSH && p_31461_ != DamageSource.CACTUS && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.IN_WALL && p_31461_ != DamageSource.MAGIC) {
 			Entity entity = p_31461_.getDirectEntity();
 
 			if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
@@ -496,6 +497,15 @@ public class ShuDofuSpider extends Monster {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 32F).add(Attributes.MOVEMENT_SPEED, 0.4D).add(Attributes.ATTACK_KNOCKBACK, 1.00F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 14.0D).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 20.0D);
+	}
+
+	@Override
+	public boolean isAlliedTo(Entity p_20355_) {
+		if (p_20355_ instanceof ShuDofuSpider || p_20355_ instanceof TofuSpider) {
+			return this.getTeam() == null && p_20355_.getTeam() == null;
+		}
+
+		return super.isAlliedTo(p_20355_);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
