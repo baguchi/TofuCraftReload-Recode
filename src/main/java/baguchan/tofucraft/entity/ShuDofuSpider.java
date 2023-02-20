@@ -88,7 +88,6 @@ public class ShuDofuSpider extends Monster {
 	public final AnimationState jumpAnimationState = new AnimationState();
 
 	public final AnimationState graspAnimationState = new AnimationState();
-	public final AnimationState jumpPreAnimationState = new AnimationState();
 
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
 
@@ -221,99 +220,100 @@ public class ShuDofuSpider extends Monster {
 		} else {
 			this.walkAnimationState.stop();
 		}
-		if (this.isAlive() && !this.isGraspAnim() && this.isAttackAnim() && this.getTarget() != null) {
-			++this.attackTime;
-			if (this.attackTime == 10) {
-				this.level.broadcastEntityEvent(this, (byte) 100);
+		if (!this.level.isClientSide()) {
+			if (this.isAlive() && !this.isGraspAnim() && this.isAttackAnim() && this.getTarget() != null) {
+				++this.attackTime;
+				if (this.attackTime == 10) {
+					this.level.broadcastEntityEvent(this, (byte) 100);
+				}
+				if (this.attackTime == 14) {
+					float radius = 2;
+					float swipePosX = (float) (this.getX() + radius * Math.cos(Math.toRadians(this.getYHeadRot() + 90)));
+					float swipePosZ = (float) (this.getZ() + radius * Math.sin(Math.toRadians(this.getYHeadRot() + 90)));
+					AABB hitBox = new AABB(new BlockPos(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1.55, 1.55, 1.55);
+					List<LivingEntity> entitiesHit = this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
+					for (LivingEntity entity : entitiesHit) {
+						if (entity != this) {
+							doHurtTarget(entity);
+						}
+					}
+					this.attackTime = 0;
+					this.setAttackAnimation(false);
+				}
 			}
-			if (this.attackTime == 14) {
-				float radius = 2;
-				float swipePosX = (float) (this.getX() + radius * Math.cos(Math.toRadians(this.getYHeadRot() + 90)));
-				float swipePosZ = (float) (this.getZ() + radius * Math.sin(Math.toRadians(this.getYHeadRot() + 90)));
-				AABB hitBox = new AABB(new BlockPos(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1.55, 1.55, 1.55);
-				List<LivingEntity> entitiesHit = this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
-				for (LivingEntity entity : entitiesHit) {
-					if (entity != this) {
-						doHurtTarget(entity);
+
+			if (this.isAlive() && this.isRanged() && this.getTarget() != null) {
+				++this.rangedTime;
+				if (this.rangedTime == 1) {
+					this.level.broadcastEntityEvent(this, (byte) 103);
+				}
+				if (this.rangedTime == 30) {
+					if (this.random.nextInt(2) == 1) {
+						this.performRangedAttack(this.getTarget());
+						this.playSound(TofuSounds.TOFUSPIDER_SPIT.get(), 2.0F, (float) (0.6F + this.random.nextDouble() * 0.2F));
+					} else {
+						this.performBreathAttack(this.getTarget());
+						this.playSound(SoundEvents.ENDER_DRAGON_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
 					}
 				}
-				this.attackTime = 0;
-				this.setAttackAnimation(false);
-			}
-		}
-
-		if (this.isAlive() && this.isRanged() && this.getTarget() != null) {
-			++this.rangedTime;
-			if (this.rangedTime == 1) {
-				this.level.broadcastEntityEvent(this, (byte) 103);
-			}
-			if (this.rangedTime == 30) {
-				if (this.random.nextInt(2) == 1) {
-					this.performRangedAttack(this.getTarget());
-					this.playSound(TofuSounds.TOFUSPIDER_SPIT.get(), 2.0F, (float) (0.6F + this.random.nextDouble() * 0.2F));
-				} else {
-					this.performBreathAttack(this.getTarget());
-					this.playSound(SoundEvents.ENDER_DRAGON_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+				if (this.rangedTime == 50) {
+					this.rangedTime = 0;
+					this.setRanged(false);
 				}
 			}
-			if (this.rangedTime == 50) {
-				this.rangedTime = 0;
-				this.setRanged(false);
-			}
-		}
 
-		if (this.isAlive() && this.isGraspAnim() && this.getTarget() != null){
-			++this.graspTime;
-			if(this.graspTime == 1){
-				this.level.broadcastEntityEvent(this,(byte) 104);
-			}
-			if (this.graspTime > 2) {
-				Vec3 movement = this.getDeltaMovement();
-				this.checkGraspAttack(this.getBoundingBox(), this.getBoundingBox().expandTowards(movement.x, movement.y, movement.z).inflate(1.0F));
-			}
-			if (this.graspTime == 80) {
-				this.graspTime = 0;
-				this.setGraspAnimation(false);
-				this.ejectPassengers();
-			}
-		}
-
-
-		if (this.isAlive() && this.isJumpAnim() && this.getTarget() != null) {
-			++this.jumpTime;
-			if (this.jumpTime == 1) {
-				this.level.broadcastEntityEvent(this, (byte) 102);
-			}
-			if (this.jumpTime == 2) {
-				Vec3 movement = this.getDeltaMovement();
-				this.checkJumpAttack(this.getBoundingBox(), this.getBoundingBox().expandTowards(movement.x, movement.y, movement.z));
-			}
-			if (this.jumpTime == 30 && this.onGround) {
-				this.impactTime = this.jumpTime + 40;
-			}
-			if (this.jumpTime >= this.impactTime && this.onGround) {
-				var world = ((ServerLevel) this.level);
-				int count = 36;
-				float distance = 4;
-				for (int i = 1; i <= count; i++) {
-					double yaw = i * 360f / count;
-					world.sendParticles(new ParticleStink.StinkData(TofuParticleTypes.STINK.get(), 20f, 20, ParticleStink.EnumStinkBehavior.GROW, 1.0f), this.getX() + Math.cos(Math.toRadians(yaw)) * distance, this.getY(), this.getZ() + Math.sin(Math.toRadians(yaw)) * distance, 0, 0, 0, 0, 0);
+			if (this.isAlive() && this.isGraspAnim() && this.getTarget() != null) {
+				++this.graspTime;
+				if (this.graspTime == 1) {
+					this.level.broadcastEntityEvent(this, (byte) 104);
 				}
-				float radius = 4;
-				AABB hitBox = new AABB(new BlockPos(ShuDofuSpider.this.getX() - radius, ShuDofuSpider.this.getY() - 1, ShuDofuSpider.this.getZ() - radius), new BlockPos(ShuDofuSpider.this.getX() + radius, ShuDofuSpider.this.getY() + 2, ShuDofuSpider.this.getZ() + radius));
-				List<LivingEntity> entitiesHit = ShuDofuSpider.this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
-				for (LivingEntity entity : entitiesHit) {
-					if (entity != this) {
-						entity.hurt(DamageSource.mobAttack(ShuDofuSpider.this), 30.0F);
+				if (this.graspTime > 2) {
+					Vec3 movement = this.getDeltaMovement();
+					this.checkGraspAttack(this.getBoundingBox(), this.getBoundingBox().expandTowards(movement.x, movement.y, movement.z).inflate(1.0F));
+				}
+				if (this.graspTime == 80) {
+					this.graspTime = 0;
+					this.setGraspAnimation(false);
+					this.ejectPassengers();
+				}
+			}
+
+
+			if (this.isAlive() && this.isJumpAnim() && this.getTarget() != null) {
+				++this.jumpTime;
+				if (this.jumpTime == 1) {
+					this.level.broadcastEntityEvent(this, (byte) 102);
+				}
+				if (this.jumpTime == 2) {
+					Vec3 movement = this.getDeltaMovement();
+					this.checkJumpAttack(this.getBoundingBox(), this.getBoundingBox().expandTowards(movement.x, movement.y, movement.z));
+				}
+				if (this.jumpTime == 30 && this.onGround) {
+					this.impactTime = this.jumpTime + 40;
+				}
+				if (this.jumpTime >= this.impactTime && this.onGround) {
+					var world = ((ServerLevel) this.level);
+					int count = 36;
+					float distance = 4;
+					for (int i = 1; i <= count; i++) {
+						double yaw = i * 360f / count;
+						world.sendParticles(new ParticleStink.StinkData(TofuParticleTypes.STINK.get(), 20f, 20, ParticleStink.EnumStinkBehavior.GROW, 1.0f), this.getX() + Math.cos(Math.toRadians(yaw)) * distance, this.getY(), this.getZ() + Math.sin(Math.toRadians(yaw)) * distance, 0, 0, 0, 0, 0);
 					}
+					float radius = 4;
+					AABB hitBox = new AABB(new BlockPos(ShuDofuSpider.this.getX() - radius, ShuDofuSpider.this.getY() - 1, ShuDofuSpider.this.getZ() - radius), new BlockPos(ShuDofuSpider.this.getX() + radius, ShuDofuSpider.this.getY() + 2, ShuDofuSpider.this.getZ() + radius));
+					List<LivingEntity> entitiesHit = ShuDofuSpider.this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
+					for (LivingEntity entity : entitiesHit) {
+						if (entity != this) {
+							entity.hurt(DamageSource.mobAttack(ShuDofuSpider.this), 30.0F);
+						}
+					}
+					playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0f, 1.0f);
+					this.impactTime = 0;
+					this.jumpTime = 0;
+					this.setJumpAnimation(false);
 				}
-				playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0f, 1.0f);
-				this.impactTime = 0;
-				this.jumpTime = 0;
-				this.setJumpAnimation(false);
 			}
 		}
-
 		super.tick();
 	}
 
@@ -350,11 +350,9 @@ public class ShuDofuSpider extends Monster {
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 100) {
 			this.attackAnimationState.start(this.tickCount);
-		}
-		if (p_70103_1_ == 101) {
+		} else if (p_70103_1_ == 101) {
 			this.deathAnimationState.start(this.tickCount);
-		}
-		if (p_70103_1_ == 102) {
+		} else if (p_70103_1_ == 102) {
 			this.jumpAnimationState.start(this.tickCount);
 		} else {
 			super.handleEntityEvent(p_70103_1_);
@@ -461,7 +459,7 @@ public class ShuDofuSpider extends Monster {
 	public boolean hurt(DamageSource p_31461_, float p_31462_) {
 		if (this.isInvulnerableTo(p_31461_)) {
 			return false;
-		} else if (p_31461_ != DamageSource.SWEET_BERRY_BUSH && p_31461_ != DamageSource.CACTUS && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.IN_WALL && p_31461_ != DamageSource.MAGIC) {
+		} else if (p_31461_ != DamageSource.SWEET_BERRY_BUSH && p_31461_ != DamageSource.CACTUS && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.IN_WALL) {
 			Entity entity = p_31461_.getDirectEntity();
 
 			if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
@@ -469,9 +467,17 @@ public class ShuDofuSpider extends Monster {
 				this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
 			}
 
+			if (this.isGraspAnim()) {
+				if (!this.level.isClientSide() && this.random.nextFloat() < 0.025F * p_31462_) {
+					this.setGraspAnimation(false);
+					this.ejectPassengers();
+					this.attackTime = -40;
+				}
+			}
+
 			if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getPierceLevel() > 0) {
 				return super.hurt(p_31461_, p_31462_ * 0.15F * ((AbstractArrow) entity).getPierceLevel());
-			} else if (entity instanceof Projectile) {
+			} else if (entity instanceof Projectile || !this.isAngry() && p_31461_.isMagic()) {
 				return false;
 			}
 
