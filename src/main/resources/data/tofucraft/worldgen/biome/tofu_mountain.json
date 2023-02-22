@@ -49,16 +49,22 @@
   "spawners": {
     "monster": [
       {
-        "type": "tofucraft:tofuslime",
-        "weight": 100,
-        "minCount": 1,
-        "maxCount": 2
+        "type" : "tofucraft:tofuslime",
+        "weight" : 100,
+        "minCount" : 1,
+        "maxCount" : 2
       },
       {
-        "type": "tofucraft:tofuspider",
-        "weight": 50,
-        "minCount": 2,
-        "maxCount": 4
+        "type" : "tofucraft:tofuspider",
+        "weight" : 50,
+        "minCount" : 2,
+        "maxCount" : 4
+      },
+      {
+        "type" : "tofucraft:tofucreeper",
+        "weight" : 20,
+        "minCount" : 2,
+        "maxCount" : 3
       }
     ],
     "creature": [
