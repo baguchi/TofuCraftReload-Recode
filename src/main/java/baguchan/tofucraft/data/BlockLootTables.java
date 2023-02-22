@@ -220,6 +220,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 
 		registerEmpty(TofuBlocks.TOFUCAKE.get());
 		registerEmpty(TofuBlocks.ZUNDATOFUCAKE.get());
+		registerEmpty(TofuBlocks.SOYCHEESE_TART.get());
 
 		this.add(TofuBlocks.TOFUBED.get(), (p_124233_) -> {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);

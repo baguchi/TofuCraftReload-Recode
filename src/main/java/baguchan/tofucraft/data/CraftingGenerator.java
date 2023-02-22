@@ -437,6 +437,16 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('W', Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.TOFUZUNDA.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(TofuBlocks.SOYCHEESE_TART.get())
+				.pattern("CCC")
+				.pattern("SES")
+				.pattern("WWW")
+				.define('C', TofuItems.SOY_CHEESE.get())
+				.define('S', Items.SUGAR)
+				.define('E', Tags.Items.EGGS)
+				.define('W', Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.SOY_CHEESE.get()))
+				.save(consumer);
 
 		//soimilk
 		ShapelessRecipeBuilder.shapeless(TofuItems.BUCKET_SOYMILK.get())
