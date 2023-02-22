@@ -17,6 +17,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -161,6 +162,15 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 
 	protected float getStandingEyeHeight(Pose p_33799_, EntityDimensions p_33800_) {
 		return 0.35F;
+	}
+
+	@Override
+	public boolean isAlliedTo(Entity p_20355_) {
+		if (p_20355_ instanceof ShuDofuSpider) {
+			return this.getTeam() == null && p_20355_.getTeam() == null;
+		}
+
+		return super.isAlliedTo(p_20355_);
 	}
 
 	static class TofuSpiderAttackGoal extends Goal {
