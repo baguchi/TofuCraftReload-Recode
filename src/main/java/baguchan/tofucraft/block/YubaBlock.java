@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -35,13 +36,27 @@ public class YubaBlock extends Block {
 	}
 
 	@Override
+	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
+		return new ItemStack(TofuItems.YUBA.get());
+	}
+
+	public VoxelShape getShape(BlockState p_56057_, BlockGetter p_56058_, BlockPos p_56059_, CollisionContext p_56060_) {
+		return STABLE_SHAPE;
+	}
+
+	public VoxelShape getInteractionShape(BlockState p_56053_, BlockGetter p_56054_, BlockPos p_56055_) {
+		return STABLE_SHAPE;
+	}
+
+	@Override
 	public VoxelShape getCollisionShape(BlockState p_56068_, BlockGetter p_56069_, BlockPos p_56070_, CollisionContext p_56071_) {
-		if (p_56071_.isAbove(Shapes.block(), p_56070_, true)) {
+		if (p_56071_.isAbove(STABLE_SHAPE, p_56070_, true)) {
 			return STABLE_SHAPE;
 		} else {
 			return Shapes.empty();
 		}
 	}
+
 
 	@Override
 	public boolean canSurvive(BlockState p_152289_, LevelReader p_152290_, BlockPos p_152291_) {
@@ -78,7 +93,7 @@ public class YubaBlock extends Block {
 
 		if (!this.canSurvive(p_222945_, p_222946_, p_222947_)) {
 			FallingBlockEntity.fall(p_222946_, p_222947_, p_222945_);
-		} else if (!p_222945_.isFaceSturdy(p_222946_, p_222947_, Direction.UP)) {
+		} else if (!p_222945_.isFaceSturdy(p_222946_, p_222947_, Direction.UP) && p_222945_.is(TofuBlocks.SOYMILK.get())) {
 			p_222946_.levelEvent(2001, p_222947_, Block.getId(p_222946_.getBlockState(p_222947_)));
 			p_222946_.removeBlock(p_222947_, false);
 		}
@@ -93,7 +108,7 @@ public class YubaBlock extends Block {
 				ItemStack salt = new ItemStack(TofuItems.YUBA.get(), 1);
 				float f = 0.7F;
 				double d0 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
-				double d1 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
+				double d1 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.2D;
 				double d2 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
 				ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, salt);
 				itemEntity.setPickUpDelay(10);
