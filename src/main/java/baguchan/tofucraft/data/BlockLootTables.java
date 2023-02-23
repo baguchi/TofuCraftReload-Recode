@@ -252,6 +252,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerTofuDrop(TofuBlocks.SESAMETOFU.get(), TofuItems.TOFUSESAME.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_SESAME.get());
 		registerSlab(TofuBlocks.TOFUSLAB_SESAME.get());
+		registerEmpty(TofuBlocks.YUBA.get());
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

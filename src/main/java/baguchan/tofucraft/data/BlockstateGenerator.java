@@ -159,6 +159,17 @@ public class BlockstateGenerator extends BlockStateProvider {
 		cake(TofuBlocks.SOYCHEESE_TART, "soycheese_tart");
 
 		CandleTofuCakeBlock.getCandleCakes().forEach((block -> this.candleCake((CandleTofuCakeBlock) block)));
+		this.carpet(TofuBlocks.YUBA.get());
+	}
+
+	public void carpet(Block block) {
+		ModelFile carpet = models().withExistingParent(name(block), "block/carpet")
+				.texture("wool", blockTexture(block));
+		this.carpetBlock(block, (state -> carpet));
+	}
+
+	public void carpetBlock(Block block, Function<BlockState, ModelFile> modelFunc) {
+		this.getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).build());
 	}
 
 	public void logGlowBlock(RotatedPillarBlock block) {

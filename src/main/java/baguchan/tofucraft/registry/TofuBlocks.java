@@ -18,6 +18,7 @@ import baguchan.tofucraft.block.TofuMushroomBlock;
 import baguchan.tofucraft.block.TofuPortalBlock;
 import baguchan.tofucraft.block.TofuSaplingBlock;
 import baguchan.tofucraft.block.TofuTerrainBlock;
+import baguchan.tofucraft.block.YubaBlock;
 import baguchan.tofucraft.block.crop.ChiliCropsBlock;
 import baguchan.tofucraft.block.crop.LeekCropsBlock;
 import baguchan.tofucraft.block.crop.RiceCropsBlock;
@@ -88,6 +89,9 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> SOYMILK_HELL = noItemRegister("soymilk_hell", () -> new LiquidBlock(TofuFluids.SOYMILK_HELL, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
 	public static final RegistryObject<Block> SOYMILK_SOUL = noItemRegister("soymilk_soul", () -> new LiquidBlock(TofuFluids.SOYMILK_SOUL, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
 	public static final RegistryObject<Block> BITTERN = noItemRegister("bittern", () -> new LiquidBlock(TofuFluids.BITTERN, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
+
+	public static final RegistryObject<Block> YUBA = noItemRegister("yuba", () -> new YubaBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).noOcclusion().randomTicks().strength(0.25F).sound(SoundType.WOOL)));
+
 
 	public static final RegistryObject<Block> SOYBEAN = noItemRegister("soybean", () -> new SoybeanCropsBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
 	public static final RegistryObject<Block> SOYBEAN_NETHER = noItemRegister("soybean_nether", () -> new SoybeanNetherCropsBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
