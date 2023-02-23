@@ -114,8 +114,9 @@ public class YubaBlock extends Block {
 				itemEntity.setPickUpDelay(10);
 				worldIn.addFreshEntity(itemEntity);
 				worldIn.removeBlock(pos, false);
-				player.playSound(SoundEvents.BOAT_PADDLE_WATER, 1.0F, 1.0F);
 			}
+			player.playSound(SoundEvents.BOAT_PADDLE_WATER, 1.0F, 1.0F);
+
 			return InteractionResult.SUCCESS;
 		}
 		return InteractionResult.PASS;
