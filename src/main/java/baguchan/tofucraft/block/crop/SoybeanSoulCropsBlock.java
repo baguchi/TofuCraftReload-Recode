@@ -1,10 +1,12 @@
 package baguchan.tofucraft.block.crop;
 
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -36,6 +38,7 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 			double d1 = (pos.getY() + rand.nextFloat());
 			double d2 = pos.getZ() + 0.5D + rand.nextFloat() * d4;
 			worldIn.addParticle(ParticleTypes.SOUL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+			worldIn.playLocalSound((double) d0, (double) d1, (double) d2, TofuSounds.SOUL_BREATH.get(), SoundSource.BLOCKS, 1.0F, rand.nextFloat() * 0.25F + 0.75F, false);
 		}
 	}
 
