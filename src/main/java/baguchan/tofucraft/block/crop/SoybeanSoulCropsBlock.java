@@ -32,7 +32,7 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 	@Override
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);
-		if (stateIn.getValue(AGE) == 7 && rand.nextInt(15) == 0) {
+		if (stateIn.getValue(AGE) == 7 && rand.nextInt(20) == 0) {
 			double d4 = rand.nextBoolean() ? 0.5D : -0.5D;
 			double d0 = pos.getX() + 0.5D + rand.nextFloat() * d4;
 			double d1 = (pos.getY() + rand.nextFloat());
