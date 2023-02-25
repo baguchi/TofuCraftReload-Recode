@@ -97,10 +97,12 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 
+	@Override
 	public boolean canSurvive(BlockState p_196260_1_, LevelReader p_196260_2_, BlockPos p_196260_3_) {
 		return p_196260_2_.getBlockState(p_196260_3_.below()).getMaterial().isSolid();
 	}
 
+	@Override
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		Stat stat = getStat(state);
@@ -152,6 +154,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 		return InteractionResult.PASS;
 	}
 
+	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		if (!state.canSurvive(worldIn, pos))
 			worldIn.destroyBlock(pos, true);

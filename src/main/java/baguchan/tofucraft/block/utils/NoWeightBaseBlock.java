@@ -8,6 +8,7 @@ public class NoWeightBaseBlock extends WeightBaseBlock {
 		super(properties);
 	}
 
+	@Override
 	public boolean isUnderWeight(Level world, BlockPos pos) {
 		return true;
 	}

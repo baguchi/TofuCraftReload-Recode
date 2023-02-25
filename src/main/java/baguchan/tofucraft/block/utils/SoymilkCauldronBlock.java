@@ -44,6 +44,7 @@ public class SoymilkCauldronBlock extends Block {
 		this.registerDefaultState(this.stateDefinition.any().setValue(SOYCHEESE, false));
 	}
 
+	@Override
 	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		if (state.getValue(SOYCHEESE)) {
@@ -81,14 +82,17 @@ public class SoymilkCauldronBlock extends Block {
 		}
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState p_151964_, BlockGetter p_151965_, BlockPos p_151966_, CollisionContext p_151967_) {
 		return SHAPE;
 	}
 
+	@Override
 	public VoxelShape getInteractionShape(BlockState p_151955_, BlockGetter p_151956_, BlockPos p_151957_) {
 		return INSIDE;
 	}
 
+	@Override
 	public boolean isPathfindable(BlockState p_151959_, BlockGetter p_151960_, BlockPos p_151961_, PathComputationType p_151962_) {
 		return false;
 	}

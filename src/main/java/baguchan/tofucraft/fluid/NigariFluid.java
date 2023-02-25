@@ -23,14 +23,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidType;
 
 public abstract class NigariFluid extends WaterFluid {
+	@Override
 	public Fluid getFlowing() {
 		return TofuFluids.BITTERN_FLOW.get();
 	}
 
+	@Override
 	public Fluid getSource() {
 		return TofuFluids.BITTERN.get();
 	}
 
+	@Override
 	public Item getBucket() {
 		return TofuItems.BUCKET_BITTERN.get();
 	}
@@ -49,10 +52,12 @@ public abstract class NigariFluid extends WaterFluid {
 		return false;
 	}
 
+	@Override
 	public BlockState createLegacyBlock(FluidState p_204527_1_) {
 		return TofuBlocks.BITTERN.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_204527_1_)));
 	}
 
+	@Override
 	public boolean isSame(Fluid p_207187_1_) {
 		return p_207187_1_ == TofuFluids.BITTERN.get() || p_207187_1_ == TofuFluids.BITTERN_FLOW.get();
 	}
@@ -62,6 +67,7 @@ public abstract class NigariFluid extends WaterFluid {
 		return !this.isSame(p_76236_);
 	}
 
+	@Override
 	protected float getExplosionResistance() {
 		return 100.0F;
 	}

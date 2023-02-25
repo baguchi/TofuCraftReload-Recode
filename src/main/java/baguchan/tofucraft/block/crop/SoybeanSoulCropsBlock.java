@@ -42,6 +42,7 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 		}
 	}
 
+	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		if (!worldIn.isAreaLoaded(pos, 1))
 			return;

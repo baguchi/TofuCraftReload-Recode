@@ -15,19 +15,23 @@ public class SaltFurnaceResultSlot extends Slot {
 		this.player = p_39542_;
 	}
 
+	@Override
 	public boolean mayPlace(ItemStack p_39553_) {
 		return false;
 	}
 
+	@Override
 	public void onTake(Player p_150563_, ItemStack p_150564_) {
 		this.checkTakeAchievements(p_150564_);
 		super.onTake(p_150563_, p_150564_);
 	}
 
+	@Override
 	protected void onQuickCraft(ItemStack p_39555_, int p_39556_) {
 		this.checkTakeAchievements(p_39555_);
 	}
 
+	@Override
 	protected void checkTakeAchievements(ItemStack p_39558_) {
 		if (this.player instanceof ServerPlayer && this.container instanceof SaltFurnaceBlockEntity) {
 			((SaltFurnaceBlockEntity) this.container).popExperience((ServerPlayer) this.player, p_39558_);

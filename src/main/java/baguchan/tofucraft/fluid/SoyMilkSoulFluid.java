@@ -26,14 +26,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidType;
 
 public abstract class SoyMilkSoulFluid extends WaterFluid {
+	@Override
 	public Fluid getFlowing() {
 		return TofuFluids.SOYMILK_SOUL_FLOW.get();
 	}
 
+	@Override
 	public Fluid getSource() {
 		return TofuFluids.SOYMILK_SOUL.get();
 	}
 
+	@Override
 	public Item getBucket() {
 		return TofuItems.BUCKET_SOYMILK_SOUL.get();
 	}
@@ -71,14 +74,17 @@ public abstract class SoyMilkSoulFluid extends WaterFluid {
 		return false;
 	}
 
+	@Override
 	public BlockState createLegacyBlock(FluidState p_204527_1_) {
 		return TofuBlocks.SOYMILK_SOUL.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_204527_1_)));
 	}
 
+	@Override
 	public boolean isSame(Fluid p_207187_1_) {
 		return p_207187_1_ == TofuFluids.SOYMILK_SOUL.get() || p_207187_1_ == TofuFluids.SOYMILK_SOUL_FLOW.get();
 	}
 
+	@Override
 	protected float getExplosionResistance() {
 		return 100.0F;
 	}

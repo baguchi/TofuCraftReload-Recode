@@ -45,7 +45,7 @@ public class TFStorageMenu extends AbstractContainerMenu {
 		return this.container.stillValid(p_75145_1_);
 	}
 
-
+	@Override
 	public ItemStack quickMoveStack(Player p_82846_1_, int slotIndex) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(slotIndex);

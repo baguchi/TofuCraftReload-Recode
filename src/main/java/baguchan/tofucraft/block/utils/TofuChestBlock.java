@@ -10,7 +10,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.*;
+import net.minecraft.world.CompoundContainer;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
@@ -23,7 +28,14 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.AbstractChestBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoubleBlockCombiner;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -31,7 +43,11 @@ import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.ChestType;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
@@ -119,10 +135,12 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		}
 	}
 
+	@Override
 	public RenderShape getRenderShape(BlockState p_51567_) {
 		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 
+	@Override
 	public BlockState updateShape(BlockState p_51555_, Direction p_51556_, BlockState p_51557_, LevelAccessor p_51558_, BlockPos p_51559_, BlockPos p_51560_) {
 		if (p_51555_.getValue(WATERLOGGED)) {
 			p_51558_.scheduleTick(p_51559_, Fluids.WATER, Fluids.WATER.getTickDelay(p_51558_));
@@ -140,6 +158,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		return super.updateShape(p_51555_, p_51556_, p_51557_, p_51558_, p_51559_, p_51560_);
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState p_51569_, BlockGetter p_51570_, BlockPos p_51571_, CollisionContext p_51572_) {
 		if (p_51569_.getValue(TYPE) == ChestType.SINGLE) {
 			return AABB;
@@ -163,6 +182,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		return p_51585_.getValue(TYPE) == ChestType.LEFT ? direction.getClockWise() : direction.getCounterClockWise();
 	}
 
+	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext p_51493_) {
 		ChestType chesttype = ChestType.SINGLE;
 		Direction direction = p_51493_.getHorizontalDirection().getOpposite();
@@ -188,6 +208,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		return this.defaultBlockState().setValue(FACING, direction).setValue(TYPE, chesttype).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
 	}
 
+	@Override
 	public FluidState getFluidState(BlockState p_51581_) {
 		return p_51581_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_51581_);
 	}
@@ -198,6 +219,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		return blockstate.is(this) && blockstate.getValue(TYPE) == ChestType.SINGLE ? blockstate.getValue(FACING) : null;
 	}
 
+	@Override
 	public void setPlacedBy(Level p_51503_, BlockPos p_51504_, BlockState p_51505_, LivingEntity p_51506_, ItemStack p_51507_) {
 		if (p_51507_.hasCustomHoverName()) {
 			BlockEntity blockentity = p_51503_.getBlockEntity(p_51504_);
@@ -208,6 +230,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 
 	}
 
+	@Override
 	public void onRemove(BlockState p_51538_, Level p_51539_, BlockPos p_51540_, BlockState p_51541_, boolean p_51542_) {
 		if (!p_51538_.is(p_51541_.getBlock())) {
 			BlockEntity blockentity = p_51539_.getBlockEntity(p_51540_);
@@ -220,6 +243,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		}
 	}
 
+	@Override
 	public InteractionResult use(BlockState p_51531_, Level p_51532_, BlockPos p_51533_, Player p_51534_, InteractionHand p_51535_, BlockHitResult p_51536_) {
 		if (p_51532_.isClientSide) {
 			return InteractionResult.SUCCESS;
@@ -262,6 +286,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 	}
 
 	@Nullable
+	@Override
 	public MenuProvider getMenuProvider(BlockState p_51574_, Level p_51575_, BlockPos p_51576_) {
 		return this.combine(p_51574_, p_51575_, p_51576_, false).<Optional<MenuProvider>>apply(MENU_PROVIDER_COMBINER).orElse((MenuProvider) null);
 	}
@@ -284,6 +309,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		};
 	}
 
+	@Override
 	public BlockEntity newBlockEntity(BlockPos p_153064_, BlockState p_153065_) {
 		return new TofuChestBlockEntity(p_153064_, p_153065_);
 	}
@@ -315,31 +341,38 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		return false;
 	}
 
+	@Override
 	public boolean hasAnalogOutputSignal(BlockState p_51520_) {
 		return true;
 	}
 
+	@Override
 	public int getAnalogOutputSignal(BlockState p_51527_, Level p_51528_, BlockPos p_51529_) {
 		return AbstractContainerMenu.getRedstoneSignalFromContainer(getContainer(this, p_51527_, p_51528_, p_51529_, false));
 	}
 
+	@Override
 	public BlockState rotate(BlockState p_51552_, Rotation p_51553_) {
 		return p_51552_.setValue(FACING, p_51553_.rotate(p_51552_.getValue(FACING)));
 	}
 
+	@Override
 	public BlockState mirror(BlockState p_51549_, Mirror p_51550_) {
 		BlockState rotated = p_51549_.rotate(p_51550_.getRotation(p_51549_.getValue(FACING)));
 		return p_51550_ == Mirror.NONE ? rotated : rotated.setValue(TYPE, rotated.getValue(TYPE).getOpposite());  // Forge: Fixed MC-134110 Structure mirroring breaking apart double chests
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_51562_) {
 		p_51562_.add(FACING, TYPE, WATERLOGGED);
 	}
 
+	@Override
 	public boolean isPathfindable(BlockState p_51522_, BlockGetter p_51523_, BlockPos p_51524_, PathComputationType p_51525_) {
 		return false;
 	}
 
+	@Override
 	public void tick(BlockState p_153059_, ServerLevel p_153060_, BlockPos p_153061_, RandomSource p_153062_) {
 		BlockEntity blockentity = p_153060_.getBlockEntity(p_153061_);
 		if (blockentity instanceof TofuChestBlockEntity) {
