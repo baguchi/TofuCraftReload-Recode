@@ -777,6 +777,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('S', Items.STICK)
 				.unlockedBy("has_item", has(TofuItems.MISO.get()))
 				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(TofuItems.NEGIMA.get(), 1)
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.requires(TofuItems.LEEK.get())
+				.requires(TofuItems.SOYMEAT.get())
+				.requires(Items.STICK)
+				.unlockedBy("has_item", has(TofuItems.SOYMEAT.get()))
+				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(TofuItems.INARI.get(), 1)
 				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
 				.requires(TofuItems.OAGE.get())

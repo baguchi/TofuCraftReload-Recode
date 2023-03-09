@@ -229,7 +229,8 @@ public class TofuItems {
 	public static final RegistryObject<Item> RICE_NATTO_LEEK = ITEMS.register("ricenattoleek", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_NATTOLEEK).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> RICE_TOFU = ITEMS.register("ricetofu", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_TOFU).tab(TofuCreativeModeTab.TOFUCRAFT)));
 	public static final RegistryObject<Item> RICE_SOBORO_TOFU = ITEMS.register("ricesoborotofu", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_SOBORO_TOFU).tab(TofuCreativeModeTab.TOFUCRAFT)));
-	public static final RegistryObject<Item> GOHEIMOCHI = ITEMS.register("goheimochi", () -> new ReturnableDishItem(Items.STICK, (new Item.Properties()).food(TofuFoods.GOHEIMOCHI).tab(TofuCreativeModeTab.TOFUCRAFT)));
+	public static final RegistryObject<Item> GOHEIMOCHI = ITEMS.register("goheimochi", () -> new ReturnableDishItem(Items.STICK, (new Item.Properties()).food(TofuFoods.GOHEIMOCHI).tab(TofuCreativeModeTab.TOFUCRAFT), false));
+	public static final RegistryObject<Item> NEGIMA = ITEMS.register("negima", () -> new ReturnableDishItem(Items.STICK, (new Item.Properties()).food(TofuFoods.GOHEIMOCHI).tab(TofuCreativeModeTab.TOFUCRAFT), false));
 
 
 	public static final RegistryObject<Item> SOY_CHOCOLATE = ITEMS.register("soy_chocolate", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_CHOCOLATE).tab(TofuCreativeModeTab.TOFUCRAFT)));
