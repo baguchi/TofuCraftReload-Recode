@@ -8,12 +8,14 @@ import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -45,10 +47,30 @@ public abstract class SoyMilkFluid extends WaterFluid {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public void animateTick(Level p_204522_1_, BlockPos p_204522_2_, FluidState p_204522_3_, RandomSource p_204522_4_) {
-		if (!p_204522_3_.isSource() && !p_204522_3_.getValue(FALLING)) {
-			if (p_204522_4_.nextInt(64) == 0) {
-				p_204522_1_.playLocalSound((double) p_204522_2_.getX() + 0.5D, (double) p_204522_2_.getY() + 0.5D, (double) p_204522_2_.getZ() + 0.5D, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, p_204522_4_.nextFloat() * 0.25F + 0.75F, p_204522_4_.nextFloat() + 0.5F, false);
+	@Override
+	public void animateTick(Level level, BlockPos blockPos, FluidState fluidState, RandomSource randomSource) {
+		if (!fluidState.isSource() && !fluidState.getValue(FALLING)) {
+			if (randomSource.nextInt(64) == 0) {
+				level.playLocalSound((double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, SoundEvents.WATER_AMBIENT, SoundSource.BLOCKS, randomSource.nextFloat() * 0.25F + 0.75F, randomSource.nextFloat() + 0.5F, false);
+			}
+		}
+		if (fluidState.isSource()) {
+			if (randomSource.nextInt(5) == 0) {
+				if (level.getBlockState(blockPos.below()).is(Blocks.MAGMA_BLOCK)) {
+					level.addParticle(ParticleTypes.BUBBLE_POP, blockPos.getX() + randomSource.nextFloat(), (double) blockPos.getY() + 0.95F + randomSource.nextFloat() * 0.1F, (double) blockPos.getZ() + randomSource.nextFloat(), 0, 0, 0);
+					level.playLocalSound((double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, SoundSource.BLOCKS, randomSource.nextFloat() * 0.25F + 0.75F, randomSource.nextFloat() + 0.5F, false);
+				}
+			}
+		}
+	}
+
+	@Override
+	protected void randomTick(Level level, BlockPos blockPos, FluidState fluidState, RandomSource randomSource) {
+		if (!level.isClientSide()) {
+			if (randomSource.nextInt(4) == 0) {
+				if (level.getBlockState(blockPos.above()).isAir() && level.getBlockState(blockPos.below()).is(Blocks.MAGMA_BLOCK)) {
+					level.setBlock(blockPos.above(), TofuBlocks.YUBA.get().defaultBlockState(), 3);
+				}
 			}
 		}
 	}
@@ -92,6 +114,11 @@ public abstract class SoyMilkFluid extends WaterFluid {
 		public boolean isSource(FluidState p_207193_1_) {
 			return false;
 		}
+
+		@Override
+		protected boolean isRandomlyTicking() {
+			return false;
+		}
 	}
 
 	public static class Source extends SoyMilkFluid {
@@ -100,6 +127,11 @@ public abstract class SoyMilkFluid extends WaterFluid {
 		}
 
 		public boolean isSource(FluidState p_207193_1_) {
+			return true;
+		}
+
+		@Override
+		protected boolean isRandomlyTicking() {
 			return true;
 		}
 	}
