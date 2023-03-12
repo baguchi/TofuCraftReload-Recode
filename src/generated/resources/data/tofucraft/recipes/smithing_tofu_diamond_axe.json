@@ -4,7 +4,7 @@
     "item": "tofucraft:blocktofudiamond"
   },
   "base": {
-    "item": "minecraft:diamond_axe"
+    "item" : "tofucraft:tofu_metal_axe"
   },
   "result": {
     "item": "tofucraft:tofu_diamond_axe"

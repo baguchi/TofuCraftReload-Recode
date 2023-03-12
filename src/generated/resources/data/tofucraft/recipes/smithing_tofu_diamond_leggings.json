@@ -4,7 +4,7 @@
     "item": "tofucraft:blocktofudiamond"
   },
   "base": {
-    "item": "minecraft:diamond_leggings"
+    "item" : "tofucraft:tofu_metal_leggings"
   },
   "result": {
     "item": "tofucraft:tofu_diamond_leggings"

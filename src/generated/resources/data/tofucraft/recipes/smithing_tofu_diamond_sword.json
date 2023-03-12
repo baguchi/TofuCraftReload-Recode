@@ -4,7 +4,7 @@
     "item": "tofucraft:blocktofudiamond"
   },
   "base": {
-    "item": "minecraft:diamond_sword"
+    "item" : "tofucraft:tofu_metal_sword"
   },
   "result": {
     "item": "tofucraft:tofu_diamond_sword"

@@ -34,17 +34,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 		bootsItem(consumer, "tofu_diamond_boots", TofuItems.ARMOR_TOFU_DIAMONDBOOTS, TofuBlocks.DIAMONDTOFU);
 		*/
 
-		tofuDiamondSmithing(consumer, Items.DIAMOND_SWORD, TofuItems.TOFU_DIAMOND_SWORD);
-		tofuDiamondSmithing(consumer, Items.DIAMOND_PICKAXE, TofuItems.TOFU_DIAMOND_PICKAXE);
-		tofuDiamondSmithing(consumer, Items.DIAMOND_AXE, TofuItems.TOFU_DIAMOND_AXE);
-		tofuDiamondSmithing(consumer, Items.DIAMOND_SHOVEL, TofuItems.TOFU_DIAMOND_SHOVEL);
-		tofuDiamondSmithing(consumer, Items.DIAMOND_HOE, TofuItems.TOFU_DIAMOND_HOE);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_SWORD.get(), TofuItems.TOFU_DIAMOND_SWORD);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_PICKAXE.get(), TofuItems.TOFU_DIAMOND_PICKAXE);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_AXE.get(), TofuItems.TOFU_DIAMOND_AXE);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_SHOVEL.get(), TofuItems.TOFU_DIAMOND_SHOVEL);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_HOE.get(), TofuItems.TOFU_DIAMOND_HOE);
 
 
-		tofuDiamondSmithing(consumer, Items.DIAMOND_HELMET, TofuItems.TOFU_DIAMOND_HELMET);
-		tofuDiamondSmithing(consumer, Items.DIAMOND_CHESTPLATE, TofuItems.TOFU_DIAMOND_CHESTPLATE);
-		tofuDiamondSmithing(consumer, Items.DIAMOND_LEGGINGS, TofuItems.TOFU_DIAMOND_LEGGINGS);
-		tofuDiamondSmithing(consumer, Items.DIAMOND_BOOTS, TofuItems.TOFU_DIAMOND_BOOTS);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_HELMET.get(), TofuItems.TOFU_DIAMOND_HELMET);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_CHESTPLATE.get(), TofuItems.TOFU_DIAMOND_CHESTPLATE);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_LEGGINGS.get(), TofuItems.TOFU_DIAMOND_LEGGINGS);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_BOOTS.get(), TofuItems.TOFU_DIAMOND_BOOTS);
 
 		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.SCULK_BONE_HELMET);
 		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), TofuItems.SCULK_BONE_CHESTPLATE);

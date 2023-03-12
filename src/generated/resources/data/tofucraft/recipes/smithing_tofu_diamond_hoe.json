@@ -4,7 +4,7 @@
     "item": "tofucraft:blocktofudiamond"
   },
   "base": {
-    "item": "minecraft:diamond_hoe"
+    "item" : "tofucraft:tofu_metal_hoe"
   },
   "result": {
     "item": "tofucraft:tofu_diamond_hoe"
