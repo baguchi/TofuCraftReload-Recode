@@ -24,7 +24,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
@@ -66,7 +65,7 @@ public class TofuCow extends Cow {
 				p_28298_.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
 				AtomicReference<ItemStack> resultItemStack = new AtomicReference<>(itemstack.copy());
 				FluidUtil.getFluidHandler(resultItemStack.get()).ifPresent(fluidHandler -> {
-					fluidHandler.fill(new FluidStack(TofuFluids.SOYMILK.get(), FluidType.BUCKET_VOLUME), IFluidHandler.FluidAction.EXECUTE);
+					fluidHandler.fill(new FluidStack(TofuFluids.SOYMILK.get(), 1000), IFluidHandler.FluidAction.EXECUTE);
 					resultItemStack.set(fluidHandler.getContainer());
 				});
 				p_28298_.setItemInHand(p_28299_, resultItemStack.get());
