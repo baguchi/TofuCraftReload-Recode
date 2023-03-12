@@ -85,7 +85,7 @@ public class TofuFish extends AbstractSchoolingFish {
 			p_148831_.discard();
 			return Optional.of(InteractionResult.sidedSuccess(level.isClientSide));
 		} else {
-			return Optional.empty();
+			return Bucketable.bucketMobPickup(p_148829_, p_148830_, p_148831_);
 		}
 	}
 

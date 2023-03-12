@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.registry.TofuEntityTypes;
+import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
@@ -19,13 +20,19 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidType;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TofuCow extends Cow {
 	public TofuCow(EntityType<? extends Cow> p_28285_, Level p_28286_) {
@@ -52,15 +59,21 @@ public class TofuCow extends Cow {
 	}
 
 	public InteractionResult mobInteract(Player p_28298_, InteractionHand p_28299_) {
-		ItemStack var3 = p_28298_.getItemInHand(p_28299_);
-		if (var3.is(Items.BUCKET) && !this.isBaby()) {
-			p_28298_.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
-			ItemStack var4 = ItemUtils.createFilledResult(var3, p_28298_, TofuItems.BUCKET_SOYMILK.get().getDefaultInstance());
-			p_28298_.setItemInHand(p_28299_, var4);
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
-		} else {
-			return super.mobInteract(p_28298_, p_28299_);
+		ItemStack itemstack = p_28298_.getItemInHand(p_28299_);
+		if (!this.isBaby()) {
+			IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(itemstack, 1)).orElse(null);
+			if (handler != null && handler instanceof net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper && ((FluidBucketWrapper) handler).getFluid().isEmpty()) {
+				p_28298_.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+				AtomicReference<ItemStack> resultItemStack = new AtomicReference<>(itemstack.copy());
+				FluidUtil.getFluidHandler(resultItemStack.get()).ifPresent(fluidHandler -> {
+					fluidHandler.fill(new FluidStack(TofuFluids.SOYMILK.get(), FluidType.BUCKET_VOLUME), IFluidHandler.FluidAction.EXECUTE);
+					resultItemStack.set(fluidHandler.getContainer());
+				});
+				p_28298_.setItemInHand(p_28299_, resultItemStack.get());
+				return InteractionResult.sidedSuccess(this.level.isClientSide);
+			}
 		}
+		return super.mobInteract(p_28298_, p_28299_);
 	}
 
 	@Override
