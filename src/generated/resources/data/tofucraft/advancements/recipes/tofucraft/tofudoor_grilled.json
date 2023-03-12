@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofudoor_grilled"
+    ]
+  },
+  "criteria": {
+    "has_blocktofugrilled": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:blocktofugrilled"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tofucraft:tofudoor_grilled"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blocktofugrilled",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,6 +1,7 @@
 {
-    "parent": "block/crop",
-    "textures": {
-        "crop": "tofucraft:block/soybean_2"
-    }
+  "parent": "block/crop",
+  "render_type": "cutout",
+  "textures": {
+    "crop": "tofucraft:block/soybean_2"
+  }
 }

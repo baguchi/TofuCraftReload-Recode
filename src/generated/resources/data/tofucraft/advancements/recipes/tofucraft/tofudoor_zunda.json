@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofudoor_zunda"
+    ]
+  },
+  "criteria": {
+    "has_blocktofuzunda": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:blocktofuzunda"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tofucraft:tofudoor_zunda"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blocktofuzunda",
+      "has_the_recipe"
+    ]
+  ]
+}

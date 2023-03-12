@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M  ",
+    "MM ",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "tofucraft:tofustem"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofustem_planks_stair",
+    "count": 4
+  }
+}

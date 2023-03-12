@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M  ",
+    "MM ",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofusesame"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofustair_sesame",
+    "count": 4
+  }
+}

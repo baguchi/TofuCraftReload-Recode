@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:onigiri"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:edamame_rice"
+  }
+}

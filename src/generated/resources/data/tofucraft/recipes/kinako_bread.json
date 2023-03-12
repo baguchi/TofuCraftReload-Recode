@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:kinako"
+    },
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "item": "tofucraft:bottle_soyoil"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:kinako_bread",
+    "count": 3
+  }
+}

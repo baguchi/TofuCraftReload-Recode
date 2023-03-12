@@ -19,7 +19,7 @@ public abstract class AbstractTofunian extends AbstractVillager {
 	protected void shakeHead() {
 		setUnhappyCounter(40);
 		if (!this.level.isClientSide())
-			playSound(TofuSounds.TOFUNIAN_NO, getSoundVolume(), getVoicePitch());
+			playSound(TofuSounds.TOFUNIAN_NO.get(), getSoundVolume(), getVoicePitch());
 	}
 
 	public void tick() {
@@ -31,26 +31,26 @@ public abstract class AbstractTofunian extends AbstractVillager {
 	@Nullable
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return TofuSounds.TOFUNIAN_AMBIENT;
+        return TofuSounds.TOFUNIAN_AMBIENT.get();
 	}
 
 	@Nullable
 	@Override
 	protected SoundEvent getHurtSound(DamageSource p_21239_) {
-		return TofuSounds.TOFUNIAN_HURT;
+        return TofuSounds.TOFUNIAN_HURT.get();
 	}
 
 	protected SoundEvent getDeathSound() {
-		return TofuSounds.TOFUNIAN_DEATH;
+        return TofuSounds.TOFUNIAN_DEATH.get();
 	}
 
 
 	protected SoundEvent getTradeUpdatedSound(boolean p_213721_1_) {
-		return p_213721_1_ ? TofuSounds.TOFUNIAN_YES : TofuSounds.TOFUNIAN_NO;
+        return p_213721_1_ ? TofuSounds.TOFUNIAN_YES.get() : TofuSounds.TOFUNIAN_NO.get();
 	}
 
 	public SoundEvent getNotifyTradeSound() {
-		return TofuSounds.TOFUNIAN_YES;
+        return TofuSounds.TOFUNIAN_YES.get();
 	}
 
 	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {

@@ -1,17 +1,23 @@
 package baguchan.tofucraft.block;
 
+import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+
+import java.util.Random;
+
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
+import org.jetbrains.annotations.Nullable;
 
 public class KinuTofuBlock extends Block {
 	public KinuTofuBlock(Properties properties) {
@@ -33,7 +39,7 @@ public class KinuTofuBlock extends Block {
 
 	@Override
 	public void fallOn(Level p_152426_, BlockState p_152427_, BlockPos p_152428_, Entity p_152429_, float p_152430_) {
-		super.fallOn(p_152426_, p_152427_, p_152428_, p_152429_, p_152430_ * 0.5F);
+		super.fallOn(p_152426_, p_152427_, p_152428_, p_152429_, p_152430_ * 0.25F);
 		p_152426_.destroyBlock(p_152428_, true);
 	}
 

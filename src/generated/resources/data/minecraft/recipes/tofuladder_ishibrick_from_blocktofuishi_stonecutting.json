@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "tofucraft:blocktofuishi"
+  },
+  "result": "tofucraft:tofuladder_ishibrick",
+  "count": 3
+}

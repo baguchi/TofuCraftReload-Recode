@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:crops/soybean"
+    },
+    {
+      "item": "minecraft:bucket"
+    },
+    {
+      "item": "tofucraft:filtercloth"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:bucket_soymilk"
+  }
+}

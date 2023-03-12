@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:edamame_boild"
+    },
+    {
+      "item": "tofucraft:edamame_boild"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "tofucraft:salt"
+    },
+    {
+      "item": "tofucraft:bottle_soyoil"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:edamame_templa",
+    "count": 6
+  }
+}

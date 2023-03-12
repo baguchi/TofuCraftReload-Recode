@@ -3,6 +3,7 @@ package baguchan.tofucraft.block;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuDimensions;
+import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.world.TofuLevelTeleporter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,7 +12,11 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+
+import java.util.Random;
+
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -22,8 +27,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
 
 public class TofuPortalBlock extends Block {
 	public TofuPortalBlock(Properties props) {
@@ -70,14 +73,18 @@ public class TofuPortalBlock extends Block {
 		super.entityInside(p_196262_1_, p_196262_2_, p_196262_3_, p_196262_4_);
 
 		p_196262_4_.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(handler -> {
-			handler.setInPortal(true);
-			int waitTime = handler.getPortalTimer();
-			if (waitTime >= 80) {
-				attemptSendPlayer(p_196262_4_, p_196262_2_);
-				handler.setPortalTimer(0);
-			}
-		});
-
+            handler.setInPortal(true);
+            if (handler.tofuPortalCooldown <= 0) {
+                int waitTime = handler.getPortalTimer();
+                if (waitTime >= 80 || !(p_196262_4_ instanceof Player) || ((Player) p_196262_4_).isCreative()) {
+                    attemptSendPlayer(p_196262_4_, p_196262_2_);
+                    handler.setPortalTimer(0);
+                    handler.tofuPortalCooldown = 200;
+                }
+            } else {
+                handler.tofuPortalCooldown = 200;
+            }
+        });
 	}
 
 	private static ResourceKey<Level> getDestination(Entity entity) {
@@ -107,24 +114,37 @@ public class TofuPortalBlock extends Block {
 				entity.changeDimension(serverLevel, new TofuLevelTeleporter());
 				entity.level.getProfiler().pop();
 			}
-		}
-	}
+        }
+    }
 
-	@OnlyIn(Dist.CLIENT)
-	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
-		int random = rand.nextInt(100);
-		if (random == 0)
-			worldIn.playLocalSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT, SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
-	}
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+        int random = rand.nextInt(100);
+        if (random == 0) {
+            worldIn.playLocalSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT, SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+        }
 
-	public static class Size {
-		private static final int MAX_SIZE = 12;
+        for (int i = 0; i < 4; ++i) {
+            double d0 = (double) pos.getX() + rand.nextDouble();
+            double d1 = (double) pos.getY() + rand.nextDouble();
+            double d2 = (double) pos.getZ() + rand.nextDouble();
+            double d3 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            double d4 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            double d5 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            int j = rand.nextInt(2) * 2 - 1;
 
-		private static final int MIN_SIZE = 1;
+            worldIn.addParticle(TofuParticleTypes.TOFU_PORTAL.get(), d0, d1, d2, d3, d4, d5);
+        }
+    }
 
-		private final LevelAccessor world;
+    public static class Size {
+        private static final int MAX_SIZE = 12;
 
-		private boolean valid = false;
+        private static final int MIN_SIZE = 1;
+
+        private final LevelAccessor world;
+
+        private boolean valid = false;
 
 		private BlockPos nw;
 

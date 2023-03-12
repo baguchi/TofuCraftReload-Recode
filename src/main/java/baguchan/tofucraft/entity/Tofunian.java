@@ -355,7 +355,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	private void setUnhappy() {
 		this.setUnhappyCounter(40);
 		if (!this.level.isClientSide()) {
-			this.playSound(TofuSounds.TOFUNIAN_NO, this.getSoundVolume(), this.getVoicePitch());
+			this.playSound(TofuSounds.TOFUNIAN_NO.get(), this.getSoundVolume(), this.getVoicePitch());
 		}
 
 	}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "tofucraft:tofuishi"
+  },
+  "result": "tofucraft:tofusteak",
+  "experience": 0.1,
+  "cookingtime": 100
+}

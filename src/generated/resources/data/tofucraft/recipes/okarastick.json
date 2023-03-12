@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " E ",
+    " W "
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:okara"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "item": "tofucraft:okarastick",
+    "count": 3
+  }
+}

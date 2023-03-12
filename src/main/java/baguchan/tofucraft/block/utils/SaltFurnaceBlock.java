@@ -10,6 +10,9 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+
+import java.util.Random;
+
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -39,7 +42,6 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class SaltFurnaceBlock extends BaseEntityBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -49,6 +51,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(false)));
 	}
 
+	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
 
 		boolean flag = false;
@@ -90,6 +93,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 
 	}
 
+	@Override
 	public void setPlacedBy(Level p_48694_, BlockPos p_48695_, BlockState p_48696_, LivingEntity p_48697_, ItemStack p_48698_) {
 		if (p_48698_.hasCustomHoverName()) {
 			BlockEntity blockentity = p_48694_.getBlockEntity(p_48695_);
@@ -100,6 +104,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 
 	}
 
+	@Override
 	public void onRemove(BlockState p_48713_, Level p_48714_, BlockPos p_48715_, BlockState p_48716_, boolean p_48717_) {
 		if (!p_48713_.is(p_48716_.getBlock())) {
 			BlockEntity blockentity = p_48714_.getBlockEntity(p_48715_);
@@ -116,19 +121,23 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 		}
 	}
 
+	@Override
 	public boolean hasAnalogOutputSignal(BlockState p_48700_) {
 		return true;
 	}
 
+	@Override
 	public int getAnalogOutputSignal(BlockState p_48702_, Level p_48703_, BlockPos p_48704_) {
 		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(p_48703_.getBlockEntity(p_48704_));
 	}
 
+	@Override
 	public RenderShape getRenderShape(BlockState p_48727_) {
 		return RenderShape.MODEL;
 	}
 
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_48725_) {
 		p_48725_.add(LIT);
 	}

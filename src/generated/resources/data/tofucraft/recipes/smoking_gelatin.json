@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "tofucraft:gelatinraw"
+  },
+  "result": "tofucraft:gelatin",
+  "experience": 0.1,
+  "cookingtime": 100
+}

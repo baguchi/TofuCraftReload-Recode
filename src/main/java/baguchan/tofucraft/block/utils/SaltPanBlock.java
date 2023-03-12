@@ -8,6 +8,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+
+import java.util.Random;
+
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -37,7 +40,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	public static VoxelShape SALT_PAN_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D);
@@ -97,74 +99,77 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 
-	public boolean canSurvive(BlockState p_196260_1_, LevelReader p_196260_2_, BlockPos p_196260_3_) {
-		return p_196260_2_.getBlockState(p_196260_3_.below()).getMaterial().isSolid();
-	}
+    @Override
+    public boolean canSurvive(BlockState p_196260_1_, LevelReader p_196260_2_, BlockPos p_196260_3_) {
+        return p_196260_2_.getBlockState(p_196260_3_.below()).getMaterial().isSolid();
+    }
 
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		ItemStack itemHeld = player.getItemInHand(handIn);
-		Stat stat = getStat(state);
-		if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
-			if (stat == Stat.EMPTY && itemHeld != null && itemHeld.getItem() == Items.WATER_BUCKET) {
-				if (!player.isCreative())
-					player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
-				worldIn.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-				TileScanner tileScanner = new TileScanner(worldIn, pos);
-				tileScanner.scan(1, TileScanner.Method.fullSimply, new TileScanner.Impl<Object>() {
-					public void apply(Level world, BlockPos pos) {
-						if (SaltPanBlock.this.getStat(world.getBlockState(pos)) == Stat.EMPTY)
-							world.setBlock(pos, TofuBlocks.SALTPAN.get().defaultBlockState().setValue(SaltPanBlock.STAT, Stat.WATER), 3);
-					}
-				});
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.WATER), 3);
-				return InteractionResult.SUCCESS;
-			}
-			if (stat == Stat.BITTERN && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
-				ItemStack nigari = new ItemStack(TofuItems.BITTERN_BOTTLE.get());
-				worldIn.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-				if (itemHeld.getCount() == 1) {
-					player.setItemInHand(handIn, nigari);
-				} else {
-					if (!player.getInventory().add(nigari))
-						worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, nigari));
-					itemHeld.shrink(1);
-				}
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
-				return InteractionResult.SUCCESS;
-			}
-			if (stat == Stat.BITTERN && itemHeld == null) {
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
-				return InteractionResult.SUCCESS;
-			}
-			if (stat == Stat.SALT) {
-				ItemStack salt = new ItemStack(TofuItems.SALT.get(), 1);
-				float f = 0.7F;
-				double d0 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
-				double d1 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
-				double d2 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
-				ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, salt);
-				itemEntity.setPickUpDelay(10);
-				worldIn.addFreshEntity(itemEntity);
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.BITTERN), 3);
-				return InteractionResult.SUCCESS;
-			}
-		}
-		return InteractionResult.PASS;
-	}
+    @Override
+    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        ItemStack itemHeld = player.getItemInHand(handIn);
+        Stat stat = getStat(state);
+        if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
+            if (stat == Stat.EMPTY && itemHeld != null && itemHeld.getItem() == Items.WATER_BUCKET) {
+                if (!player.isCreative())
+                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
+                worldIn.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                TileScanner tileScanner = new TileScanner(worldIn, pos);
+                tileScanner.scan(1, TileScanner.Method.fullSimply, new TileScanner.Impl<Object>() {
+                    public void apply(Level world, BlockPos pos) {
+                        if (SaltPanBlock.this.getStat(world.getBlockState(pos)) == Stat.EMPTY)
+                            world.setBlock(pos, TofuBlocks.SALTPAN.get().defaultBlockState().setValue(SaltPanBlock.STAT, Stat.WATER), 3);
+                    }
+                });
+                worldIn.setBlock(pos, state.setValue(STAT, Stat.WATER), 3);
+                return InteractionResult.SUCCESS;
+            }
+            if (stat == Stat.BITTERN && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
+                ItemStack nigari = new ItemStack(TofuItems.BITTERN_BOTTLE.get());
+                worldIn.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                if (itemHeld.getCount() == 1) {
+                    player.setItemInHand(handIn, nigari);
+                } else {
+                    if (!player.getInventory().add(nigari))
+                        worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, nigari));
+                    itemHeld.shrink(1);
+                }
+                worldIn.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
+                return InteractionResult.SUCCESS;
+            }
+            if (stat == Stat.BITTERN && itemHeld == null) {
+                worldIn.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
+                return InteractionResult.SUCCESS;
+            }
+            if (stat == Stat.SALT) {
+                ItemStack salt = new ItemStack(TofuItems.SALT.get(), 1);
+                float f = 0.7F;
+                double d0 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
+                double d1 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
+                double d2 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
+                ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, salt);
+                itemEntity.setPickUpDelay(10);
+                worldIn.addFreshEntity(itemEntity);
+                worldIn.setBlock(pos, state.setValue(STAT, Stat.BITTERN), 3);
+                return InteractionResult.SUCCESS;
+            }
+        }
+        return InteractionResult.PASS;
+    }
 
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
-		if (!state.canSurvive(worldIn, pos))
-			worldIn.destroyBlock(pos, true);
-		Stat stat = getStat(state);
-		int l = stat.getMeta();
-		if (stat == Stat.WATER && !((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
-			float f = calcAdaptation(worldIn, pos);
-			if (f > 0.0F && random.nextInt((int) (25.0F / f) + 1) == 0) {
-				l++;
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.SALT), 2);
-			}
-		}
-	}
+    @Override
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+        if (!state.canSurvive(worldIn, pos))
+            worldIn.destroyBlock(pos, true);
+        Stat stat = getStat(state);
+        int l = stat.getMeta();
+        if (stat == Stat.WATER && !((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
+            float f = calcAdaptation(worldIn, pos);
+            if (f > 0.0F && random.nextInt((int) (25.0F / f) + 1) == 0) {
+                l++;
+                worldIn.setBlock(pos, state.setValue(STAT, Stat.SALT), 2);
+            }
+        }
+    }
 
 	public Stat getStat(BlockState meta) {
 		if (meta.getBlock() == this)

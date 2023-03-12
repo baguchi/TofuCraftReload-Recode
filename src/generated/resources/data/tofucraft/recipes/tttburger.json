@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "###",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:tofufried_pouch"
+    },
+    "X": {
+      "item": "minecraft:bread"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tttburger"
+  }
+}

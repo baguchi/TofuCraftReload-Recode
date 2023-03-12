@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "tofucraft:blocktofuishi"
+  },
+  "result": "tofucraft:tofuishi_chiseled_brick",
+  "count": 1
+}

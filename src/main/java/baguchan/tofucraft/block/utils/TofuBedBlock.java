@@ -3,6 +3,7 @@ package baguchan.tofucraft.block.utils;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -18,11 +19,19 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoubleBlockCombiner;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.AABB;
@@ -58,6 +67,7 @@ public class TofuBedBlock extends BedBlock {
 		this.registerDefaultState((BlockState) ((BlockState) ((BlockState) this.stateDefinition.any()).setValue(PART, BedPart.FOOT)).setValue(OCCUPIED, false));
 	}
 
+	@Override
 	public InteractionResult use(BlockState p_49515_, Level p_49516_, BlockPos p_49517_, Player p_49518_, InteractionHand p_49519_, BlockHitResult p_49520_) {
 		if (p_49516_.isClientSide) {
 			return InteractionResult.CONSUME;
@@ -111,6 +121,7 @@ public class TofuBedBlock extends BedBlock {
 		}
 	}
 
+	@Override
 	public BlockState updateShape(BlockState p_49525_, Direction p_49526_, BlockState p_49527_, LevelAccessor p_49528_, BlockPos p_49529_, BlockPos p_49530_) {
 		if (p_49526_ == getNeighbourDirection((BedPart) p_49525_.getValue(PART), (Direction) p_49525_.getValue(FACING))) {
 			return p_49527_.is(this) && p_49527_.getValue(PART) != p_49525_.getValue(PART) ? (BlockState) p_49525_.setValue(OCCUPIED, (Boolean) p_49527_.getValue(OCCUPIED)) : Blocks.AIR.defaultBlockState();
@@ -123,6 +134,7 @@ public class TofuBedBlock extends BedBlock {
 		return p_49534_ == BedPart.FOOT ? p_49535_ : p_49535_.getOpposite();
 	}
 
+	@Override
 	public void playerWillDestroy(Level p_49505_, BlockPos p_49506_, BlockState p_49507_, Player p_49508_) {
 		if (!p_49505_.isClientSide && p_49508_.isCreative()) {
 			BedPart var5 = (BedPart) p_49507_.getValue(PART);
@@ -140,6 +152,7 @@ public class TofuBedBlock extends BedBlock {
 	}
 
 	@Nullable
+	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext p_49479_) {
 		Direction var2 = p_49479_.getHorizontalDirection();
 		BlockPos var3 = p_49479_.getClickedPos();
@@ -147,6 +160,7 @@ public class TofuBedBlock extends BedBlock {
 		return p_49479_.getLevel().getBlockState(var4).canBeReplaced(p_49479_) ? (BlockState) this.defaultBlockState().setValue(FACING, var2) : null;
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState p_49547_, BlockGetter p_49548_, BlockPos p_49549_, CollisionContext p_49550_) {
 		Direction var5 = getConnectedDirection(p_49547_).getOpposite();
 		switch (var5) {
@@ -160,6 +174,7 @@ public class TofuBedBlock extends BedBlock {
 				return EAST_SHAPE;
 		}
 	}
+
 
 	public static Direction getConnectedDirection(BlockState p_49558_) {
 		Direction var1 = (Direction) p_49558_.getValue(FACING);

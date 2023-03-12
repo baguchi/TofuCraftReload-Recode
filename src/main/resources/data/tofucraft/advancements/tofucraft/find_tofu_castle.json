@@ -1,0 +1,36 @@
+{
+  "parent": "tofucraft:tofucraft/tofuworld",
+  "display": {
+    "icon": {
+      "item": "tofucraft:tofuishi_brick"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.find_tofu_castle.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.find_tofu_castle.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tofu_castle": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "tofucraft:tofu_castle"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  }
+}

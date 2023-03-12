@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "X": {
+      "item": "tofucraft:zundama"
+    },
+    "#": {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result": {
+    "item": "tofucraft:zunda_arrow",
+    "count": 8
+  }
+}

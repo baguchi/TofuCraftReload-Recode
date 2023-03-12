@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    " Y ",
+    " Z "
+  ],
+  "key": {
+    "X": {
+      "item": "tofucraft:miso"
+    },
+    "Y": {
+      "item": "tofucraft:blocktofumomen"
+    },
+    "Z": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "tofucraft:misodengaku"
+  }
+}

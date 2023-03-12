@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofuzunda"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofufence_zunda",
+    "count": 6
+  }
+}

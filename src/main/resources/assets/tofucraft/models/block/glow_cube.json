@@ -1,0 +1,100 @@
+{
+  "parent": "block/block",
+  "ambientocclusion": false,
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#cube",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#cube",
+          "cullface": "up"
+        },
+        "north": {
+          "texture": "#cube",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#cube",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#cube",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#cube",
+          "cullface": "east"
+        }
+      }
+    },
+    {
+      "from": [
+        -0.001,
+        -0.001,
+        -0.001
+      ],
+      "to": [
+        16.001,
+        16.001,
+        16.001
+      ],
+      "shade": false,
+      "faces": {
+        "down": {
+          "texture": "#glow",
+          "cullface": "down",
+          "emissivity": 15
+        },
+        "up": {
+          "texture": "#glow",
+          "cullface": "up",
+          "emissivity": 15
+        },
+        "north": {
+          "texture": "#glow",
+          "cullface": "north",
+          "emissivity": 15
+        },
+        "south": {
+          "texture": "#glow",
+          "cullface": "south",
+          "emissivity": 15
+        },
+        "west": {
+          "texture": "#glow",
+          "cullface": "west",
+          "emissivity": 15
+        },
+        "east": {
+          "texture": "#glow",
+          "cullface": "east",
+          "emissivity": 15
+        }
+      }
+    }
+  ],
+  "textures": {
+    "particle": "#cube",
+    "down": "#cube",
+    "up": "#cube",
+    "north": "#cube",
+    "east": "#cube",
+    "south": "#cube",
+    "west": "#cube",
+    "glowside": "#glow",
+    "glowtop": "#glow"
+  }
+}

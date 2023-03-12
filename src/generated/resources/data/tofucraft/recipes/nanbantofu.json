@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    [
+      {
+        "item": "tofucraft:tofukinu"
+      },
+      {
+        "item": "tofucraft:tofumomen"
+      }
+    ],
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "tofucraft:bottle_soysause"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "tofucraft:chili"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:nanbantofu"
+  }
+}

@@ -1,10 +1,15 @@
 package baguchan.tofucraft.block.crop;
 
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+
+import java.util.Random;
+
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -19,8 +24,6 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
-import java.util.Random;
-
 public class SoybeanSoulCropsBlock extends CropBlock {
 	private static final VoxelShape[] SHAPES = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D)};
 
@@ -31,15 +34,17 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 	@Override
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);
-		if (stateIn.getValue(AGE) == 7 && rand.nextInt(15) == 0) {
+		if (stateIn.getValue(AGE) == 7 && rand.nextInt(20) == 0) {
 			double d4 = rand.nextBoolean() ? 0.5D : -0.5D;
 			double d0 = pos.getX() + 0.5D + rand.nextFloat() * d4;
 			double d1 = (pos.getY() + rand.nextFloat());
 			double d2 = pos.getZ() + 0.5D + rand.nextFloat() * d4;
 			worldIn.addParticle(ParticleTypes.SOUL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+			worldIn.playLocalSound((double) d0, (double) d1, (double) d2, TofuSounds.SOUL_BREATH.get(), SoundSource.BLOCKS, 1.0F, rand.nextFloat() * 0.25F + 0.75F, false);
 		}
 	}
 
+	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
 		if (!worldIn.isAreaLoaded(pos, 1))
 			return;

@@ -4,6 +4,7 @@
     "particle": "tofucraft:block/tofuladder_ishi",
     "texture": "tofucraft:block/tofuladder_ishi"
   },
+  "render_type": "cutout",
   "elements": [
     {
       "from": [

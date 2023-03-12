@@ -1,0 +1,7 @@
+{
+  "parent": "tofucraft:block/jar_edgemodel",
+  "textures": {
+    "glass": "block/glass",
+    "particle": "#glass"
+  }
+}

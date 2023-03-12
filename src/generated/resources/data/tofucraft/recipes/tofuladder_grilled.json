@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:tofugrilled"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofuladder_grilled",
+    "count": 6
+  }
+}

@@ -5,6 +5,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+
+import java.util.Random;
+
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -23,17 +26,15 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.Random;
-
 public class TofuFarmlandBlock extends Block {
 	public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE;
 	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 	public static final int MAX_MOISTURE = 7;
 
-	public TofuFarmlandBlock(BlockBehaviour.Properties p_53247_) {
-		super(p_53247_);
-		this.registerDefaultState(this.stateDefinition.any().setValue(MOISTURE, Integer.valueOf(0)));
-	}
+    public TofuFarmlandBlock(Properties p_53247_) {
+        super(p_53247_);
+        this.registerDefaultState(this.stateDefinition.any().setValue(MOISTURE, Integer.valueOf(0)));
+    }
 
 	public BlockState updateShape(BlockState p_53276_, Direction p_53277_, BlockState p_53278_, LevelAccessor p_53279_, BlockPos p_53280_, BlockPos p_53281_) {
 		if (p_53277_ == Direction.UP && !p_53276_.canSurvive(p_53279_, p_53280_) && !p_53279_.getBlockTicks().hasScheduledTick(p_53280_, this)) {

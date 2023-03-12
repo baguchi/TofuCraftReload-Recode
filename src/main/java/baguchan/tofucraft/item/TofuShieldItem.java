@@ -19,7 +19,7 @@ public class TofuShieldItem extends ShieldItem {
 	public static final float MINIMUM_DURABILITY_DAMAGE = 3.0F;
 	public static final String TAG_BASE_COLOR = "Base";
 
-	public TofuShieldItem(Item.Properties p_43089_) {
+	public TofuShieldItem(Properties p_43089_) {
 		super(p_43089_);
 		DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);
 	}
@@ -31,13 +31,17 @@ public class TofuShieldItem extends ShieldItem {
 	public void appendHoverText(ItemStack p_43094_, @Nullable Level p_43095_, List<Component> p_43096_, TooltipFlag p_43097_) {
 	}
 
+
 	@Override
 	public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+		super.initializeClient(consumer);
 		consumer.accept(new IItemRenderProperties() {
+
 			@Override
 			public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
 				return new TofuShieldBWLR();
 			}
 		});
 	}
+
 }

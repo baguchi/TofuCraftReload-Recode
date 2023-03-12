@@ -4,12 +4,13 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+
+import java.util.Random;
+
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.Random;
 
 public class TofuLeavesBlock extends LeavesBlock {
 	public TofuLeavesBlock(Properties properties) {

@@ -96,6 +96,7 @@ public class ClientRegistrar {
 		setRenderLayer(TofuBlocks.SALTPAN.get(), RenderType.cutout());
 
 		setRenderLayer(TofuBlocks.ANTENNA_BASIC.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.TOFU_STEM.get(), RenderType.cutout());
 	}
 
 	private static void setRenderLayer(Block block, RenderType type) {
@@ -111,6 +112,17 @@ public class ClientRegistrar {
 		ItemProperties.register(TofuItems.TOFU_SHIELD.get(), new ResourceLocation("blocking"), (p_174590_, p_174591_, p_174592_, p_174593_) -> {
 			return p_174592_ != null && p_174592_.isUsingItem() && p_174592_.getUseItem() == p_174590_ ? 1.0F : 0.0F;
 		});
+		ItemProperties.register(TofuItems.ZUNDA_BOW.get(), new ResourceLocation("pull"), (p_174635_, p_174636_, p_174637_, p_174638_) -> {
+			if (p_174637_ == null) {
+				return 0.0F;
+			} else {
+				return p_174637_.getUseItem() != p_174635_ ? 0.0F : (float) (p_174635_.getUseDuration() - p_174637_.getUseItemRemainingTicks()) / 20.0F;
+			}
+		});
+		ItemProperties.register(TofuItems.ZUNDA_BOW.get(), new ResourceLocation("pulling"), (p_174630_, p_174631_, p_174632_, p_174633_) -> {
+			return p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F;
+		});
+
 
 		MenuScreens.register(TofuContainers.SALT_FURNACE, SaltFurnaceScreen::new);
 		MenuScreens.register(TofuContainers.TF_STORAGE, TFStorageScreen::new);

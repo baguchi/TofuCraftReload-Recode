@@ -38,11 +38,15 @@
     "tofucraft:blocktofuegg",
     "tofucraft:tofustair_egg",
     "tofucraft:tofuslab_egg",
+    "tofucraft:blocktofusesame",
+    "tofucraft:tofustair_sesame",
+    "tofucraft:tofuslab_sesame",
     "tofucraft:blocktofumiso",
     "tofucraft:tofustair_miso",
     "tofucraft:tofuslab_miso",
     "tofucraft:blocktofudried",
     "tofucraft:tofustair_dried",
-    "tofucraft:tofuslab_dried"
+    "tofucraft:tofuslab_dried",
+    "tofucraft:blocktofuminced"
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    " X",
+    " X"
+  ],
+  "key": {
+    "#": {
+      "item": "tofucraft:blocktofumetal"
+    },
+    "X": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofu_metal_hoe"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:diamond_hoe"
+  },
+  "addition": {
+    "item": "tofucraft:blocktofudiamond"
+  },
+  "result": {
+    "item": "tofucraft:tofu_diamond_hoe"
+  }
+}

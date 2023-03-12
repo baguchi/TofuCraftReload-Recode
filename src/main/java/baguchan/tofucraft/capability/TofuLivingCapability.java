@@ -22,7 +22,8 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 
 	public boolean isInTofuPortal = false;
 	public int tofuPortalTimer = 0;
-	public float prevPortalAnimTime, portalAnimTime = 0.0F;
+    public int tofuPortalCooldown = 200;
+    public float prevPortalAnimTime, portalAnimTime = 0.0F;
 
 	public void tick(Entity entity) {
 		if (entity.level.isClientSide) {
@@ -34,24 +35,28 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 						mc.player.closeContainer();
 					}
 
-					mc.setScreen(null);
-				}
+                    mc.setScreen(null);
+                }
 
-				if (this.portalAnimTime == 0.0F) {
-					playPortalSound(mc);
-				}
-			}
-		}
+                if (this.portalAnimTime == 0.0F) {
+                    playPortalSound(mc);
+                }
+            }
+        }
 
-		if (this.isInTofuPortal) {
-			++this.tofuPortalTimer;
-			if (entity.level.isClientSide) {
-				this.portalAnimTime += 0.0125F;
-				if (this.portalAnimTime > 1.0F) {
-					this.portalAnimTime = 1.0F;
-				}
-			}
-			this.isInTofuPortal = false;
+        if (this.tofuPortalCooldown > 0) {
+            --this.tofuPortalCooldown;
+        }
+
+        if (this.isInTofuPortal) {
+            ++this.tofuPortalTimer;
+            if (entity.level.isClientSide) {
+                this.portalAnimTime += 0.0125F;
+                if (this.portalAnimTime > 1.0F) {
+                    this.portalAnimTime = 1.0F;
+                }
+            }
+            this.isInTofuPortal = false;
 		} else {
 			if (entity.level.isClientSide) {
 				if (this.portalAnimTime > 0.0F) {

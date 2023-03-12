@@ -4,6 +4,7 @@
     "particle": "tofucraft:block/tofuladder_metal",
     "texture": "tofucraft:block/tofuladder_metal"
   },
+  "render_type": "cutout",
   "elements": [
     {
       "from": [

@@ -1,7 +1,9 @@
 {
-  "parent": "minecraft:block/cube_column_horizontal",
+  "parent": "tofucraft:block/glow_column_horizontal",
   "textures": {
+    "end": "tofucraft:block/tofustem_top",
     "side": "tofucraft:block/tofustem",
-    "end": "tofucraft:block/tofustem_top"
+    "glowtop": "tofucraft:block/tofustem_top_emissive",
+    "glowside": "tofucraft:block/tofustem_emissive"
   }
 }

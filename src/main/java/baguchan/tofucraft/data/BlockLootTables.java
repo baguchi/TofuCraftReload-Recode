@@ -1,7 +1,9 @@
 package baguchan.tofucraft.data;
 
+import baguchan.tofucraft.block.crop.RiceCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.utils.MisoBarrelBlock;
+import baguchan.tofucraft.block.utils.WeightBaseBlock;
 import baguchan.tofucraft.block.utils.WorkedBarrelBaseBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
@@ -66,6 +68,18 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 
 		add(TofuBlocks.LEEK_CROP.get(), applyExplosionDecay(TofuBlocks.LEEK_CROP.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.LEEK.get()).when(lootitemcondition$builder4).otherwise(LootItem.lootTableItem(TofuItems.LEEK.get())))).withPool(LootPool.lootPool().when(lootitemcondition$builder4).add(LootItem.lootTableItem(TofuItems.LEEK.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
 
+		LootItemCondition.Builder lootitemconditon$chili_crop = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.CHILI_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 7));
+
+		add(TofuBlocks.CHILI_CROP.get(), applyExplosionDecay(TofuBlocks.CHILI_CROP.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.CHILI.get()).when(lootitemconditon$chili_crop).otherwise(LootItem.lootTableItem(TofuItems.CHILI.get())))).withPool(LootPool.lootPool().when(lootitemconditon$chili_crop).add(LootItem.lootTableItem(TofuItems.CHILI.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))));
+
+		LootItemCondition.Builder lootitemcondition$builder7 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.RICE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RiceCropsBlock.AGE, 7));
+
+		this.add(TofuBlocks.RICE_CROP.get(), createCropDrops(TofuBlocks.RICE_CROP.get(), TofuItems.RICE.get(), TofuItems.SEEDS_RICE.get(), lootitemcondition$builder7));
+		registerEmpty(TofuBlocks.RICE_ROOT.get());
+
+		dropOther(TofuBlocks.SOYMILK_CAULDRON.get(), Blocks.CAULDRON);
+		dropOther(TofuBlocks.SOYMILK_NETHER_CAULDRON.get(), Blocks.CAULDRON);
+		dropOther(TofuBlocks.SOYMILK_SOUL_CAULDRON.get(), Blocks.CAULDRON);
 
 		registerTofuDrop(TofuBlocks.KINUTOFU.get(), TofuItems.TOFUKINU.get());
 		registerTofuDrop(TofuBlocks.MOMENTOFU.get(), TofuItems.TOFUMOMEN.get());
@@ -75,6 +89,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.ISHITOFU_CHISELED_BRICK.get());
 		registerTofuDrop(TofuBlocks.METALTOFU.get(), TofuItems.TOFUMETAL.get());
 		registerTofuDrop(TofuBlocks.DIAMONDTOFU.get(), TofuItems.TOFUDIAMOND.get());
+		dropSelf(TofuBlocks.TOFU_GEM_BLOCK.get());
 		registerTofuDrop(TofuBlocks.GRILLEDTOFU.get(), TofuItems.TOFUGRILLED.get());
 		registerTofuDrop(TofuBlocks.ZUNDATOFU.get(), TofuItems.TOFUZUNDA.get());
 		registerTofuDrop(TofuBlocks.HELLTOFU.get(), TofuItems.TOFUHELL.get());
@@ -86,11 +101,13 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.HELLTOFU_SMOOTH_BRICK.get());
 		dropSelf(TofuBlocks.SOULTOFU_BRICK.get());
 		dropSelf(TofuBlocks.SOULTOFU_SMOOTH_BRICK.get());
+		registerTofuDrop(TofuBlocks.MINCEDTOFU.get(), TofuItems.TOFU_MINCED.get());
 
 		dropSelf(TofuBlocks.TOFUSTAIR_KINU.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_MOMEN.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_ISHI.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_METAL.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_GRILLED.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_ZUNDA.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_HELL.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_SOUL.get());
@@ -104,6 +121,7 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		registerSlab(TofuBlocks.TOFUSLAB_MOMEN.get());
 		registerSlab(TofuBlocks.TOFUSLAB_ISHI.get());
 		registerSlab(TofuBlocks.TOFUSLAB_METAL.get());
+		registerSlab(TofuBlocks.TOFUSLAB_GRILLED.get());
 		registerSlab(TofuBlocks.TOFUSLAB_ZUNDA.get());
 		registerSlab(TofuBlocks.TOFUSLAB_HELL.get());
 		registerSlab(TofuBlocks.TOFUSLAB_SOUL.get());
@@ -119,6 +137,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUFENCE_METAL.get());
 		dropSelf(TofuBlocks.TOFUFENCE_HELL.get());
 		dropSelf(TofuBlocks.TOFUFENCE_SOUL.get());
+		dropSelf(TofuBlocks.TOFUFENCE_GRILLED.get());
+		dropSelf(TofuBlocks.TOFUFENCE_ZUNDA.get());
 
 		this.add(TofuBlocks.TOFUDOOR_KINU.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		this.add(TofuBlocks.TOFUDOOR_MOMEN.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
@@ -126,6 +146,8 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		this.add(TofuBlocks.TOFUDOOR_METAL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		this.add(TofuBlocks.TOFUDOOR_HELL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		this.add(TofuBlocks.TOFUDOOR_SOUL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFUDOOR_GRILLED.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFUDOOR_ZUNDA.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 
 		dropSelf(TofuBlocks.TOFUTRAPDOOR_KINU.get());
 		dropSelf(TofuBlocks.TOFUTRAPDOOR_MOMEN.get());
@@ -133,21 +155,29 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.TOFUTRAPDOOR_METAL.get());
 		dropSelf(TofuBlocks.TOFUTRAPDOOR_HELL.get());
 		dropSelf(TofuBlocks.TOFUTRAPDOOR_SOUL.get());
+		dropSelf(TofuBlocks.TOFUTRAPDOOR_GRILLED.get());
+		dropSelf(TofuBlocks.TOFUTRAPDOOR_ZUNDA.get());
 
 		dropSelf(TofuBlocks.TOFUTORCH_KINU.get());
 		dropSelf(TofuBlocks.TOFUTORCH_MOMEN.get());
 		dropSelf(TofuBlocks.TOFUTORCH_ISHI.get());
 		dropSelf(TofuBlocks.TOFUTORCH_METAL.get());
+		dropSelf(TofuBlocks.TOFUTORCH_GRILLED.get());
+		dropSelf(TofuBlocks.TOFUTORCH_ZUNDA.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_KINU.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_MOMEN.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_ISHI.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_METAL.get());
+		dropSelf(TofuBlocks.WALLTOFUTORCH_GRILLED.get());
+		dropSelf(TofuBlocks.WALLTOFUTORCH_ZUNDA.get());
 
 		dropSelf(TofuBlocks.TOFULADDER_KINU.get());
 		dropSelf(TofuBlocks.TOFULADDER_MOMEN.get());
 		dropSelf(TofuBlocks.TOFULADDER_ISHI.get());
 		dropSelf(TofuBlocks.TOFULADDER_ISHIBRICK.get());
 		dropSelf(TofuBlocks.TOFULADDER_METAL.get());
+		dropSelf(TofuBlocks.TOFULADDER_GRILLED.get());
+		dropSelf(TofuBlocks.TOFULADDER_ZUNDA.get());
 
 		dropSelf(TofuBlocks.TOFU_TERRAIN.get());
 		dropSelf(TofuBlocks.TOFU_TERRAIN_ZUNDA.get());
@@ -160,28 +190,44 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		dropSelf(TofuBlocks.SAPLING_TOFU.get());
 		this.add(TofuBlocks.LEAVES_TOFU.get(), createLeavesDrops(TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.SAPLING_TOFU.get(), DEFAULT_SAPLING_DROP_RATES));
 
+		dropSelf(TofuBlocks.SAPLING_APRICOT.get());
+		this.add(TofuBlocks.LEAVES_APRICOT.get(), createApricotLeavesDrop(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.SAPLING_APRICOT.get(), DEFAULT_SAPLING_DROP_RATES));
+
 		dropSelf(TofuBlocks.LEEK_GREEN_STEM.get());
 		dropSelf(TofuBlocks.LEEK_STEM.get());
 		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
 		dropSelf(TofuBlocks.TOFU_STEM.get());
 		dropSelf(TofuBlocks.TOFU_STEM_PLANKS.get());
+		dropSelf(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get());
+		registerSlab(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get());
 
 		this.dropOther(TofuBlocks.LEEK.get(), TofuItems.LEEK.get());
 
 		dropOther(TofuBlocks.TOFU_FARMLAND.get(), TofuBlocks.TOFU_TERRAIN.get());
 		dropSelf(TofuBlocks.SALTPAN.get());
 		dropSelf(TofuBlocks.SALT_FURNACE.get());
+		dropSelf(TofuBlocks.SPROUTSJAR.get());
 		dropSelf(TofuBlocks.MORIJIO.get());
+		dropSelf(TofuBlocks.FOODPLATE.get());
 
-		LootItemCondition.Builder lootitemcondition$builder5 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WorkedBarrelBaseBlock.Stat.USED));
+		dropSelf(TofuBlocks.RICE_BLOCK.get());
+
+		LootItemCondition.Builder lootitemcondition$builder5 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WeightBaseBlock.Stat.USED));
 
 		add(TofuBlocks.BARREL_MISO.get(), applyExplosionDecay(TofuBlocks.BARREL_MISO.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.MISO.get()).when(lootitemcondition$builder5).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion())))));
 
-		LootItemCondition.Builder lootitemcondition$builder6 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISOTOFU.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WorkedBarrelBaseBlock.STAT, WorkedBarrelBaseBlock.Stat.USED));
+		LootItemCondition.Builder lootitemcondition$builder6 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISOTOFU.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
 
 		add(TofuBlocks.BARREL_MISOTOFU.get(), applyExplosionDecay(TofuBlocks.BARREL_MISOTOFU.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFUMISO.get()).when(lootitemcondition$builder6).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(ExplosionCondition.survivesExplosion())))));
 
+		LootItemCondition.Builder lootitemcondition$builder8 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.NATTOBED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
+
+		add(TofuBlocks.NATTOBED.get(), applyExplosionDecay(TofuBlocks.NATTOBED.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.NATTO.get()).when(lootitemcondition$builder8).apply(SetItemCountFunction.setCount(ConstantValue.exactly(6.0F)))))));
+
+
 		registerEmpty(TofuBlocks.TOFUCAKE.get());
+		registerEmpty(TofuBlocks.ZUNDATOFUCAKE.get());
+		registerEmpty(TofuBlocks.SOYCHEESE_TART.get());
 
 		this.add(TofuBlocks.TOFUBED.get(), (p_124233_) -> {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);
@@ -194,6 +240,15 @@ public class BlockLootTables extends net.minecraft.data.loot.BlockLoot {
 		registerTofuDrop(TofuBlocks.EGGTOFU.get(), TofuItems.TOFUEGG.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_EGG.get());
 		registerSlab(TofuBlocks.TOFUSLAB_EGG.get());
+
+		registerTofuDrop(TofuBlocks.SESAMETOFU.get(), TofuItems.TOFUSESAME.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_SESAME.get());
+		registerSlab(TofuBlocks.TOFUSLAB_SESAME.get());
+		registerEmpty(TofuBlocks.YUBA.get());
+	}
+
+	protected LootTable.Builder createApricotLeavesDrop(Block p_124264_, Block p_124265_, float... p_124266_) {
+		return createLeavesDrops(p_124264_, p_124265_, p_124266_).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(applyExplosionCondition(TofuBlocks.LEAVES_APRICOT.get(), LootItem.lootTableItem(TofuItems.APRICOT.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
 	}
 
 	protected static LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

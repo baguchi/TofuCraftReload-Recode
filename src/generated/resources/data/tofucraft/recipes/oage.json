@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:tofuslab_momen"
+    },
+    {
+      "item": "tofucraft:bottle_soyoil"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:oage",
+    "count": 4
+  }
+}

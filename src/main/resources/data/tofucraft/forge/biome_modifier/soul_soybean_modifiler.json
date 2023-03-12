@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#tofucraft:has_soul_soybean",
+  "step": "vegetal_decoration",
+  "features": "tofucraft:patch_soul_soybean"
+}

@@ -69,16 +69,18 @@ public class TofuCraftReload {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-		TofuBiomes.BIOMES.register(modBus);
 		TofuCarvers.WORLD_CARVER.register(modBus);
 		TofuBlocks.BLOCKS.register(modBus);
+		TofuItems.ITEMS.register(modBus);
 		TofuEntityTypes.ENTITIES.register(modBus);
 		TofuFluids.FLUIDS.register(modBus);
 
-		TofuItems.ITEMS.register(modBus);
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
+		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
+		TofuSounds.SOUND_EVENTS.register(modBus);
+		TofuParticleTypes.PARTICLE_TYPES.register(modBus);
 
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 
@@ -99,6 +101,7 @@ public class TofuCraftReload {
 		TofuEnergyMap.init();
 		TofuBiomes.init();
 		TofuConfiguredWorldCarvers.init();
+		TofuAdvancements.init();
 	}
 
 

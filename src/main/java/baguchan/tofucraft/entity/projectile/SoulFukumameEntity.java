@@ -1,43 +1,48 @@
 package baguchan.tofucraft.entity.projectile;
 
+import baguchan.tofucraft.compat.CompatHandler;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
-import baguchan.tofucraft.registry.TofuSounds;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.registries.ForgeRegistries;
 
-public class SoulFukumameEntity extends ThrowableProjectile {
-	public SoulFukumameEntity(EntityType<? extends SoulFukumameEntity> p_i50154_1_, Level p_i50154_2_) {
-		super(p_i50154_1_, p_i50154_2_);
-	}
+import java.util.Optional;
 
-	public SoulFukumameEntity(Level worldIn, LivingEntity throwerIn) {
-		super(TofuEntityTypes.SOUL_FUKUMAME.get(), throwerIn, worldIn);
-	}
+public class SoulFukumameEntity extends FukumameEntity {
+    public SoulFukumameEntity(EntityType<? extends SoulFukumameEntity> p_i50154_1_, Level p_i50154_2_) {
+        super(p_i50154_1_, p_i50154_2_);
+    }
 
-	public SoulFukumameEntity(Level worldIn, double x, double y, double z) {
-		super(TofuEntityTypes.SOUL_FUKUMAME.get(), x, y, z, worldIn);
-	}
+    public SoulFukumameEntity(Level worldIn, LivingEntity throwerIn) {
+        super(TofuEntityTypes.SOUL_FUKUMAME.get(), throwerIn, worldIn);
+    }
 
-	public SoulFukumameEntity(EntityType<? extends SoulFukumameEntity> p_i50154_1_, Level worldIn, double x, double y, double z) {
-		super(p_i50154_1_, x, y, z, worldIn);
-	}
+    public SoulFukumameEntity(Level worldIn, LivingEntity throwerIn, ItemStack stack) {
+        super(TofuEntityTypes.SOUL_FUKUMAME.get(), throwerIn, worldIn);
+        Optional<Holder<Enchantment>> resourceKey = ForgeRegistries.ENCHANTMENTS.getHolder(CompatHandler.HUNTERILLAGER_BOUNCE);
+        if (resourceKey.isPresent()) {
+            this.setBounceLevel(EnchantmentHelper.getItemEnchantmentLevel(resourceKey.get().value(), stack));
+        }
+    }
 
-	protected void defineSynchedData() {
-	}
+    public SoulFukumameEntity(Level worldIn, double x, double y, double z) {
+        super(TofuEntityTypes.SOUL_FUKUMAME.get(), worldIn, x, y, z);
+    }
+
+    public SoulFukumameEntity(EntityType<? extends SoulFukumameEntity> p_i50154_1_, Level worldIn, double x, double y, double z) {
+        super(p_i50154_1_, worldIn, x, y, z);
+    }
+
 
 	@OnlyIn(Dist.CLIENT)
 	public void handleEntityEvent(byte id) {
@@ -58,26 +63,4 @@ public class SoulFukumameEntity extends ThrowableProjectile {
 		this.level.broadcastEntityEvent(this, (byte) 4);
 	}
 
-	protected void onHitEntity(EntityHitResult p_37404_) {
-		super.onHitEntity(p_37404_);
-		Entity entity = p_37404_.getEntity();
-		int i = 1;
-		entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) i);
-		entity.invulnerableTime = 5;
-	}
-
-	protected void onHit(HitResult p_37406_) {
-		super.onHit(p_37406_);
-		playSound(TofuSounds.SOYBEAN_CRACK, 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F);
-		if (!this.level.isClientSide) {
-			this.level.broadcastEntityEvent(this, (byte) 3);
-			this.discard();
-		}
-
-	}
-
-	@Override
-	public Packet<?> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
-	}
 }

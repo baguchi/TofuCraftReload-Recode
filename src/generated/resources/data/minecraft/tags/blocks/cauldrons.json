@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "tofucraft:soymilk_cauldron",
+    "tofucraft:soymilk_nether_cauldron",
+    "tofucraft:soymilk_soul_cauldron"
+  ]
+}

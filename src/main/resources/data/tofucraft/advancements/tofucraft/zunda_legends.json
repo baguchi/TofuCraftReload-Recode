@@ -1,0 +1,37 @@
+{
+  "parent": "tofucraft:tofucraft/find_tofu_castle",
+  "display": {
+    "icon": {
+      "item": "tofucraft:zunda_bow"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.zunda_legends.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.zunda_legends.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "zunda_bow": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:zunda_bow"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "zunda_bow"
+    ]
+  ]
+}

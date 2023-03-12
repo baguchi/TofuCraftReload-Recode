@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofugrilled"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofufence_grilled",
+    "count": 6
+  }
+}

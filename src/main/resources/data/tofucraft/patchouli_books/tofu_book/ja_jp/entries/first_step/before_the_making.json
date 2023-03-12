@@ -11,7 +11,8 @@
     {
       "type": "crafting",
       "title": "豆乳バケツ",
-      "recipe": "tofucraft:bucket_soymilk"
+      "recipe": "tofucraft:bucket_soymilk",
+      "text": "豆乳は水に似ている。$(br2)だが少し違う。"
     },
     {
       "type": "image",

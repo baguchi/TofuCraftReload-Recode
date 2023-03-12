@@ -3,12 +3,15 @@ package baguchan.tofucraft;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
+import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
@@ -17,6 +20,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -26,6 +30,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.village.VillageSiegeEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -87,6 +92,62 @@ public class CommonEvents {
 		Player playerEntity = event.getPlayer();
 		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel(), false)));
 	}
+
+	@SubscribeEvent
+	public static void onBlockUsed(PlayerInteractEvent.RightClickBlock event) {
+		if (event.getItemStack().is(TofuItems.BUCKET_SOYMILK.get()) && event.getWorld().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+			event.getWorld().setBlock(event.getPos(), TofuBlocks.SOYMILK_CAULDRON.get().defaultBlockState(), 2);
+			event.getPlayer().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
+			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
+			if (!event.getPlayer().isCreative()) {
+				event.getItemStack().shrink(1);
+			}
+			if (event.getItemStack().isEmpty()) {
+				event.getPlayer().setItemInHand(event.getHand(), itemstack2);
+			} else if (!event.getPlayer().isCreative() &&
+					!event.getPlayer().getInventory().add(itemstack2)) {
+				event.getPlayer().drop(itemstack2, false);
+			}
+
+			event.setCancellationResult(InteractionResult.SUCCESS);
+			event.setCanceled(true);
+		}
+		if (event.getItemStack().is(TofuItems.BUCKET_SOYMILK_NETHER.get()) && event.getWorld().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+			event.getWorld().setBlock(event.getPos(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get().defaultBlockState(), 2);
+			event.getPlayer().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
+			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
+			if (!event.getPlayer().isCreative()) {
+				event.getItemStack().shrink(1);
+			}
+			if (event.getItemStack().isEmpty()) {
+				event.getPlayer().setItemInHand(event.getHand(), itemstack2);
+			} else if (!event.getPlayer().isCreative() &&
+					!event.getPlayer().getInventory().add(itemstack2)) {
+				event.getPlayer().drop(itemstack2, false);
+			}
+
+			event.setCancellationResult(InteractionResult.SUCCESS);
+			event.setCanceled(true);
+		}
+		if (event.getItemStack().is(TofuItems.BUCKET_SOYMILK_SOUL.get()) && event.getWorld().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+			event.getWorld().setBlock(event.getPos(), TofuBlocks.SOYMILK_SOUL_CAULDRON.get().defaultBlockState(), 2);
+			event.getPlayer().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
+			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
+			if (!event.getPlayer().isCreative()) {
+				event.getItemStack().shrink(1);
+			}
+			if (event.getItemStack().isEmpty()) {
+				event.getPlayer().setItemInHand(event.getHand(), itemstack2);
+			} else if (!event.getPlayer().isCreative() &&
+					!event.getPlayer().getInventory().add(itemstack2)) {
+				event.getPlayer().drop(itemstack2, false);
+			}
+
+			event.setCancellationResult(InteractionResult.SUCCESS);
+			event.setCanceled(true);
+		}
+	}
+
 
 	/*@SubscribeEvent
 	public static void onFluidPlaceEvent(BlockEvent.FluidPlaceBlockEvent event) {
@@ -161,13 +222,4 @@ public class CommonEvents {
 		}
 	}
 
-	@SubscribeEvent
-	public static void onBlockDrop(BlockEvent.BreakEvent event) {
-		if (!event.getPlayer().isCreative() && (
-				event.getWorld().getBlockState(event.getPos()).is(Blocks.FERN) || event.getWorld().getBlockState(event.getPos()).is(Blocks.TALL_GRASS) || event.getWorld().getBlockState(event.getPos()).is(Blocks.GRASS)) &&
-				event.getWorld() instanceof Level && ((Level) event.getWorld()).random.nextFloat() < 0.075F) {
-			ItemEntity entity = new ItemEntity((Level) event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), new ItemStack(TofuItems.SEEDS_SOYBEANS.get()));
-			event.getWorld().addFreshEntity(entity);
-		}
-	}
 }

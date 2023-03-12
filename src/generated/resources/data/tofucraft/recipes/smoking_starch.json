@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "tofucraft:starch_raw"
+  },
+  "result": "tofucraft:starch",
+  "experience": 0.1,
+  "cookingtime": 100
+}

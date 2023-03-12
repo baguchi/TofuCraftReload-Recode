@@ -1,0 +1,26 @@
+{
+  "parent": "tofucraft:tofucraft/tofuworld",
+  "display": {
+    "icon": {
+      "item": "tofucraft:zundamushroom_on_a_stick"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.tofupig_pop.title"
+    },
+    "description": {
+      "translate": "advancements.tofucraft.tofupig_pop.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 30
+  },
+  "criteria": {
+    "tofupig_pop": {
+      "trigger": "tofucraft:tofupig_pop"
+    }
+  }
+}

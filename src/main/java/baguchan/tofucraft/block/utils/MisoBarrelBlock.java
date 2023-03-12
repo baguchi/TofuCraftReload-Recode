@@ -4,6 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+
+import java.util.Random;
+
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -19,18 +22,16 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Random;
-
-public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
-	public final RegistryObject<Item> finishedBottleItem;
-	public static final IntegerProperty FLUIDS = IntegerProperty.create("fluids", 0, 3);
+public class MisoBarrelBlock extends WeightBaseBlock {
+    public final RegistryObject<Item> finishedBottleItem;
+    public static final IntegerProperty FLUIDS = IntegerProperty.create("fluids", 0, 6);
 
 
-	public MisoBarrelBlock(RegistryObject<Item> finishedBottleItem, Properties properties) {
-		super(properties);
-		this.finishedBottleItem = finishedBottleItem;
-		registerDefaultState(this.stateDefinition.any().setValue(STAT, Stat.USING).setValue(TIME, 0).setValue(FLUIDS, 0));
-	}
+    public MisoBarrelBlock(RegistryObject<Item> finishedBottleItem, Properties properties) {
+        super(properties);
+        this.finishedBottleItem = finishedBottleItem;
+        registerDefaultState(this.stateDefinition.any().setValue(STAT, Stat.USING).setValue(TIME, 0).setValue(FLUIDS, 0));
+    }
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
@@ -43,7 +44,7 @@ public class MisoBarrelBlock extends WorkedBarrelBaseBlock {
 			}
 
 			if (time >= 5 && stat == Stat.USING) {
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.USED).setValue(FLUIDS, 3), 3);
+                worldIn.setBlock(pos, state.setValue(STAT, Stat.USED).setValue(FLUIDS, 6), 3);
 			}
 		}
 	}

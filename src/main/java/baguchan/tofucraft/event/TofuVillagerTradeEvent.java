@@ -7,11 +7,11 @@ import baguchan.tofucraft.registry.TofuProfessions;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import net.minecraft.core.Registry;
+
+import java.util.Random;
+
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.VillagerDataHolder;
 import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.entity.npc.VillagerType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -22,10 +22,7 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class TofuVillagerTradeEvent {
@@ -39,18 +36,27 @@ public class TofuVillagerTradeEvent {
 		if (event.getType() == TofuProfessions.TOFU_CRAFTSMAN.get()) {
 			trades.add(new EmeraldForItems(TofuItems.SEEDS_SOYBEANS.get(), 16, 12, 1));
 			trades.add(new ItemsForEmeralds(TofuItems.TOFUGRILLED.get(), 1, 9, 8, 2));
+
 			trades2.add(new ItemsForEmeralds(TofuItems.SOYMILK.get(), 1, 3, 8, 7));
 			trades2.add(new EmeraldForItems(Items.GLASS_BOTTLE, 5, 8, 6));
 
 			trades3.add(new EmeraldForItems(TofuItems.SALT.get(), 17, 12, 12));
 			trades3.add(new ItemsForEmeralds(new ItemStack(TofuItems.TOFUCOOKIE.get()), 2, 8, 12, 14, 0.052F));
 
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_ANNIN.get(), 1, 3, 6, 16));
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_APPLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_FRUITS.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_HONEY.get(), 1, 3, 6, 16));
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_KINAKO.get(), 1, 3, 6, 16));
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_PUDDING.get(), 1, 3, 6, 16));
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_PUMPKIN.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_RAMUNE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_SAKURA.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_STRAWBERRY.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_TEA.get(), 1, 3, 6, 16));
 
 			trades5.add(new ItemsForEmeralds(TofuBlocks.MORIJIO.get(), 10, 2, 6, 20));
+			trades5.add(new ItemsForEmeralds(TofuItems.BOTTLE_SOYOIL.get(), 4, 3, 8, 20));
 		}
 	}
 
@@ -76,35 +82,6 @@ public class TofuVillagerTradeEvent {
 		public MerchantOffer getOffer(Entity p_35662_, Random p_35663_) {
 			ItemStack itemstack = new ItemStack(this.item, this.cost);
 			return new MerchantOffer(itemstack, new ItemStack(Items.EMERALD), this.maxUses, this.villagerXp, this.priceMultiplier);
-		}
-	}
-
-	static class EmeraldsForVillagerTypeItem implements VillagerTrades.ItemListing {
-		private final Map<VillagerType, Item> trades;
-		private final int cost;
-		private final int maxUses;
-		private final int villagerXp;
-
-		public EmeraldsForVillagerTypeItem(int p_35669_, int p_35670_, int p_35671_, Map<VillagerType, Item> p_35672_) {
-			Registry.VILLAGER_TYPE.stream().filter((p_35680_) -> {
-				return !p_35672_.containsKey(p_35680_);
-			}).findAny().ifPresent((p_35677_) -> {
-				throw new IllegalStateException("Missing trade for villager type: " + Registry.VILLAGER_TYPE.getKey(p_35677_));
-			});
-			this.trades = p_35672_;
-			this.cost = p_35669_;
-			this.maxUses = p_35670_;
-			this.villagerXp = p_35671_;
-		}
-
-		@Nullable
-		public MerchantOffer getOffer(Entity p_35674_, Random p_35675_) {
-			if (p_35674_ instanceof VillagerDataHolder) {
-				ItemStack itemstack = new ItemStack(this.trades.get(((VillagerDataHolder) p_35674_).getVillagerData().getType()), this.cost);
-				return new MerchantOffer(itemstack, new ItemStack(Items.EMERALD), this.maxUses, this.villagerXp, 0.05F);
-			} else {
-				return null;
-			}
 		}
 	}
 

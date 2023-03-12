@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:leek"
+    },
+    {
+      "item": "tofucraft:soymeat"
+    },
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "tofucraft:bottle_soysause"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:negima"
+  }
+}

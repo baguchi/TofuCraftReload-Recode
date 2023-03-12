@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "tofucraft:tofuzunda"
+    }
+  },
+  "result": {
+    "item": "tofucraft:tofutrapdoor_zunda",
+    "count": 2
+  }
+}

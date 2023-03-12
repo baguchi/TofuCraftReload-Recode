@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tofucraft:natto"
+    },
+    {
+      "item": "tofucraft:tofukinu"
+    },
+    {
+      "item": "tofucraft:leek"
+    },
+    {
+      "item": "tofucraft:glassbowl"
+    },
+    {
+      "item": "tofucraft:bottle_soysause"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:nattohiyayakko"
+  }
+}

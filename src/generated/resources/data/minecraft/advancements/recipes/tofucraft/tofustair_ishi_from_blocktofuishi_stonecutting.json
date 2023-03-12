@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:tofustair_ishi_from_blocktofuishi_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_blocktofuishi": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tofucraft:blocktofuishi"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:tofustair_ishi_from_blocktofuishi_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blocktofuishi",
+      "has_the_recipe"
+    ]
+  ]
+}
