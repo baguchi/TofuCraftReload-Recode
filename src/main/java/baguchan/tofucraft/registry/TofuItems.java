@@ -539,7 +539,8 @@ public class TofuItems {
 											TofuBlocks.NATTOBED,
 											TofuBlocks.TOFUBED,
 											TofuBlocks.TOFUCHEST,
-											TofuBlocks.FOODPLATE)
+											TofuBlocks.FOODPLATE,
+											TofuBlocks.SALTPAN)
 									.map(item -> item.get().asItem().getDefaultInstance())
 									.toList())).build();
 				});
