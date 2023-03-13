@@ -137,15 +137,15 @@ public class TofuCraftReload {
 	public void onServerAboutToStartEvent(ServerStartedEvent event) {
 		// SETUP Tofu Worker House
 		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/plains/houses"),
-				new ResourceLocation("tofucraft:village/tofu_craftsman_house_plains_1"), 8);
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_plains_1"), 10);
 		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/taiga/houses"),
-				new ResourceLocation("tofucraft:village/tofu_craftsman_house_taiga_1"), 8);
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_taiga_1"), 10);
 		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/savanna/houses"),
-				new ResourceLocation("tofucraft:village/tofu_craftsman_house_savanna_1"), 8);
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_savanna_1"), 10);
 		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/snowy/houses"),
-				new ResourceLocation("tofucraft:village/tofu_craftsman_house_snowy_1"), 8);
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_snowy_1"), 10);
 		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/desert/houses"),
-				new ResourceLocation("tofucraft:village/tofu_craftsman_house_desert_1"), 8);
+				new ResourceLocation("tofucraft:village/tofu_craftsman_house_desert_1"), 10);
 	}
 
 
