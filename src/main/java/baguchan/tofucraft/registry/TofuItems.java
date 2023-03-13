@@ -540,7 +540,9 @@ public class TofuItems {
 											TofuBlocks.TOFUBED,
 											TofuBlocks.TOFUCHEST,
 											TofuBlocks.FOODPLATE,
-											TofuBlocks.SALTPAN)
+											TofuBlocks.SALTPAN,
+											TofuBlocks.SALT_FURNACE,
+											TofuBlocks.MORIJIO)
 									.map(item -> item.get().asItem().getDefaultInstance())
 									.toList())).build();
 				});
@@ -694,6 +696,7 @@ public class TofuItems {
 						return new ItemStack(TofuItems.TOFU_MOMEN_SWORD.get());
 					}).title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tools" + ".main_tab")).displayItems((features, output, hasPermissions) -> output.acceptAll(Stream.of(
 									TofuItems.BUGLE,
+									TofuItems.TOFUSCOOP,
 									TofuItems.ROLLINGPIN,
 									TofuItems.FILTERCLOTH,
 									TofuItems.TOFUSTICK,
