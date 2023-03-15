@@ -18,7 +18,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -82,12 +81,12 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<Item> result) {
-		SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing");
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing");
 		LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), RecipeCategory.TOOLS, result.get()).unlocks("has_item", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, TofuCraftReload.prefix("smithing_old_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
 	public static void sculkSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<Item> result) {
-		SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing");
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing");
 		LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), RecipeCategory.COMBAT, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, TofuCraftReload.prefix("smithing_old_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 

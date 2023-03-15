@@ -359,6 +359,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.TOFU_DIAMOND_SHOVEL.get());
 		singleTexTool(TofuItems.TOFU_DIAMOND_HOE.get());
 
+		singleTexTool(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get());
+
 		singleTex(TofuItems.TOFU_KINU_HELMET.get());
 		singleTex(TofuItems.TOFU_KINU_CHESTPLATE.get());
 		singleTex(TofuItems.TOFU_KINU_LEGGINGS.get());

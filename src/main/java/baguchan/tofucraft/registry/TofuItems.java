@@ -28,6 +28,7 @@ import baguchan.tofucraft.item.ZundaArrowItem;
 import baguchan.tofucraft.item.ZundaBowItem;
 import baguchan.tofucraft.item.ZundaMushroomOnAStickItem;
 import baguchan.tofucraft.utils.RecipeHelper;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
@@ -59,6 +60,7 @@ import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SmithingTemplateItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -78,6 +80,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -295,6 +298,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFU_DIAMOND_PICKAXE = ITEMS.register("tofu_diamond_pickaxe", () -> new PickaxeItem(TofuItemTier.TOFUDIAMOND, 1, -2.8F, (new Item.Properties())));
 	public static final RegistryObject<Item> TOFU_DIAMOND_SHOVEL = ITEMS.register("tofu_diamond_shovel", () -> new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -3.0F, (new Item.Properties())));
 	public static final RegistryObject<Item> TOFU_DIAMOND_HOE = ITEMS.register("tofu_diamond_hoe", () -> new HoeItem(TofuItemTier.TOFUDIAMOND, -4, 0.0F, (new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("tofu_upgrade_smithing_template", TofuItems::createTofuUpgradeTemplate);
 
 
 	public static final RegistryObject<Item> TOFU_KINU_HELMET = ITEMS.register("tofu_kinu_helmet", () -> new ArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.HELMET, (new Item.Properties())));
@@ -396,6 +400,43 @@ public class TofuItems {
 	private static RegistryObject<Item> register(String name, Supplier<Item> item) {
 		return ITEMS.register(name, item);
 	}
+
+
+	private static final ChatFormatting TITLE_FORMAT = ChatFormatting.GRAY;
+	private static final ChatFormatting DESCRIPTION_FORMAT = ChatFormatting.BLUE;
+
+	private static final Component TOFU_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", new ResourceLocation("tofu_upgrade"))).withStyle(TITLE_FORMAT);
+
+	private static final Component TOFU_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMAT);
+	private static final Component TOFU_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
+	private static final Component TOFU_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.base_slot_description")));
+	private static final Component TOFU_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.additions_slot_description")));
+
+	private static final ResourceLocation EMPTY_SLOT_HELMET = new ResourceLocation("item/empty_armor_slot_helmet");
+	private static final ResourceLocation EMPTY_SLOT_CHESTPLATE = new ResourceLocation("item/empty_armor_slot_chestplate");
+	private static final ResourceLocation EMPTY_SLOT_LEGGINGS = new ResourceLocation("item/empty_armor_slot_leggings");
+	private static final ResourceLocation EMPTY_SLOT_BOOTS = new ResourceLocation("item/empty_armor_slot_boots");
+	private static final ResourceLocation EMPTY_SLOT_HOE = new ResourceLocation("item/empty_slot_hoe");
+	private static final ResourceLocation EMPTY_SLOT_AXE = new ResourceLocation("item/empty_slot_axe");
+	private static final ResourceLocation EMPTY_SLOT_SWORD = new ResourceLocation("item/empty_slot_sword");
+	private static final ResourceLocation EMPTY_SLOT_SHOVEL = new ResourceLocation("item/empty_slot_shovel");
+	private static final ResourceLocation EMPTY_SLOT_PICKAXE = new ResourceLocation("item/empty_slot_pickaxe");
+	private static final ResourceLocation EMPTY_SLOT_INGOT = new ResourceLocation("item/empty_slot_ingot");
+
+
+	private static List<ResourceLocation> createTofuUpgradeIconList() {
+		return List.of(EMPTY_SLOT_HELMET, EMPTY_SLOT_SWORD, EMPTY_SLOT_CHESTPLATE, EMPTY_SLOT_PICKAXE, EMPTY_SLOT_LEGGINGS, EMPTY_SLOT_AXE, EMPTY_SLOT_BOOTS, EMPTY_SLOT_HOE, EMPTY_SLOT_SHOVEL);
+	}
+
+	private static List<ResourceLocation> createTofuUpgradeMaterialList() {
+		return List.of(EMPTY_SLOT_INGOT);
+	}
+
+
+	public static SmithingTemplateItem createTofuUpgradeTemplate() {
+		return new SmithingTemplateItem(TOFU_UPGRADE_APPLIES_TO, TOFU_UPGRADE_INGREDIENTS, TOFU_UPGRADE, TOFU_UPGRADE_BASE_SLOT_DESCRIPTION, TOFU_UPGRADE_ADDITIONS_SLOT_DESCRIPTION, createTofuUpgradeIconList(), createTofuUpgradeMaterialList());
+	}
+
 
 	@SubscribeEvent
 	public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
