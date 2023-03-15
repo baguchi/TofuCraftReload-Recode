@@ -120,7 +120,7 @@ public class TofuTrades {
 		}
 
 		public MerchantOffer getOffer(Entity trader, RandomSource rand) {
-			int i = 5 + rand.nextInt(15);
+			int i = 2 + rand.nextInt(5);
 			int j = Math.min(this.rubyCount + i, 64);
 			ItemStack stack = new ItemStack(this.sellingItem.getItem(), 1);
 			EnchantmentHelper.enchantItem(rand, stack, i, false);

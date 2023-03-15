@@ -405,7 +405,7 @@ public class TofuItems {
 	private static final ChatFormatting TITLE_FORMAT = ChatFormatting.GRAY;
 	private static final ChatFormatting DESCRIPTION_FORMAT = ChatFormatting.BLUE;
 
-	private static final Component TOFU_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", new ResourceLocation("tofu_upgrade"))).withStyle(TITLE_FORMAT);
+	private static final Component TOFU_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", new ResourceLocation(TofuCraftReload.MODID, "tofu_upgrade"))).withStyle(TITLE_FORMAT);
 
 	private static final Component TOFU_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMAT);
 	private static final Component TOFU_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
