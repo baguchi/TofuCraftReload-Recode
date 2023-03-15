@@ -13,7 +13,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -93,7 +92,7 @@ public class FukumameEntity extends ThrowableProjectile {
 		super.onHitEntity(p_37404_);
 		Entity entity = p_37404_.getEntity();
 		int i = 2;
-		entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) this.damage);
+		entity.hurt(this.damageSources().thrown(this, this.getOwner()), (float) this.damage);
 		entity.invulnerableTime = 5;
 		if (!this.level.isClientSide) {
 			this.level.broadcastEntityEvent(this, (byte) 3);

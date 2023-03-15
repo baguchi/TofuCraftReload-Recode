@@ -34,22 +34,22 @@ public class CraftingGenerator extends CraftingDataHelper {
 		bootsItem(consumer, "tofu_diamond_boots", TofuItems.ARMOR_TOFU_DIAMONDBOOTS, TofuBlocks.DIAMONDTOFU);
 		*/
 
-		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_SWORD.get(), TofuItems.TOFU_DIAMOND_SWORD);
-		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_PICKAXE.get(), TofuItems.TOFU_DIAMOND_PICKAXE);
-		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_AXE.get(), TofuItems.TOFU_DIAMOND_AXE);
-		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_SHOVEL.get(), TofuItems.TOFU_DIAMOND_SHOVEL);
-		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_HOE.get(), TofuItems.TOFU_DIAMOND_HOE);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_SWORD.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_SWORD);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_PICKAXE.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_PICKAXE);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_AXE.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_AXE);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_SHOVEL.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_SHOVEL);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_HOE.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_HOE);
 
 
-		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_HELMET.get(), TofuItems.TOFU_DIAMOND_HELMET);
-		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_CHESTPLATE.get(), TofuItems.TOFU_DIAMOND_CHESTPLATE);
-		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_LEGGINGS.get(), TofuItems.TOFU_DIAMOND_LEGGINGS);
-		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_BOOTS.get(), TofuItems.TOFU_DIAMOND_BOOTS);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_HELMET.get(), RecipeCategory.COMBAT, TofuItems.TOFU_DIAMOND_HELMET);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_CHESTPLATE.get(), RecipeCategory.COMBAT, TofuItems.TOFU_DIAMOND_CHESTPLATE);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_LEGGINGS.get(), RecipeCategory.COMBAT, TofuItems.TOFU_DIAMOND_LEGGINGS);
+		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_BOOTS.get(), RecipeCategory.COMBAT, TofuItems.TOFU_DIAMOND_BOOTS);
 
-		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.SCULK_BONE_HELMET);
-		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), TofuItems.SCULK_BONE_CHESTPLATE);
-		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_LEGGINGS.get(), TofuItems.SCULK_BONE_LEGGINGS);
-		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_BOOTS.get(), TofuItems.SCULK_BONE_BOOTS);
+		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_HELMET.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_HELMET);
+		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_CHESTPLATE);
+		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_LEGGINGS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_LEGGINGS);
+		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_BOOTS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_BOOTS);
 
 
 		/*swordItem(consumer, "tofu_diamond_sword", TofuItems.TOFU_DIAMOND_SWORD, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);

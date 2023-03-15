@@ -6,13 +6,14 @@
       "item": "tofucraft:tofugrilled"
     }
   },
-  "pattern": [
+  "pattern" : [
     "# #",
     "###",
     "# #"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofuladder_grilled"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofuladder_grilled"
+  },
+  "show_notification" : true
 }

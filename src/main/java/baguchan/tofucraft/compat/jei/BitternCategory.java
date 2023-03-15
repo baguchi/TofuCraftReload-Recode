@@ -1,5 +1,6 @@
 package baguchan.tofucraft.compat.jei;
 
+/*
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.FluidIngredient;
@@ -81,4 +82,5 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
 }
+*/
 

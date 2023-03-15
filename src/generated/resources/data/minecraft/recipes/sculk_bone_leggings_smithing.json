@@ -1,0 +1,15 @@
+{
+  "type" : "minecraft:smithing_transform",
+  "addition" : {
+    "item" : "tofucraft:soy_sculk_bone"
+  },
+  "base" : {
+    "item" : "tofucraft:tofu_diamond_leggings"
+  },
+  "result" : {
+    "item" : "tofucraft:sculk_bone_leggings"
+  },
+  "template" : {
+    "item" : "minecraft:netherite_upgrade_smithing_template"
+  }
+}

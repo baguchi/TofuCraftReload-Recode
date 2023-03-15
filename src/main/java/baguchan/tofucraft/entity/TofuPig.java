@@ -13,6 +13,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -106,19 +107,23 @@ public class TofuPig extends Pig implements ItemInteractable {
 	}
 
 	@Nullable
-	public Entity getControllingPassenger() {
-		Entity entity = this.getFirstPassenger();
-		return entity != null && this.canBeControlledBy(entity) ? entity : null;
-	}
-
-	private boolean canBeControlledBy(Entity p_218248_) {
-		if (this.isSaddled() && p_218248_ instanceof Player player && this.getTofuPigType() == TofuPigType.ZUNDA) {
-			return player.getMainHandItem().is(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get()) || player.getOffhandItem().is(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get());
-		} else if (this.isSaddled() && p_218248_ instanceof Player player) {
-			return player.getMainHandItem().is(Items.CARROT_ON_A_STICK) || player.getOffhandItem().is(Items.CARROT_ON_A_STICK);
-		} else {
-			return false;
+	public LivingEntity getControllingPassenger() {
+		if (this.isSaddled()) {
+			Entity entity = this.getFirstPassenger();
+			if (entity instanceof Player) {
+				Player player = (Player) entity;
+				if (this.getTofuPigType() == TofuPigType.ZUNDA) {
+					if (player.getMainHandItem().is(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get()) || player.getOffhandItem().is(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get())) {
+						return player;
+					}
+				}
+				if (player.getMainHandItem().is(Items.CARROT_ON_A_STICK) || player.getOffhandItem().is(Items.CARROT_ON_A_STICK)) {
+					return player;
+				}
+			}
 		}
+
+		return null;
 	}
 
 	public void thunderHit(ServerLevel p_29473_, LightningBolt p_29474_) {
@@ -149,7 +154,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 	public boolean hurt(DamageSource source, float damage) {
 		if (this.getTofuPigType() == TofuPigType.METAL) {
 			damage = (float) (damage * 0.5);
-		} else if (this.getTofuPigType() == TofuPigType.GRILLED && source.isFire()) {
+		} else if (this.getTofuPigType() == TofuPigType.GRILLED && source.is(DamageTypeTags.IS_FIRE)) {
 			return false;
 		}
 		return super.hurt(source, damage);
@@ -192,7 +197,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 
 	private void healEffect() {
 		float radius = 5;
-		AABB box = new AABB(new BlockPos(this.getX() - radius, this.getY() - 1, this.getZ() - radius), new BlockPos(this.getX() + radius, this.getY() + 3, this.getZ() + radius));
+		AABB box = new AABB(BlockPos.containing(this.getX() - radius, this.getY() - 1, this.getZ() - radius), BlockPos.containing(this.getX() + radius, this.getY() + 3, this.getZ() + radius));
 		List<LivingEntity> hitEntities = this.level.getEntitiesOfClass(LivingEntity.class, box);
 		for (LivingEntity hitEntity : hitEntities) {
 			if (!hitEntity.level.isClientSide) {

@@ -15,13 +15,14 @@
       "item": "minecraft:bowl"
     }
   },
-  "pattern": [
+  "pattern" : [
     "S#S",
     "#D#",
     " W "
   ],
-  "result": {
-    "count": 3,
-    "item": "tofucraft:morijio"
-  }
+  "result" : {
+    "count" : 3,
+    "item" : "tofucraft:morijio"
+  },
+  "show_notification" : true
 }

@@ -9,15 +9,16 @@
       "item": "tofucraft:miso"
     },
     "T": {
-      "item": "tofucraft:tofumomen"
+      "item" : "tofucraft:tofumomen"
     }
   },
-  "pattern": [
+  "pattern" : [
     "MMM",
     "TTT",
     " B "
   ],
-  "result": {
-    "item": "tofucraft:barrel_misotofu"
-  }
+  "result" : {
+    "item" : "tofucraft:barrel_misotofu"
+  },
+  "show_notification" : true
 }

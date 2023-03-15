@@ -3,15 +3,16 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "tofucraft:tofuishi"
+      "item" : "tofucraft:tofuishi"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "# #",
     "###"
   ],
-  "result": {
-    "item": "tofucraft:tofuchest"
-  }
+  "result" : {
+    "item" : "tofucraft:tofuchest"
+  },
+  "show_notification" : true
 }

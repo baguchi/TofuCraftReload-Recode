@@ -6,15 +6,16 @@
       "item": "tofucraft:tofufried_pouch"
     },
     "X": {
-      "item": "minecraft:bread"
+      "item" : "minecraft:bread"
     }
   },
-  "pattern": [
+  "pattern" : [
     " X ",
     "###",
     " X "
   ],
-  "result": {
-    "item": "tofucraft:tttburger"
-  }
+  "result" : {
+    "item" : "tofucraft:tttburger"
+  },
+  "show_notification" : true
 }

@@ -1,6 +1,7 @@
 package baguchan.tofucraft.recipe;
 
 import baguchan.tofucraft.registry.TofuRecipes;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
@@ -55,9 +56,10 @@ public class HardenRecipe implements Recipe<Inventory> {
 	}
 
 	@Override
-	public ItemStack assemble(Inventory p_44001_) {
+	public ItemStack assemble(Inventory p_44001_, RegistryAccess p_267165_) {
 		return null;
 	}
+
 
 	@Override
 	public boolean canCraftInDimensions(int p_43999_, int p_44000_) {
@@ -65,7 +67,7 @@ public class HardenRecipe implements Recipe<Inventory> {
 	}
 
 	@Override
-	public ItemStack getResultItem() {
+	public ItemStack getResultItem(RegistryAccess p_267052_) {
 		return this.result;
 	}
 

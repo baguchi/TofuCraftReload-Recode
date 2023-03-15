@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": {
-      "item": "tofucraft:blocktofumetal"
+    "M" : {
+      "item" : "tofucraft:blocktofumetal"
     }
   },
-  "pattern": [
+  "pattern" : [
     "MMM"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofuslab_metal"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofuslab_metal"
+  },
+  "show_notification" : true
 }

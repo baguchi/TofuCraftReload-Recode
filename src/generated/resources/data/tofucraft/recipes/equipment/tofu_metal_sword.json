@@ -6,15 +6,16 @@
       "item": "tofucraft:blocktofumetal"
     },
     "X": {
-      "tag": "forge:rods/wooden"
+      "tag" : "forge:rods/wooden"
     }
   },
-  "pattern": [
+  "pattern" : [
     "#",
     "#",
     "X"
   ],
-  "result": {
-    "item": "tofucraft:tofu_metal_sword"
-  }
+  "result" : {
+    "item" : "tofucraft:tofu_metal_sword"
+  },
+  "show_notification" : true
 }

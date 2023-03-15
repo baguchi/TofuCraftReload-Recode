@@ -5,15 +5,16 @@
     "#": {
       "item": "minecraft:fishing_rod"
     },
-    "M": {
-      "item": "tofucraft:zundatofu_mushroom"
+    "M" : {
+      "item" : "tofucraft:zundatofu_mushroom"
     }
   },
-  "pattern": [
+  "pattern" : [
     "# ",
     " M"
   ],
-  "result": {
-    "item": "tofucraft:zundamushroom_on_a_stick"
-  }
+  "result" : {
+    "item" : "tofucraft:zundamushroom_on_a_stick"
+  },
+  "show_notification" : true
 }

@@ -9,15 +9,16 @@
       "item": "tofucraft:blocktofumomen"
     },
     "Z": {
-      "item": "minecraft:stick"
+      "item" : "minecraft:stick"
     }
   },
-  "pattern": [
+  "pattern" : [
     " X ",
     " Y ",
     " Z "
   ],
-  "result": {
-    "item": "tofucraft:misodengaku"
-  }
+  "result" : {
+    "item" : "tofucraft:misodengaku"
+  },
+  "show_notification" : true
 }

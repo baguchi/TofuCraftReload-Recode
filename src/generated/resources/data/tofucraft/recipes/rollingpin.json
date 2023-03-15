@@ -6,15 +6,16 @@
       "tag": "minecraft:planks"
     },
     "S": {
-      "tag": "forge:rods/wooden"
+      "tag" : "forge:rods/wooden"
     }
   },
-  "pattern": [
+  "pattern" : [
     "  S",
     " # ",
     "S  "
   ],
-  "result": {
-    "item": "tofucraft:rollingpin"
-  }
+  "result" : {
+    "item" : "tofucraft:rollingpin"
+  },
+  "show_notification" : true
 }

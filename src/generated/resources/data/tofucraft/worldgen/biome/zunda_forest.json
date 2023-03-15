@@ -42,17 +42,17 @@
       "tofucraft:patch_zunda_tofu_mushroom"
     ]
   ],
-  "precipitation": "none",
-  "spawn_costs": {},
-  "spawners": {
-    "ambient": [],
-    "axolotls": [],
-    "creature": [
+  "has_precipitation" : true,
+  "spawn_costs" : {},
+  "spawners" : {
+    "ambient" : [],
+    "axolotls" : [],
+    "creature" : [
       {
-        "type": "tofucraft:tofucow",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 100
+        "type" : "tofucraft:tofucow",
+        "maxCount" : 4,
+        "minCount" : 4,
+        "weight" : 100
       },
       {
         "type": "tofucraft:tofupig",

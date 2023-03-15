@@ -3,15 +3,16 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "tofucraft:blocktofukinu"
+      "item" : "tofucraft:blocktofukinu"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "# #",
     "# #"
   ],
-  "result": {
-    "item": "tofucraft:tofu_kinu_leggings"
-  }
+  "result" : {
+    "item" : "tofucraft:tofu_kinu_leggings"
+  },
+  "show_notification" : true
 }

@@ -1,5 +1,6 @@
 package baguchan.tofucraft.compat.jei;
 
+/*
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.HardenRecipe;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
+
 
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
@@ -93,3 +95,4 @@ public class JEIPlugin implements IModPlugin {
 		return PLUGIN_ID;
 	}
 }
+*/

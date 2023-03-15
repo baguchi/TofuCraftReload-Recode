@@ -3,15 +3,16 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "tofucraft:blocktofuishi"
+      "item" : "tofucraft:blocktofuishi"
     }
   },
-  "pattern": [
+  "pattern" : [
     "# #",
     "###",
     "###"
   ],
-  "result": {
-    "item": "tofucraft:tofu_solid_chestplate"
-  }
+  "result" : {
+    "item" : "tofucraft:tofu_solid_chestplate"
+  },
+  "show_notification" : true
 }

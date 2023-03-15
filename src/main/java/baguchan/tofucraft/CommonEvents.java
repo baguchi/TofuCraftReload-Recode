@@ -20,6 +20,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -253,7 +254,7 @@ public class CommonEvents {
 				return p_184069_.is(TofuPoiTypes.MORIJIO);
 			}, (p_184055_) -> {
 				return true;
-			}, new BlockPos(vec3), 48, PoiManager.Occupancy.ANY);
+			}, BlockPos.containing(vec3), 48, PoiManager.Occupancy.ANY);
 
 			if (optional.isPresent()) {
 				event.setCanceled(true);
@@ -275,7 +276,7 @@ public class CommonEvents {
 		LivingEntity livingEntity = event.getEntity();
 		livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
 			if (cap.getSoyHealth() > 0) {
-				if (event.getSource().isProjectile() || event.getSource().isFall()) {
+				if (event.getSource().is(DamageTypeTags.IS_PROJECTILE) || event.getSource().is(DamageTypeTags.IS_FALL)) {
 					if (cap.getSoyHealth() - event.getAmount() * 0.75F >= 0) {
 						cap.setSoyHealth(livingEntity, cap.getSoyHealth() - event.getAmount() * 0.5F, cap.getSoyMaxHealth());
 						event.setAmount(0);

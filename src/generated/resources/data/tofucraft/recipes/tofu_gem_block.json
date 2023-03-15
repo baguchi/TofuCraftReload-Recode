@@ -3,15 +3,16 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "tofucraft:tofugem"
+      "item" : "tofucraft:tofugem"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "###",
     "###"
   ],
-  "result": {
-    "item": "tofucraft:tofu_gem_block"
-  }
+  "result" : {
+    "item" : "tofucraft:tofu_gem_block"
+  },
+  "show_notification" : true
 }

@@ -5,18 +5,20 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.LegacyUpgradeRecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
-import net.minecraft.data.recipes.UpgradeRecipeBuilder;
+import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -79,12 +81,14 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(cuttingItem.get()), RecipeCategory.BUILDING_BLOCKS, result.get(), count).unlockedBy("has_item", has(cuttingItem.get())).save(consumer, TofuCraftReload.prefix("cutting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
-	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, Supplier<Item> result) {
-		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), RecipeCategory.TOOLS, result.get()).unlocks("has_tofudiamond", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, TofuCraftReload.prefix("smithing_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<Item> result) {
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing");
+		LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), RecipeCategory.TOOLS, result.get()).unlocks("has_item", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, TofuCraftReload.prefix("smithing_old_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
-	public static void sculkSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, Supplier<Item> result) {
-		UpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), RecipeCategory.COMBAT, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, TofuCraftReload.prefix("smithing_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+	public static void sculkSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<Item> result) {
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing");
+		LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), RecipeCategory.COMBAT, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, TofuCraftReload.prefix("smithing_old_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
 	protected final void helmetItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {

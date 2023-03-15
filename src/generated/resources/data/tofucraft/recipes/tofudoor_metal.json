@@ -6,13 +6,14 @@
       "item": "tofucraft:blocktofumetal"
     }
   },
-  "pattern": [
+  "pattern" : [
     "PP",
     "PP",
     "PP"
   ],
-  "result": {
-    "count": 3,
-    "item": "tofucraft:tofudoor_metal"
-  }
+  "result" : {
+    "count" : 3,
+    "item" : "tofucraft:tofudoor_metal"
+  },
+  "show_notification" : true
 }

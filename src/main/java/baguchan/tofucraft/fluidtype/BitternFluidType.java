@@ -52,10 +52,9 @@ public class BitternFluidType extends FluidType {
 				ResourceLocation texture = this.getRenderOverlayTexture(mc);
 				if (texture == null) return;
 				RenderSystem.setShader(GameRenderer::getPositionTexShader);
-				RenderSystem.enableTexture();
 				RenderSystem.setShaderTexture(0, texture);
 				BufferBuilder buffer = Tesselator.getInstance().getBuilder();
-				BlockPos playerEyePos = new BlockPos(mc.player.getX(), mc.player.getEyeY(), mc.player.getZ());
+				BlockPos playerEyePos = BlockPos.containing(mc.player.getX(), mc.player.getEyeY(), mc.player.getZ());
 				float brightness = LightTexture.getBrightness(mc.player.level.dimensionType(), mc.player.level.getMaxLocalRawBrightness(playerEyePos));
 				RenderSystem.enableBlend();
 				RenderSystem.defaultBlendFunc();

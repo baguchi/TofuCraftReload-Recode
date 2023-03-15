@@ -5,7 +5,6 @@ import baguchan.tofucraft.registry.TofuItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -14,6 +13,7 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -41,7 +41,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
 			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level, (LivingEntity) null, entity.getId());
 
-			this.itemRenderer.render(itemStack, ItemTransforms.TransformType.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
+			this.itemRenderer.render(itemStack, ItemDisplayContext.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
 			stack.popPose();
 		} else {
 			stack.pushPose();
@@ -53,7 +53,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
 			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level, (LivingEntity) null, entity.getId());
 
-			this.itemRenderer.render(itemStack, ItemTransforms.TransformType.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
+			this.itemRenderer.render(itemStack, ItemDisplayContext.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
 			stack.popPose();
 		}
 		super.render(entity, yaw, delta, stack, buffer, packedLightIn);

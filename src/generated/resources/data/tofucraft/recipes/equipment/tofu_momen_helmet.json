@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "tofucraft:blocktofumomen"
+    "#" : {
+      "item" : "tofucraft:blocktofumomen"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "# #"
   ],
-  "result": {
-    "item": "tofucraft:tofu_momen_helmet"
-  }
+  "result" : {
+    "item" : "tofucraft:tofu_momen_helmet"
+  },
+  "show_notification" : true
 }

@@ -6,15 +6,16 @@
       "item": "tofucraft:seeds_soybeans_nether"
     },
     "X": {
-      "item": "minecraft:bowl"
+      "item" : "minecraft:bowl"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "###",
     " X "
   ],
-  "result": {
-    "item": "tofucraft:nether_fukumame"
-  }
+  "result" : {
+    "item" : "tofucraft:nether_fukumame"
+  },
+  "show_notification" : true
 }

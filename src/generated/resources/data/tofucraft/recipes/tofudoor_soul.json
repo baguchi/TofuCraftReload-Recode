@@ -6,13 +6,14 @@
       "item": "tofucraft:blocktofusoul"
     }
   },
-  "pattern": [
+  "pattern" : [
     "PP",
     "PP",
     "PP"
   ],
-  "result": {
-    "count": 3,
-    "item": "tofucraft:tofudoor_soul"
-  }
+  "result" : {
+    "count" : 3,
+    "item" : "tofucraft:tofudoor_soul"
+  },
+  "show_notification" : true
 }

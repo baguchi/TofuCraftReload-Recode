@@ -3,15 +3,16 @@
   "category": "building",
   "key": {
     "M": {
-      "item": "tofucraft:blocktofumetal"
+      "item" : "tofucraft:blocktofumetal"
     }
   },
-  "pattern": [
+  "pattern" : [
     "MMM",
     "MMM"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofufence_metal"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofufence_metal"
+  },
+  "show_notification" : true
 }

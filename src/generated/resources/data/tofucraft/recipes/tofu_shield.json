@@ -3,15 +3,16 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "tofucraft:tofumetal"
+      "item" : "tofucraft:tofumetal"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "###",
     " # "
   ],
-  "result": {
-    "item": "tofucraft:tofu_shield"
-  }
+  "result" : {
+    "item" : "tofucraft:tofu_shield"
+  },
+  "show_notification" : true
 }

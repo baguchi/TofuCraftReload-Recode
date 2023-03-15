@@ -6,15 +6,16 @@
       "tag": "minecraft:coals"
     },
     "M": {
-      "item": "tofucraft:tofugrilled"
+      "item" : "tofucraft:tofugrilled"
     }
   },
-  "pattern": [
+  "pattern" : [
     "C",
     "M"
   ],
-  "result": {
-    "count": 4,
-    "item": "tofucraft:tofutorch_grilled"
-  }
+  "result" : {
+    "count" : 4,
+    "item" : "tofucraft:tofutorch_grilled"
+  },
+  "show_notification" : true
 }

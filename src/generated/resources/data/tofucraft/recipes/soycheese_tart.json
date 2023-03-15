@@ -12,15 +12,16 @@
       "item": "minecraft:sugar"
     },
     "W": {
-      "item": "minecraft:wheat"
+      "item" : "minecraft:wheat"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "SES",
     "WWW"
   ],
-  "result": {
-    "item": "tofucraft:soycheese_tart"
-  }
+  "result" : {
+    "item" : "tofucraft:soycheese_tart"
+  },
+  "show_notification" : true
 }

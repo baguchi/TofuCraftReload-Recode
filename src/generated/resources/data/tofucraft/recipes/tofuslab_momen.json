@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": {
-      "item": "tofucraft:blocktofumomen"
+    "M" : {
+      "item" : "tofucraft:blocktofumomen"
     }
   },
-  "pattern": [
+  "pattern" : [
     "MMM"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofuslab_momen"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofuslab_momen"
+  },
+  "show_notification" : true
 }

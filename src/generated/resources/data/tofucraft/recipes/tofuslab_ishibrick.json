@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": {
-      "item": "tofucraft:tofuishi_brick"
+    "M" : {
+      "item" : "tofucraft:tofuishi_brick"
     }
   },
-  "pattern": [
+  "pattern" : [
     "MMM"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofuslab_ishibrick"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofuslab_ishibrick"
+  },
+  "show_notification" : true
 }

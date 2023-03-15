@@ -1,0 +1,15 @@
+{
+  "type" : "minecraft:smithing_transform",
+  "addition" : {
+    "item" : "tofucraft:blocktofudiamond"
+  },
+  "base" : {
+    "item" : "tofucraft:tofu_metal_shovel"
+  },
+  "result" : {
+    "item" : "tofucraft:tofu_diamond_shovel"
+  },
+  "template" : {
+    "item" : "minecraft:netherite_upgrade_smithing_template"
+  }
+}

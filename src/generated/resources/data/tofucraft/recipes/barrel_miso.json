@@ -9,15 +9,16 @@
       "item": "tofucraft:kouji"
     },
     "S": {
-      "tag": "forge:salt"
+      "tag" : "forge:salt"
     }
   },
-  "pattern": [
+  "pattern" : [
     "SSS",
     "KKK",
     " B "
   ],
-  "result": {
-    "item": "tofucraft:barrel_miso"
-  }
+  "result" : {
+    "item" : "tofucraft:barrel_miso"
+  },
+  "show_notification" : true
 }

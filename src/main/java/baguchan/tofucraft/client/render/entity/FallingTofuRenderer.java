@@ -38,7 +38,7 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity> {
 			Level world = entity.getLevel();
 			if (blockstate.getRenderShape() != RenderShape.INVISIBLE) {
 				ms.pushPose();
-				BlockPos blockpos = new BlockPos(entity.getX(), entity.getBoundingBox().maxY, entity.getZ());
+				BlockPos blockpos = BlockPos.containing(entity.getX(), entity.getBoundingBox().maxY, entity.getZ());
 				ms.translate(-0.5D, 0.0D, -0.5D);
 				BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
 				var model = dispatcher.getBlockModel(blockstate);

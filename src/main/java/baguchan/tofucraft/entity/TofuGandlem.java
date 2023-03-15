@@ -11,6 +11,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -276,7 +278,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		}
 
 
-		if (p_21016_.isProjectile()) {
+		if (p_21016_.is(DamageTypeTags.IS_PROJECTILE)) {
 			return super.hurt(p_21016_, p_21017_ * 0.5F);
 		}
 
@@ -299,7 +301,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	public void rushAttack(Entity p_36347_) {
 		if (p_36347_.isAttackable()) {
-			p_36347_.hurt(DamageSource.mobAttack(this), 16.0F);
+			p_36347_.hurt(this.damageSources().mobAttack(this), 16.0F);
 			float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
 			i += EnchantmentHelper.getKnockbackBonus(this) + 0.65F;
 
@@ -339,10 +341,24 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	@Override
-	public void travel(Vec3 p_21280_) {
-		this.flyingSpeed = this.getSpeed() * 0.21600002F;
-		super.travel(p_21280_);
-		this.flyingSpeed = 0.02F;
+	public void travel(Vec3 p_218382_) {
+		if (this.isControlledByLocalInstance()) {
+			if (this.isInWater()) {
+				this.moveRelative(0.02F, p_218382_);
+				this.move(MoverType.SELF, this.getDeltaMovement());
+				this.setDeltaMovement(this.getDeltaMovement().scale((double) 0.8F));
+			} else if (this.isInLava()) {
+				this.moveRelative(0.02F, p_218382_);
+				this.move(MoverType.SELF, this.getDeltaMovement());
+				this.setDeltaMovement(this.getDeltaMovement().scale(0.5D));
+			} else {
+				this.moveRelative(this.getSpeed(), p_218382_);
+				this.move(MoverType.SELF, this.getDeltaMovement());
+				this.setDeltaMovement(this.getDeltaMovement().scale((double) 0.91F));
+			}
+		}
+
+		this.calculateEntityAnimation(false);
 	}
 
 	public void aiStep() {

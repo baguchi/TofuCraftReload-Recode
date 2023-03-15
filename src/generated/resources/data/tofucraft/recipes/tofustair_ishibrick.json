@@ -6,13 +6,14 @@
       "item": "tofucraft:tofuishi_brick"
     }
   },
-  "pattern": [
+  "pattern" : [
     "M  ",
     "MM ",
     "MMM"
   ],
-  "result": {
-    "count": 4,
-    "item": "tofucraft:tofustair_ishibrick"
-  }
+  "result" : {
+    "count" : 4,
+    "item" : "tofucraft:tofustair_ishibrick"
+  },
+  "show_notification" : true
 }

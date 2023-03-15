@@ -11,6 +11,8 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
@@ -76,11 +78,15 @@ public class FallingTofuEntity extends ThrowableProjectile {
 		}
 	}
 
+	public DamageSource tofuAttack(@Nullable Entity p_270857_) {
+		return this.damageSources().source(TofuDamageSource.FALLING_TOFU, this, p_270857_);
+	}
+
 	@Override
 	protected void onHitEntity(EntityHitResult result) {
 		super.onHitEntity(result);
 		if (!this.getLevel().isClientSide()) {
-			result.getEntity().hurt(TofuDamageSource.tofu(this, this.getOwner()), 3);
+			result.getEntity().hurt(tofuAttack(this.getOwner()), 3);
 
 			this.getLevel().broadcastEntityEvent(this, (byte) 3);
 			this.discard();

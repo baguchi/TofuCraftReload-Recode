@@ -6,13 +6,14 @@
       "item": "tofucraft:blocktofumomen"
     }
   },
-  "pattern": [
+  "pattern" : [
     "PP",
     "PP",
     "PP"
   ],
-  "result": {
-    "count": 3,
-    "item": "tofucraft:tofudoor_momen"
-  }
+  "result" : {
+    "count" : 3,
+    "item" : "tofucraft:tofudoor_momen"
+  },
+  "show_notification" : true
 }

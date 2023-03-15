@@ -6,15 +6,16 @@
       "item": "tofucraft:blocktofukinu"
     },
     "X": {
-      "tag": "forge:rods/wooden"
+      "tag" : "forge:rods/wooden"
     }
   },
-  "pattern": [
+  "pattern" : [
     "##",
     "#X",
     " X"
   ],
-  "result": {
-    "item": "tofucraft:tofu_kinu_axe"
-  }
+  "result" : {
+    "item" : "tofucraft:tofu_kinu_axe"
+  },
+  "show_notification" : true
 }

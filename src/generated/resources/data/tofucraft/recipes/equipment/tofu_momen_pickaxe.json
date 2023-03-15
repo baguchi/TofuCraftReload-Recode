@@ -6,15 +6,16 @@
       "item": "tofucraft:blocktofumomen"
     },
     "X": {
-      "tag": "forge:rods/wooden"
+      "tag" : "forge:rods/wooden"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     " X ",
     " X "
   ],
-  "result": {
-    "item": "tofucraft:tofu_momen_pickaxe"
-  }
+  "result" : {
+    "item" : "tofucraft:tofu_momen_pickaxe"
+  },
+  "show_notification" : true
 }

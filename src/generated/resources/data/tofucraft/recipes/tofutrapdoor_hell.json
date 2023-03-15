@@ -3,15 +3,16 @@
   "category": "misc",
   "key": {
     "P": {
-      "item": "tofucraft:tofuhell"
+      "item" : "tofucraft:tofuhell"
     }
   },
-  "pattern": [
+  "pattern" : [
     "PPP",
     "PPP"
   ],
-  "result": {
-    "count": 2,
-    "item": "tofucraft:tofutrapdoor_hell"
-  }
+  "result" : {
+    "count" : 2,
+    "item" : "tofucraft:tofutrapdoor_hell"
+  },
+  "show_notification" : true
 }

@@ -6,15 +6,16 @@
       "item": "minecraft:iron_ingot"
     },
     "S": {
-      "tag": "forge:cobblestone"
+      "tag" : "forge:cobblestone"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "# #",
     "SSS"
   ],
-  "result": {
-    "item": "tofucraft:salt_furnace"
-  }
+  "result" : {
+    "item" : "tofucraft:salt_furnace"
+  },
+  "show_notification" : true
 }

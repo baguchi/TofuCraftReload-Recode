@@ -6,15 +6,16 @@
       "item": "tofucraft:soybeans_parched"
     },
     "X": {
-      "item": "minecraft:bowl"
+      "item" : "minecraft:bowl"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "###",
     " X "
   ],
-  "result": {
-    "item": "tofucraft:fukumame"
-  }
+  "result" : {
+    "item" : "tofucraft:fukumame"
+  },
+  "show_notification" : true
 }

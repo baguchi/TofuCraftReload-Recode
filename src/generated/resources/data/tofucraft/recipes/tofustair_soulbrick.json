@@ -6,13 +6,14 @@
       "item": "tofucraft:tofusoul_brick"
     }
   },
-  "pattern": [
+  "pattern" : [
     "M  ",
     "MM ",
     "MMM"
   ],
-  "result": {
-    "count": 4,
-    "item": "tofucraft:tofustair_soulbrick"
-  }
+  "result" : {
+    "count" : 4,
+    "item" : "tofucraft:tofustair_soulbrick"
+  },
+  "show_notification" : true
 }

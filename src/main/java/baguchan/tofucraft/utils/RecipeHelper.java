@@ -33,7 +33,7 @@ public class RecipeHelper {
 			});
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
 				if (recipe instanceof HardenRecipe && ((HardenRecipe) recipe).getTofu().test(new ItemStack(block.asItem()))) {
-					return ((HardenRecipe) recipe).getResultItem();
+					return ((HardenRecipe) recipe).getResultItem(serverLevel.registryAccess());
 				}
 			}
 		}
@@ -51,7 +51,7 @@ public class RecipeHelper {
 			});
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
 				if (recipe instanceof BitternRecipe && ((BitternRecipe) recipe).getFluid().test(new FluidStack(fluid, 1000))) {
-					return ((BitternRecipe) recipe).getResultItem();
+					return ((BitternRecipe) recipe).getResultItem(serverLevel.registryAccess());
 				}
 			}
 		}

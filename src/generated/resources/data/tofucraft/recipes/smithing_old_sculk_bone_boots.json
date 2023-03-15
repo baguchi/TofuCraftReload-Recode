@@ -1,0 +1,12 @@
+{
+  "type" : "minecraft:smithing",
+  "addition" : {
+    "item" : "tofucraft:soy_sculk_bone"
+  },
+  "base" : {
+    "item" : "tofucraft:tofu_diamond_boots"
+  },
+  "result" : {
+    "item" : "tofucraft:sculk_bone_boots"
+  }
+}

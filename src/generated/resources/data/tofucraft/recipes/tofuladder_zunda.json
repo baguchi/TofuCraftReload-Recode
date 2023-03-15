@@ -6,13 +6,14 @@
       "item": "tofucraft:tofuzunda"
     }
   },
-  "pattern": [
+  "pattern" : [
     "# #",
     "###",
     "# #"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofuladder_zunda"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofuladder_zunda"
+  },
+  "show_notification" : true
 }

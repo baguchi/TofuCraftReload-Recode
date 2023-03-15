@@ -1,15 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "key": {
-    "C": {
-      "item": "minecraft:clay_ball"
+  "key" : {
+    "C" : {
+      "item" : "minecraft:clay_ball"
     }
   },
-  "pattern": [
+  "pattern" : [
     "CCC"
   ],
-  "result": {
-    "item": "tofucraft:foodplate"
-  }
+  "result" : {
+    "item" : "tofucraft:foodplate"
+  },
+  "show_notification" : true
 }

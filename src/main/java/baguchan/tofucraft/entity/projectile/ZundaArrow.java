@@ -8,8 +8,10 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -18,6 +20,8 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
+
+import javax.annotation.Nullable;
 
 public class ZundaArrow extends AbstractArrow {
 	private int duration = 100;
@@ -46,6 +50,9 @@ public class ZundaArrow extends AbstractArrow {
 		return new ItemStack(TofuItems.ZUNDA_ARROW.get());
 	}
 
+	public DamageSource zundaAttack(@Nullable Entity p_270857_) {
+		return this.damageSources().source(TofuDamageSource.ZUNDA, this, p_270857_);
+	}
 
 	@Override
 	protected void onHitEntity(EntityHitResult p_36757_) {
@@ -65,7 +72,7 @@ public class ZundaArrow extends AbstractArrow {
 				this.discard();
 			} else if (p_36757_.getEntity() instanceof Mob && ((Mob) p_36757_.getEntity()).getMobType() == MobType.UNDEAD) {
 
-				if (((Mob) p_36757_.getEntity()).hurt(TofuDamageSource.zunda(this, this.getOwner()), i)) {
+				if (((Mob) p_36757_.getEntity()).hurt(zundaAttack(this.getOwner()), i)) {
 					this.discard();
 				} else {
 					this.setDeltaMovement(this.getDeltaMovement().scale(-0.1D));

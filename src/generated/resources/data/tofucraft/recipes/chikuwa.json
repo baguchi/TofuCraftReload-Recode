@@ -15,13 +15,14 @@
       "item": "minecraft:egg"
     }
   },
-  "pattern": [
+  "pattern" : [
     " X ",
     "YZI",
     " X "
   ],
-  "result": {
-    "count": 4,
-    "item": "tofucraft:chikuwa"
-  }
+  "result" : {
+    "count" : 4,
+    "item" : "tofucraft:chikuwa"
+  },
+  "show_notification" : true
 }

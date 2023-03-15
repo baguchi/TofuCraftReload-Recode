@@ -6,15 +6,16 @@
       "tag": "minecraft:coals"
     },
     "M": {
-      "item": "tofucraft:tofumomen"
+      "item" : "tofucraft:tofumomen"
     }
   },
-  "pattern": [
+  "pattern" : [
     "C",
     "M"
   ],
-  "result": {
-    "count": 4,
-    "item": "tofucraft:tofutorch_momen"
-  }
+  "result" : {
+    "count" : 4,
+    "item" : "tofucraft:tofutorch_momen"
+  },
+  "show_notification" : true
 }

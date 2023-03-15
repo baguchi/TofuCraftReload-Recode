@@ -6,15 +6,16 @@
       "tag": "minecraft:coals"
     },
     "M": {
-      "item": "tofucraft:tofuishi"
+      "item" : "tofucraft:tofuishi"
     }
   },
-  "pattern": [
+  "pattern" : [
     "C",
     "M"
   ],
-  "result": {
-    "count": 4,
-    "item": "tofucraft:tofutorch_ishi"
-  }
+  "result" : {
+    "count" : 4,
+    "item" : "tofucraft:tofutorch_ishi"
+  },
+  "show_notification" : true
 }

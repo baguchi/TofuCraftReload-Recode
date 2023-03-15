@@ -125,7 +125,6 @@ public class TofuBiomeBuilders {
 
 	public static Biome fullDefinition(Biome.Precipitation precipitation, float temperature, float downfall, BiomeSpecialEffects effects, MobSpawnSettings spawnSettings, BiomeGenerationSettings generationSettings, Biome.TemperatureModifier temperatureModifier) {
 		return new Biome.BiomeBuilder()
-				.precipitation(precipitation)
 				.temperature(temperature)
 				.downfall(downfall)
 				.specialEffects(effects)

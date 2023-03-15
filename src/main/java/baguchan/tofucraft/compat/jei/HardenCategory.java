@@ -1,5 +1,6 @@
 package baguchan.tofucraft.compat.jei;
 
+/*
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.HardenRecipe;
@@ -85,5 +86,6 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
 }
+*/
 
 

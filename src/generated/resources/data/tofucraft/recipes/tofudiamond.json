@@ -3,15 +3,16 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "tofucraft:tofudiamondnugget"
+      "item" : "tofucraft:tofudiamondnugget"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "###",
     "###"
   ],
-  "result": {
-    "item": "tofucraft:tofudiamond"
-  }
+  "result" : {
+    "item" : "tofucraft:tofudiamond"
+  },
+  "show_notification" : true
 }

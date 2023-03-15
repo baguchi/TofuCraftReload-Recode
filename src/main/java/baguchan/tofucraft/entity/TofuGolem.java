@@ -14,6 +14,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -166,10 +167,24 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 	}
 
 	@Override
-	public void travel(Vec3 p_21280_) {
-		this.flyingSpeed = this.getSpeed() * 0.21600002F;
-		super.travel(p_21280_);
-		this.flyingSpeed = 0.02F;
+	public void travel(Vec3 p_218382_) {
+		if (this.isControlledByLocalInstance()) {
+			if (this.isInWater()) {
+				this.moveRelative(0.02F, p_218382_);
+				this.move(MoverType.SELF, this.getDeltaMovement());
+				this.setDeltaMovement(this.getDeltaMovement().scale((double) 0.8F));
+			} else if (this.isInLava()) {
+				this.moveRelative(0.02F, p_218382_);
+				this.move(MoverType.SELF, this.getDeltaMovement());
+				this.setDeltaMovement(this.getDeltaMovement().scale(0.5D));
+			} else {
+				this.moveRelative(this.getSpeed(), p_218382_);
+				this.move(MoverType.SELF, this.getDeltaMovement());
+				this.setDeltaMovement(this.getDeltaMovement().scale((double) 0.91F));
+			}
+		}
+
+		this.calculateEntityAnimation(false);
 	}
 
 

@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "tofucraft:blocktofukinu"
+    "#" : {
+      "item" : "tofucraft:blocktofukinu"
     }
   },
-  "pattern": [
+  "pattern" : [
     "# #",
     "# #"
   ],
-  "result": {
-    "item": "tofucraft:tofu_kinu_boots"
-  }
+  "result" : {
+    "item" : "tofucraft:tofu_kinu_boots"
+  },
+  "show_notification" : true
 }

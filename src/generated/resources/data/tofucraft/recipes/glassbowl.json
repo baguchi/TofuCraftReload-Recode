@@ -3,15 +3,16 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "minecraft:glass_pane"
+      "item" : "minecraft:glass_pane"
     }
   },
-  "pattern": [
+  "pattern" : [
     "# #",
     " # "
   ],
-  "result": {
-    "count": 2,
-    "item": "tofucraft:glassbowl"
-  }
+  "result" : {
+    "count" : 2,
+    "item" : "tofucraft:glassbowl"
+  },
+  "show_notification" : true
 }

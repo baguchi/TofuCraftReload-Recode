@@ -3,15 +3,16 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "tofucraft:rice"
+      "item" : "tofucraft:rice"
     }
   },
-  "pattern": [
+  "pattern" : [
     "###",
     "###",
     "###"
   ],
-  "result": {
-    "item": "tofucraft:rice_block"
-  }
+  "result" : {
+    "item" : "tofucraft:rice_block"
+  },
+  "show_notification" : true
 }

@@ -5,7 +5,6 @@ import baguchan.tofucraft.registry.TofuItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -13,6 +12,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -40,7 +40,7 @@ public class NattoStringRender<T extends NattoStringEntity> extends EntityRender
 			p_116088_.scale(this.scale, this.scale, this.scale);
 			p_116088_.mulPose(this.entityRenderDispatcher.cameraOrientation());
 			p_116088_.mulPose(Axis.YP.rotationDegrees(180.0F));
-			this.itemRenderer.renderStatic(new ItemStack(TofuItems.NATTO_COBWEB.get()), ItemTransforms.TransformType.GROUND, p_116090_, OverlayTexture.NO_OVERLAY, p_116088_, p_116089_, p_116085_.getId());
+			this.itemRenderer.renderStatic(new ItemStack(TofuItems.NATTO_COBWEB.get()), ItemDisplayContext.GROUND, p_116090_, OverlayTexture.NO_OVERLAY, p_116088_, p_116089_, p_116085_.level, p_116085_.getId());
 			p_116088_.popPose();
 			super.render(p_116085_, p_116086_, p_116087_, p_116088_, p_116089_, p_116090_);
 		}

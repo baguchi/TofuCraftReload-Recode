@@ -1,18 +1,18 @@
 package baguchan.tofucraft.block.utils;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import org.jetbrains.annotations.Nullable;
 
 public class TofuDoorBlock extends DoorBlock {
-	public TofuDoorBlock(Properties properties, SoundEvent p_249791_, SoundEvent p_250722_) {
-		super(properties, p_249791_, p_250722_);
+	public TofuDoorBlock(Properties properties, BlockSetType p_272854_) {
+		super(properties, p_272854_);
 	}
 
 	@Override

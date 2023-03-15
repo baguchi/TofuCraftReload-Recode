@@ -6,13 +6,14 @@
       "item": "tofucraft:blocktofugrilled"
     }
   },
-  "pattern": [
+  "pattern" : [
     "PP",
     "PP",
     "PP"
   ],
-  "result": {
-    "count": 3,
-    "item": "tofucraft:tofudoor_grilled"
-  }
+  "result" : {
+    "count" : 3,
+    "item" : "tofucraft:tofudoor_grilled"
+  },
+  "show_notification" : true
 }

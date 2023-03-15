@@ -6,13 +6,14 @@
       "item": "tofucraft:blocktofukinu"
     }
   },
-  "pattern": [
+  "pattern" : [
     "PP",
     "PP",
     "PP"
   ],
-  "result": {
-    "count": 3,
-    "item": "tofucraft:tofudoor_kinu"
-  }
+  "result" : {
+    "count" : 3,
+    "item" : "tofucraft:tofudoor_kinu"
+  },
+  "show_notification" : true
 }

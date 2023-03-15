@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "tofucraft:tofuegg"
+    "#" : {
+      "item" : "tofucraft:tofuegg"
     }
   },
-  "pattern": [
+  "pattern" : [
     "##",
     "##"
   ],
-  "result": {
-    "item": "tofucraft:blocktofuegg"
-  }
+  "result" : {
+    "item" : "tofucraft:blocktofuegg"
+  },
+  "show_notification" : true
 }

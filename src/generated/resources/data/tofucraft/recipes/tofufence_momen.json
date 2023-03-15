@@ -3,15 +3,16 @@
   "category": "building",
   "key": {
     "M": {
-      "item": "tofucraft:blocktofumomen"
+      "item" : "tofucraft:blocktofumomen"
     }
   },
-  "pattern": [
+  "pattern" : [
     "MMM",
     "MMM"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofufence_momen"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofufence_momen"
+  },
+  "show_notification" : true
 }

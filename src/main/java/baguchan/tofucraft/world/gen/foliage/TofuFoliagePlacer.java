@@ -4,16 +4,12 @@ import baguchan.tofucraft.registry.TofuFoliagePlacerType;
 import com.mojang.datafixers.Products;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
-
-import java.util.function.BiConsumer;
 
 public class TofuFoliagePlacer extends FoliagePlacer {
 	public static final Codec<TofuFoliagePlacer> CODEC = RecordCodecBuilder.create((p_68427_) -> {
@@ -36,7 +32,8 @@ public class TofuFoliagePlacer extends FoliagePlacer {
 		return TofuFoliagePlacerType.TOFU_FOLIAGE_PLACER.get();
 	}
 
-	protected void createFoliage(LevelSimulatedReader p_161360_, BiConsumer<BlockPos, BlockState> p_161361_, RandomSource p_161362_, TreeConfiguration p_161363_, int p_161364_, FoliagePlacer.FoliageAttachment p_161365_, int p_161366_, int p_161367_, int p_161368_) {
+	@Override
+	protected void createFoliage(LevelSimulatedReader p_161360_, FoliageSetter p_161361_, RandomSource p_161362_, TreeConfiguration p_161363_, int p_161364_, FoliagePlacer.FoliageAttachment p_161365_, int p_161366_, int p_161367_, int p_161368_) {
 		for (int i = p_161368_; i >= p_161368_ - p_161366_; --i) {
 			int j = Math.max(p_161367_ + p_161365_.radiusOffset(), 0);
 			this.placeLeavesRow(p_161360_, p_161361_, p_161362_, p_161363_, p_161365_.pos(), j, i, p_161365_.doubleTrunk());

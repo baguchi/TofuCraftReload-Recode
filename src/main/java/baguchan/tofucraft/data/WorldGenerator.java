@@ -10,6 +10,7 @@ import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuNoiseSettings;
 import com.google.gson.JsonElement;
 import com.mojang.serialization.JsonOps;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
@@ -22,6 +23,8 @@ import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MultiNoiseBiomeSource;
+import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
@@ -31,6 +34,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.JsonCodecProvider;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -44,6 +48,7 @@ public class WorldGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrapConfiguredFeature)
 			.add(Registries.PLACED_FEATURE, ModConfiguredFeatures::bootstrapPlacedFeature)
 			.add(Registries.CONFIGURED_CARVER, TofuConfiguredWorldCarvers::bootstrap)
+			.add(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, TofuBiomes::bootstrapPreset)
 			.add(Registries.NOISE_SETTINGS, TofuNoiseBuilder::bootstrap)
 			.add(Registries.DIMENSION_TYPE, TofuDimensionTypes::bootstrap)
 			.add(Registries.BIOME, TofuBiomes::bootstrap);
@@ -63,10 +68,12 @@ public class WorldGenerator extends DatapackBuiltinEntriesProvider {
 		HolderGetter<Biome> biomeRegistry = registry.lookupOrThrow(Registries.BIOME);
 		HolderGetter<DimensionType> dimTypes = registry.lookupOrThrow(Registries.DIMENSION_TYPE);
 		HolderGetter<NoiseGeneratorSettings> noiseGenSettings = registry.lookupOrThrow(Registries.NOISE_SETTINGS);
+		Optional<HolderLookup.RegistryLookup<MultiNoiseBiomeSourceParameterList>> multiNoiseBiomeSourceParameterLists = registry.lookup(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST);
+		Holder.Reference<MultiNoiseBiomeSourceParameterList> reference = multiNoiseBiomeSourceParameterLists.get().getOrThrow(TofuBiomes.TOFU_WORLD);
 
 		NoiseBasedChunkGenerator wrappedChunkGenerator =
 				new NoiseBasedChunkGenerator(
-						TofuBiomes.TOFU_WORLD.biomeSource(biomeRegistry, true),
+						MultiNoiseBiomeSource.createFromPreset(reference),
 						noiseGenSettings.getOrThrow(TofuNoiseSettings.TOFU_WORLD));
 
 		LevelStem stem = new LevelStem(

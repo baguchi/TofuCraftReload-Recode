@@ -6,13 +6,14 @@
       "item": "tofucraft:tofuishi"
     }
   },
-  "pattern": [
+  "pattern" : [
     "# #",
     "###",
     "# #"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofuladder_ishi"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofuladder_ishi"
+  },
+  "show_notification" : true
 }

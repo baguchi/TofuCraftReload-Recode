@@ -7,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -91,7 +90,7 @@ public class TofuBedBlock extends BedBlock {
 				}
 
 				Vec3 vec3 = p_49517_.getCenter();
-				p_49516_.explode((Entity) null, DamageSource.badRespawnPointExplosion(vec3), (ExplosionDamageCalculator) null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
+				p_49516_.explode((Entity) null, p_49518_.damageSources().badRespawnPointExplosion(vec3), (ExplosionDamageCalculator) null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
 				return InteractionResult.SUCCESS;
 			} else if ((Boolean) p_49515_.getValue(OCCUPIED)) {
 				if (!this.kickVillagerOutOfBed(p_49516_, p_49517_)) {

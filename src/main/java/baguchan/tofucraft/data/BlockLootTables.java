@@ -241,10 +241,6 @@ public class BlockLootTables extends BlockLootSubProvider {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);
 		});
 		dropSelf(TofuBlocks.TOFUCHEST.get());
-
-		dropSelf(TofuBlocks.TF_STORAGE.get());
-		dropSelf(TofuBlocks.ANTENNA_BASIC.get());
-
 		registerTofuDrop(TofuBlocks.EGGTOFU.get(), TofuItems.TOFUEGG.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_EGG.get());
 		registerSlab(TofuBlocks.TOFUSLAB_EGG.get());

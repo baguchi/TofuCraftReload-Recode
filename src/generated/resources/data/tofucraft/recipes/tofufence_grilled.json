@@ -3,15 +3,16 @@
   "category": "building",
   "key": {
     "M": {
-      "item": "tofucraft:blocktofugrilled"
+      "item" : "tofucraft:blocktofugrilled"
     }
   },
-  "pattern": [
+  "pattern" : [
     "MMM",
     "MMM"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofufence_grilled"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofufence_grilled"
+  },
+  "show_notification" : true
 }

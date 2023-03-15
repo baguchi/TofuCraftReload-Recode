@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "tofucraft:tofumiso"
+    "#" : {
+      "item" : "tofucraft:tofumiso"
     }
   },
-  "pattern": [
+  "pattern" : [
     "##",
     "##"
   ],
-  "result": {
-    "item": "tofucraft:blocktofumiso"
-  }
+  "result" : {
+    "item" : "tofucraft:blocktofumiso"
+  },
+  "show_notification" : true
 }

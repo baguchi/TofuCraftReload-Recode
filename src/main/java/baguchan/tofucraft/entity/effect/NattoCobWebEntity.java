@@ -10,6 +10,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -93,7 +94,7 @@ public class NattoCobWebEntity extends LivingEntity {
 	}
 
 	public void stepSlow() {
-		AABB area = new AABB(new BlockPos(this.getX(), this.getY() - 0.5f, this.getZ())).inflate(1, 0.5, 1);
+		AABB area = new AABB(BlockPos.containing(this.getX(), this.getY() - 0.5f, this.getZ())).inflate(1, 0.5, 1);
 		List<LivingEntity> entitiesHit = this.level.getEntitiesOfClass(LivingEntity.class, area);
 		for (LivingEntity entity : entitiesHit) {
 			double d0 = Math.abs(entity.getDeltaMovement().y);
@@ -125,7 +126,7 @@ public class NattoCobWebEntity extends LivingEntity {
 	public boolean hurt(DamageSource p_31461_, float p_31462_) {
 		if (this.isInvulnerableTo(p_31461_)) {
 			return false;
-		} else if (p_31461_ != DamageSource.STALAGMITE && p_31461_ != DamageSource.IN_WALL && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.DROWN && p_31461_ != DamageSource.IN_FIRE && p_31461_ != DamageSource.ON_FIRE && !(p_31461_.getEntity() instanceof ShuDofuSpider)) {
+		} else if (!p_31461_.is(DamageTypes.SWEET_BERRY_BUSH) && !p_31461_.is(DamageTypes.CACTUS) && !p_31461_.is(DamageTypes.CRAMMING) && !p_31461_.is(DamageTypes.IN_WALL) && !p_31461_.is(DamageTypes.STALAGMITE) && !(p_31461_.getEntity() instanceof ShuDofuSpider)) {
 			Entity entity = p_31461_.getDirectEntity();
 			if (entity instanceof Projectile) {
 				return false;

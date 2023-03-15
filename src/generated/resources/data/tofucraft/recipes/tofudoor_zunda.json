@@ -6,13 +6,14 @@
       "item": "tofucraft:blocktofuzunda"
     }
   },
-  "pattern": [
+  "pattern" : [
     "PP",
     "PP",
     "PP"
   ],
-  "result": {
-    "count": 3,
-    "item": "tofucraft:tofudoor_zunda"
-  }
+  "result" : {
+    "count" : 3,
+    "item" : "tofucraft:tofudoor_zunda"
+  },
+  "show_notification" : true
 }

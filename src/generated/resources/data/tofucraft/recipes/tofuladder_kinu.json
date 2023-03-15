@@ -6,13 +6,14 @@
       "item": "tofucraft:tofukinu"
     }
   },
-  "pattern": [
+  "pattern" : [
     "# #",
     "###",
     "# #"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofuladder_kinu"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofuladder_kinu"
+  },
+  "show_notification" : true
 }

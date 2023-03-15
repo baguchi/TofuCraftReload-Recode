@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "tofucraft:blocktofuhell"
+    "#" : {
+      "item" : "tofucraft:blocktofuhell"
     }
   },
-  "pattern": [
+  "pattern" : [
     "##",
     "##"
   ],
-  "result": {
-    "item": "tofucraft:tofuhell_brick"
-  }
+  "result" : {
+    "item" : "tofucraft:tofuhell_brick"
+  },
+  "show_notification" : true
 }

@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "tofucraft:tofumetal"
+    "#" : {
+      "item" : "tofucraft:tofumetal"
     }
   },
-  "pattern": [
+  "pattern" : [
     " #",
     "# "
   ],
-  "result": {
-    "item": "tofucraft:tofu_metal_shears"
-  }
+  "result" : {
+    "item" : "tofucraft:tofu_metal_shears"
+  },
+  "show_notification" : true
 }

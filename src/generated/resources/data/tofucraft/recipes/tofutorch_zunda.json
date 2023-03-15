@@ -6,15 +6,16 @@
       "tag": "minecraft:coals"
     },
     "M": {
-      "item": "tofucraft:tofuzunda"
+      "item" : "tofucraft:tofuzunda"
     }
   },
-  "pattern": [
+  "pattern" : [
     "C",
     "M"
   ],
-  "result": {
-    "count": 4,
-    "item": "tofucraft:tofutorch_zunda"
-  }
+  "result" : {
+    "count" : 4,
+    "item" : "tofucraft:tofutorch_zunda"
+  },
+  "show_notification" : true
 }

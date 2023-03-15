@@ -20,6 +20,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
@@ -230,7 +231,7 @@ public class ShuDofuSpider extends Monster {
 					float radius = 2;
 					float swipePosX = (float) (this.getX() + radius * Math.cos(Math.toRadians(this.getYHeadRot() + 90)));
 					float swipePosZ = (float) (this.getZ() + radius * Math.sin(Math.toRadians(this.getYHeadRot() + 90)));
-					AABB hitBox = new AABB(new BlockPos(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1.55, 1.55, 1.55);
+					AABB hitBox = new AABB(BlockPos.containing(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1.55, 1.55, 1.55);
 					List<LivingEntity> entitiesHit = this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
@@ -300,11 +301,11 @@ public class ShuDofuSpider extends Monster {
 						world.sendParticles(new ParticleStink.StinkData(TofuParticleTypes.STINK.get(), 20f, 20, ParticleStink.EnumStinkBehavior.GROW, 1.0f), this.getX() + Math.cos(Math.toRadians(yaw)) * distance, this.getY(), this.getZ() + Math.sin(Math.toRadians(yaw)) * distance, 0, 0, 0, 0, 0);
 					}
 					float radius = 4;
-					AABB hitBox = new AABB(new BlockPos(ShuDofuSpider.this.getX() - radius, ShuDofuSpider.this.getY() - 1, ShuDofuSpider.this.getZ() - radius), new BlockPos(ShuDofuSpider.this.getX() + radius, ShuDofuSpider.this.getY() + 2, ShuDofuSpider.this.getZ() + radius));
+					AABB hitBox = new AABB(BlockPos.containing(ShuDofuSpider.this.getX() - radius, ShuDofuSpider.this.getY() - 1, ShuDofuSpider.this.getZ() - radius), BlockPos.containing(ShuDofuSpider.this.getX() + radius, ShuDofuSpider.this.getY() + 2, ShuDofuSpider.this.getZ() + radius));
 					List<LivingEntity> entitiesHit = ShuDofuSpider.this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
-							entity.hurt(DamageSource.mobAttack(ShuDofuSpider.this), 30.0F);
+							entity.hurt(this.damageSources().mobAttack(ShuDofuSpider.this), 30.0F);
 						}
 					}
 					playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0f, 1.0f);
@@ -376,7 +377,7 @@ public class ShuDofuSpider extends Monster {
 
 	public void jumpAttack(Entity p_36347_) {
 		if (p_36347_.isAttackable() && !this.isAlliedTo(p_36347_)) {
-			p_36347_.hurt(DamageSource.mobAttack(this), 18.0F);
+			p_36347_.hurt(this.damageSources().mobAttack(this), 18.0F);
 			float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
 			i += EnchantmentHelper.getKnockbackBonus(this) + 1.5F;
 
@@ -409,7 +410,7 @@ public class ShuDofuSpider extends Monster {
 	public void graspAttack(Entity p_36347_) {
 		if (p_36347_ instanceof LivingEntity && !(p_36347_ instanceof NattoCobWebEntity) && !this.isAlliedTo(p_36347_)) {
 			float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-			if (p_36347_.hurt(DamageSource.mobAttack(this), f * 0.2F)) {
+			if (p_36347_.hurt(this.damageSources().mobAttack(this), f * 0.2F)) {
 				this.heal(f * 0.2F);
 			}
 
@@ -459,7 +460,7 @@ public class ShuDofuSpider extends Monster {
 	public boolean hurt(DamageSource p_31461_, float p_31462_) {
 		if (this.isInvulnerableTo(p_31461_)) {
 			return false;
-		} else if (p_31461_ != DamageSource.SWEET_BERRY_BUSH && p_31461_ != DamageSource.CACTUS && p_31461_ != DamageSource.CRAMMING && p_31461_ != DamageSource.IN_WALL) {
+		} else if (!p_31461_.is(DamageTypes.SWEET_BERRY_BUSH) && !p_31461_.is(DamageTypes.CACTUS) && !p_31461_.is(DamageTypes.CRAMMING) && !p_31461_.is(DamageTypes.IN_WALL) && !p_31461_.is(DamageTypes.STALAGMITE)) {
 			Entity entity = p_31461_.getDirectEntity();
 
 			if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
@@ -477,7 +478,7 @@ public class ShuDofuSpider extends Monster {
 
 			if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getPierceLevel() > 0) {
 				return super.hurt(p_31461_, p_31462_ * 0.15F * ((AbstractArrow) entity).getPierceLevel());
-			} else if (entity instanceof Projectile || !this.isAngry() && p_31461_.isMagic()) {
+			} else if (entity instanceof Projectile || !this.isAngry() && p_31461_.is(DamageTypes.MAGIC)) {
 				return false;
 			}
 
@@ -745,7 +746,7 @@ public class ShuDofuSpider extends Monster {
 			Vec3 vec3 = ShuDofuSpider.this.getDeltaMovement();
 			if (vec3.y * vec3.y < (double) 0.03F && ShuDofuSpider.this.getXRot() != 0.0F) {
 
-				ShuDofuSpider.this.setXRot(Mth.rotlerp(ShuDofuSpider.this.getXRot(), 0.0F, 0.2F));
+				ShuDofuSpider.this.setXRot(Mth.rotLerp(ShuDofuSpider.this.getXRot(), 0.0F, 0.2F));
 			} else {
 				double d0 = vec3.horizontalDistance();
 				double d1 = Math.signum(-vec3.y) * Math.acos(d0 / vec3.length()) * (double) (180F / (float) Math.PI);
@@ -769,7 +770,7 @@ public class ShuDofuSpider extends Monster {
 			double d4 = d2 == 0.0D ? d1 * (double) ((float) j / 6.0F) : d3 / d2;
 
 			for (int k = 1; k < 4; ++k) {
-				if (!p_28472_.level.getBlockState(new BlockPos(p_28472_.getX() + d4, p_28472_.getY() + (double) k, p_28472_.getZ() + d3)).getMaterial().isReplaceable()) {
+				if (!p_28472_.level.getBlockState(BlockPos.containing(p_28472_.getX() + d4, p_28472_.getY() + (double) k, p_28472_.getZ() + d3)).getMaterial().isReplaceable()) {
 					return false;
 				}
 			}

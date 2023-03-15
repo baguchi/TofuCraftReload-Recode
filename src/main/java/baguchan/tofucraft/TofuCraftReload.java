@@ -1,6 +1,4 @@
 package baguchan.tofucraft;
-
-import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.ClientProxy;
@@ -10,7 +8,6 @@ import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyHealthMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
-import baguchan.tofucraft.message.TFStorageSoymilkMessage;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBiomeModifiers;
@@ -31,8 +28,10 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
+import com.google.common.collect.Maps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
+import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
@@ -54,6 +53,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Locale;
+import java.util.Map;
 
 @Mod(TofuCraftReload.MODID)
 public class TofuCraftReload {
@@ -117,12 +117,17 @@ public class TofuCraftReload {
 
 	private void setup(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
+			Map<ResourceLocation, MultiNoiseBiomeSourceParameterList.Preset> map = Maps.newHashMap();
+			map.putAll(Map.copyOf(MultiNoiseBiomeSourceParameterList.Preset.BY_NAME));
+			map.put(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), TofuBiomes.TOFU_WORLD_PRESET);
+			MultiNoiseBiomeSourceParameterList.Preset.BY_NAME = map;
+
+
 			TofuAdvancements.init();
 			TofuItems.registerDispenserItem();
 			TofuItems.registerCompostableItem();
 			TofuItems.registerAnimalFeed();
 			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift"));
-			TofuEnergyMap.init();
 			TofuBiomes.init();
 			ModInteractionInformations.init();
 		});
@@ -145,10 +150,6 @@ public class TofuCraftReload {
 		CHANNEL.messageBuilder(SaltFurnaceWaterMessage.class, 3)
 				.encoder(SaltFurnaceWaterMessage::writePacketData).decoder(SaltFurnaceWaterMessage::readPacketData)
 				.consumerMainThread(SaltFurnaceWaterMessage::handle)
-				.add();
-		CHANNEL.messageBuilder(TFStorageSoymilkMessage.class, 4)
-				.encoder(TFStorageSoymilkMessage::writePacketData).decoder(TFStorageSoymilkMessage::readPacketData)
-				.consumerMainThread(TFStorageSoymilkMessage::handle)
 				.add();
 	}
 

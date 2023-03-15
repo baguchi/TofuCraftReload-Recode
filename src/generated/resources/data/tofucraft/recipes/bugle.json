@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "minecraft:iron_ingot"
+    "#" : {
+      "item" : "minecraft:iron_ingot"
     }
   },
-  "pattern": [
+  "pattern" : [
     "  #",
     "###"
   ],
-  "result": {
-    "item": "tofucraft:bugle"
-  }
+  "result" : {
+    "item" : "tofucraft:bugle"
+  },
+  "show_notification" : true
 }

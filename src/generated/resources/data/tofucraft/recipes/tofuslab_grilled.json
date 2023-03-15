@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": {
-      "item": "tofucraft:blocktofugrilled"
+    "M" : {
+      "item" : "tofucraft:blocktofugrilled"
     }
   },
-  "pattern": [
+  "pattern" : [
     "MMM"
   ],
-  "result": {
-    "count": 6,
-    "item": "tofucraft:tofuslab_grilled"
-  }
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofuslab_grilled"
+  },
+  "show_notification" : true
 }
