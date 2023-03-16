@@ -727,7 +727,8 @@ public class TofuItems {
 											TOFUSPIDER_SPAWNEGG,
 											TOFU_GANDLEM_SPAWNEGG,
 											SHUDOFUSPIDER_SPAWNEGG,
-											TOFU_UPGRADE_SMITHING_TEMPLATE)
+											TOFU_UPGRADE_SMITHING_TEMPLATE,
+											ZUNDARUBY)
 									.map(item -> item.get().getDefaultInstance())
 									.toList())).build();
 				});
@@ -787,7 +788,8 @@ public class TofuItems {
 									TofuItems.ZUNDA_BOW,
 									TofuItems.FUKUMAME,
 									TofuItems.NETHER_FUKUMAME,
-									TofuItems.SOUL_FUKUMAME)
+									TofuItems.SOUL_FUKUMAME,
+									TofuItems.ZUNDARUBY)
 							.map(item -> item.get().getDefaultInstance())
 							.toList())).build();
 				});
