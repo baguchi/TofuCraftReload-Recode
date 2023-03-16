@@ -4,6 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.data.resources.ModConfiguredFeatures;
 import baguchan.tofucraft.data.resources.TofuConfiguredWorldCarvers;
 import baguchan.tofucraft.data.resources.TofuNoiseBuilder;
+import baguchan.tofucraft.registry.TofuBiomeSources;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuDimensionTypes;
 import baguchan.tofucraft.registry.TofuDimensions;
@@ -48,7 +49,7 @@ public class WorldGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrapConfiguredFeature)
 			.add(Registries.PLACED_FEATURE, ModConfiguredFeatures::bootstrapPlacedFeature)
 			.add(Registries.CONFIGURED_CARVER, TofuConfiguredWorldCarvers::bootstrap)
-			.add(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, TofuBiomes::bootstrapPreset)
+			.add(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, TofuBiomeSources::bootstrapPreset)
 			.add(Registries.NOISE_SETTINGS, TofuNoiseBuilder::bootstrap)
 			.add(Registries.DIMENSION_TYPE, TofuDimensionTypes::bootstrap)
 			.add(Registries.BIOME, TofuBiomes::bootstrap);
@@ -69,7 +70,7 @@ public class WorldGenerator extends DatapackBuiltinEntriesProvider {
 		HolderGetter<DimensionType> dimTypes = registry.lookupOrThrow(Registries.DIMENSION_TYPE);
 		HolderGetter<NoiseGeneratorSettings> noiseGenSettings = registry.lookupOrThrow(Registries.NOISE_SETTINGS);
 		Optional<HolderLookup.RegistryLookup<MultiNoiseBiomeSourceParameterList>> multiNoiseBiomeSourceParameterLists = registry.lookup(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST);
-		Holder.Reference<MultiNoiseBiomeSourceParameterList> reference = multiNoiseBiomeSourceParameterLists.get().getOrThrow(TofuBiomes.TOFU_WORLD);
+		Holder.Reference<MultiNoiseBiomeSourceParameterList> reference = multiNoiseBiomeSourceParameterLists.get().getOrThrow(TofuBiomeSources.TOFU_WORLD);
 
 		NoiseBasedChunkGenerator wrappedChunkGenerator =
 				new NoiseBasedChunkGenerator(
