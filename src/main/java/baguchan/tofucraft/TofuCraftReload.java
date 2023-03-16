@@ -11,6 +11,7 @@ import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBiomeModifiers;
+import baguchan.tofucraft.registry.TofuBiomeSources;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
@@ -119,7 +120,7 @@ public class TofuCraftReload {
 		event.enqueueWork(() -> {
 			Map<ResourceLocation, MultiNoiseBiomeSourceParameterList.Preset> map = Maps.newHashMap();
 			map.putAll(Map.copyOf(MultiNoiseBiomeSourceParameterList.Preset.BY_NAME));
-			map.put(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), TofuBiomes.TOFU_WORLD_PRESET);
+			map.put(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), TofuBiomeSources.TOFU_WORLD_PRESET);
 			MultiNoiseBiomeSourceParameterList.Preset.BY_NAME = map;
 
 
