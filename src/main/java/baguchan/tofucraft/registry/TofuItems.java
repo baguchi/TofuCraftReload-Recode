@@ -726,7 +726,8 @@ public class TofuItems {
 											TOFUCREEPER_SPAWNEGG,
 											TOFUSPIDER_SPAWNEGG,
 											TOFU_GANDLEM_SPAWNEGG,
-											SHUDOFUSPIDER_SPAWNEGG)
+											SHUDOFUSPIDER_SPAWNEGG,
+											TOFU_UPGRADE_SMITHING_TEMPLATE)
 									.map(item -> item.get().getDefaultInstance())
 									.toList())).build();
 				});
