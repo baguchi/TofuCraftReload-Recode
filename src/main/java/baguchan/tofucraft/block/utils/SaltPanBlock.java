@@ -37,6 +37,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -114,8 +115,10 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 				IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(itemHeld, 1)).orElse(null);
 				if (handler != null && handler instanceof net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper && ((FluidBucketWrapper) handler).getFluid().getFluid() == Fluids.WATER) {
 
-					if (!player.isCreative())
+					if (!player.isCreative()) {
+						handler.drain(1000, IFluidHandler.FluidAction.EXECUTE);
 						player.setItemInHand(handIn, new ItemStack(handler.getContainer().getItem()));
+					}
 					worldIn.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 					TileScanner tileScanner = new TileScanner(worldIn, pos);
 					tileScanner.scan(1, TileScanner.Method.fullSimply, new TileScanner.Impl<Object>() {
