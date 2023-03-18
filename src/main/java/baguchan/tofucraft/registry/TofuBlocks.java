@@ -9,6 +9,7 @@ import baguchan.tofucraft.block.LeekBlock;
 import baguchan.tofucraft.block.MincedTofuBlock;
 import baguchan.tofucraft.block.MorijioBlock;
 import baguchan.tofucraft.block.RiceBlock;
+import baguchan.tofucraft.block.SuspiciousTofuTerrainBlock;
 import baguchan.tofucraft.block.TofuBlock;
 import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.block.TofuFarmlandBlock;
@@ -48,6 +49,7 @@ import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.BedItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
@@ -230,6 +232,8 @@ public class TofuBlocks {
 
 	public static final RegistryObject<Block> TOFU_TERRAIN = register("tofu_terrain", () -> new TofuTerrainBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.4F, 0.5F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> TOFU_TERRAIN_ZUNDA = register("tofu_terrain_zunda", () -> new TofuTerrainBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.4F, 0.5F).sound(SoundType.SNOW)));
+	public static final RegistryObject<Block> SUSPICIOUS_TOFU_TERRAIN = register("suspicious_tofu_terrain", () -> new SuspiciousTofuTerrainBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.4F, 0.5F).sound(SoundType.SNOW).requiredFeatures(FeatureFlags.UPDATE_1_20)));
+
 	public static final RegistryObject<Block> TOFUSLATE = register("tofuslate", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(2.5F, 4.0F).sound(SoundType.DEEPSLATE)));
 	public static final RegistryObject<Block> TOFUSLATE_TOFU_DIAMOND_ORE = register("tofuslate_tofu_diamond_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.5F, 4.0F).sound(SoundType.DEEPSLATE), UniformInt.of(3, 5)));
 	public static final RegistryObject<Block> ORE_TOFU_DIAMOND = register("ore_tofu_diamond", () -> new DropExperienceBlock(BlockBehaviour.Properties.of(TofuMaterial.TOFU).strength(0.5F, 1.0F).sound(SoundType.SNOW), UniformInt.of(3, 5)));

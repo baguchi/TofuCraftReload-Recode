@@ -1,5 +1,6 @@
 package baguchan.tofucraft;
 
+import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.entity.TofuGandlem;
@@ -21,8 +22,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -31,15 +34,21 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -116,16 +125,58 @@ public class CommonEvents {
 		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyHealthMessage(playerEntity, handler.getSoyHealth(), handler.getSoyMaxHealth())));
 	}
 
+	protected static BlockHitResult getPlayerPOVHitResult(Level p_41436_, Player p_41437_, ClipContext.Fluid p_41438_) {
+		float f = p_41437_.getXRot();
+		float f1 = p_41437_.getYRot();
+		Vec3 vec3 = p_41437_.getEyePosition();
+		float f2 = Mth.cos(-f1 * ((float) Math.PI / 180F) - (float) Math.PI);
+		float f3 = Mth.sin(-f1 * ((float) Math.PI / 180F) - (float) Math.PI);
+		float f4 = -Mth.cos(-f * ((float) Math.PI / 180F));
+		float f5 = Mth.sin(-f * ((float) Math.PI / 180F));
+		float f6 = f3 * f4;
+		float f7 = f2 * f4;
+		double d0 = p_41437_.getReachDistance();
+		Vec3 vec31 = vec3.add((double) f6 * d0, (double) f5 * d0, (double) f7 * d0);
+		return p_41436_.clip(new ClipContext(vec3, vec31, ClipContext.Block.OUTLINE, p_41438_, p_41437_));
+	}
+
+
+	@SubscribeEvent
+	public static void onUsingItem(LivingEntityUseItemEvent event) {
+		ItemStack stack = event.getItem();
+		Level level = event.getEntity().level;
+		if (stack.is(Items.BRUSH) && event.getEntity() instanceof Player player) {
+			BlockHitResult blockhitresult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
+			BlockPos $$7 = blockhitresult.getBlockPos();
+			BlockState blockstate = level.getBlockState($$7);
+			if (!level.isClientSide() && blockstate.is(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get())) {
+				BlockEntity $$11 = level.getBlockEntity($$7);
+				if ($$11 instanceof SuspiciousTofuBlockEntity) {
+					SuspiciousTofuBlockEntity suspicioussandblockentity = (SuspiciousTofuBlockEntity) $$11;
+					boolean flag = suspicioussandblockentity.brush(level.getGameTime(), player, blockhitresult.getDirection());
+					if (flag) {
+						stack.hurtAndBreak(1, event.getEntity(), (p_272600_) -> {
+							p_272600_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+						});
+					}
+				}
+			}
+		}
+	}
+
 	@SubscribeEvent
 	public static void onBlockUsed(PlayerInteractEvent.RightClickBlock event) {
-		if (event.getItemStack().is(TofuItems.BUCKET_SOYMILK.get()) && event.getLevel().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
-			event.getLevel().setBlock(event.getPos(), TofuBlocks.SOYMILK_CAULDRON.get().defaultBlockState(), 2);
+		ItemStack stack = event.getItemStack();
+		Level level = event.getLevel();
+
+		if (stack.is(TofuItems.BUCKET_SOYMILK.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+			level.setBlock(event.getPos(), TofuBlocks.SOYMILK_CAULDRON.get().defaultBlockState(), 2);
 			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
 			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
 			if (!event.getEntity().isCreative()) {
-				event.getItemStack().shrink(1);
+				stack.shrink(1);
 			}
-			if (event.getItemStack().isEmpty()) {
+			if (stack.isEmpty()) {
 				event.getEntity().setItemInHand(event.getHand(), itemstack2);
 			} else if (!event.getEntity().isCreative() &&
 					!event.getEntity().getInventory().add(itemstack2)) {
@@ -135,14 +186,14 @@ public class CommonEvents {
 			event.setCancellationResult(InteractionResult.SUCCESS);
 			event.setCanceled(true);
 		}
-		if (event.getItemStack().is(TofuItems.BUCKET_SOYMILK_NETHER.get()) && event.getLevel().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
-			event.getLevel().setBlock(event.getPos(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get().defaultBlockState(), 2);
+		if (stack.is(TofuItems.BUCKET_SOYMILK_NETHER.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+			level.setBlock(event.getPos(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get().defaultBlockState(), 2);
 			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
 			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
 			if (!event.getEntity().isCreative()) {
-				event.getItemStack().shrink(1);
+				stack.shrink(1);
 			}
-			if (event.getItemStack().isEmpty()) {
+			if (stack.isEmpty()) {
 				event.getEntity().setItemInHand(event.getHand(), itemstack2);
 			} else if (!event.getEntity().isCreative() &&
 					!event.getEntity().getInventory().add(itemstack2)) {
@@ -152,14 +203,14 @@ public class CommonEvents {
 			event.setCancellationResult(InteractionResult.SUCCESS);
 			event.setCanceled(true);
 		}
-		if (event.getItemStack().is(TofuItems.BUCKET_SOYMILK_SOUL.get()) && event.getLevel().getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
-			event.getLevel().setBlock(event.getPos(), TofuBlocks.SOYMILK_SOUL_CAULDRON.get().defaultBlockState(), 2);
+		if (stack.is(TofuItems.BUCKET_SOYMILK_SOUL.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+			level.setBlock(event.getPos(), TofuBlocks.SOYMILK_SOUL_CAULDRON.get().defaultBlockState(), 2);
 			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
 			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
 			if (!event.getEntity().isCreative()) {
-				event.getItemStack().shrink(1);
+				stack.shrink(1);
 			}
-			if (event.getItemStack().isEmpty()) {
+			if (stack.isEmpty()) {
 				event.getEntity().setItemInHand(event.getHand(), itemstack2);
 			} else if (!event.getEntity().isCreative() &&
 					!event.getEntity().getInventory().add(itemstack2)) {
@@ -181,7 +232,7 @@ public class CommonEvents {
 				if (structure != null) {
 					StructureStart structureStart = serverLevel.structureManager().getStructureAt(event.getPos(), structure);
 					if (structureStart.isValid()) {
-						TofuGandlem gandlem = serverLevel.getNearestEntity(TofuGandlem.class, TargetingConditions.forNonCombat(), (LivingEntity) event.getPlayer(), event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), event.getPlayer().getBoundingBox().inflate(32.0F));
+						TofuGandlem gandlem = serverLevel.getNearestEntity(TofuGandlem.class, TargetingConditions.forNonCombat(), (LivingEntity) event.getPlayer(), event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), event.getPlayer().getBoundingBox().inflate(35.0F));
 
 						if (gandlem != null) {
 							ServerPlayer player = (ServerPlayer) event.getPlayer();
@@ -206,7 +257,7 @@ public class CommonEvents {
 				if (structure != null) {
 					StructureStart structureStart = serverLevel.structureManager().getStructureAt(event.getPos(), structure);
 					if (structureStart.isValid()) {
-						TofuGandlem gandlem = serverLevel.getNearestEntity(TofuGandlem.class, TargetingConditions.forNonCombat(), (LivingEntity) event.getEntity(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), event.getEntity().getBoundingBox().inflate(32.0F));
+						TofuGandlem gandlem = serverLevel.getNearestEntity(TofuGandlem.class, TargetingConditions.forNonCombat(), (LivingEntity) event.getEntity(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), event.getEntity().getBoundingBox().inflate(35.0F));
 						if (gandlem != null) {
 							ServerPlayer player = (ServerPlayer) event.getEntity();
 							if (!player.isCreative() && !(event.getState().getBlock() instanceof TorchBlock)) {

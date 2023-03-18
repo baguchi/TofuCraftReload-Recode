@@ -432,6 +432,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSLAB_SESAME.get());
 
 		singleTex(TofuItems.NATTO_COBWEB.get());
+		toBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 	}
 
 	public ItemModelBuilder torchItem(Block item) {

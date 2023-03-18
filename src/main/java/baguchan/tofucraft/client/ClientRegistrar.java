@@ -28,6 +28,7 @@ import baguchan.tofucraft.client.render.entity.TofunianRender;
 import baguchan.tofucraft.client.render.entity.TravelerTofunianRender;
 import baguchan.tofucraft.client.render.entity.effect.NattoCobWebRender;
 import baguchan.tofucraft.client.render.tileentity.FoodPlateRender;
+import baguchan.tofucraft.client.render.tileentity.SuspiciousTofuRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
@@ -70,6 +71,7 @@ public class ClientRegistrar {
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFUBED.get(), TofuBedRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFUCHEST.get(), TofuChestRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.FOODPLATE.get(), FoodPlateRender::new);
+		BlockEntityRenderers.register(TofuBlockEntitys.SUSPICIOUS_TOFU.get(), SuspiciousTofuRenderer::new);
 	}
 
 

@@ -158,6 +158,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 		CandleTofuCakeBlock.getCandleCakes().forEach((block -> this.candleCake((CandleTofuCakeBlock) block)));
 		this.carpet(TofuBlocks.YUBA.get());
+		this.simpleBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 	}
 
 	public void carpet(Block block) {

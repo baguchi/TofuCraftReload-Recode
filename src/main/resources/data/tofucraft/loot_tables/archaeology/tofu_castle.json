@@ -1,0 +1,47 @@
+{
+  "type" : "minecraft:archaeology",
+  "pools" : [
+    {
+      "bonus_rolls" : 0.0,
+      "entries" : [
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofuishi"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofugem"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "minecraft:emerald"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofustick"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofumetal"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofudiamondnugget"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:zundaruby"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:sapling_apricot"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:leek"
+        }
+      ],
+      "rolls" : 1.0
+    }
+  ]
+}

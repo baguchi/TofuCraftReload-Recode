@@ -1,0 +1,7 @@
+{
+  "variants" : {
+    "" : {
+      "model" : "tofucraft:block/suspicious_tofu_terrain"
+    }
+  }
+}

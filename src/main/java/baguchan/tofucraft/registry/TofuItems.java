@@ -728,7 +728,8 @@ public class TofuItems {
 											TOFU_GANDLEM_SPAWNEGG,
 											SHUDOFUSPIDER_SPAWNEGG,
 											TOFU_UPGRADE_SMITHING_TEMPLATE,
-											ZUNDARUBY)
+											ZUNDARUBY,
+											LEEK)
 									.map(item -> item.get().getDefaultInstance())
 									.toList())).build();
 				});
