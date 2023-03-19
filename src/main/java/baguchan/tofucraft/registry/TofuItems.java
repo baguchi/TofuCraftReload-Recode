@@ -717,6 +717,7 @@ public class TofuItems {
 											KINAKO,
 											EDAMAME,
 											KINAKO,
+											LEEK,
 											TOFUCOW_SPAWNEGG,
 											TOFUFISH_SPAWNEGG,
 											TOFUPIG_SPAWNEGG,
@@ -728,8 +729,7 @@ public class TofuItems {
 											TOFU_GANDLEM_SPAWNEGG,
 											SHUDOFUSPIDER_SPAWNEGG,
 											TOFU_UPGRADE_SMITHING_TEMPLATE,
-											ZUNDARUBY,
-											LEEK)
+											ZUNDARUBY)
 									.map(item -> item.get().getDefaultInstance())
 									.toList())).build();
 				});
