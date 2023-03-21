@@ -58,6 +58,8 @@ public class TofuFishModel<T extends Entity> extends HierarchicalModel<T> {
 		}
 
 		this.tailfin.yRot = -f * 0.45F * Mth.sin(0.6F * limbSwingAmount);
+		this.rightFin.zRot = -0.2F + 0.4F * Mth.sin(ageInTicks * 0.2F);
+		this.leftFin.zRot = 0.2F - 0.4F * Mth.sin(ageInTicks * 0.2F);
 	}
 
 	public ModelPart root() {
