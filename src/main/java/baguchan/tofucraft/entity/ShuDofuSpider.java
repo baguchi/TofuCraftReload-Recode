@@ -573,7 +573,7 @@ public class ShuDofuSpider extends Monster {
 
 			if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getPierceLevel() > 0) {
 				return super.hurt(p_31461_, p_31462_ * 0.15F * ((AbstractArrow) entity).getPierceLevel());
-			} else if (entity instanceof Projectile || !this.isAngry() && p_31461_.is(DamageTypes.MAGIC)) {
+			} else if (entity instanceof Projectile || !this.isAngry() && (p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC))) {
 				return false;
 			}
 
