@@ -7,6 +7,7 @@ import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -46,6 +47,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
@@ -82,9 +84,13 @@ public class ShuDofuSpider extends Monster {
 	private int rangedTime;
 	private int graspTime;
 
+	private float leftLegAnimation;
+	private float leftLegAnimationOld;
+	private float rightLegAnimation;
+	private float rightLegAnimationOld;
+
 	public final AnimationState idleAnimationState = new AnimationState();
 	public final AnimationState attackAnimationState = new AnimationState();
-	public final AnimationState walkAnimationState = new AnimationState();
 	public final AnimationState deathAnimationState = new AnimationState();
 	public final AnimationState jumpAnimationState = new AnimationState();
 
@@ -216,11 +222,6 @@ public class ShuDofuSpider extends Monster {
 			this.graspAnimationState.stop();
 		}
 
-		if (this.isAlive() && this.isMovingOnLand()) {
-			this.walkAnimationState.startIfStopped(this.tickCount);
-		} else {
-			this.walkAnimationState.stop();
-		}
 		if (!this.level.isClientSide()) {
 			if (this.isAlive() && !this.isGraspAnim() && this.isAttackAnim() && this.getTarget() != null) {
 				++this.attackTime;
@@ -314,8 +315,102 @@ public class ShuDofuSpider extends Monster {
 					this.setJumpAnimation(false);
 				}
 			}
+		} else {
+			this.rightLegAnimationOld = this.rightLegAnimation;
+			this.leftLegAnimationOld = this.leftLegAnimation;
+			if (!this.isJump()) {
+				var direction = this.getDirection();
+				var pos = this.blockPosition();
+				var air = Blocks.AIR.defaultBlockState();
+
+
+				if (direction == Direction.NORTH) {
+
+					var rBlock = this.level.getBlockState(pos.below().west().west());
+					var rBlockF = this.level.getBlockState(pos.below().west().west().north());
+					var rBlockB = this.level.getBlockState(pos.below().west().west().south());
+					if (rBlock == air && rBlockF == air && rBlockB == air) {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, -1, 0);
+					} else {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
+					}
+					var lBlock = this.level.getBlockState(pos.below().east().east());
+					var lBlockF = this.level.getBlockState(pos.below().east().east().north());
+					var lBlockB = this.level.getBlockState(pos.below().east().east().south());
+					if (lBlock == air && lBlockF == air && lBlockB == air) {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
+					} else {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
+					}
+
+				} else if (direction == Direction.EAST) {
+					var rBlock = this.level.getBlockState(pos.below().north().north());
+					var rBlockF = this.level.getBlockState(pos.below().north().north().east());
+					var rBlockB = this.level.getBlockState(pos.below().north().north().west());
+					if (rBlock == air && rBlockF == air && rBlockB == air) {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
+					} else {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
+					}
+					var lBlock = this.level.getBlockState(pos.below().south().south());
+					var lBlockF = this.level.getBlockState(pos.below().south().south().east());
+					var lBlockB = this.level.getBlockState(pos.below().south().south().west());
+					if (lBlock == air && lBlockF == air && lBlockB == air) {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
+					} else {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
+					}
+				} else if (direction == Direction.WEST) {
+					var rBlock = this.level.getBlockState(pos.below().south().south());
+					var rBlockF = this.level.getBlockState(pos.below().south().south().west());
+					var rBlockB = this.level.getBlockState(pos.below().south().south().east());
+					if (rBlock == air && rBlockF == air && rBlockB == air) {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
+					} else {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
+					}
+					var lBlock = this.level.getBlockState(pos.below().north().north());
+					var lBlockF = this.level.getBlockState(pos.below().north().north().west());
+					var lBlockB = this.level.getBlockState(pos.below().north().north().east());
+					if (lBlock == air && lBlockF == air && lBlockB == air) {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
+					} else {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
+					}
+				} else if (direction == Direction.SOUTH) {
+					var rBlock = this.level.getBlockState(pos.below().east().east());
+					var rBlockF = this.level.getBlockState(pos.below().east().east().south());
+					var rBlockB = this.level.getBlockState(pos.below().east().east().north());
+					if (rBlock == air && rBlockF == air && rBlockB == air) {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
+					} else {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
+					}
+					var lBlock = this.level.getBlockState(pos.below().west().west());
+					var lBlockF = this.level.getBlockState(pos.below().west().west().south());
+					var lBlockB = this.level.getBlockState(pos.below().west().west().north());
+					if (lBlock == air && lBlockF == air && lBlockB == air) {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
+					} else {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
+					}
+				}
+			} else {
+				this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
+				this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
+			}
 		}
 		super.tick();
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public float getRightLegAnimationScale(float p_29570_) {
+		return Mth.lerp(p_29570_, this.rightLegAnimationOld, this.rightLegAnimation);
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public float getLeftLegAnimationScale(float p_29570_) {
+		return Mth.lerp(p_29570_, this.leftLegAnimationOld, this.leftLegAnimation);
 	}
 
 	@Override

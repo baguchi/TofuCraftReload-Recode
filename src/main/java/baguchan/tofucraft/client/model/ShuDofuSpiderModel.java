@@ -13,8 +13,6 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.Blocks;
 
 public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
@@ -194,112 +192,28 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
-		var direction = entity.getDirection();
-		var pos = entity.blockPosition();
-		var air = Blocks.AIR.defaultBlockState();
 		this.head.xRot = headPitch * 0.017453292F;
 		this.head.yRot = netHeadYaw * 0.017453292F;
+
+		float f = ageInTicks - entity.tickCount;
 		if (!entity.isJump()) {
-			if (direction == Direction.NORTH) {
-
-				var rBlock = entity.level.getBlockState(pos.below().west().west());
-				var rBlockF = entity.level.getBlockState(pos.below().west().west().north());
-				var rBlockB = entity.level.getBlockState(pos.below().west().west().south());
-				if (rBlock == air && rBlockF == air && rBlockB == air) {
-					this.leg2.zRot = 0.12F;
-					this.leg4.zRot = 0.12F;
-					this.leg6.zRot = 0.12F;
-					this.bone8.zRot = 1.2F;
-					this.bone18.zRot = 1.2F;
-					this.bone28.zRot = 1.2F;
-				}
-				var lBlock = entity.level.getBlockState(pos.below().east().east());
-				var lBlockF = entity.level.getBlockState(pos.below().east().east().north());
-				var lBlockB = entity.level.getBlockState(pos.below().east().east().south());
-				if (lBlock == air && lBlockF == air && lBlockB == air) {
-					this.leg1.zRot = -0.12F;
-					this.leg3.zRot = -0.12F;
-					this.leg5.zRot = -0.12F;
-					this.bone.zRot = -1.2F;
-					this.bone13.zRot = -1.2F;
-					this.bone23.zRot = -1.2F;
-				}
-
-			} else if (direction == Direction.EAST) {
-				var rBlock = entity.level.getBlockState(pos.below().north().north());
-				var rBlockF = entity.level.getBlockState(pos.below().north().north().east());
-				var rBlockB = entity.level.getBlockState(pos.below().north().north().west());
-				if (rBlock == air && rBlockF == air && rBlockB == air) {
-					this.leg2.zRot = 0.12F;
-					this.leg4.zRot = 0.12F;
-					this.leg6.zRot = 0.12F;
-					this.bone8.zRot = 1.2F;
-					this.bone18.zRot = 1.2F;
-					this.bone28.zRot = 1.2F;
-				}
-				var lBlock = entity.level.getBlockState(pos.below().south().south());
-				var lBlockF = entity.level.getBlockState(pos.below().south().south().east());
-				var lBlockB = entity.level.getBlockState(pos.below().south().south().west());
-				if (lBlock == air && lBlockF == air && lBlockB == air) {
-					this.leg1.zRot = -0.12F;
-					this.leg3.zRot = -0.12F;
-					this.leg5.zRot = -0.12F;
-					this.bone.zRot = -1.2F;
-					this.bone13.zRot = -1.2F;
-					this.bone23.zRot = -1.2F;
-				}
-			} else if (direction == Direction.WEST) {
-				var rBlock = entity.level.getBlockState(pos.below().south().south());
-				var rBlockF = entity.level.getBlockState(pos.below().south().south().west());
-				var rBlockB = entity.level.getBlockState(pos.below().south().south().east());
-				if (rBlock == air && rBlockF == air && rBlockB == air) {
-					this.leg2.zRot = 0.12F;
-					this.leg4.zRot = 0.12F;
-					this.leg6.zRot = 0.12F;
-					this.bone8.zRot = 1.2F;
-					this.bone18.zRot = 1.2F;
-					this.bone28.zRot = 1.2F;
-				}
-				var lBlock = entity.level.getBlockState(pos.below().north().north());
-				var lBlockF = entity.level.getBlockState(pos.below().north().north().west());
-				var lBlockB = entity.level.getBlockState(pos.below().north().north().east());
-				if (lBlock == air && lBlockF == air && lBlockB == air) {
-					this.leg1.zRot = -0.12F;
-					this.leg3.zRot = -0.12F;
-					this.leg5.zRot = -0.12F;
-					this.bone.zRot = -1.2F;
-					this.bone13.zRot = -1.2F;
-					this.bone23.zRot = -1.2F;
-				}
-			} else if (direction == Direction.SOUTH) {
-				var rBlock = entity.level.getBlockState(pos.below().east().east());
-				var rBlockF = entity.level.getBlockState(pos.below().east().east().south());
-				var rBlockB = entity.level.getBlockState(pos.below().east().east().north());
-				if (rBlock == air && rBlockF == air && rBlockB == air) {
-					this.leg2.zRot = 0.12F;
-					this.leg4.zRot = 0.12F;
-					this.leg6.zRot = 0.12F;
-					this.bone8.zRot = 1.2F;
-					this.bone18.zRot = 1.2F;
-					this.bone28.zRot = 1.2F;
-				}
-				var lBlock = entity.level.getBlockState(pos.below().west().west());
-				var lBlockF = entity.level.getBlockState(pos.below().west().west().south());
-				var lBlockB = entity.level.getBlockState(pos.below().west().west().north());
-				if (lBlock == air && lBlockF == air && lBlockB == air) {
-					this.leg1.zRot = -0.12F;
-					this.leg3.zRot = -0.12F;
-					this.leg5.zRot = -0.12F;
-					this.bone.zRot = -1.2F;
-					this.bone13.zRot = -1.2F;
-					this.bone23.zRot = -1.2F;
-				}
-			}
+			this.leg2.zRot += ((0.6404F - 0.12F) * entity.getRightLegAnimationScale(f));
+			this.leg4.zRot += ((0.6404F - 0.12F) * entity.getRightLegAnimationScale(f));
+			this.leg6.zRot += ((0.6404F - 0.12F) * entity.getRightLegAnimationScale(f));
+			this.bone8.zRot -= ((1.9199F - 1.2F) * entity.getRightLegAnimationScale(f));
+			this.bone18.zRot -= ((1.9199F - 1.2F) * entity.getRightLegAnimationScale(f));
+			this.bone28.zRot -= ((1.9199F - 1.2F) * entity.getRightLegAnimationScale(f));
+			this.leg1.zRot -= ((0.6404F - 0.12F) * entity.getLeftLegAnimationScale(f));
+			this.leg3.zRot -= ((0.6404F - 0.12F) * entity.getLeftLegAnimationScale(f));
+			this.leg5.zRot -= ((0.6404F - 0.12F) * entity.getLeftLegAnimationScale(f));
+			this.bone.zRot += ((1.9199F - 1.2F) * entity.getLeftLegAnimationScale(f));
+			this.bone13.zRot += ((1.9199F - 1.2F) * entity.getLeftLegAnimationScale(f));
+			this.bone23.zRot += ((1.9199F - 1.2F) * entity.getLeftLegAnimationScale(f));
 		}
 
 
 		this.animate(entity.idleAnimationState, ShuDofuSpiderAnimation.IDLE, ageInTicks);
-		this.animate(entity.walkAnimationState, ShuDofuSpiderAnimation.WALK, ageInTicks);
+		this.animateWalk(ShuDofuSpiderAnimation.WALK, limbSwing, limbSwingAmount, 1.0F, 2.5F);
 		this.animate(entity.attackAnimationState, ShuDofuSpiderAnimation.SWIPE, ageInTicks);
 		this.animate(entity.deathAnimationState, ShuDofuSpiderAnimation.DEATH, ageInTicks);
 		this.animate(entity.jumpAnimationState, ShuDofuSpiderAnimation.JUMP_ATTACK, ageInTicks);
