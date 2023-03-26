@@ -13,7 +13,9 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
@@ -23,6 +25,11 @@ import java.util.function.Consumer;
 public class SoymilkSoulFluidType extends FluidType {
 	public SoymilkSoulFluidType(Properties properties) {
 		super(properties);
+	}
+
+	@Override
+	public boolean isVaporizedOnPlacement(Level level, BlockPos pos, FluidStack stack) {
+		return false;
 	}
 
 	@Override

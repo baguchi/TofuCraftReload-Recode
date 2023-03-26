@@ -145,6 +145,7 @@ public class CommonEvents {
 	public static void onUsingItem(LivingEntityUseItemEvent event) {
 		ItemStack stack = event.getItem();
 		Level level = event.getEntity().level;
+
 		if (stack.is(Items.BRUSH) && event.getEntity() instanceof Player player) {
 			BlockHitResult blockhitresult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
 			BlockPos $$7 = blockhitresult.getBlockPos();
@@ -169,23 +170,25 @@ public class CommonEvents {
 		ItemStack stack = event.getItemStack();
 		Level level = event.getLevel();
 
-		if (stack.is(TofuItems.BUCKET_SOYMILK.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
-			level.setBlock(event.getPos(), TofuBlocks.SOYMILK_CAULDRON.get().defaultBlockState(), 2);
-			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
-			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
-			if (!event.getEntity().isCreative()) {
-				stack.shrink(1);
-			}
-			if (stack.isEmpty()) {
-				event.getEntity().setItemInHand(event.getHand(), itemstack2);
-			} else if (!event.getEntity().isCreative() &&
-					!event.getEntity().getInventory().add(itemstack2)) {
-				event.getEntity().drop(itemstack2, false);
-			}
+		if (stack.is(TofuItems.BUCKET_SOYMILK.get()))
 
-			event.setCancellationResult(InteractionResult.SUCCESS);
-			event.setCanceled(true);
-		}
+			if (stack.is(TofuItems.BUCKET_SOYMILK.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+				level.setBlock(event.getPos(), TofuBlocks.SOYMILK_CAULDRON.get().defaultBlockState(), 2);
+				event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
+				ItemStack itemstack2 = new ItemStack(Items.BUCKET);
+				if (!event.getEntity().isCreative()) {
+					stack.shrink(1);
+				}
+				if (stack.isEmpty()) {
+					event.getEntity().setItemInHand(event.getHand(), itemstack2);
+				} else if (!event.getEntity().isCreative() &&
+						!event.getEntity().getInventory().add(itemstack2)) {
+					event.getEntity().drop(itemstack2, false);
+				}
+
+				event.setCancellationResult(InteractionResult.SUCCESS);
+				event.setCanceled(true);
+			}
 		if (stack.is(TofuItems.BUCKET_SOYMILK_NETHER.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
 			level.setBlock(event.getPos(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get().defaultBlockState(), 2);
 			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
