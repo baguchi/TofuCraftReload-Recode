@@ -274,7 +274,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			this.setChargeFailed(true);
 			this.playSound(SoundEvents.SHIELD_BREAK, 2.0F, 1.0F);
 		} else if (this.isFullCharge()) {
-			return super.hurt(p_21016_, p_21017_ * 0.25F);
+			return super.hurt(p_21016_, p_21017_ * 0.5F);
 		}
 
 
@@ -382,7 +382,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		}
 
 		if (!this.level.isClientSide && this.isAlive() && this.tickCount % 6 == 0 && this.isCharging()) {
-			this.heal(4.0F);
+			this.heal(2.0F);
 		}
 	}
 

@@ -60,7 +60,7 @@ public class ChargeGoal extends Goal {
 		super.tick();
 		++this.attackTime;
 
-		if (this.attackTime == 79) {
+		if (this.attackTime == 59) {
 			this.gandlem.setCharging(false);
 			this.gandlem.setFullCharge(true);
 		}
