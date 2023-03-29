@@ -51,7 +51,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
@@ -83,16 +83,6 @@ public class CommonEvents {
 			event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "soy_health"), new SoyHealthCapability());
 			event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "tofu_living"), new TofuLivingCapability());
 		}
-	}
-
-	@SubscribeEvent
-	public static void onEntitySpawn(LivingSpawnEvent event) {
-		LivingEntity livingEntity = event.getEntity();
-		if (!livingEntity.level.isClientSide())
-			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
-				SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(livingEntity, cap.getSoyHealthLevel(), false);
-				TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> livingEntity), message);
-			});
 	}
 
 	@SubscribeEvent
@@ -279,11 +269,11 @@ public class CommonEvents {
 	 *
 	 * */
 	@SubscribeEvent
-	public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
+	public static void onCheckSpawn(MobSpawnEvent.FinalizeSpawn event) {
 		LivingEntity livingEntity = event.getEntity();
 		LevelAccessor level = event.getLevel();
 		if (livingEntity instanceof Enemy) {
-			if (event.getSpawnReason() != MobSpawnType.SPAWNER && event.getSpawnReason() != MobSpawnType.EVENT && event.getSpawnReason() != MobSpawnType.BREEDING && event.getSpawnReason() != MobSpawnType.PATROL) {
+			if (event.getSpawnType() != MobSpawnType.SPAWNER && event.getSpawnType() != MobSpawnType.EVENT && event.getSpawnType() != MobSpawnType.BREEDING && event.getSpawnType() != MobSpawnType.PATROL) {
 				if (level instanceof ServerLevel) {
 					Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
 						return p_184069_.is(TofuPoiTypes.MORIJIO);

@@ -19,7 +19,7 @@ mixin {
     add sourceSets.main, "tofucraft.refmap.json"
 }
 
-version = '1.19.4-4.0.2.0'
+version = '1.19.4-4.0.2.1'
 group = 'baguchan.tofucraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'TofuCraftReload'
 
@@ -156,7 +156,7 @@ dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.19.4-45.0.6'
+    minecraft 'net.minecraftforge:forge:1.19.4-45.0.29'
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     //implementation fg.deobf("curse.maven:farmers_delight-398521:${project.farmersDelight}")
     //implementation fg.deobf("curse.maven:mysterious-mountain-lib-368098:3788751")
