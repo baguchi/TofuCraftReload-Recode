@@ -9,6 +9,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -31,6 +32,11 @@ public class TofuVillagerTradeEvent {
 		List<VillagerTrades.ItemListing> trades3 = event.getTrades().get(3);
 		List<VillagerTrades.ItemListing> trades4 = event.getTrades().get(4);
 		List<VillagerTrades.ItemListing> trades5 = event.getTrades().get(5);
+		if (event.getType() == VillagerProfession.FARMER) {
+			trades2.add(new ItemsForEmeralds(TofuItems.BOILED_EDAMAME.get(), 1, 12, 8, 6));
+
+		}
+
 		if (event.getType() == TofuProfessions.TOFU_CRAFTSMAN.get()) {
 			trades.add(new EmeraldForItems(TofuItems.SEEDS_SOYBEANS.get(), 16, 12, 1));
 			trades.add(new ItemsForEmeralds(TofuItems.TOFUGRILLED.get(), 1, 9, 8, 2));
@@ -38,8 +44,10 @@ public class TofuVillagerTradeEvent {
 			trades2.add(new ItemsForEmeralds(TofuItems.SOYMILK.get(), 1, 3, 8, 7));
 			trades2.add(new EmeraldForItems(Items.GLASS_BOTTLE, 5, 8, 6));
 
-			trades3.add(new EmeraldForItems(TofuItems.SALT.get(), 17, 12, 12));
-			trades3.add(new ItemsForEmeralds(new ItemStack(TofuItems.TOFUCOOKIE.get()), 2, 8, 12, 14, 0.052F));
+			trades3.add(new EmeraldForItems(TofuItems.SALT.get(), 17, 10, 12, 0.1F));
+			trades3.add(new ItemsForEmeralds(new ItemStack(TofuItems.TOFUCOOKIE.get()), 2, 8, 12, 12, 0.05F));
+			trades3.add(new EmeraldForItems(TofuItems.NATTO.get(), 8, 14, 12, 0.1F));
+			trades3.add(new ItemsForEmeralds(new ItemStack(TofuItems.BOTTLE_SOYOIL.get()), 3, 5, 10, 10, 0.1F));
 
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_ANNIN.get(), 1, 3, 6, 16));
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_APPLE.get(), 1, 3, 6, 16));
@@ -53,8 +61,8 @@ public class TofuVillagerTradeEvent {
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_STRAWBERRY.get(), 1, 3, 6, 16));
 			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_TEA.get(), 1, 3, 6, 16));
 
-			trades5.add(new ItemsForEmeralds(TofuBlocks.MORIJIO.get(), 10, 2, 6, 20));
-			trades5.add(new ItemsForEmeralds(TofuItems.BOTTLE_SOYOIL.get(), 4, 3, 8, 20));
+			trades5.add(new ItemsForEmeralds(new ItemStack(TofuBlocks.MORIJIO.get()), 10, 2, 6, 20, 0.1F));
+			trades5.add(new ItemsForEmeralds(new ItemStack(TofuItems.BOTTLE_SOYSAUSE.get()), 2, 6, 8, 20, 0.1F));
 		}
 	}
 
@@ -75,6 +83,14 @@ public class TofuVillagerTradeEvent {
 			this.maxUses = p_35659_;
 			this.villagerXp = p_35660_;
 			this.priceMultiplier = 0.05F;
+		}
+
+		public EmeraldForItems(ItemLike p_35657_, int p_35658_, int p_35659_, int p_35660_, float priceMultiplier) {
+			this.item = p_35657_.asItem();
+			this.cost = p_35658_;
+			this.maxUses = p_35659_;
+			this.villagerXp = p_35660_;
+			this.priceMultiplier = priceMultiplier;
 		}
 
 		public MerchantOffer getOffer(Entity p_35662_, RandomSource p_35663_) {
