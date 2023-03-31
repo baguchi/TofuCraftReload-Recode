@@ -408,7 +408,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		singleTex(TofuItems.BOTTLE_DASHI.get());
 		singleTex(TofuItems.BOTTLE_SOYOIL.get());
-		singleTex(TofuItems.BOTTLE_DEFATTING.get());
 		singleTex(TofuItems.TOFUEGG.get());
 		singleTex(TofuItems.SOYSAUSE_RAMEN.get());
 

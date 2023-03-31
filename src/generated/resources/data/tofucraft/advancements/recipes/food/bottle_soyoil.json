@@ -5,9 +5,7 @@
       "conditions" : {
         "items" : [
           {
-            "items" : [
-              "tofucraft:bottle_defatting"
-            ]
+            "tag" : "forge:crops/soybean"
           }
         ]
       },

@@ -670,13 +670,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Blocks.CHERRY_LEAVES)
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOYMILK_SAKURA.get())
-				.requires(TofuTags.Items.MILK_SOYMILK)
-				.requires(Items.GLASS_BOTTLE)
-				.requires(Items.SUGAR)
-				.requires(Items.PINK_DYE)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
-				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOYMILK_ANNIN.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)

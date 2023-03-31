@@ -3,10 +3,13 @@
   "category" : "misc",
   "ingredients" : [
     {
-      "tag" : "forge:crops/soybean"
+      "item" : "tofucraft:soybeans_parched"
     },
     {
-      "item" : "tofucraft:bottle_defatting"
+      "item" : "minecraft:glass_bottle"
+    },
+    {
+      "item" : "tofucraft:filtercloth"
     }
   ],
   "result" : {
