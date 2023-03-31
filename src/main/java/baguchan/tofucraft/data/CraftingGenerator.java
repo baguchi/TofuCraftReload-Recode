@@ -177,6 +177,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.EDAMAME.get()))
 				.save(consumer);
 
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.BOTTLE_SOYOIL.get(), 1)
+				.requires(Ingredient.of(TofuItems.SOYBEAN_PARCHED.get()))
+				.requires(Items.GLASS_BOTTLE)
+				.requires(TofuItems.FILTERCLOTH.get())
+				.unlockedBy("has_item", has(TofuTags.Items.SOYBEAN))
+				.save(consumer);
+
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.TOFUFRIED.get(), 1)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(TofuItems.BOTTLE_SOYOIL.get())
@@ -654,6 +661,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.SUGAR)
 				.requires(Items.LIGHT_BLUE_DYE)
+				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOYMILK_SAKURA.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.SUGAR)
+				.requires(Blocks.CHERRY_LEAVES)
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOYMILK_SAKURA.get())
