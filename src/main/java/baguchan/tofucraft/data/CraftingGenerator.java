@@ -389,6 +389,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Items.KELP))
 				.save(consumer);
 
+		ShapelessRecipeBuilder.shapeless(TofuItems.BOTTLE_SOYOIL.get(), 1)
+				.requires(TofuItems.SOYBEAN_PARCHED.get())
+				.requires(TofuItems.FILTERCLOTH.get())
+				.requires(Items.GLASS_BOTTLE)
+				.unlockedBy("has_item", has(TofuItems.SOYBEAN_PARCHED.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(TofuBlocks.BARREL_MISO.get(), 1)
 				.pattern("SSS")
 				.pattern("KKK")
