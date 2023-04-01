@@ -17,7 +17,7 @@ public class TravelerTofunianRender extends MobRenderer<TravelerTofunian, Travel
 	private static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/traveler_tofunian.png");
 
 	public TravelerTofunianRender(EntityRendererProvider.Context p_173956_) {
-		super(p_173956_, new TravelerTofunianModel<>(p_173956_.bakeLayer(TofuModelLayers.TOFUNIAN)), 0.5F);
+		super(p_173956_, new TravelerTofunianModel<>(p_173956_.bakeLayer(TofuModelLayers.TRAVELER_TOFUNIAN)), 0.5F);
 		this.addLayer(new CustomHeadLayer<>(this, p_173956_.getModelSet(), p_173956_.getItemInHandRenderer()));
 		this.addLayer(new TofunianItemInHandLayer<>(this));
 	}
