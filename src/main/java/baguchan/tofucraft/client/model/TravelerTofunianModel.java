@@ -16,6 +16,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 
 public class TravelerTofunianModel<T extends TravelerTofunian> extends HierarchicalModel<T> implements ArmedModel, HeadedModel {
+	private final ModelPart realRoot;
 	private final ModelPart root;
 	private final ModelPart head;
 	private final ModelPart hat;
@@ -26,14 +27,15 @@ public class TravelerTofunianModel<T extends TravelerTofunian> extends Hierarchi
 	private final ModelPart leftArm;
 
 	public TravelerTofunianModel(ModelPart p_170688_) {
-		this.root = p_170688_;
-		this.head = p_170688_.getChild("head");
+		this.realRoot = p_170688_;
+		this.root = p_170688_.getChild("root");
+		this.head = this.root.getChild("head");
 		this.hat = this.head.getChild("hat");
-		this.body = p_170688_.getChild("body");
-		this.leftLeg = p_170688_.getChild("left_leg");
-		this.rightLeg = p_170688_.getChild("right_leg");
-		this.leftArm = p_170688_.getChild("left_arm");
-		this.rightArm = p_170688_.getChild("right_arm");
+		this.body = this.root.getChild("body");
+		this.leftLeg = this.root.getChild("left_leg");
+		this.rightLeg = this.root.getChild("right_leg");
+		this.leftArm = this.root.getChild("left_arm");
+		this.rightArm = this.root.getChild("right_arm");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -47,8 +49,9 @@ public class TravelerTofunianModel<T extends TravelerTofunian> extends Hierarchi
 		PartDefinition right_leg = root.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 6.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-1.5F, -6.0F, 0.0F));
 
 		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 0).addBox(-1.5F, -11.0F, 0.0F, 3.0F, 3.0F, 0.0F, new CubeDeformation(0.0F))
-				.texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, -12.0F, 0.0F));
+				.texOffs(0, 0).addBox(-1.5F, -11.0F, 0.0F, 3.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -12.0F, 0.0F));
+
+		PartDefinition hat = head.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(8, 16).addBox(-3.0F, 0.0F, -2.0F, 6.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -12.0F, 0.0F));
 
@@ -64,7 +67,7 @@ public class TravelerTofunianModel<T extends TravelerTofunian> extends Hierarchi
 	}
 
 	public ModelPart root() {
-		return this.root;
+		return this.realRoot;
 	}
 
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
