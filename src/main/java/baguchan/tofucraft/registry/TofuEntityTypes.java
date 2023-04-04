@@ -87,7 +87,7 @@ public class TofuEntityTypes {
 
 
 	public static final RegistryObject<EntityType<NattoCobWebEntity>> NATTO_COBWEB = ENTITIES.register("natto_cobweb", () -> EntityType.Builder.<NattoCobWebEntity>of(NattoCobWebEntity::new, MobCategory.MISC)
-			.sized(3F, 0.1F).updateInterval(10).build("tofucraft:natto_cobweb"));
+			.sized(3F, 0.1F).updateInterval(10).fireImmune().build("tofucraft:natto_cobweb"));
 
 	public static final RegistryObject<EntityType<NattoBallEntity>> NATTO_BALL = ENTITIES.register("natto_ball", () -> EntityType.Builder.<NattoBallEntity>of(NattoBallEntity::new, MobCategory.MISC)
 			.sized(0.35F, 0.35F).updateInterval(20).build("tofucraft:natto_ball"));
