@@ -78,11 +78,12 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onEntitySpawn(LivingSpawnEvent event) {
 		LivingEntity livingEntity = event.getEntity();
-		if (!livingEntity.level.isClientSide())
+		if (!livingEntity.level.isClientSide()) {
 			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
 				SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(livingEntity, cap.getSoyHealthLevel(), false);
 				TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> livingEntity), message);
 			});
+		}
 	}
 
 	@SubscribeEvent
