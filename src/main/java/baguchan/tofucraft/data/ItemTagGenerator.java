@@ -16,11 +16,17 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		super(generator, provider, TofuCraftReload.MODID, exFileHelper);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags() {
         tag(ItemTags.PLANKS).add(TofuBlocks.TOFU_STEM_PLANKS.get().asItem());
 
+        tag(TofuTags.Items.NATTO).add(TofuItems.NATTO.get());
+        tag(TofuTags.Items.MISO).add(TofuItems.MISO.get());
+        tag(TofuTags.Items.SOYSAUCE_SOYSAUCE).add(TofuItems.BOTTLE_SOYSAUSE.get());
+        tag(TofuTags.Items.SOYSAUCE).addTag(TofuTags.Items.SOYSAUCE_SOYSAUCE);
+        tag(TofuTags.Items.TOFU).add(TofuItems.TOFUKINU.get()).add(TofuItems.TOFUMOMEN.get());
+        tag(TofuTags.Items.TOFU_FRIED).add(TofuItems.TOFUFRIED.get());
+        
         tag(TofuTags.Items.DUST_SALT).add(TofuItems.SALT.get());
         tag(TofuTags.Items.SALT).add(TofuItems.SALT.get());
         tag(TofuTags.Items.SOYBEAN).add(TofuItems.SEEDS_SOYBEANS.get());

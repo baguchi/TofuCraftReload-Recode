@@ -15,6 +15,7 @@ public class SoyMilkDrinkedMessage {
 
 	private final int level;
 	private final boolean canUpdate;
+	private static final Minecraft mc = Minecraft.getInstance();
 
 	public SoyMilkDrinkedMessage(LivingEntity entity, int level, boolean canUpdate) {
 		this.entityId = entity.getId();
@@ -45,7 +46,7 @@ public class SoyMilkDrinkedMessage {
 		NetworkEvent.Context context = contextSupplier.get();
 		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
 			context.enqueueWork(() -> {
-				Entity entity = (Minecraft.getInstance()).player.level.getEntity(message.entityId);
+				Entity entity = mc.player.level.getEntity(message.entityId);
 				if (entity != null && entity instanceof LivingEntity)
 					entity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent((cap) -> {
 						cap.setSoyHealth((LivingEntity) entity, message.level, message.canUpdate);

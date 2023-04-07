@@ -55,6 +55,8 @@ public class ClientRegistrar {
 		setRenderLayer(TofuBlocks.SOYBEAN_NETHER.get(), RenderType.cutout());
 		setRenderLayer(TofuBlocks.SOYBEAN_SOUL.get(), RenderType.cutout());
 		setRenderLayer(TofuBlocks.LEEK_CROP.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.RICE_CROP.get(), RenderType.cutout());
+		setRenderLayer(TofuBlocks.RICE_ROOT.get(), RenderType.cutout());
 
 		setRenderLayer(TofuBlocks.TOFUTORCH_KINU.get(), RenderType.cutout());
 		setRenderLayer(TofuBlocks.TOFUTORCH_MOMEN.get(), RenderType.cutout());
