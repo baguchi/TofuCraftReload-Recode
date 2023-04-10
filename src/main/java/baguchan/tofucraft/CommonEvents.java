@@ -2,42 +2,36 @@ package baguchan.tofucraft;
 
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
-import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.village.VillageSiegeEvent;
-import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.network.PacketDistributor;
-
 import java.util.Optional;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
@@ -51,28 +45,18 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onAttachEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {
-		if (event.getObject() instanceof LivingEntity) {
-			event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "soy_health"), new SoyHealthCapability());
-			event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "tofu_living"), new TofuLivingCapability());
-		}
-	}
-
-	@SubscribeEvent
-	public static void onEntitySpawn(LivingSpawnEvent event) {
-		LivingEntity livingEntity = event.getEntityLiving();
-		if (!livingEntity.level.isClientSide())
-			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
-				SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(livingEntity, cap.getSoyHealthLevel(), false);
-				TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> livingEntity), message);
-			});
+	    if (event.getObject() instanceof Player) 
+            event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "soy_health"), new SoyHealthCapability());
+		if (event.getObject() instanceof LivingEntity) 
+			event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "tofu_living"), new TofuLivingCapability());		
 	}
 
 	@SubscribeEvent
 	public static void onUpdate(LivingEvent.LivingUpdateEvent event) {
 		LivingEntity livingEntity = event.getEntityLiving();
-		if (!livingEntity.level.isClientSide()) {
-			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
-				cap.tick(livingEntity);
+		if (livingEntity instanceof Player player && !livingEntity.level.isClientSide()) {
+		    player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
+				cap.tick(player);
 			});
 		}
 		livingEntity.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(tofuLivingCapability -> {
@@ -81,16 +65,18 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-		Player player = event.getPlayer();
-		if (player instanceof ServerPlayer)
-			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new SoyMilkDrinkedMessage(player, handler.getSoyHealthLevel(), false)));
-	}
-
-	@SubscribeEvent
-	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
-		Player playerEntity = event.getPlayer();
-		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel(), false)));
+	public static void onPlayerCloned(PlayerEvent.Clone event) {
+	  if (!event.isWasDeath()) {
+	    LazyOptional<SoyHealthCapability> oldSoyCap = event.getOriginal().getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY);
+	    LazyOptional<SoyHealthCapability> newSoyCap = event.getPlayer().getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY);
+	    if (oldSoyCap.isPresent() && newSoyCap.isPresent()) {
+	      newSoyCap.ifPresent((newCap) -> {
+	        oldSoyCap.ifPresent((oldCap) -> {
+	          newCap.deserializeNBT(oldCap.serializeNBT());
+	        });
+	      });
+	    }
+	  }
 	}
 
 	@SubscribeEvent

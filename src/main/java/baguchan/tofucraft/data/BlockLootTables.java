@@ -4,7 +4,6 @@ import baguchan.tofucraft.block.crop.RiceCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.utils.MisoBarrelBlock;
 import baguchan.tofucraft.block.utils.WeightBaseBlock;
-import baguchan.tofucraft.block.utils.WorkedBarrelBaseBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;

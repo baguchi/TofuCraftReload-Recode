@@ -1,12 +1,10 @@
 package baguchan.tofucraft.capability;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -22,26 +20,24 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 	private long lastTick = -12000L;
 
 	//when can update is true. update last tick
-	public void setSoyHealth(LivingEntity entity, int level, boolean canUpdate) {
+	public void setSoyHealth(Player player, int level, boolean canUpdate) {
 		if (canUpdate) {
-			this.lastTick = entity.level.getDayTime();
-			if (entity instanceof Player) {
-				((Player) entity).displayClientMessage(new TranslatableComponent("item.tofucraft.soymilk.drink_day", this.soyHealthLevel), true);
-			}
+			this.lastTick = player.getLevel().getDayTime();
+			player.displayClientMessage(new TranslatableComponent("item.tofucraft.soymilk.drink_day", this.soyHealthLevel), true);
 		}
-		if (!entity.level.isClientSide()) {
-			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, level, canUpdate);
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
-		}
+//		if (!player.getLevel().isClientSide()) {
+//			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(player, level, canUpdate);
+//			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player), message);
+//		}
 		this.soyHealthLevel = Mth.clamp(level, 1, 20);
 	}
 
-	public void removeAllSoyHealth(LivingEntity entity) {
+	public void removeAllSoyHealth(Player player) {
 		this.soyHealthLevel = 0;
-		if (!entity.level.isClientSide()) {
-			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, this.soyHealthLevel, true);
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
-		}
+//		if (!player.getLevel().isClientSide()) {
+//			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(player, this.soyHealthLevel, true);
+//			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player), message);
+//		}
 	}
 
 	public long getRemainTick() {
@@ -52,12 +48,12 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 		return this.soyHealthLevel;
 	}
 
-	public void tick(LivingEntity livingEntity) {
-		if (!livingEntity.level.isClientSide()) {
-			if (livingEntity.level.getDayTime() > this.lastTick + 24000L) {
+	public void tick(Player player) {
+		if (!player.getLevel().isClientSide()) {
+			if (player.getLevel().getDayTime() > this.lastTick + 24000L) {
 				if (this.soyHealthLevel > 0) {
 					this.soyHealthLevel = Mth.clamp(this.soyHealthLevel - 2, 1, 20);
-					this.lastTick = livingEntity.level.getDayTime();
+					this.lastTick = player.getLevel().getDayTime();
 				}
 			}
 		}
