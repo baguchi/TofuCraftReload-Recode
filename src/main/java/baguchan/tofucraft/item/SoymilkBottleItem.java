@@ -1,6 +1,7 @@
 package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.capability.SoyHealthCapability;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -33,40 +34,46 @@ public class SoymilkBottleItem extends Item {
 	@Override
 	public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
 		super.finishUsingItem(p_41409_, p_41410_, p_41411_);
-		p_41411_.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
-			if (p_41410_.getDayTime() > cap.getRemainTick() + 12000L) {
-                if (cap.getSoyHealthLevel() < 1) {
-                    cap.setSoyHealth(p_41411_, 1, true);
-                } else {
-                    cap.setSoyHealth(p_41411_, cap.getSoyHealthLevel() + 1, true);
-                }
-                if (cap.getSoyHealthLevel() > 4) {
-                    p_41411_.addEffect(new MobEffectInstance(this.secondEffect, 24000, 0));
-                }
 
-                p_41411_.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel(), 0));
-            }
-        });
         if (p_41411_ instanceof ServerPlayer) {
             ServerPlayer serverplayerentity = (ServerPlayer) p_41411_;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, p_41409_);
             serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
+            
+            serverplayerentity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
+                processSoyHealthEffect(p_41410_, serverplayerentity, cap);
+            });
         }
         if (p_41409_.isEmpty()) {
             return new ItemStack(Items.GLASS_BOTTLE);
-        } else {
-            if (!(p_41411_ instanceof Player) || !((Player) p_41411_).getAbilities().instabuild) {
-                p_41409_.shrink(1);
-            }
-            if (p_41411_ instanceof Player && !((Player) p_41411_).getAbilities().instabuild) {
-                ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
-                Player playerentity = (Player) p_41411_;
-                if (!playerentity.getInventory().add(itemstack)) {
-                    playerentity.drop(itemstack, false);
-                }
+        }
+        if (!(p_41411_ instanceof Player) || !((Player) p_41411_).getAbilities().instabuild) {
+            p_41409_.shrink(1);
+        }
+        if (p_41411_ instanceof Player && !((Player) p_41411_).getAbilities().instabuild) {
+            ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
+            Player playerentity = (Player) p_41411_;
+            if (!playerentity.getInventory().add(itemstack)) {
+                playerentity.drop(itemstack, false);
             }
         }
+        
         return p_41409_;
+    }
+
+    public void processSoyHealthEffect(Level p_41410_, ServerPlayer serverplayerentity, SoyHealthCapability cap) {
+        if (p_41410_.getDayTime() > cap.getRemainTick() + 12000L) {
+            if (cap.getSoyHealthLevel() < 1) {
+                cap.setSoyHealth(serverplayerentity, 1, true);
+            } else {
+                cap.setSoyHealth(serverplayerentity, cap.getSoyHealthLevel() + 1, true);
+            }
+            if (cap.getSoyHealthLevel() > 4) {
+                serverplayerentity.addEffect(new MobEffectInstance(this.secondEffect, 24000, 0));
+            }
+
+            serverplayerentity.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel(), 0));
+        }
     }
 
 

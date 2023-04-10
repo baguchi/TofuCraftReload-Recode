@@ -1,6 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import cn.mcmod_mmf.mmlib.utils.TagUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -29,8 +30,16 @@ public class TofuTags {
         public static final TagKey<Item> EGGS = forgeTag("eggs");
         public static final TagKey<Item> SOYMILK = forgeTag("soy_milk");
         public static final TagKey<Item> MILK_SOYMILK = forgeTag("milk/soy_milk");
-
         public static final TagKey<Item> RICE_BLOCK = forgeTag("block/rice_block");
+        
+        public static final TagKey<Item> TOFU = forgeTag("tofu");
+        public static final TagKey<Item> TOFU_FRIED = forgeTag("tofu/fried");
+        
+        public static final TagKey<Item> MISO = forgeTag("miso");
+        public static final TagKey<Item> NATTO = forgeTag("natto");
+        
+        public static final TagKey<Item> SOYSAUCE = forgeTag("soysauce");
+        public static final TagKey<Item> SOYSAUCE_SOYSAUCE = forgeTag("soysauce/soysauce");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(TofuCraftReload.MODID, name));
