@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "minecraft:fishing_rod"
+    "#" : {
+      "item" : "minecraft:fishing_rod"
     },
     "M" : {
       "item" : "tofucraft:zundatofu_mushroom"

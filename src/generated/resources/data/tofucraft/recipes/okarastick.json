@@ -8,8 +8,8 @@
     "E": {
       "item": "minecraft:egg"
     },
-    "W": {
-      "item": "minecraft:wheat"
+    "W" : {
+      "item" : "minecraft:wheat"
     }
   },
   "pattern" : [

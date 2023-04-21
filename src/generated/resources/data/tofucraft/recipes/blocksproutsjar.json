@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": {
-      "item": "minecraft:glass"
+    "G" : {
+      "item" : "minecraft:glass"
     },
     "W" : {
       "tag" : "minecraft:wool"

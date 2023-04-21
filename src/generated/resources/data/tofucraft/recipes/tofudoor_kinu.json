@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "key": {
-    "P": {
-      "item": "tofucraft:blocktofukinu"
+  "key" : {
+    "P" : {
+      "item" : "tofucraft:blocktofukinu"
     }
   },
   "pattern" : [

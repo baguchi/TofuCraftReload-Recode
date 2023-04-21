@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "tag": "forge:rods/wooden"
+    "#" : {
+      "tag" : "forge:rods/wooden"
     },
     "X" : {
       "item" : "minecraft:cobbled_deepslate_slab"

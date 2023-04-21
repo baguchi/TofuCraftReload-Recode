@@ -255,6 +255,8 @@
   "item.tofucraft.smithing_template.tofu_upgrade.applies_to" : "Tofu Metal Equipment",
   "item.tofucraft.smithing_template.tofu_upgrade.base_slot_description" : "Put a piece of Tofu Metal armor, weapon or tool here",
   "item.tofucraft.smithing_template.tofu_upgrade.ingredients" : "Tofu Diamond Block",
+  "item.tofucraft.tofunian_banner_pattern" : "Banner Pattern",
+  "item.tofucraft.tofunian_banner_pattern.desc" : "Tofunian",
   "upgrade.tofucraft.tofu_upgrade" : "Tofu Diamond Upgrade",
   "block.tofucraft.soybean" : "Soybeans",
   "block.tofucraft.soybean_nether" : "Nether Soybeans",

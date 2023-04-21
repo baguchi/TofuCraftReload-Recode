@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "building",
-  "key": {
-    "M": {
+  "category" : "building",
+  "key" : {
+    "M" : {
       "item" : "tofucraft:blocktofuzunda"
     }
   },

@@ -5,7 +5,7 @@
     "S": {
       "item": "tofucraft:seeds_soybeans"
     },
-    "W": {
+    "W" : {
       "tag" : "forge:crops/wheat"
     }
   },

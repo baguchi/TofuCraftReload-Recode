@@ -1,6 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.data.CustomTagGenerator;
 import baguchan.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
@@ -47,6 +48,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.BannerPatternItem;
 import net.minecraft.world.item.BowlFoodItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.DispensibleContainerItem;
@@ -397,6 +399,9 @@ public class TofuItems {
 	public static final RegistryObject<Item> SOY_KARAAGE = ITEMS.register("soy_karaage", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_KARAAGE)));
 	public static final RegistryObject<Item> SOYMEATDON = ITEMS.register("soymeatdon", () -> new Item((new Item.Properties()).food(TofuFoods.SOYMEATDON)));
 
+	public static final RegistryObject<Item> TOFUNIAN_BANNER_PATTERN = ITEMS.register("tofunian_banner_pattern", () -> new BannerPatternItem(CustomTagGenerator.BannerPatternTagGenerator.TOFUNIAN_BANNER_PATTERN, new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+
+
 	private static RegistryObject<Item> register(String name, Supplier<Item> item) {
 		return ITEMS.register(name, item);
 	}
@@ -729,6 +734,7 @@ public class TofuItems {
 											TOFU_GANDLEM_SPAWNEGG,
 											SHUDOFUSPIDER_SPAWNEGG,
 											TOFU_UPGRADE_SMITHING_TEMPLATE,
+											TOFUNIAN_BANNER_PATTERN,
 											ZUNDARUBY)
 									.map(item -> item.get().getDefaultInstance())
 									.toList())).build();

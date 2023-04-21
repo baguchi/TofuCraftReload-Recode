@@ -11,8 +11,8 @@
     "S": {
       "item": "tofucraft:seeds_soybeans_soul"
     },
-    "W": {
-      "item": "minecraft:bowl"
+    "W" : {
+      "item" : "minecraft:bowl"
     }
   },
   "pattern" : [

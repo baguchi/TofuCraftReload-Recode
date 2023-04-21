@@ -5,8 +5,8 @@
     "#": {
       "item": "minecraft:arrow"
     },
-    "X": {
-      "item": "tofucraft:zundama"
+    "X" : {
+      "item" : "tofucraft:zundama"
     }
   },
   "pattern" : [

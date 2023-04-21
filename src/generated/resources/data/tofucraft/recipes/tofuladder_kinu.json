@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
-  "key": {
-    "#": {
-      "item": "tofucraft:tofukinu"
+  "key" : {
+    "#" : {
+      "item" : "tofucraft:tofukinu"
     }
   },
   "pattern" : [

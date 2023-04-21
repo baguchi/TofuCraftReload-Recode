@@ -11,8 +11,8 @@
     "Y": {
       "tag": "forge:dust/salt"
     },
-    "Z": {
-      "item": "minecraft:egg"
+    "Z" : {
+      "item" : "minecraft:egg"
     }
   },
   "pattern" : [

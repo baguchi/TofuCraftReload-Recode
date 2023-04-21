@@ -433,6 +433,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		singleTex(TofuItems.NATTO_COBWEB.get());
 		toBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
+
+		singleTex(TofuItems.TOFUNIAN_BANNER_PATTERN.get());
 	}
 
 	public ItemModelBuilder torchItem(Block item) {

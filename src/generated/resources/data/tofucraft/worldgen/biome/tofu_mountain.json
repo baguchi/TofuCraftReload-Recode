@@ -57,9 +57,9 @@
         "weight" : 100
       },
       {
-        "type": "tofucraft:tofupig",
-        "maxCount": 4,
-        "minCount": 4,
+        "type" : "tofucraft:tofupig",
+        "maxCount" : 4,
+        "minCount" : 4,
         "weight": 200
       }
     ],

@@ -3,9 +3,9 @@
   "category": "misc",
   "key": {
     "C": {
-      "tag": "minecraft:coals"
+      "tag" : "minecraft:coals"
     },
-    "M": {
+    "M" : {
       "item" : "tofucraft:tofukinu"
     }
   },

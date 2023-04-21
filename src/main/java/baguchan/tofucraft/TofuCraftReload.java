@@ -10,6 +10,7 @@ import baguchan.tofucraft.message.SoyHealthMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
+import baguchan.tofucraft.registry.TofuBannerPatterns;
 import baguchan.tofucraft.registry.TofuBiomeModifiers;
 import baguchan.tofucraft.registry.TofuBiomeSources;
 import baguchan.tofucraft.registry.TofuBiomes;
@@ -89,6 +90,7 @@ public class TofuCraftReload {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
+		TofuBannerPatterns.BANNER_PATTERNS.register(modBus);
 		TofuCarvers.WORLD_CARVER.register(modBus);
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuItems.ITEMS.register(modBus);

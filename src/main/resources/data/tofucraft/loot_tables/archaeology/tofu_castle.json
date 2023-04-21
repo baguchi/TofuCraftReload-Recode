@@ -30,6 +30,10 @@
         },
         {
           "type" : "minecraft:item",
+          "name" : "tofucraft:tofunian_banner_pattern"
+        },
+        {
+          "type" : "minecraft:item",
           "name" : "tofucraft:zundaruby"
         },
         {

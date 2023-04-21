@@ -5,7 +5,7 @@
     "#": {
       "tag": "minecraft:planks"
     },
-    "S": {
+    "S" : {
       "tag" : "forge:rods/wooden"
     }
   },

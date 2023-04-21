@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
-  "key": {
-    "#": {
-      "item": "tofucraft:tofuishi"
+  "key" : {
+    "#" : {
+      "item" : "tofucraft:tofuishi"
     }
   },
   "pattern" : [

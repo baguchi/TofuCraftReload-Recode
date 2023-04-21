@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "#": {
+  "category" : "misc",
+  "key" : {
+    "#" : {
       "item" : "tofucraft:blocktofuishi"
     }
   },
