@@ -45,7 +45,6 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 	protected void renderBg(PoseStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
 		RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
 		RenderSystem.setShaderTexture(0, texture);
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		int i = this.leftPos;
 		int j = this.topPos;
 		this.blit(p_230450_1_, i, j, 0, 0, this.imageWidth, this.imageHeight);
@@ -64,7 +63,6 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 		}
 		p_230450_1_.popPose();
 		p_230450_1_.pushPose();
-		RenderSystem.setShaderColor(0.6F, 0.6F, 1.0F, 1.0F);
 		if (TofuCraftReload.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity && ((SaltFurnaceBlockEntity) TofuCraftReload.PROXY.getRefrencedTE()).waterTank.getFluid() != null) {
 			FluidTank fluidTank2 = ((SaltFurnaceBlockEntity) TofuCraftReload.PROXY.getRefrencedTE()).waterTank;
 			int heightInd2 = (int) (44.0F * fluidTank2.getFluidAmount() / fluidTank2.getCapacity());
@@ -78,32 +76,38 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 	public static void renderFluidStack(int x, int y, int width, int height, float depth, FluidStack fluidStack) {
 		RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
 		RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
+		RenderSystem.enableBlend();
+		RenderSystem.defaultBlendFunc();
+		IClientFluidTypeExtensions props = IClientFluidTypeExtensions.of(fluidStack.getFluid());
+		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(props.getStillTexture());
 
-		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(IClientFluidTypeExtensions.of(fluidStack.getFluid().getFluidType()).getStillTexture());
+		int col = props.getTintColor(fluidStack);
 		Tesselator tessellator = Tesselator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuilder();
 		float u1 = sprite.getU0();
 		float v1 = sprite.getV0();
+		float u2 = sprite.getU1();
+		float v2 = sprite.getV1();
 		do {
 			int currentHeight = Math.min(sprite.getX(), height);
 			height -= currentHeight;
-			float v2 = sprite.getV((16 * currentHeight) / (float) sprite.getX());
 			int x2 = x;
 			int width2 = width;
 			do {
 				int currentWidth = Math.min(sprite.getY(), width2);
 				width2 -= currentWidth;
-				float u2 = sprite.getU((16 * currentWidth) / (float) sprite.getY());
 				bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
-				bufferbuilder.vertex(x2, y, depth).uv(u1, v1).color(255, 255, 255, 255).endVertex();
-				bufferbuilder.vertex(x2, y + currentHeight, depth).uv(u1, v2).color(255, 255, 255, 255).endVertex();
-				bufferbuilder.vertex(x2 + currentWidth, y + currentHeight, depth).uv(u2, v2).color(255, 255, 255, 255).endVertex();
-				bufferbuilder.vertex(x2 + currentWidth, y, depth).uv(u2, v1).color(255, 255, 255, 255).endVertex();
+				bufferbuilder.vertex(x2, y, depth).uv(u1, v1).color((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255).endVertex();
+				bufferbuilder.vertex(x2, y + currentHeight, depth).uv(u1, v2).color((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255).endVertex();
+				bufferbuilder.vertex(x2 + currentWidth, y + currentHeight, depth).uv(u2, v2).color((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255).endVertex();
+				bufferbuilder.vertex(x2 + currentWidth, y, depth).uv(u2, v1).color((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255).endVertex();
 				tessellator.end();
 				x2 += currentWidth;
 			} while (width2 > 0);
 
 			y += currentHeight;
 		} while (height > 0);
+		bufferbuilder.unsetDefaultColor();
+		RenderSystem.disableBlend();
 	}
 }
