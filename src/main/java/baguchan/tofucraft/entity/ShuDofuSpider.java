@@ -1,7 +1,6 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.client.particle.ParticleStink;
-import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.registry.TofuParticleTypes;
@@ -95,6 +94,7 @@ public class ShuDofuSpider extends Monster {
 	public final AnimationState jumpAnimationState = new AnimationState();
 
 	public final AnimationState graspAnimationState = new AnimationState();
+	public final AnimationState graspPreAnimationState = new AnimationState();
 
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
 
@@ -265,15 +265,19 @@ public class ShuDofuSpider extends Monster {
 			}
 
 			if (this.isAlive() && this.isGraspAnim() && this.getTarget() != null) {
+				LivingEntity target = this.getTarget();
 				++this.graspTime;
 				if (this.graspTime == 1) {
-					this.level.broadcastEntityEvent(this, (byte) 104);
+					this.getLookControl().setLookAt(target, 60.0F, 60F);
+					Vec3 vec3 = (new Vec3(target.getX() - this.getX(), target.getY() - this.getY(), target.getZ() - this.getZ())).normalize();
+					this.setDeltaMovement(this.getDeltaMovement().add(vec3.x * 1.25D, 0.325D, vec3.z * 1.25D));
+
 				}
-				if (this.graspTime > 2) {
+				if (this.graspTime > 1) {
 					Vec3 movement = this.getDeltaMovement();
 					this.checkGraspAttack(this.getBoundingBox(), this.getBoundingBox().expandTowards(movement.x, movement.y, movement.z).inflate(1.0F));
 				}
-				if (this.graspTime == 80) {
+				if (this.graspTime == 100) {
 					this.graspTime = 0;
 					this.setGraspAnimation(false);
 					this.ejectPassengers();
@@ -314,6 +318,10 @@ public class ShuDofuSpider extends Monster {
 					this.jumpTime = 0;
 					this.setJumpAnimation(false);
 				}
+			}
+			if (this.isJump() && this.isInFluidType()) {
+				this.setJumping(false);
+				this.setJumpAnimation(false);
 			}
 		} else {
 			this.rightLegAnimationOld = this.rightLegAnimation;
@@ -450,6 +458,8 @@ public class ShuDofuSpider extends Monster {
 			this.deathAnimationState.start(this.tickCount);
 		} else if (p_70103_1_ == 102) {
 			this.jumpAnimationState.start(this.tickCount);
+		} else if (p_70103_1_ == 104) {
+			this.graspPreAnimationState.start(this.tickCount);
 		} else {
 			super.handleEntityEvent(p_70103_1_);
 		}
@@ -503,15 +513,16 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public void graspAttack(Entity p_36347_) {
-		if (p_36347_ instanceof LivingEntity && !(p_36347_ instanceof NattoCobWebEntity) && !this.isAlliedTo(p_36347_)) {
+		if (p_36347_.isAttackable() && !this.isAlliedTo(p_36347_)) {
 			float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			if (p_36347_.hurt(this.damageSources().mobAttack(this), f * 0.2F)) {
 				this.heal(f * 0.2F);
 			}
-
-			if (this.getPassengers().isEmpty()) {
-				p_36347_.stopRiding();
-				p_36347_.startRiding(this, true);
+			if (p_36347_ instanceof Mob) {
+				if (this.getPassengers().isEmpty()) {
+					p_36347_.stopRiding();
+					p_36347_.startRiding(this, true);
+				}
 			}
 			this.setSprinting(false);
 		}
@@ -716,6 +727,7 @@ public class ShuDofuSpider extends Monster {
 	static class graspAttackGoal extends Goal {
 		private final ShuDofuSpider spider;
 		private int attackTime;
+		private int preAttackTime;
 
 		public graspAttackGoal(ShuDofuSpider p_32247_) {
 			this.spider = p_32247_;
@@ -745,6 +757,11 @@ public class ShuDofuSpider extends Monster {
 			}
 		}
 
+		@Override
+		public boolean canContinueToUse() {
+			return this.preAttackTime < 30;
+		}
+
 		public boolean isInterruptable() {
 			return false;
 		}
@@ -752,22 +769,28 @@ public class ShuDofuSpider extends Monster {
 		public void start() {
 			LivingEntity livingentity = this.spider.getTarget();
 			if (livingentity != null) {
-				this.spider.setGraspAnimation(true);
-				this.spider.getLookControl().setLookAt(livingentity, 60.0F, 60F);
-				Vec3 vec3 = (new Vec3(livingentity.getX() - this.spider.getX(), livingentity.getY() - this.spider.getY(), livingentity.getZ() - this.spider.getZ())).normalize();
-				this.spider.setDeltaMovement(this.spider.getDeltaMovement().add(vec3.x * 1.25D, 0.3D, vec3.z * 1.25D));
+				this.spider.level.broadcastEntityEvent(this.spider, (byte) 104);
 			}
-
-			this.spider.getNavigation().stop();
-		}
-
-		public void stop() {
+			this.preAttackTime = 0;
 		}
 
 		public void tick() {
-			LivingEntity livingentity = this.spider.getTarget();
-			Vec3 vec3 = this.spider.getDeltaMovement();
+			this.spider.getNavigation().stop();
+			++this.preAttackTime;
+		}
 
+		@Override
+		public void stop() {
+			super.stop();
+			LivingEntity livingentity = this.spider.getTarget();
+			if (livingentity != null) {
+				this.spider.setGraspAnimation(true);
+			}
+		}
+
+		@Override
+		public boolean requiresUpdateEveryTick() {
+			return true;
 		}
 	}
 

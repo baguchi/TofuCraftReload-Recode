@@ -33,4 +33,30 @@ public class ShuDofuSpiderAnimation {
 					new AnimationChannel(AnimationChannel.Targets.ROTATION,
 							new Keyframe(0f, KeyframeAnimations.degreeVec(-75f, 0f, 0f),
 									AnimationChannel.Interpolations.LINEAR))).build();
+
+	public static final AnimationDefinition GRASP_PRE = AnimationDefinition.Builder.withLength(1f)
+			.addAnimation("tooth_left",
+					new AnimationChannel(AnimationChannel.Targets.ROTATION,
+							new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(0.125f, KeyframeAnimations.degreeVec(0f, 27.5f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(0.25f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(0.375f, KeyframeAnimations.degreeVec(0f, 27.5f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(0.5f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM)))
+			.addAnimation("tooth_right",
+					new AnimationChannel(AnimationChannel.Targets.ROTATION,
+							new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(0.125f, KeyframeAnimations.degreeVec(0f, -27.5f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(0.25f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(0.375f, KeyframeAnimations.degreeVec(0f, -27.5f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM),
+							new Keyframe(0.5f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
+									AnimationChannel.Interpolations.CATMULLROM))).build();
 }
