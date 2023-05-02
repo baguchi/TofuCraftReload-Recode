@@ -53,6 +53,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.FluidType;
 
 import javax.annotation.Nullable;
@@ -520,7 +521,7 @@ public class ShuDofuSpider extends Monster {
 			if (p_36347_.hurt(this.damageSources().mobAttack(this), f * 0.2F)) {
 				this.heal(f * 0.2F);
 			}
-			if (p_36347_ instanceof Mob) {
+			if (p_36347_ instanceof LivingEntity && !p_36347_.getType().is(Tags.EntityTypes.BOSSES)) {
 				if (this.getPassengers().isEmpty()) {
 					p_36347_.stopRiding();
 					p_36347_.startRiding(this, true);

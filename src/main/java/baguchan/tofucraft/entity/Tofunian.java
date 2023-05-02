@@ -179,6 +179,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Pillager.class, 15.0F, 1.2D, 1.3D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Illusioner.class, 12.0F, 1.2D, 1.3D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zoglin.class, 10.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, ShuDofuSpider.class, 10.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, TofuGandlem.class, 10.0F, 1.2D, 1.3D));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.3D));
 		this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
 		this.goalSelector.addGoal(2, new TofunianSleepOnBedGoal(this, 0.85F, 6));
