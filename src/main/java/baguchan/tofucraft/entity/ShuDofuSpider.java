@@ -282,10 +282,12 @@ public class ShuDofuSpider extends Monster {
 					this.setGraspAnimation(false);
 					this.ejectPassengers();
 				}
+			} else if (this.isGraspAnim()) {
+				this.setGraspAnimation(false);
 			}
 
 
-			if (this.isAlive() && this.isJumpAnim() && this.getTarget() != null) {
+			if (this.isAlive() && this.isJumpAnim()) {
 				++this.jumpTime;
 				if (this.jumpTime == 1) {
 					this.level.broadcastEntityEvent(this, (byte) 102);
