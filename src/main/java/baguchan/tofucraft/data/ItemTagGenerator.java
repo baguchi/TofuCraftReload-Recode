@@ -35,12 +35,14 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(Tags.Items.SEEDS).add(TofuItems.SEEDS_CHILI.get(), TofuItems.SEEDS_SOYBEANS.get(), TofuItems.SEEDS_SOYBEANS_NETHER.get(), TofuItems.SEEDS_SOYBEANS_SOUL.get(), TofuItems.SEEDS_RICE.get());
 		tag(TofuTags.Items.RICE_BLOCK).add(TofuBlocks.RICE_BLOCK.get().asItem());
 		tag(ItemTags.TRIMMABLE_ARMOR).add(TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), TofuItems.TOFU_DIAMOND_LEGGINGS.get(), TofuItems.TOFU_DIAMOND_BOOTS.get())
-				.add(TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.TOFU_METAL_CHESTPLATE.get(), TofuItems.TOFU_METAL_LEGGINGS.get(), TofuItems.TOFU_METAL_BOOTS.get());
+				.add(TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.TOFU_METAL_CHESTPLATE.get(), TofuItems.TOFU_METAL_LEGGINGS.get(), TofuItems.TOFU_METAL_BOOTS.get())
+				.add(TofuItems.SCULK_BONE_HELMET.get(), TofuItems.SCULK_BONE_CHESTPLATE.get(), TofuItems.SCULK_BONE_LEGGINGS.get(), TofuItems.SCULK_BONE_BOOTS.get());
 		tag(TofuTags.Items.NATTO).add(TofuItems.NATTO.get());
 		tag(TofuTags.Items.MISO).add(TofuItems.MISO.get());
 		tag(TofuTags.Items.SOYSAUCE_SOYSAUCE).add(TofuItems.BOTTLE_SOYSAUSE.get());
 		tag(TofuTags.Items.SOYSAUCE).addTag(TofuTags.Items.SOYSAUCE_SOYSAUCE);
 		tag(TofuTags.Items.TOFU).add(TofuItems.TOFUKINU.get()).add(TofuItems.TOFUMOMEN.get());
 		tag(TofuTags.Items.TOFU_FRIED).add(TofuItems.TOFUFRIED.get());
+		tag(ItemTags.PIGLIN_REPELLENTS).add(TofuItems.SOUL_FUKUMAME.get(), TofuItems.SOUL_MANJU.get(), TofuItems.SEEDS_SOYBEANS_SOUL.get());
 	}
 }
