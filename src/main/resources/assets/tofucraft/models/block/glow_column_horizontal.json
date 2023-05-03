@@ -55,34 +55,40 @@
       "shade": false,
       "faces": {
         "down": {
-          "texture": "#glowtop",
-          "cullface": "down",
+          "texture" : "#glowtop",
+          "cullface" : "down",
+          "block_light" : 15,
           "sky_light" : 15
         },
         "up": {
-          "texture": "#glowtop",
-          "rotation": 180,
-          "cullface": "up",
+          "texture" : "#glowtop",
+          "rotation" : 180,
+          "cullface" : "up",
+          "block_light" : 15,
           "sky_light" : 15
         },
         "north": {
-          "texture": "#glowside",
-          "cullface": "north",
+          "texture" : "#glowside",
+          "cullface" : "north",
+          "block_light" : 15,
           "sky_light" : 15
         },
         "south": {
-          "texture": "#glowside",
-          "cullface": "south",
+          "texture" : "#glowside",
+          "cullface" : "south",
+          "block_light" : 15,
           "sky_light" : 15
         },
         "west": {
-          "texture": "#glowside",
-          "cullface": "west",
+          "texture" : "#glowside",
+          "cullface" : "west",
+          "block_light" : 15,
           "sky_light" : 15
         },
         "east": {
-          "texture": "#glowside",
-          "cullface": "east",
+          "texture" : "#glowside",
+          "cullface" : "east",
+          "block_light" : 15,
           "sky_light" : 15
         }
       }
