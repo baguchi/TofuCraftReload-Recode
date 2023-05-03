@@ -18,7 +18,27 @@ public class TofuBiomeBuilders {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
 		MobSpawnSettings.Builder builder1 = new MobSpawnSettings.Builder();
 		TofuBiomeDefaultFeatures.addZundaForestFeatures(builder);
-		return makeDefaultBiome(builder, builder1, TofuSounds.GREEN_BRANCH_BGM);
+		TofuBiomeDefaultFeatures.addDefaultCarvers(builder);
+		TofuBiomeDefaultFeatures.addDefaultOres(builder);
+		TofuBiomeDefaultFeatures.tofuCreatureSpawns(builder1);
+		return fullDefinition(
+				Biome.Precipitation.NONE,
+				0.8F,
+				0.0F,
+				new BiomeSpecialEffects.Builder()
+						.fogColor(0xAFFFCA)
+						.skyColor(0xFFFFFF)
+						.waterColor(0xDCF6E5)
+						.waterFogColor(0x6ACF8D)
+						.grassColorOverride(7115607)
+						.foliageColorOverride(7115607)
+						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
+						.backgroundMusic(new Music(TofuSounds.GREEN_BRANCH_BGM.getHolder().orElseThrow(), 12000, 24000, true))
+						.build(),
+				builder1.build(),
+				builder.build(),
+				Biome.TemperatureModifier.NONE
+		);
 	}
 
 	public static Biome soybeanForestBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
@@ -75,7 +95,7 @@ public class TofuBiomeBuilders {
 		TofuBiomeDefaultFeatures.addPlainsFeatures(builder);
 		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
 		TofuBiomeDefaultFeatures.tofuWaterCreatureSpawns(builder1);
-		return makeDefaultBiome(builder, builder1);
+		return makeDefaultBiome(builder, builder1, TofuSounds.TOFU_ROAD_BGM);
 	}
 
 	public static Biome tofuOceanBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
@@ -84,7 +104,7 @@ public class TofuBiomeBuilders {
 		TofuBiomeDefaultFeatures.addPlainsFeatures(builder);
 		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
 		TofuBiomeDefaultFeatures.tofuWaterCreatureSpawns(builder1);
-		return makeDefaultBiome(builder, builder1);
+		return makeDefaultBiome(builder, builder1, TofuSounds.TOFU_ROAD_BGM);
 	}
 
 	public static Biome tofuMountainBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
@@ -109,9 +129,9 @@ public class TofuBiomeBuilders {
 				0.0F,
 				new BiomeSpecialEffects.Builder()
 						.fogColor(0x93_93_bc)
-						.skyColor(0xc0_c0_ff)
-						.waterColor(0x3f_76_e4)
-						.waterFogColor(0x05_05_33)
+						.skyColor(0xFFFFFF)
+						.waterColor(0xBBDAF0)
+						.waterFogColor(0x6099C0)
 						.grassColorOverride(7115607)
 						.foliageColorOverride(7115607)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
