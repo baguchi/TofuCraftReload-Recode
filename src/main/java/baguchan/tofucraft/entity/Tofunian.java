@@ -50,7 +50,6 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -89,7 +88,6 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
@@ -292,7 +290,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 		this.tofunianJobCheck();
 		this.tofunianHomeCheck();
-		this.tofunianHalloween();
 
 		super.customServerAiStep();
 	}
@@ -300,21 +297,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public void aiStep() {
 		this.updateSwingTime();
 		super.aiStep();
-	}
-
-	public void tofunianHalloween() {
-		if (isHalloween() && !isBaby()) {
-			if (this.getId() % (5) != 0) return;
-			if (this.getItemBySlot(EquipmentSlot.HEAD).isEmpty()) {
-				this.equipItemIfPossible(new ItemStack(Items.CARVED_PUMPKIN));
-				this.playSound(SoundEvents.ARMOR_EQUIP_GENERIC);
-			}
-		} else {
-			if (this.getItemBySlot(EquipmentSlot.HEAD).is(Items.CARVED_PUMPKIN)) {
-				this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-				this.playSound(SoundEvents.ARMOR_EQUIP_GENERIC);
-			}
-		}
 	}
 
 	public void tofunianJobCheck() {
