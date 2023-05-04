@@ -6,9 +6,9 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 
 public class TofuFoods {
-	public static final FoodProperties TOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).fast().build();
+	public static final FoodProperties TOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).fast().build();
 
-	public static final FoodProperties ISHITOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).fast().build();
+	public static final FoodProperties ISHITOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUSTEAK = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).fast().build();
 	public static final FoodProperties OAGE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 
@@ -17,15 +17,15 @@ public class TofuFoods {
 	public static final FoodProperties TOFUGRILLED = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUZUNDA = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUMISO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).fast().build();
-	public static final FoodProperties TOFUDRIED = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).fast().build();
-	public static final FoodProperties TOFUSMOKE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).fast().build();
+	public static final FoodProperties TOFUDRIED = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.22F).fast().build();
+	public static final FoodProperties TOFUSMOKE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
 	public static final FoodProperties SHUDOFU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUSESAME = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).fast().build();
-	public static final FoodProperties TOFUFRIED = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
-	public static final FoodProperties TOFUFRIED_POUCH = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
+	public static final FoodProperties TOFUFRIED = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.45F).fast().build();
+	public static final FoodProperties TOFUFRIED_POUCH = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.45F).fast().build();
 	public static final FoodProperties AGEDASHI_TOFU = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).fast().build();
-	public static final FoodProperties TOFUANNIN = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).fast().build();
-	public static final FoodProperties TOFUSTRAWBERRY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.12F).fast().build();
+	public static final FoodProperties TOFUANNIN = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
+	public static final FoodProperties TOFUSTRAWBERRY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
 
 	public static final FoodProperties SPROUTS = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
 	public static final FoodProperties NATTO = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
@@ -63,7 +63,7 @@ public class TofuFoods {
 	public static final FoodProperties NANBAN = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.7F).build();
 	public static final FoodProperties NANBANTOFU = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build();
 
-	public static final FoodProperties FUKUMENI = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
+	public static final FoodProperties FUKUMENI = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).build();
 	public static final FoodProperties KOYADOFUSTEW = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.35F).build();
 
 	public static final FoodProperties KINAKO_MANJU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.35F).fast().build();
@@ -90,7 +90,7 @@ public class TofuFoods {
 
 	public static final FoodProperties INARI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.8F).build();
 
-	public static final FoodProperties OKARASTICK = (new FoodProperties.Builder()).nutrition(2).fast().saturationMod(0.1F).fast().build();
+	public static final FoodProperties OKARASTICK = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).fast().build();
 
 	public static final FoodProperties SOBOROTOFUSAUTE = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.8F).build();
 
@@ -98,7 +98,7 @@ public class TofuFoods {
 	public static final FoodProperties PUDDING_SOYMILK = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.35F).build();
 	public static final FoodProperties NIKUJAGA = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.65F).build();
 
-	public static final FoodProperties APRICOT = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
+	public static final FoodProperties APRICOT = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).build();
 	public static final FoodProperties APRICOT_BREAD = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.65F).build();
 
 
@@ -121,13 +121,13 @@ public class TofuFoods {
 	public static final FoodProperties HELL_RED_SOUP = (new FoodProperties.Builder()).nutrition(10).saturationMod(1.0F).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 6000), 1.0F).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 3600), 1.0F).build();
 	public static final FoodProperties SUKIYAKI = (new FoodProperties.Builder()).nutrition(10).saturationMod(1.0F).build();
 	public static final FoodProperties TOFU_BUNS_BURGER = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.8F).build();
-	public static final FoodProperties STEAMED_BREAD = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();
+	public static final FoodProperties STEAMED_BREAD = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).build();
 
 	public static final FoodProperties SOY_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).build();
 	public static final FoodProperties SOY_NETHER_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200), 1.0F).build();
 	public static final FoodProperties SOY_SOUL_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200), 1.0F).build();
 
-	public static final FoodProperties KINAKO_BREAD = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.65F).build();
+	public static final FoodProperties KINAKO_BREAD = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.7F).build();
 
 	public static final FoodProperties EDAMAME_TEMPLA = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.2F).fast().build();
 	public static final FoodProperties NEGIMA = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.65F).build();
