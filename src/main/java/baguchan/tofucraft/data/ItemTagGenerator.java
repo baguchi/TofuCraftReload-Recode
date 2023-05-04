@@ -37,5 +37,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(TofuTags.Items.SOYSAUCE).addTag(TofuTags.Items.SOYSAUCE_SOYSAUCE);
 		tag(TofuTags.Items.TOFU).add(TofuItems.TOFUKINU.get()).add(TofuItems.TOFUMOMEN.get());
 		tag(TofuTags.Items.TOFU_FRIED).add(TofuItems.TOFUFRIED.get());
+		tag(ItemTags.PIGLIN_REPELLENTS).add(TofuItems.SOUL_FUKUMAME.get(), TofuItems.SOUL_MANJU.get(), TofuItems.SEEDS_SOYBEANS_SOUL.get());
 	}
 }
