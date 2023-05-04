@@ -6,7 +6,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 
 public class TofuFoods {
-	public static final FoodProperties TOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).fast().build();
+	public static final FoodProperties TOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).fast().build();
 
 	public static final FoodProperties ISHITOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUSTEAK = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).fast().build();
