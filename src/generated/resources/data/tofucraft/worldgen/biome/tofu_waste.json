@@ -14,7 +14,7 @@
     "music" : {
       "max_delay" : 24000,
       "min_delay" : 12000,
-      "replace_current_music" : true,
+      "replace_current_music" : false,
       "sound" : "tofucraft:music.rough_ground"
     },
     "sky_color" : 16777215,
