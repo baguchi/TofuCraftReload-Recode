@@ -33,7 +33,7 @@ public class TofuBiomeBuilders {
 						.grassColorOverride(7115607)
 						.foliageColorOverride(7115607)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
-						.backgroundMusic(new Music(TofuSounds.GREEN_BRANCH_BGM.getHolder().orElseThrow(), 12000, 24000, true))
+						.backgroundMusic(new Music(TofuSounds.GREEN_BRANCH_BGM.getHolder().orElseThrow(), 12000, 24000, false))
 						.build(),
 				builder1.build(),
 				builder.build(),
@@ -135,7 +135,7 @@ public class TofuBiomeBuilders {
 						.grassColorOverride(7115607)
 						.foliageColorOverride(7115607)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
-						.backgroundMusic(new Music(soundEvent.getHolder().orElseThrow(), 12000, 24000, true))
+						.backgroundMusic(new Music(soundEvent.getHolder().orElseThrow(), 12000, 24000, false))
 						.build(),
 				mobSpawnSetting.build(),
 				builder.build(),
