@@ -158,7 +158,7 @@ public class TofuPortalBlock extends Block {
 			int length = north + south - 1;
 			if (width > 12 || length > 12)
 				return;
-			if (width < 1 || length < 1)
+			if (width < 2 || length < 2)
 				return;
 			BlockPos neCorner = pos.east(east).north(north);
 			BlockPos nwCorner = pos.west(west).north(north);
@@ -171,7 +171,7 @@ public class TofuPortalBlock extends Block {
 			for (int y = 0; y <= 1; y++) {
 				for (int x = 0; x < wallWidth; x++) {
 					for (int z = 0; z < wallLength; z++) {
-						if (((y == 0 && x != 0 && z != 0 && x != wallWidth - 1 && z != wallLength - 1) || (y == 1 && (x == 0 || z == 0 || x == wallWidth - 1 || z == wallLength - 1))) &&
+						if (((y == 0 && x != 0 && z != 0 && x != wallWidth - 1 && z != wallLength - 1) || (y == 1 && (x == 0 && z < wallWidth - 1 && z > 0 || z == 0 && x < wallWidth - 1 && x > 0 || x == wallWidth - 1 && z > 0 && z < wallWidth - 1 || z == wallLength - 1 && x > 0 && x < wallWidth - 1))) &&
 								!isTofuBlock(world.getBlockState(nwCorner.below().offset(x, y, z))))
 							//TODO
 							//!isTofuBlock(world.getBlockState(nwCorner.above().offset(x, y, z))))
