@@ -178,7 +178,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.BOTTLE_SOYOIL.get(), 1)
-				.requires(Ingredient.of(TofuItems.SOYBEAN_PARCHED.get()))
+				.requires(Ingredient.of(TofuTags.Items.SOYBEAN))
 				.requires(Items.GLASS_BOTTLE)
 				.requires(TofuItems.FILTERCLOTH.get())
 				.unlockedBy("has_item", has(TofuTags.Items.SOYBEAN))
