@@ -12,9 +12,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-
-import java.util.Random;
-
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
@@ -27,6 +24,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Random;
 
 public class TofuPortalBlock extends Block {
 	public TofuPortalBlock(Properties props) {
@@ -173,7 +172,7 @@ public class TofuPortalBlock extends Block {
 			for (int y = 0; y <= 1; y++) {
 				for (int x = 0; x < wallWidth; x++) {
 					for (int z = 0; z < wallLength; z++) {
-						if (((y == 0 && x != 0 && z != 0 && x != wallWidth - 1 && z != wallLength - 1) || (y == 1 && (x == 0 || z == 0 || x == wallWidth - 1 || z == wallLength - 1))) &&
+						if (((y == 0 && x != 0 && z != 0 && x != wallWidth - 1 && z != wallLength - 1) || (y == 1 && (x == 0 && z < wallWidth - 1 && z > 0 || z == 0 && x < wallWidth - 1 && x > 0 || x == wallWidth - 1 && z > 0 && z < wallWidth - 1 || z == wallLength - 1 && x > 0 && x < wallWidth - 1))) &&
 								!isTofuBlock(world.getBlockState(nwCorner.below().offset(x, y, z))))
 							//TODO
 							//!isTofuBlock(world.getBlockState(nwCorner.above().offset(x, y, z))))
