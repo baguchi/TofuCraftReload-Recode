@@ -124,12 +124,14 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get());
 		toBlock(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get());
 		this.woodenFence(TofuBlocks.LEEK_GREEN_FENCE, TofuBlocks.LEEK_GREEN_PLANKS);
+		toBlock(TofuBlocks.LEEK_GREEN_FENCE_GATE.get());
 
 		toBlock(TofuBlocks.LEEK_STEM.get());
 		toBlock(TofuBlocks.LEEK_PLANKS.get());
 		toBlock(TofuBlocks.LEEK_PLANKS_STAIR.get());
 		toBlock(TofuBlocks.LEEK_PLANKS_SLAB.get());
 		this.woodenFence(TofuBlocks.LEEK_FENCE, TofuBlocks.LEEK_PLANKS);
+		toBlock(TofuBlocks.LEEK_FENCE_GATE.get());
 
 		itemBlockFlat(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
 
