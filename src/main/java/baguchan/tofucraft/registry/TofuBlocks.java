@@ -252,7 +252,23 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> LEAVES_APRICOT = register("leaves_apricot", () -> new ApricotLeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).noOcclusion().isSuffocating((state, getter, pos) -> false).randomTicks().sound(SoundType.GRASS)));
 
 	public static final RegistryObject<RotatedPillarBlock> LEEK_GREEN_STEM = register("leek_green_stem", () -> new BurnableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM)));
+
+	public static final RegistryObject<Block> LEEK_GREEN_PLANKS = register("leek_green_planks", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
+	public static final RegistryObject<StairBlock> LEEK_GREEN_PLANKS_STAIR = register("leek_green_planks_stair", () -> new StairBlock(LEEK_GREEN_PLANKS.get()::defaultBlockState, BlockBehaviour.Properties.copy(LEEK_GREEN_PLANKS.get())));
+	public static final RegistryObject<SlabBlock> LEEK_GREEN_PLANKS_SLAB = register("leek_green_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(LEEK_GREEN_PLANKS.get())));
+	public static final RegistryObject<FenceBlock> LEEK_GREEN_FENCE = register("leek_green_fence", () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
+	public static final RegistryObject<FenceGateBlock> LEEK_GREEN_FENCE_GATE = register("leek_green_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F), TofuWoodTypes.LEEKSTEM));
+
+
 	public static final RegistryObject<RotatedPillarBlock> LEEK_STEM = register("leek_stem", () -> new BurnableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.STEM)));
+
+	public static final RegistryObject<Block> LEEK_PLANKS = register("leek_planks", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
+	public static final RegistryObject<StairBlock> LEEK_PLANKS_STAIR = register("leek_planks_stair", () -> new StairBlock(LEEK_PLANKS.get()::defaultBlockState, BlockBehaviour.Properties.copy(LEEK_PLANKS.get())));
+	public static final RegistryObject<SlabBlock> LEEK_PLANKS_SLAB = register("leek_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(LEEK_PLANKS.get())));
+	public static final RegistryObject<FenceBlock> LEEK_FENCE = register("leek_fence", () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
+	public static final RegistryObject<FenceGateBlock> LEEK_FENCE_GATE = register("leek_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F), TofuWoodTypes.LEEKSTEM));
+
+
 	public static final RegistryObject<Block> ZUNDATOFU_MUSHROOM = register("zundatofu_mushroom", () -> new TofuMushroomBlock(BlockBehaviour.Properties.of(Material.PLANT).instabreak().noCollission().sound(SoundType.FUNGUS), TofuWorldFeatures.BIG_ZUNDA_TOFU_MUSHUROOM));
 
 

@@ -1,0 +1,6 @@
+{
+  "parent" : "minecraft:block/fence_post",
+  "textures" : {
+    "texture" : "tofucraft:block/leek_green_planks"
+  }
+}

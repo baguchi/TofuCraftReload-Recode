@@ -1,0 +1,6 @@
+{
+  "parent" : "minecraft:block/fence_side",
+  "textures" : {
+    "texture" : "tofucraft:block/leek_green_planks"
+  }
+}

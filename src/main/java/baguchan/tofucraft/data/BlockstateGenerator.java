@@ -127,8 +127,21 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.TOFU_BEDROCK.get());
 
 		logBlock(TofuBlocks.LEEK_GREEN_STEM.get());
+		simpleBlock(TofuBlocks.LEEK_GREEN_PLANKS.get());
+		stairs(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get(), TofuBlocks.LEEK_GREEN_PLANKS.get());
+		slab(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get(), TofuBlocks.LEEK_GREEN_PLANKS.get());
+		this.fenceBlock(TofuBlocks.LEEK_GREEN_FENCE.get(), texture(name(TofuBlocks.LEEK_GREEN_PLANKS.get())));
+		this.fenceGateBlock(TofuBlocks.LEEK_GREEN_FENCE_GATE.get(), texture(name(TofuBlocks.LEEK_GREEN_PLANKS.get())));
+
 		logBlock(TofuBlocks.LEEK_STEM.get());
+		simpleBlock(TofuBlocks.LEEK_PLANKS.get());
+		stairs(TofuBlocks.LEEK_PLANKS_STAIR.get(), TofuBlocks.LEEK_PLANKS.get());
+		slab(TofuBlocks.LEEK_PLANKS_SLAB.get(), TofuBlocks.LEEK_PLANKS.get());
+		this.fenceBlock(TofuBlocks.LEEK_FENCE.get(), texture(name(TofuBlocks.LEEK_PLANKS.get())));
+		this.fenceGateBlock(TofuBlocks.LEEK_FENCE_GATE.get(), texture(name(TofuBlocks.LEEK_PLANKS.get())));
+
 		crossBlock(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
+
 		logGlowBlock(TofuBlocks.TOFU_STEM.get());
 		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS.get());
 		stairs(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get(), TofuBlocks.TOFU_STEM_PLANKS.get());

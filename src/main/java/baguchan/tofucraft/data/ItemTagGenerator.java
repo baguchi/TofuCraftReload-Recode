@@ -22,8 +22,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags(HolderLookup.Provider p_256380_) {
-		tag(ItemTags.PLANKS).add(TofuBlocks.TOFU_STEM_PLANKS.get().asItem());
-
 		tag(TofuTags.Items.DUST_SALT).add(TofuItems.SALT.get());
 		tag(TofuTags.Items.SALT).add(TofuItems.SALT.get());
 		tag(TofuTags.Items.SOYBEAN).add(TofuItems.SEEDS_SOYBEANS.get());

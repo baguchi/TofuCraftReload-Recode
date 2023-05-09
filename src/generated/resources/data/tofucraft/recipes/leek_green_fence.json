@@ -1,0 +1,21 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "building",
+  "key" : {
+    "M" : {
+      "item" : "tofucraft:leek_green_planks"
+    },
+    "S" : {
+      "tag" : "forge:rods/wooden"
+    }
+  },
+  "pattern" : [
+    "MSM",
+    "MSM"
+  ],
+  "result" : {
+    "count" : 3,
+    "item" : "tofucraft:leek_green_fence"
+  },
+  "show_notification" : true
+}

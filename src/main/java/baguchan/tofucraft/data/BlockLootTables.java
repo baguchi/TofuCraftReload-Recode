@@ -202,7 +202,19 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.LEAVES_APRICOT.get(), createApricotLeavesDrop(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.SAPLING_APRICOT.get(), DEFAULT_SAPLING_DROP_RATES));
 
 		dropSelf(TofuBlocks.LEEK_GREEN_STEM.get());
+		dropSelf(TofuBlocks.LEEK_GREEN_PLANKS.get());
+		dropSelf(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get());
+		registerSlab(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get());
+		dropSelf(TofuBlocks.LEEK_GREEN_FENCE.get());
+		dropSelf(TofuBlocks.LEEK_GREEN_FENCE_GATE.get());
+
 		dropSelf(TofuBlocks.LEEK_STEM.get());
+		dropSelf(TofuBlocks.LEEK_PLANKS.get());
+		dropSelf(TofuBlocks.LEEK_PLANKS_STAIR.get());
+		registerSlab(TofuBlocks.LEEK_PLANKS_SLAB.get());
+		dropSelf(TofuBlocks.LEEK_FENCE.get());
+		dropSelf(TofuBlocks.LEEK_FENCE_GATE.get());
+
 		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
 
 		dropSelf(TofuBlocks.TOFU_STEM.get());
