@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "tofucraft:blocktofuishi"
+    "#" : {
+      "item" : "tofucraft:blocktofuishi"
     },
     "X" : {
       "tag" : "forge:rods/wooden"

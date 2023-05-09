@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I": {
-      "item": "tofucraft:starch"
+    "I" : {
+      "item" : "tofucraft:starch"
     },
-    "X": {
-      "tag": "minecraft:fishes"
+    "X" : {
+      "tag" : "minecraft:fishes"
     },
-    "Y": {
-      "tag": "forge:dust/salt"
+    "Y" : {
+      "tag" : "forge:dust/salt"
     },
     "Z" : {
       "item" : "minecraft:egg"

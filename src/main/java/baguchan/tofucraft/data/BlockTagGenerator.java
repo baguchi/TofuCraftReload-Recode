@@ -79,6 +79,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		tag(BlockTags.PLANKS).add(TofuBlocks.TOFU_STEM_PLANKS.get());
 		tag(BlockTags.WOODEN_SLABS).add(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get());
 		tag(BlockTags.WOODEN_STAIRS).add(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get());
+		tag(BlockTags.WOODEN_FENCES).add(TofuBlocks.TOFU_STEM_FENCE.get());
+		tag(BlockTags.FENCE_GATES).add(TofuBlocks.TOFU_STEM_FENCE_GATE.get());
 
 
 		tag(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.SOYMILK.get())

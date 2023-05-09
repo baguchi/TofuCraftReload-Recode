@@ -1,6 +1,6 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
+  "type" : "minecraft:crafting_shaped",
+  "category" : "equipment",
   "key" : {
     "#" : {
       "item" : "tofucraft:blocktofukinu"

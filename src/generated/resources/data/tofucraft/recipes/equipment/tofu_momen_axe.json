@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "tofucraft:blocktofumomen"
+    "#" : {
+      "item" : "tofucraft:blocktofumomen"
     },
     "X" : {
       "tag" : "forge:rods/wooden"

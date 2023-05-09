@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:iron_ingot"
+    "#" : {
+      "item" : "minecraft:iron_ingot"
     },
     "S" : {
       "tag" : "forge:cobblestone"

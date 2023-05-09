@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "tofucraft:okara"
+    "#" : {
+      "item" : "tofucraft:okara"
     },
-    "E": {
-      "item": "minecraft:egg"
+    "E" : {
+      "item" : "minecraft:egg"
     },
     "W" : {
       "item" : "minecraft:wheat"

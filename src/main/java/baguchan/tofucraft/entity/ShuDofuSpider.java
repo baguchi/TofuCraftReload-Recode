@@ -74,7 +74,7 @@ public class ShuDofuSpider extends Monster {
 	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(ATTACK_MODIFIER_UUID, "attack boost", 0.1D, AttributeModifier.Operation.MULTIPLY_BASE);
 
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("216e1242-75c7-8114-0500-6fc7e324dae6");
-	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ARMOR_MODIFIER_UUID, "armor boost", -0.25D, AttributeModifier.Operation.MULTIPLY_BASE);
+	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ARMOR_MODIFIER_UUID, "armor boost", -0.15D, AttributeModifier.Operation.MULTIPLY_BASE);
 
 
 	private int attackTime;
@@ -773,6 +773,7 @@ public class ShuDofuSpider extends Monster {
 			LivingEntity livingentity = this.spider.getTarget();
 			if (livingentity != null) {
 				this.spider.level.broadcastEntityEvent(this.spider, (byte) 104);
+				this.spider.playAmbientSound();
 			}
 			this.preAttackTime = 0;
 		}

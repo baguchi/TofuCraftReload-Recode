@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "tag": "minecraft:planks"
+    "#" : {
+      "tag" : "minecraft:planks"
     },
     "S" : {
       "tag" : "forge:rods/wooden"

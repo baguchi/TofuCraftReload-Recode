@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "tag": "forge:salt"
+    "#" : {
+      "tag" : "forge:salt"
     },
-    "D": {
-      "item": "minecraft:diamond"
+    "D" : {
+      "item" : "minecraft:diamond"
     },
-    "S": {
-      "item": "tofucraft:seeds_soybeans_soul"
+    "S" : {
+      "item" : "tofucraft:seeds_soybeans_soul"
     },
     "W" : {
       "item" : "minecraft:bowl"

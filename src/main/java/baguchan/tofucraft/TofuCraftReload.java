@@ -15,6 +15,7 @@ import baguchan.tofucraft.registry.TofuBiomeModifiers;
 import baguchan.tofucraft.registry.TofuBiomeSources;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
+import baguchan.tofucraft.registry.TofuBlockSetTypes;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuCarvers;
 import baguchan.tofucraft.registry.TofuContainers;
@@ -30,6 +31,7 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
+import baguchan.tofucraft.registry.TofuWoodTypes;
 import com.google.common.collect.Maps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
@@ -125,7 +127,8 @@ public class TofuCraftReload {
 			map.put(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), TofuBiomeSources.TOFU_WORLD_PRESET);
 			MultiNoiseBiomeSourceParameterList.Preset.BY_NAME = map;
 
-
+			TofuBlockSetTypes.init();
+			TofuWoodTypes.init();
 			TofuAdvancements.init();
 			TofuItems.registerDispenserItem();
 			TofuItems.registerCompostableItem();

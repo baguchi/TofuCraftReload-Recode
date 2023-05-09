@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "tofucraft:soy_cheese"
+    "#" : {
+      "item" : "tofucraft:soy_cheese"
     },
-    "E": {
-      "tag": "forge:eggs"
+    "E" : {
+      "tag" : "forge:eggs"
     },
-    "S": {
-      "item": "minecraft:sugar"
+    "S" : {
+      "item" : "minecraft:sugar"
     },
     "W" : {
       "item" : "minecraft:wheat"

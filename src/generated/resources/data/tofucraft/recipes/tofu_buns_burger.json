@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": {
-      "item": "tofucraft:tofugrilled"
+    "G" : {
+      "item" : "tofucraft:tofugrilled"
     },
     "M" : {
       "item" : "tofucraft:tofuhamburg"

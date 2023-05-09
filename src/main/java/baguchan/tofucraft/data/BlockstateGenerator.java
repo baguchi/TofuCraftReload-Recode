@@ -133,6 +133,8 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS.get());
 		stairs(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get(), TofuBlocks.TOFU_STEM_PLANKS.get());
 		slab(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get(), TofuBlocks.TOFU_STEM_PLANKS.get());
+		this.fenceBlock(TofuBlocks.TOFU_STEM_FENCE.get(), texture(name(TofuBlocks.TOFU_STEM_PLANKS.get())));
+		this.fenceGateBlock(TofuBlocks.TOFU_STEM_FENCE_GATE.get(), texture(name(TofuBlocks.TOFU_STEM_PLANKS.get())));
 
 		crossBlock(TofuBlocks.SAPLING_TOFU.get());
 		simpleLeavesBlock(TofuBlocks.LEAVES_TOFU.get());

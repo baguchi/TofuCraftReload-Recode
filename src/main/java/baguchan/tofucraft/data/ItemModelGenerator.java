@@ -13,6 +13,7 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
@@ -125,6 +126,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFU_STEM_PLANKS.get());
 		toBlock(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get());
 		toBlock(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get());
+		this.woodenFence(TofuBlocks.TOFU_STEM_FENCE, TofuBlocks.TOFU_STEM_PLANKS);
+		toBlock(TofuBlocks.TOFU_STEM_FENCE_GATE.get());
+
 		itemBlockFlat(TofuBlocks.SAPLING_TOFU.get());
 		toBlock(TofuBlocks.LEAVES_TOFU.get());
 
@@ -435,6 +439,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 
 		singleTex(TofuItems.TOFUNIAN_BANNER_PATTERN.get());
+	}
+
+	private void woodenFence(RegistryObject<? extends Block> fence, RegistryObject<? extends Block> block) {
+		getBuilder(ForgeRegistries.BLOCKS.getKey(fence.get()).getPath())
+				.parent(getExistingFile(mcLoc("block/fence_inventory")))
+				.texture("texture", "block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath());
 	}
 
 	public ItemModelBuilder torchItem(Block item) {

@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -246,7 +247,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		cuttingRecipe(consumer, blockIn, slabOut, 2);
 	}
 
-	public void makeFence(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> fenceOut, Supplier<? extends ItemLike> blockIn) {
+	public void makeSolidFence(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> fenceOut, Supplier<? extends ItemLike> blockIn) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, fenceOut.get(), 6)
 				.pattern("MMM")
 				.pattern("MMM")
@@ -278,6 +279,24 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.pattern("PPP")
 				.define('P', plankIn.get())
 				.unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(plankIn.get().asItem()).getPath(), has(plankIn.get())).save(consumer);
+	}
+
+	public void makeWoodFence(Consumer<FinishedRecipe> consumer, Block fenceOut, Block blockIn) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, fenceOut, 3)
+				.pattern("MSM")
+				.pattern("MSM")
+				.define('M', blockIn)
+				.define('S', Tags.Items.RODS_WOODEN)
+				.unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(blockIn).getPath(), has(blockIn)).save(consumer);
+	}
+
+	public void makeFenceGate(Consumer<FinishedRecipe> consumer, Block fenceOut, Block blockIn) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, fenceOut)
+				.pattern("SMS")
+				.pattern("SMS")
+				.define('M', blockIn)
+				.define('S', Tags.Items.RODS_WOODEN)
+				.unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(blockIn).getPath(), has(blockIn)).save(consumer);
 	}
 
 

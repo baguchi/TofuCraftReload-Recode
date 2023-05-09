@@ -295,14 +295,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_DRIED, TofuBlocks.DRIEDTOFU);
 
 
-		makeFence(consumer, TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
-		makeFence(consumer, TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
-		makeFence(consumer, TofuBlocks.TOFUFENCE_ISHI, TofuBlocks.ISHITOFU);
-		makeFence(consumer, TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
-		makeFence(consumer, TofuBlocks.TOFUFENCE_HELL, TofuBlocks.HELLTOFU);
-		makeFence(consumer, TofuBlocks.TOFUFENCE_SOUL, TofuBlocks.SOULTOFU);
-		makeFence(consumer, TofuBlocks.TOFUFENCE_GRILLED, TofuBlocks.GRILLEDTOFU);
-		makeFence(consumer, TofuBlocks.TOFUFENCE_ZUNDA, TofuBlocks.ZUNDATOFU);
+		makeSolidFence(consumer, TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
+		makeSolidFence(consumer, TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
+		makeSolidFence(consumer, TofuBlocks.TOFUFENCE_ISHI, TofuBlocks.ISHITOFU);
+		makeSolidFence(consumer, TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
+		makeSolidFence(consumer, TofuBlocks.TOFUFENCE_HELL, TofuBlocks.HELLTOFU);
+		makeSolidFence(consumer, TofuBlocks.TOFUFENCE_SOUL, TofuBlocks.SOULTOFU);
+		makeSolidFence(consumer, TofuBlocks.TOFUFENCE_GRILLED, TofuBlocks.GRILLEDTOFU);
+		makeSolidFence(consumer, TofuBlocks.TOFUFENCE_ZUNDA, TofuBlocks.ZUNDATOFU);
 
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_KINU, TofuBlocks.KINUTOFU);
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_MOMEN, TofuBlocks.MOMENTOFU);
@@ -380,8 +380,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuBlocks.TOFU_STEM.get()))
 				.save(consumer);
 
-		makeStairs(consumer, TofuBlocks.TOFU_STEM_PLANKS_STAIR, TofuBlocks.TOFU_STEM);
-		makeSlab(consumer, TofuBlocks.TOFU_STEM_PLANKS_SLAB, TofuBlocks.TOFU_STEM);
+		makeStairs(consumer, TofuBlocks.TOFU_STEM_PLANKS_STAIR, TofuBlocks.TOFU_STEM_PLANKS);
+		makeSlab(consumer, TofuBlocks.TOFU_STEM_PLANKS_SLAB, TofuBlocks.TOFU_STEM_PLANKS);
+		makeWoodFence(consumer, TofuBlocks.TOFU_STEM_FENCE.get(), TofuBlocks.TOFU_STEM_PLANKS.get());
+		makeFenceGate(consumer, TofuBlocks.TOFU_STEM_FENCE_GATE.get(), TofuBlocks.TOFU_STEM_PLANKS.get());
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SALT_FURNACE.get())
 				.pattern("###")
