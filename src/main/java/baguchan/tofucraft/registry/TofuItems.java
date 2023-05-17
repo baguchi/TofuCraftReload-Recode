@@ -825,6 +825,10 @@ public class TofuItems {
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUKINU.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUMOMEN.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUDRIED.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUFRIED.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUFRIED_POUCH.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUZUNDA.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUANNIN.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUEGG.get(), 0.35F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_CHILI.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_RICE.get(), 0.3F);
@@ -835,6 +839,7 @@ public class TofuItems {
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUCOOKIE.get(), 0.85F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.ONIGIRI.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.ONIGIRI_SALT.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.SALTYMELON.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuBlocks.SAPLING_APRICOT.get().asItem(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuBlocks.SAPLING_TOFU.get().asItem(), 0.3F);
 	}
