@@ -80,8 +80,9 @@ public class TofuSlime extends Slime {
 
 	public void addAdditionalSaveData(CompoundTag p_34319_) {
 		super.addAdditionalSaveData(p_34319_);
-		p_34319_.putInt("OnZundaTime", this.isInWater() ? this.onZundaTime : -1);
+		p_34319_.putInt("OnZundaTime", this.convertsOnZunda() ? this.onZundaTime : -1);
 		p_34319_.putInt("ZundaConversionTime", this.isZundaConverting() ? this.conversionTime : -1);
+		p_34319_.putBoolean("ZundaConverting", this.isZundaConverting());
 	}
 
 	public void readAdditionalSaveData(CompoundTag p_34305_) {
