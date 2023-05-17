@@ -21,5 +21,6 @@ public class EntityTagGenerator extends EntityTypeTagsProvider {
 	protected void addTags(HolderLookup.Provider p_255894_) {
 		this.tag(EntityTypeTags.ARROWS).add(TofuEntityTypes.ZUNDA_ARROW.get());
 		this.tag(Tags.EntityTypes.BOSSES).add(TofuEntityTypes.SHUDOFUSPIDER.get());
+		this.tag(EntityTypeTags.FROG_FOOD).add(TofuEntityTypes.TOFUSLIME.get());
 	}
 }
