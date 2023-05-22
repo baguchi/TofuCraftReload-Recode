@@ -344,7 +344,7 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public void onServerTick(TickEvent.LevelTickEvent tick) {
+	public static void onServerTick(TickEvent.LevelTickEvent tick) {
 		if (!tick.level.isClientSide && tick.level instanceof ServerLevel serverWorld) {
 			TRAVELER_TOFUNIAN_SPAWNER_MAP.computeIfAbsent(serverWorld,
 					k -> new TravelerTofunianSpawner(serverWorld));

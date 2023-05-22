@@ -48,7 +48,7 @@ public class LeekBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	public boolean isBonemealSuccess(Level p_50901_, RandomSource p_50902_, BlockPos p_50903_, BlockState p_50904_) {
-		return (double) p_50902_.nextFloat() < 0.05D;
+		return (double) p_50902_.nextFloat() < 0.025D;
 	}
 
 	@Override
