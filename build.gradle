@@ -127,30 +127,6 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven {
-        // location of the maven that hosts JEI files before January 2023
-        name = "Progwml6's maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        // location of the maven that hosts JEI files since January 2023
-        name = "Jared's maven"
-        url = "https://maven.blamejared.com/"
-    }
-    maven {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "ModMaven"
-        url = "https://modmaven.dev"
-    }
-
-    // Curse Forge
-    maven {
-        url = "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
-    maven { url "https://maven.ryanliptak.com/" }
 }
 
 dependencies {
@@ -159,9 +135,6 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.19.4-45.0.29'
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-    runtimeOnly fg.deobf("squeek.appleskin:appleskin-forge:mc1.19.4-2.4.3")
-    //implementation fg.deobf("curse.maven:farmers_delight-398521:${project.farmersDelight}")
-    //implementation fg.deobf("curse.maven:mysterious-mountain-lib-368098:3788751")
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
     // compile "some.group:artifact:version"
