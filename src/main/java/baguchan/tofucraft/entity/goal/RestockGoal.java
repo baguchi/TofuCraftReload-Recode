@@ -19,11 +19,11 @@ public class RestockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level.isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.canResetStock() && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.canResetStock() && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level.isDay() && this.creature.canResetStock() && !this.creature.isBaby() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
+		return (super.canContinueToUse() && this.creature.level().isDay() && this.creature.canResetStock() && !this.creature.isBaby() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
 	}
 
 	public void tick() {
@@ -45,7 +45,7 @@ public class RestockGoal extends MoveToBlockGoal {
 
 	protected boolean findNearestBlock() {
 		if (this.creature.getTofunainJobBlock() != null &&
-				isValidTarget(this.creature.getLevel(), this.creature.getTofunainJobBlock())) {
+				isValidTarget(this.creature.level(), this.creature.getTofunainJobBlock())) {
 			this.blockPos = this.creature.getTofunainJobBlock();
 			return true;
 		}

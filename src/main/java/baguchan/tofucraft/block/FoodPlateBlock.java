@@ -100,12 +100,6 @@ public class FoodPlateBlock extends BaseEntityBlock {
 			super.onRemove(state, worldIn, pos, newState, isMoving);
 		}
 	}
-
-	@Override
-	public boolean isPossibleToRespawnInThis() {
-		return true;
-	}
-
 	@Override
 	public boolean hasAnalogOutputSignal(BlockState state) {
 		return true;

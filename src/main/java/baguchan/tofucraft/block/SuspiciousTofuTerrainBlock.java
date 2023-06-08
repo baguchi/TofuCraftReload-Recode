@@ -1,18 +1,20 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
+import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.level.block.BrushableBlock;
 import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.SuspiciousSandBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SuspiciousTofuTerrainBlock extends SuspiciousSandBlock {
+public class SuspiciousTofuTerrainBlock extends BrushableBlock {
 	public SuspiciousTofuTerrainBlock(Properties properties) {
-		super(properties);
+		super(TofuBlocks.TOFU_TERRAIN.get(), properties, SoundEvents.WOOL_HIT, SoundEvents.WOOL_BREAK);
 	}
 
 	public BlockEntity newBlockEntity(BlockPos p_272913_, BlockState p_273465_) {

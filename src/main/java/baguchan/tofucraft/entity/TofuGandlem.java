@@ -223,7 +223,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	@Override
 	public void tick() {
-		if (this.level.isClientSide()) {
+		if (this.level().isClientSide()) {
 			if (this.isAlive() && !this.isSleep()) {
 				this.idleAnimationState.startIfStopped(this.tickCount);
 			} else {
@@ -287,7 +287,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	protected void checkRushAttack(AABB p_21072_, AABB p_21073_) {
 		AABB aabb = p_21072_.minmax(p_21073_);
-		List<Entity> list = this.level.getEntities(this, aabb);
+		List<Entity> list = this.level().getEntities(this, aabb);
 		if (!list.isEmpty()) {
 			for (int i = 0; i < list.size(); ++i) {
 				Entity entity = list.get(i);
@@ -336,7 +336,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	@Override
 	public boolean doHurtTarget(Entity p_21372_) {
-		this.level.broadcastEntityEvent(this, (byte) 4);
+		this.level().broadcastEntityEvent(this, (byte) 4);
 		return super.doHurtTarget(p_21372_);
 	}
 
@@ -363,9 +363,9 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	public void aiStep() {
 		if (this.isFullCharge()) {
-			if (this.level.isClientSide) {
+			if (this.level().isClientSide) {
 				for (int i = 0; i < 2; ++i) {
-					this.level.addParticle(TofuParticleTypes.TOFU_PORTAL.get(), this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
+					this.level().addParticle(TofuParticleTypes.TOFU_PORTAL.get(), this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
 				}
 			}
 		}
@@ -381,14 +381,14 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			this.playSound(SoundEvents.BEACON_ACTIVATE, 3.0F, 1.0F);
 		}
 
-		if (!this.level.isClientSide && this.isAlive() && this.tickCount % 10 == 0 && this.isCharging()) {
+		if (!this.level().isClientSide && this.isAlive() && this.tickCount % 10 == 0 && this.isCharging()) {
 			this.heal(3.0F);
 		}
 	}
 
 	private void calculateFlapping() {
 		Vec3 vec3 = this.getDeltaMovement();
-		if (!this.onGround && vec3.y < 0.0D) {
+		if (!this.onGround() && vec3.y < 0.0D) {
 			this.setDeltaMovement(vec3.multiply(1.0D, 0.6D, 1.0D));
 		}
 	}
@@ -399,8 +399,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		super.die(p_21014_);
 		this.playSound(SoundEvents.BEACON_DEACTIVATE, 2.0F, 1.0F);
 
-		if (!this.level.isClientSide()) {
-			this.level.broadcastEntityEvent(this, (byte) 7);
+		if (!this.level().isClientSide()) {
+			this.level().broadcastEntityEvent(this, (byte) 7);
 		}
 	}
 
@@ -414,8 +414,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			this.playSound(SoundEvents.ITEM_BREAK, 1.0F, 1.35F);
 		}
 
-		if (this.deathTime == 100 && !this.level.isClientSide()) {
-			this.level.broadcastEntityEvent(this, (byte) 60);
+		if (this.deathTime == 100 && !this.level().isClientSide()) {
+			this.level().broadcastEntityEvent(this, (byte) 60);
 			this.remove(Entity.RemovalReason.KILLED);
 		}
 	}
@@ -438,14 +438,14 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
 		this.playSound(SoundEvents.SHULKER_SHOOT, 3.0F, 1.0F);
 		for (int i = 0; i < 4; i++) {
-			FukumameEntity fukumame = new FukumameEntity(this.level, this);
+			FukumameEntity fukumame = new FukumameEntity(this.level(), this);
 			double d1 = p_29912_.getX() - this.getX();
 			double d2 = p_29912_.getEyeY() - this.getEyeY();
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 			fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
 			fukumame.damage = 2;
-			this.level.addFreshEntity(fukumame);
+			this.level().addFreshEntity(fukumame);
 		}
 	}
 
@@ -525,7 +525,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 						if (this.attackStep > 1) {
 							double d4 = Math.sqrt(Math.sqrt(d0)) * 0.5D;
-							this.gandlem.level.broadcastEntityEvent(this.gandlem, (byte) 5);
+							this.gandlem.level().broadcastEntityEvent(this.gandlem, (byte) 5);
 							this.gandlem.performRangedAttack(livingentity, attackTime);
 						}
 					}

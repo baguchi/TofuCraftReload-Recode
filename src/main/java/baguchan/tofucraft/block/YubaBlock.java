@@ -84,7 +84,7 @@ public class YubaBlock extends Block {
 	}
 
 	private static boolean canEntityTilt(BlockPos p_152302_, Entity p_152303_) {
-		return p_152303_.isOnGround() && p_152303_.position().y > (double) ((float) p_152302_.getY() + 1 / 16D) && p_152303_.position().y <= (double) ((float) p_152302_.getY() + 2 / 16D);
+		return p_152303_.onGround() && p_152303_.position().y > (double) ((float) p_152302_.getY() + 1 / 16D) && p_152303_.position().y <= (double) ((float) p_152302_.getY() + 2 / 16D);
 	}
 
 	@Override

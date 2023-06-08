@@ -137,7 +137,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	private boolean isMovingOnLand() {
-		return this.onGround && this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D && !this.isInWaterOrBubble();
+		return this.onGround() && this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D && !this.isInWaterOrBubble();
 	}
 
 	@Override
@@ -171,15 +171,14 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	@Override
-	public void positionRider(Entity passenger) {
+	protected void positionRider(Entity passenger, Entity.MoveFunction p_19958_) {
 		if (this.isGraspAnim()) {
 			if (!this.getPassengers().isEmpty()) {
 				Vec3 riderPos = this.getRiderPosition();
-
-				this.getPassengers().get(0).setPos(riderPos.x(), riderPos.y(), riderPos.z());
+				p_19958_.accept(passenger, riderPos.x(), riderPos.y(), riderPos.z());
 			}
 		} else {
-			super.positionRider(passenger);
+			super.positionRider(passenger, p_19958_);
 		}
 	}
 
@@ -209,7 +208,7 @@ public class ShuDofuSpider extends Monster {
 	public void tick() {
 		++this.stinkTime;
 		if (this.stinkTime == 120) {
-			this.level.addParticle(new ParticleStink.StinkData(TofuParticleTypes.STINK.get(), 45f, 20, ParticleStink.EnumStinkBehavior.GROW, 2.0f), this.getX(), this.getY() + 1.0, this.getZ(), 0, 0, 0);
+			this.level().addParticle(new ParticleStink.StinkData(TofuParticleTypes.STINK.get(), 45f, 20, ParticleStink.EnumStinkBehavior.GROW, 2.0f), this.getX(), this.getY() + 1.0, this.getZ(), 0, 0, 0);
 			this.stinkTime = this.random.nextInt(0, 20);
 		}
 		if (this.isAlive() && !this.isMovingOnLand()) {
@@ -223,18 +222,18 @@ public class ShuDofuSpider extends Monster {
 			this.graspAnimationState.stop();
 		}
 
-		if (!this.level.isClientSide()) {
+		if (!this.level().isClientSide()) {
 			if (this.isAlive() && !this.isGraspAnim() && this.isAttackAnim() && this.getTarget() != null) {
 				++this.attackTime;
 				if (this.attackTime == 10) {
-					this.level.broadcastEntityEvent(this, (byte) 100);
+					this.level().broadcastEntityEvent(this, (byte) 100);
 				}
 				if (this.attackTime == 14) {
 					float radius = 2;
 					float swipePosX = (float) (this.getX() + radius * Math.cos(Math.toRadians(this.getYHeadRot() + 90)));
 					float swipePosZ = (float) (this.getZ() + radius * Math.sin(Math.toRadians(this.getYHeadRot() + 90)));
 					AABB hitBox = new AABB(BlockPos.containing(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1.55, 1.55, 1.55);
-					List<LivingEntity> entitiesHit = this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
+					List<LivingEntity> entitiesHit = this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
 							doHurtTarget(entity);
@@ -248,7 +247,7 @@ public class ShuDofuSpider extends Monster {
 			if (this.isAlive() && this.isRanged() && this.getTarget() != null) {
 				++this.rangedTime;
 				if (this.rangedTime == 1) {
-					this.level.broadcastEntityEvent(this, (byte) 103);
+					this.level().broadcastEntityEvent(this, (byte) 103);
 				}
 				if (this.rangedTime == 30) {
 					if (this.random.nextInt(2) == 1) {
@@ -291,17 +290,17 @@ public class ShuDofuSpider extends Monster {
 			if (this.isAlive() && this.isJumpAnim()) {
 				++this.jumpTime;
 				if (this.jumpTime == 1) {
-					this.level.broadcastEntityEvent(this, (byte) 102);
+					this.level().broadcastEntityEvent(this, (byte) 102);
 				}
 				if (this.jumpTime == 2) {
 					Vec3 movement = this.getDeltaMovement();
 					this.checkJumpAttack(this.getBoundingBox(), this.getBoundingBox().expandTowards(movement.x, movement.y, movement.z));
 				}
-				if (this.jumpTime == 30 && this.onGround) {
+				if (this.jumpTime == 30 && this.onGround()) {
 					this.impactTime = this.jumpTime + 40;
 				}
-				if (this.jumpTime >= this.impactTime && this.onGround) {
-					var world = ((ServerLevel) this.level);
+				if (this.jumpTime >= this.impactTime && this.onGround()) {
+					var world = ((ServerLevel) this.level());
 					int count = 36;
 					float distance = 4;
 					for (int i = 1; i <= count; i++) {
@@ -310,7 +309,7 @@ public class ShuDofuSpider extends Monster {
 					}
 					float radius = 4;
 					AABB hitBox = new AABB(BlockPos.containing(ShuDofuSpider.this.getX() - radius, ShuDofuSpider.this.getY() - 1, ShuDofuSpider.this.getZ() - radius), BlockPos.containing(ShuDofuSpider.this.getX() + radius, ShuDofuSpider.this.getY() + 2, ShuDofuSpider.this.getZ() + radius));
-					List<LivingEntity> entitiesHit = ShuDofuSpider.this.level.getEntitiesOfClass(LivingEntity.class, hitBox);
+					List<LivingEntity> entitiesHit = ShuDofuSpider.this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
 							entity.hurt(this.damageSources().mobAttack(ShuDofuSpider.this), 30.0F);
@@ -337,17 +336,17 @@ public class ShuDofuSpider extends Monster {
 
 				if (direction == Direction.NORTH) {
 
-					var rBlock = this.level.getBlockState(pos.below().west().west());
-					var rBlockF = this.level.getBlockState(pos.below().west().west().north());
-					var rBlockB = this.level.getBlockState(pos.below().west().west().south());
+					var rBlock = this.level().getBlockState(pos.below().west().west());
+					var rBlockF = this.level().getBlockState(pos.below().west().west().north());
+					var rBlockB = this.level().getBlockState(pos.below().west().west().south());
 					if (rBlock == air && rBlockF == air && rBlockB == air) {
 						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, -1, 0);
 					} else {
 						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
 					}
-					var lBlock = this.level.getBlockState(pos.below().east().east());
-					var lBlockF = this.level.getBlockState(pos.below().east().east().north());
-					var lBlockB = this.level.getBlockState(pos.below().east().east().south());
+					var lBlock = this.level().getBlockState(pos.below().east().east());
+					var lBlockF = this.level().getBlockState(pos.below().east().east().north());
+					var lBlockB = this.level().getBlockState(pos.below().east().east().south());
 					if (lBlock == air && lBlockF == air && lBlockB == air) {
 						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
 					} else {
@@ -355,51 +354,51 @@ public class ShuDofuSpider extends Monster {
 					}
 
 				} else if (direction == Direction.EAST) {
-					var rBlock = this.level.getBlockState(pos.below().north().north());
-					var rBlockF = this.level.getBlockState(pos.below().north().north().east());
-					var rBlockB = this.level.getBlockState(pos.below().north().north().west());
+					var rBlock = this.level().getBlockState(pos.below().north().north());
+					var rBlockF = this.level().getBlockState(pos.below().north().north().east());
+					var rBlockB = this.level().getBlockState(pos.below().north().north().west());
 					if (rBlock == air && rBlockF == air && rBlockB == air) {
 						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
 					} else {
 						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
 					}
-					var lBlock = this.level.getBlockState(pos.below().south().south());
-					var lBlockF = this.level.getBlockState(pos.below().south().south().east());
-					var lBlockB = this.level.getBlockState(pos.below().south().south().west());
+					var lBlock = this.level().getBlockState(pos.below().south().south());
+					var lBlockF = this.level().getBlockState(pos.below().south().south().east());
+					var lBlockB = this.level().getBlockState(pos.below().south().south().west());
 					if (lBlock == air && lBlockF == air && lBlockB == air) {
 						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
 					} else {
 						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
 					}
 				} else if (direction == Direction.WEST) {
-					var rBlock = this.level.getBlockState(pos.below().south().south());
-					var rBlockF = this.level.getBlockState(pos.below().south().south().west());
-					var rBlockB = this.level.getBlockState(pos.below().south().south().east());
+					var rBlock = this.level().getBlockState(pos.below().south().south());
+					var rBlockF = this.level().getBlockState(pos.below().south().south().west());
+					var rBlockB = this.level().getBlockState(pos.below().south().south().east());
 					if (rBlock == air && rBlockF == air && rBlockB == air) {
 						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
 					} else {
 						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
 					}
-					var lBlock = this.level.getBlockState(pos.below().north().north());
-					var lBlockF = this.level.getBlockState(pos.below().north().north().west());
-					var lBlockB = this.level.getBlockState(pos.below().north().north().east());
+					var lBlock = this.level().getBlockState(pos.below().north().north());
+					var lBlockF = this.level().getBlockState(pos.below().north().north().west());
+					var lBlockB = this.level().getBlockState(pos.below().north().north().east());
 					if (lBlock == air && lBlockF == air && lBlockB == air) {
 						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
 					} else {
 						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
 					}
 				} else if (direction == Direction.SOUTH) {
-					var rBlock = this.level.getBlockState(pos.below().east().east());
-					var rBlockF = this.level.getBlockState(pos.below().east().east().south());
-					var rBlockB = this.level.getBlockState(pos.below().east().east().north());
+					var rBlock = this.level().getBlockState(pos.below().east().east());
+					var rBlockF = this.level().getBlockState(pos.below().east().east().south());
+					var rBlockB = this.level().getBlockState(pos.below().east().east().north());
 					if (rBlock == air && rBlockF == air && rBlockB == air) {
 						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
 					} else {
 						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
 					}
-					var lBlock = this.level.getBlockState(pos.below().west().west());
-					var lBlockF = this.level.getBlockState(pos.below().west().west().south());
-					var lBlockB = this.level.getBlockState(pos.below().west().west().north());
+					var lBlock = this.level().getBlockState(pos.below().west().west());
+					var lBlockF = this.level().getBlockState(pos.below().west().west().south());
+					var lBlockB = this.level().getBlockState(pos.below().west().west().north());
 					if (lBlock == air && lBlockF == air && lBlockB == air) {
 						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
 					} else {
@@ -432,25 +431,25 @@ public class ShuDofuSpider extends Monster {
 	public void performRangedAttack(LivingEntity p_29912_) {
 		this.playSound(TofuSounds.TOFUSPIDER_SPIT.get(), 2.0F, (float) (0.6F + this.random.nextDouble() * 0.2F));
 		for (int i = 0; i < 3; i++) {
-			NattoStringEntity natto = new NattoStringEntity(this.level, this);
+			NattoStringEntity natto = new NattoStringEntity(this.level(), this);
 			double d1 = p_29912_.getX() - this.getX();
 			double d2 = p_29912_.getY() - this.getEyeY();
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 			natto.shoot(d1, d2 + f, d3, 1.0F, 2.0F + this.random.nextInt(20) + 10);
 
-			this.level.addFreshEntity(natto);
+			this.level().addFreshEntity(natto);
 		}
 	}
 
 	public void performBreathAttack(LivingEntity p_29912_) {
-		NattoBallEntity ball = new NattoBallEntity(this.level, this);
+		NattoBallEntity ball = new NattoBallEntity(this.level(), this);
 		double d1 = p_29912_.getX() - this.getX();
 		double d2 = p_29912_.getEyeY() - this.getY();
 		double d3 = p_29912_.getZ() - this.getZ();
 		ball.shoot(d1, d2 + 0.5F, d3, 1.0F, 0F);
 
-		this.level.addFreshEntity(ball);
+		this.level().addFreshEntity(ball);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -470,7 +469,7 @@ public class ShuDofuSpider extends Monster {
 
 	protected void checkJumpAttack(AABB p_21072_, AABB p_21073_) {
 		AABB aabb = p_21072_.minmax(p_21073_);
-		List<Entity> list = this.level.getEntities(this, aabb);
+		List<Entity> list = this.level().getEntities(this, aabb);
 		if (!list.isEmpty()) {
 			for (Entity entity : list) {
 				if (entity != this) {
@@ -502,7 +501,7 @@ public class ShuDofuSpider extends Monster {
 
 	protected void checkGraspAttack(AABB p_21072_, AABB p_21073_) {
 		AABB aabb = p_21072_.minmax(p_21073_);
-		List<Entity> list = this.level.getEntities(this, aabb);
+		List<Entity> list = this.level().getEntities(this, aabb);
 		if (!list.isEmpty()) {
 			for (Entity entity : list) {
 				if (entity != this) {
@@ -541,8 +540,8 @@ public class ShuDofuSpider extends Monster {
 		super.die(p_21014_);
 		this.playSound(SoundEvents.SPIDER_DEATH, 1.0F, 0.6F);
 
-		if (!this.level.isClientSide()) {
-			this.level.broadcastEntityEvent(this, (byte) 101);
+		if (!this.level().isClientSide()) {
+			this.level().broadcastEntityEvent(this, (byte) 101);
 		}
 	}
 
@@ -554,8 +553,8 @@ public class ShuDofuSpider extends Monster {
 		if (this.deathTime == 40) {
 		}
 
-		if (this.deathTime == 100 && !this.level.isClientSide()) {
-			this.level.broadcastEntityEvent(this, (byte) 101);
+		if (this.deathTime == 100 && !this.level().isClientSide()) {
+			this.level().broadcastEntityEvent(this, (byte) 101);
 			this.remove(Entity.RemovalReason.KILLED);
 		}
 	}
@@ -578,7 +577,7 @@ public class ShuDofuSpider extends Monster {
 			}
 
 			if (this.isGraspAnim()) {
-				if (!this.level.isClientSide() && this.random.nextFloat() < 0.025F * p_31462_) {
+				if (!this.level().isClientSide() && this.random.nextFloat() < 0.025F * p_31462_) {
 					this.setGraspAnimation(false);
 					this.ejectPassengers();
 					this.attackTime = -40;
@@ -772,7 +771,7 @@ public class ShuDofuSpider extends Monster {
 		public void start() {
 			LivingEntity livingentity = this.spider.getTarget();
 			if (livingentity != null) {
-				this.spider.level.broadcastEntityEvent(this.spider, (byte) 104);
+				this.spider.level().broadcastEntityEvent(this.spider, (byte) 104);
 				this.spider.playAmbientSound();
 			}
 			this.preAttackTime = 0;
@@ -836,7 +835,7 @@ public class ShuDofuSpider extends Monster {
 			LivingEntity livingentity = ShuDofuSpider.this.getTarget();
 			if (livingentity != null && livingentity.isAlive()) {
 				double d0 = ShuDofuSpider.this.getDeltaMovement().y;
-				return (!(d0 * d0 < (double) 0.05F) || !(Math.abs(ShuDofuSpider.this.getXRot()) < 15.0F) || !ShuDofuSpider.this.onGround);
+				return (!(d0 * d0 < (double) 0.05F) || !(Math.abs(ShuDofuSpider.this.getXRot()) < 15.0F) || !ShuDofuSpider.this.onGround());
 			} else {
 				return false;
 			}
@@ -892,7 +891,7 @@ public class ShuDofuSpider extends Monster {
 			double d4 = d2 == 0.0D ? d1 * (double) ((float) j / 6.0F) : d3 / d2;
 
 			for (int k = 1; k < 4; ++k) {
-				if (!p_28472_.level.getBlockState(BlockPos.containing(p_28472_.getX() + d4, p_28472_.getY() + (double) k, p_28472_.getZ() + d3)).getMaterial().isReplaceable()) {
+				if (!p_28472_.level().getBlockState(BlockPos.containing(p_28472_.getX() + d4, p_28472_.getY() + (double) k, p_28472_.getZ() + d3)).canBeReplaced()) {
 					return false;
 				}
 			}
@@ -973,7 +972,7 @@ public class ShuDofuSpider extends Monster {
 
 	public void setAngry(boolean angry) {
 		this.entityData.set(ANGRY, angry);
-		if (this.level != null && !this.level.isClientSide) {
+		if (this.level() != null && !this.level().isClientSide) {
 			AttributeInstance attributeinstance = this.getAttribute(Attributes.ATTACK_DAMAGE);
 			attributeinstance.removeModifier(ATTACK_MODIFIER);
 			AttributeInstance attributeinstance2 = this.getAttribute(Attributes.ARMOR);

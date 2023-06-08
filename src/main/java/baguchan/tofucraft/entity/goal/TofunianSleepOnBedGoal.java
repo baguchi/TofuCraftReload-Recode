@@ -17,7 +17,7 @@ public class TofunianSleepOnBedGoal extends SleepOnBedGoal {
 
 	protected boolean findNearestBlock() {
 		if (this.creature.getTofunainHome() != null &&
-				isValidTarget(this.creature.getLevel(), this.creature.getTofunainHome())) {
+				isValidTarget(this.creature.level(), this.creature.getTofunainHome())) {
 			this.blockPos = this.creature.getTofunainHome();
 			return true;
 		}

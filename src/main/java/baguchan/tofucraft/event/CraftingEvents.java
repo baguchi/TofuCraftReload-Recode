@@ -23,8 +23,8 @@ public class CraftingEvents {
 		Container craftMatrix = event.getInventory();
 		if (item.is(TofuItems.BUCKET_SOYMILK.get())) {
 			if (craftMatrix.hasAnyOf(Set.of(Items.BUCKET, TofuItems.FILTERCLOTH.get(), TofuItems.SEEDS_SOYBEANS.get()))) {
-				Optional<? extends Recipe> recipe = player.level.getRecipeManager().byKey(new ResourceLocation(TofuCraftReload.MODID, "bucket_soymilk_okara"));
-				if (recipe.isPresent() && recipe.stream().findFirst().get().matches(craftMatrix, player.level)) {
+				Optional<? extends Recipe> recipe = player.level().getRecipeManager().byKey(new ResourceLocation(TofuCraftReload.MODID, "bucket_soymilk_okara"));
+				if (recipe.isPresent() && recipe.stream().findFirst().get().matches(craftMatrix, player.level())) {
 					player.getInventory().add(new ItemStack(TofuItems.OKARA.get(), 1));
 				}
 			}

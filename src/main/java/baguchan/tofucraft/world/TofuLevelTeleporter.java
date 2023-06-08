@@ -18,7 +18,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.ITeleporter;
@@ -147,7 +146,7 @@ public class TofuLevelTeleporter implements ITeleporter {
 
 	private static int getScanHeight(ServerLevel world, int x, int z) {
 		int worldHeight = world.getHeight() - 1;
-		int chunkHeight = world.getChunk(x >> 4, z >> 4).getHighestSectionPosition() + 15;
+		int chunkHeight = world.getChunk(x >> 4, z >> 4).getHeight() + 15;
 		return Math.min(worldHeight, chunkHeight);
 	}
 
@@ -271,8 +270,8 @@ public class TofuLevelTeleporter implements ITeleporter {
 			for (int potentialX = 0; potentialX < 4; potentialX++) {
 				for (int potentialY = 0; potentialY < 4; potentialY++) {
 					BlockPos tPos = pos.offset(potentialX - 1, potentialY, potentialZ - 1);
-					Material material = world.getBlockState(tPos).getMaterial();
-					if (potentialY == 0 && !material.isSolid() && !material.isLiquid() || potentialY >= 1 && !material.isReplaceable()) {
+					BlockState blockState = world.getBlockState(tPos);
+					if (potentialY == 0 && !blockState.isSolid() && !blockState.getFluidState().isEmpty() || potentialY >= 1 && !blockState.canBeReplaced()) {
 						return false;
 					}
 				}
@@ -354,8 +353,9 @@ public class TofuLevelTeleporter implements ITeleporter {
 			for (int potentialX = 0; potentialX < 4; potentialX++) {
 				for (int potentialY = 0; potentialY < 4; potentialY++) {
 					BlockPos tPos = pos.offset(potentialX - 1, potentialY, potentialZ - 1);
-					Material material = world.getBlockState(tPos).getMaterial();
-					if (potentialY == 0 && material != Material.REPLACEABLE_PLANT || potentialY >= 1 && !material.isReplaceable()) {
+					BlockState blockState = world.getBlockState(tPos);
+
+					if (potentialY == 0 && !blockState.canBeReplaced() || potentialY >= 1) {
 						return false;
 					}
 				}

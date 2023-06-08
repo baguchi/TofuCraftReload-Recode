@@ -33,9 +33,9 @@ public class NattoBallEntity extends ThrowableProjectile {
 	protected void onHit(HitResult p_36913_) {
 		super.onHit(p_36913_);
 		if (p_36913_.getType() != HitResult.Type.ENTITY || !this.ownedBy(((EntityHitResult) p_36913_).getEntity())) {
-			if (!this.level.isClientSide) {
-				List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4.0D, 2.0D, 4.0D));
-				AreaEffectCloud areaeffectcloud = new AreaEffectCloud(this.level, this.getX(), this.getY(), this.getZ());
+			if (!this.level().isClientSide) {
+				List<LivingEntity> list = this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4.0D, 2.0D, 4.0D));
+				AreaEffectCloud areaeffectcloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
 				Entity entity = this.getOwner();
 				if (entity instanceof LivingEntity) {
 					areaeffectcloud.setOwner((LivingEntity) entity);
@@ -55,7 +55,7 @@ public class NattoBallEntity extends ThrowableProjectile {
 					}
 				}
 
-				this.level.addFreshEntity(areaeffectcloud);
+				this.level().addFreshEntity(areaeffectcloud);
 				this.discard();
 			}
 

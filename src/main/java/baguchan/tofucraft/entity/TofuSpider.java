@@ -92,11 +92,11 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	}
 
 	public void tick() {
-		if (!this.level.isClientSide && this.isAlive() && this.isConverting()) {
+		if (!this.level().isClientSide && this.isAlive() && this.isConverting()) {
 			this.conversionTime -= 1;
 			if (this.conversionTime <= 0 && net.minecraftforge.event.ForgeEventFactory.canLivingConvert(this, TofuEntityTypes.SHUDOFUSPIDER.get(), (timer) -> this.conversionTime = timer)) {
-				this.finishConversion((ServerLevel) this.level);
-				if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this)) {
+				this.finishConversion((ServerLevel) this.level());
+				if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), this)) {
 					int j1 = Mth.floor(this.getY());
 					int i2 = Mth.floor(this.getX());
 					int j2 = Mth.floor(this.getZ());
@@ -109,16 +109,16 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 								int l = j1 + k;
 								int i1 = j2 + k2;
 								BlockPos blockpos = new BlockPos(l2, l, i1);
-								BlockState blockstate = this.level.getBlockState(blockpos);
+								BlockState blockstate = this.level().getBlockState(blockpos);
 								if (WitherBoss.canDestroy(blockstate) && net.minecraftforge.event.ForgeEventFactory.onEntityDestroyBlock(this, blockpos, blockstate)) {
-									flag = this.level.destroyBlock(blockpos, true, this) || flag;
+									flag = this.level().destroyBlock(blockpos, true, this) || flag;
 								}
 							}
 						}
 					}
 
 					if (flag) {
-						this.level.levelEvent((Player) null, 1022, this.blockPosition(), 0);
+						this.level().levelEvent((Player) null, 1022, this.blockPosition(), 0);
 					}
 				}
 			}
@@ -157,7 +157,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	public void startConverting(int p_34385_) {
 		this.getEntityData().set(DATA_CONVERTING_ID, true);
 		this.conversionTime = p_34385_;
-		this.level.broadcastEntityEvent(this, (byte) 16);
+		this.level().broadcastEntityEvent(this, (byte) 16);
 	}
 
 	protected float getStandingEyeHeight(Pose p_33799_, EntityDimensions p_33800_) {
@@ -259,7 +259,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
 		this.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 1.0F);
 		for (int i = 0; i < 3; i++) {
-			FukumameEntity fukumame = new FukumameEntity(this.level, this);
+			FukumameEntity fukumame = new FukumameEntity(this.level(), this);
 			double d1 = p_29912_.getX() - this.getX();
 			double d2 = p_29912_.getEyeY() - this.getEyeY();
 			double d3 = p_29912_.getZ() - this.getZ();
@@ -267,7 +267,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 			fukumame.damage = 1.0F;
 			fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
 
-			this.level.addFreshEntity(fukumame);
+			this.level().addFreshEntity(fukumame);
 		}
 	}
 

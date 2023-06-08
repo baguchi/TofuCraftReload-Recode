@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -172,9 +171,10 @@ public class TofuBlock extends Block {
 	public boolean isUnderWeight(Level world, BlockPos pos) {
 		BlockState weightBlock = world.getBlockState(pos.above());
 		BlockState baseBlock = world.getBlockState(pos.below());
-		boolean isWeightValid = (this != weightBlock.getBlock() && weightBlock != null && (weightBlock.getMaterial() == Material.STONE || weightBlock.getMaterial() == Material.METAL || weightBlock.getMaterial() == Material.HEAVY_METAL));
+		float weightHardness = weightBlock.getDestroySpeed(world, pos.above());
+		boolean isWeightValid = (weightBlock != null && (weightHardness >= 1.0F || weightHardness < 0.0F));
 		float baseHardness = baseBlock.getDestroySpeed(world, pos.below());
-		boolean isBaseValid = (baseBlock.isCollisionShapeFullBlock(world, pos) && (baseBlock.getMaterial() == Material.STONE || baseBlock.getMaterial() == Material.METAL || baseHardness >= 1.0F || baseHardness < 0.0F));
+		boolean isBaseValid = (baseBlock.isCollisionShapeFullBlock(world, pos) && (baseHardness >= 1.0F || baseHardness < 0.0F));
 		return (isWeightValid && isBaseValid);
 	}
 
@@ -183,7 +183,7 @@ public class TofuBlock extends Block {
 		BlockState baseBlock = world.getBlockState(pos.below());
 		boolean isWeightValid = (this != weightBlock.getBlock() && weightBlock != null && (weightBlock.getBlock() == block));
 		float baseHardness = baseBlock.getDestroySpeed(world, pos.below());
-		boolean isBaseValid = (baseBlock.isCollisionShapeFullBlock(world, pos) && (baseBlock.getMaterial() == Material.STONE || baseBlock.getMaterial() == Material.METAL || baseHardness >= 1.0F || baseHardness < 0.0F));
+		boolean isBaseValid = (baseBlock.isCollisionShapeFullBlock(world, pos) && (baseHardness >= 1.0F || baseHardness < 0.0F));
 
 		return (isWeightValid && isBaseValid);
 	}
