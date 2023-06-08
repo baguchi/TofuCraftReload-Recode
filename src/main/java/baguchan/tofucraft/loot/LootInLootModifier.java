@@ -7,8 +7,8 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 
@@ -32,9 +32,8 @@ public class LootInLootModifier extends LootModifier {
 	@Nonnull
 	@Override
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-		ObjectArrayList<ItemStack> objectarraylist = new ObjectArrayList<>();
-		objectarraylist = ForgeHooks.modifyLoot(this.lootTable, objectarraylist, context);
-		generatedLoot.addAll(objectarraylist);
+		LootTable extraTable = context.getLevel().getServer().getLootData().getLootTable(this.lootTable);
+		extraTable.getRandomItems(context, generatedLoot::add);
 		return generatedLoot;
 	}
 
