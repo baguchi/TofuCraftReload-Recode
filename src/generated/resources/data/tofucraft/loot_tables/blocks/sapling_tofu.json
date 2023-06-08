@@ -8,13 +8,14 @@
           "condition": "minecraft:survives_explosion"
         }
       ],
-      "entries": [
+      "entries" : [
         {
-          "type": "minecraft:item",
-          "name": "tofucraft:sapling_tofu"
+          "type" : "minecraft:item",
+          "name" : "tofucraft:sapling_tofu"
         }
       ],
-      "rolls": 1.0
+      "rolls" : 1.0
     }
-  ]
+  ],
+  "random_sequence" : "tofucraft:blocks/sapling_tofu"
 }

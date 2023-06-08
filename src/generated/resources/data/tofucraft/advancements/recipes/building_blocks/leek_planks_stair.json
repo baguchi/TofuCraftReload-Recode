@@ -30,5 +30,6 @@
     "recipes" : [
       "tofucraft:leek_planks_stair"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

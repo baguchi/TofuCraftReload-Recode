@@ -30,5 +30,6 @@
     "recipes" : [
       "minecraft:tofu_diamond_pickaxe_smithing"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

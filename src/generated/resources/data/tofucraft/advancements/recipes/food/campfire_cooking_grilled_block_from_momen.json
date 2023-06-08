@@ -20,15 +20,16 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_item",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:campfire_cooking_grilled_block_from_momen"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

@@ -37,15 +37,16 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
+          "conditions" : [
             {
-              "condition": "minecraft:survives_explosion"
+              "condition" : "minecraft:survives_explosion"
             }
           ],
-          "name": "minecraft:barrel"
+          "name" : "minecraft:barrel"
         }
       ],
-      "rolls": 1.0
+      "rolls" : 1.0
     }
-  ]
+  ],
+  "random_sequence" : "tofucraft:blocks/barrel_miso"
 }
