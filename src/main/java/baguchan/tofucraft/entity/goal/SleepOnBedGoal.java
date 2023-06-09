@@ -18,7 +18,7 @@ public class SleepOnBedGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return this.creature.getTarget() == null && this.creature.level.isNight() && !this.creature.isSleeping() && super.canUse();
+		return this.creature.getTarget() == null && this.creature.level().isNight() && !this.creature.isSleeping() && super.canUse();
 	}
 
 	public void tick() {

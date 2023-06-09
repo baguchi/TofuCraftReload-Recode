@@ -104,7 +104,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 
 	@Override
 	public boolean canSurvive(BlockState p_196260_1_, LevelReader p_196260_2_, BlockPos p_196260_3_) {
-		return p_196260_2_.getBlockState(p_196260_3_.below()).getMaterial().isSolid();
+		return p_196260_2_.getBlockState(p_196260_3_.below()).isSolid();
 	}
 
 	@Override

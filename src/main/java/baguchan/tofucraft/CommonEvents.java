@@ -88,7 +88,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onUpdate(LivingEvent.LivingTickEvent event) {
 		LivingEntity livingEntity = event.getEntity();
-		if (!livingEntity.level.isClientSide()) {
+		if (!livingEntity.level().isClientSide()) {
 			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
 				cap.tick(livingEntity);
 			});
@@ -125,7 +125,7 @@ public class CommonEvents {
 		float f5 = Mth.sin(-f * ((float) Math.PI / 180F));
 		float f6 = f3 * f4;
 		float f7 = f2 * f4;
-		double d0 = p_41437_.getReachDistance();
+		double d0 = p_41437_.getBlockReach();
 		Vec3 vec31 = vec3.add((double) f6 * d0, (double) f5 * d0, (double) f7 * d0);
 		return p_41436_.clip(new ClipContext(vec3, vec31, ClipContext.Block.OUTLINE, p_41438_, p_41437_));
 	}
@@ -134,7 +134,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onUsingItem(LivingEntityUseItemEvent event) {
 		ItemStack stack = event.getItem();
-		Level level = event.getEntity().level;
+		Level level = event.getEntity().level();
 
 		if (stack.is(Items.BRUSH) && event.getEntity() instanceof Player player) {
 			BlockHitResult blockhitresult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
@@ -218,7 +218,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onBlockBreaked(BlockEvent.BreakEvent event) {
 		if (event.getPlayer() instanceof ServerPlayer) {
-			LevelAccessor world = event.getPlayer().level;
+			LevelAccessor world = event.getPlayer().level();
 			if (world instanceof ServerLevel) {
 				ServerLevel serverLevel = (ServerLevel) world;
 				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
@@ -243,7 +243,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
 		if (event.getEntity() instanceof ServerPlayer) {
-			LevelAccessor world = event.getEntity().level;
+			LevelAccessor world = event.getEntity().level();
 			if (world instanceof ServerLevel) {
 				ServerLevel serverLevel = (ServerLevel) world;
 				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
@@ -367,4 +367,18 @@ public class CommonEvents {
 		JigsawHelper.registerJigsaw(event.getServer(), new ResourceLocation("minecraft:village/desert/houses"),
 				new ResourceLocation("tofucraft:village/tofu_craftsman_house_desert_1"), 10);
 	}
+
+	@SubscribeEvent
+	public static void onClone(PlayerEvent.Clone event) {
+		Player oldPlayer = event.getOriginal();
+		Player newPlayer = event.getEntity();
+		if (!event.isWasDeath()) {
+			oldPlayer.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(oldcap -> {
+				newPlayer.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
+					cap.deserializeNBT(oldcap.serializeNBT());
+				});
+			});
+		}
+	}
+
 }

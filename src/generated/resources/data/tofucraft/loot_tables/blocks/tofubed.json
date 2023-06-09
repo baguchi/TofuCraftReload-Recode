@@ -13,17 +13,18 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "tofucraft:tofubed",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "part": "head"
+              "block" : "tofucraft:tofubed",
+              "condition" : "minecraft:block_state_property",
+              "properties" : {
+                "part" : "head"
               }
             }
           ],
-          "name": "tofucraft:tofubed"
+          "name" : "tofucraft:tofubed"
         }
       ],
-      "rolls": 1.0
+      "rolls" : 1.0
     }
-  ]
+  ],
+  "random_sequence" : "tofucraft:blocks/tofubed"
 }

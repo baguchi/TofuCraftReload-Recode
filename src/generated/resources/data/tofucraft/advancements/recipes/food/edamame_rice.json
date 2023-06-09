@@ -17,18 +17,19 @@
       "conditions": {
         "recipe": "tofucraft:edamame_rice"
       },
-      "trigger": "minecraft:recipe_unlocked"
+      "trigger" : "minecraft:recipe_unlocked"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_item",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:edamame_rice"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

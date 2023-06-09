@@ -90,17 +90,17 @@ public class TofuPig extends Pig implements ItemInteractable {
 			p_28298_.playSound(SoundEvents.ANVIL_USE, 1.0F, 1.0F);
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.METAL);
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		} else if (var3.is(TofuItems.TOFUGRILLED.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
 			p_28298_.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.0F);
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.GRILLED);
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		} else if (var3.is(TofuItems.TOFUZUNDA.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
 			p_28298_.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.0F);
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.ZUNDA);
-			return InteractionResult.sidedSuccess(this.level.isClientSide);
+			return InteractionResult.sidedSuccess(this.level().isClientSide);
 		} else {
 			return super.mobInteract(p_28298_, p_28299_);
 		}
@@ -198,20 +198,20 @@ public class TofuPig extends Pig implements ItemInteractable {
 	private void healEffect() {
 		float radius = 5;
 		AABB box = new AABB(BlockPos.containing(this.getX() - radius, this.getY() - 1, this.getZ() - radius), BlockPos.containing(this.getX() + radius, this.getY() + 3, this.getZ() + radius));
-		List<LivingEntity> hitEntities = this.level.getEntitiesOfClass(LivingEntity.class, box);
+		List<LivingEntity> hitEntities = this.level().getEntitiesOfClass(LivingEntity.class, box);
 		for (LivingEntity hitEntity : hitEntities) {
-			if (!hitEntity.level.isClientSide) {
+			if (!hitEntity.level().isClientSide) {
 				hitEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200));
 			}
 		}
-		if (this.level.isClientSide) {
+		if (this.level().isClientSide) {
 			int count = 20;
 			for (int i = 1; i <= count; i++) {
 				double yaw = i * 365f / count;
 				double speed = 0.5;
 				double xSpeed = speed * Math.cos(Math.toRadians(yaw));
 				double zSpeed = speed * Math.sin(Math.toRadians(yaw));
-				this.level.addParticle(new ParticleZundaCloud.CloudData(TofuParticleTypes.ZUNDA_CLOUD.get(), 40f, 20, ParticleZundaCloud.EnumCloudBehavior.GROW, 1f), this.getX(), this.getY(), this.getZ(), xSpeed, 0, zSpeed);
+				this.level().addParticle(new ParticleZundaCloud.CloudData(TofuParticleTypes.ZUNDA_CLOUD.get(), 40f, 20, ParticleZundaCloud.EnumCloudBehavior.GROW, 1f), this.getX(), this.getY(), this.getZ(), xSpeed, 0, zSpeed);
 			}
 		}
 	}
@@ -237,7 +237,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> p_29480_) {
-		if (DATA_HEALING_TIME.equals(p_29480_) && this.level.isClientSide) {
+		if (DATA_HEALING_TIME.equals(p_29480_) && this.level().isClientSide) {
 			this.healilng.onSynced();
 		}
 

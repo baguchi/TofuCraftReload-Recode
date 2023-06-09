@@ -17,18 +17,19 @@
       "conditions": {
         "recipe": "tofucraft:tofudiamondnugget"
       },
-      "trigger": "minecraft:recipe_unlocked"
+      "trigger" : "minecraft:recipe_unlocked"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_item",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:tofudiamondnugget"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

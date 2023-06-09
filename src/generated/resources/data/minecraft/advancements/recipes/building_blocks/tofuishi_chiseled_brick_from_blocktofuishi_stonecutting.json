@@ -17,18 +17,19 @@
       "conditions": {
         "recipe": "minecraft:tofuishi_chiseled_brick_from_blocktofuishi_stonecutting"
       },
-      "trigger": "minecraft:recipe_unlocked"
+      "trigger" : "minecraft:recipe_unlocked"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_blocktofuishi",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "minecraft:tofuishi_chiseled_brick_from_blocktofuishi_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

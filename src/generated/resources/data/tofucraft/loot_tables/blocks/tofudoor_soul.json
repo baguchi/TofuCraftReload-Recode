@@ -13,17 +13,18 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "tofucraft:tofudoor_soul",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "half": "lower"
+              "block" : "tofucraft:tofudoor_soul",
+              "condition" : "minecraft:block_state_property",
+              "properties" : {
+                "half" : "lower"
               }
             }
           ],
-          "name": "tofucraft:tofudoor_soul"
+          "name" : "tofucraft:tofudoor_soul"
         }
       ],
-      "rolls": 1.0
+      "rolls" : 1.0
     }
-  ]
+  ],
+  "random_sequence" : "tofucraft:blocks/tofudoor_soul"
 }

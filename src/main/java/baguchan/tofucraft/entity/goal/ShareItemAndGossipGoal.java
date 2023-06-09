@@ -41,7 +41,7 @@ public class ShareItemAndGossipGoal extends Goal {
 			this.nextStartTick--;
 			return false;
 		}
-		if (this.tofunian.level.isDay() && !this.tofunian.isBaby()) {
+		if (this.tofunian.level().isDay() && !this.tofunian.isBaby()) {
 			this.nextStartTick = this.tofunian.getRandom().nextInt(200) + 200;
 			this.partner = getFreePartner();
 			return (this.partner != null);
@@ -67,7 +67,7 @@ public class ShareItemAndGossipGoal extends Goal {
 
 	@Nullable
 	private Tofunian getFreePartner() {
-		List<Tofunian> list = this.tofunian.level.getNearbyEntities(Tofunian.class, PARTNER_TARGETING, this.tofunian, this.tofunian.getBoundingBox().inflate(8.0D));
+		List<Tofunian> list = this.tofunian.level().getNearbyEntities(Tofunian.class, PARTNER_TARGETING, this.tofunian, this.tofunian.getBoundingBox().inflate(8.0D));
 		double d0 = Double.MAX_VALUE;
 		Tofunian tofunian2 = null;
 		for (Tofunian tofunianEntity1 : list) {
@@ -91,11 +91,11 @@ public class ShareItemAndGossipGoal extends Goal {
 
 					throwHalfStack(this.tofunian, Tofunian.FOOD_POINTS.keySet(), this.partner);
 					this.needPassed = false;
-					this.tofunian.level.broadcastEntityEvent(this.tofunian, (byte) 5);
+					this.tofunian.level().broadcastEntityEvent(this.tofunian, (byte) 5);
 
 				}
-				if (this.tofunian.level instanceof ServerLevel) {
-					this.tofunian.gossip((ServerLevel) this.tofunian.level, this.partner, this.tofunian.level.getGameTime());
+				if (this.tofunian.level() instanceof ServerLevel) {
+					this.tofunian.gossip((ServerLevel) this.tofunian.level(), this.partner, this.tofunian.level().getGameTime());
 				}
 			} else {
 				this.tofunian.getNavigation().moveTo(this.partner, 1.0D);

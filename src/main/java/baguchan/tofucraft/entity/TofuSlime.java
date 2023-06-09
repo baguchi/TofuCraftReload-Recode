@@ -42,14 +42,14 @@ public class TofuSlime extends Slime {
 	}
 
 	public void tick() {
-		if (!this.level.isClientSide && this.isAlive() && !this.isNoAi()) {
+		if (!this.level().isClientSide && this.isAlive() && !this.isNoAi()) {
 			if (this.isZundaConverting()) {
 				--this.conversionTime;
 				if (this.conversionTime < 0 && net.minecraftforge.event.ForgeEventFactory.canLivingConvert(this, EntityType.DROWNED, (timer) -> this.conversionTime = timer)) {
 					this.doZundaConversion();
 				}
 			} else if (this.convertsOnZunda()) {
-				if (this.level.getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
+				if (this.level().getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
 					++this.onZundaTime;
 					if (this.onZundaTime >= 600) {
 						this.startZundaConversion(300);

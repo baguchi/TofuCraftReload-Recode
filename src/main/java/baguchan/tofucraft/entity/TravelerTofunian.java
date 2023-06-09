@@ -59,10 +59,10 @@ public class TravelerTofunian extends AbstractTofunian {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY), TofuSounds.TOFUNIAN_YES.get(), (p_35882_) -> {
-			return this.level.isNight() && !p_35882_.isInvisible();
+			return this.level().isNight() && !p_35882_.isInvisible();
 		}));
 		this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), TofuSounds.TOFUNIAN_YES.get(), (p_35880_) -> {
-			return this.level.isDay() && p_35880_.isInvisible();
+			return this.level().isDay() && p_35880_.isInvisible();
 		}));
 		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.2D, 1.2D));
@@ -100,14 +100,14 @@ public class TravelerTofunian extends AbstractTofunian {
 			}
 
 			if (this.getOffers().isEmpty()) {
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			} else {
-				if (!this.level.isClientSide) {
+				if (!this.level().isClientSide) {
 					this.setTradingPlayer(p_35856_);
 					this.openTradingScreen(p_35856_, this.getDisplayName(), 1);
 				}
 
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			}
 		} else {
 			return super.mobInteract(p_35856_, p_35857_);
@@ -154,7 +154,7 @@ public class TravelerTofunian extends AbstractTofunian {
 	protected void rewardTradeXp(MerchantOffer p_35859_) {
 		if (p_35859_.shouldRewardExp()) {
 			int i = 3 + this.random.nextInt(4);
-			this.level.addFreshEntity(new ExperienceOrb(this.level, this.getX(), this.getY() + 0.5D, this.getZ(), i));
+			this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY() + 0.5D, this.getZ(), i));
 		}
 
 	}
@@ -169,7 +169,7 @@ public class TravelerTofunian extends AbstractTofunian {
 
 	public void aiStep() {
 		super.aiStep();
-		if (!this.level.isClientSide) {
+		if (!this.level().isClientSide) {
 			this.maybeDespawn();
 		}
 

@@ -279,9 +279,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
 			}
 		}
-		if (this.previousCustomer != null && getLevel() instanceof ServerLevel) {
-			((ServerLevel) getLevel()).onReputationEvent(ReputationEventType.TRADE, this.previousCustomer, this);
-			getLevel().broadcastEntityEvent(this, (byte) 14);
+		if (this.previousCustomer != null && level() instanceof ServerLevel) {
+			((ServerLevel) level()).onReputationEvent(ReputationEventType.TRADE, this.previousCustomer, this);
+			level().broadcastEntityEvent(this, (byte) 14);
 			this.previousCustomer = null;
 		}
 		if (getRole() == Roles.TOFUNIAN && isTrading()) {
@@ -300,14 +300,14 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public void tofunianJobCheck() {
-		if ((level.getGameTime() + this.getId()) % (50) != 0) return;
+		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
 
 		//validate job position
 		if (this.getTofunainJobBlock() != null && this.getRole() != Roles.TOFUNIAN) {
-			if (!Roles.getJobBlock(this.getRole().getPoiType()).contains(this.level.getBlockState(this.getTofunainJobBlock()))) {
-				if (this.level instanceof ServerLevel) {
+			if (!Roles.getJobBlock(this.getRole().getPoiType()).contains(this.level().getBlockState(this.getTofunainJobBlock()))) {
+				if (this.level() instanceof ServerLevel) {
 					//don't forget release poi
-					PoiManager poimanager = ((ServerLevel) this.level).getPoiManager();
+					PoiManager poimanager = ((ServerLevel) this.level()).getPoiManager();
 					if (poimanager.exists(this.getTofunainJobBlock(), (p_217230_) -> {
 						return true;
 					})) {
@@ -325,14 +325,14 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public void tofunianHomeCheck() {
-		if ((level.getGameTime() + this.getId()) % (50) != 0) return;
+		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
 
 		//validate home position
 		boolean tryFind = false;
 		if (getTofunainHome() == null) {
 			tryFind = true;
 		} else {
-			if (!this.level.getBlockState(this.getTofunainHome()).is(BlockTags.BEDS)) {
+			if (!this.level().getBlockState(this.getTofunainHome()).is(BlockTags.BEDS)) {
 				//home position isnt a chest, keep current position but find better one
 				tryFind = true;
 				this.setTofunainHome(null);
@@ -345,7 +345,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				for (int y = -range / 2; y <= range / 2; y++) {
 					for (int z = -range; z <= range; z++) {
 						BlockPos pos = this.blockPosition().offset(x, y, z);
-						if (this.level.getBlockState(pos).is(BlockTags.BEDS)) {
+						if (this.level().getBlockState(pos).is(BlockTags.BEDS)) {
 							setTofunainHome(pos);
 							return;
 						}
@@ -365,7 +365,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			i += 5;
 		}
 		if (offer.shouldRewardExp())
-			getLevel().addFreshEntity(new ExperienceOrb(getLevel(), getX(), getY() + 0.5D, getZ(), i));
+			level().addFreshEntity(new ExperienceOrb(level(), getX(), getY() + 0.5D, getZ(), i));
 	}
 
 	@Override
@@ -382,11 +382,11 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG.get() && this.isAlive() && !this.isTrading() && !this.isSleeping() && !p_35472_.isSecondaryUseActive()) {
 			if (this.isBaby()) {
 				this.setUnhappy();
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			} else {
 				boolean flag = this.getOffers().isEmpty();
 				if (p_35473_ == InteractionHand.MAIN_HAND) {
-					if (flag && !this.level.isClientSide) {
+					if (flag && !this.level().isClientSide) {
 						this.setUnhappy();
 					}
 
@@ -394,13 +394,13 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				}
 
 				if (flag) {
-					return InteractionResult.sidedSuccess(this.level.isClientSide);
+					return InteractionResult.sidedSuccess(this.level().isClientSide);
 				} else {
-					if (!this.level.isClientSide && !this.offers.isEmpty()) {
+					if (!this.level().isClientSide && !this.offers.isEmpty()) {
 						this.startTrading(p_35472_);
 					}
 
-					return InteractionResult.sidedSuccess(this.level.isClientSide);
+					return InteractionResult.sidedSuccess(this.level().isClientSide);
 				}
 			}
 		} else {
@@ -410,7 +410,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	private void setUnhappy() {
 		this.setUnhappyCounter(40);
-		if (!this.level.isClientSide()) {
+		if (!this.level().isClientSide()) {
 			this.playSound(TofuSounds.TOFUNIAN_NO.get(), this.getSoundVolume(), this.getVoicePitch());
 		}
 
@@ -469,19 +469,19 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		for (MerchantOffer merchantoffer : this.getOffers()) {
 			merchantoffer.resetUses();
 		}
-		this.lastRestock = getLevel().getGameTime();
+		this.lastRestock = level().getGameTime();
 		this.restocksToday++;
 	}
 
 	private boolean allowedToRestock() {
-		return (this.restocksToday == 0 || (this.restocksToday < 2 && getLevel().getGameTime() > this.lastRestock + 2400L));
+		return (this.restocksToday == 0 || (this.restocksToday < 2 && level().getGameTime() > this.lastRestock + 2400L));
 	}
 
 	public boolean canResetStock() {
 		long i = this.lastRestock + 12000L;
-		long j = this.level.getGameTime();
+		long j = this.level().getGameTime();
 		boolean flag = j > i;
-		long k = this.level.getDayTime();
+		long k = this.level().getDayTime();
 		if (this.lastRestockDayTime > 0L) {
 			long l = this.lastRestockDayTime / 24000L;
 			long i1 = k / 24000L;
@@ -542,7 +542,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	private void increaseMerchantCareer() {
 		setTofunainLevel(this.tofunianLevel + 1);
 		updateTrades();
-		this.level.broadcastEntityEvent(this, (byte) 5);
+		this.level().broadcastEntityEvent(this, (byte) 5);
 	}
 
 	public void setTofunainLevel(int level) {
@@ -715,10 +715,10 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public void setLastHurtByMob(@Nullable LivingEntity p_70604_1_) {
-		if (p_70604_1_ != null && this.level instanceof ServerLevel) {
-			((ServerLevel) this.level).onReputationEvent(ReputationEventType.VILLAGER_HURT, p_70604_1_, this);
+		if (p_70604_1_ != null && this.level() instanceof ServerLevel) {
+			((ServerLevel) this.level()).onReputationEvent(ReputationEventType.VILLAGER_HURT, p_70604_1_, this);
 			if (this.isAlive() && p_70604_1_ instanceof Player) {
-				this.level.broadcastEntityEvent(this, (byte) 13);
+				this.level().broadcastEntityEvent(this, (byte) 13);
 			}
 		}
 
@@ -747,9 +747,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		Entity entity = p_35419_.getEntity();
 
 		if (this.getTofunainJobBlock() != null) {
-			if (this.level instanceof ServerLevel) {
+			if (this.level() instanceof ServerLevel) {
 				//don't forget release poi
-				PoiManager poimanager = ((ServerLevel) this.level).getPoiManager();
+				PoiManager poimanager = ((ServerLevel) this.level()).getPoiManager();
 				if (poimanager.exists(this.getTofunainJobBlock(), (p_217230_) -> {
 					return true;
 				})) {
@@ -816,7 +816,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	private void maybeDecayGossip() {
-		long i = this.level.getGameTime();
+		long i = this.level().getGameTime();
 		if (this.lastGossipDecay == 0L) {
 			this.lastGossipDecay = i;
 		} else if (i >= this.lastGossipDecay + 24000L) {
@@ -986,7 +986,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		public boolean canUse() {
 			BlockPos blockpos = this.hunter.getTofunainHome();
 
-			double distance = this.hunter.level.isDay() ? this.stopDistance : this.stopDistance / 4.0F;
+			double distance = this.hunter.level().isDay() ? this.stopDistance : this.stopDistance / 4.0F;
 
 			return blockpos != null && this.isTooFarAway(blockpos, distance);
 		}
@@ -1020,7 +1020,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 		public boolean canUse() {
 
-			List<ItemEntity> list = this.mob.level.getEntitiesOfClass(ItemEntity.class, this.mob.getBoundingBox().inflate(4.0D, 4.0D, 4.0D), Tofunian.ALLOWED_ITEMS);
+			List<ItemEntity> list = this.mob.level().getEntitiesOfClass(ItemEntity.class, this.mob.getBoundingBox().inflate(4.0D, 4.0D, 4.0D), Tofunian.ALLOWED_ITEMS);
 			if (!list.isEmpty() && this.mob.hasLineOfSight(list.get(0))) {
 				return this.mob.getNavigation().moveTo(list.get(0), (double) 1.0F);
 			}

@@ -17,18 +17,19 @@
           }
         ]
       },
-      "trigger": "minecraft:inventory_changed"
+      "trigger" : "minecraft:inventory_changed"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_tofugrilled",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:tofutrapdoor_grilled"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

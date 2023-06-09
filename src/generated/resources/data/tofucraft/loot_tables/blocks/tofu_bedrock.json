@@ -8,13 +8,14 @@
           "condition": "minecraft:survives_explosion"
         }
       ],
-      "entries": [
+      "entries" : [
         {
-          "type": "minecraft:item",
-          "name": "tofucraft:tofu_bedrock"
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofu_bedrock"
         }
       ],
-      "rolls": 1.0
+      "rolls" : 1.0
     }
-  ]
+  ],
+  "random_sequence" : "tofucraft:blocks/tofu_bedrock"
 }

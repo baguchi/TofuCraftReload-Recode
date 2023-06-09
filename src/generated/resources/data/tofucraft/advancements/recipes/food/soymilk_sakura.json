@@ -17,18 +17,19 @@
       "conditions": {
         "recipe": "tofucraft:soymilk_sakura"
       },
-      "trigger": "minecraft:recipe_unlocked"
+      "trigger" : "minecraft:recipe_unlocked"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_item",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:soymilk_sakura"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

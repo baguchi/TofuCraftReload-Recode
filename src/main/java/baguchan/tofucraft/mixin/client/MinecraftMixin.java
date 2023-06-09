@@ -25,8 +25,8 @@ public class MinecraftMixin {
 	@Inject(method = "getSituationalMusic", at = @At("HEAD"), cancellable = true)
 	public void getSituationalMusic(CallbackInfoReturnable<Music> callbackInfo) {
 		if (player != null) {
-			if (player.level.dimension() == TofuDimensions.tofu_world) {
-				Holder<Biome> holder = player.level.getBiome(player.blockPosition());
+			if (player.level().dimension() == TofuDimensions.tofu_world) {
+				Holder<Biome> holder = player.level().getBiome(player.blockPosition());
 				callbackInfo.setReturnValue(holder.value().getBackgroundMusic().orElse(Musics.GAME));
 			}
 		}

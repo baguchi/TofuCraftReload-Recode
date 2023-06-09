@@ -19,11 +19,11 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.getLevel().isDay() && super.canUse());
+		return (this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isDay() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.getLevel().isDay() && this.mob != null);
+		return (super.canContinueToUse() && this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isDay() && this.mob != null);
 	}
 
 	public void start() {
@@ -52,7 +52,7 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 
 	protected boolean findNearestBlock() {
 		if (this.creature.getTofunainJobBlock() != null &&
-				isValidTarget(this.creature.getLevel(), this.creature.getTofunainJobBlock())) {
+				isValidTarget(this.creature.level(), this.creature.getTofunainJobBlock())) {
 			this.blockPos = this.creature.getTofunainJobBlock();
 			return true;
 		}

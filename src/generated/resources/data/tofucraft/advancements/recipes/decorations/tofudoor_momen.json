@@ -17,18 +17,19 @@
       "conditions": {
         "recipe": "tofucraft:tofudoor_momen"
       },
-      "trigger": "minecraft:recipe_unlocked"
+      "trigger" : "minecraft:recipe_unlocked"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_blocktofumomen",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:tofudoor_momen"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

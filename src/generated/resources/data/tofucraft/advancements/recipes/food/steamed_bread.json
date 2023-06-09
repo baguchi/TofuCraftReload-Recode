@@ -15,18 +15,19 @@
       "conditions": {
         "recipe": "tofucraft:steamed_bread"
       },
-      "trigger": "minecraft:recipe_unlocked"
+      "trigger" : "minecraft:recipe_unlocked"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_item",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:steamed_bread"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

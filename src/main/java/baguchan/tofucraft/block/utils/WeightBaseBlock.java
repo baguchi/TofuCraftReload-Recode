@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Material;
 
 public class WeightBaseBlock extends Block {
 	public static final EnumProperty<Stat> STAT = EnumProperty.create("stat", Stat.class);
@@ -39,8 +38,8 @@ public class WeightBaseBlock extends Block {
 
 	public boolean isUnderWeight(Level world, BlockPos pos) {
 		BlockState weightBlock = world.getBlockState(pos.above());
-		BlockState baseBlock = world.getBlockState(pos.below());
-		boolean isWeightValid = (this != weightBlock.getBlock() && weightBlock != null && (weightBlock.getMaterial() == Material.STONE || weightBlock.getMaterial() == Material.METAL || weightBlock.getMaterial() == Material.HEAVY_METAL));
+		float weightHardness = weightBlock.getDestroySpeed(world, pos.above());
+		boolean isWeightValid = (weightBlock != null && (weightHardness >= 1.0F || weightHardness < 0.0F));
 		return (isWeightValid);
 	}
 

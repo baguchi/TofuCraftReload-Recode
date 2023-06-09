@@ -17,18 +17,19 @@
       "conditions": {
         "recipe": "tofucraft:equipment/tofu_kinu_sword"
       },
-      "trigger": "minecraft:recipe_unlocked"
+      "trigger" : "minecraft:recipe_unlocked"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_item",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:equipment/tofu_kinu_sword"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

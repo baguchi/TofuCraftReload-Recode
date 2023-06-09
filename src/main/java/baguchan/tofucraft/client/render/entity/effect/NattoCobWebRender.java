@@ -39,7 +39,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
 
 			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
-			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level, (LivingEntity) null, entity.getId());
+			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level(), (LivingEntity) null, entity.getId());
 
 			this.itemRenderer.render(itemStack, ItemDisplayContext.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
 			stack.popPose();
@@ -51,7 +51,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 
 
 			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
-			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level, (LivingEntity) null, entity.getId());
+			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level(), (LivingEntity) null, entity.getId());
 
 			this.itemRenderer.render(itemStack, ItemDisplayContext.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
 			stack.popPose();

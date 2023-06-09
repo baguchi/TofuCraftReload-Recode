@@ -17,18 +17,19 @@
       "conditions": {
         "recipe": "tofucraft:tofuslab_dried"
       },
-      "trigger": "minecraft:recipe_unlocked"
+      "trigger" : "minecraft:recipe_unlocked"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_item",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:tofuslab_dried"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }
