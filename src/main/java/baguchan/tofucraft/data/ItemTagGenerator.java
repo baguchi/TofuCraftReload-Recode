@@ -29,6 +29,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(TofuTags.Items.MILK_SOYMILK).add(TofuItems.BUCKET_SOYMILK.get(), TofuItems.SOYMILK.get());
 		tag(TofuTags.Items.RICE).add(TofuItems.RICE.get());
 		tag(ItemTags.LOGS_THAT_BURN).add(TofuBlocks.TOFU_STEM.get().asItem());
+		tag(ItemTags.PLANKS).add(TofuBlocks.TOFU_STEM_PLANKS.get().asItem()).add(TofuBlocks.LEEK_STEM.get().asItem()).add(TofuBlocks.LEEK_GREEN_STEM.get().asItem());
 		tag(ItemTags.ARROWS).add(TofuItems.ZUNDA_ARROW.get());
 		tag(Tags.Items.SEEDS).add(TofuItems.SEEDS_CHILI.get(), TofuItems.SEEDS_SOYBEANS.get(), TofuItems.SEEDS_SOYBEANS_NETHER.get(), TofuItems.SEEDS_SOYBEANS_SOUL.get(), TofuItems.SEEDS_RICE.get());
 		tag(TofuTags.Items.RICE_BLOCK).add(TofuBlocks.RICE_BLOCK.get().asItem());
