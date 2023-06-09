@@ -37,7 +37,7 @@ public class NetherFukumameItem extends Item {
 		}
 		playerIn.awardStat(Stats.ITEM_USED.get(this));
 		playerIn.getCooldowns().addCooldown(itemstack.getItem(), 10);
-		if (!playerIn.level.isClientSide)
+		if (!playerIn.level().isClientSide)
 			itemstack.hurtAndBreak(1, (LivingEntity) playerIn, playerEntity -> playerEntity.broadcastBreakEvent(handIn));
 		return InteractionResultHolder.sidedSuccess(itemstack, levelIn.isClientSide());
 	}

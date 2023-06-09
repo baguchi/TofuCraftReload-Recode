@@ -15,15 +15,16 @@
             {
               "block": "tofucraft:tofudoor_ishi",
               "condition": "minecraft:block_state_property",
-              "properties": {
-                "half": "lower"
+              "properties" : {
+                "half" : "lower"
               }
             }
           ],
-          "name": "tofucraft:tofudoor_ishi"
+          "name" : "tofucraft:tofudoor_ishi"
         }
       ],
-      "rolls": 1.0
+      "rolls" : 1.0
     }
-  ]
+  ],
+  "random_sequence" : "tofucraft:blocks/tofudoor_ishi"
 }

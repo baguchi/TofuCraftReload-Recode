@@ -40,8 +40,8 @@ public class ZundaArrow extends AbstractArrow {
 
 	public void tick() {
 		super.tick();
-		if (this.level.isClientSide && !this.inGround) {
-			this.level.addParticle(ParticleTypes.SPORE_BLOSSOM_AIR, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+		if (this.level().isClientSide && !this.inGround) {
+			this.level().addParticle(ParticleTypes.SPORE_BLOSSOM_AIR, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
 		}
 
 	}
@@ -56,7 +56,7 @@ public class ZundaArrow extends AbstractArrow {
 
 	@Override
 	protected void onHitEntity(EntityHitResult p_36757_) {
-		if (!this.level.isClientSide()) {
+		if (!this.level().isClientSide()) {
 			float f = (float) this.getDeltaMovement().length();
 			int i = Mth.ceil(Mth.clamp((double) f * this.getBaseDamage(), 0.0D, 2.147483647E9D));
 
@@ -78,7 +78,7 @@ public class ZundaArrow extends AbstractArrow {
 					this.setDeltaMovement(this.getDeltaMovement().scale(-0.1D));
 					this.setYRot(this.getYRot() + 180.0F);
 					this.yRotO += 180.0F;
-					if (!this.level.isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7D) {
+					if (!this.level().isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7D) {
 						if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
 							this.spawnAtLocation(this.getPickupItem(), 0.1F);
 						}

@@ -4,8 +4,12 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.registry.TofuBlocks;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -14,13 +18,13 @@ import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class TofuPortalOverlay implements IGuiOverlay {
 	@Override
-	public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int width, int height) {
+	public void render(ForgeGui gui, GuiGraphics poseStack, float partialTick, int width, int height) {
 		Minecraft mc = Minecraft.getInstance();
 		mc.player.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(handler -> renderTofuPortalOverlay(poseStack, mc, partialTick, width, height, handler));
 
 	}
 
-	private void renderTofuPortalOverlay(PoseStack poseStack, Minecraft mc, float partialTick, int width, int height, TofuLivingCapability handler) {
+	private void renderTofuPortalOverlay(GuiGraphics poseStack, Minecraft mc, float partialTick, int width, int height, TofuLivingCapability handler) {
 		float timeInPortal = handler.getPrevPortalAnimTime() + (handler.getPortalAnimTime() - handler.getPrevPortalAnimTime()) * partialTick;
 		if (timeInPortal > 0.0F) {
 			if (timeInPortal < 1.0F) {

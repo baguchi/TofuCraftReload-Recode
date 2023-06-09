@@ -38,11 +38,11 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level.isDay() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isDay() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return !this.findBlock && (super.canContinueToUse() && this.creature.level.isDay() && !this.creature.isBaby() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && this.mob != null);
+		return !this.findBlock && (super.canContinueToUse() && this.creature.level().isDay() && !this.creature.isBaby() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && this.mob != null);
 	}
 
 	public void tick() {
@@ -52,14 +52,14 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 				if (this.poiTypeResourceKey != null) {
 					Tofunian.Roles role = Tofunian.Roles.getJob(this.poiTypeResourceKey);
 					if (role != null && !this.findBlock) {
-						if (this.creature.level instanceof ServerLevel) {
-							((ServerLevel) this.creature.level).getPoiManager().getType(this.blockPos).ifPresent((p_217105_) -> {
-								((ServerLevel) this.creature.level).getPoiManager().take(poiTypeHolder -> {
+						if (this.creature.level() instanceof ServerLevel) {
+							((ServerLevel) this.creature.level()).getPoiManager().getType(this.blockPos).ifPresent((p_217105_) -> {
+								((ServerLevel) this.creature.level()).getPoiManager().take(poiTypeHolder -> {
 									return poiTypeHolder == ForgeRegistries.POI_TYPES.getHolder(this.poiTypeResourceKey).get();
 								}, (p_217108_, p_217109_) -> {
 									return p_217109_.equals(this.blockPos);
 								}, this.blockPos, 1);
-								DebugPackets.sendPoiTicketCountPacket(((ServerLevel) this.creature.level), this.blockPos);
+								DebugPackets.sendPoiTicketCountPacket(((ServerLevel) this.creature.level()), this.blockPos);
 								this.creature.setTofunainJobBlock(this.blockPos);
 								if (this.creature.getRole() == Tofunian.Roles.TOFUNIAN) {
 									this.creature.setRole(role);
@@ -83,9 +83,9 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 
 	@Override
 	protected boolean findNearestBlock() {
-		if (this.creature.level instanceof ServerLevel) {
-			Set<Pair<Holder<PoiType>, BlockPos>> set = ((ServerLevel) this.creature.level).getPoiManager().findAllClosestFirstWithType(ALL_ACQUIRABLE_JOBS, predicate -> {
-				return Tofunian.Roles.get(this.creature.level.getBlockState(predicate)) != null;
+		if (this.creature.level() instanceof ServerLevel) {
+			Set<Pair<Holder<PoiType>, BlockPos>> set = ((ServerLevel) this.creature.level()).getPoiManager().findAllClosestFirstWithType(ALL_ACQUIRABLE_JOBS, predicate -> {
+				return Tofunian.Roles.get(this.creature.level().getBlockState(predicate)) != null;
 			}, this.creature.blockPosition(), 32, PoiManager.Occupancy.HAS_SPACE).limit(5L).collect(Collectors.toSet());
 			if (!set.isEmpty()) {
 
@@ -94,7 +94,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 				 */
 				if ((this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null)) {
 					Optional<Pair<Holder<PoiType>, BlockPos>> pair = set.stream().findFirst();
-					if (((ServerLevel) this.creature.level).getPoiManager().exists(pair.get().getSecond(), (p_217230_) -> {
+					if (((ServerLevel) this.creature.level()).getPoiManager().exists(pair.get().getSecond(), (p_217230_) -> {
 						return true;
 					})) {
 						if (!findNearbyTofunianHadJob(this.creature, pair.get().getSecond())) {
@@ -106,7 +106,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 				}
 				if (this.creature.getRole() != Tofunian.Roles.TOFUNIAN) {
 					Optional<Pair<Holder<PoiType>, BlockPos>> pair = set.stream().findFirst();
-					if (((ServerLevel) this.creature.level).getPoiManager().exists(pair.get().getSecond(), (p_217230_) -> {
+					if (((ServerLevel) this.creature.level()).getPoiManager().exists(pair.get().getSecond(), (p_217230_) -> {
 						return true;
 					})) {
 						if (!findNearbyTofunianHadJob(this.creature, pair.get().getSecond())) {
@@ -125,7 +125,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	}
 
 	public static boolean findNearbyTofunianHadJob(Tofunian tofunian, BlockPos pos) {
-		List<Tofunian> list = tofunian.level.getEntitiesOfClass(Tofunian.class, tofunian.getBoundingBox().inflate(32.0D));
+		List<Tofunian> list = tofunian.level().getEntitiesOfClass(Tofunian.class, tofunian.getBoundingBox().inflate(32.0D));
 
 		return list.stream().anyMatch((p_34881_) -> {
 			return p_34881_ != tofunian && (pos.equals(p_34881_.getTofunainJobBlock()));

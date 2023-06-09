@@ -128,7 +128,7 @@ public class TofuCow extends Cow {
 					resultItemStack.set(fluidHandler.getContainer());
 				});
 				p_28298_.setItemInHand(p_28299_, resultItemStack.get());
-				return InteractionResult.sidedSuccess(this.level.isClientSide);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			}
 		}
 		return super.mobInteract(p_28298_, p_28299_);

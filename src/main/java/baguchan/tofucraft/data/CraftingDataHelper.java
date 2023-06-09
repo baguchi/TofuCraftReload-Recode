@@ -5,7 +5,6 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.LegacyUpgradeRecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -83,12 +82,10 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 
 	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<Item> result) {
 		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing");
-		LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), RecipeCategory.TOOLS, result.get()).unlocks("has_item", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, TofuCraftReload.prefix("smithing_old_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
 	public static void sculkSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<Item> result) {
 		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing");
-		LegacyUpgradeRecipeBuilder.smithing(Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), RecipeCategory.COMBAT, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, TofuCraftReload.prefix("smithing_old_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
 	}
 
 	protected final void helmetItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {

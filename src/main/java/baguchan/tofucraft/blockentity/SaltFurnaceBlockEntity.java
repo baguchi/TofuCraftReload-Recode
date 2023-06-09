@@ -316,7 +316,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	public void popExperience(ServerPlayer p_155004_, ItemStack p_39558_) {
-		createExperience(p_155004_.getLevel(), p_155004_.position(), 1, p_39558_.getCount());
+		createExperience(p_155004_.serverLevel(), p_155004_.position(), 1, p_39558_.getCount());
 	}
 
 
@@ -419,7 +419,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	public void setItem(int p_70299_1_, ItemStack p_70299_2_) {
 		ItemStack itemstack = this.items.get(p_70299_1_);
-		boolean flag = !p_70299_2_.isEmpty() && p_70299_2_.sameItem(itemstack) && ItemStack.tagMatches(p_70299_2_, itemstack);
+		boolean flag = !p_70299_2_.isEmpty() && ItemStack.isSameItemSameTags(itemstack, p_70299_2_);
 		this.items.set(p_70299_1_, p_70299_2_);
 		if (p_70299_2_.getCount() > this.getMaxStackSize()) {
 			p_70299_2_.setCount(this.getMaxStackSize());

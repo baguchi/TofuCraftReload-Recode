@@ -34,6 +34,11 @@ public enum TofuItemTier implements Tier {
 		this.repairIngredient = new LazyLoadedValue(p_i48458_8_);
 	}
 
+	@Override
+	public int getLevel() {
+		return level;
+	}
+
 	public int getUses() {
 		return this.uses;
 	}
@@ -46,7 +51,7 @@ public enum TofuItemTier implements Tier {
 		return this.damage;
 	}
 
-	public int getLevel() {
+	public int level() {
 		return this.level;
 	}
 

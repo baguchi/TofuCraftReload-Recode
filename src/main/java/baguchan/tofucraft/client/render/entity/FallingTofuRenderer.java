@@ -35,7 +35,7 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity> {
 	public void render(FallingTofuEntity entity, float yaw, float partialTicks, PoseStack ms, MultiBufferSource buffers, int light) {
 		BlockState blockstate = entity.getBlockState();
 		if (blockstate.getRenderShape() == RenderShape.MODEL) {
-			Level world = entity.getLevel();
+			Level world = entity.level();
 			if (blockstate.getRenderShape() != RenderShape.INVISIBLE) {
 				ms.pushPose();
 				BlockPos blockpos = BlockPos.containing(entity.getX(), entity.getBoundingBox().maxY, entity.getZ());

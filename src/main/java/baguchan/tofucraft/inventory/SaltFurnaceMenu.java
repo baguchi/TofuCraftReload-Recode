@@ -30,7 +30,7 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 		super(TofuContainers.SALT_FURNACE.get(), id);
 		this.container = furnaceInventoryIn;
 		this.data = dataIn;
-		this.level = playerInventoryIn.player.level;
+		this.level = playerInventoryIn.player.level();
 		furnaceInventoryIn.startOpen(playerInventoryIn.player);
 		addSlot(new Slot(this.container, 0, 23, 53));
 		addSlot(new SaltFurnaceResultSlot(playerInventoryIn.player, this.container, 1, 80, 53));

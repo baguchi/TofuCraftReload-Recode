@@ -20,15 +20,16 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_item",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:equipment/tofu_metal_hoe"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

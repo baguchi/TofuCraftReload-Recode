@@ -98,8 +98,8 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 			--this.attackAnimationTick;
 		}
 
-		if (!this.level.isClientSide) {
-			this.updatePersistentAnger((ServerLevel) this.level, true);
+		if (!this.level().isClientSide) {
+			this.updatePersistentAnger((ServerLevel) this.level(), true);
 		}
 	}
 
@@ -132,7 +132,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 	public void readAdditionalSaveData(CompoundTag p_28857_) {
 		super.readAdditionalSaveData(p_28857_);
 		this.setPlayerCreated(p_28857_.getBoolean("PlayerCreated"));
-		this.readPersistentAngerSaveData(this.level, p_28857_);
+		this.readPersistentAngerSaveData(this.level(), p_28857_);
 	}
 
 	public boolean isPlayerCreated() {

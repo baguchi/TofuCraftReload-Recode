@@ -12,7 +12,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -68,8 +73,8 @@ public class NattoCobWebEntity extends LivingEntity {
 		if (rayTrace.getType() == HitResult.Type.BLOCK) {
 			BlockHitResult hitResult = (BlockHitResult) rayTrace;
 			if (hitResult.getDirection() == Direction.UP) {
-				BlockState hitBlock = level.getBlockState(hitResult.getBlockPos());
-				if (lifeTime > discardTime && hitBlock != level.getBlockState(blockPosition().below())) {
+				BlockState hitBlock = level().getBlockState(hitResult.getBlockPos());
+				if (lifeTime > discardTime && hitBlock != level().getBlockState(blockPosition().below())) {
 					this.discard();
 				}
 				if (hitBlock.getBlock() instanceof SlabBlock && hitBlock.getValue(BlockStateProperties.SLAB_TYPE) == SlabType.BOTTOM) {
@@ -77,8 +82,8 @@ public class NattoCobWebEntity extends LivingEntity {
 				} else {
 					this.setPos(getX(), hitResult.getBlockPos().getY() + 1.0625F, getZ());
 				}
-				if (this.level instanceof ServerLevel) {
-					((ServerLevel) this.level).getChunkSource().broadcast(this, new ClientboundTeleportEntityPacket(this));
+				if (this.level() instanceof ServerLevel) {
+					((ServerLevel) this.level()).getChunkSource().broadcast(this, new ClientboundTeleportEntityPacket(this));
 				}
 			}
 		}
@@ -87,12 +92,12 @@ public class NattoCobWebEntity extends LivingEntity {
 	private HitResult rayTrace(NattoCobWebEntity entity) {
 		Vec3 startPos = new Vec3(entity.getX(), entity.getY(), entity.getZ());
 		Vec3 endPos = new Vec3(entity.getX(), 0, entity.getZ());
-		return entity.level.clip(new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
+		return entity.level().clip(new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
 	}
 
 	public void stepSlow() {
 		AABB area = new AABB(BlockPos.containing(this.getX(), this.getY() - 0.5f, this.getZ())).inflate(1, 0.5, 1);
-		List<LivingEntity> entitiesHit = this.level.getEntitiesOfClass(LivingEntity.class, area);
+		List<LivingEntity> entitiesHit = this.level().getEntitiesOfClass(LivingEntity.class, area);
 		for (LivingEntity entity : entitiesHit) {
 			double d0 = Math.abs(entity.getDeltaMovement().y);
 			double d1 = Math.abs(entity.getDeltaMovement().x) + Math.abs(entity.getDeltaMovement().z);
@@ -113,7 +118,7 @@ public class NattoCobWebEntity extends LivingEntity {
 	@Override
 	protected void tickDeath() {
 		++this.deathTime;
-		if (this.deathTime == 3 && !this.level.isClientSide()) {
+		if (this.deathTime == 3 && !this.level().isClientSide()) {
 			this.discard();
 		}
 

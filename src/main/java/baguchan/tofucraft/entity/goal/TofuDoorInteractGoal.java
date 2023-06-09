@@ -1,6 +1,5 @@
 package baguchan.tofucraft.entity.goal;
 
-import baguchan.tofucraft.registry.TofuMaterial;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -9,7 +8,6 @@ import net.minecraft.world.entity.ai.util.GoalUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.pathfinder.Node;
 import net.minecraft.world.level.pathfinder.Path;
 
@@ -32,7 +30,7 @@ public abstract class TofuDoorInteractGoal extends Goal {
 		if (!this.hasDoor) {
 			return false;
 		} else {
-			BlockState blockstate = this.mob.level.getBlockState(this.doorPos);
+			BlockState blockstate = this.mob.level().getBlockState(this.doorPos);
 			if (!(blockstate.getBlock() instanceof DoorBlock)) {
 				this.hasDoor = false;
 				return false;
@@ -44,9 +42,9 @@ public abstract class TofuDoorInteractGoal extends Goal {
 
 	protected void setOpen(boolean p_25196_) {
 		if (this.hasDoor) {
-			BlockState blockstate = this.mob.level.getBlockState(this.doorPos);
+			BlockState blockstate = this.mob.level().getBlockState(this.doorPos);
 			if (blockstate.getBlock() instanceof DoorBlock) {
-				((DoorBlock) blockstate.getBlock()).setOpen(this.mob, this.mob.level, blockstate, this.doorPos, p_25196_);
+				((DoorBlock) blockstate.getBlock()).setOpen(this.mob, this.mob.level(), blockstate, this.doorPos, p_25196_);
 			}
 		}
 
@@ -65,7 +63,7 @@ public abstract class TofuDoorInteractGoal extends Goal {
 					Node node = path.getNode(i);
 					this.doorPos = new BlockPos(node.x, node.y + 1, node.z);
 					if (!(this.mob.distanceToSqr((double) this.doorPos.getX(), this.mob.getY(), (double) this.doorPos.getZ()) > 2.25D)) {
-						this.hasDoor = isWoodenDoorOrTofuDoor(this.mob.level, this.doorPos);
+						this.hasDoor = isWoodenDoorOrTofuDoor(this.mob.level(), this.doorPos);
 						if (this.hasDoor) {
 							return true;
 						}
@@ -73,7 +71,7 @@ public abstract class TofuDoorInteractGoal extends Goal {
 				}
 
 				this.doorPos = this.mob.blockPosition().above();
-				this.hasDoor = isWoodenDoorOrTofuDoor(this.mob.level, this.doorPos);
+				this.hasDoor = isWoodenDoorOrTofuDoor(this.mob.level(), this.doorPos);
 				return this.hasDoor;
 			} else {
 				return false;
@@ -86,7 +84,7 @@ public abstract class TofuDoorInteractGoal extends Goal {
 	}
 
 	public static boolean isTofuDoor(BlockState p_52818_) {
-		return p_52818_.getBlock() instanceof DoorBlock && (p_52818_.getMaterial() == TofuMaterial.TOFU || p_52818_.getMaterial() == Material.STONE);
+		return p_52818_.getBlock() instanceof DoorBlock;
 	}
 
 	public boolean canContinueToUse() {

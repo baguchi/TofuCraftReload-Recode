@@ -20,7 +20,7 @@ public class ChiliItem extends Item {
 	@Override
 	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
 		if (entity.tickCount % 20 == 0) {
-			List<Warden> wardenList = entity.level.getEntities(EntityTypeTest.forClass(Warden.class), entity.getBoundingBox().inflate(6.0F), EntitySelector.NO_SPECTATORS);
+			List<Warden> wardenList = entity.level().getEntities(EntityTypeTest.forClass(Warden.class), entity.getBoundingBox().inflate(6.0F), EntitySelector.NO_SPECTATORS);
 
 			for (Warden warden : wardenList) {
 				((ISmell) warden).setCannotSmell(true);

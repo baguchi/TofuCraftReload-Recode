@@ -40,7 +40,7 @@ public class NattoStringRender<T extends NattoStringEntity> extends EntityRender
 			p_116088_.scale(this.scale, this.scale, this.scale);
 			p_116088_.mulPose(this.entityRenderDispatcher.cameraOrientation());
 			p_116088_.mulPose(Axis.YP.rotationDegrees(180.0F));
-			this.itemRenderer.renderStatic(new ItemStack(TofuItems.NATTO_COBWEB.get()), ItemDisplayContext.GROUND, p_116090_, OverlayTexture.NO_OVERLAY, p_116088_, p_116089_, p_116085_.level, p_116085_.getId());
+			this.itemRenderer.renderStatic(new ItemStack(TofuItems.NATTO_COBWEB.get()), ItemDisplayContext.GROUND, p_116090_, OverlayTexture.NO_OVERLAY, p_116088_, p_116089_, p_116085_.level(), p_116085_.getId());
 			p_116088_.popPose();
 			super.render(p_116085_, p_116086_, p_116087_, p_116088_, p_116089_, p_116090_);
 		}

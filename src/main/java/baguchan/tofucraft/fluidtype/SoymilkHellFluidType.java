@@ -62,7 +62,7 @@ public class SoymilkHellFluidType extends FluidType {
 				RenderSystem.setShaderTexture(0, texture);
 				BufferBuilder buffer = Tesselator.getInstance().getBuilder();
 				BlockPos playerEyePos = BlockPos.containing(mc.player.getX(), mc.player.getEyeY(), mc.player.getZ());
-				float brightness = LightTexture.getBrightness(mc.player.level.dimensionType(), mc.player.level.getMaxLocalRawBrightness(playerEyePos));
+				float brightness = LightTexture.getBrightness(mc.player.level().dimensionType(), mc.player.level().getMaxLocalRawBrightness(playerEyePos));
 				RenderSystem.enableBlend();
 				RenderSystem.defaultBlendFunc();
 				RenderSystem.setShaderColor(brightness, brightness, brightness, 0.85F);

@@ -20,15 +20,16 @@
       "trigger": "minecraft:inventory_changed"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_tofusoul",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "tofucraft:tofutrapdoor_soul"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

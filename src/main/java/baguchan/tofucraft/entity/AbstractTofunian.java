@@ -26,7 +26,7 @@ public abstract class AbstractTofunian extends AbstractVillager {
 		if (getUnhappyCounter() > 0) {
 			setUnhappyCounter(getUnhappyCounter() - 1);
 		}
-		if (this.level.isClientSide()) {
+		if (this.level().isClientSide()) {
 			this.setupAnimationStates();
 		}
 	}

@@ -84,7 +84,7 @@ public class FukumameEntity extends ThrowableProjectile {
 		if (id == 3) {
 			double d0 = 0.08D;
 			for (int i = 0; i < 6; i++)
-				this.level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(TofuItems.SEEDS_SOYBEANS.get())), getX(), getY(), getZ(), (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D);
+				this.level().addParticle(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(TofuItems.SEEDS_SOYBEANS.get())), getX(), getY(), getZ(), (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D);
 		}
 	}
 
@@ -94,25 +94,25 @@ public class FukumameEntity extends ThrowableProjectile {
 		int i = 2;
 		entity.hurt(this.damageSources().thrown(this, this.getOwner()), (float) this.damage);
 		entity.invulnerableTime = 5;
-		if (!this.level.isClientSide) {
-			this.level.broadcastEntityEvent(this, (byte) 3);
+		if (!this.level().isClientSide) {
+			this.level().broadcastEntityEvent(this, (byte) 3);
 			this.discard();
 		}
 	}
 
 	protected void onHit(HitResult p_37406_) {
 		super.onHit(p_37406_);
-		playSound(TofuSounds.SOYBEAN_CRACK.get(), 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F);
+		playSound(TofuSounds.SOYBEAN_CRACK.get(), 0.8F, 0.8F + this.level().random.nextFloat() * 0.4F);
 	}
 
 	@Override
 	protected void onHitBlock(BlockHitResult result) {
 		super.onHitBlock(result);
 		BlockPos pos = result.getBlockPos();
-		BlockState state = this.level.getBlockState(pos);
+		BlockState state = this.level().getBlockState(pos);
 
-		BlockState blockstate = this.level.getBlockState(result.getBlockPos());
-		if (!blockstate.getCollisionShape(this.level, result.getBlockPos()).isEmpty()) {
+		BlockState blockstate = this.level().getBlockState(result.getBlockPos());
+		if (!blockstate.getCollisionShape(this.level(), result.getBlockPos()).isEmpty()) {
 			Direction face = result.getDirection();
 			Vec3 motion = getDeltaMovement();
 			double motionX = motion.x;
@@ -135,8 +135,8 @@ public class FukumameEntity extends ThrowableProjectile {
 		}
 
 		if (this.totalHits >= this.getBounceLevel()) {
-			if (!this.level.isClientSide) {
-				this.level.broadcastEntityEvent(this, (byte) 3);
+			if (!this.level().isClientSide) {
+				this.level().broadcastEntityEvent(this, (byte) 3);
 				this.discard();
 			}
 		} else {

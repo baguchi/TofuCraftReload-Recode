@@ -44,7 +44,7 @@ public class TofuFarmlandBlock extends Block {
 
 	public boolean canSurvive(BlockState p_53272_, LevelReader p_53273_, BlockPos p_53274_) {
 		BlockState blockstate = p_53273_.getBlockState(p_53274_.above());
-		return !blockstate.getMaterial().isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
+		return !blockstate.isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
 	}
 
 	public BlockState getStateForPlacement(BlockPlaceContext p_53249_) {

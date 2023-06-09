@@ -24,7 +24,7 @@ public class StafeableFlyingMoveControl extends MoveControl {
 
 			float f = (float) this.mob.getAttributeValue(Attributes.MOVEMENT_SPEED);
 
-			if (!this.mob.isOnGround()) {
+			if (!this.mob.onGround()) {
 				f = (float) (this.speedModifier * this.mob.getAttributeValue(Attributes.FLYING_SPEED));
 			}
 			float f1 = (float) this.speedModifier * f;
@@ -68,7 +68,7 @@ public class StafeableFlyingMoveControl extends MoveControl {
 			float f = (float) (Mth.atan2(d2, d0) * (double) (180F / (float) Math.PI)) - 90.0F;
 			this.mob.setYRot(this.rotlerp(this.mob.getYRot(), f, 90.0F));
 			float f1;
-			if (this.mob.isOnGround()) {
+			if (this.mob.onGround()) {
 				f1 = (float) (this.speedModifier * this.mob.getAttributeValue(Attributes.MOVEMENT_SPEED));
 			} else {
 				f1 = (float) (this.speedModifier * this.mob.getAttributeValue(Attributes.FLYING_SPEED));

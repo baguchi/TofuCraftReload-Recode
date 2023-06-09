@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -84,14 +84,14 @@ public class SuspiciousTofuBlockEntity extends BlockEntity {
 
 	public void unpackLootTable(Player p_273298_) {
 		if (this.lootTable != null && this.level != null && !this.level.isClientSide() && this.level.getServer() != null) {
-			LootTable loottable = this.level.getServer().getLootTables().get(this.lootTable);
+			LootTable loottable = this.level.getServer().getLootData().getLootTable(this.lootTable);
 			if (p_273298_ instanceof ServerPlayer) {
 				ServerPlayer serverplayer = (ServerPlayer) p_273298_;
 				CriteriaTriggers.GENERATE_LOOT.trigger(serverplayer, this.lootTable);
 			}
 
-			LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerLevel) this.level)).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.worldPosition)).withOptionalRandomSeed(this.lootTableSeed).withLuck(p_273298_.getLuck()).withParameter(LootContextParams.THIS_ENTITY, p_273298_);
-			ObjectArrayList<ItemStack> objectarraylist = loottable.getRandomItems(lootcontext$builder.create(LootContextParamSets.CHEST));
+			LootParams lootcontext$builder = (new LootParams.Builder((ServerLevel) this.level)).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.worldPosition)).withLuck(p_273298_.getLuck()).withLuck(p_273298_.getLuck()).withParameter(LootContextParams.THIS_ENTITY, p_273298_).create(LootContextParamSets.CHEST);
+			ObjectArrayList<ItemStack> objectarraylist = loottable.getRandomItems(lootcontext$builder, this.lootTableSeed);
 			ItemStack itemstack;
 			switch (objectarraylist.size()) {
 				case 0:

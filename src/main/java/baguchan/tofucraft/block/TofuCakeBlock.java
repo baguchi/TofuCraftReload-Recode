@@ -105,7 +105,7 @@ public class TofuCakeBlock extends CakeBlock {
 	}
 
 	public boolean canSurvive(BlockState p_51209_, LevelReader p_51210_, BlockPos p_51211_) {
-		return p_51210_.getBlockState(p_51211_.below()).getMaterial().isSolid();
+		return p_51210_.getBlockState(p_51211_.below()).isSolid();
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_51220_) {

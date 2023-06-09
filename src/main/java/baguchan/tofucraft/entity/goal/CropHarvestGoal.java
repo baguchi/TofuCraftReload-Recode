@@ -31,17 +31,17 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 
 	public boolean canUse() {
 		if (this.nextStartTick <= 0) {
-			if (!ForgeEventFactory.getMobGriefingEvent(this.tofunian.level, this.tofunian))
+			if (!ForgeEventFactory.getMobGriefingEvent(this.tofunian.level(), this.tofunian))
 				return false;
 			this.canHarvest = false;
 			this.canPlant = false;
 			this.wantsToHarvest = true;
 		}
-		return (this.tofunian.level.isDay() && this.tofunian.getRole() == Tofunian.Roles.TOFUCOOK && super.canUse());
+		return (this.tofunian.level().isDay() && this.tofunian.getRole() == Tofunian.Roles.TOFUCOOK && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (this.tofunian.level.isDay() && (this.canHarvest || this.canPlant || this.wantsToHarvest) && super.canContinueToUse());
+		return (this.tofunian.level().isDay() && (this.canHarvest || this.canPlant || this.wantsToHarvest) && super.canContinueToUse());
 	}
 
 	public void start() {
@@ -56,7 +56,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 		super.tick();
 		this.tofunian.getLookControl().setLookAt(this.mob.getX() + 0.5D, (this.mob.getY() + 1), this.mob.getZ() + 0.5D, 10.0F, this.tofunian.getMaxHeadXRot());
 		if (isReachedTarget()) {
-			Level world = this.tofunian.getLevel();
+			Level world = this.tofunian.level();
 			BlockPos blockpos = this.blockPos.above();
 			BlockState blockstate = world.getBlockState(blockpos);
 			Block block = blockstate.getBlock();

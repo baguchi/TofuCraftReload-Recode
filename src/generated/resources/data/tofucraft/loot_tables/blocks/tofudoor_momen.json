@@ -15,15 +15,16 @@
             {
               "block": "tofucraft:tofudoor_momen",
               "condition": "minecraft:block_state_property",
-              "properties": {
-                "half": "lower"
+              "properties" : {
+                "half" : "lower"
               }
             }
           ],
-          "name": "tofucraft:tofudoor_momen"
+          "name" : "tofucraft:tofudoor_momen"
         }
       ],
-      "rolls": 1.0
+      "rolls" : 1.0
     }
-  ]
+  ],
+  "random_sequence" : "tofucraft:blocks/tofudoor_momen"
 }

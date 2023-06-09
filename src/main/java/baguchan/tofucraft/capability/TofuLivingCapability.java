@@ -26,7 +26,7 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 	public float prevPortalAnimTime, portalAnimTime = 0.0F;
 
 	public void tick(Entity entity) {
-		if (entity.level.isClientSide) {
+		if (entity.level().isClientSide) {
 			this.prevPortalAnimTime = this.portalAnimTime;
 			Minecraft mc = Minecraft.getInstance();
 			if (this.isInTofuPortal) {
@@ -50,7 +50,7 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 
 		if (this.isInTofuPortal) {
 			++this.tofuPortalTimer;
-			if (entity.level.isClientSide) {
+			if (entity.level().isClientSide) {
 				this.portalAnimTime += 0.0125F;
 				if (this.portalAnimTime > 1.0F) {
 					this.portalAnimTime = 1.0F;
@@ -58,7 +58,7 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 			}
 			this.isInTofuPortal = false;
 		} else {
-			if (entity.level.isClientSide) {
+			if (entity.level().isClientSide) {
 				if (this.portalAnimTime > 0.0F) {
 					this.portalAnimTime -= 0.05F;
 				}

@@ -8,13 +8,14 @@
           "condition": "minecraft:survives_explosion"
         }
       ],
-      "entries": [
+      "entries" : [
         {
-          "type": "minecraft:item",
-          "name": "tofucraft:blocksproutsjar"
+          "type" : "minecraft:item",
+          "name" : "tofucraft:blocksproutsjar"
         }
       ],
-      "rolls": 1.0
+      "rolls" : 1.0
     }
-  ]
+  ],
+  "random_sequence" : "tofucraft:blocks/blocksproutsjar"
 }

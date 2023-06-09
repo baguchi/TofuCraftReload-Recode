@@ -8,13 +8,14 @@
           "condition": "minecraft:survives_explosion"
         }
       ],
-      "entries": [
+      "entries" : [
         {
-          "type": "minecraft:item",
-          "name": "tofucraft:tofutrapdoor_ishi"
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofutrapdoor_ishi"
         }
       ],
-      "rolls": 1.0
+      "rolls" : 1.0
     }
-  ]
+  ],
+  "random_sequence" : "tofucraft:blocks/tofutrapdoor_ishi"
 }

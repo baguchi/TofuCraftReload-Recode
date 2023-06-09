@@ -28,8 +28,8 @@ public class NattoStringEntity extends ThrowableProjectile {
 
 	protected void onHitEntity(EntityHitResult p_37404_) {
 		super.onHitEntity(p_37404_);
-		if (!this.level.isClientSide) {
-			level.addFreshEntity(new NattoCobWebEntity(this.level, getX(), getY(), getZ()));
+		if (!this.level().isClientSide) {
+			this.level().addFreshEntity(new NattoCobWebEntity(this.level(), getX(), getY(), getZ()));
 			this.discard();
 		}
 	}
@@ -41,11 +41,11 @@ public class NattoStringEntity extends ThrowableProjectile {
 
 	protected void onHit(HitResult p_37406_) {
 		super.onHit(p_37406_);
-		playSound(SoundEvents.SLIME_JUMP_SMALL, 0.8F, 0.8F + this.level.random.nextFloat() * 0.4F);
-		if (!this.level.isClientSide) {
+		playSound(SoundEvents.SLIME_JUMP_SMALL, 0.8F, 0.8F + this.level().random.nextFloat() * 0.4F);
+		if (!this.level().isClientSide) {
 			//I don't use it particularly, but it's something.↓
-			this.level.broadcastEntityEvent(this, (byte) 80);
-			level.addFreshEntity(new NattoCobWebEntity(this.level, getX(), getY(), getZ()));
+			this.level().broadcastEntityEvent(this, (byte) 80);
+			this.level().addFreshEntity(new NattoCobWebEntity(this.level(), getX(), getY(), getZ()));
 			this.discard();
 		}
 	}

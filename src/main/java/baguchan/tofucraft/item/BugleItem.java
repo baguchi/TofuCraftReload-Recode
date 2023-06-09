@@ -67,7 +67,7 @@ public class BugleItem extends Item {
 
 	//Prevent change in hasLineOfSight mixin
 	public static boolean hasLineOfSight(LivingEntity livingEntity, Entity p_147185_) {
-		if (p_147185_.level != livingEntity.level) {
+		if (p_147185_.level() != livingEntity.level()) {
 			return false;
 		} else {
 			Vec3 vec3 = new Vec3(livingEntity.getX(), livingEntity.getEyeY(), livingEntity.getZ());
@@ -75,7 +75,7 @@ public class BugleItem extends Item {
 			if (vec31.distanceTo(vec3) > 128.0D) {
 				return false;
 			} else {
-				return livingEntity.level.clip(new ClipContext(vec3, vec31, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, livingEntity)).getType() == HitResult.Type.MISS;
+				return livingEntity.level().clip(new ClipContext(vec3, vec31, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, livingEntity)).getType() == HitResult.Type.MISS;
 			}
 		}
 	}

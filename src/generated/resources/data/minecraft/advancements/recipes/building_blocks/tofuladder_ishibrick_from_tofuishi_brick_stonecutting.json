@@ -20,15 +20,16 @@
       "trigger": "minecraft:inventory_changed"
     }
   },
-  "requirements": [
+  "requirements" : [
     [
       "has_tofuishi_brick",
       "has_the_recipe"
     ]
   ],
-  "rewards": {
-    "recipes": [
+  "rewards" : {
+    "recipes" : [
       "minecraft:tofuladder_ishibrick_from_tofuishi_brick_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event" : false
 }

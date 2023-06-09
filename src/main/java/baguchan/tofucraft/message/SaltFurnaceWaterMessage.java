@@ -40,7 +40,7 @@ public class SaltFurnaceWaterMessage {
 		NetworkEvent.Context context = contextSupplier.get();
 		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
 			context.enqueueWork(() -> {
-				BlockEntity tileentity = (Minecraft.getInstance()).player.level.getBlockEntity(message.blockPos);
+				BlockEntity tileentity = (Minecraft.getInstance()).player.level().getBlockEntity(message.blockPos);
 				if (tileentity instanceof SaltFurnaceBlockEntity) {
 					SaltFurnaceBlockEntity tileentity1 = (SaltFurnaceBlockEntity) tileentity;
 					tileentity1.waterTank.setFluid(message.fluid);

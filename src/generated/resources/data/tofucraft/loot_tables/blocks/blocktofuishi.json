@@ -11,12 +11,12 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "condition": "minecraft:alternative",
-                  "terms": [
+                  "condition" : "minecraft:any_of",
+                  "terms" : [
                     {
-                      "condition": "minecraft:match_tool",
-                      "predicate": {
-                        "items": [
+                      "condition" : "minecraft:match_tool",
+                      "predicate" : {
+                        "items" : [
                           "minecraft:shears"
                         ]
                       }
@@ -48,15 +48,16 @@
                   "function": "minecraft:set_count"
                 },
                 {
-                  "function": "minecraft:explosion_decay"
+                  "function" : "minecraft:explosion_decay"
                 }
               ],
-              "name": "tofucraft:tofuishi"
+              "name" : "tofucraft:tofuishi"
             }
           ]
         }
       ],
-      "rolls": 1.0
+      "rolls" : 1.0
     }
-  ]
+  ],
+  "random_sequence" : "tofucraft:blocks/blocktofuishi"
 }

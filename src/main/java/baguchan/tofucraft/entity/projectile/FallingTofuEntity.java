@@ -63,7 +63,7 @@ public class FallingTofuEntity extends ThrowableProjectile {
 	@Override
 	protected void readAdditionalSaveData(CompoundTag tag) {
 		super.readAdditionalSaveData(tag);
-		this.state = NbtUtils.readBlockState(this.getLevel().holderLookup(Registries.BLOCK), tag.getCompound("BlockState"));
+		this.state = NbtUtils.readBlockState(this.level().holderLookup(Registries.BLOCK), tag.getCompound("BlockState"));
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class FallingTofuEntity extends ThrowableProjectile {
 		if (id == 3) {
 			ParticleOptions particle = new BlockParticleOption(ParticleTypes.BLOCK, this.state);
 			for (int i = 0; i < 20; i++) {
-				this.level.addParticle(particle, false, this.getX(), this.getY(), this.getZ(), this.random.nextGaussian() * 0.05D, this.random.nextDouble() * 0.2D, this.random.nextGaussian() * 0.05D);
+				this.level().addParticle(particle, false, this.getX(), this.getY(), this.getZ(), this.random.nextGaussian() * 0.05D, this.random.nextDouble() * 0.2D, this.random.nextGaussian() * 0.05D);
 			}
 		} else {
 			super.handleEntityEvent(id);
@@ -85,10 +85,10 @@ public class FallingTofuEntity extends ThrowableProjectile {
 	@Override
 	protected void onHitEntity(EntityHitResult result) {
 		super.onHitEntity(result);
-		if (!this.getLevel().isClientSide()) {
+		if (!this.level().isClientSide()) {
 			result.getEntity().hurt(tofuAttack(this.getOwner()), 3);
 
-			this.getLevel().broadcastEntityEvent(this, (byte) 3);
+			this.level().broadcastEntityEvent(this, (byte) 3);
 			this.discard();
 		}
 	}
@@ -96,11 +96,11 @@ public class FallingTofuEntity extends ThrowableProjectile {
 	@Override
 	protected void onHitBlock(BlockHitResult result) {
 		super.onHitBlock(result);
-		if (!this.getLevel().isClientSide()) {
-			this.getLevel().broadcastEntityEvent(this, (byte) 3);
+		if (!this.level().isClientSide()) {
+			this.level().broadcastEntityEvent(this, (byte) 3);
 			this.gameEvent(GameEvent.BLOCK_DESTROY, this.getOwner());
 			if (this.canPlace) {
-				this.getLevel().setBlock(this.blockPosition(), this.state, 2);
+				this.level().setBlock(this.blockPosition(), this.state, 2);
 			}
 			this.discard();
 		}

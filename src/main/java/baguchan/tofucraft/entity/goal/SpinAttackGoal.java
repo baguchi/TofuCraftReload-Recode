@@ -55,7 +55,7 @@ public class SpinAttackGoal extends Goal {
 	public void start() {
 		super.start();
 		this.attackTime = 0;
-		this.gandlem.level.broadcastEntityEvent(this.gandlem, (byte) 6);
+		this.gandlem.level().broadcastEntityEvent(this.gandlem, (byte) 6);
 	}
 
 	@Override

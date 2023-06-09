@@ -31,7 +31,7 @@ public class TofunianLoveGoal extends Goal {
 
 	public TofunianLoveGoal(Tofunian p_i47306_1_, double p_i47306_2_, Class<? extends Tofunian> p_i47306_4_) {
 		this.tofunian = p_i47306_1_;
-		this.level = p_i47306_1_.level;
+		this.level = p_i47306_1_.level();
 		this.partnerClass = p_i47306_4_;
 		this.speedModifier = p_i47306_2_;
 		setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));

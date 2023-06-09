@@ -1,0 +1,10 @@
+{
+  "type" : "tofucraft:loot_in_loot",
+  "conditions" : [
+    {
+      "condition" : "forge:loot_table_id",
+      "loot_table_id" : "minecraft:chests/jungle_temple"
+    }
+  ],
+  "loot_table" : "tofucraft:injections/tofustick"
+}
