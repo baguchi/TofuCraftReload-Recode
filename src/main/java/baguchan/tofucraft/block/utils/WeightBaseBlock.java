@@ -39,7 +39,7 @@ public class WeightBaseBlock extends Block {
 	public boolean isUnderWeight(Level world, BlockPos pos) {
 		BlockState weightBlock = world.getBlockState(pos.above());
 		float weightHardness = weightBlock.getDestroySpeed(world, pos.above());
-		boolean isWeightValid = (weightBlock != null && (weightHardness >= 1.0F || weightHardness < 0.0F));
+		boolean isWeightValid = (weightBlock != null && (weightHardness >= 1.0F || weightHardness < 0.0F)) && !(weightBlock.getBlock() instanceof WeightBaseBlock);
 		return (isWeightValid);
 	}
 
