@@ -4,7 +4,6 @@ import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.entity.TofuGandlem;
-import baguchan.tofucraft.message.SoyHealthMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuDimensions;
@@ -21,7 +20,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -50,7 +48,6 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -103,7 +100,6 @@ public class CommonEvents {
 		Player player = event.getEntity();
 		if (player instanceof ServerPlayer) {
 			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new SoyMilkDrinkedMessage(player, handler.getSoyHealthLevel(), false)));
-			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new SoyHealthMessage(player, handler.getSoyHealth(), handler.getSoyMaxHealth())));
 
 		}
 	}
@@ -112,7 +108,6 @@ public class CommonEvents {
 	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		Player playerEntity = event.getEntity();
 		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel(), false)));
-		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyHealthMessage(playerEntity, handler.getSoyHealth(), handler.getSoyMaxHealth())));
 	}
 
 	protected static BlockHitResult getPlayerPOVHitResult(Level p_41436_, Player p_41437_, ClipContext.Fluid p_41438_) {
@@ -313,34 +308,6 @@ public class CommonEvents {
 			level.serverLevelData = levelData;
 			level.levelData = levelData;
 		}
-	}
-
-	@SubscribeEvent
-	public static void onEntityHurt(LivingHurtEvent event) {
-		LivingEntity livingEntity = event.getEntity();
-		livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
-			if (cap.getSoyHealth() > 0) {
-				if (event.getSource().is(DamageTypeTags.IS_PROJECTILE) || event.getSource().is(DamageTypeTags.IS_FALL)) {
-					if (cap.getSoyHealth() - event.getAmount() * 0.75F >= 0) {
-						cap.setSoyHealth(livingEntity, cap.getSoyHealth() - event.getAmount() * 0.5F, cap.getSoyMaxHealth());
-						event.setAmount(0);
-					} else {
-						float remainDamage = event.getAmount() * 0.75F - cap.getSoyHealth();
-						cap.setSoyHealth(livingEntity, 0, cap.getSoyMaxHealth());
-						event.setAmount(remainDamage);
-					}
-				} else {
-					if (cap.getSoyHealth() - event.getAmount() >= 0) {
-						cap.setSoyHealth(livingEntity, cap.getSoyHealth() - event.getAmount() * 0.5F, cap.getSoyMaxHealth());
-						event.setAmount(0);
-					} else {
-						float remainDamage = event.getAmount() - cap.getSoyHealth();
-						cap.setSoyHealth(livingEntity, 0, cap.getSoyMaxHealth());
-						event.setAmount(remainDamage);
-					}
-				}
-			}
-		});
 	}
 
 	@SubscribeEvent

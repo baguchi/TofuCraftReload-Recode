@@ -1,7 +1,6 @@
 package baguchan.tofucraft.capability;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.message.SoyHealthMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -20,15 +19,15 @@ import javax.annotation.Nullable;
 
 public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySerializable<CompoundTag> {
 	private int soyHealthLevel;
+	private int soyHealthBaseLevel;
 	private long lastTick = -12000L;
-
-	private float soyHealth;
-	private float soyMaxHealth;
+	private long lastChangedTick = -12000L;
 
 	//when can update is true. update last tick
 	public void setSoyHealthLevel(LivingEntity entity, int level, boolean canUpdate) {
 		if (canUpdate) {
 			this.lastTick = entity.level().getGameTime();
+			this.lastChangedTick = entity.level().getGameTime();
 			if (entity instanceof Player) {
 				((Player) entity).displayClientMessage(Component.translatable("item.tofucraft.soymilk.drink_day", level), true);
 			}
@@ -40,14 +39,8 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 		this.soyHealthLevel = Mth.clamp(level, 1, 20);
 	}
 
-	public void setSoyHealth(LivingEntity entity, float health, float maxHealth) {
-		if (!entity.level().isClientSide()) {
-			SoyHealthMessage message = new SoyHealthMessage(entity, health, maxHealth);
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
-		}
-		this.soyMaxHealth = Mth.clamp(maxHealth, 0, 20);
-		this.soyHealth = Mth.clamp(health, 0, maxHealth);
-
+	public void setSoyHealthBaseLevel(int level) {
+		this.soyHealthBaseLevel = Mth.clamp(level, 1, 100);
 	}
 
 	public void removeAllSoyHealth(LivingEntity entity) {
@@ -66,27 +59,18 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 		return this.soyHealthLevel;
 	}
 
-	public float getSoyHealth() {
-		return soyHealth;
-	}
-
-	public float getSoyMaxHealth() {
-		return soyMaxHealth;
+	public int getSoyHealthBaseLevel() {
+		return soyHealthBaseLevel;
 	}
 
 	public void tick(LivingEntity livingEntity) {
 		if (!livingEntity.level().isClientSide()) {
-			if (livingEntity.level().getGameTime() > this.lastTick + 24000L) {
-				if (this.soyHealthLevel > 0) {
+			if (livingEntity.level().getGameTime() > this.lastChangedTick + 24000L) {
+				if (this.soyHealthLevel > 1) {
 					this.setSoyHealthLevel(livingEntity, this.soyHealthLevel - 2, false);
-					this.lastTick = livingEntity.level().getGameTime();
+					this.lastChangedTick = livingEntity.level().getGameTime();
 				}
-				this.setSoyHealth(livingEntity, this.soyHealth - 1, this.soyMaxHealth - 1);
 			}
-		}
-
-		if (livingEntity.tickCount % 400 == 0) {
-			this.setSoyHealth(livingEntity, this.soyHealth + 1, this.soyMaxHealth);
 		}
 	}
 
@@ -98,16 +82,16 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 	public CompoundTag serializeNBT() {
 		CompoundTag nbt = new CompoundTag();
 		nbt.putLong("RemainTick", this.lastTick);
+		nbt.putLong("RemainChangedTick", this.lastChangedTick);
 		nbt.putInt("SoyHealthLevel", this.soyHealthLevel);
-		nbt.putFloat("SoyHealth", this.soyHealth);
-		nbt.putFloat("SoyMaxHealth", this.soyMaxHealth);
+		nbt.putInt("SoyHealthBaseLevel", this.soyHealthBaseLevel);
 		return nbt;
 	}
 
 	public void deserializeNBT(CompoundTag nbt) {
 		this.lastTick = nbt.getLong("RemainTick");
+		this.lastChangedTick = nbt.getLong("RemainChangedTick");
 		this.soyHealthLevel = nbt.getInt("SoyHealthLevel");
-		this.soyHealth = nbt.getInt("SoyHealth");
-		this.soyMaxHealth = nbt.getInt("SoyMaxHealth");
+		this.soyHealthBaseLevel = nbt.getInt("SoyHealthBaseLevel");
 	}
 }
