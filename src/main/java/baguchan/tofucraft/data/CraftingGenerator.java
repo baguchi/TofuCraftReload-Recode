@@ -51,6 +51,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_LEGGINGS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_LEGGINGS);
 		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_BOOTS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_BOOTS);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get(), 2)
+				.pattern("GTG")
+				.pattern("G#G")
+				.pattern("GDG")
+				.define('D', TofuItems.TOFUDIAMOND.get())
+				.define('T', TofuBlocks.ISHITOFU.get())
+				.define('G', Items.DIAMOND)
+				.define('#', TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get())
+				.unlockedBy("has_item", has(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()))
+				.save(consumer, TofuCraftReload.prefix("copy_tofu_template"));
+
 
 		/*swordItem(consumer, "tofu_diamond_sword", TofuItems.TOFU_DIAMOND_SWORD, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
 		pickaxeItem(consumer, "tofu_diamond_pickaxe", TofuItems.TOFU_DIAMOND_PICKAXE, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);

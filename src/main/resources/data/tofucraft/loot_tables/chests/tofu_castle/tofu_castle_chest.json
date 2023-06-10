@@ -2,105 +2,61 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": {
-        "min": 10.0,
-        "max": 14.0,
-        "type": "minecraft:uniform"
+      "rolls" : {
+        "min" : 10.0,
+        "max" : 14.0,
+        "type" : "minecraft:uniform"
       },
-      "entries": [
+      "entries" : [
         {
-          "type": "minecraft:item",
-          "weight": 15,
-          "name": "tofucraft:tofudiamond",
-          "functions": [
+          "type" : "minecraft:item",
+          "weight" : 15,
+          "name" : "tofucraft:tofudiamondnugget",
+          "functions" : [
             {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
+              "function" : "minecraft:set_count",
+              "count" : {
+                "min" : 1.0,
+                "max" : 3.0,
+                "type" : "minecraft:uniform"
               }
             }
           ]
         },
         {
-          "type": "minecraft:item",
-          "weight": 15,
-          "name": "tofucraft:zundaruby",
-          "functions": [
+          "type" : "minecraft:item",
+          "weight" : 10,
+          "name" : "tofucraft:tofudiamond",
+          "functions" : [
             {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
+              "function" : "minecraft:set_count",
+              "count" : {
+                "min" : 1.0,
+                "max" : 3.0,
+                "type" : "minecraft:uniform"
               }
             }
           ]
         },
         {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "tofucraft:tofu_diamond_sword",
-          "functions": [
+          "type" : "minecraft:item",
+          "weight" : 15,
+          "name" : "tofucraft:zundaruby",
+          "functions" : [
             {
-              "function": "minecraft:enchant_with_levels",
-              "levels": {
-                "type": "minecraft:uniform",
-                "min": 10,
-                "max": 20
-              },
-              "treasure": true
+              "function" : "minecraft:set_count",
+              "count" : {
+                "min" : 1.0,
+                "max" : 2.0,
+                "type" : "minecraft:uniform"
+              }
             }
           ]
         },
         {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "tofucraft:tofu_diamond_pickaxe",
-          "functions": [
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": {
-                "type": "minecraft:uniform",
-                "min": 10,
-                "max": 20
-              },
-              "treasure": true
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "tofucraft:tofu_diamond_helmet",
-          "functions": [
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": {
-                "type": "minecraft:uniform",
-                "min": 10,
-                "max": 20
-              },
-              "treasure": true
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "tofucraft:tofu_diamond_chestplate",
-          "functions": [
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": {
-                "type": "minecraft:uniform",
-                "min": 10,
-                "max": 20
-              },
-              "treasure": true
-            }
-          ]
+          "type" : "minecraft:item",
+          "weight" : 5,
+          "name" : "tofucraft:blocktofudiamond"
         }
       ]
     },
@@ -131,14 +87,28 @@
     {
       "rolls": {
         "min": 1.0,
-        "max": 2.0,
-        "type": "minecraft:uniform"
+        "max" : 2.0,
+        "type" : "minecraft:uniform"
       },
-      "entries": [
+      "entries" : [
         {
-          "type": "minecraft:item",
-          "weight": 3,
-          "name": "tofucraft:zunda_bow"
+          "type" : "minecraft:item",
+          "weight" : 3,
+          "name" : "tofucraft:zunda_bow"
+        }
+      ]
+    },
+    {
+      "rolls" : {
+        "min" : 1.0,
+        "max" : 3.0,
+        "type" : "minecraft:uniform"
+      },
+      "entries" : [
+        {
+          "type" : "minecraft:item",
+          "weight" : 1,
+          "name" : "tofucraft:tofu_upgrade_smithing_template"
         }
       ]
     }

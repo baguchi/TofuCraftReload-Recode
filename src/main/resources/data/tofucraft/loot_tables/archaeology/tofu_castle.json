@@ -6,15 +6,15 @@
       "entries" : [
         {
           "type" : "minecraft:item",
+          "name" : "tofucraft:tofukinu"
+        },
+        {
+          "type" : "minecraft:item",
           "name" : "tofucraft:tofuishi"
         },
         {
           "type" : "minecraft:item",
           "name" : "tofucraft:tofugem"
-        },
-        {
-          "type" : "minecraft:item",
-          "name" : "minecraft:emerald"
         },
         {
           "type" : "minecraft:item",
@@ -30,7 +30,15 @@
         },
         {
           "type" : "minecraft:item",
+          "name" : "tofucraft:tofudiamondnugget"
+        },
+        {
+          "type" : "minecraft:item",
           "name" : "tofucraft:tofunian_banner_pattern"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofu_upgrade_smithing_template"
         },
         {
           "type" : "minecraft:item",

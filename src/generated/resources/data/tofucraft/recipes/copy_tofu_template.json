@@ -1,0 +1,28 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "#" : {
+      "item" : "tofucraft:tofu_upgrade_smithing_template"
+    },
+    "D" : {
+      "item" : "tofucraft:tofudiamond"
+    },
+    "G" : {
+      "item" : "minecraft:diamond"
+    },
+    "T" : {
+      "item" : "tofucraft:blocktofuishi"
+    }
+  },
+  "pattern" : [
+    "GTG",
+    "G#G",
+    "GDG"
+  ],
+  "result" : {
+    "count" : 2,
+    "item" : "tofucraft:tofu_upgrade_smithing_template"
+  },
+  "show_notification" : true
+}
