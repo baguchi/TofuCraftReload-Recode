@@ -589,7 +589,7 @@
   "itemGroup.tofucraft.tofu_tools.main_tab" : "TofuCraft's Tools",
   "itemGroup.tofucraft.tofu_building_blocks.main_tab" : "Tofu Building Blocks",
   "item.tofucraft.edamame_templa" : "枝豆天ぷら",
-  "trim_material.tofucraft.tofu_metal" : "鋼豆腐",
-  "trim_material.tofucraft.tofu_diamond" : "金剛豆腐",
-  "trim_material.tofucraft.zunda_ruby" : "ずんだルビー"
+  "trim_material.tofucraft.tofu_metal" : "鋼豆腐製装飾",
+  "trim_material.tofucraft.tofu_diamond" : "金剛豆腐製装飾",
+  "trim_material.tofucraft.zunda_ruby" : "ずんだルビー製装飾"
 }
