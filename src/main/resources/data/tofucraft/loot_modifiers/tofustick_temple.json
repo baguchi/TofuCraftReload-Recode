@@ -6,5 +6,5 @@
       "loot_table_id" : "minecraft:chests/jungle_temple"
     }
   ],
-  "loot_table" : "tofucraft:injections/tofustick_jungle"
+  "loot_table" : "tofucraft:injections/tofustick"
 }
