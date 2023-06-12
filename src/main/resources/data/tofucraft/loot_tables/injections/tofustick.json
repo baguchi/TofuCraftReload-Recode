@@ -8,14 +8,14 @@
       },
       "entries": [
         {
-          "type": "minecraft:item",
-          "weight": 2,
-          "name": "tofucraft:tofustick"
+          "type" : "minecraft:item",
+          "weight" : 1,
+          "name" : "tofucraft:tofustick"
         },
         {
-          "type": "minecraft:item",
-          "weight": 3,
-          "name": "minecraft:air"
+          "type" : "minecraft:item",
+          "weight" : 2,
+          "name" : "minecraft:air"
         }
       ]
     }
