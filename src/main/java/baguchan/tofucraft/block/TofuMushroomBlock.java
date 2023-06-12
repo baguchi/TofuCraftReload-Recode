@@ -55,7 +55,8 @@ public class TofuMushroomBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	public boolean isValidBonemealTarget(LevelReader p_256559_, BlockPos p_50898_, BlockState p_50899_, boolean p_50900_) {
-		return true;
+		BlockState blockstate = p_256559_.getBlockState(p_50898_.below());
+		return blockstate.is(TofuTags.Blocks.TOFU_TERRAIN);
 	}
 
 	@Override
