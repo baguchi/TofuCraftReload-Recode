@@ -9,6 +9,7 @@ import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuDimensionTypes;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuNoiseSettings;
+import baguchan.tofucraft.registry.TofuTrimMaterials;
 import com.google.gson.JsonElement;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.core.Holder;
@@ -39,7 +40,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class WorldGenerator extends DatapackBuiltinEntriesProvider {
+public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 
 	public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
 			.add(Registries.NOISE, (context) -> {
@@ -52,10 +53,11 @@ public class WorldGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, TofuBiomeSources::bootstrapPreset)
 			.add(Registries.NOISE_SETTINGS, TofuNoiseBuilder::bootstrap)
 			.add(Registries.DIMENSION_TYPE, TofuDimensionTypes::bootstrap)
-			.add(Registries.BIOME, TofuBiomes::bootstrap);
+			.add(Registries.BIOME, TofuBiomes::bootstrap)
+			.add(Registries.TRIM_MATERIAL, TofuTrimMaterials::bootstrap);
 
 
-	public WorldGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+	public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
 		super(output, registries.thenApply(r -> createLookup()), Set.of(TofuCraftReload.MODID));
 	}
 
