@@ -1,6 +1,6 @@
 package baguchan.tofucraft.entity.path;
 
-import baguchan.tofucraft.registry.TofuFluids;
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Mob;
@@ -16,19 +16,19 @@ public class SoymilkSwimNodeEvaluator extends SwimNodeEvaluator {
 		super(allowBreaching);
 	}
 
-	public BlockPathTypes getBlockPathType(BlockGetter p_77472_, int p_77473_, int p_77474_, int p_77475_, Mob p_77476_, int p_77477_, int p_77478_, int p_77479_, boolean p_77480_, boolean p_77481_) {
+	public BlockPathTypes getBlockPathType(BlockGetter p_77472_, int p_77473_, int p_77474_, int p_77475_, Mob p_77476_) {
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-		for (int i = p_77473_; i < p_77473_ + p_77477_; ++i) {
-			for (int j = p_77474_; j < p_77474_ + p_77478_; ++j) {
-				for (int k = p_77475_; k < p_77475_ + p_77479_; ++k) {
+		for (int i = p_77473_; i < p_77473_ + this.entityWidth; ++i) {
+			for (int j = p_77474_; j < p_77474_ + this.entityHeight; ++j) {
+				for (int k = p_77475_; k < p_77475_ + this.entityDepth; ++k) {
 					FluidState fluidstate = p_77472_.getFluidState(blockpos$mutableblockpos.set(i, j, k));
 					BlockState blockstate = p_77472_.getBlockState(blockpos$mutableblockpos.set(i, j, k));
-					if (fluidstate.isEmpty() && (blockstate.isPathfindable(p_77472_, blockpos$mutableblockpos.below(), PathComputationType.WATER) || p_77472_.getFluidState(blockpos$mutableblockpos).is(TofuFluids.SOYMILK.get())) && blockstate.isAir()) {
+					if (fluidstate.isEmpty() && blockstate.isPathfindable(p_77472_, blockpos$mutableblockpos.below(), PathComputationType.WATER) && blockstate.isAir()) {
 						return BlockPathTypes.BREACH;
 					}
 
-					if (!fluidstate.is(FluidTags.WATER) && !fluidstate.is(TofuFluids.SOYMILK.get())) {
+					if (!fluidstate.is(FluidTags.WATER) && !fluidstate.is(TofuTags.Fluids.SOYMILK)) {
 						return BlockPathTypes.BLOCKED;
 					}
 				}
@@ -36,6 +36,6 @@ public class SoymilkSwimNodeEvaluator extends SwimNodeEvaluator {
 		}
 
 		BlockState blockstate1 = p_77472_.getBlockState(blockpos$mutableblockpos);
-		return blockstate1.isPathfindable(p_77472_, blockpos$mutableblockpos, PathComputationType.WATER) || p_77472_.getFluidState(blockpos$mutableblockpos).is(TofuFluids.SOYMILK.get()) ? BlockPathTypes.WATER : BlockPathTypes.BLOCKED;
+		return blockstate1.isPathfindable(p_77472_, blockpos$mutableblockpos, PathComputationType.WATER) ? BlockPathTypes.WATER : BlockPathTypes.BLOCKED;
 	}
 }
