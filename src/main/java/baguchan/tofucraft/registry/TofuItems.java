@@ -455,6 +455,7 @@ public class TofuItems {
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUZUNDA.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUANNIN.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUEGG.get(), 0.35F);
+		ComposterBlock.COMPOSTABLES.put(TofuItems.TOFUMISO.get(), 0.5F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_CHILI.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.SEEDS_RICE.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(TofuItems.RICE.get(), 0.4F);
