@@ -428,7 +428,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 0.9F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 12.0F).add(Attributes.ARMOR_TOUGHNESS, 2.0F).add(Attributes.ATTACK_DAMAGE, 7.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 0.9F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 12.0F).add(Attributes.ARMOR_TOUGHNESS, 2.0F).add(Attributes.ATTACK_DAMAGE, 6.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
@@ -491,7 +491,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 				}
 
 				double d0 = this.gandlem.distanceToSqr(livingentity);
-				if (d0 < 8.0D) {
+				if (d0 < 8.5D) {
 					if (!flag) {
 						return;
 					}
@@ -529,9 +529,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 							this.gandlem.performRangedAttack(livingentity, attackTime);
 						}
 					}
-
-					this.gandlem.getLookControl().setLookAt(livingentity, 10.0F, 10.0F);
-
 					if (d0 < this.getFollowDistance() * this.getFollowDistance() * 0.75F && this.lastSeen <= 20) {
 						++this.strafingTime;
 						this.gandlem.getNavigation().stop();
@@ -559,7 +556,11 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 							this.strafingBackwards = true;
 						}
 
-						this.gandlem.getMoveControl().strafe(this.strafingBackwards ? -0.35F : 0.35F, this.strafingClockwise ? 0.35F : -0.35F);
+						this.gandlem.getMoveControl().strafe(this.strafingBackwards ? -0.5F : 0.5F, this.strafingClockwise ? 0.5F : -0.5F);
+
+						this.gandlem.lookAt(livingentity, 10.0F, 10.0F);
+					} else {
+						this.gandlem.getLookControl().setLookAt(livingentity, 10.0F, 10.0F);
 					}
 
 				} else if (this.lastSeen < 200 && d0 > this.getFollowDistance() * this.getFollowDistance() || d0 <= this.getFollowDistance() * this.getFollowDistance()) {
