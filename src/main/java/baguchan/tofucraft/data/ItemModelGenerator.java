@@ -453,6 +453,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 
 		singleTex(TofuItems.TOFUNIAN_BANNER_PATTERN.get());
+		singleTex(TofuItems.TOFU_STEM_BOAT.get());
+		singleTex(TofuItems.LEEK_BOAT.get());
+		singleTex(TofuItems.LEEK_GREEN_BOAT.get());
+		singleTex(TofuItems.TOFU_STEM_CHEST_BOAT.get());
+		singleTex(TofuItems.LEEK_CHEST_BOAT.get());
+		singleTex(TofuItems.LEEK_GREEN_CHEST_BOAT.get());
 	}
 
 	private void woodenFence(RegistryObject<? extends Block> fence, RegistryObject<? extends Block> block) {

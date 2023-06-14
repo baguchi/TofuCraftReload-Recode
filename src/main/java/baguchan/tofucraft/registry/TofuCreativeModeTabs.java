@@ -383,6 +383,12 @@ public class TofuCreativeModeTabs {
 						TofuItems.SHUDOFUSPIDER_SPAWNEGG,
 						TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE,
 						TofuItems.TOFUNIAN_BANNER_PATTERN,
+						TofuItems.TOFU_STEM_BOAT,
+						TofuItems.TOFU_STEM_CHEST_BOAT,
+						TofuItems.LEEK_BOAT,
+						TofuItems.LEEK_CHEST_BOAT,
+						TofuItems.LEEK_GREEN_BOAT,
+						TofuItems.LEEK_GREEN_CHEST_BOAT,
 						TofuItems.ZUNDARUBY).map(itemRegistryObject -> {
 					return itemRegistryObject.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event

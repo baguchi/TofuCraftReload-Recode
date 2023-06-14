@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "S" : {
+      "item" : "tofucraft:leek_green_planks"
+    }
+  },
+  "pattern" : [
+    "S S",
+    "SSS"
+  ],
+  "result" : {
+    "item" : "tofucraft:leek_green_boat"
+  },
+  "show_notification" : true
+}

@@ -51,6 +51,41 @@ public class CraftingGenerator extends CraftingDataHelper {
 		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_LEGGINGS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_LEGGINGS);
 		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_BOOTS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_BOOTS);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, TofuItems.TOFU_STEM_BOAT.get(), 1)
+				.pattern("S S")
+				.pattern("SSS")
+				.define('S', TofuBlocks.TOFU_STEM_PLANKS.get())
+				.unlockedBy("has_item", has(TofuBlocks.TOFU_STEM_PLANKS.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, TofuItems.LEEK_BOAT.get(), 1)
+				.pattern("S S")
+				.pattern("SSS")
+				.define('S', TofuBlocks.LEEK_PLANKS.get())
+				.unlockedBy("has_item", has(TofuBlocks.LEEK_PLANKS.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, TofuItems.LEEK_GREEN_BOAT.get(), 1)
+				.pattern("S S")
+				.pattern("SSS")
+				.define('S', TofuBlocks.LEEK_GREEN_PLANKS.get())
+				.unlockedBy("has_item", has(TofuBlocks.LEEK_GREEN_PLANKS.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, TofuItems.TOFU_STEM_CHEST_BOAT.get(), 1)
+				.requires(TofuItems.TOFU_STEM_BOAT.get())
+				.requires(Tags.Items.CHESTS_WOODEN)
+				.unlockedBy("has_item", has(TofuItems.TOFU_STEM_BOAT.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, TofuItems.LEEK_CHEST_BOAT.get(), 1)
+				.requires(TofuItems.LEEK_BOAT.get())
+				.requires(Tags.Items.CHESTS_WOODEN)
+				.unlockedBy("has_item", has(TofuItems.LEEK_BOAT.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, TofuItems.LEEK_GREEN_CHEST_BOAT.get(), 1)
+				.requires(TofuItems.LEEK_GREEN_BOAT.get())
+				.requires(Tags.Items.CHESTS_WOODEN)
+				.unlockedBy("has_item", has(TofuItems.LEEK_GREEN_BOAT.get()))
+				.save(consumer);
+
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get(), 2)
 				.pattern("GTG")
 				.pattern("G#G")

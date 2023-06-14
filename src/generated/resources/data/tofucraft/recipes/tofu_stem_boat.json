@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "S" : {
+      "item" : "tofucraft:tofustem_planks"
+    }
+  },
+  "pattern" : [
+    "S S",
+    "SSS"
+  ],
+  "result" : {
+    "item" : "tofucraft:tofu_stem_boat"
+  },
+  "show_notification" : true
+}

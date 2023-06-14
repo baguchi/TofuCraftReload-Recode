@@ -2,6 +2,8 @@ package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.ShuDofuSpider;
+import baguchan.tofucraft.entity.TofuBoat;
+import baguchan.tofucraft.entity.TofuChestBoat;
 import baguchan.tofucraft.entity.TofuCow;
 import baguchan.tofucraft.entity.TofuCreeper;
 import baguchan.tofucraft.entity.TofuFish;
@@ -94,6 +96,12 @@ public class TofuEntityTypes {
 
 	public static final RegistryObject<EntityType<FallingTofuEntity>> FALLING_TOFU = ENTITIES.register("falling_tofu", () -> EntityType.Builder.<FallingTofuEntity>of(FallingTofuEntity::new, MobCategory.MISC)
 			.sized(1.0F, 1.0F).updateInterval(20).build("tofucraft:falling_tofu"));
+
+	public static final RegistryObject<EntityType<TofuBoat>> TOFU_BOAT = ENTITIES.register("tofu_boat", () -> EntityType.Builder.<TofuBoat>of(TofuBoat::new, MobCategory.MISC)
+			.sized(1.375F, 0.5625F).clientTrackingRange(10).updateInterval(3).build("tofucraft:tofu_boat"));
+	public static final RegistryObject<EntityType<TofuChestBoat>> TOFU_CHEST_BOAT = ENTITIES.register("tofu_chest_boat", () -> EntityType.Builder.<TofuChestBoat>of(TofuChestBoat::new, MobCategory.MISC)
+			.sized(1.375F, 0.5625F).clientTrackingRange(10).updateInterval(3).build("tofucraft:tofu_chest_boat"));
+
 
 	public static final RegistryObject<EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
 			.sized(3.5F, 2.9F).clientTrackingRange(10).fireImmune().build("tofucraft:shudofuspider"));

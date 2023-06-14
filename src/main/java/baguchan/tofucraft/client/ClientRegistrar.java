@@ -17,6 +17,7 @@ import baguchan.tofucraft.client.render.SoulFukumameRender;
 import baguchan.tofucraft.client.render.ZundaArrowRender;
 import baguchan.tofucraft.client.render.entity.FallingTofuRenderer;
 import baguchan.tofucraft.client.render.entity.ShuDofuSpiderRender;
+import baguchan.tofucraft.client.render.entity.TofuBoatRenderer;
 import baguchan.tofucraft.client.render.entity.TofuCowRender;
 import baguchan.tofucraft.client.render.entity.TofuCreeperRender;
 import baguchan.tofucraft.client.render.entity.TofuFishRender;
@@ -33,12 +34,15 @@ import baguchan.tofucraft.client.render.tileentity.SuspiciousTofuRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
+import baguchan.tofucraft.entity.TofuBoat;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuContainers;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -126,6 +130,8 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_COBWEB.get(), NattoCobWebRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_BALL.get(), NattoBallRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.FALLING_TOFU.get(), FallingTofuRenderer::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_BOAT.get(), (r) -> new TofuBoatRenderer(r, false));
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_CHEST_BOAT.get(), (r) -> new TofuBoatRenderer(r, true));
 	}
 
 	@SubscribeEvent
@@ -137,6 +143,11 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.TOFU_GOLEM, TofuGolemModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFU_GANDLEM, TofuGandlemModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
+
+		for (TofuBoat.Type boatType : TofuBoat.Type.values()) {
+			event.registerLayerDefinition(TofuBoatRenderer.createBoatModelName(boatType), BoatModel::createBodyModel);
+			event.registerLayerDefinition(TofuBoatRenderer.createChestBoatModelName(boatType), ChestBoatModel::createBodyModel);
+		}
 	}
 
 	@SubscribeEvent

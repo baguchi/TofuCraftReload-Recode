@@ -3,6 +3,7 @@ package baguchan.tofucraft.registry;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.data.CustomTagGenerator;
 import baguchan.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
+import baguchan.tofucraft.entity.TofuBoat;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
@@ -22,6 +23,7 @@ import baguchan.tofucraft.item.RollingPinItem;
 import baguchan.tofucraft.item.SeedAndRootItem;
 import baguchan.tofucraft.item.SoulFukumameItem;
 import baguchan.tofucraft.item.SoymilkBottleItem;
+import baguchan.tofucraft.item.TofuBoatItem;
 import baguchan.tofucraft.item.TofuScoopItem;
 import baguchan.tofucraft.item.TofuShieldItem;
 import baguchan.tofucraft.item.TofuStickItem;
@@ -398,6 +400,13 @@ public class TofuItems {
 
 	public static final RegistryObject<Item> TOFUNIAN_BANNER_PATTERN = ITEMS.register("tofunian_banner_pattern", () -> new BannerPatternItem(CustomTagGenerator.BannerPatternTagGenerator.TOFUNIAN_BANNER_PATTERN, new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
 
+	public static final RegistryObject<Item> LEEK_BOAT = ITEMS.register("leek_boat", () -> new TofuBoatItem(false, TofuBoat.Type.LEEK, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> LEEK_GREEN_BOAT = ITEMS.register("leek_green_boat", () -> new TofuBoatItem(false, TofuBoat.Type.LEEK_GREEN, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> TOFU_STEM_BOAT = ITEMS.register("tofu_stem_boat", () -> new TofuBoatItem(false, TofuBoat.Type.TOFU_STEM, new Item.Properties().stacksTo(1)));
+
+	public static final RegistryObject<Item> LEEK_CHEST_BOAT = ITEMS.register("leek_chest_boat", () -> new TofuBoatItem(true, TofuBoat.Type.LEEK, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> LEEK_GREEN_CHEST_BOAT = ITEMS.register("leek_green_chest_boat", () -> new TofuBoatItem(true, TofuBoat.Type.LEEK_GREEN, new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> TOFU_STEM_CHEST_BOAT = ITEMS.register("tofu_stem_chest_boat", () -> new TofuBoatItem(true, TofuBoat.Type.TOFU_STEM, new Item.Properties().stacksTo(1)));
 
 	private static RegistryObject<Item> register(String name, Supplier<Item> item) {
 		return ITEMS.register(name, item);
