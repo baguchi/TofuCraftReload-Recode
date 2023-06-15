@@ -46,6 +46,6 @@ public class TofuFoliagePlacer extends FoliagePlacer {
 	}
 
 	protected boolean shouldSkipLocation(RandomSource p_68416_, int p_68417_, int p_68418_, int p_68419_, int p_68420_, boolean p_68421_) {
-		return p_68417_ == p_68420_ && p_68419_ == p_68420_ && (p_68416_.nextInt(2) == 0 || p_68418_ == 0);
+		return false;
 	}
 }
