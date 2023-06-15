@@ -56,7 +56,7 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 			this.blockPos = this.creature.getTofunainJobBlock();
 			return true;
 		}
-		return super.findNearestBlock();
+		return false;
 	}
 
 	public double acceptedDistance() {

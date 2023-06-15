@@ -222,4 +222,9 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 	public UUID getPersistentAngerTarget() {
 		return this.persistentAngerTarget;
 	}
+
+	@Override
+	public boolean removeWhenFarAway(double p_27519_) {
+		return false;
+	}
 }

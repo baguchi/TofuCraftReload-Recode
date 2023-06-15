@@ -2,38 +2,26 @@ package baguchan.tofucraft.entity.goal;
 
 import baguchan.tofucraft.entity.Tofunian;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class RestockGoal extends MoveToBlockGoal {
+public class MoveToJobGoal extends MoveToBlockGoal {
 	private final Tofunian creature;
 
 	private boolean restockComplete;
 
-	public RestockGoal(Tofunian creature, double speedIn, int length) {
+	public MoveToJobGoal(Tofunian creature, double speedIn, int length) {
 		super(creature, speedIn, length);
 		this.creature = creature;
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.canResetStock() && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.getTofunainJobBlock() != null && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level().isDay() && this.creature.canResetStock() && !this.creature.isBaby() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
-	}
-
-	public void tick() {
-		super.tick();
-		if (isReachedTarget() && !restockComplete) {
-			this.creature.restock();
-			this.creature.swing(InteractionHand.MAIN_HAND);
-			this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
-			restockComplete = true;
-		}
+		return (super.canContinueToUse() && this.creature.level().isDay() && this.creature.getTofunainJobBlock() != null && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
 	}
 
 	@Override
