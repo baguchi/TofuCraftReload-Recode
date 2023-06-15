@@ -196,7 +196,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		dropSelf(TofuBlocks.TOFU_BEDROCK.get());
 		dropSelf(TofuBlocks.SAPLING_TOFU.get());
-		this.add(TofuBlocks.LEAVES_TOFU.get(), createLeavesDrops(TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.SAPLING_TOFU.get(), DEFAULT_SAPLING_DROP_RATES));
+		this.add(TofuBlocks.LEAVES_TOFU.get(), createTofuLeavesDrops(TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.SAPLING_TOFU.get(), DEFAULT_SAPLING_DROP_RATES));
 
 		dropSelf(TofuBlocks.SAPLING_APRICOT.get());
 		this.add(TofuBlocks.LEAVES_APRICOT.get(), createApricotLeavesDrop(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.SAPLING_APRICOT.get(), DEFAULT_SAPLING_DROP_RATES));
@@ -274,6 +274,11 @@ public class BlockLootTables extends BlockLootSubProvider {
 	protected LootTable.Builder createApricotLeavesDrop(Block p_124264_, Block p_124265_, float... p_124266_) {
 		return createLeavesDrops(p_124264_, p_124265_, p_124266_).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(applyExplosionCondition(TofuBlocks.LEAVES_APRICOT.get(), LootItem.lootTableItem(TofuItems.APRICOT.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
 	}
+
+	protected LootTable.Builder createTofuLeavesDrops(Block p_250088_, Block p_250731_, float... p_248949_) {
+		return createSilkTouchOrShearsDispatchTable(p_250088_, this.applyExplosionCondition(p_250088_, LootItem.lootTableItem(p_250731_)).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, p_248949_))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)));
+	}
+
 
 	private void registerLeavesNoSapling(Block leaves) {
 		LootPoolEntryContainer.Builder<?> sticks = applyExplosionDecay(leaves, LootItem.lootTableItem(Items.STICK)
