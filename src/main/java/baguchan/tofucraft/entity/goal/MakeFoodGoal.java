@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -19,7 +20,7 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isDay() && super.canUse());
+		return (this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.getBrain().isActive(Activity.WORK) && this.creature.level().isDay() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {

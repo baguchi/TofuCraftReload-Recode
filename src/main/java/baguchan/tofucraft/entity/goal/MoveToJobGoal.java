@@ -3,6 +3,7 @@ package baguchan.tofucraft.entity.goal;
 import baguchan.tofucraft.entity.Tofunian;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -17,7 +18,7 @@ public class MoveToJobGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.getTofunainJobBlock() != null && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.getTofunainJobBlock() != null && this.creature.getBrain().isActive(Activity.WORK) && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {

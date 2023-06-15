@@ -54,7 +54,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 
 	public void tick() {
 		super.tick();
-		this.tofunian.getLookControl().setLookAt(this.mob.getX() + 0.5D, (this.mob.getY() + 1), this.mob.getZ() + 0.5D, 10.0F, this.tofunian.getMaxHeadXRot());
+		this.tofunian.getLookControl().setLookAt(this.blockPos.getX() + 0.5D, (this.blockPos.getY()), this.blockPos.getZ() + 0.5D, 10.0F, this.tofunian.getMaxHeadXRot());
 		if (isReachedTarget()) {
 			Level world = this.tofunian.level();
 			BlockPos blockpos = this.blockPos.above();
