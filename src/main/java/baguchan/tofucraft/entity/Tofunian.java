@@ -186,14 +186,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(3, new EatItemGoal<>(this, null, (p_35882_) -> {
 			return getHealth() < getMaxHealth();
 		}));
-		this.goalSelector.addGoal(4, new GetItemGoal<>(this));
-		this.goalSelector.addGoal(5, new CropHarvestGoal(this, 0.9F));
-		this.goalSelector.addGoal(6, new MakeFoodGoal(this, 0.9F, 1));
-		this.goalSelector.addGoal(7, new RestockGoal(this, 0.9F, 1));
-		this.goalSelector.addGoal(8, new MoveToJobGoal(this, 0.9F, 1));
-		this.goalSelector.addGoal(9, new MoveToGoal(this, 42.0D, 1.0D));
-		this.goalSelector.addGoal(10, new FindJobBlockGoal(this, 0.85F, 6));
-		this.goalSelector.addGoal(11, new TofunianLoveGoal(this, 0.8F));
+		this.goalSelector.addGoal(4, new TofunianLoveGoal(this, 0.8F));
+		this.goalSelector.addGoal(5, new GetItemGoal<>(this));
+		this.goalSelector.addGoal(6, new CropHarvestGoal(this, 0.9F));
+		this.goalSelector.addGoal(7, new MakeFoodGoal(this, 0.9F, 1));
+		this.goalSelector.addGoal(8, new RestockGoal(this, 0.9F, 1));
+		this.goalSelector.addGoal(9, new MoveToJobGoal(this, 0.9F, 1));
+		this.goalSelector.addGoal(10, new MoveToGoal(this, 42.0D, 1.0D));
+		this.goalSelector.addGoal(11, new FindJobBlockGoal(this, 0.85F, 6));
+
 		this.goalSelector.addGoal(12, new RandomStrollGoal(this, 0.9D));
 		this.goalSelector.addGoal(13, new InteractGoal(this, Player.class, 3.0F, 1.0F));
 		this.goalSelector.addGoal(14, new ShareItemAndGossipGoal(this, 0.9F));
@@ -202,7 +203,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.23999999463558197D).add(Attributes.MAX_HEALTH, 20.0D);
+		return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.24D).add(Attributes.MAX_HEALTH, 20.0D);
 	}
 
 	@Nullable

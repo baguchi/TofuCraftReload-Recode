@@ -4,7 +4,6 @@ import baguchan.tofucraft.entity.Tofunian;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,13 +18,8 @@ public class RestockGoal extends MoveToBlockGoal {
 		this.creature = creature;
 	}
 
-	protected int nextStartTick(PathfinderMob p_25618_) {
-		return reducedTickDelay(20 + p_25618_.getRandom().nextInt(40));
-	}
-
 	public boolean canUse() {
-		long i = this.creature.level().getDayTime() / 24000L;
-		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.canResetStock() && i > 2000L && i < 9000L && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.canResetStock() && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
