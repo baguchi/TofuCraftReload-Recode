@@ -787,7 +787,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			this.gossips.transferFrom(p_35413_.gossips, this.random, 10);
 			this.lastGossipTime = p_35414_;
 			p_35413_.lastGossipTime = p_35414_;
-			this.spawnGolemIfNeeded(p_35412_, p_35414_, 3);
+			this.spawnGolemIfNeeded(p_35412_, p_35414_, 4);
 		}
 	}
 
