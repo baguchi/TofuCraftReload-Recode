@@ -980,7 +980,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 
 		public void stop() {
-			this.hunter.setTofunainHome((BlockPos) null);
 			Tofunian.this.navigation.stop();
 		}
 
