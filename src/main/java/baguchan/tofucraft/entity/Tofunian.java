@@ -17,7 +17,6 @@ import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.registry.TofuTrades;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Dynamic;
@@ -58,7 +57,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ReputationEventHandler;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -89,7 +87,6 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.schedule.Schedule;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -165,31 +162,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		super(type, worldIn);
 		((GroundPathNavigation) getNavigation()).setCanOpenDoors(true);
 		setCanPickUpLoot(true);
-	}
-
-	protected Brain.Provider<Tofunian> brainProvider() {
-		return Brain.provider(ImmutableList.of(), ImmutableList.of());
-	}
-
-	protected Brain<?> makeBrain(Dynamic<?> p_35445_) {
-		Brain<Tofunian> brain = this.brainProvider().makeBrain(p_35445_);
-		this.registerBrainGoals(brain);
-		return brain;
-	}
-
-	public void refreshBrain(ServerLevel p_35484_) {
-		Brain<Tofunian> brain = this.getBrain();
-		brain.stopAll(p_35484_, this);
-		this.brain = brain.copyWithoutBehaviors();
-		this.registerBrainGoals(this.getBrain());
-	}
-
-	public Brain<Tofunian> getBrain() {
-		return (Brain<Tofunian>) super.getBrain();
-	}
-
-	private void registerBrainGoals(Brain<Tofunian> p_35425_) {
-		p_35425_.setSchedule(Schedule.VILLAGER_DEFAULT);
 	}
 
 	protected void registerGoals() {
@@ -298,10 +270,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	protected void customServerAiStep() {
-		this.level().getProfiler().push("tofunianBrain");
-		this.getBrain().tick((ServerLevel) this.level(), this);
-		this.level().getProfiler().pop();
-
 		if (!isTrading() && this.timeUntilReset > 0) {
 			this.timeUntilReset--;
 			if (this.timeUntilReset <= 0) {
