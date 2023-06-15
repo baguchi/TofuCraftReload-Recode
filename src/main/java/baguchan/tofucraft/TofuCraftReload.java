@@ -134,6 +134,7 @@ public class TofuCraftReload {
 			TofuItems.registerDispenserItem();
 			TofuItems.registerCompostableItem();
 			TofuItems.registerAnimalFeed();
+			TofuBlocks.flamableInit();
 			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift"));
 			TofuBiomes.init();
 			ModInteractionInformations.init();

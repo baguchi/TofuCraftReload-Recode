@@ -60,6 +60,7 @@ import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -436,5 +437,26 @@ public class TofuBlocks {
 				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties());
 			}
 		};
+	}
+
+	public static void flamableInit() {
+		FireBlock fireblock = (FireBlock) Blocks.FIRE;
+		fireblock.setFlammable(ZUNDATOFU_MUSHROOM.get(), 20, 20);
+		fireblock.setFlammable(LEEK.get(), 20, 20);
+		fireblock.setFlammable(TOFU_STEM_PLANKS.get(), 5, 20);
+		fireblock.setFlammable(TOFU_STEM_PLANKS_STAIR.get(), 5, 20);
+		fireblock.setFlammable(TOFU_STEM_PLANKS_SLAB.get(), 5, 20);
+		fireblock.setFlammable(TOFU_STEM_FENCE.get(), 5, 20);
+		fireblock.setFlammable(TOFU_STEM_FENCE_GATE.get(), 5, 20);
+		fireblock.setFlammable(LEEK_PLANKS.get(), 5, 20);
+		fireblock.setFlammable(LEEK_PLANKS_STAIR.get(), 5, 20);
+		fireblock.setFlammable(LEEK_PLANKS_SLAB.get(), 5, 20);
+		fireblock.setFlammable(LEEK_FENCE.get(), 5, 20);
+		fireblock.setFlammable(LEEK_FENCE_GATE.get(), 5, 20);
+		fireblock.setFlammable(LEEK_GREEN_PLANKS.get(), 5, 20);
+		fireblock.setFlammable(LEEK_GREEN_PLANKS_STAIR.get(), 5, 20);
+		fireblock.setFlammable(LEEK_GREEN_PLANKS_SLAB.get(), 5, 20);
+		fireblock.setFlammable(LEEK_GREEN_FENCE.get(), 5, 20);
+		fireblock.setFlammable(LEEK_GREEN_FENCE_GATE.get(), 5, 20);
 	}
 }
