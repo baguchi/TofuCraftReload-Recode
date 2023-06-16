@@ -12,6 +12,7 @@ import baguchan.tofucraft.entity.goal.ShareItemAndGossipGoal;
 import baguchan.tofucraft.entity.goal.TofunianLoveGoal;
 import baguchan.tofucraft.entity.goal.TofunianSleepOnBedGoal;
 import baguchan.tofucraft.entity.goal.WakeUpGoal;
+import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
@@ -35,6 +36,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
@@ -382,6 +384,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public InteractionResult mobInteract(Player p_35472_, InteractionHand p_35473_) {
 		ItemStack itemstack = p_35472_.getItemInHand(p_35473_);
 		if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG.get() && this.isAlive() && !this.isTrading() && !this.isSleeping() && !p_35472_.isSecondaryUseActive()) {
+			if (p_35472_ instanceof ServerPlayer) {
+				TofuAdvancements.MY_TOFU_CHILD.trigger((ServerPlayer) p_35472_);
+			}
 			if (this.isBaby()) {
 				this.setUnhappy();
 				return InteractionResult.sidedSuccess(this.level().isClientSide);
