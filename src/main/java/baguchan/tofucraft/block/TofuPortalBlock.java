@@ -77,10 +77,10 @@ public class TofuPortalBlock extends Block {
 				if (waitTime >= 80 || !(p_196262_4_ instanceof Player) || ((Player) p_196262_4_).isCreative()) {
 					attemptSendPlayer(p_196262_4_, p_196262_2_);
 					handler.setPortalTimer(0);
-					handler.tofuPortalCooldown = 200;
+					handler.tofuPortalCooldown = 60;
 				}
 			} else {
-				handler.tofuPortalCooldown = 200;
+				handler.tofuPortalCooldown = 60;
 			}
 		});
 	}
