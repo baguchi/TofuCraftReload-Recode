@@ -150,7 +150,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.SALT) {
-				ItemStack salt = new ItemStack(TofuItems.SALT.get(), 1);
+				ItemStack salt = new ItemStack(TofuItems.SALT.get(), 2);
 				float f = 0.7F;
 				double d0 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
 				double d1 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
