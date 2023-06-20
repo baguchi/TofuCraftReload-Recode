@@ -32,7 +32,7 @@ public class TofuDimensionTypes {
 				BlockTags.INFINIBURN_OVERWORLD, //infiburn
 				BuiltinDimensionTypes.OVERWORLD_EFFECTS, // DimensionRenderInfo
 				0f,
-				new DimensionType.MonsterSettings(false, false, UniformInt.of(0, 7), 7)
+				new DimensionType.MonsterSettings(false, false, UniformInt.of(0, 7), 0)
 		);
 	}
 
