@@ -265,6 +265,18 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerSlab(TofuBlocks.TOFUSLAB_SESAME.get());
 		registerEmpty(TofuBlocks.YUBA.get());
 		registerEmpty(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
+		dropSelf(TofuBlocks.TOFU_STEM_SIGN.get());
+		dropOther(TofuBlocks.TOFU_STEM_WALL_SIGN.get(), TofuBlocks.TOFU_STEM_SIGN.get());
+		dropSelf(TofuBlocks.LEEK_GREEN_SIGN.get());
+		dropOther(TofuBlocks.LEEK_GREEN_WALL_SIGN.get(), TofuBlocks.LEEK_GREEN_SIGN.get());
+		dropSelf(TofuBlocks.LEEK_SIGN.get());
+		dropOther(TofuBlocks.LEEK_WALL_SIGN.get(), TofuBlocks.LEEK_SIGN.get());
+		dropSelf(TofuBlocks.TOFU_STEM_HANGING_SIGN.get());
+		dropOther(TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get(), TofuBlocks.TOFU_STEM_HANGING_SIGN.get());
+		dropSelf(TofuBlocks.LEEK_GREEN_HANGING_SIGN.get());
+		dropOther(TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_HANGING_SIGN.get());
+		dropSelf(TofuBlocks.LEEK_HANGING_SIGN.get());
+		dropOther(TofuBlocks.LEEK_WALL_HANGING_SIGN.get(), TofuBlocks.LEEK_HANGING_SIGN.get());
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

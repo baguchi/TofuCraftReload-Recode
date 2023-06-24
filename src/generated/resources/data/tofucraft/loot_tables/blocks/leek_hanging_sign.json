@@ -1,0 +1,21 @@
+{
+  "type" : "minecraft:block",
+  "pools" : [
+    {
+      "bonus_rolls" : 0.0,
+      "conditions" : [
+        {
+          "condition" : "minecraft:survives_explosion"
+        }
+      ],
+      "entries" : [
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:leek_hanging_sign"
+        }
+      ],
+      "rolls" : 1.0
+    }
+  ],
+  "random_sequence" : "tofucraft:blocks/leek_hanging_sign"
+}

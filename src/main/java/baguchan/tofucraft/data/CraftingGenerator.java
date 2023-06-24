@@ -1371,5 +1371,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.GLASS_BOTTLE, 3)
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK_NETHER.get()))
 				.save(consumer);
+
+		makeSign(TofuBlocks.TOFU_STEM_SIGN, TofuBlocks.TOFU_STEM_PLANKS).save(consumer);
+		makeSign(TofuBlocks.LEEK_SIGN, TofuBlocks.LEEK_PLANKS).save(consumer);
+		makeSign(TofuBlocks.LEEK_GREEN_SIGN, TofuBlocks.LEEK_GREEN_PLANKS).save(consumer);
+
+		makeHangingSign(TofuBlocks.TOFU_STEM_HANGING_SIGN, TofuBlocks.TOFU_STEM).save(consumer);
+		makeHangingSign(TofuBlocks.LEEK_HANGING_SIGN, TofuBlocks.LEEK_STEM).save(consumer);
+		makeHangingSign(TofuBlocks.LEEK_GREEN_HANGING_SIGN, TofuBlocks.LEEK_GREEN_STEM).save(consumer);
 	}
 }

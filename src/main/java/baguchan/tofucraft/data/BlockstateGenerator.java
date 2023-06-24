@@ -7,12 +7,16 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.WallHangingSignBlock;
+import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
@@ -148,6 +152,14 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get(), TofuBlocks.TOFU_STEM_PLANKS.get());
 		this.fenceBlock(TofuBlocks.TOFU_STEM_FENCE.get(), texture(name(TofuBlocks.TOFU_STEM_PLANKS.get())));
 		this.fenceGateBlock(TofuBlocks.TOFU_STEM_FENCE_GATE.get(), texture(name(TofuBlocks.TOFU_STEM_PLANKS.get())));
+		sign(TofuBlocks.TOFU_STEM_SIGN, TofuBlocks.TOFU_STEM_WALL_SIGN, "tofustem_planks");
+		sign(TofuBlocks.LEEK_GREEN_SIGN, TofuBlocks.LEEK_GREEN_WALL_SIGN, "leek_green_planks");
+		sign(TofuBlocks.LEEK_SIGN, TofuBlocks.LEEK_WALL_SIGN, "leek_planks");
+
+		hangingSign(TofuBlocks.TOFU_STEM_HANGING_SIGN, TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN, "tofustem");
+		hangingSign(TofuBlocks.LEEK_GREEN_HANGING_SIGN, TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN, "leek_green_stem");
+		hangingSign(TofuBlocks.LEEK_HANGING_SIGN, TofuBlocks.LEEK_WALL_HANGING_SIGN, "leek_stem");
+
 
 		crossBlock(TofuBlocks.SAPLING_TOFU.get());
 		simpleLeavesBlock(TofuBlocks.LEAVES_TOFU.get());
@@ -174,6 +186,16 @@ public class BlockstateGenerator extends BlockStateProvider {
 		CandleTofuCakeBlock.getCandleCakes().forEach((block -> this.candleCake((CandleTofuCakeBlock) block)));
 		this.carpet(TofuBlocks.YUBA.get());
 		this.simpleBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
+	}
+
+	public void sign(Supplier<? extends StandingSignBlock> standingBlock, Supplier<? extends WallSignBlock> wallBlock, String name) {
+		signBlock(standingBlock.get(), wallBlock.get(), modLoc("block/" + name));
+	}
+
+	public void hangingSign(Supplier<? extends CeilingHangingSignBlock> standingBlock, Supplier<? extends WallHangingSignBlock> wallBlock, String name) {
+		ModelFile model = models().getBuilder(name(standingBlock.get())).texture("particle", modLoc("block/" + name));
+		simpleBlock(standingBlock.get(), model);
+		simpleBlock(wallBlock.get(), model);
 	}
 
 	public void carpet(Block block) {

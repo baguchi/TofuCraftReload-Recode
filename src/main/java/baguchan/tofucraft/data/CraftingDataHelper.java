@@ -17,9 +17,12 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CeilingHangingSignBlock;
+import net.minecraft.world.level.block.SignBlock;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -32,6 +35,27 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	public CraftingDataHelper(PackOutput generator) {
 		super(generator);
 	}
+
+	public ShapedRecipeBuilder makeSign(Supplier<? extends SignBlock> signOut, Supplier<? extends Block> planksIn) {
+		return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, signOut.get(), 3)
+				.pattern("PPP")
+				.pattern("PPP")
+				.pattern(" / ")
+				.define('P', planksIn.get())
+				.define('/', Tags.Items.RODS_WOODEN)
+				.unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(planksIn.get()).getPath(), has(planksIn.get()));
+	}
+
+	protected ShapedRecipeBuilder makeHangingSign(Supplier<? extends CeilingHangingSignBlock> result, Supplier<? extends Block> log) {
+		return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result.get(), 6)
+				.pattern("| |")
+				.pattern("###")
+				.pattern("###")
+				.define('#', log.get())
+				.define('|', Items.CHAIN)
+				.unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(log.get()).getPath(), has(log.get()));
+	}
+
 
 	protected final Ingredient itemWithNBT(Supplier<? extends ItemLike> item, Consumer<CompoundTag> nbtSetter) {
 		return itemWithNBT(item.get(), nbtSetter);

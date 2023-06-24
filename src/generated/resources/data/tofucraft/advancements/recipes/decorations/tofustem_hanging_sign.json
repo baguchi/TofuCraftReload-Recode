@@ -1,0 +1,35 @@
+{
+  "parent" : "minecraft:recipes/root",
+  "criteria" : {
+    "has_the_recipe" : {
+      "conditions" : {
+        "recipe" : "tofucraft:tofustem_hanging_sign"
+      },
+      "trigger" : "minecraft:recipe_unlocked"
+    },
+    "has_tofustem" : {
+      "conditions" : {
+        "items" : [
+          {
+            "items" : [
+              "tofucraft:tofustem"
+            ]
+          }
+        ]
+      },
+      "trigger" : "minecraft:inventory_changed"
+    }
+  },
+  "requirements" : [
+    [
+      "has_tofustem",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards" : {
+    "recipes" : [
+      "tofucraft:tofustem_hanging_sign"
+    ]
+  },
+  "sends_telemetry_event" : false
+}

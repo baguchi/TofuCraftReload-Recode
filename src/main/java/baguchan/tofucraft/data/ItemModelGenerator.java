@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SignBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -125,6 +126,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get());
 		this.woodenFence(TofuBlocks.LEEK_GREEN_FENCE, TofuBlocks.LEEK_GREEN_PLANKS);
 		toBlock(TofuBlocks.LEEK_GREEN_FENCE_GATE.get());
+		sign(TofuBlocks.LEEK_GREEN_SIGN);
+		sign(TofuBlocks.LEEK_GREEN_HANGING_SIGN);
 
 		toBlock(TofuBlocks.LEEK_STEM.get());
 		toBlock(TofuBlocks.LEEK_PLANKS.get());
@@ -132,6 +135,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.LEEK_PLANKS_SLAB.get());
 		this.woodenFence(TofuBlocks.LEEK_FENCE, TofuBlocks.LEEK_PLANKS);
 		toBlock(TofuBlocks.LEEK_FENCE_GATE.get());
+		sign(TofuBlocks.LEEK_SIGN);
+		sign(TofuBlocks.LEEK_HANGING_SIGN);
 
 		itemBlockFlat(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
 
@@ -142,6 +147,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get());
 		this.woodenFence(TofuBlocks.TOFU_STEM_FENCE, TofuBlocks.TOFU_STEM_PLANKS);
 		toBlock(TofuBlocks.TOFU_STEM_FENCE_GATE.get());
+		sign(TofuBlocks.TOFU_STEM_SIGN);
+		sign(TofuBlocks.TOFU_STEM_HANGING_SIGN);
 
 		itemBlockFlat(TofuBlocks.SAPLING_TOFU.get());
 		toBlock(TofuBlocks.LEAVES_TOFU.get());
@@ -459,6 +466,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFU_STEM_CHEST_BOAT.get());
 		singleTex(TofuItems.LEEK_CHEST_BOAT.get());
 		singleTex(TofuItems.LEEK_GREEN_CHEST_BOAT.get());
+	}
+
+	public void sign(Supplier<? extends SignBlock> sign) {
+		withExistingParent(blockName(sign.get()), mcLoc("item/generated"))
+				.texture("layer0", modLoc("item/" + blockName(sign.get())));
 	}
 
 	private void woodenFence(RegistryObject<? extends Block> fence, RegistryObject<? extends Block> block) {

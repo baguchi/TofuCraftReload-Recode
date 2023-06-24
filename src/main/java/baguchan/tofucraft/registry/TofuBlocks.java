@@ -12,14 +12,18 @@ import baguchan.tofucraft.block.RiceBlock;
 import baguchan.tofucraft.block.SuspiciousTofuTerrainBlock;
 import baguchan.tofucraft.block.TofuBlock;
 import baguchan.tofucraft.block.TofuCakeBlock;
+import baguchan.tofucraft.block.TofuCeilingHangingSignBlock;
 import baguchan.tofucraft.block.TofuFarmlandBlock;
 import baguchan.tofucraft.block.TofuGemBlock;
 import baguchan.tofucraft.block.TofuLeavesBlock;
 import baguchan.tofucraft.block.TofuMushroomBlock;
 import baguchan.tofucraft.block.TofuPortalBlock;
 import baguchan.tofucraft.block.TofuSaplingBlock;
+import baguchan.tofucraft.block.TofuStandingSignBlock;
 import baguchan.tofucraft.block.TofuTerrainBlock;
 import baguchan.tofucraft.block.TofuTrapDoorBlock;
+import baguchan.tofucraft.block.TofuWallHangingSignBlock;
+import baguchan.tofucraft.block.TofuWallSignBlock;
 import baguchan.tofucraft.block.YubaBlock;
 import baguchan.tofucraft.block.crop.ChiliCropsBlock;
 import baguchan.tofucraft.block.crop.LeekCropsBlock;
@@ -52,10 +56,13 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BedItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FenceBlock;
@@ -67,9 +74,12 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.WallHangingSignBlock;
+import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -258,7 +268,11 @@ public class TofuBlocks {
 	public static final RegistryObject<StairBlock> LEEK_GREEN_PLANKS_STAIR = register("leek_green_planks_stair", () -> new StairBlock(LEEK_GREEN_PLANKS.get()::defaultBlockState, BlockBehaviour.Properties.copy(LEEK_GREEN_PLANKS.get())));
 	public static final RegistryObject<SlabBlock> LEEK_GREEN_PLANKS_SLAB = register("leek_green_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(LEEK_GREEN_PLANKS.get())));
 	public static final RegistryObject<FenceBlock> LEEK_GREEN_FENCE = register("leek_green_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
-	public static final RegistryObject<FenceGateBlock> LEEK_GREEN_FENCE_GATE = register("leek_green_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F), TofuWoodTypes.LEEKSTEM));
+	public static final RegistryObject<FenceGateBlock> LEEK_GREEN_FENCE_GATE = register("leek_green_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F), TofuWoodTypes.LEEK_GREEN));
+	public static final RegistryObject<StandingSignBlock> LEEK_GREEN_SIGN = register("leek_green_sign", () -> new TofuStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_SIGN), TofuWoodTypes.LEEK_GREEN));
+	public static final RegistryObject<WallSignBlock> LEEK_GREEN_WALL_SIGN = BLOCKS.register("leek_green_wall_sign", () -> new TofuWallSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_WALL_SIGN), TofuWoodTypes.LEEK_GREEN));
+	public static final RegistryObject<CeilingHangingSignBlock> LEEK_GREEN_HANGING_SIGN = register("leek_green_hanging_sign", () -> new TofuCeilingHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_HANGING_SIGN), TofuWoodTypes.LEEK_GREEN));
+	public static final RegistryObject<WallHangingSignBlock> LEEK_GREEN_WALL_HANGING_SIGN = BLOCKS.register("leek_green_wall_hanging_sign", () -> new TofuWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_WALL_HANGING_SIGN), TofuWoodTypes.LEEK_GREEN));
 
 
 	public static final RegistryObject<RotatedPillarBlock> LEEK_STEM = register("leek_stem", () -> new BurnableRotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM)));
@@ -267,7 +281,11 @@ public class TofuBlocks {
 	public static final RegistryObject<StairBlock> LEEK_PLANKS_STAIR = register("leek_planks_stair", () -> new StairBlock(LEEK_PLANKS.get()::defaultBlockState, BlockBehaviour.Properties.copy(LEEK_PLANKS.get())));
 	public static final RegistryObject<SlabBlock> LEEK_PLANKS_SLAB = register("leek_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(LEEK_PLANKS.get())));
 	public static final RegistryObject<FenceBlock> LEEK_FENCE = register("leek_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
-	public static final RegistryObject<FenceGateBlock> LEEK_FENCE_GATE = register("leek_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F), TofuWoodTypes.LEEKSTEM));
+	public static final RegistryObject<FenceGateBlock> LEEK_FENCE_GATE = register("leek_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F), TofuWoodTypes.LEEK));
+	public static final RegistryObject<StandingSignBlock> LEEK_SIGN = register("leek_sign", () -> new TofuStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_SIGN), TofuWoodTypes.LEEK));
+	public static final RegistryObject<WallSignBlock> LEEK_WALL_SIGN = BLOCKS.register("leek_wall_sign", () -> new TofuWallSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_WALL_SIGN), TofuWoodTypes.LEEK));
+	public static final RegistryObject<CeilingHangingSignBlock> LEEK_HANGING_SIGN = register("leek_hanging_sign", () -> new TofuCeilingHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_HANGING_SIGN), TofuWoodTypes.LEEK));
+	public static final RegistryObject<WallHangingSignBlock> LEEK_WALL_HANGING_SIGN = BLOCKS.register("leek_wall_hanging_sign", () -> new TofuWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_WALL_HANGING_SIGN), TofuWoodTypes.LEEK));
 
 
 	public static final RegistryObject<Block> ZUNDATOFU_MUSHROOM = register("zundatofu_mushroom", () -> new TofuMushroomBlock(BlockBehaviour.Properties.of().instabreak().noCollission().sound(SoundType.FUNGUS), TofuWorldFeatures.BIG_ZUNDA_TOFU_MUSHUROOM));
@@ -278,7 +296,13 @@ public class TofuBlocks {
 	public static final RegistryObject<StairBlock> TOFU_STEM_PLANKS_STAIR = register("tofustem_planks_stair", () -> new StairBlock(TOFU_STEM_PLANKS.get()::defaultBlockState, BlockBehaviour.Properties.copy(TOFU_STEM_PLANKS.get())));
 	public static final RegistryObject<SlabBlock> TOFU_STEM_PLANKS_SLAB = register("tofustem_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(TOFU_STEM_PLANKS.get())));
 	public static final RegistryObject<FenceBlock> TOFU_STEM_FENCE = register("tofustem_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
-	public static final RegistryObject<FenceGateBlock> TOFU_STEM_FENCE_GATE = register("tofustem_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F), TofuWoodTypes.TOFUSTEM));
+	public static final RegistryObject<FenceGateBlock> TOFU_STEM_FENCE_GATE = register("tofustem_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F), TofuWoodTypes.TOFU_STEM));
+
+
+	public static final RegistryObject<StandingSignBlock> TOFU_STEM_SIGN = register("tofustem_sign", () -> new TofuStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_SIGN), TofuWoodTypes.TOFU_STEM));
+	public static final RegistryObject<WallSignBlock> TOFU_STEM_WALL_SIGN = BLOCKS.register("tofustem_wall_sign", () -> new TofuWallSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_WALL_SIGN), TofuWoodTypes.TOFU_STEM));
+	public static final RegistryObject<CeilingHangingSignBlock> TOFU_STEM_HANGING_SIGN = register("tofustem_hanging_sign", () -> new TofuCeilingHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_HANGING_SIGN), TofuWoodTypes.TOFU_STEM));
+	public static final RegistryObject<WallHangingSignBlock> TOFU_STEM_WALL_HANGING_SIGN = BLOCKS.register("tofustem_wall_hanging_sign", () -> new TofuWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_WALL_HANGING_SIGN), TofuWoodTypes.TOFU_STEM));
 
 
 	public static final RegistryObject<TofuPortalBlock> TOFU_PORTAL = BLOCKS.register("tofuportal", () -> new TofuPortalBlock(BlockBehaviour.Properties.of().strength(-1.0F).noCollission().noLootTable().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
@@ -403,6 +427,18 @@ public class TofuBlocks {
 				return new StandingAndWallBlockItem(TOFUTORCH_GRILLED.get(), WALLTOFUTORCH_GRILLED.get(), new Item.Properties(), Direction.DOWN);
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_ZUNDA.get()) {
 				return new StandingAndWallBlockItem(TOFUTORCH_ZUNDA.get(), WALLTOFUTORCH_ZUNDA.get(), new Item.Properties(), Direction.DOWN);
+			} else if (Objects.requireNonNull(block.get()) == TOFU_STEM_SIGN.get()) {
+				return new SignItem(new Item.Properties().stacksTo(16), TOFU_STEM_SIGN.get(), TOFU_STEM_WALL_SIGN.get());
+			} else if (Objects.requireNonNull(block.get()) == LEEK_GREEN_SIGN.get()) {
+				return new SignItem(new Item.Properties().stacksTo(16), LEEK_GREEN_SIGN.get(), LEEK_GREEN_WALL_SIGN.get());
+			} else if (Objects.requireNonNull(block.get()) == LEEK_SIGN.get()) {
+				return new SignItem(new Item.Properties().stacksTo(16), LEEK_SIGN.get(), LEEK_WALL_SIGN.get());
+			} else if (Objects.requireNonNull(block.get()) == TOFU_STEM_HANGING_SIGN.get()) {
+				return new HangingSignItem(TOFU_STEM_HANGING_SIGN.get(), TOFU_STEM_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16));
+			} else if (Objects.requireNonNull(block.get()) == LEEK_GREEN_HANGING_SIGN.get()) {
+				return new HangingSignItem(LEEK_GREEN_HANGING_SIGN.get(), LEEK_GREEN_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16));
+			} else if (Objects.requireNonNull(block.get()) == LEEK_HANGING_SIGN.get()) {
+				return new HangingSignItem(LEEK_HANGING_SIGN.get(), LEEK_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16));
 			} else if (Objects.requireNonNull(block.get()) == TOFUBED.get()) {
 				return new BedItem(Objects.requireNonNull(block.get()), new Item.Properties().stacksTo(1)) {
 					@Override
