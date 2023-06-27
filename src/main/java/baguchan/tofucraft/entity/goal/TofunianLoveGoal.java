@@ -82,6 +82,7 @@ public class TofunianLoveGoal extends Goal {
 			this.tofunian.setAge(6000);
 			this.partner.setAge(6000);
 			tofunianEntity.setAge(-24000);
+			tofunian.eatAndDigestFood();
 			tofunianEntity.moveTo(this.tofunian.getX(), this.tofunian.getY(), this.tofunian.getZ(), 0.0F, 0.0F);
 			((ServerLevel) this.level).addFreshEntityWithPassengers(tofunianEntity);
 			this.level.broadcastEntityEvent(tofunianEntity, (byte) 12);
