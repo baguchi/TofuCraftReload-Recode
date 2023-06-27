@@ -239,8 +239,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.ZUNDA_BOW,
 						TofuItems.FUKUMAME,
 						TofuItems.NETHER_FUKUMAME,
-						TofuItems.SOUL_FUKUMAME,
-						TofuItems.ZUNDARUBY).map(itemRegistryObject -> {
+						TofuItems.SOUL_FUKUMAME).map(itemRegistryObject -> {
 					return itemRegistryObject.get().asItem().getDefaultInstance();
 				}).toList());
 			}).build());
