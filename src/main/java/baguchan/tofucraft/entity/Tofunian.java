@@ -668,6 +668,39 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				.sum();
 	}
 
+	private void eatUntilFull() {
+		if (this.hungry() && this.countFoodPointsInInventory() != 0) {
+			for (int i = 0; i < this.getInventory().getContainerSize(); ++i) {
+				ItemStack itemstack = this.getInventory().getItem(i);
+				if (!itemstack.isEmpty()) {
+					Integer integer = FOOD_POINTS.get(itemstack.getItem());
+					if (integer != null) {
+						int j = itemstack.getCount();
+
+						for (int k = j; k > 0; --k) {
+							this.foodLevel += integer;
+							this.getInventory().removeItem(i, 1);
+							if (!this.hungry()) {
+								return;
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
+
+	private void digestFood(int p_35549_) {
+		this.foodLevel -= p_35549_;
+	}
+
+	public void eatAndDigestFood() {
+		this.eatUntilFull();
+		this.digestFood(12);
+	}
+
+
 	public void cookingFood() {
 		for (int i = 0; i < this.getInventory().getContainerSize(); i++) {
 			ItemStack itemstack = this.getInventory().getItem(i);
