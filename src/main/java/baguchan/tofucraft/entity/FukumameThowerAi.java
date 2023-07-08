@@ -1,5 +1,6 @@
 package baguchan.tofucraft.entity;
 
+import baguchan.tofucraft.entity.behaviors.EatFukumame;
 import baguchan.tofucraft.entity.behaviors.ThrowFukumame;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -137,13 +138,13 @@ public class FukumameThowerAi {
 	}
 
 	private static void initIdleActivity(Brain<FukumameThower> p_34892_) {
-		p_34892_.addActivity(Activity.IDLE, 10, ImmutableList.of(SetEntityLookTarget.create(FukumameThowerAi::isPlayerHoldingLovedItem, 14.0F), StartAttacking.<Piglin>create(AbstractPiglin::isAdult, FukumameThowerAi::findNearestValidAttackTarget), BehaviorBuilder.triggerIf(FukumameThower::canHunt, StartHuntingHoglin.create()), avoidRepellent(), babySometimesRideBabyHoglin(), createIdleLookBehaviors(), createIdleMovementBehaviors(), SetLookAndInteract.create(EntityType.PLAYER, 4)));
+		p_34892_.addActivity(Activity.IDLE, 10, ImmutableList.of(SetEntityLookTarget.create(FukumameThowerAi::isPlayerHoldingLovedItem, 14.0F), StartAttacking.<Piglin>create(AbstractPiglin::isAdult, FukumameThowerAi::findNearestValidAttackTarget), BehaviorBuilder.triggerIf(FukumameThower::canHunt, StartHuntingHoglin.create()), new EatFukumame<>(), avoidRepellent(), babySometimesRideBabyHoglin(), createIdleLookBehaviors(), createIdleMovementBehaviors(), SetLookAndInteract.create(EntityType.PLAYER, 4)));
 	}
 
 	private static void initFightActivity(FukumameThower p_34904_, Brain<FukumameThower> p_34905_) {
 		p_34905_.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.<BehaviorControl<? super FukumameThower>>of(StopAttackingIfTargetInvalid.<Piglin>create((p_34981_) -> {
 			return !isNearestValidAttackTarget(p_34904_, p_34981_);
-		}), BackUpIfTooClose.create(10, 0.75F), new ThrowFukumame<>(), RememberIfHoglinWasKilled.create(), EraseMemoryIf.create(FukumameThowerAi::isNearZombified, MemoryModuleType.ATTACK_TARGET)), MemoryModuleType.ATTACK_TARGET);
+		}), BackUpIfTooClose.create(10, 0.75F), new EatFukumame<>(), new ThrowFukumame<>(), RememberIfHoglinWasKilled.create(), EraseMemoryIf.create(FukumameThowerAi::isNearZombified, MemoryModuleType.ATTACK_TARGET)), MemoryModuleType.ATTACK_TARGET);
 	}
 
 	private static void initCelebrateActivity(Brain<FukumameThower> p_34921_) {

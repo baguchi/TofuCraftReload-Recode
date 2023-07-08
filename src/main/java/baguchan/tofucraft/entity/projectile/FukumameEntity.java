@@ -33,7 +33,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Optional;
 
 public class FukumameEntity extends ThrowableProjectile {
-	public float damage = 2;
+	public float damage = 1;
 	private int totalHits;
 	private static final EntityDataAccessor<Integer> BOUNCE_LEVEL = SynchedEntityData.defineId(FukumameEntity.class, EntityDataSerializers.INT);
 
