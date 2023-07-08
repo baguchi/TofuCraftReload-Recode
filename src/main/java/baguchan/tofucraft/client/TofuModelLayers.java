@@ -18,4 +18,6 @@ public class TofuModelLayers {
 
 	public static final ModelLayerLocation SHUDOFUSPIDER = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "shudofuspider"), "shudofuspider");
 
+	public static final ModelLayerLocation FUKUMAME_THOWER = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "fukumame_thower"), "fukumame_thower");
+
 }

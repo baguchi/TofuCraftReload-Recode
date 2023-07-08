@@ -1,33 +1,10 @@
 package baguchan.tofucraft.client;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.client.model.ShuDofuSpiderModel;
-import baguchan.tofucraft.client.model.TofuFishModel;
-import baguchan.tofucraft.client.model.TofuGandlemModel;
-import baguchan.tofucraft.client.model.TofuGolemModel;
-import baguchan.tofucraft.client.model.TofuSpiderModel;
-import baguchan.tofucraft.client.model.TofunianModel;
-import baguchan.tofucraft.client.model.TravelerTofunianModel;
+import baguchan.tofucraft.client.model.*;
 import baguchan.tofucraft.client.overlay.TofuPortalOverlay;
-import baguchan.tofucraft.client.render.FukumameRender;
-import baguchan.tofucraft.client.render.NattoBallRender;
-import baguchan.tofucraft.client.render.NattoStringRender;
-import baguchan.tofucraft.client.render.NetherFukumameRender;
-import baguchan.tofucraft.client.render.SoulFukumameRender;
-import baguchan.tofucraft.client.render.ZundaArrowRender;
-import baguchan.tofucraft.client.render.entity.FallingTofuRenderer;
-import baguchan.tofucraft.client.render.entity.ShuDofuSpiderRender;
-import baguchan.tofucraft.client.render.entity.TofuBoatRenderer;
-import baguchan.tofucraft.client.render.entity.TofuCowRender;
-import baguchan.tofucraft.client.render.entity.TofuCreeperRender;
-import baguchan.tofucraft.client.render.entity.TofuFishRender;
-import baguchan.tofucraft.client.render.entity.TofuGandlemRender;
-import baguchan.tofucraft.client.render.entity.TofuGolemRender;
-import baguchan.tofucraft.client.render.entity.TofuPigRender;
-import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
-import baguchan.tofucraft.client.render.entity.TofuSpiderRender;
-import baguchan.tofucraft.client.render.entity.TofunianRender;
-import baguchan.tofucraft.client.render.entity.TravelerTofunianRender;
+import baguchan.tofucraft.client.render.*;
+import baguchan.tofucraft.client.render.entity.*;
 import baguchan.tofucraft.client.render.entity.effect.NattoCobWebRender;
 import baguchan.tofucraft.client.render.tileentity.FoodPlateRender;
 import baguchan.tofucraft.client.render.tileentity.SuspiciousTofuRenderer;
@@ -35,14 +12,11 @@ import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchan.tofucraft.entity.TofuBoat;
-import baguchan.tofucraft.registry.TofuBlockEntitys;
-import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.registry.TofuContainers;
-import baguchan.tofucraft.registry.TofuEntityTypes;
-import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
@@ -136,6 +110,9 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.FALLING_TOFU.get(), FallingTofuRenderer::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_BOAT.get(), (r) -> new TofuBoatRenderer(r, false));
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_CHEST_BOAT.get(), (r) -> new TofuBoatRenderer(r, true));
+		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME_THOWER.get(), (p_174064_) -> {
+			return new FukumameThowerRenderer<>(p_174064_, TofuModelLayers.FUKUMAME_THOWER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
+		});
 	}
 
 	@SubscribeEvent
@@ -147,6 +124,7 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.TOFU_GOLEM, TofuGolemModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFU_GANDLEM, TofuGandlemModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
+		event.registerLayerDefinition(TofuModelLayers.FUKUMAME_THOWER, FukumameThowerModel::createBodyLayer);
 
 		for (TofuBoat.Type boatType : TofuBoat.Type.values()) {
 			event.registerLayerDefinition(TofuBoatRenderer.createBoatModelName(boatType), BoatModel::createBodyModel);
