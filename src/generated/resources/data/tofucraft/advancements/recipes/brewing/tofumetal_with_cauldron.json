@@ -1,0 +1,35 @@
+{
+  "parent" : "minecraft:recipes/root",
+  "criteria" : {
+    "has_item" : {
+      "conditions" : {
+        "items" : [
+          {
+            "items" : [
+              "tofucraft:blocktofumetal"
+            ]
+          }
+        ]
+      },
+      "trigger" : "minecraft:inventory_changed"
+    },
+    "has_the_recipe" : {
+      "conditions" : {
+        "recipe" : "tofucraft:tofumetal_with_cauldron"
+      },
+      "trigger" : "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements" : [
+    [
+      "has_item",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards" : {
+    "recipes" : [
+      "tofucraft:tofumetal_with_cauldron"
+    ]
+  },
+  "sends_telemetry_event" : false
+}

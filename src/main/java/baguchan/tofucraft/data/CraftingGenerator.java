@@ -1379,5 +1379,31 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeHangingSign(TofuBlocks.TOFU_STEM_HANGING_SIGN, TofuBlocks.TOFU_STEM).save(consumer);
 		makeHangingSign(TofuBlocks.LEEK_HANGING_SIGN, TofuBlocks.LEEK_STEM).save(consumer);
 		makeHangingSign(TofuBlocks.LEEK_GREEN_HANGING_SIGN, TofuBlocks.LEEK_GREEN_STEM).save(consumer);
+
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.BREWING, Blocks.CAULDRON, 1)
+				.pattern("# #")
+				.pattern("# #")
+				.pattern("###")
+				.define('#', TofuBlocks.METALTOFU.get())
+				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
+				.save(consumer, TofuCraftReload.prefix("tofumetal_with_cauldron"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Blocks.SMITHING_TABLE, 1)
+				.pattern("##")
+				.pattern("PP")
+				.pattern("PP")
+				.define('#', TofuBlocks.METALTOFU.get())
+				.define('P', ItemTags.PLANKS)
+				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
+				.save(consumer, TofuCraftReload.prefix("tofumetal_with_smithing_table"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Blocks.BLAST_FURNACE, 1)
+				.pattern("###")
+				.pattern("#F#")
+				.pattern("SSS")
+				.define('#', TofuBlocks.METALTOFU.get())
+				.define('S', Blocks.SMOOTH_STONE)
+				.define('F', Blocks.FURNACE)
+				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
+				.save(consumer, TofuCraftReload.prefix("tofumetal_with_blast_furnace"));
 	}
 }

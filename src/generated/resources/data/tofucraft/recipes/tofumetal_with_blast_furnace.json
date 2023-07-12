@@ -1,0 +1,24 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "#" : {
+      "item" : "tofucraft:blocktofumetal"
+    },
+    "F" : {
+      "item" : "minecraft:furnace"
+    },
+    "S" : {
+      "item" : "minecraft:smooth_stone"
+    }
+  },
+  "pattern" : [
+    "###",
+    "#F#",
+    "SSS"
+  ],
+  "result" : {
+    "item" : "minecraft:blast_furnace"
+  },
+  "show_notification" : true
+}

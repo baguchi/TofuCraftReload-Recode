@@ -1,0 +1,18 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "#" : {
+      "item" : "tofucraft:blocktofumetal"
+    }
+  },
+  "pattern" : [
+    "# #",
+    "# #",
+    "###"
+  ],
+  "result" : {
+    "item" : "minecraft:cauldron"
+  },
+  "show_notification" : true
+}
