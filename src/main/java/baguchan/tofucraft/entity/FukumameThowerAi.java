@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.entity.behaviors.EatFukumame;
+import baguchan.tofucraft.entity.behaviors.SetWalkTargetFromAttackTargetIfTargetOutOfReachOneShot;
 import baguchan.tofucraft.entity.behaviors.ThrowFukumame;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -149,7 +150,9 @@ public class FukumameThowerAi {
 			return p_34904_.getFukumameCount() > 0;
 		}, BackUpIfTooClose.create(10, 0.75F)), new EatFukumame<>(), BehaviorBuilder.triggerIf((entity) -> {
 			return p_34904_.getFukumameCount() <= 0;
-		}, MeleeAttack.create(20)), new ThrowFukumame<>(), RememberIfHoglinWasKilled.create(), EraseMemoryIf.create(FukumameThowerAi::isNearZombified, MemoryModuleType.ATTACK_TARGET)), MemoryModuleType.ATTACK_TARGET);
+		}, MeleeAttack.create(20)), BackUpIfTooClose.create(10, 0.75F), new EatFukumame<>(), BehaviorBuilder.triggerIf((entity) -> {
+			return p_34904_.getFukumameCount() <= 0;
+		}, SetWalkTargetFromAttackTargetIfTargetOutOfReachOneShot.create(1.0F)), new ThrowFukumame<>(), RememberIfHoglinWasKilled.create(), EraseMemoryIf.create(FukumameThowerAi::isNearZombified, MemoryModuleType.ATTACK_TARGET)), MemoryModuleType.ATTACK_TARGET);
 	}
 
 	private static void initCelebrateActivity(Brain<FukumameThower> p_34921_) {

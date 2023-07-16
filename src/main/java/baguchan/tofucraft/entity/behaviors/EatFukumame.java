@@ -17,7 +17,7 @@ public class EatFukumame<E extends FukumameThower> extends Behavior<E> {
 
 	@Override
 	protected boolean checkExtraStartConditions(ServerLevel p_22538_, E p_22539_) {
-		return p_22539_.getTarget() == null && (p_22539_.getHealth() < p_22539_.getMaxHealth() || p_22539_.isConverting() && p_22539_.getTimeInOverWorld() > 0) || p_22539_.isOnFire() && !p_22539_.hasEffect(MobEffects.FIRE_RESISTANCE);
+		return p_22539_.getFukumameCount() > 0 && (p_22539_.getTarget() == null && (p_22539_.getHealth() < p_22539_.getMaxHealth() || p_22539_.isConverting() && p_22539_.getTimeInOverWorld() > 0) || p_22539_.isOnFire() && !p_22539_.hasEffect(MobEffects.FIRE_RESISTANCE));
 	}
 
 	@Override

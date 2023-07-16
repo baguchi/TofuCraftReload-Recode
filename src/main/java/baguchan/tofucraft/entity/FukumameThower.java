@@ -92,7 +92,7 @@ public class FukumameThower extends Piglin {
 	}
 
 	public void eatFukumame() {
-		this.timeInOverworld -= Math.max(this.timeInOverworld - 600, -300);
+		this.timeInOverworld = Math.max(this.timeInOverworld - 600, -300);
 		this.setFukumameCount(Math.max(this.getFukumameCount() - 1, 0));
 		this.heal(1);
 		this.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600));

@@ -75,9 +75,9 @@ public class FukumameThowerModel<T extends FukumameThower> extends PiglinModel<T
 		}
 
 		if (entity.getFukumameCount() > 64) {
-			this.fukumame.y = -23F;
+			this.fukumame.y = 0F;
 		} else if (entity.getFukumameCount() > 0) {
-			this.fukumame.y = -18F - (entity.getFukumameCount() / 64F) * 5F;
+			this.fukumame.y = 0F - ((entity.getFukumameCount() - 64F) / 64F) * 5F;
 		}
 		this.fukumame.visible = entity.getFukumameCount() > 0;
 

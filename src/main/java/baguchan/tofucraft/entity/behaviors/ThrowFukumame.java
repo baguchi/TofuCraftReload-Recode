@@ -56,7 +56,7 @@ public class ThrowFukumame<E extends FukumameThower> extends Behavior<E> {
 				if (++this.ticks == 80) {
 					p_22552_.swing(InteractionHand.MAIN_HAND);
 					p_22552_.setCharge(false);
-
+					p_22552_.setFukumameCount(Math.max(p_22552_.getFukumameCount() - 1, 0));
 					Vec3 vec3 = livingEntity.getDeltaMovement();
 					double d0 = livingEntity.getX() + vec3.x - p_22552_.getX();
 					double d1 = livingEntity.getEyeY() - p_22552_.getEyeY() - 0.1F;
