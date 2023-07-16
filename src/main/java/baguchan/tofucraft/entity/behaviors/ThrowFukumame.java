@@ -30,7 +30,7 @@ public class ThrowFukumame<E extends FukumameThower> extends Behavior<E> {
 
 	@Override
 	protected boolean canStillUse(ServerLevel p_22545_, E p_22546_, long p_22547_) {
-		return p_22546_.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).isPresent();
+		return p_22546_.getFukumameCount() > 0 && p_22546_.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).isPresent();
 	}
 
 	@Override
