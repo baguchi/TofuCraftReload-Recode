@@ -25,7 +25,7 @@ public class ThrowFukumame<E extends FukumameThower> extends Behavior<E> {
 
 	@Override
 	protected boolean checkExtraStartConditions(ServerLevel p_22538_, E p_22539_) {
-		return p_22539_.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).isPresent();
+		return p_22539_.getFukumameCount() > 0 && p_22539_.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).isPresent();
 	}
 
 	@Override

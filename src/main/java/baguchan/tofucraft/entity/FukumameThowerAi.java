@@ -31,6 +31,7 @@ import net.minecraft.world.entity.ai.behavior.GoToWantedItem;
 import net.minecraft.world.entity.ai.behavior.InteractWith;
 import net.minecraft.world.entity.ai.behavior.InteractWithDoor;
 import net.minecraft.world.entity.ai.behavior.LookAtTargetSink;
+import net.minecraft.world.entity.ai.behavior.MeleeAttack;
 import net.minecraft.world.entity.ai.behavior.Mount;
 import net.minecraft.world.entity.ai.behavior.MoveToTargetSink;
 import net.minecraft.world.entity.ai.behavior.OneShot;
@@ -144,7 +145,11 @@ public class FukumameThowerAi {
 	private static void initFightActivity(FukumameThower p_34904_, Brain<FukumameThower> p_34905_) {
 		p_34905_.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.<BehaviorControl<? super FukumameThower>>of(StopAttackingIfTargetInvalid.<Piglin>create((p_34981_) -> {
 			return !isNearestValidAttackTarget(p_34904_, p_34981_);
-		}), BackUpIfTooClose.create(10, 0.75F), new EatFukumame<>(), new ThrowFukumame<>(), RememberIfHoglinWasKilled.create(), EraseMemoryIf.create(FukumameThowerAi::isNearZombified, MemoryModuleType.ATTACK_TARGET)), MemoryModuleType.ATTACK_TARGET);
+		}), BehaviorBuilder.triggerIf((entity) -> {
+			return p_34904_.getFukumameCount() > 0;
+		}, BackUpIfTooClose.create(10, 0.75F)), new EatFukumame<>(), BehaviorBuilder.triggerIf((entity) -> {
+			return p_34904_.getFukumameCount() <= 0;
+		}, MeleeAttack.create(20)), new ThrowFukumame<>(), RememberIfHoglinWasKilled.create(), EraseMemoryIf.create(FukumameThowerAi::isNearZombified, MemoryModuleType.ATTACK_TARGET)), MemoryModuleType.ATTACK_TARGET);
 	}
 
 	private static void initCelebrateActivity(Brain<FukumameThower> p_34921_) {
