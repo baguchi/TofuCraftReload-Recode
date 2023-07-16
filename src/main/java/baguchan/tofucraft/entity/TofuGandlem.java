@@ -17,10 +17,12 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -102,6 +104,10 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 				this.chargeAnimationState.stop();
 				this.rushAnimationState.stop();
 			}
+		}
+
+		if (DATA_ID_RUSH.equals(p_21104_)) {
+			this.refreshDimensions();
 		}
 
 		super.onSyncedDataUpdated(p_21104_);
@@ -434,6 +440,13 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	protected int decreaseAirSupply(int p_28882_) {
 		return p_28882_;
 	}
+
+	@Override
+	public EntityDimensions getDimensions(Pose p_21047_) {
+		EntityDimensions entitydimensions = super.getDimensions(p_21047_);
+		return this.isRush() ? EntityDimensions.fixed(entitydimensions.width, entitydimensions.height * 0.45F) : entitydimensions;
+	}
+
 	@Override
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
 		this.playSound(SoundEvents.SHULKER_SHOOT, 3.0F, 1.0F);
