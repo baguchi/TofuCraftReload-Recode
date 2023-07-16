@@ -5,7 +5,6 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 
@@ -18,7 +17,7 @@ public class EatFukumame<E extends FukumameThower> extends Behavior<E> {
 
 	@Override
 	protected boolean checkExtraStartConditions(ServerLevel p_22538_, E p_22539_) {
-		return p_22539_.getTarget() == null && p_22539_.getHealth() < p_22539_.getMaxHealth() || p_22539_.isOnFire() && !p_22539_.hasEffect(MobEffects.FIRE_RESISTANCE);
+		return p_22539_.getTarget() == null && (p_22539_.getHealth() < p_22539_.getMaxHealth() || p_22539_.isConverting() && p_22539_.getTimeInOverWorld() > 0) || p_22539_.isOnFire() && !p_22539_.hasEffect(MobEffects.FIRE_RESISTANCE);
 	}
 
 	@Override
@@ -48,8 +47,7 @@ public class EatFukumame<E extends FukumameThower> extends Behavior<E> {
 			p_22552_.swing(InteractionHand.MAIN_HAND);
 			p_22552_.setCharge(false);
 			p_22552_.playSound(SoundEvents.GENERIC_EAT);
-			p_22552_.heal(2);
-			p_22552_.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600));
+			p_22552_.eatFukumame();
 		}
 
 	}

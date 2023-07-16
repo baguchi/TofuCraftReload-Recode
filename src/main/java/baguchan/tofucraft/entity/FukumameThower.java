@@ -2,24 +2,32 @@ package baguchan.tofucraft.entity;
 
 import com.mojang.serialization.Dynamic;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.Nullable;
 
 public class FukumameThower extends Piglin {
 	private static final EntityDataAccessor<Boolean> DATA_CHARGE = SynchedEntityData.defineId(FukumameThower.class, EntityDataSerializers.BOOLEAN);
+
+	private static final EntityDataAccessor<Integer> DATA_FUKUMAME_COUNT = SynchedEntityData.defineId(FukumameThower.class, EntityDataSerializers.INT);
 
 	public FukumameThower(EntityType<? extends FukumameThower> p_34683_, Level p_34684_) {
 		super(p_34683_, p_34684_);
@@ -29,6 +37,7 @@ public class FukumameThower extends Piglin {
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(DATA_CHARGE, false);
+		this.entityData.define(DATA_FUKUMAME_COUNT, 64);
 	}
 
 	public void setCharge(boolean charge) {
@@ -37,6 +46,26 @@ public class FukumameThower extends Piglin {
 
 	public boolean isCharge() {
 		return this.entityData.get(DATA_CHARGE);
+	}
+
+	public void setFukumameCount(int fukumame) {
+		this.entityData.set(DATA_FUKUMAME_COUNT, fukumame);
+	}
+
+	public int getFukumameCount() {
+		return this.entityData.get(DATA_FUKUMAME_COUNT);
+	}
+
+	@Override
+	public void addAdditionalSaveData(CompoundTag p_34751_) {
+		super.addAdditionalSaveData(p_34751_);
+		p_34751_.putInt("FukumameCount", this.getFukumameCount());
+	}
+
+	@Override
+	public void readAdditionalSaveData(CompoundTag p_34725_) {
+		super.readAdditionalSaveData(p_34725_);
+		this.setFukumameCount(p_34725_.getInt("FukumameCount"));
 	}
 
 	@Override
@@ -60,6 +89,17 @@ public class FukumameThower extends Piglin {
 
 	public boolean canAddToInventory(ItemStack p_34781_) {
 		return super.canAddToInventory(p_34781_);
+	}
+
+	public void eatFukumame() {
+		this.timeInOverworld -= Math.max(this.timeInOverworld - 600, -300);
+		this.setFukumameCount(Math.max(this.getFukumameCount() - 1, 0));
+		this.heal(1);
+		this.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600));
+	}
+
+	public int getTimeInOverWorld() {
+		return this.timeInOverworld;
 	}
 
 	public boolean canReplaceCurrentItem(ItemStack p_34788_) {
@@ -91,11 +131,19 @@ public class FukumameThower extends Piglin {
 		return !p_219199_.getBlockState(p_219201_.below()).is(Blocks.NETHER_WART_BLOCK);
 	}
 
+	@Nullable
+	@Override
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_34717_, DifficultyInstance p_34718_, MobSpawnType p_34719_, @Nullable SpawnGroupData p_34720_, @Nullable CompoundTag p_34721_) {
+
+		return super.finalizeSpawn(p_34717_, p_34718_, p_34719_, p_34720_, p_34721_);
+	}
+
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource source, DifficultyInstance pDifficulty) {
 		super.populateDefaultEquipmentSlots(source, pDifficulty);
 		if (this.isAdult()) {
 			this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 		}
+		this.setFukumameCount(32 + random.nextInt(32));
 	}
 }

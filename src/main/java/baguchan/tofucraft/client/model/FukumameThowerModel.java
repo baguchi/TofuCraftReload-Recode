@@ -14,19 +14,16 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 
 public class FukumameThowerModel<T extends FukumameThower> extends PiglinModel<T> {
 
+	public final ModelPart fukumame;
 	public FukumameThowerModel(ModelPart root) {
 		super(root);
+		this.fukumame = root.getChild("body").getChild("bone2").getChild("fukumame");
 	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		partdefinition.addOrReplaceChild("ear", CubeListBuilder.create(), PartPose.ZERO);
-		partdefinition.addOrReplaceChild("cloak", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
-
-
-		partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
 		PartDefinition right_arm = partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(52, 34).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, 2.0F, 0.0F));
 
 		PartDefinition left_sleeve = partdefinition.addOrReplaceChild("left_sleeve", CubeListBuilder.create().texOffs(52, 50).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.25F)), PartPose.offset(5.0F, 2.0F, 0.0F));
@@ -47,8 +44,9 @@ public class FukumameThowerModel<T extends FukumameThower> extends PiglinModel<T
 		PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 32).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition bone2 = body.addOrReplaceChild("bone2", CubeListBuilder.create().texOffs(0, 16).addBox(-4.0F, -24.0F, 2.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
-				.texOffs(30, 10).addBox(-3.0F, -24.0F, 3.0F, 6.0F, 6.0F, 6.0F, new CubeDeformation(0.0F))
-				.texOffs(110, 122).addBox(-3.0F, -23.0F, 3.0F, 6.0F, 0.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+				.texOffs(30, 10).addBox(-3.0F, -24.0F, 3.0F, 6.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+
+		PartDefinition fukumame = bone2.addOrReplaceChild("fukumame", CubeListBuilder.create().texOffs(110, 122).addBox(-3.0F, -23.0F, 3.0F, 6.0F, 0.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		PartDefinition right_sleeve = partdefinition.addOrReplaceChild("right_sleeve", CubeListBuilder.create().texOffs(52, 18).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.25F)), PartPose.offset(-5.0F, 2.0F, 0.0F));
 
@@ -70,6 +68,15 @@ public class FukumameThowerModel<T extends FukumameThower> extends PiglinModel<T
 			this.rightArm.xRot = (float) ((Math.PI / 180F) * 97.5F);
 			this.rightArm.yRot = (float) ((Math.PI / 180F) * 40F);
 		}
+
+		if (entity.getFukumameCount() > 64) {
+			this.fukumame.y = -23F;
+		} else if (entity.getFukumameCount() > 0) {
+			this.fukumame.y = -18F - (entity.getFukumameCount() / 64F) * 5F;
+		}
+		this.fukumame.visible = entity.getFukumameCount() > 0;
+
+
 		this.leftPants.copyFrom(this.leftLeg);
 		this.rightPants.copyFrom(this.rightLeg);
 		this.leftSleeve.copyFrom(this.leftArm);
