@@ -4,11 +4,13 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.block.CandleTofuCakeBlock;
 import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
@@ -186,6 +188,19 @@ public class BlockstateGenerator extends BlockStateProvider {
 		CandleTofuCakeBlock.getCandleCakes().forEach((block -> this.candleCake((CandleTofuCakeBlock) block)));
 		this.carpet(TofuBlocks.YUBA.get());
 		this.simpleBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
+		this.chainBlock(TofuBlocks.TOFU_METAL_CHAIN.get());
+		this.lantern(TofuBlocks.TOFU_METAL_LANTERN.get());
+		this.lantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
+	}
+
+	public void chainBlock(Block block) {
+		ModelFile cross = models().withExistingParent(name(block), TofuCraftReload.MODID + ":block/chain").texture("all", blockTexture(block)).renderType("minecraft:cutout");
+		getVariantBuilder(block).partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
+				.modelForState().modelFile(cross).addModel()
+				.partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
+				.modelForState().modelFile(cross).rotationX(90).addModel()
+				.partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X)
+				.modelForState().modelFile(cross).rotationX(90).rotationY(90).addModel();
 	}
 
 	public void sign(Supplier<? extends StandingSignBlock> standingBlock, Supplier<? extends WallSignBlock> wallBlock, String name) {
@@ -197,6 +212,18 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(standingBlock.get(), model);
 		simpleBlock(wallBlock.get(), model);
 	}
+
+	public void lantern(Block block) {
+		ModelFile nonHanging = models().withExistingParent(name(block), "block/template_lantern").renderType("minecraft:cutout")
+				.texture("lantern", blockTexture(block));
+		ModelFile hanging = models().withExistingParent(name(block) + "_hanging", "block/template_hanging_lantern").renderType("minecraft:cutout")
+				.texture("lantern", blockTexture(block));
+		this.getVariantBuilder(block).forAllStates(state ->
+				ConfiguredModel.builder()
+						.modelFile(state.getValue(LanternBlock.HANGING) ? hanging : nonHanging)
+						.build());
+	}
+
 
 	public void carpet(Block block) {
 		ModelFile carpet = models().withExistingParent(name(block), "block/carpet")

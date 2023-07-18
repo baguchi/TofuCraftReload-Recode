@@ -277,6 +277,9 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropOther(TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_HANGING_SIGN.get());
 		dropSelf(TofuBlocks.LEEK_HANGING_SIGN.get());
 		dropOther(TofuBlocks.LEEK_WALL_HANGING_SIGN.get(), TofuBlocks.LEEK_HANGING_SIGN.get());
+		dropSelf(TofuBlocks.TOFU_METAL_LANTERN.get());
+		dropSelf(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
+		dropSelf(TofuBlocks.TOFU_METAL_CHAIN.get());
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

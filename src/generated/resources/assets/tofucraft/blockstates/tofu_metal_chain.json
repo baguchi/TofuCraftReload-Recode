@@ -1,0 +1,16 @@
+{
+  "variants" : {
+    "axis=x" : {
+      "model" : "tofucraft:block/tofu_metal_chain",
+      "x" : 90,
+      "y" : 90
+    },
+    "axis=y" : {
+      "model" : "tofucraft:block/tofu_metal_chain"
+    },
+    "axis=z" : {
+      "model" : "tofucraft:block/tofu_metal_chain",
+      "x" : 90
+    }
+  }
+}

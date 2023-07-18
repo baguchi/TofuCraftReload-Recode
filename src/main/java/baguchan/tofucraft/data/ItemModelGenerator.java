@@ -467,6 +467,10 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFU_STEM_CHEST_BOAT.get());
 		singleTex(TofuItems.LEEK_CHEST_BOAT.get());
 		singleTex(TofuItems.LEEK_GREEN_CHEST_BOAT.get());
+
+		singleTex(TofuBlocks.TOFU_METAL_CHAIN.get());
+		singleTex(TofuBlocks.TOFU_METAL_LANTERN.get());
+		singleTex(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
 	}
 
 	public void sign(Supplier<? extends SignBlock> sign) {

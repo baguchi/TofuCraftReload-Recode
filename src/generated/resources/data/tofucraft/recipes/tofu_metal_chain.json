@@ -1,0 +1,19 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "M" : {
+      "item" : "tofucraft:tofumetal"
+    }
+  },
+  "pattern" : [
+    "M",
+    "M",
+    "M"
+  ],
+  "result" : {
+    "count" : 4,
+    "item" : "tofucraft:tofu_metal_chain"
+  },
+  "show_notification" : true
+}

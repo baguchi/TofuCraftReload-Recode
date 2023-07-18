@@ -1,0 +1,21 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "M" : {
+      "item" : "tofucraft:tofumetal"
+    },
+    "S" : {
+      "item" : "minecraft:soul_torch"
+    }
+  },
+  "pattern" : [
+    " M ",
+    "MSM",
+    " M "
+  ],
+  "result" : {
+    "item" : "tofucraft:tofu_metal_soul_lantern"
+  },
+  "show_notification" : true
+}

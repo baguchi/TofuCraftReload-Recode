@@ -37,6 +37,9 @@
     "tofucraft:salt_furnace",
     "tofucraft:soymilk_cauldron",
     "tofucraft:soymilk_nether_cauldron",
-    "tofucraft:soymilk_soul_cauldron"
+    "tofucraft:soymilk_soul_cauldron",
+    "tofucraft:tofu_metal_lantern",
+    "tofucraft:tofu_metal_soul_lantern",
+    "tofucraft:tofu_metal_chain"
   ]
 }

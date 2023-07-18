@@ -51,6 +51,30 @@ public class CraftingGenerator extends CraftingDataHelper {
 		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_LEGGINGS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_LEGGINGS);
 		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_BOOTS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_BOOTS);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_LANTERN.get(), 1)
+				.pattern(" M ")
+				.pattern("MTM")
+				.pattern(" M ")
+				.define('M', TofuItems.TOFUMETAL.get())
+				.define('T', Items.TORCH)
+				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_SOUL_LANTERN.get(), 1)
+				.pattern(" M ")
+				.pattern("MSM")
+				.pattern(" M ")
+				.define('M', TofuItems.TOFUMETAL.get())
+				.define('S', Items.SOUL_TORCH)
+				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_CHAIN.get(), 4)
+				.pattern("M")
+				.pattern("M")
+				.pattern("M")
+				.define('M', TofuItems.TOFUMETAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, TofuItems.TOFU_STEM_BOAT.get(), 1)
 				.pattern("S S")
 				.pattern("SSS")
