@@ -48,5 +48,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(ItemTags.CHEST_BOATS).add(TofuItems.LEEK_CHEST_BOAT.get(), TofuItems.LEEK_GREEN_CHEST_BOAT.get(), TofuItems.TOFU_STEM_CHEST_BOAT.get());
 		this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(TofuBlocks.TOFUSLATE.get().asItem());
 		this.tag(ItemTags.STONE_TOOL_MATERIALS).add(TofuBlocks.TOFUSLATE.get().asItem());
+		tag(ItemTags.VILLAGER_PLANTABLE_SEEDS).add(TofuItems.SEEDS_CHILI.get(), TofuItems.SEEDS_SOYBEANS.get());
 	}
 }
