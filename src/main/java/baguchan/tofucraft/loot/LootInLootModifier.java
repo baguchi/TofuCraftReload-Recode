@@ -15,6 +15,8 @@ import net.minecraftforge.common.loot.LootModifier;
 import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
+import static net.minecraft.world.level.storage.loot.LootTable.createStackSplitter;
+
 public class LootInLootModifier extends LootModifier {
 
 	public static final Supplier<Codec<LootInLootModifier>> CODEC = Suppliers.memoize(() ->
@@ -33,7 +35,7 @@ public class LootInLootModifier extends LootModifier {
 	@Override
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		LootTable extraTable = context.getResolver().getLootTable(this.lootTable);
-		extraTable.getRandomItemsRaw(context, generatedLoot::add);
+		extraTable.getRandomItemsRaw(context, createStackSplitter(context.getLevel(), generatedLoot::add));
 		return generatedLoot;
 	}
 
