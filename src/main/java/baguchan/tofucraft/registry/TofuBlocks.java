@@ -69,6 +69,7 @@ import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -405,6 +406,13 @@ public class TofuBlocks {
 					.sound(SoundType.GRASS)
 					.noOcclusion())
 	);
+
+	public static final RegistryObject<FlowerPotBlock> POTTED_LEEK = BLOCKS.register("potted_leek", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, LEEK, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+
+	public static final RegistryObject<FlowerPotBlock> POTTED_TOFU_SAPLING = BLOCKS.register("potted_tofu_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SAPLING_TOFU, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+	public static final RegistryObject<FlowerPotBlock> POTTED_ZUNDA_TOFU_MUSHROOM = BLOCKS.register("potted_zunda_tofu_mushroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ZUNDATOFU_MUSHROOM, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+	public static final RegistryObject<FlowerPotBlock> POTTED_APRICOT_SAPLING = BLOCKS.register("potted_apricot_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SAPLING_APRICOT, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+
 
 	private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
 		RegistryObject<T> register = BLOCKS.register(name, block);

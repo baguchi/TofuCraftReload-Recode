@@ -36,6 +36,8 @@ import com.google.common.collect.Maps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
@@ -138,6 +140,15 @@ public class TofuCraftReload {
 			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift"));
 			TofuBiomes.init();
 			ModInteractionInformations.init();
+
+			FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
+
+
+			pot.addPlant(TofuBlocks.SAPLING_TOFU.getId(), TofuBlocks.POTTED_TOFU_SAPLING);
+			pot.addPlant(TofuBlocks.SAPLING_APRICOT.getId(), TofuBlocks.POTTED_APRICOT_SAPLING);
+			pot.addPlant(TofuBlocks.ZUNDATOFU_MUSHROOM.getId(), TofuBlocks.POTTED_ZUNDA_TOFU_MUSHROOM);
+			pot.addPlant(TofuBlocks.LEEK.getId(), TofuBlocks.POTTED_LEEK);
+
 		});
 	}
 
