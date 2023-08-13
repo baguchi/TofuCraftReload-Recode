@@ -3,6 +3,10 @@
     {
       "structure": "tofucraft:tofu_village",
       "weight": 1
+    },
+    {
+      "structure" : "tofucraft:zunda_tofu_village",
+      "weight" : 1
     }
   ],
   "placement": {
