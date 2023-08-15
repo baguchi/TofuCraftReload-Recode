@@ -1,0 +1,24 @@
+{
+  "name" : "TofuStick",
+  "advancement" : "tofucraft:tofucraft/tofustick",
+  "icon" : "tofucraft:tofustick",
+  "category" : "tofucraft:strange_soy_magic",
+  "priority" : true,
+  "pages" : [
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:tofustick",
+        "count" : 1
+      },
+      "text" : "This Items seems make Portal..."
+    },
+    {
+      "type" : "patchouli:image",
+      "images" : [
+        "tofucraft:textures/gui/page/tofu_portal.png"
+      ],
+      "text" : "hmm..."
+    }
+  ]
+}

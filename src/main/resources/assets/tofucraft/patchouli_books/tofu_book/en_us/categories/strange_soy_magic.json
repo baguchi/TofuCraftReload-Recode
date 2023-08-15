@@ -1,6 +1,5 @@
 {
   "name": "Strange Soy Algorithm",
   "description": "",
-  "icon": "tofucraft:tofustick",
-  "sortnum": 0
+  "icon" : "tofucraft:tofustick"
 }

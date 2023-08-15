@@ -1,0 +1,17 @@
+{
+  "name" : "トーフニアン",
+  "advancement" : "tofucraft:tofucraft/my_tofu_child",
+  "icon" : "tofucraft:tofu_terrain",
+  "category" : "tofucraft:strange_soy_magic",
+  "priority" : true,
+  "pages" : [
+    {
+      "type" : "patchouli:entity",
+      "entity" : "tofucraft:tofunian"
+    },
+    {
+      "type" : "text",
+      "text" : "このmobはシンプルに見えるが、複雑すぎて難解だ。$(br2)彼らの文化は、基本争わないのが主体で、大豆に関するトレードがほとんどだ。$(br2)彼らの意思疎通をしばらくし続けたところ、なんと彼らの先祖は、豆腐から高度なgolemを作ることができるらしい。$(br2)まったく、あのoverworldの住民もそれらを見習ってほしいほどだ。"
+    }
+  ]
+}

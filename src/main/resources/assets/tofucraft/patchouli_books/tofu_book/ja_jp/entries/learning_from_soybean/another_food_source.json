@@ -1,0 +1,37 @@
+{
+  "name" : "未知なる食べ物",
+  "advancement" : "tofucraft:tofucraft/roots",
+  "icon" : "tofucraft:seeds_rice",
+  "category" : "tofucraft:learning_from_soybean",
+  "priority" : true,
+  "pages" : [
+    {
+      "type" : "text",
+      "text" : "たまに草から落とす種もあれば、入手しずらいものもある。"
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:seeds_rice",
+        "count" : 1
+      },
+      "text" : "このアイテムは大豆と並んで、草から入手しやすい。$(br2)米となり、いい食料となりそうだ。"
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:seeds_chili",
+        "count" : 1
+      },
+      "text" : "このアイテムは、Deepdarkにあるようだ。$(br2)においをかぐモンスターから防ぐためなのか？"
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:chili",
+        "count" : 1
+      },
+      "text" : "これを嗅ぐのは無理がある。$(br2)ほかのモブから嗅がれるのを防げるらしい。"
+    }
+  ]
+}

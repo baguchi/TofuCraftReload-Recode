@@ -1,0 +1,37 @@
+{
+  "name" : "Another Food Source",
+  "advancement" : "tofucraft:tofucraft/roots",
+  "icon" : "tofucraft:seeds_rice",
+  "category" : "tofucraft:learning_from_soybean",
+  "priority" : true,
+  "pages" : [
+    {
+      "type" : "text",
+      "text" : "Sometimes other than soybeans drop from grass.$(br2)Some things are hard to get."
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:seeds_rice",
+        "count" : 1
+      },
+      "text" : "This Items that can be obtained along with soybeans.$(br2)This seeds make rice and good food source"
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:seeds_chili",
+        "count" : 1
+      },
+      "text" : "This item is found in deepdark for some reason.$(br2) Harvesting crops and to escape the smell monster?"
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:chili",
+        "count" : 1
+      },
+      "text" : "This item is hard to smell.$(br2) It seems to prevent the sniff from another mob"
+    }
+  ]
+}

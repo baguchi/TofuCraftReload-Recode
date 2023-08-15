@@ -1,22 +1,23 @@
 {
   "name": "HardenTofu",
+  "advancement" : "tofucraft:tofucraft/roots",
   "icon": "tofucraft:blocktofumomen",
   "category": "tofucraft:first_step",
   "priority": true,
   "pages": [
     {
       "type": "text",
-      "text": "この世界の豆腐は特殊です。$(br2)豆腐を固めると、固い豆腐ができ、さまざまな装備に使えることでしょう。$(br2)(絹豆腐を固めるのはやめましょう)"
+      "text": "Tofu in this world is special.$(br2) and when you harden the tofu, you can make armor etc. using the material of hard tofu. $(br2)(don't do that on kinu tofu)"
     },
     {
       "type": "crafting",
-      "title": "豆腐木綿",
+      "title": "TofuMomen",
       "recipe": "tofucraft:blocktofumomen",
-      "text": "豆腐 moment."
+      "text": "Tofu moment"
     },
     {
       "type": "multiblock",
-      "text": "豆腐を固める方法",
+      "text": "This is how to harden tofu.",
       "name": "Harden Structure",
       "multiblock": {
         "pattern": [
@@ -43,7 +44,7 @@
         "item": "tofucraft:blocktofuishi",
         "count": 1
       },
-      "text": "この豆腐は主に建築に使われます"
+      "text": "This tofu is mainly used for building materials, etc."
     },
     {
       "type": "patchouli:spotlight",
@@ -51,7 +52,7 @@
         "item": "tofucraft:blocktofumetal",
         "count": 1
       },
-      "text": "鋼豆腐は豆腐を最後まで固めると出来上がる豆腐です。$(br2)鉄より少し弱いですが、序盤の良い装備になるでしょう。"
+      "text": "Tofu Metal can be done when it is hardened to the end.$(br2)A little weaker than iron, but will be the best material."
     }
   ]
 }

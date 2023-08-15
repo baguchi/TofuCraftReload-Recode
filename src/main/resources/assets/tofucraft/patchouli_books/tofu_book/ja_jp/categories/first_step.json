@@ -1,6 +1,5 @@
 {
-  "name": "The First step",
+  "name" : "最初のステップ",
   "description": "まず、豆腐（または大豆の魔法）について学ぶためにここを見る必要があります。$(br2)大豆には未知の可能性があることがわかります。 ",
-  "icon": "tofucraft:seeds_soybeans",
-  "sortnum": 0
+  "icon" : "tofucraft:seeds_soybeans"
 }

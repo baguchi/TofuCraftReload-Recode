@@ -1,8 +1,10 @@
 {
   "name": "item.tofucraft.tofu_book",
   "book_texture": "patchouli:textures/gui/book_green.png",
+  "landing_text" : "Make the Tofu and explore!",
   "version": "GRADLE:VERSION",
   "index_icon": "tofucraft:tofukinu",
   "model": "tofucraft:tofu_book",
-  "creative_tab": "tofucraft"
+  "creative_tab" : "tofucraft:tofu_misc",
+  "use_resource_pack" : true
 }

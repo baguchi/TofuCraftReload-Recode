@@ -64,6 +64,10 @@ public class BitternRecipe implements Recipe<Inventory> {
 		return this.result;
 	}
 
+	public ItemStack getResult() {
+		return result;
+	}
+
 	@Override
 	public ResourceLocation getId() {
 		return this.id;

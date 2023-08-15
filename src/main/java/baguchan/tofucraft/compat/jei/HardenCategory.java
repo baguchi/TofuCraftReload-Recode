@@ -1,7 +1,5 @@
 package baguchan.tofucraft.compat.jei;
 
-/*
-
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.HardenRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -15,6 +13,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -76,16 +75,15 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 		builder.addSlot(RecipeIngredientRole.INPUT, 38, 18 + borderSlotSize)
 				.addIngredients(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS));
 
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).addItemStack(recipe.getResultItem());
+		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).addItemStack(recipe.getResult());
 
 	}
 
 
 	@Override
-	public void draw(HardenRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+	public void draw(HardenRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics stack, double mouseX, double mouseY) {
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
 }
-*/
 
 

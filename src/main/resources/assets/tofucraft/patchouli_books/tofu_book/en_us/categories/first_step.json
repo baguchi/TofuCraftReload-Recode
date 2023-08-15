@@ -1,6 +1,5 @@
 {
   "name": "The First step",
   "description": "First, you should look here to learn about tofu (or the magic of soybeans).$(br2)You will find that there is an unknown possibility in soybeans.",
-  "icon": "tofucraft:seeds_soybeans",
-  "sortnum": 0
+  "icon" : "tofucraft:seeds_soybeans"
 }

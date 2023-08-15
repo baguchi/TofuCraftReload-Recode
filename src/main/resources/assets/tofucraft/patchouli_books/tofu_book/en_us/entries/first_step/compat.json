@@ -1,5 +1,6 @@
 {
   "name": "Compat",
+  "advancement" : "tofucraft:tofucraft/roots",
   "icon": "tofucraft:edamame_rice",
   "category": "tofucraft:first_step",
   "priority": true,

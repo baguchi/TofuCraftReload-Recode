@@ -1,5 +1,6 @@
 {
-  "name": "Before The Making",
+  "name" : "作る前に",
+  "advancement" : "tofucraft:tofucraft/roots",
   "icon": "tofucraft:tofukinu",
   "category": "tofucraft:first_step",
   "priority": true,
