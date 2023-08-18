@@ -1,6 +1,6 @@
 {
   "name" : "Tofunian",
-  "advancement" : "tofucraft:tofucraft/my_tofu_child",
+  "advancement" : "tofucraft:tofucraft/tofuworld",
   "icon" : "tofucraft:tofu_terrain",
   "category" : "tofucraft:strange_soy_magic",
   "priority" : true,
@@ -11,7 +11,7 @@
     },
     {
       "type" : "text",
-      "text" : "This mob looks simple,$(br2) but it's too complicated and hard to understand.$(br2) Their culture is basically non-competitive, and most of their trade is related to soybeans.$(br2)After continuing to communicate with them for a while, it turns out that their ancestors can make advanced golems from tofu.$(br2)However, there is a technology that can develop so far without conflict...$(br2) Sigh, I wish the inhabitants of that overworld would emulate them.$(br2)"
+      "text" : "This mob looks simple,$(br2) but it's too complicated and hard to understand.$(br2) Their culture is basically non-competitive, and most of their trade is related to soybeans.$(br2)it turns out that their ancestors can make advanced golems from tofu.$(br2) Sigh, I wish the inhabitants of that overworld would emulate them.$(br2)"
     }
   ]
 }

@@ -73,14 +73,14 @@ public class FukumameThower extends Piglin {
 		return true;
 	}
 
-	protected Brain.Provider<FukumameThower> alchemistBrainProvider() {
+	protected Brain.Provider<FukumameThower> revampedBrainProvider() {
 		return Brain.provider(Piglin.MEMORY_TYPES, SENSOR_TYPES);
 	}
 
 
 	@Override
 	protected Brain<?> makeBrain(Dynamic<?> p_34723_) {
-		return FukumameThowerAi.makeBrain(this, this.alchemistBrainProvider().makeBrain(p_34723_));
+		return FukumameThowerAi.makeBrain(this, this.revampedBrainProvider().makeBrain(p_34723_));
 	}
 
 	public ItemStack addToInventory(ItemStack p_34779_) {
