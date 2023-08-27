@@ -5,6 +5,7 @@
   "refmap": "tofucraft.refmap.json",
   "mixins": [
     "CowMixin",
+    "EntityMixin",
     "FishingHookMixin",
     "WardenAiMixin",
     "WardenMixin"
