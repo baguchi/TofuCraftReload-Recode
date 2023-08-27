@@ -5,20 +5,17 @@
     "#" : {
       "item" : "tofucraft:zunda_upgrade_smithing_template"
     },
-    "D" : {
-      "item" : "tofucraft:zundama"
-    },
-    "G" : {
-      "item" : "tofucraft:tofugem"
-    },
-    "T" : {
+    "B" : {
       "item" : "tofucraft:tofu_gem_block"
+    },
+    "Z" : {
+      "item" : "tofucraft:zundama"
     }
   },
   "pattern" : [
-    "GTG",
-    "G#G",
-    "GDG"
+    "B#B",
+    "BZB",
+    "BBB"
   ],
   "result" : {
     "count" : 2,
