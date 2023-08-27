@@ -51,6 +51,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_LEGGINGS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_LEGGINGS);
 		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_BOOTS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_BOOTS);
 
+		zundaSmithing(consumer, Items.BOW, RecipeCategory.COMBAT, TofuItems.ZUNDA_BOW);
+
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_LANTERN.get(), 1)
 				.pattern(" M ")
 				.pattern("MTM")
@@ -120,6 +123,16 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get())
 				.unlockedBy("has_item", has(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()))
 				.save(consumer, TofuCraftReload.prefix("copy_tofu_template"));
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get(), 2)
+				.pattern("GTG")
+				.pattern("G#G")
+				.pattern("GDG")
+				.define('D', TofuItems.ZUNDAMA.get())
+				.define('T', TofuBlocks.TOFU_GEM_BLOCK.get())
+				.define('G', TofuItems.TOFUGEM.get())
+				.define('#', TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get())
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()))
+				.save(consumer, TofuCraftReload.prefix("copy_zunda_template"));
 
 
 		/*swordItem(consumer, "tofu_diamond_sword", TofuItems.TOFU_DIAMOND_SWORD, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);

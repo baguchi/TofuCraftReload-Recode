@@ -300,6 +300,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> TOFU_DIAMOND_SHOVEL = ITEMS.register("tofu_diamond_shovel", () -> new ShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -3.0F, (new Item.Properties())));
 	public static final RegistryObject<Item> TOFU_DIAMOND_HOE = ITEMS.register("tofu_diamond_hoe", () -> new HoeItem(TofuItemTier.TOFUDIAMOND, -4, 0.0F, (new Item.Properties())));
 	public static final RegistryObject<Item> TOFU_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("tofu_upgrade_smithing_template", TofuItems::createTofuUpgradeTemplate);
+	public static final RegistryObject<Item> ZUNDA_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("zunda_upgrade_smithing_template", TofuItems::createZundaBowUpgradeTemplate);
 
 
 	public static final RegistryObject<Item> TOFU_KINU_HELMET = ITEMS.register("tofu_kinu_helmet", () -> new ArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.HELMET, (new Item.Properties())));
@@ -424,6 +425,14 @@ public class TofuItems {
 	private static final Component TOFU_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.base_slot_description")));
 	private static final Component TOFU_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.additions_slot_description")));
 
+	private static final Component ZUNDA_BOW_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", new ResourceLocation(TofuCraftReload.MODID, "tofu_upgrade"))).withStyle(TITLE_FORMAT);
+
+	private static final Component ZUNDA_BOW_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.zunda_bow_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMAT);
+	private static final Component ZUNDA_BOW_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.zunda_bow_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
+	private static final Component ZUNDA_BOW_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.zunda_bow_upgrade.base_slot_description")));
+	private static final Component ZUNDA_BOW_UPGRADE_ADDITIONS_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", new ResourceLocation(TofuCraftReload.MODID, "smithing_template.zunda_bow_upgrade.additions_slot_description")));
+
+
 	private static final ResourceLocation EMPTY_SLOT_HELMET = new ResourceLocation("item/empty_armor_slot_helmet");
 	private static final ResourceLocation EMPTY_SLOT_CHESTPLATE = new ResourceLocation("item/empty_armor_slot_chestplate");
 	private static final ResourceLocation EMPTY_SLOT_LEGGINGS = new ResourceLocation("item/empty_armor_slot_leggings");
@@ -434,6 +443,8 @@ public class TofuItems {
 	private static final ResourceLocation EMPTY_SLOT_SHOVEL = new ResourceLocation("item/empty_slot_shovel");
 	private static final ResourceLocation EMPTY_SLOT_PICKAXE = new ResourceLocation("item/empty_slot_pickaxe");
 	private static final ResourceLocation EMPTY_SLOT_INGOT = new ResourceLocation("item/empty_slot_ingot");
+	private static final ResourceLocation EMPTY_SLOT_BOW = new ResourceLocation(TofuCraftReload.MODID, "item/empty_slot_bow");
+	private static final ResourceLocation EMPTY_SLOT_ZUNDAMA = new ResourceLocation(TofuCraftReload.MODID, "item/empty_slot_zundama");
 
 
 	private static List<ResourceLocation> createTofuUpgradeIconList() {
@@ -447,6 +458,19 @@ public class TofuItems {
 
 	public static SmithingTemplateItem createTofuUpgradeTemplate() {
 		return new SmithingTemplateItem(TOFU_UPGRADE_APPLIES_TO, TOFU_UPGRADE_INGREDIENTS, TOFU_UPGRADE, TOFU_UPGRADE_BASE_SLOT_DESCRIPTION, TOFU_UPGRADE_ADDITIONS_SLOT_DESCRIPTION, createTofuUpgradeIconList(), createTofuUpgradeMaterialList());
+	}
+
+	private static List<ResourceLocation> createZundaBowUpgradeIconList() {
+		return List.of(EMPTY_SLOT_BOW);
+	}
+
+	private static List<ResourceLocation> createZundaBowUpgradeMaterialList() {
+		return List.of(EMPTY_SLOT_ZUNDAMA);
+	}
+
+
+	public static SmithingTemplateItem createZundaBowUpgradeTemplate() {
+		return new SmithingTemplateItem(ZUNDA_BOW_UPGRADE_APPLIES_TO, ZUNDA_BOW_UPGRADE_INGREDIENTS, ZUNDA_BOW_UPGRADE, ZUNDA_BOW_UPGRADE_BASE_SLOT_DESCRIPTION, ZUNDA_BOW_UPGRADE_ADDITIONS_SLOT_DESCRIPTION, createZundaBowUpgradeIconList(), createZundaBowUpgradeMaterialList());
 	}
 
 

@@ -1,0 +1,6 @@
+{
+  "parent" : "minecraft:item/generated",
+  "textures" : {
+    "layer0" : "tofucraft:item/zunda_upgrade_smithing_template"
+  }
+}

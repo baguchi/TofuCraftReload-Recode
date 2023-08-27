@@ -94,14 +94,14 @@
         {
           "type" : "minecraft:item",
           "weight" : 3,
-          "name" : "tofucraft:zunda_bow"
+          "name" : "tofucraft:zunda_upgrade_smithing_template"
         }
       ]
     },
     {
       "rolls" : {
         "min" : 1.0,
-        "max" : 3.0,
+        "max" : 2.0,
         "type" : "minecraft:uniform"
       },
       "entries" : [
