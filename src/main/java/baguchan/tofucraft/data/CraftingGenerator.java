@@ -223,6 +223,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuItems.TOFUGEM.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.TOFUGEM.get(), 9)
+				.requires(TofuBlocks.TOFU_GEM_BLOCK.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer, "revert_to_tofu_gem");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuItems.TOFUDIAMOND.get())
 				.pattern("###")
 				.pattern("###")
