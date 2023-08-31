@@ -250,6 +250,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.SCULK_BONE_BOOTS,
 						TofuItems.ZUNDA_ARROW,
 						TofuItems.ZUNDA_BOW,
+						TofuItems.ZUNDAMUSHROOM_ON_A_STICK,
 						TofuItems.FUKUMAME,
 						TofuItems.NETHER_FUKUMAME,
 						TofuItems.SOUL_FUKUMAME).map(itemRegistryObject -> {
