@@ -1,15 +1,10 @@
 package baguchan.tofucraft.data;
 
-import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -20,6 +15,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
+
+import static baguchan.tofucraft.TofuCraftReload.prefix;
 
 public class CraftingGenerator extends CraftingDataHelper {
 	public CraftingGenerator(PackOutput generator) {
@@ -122,7 +119,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('G', Items.DIAMOND)
 				.define('#', TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get())
 				.unlockedBy("has_item", has(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()))
-				.save(consumer, TofuCraftReload.prefix("copy_tofu_template"));
+				.save(consumer, prefix("copy_tofu_template"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get(), 2)
 				.pattern("B#B")
 				.pattern("BZB")
@@ -132,7 +129,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('D', TofuItems.TOFUDIAMOND.get())
 				.define('#', TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get())
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()))
-				.save(consumer, TofuCraftReload.prefix("copy_zunda_template"));
+				.save(consumer, prefix("copy_zunda_template"));
 
 
 		/*swordItem(consumer, "tofu_diamond_sword", TofuItems.TOFU_DIAMOND_SWORD, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
@@ -226,7 +223,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.TOFUGEM.get(), 9)
 				.requires(TofuBlocks.TOFU_GEM_BLOCK.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
-				.save(consumer, "revert_to_tofu_gem");
+				.save(consumer, prefix("revert_to_tofu_gem"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuItems.TOFUDIAMOND.get())
 				.pattern("###")
 				.pattern("###")
@@ -409,25 +406,21 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_GRILLED, TofuItems.TOFUGRILLED);
 		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_ZUNDA, TofuItems.TOFUZUNDA);
 
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFUTRAPDOOR_ISHI.get(), TofuBlocks.ISHITOFU.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFUFENCE_ISHI.get(), TofuBlocks.ISHITOFU.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFUDOOR_ISHI.get(), TofuBlocks.ISHITOFU.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFUSLAB_ISHI.get(), TofuBlocks.ISHITOFU.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFUSTAIR_ISHI.get(), TofuBlocks.ISHITOFU.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.ISHITOFU_BRICK.get(), TofuBlocks.ISHITOFU.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFULADDER_ISHI.get(), TofuBlocks.ISHITOFU.get(), 3);
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFULADDER_ISHIBRICK.get(), TofuBlocks.ISHITOFU.get(), 3);
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.ISHITOFU_CHISELED_BRICK.get(), TofuBlocks.ISHITOFU.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(), TofuBlocks.ISHITOFU.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.ISHITOFU.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.ISHITOFU.get());
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.TOFUTRAPDOOR_ISHI, 1);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.TOFUFENCE_ISHI, 1);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.TOFUDOOR_ISHI, 1);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.ISHITOFU_BRICK, 1);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.TOFULADDER_ISHI, 3);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.TOFULADDER_ISHIBRICK, 3);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.ISHITOFU_CHISELED_BRICK, 1);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.ISHITOFU_SMOOTH_BRICK, 1);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.TOFUSTAIR_ISHIBRICK, 1);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.TOFUSLAB_ISHIBRICK, 1);
 
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFULADDER_ISHI.get(), TofuBlocks.ISHITOFU_BRICK.get(), 3);
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFULADDER_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get(), 3);
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.ISHITOFU_CHISELED_BRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
-		stonecutterResultFromBase(consumer, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU_BRICK, TofuBlocks.TOFULADDER_ISHI, 3);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU_BRICK, TofuBlocks.TOFULADDER_ISHIBRICK, 3);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU_BRICK, TofuBlocks.ISHITOFU_CHISELED_BRICK, 1);
+		cuttingRecipe(consumer, TofuBlocks.ISHITOFU_BRICK, TofuBlocks.ISHITOFU_SMOOTH_BRICK, 1);
 
 
 		makeTorch(consumer, TofuBlocks.TOFUTORCH_KINU, TofuItems.TOFUKINU);
@@ -589,7 +582,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.BUCKET)
 				.requires(TofuItems.FILTERCLOTH.get())
 				.unlockedBy("has_item", has(TofuTags.Items.SOYBEAN))
-				.save(consumer, TofuCraftReload.prefix("bucket_soymilk_okara"));
+				.save(consumer, prefix("bucket_soymilk_okara"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.BUCKET_SOYMILK_NETHER.get())
 				.requires(TofuItems.SEEDS_SOYBEANS_NETHER.get())
 				.requires(Items.BUCKET)
@@ -625,11 +618,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.TOFUMOMEN.get())
 				.requires(Items.COOKED_COD)
 				.unlockedBy("has_item", has(TofuItems.TOFUMOMEN.get()))
-				.save(consumer, TofuCraftReload.prefix("tofu_chikuwa"));
+				.save(consumer, prefix("tofu_chikuwa"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.TOFU_CHIKUWA.get(), 1)
 				.requires(TofuItems.COOKED_TOFU_FISH.get())
 				.unlockedBy("has_item", has(TofuItems.RAW_TOFU_FISH.get()))
-				.save(consumer, TofuCraftReload.prefix("tofu_chikuwa_fish"));
+				.save(consumer, prefix("tofu_chikuwa_fish"));
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.ZUNDA.get(), 4)
 				.requires(TofuItems.BOILED_EDAMAME.get(), 8)
 				.requires(Items.SUGAR)
@@ -656,13 +649,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuItems.TOFUKINU.get())
 				.define('X', Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.TOFUKINU.get()))
-				.save(consumer, TofuCraftReload.prefix("tofucookie_kinu"));
+				.save(consumer, prefix("tofucookie_kinu"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, TofuItems.TOFUCOOKIE.get(), 8)
 				.pattern("X#X")
 				.define('#', TofuItems.TOFUMOMEN.get())
 				.define('X', Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.TOFUMOMEN.get()))
-				.save(consumer, TofuCraftReload.prefix("tofucookie_momen"));
+				.save(consumer, prefix("tofucookie_momen"));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, TofuItems.TTTBURGER.get(), 1)
 				.pattern(" X ")
@@ -1097,7 +1090,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', Tags.Items.RODS_WOODEN)
 				.define('X', Blocks.COBBLED_DEEPSLATE_SLAB)
 				.unlockedBy("has_item", has(Blocks.COBBLED_DEEPSLATE_SLAB))
-				.save(consumer, TofuCraftReload.prefix("deepslate_saltpan"));
+				.save(consumer, prefix("deepslate_saltpan"));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SALTPAN.get())
 				.pattern("# #")
@@ -1105,7 +1098,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', Tags.Items.RODS_WOODEN)
 				.define('X', Blocks.BLACKSTONE_SLAB)
 				.unlockedBy("has_item", has(Blocks.BLACKSTONE_SLAB))
-				.save(consumer, TofuCraftReload.prefix("blackstone_saltpan"));
+				.save(consumer, prefix("blackstone_saltpan"));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.TOFUCHEST.get())
 				.pattern("###")
@@ -1428,7 +1421,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("###")
 				.define('#', TofuBlocks.METALTOFU.get())
 				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
-				.save(consumer, TofuCraftReload.prefix("tofumetal_with_cauldron"));
+				.save(consumer, prefix("tofumetal_with_cauldron"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Blocks.SMITHING_TABLE, 1)
 				.pattern("##")
 				.pattern("PP")
@@ -1436,7 +1429,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuBlocks.METALTOFU.get())
 				.define('P', ItemTags.PLANKS)
 				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
-				.save(consumer, TofuCraftReload.prefix("tofumetal_with_smithing_table"));
+				.save(consumer, prefix("tofumetal_with_smithing_table"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Blocks.BLAST_FURNACE, 1)
 				.pattern("###")
 				.pattern("#F#")
@@ -1445,6 +1438,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('S', Blocks.SMOOTH_STONE)
 				.define('F', Blocks.FURNACE)
 				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
-				.save(consumer, TofuCraftReload.prefix("tofumetal_with_blast_furnace"));
+				.save(consumer, prefix("tofumetal_with_blast_furnace"));
 	}
 }

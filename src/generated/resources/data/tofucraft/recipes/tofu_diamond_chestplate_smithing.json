@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "tofucraft:blocktofudiamond"
+  },
+  "base": {
+    "item": "tofucraft:tofu_metal_chestplate"
+  },
+  "result": {
+    "item": "tofucraft:tofu_diamond_chestplate"
+  },
+  "template": {
+    "item": "tofucraft:tofu_upgrade_smithing_template"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "tofucraft:soy_sculk_bone"
+  },
+  "base": {
+    "item": "tofucraft:tofu_diamond_helmet"
+  },
+  "result": {
+    "item": "tofucraft:sculk_bone_helmet"
+  },
+  "template": {
+    "item": "tofucraft:tofu_upgrade_smithing_template"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "tofucraft:zundama"
+  },
+  "base": {
+    "item": "minecraft:bow"
+  },
+  "result": {
+    "item": "tofucraft:zunda_bow"
+  },
+  "template": {
+    "item": "tofucraft:zunda_upgrade_smithing_template"
+  }
+}
