@@ -1,0 +1,9 @@
+{
+  "replace" : false,
+  "values" : [
+    "tofucraft:soybean_forest",
+    "tofucraft:tofu_mountain",
+    "minecraft:meadow",
+    "minecraft:forest"
+  ]
+}
