@@ -232,6 +232,7 @@ public class TofuItems {
 
 	public static final RegistryObject<Item> OKARA = ITEMS.register("okara", () -> new Item((new Item.Properties())));
 	public static final RegistryObject<Item> OKARASTICK = ITEMS.register("okarastick", () -> new Item((new Item.Properties()).food(TofuFoods.OKARASTICK)));
+	public static final RegistryObject<Item> OKARA_DONUT = ITEMS.register("okara_donut", () -> new Item((new Item.Properties()).food(TofuFoods.OKARA_DONUT)));
 
 	public static final RegistryObject<Item> SOBOROTOFUSAUTE = ITEMS.register("soborotofusaute", () -> new BowlFoodItem((new Item.Properties()).stacksTo(1).food(TofuFoods.SOBOROTOFUSAUTE)));
 

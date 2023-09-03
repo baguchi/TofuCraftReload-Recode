@@ -4,7 +4,11 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -918,6 +922,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('W', Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, TofuItems.OKARA_DONUT.get(), 4)
+				.pattern("#W#")
+				.pattern("WEW")
+				.pattern("#W#")
+				.define('#', TofuItems.OKARA.get())
+				.define('E', Items.EGG)
+				.define('W', Items.WHEAT)
+				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
+				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOBOROTOFUSAUTE.get(), 1)
 				.requires(TofuItems.TOFU_MINCED.get())
@@ -946,6 +959,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.MINCEDPOTATO.get(), 1)
 				.requires(Items.POTATO)
+				.requires(TofuItems.FILTERCLOTH.get())
 				.unlockedBy("has_item", has(Items.POTATO))
 				.save(consumer);
 

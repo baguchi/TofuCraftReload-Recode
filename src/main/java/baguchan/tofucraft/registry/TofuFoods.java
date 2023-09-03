@@ -91,6 +91,7 @@ public class TofuFoods {
 	public static final FoodProperties INARI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.8F).build();
 
 	public static final FoodProperties OKARASTICK = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).fast().build();
+	public static final FoodProperties OKARA_DONUT = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.3F).build();
 
 	public static final FoodProperties SOBOROTOFUSAUTE = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.8F).build();
 

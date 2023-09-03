@@ -1,0 +1,25 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "#" : {
+      "item" : "tofucraft:okara"
+    },
+    "E" : {
+      "item" : "minecraft:egg"
+    },
+    "W" : {
+      "item" : "minecraft:wheat"
+    }
+  },
+  "pattern" : [
+    "#W#",
+    "WEW",
+    "#W#"
+  ],
+  "result" : {
+    "count" : 4,
+    "item" : "tofucraft:okara_donut"
+  },
+  "show_notification" : true
+}

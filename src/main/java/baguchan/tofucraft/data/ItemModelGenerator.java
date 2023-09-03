@@ -304,6 +304,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		singleTex(TofuItems.OKARA.get());
 		singleTex(TofuItems.OKARASTICK.get());
+		singleTex(TofuItems.OKARA_DONUT.get());
 
 		singleTex(TofuItems.SOBOROTOFUSAUTE.get());
 
