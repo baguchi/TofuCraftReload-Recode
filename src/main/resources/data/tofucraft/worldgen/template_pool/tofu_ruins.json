@@ -4,7 +4,34 @@
     {
       "weight" : 1,
       "element" : {
-        "location" : "tofucraft:tofu_ruins/tofu_ruins_01",
+        "location" : "tofucraft:tofu_ruins/portal_01",
+        "processors" : "minecraft:empty",
+        "projection" : "rigid",
+        "element_type" : "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight" : 1,
+      "element" : {
+        "location" : "tofucraft:tofu_ruins/portal_02",
+        "processors" : "minecraft:empty",
+        "projection" : "rigid",
+        "element_type" : "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight" : 1,
+      "element" : {
+        "location" : "tofucraft:tofu_ruins/portal_03",
+        "processors" : "minecraft:empty",
+        "projection" : "rigid",
+        "element_type" : "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight" : 1,
+      "element" : {
+        "location" : "tofucraft:tofu_ruins/portal_04",
         "processors" : "minecraft:empty",
         "projection" : "rigid",
         "element_type" : "minecraft:single_pool_element"
