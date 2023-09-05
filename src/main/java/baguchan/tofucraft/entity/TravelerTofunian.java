@@ -1,5 +1,7 @@
 package baguchan.tofucraft.entity;
 
+import baguchan.tofucraft.entity.goal.LookAtTofunianTradingPlayerGoal;
+import baguchan.tofucraft.entity.goal.TofunianTradeWithPlayerGoal;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.registry.TofuTrades;
@@ -14,24 +16,8 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.InteractGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.LookAtTradingPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MoveTowardsRestrictionGoal;
-import net.minecraft.world.entity.ai.goal.PanicGoal;
-import net.minecraft.world.entity.ai.goal.TradeWithPlayerGoal;
-import net.minecraft.world.entity.ai.goal.UseItemGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.monster.Evoker;
-import net.minecraft.world.entity.monster.Illusioner;
-import net.minecraft.world.entity.monster.Pillager;
-import net.minecraft.world.entity.monster.Vex;
-import net.minecraft.world.entity.monster.Vindicator;
-import net.minecraft.world.entity.monster.Zoglin;
-import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -64,7 +50,7 @@ public class TravelerTofunian extends AbstractTofunian {
 		this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), TofuSounds.TOFUNIAN_YES.get(), (p_35880_) -> {
 			return this.level().isDay() && p_35880_.isInvisible();
 		}));
-		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
+		this.goalSelector.addGoal(1, new TofunianTradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.2D, 1.2D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Evoker.class, 12.0F, 1.2D, 1.2D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Vindicator.class, 8.0F, 1.2D, 1.2D));
@@ -75,7 +61,7 @@ public class TravelerTofunian extends AbstractTofunian {
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, ShuDofuSpider.class, 10.0F, 1.2D, 1.3D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, TofuGandlem.class, 10.0F, 1.2D, 1.3D));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
-		this.goalSelector.addGoal(1, new LookAtTradingPlayerGoal(this));
+		this.goalSelector.addGoal(1, new LookAtTofunianTradingPlayerGoal(this));
 		this.goalSelector.addGoal(2, new TravelerTofunian.WanderToPositionGoal(this, 2.0D, 1.2D));
 		this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 1.1D));
 		this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
