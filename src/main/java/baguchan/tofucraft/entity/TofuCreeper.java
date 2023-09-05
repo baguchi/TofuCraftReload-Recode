@@ -28,11 +28,12 @@ public class TofuCreeper extends Creeper {
 	}
 
 	private void spawnTofu() {
-		float f = this.isPowered() ? 0.8F : 0.5F;
+		float f = this.isPowered() ? 1F : 0.5F;
 		if (level() instanceof ServerLevel serverLevel) {
 			for (int i = 0; i < 6; i++) {
 				FallingTofuEntity fallingBlock = new FallingTofuEntity(serverLevel, this, TofuBlocks.KINUTOFU.get().defaultBlockState());
-				fallingBlock.setDeltaMovement((this.random.nextFloat() - this.random.nextFloat()) * f, this.random.nextFloat() * 0.5F + f, (this.random.nextFloat() - this.random.nextFloat()) * f);
+				fallingBlock.setDeltaMovement((this.random.nextFloat() - this.random.nextFloat()) * f, this.random.nextFloat() * 0.5F + f * 0.35F, (this.random.nextFloat() - this.random.nextFloat()) * f);
+				fallingBlock.setCanPlace(false);
 				serverLevel.addFreshEntityWithPassengers(fallingBlock);
 			}
 		}
