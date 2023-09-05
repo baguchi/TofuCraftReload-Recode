@@ -307,12 +307,12 @@ public class ShuDofuSpider extends Monster {
 						double yaw = i * 360f / count;
 						world.sendParticles(new ParticleStink.StinkData(TofuParticleTypes.STINK.get(), 20f, 20, ParticleStink.EnumStinkBehavior.GROW, 1.0f), this.getX() + Math.cos(Math.toRadians(yaw)) * distance, this.getY(), this.getZ() + Math.sin(Math.toRadians(yaw)) * distance, 0, 0, 0, 0, 0);
 					}
-					float radius = 4;
+					float radius = 5;
 					AABB hitBox = new AABB(BlockPos.containing(ShuDofuSpider.this.getX() - radius, ShuDofuSpider.this.getY() - 1, ShuDofuSpider.this.getZ() - radius), BlockPos.containing(ShuDofuSpider.this.getX() + radius, ShuDofuSpider.this.getY() + 2, ShuDofuSpider.this.getZ() + radius));
 					List<LivingEntity> entitiesHit = ShuDofuSpider.this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
-							entity.hurt(this.damageSources().mobAttack(ShuDofuSpider.this), 30.0F);
+							entity.hurt(this.damageSources().mobAttack(ShuDofuSpider.this), 40.0F / this.distanceTo(entity));
 						}
 					}
 					playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0f, 1.0f);
