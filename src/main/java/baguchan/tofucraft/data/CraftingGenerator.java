@@ -541,6 +541,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('W', Tags.Items.CROPS_WHEAT)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.NETHER_NATTOBED.get(), 1)
+				.pattern("SSS")
+				.pattern("SSS")
+				.pattern("WWW")
+				.define('S', TofuItems.SEEDS_SOYBEANS_NETHER.get())
+				.define('W', Tags.Items.CROPS_WHEAT)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER.get()))
+				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, TofuBlocks.TOFUCAKE.get())
 				.pattern("###")
@@ -882,6 +890,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.NATTO.get())
 				.requires(TofuItems.LEEK.get())
 				.unlockedBy("has_item", has(TofuItems.NATTO.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.RICE_NETHER_NATTO.get(), 1)
+				.requires(TofuItems.ONIGIRI.get())
+				.requires(TofuItems.NETHER_NATTO.get())
+				.unlockedBy("has_item", has(TofuItems.NETHER_NATTO.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.RICE_NATTO_LEEK.get(), 1)
+				.requires(TofuItems.ONIGIRI.get())
+				.requires(TofuItems.NETHER_NATTO.get())
+				.requires(TofuItems.LEEK.get())
+				.unlockedBy("has_item", has(TofuItems.NETHER_NATTO.get()))
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.RICE_TOFU.get(), 1)
 				.requires(TofuItems.ONIGIRI.get())

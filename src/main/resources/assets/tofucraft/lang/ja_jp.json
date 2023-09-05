@@ -614,5 +614,7 @@
   "item.tofucraft.edamame_templa" : "枝豆天ぷら",
   "trim_material.tofucraft.tofu_metal" : "鋼豆腐製装飾",
   "trim_material.tofucraft.tofu_diamond" : "金剛豆腐製装飾",
-  "trim_material.tofucraft.zunda_ruby" : "ずんだルビー製装飾"
+  "trim_material.tofucraft.zunda_ruby" : "ずんだルビー製装飾",
+  "tofucraft.has_comfort" : "健康入り",
+  "tofucraft.has_nourishment" : "栄養入り"
 }

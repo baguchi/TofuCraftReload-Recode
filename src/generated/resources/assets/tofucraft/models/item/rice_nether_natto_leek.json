@@ -1,0 +1,6 @@
+{
+  "parent" : "minecraft:item/generated",
+  "textures" : {
+    "layer0" : "tofucraft:item/rice_nether_natto_leek"
+  }
+}

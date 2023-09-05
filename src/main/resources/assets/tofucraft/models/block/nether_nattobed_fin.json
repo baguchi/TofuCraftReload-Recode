@@ -1,0 +1,9 @@
+{
+  "parent" : "block/orientable",
+  "textures" : {
+    "top" : "tofucraft:block/nether_nattobed_top_fin",
+    "front" : "tofucraft:block/nether_nattobed_side_fin",
+    "side" : "tofucraft:block/nether_nattobed_side_fin",
+    "bottom" : "tofucraft:block/nether_nattobed_top_fin"
+  }
+}

@@ -157,6 +157,7 @@ public class TofuItems {
 
 
 	public static final RegistryObject<Item> NATTO = ITEMS.register("natto", () -> new Item((new Item.Properties()).food(TofuFoods.NATTO)));
+	public static final RegistryObject<Item> NETHER_NATTO = ITEMS.register("nether_natto", () -> new Item((new Item.Properties()).food(TofuFoods.NETHER_NATTO)));
 
 	public static final RegistryObject<Item> STARCH = ITEMS.register("starch", () -> new Item((new Item.Properties())));
 	public static final RegistryObject<Item> STARCH_RAW = ITEMS.register("starch_raw", () -> new Item((new Item.Properties())));
@@ -241,6 +242,9 @@ public class TofuItems {
 	public static final RegistryObject<Item> RICE_BURGER = ITEMS.register("riceburger", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_BURGER)));
 	public static final RegistryObject<Item> RICE_NATTO = ITEMS.register("ricenatto", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_NATTO)));
 	public static final RegistryObject<Item> RICE_NATTO_LEEK = ITEMS.register("ricenattoleek", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_NATTOLEEK)));
+	public static final RegistryObject<Item> RICE_NETHER_NATTO = ITEMS.register("rice_nether_natto", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_NETHER_NATTO)));
+	public static final RegistryObject<Item> RICE_NETHER_NATTO_LEEK = ITEMS.register("rice_nether_natto_leek", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_NETHER_NATTO_LEEK)));
+
 	public static final RegistryObject<Item> RICE_TOFU = ITEMS.register("ricetofu", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_TOFU)));
 	public static final RegistryObject<Item> RICE_SOBORO_TOFU = ITEMS.register("ricesoborotofu", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_SOBORO_TOFU)));
 	public static final RegistryObject<Item> GOHEIMOCHI = ITEMS.register("goheimochi", () -> new ReturnableDishItem(() -> Items.STICK, (new Item.Properties()).food(TofuFoods.GOHEIMOCHI)));

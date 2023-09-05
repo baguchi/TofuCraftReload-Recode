@@ -29,6 +29,8 @@ public class TofuFoods {
 
 	public static final FoodProperties SPROUTS = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
 	public static final FoodProperties NATTO = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
+	public static final FoodProperties NETHER_NATTO = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200), 1.0F).build();
+
 	public static final FoodProperties YUBA = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
 
 
@@ -84,6 +86,9 @@ public class TofuFoods {
 	public static final FoodProperties RICE_BURGER = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.85F).build();
 	public static final FoodProperties RICE_NATTO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.65F).build();
 	public static final FoodProperties RICE_NATTOLEEK = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.675F).build();
+	public static final FoodProperties RICE_NETHER_NATTO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.65F).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200), 1.0F).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200), 1.0F).build();
+	public static final FoodProperties RICE_NETHER_NATTO_LEEK = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.675F).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200), 1.0F).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200), 1.0F).build();
+
 	public static final FoodProperties RICE_TOFU = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.625F).build();
 	public static final FoodProperties RICE_SOBORO_TOFU = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.65F).build();
 	public static final FoodProperties GOHEIMOCHI = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.65F).build();
