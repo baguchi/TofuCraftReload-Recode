@@ -17,6 +17,7 @@ import baguchan.tofucraft.item.InfernoNetherFukumameItem;
 import baguchan.tofucraft.item.KoujiBaseItem;
 import baguchan.tofucraft.item.NattoCobWebItem;
 import baguchan.tofucraft.item.NetherFukumameItem;
+import baguchan.tofucraft.item.NourishmentItem;
 import baguchan.tofucraft.item.RamuneSoymilkBottleItem;
 import baguchan.tofucraft.item.ReturnableDishItem;
 import baguchan.tofucraft.item.RollingPinItem;
@@ -240,10 +241,10 @@ public class TofuItems {
 	public static final RegistryObject<Item> YAKIONIGIRI_MISO = ITEMS.register("yakionigiri_miso", () -> new Item((new Item.Properties()).food(TofuFoods.YAKIONIGIRI_MISO)));
 	public static final RegistryObject<Item> YAKIONIGIRI_SHOYU = ITEMS.register("yakionigiri_shoyu", () -> new Item((new Item.Properties()).food(TofuFoods.YAKIONIGIRI_SHOYU)));
 	public static final RegistryObject<Item> RICE_BURGER = ITEMS.register("riceburger", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_BURGER)));
-	public static final RegistryObject<Item> RICE_NATTO = ITEMS.register("ricenatto", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_NATTO)));
-	public static final RegistryObject<Item> RICE_NATTO_LEEK = ITEMS.register("ricenattoleek", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_NATTOLEEK)));
-	public static final RegistryObject<Item> RICE_NETHER_NATTO = ITEMS.register("rice_nether_natto", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_NETHER_NATTO)));
-	public static final RegistryObject<Item> RICE_NETHER_NATTO_LEEK = ITEMS.register("rice_nether_natto_leek", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_NETHER_NATTO_LEEK)));
+	public static final RegistryObject<Item> RICE_NATTO = ITEMS.register("ricenatto", () -> new NourishmentItem((new Item.Properties()).food(TofuFoods.RICE_NATTO)));
+	public static final RegistryObject<Item> RICE_NATTO_LEEK = ITEMS.register("ricenattoleek", () -> new NourishmentItem((new Item.Properties()).food(TofuFoods.RICE_NATTOLEEK)));
+	public static final RegistryObject<Item> RICE_NETHER_NATTO = ITEMS.register("rice_nether_natto", () -> new NourishmentItem((new Item.Properties()).food(TofuFoods.RICE_NETHER_NATTO)));
+	public static final RegistryObject<Item> RICE_NETHER_NATTO_LEEK = ITEMS.register("rice_nether_natto_leek", () -> new NourishmentItem((new Item.Properties()).food(TofuFoods.RICE_NETHER_NATTO_LEEK)));
 
 	public static final RegistryObject<Item> RICE_TOFU = ITEMS.register("ricetofu", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_TOFU)));
 	public static final RegistryObject<Item> RICE_SOBORO_TOFU = ITEMS.register("ricesoborotofu", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_SOBORO_TOFU)));
