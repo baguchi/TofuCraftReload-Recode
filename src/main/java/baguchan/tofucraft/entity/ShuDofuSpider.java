@@ -3,6 +3,7 @@ package baguchan.tofucraft.entity;
 import baguchan.tofucraft.client.particle.ParticleStink;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
+import baguchan.tofucraft.registry.TofuDamageSource;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
@@ -45,6 +46,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -312,7 +314,10 @@ public class ShuDofuSpider extends Monster {
 					List<LivingEntity> entitiesHit = ShuDofuSpider.this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
-							entity.hurt(this.damageSources().mobAttack(ShuDofuSpider.this), 40.0F / this.distanceTo(entity));
+							double d12 = Math.sqrt(entity.distanceToSqr(entity)) / (double) radius * 2.0F;
+							double d14 = (double) Explosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
+							double d10 = (1.0D - d12) * d14;
+							entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) ((d10 * d10 + d10) / 2.0D * 30.0D));
 						}
 					}
 					playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0f, 1.0f);

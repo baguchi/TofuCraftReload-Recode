@@ -554,6 +554,7 @@
   "tooltip.tofucraft.tofuforce.broken" : "Broken",
   "death.attack.tofucraft.zunda" : "%1$s was affected natural energy by %2$s 's %3$s",
   "death.attack.tofucraft.fallingTofu" : "%1$s was bumped into the corner of tofu by %2$s 's %3$s",
+  "death.attack.tofucraft.soy_spore" : "%1$s was affected by %2$s 's soy milk spores",
   "item.tofucraft.tofu_gauntlet.mode" : "Mode",
   "item.tofucraft.tofu_gauntlet.soyshot" : "Soy Shot",
   "item.tofucraft.tofu_gauntlet.homing_shot" : "Homing Shot",

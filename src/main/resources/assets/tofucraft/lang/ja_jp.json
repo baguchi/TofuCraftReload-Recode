@@ -554,6 +554,7 @@
   "tooltip.tofucraft.tofuforce.broken" : "破損",
   "death.attack.tofucraft.zunda" : "%1$sは、%2$sの%3$sで自然エネルギーにやられた",
   "death.attack.tofucraft.fallingTofu" : "%1$sは、%2$sからの%3$sの角にぶつかった",
+  "death.attack.tofucraft.soy_spore" : "%1$sは、%2$sからの豆乳の胞子の影響を受けてしまった",
   "item.tofucraft.tofu_gauntlet.mode" : "モード",
   "item.tofucraft.tofu_gauntlet.soyshot" : "ソイショット",
   "item.tofucraft.tofu_gauntlet.homing_shot" : "ホーミングショット",
