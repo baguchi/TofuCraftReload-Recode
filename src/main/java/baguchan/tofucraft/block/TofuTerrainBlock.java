@@ -1,7 +1,7 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.world.placement.TofuWorldPlacements;
+import baguchan.tofucraft.world.gen.placement.TofuWorldPlacements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;

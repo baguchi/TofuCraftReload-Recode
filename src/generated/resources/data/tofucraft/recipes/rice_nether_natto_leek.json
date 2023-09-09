@@ -1,0 +1,18 @@
+{
+  "type" : "minecraft:crafting_shapeless",
+  "category" : "misc",
+  "ingredients" : [
+    {
+      "item" : "tofucraft:onigiri"
+    },
+    {
+      "item" : "tofucraft:nether_natto"
+    },
+    {
+      "item" : "tofucraft:leek"
+    }
+  ],
+  "result" : {
+    "item" : "tofucraft:rice_nether_natto_leek"
+  }
+}

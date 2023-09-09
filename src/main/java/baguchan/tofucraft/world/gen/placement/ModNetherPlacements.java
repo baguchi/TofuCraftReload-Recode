@@ -1,4 +1,4 @@
-package baguchan.tofucraft.world.placement;
+package baguchan.tofucraft.world.gen.placement;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.world.gen.features.ModNetherFeatures;

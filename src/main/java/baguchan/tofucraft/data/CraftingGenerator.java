@@ -896,7 +896,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.NETHER_NATTO.get())
 				.unlockedBy("has_item", has(TofuItems.NETHER_NATTO.get()))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.RICE_NATTO_LEEK.get(), 1)
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.RICE_NETHER_NATTO_LEEK.get(), 1)
 				.requires(TofuItems.ONIGIRI.get())
 				.requires(TofuItems.NETHER_NATTO.get())
 				.requires(TofuItems.LEEK.get())
