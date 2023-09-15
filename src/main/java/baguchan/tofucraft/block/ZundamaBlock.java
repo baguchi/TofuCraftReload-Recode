@@ -43,8 +43,8 @@ public class ZundamaBlock extends HalfTransparentBlock {
 
 	public void fallOn(Level p_153372_, BlockState p_153373_, BlockPos p_153374_, Entity p_153375_, float p_153376_) {
 		p_153375_.playSound(SoundEvents.HONEY_BLOCK_SLIDE, 1.0F, 1.0F);
-		if (!p_153372_.isClientSide) {
-			p_153372_.broadcastEntityEvent(p_153375_, (byte) 54);
+		if (p_153372_.isClientSide) {
+			showParticles(p_153375_, 12);
 		}
 
 		if (p_153375_.causeFallDamage(p_153376_, 0.15F, p_153372_.damageSources().fall())) {
@@ -103,8 +103,8 @@ public class ZundamaBlock extends HalfTransparentBlock {
 				p_53996_.playSound(SoundEvents.HONEY_BLOCK_SLIDE, 1.0F, 1.0F);
 			}
 
-			if (!p_53995_.isClientSide && p_53995_.random.nextInt(5) == 0) {
-				p_53995_.broadcastEntityEvent(p_53996_, (byte) 53);
+			if (p_53995_.isClientSide && p_53995_.random.nextInt(5) == 0) {
+				showSlideParticles(p_53996_);
 			}
 		}
 
