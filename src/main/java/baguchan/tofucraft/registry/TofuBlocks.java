@@ -392,7 +392,7 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> RED_SOYCHEESE_CANDLE_TART = noItemRegister("red_candle_soycheese_candle_tart", () -> new CandleTofuCakeBlock(SOYCHEESE_TART, Blocks.RED_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
 	public static final RegistryObject<Block> BLACK_SOYCHEESE_CANDLE_TART = noItemRegister("black_candle_soycheese_candle_tart", () -> new CandleTofuCakeBlock(SOYCHEESE_TART, Blocks.BLACK_CANDLE, BlockBehaviour.Properties.copy(Blocks.CAKE)));
 
-	public static final RegistryObject<HoneyBlock> ZUNDAMA_BLOCK = register("zundama_block", () -> new HoneyBlock(BlockBehaviour.Properties.of().strength(0.4F).noOcclusion().sound(SoundType.HONEY_BLOCK)));
+	public static final RegistryObject<HoneyBlock> ZUNDAMA_BLOCK = register("zundama_block", () -> new HoneyBlock(BlockBehaviour.Properties.of().strength(0.4F).noOcclusion().lightLevel((blockState) -> 9).sound(SoundType.HONEY_BLOCK)));
 
 	public static final RegistryObject<SoymilkCauldronBlock> SOYMILK_CAULDRON = noItemRegister("soymilk_cauldron", () -> new SoymilkCauldronBlock(BlockBehaviour.Properties.of().strength(2.0F).noOcclusion().requiresCorrectToolForDrops().randomTicks().sound(SoundType.METAL), TofuItems.BUCKET_SOYMILK, TofuItems.SOY_CHEESE));
 	public static final RegistryObject<SoymilkCauldronBlock> SOYMILK_NETHER_CAULDRON = noItemRegister("soymilk_nether_cauldron", () -> new SoymilkCauldronBlock(BlockBehaviour.Properties.of().strength(2.0F).noOcclusion().requiresCorrectToolForDrops().randomTicks().sound(SoundType.METAL), TofuItems.BUCKET_SOYMILK_NETHER, TofuItems.SOY_NETHER_CHEESE));
@@ -401,7 +401,7 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> TOFUBED = register("tofubed", () -> new TofuBedBlock(BlockBehaviour.Properties.of().strength(0.2F).noOcclusion().sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> TOFUCHEST = register("tofuchest", () -> new TofuChestBlock(BlockBehaviour.Properties.of().strength(2.5F).noOcclusion().sound(SoundType.STONE), TofuBlockEntitys.TOFUCHEST::get));
 
-	public static final RegistryObject<Block> FOODPLATE = register("foodplate", () -> new FoodPlateBlock(BlockBehaviour.Properties.of().strength(1.0F).lightLevel((blockState) -> 9).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> FOODPLATE = register("foodplate", () -> new FoodPlateBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.METAL)));
 
 	public static final RegistryObject<Block> RICE_BLOCK = register("rice_block",
 			() -> new RiceBlock(BlockBehaviour.Properties.of()
