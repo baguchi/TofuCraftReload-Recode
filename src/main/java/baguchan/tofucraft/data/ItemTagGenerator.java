@@ -33,6 +33,12 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(ItemTags.ARROWS).add(TofuItems.ZUNDA_ARROW.get());
 		tag(Tags.Items.SEEDS).add(TofuItems.SEEDS_CHILI.get(), TofuItems.SEEDS_SOYBEANS.get(), TofuItems.SEEDS_SOYBEANS_NETHER.get(), TofuItems.SEEDS_SOYBEANS_SOUL.get(), TofuItems.SEEDS_RICE.get());
 		tag(TofuTags.Items.RICE_BLOCK).add(TofuBlocks.RICE_BLOCK.get().asItem());
+		tag(ItemTags.SWORDS).add(TofuItems.TOFU_KINU_SWORD.get()).add(TofuItems.TOFU_MOMEN_SWORD.get()).add(TofuItems.TOFU_SOLID_SWORD.get()).add(TofuItems.TOFU_METAL_SWORD.get()).add(TofuItems.TOFU_DIAMOND_SWORD.get());
+		tag(ItemTags.PICKAXES).add(TofuItems.TOFU_KINU_PICKAXE.get()).add(TofuItems.TOFU_MOMEN_PICKAXE.get()).add(TofuItems.TOFU_SOLID_PICKAXE.get()).add(TofuItems.TOFU_METAL_PICKAXE.get()).add(TofuItems.TOFU_DIAMOND_PICKAXE.get());
+		tag(ItemTags.AXES).add(TofuItems.TOFU_KINU_AXE.get()).add(TofuItems.TOFU_MOMEN_AXE.get()).add(TofuItems.TOFU_SOLID_AXE.get()).add(TofuItems.TOFU_METAL_AXE.get()).add(TofuItems.TOFU_DIAMOND_AXE.get());
+		tag(ItemTags.SHOVELS).add(TofuItems.TOFU_KINU_SHOVEL.get()).add(TofuItems.TOFU_MOMEN_SHOVEL.get()).add(TofuItems.TOFU_SOLID_SHOVEL.get()).add(TofuItems.TOFU_METAL_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get());
+
+
 		tag(ItemTags.TRIMMABLE_ARMOR).add(TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), TofuItems.TOFU_DIAMOND_LEGGINGS.get(), TofuItems.TOFU_DIAMOND_BOOTS.get())
 				.add(TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.TOFU_METAL_CHESTPLATE.get(), TofuItems.TOFU_METAL_LEGGINGS.get(), TofuItems.TOFU_METAL_BOOTS.get())
 				.add(TofuItems.SCULK_BONE_HELMET.get(), TofuItems.SCULK_BONE_CHESTPLATE.get(), TofuItems.SCULK_BONE_LEGGINGS.get(), TofuItems.SCULK_BONE_BOOTS.get());
