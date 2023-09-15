@@ -181,6 +181,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TOFUBED,
 						TofuBlocks.TOFUCHEST,
 						TofuBlocks.FOODPLATE,
+						TofuBlocks.ZUNDAMA_BLOCK,
 						TofuBlocks.SALTPAN,
 						TofuBlocks.SALT_FURNACE,
 						TofuBlocks.MORIJIO).map(sup -> {

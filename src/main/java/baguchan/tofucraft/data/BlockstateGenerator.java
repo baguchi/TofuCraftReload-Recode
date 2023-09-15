@@ -191,6 +191,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		this.chainBlock(TofuBlocks.TOFU_METAL_CHAIN.get());
 		this.lantern(TofuBlocks.TOFU_METAL_LANTERN.get());
 		this.lantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
+		this.translucentBlock(TofuBlocks.ZUNDAMA_BLOCK.get());
 	}
 
 	public void chainBlock(Block block) {
