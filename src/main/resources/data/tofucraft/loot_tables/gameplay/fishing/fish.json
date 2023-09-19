@@ -20,19 +20,7 @@
           "name": "tofucraft:gameplay/fishing/treasure",
           "type": "minecraft:loot_table",
           "quality": 2,
-          "weight": 5,
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "type_specific": {
-                  "type": "fishing_hook",
-                  "in_open_water": true
-                }
-              }
-            }
-          ]
+          "weight" : 5
         }
       ]
     }
