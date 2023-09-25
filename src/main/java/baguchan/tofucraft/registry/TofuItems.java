@@ -309,35 +309,35 @@ public class TofuItems {
 	public static final RegistryObject<Item> ZUNDA_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("zunda_upgrade_smithing_template", TofuItems::createZundaBowUpgradeTemplate);
 
 
-	public static final RegistryObject<Item> TOFU_KINU_HELMET = ITEMS.register("tofu_kinu_helmet", () -> new ArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_KINU_CHESTPLATE = ITEMS.register("tofu_kinu_chestplate", () -> new ArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_KINU_LEGGINGS = ITEMS.register("tofu_kinu_leggings", () -> new ArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_KINU_BOOTS = ITEMS.register("tofu_kinu_boots", () -> new ArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_KINU_HELMET = ITEMS.register("tofu_kinu_helmet", () -> new ArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_KINU_CHESTPLATE = ITEMS.register("tofu_kinu_chestplate", () -> new ArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_KINU_LEGGINGS = ITEMS.register("tofu_kinu_leggings", () -> new ArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_KINU_BOOTS = ITEMS.register("tofu_kinu_boots", () -> new ArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> TOFU_MOMEN_HELMET = ITEMS.register("tofu_momen_helmet", () -> new ArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_MOMEN_CHESTPLATE = ITEMS.register("tofu_momen_chestplate", () -> new ArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_MOMEN_LEGGINGS = ITEMS.register("tofu_momen_leggings", () -> new ArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_MOMEN_BOOTS = ITEMS.register("tofu_momen_boots", () -> new ArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_MOMEN_HELMET = ITEMS.register("tofu_momen_helmet", () -> new ArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_MOMEN_CHESTPLATE = ITEMS.register("tofu_momen_chestplate", () -> new ArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_MOMEN_LEGGINGS = ITEMS.register("tofu_momen_leggings", () -> new ArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_MOMEN_BOOTS = ITEMS.register("tofu_momen_boots", () -> new ArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> ARMOR_TOFU_SOLIDHELMET = ITEMS.register("tofu_solid_helmet", () -> new ArmorItem(TofuArmorMaterial.SOLID, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_SOLIDCHESTPLATE = ITEMS.register("tofu_solid_chestplate", () -> new ArmorItem(TofuArmorMaterial.SOLID, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_SOLIDLEGGINGS = ITEMS.register("tofu_solid_leggings", () -> new ArmorItem(TofuArmorMaterial.SOLID, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> ARMOR_TOFU_SOLIDBOOTS = ITEMS.register("tofu_solid_boots", () -> new ArmorItem(TofuArmorMaterial.SOLID, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> ARMOR_TOFU_SOLIDHELMET = ITEMS.register("tofu_solid_helmet", () -> new ArmorItem(TofuArmorMaterial.SOLID, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> ARMOR_TOFU_SOLIDCHESTPLATE = ITEMS.register("tofu_solid_chestplate", () -> new ArmorItem(TofuArmorMaterial.SOLID, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> ARMOR_TOFU_SOLIDLEGGINGS = ITEMS.register("tofu_solid_leggings", () -> new ArmorItem(TofuArmorMaterial.SOLID, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> ARMOR_TOFU_SOLIDBOOTS = ITEMS.register("tofu_solid_boots", () -> new ArmorItem(TofuArmorMaterial.SOLID, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> TOFU_METAL_HELMET = ITEMS.register("tofu_metal_helmet", () -> new ArmorItem(TofuArmorMaterial.METAL, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_METAL_CHESTPLATE = ITEMS.register("tofu_metal_chestplate", () -> new ArmorItem(TofuArmorMaterial.METAL, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_METAL_LEGGINGS = ITEMS.register("tofu_metal_leggings", () -> new ArmorItem(TofuArmorMaterial.METAL, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_METAL_BOOTS = ITEMS.register("tofu_metal_boots", () -> new ArmorItem(TofuArmorMaterial.METAL, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_METAL_HELMET = ITEMS.register("tofu_metal_helmet", () -> new ArmorItem(TofuArmorMaterial.METAL, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_METAL_CHESTPLATE = ITEMS.register("tofu_metal_chestplate", () -> new ArmorItem(TofuArmorMaterial.METAL, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_METAL_LEGGINGS = ITEMS.register("tofu_metal_leggings", () -> new ArmorItem(TofuArmorMaterial.METAL, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_METAL_BOOTS = ITEMS.register("tofu_metal_boots", () -> new ArmorItem(TofuArmorMaterial.METAL, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> TOFU_DIAMOND_HELMET = ITEMS.register("tofu_diamond_helmet", () -> new ArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_DIAMOND_CHESTPLATE = ITEMS.register("tofu_diamond_chestplate", () -> new ArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_DIAMOND_LEGGINGS = ITEMS.register("tofu_diamond_leggings", () -> new ArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> TOFU_DIAMOND_BOOTS = ITEMS.register("tofu_diamond_boots", () -> new ArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_DIAMOND_HELMET = ITEMS.register("tofu_diamond_helmet", () -> new ArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_DIAMOND_CHESTPLATE = ITEMS.register("tofu_diamond_chestplate", () -> new ArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_DIAMOND_LEGGINGS = ITEMS.register("tofu_diamond_leggings", () -> new ArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> TOFU_DIAMOND_BOOTS = ITEMS.register("tofu_diamond_boots", () -> new ArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
-	public static final RegistryObject<Item> SCULK_BONE_HELMET = ITEMS.register("sculk_bone_helmet", () -> new ArmorItem(TofuArmorMaterial.SCULK_BONE, ArmorItem.Type.HELMET, (new Item.Properties())));
-	public static final RegistryObject<Item> SCULK_BONE_CHESTPLATE = ITEMS.register("sculk_bone_chestplate", () -> new ArmorItem(TofuArmorMaterial.SCULK_BONE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
-	public static final RegistryObject<Item> SCULK_BONE_LEGGINGS = ITEMS.register("sculk_bone_leggings", () -> new ArmorItem(TofuArmorMaterial.SCULK_BONE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
-	public static final RegistryObject<Item> SCULK_BONE_BOOTS = ITEMS.register("sculk_bone_boots", () -> new ArmorItem(TofuArmorMaterial.SCULK_BONE, ArmorItem.Type.BOOTS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> SCULK_BONE_HELMET = ITEMS.register("sculk_bone_helmet", () -> new ArmorItem(TofuArmorMaterial.SCULK_BONE, ArmorItem.Type.HELMET, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> SCULK_BONE_CHESTPLATE = ITEMS.register("sculk_bone_chestplate", () -> new ArmorItem(TofuArmorMaterial.SCULK_BONE, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> SCULK_BONE_LEGGINGS = ITEMS.register("sculk_bone_leggings", () -> new ArmorItem(TofuArmorMaterial.SCULK_BONE, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
+	public static final RegistryObject<ArmorItem> SCULK_BONE_BOOTS = ITEMS.register("sculk_bone_boots", () -> new ArmorItem(TofuArmorMaterial.SCULK_BONE, ArmorItem.Type.BOOTS, (new Item.Properties())));
 
 
 	public static final RegistryObject<Item> TOFU_SHIELD = ITEMS.register("tofu_shield", () -> new TofuShieldItem((new Item.Properties()).stacksTo(1).durability(420)));

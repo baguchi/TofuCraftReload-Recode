@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.SignBlock;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.lang.reflect.Constructor;
 import java.util.function.Consumer;
@@ -98,15 +99,15 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(cuttingItem.get()), RecipeCategory.BUILDING_BLOCKS, result.get(), count).unlockedBy("has_item", has(cuttingItem.get())).save(consumer, TofuCraftReload.prefix("cutting_" + getItemName(result.get()) + "_from_" + getItemName(cuttingItem.get())));
 	}
 
-	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<Item> result) {
+	public static void tofuDiamondSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, RegistryObject<? extends Item> result) {
 		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, TofuCraftReload.prefix(ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing"));
 	}
 
-	public static void zundaSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<Item> result) {
+	public static void zundaSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, RegistryObject<? extends Item> result) {
 		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuItems.ZUNDAMA.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.ZUNDAMA.get())).save(consumer, TofuCraftReload.prefix(ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing"));
 	}
 
-	public static void sculkSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<Item> result) {
+	public static void sculkSmithing(Consumer<FinishedRecipe> consumer, ItemLike smithItem, RecipeCategory recipeCategory, RegistryObject<? extends Item> result) {
 		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, TofuCraftReload.prefix(ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing"));
 	}
 

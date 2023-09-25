@@ -4,14 +4,17 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SignBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.loaders.ItemLayerModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -87,14 +90,14 @@ public class ItemModelGenerator extends ItemModelProvider {
 		wall(TofuBlocks.TOFUFENCE_GRILLED, TofuBlocks.GRILLEDTOFU);
 		wall(TofuBlocks.TOFUFENCE_ZUNDA, TofuBlocks.ZUNDATOFU);
 
-		singleTex(TofuBlocks.TOFUDOOR_KINU.get());
-		singleTex(TofuBlocks.TOFUDOOR_MOMEN.get());
-		singleTex(TofuBlocks.TOFUDOOR_ISHI.get());
-		singleTex(TofuBlocks.TOFUDOOR_METAL.get());
-		singleTex(TofuBlocks.TOFUDOOR_HELL.get());
-		singleTex(TofuBlocks.TOFUDOOR_SOUL.get());
-		singleTex(TofuBlocks.TOFUDOOR_GRILLED.get());
-		singleTex(TofuBlocks.TOFUDOOR_ZUNDA.get());
+		singleTex(TofuBlocks.TOFUDOOR_KINU);
+		singleTex(TofuBlocks.TOFUDOOR_MOMEN);
+		singleTex(TofuBlocks.TOFUDOOR_ISHI);
+		singleTex(TofuBlocks.TOFUDOOR_METAL);
+		singleTex(TofuBlocks.TOFUDOOR_HELL);
+		singleTex(TofuBlocks.TOFUDOOR_SOUL);
+		singleTex(TofuBlocks.TOFUDOOR_GRILLED);
+		singleTex(TofuBlocks.TOFUDOOR_ZUNDA);
 
 		toBlockModel(TofuBlocks.TOFUTRAPDOOR_KINU.get(), "tofutrapdoor_kinu_bottom");
 		toBlockModel(TofuBlocks.TOFUTRAPDOOR_MOMEN.get(), "tofutrapdoor_momen_bottom");
@@ -155,273 +158,273 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		itemBlockFlat(TofuBlocks.SAPLING_APRICOT.get());
 		toBlock(TofuBlocks.LEAVES_APRICOT.get());
-		singleTex(TofuItems.APRICOT.get());
-		singleTex(TofuItems.APRICOTJERRY_BOTTLE.get());
-		singleTex(TofuItems.APRICOTJERRY_BREAD.get());
-		singleTex(TofuItems.APRICOTSEED.get());
-		singleTex(TofuItems.KYONINSO.get());
+		singleTex(TofuItems.APRICOT);
+		singleTex(TofuItems.APRICOTJERRY_BOTTLE);
+		singleTex(TofuItems.APRICOTJERRY_BREAD);
+		singleTex(TofuItems.APRICOTSEED);
+		singleTex(TofuItems.KYONINSO);
 
 		itemBlockFlat(TofuBlocks.LEEK.get());
-		singleTex(TofuBlocks.TOFUCAKE.get().asItem());
-		singleTex(TofuBlocks.ZUNDATOFUCAKE.get().asItem());
-		singleTex(TofuBlocks.SOYCHEESE_TART.get().asItem());
+		singleTex(TofuBlocks.TOFUCAKE);
+		singleTex(TofuBlocks.ZUNDATOFUCAKE);
+		singleTex(TofuBlocks.SOYCHEESE_TART);
 
-		toBlock(TofuBlocks.ZUNDAMA_BLOCK.get());
+		toBlockGlow(TofuBlocks.ZUNDAMA_BLOCK.get());
 
 		//item
-		singleTex(TofuItems.TOFUKINU.get());
-		singleTex(TofuItems.TOFUMOMEN.get());
-		singleTex(TofuItems.TOFUISHI.get());
-		singleTex(TofuItems.TOFUMETAL.get());
-		singleTex(TofuItems.TOFUDIAMOND.get());
-		singleTex(TofuItems.TOFUDIAMOND_NUGGET.get());
+		singleTex(TofuItems.TOFUKINU);
+		singleTex(TofuItems.TOFUMOMEN);
+		singleTex(TofuItems.TOFUISHI);
+		singleTex(TofuItems.TOFUMETAL);
+		singleTex(TofuItems.TOFUDIAMOND);
+		singleTex(TofuItems.TOFUDIAMOND_NUGGET);
 
-		singleTex(TofuItems.TOFUHELL.get());
-		singleTex(TofuItems.TOFUSOUL.get());
+		singleTex(TofuItems.TOFUHELL);
+		singleTex(TofuItems.TOFUSOUL);
 
-		singleTex(TofuItems.TOFUGRILLED.get());
-		singleTex(TofuItems.TOFUZUNDA.get());
-		singleTex(TofuItems.TOFUMISO.get());
-		singleTex(TofuItems.TOFUDRIED.get());
-		singleTex(TofuItems.TOFUFRIED.get());
-		singleTex(TofuItems.TOFUSMOKE.get());
-		singleTex(TofuItems.SHUDOFU.get());
-		singleTex(TofuItems.SOY_SCULK_BONE.get());
-		singleTex(TofuItems.TOFUSESAME.get());
-		singleTex(TofuItems.TOFUFRIED_POUCH.get());
-		singleTex(TofuItems.TOFUANNIN.get());
-		singleTex(TofuItems.TOFUSTRAWBERRY.get());
+		singleTex(TofuItems.TOFUGRILLED);
+		singleTex(TofuItems.TOFUZUNDA);
+		singleTex(TofuItems.TOFUMISO);
+		singleTex(TofuItems.TOFUDRIED);
+		singleTex(TofuItems.TOFUFRIED);
+		singleTex(TofuItems.TOFUSMOKE);
+		singleTex(TofuItems.SHUDOFU);
+		singleTex(TofuItems.SOY_SCULK_BONE);
+		singleTex(TofuItems.TOFUSESAME);
+		singleTex(TofuItems.TOFUFRIED_POUCH);
+		singleTex(TofuItems.TOFUANNIN);
+		singleTex(TofuItems.TOFUSTRAWBERRY);
 
-		singleTex(TofuItems.AGEDASHI_TOFU.get());
-		singleTex(TofuItems.TOFU_STEAK.get());
-		singleTex(TofuItems.OAGE.get());
-		singleTex(TofuItems.TOFU_MINCED.get());
+		singleTex(TofuItems.AGEDASHI_TOFU);
+		singleTex(TofuItems.TOFU_STEAK);
+		singleTex(TofuItems.OAGE);
+		singleTex(TofuItems.TOFU_MINCED);
 
 
-		singleTex(TofuItems.BITTERN_BOTTLE.get());
-		singleTex(TofuItems.SALT.get());
+		singleTex(TofuItems.BITTERN_BOTTLE);
+		singleTex(TofuItems.SALT);
 
-		singleTex(TofuItems.SEEDS_SOYBEANS.get());
-		singleTex(TofuItems.SEEDS_SOYBEANS_NETHER.get());
-		singleTex(TofuItems.SEEDS_SOYBEANS_SOUL.get());
-		singleTex(TofuItems.SOYBEAN_PARCHED.get());
-		singleTex(TofuItems.KINAKO.get());
-		singleTex(TofuItems.EDAMAME.get());
-		singleTex(TofuItems.BOILED_EDAMAME.get());
-		singleTex(TofuItems.MINCEDPOTATO.get());
+		singleTex(TofuItems.SEEDS_SOYBEANS);
+		singleTex(TofuItems.SEEDS_SOYBEANS_NETHER);
+		singleTex(TofuItems.SEEDS_SOYBEANS_SOUL);
+		singleTex(TofuItems.SOYBEAN_PARCHED);
+		singleTex(TofuItems.KINAKO);
+		singleTex(TofuItems.EDAMAME);
+		singleTex(TofuItems.BOILED_EDAMAME);
+		singleTex(TofuItems.MINCEDPOTATO);
 
-		singleTex(TofuItems.SEEDS_CHILI.get());
-		singleTex(TofuItems.CHILI.get());
-		singleTex(TofuItems.DOUBANJIANG.get());
-		singleTex(TofuItems.MABODOFU.get());
+		singleTex(TofuItems.SEEDS_CHILI);
+		singleTex(TofuItems.CHILI);
+		singleTex(TofuItems.DOUBANJIANG);
+		singleTex(TofuItems.MABODOFU);
 
-		singleTex(TofuItems.FUKUMENI.get());
-		singleTex(TofuItems.KOYADOFUSTEW.get());
+		singleTex(TofuItems.FUKUMENI);
+		singleTex(TofuItems.KOYADOFUSTEW);
 
-		singleTex(TofuItems.KOUJI_BASE.get());
-		singleTex(TofuItems.KOUJI.get());
+		singleTex(TofuItems.KOUJI_BASE);
+		singleTex(TofuItems.KOUJI);
 
-		singleTex(TofuItems.MISO.get());
-		singleTex(TofuItems.BOTTLE_SOYSAUSE.get());
-		singleTex(TofuItems.NANBAN.get());
-		singleTex(TofuItems.NANBANTOFU.get());
-		singleTex(TofuItems.NATTO.get());
-		singleTex(TofuItems.NETHER_NATTO.get());
+		singleTex(TofuItems.MISO);
+		singleTex(TofuItems.BOTTLE_SOYSAUSE);
+		singleTex(TofuItems.NANBAN);
+		singleTex(TofuItems.NANBANTOFU);
+		singleTex(TofuItems.NATTO);
+		singleTex(TofuItems.NETHER_NATTO);
 
-		singleTex(TofuItems.STARCH.get());
-		singleTex(TofuItems.STARCH_RAW.get());
-		singleTex(TofuItems.FILTERCLOTH.get());
+		singleTex(TofuItems.STARCH);
+		singleTex(TofuItems.STARCH_RAW);
+		singleTex(TofuItems.FILTERCLOTH);
 
-		singleTex(TofuItems.GELATIN.get());
-		singleTex(TofuItems.GELATINRAW.get());
+		singleTex(TofuItems.GELATIN);
+		singleTex(TofuItems.GELATINRAW);
 
-		singleTex(TofuItems.LEEK.get());
-		singleTex(TofuItems.RICE.get());
-		singleTex(TofuItems.SEEDS_RICE.get());
-		singleTex(TofuItems.SPROUTS.get());
-		singleTex(TofuItems.CHIKUWA.get());
-		singleTex(TofuItems.TOFU_CHIKUWA.get());
-		singleTex(TofuItems.YUBA.get());
+		singleTex(TofuItems.LEEK);
+		singleTex(TofuItems.RICE);
+		singleTex(TofuItems.SEEDS_RICE);
+		singleTex(TofuItems.SPROUTS);
+		singleTex(TofuItems.CHIKUWA);
+		singleTex(TofuItems.TOFU_CHIKUWA);
+		singleTex(TofuItems.YUBA);
 
-		singleTex(TofuItems.ZUNDA.get());
-		singleTex(TofuItems.ZUNDAMA.get());
-		singleTex(TofuItems.ZUNDARUBY.get());
+		singleTex(TofuItems.ZUNDA);
+		emmisiveTex(TofuItems.ZUNDAMA);
+		singleTex(TofuItems.ZUNDARUBY);
 
-		singleTex(TofuItems.TOFU_HAMBURG_RAW.get());
-		singleTex(TofuItems.TOFU_HAMBURG.get());
-		singleTex(TofuItems.RAW_TOFU_FISH.get());
-		singleTex(TofuItems.COOKED_TOFU_FISH.get());
-		singleTex(TofuItems.MISODENGAKU.get());
-		singleTex(TofuItems.SOYMEAT.get());
+		singleTex(TofuItems.TOFU_HAMBURG_RAW);
+		singleTex(TofuItems.TOFU_HAMBURG);
+		singleTex(TofuItems.RAW_TOFU_FISH);
+		singleTex(TofuItems.COOKED_TOFU_FISH);
+		singleTex(TofuItems.MISODENGAKU);
+		singleTex(TofuItems.SOYMEAT);
 
-		singleTex(TofuItems.TOFUCOOKIE.get());
-		singleTex(TofuItems.TTTBURGER.get());
-		singleTex(TofuItems.MEAT_WRAPPED_YUBA.get());
-		singleTex(TofuItems.SOYSTICK.get());
-		singleTex(TofuItems.MISOSOUP.get());
-		singleTex(TofuItems.MOYASHIITAME.get());
-		singleTex(TofuItems.MOYASHIOHITASHI.get());
-		singleTex(TofuItems.SALTYMELON.get());
+		singleTex(TofuItems.TOFUCOOKIE);
+		singleTex(TofuItems.TTTBURGER);
+		singleTex(TofuItems.MEAT_WRAPPED_YUBA);
+		singleTex(TofuItems.SOYSTICK);
+		singleTex(TofuItems.MISOSOUP);
+		singleTex(TofuItems.MOYASHIITAME);
+		singleTex(TofuItems.MOYASHIOHITASHI);
+		singleTex(TofuItems.SALTYMELON);
 
-		singleTex(TofuItems.SOYMILK.get());
-		singleTex(TofuItems.SOYMILK_ANNIN.get());
-		singleTex(TofuItems.SOYMILK_APPLE.get());
-		singleTex(TofuItems.SOYMILK_COCOA.get());
-		singleTex(TofuItems.SOYMILK_FRUITS.get());
-		singleTex(TofuItems.SOYMILK_HONEY.get());
-		singleTex(TofuItems.SOYMILK_KINAKO.get());
-		singleTex(TofuItems.SOYMILK_PUDDING.get());
-		singleTex(TofuItems.SOYMILK_PUMPKIN.get());
-		singleTex(TofuItems.SOYMILK_RAMUNE.get());
-		singleTex(TofuItems.SOYMILK_SAKURA.get());
-		singleTex(TofuItems.SOYMILK_STRAWBERRY.get());
-		singleTex(TofuItems.SOYMILK_TEA.get());
-		singleTex(TofuItems.SOYMILK_HELL_BOTTLE.get());
-		singleTex(TofuItems.SOYMILK_SOUL_BOTTLE.get());
-		singleTex(TofuItems.KINAKO_MANJU.get());
-		singleTex(TofuItems.ZUNDA_MANJU.get());
-		singleTex(TofuItems.NETHER_MANJU.get());
-		singleTex(TofuItems.SOUL_MANJU.get());
+		singleTex(TofuItems.SOYMILK);
+		singleTex(TofuItems.SOYMILK_ANNIN);
+		singleTex(TofuItems.SOYMILK_APPLE);
+		singleTex(TofuItems.SOYMILK_COCOA);
+		singleTex(TofuItems.SOYMILK_FRUITS);
+		singleTex(TofuItems.SOYMILK_HONEY);
+		singleTex(TofuItems.SOYMILK_KINAKO);
+		singleTex(TofuItems.SOYMILK_PUDDING);
+		singleTex(TofuItems.SOYMILK_PUMPKIN);
+		singleTex(TofuItems.SOYMILK_RAMUNE);
+		singleTex(TofuItems.SOYMILK_SAKURA);
+		singleTex(TofuItems.SOYMILK_STRAWBERRY);
+		singleTex(TofuItems.SOYMILK_TEA);
+		singleTex(TofuItems.SOYMILK_HELL_BOTTLE);
+		singleTex(TofuItems.SOYMILK_SOUL_BOTTLE);
+		singleTex(TofuItems.KINAKO_MANJU);
+		singleTex(TofuItems.ZUNDA_MANJU);
+		singleTex(TofuItems.NETHER_MANJU);
+		singleTex(TofuItems.SOUL_MANJU);
 
-		singleTex(TofuItems.KINAKO_MOCHI.get());
-		singleTex(TofuItems.CRIMSON_SOUP.get());
-		singleTex(TofuItems.ZUNDA_MOCHI.get());
+		singleTex(TofuItems.KINAKO_MOCHI);
+		singleTex(TofuItems.CRIMSON_SOUP);
+		singleTex(TofuItems.ZUNDA_MOCHI);
 
-		singleTex(TofuItems.PUDDING.get());
-		singleTex(TofuItems.PUDDING_SOYMILK.get());
+		singleTex(TofuItems.PUDDING);
+		singleTex(TofuItems.PUDDING_SOYMILK);
 
-		singleTex(TofuItems.NIKUJAGA.get());
+		singleTex(TofuItems.NIKUJAGA);
 
-		singleTex(TofuItems.ONIGIRI.get());
-		singleTex(TofuItems.ONIGIRI_SALT.get());
-		singleTex(TofuItems.YAKIONIGIRI_MISO.get());
-		singleTex(TofuItems.YAKIONIGIRI_SHOYU.get());
-		singleTex(TofuItems.RICE_BURGER.get());
-		singleTex(TofuItems.RICE_NATTO.get());
-		singleTex(TofuItems.RICE_NATTO_LEEK.get());
-		singleTex(TofuItems.RICE_NETHER_NATTO.get());
-		singleTex(TofuItems.RICE_NETHER_NATTO_LEEK.get());
-		singleTex(TofuItems.RICE_TOFU.get());
-		singleTex(TofuItems.RICE_SOBORO_TOFU.get());
-		singleTex(TofuItems.GOHEIMOCHI.get());
+		singleTex(TofuItems.ONIGIRI);
+		singleTex(TofuItems.ONIGIRI_SALT);
+		singleTex(TofuItems.YAKIONIGIRI_MISO);
+		singleTex(TofuItems.YAKIONIGIRI_SHOYU);
+		singleTex(TofuItems.RICE_BURGER);
+		singleTex(TofuItems.RICE_NATTO);
+		singleTex(TofuItems.RICE_NATTO_LEEK);
+		singleTex(TofuItems.RICE_NETHER_NATTO);
+		singleTex(TofuItems.RICE_NETHER_NATTO_LEEK);
+		singleTex(TofuItems.RICE_TOFU);
+		singleTex(TofuItems.RICE_SOBORO_TOFU);
+		singleTex(TofuItems.GOHEIMOCHI);
 
-		singleTex(TofuItems.INARI.get());
+		singleTex(TofuItems.INARI);
 
-		singleTex(TofuItems.OKARA.get());
-		singleTex(TofuItems.OKARASTICK.get());
-		singleTex(TofuItems.OKARA_DONUT.get());
+		singleTex(TofuItems.OKARA);
+		singleTex(TofuItems.OKARASTICK);
+		singleTex(TofuItems.OKARA_DONUT);
 
-		singleTex(TofuItems.SOBOROTOFUSAUTE.get());
+		singleTex(TofuItems.SOBOROTOFUSAUTE);
 
-		singleTex(TofuItems.SOY_CHOCOLATE.get());
-		singleTex(TofuItems.TOFUNIAN_SOY_CHOCOLATE.get());
+		singleTex(TofuItems.SOY_CHOCOLATE);
+		singleTex(TofuItems.TOFUNIAN_SOY_CHOCOLATE);
 
-		singleTex(TofuItems.BUCKET_SOYMILK.get());
-		singleTex(TofuItems.BUCKET_SOYMILK_NETHER.get());
-		singleTex(TofuItems.BUCKET_SOYMILK_SOUL.get());
-		singleTex(TofuItems.BUCKET_BITTERN.get());
+		singleTex(TofuItems.BUCKET_SOYMILK);
+		singleTex(TofuItems.BUCKET_SOYMILK_NETHER);
+		singleTex(TofuItems.BUCKET_SOYMILK_SOUL);
+		singleTex(TofuItems.BUCKET_BITTERN);
 
-		singleTex(TofuItems.TOFUFISH_BUCKET.get());
-		singleTex(TofuItems.TOFUFISH_SOYMILK_BUCKET.get());
+		singleTex(TofuItems.TOFUFISH_BUCKET);
+		singleTex(TofuItems.TOFUFISH_SOYMILK_BUCKET);
 
-		singleTex(TofuItems.GLASSBOWL.get());
+		singleTex(TofuItems.GLASSBOWL);
 
-		singleTex(TofuItems.TOFUSOMEN.get());
-		singleTex(TofuItems.TOFUSOMENBOWL_GLASS.get());
+		singleTex(TofuItems.TOFUSOMEN);
+		singleTex(TofuItems.TOFUSOMENBOWL_GLASS);
 
-		singleTex(TofuItems.TASTYBEEFSTEW.get());
-		singleTex(TofuItems.TASTYSTEW.get());
+		singleTex(TofuItems.TASTYBEEFSTEW);
+		singleTex(TofuItems.TASTYSTEW);
 
-		singleTex(TofuItems.HIYAYAKKO_GLASS.get());
-		singleTex(TofuItems.NATTOHIYAYAKKO_GLASS.get());
+		singleTex(TofuItems.HIYAYAKKO_GLASS);
+		singleTex(TofuItems.NATTOHIYAYAKKO_GLASS);
 
-		singleTexTool(TofuItems.TOFUSCOOP.get());
-		singleTexTool(TofuItems.TOFUSTICK.get());
-		singleTexTool(TofuItems.ROLLINGPIN.get());
-		singleTexTool(TofuItems.BUGLE.get());
-		singleTexTool(TofuItems.FUKUMAME.get());
-		singleTexTool(TofuItems.NETHER_FUKUMAME.get());
-		singleTexTool(TofuItems.INFERNO_NETHER_FUKUMAME.get());
-		singleTexTool(TofuItems.SOUL_FUKUMAME.get());
+		singleTexTool(TofuItems.TOFUSCOOP);
+		singleTexTool(TofuItems.TOFUSTICK);
+		singleTexTool(TofuItems.ROLLINGPIN);
+		singleTexTool(TofuItems.BUGLE);
+		singleTexTool(TofuItems.FUKUMAME);
+		singleTexTool(TofuItems.NETHER_FUKUMAME);
+		singleTexTool(TofuItems.INFERNO_NETHER_FUKUMAME);
+		singleTexTool(TofuItems.SOUL_FUKUMAME);
 		bowItem(TofuItems.ZUNDA_BOW);
-		singleTex(TofuItems.ZUNDA_ARROW.get());
-		singleTexRodTool(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get());
+		singleTex(TofuItems.ZUNDA_ARROW);
+		singleTexRodTool(TofuItems.ZUNDAMUSHROOM_ON_A_STICK);
 
-		singleTex(TofuItems.KINAKO_BREAD.get());
-		singleTex(TofuItems.EDAMAME_TEMPLA.get());
-		singleTex(TofuItems.NEGIMA.get());
-		singleTex(TofuItems.SOY_KARAAGE.get());
-		singleTex(TofuItems.SOYMEATDON.get());
+		singleTex(TofuItems.KINAKO_BREAD);
+		singleTex(TofuItems.EDAMAME_TEMPLA);
+		singleTex(TofuItems.NEGIMA);
+		singleTex(TofuItems.SOY_KARAAGE);
+		singleTex(TofuItems.SOYMEATDON);
 
-		singleTexTool(TofuItems.TOFUGEM.get());
-		singleTexTool(TofuItems.TF_COIL.get());
-		singleTexTool(TofuItems.TF_CIRCUIT.get());
-		singleTexTool(TofuItems.TF_CAPACITOR.get());
-		singleTexTool(TofuItems.TF_OSCILLATOR.get());
+		singleTexTool(TofuItems.TOFUGEM);
+		singleTexTool(TofuItems.TF_COIL);
+		singleTexTool(TofuItems.TF_CIRCUIT);
+		singleTexTool(TofuItems.TF_CAPACITOR);
+		singleTexTool(TofuItems.TF_OSCILLATOR);
 
-		singleTexTool(TofuItems.TOFU_KINU_SWORD.get());
-		singleTexTool(TofuItems.TOFU_KINU_PICKAXE.get());
-		singleTexTool(TofuItems.TOFU_KINU_AXE.get());
-		singleTexTool(TofuItems.TOFU_KINU_SHOVEL.get());
-		singleTexTool(TofuItems.TOFU_KINU_HOE.get());
+		singleTexTool(TofuItems.TOFU_KINU_SWORD);
+		singleTexTool(TofuItems.TOFU_KINU_PICKAXE);
+		singleTexTool(TofuItems.TOFU_KINU_AXE);
+		singleTexTool(TofuItems.TOFU_KINU_SHOVEL);
+		singleTexTool(TofuItems.TOFU_KINU_HOE);
 
-		singleTexTool(TofuItems.TOFU_MOMEN_SWORD.get());
-		singleTexTool(TofuItems.TOFU_MOMEN_PICKAXE.get());
-		singleTexTool(TofuItems.TOFU_MOMEN_AXE.get());
-		singleTexTool(TofuItems.TOFU_MOMEN_SHOVEL.get());
-		singleTexTool(TofuItems.TOFU_MOMEN_HOE.get());
+		singleTexTool(TofuItems.TOFU_MOMEN_SWORD);
+		singleTexTool(TofuItems.TOFU_MOMEN_PICKAXE);
+		singleTexTool(TofuItems.TOFU_MOMEN_AXE);
+		singleTexTool(TofuItems.TOFU_MOMEN_SHOVEL);
+		singleTexTool(TofuItems.TOFU_MOMEN_HOE);
 
-		singleTexTool(TofuItems.TOFU_SOLID_SWORD.get());
-		singleTexTool(TofuItems.TOFU_SOLID_PICKAXE.get());
-		singleTexTool(TofuItems.TOFU_SOLID_AXE.get());
-		singleTexTool(TofuItems.TOFU_SOLID_SHOVEL.get());
-		singleTexTool(TofuItems.TOFU_SOLID_HOE.get());
+		singleTexTool(TofuItems.TOFU_SOLID_SWORD);
+		singleTexTool(TofuItems.TOFU_SOLID_PICKAXE);
+		singleTexTool(TofuItems.TOFU_SOLID_AXE);
+		singleTexTool(TofuItems.TOFU_SOLID_SHOVEL);
+		singleTexTool(TofuItems.TOFU_SOLID_HOE);
 
-		singleTexTool(TofuItems.TOFU_METAL_SWORD.get());
-		singleTexTool(TofuItems.TOFU_METAL_PICKAXE.get());
-		singleTexTool(TofuItems.TOFU_METAL_AXE.get());
-		singleTexTool(TofuItems.TOFU_METAL_SHOVEL.get());
-		singleTexTool(TofuItems.TOFU_METAL_HOE.get());
-		singleTexTool(TofuItems.TOFU_METAL_SHEARS.get());
+		singleTexTool(TofuItems.TOFU_METAL_SWORD);
+		singleTexTool(TofuItems.TOFU_METAL_PICKAXE);
+		singleTexTool(TofuItems.TOFU_METAL_AXE);
+		singleTexTool(TofuItems.TOFU_METAL_SHOVEL);
+		singleTexTool(TofuItems.TOFU_METAL_HOE);
+		singleTexTool(TofuItems.TOFU_METAL_SHEARS);
 
-		singleTexTool(TofuItems.TOFU_DIAMOND_SWORD.get());
-		singleTexTool(TofuItems.TOFU_DIAMOND_PICKAXE.get());
-		singleTexTool(TofuItems.TOFU_DIAMOND_AXE.get());
-		singleTexTool(TofuItems.TOFU_DIAMOND_SHOVEL.get());
-		singleTexTool(TofuItems.TOFU_DIAMOND_HOE.get());
+		singleTexTool(TofuItems.TOFU_DIAMOND_SWORD);
+		singleTexTool(TofuItems.TOFU_DIAMOND_PICKAXE);
+		singleTexTool(TofuItems.TOFU_DIAMOND_AXE);
+		singleTexTool(TofuItems.TOFU_DIAMOND_SHOVEL);
+		singleTexTool(TofuItems.TOFU_DIAMOND_HOE);
 
-		singleTex(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get());
-		singleTex(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get());
+		singleTex(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE);
+		singleTex(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE);
 
-		singleTex(TofuItems.TOFU_KINU_HELMET.get());
-		singleTex(TofuItems.TOFU_KINU_CHESTPLATE.get());
-		singleTex(TofuItems.TOFU_KINU_LEGGINGS.get());
-		singleTex(TofuItems.TOFU_KINU_BOOTS.get());
+		trimmedArmor(TofuItems.TOFU_KINU_HELMET);
+		trimmedArmor(TofuItems.TOFU_KINU_CHESTPLATE);
+		trimmedArmor(TofuItems.TOFU_KINU_LEGGINGS);
+		trimmedArmor(TofuItems.TOFU_KINU_BOOTS);
 
-		singleTex(TofuItems.TOFU_MOMEN_HELMET.get());
-		singleTex(TofuItems.TOFU_MOMEN_CHESTPLATE.get());
-		singleTex(TofuItems.TOFU_MOMEN_LEGGINGS.get());
-		singleTex(TofuItems.TOFU_MOMEN_BOOTS.get());
+		trimmedArmor(TofuItems.TOFU_MOMEN_HELMET);
+		trimmedArmor(TofuItems.TOFU_MOMEN_CHESTPLATE);
+		trimmedArmor(TofuItems.TOFU_MOMEN_LEGGINGS);
+		trimmedArmor(TofuItems.TOFU_MOMEN_BOOTS);
 
-		singleTex(TofuItems.ARMOR_TOFU_SOLIDHELMET.get());
-		singleTex(TofuItems.ARMOR_TOFU_SOLIDCHESTPLATE.get());
-		singleTex(TofuItems.ARMOR_TOFU_SOLIDLEGGINGS.get());
-		singleTex(TofuItems.ARMOR_TOFU_SOLIDBOOTS.get());
+		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDHELMET);
+		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDCHESTPLATE);
+		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDLEGGINGS);
+		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDBOOTS);
 
-		singleTex(TofuItems.TOFU_METAL_HELMET.get());
-		singleTex(TofuItems.TOFU_METAL_CHESTPLATE.get());
-		singleTex(TofuItems.TOFU_METAL_LEGGINGS.get());
-		singleTex(TofuItems.TOFU_METAL_BOOTS.get());
+		trimmedArmor(TofuItems.TOFU_METAL_HELMET);
+		trimmedArmor(TofuItems.TOFU_METAL_CHESTPLATE);
+		trimmedArmor(TofuItems.TOFU_METAL_LEGGINGS);
+		trimmedArmor(TofuItems.TOFU_METAL_BOOTS);
 
-		singleTex(TofuItems.TOFU_DIAMOND_HELMET.get());
-		singleTex(TofuItems.TOFU_DIAMOND_CHESTPLATE.get());
-		singleTex(TofuItems.TOFU_DIAMOND_LEGGINGS.get());
-		singleTex(TofuItems.TOFU_DIAMOND_BOOTS.get());
+		trimmedArmor(TofuItems.TOFU_DIAMOND_HELMET);
+		trimmedArmor(TofuItems.TOFU_DIAMOND_CHESTPLATE);
+		trimmedArmor(TofuItems.TOFU_DIAMOND_LEGGINGS);
+		trimmedArmor(TofuItems.TOFU_DIAMOND_BOOTS);
 
-		singleTex(TofuItems.SCULK_BONE_HELMET.get());
-		singleTex(TofuItems.SCULK_BONE_CHESTPLATE.get());
-		singleTex(TofuItems.SCULK_BONE_LEGGINGS.get());
-		singleTex(TofuItems.SCULK_BONE_BOOTS.get());
+		trimmedArmor(TofuItems.SCULK_BONE_HELMET);
+		trimmedArmor(TofuItems.SCULK_BONE_CHESTPLATE);
+		trimmedArmor(TofuItems.SCULK_BONE_LEGGINGS);
+		trimmedArmor(TofuItems.SCULK_BONE_BOOTS);
 
 		egg(TofuItems.TOFUNIAN_SPAWNEGG.get());
 		egg(TofuItems.TRAVELER_TOFUNIAN_SPAWNEGG.get());
@@ -435,26 +438,26 @@ public class ItemModelGenerator extends ItemModelProvider {
 		egg(TofuItems.TOFUFISH_SPAWNEGG.get());
 		egg(TofuItems.FUKUMAME_THOWER_SPAWNEGG.get());
 
-		singleTex(TofuItems.TOMATO_SOYBEAN_STEW.get());
-		singleTex(TofuItems.YUDOFU.get());
-		singleTex(TofuItems.EDAMAME_RICE.get());
+		singleTex(TofuItems.TOMATO_SOYBEAN_STEW);
+		singleTex(TofuItems.YUDOFU);
+		singleTex(TofuItems.EDAMAME_RICE);
 
-		singleTex(TofuItems.BOTTLE_DASHI.get());
-		singleTex(TofuItems.BOTTLE_SOYOIL.get());
-		singleTex(TofuItems.TOFUEGG.get());
-		singleTex(TofuItems.SOYSAUSE_RAMEN.get());
+		singleTex(TofuItems.BOTTLE_DASHI);
+		singleTex(TofuItems.BOTTLE_SOYOIL);
+		singleTex(TofuItems.TOFUEGG);
+		singleTex(TofuItems.SOYSAUSE_RAMEN);
 
-		singleTex(TofuItems.HELL_MABOU.get());
-		singleTex(TofuItems.RED_SOUP.get());
-		singleTex(TofuItems.HELL_RED_SOUP.get());
-		singleTex(TofuItems.SUKIYAKI.get());
-		singleTex(TofuItems.TOFU_BUNS_BURGER.get());
-		singleTex(TofuItems.STEAMED_BREAD.get());
-		singleTex(TofuItems.STEAMED_BREAD_COCOA.get());
+		singleTex(TofuItems.HELL_MABOU);
+		singleTex(TofuItems.RED_SOUP);
+		singleTex(TofuItems.HELL_RED_SOUP);
+		singleTex(TofuItems.SUKIYAKI);
+		singleTex(TofuItems.TOFU_BUNS_BURGER);
+		singleTex(TofuItems.STEAMED_BREAD);
+		singleTex(TofuItems.STEAMED_BREAD_COCOA);
 
-		singleTex(TofuItems.SOY_CHEESE.get());
-		singleTex(TofuItems.SOY_NETHER_CHEESE.get());
-		singleTex(TofuItems.SOY_SOUL_CHEESE.get());
+		singleTex(TofuItems.SOY_CHEESE);
+		singleTex(TofuItems.SOY_NETHER_CHEESE);
+		singleTex(TofuItems.SOY_SOUL_CHEESE);
 
 		toBlock(TofuBlocks.EGGTOFU.get());
 		toBlock(TofuBlocks.TOFUSTAIR_EGG.get());
@@ -464,20 +467,20 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSTAIR_SESAME.get());
 		toBlock(TofuBlocks.TOFUSLAB_SESAME.get());
 
-		singleTex(TofuItems.NATTO_COBWEB.get());
+		singleTex(TofuItems.NATTO_COBWEB);
 		toBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 
-		singleTex(TofuItems.TOFUNIAN_BANNER_PATTERN.get());
-		singleTex(TofuItems.TOFU_STEM_BOAT.get());
-		singleTex(TofuItems.LEEK_BOAT.get());
-		singleTex(TofuItems.LEEK_GREEN_BOAT.get());
-		singleTex(TofuItems.TOFU_STEM_CHEST_BOAT.get());
-		singleTex(TofuItems.LEEK_CHEST_BOAT.get());
-		singleTex(TofuItems.LEEK_GREEN_CHEST_BOAT.get());
+		singleTex(TofuItems.TOFUNIAN_BANNER_PATTERN);
+		singleTex(TofuItems.TOFU_STEM_BOAT);
+		singleTex(TofuItems.LEEK_BOAT);
+		singleTex(TofuItems.LEEK_GREEN_BOAT);
+		singleTex(TofuItems.TOFU_STEM_CHEST_BOAT);
+		singleTex(TofuItems.LEEK_CHEST_BOAT);
+		singleTex(TofuItems.LEEK_GREEN_CHEST_BOAT);
 
-		singleTex(TofuBlocks.TOFU_METAL_CHAIN.get());
-		singleTex(TofuBlocks.TOFU_METAL_LANTERN.get());
-		singleTex(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
+		singleTex(TofuBlocks.TOFU_METAL_CHAIN);
+		singleTex(TofuBlocks.TOFU_METAL_LANTERN);
+		singleTex(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
 	}
 
 	public void sign(Supplier<? extends SignBlock> sign) {
@@ -496,40 +499,57 @@ public class ItemModelGenerator extends ItemModelProvider {
 				.texture("layer0", modLoc("block/" + ForgeRegistries.BLOCKS.getKey(item).getPath()));
 	}
 
+
 	private ItemModelBuilder generated(String name, ResourceLocation... layers) {
-		ItemModelBuilder builder = withExistingParent(name, "item/generated");
+		return buildItem(name, "item/generated", 0, layers);
+	}
+
+
+	private ItemModelBuilder buildItem(String name, String parent, int emissivity, ResourceLocation... layers) {
+		ItemModelBuilder builder = withExistingParent(name, parent);
 		for (int i = 0; i < layers.length; i++) {
 			builder = builder.texture("layer" + i, layers[i]);
 		}
+		if (emissivity > 0)
+			builder = builder.customLoader(ItemLayerModelBuilder::begin).emissive(emissivity, emissivity, 0).renderType("minecraft:translucent", 0).end();
 		return builder;
-	}
-
-	private ItemModelBuilder singleTexTool(Item item) {
-		return tool(ForgeRegistries.ITEMS.getKey(item).getPath(), prefix("item/" + ForgeRegistries.ITEMS.getKey(item).getPath()));
 	}
 
 	private ItemModelBuilder tool(String name, ResourceLocation... layers) {
-		ItemModelBuilder builder = withExistingParent(name, "item/handheld");
-		for (int i = 0; i < layers.length; i++) {
-			builder = builder.texture("layer" + i, layers[i]);
-		}
-		return builder;
+		return buildItem(name, "item/handheld", 0, layers);
 	}
 
-	private ItemModelBuilder singleTexRodTool(Item item) {
-		return toolRod(ForgeRegistries.ITEMS.getKey(item).getPath(), prefix("item/" + ForgeRegistries.ITEMS.getKey(item).getPath()));
+	private ItemModelBuilder singleTexTool(RegistryObject<? extends Item> item) {
+		return tool(item.getId().getPath(), prefix("item/" + item.getId().getPath()));
+	}
+
+	private ItemModelBuilder singleTexRodTool(RegistryObject<? extends Item> item) {
+		return toolRod(item.getId().getPath(), prefix("item/" + item.getId().getPath()));
 	}
 
 	private ItemModelBuilder toolRod(String name, ResourceLocation... layers) {
-		ItemModelBuilder builder = withExistingParent(name, "item/handheld_rod");
-		for (int i = 0; i < layers.length; i++) {
-			builder = builder.texture("layer" + i, layers[i]);
-		}
-		return builder;
+		return buildItem(name, "item/handheld_rod", 0, layers);
 	}
 
-	private ItemModelBuilder singleTex(ItemLike item) {
-		return generated(ForgeRegistries.ITEMS.getKey(item.asItem()).getPath(), prefix("item/" + ForgeRegistries.ITEMS.getKey(item.asItem()).getPath()));
+	private ItemModelBuilder singleTex(RegistryObject<?> item) {
+		return generated(item.getId().getPath(), prefix("item/" + item.getId().getPath()));
+	}
+
+	private ItemModelBuilder emmisiveTex(RegistryObject<?> item) {
+		return singleTex(item).customLoader(ItemLayerModelBuilder::begin).emissive(15, 15, 0).renderType("minecraft:translucent", 0).end();
+	}
+
+	public ItemModelBuilder glowBowItem(Supplier<? extends Item> item) {
+		ResourceLocation id = ForgeRegistries.ITEMS.getKey(item.get());
+		buildItem(id.getPath() + "_pulling_0", mcLoc("item/bow").toString(), 15, modLoc("item/" + id.getPath() + "_pulling_0"));
+		buildItem(id.getPath() + "_pulling_1", mcLoc("item/bow").toString(), 15, modLoc("item/" + id.getPath() + "_pulling_1"));
+		buildItem(id.getPath() + "_pulling_2", mcLoc("item/bow").toString(), 15, modLoc("item/" + id.getPath() + "_pulling_2"));
+		return withExistingParent(id.getPath(), mcLoc("item/bow"))
+				.customLoader(ItemLayerModelBuilder::begin).emissive(15, 15, 0).renderType("minecraft:translucent", 0).end()
+				.texture("layer0", modLoc("item/" + id.getPath()))
+				.override().predicate(new ResourceLocation("pulling"), 1).model(getExistingFile(modLoc("item/" + id.getPath() + "_pulling_0"))).end()
+				.override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.65F).model(getExistingFile(modLoc("item/" + id.getPath() + "_pulling_1"))).end()
+				.override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.9F).model(getExistingFile(modLoc("item/" + id.getPath() + "_pulling_2"))).end();
 	}
 
 	public ItemModelBuilder bowItem(Supplier<? extends Item> item) {
@@ -560,16 +580,20 @@ public class ItemModelGenerator extends ItemModelProvider {
 		return wallInventory(ForgeRegistries.BLOCKS.getKey(wall.get()).getPath(), texture(blockName(fullBlock.get())));
 	}
 
-	private void toBlock(Block b) {
-		toBlockModel(b, ForgeRegistries.BLOCKS.getKey(b).getPath());
+	private ItemModelBuilder toBlock(Block b) {
+		return toBlockModel(b, ForgeRegistries.BLOCKS.getKey(b).getPath());
 	}
 
-	private void toBlockModel(Block b, String model) {
-		toBlockModel(b, prefix("block/" + model));
+	private ItemModelBuilder toBlockGlow(Block b) {
+		return toBlock(b).customLoader(ItemLayerModelBuilder::begin).emissive(15, 15, 0).renderType("minecraft:translucent", 0).end();
 	}
 
-	private void toBlockModel(Block b, ResourceLocation model) {
-		withExistingParent(ForgeRegistries.BLOCKS.getKey(b).getPath(), model);
+	private ItemModelBuilder toBlockModel(Block b, String model) {
+		return toBlockModel(b, prefix("block/" + model));
+	}
+
+	private ItemModelBuilder toBlockModel(Block b, ResourceLocation model) {
+		return withExistingParent(ForgeRegistries.BLOCKS.getKey(b).getPath(), model);
 	}
 
 	public ItemModelBuilder itemBlockFlat(Block block) {
@@ -596,5 +620,18 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 	private ResourceLocation texture(String name) {
 		return modLoc("block/" + name);
+	}
+
+	//Thanks Twilight Forest Team! https://github.com/TeamTwilight/twilightforest/blob/1.20.x/src/main/java/twilightforest/data/ItemModelGenerator.java#L827C23-L837
+	private void trimmedArmor(RegistryObject<ArmorItem> armor) {
+		ItemModelBuilder base = this.singleTex(armor);
+		for (ItemModelGenerators.TrimModelData trim : ItemModelGenerators.GENERATED_TRIM_MODELS) {
+			String material = trim.name();
+			String name = armor.getId().getPath() + "_" + material + "_trim";
+			ModelFile trimModel = this.withExistingParent(name, this.mcLoc("item/generated"))
+					.texture("layer0", prefix("item/" + armor.getId().getPath()))
+					.texture("layer1", this.mcLoc("trims/items/" + armor.get().getType().getName() + "_trim_" + material));
+			base.override().predicate(new ResourceLocation("trim_type"), trim.itemModelIndex()).model(trimModel).end();
+		}
 	}
 }
