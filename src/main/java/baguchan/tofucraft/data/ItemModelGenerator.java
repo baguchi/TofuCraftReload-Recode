@@ -346,8 +346,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.NETHER_FUKUMAME);
 		singleTexTool(TofuItems.INFERNO_NETHER_FUKUMAME);
 		singleTexTool(TofuItems.SOUL_FUKUMAME);
-		bowItem(TofuItems.ZUNDA_BOW);
-		singleTex(TofuItems.ZUNDA_ARROW);
+		glowBowItem(TofuItems.ZUNDA_BOW);
+		emmisiveTex(TofuItems.ZUNDA_ARROW);
 		singleTexRodTool(TofuItems.ZUNDAMUSHROOM_ON_A_STICK);
 
 		singleTex(TofuItems.KINAKO_BREAD);

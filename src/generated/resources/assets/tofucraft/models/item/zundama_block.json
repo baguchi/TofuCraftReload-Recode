@@ -1,3 +1,17 @@
 {
-  "parent" : "tofucraft:block/zundama_block"
+  "parent" : "tofucraft:block/zundama_block",
+  "forge_data" : {
+    "layers" : {
+      "0" : {
+        "block_light" : 15,
+        "sky_light" : 15
+      }
+    }
+  },
+  "loader" : "forge:item_layers",
+  "render_types" : {
+    "minecraft:translucent" : [
+      0
+    ]
+  }
 }
