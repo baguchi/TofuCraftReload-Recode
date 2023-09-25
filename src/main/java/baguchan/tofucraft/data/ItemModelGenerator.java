@@ -169,7 +169,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.ZUNDATOFUCAKE);
 		singleTex(TofuBlocks.SOYCHEESE_TART);
 
-		toBlockGlow(TofuBlocks.ZUNDAMA_BLOCK.get());
+		toBlock(TofuBlocks.ZUNDAMA_BLOCK.get());
 
 		//item
 		singleTex(TofuItems.TOFUKINU);
@@ -582,10 +582,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 	private ItemModelBuilder toBlock(Block b) {
 		return toBlockModel(b, ForgeRegistries.BLOCKS.getKey(b).getPath());
-	}
-
-	private ItemModelBuilder toBlockGlow(Block b) {
-		return toBlock(b).customLoader(ItemLayerModelBuilder::begin).emissive(15, 15, 0).renderType("minecraft:translucent", 0).end();
 	}
 
 	private ItemModelBuilder toBlockModel(Block b, String model) {
