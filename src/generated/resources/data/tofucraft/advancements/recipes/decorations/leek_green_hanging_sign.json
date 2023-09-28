@@ -22,8 +22,8 @@
   },
   "requirements" : [
     [
-      "has_leek_green_stem",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_leek_green_stem"
     ]
   ],
   "rewards" : {

@@ -9,18 +9,15 @@ import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 
+import java.util.Optional;
+
 public class TofuPigPopTrigger extends SimpleCriterionTrigger<TofuPigPopTrigger.Instance> {
 
 	public static final ResourceLocation ID = TofuCraftReload.prefix("tofupig_pop");
 
 	@Override
-	public ResourceLocation getId() {
-		return ID;
-	}
-
-	@Override
-	protected Instance createInstance(JsonObject json, ContextAwarePredicate player, DeserializationContext ctx) {
-		return new Instance(player);
+	protected TofuPigPopTrigger.Instance createInstance(JsonObject json, Optional<ContextAwarePredicate> player, DeserializationContext ctx) {
+		return new TofuPigPopTrigger.Instance(player);
 	}
 
 	public void trigger(ServerPlayer player) {
@@ -28,12 +25,8 @@ public class TofuPigPopTrigger extends SimpleCriterionTrigger<TofuPigPopTrigger.
 	}
 
 	public static class Instance extends AbstractCriterionTriggerInstance {
-		public Instance(ContextAwarePredicate player) {
-			super(TofuPigPopTrigger.ID, player);
-		}
-
-		public static Instance killThemAll() {
-			return new Instance(ContextAwarePredicate.ANY);
+		public Instance(Optional<ContextAwarePredicate> player) {
+			super(player);
 		}
 	}
 }

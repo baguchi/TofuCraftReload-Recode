@@ -22,8 +22,8 @@
   },
   "requirements" : [
     [
-      "has_leek_planks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_leek_planks"
     ]
   ],
   "rewards" : {

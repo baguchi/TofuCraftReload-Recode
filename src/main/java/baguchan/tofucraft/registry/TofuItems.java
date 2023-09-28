@@ -35,10 +35,10 @@ import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.network.chat.Component;
@@ -76,11 +76,11 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.apache.commons.compress.utils.Lists;
 
 import java.util.Arrays;
 import java.util.List;
@@ -517,8 +517,8 @@ public class TofuItems {
 
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
 				DispensibleContainerItem dispensiblecontaineritem = (DispensibleContainerItem) p_123562_.getItem();
-				BlockPos blockpos = p_123561_.getPos().relative(p_123561_.getBlockState().getValue(DispenserBlock.FACING));
-				Level level = p_123561_.getLevel();
+				BlockPos blockpos = p_123561_.pos().relative(p_123561_.state().getValue(DispenserBlock.FACING));
+				Level level = p_123561_.level();
 				if (dispensiblecontaineritem.emptyContents((Player) null, level, blockpos, (BlockHitResult) null)) {
 					dispensiblecontaineritem.checkExtraContent((Player) null, level, p_123562_, blockpos);
 					return new ItemStack(Items.BUCKET);
@@ -535,12 +535,12 @@ public class TofuItems {
 			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
-				BlockPos blockpos = p_123561_.getPos().relative(p_123561_.getBlockState().getValue(DispenserBlock.FACING));
-				FluidState fluidState = p_123561_.getLevel().getFluidState(blockpos);
-				ItemStack result = RecipeHelper.getBitternResult(p_123561_.getLevel(), fluidState.getType());
+				BlockPos blockpos = p_123561_.pos().relative(p_123561_.state().getValue(DispenserBlock.FACING));
+				FluidState fluidState = p_123561_.level().getFluidState(blockpos);
+				ItemStack result = RecipeHelper.getBitternResult(p_123561_.level(), fluidState.getType());
 				if (result != null) {
-					p_123561_.getLevel().setBlock(blockpos, Block.byItem(result.getItem()).defaultBlockState(), 11);
-					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));
+					p_123561_.level().setBlock(blockpos, Block.byItem(result.getItem()).defaultBlockState(), 11);
+					p_123561_.level().levelEvent(2001, blockpos, Block.getId(p_123561_.level().getBlockState(blockpos)));
 					p_123562_.shrink(1);
 					this.defaultDispenseItemBehavior.dispense(p_123561_, new ItemStack(Items.GLASS_BOTTLE));
 				}
@@ -553,13 +553,13 @@ public class TofuItems {
 			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
-				BlockPos blockpos = p_123561_.getPos().relative(p_123561_.getBlockState().getValue(DispenserBlock.FACING));
-				if (p_123561_.getLevel().getBlockState(blockpos).is(TofuTags.Blocks.SOFT_TOFU)) {
-					ItemStack stack = new ItemStack(Item.BY_BLOCK.get(p_123561_.getLevel().getBlockState(blockpos).getBlock()));
-					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));
-					p_123561_.getLevel().removeBlock(blockpos, false);
+				BlockPos blockpos = p_123561_.pos().relative(p_123561_.state().getValue(DispenserBlock.FACING));
+				if (p_123561_.level().getBlockState(blockpos).is(TofuTags.Blocks.SOFT_TOFU)) {
+					ItemStack stack = new ItemStack(Item.BY_BLOCK.get(p_123561_.level().getBlockState(blockpos).getBlock()));
+					p_123561_.level().levelEvent(2001, blockpos, Block.getId(p_123561_.level().getBlockState(blockpos)));
+					p_123561_.level().removeBlock(blockpos, false);
 					this.defaultDispenseItemBehavior.dispense(p_123561_, stack);
-					if (p_123562_.hurt(1, p_123561_.getLevel().getRandom(), null)) {
+					if (p_123562_.hurt(1, p_123561_.level().getRandom(), null)) {
 						p_123562_.setCount(0);
 					}
 					setSuccess(true);
@@ -576,7 +576,7 @@ public class TofuItems {
 			}
 
 			protected void playSound(BlockSource p_123572_) {
-				p_123572_.getLevel().levelEvent(this.isSuccess() ? 1000 : 1001, p_123572_.getPos(), 0);
+				p_123572_.level().levelEvent(this.isSuccess() ? 1000 : 1001, p_123572_.pos(), 0);
 			}
 		};
 		DispenserBlock.registerBehavior(TOFUSCOOP.get(), dispenseitembehavior3);
@@ -608,16 +608,16 @@ public class TofuItems {
 			}
 
 			public ItemStack execute(BlockSource p_123366_, ItemStack p_123367_) {
-				Level level = p_123366_.getLevel();
+				Level level = p_123366_.level();
 				Position position = DispenserBlock.getDispensePosition(p_123366_);
-				Direction direction = p_123366_.getBlockState().getValue(DispenserBlock.FACING);
+				Direction direction = p_123366_.state().getValue(DispenserBlock.FACING);
 				for (int i = 0; i < shootCount(); i++) {
 					Projectile projectile = this.getProjectile(level, position, p_123367_);
 					projectile.shoot((double) direction.getStepX(), (double) ((float) direction.getStepY() + 0.1F), (double) direction.getStepZ(), this.getPower(), this.getUncertainty());
 					projectile.setSecondsOnFire(60);
 					level.addFreshEntity(projectile);
 				}
-				if (p_123367_.hurt(1, p_123366_.getLevel().getRandom(), null)) {
+				if (p_123367_.hurt(1, p_123366_.level().getRandom(), null)) {
 					p_123367_.setCount(0);
 				}
 				return p_123367_;
@@ -648,8 +648,11 @@ public class TofuItems {
 	}
 
 	public static void registerAnimalFeed() {
-		Ingredient newChickenFood = Ingredient.of(TofuItems.SEEDS_RICE.get(), TofuItems.SOYBEAN_PARCHED.get());
-		Chicken.FOOD_ITEMS = new CompoundIngredient(Arrays.asList(Chicken.FOOD_ITEMS, newChickenFood)) {
-		};
+		ItemStack[] stacks = Chicken.FOOD_ITEMS.getItems();
+		List<ItemStack> list = Lists.newArrayList();
+		list.add(TofuItems.SEEDS_RICE.get().getDefaultInstance());
+		list.add(TofuItems.SOYBEAN_PARCHED.get().getDefaultInstance());
+		list.addAll(Arrays.stream(stacks).toList());
+		Chicken.FOOD_ITEMS = Ingredient.of(list.stream());
 	}
 }

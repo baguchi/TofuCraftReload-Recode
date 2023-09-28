@@ -53,8 +53,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraftforge.network.ChannelBuilder;
+import net.minecraftforge.network.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -78,10 +78,8 @@ public class TofuCraftReload {
 	public static final Logger LOGGER = LogManager.getLogger(TofuCraftReload.MODID);
 
 
-	public static final SimpleChannel CHANNEL = NetworkRegistry.ChannelBuilder.named(new ResourceLocation("tofucraft", "net"))
-			.networkProtocolVersion(() -> NETWORK_PROTOCOL)
-			.clientAcceptedVersions(NETWORK_PROTOCOL::equals)
-			.serverAcceptedVersions(NETWORK_PROTOCOL::equals)
+	public static final SimpleChannel CHANNEL = ChannelBuilder.named(new ResourceLocation("tofucraft", "net"))
+			.networkProtocolVersion(2)
 			.simpleChannel();
 
 	public TofuCraftReload() {
@@ -106,6 +104,7 @@ public class TofuCraftReload {
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
 		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
+		TofuRecipes.RECIPE_TYPES.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuContainers.MENU_TYPES.register(modBus);
 		TofuBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modBus);

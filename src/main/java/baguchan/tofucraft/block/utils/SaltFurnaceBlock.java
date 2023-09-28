@@ -64,7 +64,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 
 			if (flag) {
 				if (!level.isClientSide) {
-					TofuCraftReload.CHANNEL.send(PacketDistributor.ALL.noArg(), new SaltFurnaceWaterMessage(pos, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()));
+					TofuCraftReload.CHANNEL.send(new SaltFurnaceWaterMessage(pos, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()), PacketDistributor.ALL.noArg());
 				}
 			}
 		}

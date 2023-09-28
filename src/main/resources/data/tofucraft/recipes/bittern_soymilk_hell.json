@@ -3,7 +3,5 @@
   "process": {
     "fluid": "tofucraft:soymilk_hell"
   },
-  "result": {
-    "item": "tofucraft:blocktofuhell"
-  }
+  "result" : "tofucraft:blocktofuhell"
 }

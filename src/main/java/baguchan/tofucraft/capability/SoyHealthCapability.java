@@ -34,7 +34,7 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 		}
 		if (!entity.level().isClientSide()) {
 			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, level, canUpdate);
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
+			TofuCraftReload.CHANNEL.send(message, PacketDistributor.TRACKING_ENTITY_AND_SELF.with(entity));
 		}
 		this.soyHealthLevel = Mth.clamp(level, 1, 20);
 	}
@@ -47,7 +47,7 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 		this.soyHealthLevel = 0;
 		if (!entity.level().isClientSide()) {
 			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, this.soyHealthLevel, true);
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
+			TofuCraftReload.CHANNEL.send(message, PacketDistributor.TRACKING_ENTITY_AND_SELF.with(entity));
 		}
 	}
 

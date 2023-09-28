@@ -22,8 +22,8 @@
   },
   "requirements" : [
     [
-      "has_blocktofuishi",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_blocktofuishi"
     ]
   ],
   "rewards" : {

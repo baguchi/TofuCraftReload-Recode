@@ -6,7 +6,7 @@ import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -28,12 +28,12 @@ public class RecipeHelper {
 		final RecipeManager manager = serverLevel.getRecipeManager();
 
 		if (block.asItem() != null) {
-			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
-				return recipe.getType() == TofuRecipes.RECIPETYPE_HARDER;
+			Stream<RecipeHolder<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
+				return recipe.value() instanceof HardenRecipe hardenRecipe && hardenRecipe.getType() == TofuRecipes.RECIPETYPE_HARDER.get();
 			});
-			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe instanceof HardenRecipe && ((HardenRecipe) recipe).getTofu().test(new ItemStack(block.asItem()))) {
-					return ((HardenRecipe) recipe).getResultItem(serverLevel.registryAccess());
+			for (RecipeHolder<?> recipe : tofuRecipe.collect(Collectors.toList())) {
+				if (recipe.value() instanceof HardenRecipe && ((HardenRecipe) recipe.value()).getTofu().test(new ItemStack(block.asItem()))) {
+					return ((HardenRecipe) recipe.value()).getResultItem(serverLevel.registryAccess());
 				}
 			}
 		}
@@ -46,12 +46,12 @@ public class RecipeHelper {
 		final RecipeManager manager = serverLevel.getRecipeManager();
 
 		if (fluid != null) {
-			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
-				return recipe.getType() == TofuRecipes.RECIPETYPE_BITTERN;
+			Stream<RecipeHolder<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
+				return recipe.value() instanceof BitternRecipe bittern && bittern.getType() == TofuRecipes.RECIPETYPE_BITTERN.get();
 			});
-			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe instanceof BitternRecipe && ((BitternRecipe) recipe).getFluid().test(new FluidStack(fluid, 1000))) {
-					return ((BitternRecipe) recipe).getResultItem(serverLevel.registryAccess());
+			for (RecipeHolder<?> recipe : tofuRecipe.collect(Collectors.toList())) {
+				if (recipe.value() instanceof BitternRecipe && ((BitternRecipe) recipe.value()).getFluid().test(new FluidStack(fluid, 1000))) {
+					return ((BitternRecipe) recipe.value()).getResultItem(serverLevel.registryAccess());
 				}
 			}
 		}

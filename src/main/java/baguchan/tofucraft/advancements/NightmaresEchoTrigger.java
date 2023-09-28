@@ -9,18 +9,15 @@ import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 
+import java.util.Optional;
+
 public class NightmaresEchoTrigger extends SimpleCriterionTrigger<NightmaresEchoTrigger.Instance> {
 
 	public static final ResourceLocation ID = TofuCraftReload.prefix("nightmares_echo");
 
 	@Override
-	public ResourceLocation getId() {
-		return ID;
-	}
-
-	@Override
-	protected Instance createInstance(JsonObject json, ContextAwarePredicate player, DeserializationContext ctx) {
-		return new Instance(player);
+	protected NightmaresEchoTrigger.Instance createInstance(JsonObject json, Optional<ContextAwarePredicate> player, DeserializationContext ctx) {
+		return new NightmaresEchoTrigger.Instance(player);
 	}
 
 	public void trigger(ServerPlayer player) {
@@ -28,12 +25,8 @@ public class NightmaresEchoTrigger extends SimpleCriterionTrigger<NightmaresEcho
 	}
 
 	public static class Instance extends AbstractCriterionTriggerInstance {
-		public Instance(ContextAwarePredicate player) {
-			super(NightmaresEchoTrigger.ID, player);
-		}
-
-		public static Instance killThemAll() {
-			return new Instance(ContextAwarePredicate.ANY);
+		public Instance(Optional<ContextAwarePredicate> player) {
+			super(player);
 		}
 	}
 }

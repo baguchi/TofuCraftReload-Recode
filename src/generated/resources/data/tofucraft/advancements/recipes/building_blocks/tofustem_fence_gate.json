@@ -22,8 +22,8 @@
   },
   "requirements" : [
     [
-      "has_tofustem_planks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_tofustem_planks"
     ]
   ],
   "rewards" : {

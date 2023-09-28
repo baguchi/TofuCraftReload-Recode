@@ -176,12 +176,12 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		if (!p_155014_.isClientSide) {
 			if (saltFurnaceBlock.prevWaterFluid != saltFurnaceBlock.waterTank.getFluidAmount()) {
 				LevelChunk chunk = p_155014_.getChunkAt(p_155015_);
-				TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new SaltFurnaceWaterMessage(p_155015_, saltFurnaceBlock.waterTank.getFluid()));
+				TofuCraftReload.CHANNEL.send(new SaltFurnaceWaterMessage(p_155015_, saltFurnaceBlock.waterTank.getFluid()), PacketDistributor.TRACKING_CHUNK.with(chunk));
 				saltFurnaceBlock.prevWaterFluid = saltFurnaceBlock.waterTank.getFluidAmount();
 			}
 			if (saltFurnaceBlock.prevBitternFluid != saltFurnaceBlock.bitternTank.getFluidAmount()) {
 				LevelChunk chunk = p_155014_.getChunkAt(p_155015_);
-				TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new SaltFurnaceBitternMessage(p_155015_, saltFurnaceBlock.bitternTank.getFluid()));
+				TofuCraftReload.CHANNEL.send(new SaltFurnaceBitternMessage(p_155015_, saltFurnaceBlock.bitternTank.getFluid()), PacketDistributor.TRACKING_CHUNK.with(chunk));
 				saltFurnaceBlock.prevBitternFluid = saltFurnaceBlock.bitternTank.getFluidAmount();
 			}
 		}
@@ -234,8 +234,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		super.startOpen(p_18955_);
 		if (!this.level.isClientSide()) {
 			LevelChunk chunk = this.level.getChunkAt(this.getBlockPos());
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new SaltFurnaceWaterMessage(this.getBlockPos(), this.waterTank.getFluid()));
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new SaltFurnaceBitternMessage(this.getBlockPos(), this.bitternTank.getFluid()));
+			TofuCraftReload.CHANNEL.send(new SaltFurnaceWaterMessage(this.getBlockPos(), this.waterTank.getFluid()), PacketDistributor.TRACKING_CHUNK.with(chunk));
+			TofuCraftReload.CHANNEL.send(new SaltFurnaceBitternMessage(this.getBlockPos(), this.bitternTank.getFluid()), PacketDistributor.TRACKING_CHUNK.with(chunk));
 		}
 	}
 

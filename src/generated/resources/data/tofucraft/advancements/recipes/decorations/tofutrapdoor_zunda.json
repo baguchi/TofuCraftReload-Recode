@@ -22,8 +22,8 @@
   },
   "requirements" : [
     [
-      "has_tofuzunda",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_tofuzunda"
     ]
   ],
   "rewards" : {

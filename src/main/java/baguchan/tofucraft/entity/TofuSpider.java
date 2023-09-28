@@ -35,6 +35,7 @@ import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -173,6 +174,11 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		return super.isAlliedTo(p_20355_);
 	}
 
+	protected AABB getAttackBoundingBox() {
+		AABB aabb = super.getAttackBoundingBox();
+		return aabb.deflate(0.015D, 0.0D, 0.015D);
+	}
+
 	static class TofuSpiderAttackGoal extends Goal {
 		private final TofuSpider spider;
 		private int attackStep;
@@ -215,7 +221,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 					}
 					this.attackStep = 0;
 
-					if (d0 < 4.0D + this.spider.getBbWidth() && this.attackTime <= 0) {
+					if (this.spider.isWithinMeleeAttackRange(livingentity) && this.attackTime <= 0) {
 						this.attackTime = 20;
 						this.spider.doHurtTarget(livingentity);
 					}

@@ -6,11 +6,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.event.network.CustomPayloadEvent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.network.NetworkEvent;
-
-import java.util.function.Supplier;
 
 public class SaltFurnaceBitternMessage {
 	public BlockPos blockPos;
@@ -36,17 +34,16 @@ public class SaltFurnaceBitternMessage {
 		return new SaltFurnaceBitternMessage(blockPos, fluid);
 	}
 
-	public static boolean handle(SaltFurnaceBitternMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
-		NetworkEvent.Context context = contextSupplier.get();
+	public void handle(CustomPayloadEvent.Context context) {
 		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
 			context.enqueueWork(() -> {
-				BlockEntity tileentity = (Minecraft.getInstance()).player.level().getBlockEntity(message.blockPos);
+				BlockEntity tileentity = (Minecraft.getInstance()).player.level().getBlockEntity(blockPos);
 				if (tileentity instanceof SaltFurnaceBlockEntity) {
 					SaltFurnaceBlockEntity tileentity1 = (SaltFurnaceBlockEntity) tileentity;
-					tileentity1.bitternTank.setFluid(message.fluid);
+					tileentity1.bitternTank.setFluid(fluid);
 				}
 			});
 		}
-		return true;
+		context.setPacketHandled(true);
 	}
 }

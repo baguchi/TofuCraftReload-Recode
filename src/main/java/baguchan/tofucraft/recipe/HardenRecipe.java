@@ -2,7 +2,6 @@ package baguchan.tofucraft.recipe;
 
 import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -13,18 +12,16 @@ import net.minecraft.world.level.Level;
 
 public class HardenRecipe implements Recipe<Inventory> {
 
-	protected final ResourceLocation id;
 	/**
 	 * The ingredient used for the Before it hardens tofu.
 	 */
-	private Ingredient tofu;
+	protected Ingredient tofu;
 	/**
 	 * This ingredient used for the harden tofu.
 	 */
 	final ItemStack result;
 
-	public HardenRecipe(ResourceLocation id, Ingredient tofu, ItemStack results) {
-		this.id = id;
+	public HardenRecipe(Ingredient tofu, ItemStack results) {
 		this.tofu = tofu;
 		this.result = results;
 	}
@@ -75,10 +72,6 @@ public class HardenRecipe implements Recipe<Inventory> {
 		return result;
 	}
 
-	@Override
-	public ResourceLocation getId() {
-		return this.id;
-	}
 
 	@Override
 	public RecipeSerializer<?> getSerializer() {
@@ -89,12 +82,6 @@ public class HardenRecipe implements Recipe<Inventory> {
 	@Override
 	public RecipeType<?> getType() {
 
-		return TofuRecipes.RECIPETYPE_HARDER;
-	}
-
-	@Override
-	public String toString() {
-
-		return this.getId().toString();
+		return TofuRecipes.RECIPETYPE_HARDER.get();
 	}
 }

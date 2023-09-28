@@ -3,7 +3,5 @@
   "tofu": {
     "item": "tofucraft:blocktofumomen"
   },
-  "result": {
-    "item": "tofucraft:blocktofuishi"
-  }
+  "result" : "tofucraft:blocktofuishi"
 }

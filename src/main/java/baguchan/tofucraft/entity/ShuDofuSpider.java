@@ -196,14 +196,14 @@ public class ShuDofuSpider extends Monster {
 			double dx = Math.cos((this.getYRot() + 90) * Math.PI / 180.0D) * distance;
 			double dz = Math.sin((this.getYRot() + 90) * Math.PI / 180.0D) * distance;
 
-			return new Vec3(this.getX() + dx, this.getY() + this.getPassengersRidingOffset() + this.getPassengers().get(0).getMyRidingOffset(), this.getZ() + dz);
+			return new Vec3(this.getX() + dx, this.getY() + this.getGraspRidingPosition(this.getPassengers().get(0)), this.getZ() + dz);
 		} else {
 			return new Vec3(this.getX(), this.getY(), this.getZ());
 		}
 	}
 
-	public double getPassengersRidingOffset() {
-		return this.isGraspAnim() ? (double) this.getDimensions(this.getPose()).height * 0.15D : super.getPassengersRidingOffset();
+	public double getGraspRidingPosition(Entity p_298892_) {
+		return this.isGraspAnim() ? (double) this.getDimensions(this.getPose()).height * 0.15D : 0.0F;
 	}
 
 	@Override
@@ -979,9 +979,9 @@ public class ShuDofuSpider extends Monster {
 		this.entityData.set(ANGRY, angry);
 		if (this.level() != null && !this.level().isClientSide) {
 			AttributeInstance attributeinstance = this.getAttribute(Attributes.ATTACK_DAMAGE);
-			attributeinstance.removeModifier(ATTACK_MODIFIER);
+			attributeinstance.removeModifier(ATTACK_MODIFIER_UUID);
 			AttributeInstance attributeinstance2 = this.getAttribute(Attributes.ARMOR);
-			attributeinstance2.removeModifier(ARMOR_MODIFIER);
+			attributeinstance2.removeModifier(ARMOR_MODIFIER_UUID);
 			if (angry) {
 				attributeinstance.addTransientModifier(ATTACK_MODIFIER);
 				attributeinstance2.addTransientModifier(ARMOR_MODIFIER);

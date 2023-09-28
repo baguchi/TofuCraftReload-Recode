@@ -22,8 +22,8 @@
   },
   "requirements" : [
     [
-      "has_tofuishi",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_tofuishi"
     ]
   ],
   "rewards" : {

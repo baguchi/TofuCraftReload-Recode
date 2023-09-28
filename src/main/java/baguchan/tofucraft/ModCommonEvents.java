@@ -1,17 +1,10 @@
 package baguchan.tofucraft;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.packs.PackType;
-import net.minecraft.server.packs.PathPackResources;
-import net.minecraft.server.packs.repository.Pack;
-import net.minecraft.server.packs.repository.PackSource;
-import net.minecraftforge.event.AddPackFindersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModCommonEvents {
+/*
 	@SubscribeEvent
 	public static void addPackFinders(AddPackFindersEvent event) {
 		if (event.getPackType() == PackType.CLIENT_RESOURCES) {
@@ -21,6 +14,7 @@ public class ModCommonEvents {
 			event.addRepositorySource(consumer -> consumer.accept(pack));
 		}
 	}
+*/
 
 
 }

@@ -42,7 +42,7 @@ public class LeekBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader p_256655_, BlockPos p_256553_, BlockState p_256213_, boolean p_256270_) {
+	public boolean isValidBonemealTarget(LevelReader p_256655_, BlockPos p_256553_, BlockState p_256213_) {
 		BlockState blockstate = p_256655_.getBlockState(p_256553_.below());
 		return blockstate.is(TofuTags.Blocks.TOFU_TERRAIN) || blockstate.is(TofuBlocks.MOMENTOFU.get());
 	}

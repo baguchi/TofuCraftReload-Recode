@@ -1,40 +1,37 @@
 package baguchan.tofucraft.recipe;
 
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
 import javax.annotation.Nullable;
 
 public class BitternSerializer implements RecipeSerializer<BitternRecipe> {
+	private static final Codec<BitternRecipe> codec = RecordCodecBuilder.create((p_296927_) -> {
+		return p_296927_.group(FluidIngredient.CODEC.fieldOf("process").forGetter((p_296920_) -> {
+			return p_296920_.fluid;
+		}), BuiltInRegistries.ITEM.byNameCodec().xmap(ItemStack::new, ItemStack::getItem).fieldOf("result").forGetter((p_296923_) -> {
+			return p_296923_.result;
+		})).apply(p_296927_, BitternRecipe::new);
+	});
 
-	public static final BitternSerializer INSTANCE = new BitternSerializer();
 
 	@Override
-	public BitternRecipe fromJson(ResourceLocation id, JsonObject json) {
-
-		final FluidIngredient fluid = FluidIngredient.fromJson(GsonHelper.getAsJsonObject(json, "process"));
-		final ItemStack results = itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-
-		return new BitternRecipe(id, fluid, results);
-	}
-
-	public static ItemStack itemStackFromJson(JsonObject p_151275_) {
-		return net.minecraftforge.common.crafting.CraftingHelper.getItemStack(p_151275_, false, true);
+	public Codec<BitternRecipe> codec() {
+		return codec;
 	}
 
 	@Nullable
 	@Override
-	public BitternRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+	public BitternRecipe fromNetwork(FriendlyByteBuf buf) {
 		try {
-
 			final FluidIngredient fluid = FluidIngredient.fromNetwork(buf);
 			ItemStack results = buf.readItem();
 
-			return new BitternRecipe(id, fluid, results);
+			return new BitternRecipe(fluid, results);
 		} catch (final Exception e) {
 
 			throw new IllegalStateException("Failed to read bittern info from packet buffer. This is not good.");
