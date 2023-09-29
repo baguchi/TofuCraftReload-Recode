@@ -1,0 +1,91 @@
+{
+  "type" : "minecraft:fishing",
+  "pools" : [
+    {
+      "bonus_rolls" : 0.0,
+      "entries" : [
+        {
+          "type" : "minecraft:item",
+          "functions" : [
+            {
+              "add" : false,
+              "damage" : {
+                "type" : "minecraft:uniform",
+                "max" : 0.9,
+                "min" : 0.0
+              },
+              "function" : "minecraft:set_damage"
+            }
+          ],
+          "name" : "tofucraft:tofu_solid_boots",
+          "weight" : 10
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "minecraft:leather",
+          "weight" : 10
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofukinu",
+          "weight" : 10
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofumomen",
+          "weight" : 10
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:leek",
+          "weight" : 10
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:soymilk",
+          "weight" : 10
+        },
+        {
+          "type" : "minecraft:item",
+          "functions" : [
+            {
+              "add" : false,
+              "damage" : {
+                "type" : "minecraft:uniform",
+                "max" : 0.9,
+                "min" : 0.0
+              },
+              "function" : "minecraft:set_damage"
+            }
+          ],
+          "name" : "minecraft:fishing_rod",
+          "weight" : 2
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "minecraft:bowl",
+          "weight" : 10
+        },
+        {
+          "type" : "minecraft:item",
+          "conditions" : [
+            {
+              "condition" : "minecraft:any_of",
+              "terms" : [
+                {
+                  "condition" : "minecraft:location_check",
+                  "predicate" : {
+                    "biome" : "tofucraft:zunda_forest"
+                  }
+                }
+              ]
+            }
+          ],
+          "name" : "tofucraft:zundama",
+          "weight" : 10
+        }
+      ],
+      "rolls" : 1.0
+    }
+  ]
+}
