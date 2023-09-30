@@ -1,6 +1,10 @@
 package baguchan.tofucraft.mixin;
 
-import baguchan.tofucraft.registry.*;
+import baguchan.tofucraft.registry.TofuDimensions;
+import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuLootTables;
+import baguchan.tofucraft.registry.TofuParticleTypes;
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -195,7 +199,9 @@ public abstract class FishingHookMixin extends Projectile {
 		BlockState blockstate = this.level().getBlockState(p_37164_);
 		if (!blockstate.isAir() && !blockstate.is(Blocks.LILY_PAD)) {
 			FluidState fluidstate = blockstate.getFluidState();
-			callbackInfoReturnable.setReturnValue(fluidstate.is(TofuTags.Fluids.SOYMILK) && fluidstate.isSource() && blockstate.getCollisionShape(this.level(), p_37164_).isEmpty() ? FishingHook.OpenWaterType.INSIDE_WATER : FishingHook.OpenWaterType.INVALID);
+			if (fluidstate.is(TofuTags.Fluids.SOYMILK) && fluidstate.isSource() && blockstate.getCollisionShape(this.level(), p_37164_).isEmpty()) {
+				callbackInfoReturnable.setReturnValue(FishingHook.OpenWaterType.INSIDE_WATER);
+			}
 		}
 	}
 }
