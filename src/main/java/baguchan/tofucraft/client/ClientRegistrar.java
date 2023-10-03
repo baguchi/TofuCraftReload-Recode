@@ -62,7 +62,7 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
@@ -82,12 +82,14 @@ public class ClientRegistrar {
 	}
 
 
-	public static void setup(FMLCommonSetupEvent event) {
+	public static void setup(FMLClientSetupEvent event) {
 		renderEntity();
 		renderTileEntity();
-		Sheets.addWoodType(TofuWoodTypes.LEEK);
-		Sheets.addWoodType(TofuWoodTypes.LEEK_GREEN);
-		Sheets.addWoodType(TofuWoodTypes.TOFU_STEM);
+		event.enqueueWork(() -> {
+			Sheets.addWoodType(TofuWoodTypes.LEEK);
+			Sheets.addWoodType(TofuWoodTypes.LEEK_GREEN);
+			Sheets.addWoodType(TofuWoodTypes.TOFU_STEM);
+		});
 
 		MenuScreens.register(TofuContainers.SALT_FURNACE.get(), SaltFurnaceScreen::new);
 	}
