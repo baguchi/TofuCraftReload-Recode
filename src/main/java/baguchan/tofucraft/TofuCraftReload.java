@@ -1,4 +1,5 @@
 package baguchan.tofucraft;
+
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.ClientProxy;
@@ -31,7 +32,6 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
-import baguchan.tofucraft.registry.TofuWoodTypes;
 import com.google.common.collect.Maps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
@@ -131,7 +131,6 @@ public class TofuCraftReload {
 			MultiNoiseBiomeSourceParameterList.Preset.BY_NAME = map;
 
 			TofuBlockSetTypes.init();
-			TofuWoodTypes.init();
 			TofuAdvancements.init();
 			TofuItems.registerDispenserItem();
 			TofuItems.registerCompostableItem();

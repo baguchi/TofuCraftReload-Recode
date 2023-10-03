@@ -8,8 +8,4 @@ public class TofuWoodTypes {
 
 
 	public static final WoodType TOFU_STEM = WoodType.register(new WoodType("tofucraft:tofu_stem", TofuBlockSetTypes.TOFU_STEM));
-
-	public static void init() {
-
-	}
 }
