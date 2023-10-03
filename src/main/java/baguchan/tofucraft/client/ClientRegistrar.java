@@ -41,11 +41,13 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuContainers;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuWoodTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
@@ -83,7 +85,9 @@ public class ClientRegistrar {
 	public static void setup(FMLCommonSetupEvent event) {
 		renderEntity();
 		renderTileEntity();
-
+		Sheets.addWoodType(TofuWoodTypes.LEEK);
+		Sheets.addWoodType(TofuWoodTypes.LEEK_GREEN);
+		Sheets.addWoodType(TofuWoodTypes.TOFU_STEM);
 
 		MenuScreens.register(TofuContainers.SALT_FURNACE.get(), SaltFurnaceScreen::new);
 	}
