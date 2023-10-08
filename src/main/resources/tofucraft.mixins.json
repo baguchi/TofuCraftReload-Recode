@@ -6,7 +6,6 @@
   "mixins": [
     "CowMixin",
     "EntityMixin",
-    "FishingHookMixin",
     "WardenAiMixin",
     "WardenMixin"
   ],
