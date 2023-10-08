@@ -402,7 +402,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> KINAKO_BREAD = ITEMS.register("kinako_bread", () -> new Item((new Item.Properties()).food(TofuFoods.KINAKO_BREAD)));
 
 	public static final RegistryObject<Item> EDAMAME_TEMPLA = ITEMS.register("edamame_templa", () -> new Item((new Item.Properties()).food(TofuFoods.EDAMAME_TEMPLA)));
-	public static final RegistryObject<Item> NEGIMA = ITEMS.register("negima", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.NEGIMA)));
+	public static final RegistryObject<Item> NEGIMA = ITEMS.register("negima", () -> new ReturnableDishItem(() -> Items.STICK, (new Item.Properties()).food(TofuFoods.NEGIMA)));
 	public static final RegistryObject<Item> SOY_KARAAGE = ITEMS.register("soy_karaage", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_KARAAGE)));
 	public static final RegistryObject<Item> SOYMEATDON = ITEMS.register("soymeatdon", () -> new Item((new Item.Properties()).food(TofuFoods.SOYMEATDON)));
 
