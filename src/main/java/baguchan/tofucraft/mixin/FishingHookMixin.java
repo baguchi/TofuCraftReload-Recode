@@ -23,8 +23,6 @@ import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -194,14 +192,11 @@ public abstract class FishingHookMixin extends Projectile {
 		}
 	}
 
-	@Inject(method = ("getOpenWaterTypeForBlock"), at = @At("HEAD"), cancellable = true)
-	private void getOpenWaterTypeForBlock(BlockPos p_37164_, CallbackInfoReturnable<FishingHook.OpenWaterType> callbackInfoReturnable) {
-		BlockState blockstate = this.level().getBlockState(p_37164_);
-		if (!blockstate.isAir() && !blockstate.is(Blocks.LILY_PAD)) {
-			FluidState fluidstate = blockstate.getFluidState();
-			if (fluidstate.is(TofuTags.Fluids.SOYMILK) && fluidstate.isSource() && blockstate.getCollisionShape(this.level(), p_37164_).isEmpty()) {
-				callbackInfoReturnable.setReturnValue(FishingHook.OpenWaterType.INSIDE_WATER);
-			}
+	@Redirect(method = ("getOpenWaterTypeForBlock"), at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/material/FluidState;is(Lnet/minecraft/tags/TagKey;)Z", ordinal = 0))
+	private boolean getOpenWaterTypeForBlock(FluidState instance, TagKey<Fluid> p_205071_) {
+		if (instance.is(TofuTags.Fluids.SOYMILK)) {
+			return true;
 		}
+		return instance.is(p_205071_);
 	}
 }
