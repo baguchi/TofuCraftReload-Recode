@@ -127,7 +127,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("BZB")
 				.pattern("BDB")
 				.define('Z', TofuItems.ZUNDAMA.get())
-				.define('B', TofuItems.TOFUGEM.get())
+				.define('B', Items.DIAMOND)
 				.define('D', TofuItems.TOFUDIAMOND.get())
 				.define('#', TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get())
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()))

@@ -254,6 +254,8 @@
   "item.tofucraft.negima" : "ネギマ",
   "item.tofucraft.soy_karaage" : "ソイから揚げ",
   "item.tofucraft.soymeatdon" : "ソイミート丼",
+  "item.tofucraft.tofu_upgrade_smithing_template" : "鍛冶型",
+  "item.tofucraft.zunda_upgrade_smithing_template" : "鍛冶型",
   "item.tofucraft.smithing_template.tofu_upgrade.additions_slot_description" : "金剛豆腐ブロックをここに入れてください",
   "item.tofucraft.smithing_template.tofu_upgrade.applies_to" : "鋼豆腐装備",
   "item.tofucraft.smithing_template.tofu_upgrade.base_slot_description" : "鋼豆腐のアーマー、武器、ツールをここに入れてください",
