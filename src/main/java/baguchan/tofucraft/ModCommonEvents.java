@@ -17,7 +17,7 @@ public class ModCommonEvents {
 	public static void addPackFinders(AddPackFindersEvent event) {
 		if (event.getPackType() == PackType.CLIENT_RESOURCES) {
 			var resourcePath = ModList.get().getModFileById(TofuCraftReload.MODID).getFile().findResource("tofucraft_legacy");
-			var supplier = new PathPackResources.PathResourcesSupplier(resourcePath, false);
+			var supplier = new PathPackResources.PathResourcesSupplier(resourcePath, true);
 
 			var pack = createBuiltinPack("builtin/tofucraft_legacy", supplier, Component.literal("TofuCraft Classic"));
 
