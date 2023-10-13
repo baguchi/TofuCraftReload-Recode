@@ -447,6 +447,7 @@
   "block.tofucraft.tofustem_hanging_sign" : "豆腐の茎の吊り看板",
   "block.tofucraft.leek_hanging_sign" : "ネギの吊り看板",
   "block.tofucraft.leek_green_hanging_sign" : "緑ネギの吊り看板",
+  "block.tofucraft.tofu_detector" : "豆腐センサー",
   "entity.tofucraft.tofunian.guard" : "衛兵のトーフニアン",
   "entity.tofucraft.tofunian.tofucook" : "豆腐コックのトーフニアン",
   "entity.tofucraft.tofunian.tofusmith" : "豆腐鍛冶のトーフニアン",

@@ -133,6 +133,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()))
 				.save(consumer, prefix("copy_zunda_template"));
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TOFU_DETECTOR.get(), 1)
+				.pattern("BBB")
+				.pattern("GRR")
+				.pattern("BBB")
+				.define('G', TofuItems.TOFUGEM.get())
+				.define('R', Items.REDSTONE)
+				.define('B', Tags.Items.STONE)
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
 
 		/*swordItem(consumer, "tofu_diamond_sword", TofuItems.TOFU_DIAMOND_SWORD, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
 		pickaxeItem(consumer, "tofu_diamond_pickaxe", TofuItems.TOFU_DIAMOND_PICKAXE, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);

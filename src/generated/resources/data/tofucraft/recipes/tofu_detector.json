@@ -1,0 +1,24 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "redstone",
+  "key" : {
+    "B" : {
+      "tag" : "forge:stone"
+    },
+    "G" : {
+      "item" : "tofucraft:tofugem"
+    },
+    "R" : {
+      "item" : "minecraft:redstone"
+    }
+  },
+  "pattern" : [
+    "BBB",
+    "GRR",
+    "BBB"
+  ],
+  "result" : {
+    "item" : "tofucraft:tofu_detector"
+  },
+  "show_notification" : true
+}
