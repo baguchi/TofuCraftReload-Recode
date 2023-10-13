@@ -290,6 +290,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropPottedContents(TofuBlocks.POTTED_APRICOT_SAPLING.get());
 		dropPottedContents(TofuBlocks.POTTED_ZUNDA_TOFU_MUSHROOM.get());
 		dropPottedContents(TofuBlocks.POTTED_LEEK.get());
+		dropSelf(TofuBlocks.TOFU_DETECTOR.get());
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

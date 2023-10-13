@@ -445,6 +445,7 @@
   "block.tofucraft.tofustem_hanging_sign" : "Tofu Stem Hanging Sign",
   "block.tofucraft.leek_hanging_sign" : "Leek Hanging Sign",
   "block.tofucraft.leek_green_hanging_sign" : "Leek Green Hanging Sign",
+  "block.tofucraft.tofu_detector" : "Tofu Detector",
   "entity.tofucraft.tofunian.guard" : "Guard Tofunian",
   "entity.tofucraft.tofunian.tofucook" : "TofuCook Tofunian",
   "entity.tofucraft.tofunian.tofusmith" : "TofuSmith Tofunian",
