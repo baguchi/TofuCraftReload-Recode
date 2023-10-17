@@ -1,0 +1,20 @@
+{
+  "conditions" : [
+    {
+      "type" : "forge:mod_loaded",
+      "modid" : "create"
+    }
+  ],
+  "type" : "create:mixing",
+  "ingredients" : [
+    {
+      "item" : "tofucraft:seeds_soybeans_soul"
+    }
+  ],
+  "results" : [
+    {
+      "fluid" : "tofucraft:soymilk_soul",
+      "amount" : 1000
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "conditions" : [
+    {
+      "type" : "forge:mod_loaded",
+      "modid" : "create"
+    }
+  ],
+  "type" : "create:filling",
+  "ingredients" : [
+    {
+      "fluid" : "tofucraft:soymilk_soul",
+      "amount" : 1000
+    },
+    {
+      "item" : "minecraft:bucket"
+    }
+  ],
+  "results" : [
+    {
+      "item" : "tofucraft:bucket_soymilk_soul"
+    }
+  ]
+}

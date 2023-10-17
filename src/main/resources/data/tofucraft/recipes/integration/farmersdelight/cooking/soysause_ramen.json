@@ -1,0 +1,31 @@
+{
+  "conditions" : [
+    {
+      "type" : "forge:mod_loaded",
+      "modid" : "farmersdelight"
+    }
+  ],
+  "type" : "farmersdelight:cooking",
+  "ingredients" : [
+    {
+      "tag" : "forge:pasta"
+    },
+    {
+      "item" : "tofucraft:bottle_soysause"
+    },
+    {
+      "item" : "minecraft:dried_kelp"
+    },
+    {
+      "tag" : "forge:raw_pork"
+    }
+  ],
+  "result" : {
+    "item" : "tofucraft:soysause_ramen"
+  },
+  "container" : {
+    "item" : "minecraft:bowl"
+  },
+  "experience" : 0.35,
+  "cookingtime" : 200
+}
