@@ -416,6 +416,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> LEEK_GREEN_CHEST_BOAT = ITEMS.register("leek_green_chest_boat", () -> new TofuBoatItem(true, TofuBoat.Type.LEEK_GREEN, new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> TOFU_STEM_CHEST_BOAT = ITEMS.register("tofu_stem_chest_boat", () -> new TofuBoatItem(true, TofuBoat.Type.TOFU_STEM, new Item.Properties().stacksTo(1)));
 
+
 	private static RegistryObject<Item> register(String name, Supplier<Item> item) {
 		return ITEMS.register(name, item);
 	}

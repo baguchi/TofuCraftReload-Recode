@@ -40,6 +40,9 @@
     "tofucraft:soymilk_soul_cauldron",
     "tofucraft:tofu_metal_lantern",
     "tofucraft:tofu_metal_soul_lantern",
-    "tofucraft:tofu_metal_chain"
+    "tofucraft:tofu_metal_chain",
+    "tofucraft:tofu_detector",
+    "tofucraft:tf_storage",
+    "tofucraft:antenna_basic"
   ]
 }

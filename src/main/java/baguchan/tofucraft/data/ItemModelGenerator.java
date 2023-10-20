@@ -482,6 +482,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.TOFU_METAL_LANTERN);
 		singleTex(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
 		toBlock(TofuBlocks.TOFU_DETECTOR.get());
+		toBlock(TofuBlocks.ANTENNA_BASIC.get());
 	}
 
 	public void sign(Supplier<? extends SignBlock> sign) {

@@ -44,6 +44,25 @@ public class TofuCreativeModeTabs {
 					return sup.get().getDefaultInstance();
 				}).toList());
 			}).build());
+	public static final RegistryObject<CreativeModeTab> TOFU_MECHANICAL_BLOCKS = CREATIVE_MODE_TABS.register("tofu_mechanical_blocks", () -> CreativeModeTab.builder()
+			.withTabsBefore(TOFUS.getKey())
+			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_mechanical_blocks" + ".main_tab"))
+			.icon(() -> TofuBlocks.TF_STORAGE.get().asItem().getDefaultInstance())
+			.displayItems((parameters, output) -> {
+				output.acceptAll(Stream.of(
+						TofuBlocks.TF_STORAGE
+						, TofuBlocks.ANTENNA_BASIC
+						, TofuBlocks.TOFU_DETECTOR).map(sup -> {
+					return sup.get().asItem().getDefaultInstance();
+				}).toList());
+				output.acceptAll(Stream.of(
+						TofuItems.TF_CAPACITOR
+						, TofuItems.TF_CIRCUIT
+						, TofuItems.TF_COIL
+						, TofuItems.TF_OSCILLATOR).map(sup -> {
+					return sup.get().getDefaultInstance();
+				}).toList());
+			}).build());
 
 	public static final RegistryObject<CreativeModeTab> TOFU_BUILDING_BLOCKS = CREATIVE_MODE_TABS.register("tofu_building_blocks", () -> CreativeModeTab.builder()
 			.withTabsBefore(TOFUS.getKey())
@@ -184,8 +203,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.ZUNDAMA_BLOCK,
 						TofuBlocks.SALTPAN,
 						TofuBlocks.SALT_FURNACE,
-						TofuBlocks.MORIJIO,
-						TofuBlocks.TOFU_DETECTOR).map(sup -> {
+						TofuBlocks.MORIJIO).map(sup -> {
 					return sup.get().asItem().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());

@@ -1,4 +1,6 @@
 package baguchan.tofucraft;
+
+import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.ClientProxy;
@@ -7,6 +9,7 @@ import baguchan.tofucraft.event.CraftingEvents;
 import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
+import baguchan.tofucraft.message.TFStorageSoymilkMessage;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBannerPatterns;
@@ -137,6 +140,7 @@ public class TofuCraftReload {
 			TofuItems.registerAnimalFeed();
 			TofuBlocks.flamableInit();
 			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift"));
+			TofuEnergyMap.init();
 			TofuBiomes.init();
 			ModInteractionInformations.init();
 
@@ -164,6 +168,10 @@ public class TofuCraftReload {
 		CHANNEL.messageBuilder(SaltFurnaceWaterMessage.class, 2)
 				.encoder(SaltFurnaceWaterMessage::writePacketData).decoder(SaltFurnaceWaterMessage::readPacketData)
 				.consumerMainThread(SaltFurnaceWaterMessage::handle)
+				.add();
+		CHANNEL.messageBuilder(TFStorageSoymilkMessage.class, 3)
+				.encoder(TFStorageSoymilkMessage::writePacketData).decoder(TFStorageSoymilkMessage::readPacketData)
+				.consumerMainThread(TFStorageSoymilkMessage::handle)
 				.add();
 	}
 
