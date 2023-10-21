@@ -59,6 +59,9 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 			if (inst.getDamageValue() > 0) {
 				inst.setDamageValue(Mth.clamp(inst.getDamageValue() - calculated, 0, inst.getMaxDamage()));
 				return energy;
+			} else {
+				int calculated2 = Math.min(energy, getEnergyMax(inst) - getEnergy(inst));
+				setEnergy(inst, getEnergy(inst) + calculated2);
 			}
 		}
 		return 0;
@@ -75,7 +78,7 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 
 	@Override
 	public int getEnergyMax(ItemStack inst) {
-		return inst.getTag() != null && inst.getTag().contains(TAG_TFMAX) ? inst.getTag().getInt(TAG_TFMAX) : 0;
+		return 5000;
 	}
 
 	@Override
@@ -85,7 +88,6 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 
 	@Override
 	public void setEnergyMax(ItemStack inst, int amount) {
-		inst.getOrCreateTag().putInt(TAG_TFMAX, amount);
 	}
 
 	private boolean getShowState(ItemStack stack) {
@@ -104,7 +106,7 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 
 	@Override
 	public int getBarWidth(ItemStack stack) {
-		return getShowState(stack) ? Math.round(13.0F - (float) getEnergy(stack) * 13.0F / (float) getEnergyMax(stack)) : super.getBarWidth(stack);
+		return getShowState(stack) ? Math.round(((float) getEnergy(stack)) / (float) getEnergyMax(stack) * 13.0F) : super.getBarWidth(stack);
 	}
 
 	@Override

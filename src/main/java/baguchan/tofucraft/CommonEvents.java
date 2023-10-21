@@ -1,5 +1,6 @@
 package baguchan.tofucraft;
 
+import baguchan.tofucraft.api.tfenergy.IEnergyContained;
 import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
@@ -50,6 +51,7 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
+import net.minecraftforge.event.entity.living.ShieldBlockEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
@@ -355,9 +357,26 @@ public class CommonEvents {
 		if (entity.isDamageSourceBlocked(event.getSource())) {
 			if (entity.getUseItem().is(TofuItems.REFLECT_TOFU_SHIELD.get())) {
 				Entity attacker = event.getSource().getDirectEntity();
-				if (attacker != null) {
+				if (entity.getUseItem().getItem() instanceof IEnergyContained energyContained) {
+
+					if (energyContained.getEnergy(entity.getUseItem()) >= 50) {
+						energyContained.setEnergy(entity.getUseItem(), energyContained.getEnergy(entity.getUseItem()) - 50);
+
+						if (attacker != null) {
 					attacker.hurt(entity.damageSources().thorns(entity), 3.0F);
 				}
+					}
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onShieldEvent(ShieldBlockEvent event) {
+		if (event.getEntity().getUseItem().getItem() instanceof IEnergyContained energyContained) {
+
+			if (energyContained.getEnergy(event.getEntity().getUseItem()) >= 50) {
+				event.setShieldTakesDamage(false);
 			}
 		}
 	}
