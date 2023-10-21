@@ -140,7 +140,9 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 		ItemStack from = tfStorageBlockEntity.inventory.get(0);
 
 		if (from.getItem() instanceof IEnergyInsertable symbol) {
-			tfStorageBlockEntity.drain(symbol.fill(from, POWER * 20, false), false);
+			if (tfStorageBlockEntity.getEnergyStored() >= POWER * 20) {
+				tfStorageBlockEntity.drain(symbol.fill(from, POWER * 20, false), false);
+			}
 		}
 		//Consume beans inside machine
 		if (tfStorageBlockEntity.workload == 0) {
