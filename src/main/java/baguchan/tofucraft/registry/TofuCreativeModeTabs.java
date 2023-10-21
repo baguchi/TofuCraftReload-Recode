@@ -52,7 +52,8 @@ public class TofuCreativeModeTabs {
 				output.acceptAll(Stream.of(
 						TofuBlocks.TF_STORAGE
 						, TofuBlocks.ANTENNA_BASIC
-						, TofuBlocks.TOFU_DETECTOR).map(sup -> {
+						, TofuBlocks.TOFU_DETECTOR
+						, TofuBlocks.TOFU_WORK_STATION).map(sup -> {
 					return sup.get().asItem().getDefaultInstance();
 				}).toList());
 				output.acceptAll(Stream.of(

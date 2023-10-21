@@ -2,6 +2,7 @@ package baguchan.tofucraft.blockentity.tfenergy;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.api.tfenergy.IEnergyExtractable;
+import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import baguchan.tofucraft.api.tfenergy.ITofuEnergy;
 import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
@@ -143,6 +144,8 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 			FluidStack milk = tfStorageBlockEntity.getTank().getFluid();
 			if (from.getItem() instanceof IEnergyExtractable symbol) {
 				tfStorageBlockEntity.workload += symbol.drain(from, POWER * 20, false);
+			} else if (from.getItem() instanceof IEnergyInsertable symbol) {
+				tfStorageBlockEntity.drain(symbol.fill(from, POWER * 20, false), false);
 			} else if (TofuEnergyMap.getFuel(from) != -1) {
 				tfStorageBlockEntity.workload += TofuEnergyMap.getFuel(from);
 				from.shrink(1);

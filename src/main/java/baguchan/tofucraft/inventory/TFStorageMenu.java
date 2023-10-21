@@ -1,6 +1,6 @@
 package baguchan.tofucraft.inventory;
 
-import baguchan.tofucraft.registry.TofuContainers;
+import baguchan.tofucraft.registry.TofuMenus;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -26,7 +26,7 @@ public class TFStorageMenu extends AbstractContainerMenu {
 	}
 
 	public TFStorageMenu(int id, Inventory playerInventoryIn, Container furnaceInventoryIn, ContainerData dataIn) {
-		super(TofuContainers.TF_STORAGE.get(), id);
+		super(TofuMenus.TF_STORAGE.get(), id);
 		this.container = furnaceInventoryIn;
 		this.data = dataIn;
 		this.level = playerInventoryIn.player.level();

@@ -36,6 +36,7 @@ import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
 import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
+import baguchan.tofucraft.block.tfenergy.TofuWorkStationBlock;
 import baguchan.tofucraft.block.tree.ApricotLeavesBlock;
 import baguchan.tofucraft.block.tree.ApricotSaplingBlock;
 import baguchan.tofucraft.block.utils.MisoBarrelBlock;
@@ -427,6 +428,7 @@ public class TofuBlocks {
 		return p_50872_.getValue(TFStorageBlock.LIT) ? 13 : 0;
 	})));
 	public static final RegistryObject<Block> ANTENNA_BASIC = register("antenna_basic", () -> new TFAntennaBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
+	public static final RegistryObject<Block> TOFU_WORK_STATION = register("tofu_work_station", () -> new TofuWorkStationBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
 
 
 	private static boolean always(BlockState p_50775_, BlockGetter p_50776_, BlockPos p_50777_) {

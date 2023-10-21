@@ -18,16 +18,19 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
+import java.util.Optional;
+
 @OnlyIn(Dist.CLIENT)
 public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	private static final ResourceLocation texture = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tf_storage.png");
-
+	private static final Component MISSING_ITEM_TOOLTIP = Component.translatable("container.tofucraft.tf_storage.missing_item_tooltip");
 	public TFStorageScreen(TFStorageMenu p_i51104_1_, Inventory p_i51104_3_, Component p_i51104_4_) {
 		super(p_i51104_1_, p_i51104_3_, p_i51104_4_);
 	}
@@ -40,7 +43,7 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	public void render(GuiGraphics p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
 		this.renderBackground(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
 		super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
-		renderTooltip(p_230430_1_, p_230430_2_, p_230430_3_);
+		this.renderOnboardingTooltips(p_230430_1_, p_230430_2_, p_230430_3_);
 	}
 
 	@Override
@@ -105,5 +108,23 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		} while (height > 0);
 		bufferbuilder.unsetDefaultColor();
 		RenderSystem.disableBlend();
+	}
+
+	private void renderOnboardingTooltips(GuiGraphics p_281668_, int p_267192_, int p_266859_) {
+		Optional<Component> optional = Optional.empty();
+
+		if (this.hoveredSlot != null) {
+			ItemStack itemstack = this.menu.getSlot(0).getItem();
+			ItemStack itemstack1 = this.hoveredSlot.getItem();
+			if (itemstack.isEmpty()) {
+				if (this.hoveredSlot.index == 0) {
+					optional = Optional.of(MISSING_ITEM_TOOLTIP);
+				}
+			}
+		}
+
+		optional.ifPresent((p_280863_) -> {
+			p_281668_.renderTooltip(this.font, this.font.split(p_280863_, 115), p_267192_, p_266859_);
+		});
 	}
 }

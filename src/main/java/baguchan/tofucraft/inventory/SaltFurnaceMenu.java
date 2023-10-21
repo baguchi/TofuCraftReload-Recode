@@ -1,7 +1,7 @@
 package baguchan.tofucraft.inventory;
 
 import baguchan.tofucraft.inventory.slot.SaltFurnaceResultSlot;
-import baguchan.tofucraft.registry.TofuContainers;
+import baguchan.tofucraft.registry.TofuMenus;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -27,7 +27,7 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 	}
 
 	public SaltFurnaceMenu(int id, Inventory playerInventoryIn, Container furnaceInventoryIn, ContainerData dataIn) {
-		super(TofuContainers.SALT_FURNACE.get(), id);
+		super(TofuMenus.SALT_FURNACE.get(), id);
 		this.container = furnaceInventoryIn;
 		this.data = dataIn;
 		this.level = playerInventoryIn.player.level();

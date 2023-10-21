@@ -293,6 +293,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFU_DETECTOR.get());
 		dropSelf(TofuBlocks.TF_STORAGE.get());
 		dropSelf(TofuBlocks.ANTENNA_BASIC.get());
+		dropSelf(TofuBlocks.TOFU_WORK_STATION.get());
 	}
 
 
