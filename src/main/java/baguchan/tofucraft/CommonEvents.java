@@ -48,6 +48,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -348,4 +349,16 @@ public class CommonEvents {
 		}
 	}
 
+	@SubscribeEvent
+	public static void onHurt(LivingHurtEvent event) {
+		LivingEntity entity = event.getEntity();
+		if (entity.isDamageSourceBlocked(event.getSource())) {
+			if (entity.getUseItem().is(TofuItems.REFLECT_TOFU_SHIELD.get())) {
+				Entity attacker = event.getSource().getDirectEntity();
+				if (attacker != null) {
+					attacker.hurt(entity.damageSources().thorns(entity), 3.0F);
+				}
+			}
+		}
+	}
 }

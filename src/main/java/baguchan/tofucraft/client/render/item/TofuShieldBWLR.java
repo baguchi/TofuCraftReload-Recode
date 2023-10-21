@@ -9,6 +9,7 @@ import net.minecraft.client.model.ShieldModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -30,6 +31,22 @@ public class TofuShieldBWLR extends BlockEntityWithoutLevelRenderer {
 			VertexConsumer vertexconsumer = ItemRenderer.getFoilBufferDirect(pBuffer, this.shieldModel.renderType(new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofumetal_shield.png")), true, pStack.hasFoil());
 			this.shieldModel.handle().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
 			this.shieldModel.plate().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
+
+			pPoseStack.popPose();
+		}
+		if (pStack.is(TofuItems.REFLECT_TOFU_SHIELD.get())) {
+			pPoseStack.pushPose();
+			pPoseStack.scale(1.0F, -1.0F, -1.0F);
+			VertexConsumer vertexconsumer = ItemRenderer.getFoilBufferDirect(pBuffer, this.shieldModel.renderType(new ResourceLocation(TofuCraftReload.MODID, "textures/entity/reflect_tofu_shield.png")), true, pStack.hasFoil());
+			this.shieldModel.handle().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
+			this.shieldModel.plate().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
+
+			pPoseStack.popPose();
+
+			pPoseStack.pushPose();
+			pPoseStack.scale(1.0F, -1.0F, -1.0F);
+			VertexConsumer vertexconsumer2 = ItemRenderer.getFoilBufferDirect(pBuffer, RenderType.eyes(new ResourceLocation(TofuCraftReload.MODID, "textures/entity/reflect_tofu_shield_overlay.png")), true, pStack.hasFoil());
+			this.shieldModel.plate().render(pPoseStack, vertexconsumer2, pPackedLight, pOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
 
 			pPoseStack.popPose();
 		}

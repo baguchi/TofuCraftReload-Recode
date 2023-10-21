@@ -356,11 +356,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.SOY_KARAAGE);
 		singleTex(TofuItems.SOYMEATDON);
 
-		singleTexTool(TofuItems.TOFUGEM);
-		singleTexTool(TofuItems.TF_COIL);
-		singleTexTool(TofuItems.TF_CIRCUIT);
-		singleTexTool(TofuItems.TF_CAPACITOR);
-		singleTexTool(TofuItems.TF_OSCILLATOR);
+		singleTex(TofuItems.TOFUGEM);
+		singleTex(TofuItems.TF_COIL);
+		singleTex(TofuItems.TF_CIRCUIT);
+		singleTex(TofuItems.TF_CAPACITOR);
+		singleTex(TofuItems.TF_OSCILLATOR);
+		singleTex(TofuItems.TOFU_CORE);
 
 		singleTexTool(TofuItems.TOFU_KINU_SWORD);
 		singleTexTool(TofuItems.TOFU_KINU_PICKAXE);
@@ -482,7 +483,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.TOFU_METAL_LANTERN);
 		singleTex(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
 		toBlock(TofuBlocks.TOFU_DETECTOR.get());
-		toBlock(TofuBlocks.ANTENNA_BASIC.get());
+		itemBlockFlat(TofuBlocks.ANTENNA_BASIC.get());
 	}
 
 	public void sign(Supplier<? extends SignBlock> sign) {

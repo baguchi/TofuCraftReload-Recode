@@ -60,6 +60,18 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 		return this.subIngredient.test(p_267132_);
 	}
 
+	public Ingredient getIngredient() {
+		return ingredient;
+	}
+
+	public Ingredient getSubIngredient() {
+		return subIngredient;
+	}
+
+	public Ingredient getBaseIngredient() {
+		return baseIngredient;
+	}
+
 	@Override
 	public ItemStack getResultItem(RegistryAccess registryAccess) {
 		return this.result;

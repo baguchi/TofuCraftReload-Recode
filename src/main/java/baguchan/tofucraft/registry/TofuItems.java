@@ -19,6 +19,7 @@ import baguchan.tofucraft.item.NattoCobWebItem;
 import baguchan.tofucraft.item.NetherFukumameItem;
 import baguchan.tofucraft.item.NourishmentItem;
 import baguchan.tofucraft.item.RamuneSoymilkBottleItem;
+import baguchan.tofucraft.item.ReflectTofuShieldItem;
 import baguchan.tofucraft.item.ReturnableDishItem;
 import baguchan.tofucraft.item.RollingPinItem;
 import baguchan.tofucraft.item.SeedAndRootItem;
@@ -342,6 +343,7 @@ public class TofuItems {
 
 
 	public static final RegistryObject<Item> TOFU_SHIELD = ITEMS.register("tofu_shield", () -> new TofuShieldItem((new Item.Properties()).stacksTo(1).durability(420)));
+	public static final RegistryObject<Item> REFLECT_TOFU_SHIELD = ITEMS.register("reflect_tofu_shield", () -> new ReflectTofuShieldItem((new Item.Properties()).stacksTo(1).durability(420)));
 
 	public static final RegistryObject<Item> ROLLINGPIN = ITEMS.register("rollingpin", () -> new RollingPinItem((new Item.Properties())));
 
@@ -365,6 +367,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> TF_COIL = ITEMS.register("tf_coil", () -> new Item((new Item.Properties())));
 	public static final RegistryObject<Item> TF_CIRCUIT = ITEMS.register("tf_circuit", () -> new Item((new Item.Properties())));
 	public static final RegistryObject<Item> TF_OSCILLATOR = ITEMS.register("tf_oscillator", () -> new Item((new Item.Properties())));
+	public static final RegistryObject<Item> TOFU_CORE = ITEMS.register("tofu_core", () -> new Item((new Item.Properties())));
 
 
 	public static final RegistryObject<Item> TOFUNIAN_SPAWNEGG = ITEMS.register("tofunian_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties())));

@@ -1,6 +1,6 @@
 {
-  "parent" : "block/block",
   "credit" : "Made with Blockbench",
+  "parent" : "block/block",
   "textures" : {
     "0" : "tofucraft:block/blocktofuishi",
     "1" : "tofucraft:block/blocktofumetal",
@@ -427,12 +427,12 @@
       "from" : [
         2,
         11,
-        2
+        7
       ],
       "to" : [
         7,
         13,
-        5
+        10
       ],
       "faces" : {
         "north" : {
@@ -493,57 +493,6 @@
     }
   ],
   "display" : {
-    "gui" : {
-      "rotation" : [
-        30,
-        225,
-        0
-      ],
-      "translation" : [
-        0,
-        0,
-        0
-      ],
-      "scale" : [
-        0.625,
-        0.625,
-        0.625
-      ]
-    },
-    "ground" : {
-      "rotation" : [
-        0,
-        0,
-        0
-      ],
-      "translation" : [
-        0,
-        3,
-        0
-      ],
-      "scale" : [
-        0.25,
-        0.25,
-        0.25
-      ]
-    },
-    "fixed" : {
-      "rotation" : [
-        0,
-        0,
-        0
-      ],
-      "translation" : [
-        0,
-        0,
-        0
-      ],
-      "scale" : [
-        0.5,
-        0.5,
-        0.5
-      ]
-    },
     "thirdperson_righthand" : {
       "rotation" : [
         75,
@@ -567,15 +516,10 @@
         45,
         0
       ],
-      "translation" : [
-        0,
-        0,
-        0
-      ],
       "scale" : [
-        0.40,
-        0.40,
-        0.40
+        0.4,
+        0.4,
+        0.4
       ]
     },
     "firstperson_lefthand" : {
@@ -584,15 +528,41 @@
         225,
         0
       ],
+      "scale" : [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "ground" : {
       "translation" : [
         0,
-        0,
+        3,
         0
       ],
       "scale" : [
-        0.40,
-        0.40,
-        0.40
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "gui" : {
+      "rotation" : [
+        30,
+        225,
+        0
+      ],
+      "scale" : [
+        0.625,
+        0.625,
+        0.625
+      ]
+    },
+    "fixed" : {
+      "scale" : [
+        0.5,
+        0.5,
+        0.5
       ]
     }
   }

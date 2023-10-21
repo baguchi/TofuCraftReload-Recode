@@ -209,24 +209,24 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 			itemstack = itemstack1.copy();
 			if (p_40329_ == 3) {
 				item.onCraftedBy(itemstack1, p_40328_.level(), p_40328_);
-				if (!this.moveItemStackTo(itemstack1, 2, 38 + 5, true)) {
+				if (!this.moveItemStackTo(itemstack1, 4, 40, true)) {
 					return ItemStack.EMPTY;
 				}
 
 				slot.onQuickCraft(itemstack1, itemstack);
 			} else if (p_40329_ == 0 || p_40329_ == 1 || p_40329_ == 2) {
-				if (!this.moveItemStackTo(itemstack1, 4, 38 + 5, false)) {
+				if (!this.moveItemStackTo(itemstack1, 4, 40, false)) {
 					return ItemStack.EMPTY;
 				}
 			} else if (this.level.getRecipeManager().getRecipeFor(TofuRecipes.RECIPETYPE_TOFU_WORK_STATION.get(), new SimpleContainer(itemstack1), this.level).isPresent()) {
-				if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
+				if (!this.moveItemStackTo(itemstack1, 0, 3, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (p_40329_ >= 5 && p_40329_ < 29 + 5) {
-				if (!this.moveItemStackTo(itemstack1, 29 + 5, 38 + 5, false)) {
+			} else if (p_40329_ >= 4 && p_40329_ < 31) {
+				if (!this.moveItemStackTo(itemstack1, 31, 40, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (p_40329_ >= 29 + 5 && p_40329_ < 38 + 5 && !this.moveItemStackTo(itemstack1, 2, 29, false)) {
+			} else if (p_40329_ >= 31 && p_40329_ < 40 && !this.moveItemStackTo(itemstack1, 2, 29, false)) {
 				return ItemStack.EMPTY;
 			}
 

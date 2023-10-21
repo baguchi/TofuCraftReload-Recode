@@ -2,7 +2,7 @@
     "parent": "builtin/entity",
     "gui_light": "front",
     "textures": {
-        "particle": "tofucraft:block/tofuishi_brick"
+      "particle" : "tofucraft:block/blocktofumetal"
     },
     "display": {
         "thirdperson_righthand": {

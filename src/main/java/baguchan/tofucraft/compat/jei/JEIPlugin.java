@@ -4,6 +4,7 @@ package baguchan.tofucraft.compat.jei;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.HardenRecipe;
+import baguchan.tofucraft.recipe.TofuWorkStationRecipe;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuRecipes;
@@ -43,12 +44,15 @@ public class JEIPlugin implements IModPlugin {
 
 	public static final mezz.jei.api.recipe.RecipeType<BitternRecipe> BITTERN_JEI_TYPE =
 			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "bittern", BitternRecipe.class);
+	public static final mezz.jei.api.recipe.RecipeType<TofuWorkStationRecipe> TOFU_WORK_STATION_JEI_TYPE =
+			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "tofu_work_station", TofuWorkStationRecipe.class);
 
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(new HardenCategory(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new BitternCategory(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategories(new TofuWorkStationCategory(registry.getJeiHelpers().getGuiHelper()));
 	}
 
 	@Override
@@ -69,12 +73,14 @@ public class JEIPlugin implements IModPlugin {
 		addInfo(registration, TofuItems.SOYMILK_SAKURA.get(), TofuItems.SOYMILK.get());
 		registration.addRecipes(HARDEN_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_HARDER.get()));
 		registration.addRecipes(BITTERN_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_BITTERN.get()));
+		registration.addRecipes(TOFU_WORK_STATION_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_TOFU_WORK_STATION.get()));
 	}
 
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
 		registration.addRecipeCatalyst(new ItemStack(Blocks.COBBLESTONE), HARDEN_JEI_TYPE);
 		registration.addRecipeCatalyst(new ItemStack(TofuItems.BITTERN_BOTTLE.get()), BITTERN_JEI_TYPE);
+		registration.addRecipeCatalyst(new ItemStack(TofuBlocks.TOFU_WORK_STATION.get()), TOFU_WORK_STATION_JEI_TYPE);
 	}
 
 	private static void addInfo(IRecipeRegistration registration, Item item) {

@@ -1,0 +1,15 @@
+{
+  "type" : "tofucraft:tofu_work_station",
+  "ingredient" : {
+    "item" : "tofucraft:tf_coil"
+  },
+  "base" : {
+    "item" : "tofucraft:tofumetal"
+  },
+  "result" : {
+    "item" : "tofucraft:tofu_core"
+  },
+  "sub" : {
+    "item" : "tofucraft:tf_capacitor"
+  }
+}
