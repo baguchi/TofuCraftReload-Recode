@@ -47,7 +47,7 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 
 	@Override
 	public boolean isIngredient(ItemStack p_266982_) {
-		return this.baseIngredient.test(p_266982_);
+		return this.ingredient.test(p_266982_);
 	}
 
 	@Override
@@ -95,10 +95,10 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 
 	public static class Serializer implements RecipeSerializer<TofuWorkStationRecipe> {
 		private static final Codec<TofuWorkStationRecipe> CODEC = RecordCodecBuilder.create((p_301330_) -> {
-			return p_301330_.group(Ingredient.CODEC.fieldOf("ingredient").forGetter((p_297231_) -> {
-				return p_297231_.ingredient;
-			}), Ingredient.CODEC.fieldOf("base").forGetter((p_298250_) -> {
+			return p_301330_.group(Ingredient.CODEC.fieldOf("base").forGetter((p_298250_) -> {
 				return p_298250_.baseIngredient;
+			}), Ingredient.CODEC.fieldOf("ingredient").forGetter((p_297231_) -> {
+				return p_297231_.ingredient;
 			}), Ingredient.CODEC.fieldOf("sub").forGetter((p_299654_) -> {
 				return p_299654_.subIngredient;
 			}), CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf("result").forGetter((p_297480_) -> {
@@ -119,8 +119,8 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 		}
 
 		public void toNetwork(FriendlyByteBuf p_266746_, TofuWorkStationRecipe p_266927_) {
-			p_266927_.ingredient.toNetwork(p_266746_);
 			p_266927_.baseIngredient.toNetwork(p_266746_);
+			p_266927_.ingredient.toNetwork(p_266746_);
 			p_266927_.subIngredient.toNetwork(p_266746_);
 			p_266746_.writeItem(p_266927_.result);
 		}

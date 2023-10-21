@@ -14,7 +14,6 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 
 public class TofuWorkStationCategory implements IRecipeCategory<TofuWorkStationRecipe> {
 
@@ -57,12 +56,11 @@ public class TofuWorkStationCategory implements IRecipeCategory<TofuWorkStationR
 
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, TofuWorkStationRecipe recipe, IFocusGroup focuses) {
-		Ingredient recipeIngredients = recipe.getIngredient();
 
 		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 - 18 - 16)
-				.addIngredients(recipeIngredients);
-		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 - 16)
 				.addIngredients(recipe.getBaseIngredient());
+		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 - 16)
+				.addIngredients(recipe.getIngredient());
 		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 + 18 - 16)
 				.addIngredients(recipe.getSubIngredient());
 

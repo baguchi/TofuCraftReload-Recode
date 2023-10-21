@@ -35,7 +35,6 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 	private final DataSlot selectedRecipeIndex = DataSlot.standalone();
 	private final Level level;
 	private List<RecipeHolder<TofuWorkStationRecipe>> recipes = Lists.newArrayList();
-	private ItemStack input = ItemStack.EMPTY;
 	long lastSoundTime;
 	final Slot inputSlot;
 	final Slot inputSlot2;
@@ -60,20 +59,8 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 		super(TofuMenus.TOFU_WORK_STATION.get(), p_40297_);
 		this.access = p_40299_;
 		this.level = p_40298_.player.level();
-		this.inputSlot = this.addSlot(new Slot(this.container, 0, 20, 33 - 18) {
-			@Override
-			public void set(ItemStack p_40240_) {
-				super.set(p_40240_);
-				TofuWorkStationMenu.this.setupResultSlot();
-			}
-		});
-		this.inputSlot2 = this.addSlot(new Slot(this.container, 1, 20, 33) {
-			@Override
-			public void set(ItemStack p_40240_) {
-				super.set(p_40240_);
-				TofuWorkStationMenu.this.setupResultSlot();
-			}
-		});
+		this.inputSlot = this.addSlot(new Slot(this.container, 0, 20, 33 - 18));
+		this.inputSlot2 = this.addSlot(new Slot(this.container, 1, 20, 33));
 		this.inputSlot3 = this.addSlot(new Slot(this.container, 2, 20, 33 + 18));
 		this.resultSlot = this.addSlot(new Slot(this.resultContainer, 3, 143, 33) {
 			public boolean mayPlace(ItemStack p_40362_) {
@@ -93,7 +80,7 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 				p_40299_.execute((p_40364_, p_40365_) -> {
 					long l = p_40364_.getGameTime();
 					if (TofuWorkStationMenu.this.lastSoundTime != l) {
-						p_40364_.playSound((Player) null, p_40365_, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, 1.0F);
+						p_40364_.playSound((Player) null, p_40365_, SoundEvents.SMITHING_TABLE_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
 						TofuWorkStationMenu.this.lastSoundTime = l;
 					}
 
@@ -153,22 +140,17 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 	}
 
 	public void slotsChanged(Container p_40302_) {
-		ItemStack itemstack = this.inputSlot.getItem();
-		if (!itemstack.is(this.input.getItem())) {
-			this.input = itemstack.copy();
-			this.setupRecipeList(p_40302_, itemstack);
+		if (p_40302_ == this.container) {
+			this.setupRecipeList(p_40302_);
 		}
 
 	}
 
-	private void setupRecipeList(Container p_40304_, ItemStack p_40305_) {
+	private void setupRecipeList(Container p_40304_) {
 		this.recipes.clear();
 		this.selectedRecipeIndex.set(-1);
 		this.resultSlot.set(ItemStack.EMPTY);
-		if (!p_40305_.isEmpty()) {
-			this.recipes = this.level.getRecipeManager().getRecipesFor(TofuRecipes.RECIPETYPE_TOFU_WORK_STATION.get(), p_40304_, this.level);
-		}
-
+		this.recipes = this.level.getRecipeManager().getRecipesFor(TofuRecipes.RECIPETYPE_TOFU_WORK_STATION.get(), p_40304_, this.level);
 	}
 
 	void setupResultSlot() {
