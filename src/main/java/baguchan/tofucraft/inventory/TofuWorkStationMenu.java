@@ -1,6 +1,7 @@
 package baguchan.tofucraft.inventory;
 
 import baguchan.tofucraft.recipe.TofuWorkStationRecipe;
+import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuRecipes;
 import com.google.common.collect.Lists;
@@ -20,7 +21,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 	final Slot resultSlot;
 	Runnable slotUpdateListener = () -> {
 	};
-	public final Container container = new SimpleContainer(1) {
+	public final Container container = new SimpleContainer(3) {
 		public void setChanged() {
 			super.setChanged();
 			TofuWorkStationMenu.this.slotsChanged(this);
@@ -136,7 +136,7 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 	}
 
 	public boolean stillValid(Player p_40307_) {
-		return stillValid(this.access, p_40307_, Blocks.STONECUTTER);
+		return stillValid(this.access, p_40307_, TofuBlocks.TOFU_WORK_STATION.get());
 	}
 
 	public boolean clickMenuButton(Player p_40309_, int p_40310_) {
@@ -189,7 +189,7 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 	}
 
 	public MenuType<?> getType() {
-		return MenuType.STONECUTTER;
+		return TofuMenus.TOFU_WORK_STATION.get();
 	}
 
 	public void registerUpdateListener(Runnable p_40324_) {
@@ -209,24 +209,24 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 			itemstack = itemstack1.copy();
 			if (p_40329_ == 3) {
 				item.onCraftedBy(itemstack1, p_40328_.level(), p_40328_);
-				if (!this.moveItemStackTo(itemstack1, 2, 38, true)) {
+				if (!this.moveItemStackTo(itemstack1, 2, 38 + 5, true)) {
 					return ItemStack.EMPTY;
 				}
 
 				slot.onQuickCraft(itemstack1, itemstack);
 			} else if (p_40329_ == 0 || p_40329_ == 1 || p_40329_ == 2) {
-				if (!this.moveItemStackTo(itemstack1, 4, 38, false)) {
+				if (!this.moveItemStackTo(itemstack1, 4, 38 + 5, false)) {
 					return ItemStack.EMPTY;
 				}
 			} else if (this.level.getRecipeManager().getRecipeFor(TofuRecipes.RECIPETYPE_TOFU_WORK_STATION.get(), new SimpleContainer(itemstack1), this.level).isPresent()) {
 				if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (p_40329_ >= 5 && p_40329_ < 29) {
-				if (!this.moveItemStackTo(itemstack1, 29, 38, false)) {
+			} else if (p_40329_ >= 5 && p_40329_ < 29 + 5) {
+				if (!this.moveItemStackTo(itemstack1, 29 + 5, 38 + 5, false)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (p_40329_ >= 29 && p_40329_ < 38 && !this.moveItemStackTo(itemstack1, 2, 29, false)) {
+			} else if (p_40329_ >= 29 + 5 && p_40329_ < 38 + 5 && !this.moveItemStackTo(itemstack1, 2, 29, false)) {
 				return ItemStack.EMPTY;
 			}
 

@@ -25,7 +25,7 @@ public class TofuWorkStationScreen extends AbstractContainerScreen<TofuWorkStati
 	private static final ResourceLocation RECIPE_SELECTED_SPRITE = new ResourceLocation("container/stonecutter/recipe_selected");
 	private static final ResourceLocation RECIPE_HIGHLIGHTED_SPRITE = new ResourceLocation("container/stonecutter/recipe_highlighted");
 	private static final ResourceLocation RECIPE_SPRITE = new ResourceLocation("container/stonecutter/recipe");
-	private static final ResourceLocation BG_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tofu_wrok_station.png");
+	private static final ResourceLocation BG_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tofu_work_station.png");
 	private static final int SCROLLER_WIDTH = 12;
 	private static final int SCROLLER_HEIGHT = 15;
 	private static final int RECIPES_COLUMNS = 4;
