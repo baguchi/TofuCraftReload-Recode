@@ -1,23 +1,24 @@
 package baguchan.tofucraft.item;
 
+import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.BowItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 
-public class ZundaBowItem extends BowItem {
-	public ZundaBowItem(Item.Properties tab) {
+public class ZundaBowItem extends BowItem implements IEnergyInsertable {
+	public ZundaBowItem(Properties tab) {
 		super(tab);
 	}
 
@@ -97,5 +98,17 @@ public class ZundaBowItem extends BowItem {
 
 	public int getUseDuration(ItemStack p_40680_) {
 		return 68000;
+	}
+
+	@Override
+	public int fill(ItemStack inst, int energy, boolean simulate) {
+		int calculated = Math.max(energy, inst.getDamageValue());
+		if (!simulate) {
+			if (inst.getDamageValue() > 0) {
+				inst.setDamageValue(Mth.clamp(inst.getDamageValue() - calculated, 0, inst.getMaxDamage()));
+				return energy;
+			}
+		}
+		return 0;
 	}
 }

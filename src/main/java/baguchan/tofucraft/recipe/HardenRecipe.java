@@ -89,7 +89,7 @@ public class HardenRecipe implements Recipe<Inventory> {
 	@Override
 	public RecipeType<?> getType() {
 
-		return TofuRecipes.RECIPETYPE_HARDER;
+		return TofuRecipes.RECIPETYPE_HARDER.get();
 	}
 
 	@Override

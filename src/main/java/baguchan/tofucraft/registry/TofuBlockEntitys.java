@@ -8,6 +8,7 @@ import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
 import baguchan.tofucraft.blockentity.TofuHangingSignBlockEntity;
 import baguchan.tofucraft.blockentity.TofuSignBlockEntity;
+import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
 import com.mojang.datafixers.types.Type;
 import net.minecraft.Util;
 import net.minecraft.util.datafix.fixes.References;
@@ -39,6 +40,7 @@ public class TofuBlockEntitys {
 			TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get(),
 			TofuBlocks.LEEK_HANGING_SIGN.get(),
 			TofuBlocks.LEEK_WALL_HANGING_SIGN.get())));
+	public static final RegistryObject<BlockEntityType<TFStorageBlockEntity>> TF_STORAGE = BLOCK_ENTITIES.register("tf_storage", () -> register("tofucraft:tf_storage", BlockEntityType.Builder.of(TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE.get())));
 
 	private static <T extends BlockEntity> BlockEntityType<T> register(String p_200966_0_, BlockEntityType.Builder<T> p_200966_1_) {
 		Type<?> type = Util.fetchChoiceType(References.BLOCK_ENTITY, p_200966_0_);

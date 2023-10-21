@@ -1,5 +1,6 @@
 package baguchan.tofucraft;
 
+import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.ClientProxy;
@@ -8,6 +9,7 @@ import baguchan.tofucraft.event.CraftingEvents;
 import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
+import baguchan.tofucraft.message.TFStorageSoymilkMessage;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBannerPatterns;
@@ -18,7 +20,6 @@ import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlockSetTypes;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuCarvers;
-import baguchan.tofucraft.registry.TofuContainers;
 import baguchan.tofucraft.registry.TofuCreativeModeTabs;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuFeatures;
@@ -27,6 +28,7 @@ import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuFoliagePlacerType;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuLootModifiers;
+import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
@@ -106,8 +108,9 @@ public class TofuCraftReload {
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
 		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
+		TofuRecipes.RECIPE_TYPES.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
-		TofuContainers.MENU_TYPES.register(modBus);
+		TofuMenus.MENU_TYPES.register(modBus);
 		TofuBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modBus);
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
 		TofuFeatures.FEATURES.register(modBus);
@@ -138,6 +141,7 @@ public class TofuCraftReload {
 			TofuBlocks.flamableInit();
 			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift"));
 			TofuBiomes.init();
+			TofuEnergyMap.init();
 			ModInteractionInformations.init();
 
 			FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
@@ -164,6 +168,10 @@ public class TofuCraftReload {
 		CHANNEL.messageBuilder(SaltFurnaceWaterMessage.class, 2)
 				.encoder(SaltFurnaceWaterMessage::writePacketData).decoder(SaltFurnaceWaterMessage::readPacketData)
 				.consumerMainThread(SaltFurnaceWaterMessage::handle)
+				.add();
+		CHANNEL.messageBuilder(TFStorageSoymilkMessage.class, 3)
+				.encoder(TFStorageSoymilkMessage::writePacketData).decoder(TFStorageSoymilkMessage::readPacketData)
+				.consumerMainThread(TFStorageSoymilkMessage::handle)
 				.add();
 	}
 

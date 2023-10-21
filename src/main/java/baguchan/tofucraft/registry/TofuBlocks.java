@@ -34,6 +34,9 @@ import baguchan.tofucraft.block.crop.RiceRootBlock;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
+import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
+import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
+import baguchan.tofucraft.block.tfenergy.TofuWorkStationBlock;
 import baguchan.tofucraft.block.tree.ApricotLeavesBlock;
 import baguchan.tofucraft.block.tree.ApricotSaplingBlock;
 import baguchan.tofucraft.block.utils.MisoBarrelBlock;
@@ -419,7 +422,14 @@ public class TofuBlocks {
 	public static final RegistryObject<FlowerPotBlock> POTTED_TOFU_SAPLING = BLOCKS.register("potted_tofu_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SAPLING_TOFU, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
 	public static final RegistryObject<FlowerPotBlock> POTTED_ZUNDA_TOFU_MUSHROOM = BLOCKS.register("potted_zunda_tofu_mushroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ZUNDATOFU_MUSHROOM, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
 	public static final RegistryObject<FlowerPotBlock> POTTED_APRICOT_SAPLING = BLOCKS.register("potted_apricot_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SAPLING_APRICOT, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+
 	public static final RegistryObject<Block> TOFU_DETECTOR = register("tofu_detector", () -> new TofuDetectorBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().isRedstoneConductor(TofuBlocks::never)));
+	public static final RegistryObject<Block> TF_STORAGE = register("tf_storage", () -> new TFStorageBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
+		return p_50872_.getValue(TFStorageBlock.LIT) ? 13 : 0;
+	})));
+	public static final RegistryObject<Block> ANTENNA_BASIC = register("antenna_basic", () -> new TFAntennaBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> TOFU_WORK_STATION = register("tofu_work_station", () -> new TofuWorkStationBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+
 
 	private static boolean always(BlockState p_50775_, BlockGetter p_50776_, BlockPos p_50777_) {
 		return true;
@@ -428,7 +438,6 @@ public class TofuBlocks {
 	private static boolean never(BlockState p_50806_, BlockGetter p_50807_, BlockPos p_50808_) {
 		return false;
 	}
-
 
 	private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
 		RegistryObject<T> register = BLOCKS.register(name, block);

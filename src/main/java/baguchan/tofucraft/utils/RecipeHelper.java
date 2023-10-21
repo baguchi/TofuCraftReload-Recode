@@ -29,7 +29,7 @@ public class RecipeHelper {
 
 		if (block.asItem() != null) {
 			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
-				return recipe.getType() == TofuRecipes.RECIPETYPE_HARDER;
+				return recipe.getType() == TofuRecipes.RECIPETYPE_HARDER.get();
 			});
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
 				if (recipe instanceof HardenRecipe && ((HardenRecipe) recipe).getTofu().test(new ItemStack(block.asItem()))) {
@@ -47,7 +47,7 @@ public class RecipeHelper {
 
 		if (fluid != null) {
 			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
-				return recipe.getType() == TofuRecipes.RECIPETYPE_BITTERN;
+				return recipe.getType() == TofuRecipes.RECIPETYPE_BITTERN.get();
 			});
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
 				if (recipe instanceof BitternRecipe && ((BitternRecipe) recipe).getFluid().test(new FluidStack(fluid, 1000))) {

@@ -1,12 +1,13 @@
 package baguchan.tofucraft.item;
 
+import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import baguchan.tofucraft.client.render.item.TofuShieldBWLR;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.TooltipFlag;
@@ -20,12 +21,12 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class TofuShieldItem extends ShieldItem {
+public class TofuShieldItem extends ShieldItem implements IEnergyInsertable {
 	public static final int EFFECTIVE_BLOCK_DELAY = 5;
 	public static final float MINIMUM_DURABILITY_DAMAGE = 3.0F;
 	public static final String TAG_BASE_COLOR = "Base";
 
-	public TofuShieldItem(Item.Properties p_43089_) {
+	public TofuShieldItem(Properties p_43089_) {
 		super(p_43089_);
 		DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);
 	}
@@ -54,4 +55,15 @@ public class TofuShieldItem extends ShieldItem {
 		});
 	}
 
+	@Override
+	public int fill(ItemStack inst, int energy, boolean simulate) {
+		int calculated = Math.max(energy, inst.getDamageValue());
+		if (!simulate) {
+			if (inst.getDamageValue() > 0) {
+				inst.setDamageValue(Mth.clamp(inst.getDamageValue() - calculated, 0, inst.getMaxDamage()));
+				return energy;
+			}
+		}
+		return 0;
+	}
 }

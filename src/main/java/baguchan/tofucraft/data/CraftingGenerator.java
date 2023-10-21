@@ -135,16 +135,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()))
 				.save(consumer, prefix("copy_zunda_template"));
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TOFU_DETECTOR.get(), 1)
-				.pattern("BBB")
-				.pattern("GRR")
-				.pattern("BBB")
-				.define('G', TofuItems.TOFUGEM.get())
-				.define('R', Items.REDSTONE)
-				.define('B', Tags.Items.STONE)
-				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
-				.save(consumer);
-
 		/*swordItem(consumer, "tofu_diamond_sword", TofuItems.TOFU_DIAMOND_SWORD, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
 		pickaxeItem(consumer, "tofu_diamond_pickaxe", TofuItems.TOFU_DIAMOND_PICKAXE, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
 		axeItem(consumer, "tofu_diamond_axe", TofuItems.TOFU_DIAMOND_AXE, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
@@ -1494,5 +1484,77 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('F', Blocks.FURNACE)
 				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
 				.save(consumer, prefix("tofumetal_with_blast_furnace"));
+
+		//TF Energy Blocks Start
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TOFU_DETECTOR.get(), 1)
+				.pattern("BBB")
+				.pattern("GRR")
+				.pattern("BBB")
+				.define('G', TofuItems.TOFUGEM.get())
+				.define('R', Items.REDSTONE)
+				.define('B', Tags.Items.STONE)
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuItems.TF_CAPACITOR.get())
+				.pattern(" M ")
+				.pattern("RGR")
+				.pattern(" M ")
+				.define('M', TofuItems.TOFUMETAL.get())
+				.define('R', Items.REDSTONE)
+				.define('G', TofuItems.TOFUGEM.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuItems.TF_CIRCUIT.get())
+				.pattern("RIR")
+				.pattern("TTT")
+				.define('T', TofuBlocks.ISHITOFU.get())
+				.define('R', Items.REDSTONE)
+				.define('I', TofuItems.TOFUISHI.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuItems.TF_COIL.get())
+				.pattern("RRR")
+				.pattern("TTT")
+				.pattern("RRR")
+				.define('T', TofuItems.TOFUISHI.get())
+				.define('R', Items.REDSTONE)
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuItems.TF_OSCILLATOR.get())
+				.pattern("TCT")
+				.pattern("M M")
+				.define('M', TofuItems.TOFUMETAL.get())
+				.define('T', TofuItems.TOFUKINU.get())
+				.define('C', TofuItems.TF_CIRCUIT.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.ANTENNA_BASIC.get())
+				.pattern(" P ")
+				.pattern("LOR")
+				.pattern("TCT")
+				.define('P', TofuItems.LEEK.get())
+				.define('R', TofuItems.TF_CAPACITOR.get())
+				.define('O', TofuItems.TF_OSCILLATOR.get())
+				.define('L', TofuItems.TF_COIL.get())
+				.define('T', TofuItems.TOFUMETAL.get())
+				.define('C', TofuItems.TF_CIRCUIT.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TF_STORAGE.get())
+				.pattern("CCC")
+				.pattern("GTG")
+				.define('G', Blocks.GLASS)
+				.define('T', TofuBlocks.METALTOFU.get())
+				.define('C', TofuItems.TF_CAPACITOR.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TOFU_WORK_STATION.get())
+				.pattern("MM")
+				.pattern("TT")
+				.pattern("TT")
+				.define('T', TofuBlocks.ISHITOFU.get())
+				.define('M', TofuItems.TOFUMETAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
 	}
 }

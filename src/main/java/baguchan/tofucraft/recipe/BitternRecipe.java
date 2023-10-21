@@ -82,7 +82,7 @@ public class BitternRecipe implements Recipe<Inventory> {
 	@Override
 	public RecipeType<?> getType() {
 
-		return TofuRecipes.RECIPETYPE_BITTERN;
+		return TofuRecipes.RECIPETYPE_BITTERN.get();
 	}
 
 	@Override

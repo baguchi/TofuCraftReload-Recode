@@ -1,0 +1,15 @@
+{
+  "type" : "tofucraft:tofu_work_station",
+  "ingredient" : {
+    "item" : "tofucraft:tofu_core"
+  },
+  "base" : {
+    "item" : "tofucraft:tofu_shield"
+  },
+  "result" : {
+    "item" : "tofucraft:reflect_tofu_shield"
+  },
+  "sub" : {
+    "item" : "tofucraft:tofugem"
+  }
+}

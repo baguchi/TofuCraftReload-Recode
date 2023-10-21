@@ -1,0 +1,21 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "redstone",
+  "key" : {
+    "M" : {
+      "item" : "tofucraft:tofumetal"
+    },
+    "T" : {
+      "item" : "tofucraft:blocktofuishi"
+    }
+  },
+  "pattern" : [
+    "MM",
+    "TT",
+    "TT"
+  ],
+  "result" : {
+    "item" : "tofucraft:tofu_work_station"
+  },
+  "show_notification" : true
+}

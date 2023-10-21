@@ -35,12 +35,14 @@ import baguchan.tofucraft.client.render.tileentity.FoodPlateRender;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
+import baguchan.tofucraft.client.screen.TFStorageScreen;
+import baguchan.tofucraft.client.screen.TofuWorkStationScreen;
 import baguchan.tofucraft.entity.TofuBoat;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.registry.TofuContainers;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuWoodTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.BoatModel;
@@ -91,13 +93,18 @@ public class ClientRegistrar {
 			Sheets.addWoodType(TofuWoodTypes.TOFU_STEM);
 		});
 
-		MenuScreens.register(TofuContainers.SALT_FURNACE.get(), SaltFurnaceScreen::new);
+		MenuScreens.register(TofuMenus.SALT_FURNACE.get(), SaltFurnaceScreen::new);
+		MenuScreens.register(TofuMenus.TF_STORAGE.get(), TFStorageScreen::new);
+		MenuScreens.register(TofuMenus.TOFU_WORK_STATION.get(), TofuWorkStationScreen::new);
 	}
 
 	@SubscribeEvent
 	public static void modelBake(ModelEvent.ModifyBakingResult event) {
 
 		ItemProperties.register(TofuItems.TOFU_SHIELD.get(), new ResourceLocation("blocking"), (p_174590_, p_174591_, p_174592_, p_174593_) -> {
+			return p_174592_ != null && p_174592_.isUsingItem() && p_174592_.getUseItem() == p_174590_ ? 1.0F : 0.0F;
+		});
+		ItemProperties.register(TofuItems.REFLECT_TOFU_SHIELD.get(), new ResourceLocation("blocking"), (p_174590_, p_174591_, p_174592_, p_174593_) -> {
 			return p_174592_ != null && p_174592_.isUsingItem() && p_174592_.getUseItem() == p_174590_ ? 1.0F : 0.0F;
 		});
 		ItemProperties.register(TofuItems.ZUNDA_BOW.get(), new ResourceLocation("pull"), (p_174635_, p_174636_, p_174637_, p_174638_) -> {

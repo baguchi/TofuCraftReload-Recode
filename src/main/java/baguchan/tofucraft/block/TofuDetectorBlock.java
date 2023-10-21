@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -22,7 +21,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 public class TofuDetectorBlock extends DirectionalBlock {
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-	public TofuDetectorBlock(BlockBehaviour.Properties properties) {
+	public TofuDetectorBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.SOUTH).setValue(POWERED, Boolean.valueOf(false)));
 	}

@@ -1,0 +1,19 @@
+{
+  "variants" : {
+    "facing=east" : {
+      "model" : "tofucraft:block/tofu_work_station",
+      "y" : 90
+    },
+    "facing=south" : {
+      "model" : "tofucraft:block/tofu_work_station",
+      "y" : 180
+    },
+    "facing=north" : {
+      "model" : "tofucraft:block/tofu_work_station"
+    },
+    "facing=west" : {
+      "model" : "tofucraft:block/tofu_work_station",
+      "y" : 270
+    }
+  }
+}

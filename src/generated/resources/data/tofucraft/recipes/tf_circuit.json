@@ -1,0 +1,23 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "redstone",
+  "key" : {
+    "I" : {
+      "item" : "tofucraft:tofuishi"
+    },
+    "R" : {
+      "item" : "minecraft:redstone"
+    },
+    "T" : {
+      "item" : "tofucraft:blocktofuishi"
+    }
+  },
+  "pattern" : [
+    "RIR",
+    "TTT"
+  ],
+  "result" : {
+    "item" : "tofucraft:tf_circuit"
+  },
+  "show_notification" : true
+}
