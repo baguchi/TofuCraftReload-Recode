@@ -12,11 +12,11 @@ public class TofuShearsItem extends ShearsItem implements IEnergyInsertable {
 
 	@Override
 	public int fill(ItemStack inst, int energy, boolean simulate) {
-		int calculated = Math.max(energy, inst.getDamageValue());
+		int calculated = Math.min(energy, inst.getDamageValue());
 		if (!simulate) {
 			if (inst.getDamageValue() > 0) {
 				inst.setDamageValue(Mth.clamp(inst.getDamageValue() - calculated, 0, inst.getMaxDamage()));
-				return energy;
+				return calculated;
 			}
 		}
 		return 0;

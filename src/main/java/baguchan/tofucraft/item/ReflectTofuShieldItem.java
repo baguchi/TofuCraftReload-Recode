@@ -54,14 +54,15 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 
 	@Override
 	public int fill(ItemStack inst, int energy, boolean simulate) {
-		int calculated = Math.max(energy, inst.getDamageValue());
+		int calculated = Math.min(energy, inst.getDamageValue());
 		if (!simulate) {
 			if (inst.getDamageValue() > 0) {
 				inst.setDamageValue(Mth.clamp(inst.getDamageValue() - calculated, 0, inst.getMaxDamage()));
-				return energy;
+				return calculated;
 			} else {
 				int calculated2 = Math.min(energy, getEnergyMax(inst) - getEnergy(inst));
 				setEnergy(inst, getEnergy(inst) + calculated2);
+				return calculated2;
 			}
 		}
 		return 0;
