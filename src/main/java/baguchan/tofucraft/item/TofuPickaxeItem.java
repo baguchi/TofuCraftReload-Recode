@@ -1,14 +1,16 @@
 package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
+import baguchan.tofucraft.registry.TofuItemTier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ShearsItem;
+import net.minecraft.world.item.PickaxeItem;
 
-public class TofuShearsItem extends ShearsItem implements IEnergyInsertable {
-	public TofuShearsItem(Properties p_43074_) {
-		super(p_43074_);
+public class TofuPickaxeItem extends PickaxeItem implements IEnergyInsertable {
+	public TofuPickaxeItem(TofuItemTier tofuItemTier, int daamge, float speed, Properties properties) {
+		super(tofuItemTier, daamge, speed, properties);
 	}
+
 
 	@Override
 	public int fill(ItemStack inst, int energy, boolean simulate) {

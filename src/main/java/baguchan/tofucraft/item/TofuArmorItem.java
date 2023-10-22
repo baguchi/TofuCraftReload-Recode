@@ -1,13 +1,17 @@
 package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
+import baguchan.tofucraft.registry.TofuArmorMaterial;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ShearsItem;
 
-public class TofuShearsItem extends ShearsItem implements IEnergyInsertable {
-	public TofuShearsItem(Properties p_43074_) {
-		super(p_43074_);
+public class TofuArmorItem extends ArmorItem implements IEnergyInsertable {
+	public static final String TAG_TF = "tf_energy";
+	public static final String TAG_TFMAX = "tf_energymax";
+
+	public TofuArmorItem(TofuArmorMaterial tofuArmorMaterial, Type type, Properties properties) {
+		super(tofuArmorMaterial, type, properties);
 	}
 
 	@Override
