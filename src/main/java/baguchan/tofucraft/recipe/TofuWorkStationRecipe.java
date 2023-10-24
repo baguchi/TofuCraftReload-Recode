@@ -34,7 +34,28 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 
 	@Override
 	public boolean matches(Container p_266855_, Level p_266781_) {
-		return this.baseIngredient.test(p_266855_.getItem(0)) && this.ingredient.test(p_266855_.getItem(1)) && this.subIngredient.test(p_266855_.getItem(2));
+		return this.hasAnyMatching(p_266855_);
+	}
+
+	private boolean hasAnyMatching(Container container) {
+		boolean flag = false;
+		boolean flag2 = false;
+		boolean flag3 = false;
+
+		for (int i = 0; i < container.getContainerSize(); ++i) {
+			ItemStack itemstack = container.getItem(i);
+			if (this.baseIngredient.test(itemstack)) {
+				flag = true;
+			}
+			if (this.ingredient.test(itemstack)) {
+				flag2 = true;
+			}
+			if (this.subIngredient.test(itemstack)) {
+				flag3 = true;
+			}
+		}
+
+		return flag && flag2 && flag3;
 	}
 
 	@Override

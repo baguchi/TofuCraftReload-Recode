@@ -1,6 +1,7 @@
 package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.registry.TofuEffects;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -46,7 +47,7 @@ public class SoymilkBottleItem extends Item {
 					}
 					cap.setSoyHealthBaseLevel(1 + cap.getSoyHealthBaseLevel());
 				}
-
+				p_41411_.addEffect(new MobEffectInstance(TofuEffects.SOY_HEALTHY.get(), 600 + 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
 				p_41411_.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
 			}
 		});
