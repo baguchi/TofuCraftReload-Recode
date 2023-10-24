@@ -373,10 +373,12 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onShieldEvent(ShieldBlockEvent event) {
-		if (event.getEntity().getUseItem().getItem() instanceof IEnergyContained energyContained) {
+		if (event.getEntity().getUseItem().is(TofuItems.REFLECT_TOFU_SHIELD.get())) {
+			if (event.getEntity().getUseItem().getItem() instanceof IEnergyContained energyContained) {
 
-			if (energyContained.getEnergy(event.getEntity().getUseItem()) >= 50) {
-				event.setShieldTakesDamage(false);
+				if (energyContained.getEnergy(event.getEntity().getUseItem()) >= 50) {
+					event.setShieldTakesDamage(false);
+				}
 			}
 		}
 	}

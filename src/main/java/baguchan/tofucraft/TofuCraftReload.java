@@ -21,6 +21,7 @@ import baguchan.tofucraft.registry.TofuBlockSetTypes;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuCarvers;
 import baguchan.tofucraft.registry.TofuCreativeModeTabs;
+import baguchan.tofucraft.registry.TofuEffects;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuFeatures;
 import baguchan.tofucraft.registry.TofuFluidTypes;
@@ -100,6 +101,7 @@ public class TofuCraftReload {
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuItems.ITEMS.register(modBus);
 		TofuEntityTypes.ENTITIES.register(modBus);
+		TofuEffects.MOB_EFFECTS.register(modBus);
 		TofuFluidTypes.FLUID_TYPES.register(modBus);
 		TofuFluids.FLUIDS.register(modBus);
 		TofuCreativeModeTabs.CREATIVE_MODE_TABS.register(modBus);
@@ -135,6 +137,7 @@ public class TofuCraftReload {
 			TofuBlockSetTypes.init();
 			TofuWoodTypes.init();
 			TofuAdvancements.init();
+
 			TofuItems.registerDispenserItem();
 			TofuItems.registerCompostableItem();
 			TofuItems.registerAnimalFeed();
