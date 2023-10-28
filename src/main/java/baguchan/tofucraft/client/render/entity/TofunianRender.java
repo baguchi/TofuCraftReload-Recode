@@ -52,7 +52,7 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianModel<Tofunian
 			LocalDate localdate = LocalDate.now();
 			int i = localdate.get(ChronoField.DAY_OF_MONTH);
 			int j = localdate.get(ChronoField.MONTH_OF_YEAR);
-			if ((j == 10 && i == 31) || (j == 12)) {
+			if ((j == 10 && i == 31) || (j == 12 && i == 15)) {
 				return BAGU_LOCATION;
 			}
 		}
