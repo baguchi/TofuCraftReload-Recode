@@ -310,6 +310,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		if (p_36347_ instanceof LivingEntity living && living.isDamageSourceBlocked(source)) {
 			this.setRush(false);
 			this.setChargeFailed(true);
+			this.playSound(SoundEvents.PLAYER_ATTACK_KNOCKBACK, 2.0F, 1.0F);
+
 		} else
 		if (p_36347_.isAttackable()) {
 			p_36347_.hurt(source, 16.0F);
