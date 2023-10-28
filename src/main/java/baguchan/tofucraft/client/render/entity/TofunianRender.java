@@ -8,6 +8,7 @@ import baguchan.tofucraft.client.render.layer.TofunianEyeLayer;
 import baguchan.tofucraft.client.render.layer.TofunianRoleLayer;
 import baguchan.tofucraft.entity.Tofunian;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
@@ -16,9 +17,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
+
 @OnlyIn(Dist.CLIENT)
 public class TofunianRender extends MobRenderer<Tofunian, TofunianModel<Tofunian>> {
 	private static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian.png");
+	public static final ResourceLocation BAGU_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagunian.png");
 
 	public TofunianRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_, new TofunianModel<>(p_173956_.bakeLayer(TofuModelLayers.TOFUNIAN)), 0.5F);
@@ -41,7 +46,16 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianModel<Tofunian
 		p_116315_.scale(var4, var4, var4);
 	}
 
-	public ResourceLocation getTextureLocation(Tofunian p_114029_) {
+	public ResourceLocation getTextureLocation(Tofunian entity) {
+		String s = ChatFormatting.stripFormatting(entity.getName().getString());
+		if (s != null && "bagu_chan".equals(s)) {
+			LocalDate localdate = LocalDate.now();
+			int i = localdate.get(ChronoField.DAY_OF_MONTH);
+			int j = localdate.get(ChronoField.MONTH_OF_YEAR);
+			if ((j == 10 && i == 31) || (j == 12)) {
+				return BAGU_LOCATION;
+			}
+		}
 		return LOCATION;
 	}
 }

@@ -12,6 +12,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
+
 @OnlyIn(Dist.CLIENT)
 public class TofunianClothLayer extends RenderLayer<Tofunian, TofunianModel<Tofunian>> {
 	public static final ResourceLocation BAGU_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagu_chan.png");
@@ -32,7 +35,12 @@ public class TofunianClothLayer extends RenderLayer<Tofunian, TofunianModel<Tofu
 	public ResourceLocation getTextureLocation(Tofunian entity) {
 		String s = ChatFormatting.stripFormatting(entity.getName().getString());
 		if (s != null && "bagu_chan".equals(s)) {
-			return BAGU_LOCATION;
+			LocalDate localdate = LocalDate.now();
+			int i = localdate.get(ChronoField.DAY_OF_MONTH);
+			int j = localdate.get(ChronoField.MONTH_OF_YEAR);
+			if (!(j == 10 && i == 31 || (j == 12))) {
+				return BAGU_LOCATION;
+			}
 		}
 
 		if (s != null && ("zundamon".equals(s))) {
