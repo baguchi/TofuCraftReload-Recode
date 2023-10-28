@@ -306,8 +306,13 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	public void rushAttack(Entity p_36347_) {
+		DamageSource source = this.damageSources().mobAttack(this);
+		if (p_36347_ instanceof LivingEntity living && living.isDamageSourceBlocked(source)) {
+			this.setRush(false);
+			this.setChargeFailed(true);
+		} else
 		if (p_36347_.isAttackable()) {
-			p_36347_.hurt(this.damageSources().mobAttack(this), 16.0F);
+			p_36347_.hurt(source, 16.0F);
 			float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
 			i += EnchantmentHelper.getKnockbackBonus(this) + 0.65F;
 
