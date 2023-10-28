@@ -345,77 +345,119 @@ public class ShuDofuSpider extends Monster {
 					var rBlockF = this.level().getBlockState(pos.below().west().west().north());
 					var rBlockB = this.level().getBlockState(pos.below().west().west().south());
 					if (rBlock == air && rBlockF == air && rBlockB == air) {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, -1, 0);
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, -1, 1);
 					} else {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
+						if (this.rightLegAnimation > 0) {
+							this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, -1, 1);
+						} else if (this.rightLegAnimation < 0) {
+							this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, -1, 1);
+
+						}
 					}
 					var lBlock = this.level().getBlockState(pos.below().east().east());
 					var lBlockF = this.level().getBlockState(pos.below().east().east().north());
 					var lBlockB = this.level().getBlockState(pos.below().east().east().south());
 					if (lBlock == air && lBlockF == air && lBlockB == air) {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, -1, 1);
 					} else {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
+						if (this.leftLegAnimation < 0) {
+							this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, -1, 1);
+						} else if (this.leftLegAnimation > 0) {
+							this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, -1, 1);
+
+						}
 					}
 
 				} else if (direction == Direction.EAST) {
-					var rBlock = this.level().getBlockState(pos.below().north().north());
-					var rBlockF = this.level().getBlockState(pos.below().north().north().east());
-					var rBlockB = this.level().getBlockState(pos.below().north().north().west());
-					if (rBlock == air && rBlockF == air && rBlockB == air) {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
+					var rBlock = this.hasEmptyCollisionOnLeg(pos.below().north().north());
+					var rBlockF = this.hasEmptyCollisionOnLeg(pos.below().north().north().east());
+					var rBlockB = this.hasEmptyCollisionOnLeg(pos.below().north().north().west());
+					if (rBlock && rBlockF && rBlockB) {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, -1, 1);
 					} else {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
+						if (this.rightLegAnimation > 0) {
+							this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.1F, -1, 1);
+						} else if (this.rightLegAnimation < 0) {
+							this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, -1, 1);
+						}
 					}
-					var lBlock = this.level().getBlockState(pos.below().south().south());
-					var lBlockF = this.level().getBlockState(pos.below().south().south().east());
-					var lBlockB = this.level().getBlockState(pos.below().south().south().west());
-					if (lBlock == air && lBlockF == air && lBlockB == air) {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
+					var lBlock = this.hasEmptyCollisionOnLeg(pos.below().south().south());
+					var lBlockF = this.hasEmptyCollisionOnLeg(pos.below().south().south().east());
+					var lBlockB = this.hasEmptyCollisionOnLeg(pos.below().south().south().west());
+					if (lBlock && lBlockF && lBlockB) {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.1F, -1, 1);
 					} else {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
+						if (this.leftLegAnimation < 0) {
+							this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.1F, -1, 1);
+						} else if (this.leftLegAnimation > 0) {
+							this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.1F, -1, 1);
+
+						}
 					}
 				} else if (direction == Direction.WEST) {
-					var rBlock = this.level().getBlockState(pos.below().south().south());
-					var rBlockF = this.level().getBlockState(pos.below().south().south().west());
-					var rBlockB = this.level().getBlockState(pos.below().south().south().east());
-					if (rBlock == air && rBlockF == air && rBlockB == air) {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
+					var rBlock = this.hasEmptyCollisionOnLeg(pos.below().south().south());
+					var rBlockF = this.hasEmptyCollisionOnLeg(pos.below().south().south().west());
+					var rBlockB = this.hasEmptyCollisionOnLeg(pos.below().south().south().east());
+					if (rBlock && rBlockF && rBlockB) {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, 0, 1);
 					} else {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
+						if (this.rightLegAnimation > 0) {
+							this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.1F, -1, 1);
+						} else if (this.rightLegAnimation < 0) {
+							this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, -1, 1);
+						}
 					}
-					var lBlock = this.level().getBlockState(pos.below().north().north());
-					var lBlockF = this.level().getBlockState(pos.below().north().north().west());
-					var lBlockB = this.level().getBlockState(pos.below().north().north().east());
-					if (lBlock == air && lBlockF == air && lBlockB == air) {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
+					var lBlock = this.hasEmptyCollisionOnLeg(pos.below().north().north());
+					var lBlockF = this.hasEmptyCollisionOnLeg(pos.below().north().north().west());
+					var lBlockB = this.hasEmptyCollisionOnLeg(pos.below().north().north().east());
+					if (lBlock && lBlockF && lBlockB) {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.1F, 0, 1);
 					} else {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
+						if (this.leftLegAnimation < 0) {
+							this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.1F, -1, 1);
+						} else if (this.leftLegAnimation > 0) {
+							this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.1F, -1, 1);
+
+						}
 					}
 				} else if (direction == Direction.SOUTH) {
-					var rBlock = this.level().getBlockState(pos.below().east().east());
-					var rBlockF = this.level().getBlockState(pos.below().east().east().south());
-					var rBlockB = this.level().getBlockState(pos.below().east().east().north());
-					if (rBlock == air && rBlockF == air && rBlockB == air) {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
+					var rBlock = this.hasEmptyCollisionOnLeg(pos.below().east().east());
+					var rBlockF = this.hasEmptyCollisionOnLeg(pos.below().east().east().south());
+					var rBlockB = this.hasEmptyCollisionOnLeg(pos.below().east().east().north());
+					if (rBlock && rBlockF && rBlockB) {
+						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, 0, 1);
 					} else {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.05F, 0, 1);
+						if (this.rightLegAnimation > 0) {
+							this.rightLegAnimation = Mth.clamp(this.rightLegAnimation - 0.1F, -1, 1);
+						} else if (this.rightLegAnimation < 0) {
+							this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, -1, 1);
+						}
 					}
-					var lBlock = this.level().getBlockState(pos.below().west().west());
-					var lBlockF = this.level().getBlockState(pos.below().west().west().south());
-					var lBlockB = this.level().getBlockState(pos.below().west().west().north());
-					if (lBlock == air && lBlockF == air && lBlockB == air) {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.05F, 0, 1);
+					var lBlock = this.hasEmptyCollisionOnLeg(pos.below().west().west());
+					var lBlockF = this.hasEmptyCollisionOnLeg(pos.below().west().west().south());
+					var lBlockB = this.hasEmptyCollisionOnLeg(pos.below().west().west().north());
+					if (lBlock && lBlockF && lBlockB) {
+						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.1F, 0, 1);
 					} else {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
+						if (this.leftLegAnimation < 0) {
+							this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.1F, -1, 1);
+						} else if (this.leftLegAnimation > 0) {
+							this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.1F, -1, 1);
+
+						}
 					}
 				}
 			} else {
-				this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.05F, 0, 1);
-				this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.05F, 0, 1);
+				this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, -1, 1);
+				this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.1F, -1, 1);
 			}
 		}
 		super.tick();
+	}
+
+	public boolean hasEmptyCollisionOnLeg(BlockPos blockPos) {
+		var rBlock = this.level().getBlockState(blockPos).getCollisionShape(this.level(), blockPos).isEmpty();
+		return rBlock;
 	}
 
 	@OnlyIn(Dist.CLIENT)
