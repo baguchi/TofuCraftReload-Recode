@@ -238,7 +238,9 @@ public class ShuDofuSpider extends Monster {
 					List<LivingEntity> entitiesHit = this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
-							doHurtTarget(entity);
+							if (this.canAttack(entity)) {
+								doHurtTarget(entity);
+							}
 						}
 					}
 					this.attackTime = 0;
@@ -314,10 +316,12 @@ public class ShuDofuSpider extends Monster {
 					List<LivingEntity> entitiesHit = ShuDofuSpider.this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
-							double d12 = Math.sqrt(entity.distanceToSqr(entity)) / (double) radius * 2.0F;
-							double d14 = (double) Explosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
-							double d10 = (1.0D - d12) * d14;
-							entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) ((d10 * d10 + d10) / 2.0D * 30.0D));
+							if (this.canAttack(entity)) {
+								double d12 = Math.sqrt(entity.distanceToSqr(entity)) / (double) radius * 2.0F;
+								double d14 = (double) Explosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
+								double d10 = (1.0D - d12) * d14;
+								entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) ((d10 * d10 + d10) / 2.0D * 30.0D));
+							}
 						}
 					}
 					playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0f, 1.0f);
