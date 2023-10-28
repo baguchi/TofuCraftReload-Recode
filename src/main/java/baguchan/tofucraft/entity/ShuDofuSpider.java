@@ -320,7 +320,7 @@ public class ShuDofuSpider extends Monster {
 								double d12 = Math.sqrt(entity.distanceToSqr(entity)) / (double) radius * 2.0F;
 								double d14 = (double) Explosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
 								double d10 = (1.0D - d12) * d14;
-								entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) ((d10 * d10 + d10) / 2.0D * 30.0D));
+								entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) ((d10 * d10 + d10) / 2.0D * 38.0D));
 							}
 						}
 					}
