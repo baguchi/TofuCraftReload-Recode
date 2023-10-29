@@ -1188,9 +1188,10 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			super.start();
 		}
 
-		public void tick() {
+		@Override
+		public void stop() {
+			super.stop();
 			this.tofunian.setAction(Actions.NORMAL);
-			super.tick();
 		}
 	}
 }
