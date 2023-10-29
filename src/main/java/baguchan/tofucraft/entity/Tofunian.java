@@ -997,7 +997,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public enum Actions implements IExtensibleEnum {
 		NORMAL(true, -1),
-		CRY(true, 60),
+		CRY(true, 80),
 		ASK_FOOD(true, -1),
 		HAPPY(false, 30),
 		EAT(true, -1);
