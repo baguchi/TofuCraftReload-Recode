@@ -59,6 +59,8 @@ public class TofunianModel<T extends Tofunian> extends AbstractTofunianModel<T> 
 			this.applyStatic(TofunianAnimation.CRY);
 		} else if (entity.getAction() == Tofunian.Actions.ASK_FOOD) {
 			this.applyStatic(TofunianAnimation.ASK_FOOD);
+		} else if (entity.getAction() == Tofunian.Actions.AVOID) {
+			this.applyStatic(TofunianAnimation.AVOIDING);
 		}
 	}
 }

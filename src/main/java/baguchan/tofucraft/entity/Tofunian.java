@@ -189,15 +189,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			}
 		});
 		this.goalSelector.addGoal(1, new OpenTofuDoorGoal(this, true));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.2D, 1.25D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Evoker.class, 12.0F, 1.2D, 1.3D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Vindicator.class, 8.0F, 1.2D, 1.3D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Vex.class, 8.0F, 1.2D, 1.3D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Pillager.class, 15.0F, 1.2D, 1.3D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Illusioner.class, 12.0F, 1.2D, 1.3D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zoglin.class, 10.0F, 1.2D, 1.3D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, ShuDofuSpider.class, 10.0F, 1.2D, 1.3D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, TofuGandlem.class, 10.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.2D, 1.25D));
+		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Evoker.class, 12.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Vindicator.class, 8.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Vex.class, 8.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Pillager.class, 15.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Illusioner.class, 12.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Zoglin.class, 10.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, ShuDofuSpider.class, 10.0F, 1.2D, 1.3D));
+		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, TofuGandlem.class, 10.0F, 1.2D, 1.3D));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.3D));
 		this.goalSelector.addGoal(1, new LookAtTofunianTradingPlayerGoal(this));
 		this.goalSelector.addGoal(2, new TofunianSleepOnBedGoal(this, 0.85F, 6));
@@ -1171,6 +1171,26 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			}
 
 			return false;
+		}
+	}
+
+	class TofunianAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {
+		private final Tofunian tofunian;
+
+		public TofunianAvoidEntityGoal(Tofunian p_30454_, Class<T> p_30455_, float p_30456_, double p_30457_, double p_30458_) {
+			super(p_30454_, p_30455_, p_30456_, p_30457_, p_30458_);
+			this.tofunian = p_30454_;
+		}
+
+
+		public void start() {
+			this.tofunian.setAction(Actions.AVOID);
+			super.start();
+		}
+
+		public void tick() {
+			this.tofunian.setAction(Actions.NORMAL);
+			super.tick();
 		}
 	}
 }
