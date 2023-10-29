@@ -27,6 +27,7 @@ public class ShareItemAndGossipGoal extends Goal {
 	protected Tofunian partner;
 
 	private boolean needPassed;
+	private boolean alreadyGossiped;
 
 	private int tryingTalkingTick;
 
@@ -57,12 +58,14 @@ public class ShareItemAndGossipGoal extends Goal {
 		if (this.partner.wantsMoreFood() && this.tofunian.hasExcessFood()) {
 			this.needPassed = true;
 		}
+
 	}
 
 	@Override
 	public void stop() {
 		super.stop();
 		this.tryingTalkingTick = 0;
+		this.alreadyGossiped = false;
 	}
 
 	@Nullable
@@ -95,8 +98,11 @@ public class ShareItemAndGossipGoal extends Goal {
 					this.partner.setAction(Tofunian.Actions.HAPPY);
 
 				}
-				if (this.tofunian.level() instanceof ServerLevel) {
-					this.tofunian.gossip((ServerLevel) this.tofunian.level(), this.partner, this.tofunian.level().getGameTime());
+				if (!this.alreadyGossiped) {
+					if (this.tofunian.level() instanceof ServerLevel) {
+						this.tofunian.gossip((ServerLevel) this.tofunian.level(), this.partner, this.tofunian.level().getGameTime());
+					}
+					this.alreadyGossiped = true;
 				}
 			} else {
 				this.tofunian.getNavigation().moveTo(this.partner, 1.0D);
@@ -149,4 +155,8 @@ public class ShareItemAndGossipGoal extends Goal {
 
 	}
 
+	@Override
+	public boolean requiresUpdateEveryTick() {
+		return true;
+	}
 }

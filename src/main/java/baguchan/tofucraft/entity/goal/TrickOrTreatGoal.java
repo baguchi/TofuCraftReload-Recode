@@ -94,4 +94,8 @@ public class TrickOrTreatGoal extends Goal {
 		}
 	}
 
+	@Override
+	public boolean requiresUpdateEveryTick() {
+		return true;
+	}
 }

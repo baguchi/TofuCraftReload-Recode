@@ -90,4 +90,17 @@ public class TofunianAnimation {
 									AnimationChannel.Interpolations.LINEAR),
 							new Keyframe(0.5f, KeyframeAnimations.degreeVec(-112.8f, 28.02f, -11.17f),
 									AnimationChannel.Interpolations.LINEAR))).build();
+	public static final AnimationDefinition AVOIDING = AnimationDefinition.Builder.withLength(0f)
+			.addAnimation("head",
+					new AnimationChannel(AnimationChannel.Targets.ROTATION,
+							new Keyframe(0f, KeyframeAnimations.degreeVec(-25f, 0f, 0f),
+									AnimationChannel.Interpolations.LINEAR)))
+			.addAnimation("right_arm",
+					new AnimationChannel(AnimationChannel.Targets.ROTATION,
+							new Keyframe(0f, KeyframeAnimations.degreeVec(-208.81f, -25.66f, -16.1f),
+									AnimationChannel.Interpolations.LINEAR)))
+			.addAnimation("left_arm",
+					new AnimationChannel(AnimationChannel.Targets.ROTATION,
+							new Keyframe(0f, KeyframeAnimations.degreeVec(-192.78f, -1.15f, 27.48f),
+									AnimationChannel.Interpolations.LINEAR))).build();
 }

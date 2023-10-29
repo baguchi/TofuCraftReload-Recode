@@ -181,7 +181,13 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(0, new WakeUpGoal(this));
 		this.goalSelector.addGoal(0, new DoSleepingGoal(this));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(1, new TofunianTradeWithPlayerGoal(this));
+		this.goalSelector.addGoal(1, new TofunianTradeWithPlayerGoal(this) {
+			@Override
+			public void start() {
+				super.start();
+				setAction(Actions.NORMAL);
+			}
+		});
 		this.goalSelector.addGoal(1, new OpenTofuDoorGoal(this, true));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.2D, 1.25D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Evoker.class, 12.0F, 1.2D, 1.3D));
@@ -927,7 +933,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			AABB aabb = this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D);
 			List<Tofunian> list = p_35398_.getEntitiesOfClass(Tofunian.class, aabb);
 			List<Tofunian> list1 = list.stream().filter((p_186293_) -> {
-				return p_186293_.wantsToSpawnGolem(p_35398_, p_35399_);
+				return p_186293_.wantsToSpawnGolem(p_35398_, p_35399_) && p_186293_.getTofunianHome() != null;
 			}).limit(5L).collect(Collectors.toList());
 			if (list1.size() >= p_35400_) {
 				if (SpawnUtil.trySpawnMob(TofuEntityTypes.TOFU_GOLEM.get(), MobSpawnType.MOB_SUMMONED, p_35398_, this.blockPosition(), 10, 8, 6, SpawnUtil.Strategy.LEGACY_IRON_GOLEM).isPresent()) {
@@ -937,7 +943,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	private boolean wantsToSpawnGolem(ServerLevel p_35398_, long p_35399_) {
-		AABB aabb = this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D);
+		AABB aabb = this.getBoundingBox().inflate(14.0D, 14.0D, 14.0D);
 		List<TofuGolem> list = p_35398_.getEntitiesOfClass(TofuGolem.class, aabb);
 
 		if (list.isEmpty()) {
@@ -998,6 +1004,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public enum Actions implements IExtensibleEnum {
 		NORMAL(true, -1),
 		CRY(true, 80),
+		AVOID(true, -1),
 		ASK_FOOD(true, -1),
 		HAPPY(false, 30),
 		EAT(true, -1);
