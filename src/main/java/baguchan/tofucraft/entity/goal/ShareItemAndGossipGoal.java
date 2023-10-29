@@ -50,7 +50,7 @@ public class ShareItemAndGossipGoal extends Goal {
 	}
 
 	public boolean canContinueToUse() {
-		return (this.tryingTalkingTick < 300 && this.partner != null && this.partner.isAlive());
+		return (this.tryingTalkingTick < 300 && this.partner != null && this.partner.isAlive() && this.tofunian.distanceToSqr(this.partner) < 64);
 	}
 
 	public void start() {
@@ -92,7 +92,7 @@ public class ShareItemAndGossipGoal extends Goal {
 					throwHalfStack(this.tofunian, Tofunian.FOOD_POINTS.keySet(), this.partner);
 					this.needPassed = false;
 					this.tofunian.level().broadcastEntityEvent(this.tofunian, (byte) 5);
-
+					this.partner.setAction(Tofunian.Actions.HAPPY);
 				}
 				if (this.tofunian.level() instanceof ServerLevel) {
 					this.tofunian.gossip((ServerLevel) this.tofunian.level(), this.partner, this.tofunian.level().getGameTime());

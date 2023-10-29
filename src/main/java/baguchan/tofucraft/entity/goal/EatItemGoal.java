@@ -20,9 +20,16 @@ public class EatItemGoal<T extends Tofunian> extends Goal {
 	}
 
 	public boolean canUse() {
+		if (this.mob.getAction() == Tofunian.Actions.HAPPY) {
+			return false;
+		}
+		if (!this.mob.getMainHandItem().isEmpty() && this.mob.getMainHandItem().getFoodProperties(this.mob) != null) {
+			return true;
+		}
 		if (this.canUseSelector.test(this.mob)) {
 			return this.mob.eatFood();
 		}
+
 		return false;
 	}
 
@@ -31,10 +38,12 @@ public class EatItemGoal<T extends Tofunian> extends Goal {
 	}
 
 	public void start() {
+		this.mob.setAction(Tofunian.Actions.EAT);
 		this.mob.startUsingItem(InteractionHand.MAIN_HAND);
 	}
 
 	public void stop() {
+		this.mob.setAction(Tofunian.Actions.NORMAL);
 		this.mob.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 	}
 }

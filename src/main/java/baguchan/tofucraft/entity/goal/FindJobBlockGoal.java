@@ -60,7 +60,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 									return p_217109_.equals(this.blockPos);
 								}, this.blockPos, 1);
 								DebugPackets.sendPoiTicketCountPacket(((ServerLevel) this.creature.level()), this.blockPos);
-								this.creature.setTofunainJobBlock(this.blockPos);
+								this.creature.setTofunianJobBlock(this.blockPos);
 								if (this.creature.getRole() == Tofunian.Roles.TOFUNIAN) {
 									this.creature.setRole(role);
 									this.creature.setOffers(null);
