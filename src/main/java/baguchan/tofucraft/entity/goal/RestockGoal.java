@@ -44,9 +44,9 @@ public class RestockGoal extends MoveToBlockGoal {
 
 
 	protected boolean findNearestBlock() {
-		if (this.creature.getTofunainJobBlock() != null &&
-				isValidTarget(this.creature.level(), this.creature.getTofunainJobBlock())) {
-			this.blockPos = this.creature.getTofunainJobBlock();
+		if (this.creature.getTofunianJobBlock() != null &&
+				isValidTarget(this.creature.level(), this.creature.getTofunianJobBlock())) {
+			this.blockPos = this.creature.getTofunianJobBlock();
 			return true;
 		}
 		return false;

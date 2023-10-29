@@ -219,7 +219,7 @@ public class TofuBlocks {
 			.sound(SoundType.CHAIN)));
 	public static final RegistryObject<Block> TOFU_METAL_LANTERN = register("tofu_metal_lantern", () -> new LanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN).lightLevel(state -> 15)
 			.sound(SoundType.LANTERN)));
-	public static final RegistryObject<Block> TOFU_METAL_SOUL_LANTERN = register("tofu_metal_soul_lantern", () -> new LanternBlock(BlockBehaviour.Properties.copy(Blocks.SOUL_LANTERN).lightLevel(state -> 15)
+	public static final RegistryObject<Block> TOFU_METAL_SOUL_LANTERN = register("tofu_metal_soul_lantern", () -> new LanternBlock(BlockBehaviour.Properties.copy(Blocks.SOUL_LANTERN).lightLevel(state -> 10)
 			.sound(SoundType.LANTERN)));
 
 	public static final RegistryObject<Block> TOFULADDER_KINU = register("tofuladder_kinu", () -> new LadderBlock(BlockBehaviour.Properties.copy(KINUTOFU.get()).noOcclusion()));

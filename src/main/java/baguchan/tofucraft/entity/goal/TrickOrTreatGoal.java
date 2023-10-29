@@ -1,18 +1,10 @@
 package baguchan.tofucraft.entity.goal;
 
 import baguchan.tofucraft.entity.Tofunian;
-import baguchan.tofucraft.registry.TofuLootTables;
 import baguchan.tofucraft.utils.DayHelper;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.storage.loot.LootParams;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -47,7 +39,7 @@ public class TrickOrTreatGoal extends Goal {
 			return false;
 		}
 		if (this.tofunian.level().isNight() && !this.tofunian.isBaby() && this.tofunian.getMainHandItem().isEmpty()) {
-			this.nextStartTick = this.tofunian.getRandom().nextInt(200) + 400;
+			this.nextStartTick = this.tofunian.getRandom().nextInt(600) + 600;
 			this.partner = getFreePartner();
 			return (this.partner != null);
 		}
@@ -65,20 +57,10 @@ public class TrickOrTreatGoal extends Goal {
 	@Override
 	public void stop() {
 		super.stop();
-		if (this.tofunian.getAction() != Tofunian.Actions.HAPPY) {
+		if (this.tofunian.getPreviousTreat() == null) {
 			this.tofunian.setAction(Tofunian.Actions.CRY);
-		} else {
-			for (ItemStack itemstack : getItemToThrow(this.tofunian)) {
-				BehaviorUtils.throwItem(this.tofunian, itemstack, partner.position());
-			}
 		}
 		this.tryingTalkingTick = 0;
-	}
-
-	private List<ItemStack> getItemToThrow(Tofunian p_23010_) {
-		LootTable loottable = p_23010_.level().getServer().getLootData().getLootTable(TofuLootTables.TOFUNIAN_GIFT_LOOT_TABLE);
-		LootParams lootparams = (new LootParams.Builder((ServerLevel) p_23010_.level())).withParameter(LootContextParams.ORIGIN, p_23010_.position()).withParameter(LootContextParams.THIS_ENTITY, p_23010_).create(LootContextParamSets.GIFT);
-		return loottable.getRandomItems(lootparams);
 	}
 
 	@Nullable
@@ -101,6 +83,7 @@ public class TrickOrTreatGoal extends Goal {
 		if (this.tofunian.hasLineOfSight(this.partner)) {
 
 			if (this.tofunian.distanceToSqr(this.partner) < 6.0F) {
+				this.tofunian.getNavigation().stop();
 				this.tofunian.getLookControl().setLookAt(this.partner, 30.0F, 30.0F);
 			} else {
 				this.tofunian.getNavigation().moveTo(this.partner, 1.0D);

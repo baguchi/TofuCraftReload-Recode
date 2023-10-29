@@ -38,11 +38,11 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isDay() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isDay() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunianJobBlock() == null) && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return !this.findBlock && (super.canContinueToUse() && this.creature.level().isDay() && !this.creature.isBaby() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null) && this.mob != null);
+		return !this.findBlock && (super.canContinueToUse() && this.creature.level().isDay() && !this.creature.isBaby() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunianJobBlock() == null) && this.mob != null);
 	}
 
 	public void tick() {
@@ -92,7 +92,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 				/*
 				 * Find Tofunian's poitype
 				 */
-				if ((this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunainJobBlock() == null)) {
+				if ((this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunianJobBlock() == null)) {
 					Optional<Pair<Holder<PoiType>, BlockPos>> pair = set.stream().findFirst();
 					if (((ServerLevel) this.creature.level()).getPoiManager().exists(pair.get().getSecond(), (p_217230_) -> {
 						return true;
@@ -128,7 +128,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 		List<Tofunian> list = tofunian.level().getEntitiesOfClass(Tofunian.class, tofunian.getBoundingBox().inflate(32.0D));
 
 		return list.stream().anyMatch((p_34881_) -> {
-			return p_34881_ != tofunian && (pos.equals(p_34881_.getTofunainJobBlock()));
+			return p_34881_ != tofunian && (pos.equals(p_34881_.getTofunianJobBlock()));
 		});
 	}
 

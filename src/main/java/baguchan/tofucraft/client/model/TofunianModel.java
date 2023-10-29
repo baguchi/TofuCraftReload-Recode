@@ -46,10 +46,16 @@ public class TofunianModel<T extends Tofunian> extends AbstractTofunianModel<T> 
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 		this.head.yRot = netHeadYaw * 0.017453292F;
+		if (entity.getAction() != Tofunian.Actions.NORMAL) {
+			this.rightArm.xRot = 0.0F;
+			this.leftArm.xRot = 0.0F;
+		}
 		this.animate(entity.agreeAnimationState, TofunianAnimation.AGREE, ageInTicks);
 		this.animate(entity.happyAnimationState, TofunianAnimation.HAPPY, ageInTicks);
 		this.animate(entity.eatFoodAnimationState, TofunianAnimation.EAT, ageInTicks);
 		if (entity.getAction() == Tofunian.Actions.CRY) {
+			this.head.xRot = 0.0F;
+			this.head.yRot = 0.0F;
 			this.applyStatic(TofunianAnimation.CRY);
 		} else if (entity.getAction() == Tofunian.Actions.ASK_FOOD) {
 			this.applyStatic(TofunianAnimation.ASK_FOOD);

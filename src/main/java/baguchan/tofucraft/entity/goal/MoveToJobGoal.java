@@ -16,11 +16,11 @@ public class MoveToJobGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.getTofunainJobBlock() != null && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.getTofunianJobBlock() != null && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level().isDay() && this.creature.getTofunainJobBlock() != null && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
+		return (super.canContinueToUse() && this.creature.level().isDay() && this.creature.getTofunianJobBlock() != null && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
 	}
 
 	@Override
@@ -31,9 +31,9 @@ public class MoveToJobGoal extends MoveToBlockGoal {
 
 
 	protected boolean findNearestBlock() {
-		if (this.creature.getTofunainJobBlock() != null &&
-				isValidTarget(this.creature.level(), this.creature.getTofunainJobBlock())) {
-			this.blockPos = this.creature.getTofunainJobBlock();
+		if (this.creature.getTofunianJobBlock() != null &&
+				isValidTarget(this.creature.level(), this.creature.getTofunianJobBlock())) {
+			this.blockPos = this.creature.getTofunianJobBlock();
 			return true;
 		}
 		return false;

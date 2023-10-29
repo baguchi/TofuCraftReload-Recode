@@ -86,13 +86,14 @@ public class ShareItemAndGossipGoal extends Goal {
 
 			if (this.tofunian.distanceToSqr(this.partner) < 6.0F) {
 				this.tofunian.getLookControl().setLookAt(this.partner, 30.0F, 30.0F);
-
+				this.tofunian.getNavigation().stop();
 				if (this.needPassed) {
 
 					throwHalfStack(this.tofunian, Tofunian.FOOD_POINTS.keySet(), this.partner);
 					this.needPassed = false;
 					this.tofunian.level().broadcastEntityEvent(this.tofunian, (byte) 5);
 					this.partner.setAction(Tofunian.Actions.HAPPY);
+
 				}
 				if (this.tofunian.level() instanceof ServerLevel) {
 					this.tofunian.gossip((ServerLevel) this.tofunian.level(), this.partner, this.tofunian.level().getGameTime());

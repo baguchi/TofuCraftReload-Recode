@@ -19,6 +19,7 @@ import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.registry.TofuTrades;
 import com.google.common.collect.ImmutableMap;
@@ -155,6 +156,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@Nullable
 	private Player previousCustomer;
+
+	@Nullable
+	private Player previousTreat;
 
 	private int xp;
 
@@ -320,12 +324,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.actionTicks();
 		if (this.level().isClientSide) {
 			this.actionAnimations(this.getAction(), true);
+			if (this.getAction() == Actions.CRY) {
+				this.level().addParticle(TofuParticleTypes.SOYMILK_SPLASH.get(), this.getX(), this.getEyeY(), this.getZ(), Mth.nextFloat(this.random, -1, 1) * 0.15D, 0.05D, Mth.nextFloat(this.random, -1, 1) * 0.15D);
+			}
 		}
 	}
 
 	public void actionTicks() {
 		if (getAction().tick > -1) {
-			if (getAction().tick >= this.actionTick) {
+			if (getAction().tick <= this.actionTick) {
 				this.actionTick = 0;
 				setAction(Actions.NORMAL);
 			} else {
@@ -345,7 +352,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 					happyAnimationState.start(this.tickCount);
 					break;
 				case EAT:
-					this.stopAnimations();
+					if (!loop && !actions.loop) {
+						this.stopAnimations();
+					}
 					eatFoodAnimationState.startIfStopped(this.tickCount);
 					break;
 				case NORMAL:
@@ -363,6 +372,14 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		happyAnimationState.stop();
 	}
 
+	@Nullable
+	public Player getPreviousTreat() {
+		return previousTreat;
+	}
+
+	public void setPreviousTreat(@Nullable Player previousTreat) {
+		this.previousTreat = previousTreat;
+	}
 
 	public void tofunianJobCheck() {
 		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
@@ -456,11 +473,11 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				if (this.getAction() == Actions.ASK_FOOD && this.getMainHandItem().isEmpty()) {
 					if (this.isAcceptFoods(itemstack)) {
 						this.setItemInHand(InteractionHand.MAIN_HAND, itemstack.split(1));
-						this.setAction(Actions.HAPPY);
+						this.setPreviousTreat(p_35472_);
 						return InteractionResult.SUCCESS;
 					}
 				}
-				if (this.getAction() == Actions.HAPPY) {
+				if (this.getAction() == Actions.HAPPY || this.getAction() == Actions.EAT || this.getAction() == Actions.CRY) {
 					return InteractionResult.CONSUME;
 
 				}
@@ -920,7 +937,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	private boolean wantsToSpawnGolem(ServerLevel p_35398_, long p_35399_) {
-		AABB aabb = this.getBoundingBox().inflate(10.0D, 10.0D, 10.0D);
+		AABB aabb = this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D);
 		List<TofuGolem> list = p_35398_.getEntitiesOfClass(TofuGolem.class, aabb);
 
 		if (list.isEmpty()) {

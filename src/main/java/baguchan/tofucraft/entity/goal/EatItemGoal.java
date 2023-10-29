@@ -1,13 +1,21 @@
 package baguchan.tofucraft.entity.goal;
 
 import baguchan.tofucraft.entity.Tofunian;
+import baguchan.tofucraft.registry.TofuLootTables;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class EatItemGoal<T extends Tofunian> extends Goal {
@@ -20,9 +28,6 @@ public class EatItemGoal<T extends Tofunian> extends Goal {
 	}
 
 	public boolean canUse() {
-		if (this.mob.getAction() == Tofunian.Actions.HAPPY) {
-			return false;
-		}
 		if (!this.mob.getMainHandItem().isEmpty() && this.mob.getMainHandItem().getFoodProperties(this.mob) != null) {
 			return true;
 		}
@@ -43,7 +48,21 @@ public class EatItemGoal<T extends Tofunian> extends Goal {
 	}
 
 	public void stop() {
-		this.mob.setAction(Tofunian.Actions.NORMAL);
+		if (this.mob.getPreviousTreat() != null) {
+			for (ItemStack itemstack : getItemToThrow(this.mob)) {
+				BehaviorUtils.throwItem(this.mob, itemstack, this.mob.getPreviousTreat().position());
+			}
+			this.mob.setPreviousTreat(null);
+			this.mob.setAction(Tofunian.Actions.HAPPY);
+		} else {
+			this.mob.setAction(Tofunian.Actions.NORMAL);
+		}
 		this.mob.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+	}
+
+	private List<ItemStack> getItemToThrow(Tofunian p_23010_) {
+		LootTable loottable = p_23010_.level().getServer().getLootData().getLootTable(TofuLootTables.TOFUNIAN_GIFT_LOOT_TABLE);
+		LootParams lootparams = (new LootParams.Builder((ServerLevel) p_23010_.level())).withParameter(LootContextParams.ORIGIN, p_23010_.position()).withParameter(LootContextParams.THIS_ENTITY, p_23010_).create(LootContextParamSets.GIFT);
+		return loottable.getRandomItems(lootparams);
 	}
 }
