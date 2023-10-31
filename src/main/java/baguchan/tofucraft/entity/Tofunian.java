@@ -166,7 +166,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	private int actionTick;
 
-	public final AnimationState agreeAnimationState = new AnimationState();
 	public final AnimationState happyAnimationState = new AnimationState();
 	public final AnimationState eatFoodAnimationState = new AnimationState();
 
@@ -660,7 +659,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	private void increaseMerchantCareer() {
 		setTofunianLevel(this.tofunianLevel + 1);
 		updateTrades();
-		this.level().broadcastEntityEvent(this, (byte) 5);
+		this.setAction(Actions.HAPPY);
 	}
 
 	public void setTofunianLevel(int level) {
@@ -877,9 +876,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@OnlyIn(Dist.CLIENT)
 	public void handleEntityEvent(byte p_70103_1_) {
-		if (p_70103_1_ == 5) {
-			this.agreeAnimationState.start(this.tickCount);
-		} else if (p_70103_1_ == 12) {
+		if (p_70103_1_ == 12) {
 			this.addParticlesAroundSelf(ParticleTypes.HEART);
 		} else if (p_70103_1_ == 13) {
 			this.addParticlesAroundSelf(ParticleTypes.ANGRY_VILLAGER);
