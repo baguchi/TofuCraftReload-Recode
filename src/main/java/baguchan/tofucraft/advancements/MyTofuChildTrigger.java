@@ -9,17 +9,14 @@ import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 
+import java.util.Optional;
+
 public class MyTofuChildTrigger extends SimpleCriterionTrigger<MyTofuChildTrigger.Instance> {
 
 	public static final ResourceLocation ID = TofuCraftReload.prefix("my_tofu_child");
 
 	@Override
-	public ResourceLocation getId() {
-		return ID;
-	}
-
-	@Override
-	protected Instance createInstance(JsonObject json, ContextAwarePredicate player, DeserializationContext ctx) {
+	protected Instance createInstance(JsonObject json, Optional<ContextAwarePredicate> player, DeserializationContext ctx) {
 		return new Instance(player);
 	}
 
@@ -28,12 +25,8 @@ public class MyTofuChildTrigger extends SimpleCriterionTrigger<MyTofuChildTrigge
 	}
 
 	public static class Instance extends AbstractCriterionTriggerInstance {
-		public Instance(ContextAwarePredicate player) {
-			super(MyTofuChildTrigger.ID, player);
-		}
-
-		public static Instance killThemAll() {
-			return new Instance(ContextAwarePredicate.ANY);
+		public Instance(Optional<ContextAwarePredicate> player) {
+			super(player);
 		}
 	}
 }

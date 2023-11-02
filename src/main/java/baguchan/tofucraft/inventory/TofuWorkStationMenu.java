@@ -19,6 +19,7 @@ import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 	private final ContainerLevelAccess access;
 	private final DataSlot selectedRecipeIndex = DataSlot.standalone();
 	private final Level level;
-	private List<TofuWorkStationRecipe> recipes = Lists.newArrayList();
+	private List<RecipeHolder<TofuWorkStationRecipe>> recipes = Lists.newArrayList();
 	long lastSoundTime;
 	final Slot inputSlot;
 	final Slot inputSlot2;
@@ -109,7 +110,7 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 		return this.selectedRecipeIndex.get();
 	}
 
-	public List<TofuWorkStationRecipe> getRecipes() {
+	public List<RecipeHolder<TofuWorkStationRecipe>> getRecipes() {
 		return this.recipes;
 	}
 
@@ -154,8 +155,8 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 
 	void setupResultSlot() {
 		if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipeIndex.get())) {
-			TofuWorkStationRecipe recipeholder = this.recipes.get(this.selectedRecipeIndex.get());
-			ItemStack itemstack = recipeholder.assemble(this.container, this.level.registryAccess());
+			RecipeHolder<TofuWorkStationRecipe> recipeholder = this.recipes.get(this.selectedRecipeIndex.get());
+			ItemStack itemstack = recipeholder.value().assemble(this.container, this.level.registryAccess());
 			if (itemstack.isItemEnabled(this.level.enabledFeatures())) {
 				this.resultContainer.setRecipeUsed(recipeholder);
 				this.resultSlot.set(itemstack);

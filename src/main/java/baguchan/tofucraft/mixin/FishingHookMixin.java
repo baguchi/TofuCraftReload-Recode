@@ -29,6 +29,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.neoforged.neoforge.common.NeoForge;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -40,7 +41,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-@Mixin(FishingHook.class)
+@Mixin(value = FishingHook.class, remap = false)
 public abstract class FishingHookMixin extends Projectile {
 
 	@Shadow
@@ -81,13 +82,13 @@ public abstract class FishingHookMixin extends Projectile {
 		Player player = this.getPlayerOwner();
 		FishingHook fishingHook = (FishingHook) ((Object) this);
 		if (!this.level().isClientSide && player != null && !this.shouldStopFishing(player)) {
-			net.minecraftforge.event.entity.player.ItemFishedEvent event = null;
+			net.neoforged.neoforge.event.entity.player.ItemFishedEvent event = null;
 			if (this.level() != null && this.level().dimension().equals(TofuDimensions.tofu_world) && this.nibble > 0) {
 				LootParams lootparams = (new LootParams.Builder((ServerLevel) this.level())).withParameter(LootContextParams.ORIGIN, this.position()).withParameter(LootContextParams.TOOL, p_37157_).withParameter(LootContextParams.THIS_ENTITY, this).withParameter(LootContextParams.KILLER_ENTITY, this.getOwner()).withParameter(LootContextParams.THIS_ENTITY, this).withLuck((float) this.luck + player.getLuck()).create(LootContextParamSets.FISHING);
 				LootTable loottable = this.level().getServer().getLootData().getLootTable(TofuLootTables.TOFU_WORLD_FISHING_LOOT_TABLE);
 				List<ItemStack> list = loottable.getRandomItems(lootparams);
-				event = new net.minecraftforge.event.entity.player.ItemFishedEvent(list, this.onGround() ? 2 : 1, fishingHook);
-				net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
+				event = new net.neoforged.neoforge.event.entity.player.ItemFishedEvent(list, this.onGround() ? 2 : 1, fishingHook);
+				NeoForge.EVENT_BUS.post(event);
 				if (event.isCanceled()) {
 					this.discard();
 					cir.setReturnValue(event.getRodDamage());

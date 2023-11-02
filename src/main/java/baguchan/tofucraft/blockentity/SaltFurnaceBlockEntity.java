@@ -35,16 +35,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.SidedInvWrapper;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -333,7 +333,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	protected int getBurnDuration(ItemStack p_213997_1_) {
 		if (p_213997_1_.isEmpty())
 			return 0;
-		return ForgeHooks.getBurnTime(p_213997_1_, RecipeType.SMELTING);
+		return CommonHooks.getBurnTime(p_213997_1_, RecipeType.SMELTING);
 	}
 
 	protected int getTotalCookTime() {
@@ -341,7 +341,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	public static boolean isFuel(ItemStack p_213991_0_) {
-		return (ForgeHooks.getBurnTime(p_213991_0_, null) > 0);
+		return (CommonHooks.getBurnTime(p_213991_0_, null) > 0);
 	}
 
 	@Override
@@ -456,14 +456,14 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-		if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER) {
+		if (!this.remove && facing != null && capability == Capabilities.ITEM_HANDLER) {
 			if (facing == Direction.UP)
 				return this.handlers[0].cast();
 			if (facing == Direction.DOWN)
 				return this.handlers[1].cast();
 			return this.handlers[2].cast();
 		}
-		if (capability == ForgeCapabilities.FLUID_HANDLER) {
+		if (capability == Capabilities.FLUID_HANDLER) {
 			if (facing == Direction.UP) {
 				return this.holder.cast();
 			} else if (facing != null) {

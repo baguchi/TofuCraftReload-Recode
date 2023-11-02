@@ -53,10 +53,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.fluids.FluidType;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.fluids.FluidType;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -196,14 +196,10 @@ public class ShuDofuSpider extends Monster {
 			double dx = Math.cos((this.getYRot() + 90) * Math.PI / 180.0D) * distance;
 			double dz = Math.sin((this.getYRot() + 90) * Math.PI / 180.0D) * distance;
 
-			return new Vec3(this.getX() + dx, this.getY() + this.getPassengersRidingOffset() + this.getPassengers().get(0).getMyRidingOffset(), this.getZ() + dz);
+			return new Vec3(this.getX() + dx, this.getY() + this.getDimensions(this.getPose()).height * 0.15D + this.getPassengers().get(0).getMyRidingOffset(this), this.getZ() + dz);
 		} else {
 			return new Vec3(this.getX(), this.getY(), this.getZ());
 		}
-	}
-
-	public double getPassengersRidingOffset() {
-		return this.isGraspAnim() ? (double) this.getDimensions(this.getPose()).height * 0.15D : super.getPassengersRidingOffset();
 	}
 
 	@Override
@@ -996,9 +992,9 @@ public class ShuDofuSpider extends Monster {
 		this.entityData.set(ANGRY, angry);
 		if (this.level() != null && !this.level().isClientSide) {
 			AttributeInstance attributeinstance = this.getAttribute(Attributes.ATTACK_DAMAGE);
-			attributeinstance.removeModifier(ATTACK_MODIFIER);
+			attributeinstance.removeModifier(ATTACK_MODIFIER.getId());
 			AttributeInstance attributeinstance2 = this.getAttribute(Attributes.ARMOR);
-			attributeinstance2.removeModifier(ARMOR_MODIFIER);
+			attributeinstance2.removeModifier(ARMOR_MODIFIER.getId());
 			if (angry) {
 				attributeinstance.addTransientModifier(ATTACK_MODIFIER);
 				attributeinstance2.addTransientModifier(ARMOR_MODIFIER);

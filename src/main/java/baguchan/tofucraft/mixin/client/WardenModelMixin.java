@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(WardenModel.class)
+@Mixin(value = WardenModel.class, remap = false)
 public abstract class WardenModelMixin<T extends Warden> extends HierarchicalModel<T> {
 
 	@Inject(method = "setupAnim", at = @At("TAIL"))

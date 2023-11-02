@@ -13,7 +13,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.event.EventHooks;
 
 public class CropHarvestGoal extends MoveToBlockGoal {
 	private final Tofunian tofunian;
@@ -31,7 +31,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 
 	public boolean canUse() {
 		if (this.nextStartTick <= 0) {
-			if (!ForgeEventFactory.getMobGriefingEvent(this.tofunian.level(), this.tofunian))
+			if (!EventHooks.getMobGriefingEvent(this.tofunian.level(), this.tofunian))
 				return false;
 			this.canHarvest = false;
 			this.canPlant = false;

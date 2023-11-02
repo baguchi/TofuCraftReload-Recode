@@ -13,12 +13,12 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.gui.overlay.IGuiOverlay;
+import net.neoforged.neoforge.client.gui.overlay.ExtendedGui;
+import net.neoforged.neoforge.client.gui.overlay.IGuiOverlay;
 
 public class TofuPortalOverlay implements IGuiOverlay {
 	@Override
-	public void render(ForgeGui gui, GuiGraphics poseStack, float partialTick, int width, int height) {
+	public void render(ExtendedGui gui, GuiGraphics poseStack, float partialTick, int width, int height) {
 		Minecraft mc = Minecraft.getInstance();
 		mc.player.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(handler -> renderTofuPortalOverlay(poseStack, mc, partialTick, width, height, handler));
 

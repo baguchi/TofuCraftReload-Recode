@@ -1,12 +1,11 @@
 package baguchan.tofucraft.client;
 
-import baguchan.tofucraft.CommonProxy;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ClientProxy extends CommonProxy {
+public class ClientProxy {
 	public static BlockEntity refrencedTileEntity;
 
 	@OnlyIn(Dist.CLIENT)

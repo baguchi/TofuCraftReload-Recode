@@ -35,7 +35,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -44,30 +43,30 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.MobSpawnEvent;
-import net.minecraftforge.event.entity.living.ShieldBlockEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.event.level.LevelEvent;
-import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.event.village.VillageSiegeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.event.AttachCapabilitiesEvent;
+import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEvent;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
+import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.event.village.VillageSiegeEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@EventBusSubscriber(modid = TofuCraftReload.MODID)
+@Mod.EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
 	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
 
@@ -216,7 +215,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onBlockBreaked(BlockEvent.BreakEvent event) {
 		if (event.getPlayer() instanceof ServerPlayer) {
-			LevelAccessor world = event.getPlayer().level();
+			net.minecraft.world.level.LevelAccessor world = event.getPlayer().level();
 			if (world instanceof ServerLevel) {
 				ServerLevel serverLevel = (ServerLevel) world;
 				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
@@ -241,7 +240,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
 		if (event.getEntity() instanceof ServerPlayer) {
-			LevelAccessor world = event.getEntity().level();
+			net.minecraft.world.level.LevelAccessor world = event.getEntity().level();
 			if (world instanceof ServerLevel) {
 				ServerLevel serverLevel = (ServerLevel) world;
 				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
@@ -269,7 +268,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onCheckSpawn(MobSpawnEvent.FinalizeSpawn event) {
 		LivingEntity livingEntity = event.getEntity();
-		LevelAccessor level = event.getLevel();
+		net.minecraft.world.level.LevelAccessor level = event.getLevel();
 		if (livingEntity instanceof Enemy) {
 			if (event.getSpawnType() != MobSpawnType.SPAWNER && event.getSpawnType() != MobSpawnType.EVENT && event.getSpawnType() != MobSpawnType.BREEDING && event.getSpawnType() != MobSpawnType.PATROL) {
 				if (level instanceof ServerLevel) {
@@ -290,7 +289,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onCheckZombieSiege(VillageSiegeEvent event) {
 		Vec3 vec3 = event.getAttemptedSpawnPos();
-		LevelAccessor level = event.getLevel();
+		net.minecraft.world.level.LevelAccessor level = event.getLevel();
 		if (level instanceof ServerLevel) {
 			Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
 				return p_184069_.is(TofuPoiTypes.MORIJIO);

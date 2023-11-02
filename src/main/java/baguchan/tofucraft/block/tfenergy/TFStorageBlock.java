@@ -31,11 +31,12 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.common.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
+import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -68,8 +69,8 @@ public class TFStorageBlock extends BaseEntityBlock {
 		BlockEntity blockentity = p_48707_.getBlockEntity(p_48708_);
 		if (blockentity instanceof TFStorageBlockEntity) {
 			IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1)).orElse(null);
-			if (handler != null && handler instanceof net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper) {
-				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, blockentity.getCapability(ForgeCapabilities.FLUID_HANDLER).orElse(null));
+			if (handler != null && handler instanceof FluidBucketWrapper) {
+				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, blockentity.getCapability(Capabilities.FLUID_HANDLER).orElse(null));
 				flag = true;
 			}
 

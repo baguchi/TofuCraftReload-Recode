@@ -6,11 +6,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.network.NetworkEvent;
-
-import java.util.function.Supplier;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 public class SaltFurnaceWaterMessage {
 	public BlockPos blockPos;
@@ -36,14 +34,13 @@ public class SaltFurnaceWaterMessage {
 		return new SaltFurnaceWaterMessage(blockPos, fluid);
 	}
 
-	public static boolean handle(SaltFurnaceWaterMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
-		NetworkEvent.Context context = contextSupplier.get();
+	public boolean handle(NetworkEvent.Context context) {
 		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
 			context.enqueueWork(() -> {
-				BlockEntity tileentity = (Minecraft.getInstance()).player.level().getBlockEntity(message.blockPos);
+				BlockEntity tileentity = (Minecraft.getInstance()).player.level().getBlockEntity(blockPos);
 				if (tileentity instanceof SaltFurnaceBlockEntity) {
 					SaltFurnaceBlockEntity tileentity1 = (SaltFurnaceBlockEntity) tileentity;
-					tileentity1.waterTank.setFluid(message.fluid);
+					tileentity1.waterTank.setFluid(fluid);
 				}
 			});
 		}

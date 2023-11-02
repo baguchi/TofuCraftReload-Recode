@@ -96,10 +96,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -518,23 +518,23 @@ public class TofuBlocks {
 	}
 
 	public static void flamableInit() {
-		FireBlock fireblock = (FireBlock) Blocks.FIRE;
-		fireblock.setFlammable(ZUNDATOFU_MUSHROOM.get(), 20, 20);
-		fireblock.setFlammable(LEEK.get(), 20, 20);
-		fireblock.setFlammable(TOFU_STEM_PLANKS.get(), 5, 20);
-		fireblock.setFlammable(TOFU_STEM_PLANKS_STAIR.get(), 5, 20);
-		fireblock.setFlammable(TOFU_STEM_PLANKS_SLAB.get(), 5, 20);
-		fireblock.setFlammable(TOFU_STEM_FENCE.get(), 5, 20);
-		fireblock.setFlammable(TOFU_STEM_FENCE_GATE.get(), 5, 20);
-		fireblock.setFlammable(LEEK_PLANKS.get(), 5, 20);
-		fireblock.setFlammable(LEEK_PLANKS_STAIR.get(), 5, 20);
-		fireblock.setFlammable(LEEK_PLANKS_SLAB.get(), 5, 20);
-		fireblock.setFlammable(LEEK_FENCE.get(), 5, 20);
-		fireblock.setFlammable(LEEK_FENCE_GATE.get(), 5, 20);
-		fireblock.setFlammable(LEEK_GREEN_PLANKS.get(), 5, 20);
-		fireblock.setFlammable(LEEK_GREEN_PLANKS_STAIR.get(), 5, 20);
-		fireblock.setFlammable(LEEK_GREEN_PLANKS_SLAB.get(), 5, 20);
-		fireblock.setFlammable(LEEK_GREEN_FENCE.get(), 5, 20);
-		fireblock.setFlammable(LEEK_GREEN_FENCE_GATE.get(), 5, 20);
+		FireBlock fireBlock = (FireBlock) Blocks.FIRE;
+		fireBlock.setFlammable(ZUNDATOFU_MUSHROOM.get(), 20, 20);
+		fireBlock.setFlammable(LEEK.get(), 20, 20);
+		fireBlock.setFlammable(TOFU_STEM_PLANKS.get(), 5, 20);
+		fireBlock.setFlammable(TOFU_STEM_PLANKS_STAIR.get(), 5, 20);
+		fireBlock.setFlammable(TOFU_STEM_PLANKS_SLAB.get(), 5, 20);
+		fireBlock.setFlammable(TOFU_STEM_FENCE.get(), 5, 20);
+		fireBlock.setFlammable(TOFU_STEM_FENCE_GATE.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_PLANKS.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_PLANKS_STAIR.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_PLANKS_SLAB.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_FENCE.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_FENCE_GATE.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_GREEN_PLANKS.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_GREEN_PLANKS_STAIR.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_GREEN_PLANKS_SLAB.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_GREEN_FENCE.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_GREEN_FENCE_GATE.get(), 5, 20);
 	}
 }

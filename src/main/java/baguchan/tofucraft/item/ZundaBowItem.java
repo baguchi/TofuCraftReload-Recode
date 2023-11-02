@@ -16,6 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.event.EventHooks;
 
 public class ZundaBowItem extends BowItem implements IEnergyInsertable {
 	public ZundaBowItem(Properties tab) {
@@ -28,7 +29,7 @@ public class ZundaBowItem extends BowItem implements IEnergyInsertable {
 			ItemStack itemstack = player.getProjectile(p_40667_);
 
 			int i = this.getUseDuration(p_40667_) - p_40670_;
-			i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(p_40667_, p_40668_, player, i, !itemstack.isEmpty() || flag);
+			i = EventHooks.onArrowLoose(p_40667_, p_40668_, player, i, !itemstack.isEmpty() || flag);
 			if (i < 0) return;
 
 			if (!itemstack.isEmpty() || flag) {

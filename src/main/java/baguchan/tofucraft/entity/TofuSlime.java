@@ -20,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.neoforged.neoforge.event.EventHooks;
 
 public class TofuSlime extends Slime {
 	private static final EntityDataAccessor<Boolean> DATA_CONVERSION_ID = SynchedEntityData.defineId(TofuSlime.class, EntityDataSerializers.BOOLEAN);
@@ -45,7 +46,7 @@ public class TofuSlime extends Slime {
 		if (!this.level().isClientSide && this.isAlive() && !this.isNoAi()) {
 			if (this.isZundaConverting()) {
 				--this.conversionTime;
-				if (this.conversionTime < 0 && net.minecraftforge.event.ForgeEventFactory.canLivingConvert(this, EntityType.DROWNED, (timer) -> this.conversionTime = timer)) {
+				if (this.conversionTime < 0 && EventHooks.canLivingConvert(this, EntityType.DROWNED, (timer) -> this.conversionTime = timer)) {
 					this.doZundaConversion();
 				}
 			} else if (this.convertsOnZunda()) {

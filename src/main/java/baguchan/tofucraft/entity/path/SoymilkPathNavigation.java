@@ -22,7 +22,7 @@ public class SoymilkPathNavigation extends PathNavigation {
 	}
 
 	protected boolean canUpdatePath() {
-		return this.allowBreaching || this.isInLiquid();
+		return this.allowBreaching || this.mob.isInFluidType();
 	}
 
 	protected Vec3 getTempMobPos() {

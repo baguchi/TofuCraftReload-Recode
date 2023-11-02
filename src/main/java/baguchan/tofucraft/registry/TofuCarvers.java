@@ -6,9 +6,9 @@ import baguchan.tofucraft.world.carver.TofuCaveCarver;
 import net.minecraft.world.level.levelgen.carver.CanyonCarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.levelgen.carver.WorldCarver;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 public class TofuCarvers {
 	public static final DeferredRegister<WorldCarver<?>> WORLD_CARVER = DeferredRegister.create(ForgeRegistries.WORLD_CARVERS, TofuCraftReload.MODID);

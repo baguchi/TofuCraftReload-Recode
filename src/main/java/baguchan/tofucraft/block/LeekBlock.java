@@ -15,6 +15,8 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.neoforged.neoforge.event.EventHooks;
+import net.neoforged.neoforge.event.level.SaplingGrowTreeEvent;
 
 import java.util.Optional;
 
@@ -35,14 +37,14 @@ public class LeekBlock extends BushBlock implements BonemealableBlock {
 	public void growLeek(ServerLevel p_54860_, BlockPos p_54861_, BlockState p_54862_, RandomSource p_54863_) {
 		p_54860_.removeBlock(p_54861_, true);
 		this.getFeature(p_54860_).ifPresent((p_256352_) -> {
-			net.minecraftforge.event.level.SaplingGrowTreeEvent event = net.minecraftforge.event.ForgeEventFactory.blockGrowFeature(p_54860_, p_54863_, p_54861_, p_256352_);
-			if (event.getResult().equals(net.minecraftforge.eventbus.api.Event.Result.DENY)) return;
+			SaplingGrowTreeEvent event = EventHooks.blockGrowFeature(p_54860_, p_54863_, p_54861_, p_256352_);
+			if (event.getResult().equals(net.neoforged.bus.api.Event.Result.DENY)) return;
 			p_256352_.value().place(p_54860_, p_54860_.getChunkSource().getGenerator(), p_54863_, p_54861_);
 		});
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader p_256655_, BlockPos p_256553_, BlockState p_256213_, boolean p_256270_) {
+	public boolean isValidBonemealTarget(LevelReader p_256655_, BlockPos p_256553_, BlockState p_256213_) {
 		BlockState blockstate = p_256655_.getBlockState(p_256553_.below());
 		return blockstate.is(TofuTags.Blocks.TOFU_TERRAIN) || blockstate.is(TofuBlocks.MOMENTOFU.get());
 	}

@@ -19,11 +19,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 import java.util.Optional;
 
@@ -31,7 +31,6 @@ import java.util.Optional;
 public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	private static final ResourceLocation texture = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tf_storage.png");
 	private static final Component MISSING_ITEM_TOOLTIP = Component.translatable("container.tofucraft.tf_storage.missing_item_tooltip");
-
 	public TFStorageScreen(TFStorageMenu p_i51104_1_, Inventory p_i51104_3_, Component p_i51104_4_) {
 		super(p_i51104_1_, p_i51104_3_, p_i51104_4_);
 	}
@@ -41,14 +40,17 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
 	}
 
-	@Override
 	public void render(GuiGraphics p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
-		this.renderBackground(p_230430_1_);
+		this.renderBackground(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
 		super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
 		this.renderTooltip(p_230430_1_, p_230430_2_, p_230430_3_);
 		this.renderOnboardingTooltips(p_230430_1_, p_230430_2_, p_230430_3_);
 	}
 
+	@Override
+	public void renderBackground(GuiGraphics p_300197_, int p_297538_, int p_300104_, float p_298759_) {
+		super.renderBackground(p_300197_, p_297538_, p_300104_, p_298759_);
+	}
 
 	protected void renderBg(GuiGraphics p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
 		int i = this.leftPos;

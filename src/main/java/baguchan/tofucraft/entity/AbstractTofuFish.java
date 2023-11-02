@@ -8,8 +8,8 @@ import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.fluids.FluidType;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.fluids.FluidType;
 
 public abstract class AbstractTofuFish extends AbstractFish {
 	private boolean wasTouchingSoymilk;
@@ -51,6 +51,6 @@ public abstract class AbstractTofuFish extends AbstractFish {
 
 	@Override
 	public boolean canDrownInFluidType(FluidType type) {
-		return type != TofuFluidTypes.SOYMILK.get() && type != TofuFluidTypes.SOYMILK_HELL.get() && type != TofuFluidTypes.SOYMILK_SOUL.get() && type != ForgeMod.WATER_TYPE.get() && super.canDrownInFluidType(type);
+		return type != TofuFluidTypes.SOYMILK.get() && type != TofuFluidTypes.SOYMILK_HELL.get() && type != TofuFluidTypes.SOYMILK_SOUL.get() && type != NeoForgeMod.WATER_TYPE.get() && super.canDrownInFluidType(type);
 	}
 }

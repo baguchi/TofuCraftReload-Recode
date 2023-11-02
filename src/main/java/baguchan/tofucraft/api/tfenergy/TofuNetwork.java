@@ -5,10 +5,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.level.LevelEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.level.LevelEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,7 +71,7 @@ public class TofuNetwork {
 		if (!(te instanceof ITofuEnergy))
 			throw new IllegalArgumentException("Can't register machine which is not Tofu Energy Tile!");
 		reference.put(uid, te);
-		MinecraftForge.EVENT_BUS.post(new TofuNetworkChangedEvent.NetworkLoaded(uid, te, isSystem));
+		NeoForge.EVENT_BUS.post(new TofuNetworkChangedEvent.NetworkLoaded(uid, te, isSystem));
 	}
 
 	public HashMap<String, BlockEntity> getReference() {
@@ -126,7 +126,7 @@ public class TofuNetwork {
 
 	public void unload(String uid, boolean isSystem) {
 		reference.remove(uid);
-		MinecraftForge.EVENT_BUS.post(new TofuNetworkChangedEvent.NetworkRemoved(uid, reference.get(uid), isSystem));
+		NeoForge.EVENT_BUS.post(new TofuNetworkChangedEvent.NetworkRemoved(uid, reference.get(uid), isSystem));
 	}
 
 	public void clear() {
@@ -135,6 +135,6 @@ public class TofuNetwork {
 
 	public void clear(boolean isSystem) {
 		reference.clear();
-		MinecraftForge.EVENT_BUS.post(new TofuNetworkChangedEvent.NetworkCleared(isSystem));
+		NeoForge.EVENT_BUS.post(new TofuNetworkChangedEvent.NetworkCleared(isSystem));
 	}
 }

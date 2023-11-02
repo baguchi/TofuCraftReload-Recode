@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(Warden.class)
+@Mixin(value = Warden.class, remap = false)
 public class WardenMixin extends Monster implements ISmell {
 	private static final EntityDataAccessor<Boolean> CANNOT_SMELL = SynchedEntityData.defineId(Warden.class, EntityDataSerializers.BOOLEAN);
 

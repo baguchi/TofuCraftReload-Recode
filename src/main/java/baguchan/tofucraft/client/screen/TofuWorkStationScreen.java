@@ -12,8 +12,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -51,12 +52,12 @@ public class TofuWorkStationScreen extends AbstractContainerScreen<TofuWorkStati
 	}
 
 	protected void renderBg(GuiGraphics p_283115_, float p_282453_, int p_282940_, int p_282328_) {
-		this.renderBackground(p_283115_);
 		int i = this.leftPos;
 		int j = this.topPos;
 		p_283115_.blit(BG_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight);
 		int k = (int) (41.0F * this.scrollOffs);
-		p_283115_.blit(BG_LOCATION, i + 119, j + 15 + k, 176 + (this.isScrollBarActive() ? 0 : 12), 0, 12, 15);
+		ResourceLocation resourcelocation = this.isScrollBarActive() ? SCROLLER_SPRITE : SCROLLER_DISABLED_SPRITE;
+		p_283115_.blitSprite(resourcelocation, i + 119, j + 15 + k, 12, 15);
 		int l = this.leftPos + 52;
 		int i1 = this.topPos + 14;
 		int j1 = this.startIndex + 12;
@@ -70,20 +71,19 @@ public class TofuWorkStationScreen extends AbstractContainerScreen<TofuWorkStati
 			int i = this.leftPos + 52;
 			int j = this.topPos + 14;
 			int k = this.startIndex + 12;
-			List<TofuWorkStationRecipe> list = this.menu.getRecipes();
+			List<RecipeHolder<TofuWorkStationRecipe>> list = this.menu.getRecipes();
 
 			for (int l = this.startIndex; l < k && l < this.menu.getNumRecipes(); ++l) {
 				int i1 = l - this.startIndex;
 				int j1 = i + i1 % 4 * 16;
 				int k1 = j + i1 / 4 * 18 + 2;
 				if (p_283157_ >= j1 && p_283157_ < j1 + 16 && p_282258_ >= k1 && p_282258_ < k1 + 18) {
-					p_282396_.blit(BG_LOCATION, k, i1 - 1, 0, j1, 16, 18);
+					p_282396_.renderTooltip(this.font, list.get(l).value().getResultItem(this.minecraft.level.registryAccess()), p_283157_, p_282258_);
 				}
 			}
 		}
 
 	}
-
 
 	private void renderButtons(GuiGraphics p_282733_, int p_282136_, int p_282147_, int p_281987_, int p_281276_, int p_282688_) {
 		for (int i = this.startIndex; i < p_282688_ && i < this.menu.getNumRecipes(); ++i) {
@@ -91,27 +91,29 @@ public class TofuWorkStationScreen extends AbstractContainerScreen<TofuWorkStati
 			int k = p_281987_ + j % 4 * 16;
 			int l = j / 4;
 			int i1 = p_281276_ + l * 18 + 2;
-			int j1 = this.imageHeight;
+			ResourceLocation resourcelocation;
 			if (i == this.menu.getSelectedRecipeIndex()) {
-				j1 += 18;
+				resourcelocation = RECIPE_SELECTED_SPRITE;
 			} else if (p_282136_ >= k && p_282147_ >= i1 && p_282136_ < k + 16 && p_282147_ < i1 + 18) {
-				j1 += 36;
+				resourcelocation = RECIPE_HIGHLIGHTED_SPRITE;
+			} else {
+				resourcelocation = RECIPE_SPRITE;
 			}
 
-			p_282733_.blit(BG_LOCATION, k, i1 - 1, 0, j1, 16, 18);
+			p_282733_.blitSprite(resourcelocation, k, i1 - 1, 16, 18);
 		}
 
 	}
 
 	private void renderRecipes(GuiGraphics p_281999_, int p_282658_, int p_282563_, int p_283352_) {
-		List<TofuWorkStationRecipe> list = this.menu.getRecipes();
+		List<RecipeHolder<TofuWorkStationRecipe>> list = this.menu.getRecipes();
 
 		for (int i = this.startIndex; i < p_283352_ && i < this.menu.getNumRecipes(); ++i) {
 			int j = i - this.startIndex;
 			int k = p_282658_ + j % 4 * 16;
 			int l = j / 4;
 			int i1 = p_282563_ + l * 18 + 2;
-			p_281999_.renderItem(list.get(i).getResultItem(this.minecraft.level.registryAccess()), k, i1);
+			p_281999_.renderItem(list.get(i).value().getResultItem(this.minecraft.level.registryAccess()), k, i1);
 		}
 
 	}

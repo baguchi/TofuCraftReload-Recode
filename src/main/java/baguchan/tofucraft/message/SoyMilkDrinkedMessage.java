@@ -5,10 +5,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.network.NetworkEvent;
-
-import java.util.function.Supplier;
+import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 public class SoyMilkDrinkedMessage {
 	private final int entityId;
@@ -41,14 +39,13 @@ public class SoyMilkDrinkedMessage {
 		return new SoyMilkDrinkedMessage(entityId, level, update);
 	}
 
-	public static boolean handle(SoyMilkDrinkedMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
-		NetworkEvent.Context context = contextSupplier.get();
+	public boolean handle(NetworkEvent.Context context) {
 		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
 			context.enqueueWork(() -> {
-				Entity entity = (Minecraft.getInstance()).player.level().getEntity(message.entityId);
+				Entity entity = (Minecraft.getInstance()).player.level().getEntity(entityId);
 				if (entity != null && entity instanceof LivingEntity)
 					entity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent((cap) -> {
-						cap.setSoyHealthLevel((LivingEntity) entity, message.level, message.canUpdate);
+						cap.setSoyHealthLevel((LivingEntity) entity, level, canUpdate);
 					});
 			});
 		}

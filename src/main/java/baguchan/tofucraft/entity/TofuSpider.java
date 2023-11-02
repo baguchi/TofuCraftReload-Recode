@@ -35,6 +35,7 @@ import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.event.EventHooks;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -94,9 +95,9 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	public void tick() {
 		if (!this.level().isClientSide && this.isAlive() && this.isConverting()) {
 			this.conversionTime -= 1;
-			if (this.conversionTime <= 0 && net.minecraftforge.event.ForgeEventFactory.canLivingConvert(this, TofuEntityTypes.SHUDOFUSPIDER.get(), (timer) -> this.conversionTime = timer)) {
+			if (this.conversionTime <= 0 && EventHooks.canLivingConvert(this, TofuEntityTypes.SHUDOFUSPIDER.get(), (timer) -> this.conversionTime = timer)) {
 				this.finishConversion((ServerLevel) this.level());
-				if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), this)) {
+				if (EventHooks.getMobGriefingEvent(this.level(), this)) {
 					int j1 = Mth.floor(this.getY());
 					int i2 = Mth.floor(this.getX());
 					int j2 = Mth.floor(this.getZ());
@@ -110,7 +111,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 								int i1 = j2 + k2;
 								BlockPos blockpos = new BlockPos(l2, l, i1);
 								BlockState blockstate = this.level().getBlockState(blockpos);
-								if (WitherBoss.canDestroy(blockstate) && net.minecraftforge.event.ForgeEventFactory.onEntityDestroyBlock(this, blockpos, blockstate)) {
+								if (WitherBoss.canDestroy(blockstate) && EventHooks.onEntityDestroyBlock(this, blockpos, blockstate)) {
 									flag = this.level().destroyBlock(blockpos, true, this) || flag;
 								}
 							}
@@ -143,7 +144,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		if (!this.isSilent()) {
 			this.playSound(SoundEvents.WITHER_SPAWN, 4.0F, 1.0F);
 		}
-		net.minecraftforge.event.ForgeEventFactory.onLivingConvert(this, shudofuSpider);
+		EventHooks.onLivingConvert(this, shudofuSpider);
 	}
 
 	public boolean removeWhenFarAway(double p_34414_) {

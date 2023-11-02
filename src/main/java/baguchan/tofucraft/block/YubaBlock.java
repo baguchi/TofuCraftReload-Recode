@@ -26,7 +26,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 
 public class YubaBlock extends Block {
 	private static final VoxelShape STABLE_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16D, 1.0D, 16D);

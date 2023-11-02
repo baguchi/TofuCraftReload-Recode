@@ -1,22 +1,19 @@
 package baguchan.tofucraft.recipe;
 
 import baguchan.tofucraft.registry.TofuRecipes;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipeCodecs;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 public class TofuWorkStationRecipe implements IWorkRecipe {
-	protected final ResourceLocation id;
 
 	protected Ingredient baseIngredient;
 	protected Ingredient ingredient;
@@ -24,8 +21,7 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 
 	final ItemStack result;
 
-	public TofuWorkStationRecipe(ResourceLocation id, Ingredient baseIngredient, Ingredient ingredient, Ingredient subIngredient, ItemStack results) {
-		this.id = id;
+	public TofuWorkStationRecipe(Ingredient baseIngredient, Ingredient ingredient, Ingredient subIngredient, ItemStack results) {
 		this.baseIngredient = baseIngredient;
 		this.ingredient = ingredient;
 		this.subIngredient = subIngredient;
@@ -61,10 +57,6 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 	@Override
 	public ItemStack assemble(Container p_267036_, RegistryAccess p_266699_) {
 		ItemStack itemstack = this.result.copy();
-		CompoundTag compoundtag = p_267036_.getItem(0).getTag();
-		if (compoundtag != null) {
-			itemstack.setTag(compoundtag.copy());
-		}
 
 		return itemstack;
 	}
@@ -112,40 +104,34 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 	}
 
 	@Override
-	public ResourceLocation getId() {
-		return this.id;
-	}
-
-
-	@Override
 	public RecipeType<?> getType() {
 
 		return TofuRecipes.RECIPETYPE_TOFU_WORK_STATION.get();
 	}
 
 	public static class Serializer implements RecipeSerializer<TofuWorkStationRecipe> {
-		@Override
-		public TofuWorkStationRecipe fromJson(ResourceLocation p_44103_, JsonObject p_44104_) {
-			final Ingredient base = Ingredient.fromJson(GsonHelper.getAsJsonObject(p_44104_, "base"));
-			final Ingredient ingredient1 = Ingredient.fromJson(GsonHelper.getAsJsonObject(p_44104_, "ingredient"));
-			final Ingredient sub = Ingredient.fromJson(GsonHelper.getAsJsonObject(p_44104_, "sub"));
-			final ItemStack results = itemStackFromJson(GsonHelper.getAsJsonObject(p_44104_, "result"));
+		private static final Codec<TofuWorkStationRecipe> CODEC = RecordCodecBuilder.create((p_301330_) -> {
+			return p_301330_.group(Ingredient.CODEC.fieldOf("base").forGetter((p_298250_) -> {
+				return p_298250_.baseIngredient;
+			}), Ingredient.CODEC.fieldOf("ingredient").forGetter((p_297231_) -> {
+				return p_297231_.ingredient;
+			}), Ingredient.CODEC.fieldOf("sub").forGetter((p_299654_) -> {
+				return p_299654_.subIngredient;
+			}), CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf("result").forGetter((p_297480_) -> {
+				return p_297480_.result;
+			})).apply(p_301330_, TofuWorkStationRecipe::new);
+		});
 
-			return new TofuWorkStationRecipe(p_44103_, base, ingredient1, sub, results);
+		public Codec<TofuWorkStationRecipe> codec() {
+			return CODEC;
 		}
 
-		public static ItemStack itemStackFromJson(JsonObject p_151275_) {
-			return net.minecraftforge.common.crafting.CraftingHelper.getItemStack(p_151275_, false, true);
-		}
-
-		@Override
-		public @Nullable TofuWorkStationRecipe fromNetwork(ResourceLocation p_44105_, FriendlyByteBuf p_44106_) {
-			Ingredient ingredient = Ingredient.fromNetwork(p_44106_);
-			Ingredient ingredient1 = Ingredient.fromNetwork(p_44106_);
-			Ingredient ingredient2 = Ingredient.fromNetwork(p_44106_);
-			ItemStack itemstack = p_44106_.readItem();
-			return new TofuWorkStationRecipe(p_44105_, ingredient, ingredient1, ingredient2, itemstack);
-
+		public TofuWorkStationRecipe fromNetwork(FriendlyByteBuf p_267316_) {
+			Ingredient ingredient = Ingredient.fromNetwork(p_267316_);
+			Ingredient ingredient1 = Ingredient.fromNetwork(p_267316_);
+			Ingredient ingredient2 = Ingredient.fromNetwork(p_267316_);
+			ItemStack itemstack = p_267316_.readItem();
+			return new TofuWorkStationRecipe(ingredient, ingredient1, ingredient2, itemstack);
 		}
 
 		public void toNetwork(FriendlyByteBuf p_266746_, TofuWorkStationRecipe p_266927_) {

@@ -1,23 +1,13 @@
 package baguchan.tofucraft.api.tfenergy;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.eventbus.api.Event;
+import net.neoforged.bus.api.Event;
 
 public class TofuNetworkChangedEvent extends Event {
 
 	private String uuid;
 	private BlockEntity te;
 	private boolean isSystem; //This tells the event if the post is caused by the game mechanism itself.
-
-	@Override
-	public boolean isCancelable() {
-		return false;
-	}
-
-	@Override
-	public boolean hasResult() {
-		return false;
-	}
 
 	public String getUUID() {
 		return uuid;
