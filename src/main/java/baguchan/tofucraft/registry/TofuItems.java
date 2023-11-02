@@ -88,7 +88,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = TofuCraftReload.MODID)
 public class TofuItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TofuCraftReload.MODID);
 
