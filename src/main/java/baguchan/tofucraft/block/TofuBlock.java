@@ -172,19 +172,9 @@ public class TofuBlock extends Block {
 		BlockState weightBlock = world.getBlockState(pos.above());
 		BlockState baseBlock = world.getBlockState(pos.below());
 		float weightHardness = weightBlock.getDestroySpeed(world, pos.above());
-		boolean isWeightValid = (weightBlock != null && (weightHardness >= 1.0F || weightHardness < 0.0F)) && !(weightBlock.getBlock() instanceof TofuBlock);
+		boolean isWeightValid = (weightBlock.isFaceSturdy(world, pos, Direction.DOWN) && (weightHardness >= 1.0F || weightHardness < 0.0F)) && !(weightBlock.getBlock() instanceof TofuBlock);
 		float baseHardness = baseBlock.getDestroySpeed(world, pos.below());
-		boolean isBaseValid = (baseBlock.isCollisionShapeFullBlock(world, pos) && (baseHardness >= 1.0F || baseHardness < 0.0F)) && !(baseBlock.getBlock() instanceof TofuBlock);
-		return (isWeightValid && isBaseValid);
-	}
-
-	public boolean isUnderWithConditionBlock(Level world, BlockPos pos, Block block) {
-		BlockState weightBlock = world.getBlockState(pos.above());
-		BlockState baseBlock = world.getBlockState(pos.below());
-		boolean isWeightValid = (this != weightBlock.getBlock() && weightBlock != null && (weightBlock.getBlock() == block));
-		float baseHardness = baseBlock.getDestroySpeed(world, pos.below());
-		boolean isBaseValid = (baseBlock.isCollisionShapeFullBlock(world, pos) && (baseHardness >= 1.0F || baseHardness < 0.0F));
-
+		boolean isBaseValid = (baseBlock.isFaceSturdy(world, pos, Direction.UP) && (baseHardness >= 1.0F || baseHardness < 0.0F)) && !(baseBlock.getBlock() instanceof TofuBlock);
 		return (isWeightValid && isBaseValid);
 	}
 

@@ -1,6 +1,7 @@
 package baguchan.tofucraft.block.utils;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
@@ -39,7 +40,7 @@ public class WeightBaseBlock extends Block {
 	public boolean isUnderWeight(Level world, BlockPos pos) {
 		BlockState weightBlock = world.getBlockState(pos.above());
 		float weightHardness = weightBlock.getDestroySpeed(world, pos.above());
-		boolean isWeightValid = (weightBlock != null && (weightHardness >= 1.0F || weightHardness < 0.0F)) && !(weightBlock.getBlock() instanceof WeightBaseBlock);
+		boolean isWeightValid = (weightBlock.isFaceSturdy(world, pos, Direction.DOWN) && (weightHardness >= 1.0F || weightHardness < 0.0F)) && !(weightBlock.getBlock() instanceof WeightBaseBlock);
 		return (isWeightValid);
 	}
 
