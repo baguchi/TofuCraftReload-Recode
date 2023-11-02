@@ -118,7 +118,6 @@ public class TofuCraftReload {
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup);
 		}
-		NeoForge.EVENT_BUS.register(this);
 		NeoForge.EVENT_BUS.register(new CraftingEvents());
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TofuConfig.COMMON_SPEC);
 	}

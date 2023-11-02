@@ -5,15 +5,8 @@
   "refmap": "tofucraft.refmap.json",
   "mixins": [
     "CowMixin",
-    "CreeperAccessor",
-    "CreeperInvoker",
     "EntityMixin",
-    "FireBlockInvoker",
     "FishingHookMixin",
-    "GiveGiftToHeroAccessor",
-    "LevelAccessor",
-    "PresetAccessor",
-    "ServerLevelAccessor",
     "WardenAiMixin",
     "WardenMixin"
   ],
