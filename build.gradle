@@ -4,7 +4,6 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.neoforged.gradle.userdev' version '[7.0.5,)'
-    id 'net.neoforged.gradle.mixin' version '[7.0.5,)'
 }
 
 version = mod_version
@@ -12,12 +11,6 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
-}
-
-sourceSets.main.ext.refMap = "${mod_id}.refmap.json"
-
-mixin {
-    config "${mod_id}.mixins.json"
 }
 
 base {
@@ -84,7 +77,6 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     implementation "net.neoforged:neoforge:${neo_version}"
-    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"
