@@ -31,7 +31,7 @@ public class TrickOrTreatGoal extends Goal {
 	}
 
 	public boolean canUse() {
-		if (!DayHelper.isHalloween() || this.tofunian.getAction() != Tofunian.Actions.NORMAL) {
+		if (!DayHelper.isHalloween() || !this.tofunian.canLastTreat() || this.tofunian.getAction() != Tofunian.Actions.NORMAL) {
 			return false;
 		}
 		if (this.nextStartTick > 0) {
@@ -60,6 +60,7 @@ public class TrickOrTreatGoal extends Goal {
 		if (this.tofunian.getPreviousTreat() == null) {
 			this.tofunian.setAction(Tofunian.Actions.CRY);
 		}
+		this.tofunian.setLastTreat();
 		this.tryingTalkingTick = 0;
 	}
 

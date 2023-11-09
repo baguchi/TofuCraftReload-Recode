@@ -160,6 +160,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	private Player previousTreat;
 
+	private long lastTreat;
+
 	private int xp;
 
 	private int tofunianLevel = 1;
@@ -594,6 +596,17 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return (this.restocksToday == 0 || (this.restocksToday < 2 && level().getGameTime() > this.lastRestock + 2400L));
 	}
 
+	public boolean canLastTreat() {
+		long i = this.lastTreat + 12000L;
+		long j = this.level().getGameTime();
+		boolean flag = j > i;
+		return flag;
+	}
+
+	public void setLastTreat() {
+		this.lastTreat = this.level().getGameTime();
+	}
+
 	public boolean canResetStock() {
 		long i = this.lastRestock + 12000L;
 		long j = this.level().getGameTime();
@@ -679,6 +692,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		compound.putLong("LastRestock", this.lastRestock);
 		compound.putLong("LastGossipDecay", this.lastGossipDecay);
 		compound.putInt("RestocksToday", this.restocksToday);
+		compound.putLong("LastTreat", this.lastTreat);
 		if (this.tofunianHome != null) {
 			compound.put("TofunianHome", NbtUtils.writeBlockPos(this.tofunianHome));
 		}
@@ -708,6 +722,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.lastGossipDecay = compound.getLong("LastGossipDecay");
 		this.lastRestock = compound.getLong("LastRestock");
 		this.restocksToday = compound.getInt("RestocksToday");
+		this.lastTreat = compound.getLong("LastTreat");
 		if (compound.contains("TofunianHome")) {
 			this.tofunianHome = NbtUtils.readBlockPos(compound.getCompound("TofunianHome"));
 		}
