@@ -9,8 +9,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
 
 public class NattoStringEntity extends ThrowableProjectile {
 	public float damage = 2;
@@ -28,8 +28,11 @@ public class NattoStringEntity extends ThrowableProjectile {
 
 	protected void onHitEntity(EntityHitResult p_37404_) {
 		super.onHitEntity(p_37404_);
+		playSound(SoundEvents.SLIME_JUMP_SMALL, 0.8F, 0.8F + this.level().random.nextFloat() * 0.4F);
+
 		if (!this.level().isClientSide) {
-			this.level().addFreshEntity(new NattoCobWebEntity(this.level(), getX(), getY(), getZ()));
+			NattoCobWebEntity entity = new NattoCobWebEntity(this.level(), getX(), getY(), getZ());
+			this.level().addFreshEntity(entity);
 			this.discard();
 		}
 	}
@@ -39,13 +42,15 @@ public class NattoStringEntity extends ThrowableProjectile {
 		return false;
 	}
 
-	protected void onHit(HitResult p_37406_) {
-		super.onHit(p_37406_);
+	protected void onHitBlock(BlockHitResult p_37406_) {
+		super.onHitBlock(p_37406_);
 		playSound(SoundEvents.SLIME_JUMP_SMALL, 0.8F, 0.8F + this.level().random.nextFloat() * 0.4F);
 		if (!this.level().isClientSide) {
 			//I don't use it particularly, but it's something.↓
 			this.level().broadcastEntityEvent(this, (byte) 80);
-			this.level().addFreshEntity(new NattoCobWebEntity(this.level(), getX(), getY(), getZ()));
+			NattoCobWebEntity entity = new NattoCobWebEntity(this.level(), p_37406_.getLocation().x, p_37406_.getLocation().y, p_37406_.getLocation().z);
+			entity.setAttachFace(p_37406_.getDirection());
+			this.level().addFreshEntity(entity);
 			this.discard();
 		}
 	}

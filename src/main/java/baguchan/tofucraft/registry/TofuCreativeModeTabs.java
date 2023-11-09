@@ -442,7 +442,8 @@ public class TofuCreativeModeTabs {
 						TofuItems.LEEK_GREEN_CHEST_BOAT,
 						TofuItems.ZUNDAMA,
 						TofuItems.ZUNDARUBY,
-						TofuItems.TOFUGEM).map(itemRegistryObject -> {
+						TofuItems.TOFUGEM,
+						TofuItems.NATTO_COBWEB).map(itemRegistryObject -> {
 					return itemRegistryObject.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());

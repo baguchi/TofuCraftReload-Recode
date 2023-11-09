@@ -35,6 +35,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 		if (isSpawing) {
 			stack.pushPose();
 			stack.scale(5.5F, 6.0F, 5.5F);
+			stack.mulPose(entity.getAttachFace().getOpposite().getRotation());
 			stack.translate(0.0F, 0.0F, -0.125F);
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
 
@@ -46,6 +47,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 		} else {
 			stack.pushPose();
 			stack.scale(6.0F, 6.0F, 6.0F);
+			stack.mulPose(entity.getAttachFace().getRotation());
 			stack.translate(0.0F, 0.0F, -0.125F);
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
 

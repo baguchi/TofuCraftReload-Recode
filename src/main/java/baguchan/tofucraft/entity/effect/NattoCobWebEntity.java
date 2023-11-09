@@ -2,13 +2,12 @@ package baguchan.tofucraft.entity.effect;
 
 import baguchan.tofucraft.entity.ShuDofuSpider;
 import baguchan.tofucraft.registry.TofuEntityTypes;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,22 +21,17 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidType;
 
 import java.util.List;
 
 public class NattoCobWebEntity extends LivingEntity {
+	protected static final EntityDataAccessor<Direction> DATA_ATTACH_FACE_ID = SynchedEntityData.defineId(NattoCobWebEntity.class, EntityDataSerializers.DIRECTION);
+
 	private final NonNullList<ItemStack> handItems = NonNullList.withSize(2, ItemStack.EMPTY);
 	private final NonNullList<ItemStack> armorItems = NonNullList.withSize(4, ItemStack.EMPTY);
 	private int lifeTime;
@@ -54,9 +48,78 @@ public class NattoCobWebEntity extends LivingEntity {
 	}
 
 	@Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DATA_ATTACH_FACE_ID, Direction.DOWN);
+	}
+
+	public Direction getAttachFace() {
+		return this.entityData.get(DATA_ATTACH_FACE_ID);
+	}
+
+	public void setAttachFace(Direction p_149789_) {
+		this.entityData.set(DATA_ATTACH_FACE_ID, p_149789_);
+	}
+
+	@Override
+	protected AABB makeBoundingBox() {
+		Direction direction = this.getAttachFace().getOpposite();
+		double d0 = (double) this.getX();
+		double d1 = (double) this.getY();
+		double d2 = (double) this.getZ();
+		double d6 = (double) this.getType().getWidth() / 2;
+		double d7 = (double) this.getType().getHeight() / 2;
+		double d8 = (double) this.getType().getWidth() / 2;
+		if (direction.getAxis() == Direction.Axis.Z) {
+			d8 = this.getType().getHeight() / 2;
+			d7 = this.getType().getWidth() / 2;
+		} else if (direction.getAxis() == Direction.Axis.X) {
+			d6 = this.getType().getHeight() / 2;
+			d7 = this.getType().getWidth() / 2;
+		}
+
+		return new AABB(d0 - d6, d1 - d7, d2 - d8, d0 + d6, d1 + d7, d2 + d8);
+	}
+
+	private double offs(int p_31710_) {
+		return p_31710_ % 32 == 0 ? 0.5 : 0.0;
+	}
+
+	@Override
+	public void onSyncedDataUpdated(EntityDataAccessor<?> p_33434_) {
+		if (DATA_ATTACH_FACE_ID.equals(p_33434_)) {
+			this.setBoundingBox(this.makeBoundingBox());
+		}
+
+		super.onSyncedDataUpdated(p_33434_);
+	}
+
+	@Override
+	public void lerpTo(double p_33411_, double p_33412_, double p_33413_, float p_33414_, float p_33415_, int p_33416_) {
+		this.lerpSteps = 0;
+		this.setPos(p_33411_, p_33412_, p_33413_);
+		this.setRot(p_33414_, p_33415_);
+	}
+
+	@Override
+	public void readAdditionalSaveData(CompoundTag p_33432_) {
+		super.readAdditionalSaveData(p_33432_);
+		this.setAttachFace(Direction.from3DDataValue(p_33432_.getByte("AttachFace")));
+	}
+
+	@Override
+	public void addAdditionalSaveData(CompoundTag p_33443_) {
+		super.addAdditionalSaveData(p_33443_);
+		p_33443_.putByte("AttachFace", (byte) this.getAttachFace().get3DDataValue());
+	}
+
+	@Override
 	public void tick() {
-		downGround();
 		stepSlow();
+
+		if (this.tickCount > 40 && !this.level().isClientSide && !this.isPassenger() && this.level().noBlockCollision(this, this.getBoundingBox().inflate(0.1F))) {
+			this.discard();
+		}
 		if (lifeTime >= discardTime) {
 			this.discard();
 		}
@@ -64,39 +127,22 @@ public class NattoCobWebEntity extends LivingEntity {
 		super.tick();
 	}
 
+
+	@Override
+	public Vec3 getDeltaMovement() {
+		return Vec3.ZERO;
+	}
+
+	@Override
+	public void setDeltaMovement(Vec3 p_149804_) {
+	}
+
 	public HumanoidArm getMainArm() {
 		return HumanoidArm.RIGHT;
 	}
 
-	public void downGround() {
-		HitResult rayTrace = rayTrace(this);
-		if (rayTrace.getType() == HitResult.Type.BLOCK) {
-			BlockHitResult hitResult = (BlockHitResult) rayTrace;
-			if (hitResult.getDirection() == Direction.UP) {
-				BlockState hitBlock = level().getBlockState(hitResult.getBlockPos());
-				if (lifeTime > discardTime && hitBlock != level().getBlockState(blockPosition().below())) {
-					this.discard();
-				}
-				if (hitBlock.getBlock() instanceof SlabBlock && hitBlock.getValue(BlockStateProperties.SLAB_TYPE) == SlabType.BOTTOM) {
-					this.setPos(getX(), hitResult.getBlockPos().getY() + 1.0625F - 0.5f, getZ());
-				} else {
-					this.setPos(getX(), hitResult.getBlockPos().getY() + 1.0625F, getZ());
-				}
-				if (this.level() instanceof ServerLevel) {
-					((ServerLevel) this.level()).getChunkSource().broadcast(this, new ClientboundTeleportEntityPacket(this));
-				}
-			}
-		}
-	}
-
-	private HitResult rayTrace(NattoCobWebEntity entity) {
-		Vec3 startPos = new Vec3(entity.getX(), entity.getY(), entity.getZ());
-		Vec3 endPos = new Vec3(entity.getX(), 0, entity.getZ());
-		return entity.level().clip(new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
-	}
-
 	public void stepSlow() {
-		AABB area = new AABB(BlockPos.containing(this.getX(), this.getY() - 0.5f, this.getZ())).inflate(1, 0.5, 1);
+		AABB area = this.getBoundingBox();
 		List<LivingEntity> entitiesHit = this.level().getEntitiesOfClass(LivingEntity.class, area);
 		for (LivingEntity entity : entitiesHit) {
 			double d0 = Math.abs(entity.getDeltaMovement().y);
@@ -178,56 +224,8 @@ public class NattoCobWebEntity extends LivingEntity {
 
 	}
 
-	public void addAdditionalSaveData(CompoundTag p_31619_) {
-		super.addAdditionalSaveData(p_31619_);
-		ListTag listtag = new ListTag();
-		for (ItemStack itemstack : this.armorItems) {
-			CompoundTag compoundtag = new CompoundTag();
-			if (!itemstack.isEmpty()) {
-				itemstack.save(compoundtag);
-			}
-
-			listtag.add(compoundtag);
-		}
-
-		p_31619_.put("ArmorItems", listtag);
-		ListTag listtag1 = new ListTag();
-
-		for (ItemStack itemstack1 : this.handItems) {
-			CompoundTag compoundtag1 = new CompoundTag();
-			if (!itemstack1.isEmpty()) {
-				itemstack1.save(compoundtag1);
-			}
-
-			listtag1.add(compoundtag1);
-		}
-	}
-
-	public void readAdditionalSaveData(CompoundTag p_31600_) {
-		super.readAdditionalSaveData(p_31600_);
-		if (p_31600_.contains("ArmorItems", 9)) {
-			ListTag listtag = p_31600_.getList("ArmorItems", 10);
-
-			for (int i = 0; i < this.armorItems.size(); ++i) {
-				this.armorItems.set(i, ItemStack.of(listtag.getCompound(i)));
-			}
-		}
-
-		if (p_31600_.contains("HandItems", 9)) {
-			ListTag listtag1 = p_31600_.getList("HandItems", 10);
-
-			for (int j = 0; j < this.handItems.size(); ++j) {
-				this.handItems.set(j, ItemStack.of(listtag1.getCompound(j)));
-			}
-		}
-	}
-
 	public boolean isPushable() {
 		return false;
-	}
-
-	protected void defineSynchedData() {
-		super.defineSynchedData();
 	}
 
 	@Override
