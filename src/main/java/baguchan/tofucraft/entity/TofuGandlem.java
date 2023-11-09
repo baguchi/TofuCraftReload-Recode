@@ -53,6 +53,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	private static final EntityDataAccessor<Boolean> DATA_ID_RUSH = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> DATA_ID_SLEEP = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Byte> DATA_CHARGE_FLAGS_ID = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BYTE);
+	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.STRING);
 
 
 	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(200, 400);
@@ -71,6 +72,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	public final AnimationState chargeFailAnimationState = new AnimationState();
 
 	public int failTick;
+	private int actionTick;
 
 	public TofuGandlem(EntityType<? extends TofuGandlem> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
@@ -85,32 +87,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		this.entityData.define(DATA_ID_RUSH, false);
 		this.entityData.define(DATA_ID_SLEEP, false);
 		this.entityData.define(DATA_CHARGE_FLAGS_ID, (byte) 0);
-	}
-
-	@Override
-	public void onSyncedDataUpdated(EntityDataAccessor<?> p_21104_) {
-		if (DATA_CHARGE_FLAGS_ID.equals(p_21104_)) {
-			if (isCharging()) {
-				this.chargeAnimationState.start(this.tickCount);
-				this.chargeStopAnimationState.stop();
-			}
-
-			if (isFullCharge()) {
-				this.chargeStopAnimationState.start(this.tickCount);
-				this.chargeAnimationState.stop();
-			}
-			if (isChargeFailed()) {
-				this.chargeFailAnimationState.start(this.tickCount);
-				this.chargeAnimationState.stop();
-				this.rushAnimationState.stop();
-			}
-		}
-
-		if (DATA_ID_RUSH.equals(p_21104_)) {
-			this.refreshDimensions();
-		}
-
-		super.onSyncedDataUpdated(p_21104_);
+		this.entityData.define(ACTION, Actions.NORMAL.name());
 	}
 
 	@Override
@@ -187,6 +164,13 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	public void setCharging(boolean p_28615_) {
 		this.setChargeFlag(4, p_28615_);
+		if (this.tickCount > 2) {
+			if (p_28615_) {
+				this.setAction(TofuGandlem.Actions.CHARGE);
+			} else {
+				this.setAction(Actions.CHARGE_STOP);
+			}
+		}
 	}
 
 	public boolean isCharging() {
@@ -195,6 +179,9 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	public void setChargeFailed(boolean p_28617_) {
 		this.setChargeFlag(8, p_28617_);
+		if (p_28617_) {
+			this.setAction(Actions.CHARGE_FAILED);
+		}
 	}
 
 	public boolean isChargeFailed() {
@@ -337,8 +324,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			this.attackAnimationState.start(this.tickCount);
 		} else if (p_70103_1_ == 5) {
 			this.shootingAnimationState.start(this.tickCount);
-		} else if (p_70103_1_ == 6) {
-			this.rushAnimationState.start(this.tickCount);
 		} else if (p_70103_1_ == 7) {
 			this.deathAnimationState.start(this.tickCount);
 		} else {
@@ -397,6 +382,91 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		if (!this.level().isClientSide && this.isAlive() && this.tickCount % 10 == 0 && this.isCharging()) {
 			this.heal(3.0F);
 		}
+		this.actionTicks();
+		if (this.level().isClientSide) {
+			this.actionAnimations(this.getAction(), true);
+		}
+	}
+
+	@Override
+	public void onSyncedDataUpdated(EntityDataAccessor<?> p_146754_) {
+		if (ACTION.equals(p_146754_)) {
+			this.actionAnimations(this.getAction(), false);
+		}
+		if (DATA_ID_RUSH.equals(p_146754_)) {
+			this.refreshDimensions();
+		}
+		super.onSyncedDataUpdated(p_146754_);
+
+	}
+
+	public Actions getAction() {
+		return Actions.get(this.entityData.get(ACTION));
+	}
+
+	public void setAction(Actions action) {
+		this.entityData.set(ACTION, action.name());
+	}
+
+	public void actionTicks() {
+		if (getAction().tick > -1) {
+			if (getAction().tick <= this.actionTick) {
+				this.actionTick = 0;
+				setAction(Actions.NORMAL);
+			} else {
+				++this.actionTick;
+			}
+
+		} else {
+			this.actionTick = 0;
+		}
+	}
+
+	public void actionAnimations(Actions actions, boolean loop) {
+		if (loop && actions.loop || !loop && !actions.loop) {
+			switch (actions) {
+				case START_RUSH:
+					attackAnimationState.stop();
+					shootAnimationState.stop();
+					shootingAnimationState.stop();
+					this.stopAnimations();
+					rushAnimationState.start(this.tickCount);
+					break;
+				case CHARGE:
+					attackAnimationState.stop();
+					shootAnimationState.stop();
+					shootingAnimationState.stop();
+					this.stopAnimations();
+					chargeAnimationState.start(this.tickCount);
+					break;
+				case CHARGE_STOP:
+					attackAnimationState.stop();
+					shootAnimationState.stop();
+					shootingAnimationState.stop();
+					this.stopAnimations();
+					chargeStopAnimationState.start(this.tickCount);
+					break;
+				case CHARGE_FAILED:
+					attackAnimationState.stop();
+					shootAnimationState.stop();
+					shootingAnimationState.stop();
+					this.stopAnimations();
+					chargeFailAnimationState.start(this.tickCount);
+
+					break;
+				default:
+					this.stopAnimations();
+					break;
+			}
+		}
+	}
+
+	public void stopAnimations() {
+
+		chargeAnimationState.stop();
+		chargeFailAnimationState.stop();
+		chargeStopAnimationState.stop();
+		rushAnimationState.stop();
 	}
 
 	private void calculateFlapping() {
@@ -609,4 +679,32 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			return TofuGandlem.this.isSleep() || TofuGandlem.this.isChargeFailed();
 		}
 	}
+
+	public enum Actions {
+		NORMAL(true, -1),
+		START_RUSH(false, (int) (20 * 5.6)),
+		CHARGE(false, (int) (65)),
+		CHARGE_STOP(false, (int) (20 * 0.68)),
+		CHARGE_FAILED(false, (int) (20 * 3)),
+		SLEEP(true, -1),
+		DEATH(true, -1);
+
+		private final boolean loop;
+		private final int tick;
+
+		Actions(boolean loop, int tick) {
+
+			this.loop = loop;
+			this.tick = tick;
+		}
+
+		public static Actions get(String nameIn) {
+			for (Actions role : values()) {
+				if (role.name().equals(nameIn))
+					return role;
+			}
+			return NORMAL;
+		}
+	}
+
 }

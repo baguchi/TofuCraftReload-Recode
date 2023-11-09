@@ -48,14 +48,14 @@ public class SpinAttackGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		return this.attackTime < 74;
+		return this.gandlem.getAction() == TofuGandlem.Actions.START_RUSH;
 	}
 
 	@Override
 	public void start() {
 		super.start();
 		this.attackTime = 0;
-		this.gandlem.level().broadcastEntityEvent(this.gandlem, (byte) 6);
+		this.gandlem.setAction(TofuGandlem.Actions.START_RUSH);
 	}
 
 	@Override

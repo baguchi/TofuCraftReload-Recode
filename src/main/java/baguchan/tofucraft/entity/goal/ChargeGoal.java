@@ -44,7 +44,7 @@ public class ChargeGoal extends Goal {
 
 	@Override
 	public boolean canContinueToUse() {
-		return this.attackTime < 60 && !this.gandlem.isChargeFailed();
+		return !this.gandlem.isChargeFailed() && (this.gandlem.getAction() == TofuGandlem.Actions.CHARGE || this.gandlem.getAction() == TofuGandlem.Actions.CHARGE_STOP);
 	}
 
 	@Override
