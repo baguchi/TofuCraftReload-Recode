@@ -5,13 +5,16 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuFeatures;
 import baguchan.tofucraft.registry.TofuTags;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockColumnConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
@@ -21,6 +24,8 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+
+import java.util.List;
 
 public class TofuWorldFeatures {
 	public static final RuleTest TOFU_ORE_REPLACEABLES = new BlockMatchTest(TofuBlocks.TOFU_TERRAIN.get());
@@ -48,6 +53,9 @@ public class TofuWorldFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ZUNDA_TOFU_MUSHROOM = registerKey("zunda_tofu_mushroom");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BIG_ZUNDA_TOFU_MUSHUROOM = registerKey("big_zunda_tofu_mushroom");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> LOG = registerKey("log");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CHAIN = registerKey("chain");
 
 	private static RandomPatchConfiguration grassPatch(BlockStateProvider p_195203_, int p_195204_) {
 		return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(p_195203_)));
@@ -78,6 +86,9 @@ public class TofuWorldFeatures {
 		FeatureUtils.register(context, ZUNDA_TOFU_MUSHROOM, Feature.FLOWER, grassPatch(BlockStateProvider.simple(TofuBlocks.ZUNDATOFU_MUSHROOM.get()), 32));
 
 		FeatureUtils.register(context, BIG_ZUNDA_TOFU_MUSHUROOM, TofuFeatures.BIG_ZUNDA_TOFU_MUSHROOM.get(), RandomFeatureConfiguration.NONE);
+
+		FeatureUtils.register(context, LOG, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(BlockColumnConfiguration.layer(ConstantInt.of(64), BlockStateProvider.simple(TofuBlocks.LEEK_STEM.get()))), Direction.DOWN, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate.hasSturdyFace(Direction.UP), true));
+		FeatureUtils.register(context, CHAIN, Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(BlockColumnConfiguration.layer(ConstantInt.of(64), BlockStateProvider.simple(TofuBlocks.TOFU_METAL_CHAIN.get()))), Direction.UP, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate.hasSturdyFace(Direction.DOWN), true));
 
 	}
 }
