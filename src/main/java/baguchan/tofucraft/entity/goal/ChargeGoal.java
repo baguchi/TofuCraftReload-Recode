@@ -50,6 +50,7 @@ public class ChargeGoal extends Goal {
 	@Override
 	public void start() {
 		super.start();
+		this.gandlem.setAction(TofuGandlem.Actions.CHARGE);
 		this.attackTime = 0;
 		this.gandlem.setCharging(true);
 		this.gandlem.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 2.0F, 1.0F);
@@ -62,6 +63,7 @@ public class ChargeGoal extends Goal {
 
 		if (this.attackTime == 59) {
 			this.gandlem.setCharging(false);
+			this.gandlem.setAction(TofuGandlem.Actions.CHARGE_STOP);
 			this.gandlem.setFullCharge(true);
 		}
 

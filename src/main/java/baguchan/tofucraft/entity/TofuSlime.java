@@ -11,8 +11,10 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.monster.Slime;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
 
 public class TofuSlime extends Slime {
@@ -36,6 +39,32 @@ public class TofuSlime extends Slime {
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		this.getEntityData().define(DATA_CONVERSION_ID, false);
+	}
+
+	public void shoot(double p_37266_, double p_37267_, double p_37268_, float p_37269_, float p_37270_) {
+		Vec3 vec3 = new Vec3(p_37266_, p_37267_, p_37268_)
+				.normalize()
+				.add(
+						this.random.triangle(0.0, 0.0172275 * (double) p_37270_),
+						this.random.triangle(0.0, 0.0172275 * (double) p_37270_),
+						this.random.triangle(0.0, 0.0172275 * (double) p_37270_)
+				)
+				.scale((double) p_37269_);
+		this.setDeltaMovement(vec3);
+		double d0 = vec3.horizontalDistance();
+		this.setYRot((float) (Mth.atan2(vec3.x, vec3.z) * 180.0F / (float) Math.PI));
+		this.setXRot((float) (Mth.atan2(vec3.y, d0) * 180.0F / (float) Math.PI));
+		this.yRotO = this.getYRot();
+		this.xRotO = this.getXRot();
+	}
+
+	public void shootFromRotation(Entity p_37252_, float p_37253_, float p_37254_, float p_37255_, float p_37256_, float p_37257_) {
+		float f = -Mth.sin(p_37254_ * (float) (Math.PI / 180.0)) * Mth.cos(p_37253_ * (float) (Math.PI / 180.0));
+		float f1 = -Mth.sin((p_37253_ + p_37255_) * (float) (Math.PI / 180.0));
+		float f2 = Mth.cos(p_37254_ * (float) (Math.PI / 180.0)) * Mth.cos(p_37253_ * (float) (Math.PI / 180.0));
+		this.shoot((double) f, (double) f1, (double) f2, p_37256_, p_37257_);
+		Vec3 vec3 = p_37252_.getDeltaMovement();
+		this.setDeltaMovement(this.getDeltaMovement().add(vec3.x, p_37252_.onGround() ? 0.0 : vec3.y, vec3.z));
 	}
 
 	public boolean isZundaConverting() {

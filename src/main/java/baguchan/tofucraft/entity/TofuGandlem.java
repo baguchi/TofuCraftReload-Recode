@@ -4,6 +4,7 @@ import baguchan.tofucraft.entity.control.StafeableFlyingMoveControl;
 import baguchan.tofucraft.entity.goal.ChargeGoal;
 import baguchan.tofucraft.entity.goal.SpinAttackGoal;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -57,7 +58,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 
 	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(200, 400);
-	private static final UniformInt CHARGE_COOLDOWN = UniformInt.of(100, 300);
+	private static final UniformInt CHARGE_COOLDOWN = UniformInt.of(600, 900);
 
 
 	public final AnimationState idleAnimationState = new AnimationState();
@@ -164,13 +165,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	public void setCharging(boolean p_28615_) {
 		this.setChargeFlag(4, p_28615_);
-		if (this.tickCount > 2) {
-			if (p_28615_) {
-				this.setAction(TofuGandlem.Actions.CHARGE);
-			} else {
-				this.setAction(Actions.CHARGE_STOP);
-			}
-		}
 	}
 
 	public boolean isCharging() {
@@ -267,7 +261,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			this.setChargeFailed(true);
 			this.playSound(SoundEvents.SHIELD_BREAK, 2.0F, 1.0F);
 		} else if (this.isFullCharge()) {
-			return super.hurt(p_21016_, p_21017_ * 0.75F);
+			return super.hurt(p_21016_, p_21017_ * 0.65F);
 		}
 
 
@@ -526,16 +520,33 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	@Override
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
-		this.playSound(SoundEvents.SHULKER_SHOOT, 3.0F, 1.0F);
-		for (int i = 0; i < 4; i++) {
-			FukumameEntity fukumame = new FukumameEntity(this.level(), this);
+		if (this.isFullCharge()) {
+			this.playSound(SoundEvents.SLIME_ATTACK, 1.5F, 1.0F);
+
+
+			TofuSlime slime = TofuEntityTypes.TOFUSLIME.get().create(this.level());
 			double d1 = p_29912_.getX() - this.getX();
 			double d2 = p_29912_.getEyeY() - this.getEyeY();
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
-			fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
-			fukumame.damage = 1.5F;
-			this.level().addFreshEntity(fukumame);
+			slime.setPos(this.position());
+			slime.setTarget(p_29912_);
+			slime.shoot(d1, d2 + f, d3, 1.0F, 1.0F + p_29913_);
+			slime.setSize(2, true);
+			this.level().addFreshEntity(slime);
+
+		} else {
+			this.playSound(SoundEvents.SHULKER_SHOOT, 3.0F, 1.0F);
+			for (int i = 0; i < 4; i++) {
+				FukumameEntity fukumame = new FukumameEntity(this.level(), this);
+				double d1 = p_29912_.getX() - this.getX();
+				double d2 = p_29912_.getEyeY() - this.getEyeY();
+				double d3 = p_29912_.getZ() - this.getZ();
+				float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
+				fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
+				fukumame.damage = 1.5F;
+				this.level().addFreshEntity(fukumame);
+			}
 		}
 	}
 
@@ -609,6 +620,9 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 						} else if (this.attackStep <= 4) {
 							this.attackTime = 8;
 						} else {
+							if (this.attackStep > 4) {
+								this.gandlem.setFullCharge(false);
+							}
 							this.attackTime = 30;
 							this.attackStep = 0;
 						}
