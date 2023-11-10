@@ -400,7 +400,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	public void setAction(Actions action) {
 		this.entityData.set(ACTION, action.name());
-		this.actionTick = action.tick;
+		this.actionTick = 0;
 	}
 
 	public void actionTicks() {
