@@ -266,6 +266,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public void setAction(Actions action) {
 		this.entityData.set(ACTION, action.name());
+		this.actionTick = action.tick;
 	}
 
 	public void setRole(Roles role) {

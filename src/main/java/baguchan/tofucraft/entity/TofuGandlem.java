@@ -58,7 +58,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 
 	private static final UniformInt RUSH_COOLDOWN = UniformInt.of(200, 400);
-	private static final UniformInt CHARGE_COOLDOWN = UniformInt.of(600, 900);
+	private static final UniformInt CHARGE_COOLDOWN = UniformInt.of(400, 600);
 
 
 	public final AnimationState idleAnimationState = new AnimationState();
@@ -400,6 +400,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	public void setAction(Actions action) {
 		this.entityData.set(ACTION, action.name());
+		this.actionTick = action.tick;
 	}
 
 	public void actionTicks() {
@@ -531,7 +532,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 			slime.setPos(this.position());
 			slime.setTarget(p_29912_);
-			slime.shoot(d1, d2 + f, d3, 1.0F, 1.0F + p_29913_);
+			slime.shoot(d1, d2 + f, d3, 0.5F, 0.5F + p_29913_);
 			slime.setSize(2, true);
 			this.level().addFreshEntity(slime);
 
@@ -697,11 +698,10 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	public enum Actions {
 		NORMAL(true, -1),
 		START_RUSH(false, (int) (20 * 5.6)),
-		CHARGE(false, (int) (65)),
+		CHARGE(false, (int) (120)),
 		CHARGE_STOP(false, (int) (20 * 0.68)),
 		CHARGE_FAILED(false, (int) (20 * 3)),
-		SLEEP(true, -1),
-		DEATH(true, -1);
+		SLEEP(true, -1);
 
 		private final boolean loop;
 		private final int tick;
