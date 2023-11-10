@@ -374,7 +374,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		}
 
 		if (!this.level().isClientSide && this.isAlive() && this.tickCount % 10 == 0 && this.isCharging()) {
-			this.heal(3.0F);
+			this.heal(4.0F);
 		}
 		this.actionTicks();
 		if (this.level().isClientSide) {

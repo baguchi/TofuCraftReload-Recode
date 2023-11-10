@@ -8,8 +8,8 @@ import java.util.function.Supplier;
 
 public enum TofuItemTier implements Tier {
 	KINU(0, 1, 0.1F, 0.0F, 2, () -> Ingredient.of(TofuItems.TOFUKINU.get())),
-	MOMEN(0, 2, 0.25F, 0.25F, 5, () -> Ingredient.of(TofuItems.TOFUMOMEN.get())),
-	SOLID(1, 131, 5.0F, 1.0F, 12, () -> Ingredient.of(TofuItems.TOFUISHI.get())),
+	MOMEN(0, 1, 0.25F, 0.25F, 5, () -> Ingredient.of(TofuItems.TOFUMOMEN.get())),
+	SOLID(1, 126, 5.0F, 1.0F, 12, () -> Ingredient.of(TofuItems.TOFUISHI.get())),
 	METAL(2, 245, 6.0F, 2.0F, 16, () -> Ingredient.of(TofuItems.TOFUMETAL.get())),
 	TOFUDIAMOND(3, 1724, 8.5F, 5.0F, 18, () -> Ingredient.of(TofuItems.TOFUDIAMOND.get()));
 

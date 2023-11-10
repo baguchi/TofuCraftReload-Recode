@@ -28,7 +28,7 @@ public enum TofuArmorMaterial implements ArmorMaterial {
 	}), 1, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
 		return Ingredient.of(TofuItems.TOFUMOMEN.get());
 	}),
-	SOLID("tofucraft:solid", 10, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266652_) -> {
+	SOLID("tofucraft:solid", 9, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266652_) -> {
 		p_266652_.put(ArmorItem.Type.BOOTS, 1);
 		p_266652_.put(ArmorItem.Type.LEGGINGS, 3);
 		p_266652_.put(ArmorItem.Type.CHESTPLATE, 4);
