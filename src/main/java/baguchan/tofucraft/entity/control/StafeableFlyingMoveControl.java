@@ -49,7 +49,7 @@ public class StafeableFlyingMoveControl extends MoveControl {
 			this.mob.setSpeed(f1);
 			this.mob.setZza(this.strafeForwards);
 			this.mob.setXxa(this.strafeRight);
-			this.mob.setYya(-f1 * 0.5F);
+			this.mob.setYya(-f1 * 0.95F);
 			this.operation = MoveControl.Operation.WAIT;
 		} else if (this.operation == MoveControl.Operation.MOVE_TO) {
 			this.operation = MoveControl.Operation.WAIT;
