@@ -54,7 +54,7 @@ public class TofuCreativeModeTabs {
 				}).toList());
 			}).build());
 	public static final Supplier<CreativeModeTab> TOFU_MECHANICAL_BLOCKS = CREATIVE_MODE_TABS.register("tofu_mechanical_blocks", () -> CreativeModeTab.builder()
-			.withTabsBefore(TOFUS_KEY)
+			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_mechanical_blocks" + ".main_tab"))
 			.icon(() -> TofuBlocks.TF_STORAGE.get().asItem().getDefaultInstance())
 			.displayItems((parameters, output) -> {
@@ -77,7 +77,7 @@ public class TofuCreativeModeTabs {
 			}).build());
 
 	public static final Supplier<CreativeModeTab> TOFU_BUILDING_BLOCKS = CREATIVE_MODE_TABS.register("tofu_building_blocks", () -> CreativeModeTab.builder()
-			.withTabsBefore(TOFUS_KEY)
+			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_building_blocks" + ".main_tab"))
 			.icon(() -> TofuBlocks.ISHITOFU_BRICK.get().asItem().getDefaultInstance())
 			.displayItems((parameters, output) -> {
@@ -221,7 +221,7 @@ public class TofuCreativeModeTabs {
 			}).build());
 
 	public static final Supplier<CreativeModeTab> TOFU_TOOLS = CREATIVE_MODE_TABS.register("tofu_tools", () -> CreativeModeTab.builder()
-			.withTabsBefore(TOFUS_KEY)
+			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_tools" + ".main_tab"))
 			.icon(() -> TofuItems.TOFU_METAL_SWORD.get().getDefaultInstance())
 			.displayItems((parameters, output) -> {
@@ -293,7 +293,7 @@ public class TofuCreativeModeTabs {
 			}).build());
 
 	public static final Supplier<CreativeModeTab> TOFU_FOODS = CREATIVE_MODE_TABS.register("tofu_foods", () -> CreativeModeTab.builder()
-			.withTabsBefore(TOFU_BUILDING_BLOCKS_KEY)
+			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_foods" + ".main_tab"))
 			.icon(() -> TofuItems.TOFUCOOKIE.get().getDefaultInstance())
 			.displayItems((parameters, output) -> {
@@ -399,7 +399,7 @@ public class TofuCreativeModeTabs {
 			}).build());
 
 	public static final Supplier<CreativeModeTab> TOFU_MISC = CREATIVE_MODE_TABS.register("tofu_misc", () -> CreativeModeTab.builder()
-			.withTabsBefore(TOFU_FOODS_KEY)
+			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_misc" + ".main_tab"))
 			.icon(() -> TofuItems.ZUNDARUBY.get().getDefaultInstance())
 			.displayItems((parameters, output) -> {
