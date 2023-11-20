@@ -25,9 +25,9 @@ public class TofuTrimMaterials {
 	}
 
 	public static void bootstrap(BootstapContext<TrimMaterial> context) {
-		register(context, TOFU_METAL, TofuItems.TOFUMETAL.getHolder().get(), Style.EMPTY.withColor(0xAAB9C2), 0.2F);
-		register(context, TOFU_DIAMOND, TofuItems.TOFUDIAMOND.getHolder().get(), Style.EMPTY.withColor(0x6CBEEB), 0.8F);
-		register(context, ZUNDA_RUBY, TofuItems.ZUNDARUBY.getHolder().get(), Style.EMPTY.withColor(0x39650D), 0.7F);
+		register(context, TOFU_METAL, Holder.direct(TofuItems.TOFUMETAL.get()), Style.EMPTY.withColor(0xAAB9C2), 0.2F);
+		register(context, TOFU_DIAMOND, Holder.direct(TofuItems.TOFUDIAMOND.get()), Style.EMPTY.withColor(0x6CBEEB), 0.8F);
+		register(context, ZUNDA_RUBY, Holder.direct(TofuItems.ZUNDARUBY.get()), Style.EMPTY.withColor(0x39650D), 0.7F);
 
 	}
 

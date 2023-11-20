@@ -2,6 +2,7 @@ package baguchan.tofucraft.data.resources;
 
 import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.world.biome.TofuBiomeDefaultFeatures;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
@@ -11,7 +12,8 @@ import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.neoforged.neoforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 public class TofuBiomeBuilders {
 	public static Biome zundaForestBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
@@ -33,7 +35,7 @@ public class TofuBiomeBuilders {
 						.grassColorOverride(7115607)
 						.foliageColorOverride(7115607)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
-						.backgroundMusic(new Music(TofuSounds.GREEN_BRANCH_BGM.getHolder().orElseThrow(), 12000, 24000, false))
+						.backgroundMusic(new Music(Holder.direct(TofuSounds.GREEN_BRANCH_BGM.get()), 12000, 24000, false))
 						.build(),
 				builder1.build(),
 				builder.build(),
@@ -119,7 +121,7 @@ public class TofuBiomeBuilders {
 		return makeDefaultBiome(builder, mobSpawnSetting, TofuSounds.SOFT_BGM);
 	}
 
-	public static Biome makeDefaultBiome(BiomeGenerationSettings.Builder builder, MobSpawnSettings.Builder mobSpawnSetting, RegistryObject<SoundEvent> soundEvent) {
+	public static Biome makeDefaultBiome(BiomeGenerationSettings.Builder builder, MobSpawnSettings.Builder mobSpawnSetting, Supplier<SoundEvent> soundEvent) {
 		TofuBiomeDefaultFeatures.addDefaultCarvers(builder);
 		TofuBiomeDefaultFeatures.addDefaultOres(builder);
 		TofuBiomeDefaultFeatures.tofuCreatureSpawns(mobSpawnSetting);
@@ -135,7 +137,7 @@ public class TofuBiomeBuilders {
 						.grassColorOverride(7115607)
 						.foliageColorOverride(7115607)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
-						.backgroundMusic(new Music(soundEvent.getHolder().orElseThrow(), 12000, 24000, false))
+						.backgroundMusic(new Music(Holder.direct(soundEvent.get()), 12000, 24000, false))
 						.build(),
 				mobSpawnSetting.build(),
 				builder.build(),

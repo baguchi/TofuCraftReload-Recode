@@ -5,6 +5,7 @@ import baguchan.tofucraft.block.CandleTofuCakeBlock;
 import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -28,7 +29,6 @@ import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 import java.util.function.Function;
@@ -406,7 +406,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 	public void ancientFormatDoor(Supplier<? extends DoorBlock> block, String name) {
-		doorBlockInternal(block.get(), ForgeRegistries.BLOCKS.getKey(block.get()).toString(), texture("tofudoor_" + name + "_lower"), texture("tofudoor_" + name + "_upper"));
+		doorBlockInternal(block.get(), BuiltInRegistries.BLOCK.getKey(block.get()).toString(), texture("tofudoor_" + name + "_lower"), texture("tofudoor_" + name + "_upper"));
 	}
 
 	private ModelBuilder<?> door(String name, String model, ResourceLocation bottom, ResourceLocation top) {
@@ -471,7 +471,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 	protected String name(Block block) {
-		return ForgeRegistries.BLOCKS.getKey(block).getPath();
+		return BuiltInRegistries.BLOCK.getKey(block).getPath();
 	}
 
 	private ResourceLocation extend(ResourceLocation rl, String suffix) {

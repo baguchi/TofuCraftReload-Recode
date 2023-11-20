@@ -2,6 +2,7 @@ package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.compat.CompatHandler;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -15,7 +16,6 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 public class SoulFukumameItem extends Item {
 	public SoulFukumameItem(Properties properties) {
@@ -45,7 +45,7 @@ public class SoulFukumameItem extends Item {
 
 	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-		return enchantment == Enchantments.POWER_ARROWS || ForgeRegistries.ENCHANTMENTS.getKey(enchantment).compareTo(CompatHandler.HUNTERILLAGER_BOUNCE.location()) == 0 || super.canApplyAtEnchantingTable(stack, enchantment);
+		return enchantment == Enchantments.POWER_ARROWS || BuiltInRegistries.ENCHANTMENT.getKey(enchantment).compareTo(CompatHandler.HUNTERILLAGER_BOUNCE.location()) == 0 || super.canApplyAtEnchantingTable(stack, enchantment);
 	}
 
 	@Override

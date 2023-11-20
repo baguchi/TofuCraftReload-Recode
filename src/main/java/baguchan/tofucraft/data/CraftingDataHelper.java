@@ -4,6 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -26,8 +27,6 @@ import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.SignBlock;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.CompoundIngredient;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.RegistryObject;
 
 import java.lang.reflect.Constructor;
 import java.util.concurrent.CompletableFuture;
@@ -46,7 +45,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.pattern(" / ")
 				.define('P', planksIn.get())
 				.define('/', Tags.Items.RODS_WOODEN)
-				.unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(planksIn.get()).getPath(), has(planksIn.get()));
+				.unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(planksIn.get()).getPath(), has(planksIn.get()));
 	}
 
 	protected ShapedRecipeBuilder makeHangingSign(Supplier<? extends CeilingHangingSignBlock> result, Supplier<? extends Block> log) {
@@ -56,7 +55,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.pattern("###")
 				.define('#', log.get())
 				.define('|', Items.CHAIN)
-				.unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(log.get()).getPath(), has(log.get()));
+				.unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(log.get()).getPath(), has(log.get()));
 	}
 
 
@@ -87,14 +86,14 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 	protected final void foodCooking(Supplier<? extends ItemLike> material, Supplier<? extends ItemLike> result, float xp, RecipeOutput consumer) {
-		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
-		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
-		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 600).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + BuiltInRegistries.ITEM.getKey(result.get().asItem()).getPath()));
+		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + BuiltInRegistries.ITEM.getKey(result.get().asItem()).getPath()));
+		SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 600).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("campfire_cooking_" + BuiltInRegistries.ITEM.getKey(result.get().asItem()).getPath()));
 	}
 
 	protected final void foodCookingButNoCampfire(Supplier<? extends ItemLike> material, Supplier<? extends ItemLike> result, float xp, RecipeOutput consumer) {
-		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
-		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath()));
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 200).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smelting_" + BuiltInRegistries.ITEM.getKey(result.get().asItem()).getPath()));
+		SimpleCookingRecipeBuilder.smoking(Ingredient.of(material.get()), RecipeCategory.FOOD, result.get(), xp, 100).unlockedBy("has_item", has(material.get())).save(consumer, TofuCraftReload.prefix("smoking_" + BuiltInRegistries.ITEM.getKey(result.get().asItem()).getPath()));
 	}
 
 	protected final void foodCooking(Supplier<? extends ItemLike> material, Supplier<? extends ItemLike> result, float xp, RecipeOutput consumer, String recipeName) {
@@ -107,16 +106,16 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(cuttingItem.get()), RecipeCategory.BUILDING_BLOCKS, result.get(), count).unlockedBy("has_item", has(cuttingItem.get())).save(consumer, TofuCraftReload.prefix("cutting_" + getItemName(result.get()) + "_from_" + getItemName(cuttingItem.get())));
 	}
 
-	public static void tofuDiamondSmithing(RecipeOutput consumer, ItemLike smithItem, RecipeCategory recipeCategory, RegistryObject<? extends Item> result) {
-		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, TofuCraftReload.prefix(ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing"));
+	public static void tofuDiamondSmithing(RecipeOutput consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<? extends Item> result) {
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuBlocks.DIAMONDTOFU.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuBlocks.DIAMONDTOFU.get())).save(consumer, TofuCraftReload.prefix(BuiltInRegistries.ITEM.getKey(result.get().asItem()).getPath() + "_smithing"));
 	}
 
-	public static void zundaSmithing(RecipeOutput consumer, ItemLike smithItem, RecipeCategory recipeCategory, RegistryObject<? extends Item> result) {
-		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuItems.ZUNDAMA.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.ZUNDAMA.get())).save(consumer, TofuCraftReload.prefix(ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing"));
+	public static void zundaSmithing(RecipeOutput consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<? extends Item> result) {
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuItems.ZUNDAMA.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.ZUNDAMA.get())).save(consumer, TofuCraftReload.prefix(BuiltInRegistries.ITEM.getKey(result.get().asItem()).getPath() + "_smithing"));
 	}
 
-	public static void sculkSmithing(RecipeOutput consumer, ItemLike smithItem, RecipeCategory recipeCategory, RegistryObject<? extends Item> result) {
-		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, TofuCraftReload.prefix(ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + "_smithing"));
+	public static void sculkSmithing(RecipeOutput consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<? extends Item> result) {
+		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, TofuCraftReload.prefix(BuiltInRegistries.ITEM.getKey(result.get().asItem()).getPath() + "_smithing"));
 	}
 
 	protected final void helmetItem(RecipeOutput consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
@@ -298,7 +297,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.pattern("PP")
 				.pattern("PP")
 				.define('P', plankIn.get())
-				.unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(plankIn.get().asItem()).getPath(), has(plankIn.get())).save(consumer);
+				.unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(plankIn.get().asItem()).getPath(), has(plankIn.get())).save(consumer);
 	}
 
 	public void makeTrapdoor(RecipeOutput consumer, Supplier<? extends Block> trapdoorOut, Supplier<? extends ItemLike> plankIn) {
@@ -306,7 +305,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.pattern("PPP")
 				.pattern("PPP")
 				.define('P', plankIn.get())
-				.unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(plankIn.get().asItem()).getPath(), has(plankIn.get())).save(consumer);
+				.unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(plankIn.get().asItem()).getPath(), has(plankIn.get())).save(consumer);
 	}
 
 	public void makeWoodFence(RecipeOutput consumer, Block fenceOut, Block blockIn) {
@@ -315,7 +314,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.pattern("MSM")
 				.define('M', blockIn)
 				.define('S', Tags.Items.RODS_WOODEN)
-				.unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(blockIn).getPath(), has(blockIn)).save(consumer);
+				.unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(blockIn).getPath(), has(blockIn)).save(consumer);
 	}
 
 	public void makeFenceGate(RecipeOutput consumer, Block fenceOut, Block blockIn) {
@@ -324,7 +323,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.pattern("SMS")
 				.define('M', blockIn)
 				.define('S', Tags.Items.RODS_WOODEN)
-				.unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(blockIn).getPath(), has(blockIn)).save(consumer);
+				.unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(blockIn).getPath(), has(blockIn)).save(consumer);
 	}
 
 

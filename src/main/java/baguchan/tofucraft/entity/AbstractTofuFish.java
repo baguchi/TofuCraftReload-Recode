@@ -51,6 +51,6 @@ public abstract class AbstractTofuFish extends AbstractFish {
 
 	@Override
 	public boolean canDrownInFluidType(FluidType type) {
-		return type != TofuFluidTypes.SOYMILK.get() && type != TofuFluidTypes.SOYMILK_HELL.get() && type != TofuFluidTypes.SOYMILK_SOUL.get() && type != NeoForgeMod.WATER_TYPE.get() && super.canDrownInFluidType(type);
+		return type != TofuFluidTypes.SOYMILK.get() && type != TofuFluidTypes.SOYMILK_HELL.get() && type != TofuFluidTypes.SOYMILK_SOUL.get() && type != NeoForgeMod.WATER_TYPE.value() && super.canDrownInFluidType(type);
 	}
 }

@@ -3,19 +3,28 @@ package baguchan.tofucraft.registry;
 import baguchan.tofucraft.TofuCraftReload;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 
 public class TofuCreativeModeTabs {
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TofuCraftReload.MODID);
 
+	public static final ResourceKey<CreativeModeTab> TOFUS_KEY = createKey("ingredients");
+	public static final ResourceKey<CreativeModeTab> TOFU_FOODS_KEY = createKey("tofu_foods");
+	public static final ResourceKey<CreativeModeTab> TOFU_BUILDING_BLOCKS_KEY = createKey("tofu_building_blocks");
 
-	public static final RegistryObject<CreativeModeTab> TOFUS = CREATIVE_MODE_TABS.register("tofus", () -> CreativeModeTab.builder()
+	private static ResourceKey<CreativeModeTab> createKey(String p_281544_) {
+		return ResourceKey.create(Registries.CREATIVE_MODE_TAB, new ResourceLocation(TofuCraftReload.MODID, p_281544_));
+	}
+
+	public static final Supplier<CreativeModeTab> TOFUS = CREATIVE_MODE_TABS.register("tofus", () -> CreativeModeTab.builder()
 			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofus" + ".main_tab"))
 			.icon(() -> TofuItems.TOFUKINU.get().getDefaultInstance())
@@ -44,8 +53,8 @@ public class TofuCreativeModeTabs {
 					return sup.get().getDefaultInstance();
 				}).toList());
 			}).build());
-	public static final RegistryObject<CreativeModeTab> TOFU_MECHANICAL_BLOCKS = CREATIVE_MODE_TABS.register("tofu_mechanical_blocks", () -> CreativeModeTab.builder()
-			.withTabsBefore(TOFUS.getKey())
+	public static final Supplier<CreativeModeTab> TOFU_MECHANICAL_BLOCKS = CREATIVE_MODE_TABS.register("tofu_mechanical_blocks", () -> CreativeModeTab.builder()
+			.withTabsBefore(TOFUS_KEY)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_mechanical_blocks" + ".main_tab"))
 			.icon(() -> TofuBlocks.TF_STORAGE.get().asItem().getDefaultInstance())
 			.displayItems((parameters, output) -> {
@@ -67,8 +76,8 @@ public class TofuCreativeModeTabs {
 				}).toList());
 			}).build());
 
-	public static final RegistryObject<CreativeModeTab> TOFU_BUILDING_BLOCKS = CREATIVE_MODE_TABS.register("tofu_building_blocks", () -> CreativeModeTab.builder()
-			.withTabsBefore(TOFUS.getKey())
+	public static final Supplier<CreativeModeTab> TOFU_BUILDING_BLOCKS = CREATIVE_MODE_TABS.register("tofu_building_blocks", () -> CreativeModeTab.builder()
+			.withTabsBefore(TOFUS_KEY)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_building_blocks" + ".main_tab"))
 			.icon(() -> TofuBlocks.ISHITOFU_BRICK.get().asItem().getDefaultInstance())
 			.displayItems((parameters, output) -> {
@@ -211,8 +220,8 @@ public class TofuCreativeModeTabs {
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());
 
-	public static final RegistryObject<CreativeModeTab> TOFU_TOOLS = CREATIVE_MODE_TABS.register("tofu_tools", () -> CreativeModeTab.builder()
-			.withTabsBefore(TOFUS.getKey())
+	public static final Supplier<CreativeModeTab> TOFU_TOOLS = CREATIVE_MODE_TABS.register("tofu_tools", () -> CreativeModeTab.builder()
+			.withTabsBefore(TOFUS_KEY)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_tools" + ".main_tab"))
 			.icon(() -> TofuItems.TOFU_METAL_SWORD.get().getDefaultInstance())
 			.displayItems((parameters, output) -> {
@@ -278,13 +287,13 @@ public class TofuCreativeModeTabs {
 						TofuItems.ZUNDAMUSHROOM_ON_A_STICK,
 						TofuItems.FUKUMAME,
 						TofuItems.NETHER_FUKUMAME,
-						TofuItems.SOUL_FUKUMAME).map(itemRegistryObject -> {
-					return itemRegistryObject.get().asItem().getDefaultInstance();
+						TofuItems.SOUL_FUKUMAME).map(itemSupplier -> {
+					return itemSupplier.get().asItem().getDefaultInstance();
 				}).toList());
 			}).build());
 
-	public static final RegistryObject<CreativeModeTab> TOFU_FOODS = CREATIVE_MODE_TABS.register("tofu_foods", () -> CreativeModeTab.builder()
-			.withTabsBefore(TOFU_BUILDING_BLOCKS.getKey())
+	public static final Supplier<CreativeModeTab> TOFU_FOODS = CREATIVE_MODE_TABS.register("tofu_foods", () -> CreativeModeTab.builder()
+			.withTabsBefore(TOFU_BUILDING_BLOCKS_KEY)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_foods" + ".main_tab"))
 			.icon(() -> TofuItems.TOFUCOOKIE.get().getDefaultInstance())
 			.displayItems((parameters, output) -> {
@@ -384,13 +393,13 @@ public class TofuCreativeModeTabs {
 						TofuItems.EDAMAME_TEMPLA,
 						TofuItems.NEGIMA,
 						TofuItems.SOY_KARAAGE,
-						TofuItems.SOYMEATDON).map(itemRegistryObject -> {
-					return itemRegistryObject.get().getDefaultInstance();
+						TofuItems.SOYMEATDON).map(itemSupplier -> {
+					return itemSupplier.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());
 
-	public static final RegistryObject<CreativeModeTab> TOFU_MISC = CREATIVE_MODE_TABS.register("tofu_misc", () -> CreativeModeTab.builder()
-			.withTabsBefore(TOFU_FOODS.getKey())
+	public static final Supplier<CreativeModeTab> TOFU_MISC = CREATIVE_MODE_TABS.register("tofu_misc", () -> CreativeModeTab.builder()
+			.withTabsBefore(TOFU_FOODS_KEY)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_misc" + ".main_tab"))
 			.icon(() -> TofuItems.ZUNDARUBY.get().getDefaultInstance())
 			.displayItems((parameters, output) -> {
@@ -443,8 +452,8 @@ public class TofuCreativeModeTabs {
 						TofuItems.ZUNDAMA,
 						TofuItems.ZUNDARUBY,
 						TofuItems.TOFUGEM,
-						TofuItems.NATTO_COBWEB).map(itemRegistryObject -> {
-					return itemRegistryObject.get().getDefaultInstance();
+						TofuItems.NATTO_COBWEB).map(itemSupplier -> {
+					return itemSupplier.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());
 }

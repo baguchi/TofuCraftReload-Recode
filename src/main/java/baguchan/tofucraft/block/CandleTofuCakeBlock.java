@@ -6,6 +6,7 @@ import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -28,7 +29,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.Map;
 import java.util.function.Supplier;
@@ -147,6 +147,6 @@ public class CandleTofuCakeBlock extends AbstractCandleBlock {
 	}
 
 	public static Iterable<Block> getCandleCakes() {
-		return ForgeRegistries.BLOCKS.getValues().stream().filter(block -> ForgeRegistries.BLOCKS.getKey(block) != null && TofuCraftReload.MODID.equals(ForgeRegistries.BLOCKS.getKey(block).getNamespace()) && block instanceof CandleTofuCakeBlock).collect(Collectors.toList());
+		return BuiltInRegistries.BLOCK.stream().filter(block -> BuiltInRegistries.BLOCK.getKey(block) != null && TofuCraftReload.MODID.equals(BuiltInRegistries.BLOCK.getKey(block).getNamespace()) && block instanceof CandleTofuCakeBlock).collect(Collectors.toList());
 	}
 }

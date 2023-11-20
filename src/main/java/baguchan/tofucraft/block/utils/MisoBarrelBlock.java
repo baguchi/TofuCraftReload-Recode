@@ -18,14 +18,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 public class MisoBarrelBlock extends WeightBaseBlock {
-	public final RegistryObject<Item> finishedBottleItem;
+	public final Supplier<Item> finishedBottleItem;
 	public static final IntegerProperty FLUIDS = IntegerProperty.create("fluids", 0, 6);
 
 
-	public MisoBarrelBlock(RegistryObject<Item> finishedBottleItem, Properties properties) {
+	public MisoBarrelBlock(Supplier<Item> finishedBottleItem, Properties properties) {
 		super(properties);
 		this.finishedBottleItem = finishedBottleItem;
 		registerDefaultState(this.stateDefinition.any().setValue(STAT, Stat.USING).setValue(TIME, 0).setValue(FLUIDS, 0));

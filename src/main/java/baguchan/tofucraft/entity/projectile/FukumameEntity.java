@@ -9,6 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -28,7 +29,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.Optional;
 
@@ -48,9 +48,9 @@ public class FukumameEntity extends ThrowableProjectile {
 
 	public FukumameEntity(Level worldIn, LivingEntity throwerIn, ItemStack stack) {
 		super(TofuEntityTypes.FUKUMAME.get(), throwerIn, worldIn);
-		Optional<Holder<Enchantment>> resourceKey = ForgeRegistries.ENCHANTMENTS.getHolder(CompatHandler.HUNTERILLAGER_BOUNCE);
+		Optional<Holder.Reference<Enchantment>> resourceKey = BuiltInRegistries.ENCHANTMENT.getHolder(CompatHandler.HUNTERILLAGER_BOUNCE);
 		if (resourceKey.isPresent()) {
-			this.entityData.set(BOUNCE_LEVEL, EnchantmentHelper.getItemEnchantmentLevel(resourceKey.get().get(), stack));
+			this.entityData.set(BOUNCE_LEVEL, EnchantmentHelper.getItemEnchantmentLevel(resourceKey.get().value(), stack));
 		}
 	}
 

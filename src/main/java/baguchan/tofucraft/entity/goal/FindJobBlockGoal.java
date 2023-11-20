@@ -5,6 +5,7 @@ import baguchan.tofucraft.registry.TofuTags;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.DebugPackets;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -15,7 +16,6 @@ import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.Optional;
@@ -55,7 +55,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 						if (this.creature.level() instanceof ServerLevel) {
 							((ServerLevel) this.creature.level()).getPoiManager().getType(this.blockPos).ifPresent((p_217105_) -> {
 								((ServerLevel) this.creature.level()).getPoiManager().take(poiTypeHolder -> {
-									return poiTypeHolder == ForgeRegistries.POI_TYPES.getHolder(this.poiTypeResourceKey).get();
+									return poiTypeHolder == BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(this.poiTypeResourceKey).get();
 								}, (p_217108_, p_217109_) -> {
 									return p_217109_.equals(this.blockPos);
 								}, this.blockPos, 1);

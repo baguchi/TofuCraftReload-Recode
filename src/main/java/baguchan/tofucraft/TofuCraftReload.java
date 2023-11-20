@@ -13,7 +13,6 @@ import baguchan.tofucraft.message.TFStorageSoymilkMessage;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBannerPatterns;
-import baguchan.tofucraft.registry.TofuBiomeModifiers;
 import baguchan.tofucraft.registry.TofuBiomeSources;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
@@ -36,6 +35,7 @@ import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
 import com.google.common.collect.Maps;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
@@ -107,7 +107,6 @@ public class TofuCraftReload {
 		TofuRecipes.RECIPE_TYPES.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuMenus.MENU_TYPES.register(modBus);
-		TofuBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modBus);
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
 		TofuFeatures.FEATURES.register(modBus);
 		TofuSounds.SOUND_EVENTS.register(modBus);
@@ -143,12 +142,10 @@ public class TofuCraftReload {
 			FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
 
 
-			pot.addPlant(TofuBlocks.SAPLING_TOFU.getId(), TofuBlocks.POTTED_TOFU_SAPLING);
-			pot.addPlant(TofuBlocks.SAPLING_APRICOT.getId(), TofuBlocks.POTTED_APRICOT_SAPLING);
-			pot.addPlant(TofuBlocks.ZUNDATOFU_MUSHROOM.getId(), TofuBlocks.POTTED_ZUNDA_TOFU_MUSHROOM);
-			pot.addPlant(TofuBlocks.LEEK.getId(), TofuBlocks.POTTED_LEEK);
-
-
+			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.SAPLING_TOFU.get()), TofuBlocks.POTTED_TOFU_SAPLING);
+			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.SAPLING_APRICOT.get()), TofuBlocks.POTTED_APRICOT_SAPLING);
+			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.ZUNDATOFU_MUSHROOM.get()), TofuBlocks.POTTED_ZUNDA_TOFU_MUSHROOM);
+			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.LEEK.get()), TofuBlocks.POTTED_LEEK);
 		});
 	}
 

@@ -29,6 +29,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
@@ -107,7 +108,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.IExtensibleEnum;
 import net.neoforged.neoforge.common.util.ITeleporter;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -1097,7 +1097,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		public static Roles get(BlockState blockState) {
 			for (Roles role : values()) {
 				if (role != TOFUNIAN) {
-					Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(role.getPoiType());
+					Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(role.getPoiType());
 
 					if (poiTypeHolder.isPresent() && poiTypeHolder.get().value().is(blockState)) {
 						return role;
@@ -1110,7 +1110,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		public static Set<BlockState> getJobBlock(ResourceKey<PoiType> poitypeIn) {
 			for (Roles role : values()) {
 				if (role != TOFUNIAN && role.getPoiType() == poitypeIn) {
-					Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(role.getPoiType());
+					Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(role.getPoiType());
 
 					if (poiTypeHolder.isPresent()) {
 						return poiTypeHolder.get().value().matchingStates();
@@ -1122,7 +1122,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 		public static Set<BlockState> getJobMatch(Roles roles, ResourceKey<PoiType> poitypeIn) {
 			if (roles != TOFUNIAN && roles.getPoiType() == poitypeIn) {
-				Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(roles.getPoiType());
+				Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(roles.getPoiType());
 
 				if (poiTypeHolder.isPresent()) {
 					return poiTypeHolder.get().value().matchingStates();
