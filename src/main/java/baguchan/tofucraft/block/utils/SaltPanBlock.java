@@ -135,12 +135,13 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 				if (PotionUtils.getPotion(itemHeld) == Potions.WATER) {
 					ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
 					level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
-					if (itemHeld.getCount() == 1) {
-						player.setItemInHand(handIn, bottle);
-					} else {
-						if (!player.getInventory().add(bottle))
-							level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, bottle));
-						if (!player.isCreative()) {
+					if (!player.isCreative()) {
+						if (itemHeld.getCount() == 1) {
+							player.setItemInHand(handIn, bottle);
+						} else {
+							if (!player.getInventory().add(bottle))
+								level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, bottle));
+
 							itemHeld.shrink(1);
 						}
 					}
