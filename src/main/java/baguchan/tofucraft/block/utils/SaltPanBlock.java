@@ -140,7 +140,9 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 					} else {
 						if (!player.getInventory().add(bottle))
 							level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, bottle));
-						itemHeld.shrink(1);
+						if (!player.isCreative()) {
+							itemHeld.shrink(1);
+						}
 					}
 					level.setBlock(pos, state.setValue(SaltPanBlock.STAT, Stat.WATER), 3);
 				}
