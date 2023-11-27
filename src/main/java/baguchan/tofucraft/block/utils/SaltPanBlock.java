@@ -146,6 +146,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 						}
 					}
 					level.setBlock(pos, state.setValue(SaltPanBlock.STAT, Stat.WATER), 3);
+					return InteractionResult.SUCCESS;
 				}
 			}
 			if (stat == Stat.BITTERN && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
