@@ -1,6 +1,5 @@
 package baguchan.tofucraft.block.utils;
 
-import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.utils.TileScanner;
 import net.minecraft.core.BlockPos;
@@ -16,6 +15,8 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -108,7 +109,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		Stat stat = getStat(state);
 		if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
@@ -120,45 +121,57 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 						handler.drain(1000, IFluidHandler.FluidAction.EXECUTE);
 						player.setItemInHand(handIn, new ItemStack(handler.getContainer().getItem()));
 					}
-					worldIn.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-					TileScanner tileScanner = new TileScanner(worldIn, pos);
+					level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+					TileScanner tileScanner = new TileScanner(level, pos);
 					tileScanner.scan(1, TileScanner.Method.fullSimply, new TileScanner.Impl<Object>() {
 						public void apply(Level world, BlockPos pos) {
 							if (SaltPanBlock.this.getStat(world.getBlockState(pos)) == Stat.EMPTY)
-								world.setBlock(pos, TofuBlocks.SALTPAN.get().defaultBlockState().setValue(SaltPanBlock.STAT, Stat.WATER), 3);
+								world.setBlock(pos, world.getBlockState(pos).setValue(SaltPanBlock.STAT, Stat.WATER), 3);
 						}
 					});
-					worldIn.setBlock(pos, state.setValue(STAT, Stat.WATER), 3);
+					level.setBlock(pos, state.setValue(STAT, Stat.WATER), 3);
 					return InteractionResult.SUCCESS;
+				}
+				if (PotionUtils.getPotion(itemHeld) == Potions.WATER) {
+					ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
+					level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+					if (itemHeld.getCount() == 1) {
+						player.setItemInHand(handIn, bottle);
+					} else {
+						if (!player.getInventory().add(bottle))
+							level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, bottle));
+						itemHeld.shrink(1);
+					}
+					level.setBlock(pos, state.setValue(SaltPanBlock.STAT, Stat.WATER), 3);
 				}
 			}
 			if (stat == Stat.BITTERN && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
 				ItemStack nigari = new ItemStack(TofuItems.BITTERN_BOTTLE.get());
-				worldIn.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+				level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 				if (itemHeld.getCount() == 1) {
 					player.setItemInHand(handIn, nigari);
 				} else {
 					if (!player.getInventory().add(nigari))
-						worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, nigari));
+						level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, nigari));
 					itemHeld.shrink(1);
 				}
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
+				level.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
 				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.BITTERN && itemHeld == null) {
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
+				level.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
 				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.SALT) {
 				ItemStack salt = new ItemStack(TofuItems.SALT.get(), 2);
 				float f = 0.7F;
-				double d0 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
-				double d1 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
-				double d2 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
-				ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, salt);
+				double d0 = (level.random.nextFloat() * f) + (1.0F - f) * 0.5D;
+				double d1 = (level.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
+				double d2 = (level.random.nextFloat() * f) + (1.0F - f) * 0.5D;
+				ItemEntity itemEntity = new ItemEntity(level, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, salt);
 				itemEntity.setPickUpDelay(10);
-				worldIn.addFreshEntity(itemEntity);
-				worldIn.setBlock(pos, state.setValue(STAT, Stat.BITTERN), 3);
+				level.addFreshEntity(itemEntity);
+				level.setBlock(pos, state.setValue(STAT, Stat.BITTERN), 3);
 				return InteractionResult.SUCCESS;
 			}
 		}
