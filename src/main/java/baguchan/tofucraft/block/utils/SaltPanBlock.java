@@ -22,6 +22,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -65,9 +66,18 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 		registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false)).setValue(WEST, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
 	}
 
+	@Override
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource p_222948_) {
+		super.tick(state, level, pos, p_222948_);
+		if (!state.canSurvive(level, pos)) {
+			level.destroyBlock(pos, true);
+		}
+	}
+
 	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (!stateIn.canSurvive(worldIn, currentPos) && !worldIn.getBlockTicks().hasScheduledTick(currentPos, this))
+		if (!stateIn.canSurvive(worldIn, currentPos) && !worldIn.getBlockTicks().hasScheduledTick(currentPos, this)) {
 			worldIn.scheduleTick(currentPos, this, 1);
+		}
 		if (((Boolean) stateIn.getValue((Property) WATERLOGGED)).booleanValue()) {
 			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
 			Stat stat = getStat(stateIn);
@@ -105,7 +115,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 
 	@Override
 	public boolean canSurvive(BlockState p_196260_1_, LevelReader p_196260_2_, BlockPos p_196260_3_) {
-		return p_196260_2_.getBlockState(p_196260_3_.below()).isSolid();
+		return p_196260_2_.getBlockState(p_196260_3_.below()).isFaceSturdy(p_196260_2_, p_196260_3_, Direction.UP);
 	}
 
 	@Override
@@ -184,8 +194,6 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-		if (!state.canSurvive(worldIn, pos))
-			worldIn.destroyBlock(pos, true);
 		Stat stat = getStat(state);
 		int l = stat.getMeta();
 		if (stat == Stat.WATER && !((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
@@ -211,7 +219,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	private float calcAdaptation(Level world, BlockPos pos) {
 		float rate;
 		Biome biome = world.getBiome(pos).value();
-		boolean isUnderTheSun = world.getRawBrightness(pos, 0) > 8;
+		boolean isUnderTheSun = world.getBrightness(LightLayer.SKY, pos) > 10;
 		boolean isRaining = world.isRaining();
 		boolean isDaytime = (world.dayTime() % 24000L < 12000L);
 		float humidity = biome.getModifiedClimateSettings().downfall();
