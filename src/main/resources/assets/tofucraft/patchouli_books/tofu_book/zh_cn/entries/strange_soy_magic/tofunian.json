@@ -1,0 +1,17 @@
+{
+  "name" : "豆腐村民",
+  "advancement" : "tofucraft:tofucraft/tofuworld",
+  "icon" : "tofucraft:tofu_terrain",
+  "category" : "tofucraft:strange_soy_magic",
+  "priority" : true,
+  "pages" : [
+    {
+      "type" : "patchouli:entity",
+      "entity" : "tofucraft:tofunian"
+    },
+    {
+      "type" : "text",
+      "text" : "这种生物看起来很简单,$(br2) 但实际上它太复杂了以至于难以理解.$(br2) 他们的文化基本上是非竞争性的，他们的大部分贸易都与大豆有关.$(br2)它们的祖先可以用豆腐制作出高级傀儡.$(br2) 唉，我希望那个主世界的居民能效仿他们.$(br2)"
+    }
+  ]
+}
