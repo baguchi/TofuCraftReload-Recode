@@ -1,0 +1,26 @@
+{
+  "type" : "minecraft:block_column",
+  "config" : {
+    "allowed_placement" : {
+      "type" : "minecraft:has_sturdy_face",
+      "direction" : "down"
+    },
+    "direction" : "up",
+    "layers" : [
+      {
+        "height" : 64,
+        "provider" : {
+          "type" : "minecraft:simple_state_provider",
+          "state" : {
+            "Name" : "tofucraft:tofu_metal_chain",
+            "Properties" : {
+              "axis" : "y",
+              "waterlogged" : "false"
+            }
+          }
+        }
+      }
+    ],
+    "prioritize_tip" : true
+  }
+}

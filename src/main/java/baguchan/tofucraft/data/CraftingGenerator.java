@@ -805,6 +805,23 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
 				.save(consumer);
 
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.CRIMSON_BOTTLE.get(), 3)
+				.requires(TofuItems.SHROOM_BOTTLE.get())
+				.requires(Items.CRIMSON_FUNGUS)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE)
+				.unlockedBy("has_item", has(TofuItems.SHROOM_BOTTLE.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.WARPED_BOTTLE.get(), 3)
+				.requires(TofuItems.SHROOM_BOTTLE.get())
+				.requires(Items.WARPED_FUNGUS)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE)
+				.unlockedBy("has_item", has(TofuItems.SHROOM_BOTTLE.get()))
+				.save(consumer);
+
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.KINAKO_MANJU.get(), 2)
 				.requires(TofuItems.KINAKO.get())
 				.requires(Items.WHEAT)

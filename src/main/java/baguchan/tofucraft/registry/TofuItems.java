@@ -26,6 +26,7 @@ import baguchan.tofucraft.item.RollingPinItem;
 import baguchan.tofucraft.item.SeedAndRootItem;
 import baguchan.tofucraft.item.SoulFukumameItem;
 import baguchan.tofucraft.item.SoymilkBottleItem;
+import baguchan.tofucraft.item.SpecialBitternItem;
 import baguchan.tofucraft.item.TofuArmorItem;
 import baguchan.tofucraft.item.TofuAxeItem;
 import baguchan.tofucraft.item.TofuBoatItem;
@@ -120,6 +121,9 @@ public class TofuItems {
 
 
 	public static final Supplier<Item> BITTERN_BOTTLE = ITEMS.register("bittern_bottle", () -> new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final Supplier<Item> CRIMSON_BOTTLE = ITEMS.register("crimson_fluid_bottle", () -> new SpecialBitternItem(TofuFluids.SOYMILK_SOUL, TofuBlocks.SOULTOFU, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final Supplier<Item> WARPED_BOTTLE = ITEMS.register("warped_fluid_bottle", () -> new SpecialBitternItem(TofuFluids.SOYMILK_HELL, TofuBlocks.HELLTOFU, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final Supplier<Item> SHROOM_BOTTLE = ITEMS.register("shroom_bottle", () -> new Item((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final Supplier<Item> SALT = ITEMS.register("salt", () -> new Item((new Item.Properties())));
 	public static final Supplier<Item> SEEDS_SOYBEANS = ITEMS.register("seeds_soybeans", () -> new ItemNameBlockItem(TofuBlocks.SOYBEAN.get(), (new Item.Properties())));
 	public static final Supplier<Item> SEEDS_SOYBEANS_NETHER = ITEMS.register("seeds_soybeans_nether", () -> new ItemNameBlockItem(TofuBlocks.SOYBEAN_NETHER.get(), (new Item.Properties())));
@@ -648,6 +652,24 @@ public class TofuItems {
 				return abstractarrow;
 			}
 		});
+
+		DispenseItemBehavior dispenseitembehavior4 = new DefaultDispenseItemBehavior() {
+			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+
+			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
+				BlockPos blockpos = p_123561_.pos().relative(p_123561_.state().getValue(DispenserBlock.FACING));
+				FluidState fluidState = p_123561_.level().getFluidState(blockpos);
+				if (p_123562_.getItem() instanceof SpecialBitternItem specialBitternItem && specialBitternItem.fluidSupplier.get() == fluidState.getType()) {
+					p_123561_.level().setBlock(blockpos, specialBitternItem.blockSupplier.get().defaultBlockState(), 11);
+					p_123561_.level().levelEvent(2001, blockpos, Block.getId(p_123561_.level().getBlockState(blockpos)));
+					p_123562_.shrink(1);
+					this.defaultDispenseItemBehavior.dispense(p_123561_, new ItemStack(Items.GLASS_BOTTLE));
+				}
+				return p_123562_;
+			}
+		};
+		DispenserBlock.registerBehavior(CRIMSON_BOTTLE.get(), dispenseitembehavior4);
+		DispenserBlock.registerBehavior(WARPED_BOTTLE.get(), dispenseitembehavior4);
 	}
 
 	public static void registerAnimalFeed() {

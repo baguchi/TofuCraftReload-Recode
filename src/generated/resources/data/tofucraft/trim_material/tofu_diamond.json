@@ -1,9 +1,0 @@
-{
-  "asset_name" : "tofu_diamond",
-  "description" : {
-    "color" : "#6CBEEB",
-    "translate" : "trim_material.tofucraft.tofu_diamond"
-  },
-  "ingredient" : "tofucraft:tofudiamond",
-  "item_model_index" : 0.8
-}

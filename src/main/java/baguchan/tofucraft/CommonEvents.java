@@ -11,6 +11,7 @@ import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuStructures;
+import baguchan.tofucraft.utils.ContainerUtils;
 import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.world.TofuLevelData;
 import baguchan.tofucraft.world.TravelerTofunianSpawner;
@@ -22,6 +23,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -35,6 +37,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -377,6 +380,30 @@ public class CommonEvents {
 
 				if (energyContained.getEnergy(event.getEntity().getUseItem()) >= 50) {
 					event.setShieldTakesDamage(false);
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onBlockModificationEvent(PlayerInteractEvent.RightClickBlock event) {
+		InteractionHand hand = event.getHand();
+		ItemStack stack = event.getItemStack();
+		Player player = event.getEntity();
+		Level level = event.getLevel();
+		BlockPos pos = event.getPos();
+		if (player != null) {
+			if (stack.is(Items.GLASS_BOTTLE)) {
+
+				boolean shroomlight = level.getBlockState(pos).is(Blocks.SHROOMLIGHT);
+				if (shroomlight) {
+					if (!level.isClientSide) {
+						level.levelEvent(2001, pos, Block.getId(Blocks.SHROOMLIGHT.defaultBlockState()));
+					}
+					player.playSound(SoundEvents.BOTTLE_FILL);
+					ContainerUtils.addWithContainer(player, hand, stack, TofuItems.SHROOM_BOTTLE.get().getDefaultInstance(), true);
+					level.removeBlock(pos, false);
+					event.setCancellationResult(InteractionResult.SUCCESS);
 				}
 			}
 		}
