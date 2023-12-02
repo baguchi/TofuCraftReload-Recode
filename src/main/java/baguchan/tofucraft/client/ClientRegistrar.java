@@ -176,6 +176,6 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiOverlaysEvent event) {
-		event.registerAboveAll("tofu_portal_overlay", new TofuPortalOverlay());
+		event.registerAboveAll(TofuCraftReload.prefix("tofu_portal_overlay"), new TofuPortalOverlay());
 	}
 }
