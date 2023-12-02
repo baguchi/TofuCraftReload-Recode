@@ -41,7 +41,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-@Mixin(value = FishingHook.class, remap = false)
+@Mixin(value = FishingHook.class)
 public abstract class FishingHookMixin extends Projectile {
 
 	@Shadow

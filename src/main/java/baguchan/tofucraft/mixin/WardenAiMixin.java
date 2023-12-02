@@ -1,6 +1,6 @@
 package baguchan.tofucraft.mixin;
 
-import baguchan.tofucraft.entity.task.CoughTask;
+import baguchan.tofucraft.entity.behaviors.CoughTask;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.monster.warden.Warden;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = WardenAi.class, remap = false)
+@Mixin(value = WardenAi.class)
 public class WardenAiMixin {
 
 
