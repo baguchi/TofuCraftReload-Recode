@@ -1,0 +1,36 @@
+{
+  "name": "关于大豆",
+  "advancement" : "tofucraft:tofucraft/roots",
+  "icon": "tofucraft:seeds_soybeans",
+  "category": "tofucraft:first_step",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "大豆",
+      "text": "大豆和小麦种子获取方式一样,很容易收集. (除非世界没长草)",
+      "item": {
+        "item": "tofucraft:seeds_soybeans",
+        "count": 1
+      }
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "地狱大豆",
+      "text": "此外当你去下界的时候,你可以找到其他奇怪的大豆. ",
+      "item": {
+        "item": "tofucraft:seeds_soybeans_nether",
+        "count": 1
+      }
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "灵魂大豆",
+      "text": "...你也可以找到灵魂变体!",
+      "item": {
+        "item": "tofucraft:seeds_soybeans_soul",
+        "count": 1
+      }
+    }
+  ]
+}
