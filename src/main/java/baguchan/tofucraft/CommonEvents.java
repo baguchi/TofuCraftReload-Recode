@@ -297,7 +297,7 @@ public class CommonEvents {
 				return p_184069_.is(TofuPoiTypes.MORIJIO);
 			}, (p_184055_) -> {
 				return true;
-			}, BlockPos.containing(vec3), 48, PoiManager.Occupancy.ANY);
+			}, BlockPos.containing(vec3), 32, PoiManager.Occupancy.ANY);
 
 			if (optional.isPresent()) {
 				event.setCanceled(true);
