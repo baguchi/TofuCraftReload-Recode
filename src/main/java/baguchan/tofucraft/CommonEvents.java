@@ -46,7 +46,6 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.capabilities.RegisterCapabilitiesEvent;
@@ -282,7 +281,7 @@ public class CommonEvents {
 					}, livingEntity.blockPosition(), 32, PoiManager.Occupancy.ANY);
 
 					if (optional.isPresent()) {
-						event.setResult(Event.Result.DENY);
+						event.setCanceled(true);
 					}
 				}
 			}
