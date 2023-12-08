@@ -102,6 +102,7 @@ public class TofuCraftReload {
 		TofuSounds.SOUND_EVENTS.register(modBus);
 		TofuCapability.ATTACHMENT_TYPES.register(modBus);
 		TofuParticleTypes.PARTICLE_TYPES.register(modBus);
+		TofuAdvancements.CRITERIONS_REGISTER.register(modBus);
 
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 
