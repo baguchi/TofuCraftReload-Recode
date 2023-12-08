@@ -647,7 +647,7 @@ public class TofuItems {
 
 		DispenserBlock.registerBehavior(ZUNDA_ARROW.get(), new AbstractProjectileDispenseBehavior() {
 			protected Projectile getProjectile(Level p_123456_, Position p_123457_, ItemStack p_123458_) {
-				AbstractArrow abstractarrow = new ZundaArrow(p_123456_, p_123457_.x(), p_123457_.y(), p_123457_.z());
+				AbstractArrow abstractarrow = new ZundaArrow(p_123456_, p_123457_.x(), p_123457_.y(), p_123457_.z(), p_123458_);
 				abstractarrow.pickup = AbstractArrow.Pickup.ALLOWED;
 				return abstractarrow;
 			}

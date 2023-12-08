@@ -18,6 +18,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
@@ -25,17 +26,22 @@ import javax.annotation.Nullable;
 
 public class ZundaArrow extends AbstractArrow {
 	private int duration = 100;
+	private static final ItemStack DEFAULT_ARROW_STACK = new ItemStack(Items.ARROW);
 
-	public ZundaArrow(EntityType<? extends ZundaArrow> p_37411_, Level p_37412_) {
-		super(p_37411_, p_37412_);
+	public ZundaArrow(EntityType<? extends ZundaArrow> p_36858_, Level p_36859_) {
+		super(p_36858_, p_36859_, DEFAULT_ARROW_STACK);
 	}
 
-	public ZundaArrow(Level p_37419_, LivingEntity p_37420_) {
-		super(TofuEntityTypes.ZUNDA_ARROW.get(), p_37420_, p_37419_);
+	public ZundaArrow(EntityType<? extends ZundaArrow> p_37411_, Level p_37412_, ItemStack p_308982_) {
+		super(p_37411_, p_37412_, p_308982_);
 	}
 
-	public ZundaArrow(Level p_37414_, double p_37415_, double p_37416_, double p_37417_) {
-		super(TofuEntityTypes.ZUNDA_ARROW.get(), p_37415_, p_37416_, p_37417_, p_37414_);
+	public ZundaArrow(Level p_37419_, LivingEntity p_37420_, ItemStack p_308982_) {
+		super(TofuEntityTypes.ZUNDA_ARROW.get(), p_37420_, p_37419_, p_308982_);
+	}
+
+	public ZundaArrow(Level p_37414_, double p_37415_, double p_37416_, double p_37417_, ItemStack p_308982_) {
+		super(TofuEntityTypes.ZUNDA_ARROW.get(), p_37415_, p_37416_, p_37417_, p_37414_, p_308982_);
 	}
 
 	public void tick() {

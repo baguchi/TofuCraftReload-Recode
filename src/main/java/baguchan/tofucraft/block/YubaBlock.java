@@ -34,10 +34,10 @@ public class YubaBlock extends Block {
 	public YubaBlock(BlockBehaviour.Properties properties) {
 		super(properties);
 	}
-
 	@Override
-	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
+	public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
 		return new ItemStack(TofuItems.YUBA.get());
+
 	}
 
 	public VoxelShape getShape(BlockState p_56057_, BlockGetter p_56058_, BlockPos p_56059_, CollisionContext p_56060_) {

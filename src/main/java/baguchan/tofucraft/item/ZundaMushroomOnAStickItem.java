@@ -43,7 +43,7 @@ public class ZundaMushroomOnAStickItem<T extends Entity & ItemSteerable> extends
 					});
 
 					if (p_41315_ instanceof ServerPlayer) {
-						TofuAdvancements.TOFUPIG_POP.trigger((ServerPlayer) p_41315_);
+						TofuAdvancements.TOFUPIG_POP.get().trigger((ServerPlayer) p_41315_);
 					}
 
 					if (itemstack.isEmpty()) {

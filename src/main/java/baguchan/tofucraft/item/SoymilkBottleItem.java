@@ -1,6 +1,7 @@
 package baguchan.tofucraft.item;
 
-import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.capability.SoyHealthCapability;
+import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuEffects;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
@@ -34,7 +35,7 @@ public class SoymilkBottleItem extends Item {
 	@Override
 	public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
 		super.finishUsingItem(p_41409_, p_41410_, p_41411_);
-		p_41411_.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
+		SoyHealthCapability cap = p_41411_.getData(TofuCapability.SOY_HEALTH);
 			if (!p_41410_.isClientSide) {
 				if (p_41410_.getGameTime() > cap.getRemainTick() + 12000L) {
 					if (cap.getSoyHealthLevel() < 1) {
@@ -50,7 +51,6 @@ public class SoymilkBottleItem extends Item {
 				p_41411_.addEffect(new MobEffectInstance(TofuEffects.SOY_HEALTHY.get(), 600 + 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
 				p_41411_.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
 			}
-		});
 		if (p_41411_ instanceof ServerPlayer) {
 			ServerPlayer serverplayerentity = (ServerPlayer) p_41411_;
 			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, p_41409_);

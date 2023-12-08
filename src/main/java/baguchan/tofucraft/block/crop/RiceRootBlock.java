@@ -1,5 +1,6 @@
 package baguchan.tofucraft.block.crop;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
@@ -10,8 +11,14 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
 public class RiceRootBlock extends BushBlock {
+	public static final MapCodec<RiceRootBlock> CODEC = simpleCodec(RiceRootBlock::new);
 	public RiceRootBlock(BlockBehaviour.Properties properties) {
 		super(properties);
+	}
+
+	@Override
+	protected MapCodec<? extends BushBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

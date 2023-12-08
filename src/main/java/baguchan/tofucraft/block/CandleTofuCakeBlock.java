@@ -4,6 +4,8 @@ import baguchan.tofucraft.TofuCraftReload;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -25,13 +27,13 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Map;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -42,6 +44,11 @@ import java.util.stream.Collectors;
  * @since 3.0.0.0
  */
 public class CandleTofuCakeBlock extends AbstractCandleBlock {
+	public static final MapCodec<CandleTofuCakeBlock> CODEC = RecordCodecBuilder.mapCodec(
+			p_308809_ -> p_308809_.group(BuiltInRegistries.BLOCK.byNameCodec().fieldOf("cake").forGetter((p_304363_) -> p_304363_.baseCake), BuiltInRegistries.BLOCK.byNameCodec().fieldOf("candle").forGetter(p_304363_ -> p_304363_.candle), propertiesCodec())
+					.apply(p_308809_, CandleTofuCakeBlock::new)
+	);
+
 	public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
 	protected static final VoxelShape CAKE_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D);
 	protected static final VoxelShape CANDLE_SHAPE = Block.box(7.0D, 8.0D, 7.0D, 9.0D, 14.0D, 9.0D);
@@ -49,16 +56,21 @@ public class CandleTofuCakeBlock extends AbstractCandleBlock {
 	private static final Map<Pair<Block, TofuCakeBlock>, CandleTofuCakeBlock> BY_CANDLE_AND_CAKE = Maps.newHashMap();
 	private static final Iterable<Vec3> PARTICLE_OFFSETS = ImmutableList.of(new Vec3(0.5D, 1.0D, 0.5D));
 
-	private final Supplier<Block> baseCake;
+	private final Block baseCake;
 	private final Block candle;
 
-	public CandleTofuCakeBlock(Supplier<Block> baseCake, Block candle, Properties properties) {
+	public CandleTofuCakeBlock(Block baseCake, Block candle, Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.FALSE));
 		this.baseCake = baseCake;
 		this.candle = candle;
 
-		BY_CANDLE_AND_CAKE.put(Pair.of(candle, (TofuCakeBlock) baseCake.get()), this);
+		BY_CANDLE_AND_CAKE.put(Pair.of(candle, (TofuCakeBlock) baseCake), this);
+	}
+
+	@Override
+	protected MapCodec<? extends AbstractCandleBlock> codec() {
+		return CODEC;
 	}
 
 	@Override
@@ -74,7 +86,7 @@ public class CandleTofuCakeBlock extends AbstractCandleBlock {
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
 		ItemStack itemstack = player.getItemInHand(hand);
-		if (!itemstack.is(Items.FLINT_AND_STEEL) && !itemstack.is(Items.FIRE_CHARGE) && baseCake.get() instanceof TofuCakeBlock cakeBlock) {
+		if (!itemstack.is(Items.FLINT_AND_STEEL) && !itemstack.is(Items.FIRE_CHARGE) && baseCake instanceof TofuCakeBlock cakeBlock) {
 			if (candleHit(result) && player.getItemInHand(hand).isEmpty() && state.getValue(LIT)) {
 				extinguish(player, state, level, pos);
 				return InteractionResult.sidedSuccess(level.isClientSide);
@@ -92,8 +104,8 @@ public class CandleTofuCakeBlock extends AbstractCandleBlock {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
-		return new ItemStack(baseCake.get());
+	public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
+		return new ItemStack(baseCake);
 	}
 
 	private static boolean candleHit(BlockHitResult result) {
@@ -143,7 +155,7 @@ public class CandleTofuCakeBlock extends AbstractCandleBlock {
 	}
 
 	public Block getCake() {
-		return baseCake.get();
+		return baseCake;
 	}
 
 	public static Iterable<Block> getCandleCakes() {

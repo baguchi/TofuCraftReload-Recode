@@ -1,7 +1,8 @@
 package baguchan.tofucraft.block;
 
-import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.world.TofuLevelTeleporter;
@@ -70,19 +71,18 @@ public class TofuPortalBlock extends Block {
 	public void entityInside(BlockState p_196262_1_, Level p_196262_2_, BlockPos p_196262_3_, Entity p_196262_4_) {
 		super.entityInside(p_196262_1_, p_196262_2_, p_196262_3_, p_196262_4_);
 
-		p_196262_4_.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(handler -> {
-			handler.setInPortal(true);
-			if (handler.tofuPortalCooldown <= 0) {
-				int waitTime = handler.getPortalTimer();
+		TofuLivingCapability tofuLivingCapability = p_196262_4_.getData(TofuCapability.TOFU_LIVING.get());
+		tofuLivingCapability.setInPortal(true);
+		if (tofuLivingCapability.tofuPortalCooldown <= 0) {
+			int waitTime = tofuLivingCapability.getPortalTimer();
 				if (waitTime >= 80 || !(p_196262_4_ instanceof Player) || ((Player) p_196262_4_).isCreative()) {
 					attemptSendPlayer(p_196262_4_, p_196262_2_);
-					handler.setPortalTimer(0);
-					handler.tofuPortalCooldown = 60;
+					tofuLivingCapability.setPortalTimer(0);
+					tofuLivingCapability.tofuPortalCooldown = 60;
 				}
 			} else {
-				handler.tofuPortalCooldown = 60;
+			tofuLivingCapability.tofuPortalCooldown = 60;
 			}
-		});
 	}
 
 	private static ResourceKey<Level> getDestination(Entity entity) {

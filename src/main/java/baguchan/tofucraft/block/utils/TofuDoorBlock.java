@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class TofuDoorBlock extends DoorBlock {
 	public TofuDoorBlock(Properties properties, BlockSetType p_272854_) {
-		super(properties, p_272854_);
+		super(p_272854_, properties);
 	}
 
 	@Override

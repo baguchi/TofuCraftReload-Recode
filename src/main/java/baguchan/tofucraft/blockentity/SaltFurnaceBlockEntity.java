@@ -36,14 +36,9 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.CommonHooks;
-import net.neoforged.neoforge.common.capabilities.Capabilities;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
@@ -120,15 +115,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		}
 	};
 
-	LazyOptional<? extends IItemHandler>[] handlers;
-	private final LazyOptional<IFluidHandler> holder;
-	private final LazyOptional<IFluidHandler> holder2;
-
 	public SaltFurnaceBlockEntity(BlockPos p_155545_, BlockState p_155546_) {
 		super(TofuBlockEntitys.SALT_FURNACE.get(), p_155545_, p_155546_);
-		this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-		this.holder = LazyOptional.of(() -> this.waterTank);
-		this.holder2 = LazyOptional.of(() -> this.bitternTank);
 	}
 
 	private boolean isLit() {
@@ -453,37 +441,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	@Override
 	protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
 		return new SaltFurnaceMenu(p_58627_, p_58628_, this, this.dataAccess);
-	}
-
-	public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-		if (!this.remove && facing != null && capability == Capabilities.ITEM_HANDLER) {
-			if (facing == Direction.UP)
-				return this.handlers[0].cast();
-			if (facing == Direction.DOWN)
-				return this.handlers[1].cast();
-			return this.handlers[2].cast();
-		}
-		if (capability == Capabilities.FLUID_HANDLER) {
-			if (facing == Direction.UP) {
-				return this.holder.cast();
-			} else if (facing != null) {
-				return this.holder2.cast();
-			} else {
-				return this.holder.cast();
-			}
-		}
-
-		return super.getCapability(capability, facing);
-	}
-
-	public void invalidateCaps() {
-		super.invalidateCaps();
-
-		for (int x = 0; x < this.handlers.length; x++) {
-			this.handlers[x].invalidate();
-		}
-		this.holder.invalidate();
-		this.holder2.invalidate();
 	}
 
 	@Override

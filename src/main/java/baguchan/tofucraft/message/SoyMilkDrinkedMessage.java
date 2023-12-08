@@ -1,6 +1,7 @@
 package baguchan.tofucraft.message;
 
-import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.capability.SoyHealthCapability;
+import baguchan.tofucraft.registry.TofuCapability;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
@@ -43,10 +44,10 @@ public class SoyMilkDrinkedMessage {
 		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
 			context.enqueueWork(() -> {
 				Entity entity = (Minecraft.getInstance()).player.level().getEntity(entityId);
-				if (entity != null && entity instanceof LivingEntity)
-					entity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent((cap) -> {
-						cap.setSoyHealthLevel((LivingEntity) entity, level, canUpdate);
-					});
+				if (entity != null && entity instanceof LivingEntity living) {
+					SoyHealthCapability cap = living.getData(TofuCapability.SOY_HEALTH);
+					cap.setSoyHealthLevel((LivingEntity) entity, level, canUpdate);
+				}
 			});
 		}
 		return true;

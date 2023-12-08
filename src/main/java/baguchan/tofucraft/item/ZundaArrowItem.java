@@ -14,6 +14,6 @@ public class ZundaArrowItem extends ArrowItem {
 	}
 
 	public AbstractArrow createArrow(Level p_43237_, ItemStack p_43238_, LivingEntity p_43239_) {
-		return new ZundaArrow(p_43237_, p_43239_);
+		return new ZundaArrow(p_43237_, p_43239_, p_43238_);
 	}
 }

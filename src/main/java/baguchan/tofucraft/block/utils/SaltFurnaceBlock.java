@@ -4,6 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -33,7 +34,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
@@ -43,11 +43,17 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import javax.annotation.Nullable;
 
 public class SaltFurnaceBlock extends BaseEntityBlock {
+	public static final MapCodec<SaltFurnaceBlock> CODEC = simpleCodec(SaltFurnaceBlock::new);
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
 	public SaltFurnaceBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(false)));
+	}
+
+	@Override
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
 	}
 
 	@Override
@@ -59,7 +65,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 		if (blockentity instanceof SaltFurnaceBlockEntity) {
 			IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1)).orElse(null);
 			if (handler != null && handler instanceof FluidBucketWrapper) {
-				FluidUtil.interactWithFluidHandler(player, hand, blockentity.getCapability(Capabilities.FLUID_HANDLER).orElse(null));
+				FluidUtil.interactWithFluidHandler(player, hand, level, pos, null);
 				flag = true;
 			}
 

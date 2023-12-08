@@ -105,9 +105,10 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 		}
 	}
 
+
 	@Override
-	public void invalidateCaps() {
-		super.invalidateCaps();
+	public void invalidateCapabilities() {
+		super.invalidateCapabilities();
 		if (!this.getLevel().isClientSide()) {
 			TofuNetwork.Instance.unload(uuid, false);
 		}

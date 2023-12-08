@@ -1,24 +1,16 @@
 package baguchan.tofucraft.capability;
 
-import baguchan.tofucraft.TofuCraftReload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
-import net.neoforged.neoforge.common.capabilities.ICapabilitySerializable;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.common.util.INBTSerializable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySerializable<CompoundTag> {
+public class TofuLivingCapability implements INBTSerializable<CompoundTag> {
 
 	public boolean isInTofuPortal = false;
 	public int tofuPortalTimer = 0;
@@ -102,11 +94,6 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 
 	public float getPrevPortalAnimTime() {
 		return this.prevPortalAnimTime;
-	}
-
-	@Nonnull
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
-		return (capability == TofuCraftReload.TOFU_LIVING_CAPABILITY) ? LazyOptional.of(() -> this).cast() : LazyOptional.empty();
 	}
 
 	public CompoundTag serializeNBT() {

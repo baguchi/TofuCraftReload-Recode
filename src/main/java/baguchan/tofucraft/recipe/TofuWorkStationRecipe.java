@@ -7,7 +7,6 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingRecipeCodecs;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -117,7 +116,7 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 				return p_297231_.ingredient;
 			}), Ingredient.CODEC.fieldOf("sub").forGetter((p_299654_) -> {
 				return p_299654_.subIngredient;
-			}), CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf("result").forGetter((p_297480_) -> {
+			}), ItemStack.RESULT_CODEC.fieldOf("result").forGetter((p_297480_) -> {
 				return p_297480_.result;
 			})).apply(p_301330_, TofuWorkStationRecipe::new);
 		});

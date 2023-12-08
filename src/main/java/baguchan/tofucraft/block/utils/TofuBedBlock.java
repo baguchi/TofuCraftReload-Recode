@@ -138,7 +138,7 @@ public class TofuBedBlock extends BedBlock {
 	}
 
 	@Override
-	public void playerWillDestroy(Level p_49505_, BlockPos p_49506_, BlockState p_49507_, Player p_49508_) {
+	public BlockState playerWillDestroy(Level p_49505_, BlockPos p_49506_, BlockState p_49507_, Player p_49508_) {
 		if (!p_49505_.isClientSide && p_49508_.isCreative()) {
 			BedPart var5 = (BedPart) p_49507_.getValue(PART);
 			if (var5 == BedPart.FOOT) {
@@ -151,7 +151,7 @@ public class TofuBedBlock extends BedBlock {
 			}
 		}
 
-		super.playerWillDestroy(p_49505_, p_49506_, p_49507_, p_49508_);
+		return super.playerWillDestroy(p_49505_, p_49506_, p_49507_, p_49508_);
 	}
 
 	@Nullable

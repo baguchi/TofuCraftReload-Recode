@@ -1,15 +1,15 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuTags;
-import baguchan.tofucraft.world.gen.grower.TofuTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TofuSaplingBlock extends SaplingBlock {
-	public TofuSaplingBlock(TofuTreeGrower tofuTreeGrower, Properties properties) {
-		super(tofuTreeGrower, properties);
+	public TofuSaplingBlock(TreeGrower tofuTreeGrowers, Properties properties) {
+		super(tofuTreeGrowers, properties);
 	}
 
 	@Override

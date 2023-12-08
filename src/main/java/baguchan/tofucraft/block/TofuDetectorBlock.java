@@ -1,6 +1,7 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuTags;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -19,11 +20,17 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public class TofuDetectorBlock extends DirectionalBlock {
+	public static final MapCodec<TofuDetectorBlock> CODEC = simpleCodec(TofuDetectorBlock::new);
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
 	public TofuDetectorBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.SOUTH).setValue(POWERED, Boolean.valueOf(false)));
+	}
+
+	@Override
+	protected MapCodec<? extends DirectionalBlock> codec() {
+		return CODEC;
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_55125_) {

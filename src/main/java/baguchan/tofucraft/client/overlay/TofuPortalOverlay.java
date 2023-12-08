@@ -1,8 +1,8 @@
 package baguchan.tofucraft.client.overlay;
 
-import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuCapability;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -20,7 +20,8 @@ public class TofuPortalOverlay implements IGuiOverlay {
 	@Override
 	public void render(ExtendedGui gui, GuiGraphics poseStack, float partialTick, int width, int height) {
 		Minecraft mc = Minecraft.getInstance();
-		mc.player.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(handler -> renderTofuPortalOverlay(poseStack, mc, partialTick, width, height, handler));
+		TofuLivingCapability tofuLivingCapability = mc.player.getData(TofuCapability.TOFU_LIVING);
+		renderTofuPortalOverlay(poseStack, mc, partialTick, width, height, tofuLivingCapability);
 
 	}
 

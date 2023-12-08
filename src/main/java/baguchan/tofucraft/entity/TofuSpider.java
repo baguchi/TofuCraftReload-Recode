@@ -136,7 +136,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 
 		for (Player player : players) {
 			if (player instanceof ServerPlayer serverPlayer) {
-				TofuAdvancements.NIGHTMARES_ECHO.trigger(serverPlayer);
+				TofuAdvancements.NIGHTMARES_ECHO.get().trigger(serverPlayer);
 			}
 		}
 

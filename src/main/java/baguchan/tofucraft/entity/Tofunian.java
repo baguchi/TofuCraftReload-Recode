@@ -483,7 +483,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		ItemStack itemstack = p_35472_.getItemInHand(p_35473_);
 		if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG.get() && this.isAlive() && !this.isTrading() && !this.isSleeping() && !p_35472_.isSecondaryUseActive()) {
 			if (p_35472_ instanceof ServerPlayer) {
-				TofuAdvancements.MY_TOFU_CHILD.trigger((ServerPlayer) p_35472_);
+				TofuAdvancements.MY_TOFU_CHILD.get().trigger((ServerPlayer) p_35472_);
 			}
 			if (this.isBaby()) {
 				this.setUnhappy();

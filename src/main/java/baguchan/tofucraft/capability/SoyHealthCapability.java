@@ -2,22 +2,15 @@ package baguchan.tofucraft.capability;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
-import net.neoforged.neoforge.common.capabilities.ICapabilitySerializable;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySerializable<CompoundTag> {
+public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 	private int soyHealthLevel;
 	private int soyHealthBaseLevel;
 	private long lastTick = -12000L;
@@ -72,11 +65,6 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 				}
 			}
 		}
-	}
-
-	@Nonnull
-	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
-		return (capability == TofuCraftReload.SOY_HEALTH_CAPABILITY) ? LazyOptional.of(() -> this).cast() : LazyOptional.empty();
 	}
 
 	public CompoundTag serializeNBT() {

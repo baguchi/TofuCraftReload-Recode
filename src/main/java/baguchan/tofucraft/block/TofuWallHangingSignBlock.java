@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class TofuWallHangingSignBlock extends WallHangingSignBlock {
 	public TofuWallHangingSignBlock(Properties p_58068_, WoodType p_58069_) {
-		super(p_58068_, p_58069_);
+		super(p_58069_, p_58068_);
 	}
 
 	@Override

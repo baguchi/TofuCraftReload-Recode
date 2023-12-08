@@ -197,7 +197,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 
 	private void healEffect() {
 		float radius = 5;
-		AABB box = new AABB(BlockPos.containing(this.getX() - radius, this.getY() - 1, this.getZ() - radius), BlockPos.containing(this.getX() + radius, this.getY() + 3, this.getZ() + radius));
+		AABB box = new AABB(this.getX() - radius, this.getY() - 1, this.getZ() - radius, this.getX() + radius, this.getY() + 3, this.getZ() + radius);
 		List<LivingEntity> hitEntities = this.level().getEntitiesOfClass(LivingEntity.class, box);
 		for (LivingEntity hitEntity : hitEntities) {
 			if (!hitEntity.level().isClientSide) {

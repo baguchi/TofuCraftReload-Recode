@@ -3,6 +3,7 @@ package baguchan.tofucraft.block;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuTags;
 import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -21,8 +22,15 @@ import net.neoforged.neoforge.event.level.SaplingGrowTreeEvent;
 import java.util.Optional;
 
 public class LeekBlock extends BushBlock implements BonemealableBlock {
+
+	public static final MapCodec<LeekBlock> CODEC = simpleCodec(LeekBlock::new);
 	public LeekBlock(Properties p_51021_) {
 		super(p_51021_);
+	}
+
+	@Override
+	protected MapCodec<? extends BushBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

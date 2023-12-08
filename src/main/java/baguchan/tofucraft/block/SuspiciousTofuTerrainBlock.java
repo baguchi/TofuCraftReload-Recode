@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class SuspiciousTofuTerrainBlock extends BrushableBlock {
 	public SuspiciousTofuTerrainBlock(Properties properties) {
-		super(TofuBlocks.TOFU_TERRAIN.get(), properties, SoundEvents.WOOL_HIT, SoundEvents.WOOL_BREAK);
+		super(TofuBlocks.TOFU_TERRAIN.get(), SoundEvents.WOOL_HIT, SoundEvents.WOOL_BREAK, properties);
 	}
 
 	public BlockEntity newBlockEntity(BlockPos p_272913_, BlockState p_273465_) {

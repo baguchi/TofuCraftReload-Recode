@@ -1,6 +1,8 @@
 package baguchan.tofucraft.block.utils;
 
 import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
+import baguchan.tofucraft.registry.TofuBlockEntitys;
+import com.mojang.serialization.MapCodec;
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -63,6 +65,8 @@ import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
 public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> implements SimpleWaterloggedBlock {
+	public static final MapCodec<TofuChestBlock> CODEC = simpleCodec(p_304364_ -> new TofuChestBlock(p_304364_, () -> TofuBlockEntitys.TOFUCHEST.get()));
+
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	public static final EnumProperty<ChestType> TYPE = BlockStateProperties.CHEST_TYPE;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -124,6 +128,11 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 	public TofuChestBlock(BlockBehaviour.Properties p_51490_, Supplier<BlockEntityType<? extends TofuChestBlockEntity>> p_51491_) {
 		super(p_51490_, p_51491_);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TYPE, ChestType.SINGLE).setValue(WATERLOGGED, Boolean.valueOf(false)));
+	}
+
+	@Override
+	protected MapCodec<? extends AbstractChestBlock<TofuChestBlockEntity>> codec() {
+		return CODEC;
 	}
 
 	public static DoubleBlockCombiner.BlockType getBlockType(BlockState p_51583_) {

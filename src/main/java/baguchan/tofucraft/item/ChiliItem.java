@@ -25,7 +25,7 @@ public class ChiliItem extends Item {
 			for (Warden warden : wardenList) {
 				((ISmell) warden).setCannotSmell(true);
 				if (entity.getOwner() instanceof ServerPlayer) {
-					TofuAdvancements.CHILI_DISTRACTION.trigger((ServerPlayer) entity.getOwner());
+					TofuAdvancements.CHILI_DISTRACTION.get().trigger((ServerPlayer) entity.getOwner());
 				}
 			}
 		}

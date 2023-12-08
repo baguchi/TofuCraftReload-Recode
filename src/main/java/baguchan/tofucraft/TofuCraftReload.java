@@ -1,8 +1,6 @@
 package baguchan.tofucraft;
 
 import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
-import baguchan.tofucraft.capability.SoyHealthCapability;
-import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.event.CraftingEvents;
@@ -18,6 +16,7 @@ import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlockSetTypes;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuCarvers;
 import baguchan.tofucraft.registry.TofuCreativeModeTabs;
 import baguchan.tofucraft.registry.TofuEffects;
@@ -50,9 +49,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.capabilities.CapabilityManager;
-import net.neoforged.neoforge.common.capabilities.CapabilityToken;
 import net.neoforged.neoforge.network.NetworkRegistry;
 import net.neoforged.neoforge.network.simple.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
@@ -68,12 +64,6 @@ public class TofuCraftReload {
 	public static final String NETWORK_PROTOCOL = "2";
 
 	public static ClientProxy PROXY = new ClientProxy();
-
-	public static final Capability<SoyHealthCapability> SOY_HEALTH_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
-	});
-
-	public static final Capability<TofuLivingCapability> TOFU_LIVING_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
-	});
 
 	public static final Logger LOGGER = LogManager.getLogger(TofuCraftReload.MODID);
 
@@ -110,6 +100,7 @@ public class TofuCraftReload {
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
 		TofuFeatures.FEATURES.register(modBus);
 		TofuSounds.SOUND_EVENTS.register(modBus);
+		TofuCapability.ATTACHMENT_TYPES.register(modBus);
 		TofuParticleTypes.PARTICLE_TYPES.register(modBus);
 
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);

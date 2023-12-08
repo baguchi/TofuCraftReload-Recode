@@ -33,15 +33,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.capabilities.Capabilities;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +50,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 	private int workload = 0;
 	private int current_workload = 0;
 	private int prevFluid;
-	private final LazyOptional<IFluidHandler> holder;
 
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
@@ -98,7 +93,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 
 	public TFStorageBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
 		super(TofuBlockEntitys.TF_STORAGE.get(), p_155229_, p_155230_, 10000);
-		this.holder = LazyOptional.of(() -> this.tank);
 	}
 
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFStorageBlockEntity tfStorageBlockEntity) {
@@ -235,16 +229,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 
 	public NonNullList<ItemStack> getInventory() {
 		return inventory;
-	}
-
-	@Override
-	@Nullable
-	public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-		if (capability == Capabilities.FLUID_HANDLER) {
-			return this.holder.cast();
-		}
-
-		return super.getCapability(capability, facing);
 	}
 
 	public void saveAdditional(CompoundTag cmp) {

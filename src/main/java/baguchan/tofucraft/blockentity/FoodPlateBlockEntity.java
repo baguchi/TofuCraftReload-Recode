@@ -2,27 +2,18 @@ package baguchan.tofucraft.blockentity;
 
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.capabilities.Capabilities;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 public class FoodPlateBlockEntity extends SyncedBlockEntity {
 	private final ItemStackHandler inventory;
-	private final LazyOptional<IItemHandler> inputHandler;
 
 	public FoodPlateBlockEntity(BlockPos pos, BlockState state) {
 		super(TofuBlockEntitys.FOODPLATE.get(), pos, state);
 		inventory = createHandler();
-		inputHandler = LazyOptional.of(() -> inventory);
 	}
 
 	@Override
@@ -65,22 +56,6 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 
 	public boolean isEmpty() {
 		return inventory.getStackInSlot(0).isEmpty();
-	}
-
-
-	@Override
-	@Nonnull
-	public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-		if (cap.equals(Capabilities.ITEM_HANDLER)) {
-			return inputHandler.cast();
-		}
-		return super.getCapability(cap, side);
-	}
-
-	@Override
-	public void setRemoved() {
-		super.setRemoved();
-		inputHandler.invalidate();
 	}
 
 	private ItemStackHandler createHandler() {

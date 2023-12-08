@@ -1,6 +1,8 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuTags;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -23,6 +25,13 @@ import net.neoforged.neoforge.event.level.SaplingGrowTreeEvent;
 import java.util.Optional;
 
 public class TofuMushroomBlock extends BushBlock implements BonemealableBlock {
+	public static final MapCodec<TofuMushroomBlock> CODEC = RecordCodecBuilder.mapCodec(
+			p_308826_ -> p_308826_.group(
+							propertiesCodec(),
+							ResourceKey.codec(Registries.CONFIGURED_FEATURE).fieldOf("feature").forGetter(p_304367_ -> p_304367_.feature)
+					)
+					.apply(p_308826_, TofuMushroomBlock::new)
+	);
 	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
 
 	private final ResourceKey<ConfiguredFeature<?, ?>> feature;
@@ -35,6 +44,11 @@ public class TofuMushroomBlock extends BushBlock implements BonemealableBlock {
 	@Override
 	public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
 		return SHAPE;
+	}
+
+	@Override
+	protected MapCodec<? extends BushBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

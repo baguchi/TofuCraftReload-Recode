@@ -7,6 +7,7 @@ import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.entity.TofuGandlem;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
@@ -48,8 +49,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.event.AttachCapabilitiesEvent;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
@@ -73,45 +72,32 @@ public class CommonEvents {
 	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
 
 	@SubscribeEvent
-	public static void onRegisterEntityCapabilities(RegisterCapabilitiesEvent event) {
-		event.register(SoyHealthCapability.class);
-		event.register(TofuLivingCapability.class);
-	}
-
-	@SubscribeEvent
-	public static void onAttachEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {
-		if (event.getObject() instanceof LivingEntity) {
-			event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "soy_health"), new SoyHealthCapability());
-			event.addCapability(new ResourceLocation(TofuCraftReload.MODID, "tofu_living"), new TofuLivingCapability());
-		}
-	}
-
-	@SubscribeEvent
 	public static void onUpdate(LivingEvent.LivingTickEvent event) {
 		LivingEntity livingEntity = event.getEntity();
+		SoyHealthCapability soyHealth = livingEntity.getData(TofuCapability.SOY_HEALTH);
+
 		if (!livingEntity.level().isClientSide()) {
-			livingEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
-				cap.tick(livingEntity);
-			});
+			soyHealth.tick(livingEntity);
 		}
-		livingEntity.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).ifPresent(tofuLivingCapability -> {
-			tofuLivingCapability.tick(livingEntity);
-		});
+		TofuLivingCapability tofuLivingCapability = livingEntity.getData(TofuCapability.TOFU_LIVING);
+		tofuLivingCapability.tick(livingEntity);
 	}
 
 	@SubscribeEvent
 	public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
 		Player player = event.getEntity();
 		if (player instanceof ServerPlayer) {
-			player.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new SoyMilkDrinkedMessage(player, handler.getSoyHealthLevel(), false)));
+			SoyHealthCapability soyHealth = player.getData(TofuCapability.SOY_HEALTH);
 
+			TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new SoyMilkDrinkedMessage(player, soyHealth.getSoyHealthLevel(), false));
 		}
 	}
 
 	@SubscribeEvent
 	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		Player playerEntity = event.getEntity();
-		playerEntity.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(handler -> TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, handler.getSoyHealthLevel(), false)));
+		SoyHealthCapability soyHealth = playerEntity.getData(TofuCapability.SOY_HEALTH);
+		TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, soyHealth.getSoyHealthLevel(), false));
 	}
 
 	protected static BlockHitResult getPlayerPOVHitResult(Level p_41436_, Player p_41437_, ClipContext.Fluid p_41438_) {
@@ -344,11 +330,9 @@ public class CommonEvents {
 		Player oldPlayer = event.getOriginal();
 		Player newPlayer = event.getEntity();
 		if (!event.isWasDeath()) {
-			oldPlayer.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(oldcap -> {
-				newPlayer.getCapability(TofuCraftReload.SOY_HEALTH_CAPABILITY).ifPresent(cap -> {
-					cap.deserializeNBT(oldcap.serializeNBT());
-				});
-			});
+			SoyHealthCapability soyHealth = oldPlayer.getData(TofuCapability.SOY_HEALTH);
+			SoyHealthCapability soyHealth2 = newPlayer.getData(TofuCapability.SOY_HEALTH);
+			soyHealth2.deserializeNBT(soyHealth.serializeNBT());
 		}
 	}
 

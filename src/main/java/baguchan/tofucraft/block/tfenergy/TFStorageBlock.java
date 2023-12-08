@@ -4,6 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
 import baguchan.tofucraft.message.TFStorageSoymilkMessage;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -31,7 +32,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.common.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
@@ -41,6 +41,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import javax.annotation.Nullable;
 
 public class TFStorageBlock extends BaseEntityBlock {
+	public static final MapCodec<TFStorageBlock> CODEC = simpleCodec(TFStorageBlock::new);
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
@@ -48,6 +49,11 @@ public class TFStorageBlock extends BaseEntityBlock {
 	public TFStorageBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
+	}
+
+	@Override
+	protected MapCodec<? extends BaseEntityBlock> codec() {
+		return CODEC;
 	}
 
 	public BlockState getStateForPlacement(BlockPlaceContext p_48689_) {
@@ -70,7 +76,7 @@ public class TFStorageBlock extends BaseEntityBlock {
 		if (blockentity instanceof TFStorageBlockEntity) {
 			IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1)).orElse(null);
 			if (handler != null && handler instanceof FluidBucketWrapper) {
-				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, blockentity.getCapability(Capabilities.FLUID_HANDLER).orElse(null));
+				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, p_48707_, p_48708_, null);
 				flag = true;
 			}
 
