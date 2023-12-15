@@ -3,6 +3,7 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
+import net.minecraft.Util;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -18,19 +19,17 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.SignBlock;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.crafting.CompoundIngredient;
+import net.neoforged.neoforge.common.crafting.PartialNBTIngredient;
 
-import java.lang.reflect.Constructor;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public abstract class CraftingDataHelper extends RecipeProvider {
@@ -59,30 +58,12 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 
-	protected final Ingredient itemWithNBT(Supplier<? extends ItemLike> item, Consumer<CompoundTag> nbtSetter) {
-		return itemWithNBT(item.get(), nbtSetter);
-	}
-
-	protected final Ingredient itemWithNBT(ItemLike item, Consumer<CompoundTag> nbtSetter) {
-		ItemStack stack = new ItemStack(item);
-
-		CompoundTag nbt = new CompoundTag();
-		nbtSetter.accept(nbt);
-		stack.setTag(nbt);
-
-		try {
-			Constructor<CompoundIngredient> constructor = CompoundIngredient.class.getDeclaredConstructor(ItemStack.class);
-
-			constructor.setAccessible(true);
-
-			return constructor.newInstance(stack);
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-
-		// This will just defer to the regular Ingredient method instead of some overridden thing, but whatever.
-		// Forge PRs are too slow to even feel motivated about fixing it on the Forge end.
-		return Ingredient.of(stack);
+	public final PartialNBTIngredient potion(Potion potion) {
+		return PartialNBTIngredient.of(Items.POTION, Util.make(() -> {
+			CompoundTag nbt = new CompoundTag();
+			nbt.putString("Potion", BuiltInRegistries.POTION.getKey(potion).toString());
+			return nbt;
+		}));
 	}
 
 	protected final void foodCooking(Supplier<? extends ItemLike> material, Supplier<? extends ItemLike> result, float xp, RecipeOutput consumer) {

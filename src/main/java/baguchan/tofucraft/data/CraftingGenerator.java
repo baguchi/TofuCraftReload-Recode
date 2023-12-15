@@ -11,9 +11,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
@@ -263,11 +261,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.BOTTLE_DASHI.get())
 				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
 				.save(consumer);
-		//ポーションのレシピはうまく指定できないため別の方法で
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.YUDOFU.get(), 1)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(Items.BOWL)
-				.requires(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER)))
+				.requires(potion(Potions.WATER))
 				.unlockedBy("has_item", has(TofuItems.TOFUKINU.get()))
 				.save(consumer);
 
@@ -523,7 +520,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.BOTTLE_DASHI.get(), 1)
-				.requires(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER)))
+				.requires(potion(Potions.WATER))
 				.requires(Items.DRIED_KELP)
 				.unlockedBy("has_item", has(Items.KELP))
 				.save(consumer);
