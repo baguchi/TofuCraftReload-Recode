@@ -53,7 +53,7 @@ public class TofuFoods {
 	public static final FoodProperties MEAT_WRAPPED_YUBA = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.825F).build();
 
 
-	public static final FoodProperties SOYSTICK = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).fast().build();
+	public static final FoodProperties SOYSTICK = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.4F).fast().effect(() -> new MobEffectInstance(TofuEffects.SOY_HEALTHY.get(), 600), 1).build();
 
 	public static final FoodProperties MISOSOUP = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
 	public static final FoodProperties MOYASHIITAME = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.55F).build();
@@ -95,7 +95,7 @@ public class TofuFoods {
 
 	public static final FoodProperties INARI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.8F).build();
 
-	public static final FoodProperties OKARASTICK = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).fast().build();
+	public static final FoodProperties OKARASTICK = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).fast().effect(() -> new MobEffectInstance(TofuEffects.SOY_HEALTHY.get(), 600), 1).build();
 	public static final FoodProperties OKARA_DONUT = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.3F).build();
 
 	public static final FoodProperties SOBOROTOFUSAUTE = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.8F).build();
