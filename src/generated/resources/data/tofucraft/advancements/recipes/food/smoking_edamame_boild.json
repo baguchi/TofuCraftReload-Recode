@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:smoking_edamame_boild"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

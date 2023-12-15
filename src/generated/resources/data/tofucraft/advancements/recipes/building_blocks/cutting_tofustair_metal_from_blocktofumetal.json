@@ -30,6 +30,5 @@
     "recipes": [
       "tofucraft:cutting_tofustair_metal_from_blocktofumetal"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

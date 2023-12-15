@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:smelting_tofusteak"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

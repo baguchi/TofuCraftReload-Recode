@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:rice_nether_natto"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

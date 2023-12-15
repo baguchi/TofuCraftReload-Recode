@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:edamame_templa"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

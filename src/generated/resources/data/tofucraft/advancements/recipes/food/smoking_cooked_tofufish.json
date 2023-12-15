@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:smoking_cooked_tofufish"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

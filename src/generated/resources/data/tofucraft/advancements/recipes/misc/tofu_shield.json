@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofu_shield"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

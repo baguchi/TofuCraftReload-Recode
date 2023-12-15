@@ -30,6 +30,5 @@
     "recipes": [
       "tofucraft:cutting_tofuslab_dried_from_blocktofudried"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

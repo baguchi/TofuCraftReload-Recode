@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:sukiyaki"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

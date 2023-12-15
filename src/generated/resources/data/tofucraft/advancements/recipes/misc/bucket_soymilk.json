@@ -28,6 +28,5 @@
     "recipes" : [
       "tofucraft:bucket_soymilk"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

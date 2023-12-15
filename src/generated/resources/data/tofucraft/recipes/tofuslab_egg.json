@@ -12,6 +12,5 @@
   "result" : {
     "count" : 6,
     "item" : "tofucraft:tofuslab_egg"
-  },
-  "show_notification" : true
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:blocktofuminced"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

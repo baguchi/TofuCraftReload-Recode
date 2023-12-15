@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:blocktofumiso"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes": [
       "tofucraft:cutting_tofustair_ishibrick_from_blocktofuishi"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

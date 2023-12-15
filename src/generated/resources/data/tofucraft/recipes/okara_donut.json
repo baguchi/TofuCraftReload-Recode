@@ -20,6 +20,5 @@
   "result" : {
     "count" : 4,
     "item" : "tofucraft:okara_donut"
-  },
-  "show_notification" : true
+  }
 }

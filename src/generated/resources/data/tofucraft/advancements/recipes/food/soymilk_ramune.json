@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:soymilk_ramune"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

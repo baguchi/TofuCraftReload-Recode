@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:agedashi_tofu"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

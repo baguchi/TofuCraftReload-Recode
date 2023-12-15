@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofustair_ishi"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

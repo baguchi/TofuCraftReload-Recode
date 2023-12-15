@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:hell_mabou"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

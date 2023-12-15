@@ -28,6 +28,5 @@
     "recipes" : [
       "tofucraft:saltymelon"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofustair_miso"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

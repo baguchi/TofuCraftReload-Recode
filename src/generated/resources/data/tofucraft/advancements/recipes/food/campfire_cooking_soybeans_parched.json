@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:campfire_cooking_soybeans_parched"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:filtercloth"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:blocktofugrilled"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:smelting_soybeans_parched"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

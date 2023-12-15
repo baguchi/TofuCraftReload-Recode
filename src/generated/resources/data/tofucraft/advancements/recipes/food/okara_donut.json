@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:okara_donut"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

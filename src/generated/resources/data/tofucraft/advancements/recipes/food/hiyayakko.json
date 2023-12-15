@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:hiyayakko"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

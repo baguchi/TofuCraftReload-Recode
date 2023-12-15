@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:apricotjerry_bread"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

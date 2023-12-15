@@ -30,6 +30,5 @@
     "recipes": [
       "tofucraft:cutting_tofuishi_chiseled_brick_from_tofuishi_brick"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

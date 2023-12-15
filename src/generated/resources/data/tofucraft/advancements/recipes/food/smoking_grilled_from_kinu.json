@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:smoking_grilled_from_kinu"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

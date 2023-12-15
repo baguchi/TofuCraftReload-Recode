@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:equipment/tofu_kinu_axe"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

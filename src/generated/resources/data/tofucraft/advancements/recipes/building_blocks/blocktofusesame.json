@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:blocktofusesame"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

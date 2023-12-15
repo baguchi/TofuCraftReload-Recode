@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:fukumeni"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

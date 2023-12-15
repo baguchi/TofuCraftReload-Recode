@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:rice_block"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

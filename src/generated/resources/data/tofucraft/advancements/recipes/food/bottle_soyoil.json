@@ -28,6 +28,5 @@
     "recipes" : [
       "tofucraft:bottle_soyoil"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

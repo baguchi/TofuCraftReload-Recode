@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofufence_grilled"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

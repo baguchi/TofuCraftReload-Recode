@@ -30,6 +30,5 @@
     "recipes": [
       "tofucraft:cutting_tofuslab_soulbrick_from_tofusoul_brick"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

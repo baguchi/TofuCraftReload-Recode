@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:smoking_tofusteak"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

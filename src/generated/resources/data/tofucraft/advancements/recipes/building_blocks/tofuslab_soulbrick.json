@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofuslab_soulbrick"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -16,6 +16,5 @@
   "result" : {
     "count" : 4,
     "item" : "tofucraft:tofutorch_metal"
-  },
-  "show_notification" : true
+  }
 }

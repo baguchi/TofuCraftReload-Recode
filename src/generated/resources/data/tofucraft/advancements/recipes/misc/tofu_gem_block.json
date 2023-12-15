@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofu_gem_block"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:bottle_dashi"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

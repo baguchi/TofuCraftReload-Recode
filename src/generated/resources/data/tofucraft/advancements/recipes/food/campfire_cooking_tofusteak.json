@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:campfire_cooking_tofusteak"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

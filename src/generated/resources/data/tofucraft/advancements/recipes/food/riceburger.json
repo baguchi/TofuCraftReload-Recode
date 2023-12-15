@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:riceburger"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

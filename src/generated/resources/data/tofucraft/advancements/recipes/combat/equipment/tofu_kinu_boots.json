@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:equipment/tofu_kinu_boots"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

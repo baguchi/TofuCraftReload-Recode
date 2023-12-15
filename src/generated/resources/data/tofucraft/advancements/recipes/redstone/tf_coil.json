@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tf_coil"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

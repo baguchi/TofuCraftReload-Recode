@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofuchest"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

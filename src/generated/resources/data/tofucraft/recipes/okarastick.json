@@ -20,6 +20,5 @@
   "result" : {
     "count" : 3,
     "item" : "tofucraft:okarastick"
-  },
-  "show_notification" : true
+  }
 }

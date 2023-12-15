@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:campfire_cooking_grilled_block_from_momen"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

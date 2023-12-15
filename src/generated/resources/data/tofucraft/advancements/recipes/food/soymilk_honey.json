@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:soymilk_honey"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

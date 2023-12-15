@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:blocktofudried"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

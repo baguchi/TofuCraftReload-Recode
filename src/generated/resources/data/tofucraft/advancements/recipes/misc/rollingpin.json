@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:rollingpin"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

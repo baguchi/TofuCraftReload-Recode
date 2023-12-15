@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:nethermanju"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

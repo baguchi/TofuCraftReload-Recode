@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:inferno_nether_fukumame"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

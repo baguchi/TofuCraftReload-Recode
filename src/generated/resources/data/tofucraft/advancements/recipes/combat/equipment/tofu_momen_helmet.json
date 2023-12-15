@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:equipment/tofu_momen_helmet"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

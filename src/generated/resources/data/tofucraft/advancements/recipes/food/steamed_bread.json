@@ -28,6 +28,5 @@
     "recipes" : [
       "tofucraft:steamed_bread"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

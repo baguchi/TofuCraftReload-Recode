@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:blackstone_saltpan"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

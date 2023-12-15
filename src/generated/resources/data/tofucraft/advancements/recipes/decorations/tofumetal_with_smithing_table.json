@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofumetal_with_smithing_table"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

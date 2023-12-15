@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:nikujaga"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

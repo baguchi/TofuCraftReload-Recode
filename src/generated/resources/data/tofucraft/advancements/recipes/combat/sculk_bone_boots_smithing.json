@@ -30,6 +30,5 @@
     "recipes": [
       "tofucraft:sculk_bone_boots_smithing"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

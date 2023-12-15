@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofudoor_grilled"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:zundamanju"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

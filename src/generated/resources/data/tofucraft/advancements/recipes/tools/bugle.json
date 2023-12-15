@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:bugle"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

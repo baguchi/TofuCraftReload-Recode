@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofuladder_kinu"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

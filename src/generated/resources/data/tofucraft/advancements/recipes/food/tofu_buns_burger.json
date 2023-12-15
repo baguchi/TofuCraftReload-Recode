@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofu_buns_burger"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

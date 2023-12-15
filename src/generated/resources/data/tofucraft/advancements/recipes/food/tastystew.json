@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tastystew"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

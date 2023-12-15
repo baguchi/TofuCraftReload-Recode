@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofufried"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

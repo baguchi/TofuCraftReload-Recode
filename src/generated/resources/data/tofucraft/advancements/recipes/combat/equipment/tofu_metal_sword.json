@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:equipment/tofu_metal_sword"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:crimson_fluid_bottle"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

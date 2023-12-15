@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:campfire_cooking_edamame_boild"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:antenna_basic"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

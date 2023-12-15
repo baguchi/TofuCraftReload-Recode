@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:nanban"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

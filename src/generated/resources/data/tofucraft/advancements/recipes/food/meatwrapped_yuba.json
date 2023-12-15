@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:meatwrapped_yuba"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

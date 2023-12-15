@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:smelting_edamame_boild"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

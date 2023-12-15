@@ -13,6 +13,5 @@
   "result" : {
     "count" : 6,
     "item" : "tofucraft:tofufence_metal"
-  },
-  "show_notification" : true
+  }
 }

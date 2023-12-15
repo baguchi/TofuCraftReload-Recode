@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:negima"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

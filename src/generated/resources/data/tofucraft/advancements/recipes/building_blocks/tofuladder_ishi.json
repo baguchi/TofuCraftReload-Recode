@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofuladder_ishi"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

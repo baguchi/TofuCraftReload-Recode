@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:onigiri_salt"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

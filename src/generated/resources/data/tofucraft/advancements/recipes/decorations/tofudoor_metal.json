@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofudoor_metal"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

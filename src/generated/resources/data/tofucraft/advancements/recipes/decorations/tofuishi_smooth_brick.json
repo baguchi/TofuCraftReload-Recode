@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofuishi_smooth_brick"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

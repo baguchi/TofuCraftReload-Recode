@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:yakionigiri_miso"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

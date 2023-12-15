@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:equipment/tofu_solid_chestplate"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

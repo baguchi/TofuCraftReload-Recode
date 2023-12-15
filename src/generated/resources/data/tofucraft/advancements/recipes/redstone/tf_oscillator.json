@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tf_oscillator"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

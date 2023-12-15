@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofu_chikuwa_fish"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

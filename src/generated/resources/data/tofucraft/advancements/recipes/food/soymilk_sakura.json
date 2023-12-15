@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:soymilk_sakura"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

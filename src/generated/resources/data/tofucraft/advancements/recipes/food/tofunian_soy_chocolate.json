@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofunian_soy_chocolate"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:blocktofuishi"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

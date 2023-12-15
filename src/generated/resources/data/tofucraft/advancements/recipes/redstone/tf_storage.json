@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tf_storage"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

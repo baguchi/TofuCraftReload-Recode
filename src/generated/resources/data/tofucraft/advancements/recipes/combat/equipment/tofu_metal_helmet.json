@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:equipment/tofu_metal_helmet"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

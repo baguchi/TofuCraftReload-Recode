@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:edamame_rice"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

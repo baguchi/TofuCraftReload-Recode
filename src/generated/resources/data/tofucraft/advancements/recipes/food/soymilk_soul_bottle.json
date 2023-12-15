@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:soymilk_soul_bottle"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

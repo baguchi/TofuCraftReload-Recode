@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:equipment/tofu_momen_shovel"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

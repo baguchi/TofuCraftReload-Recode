@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofuannin"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

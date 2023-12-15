@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:soymilk_fruits"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

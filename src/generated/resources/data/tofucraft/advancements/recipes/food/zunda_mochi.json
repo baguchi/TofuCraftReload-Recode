@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:zunda_mochi"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

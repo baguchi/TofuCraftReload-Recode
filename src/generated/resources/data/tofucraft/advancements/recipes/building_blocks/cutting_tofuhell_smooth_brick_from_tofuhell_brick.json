@@ -30,6 +30,5 @@
     "recipes": [
       "tofucraft:cutting_tofuhell_smooth_brick_from_tofuhell_brick"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

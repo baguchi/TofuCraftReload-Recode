@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:leek_green_planks_slab"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

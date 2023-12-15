@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofudiamond"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

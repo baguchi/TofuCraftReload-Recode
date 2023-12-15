@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:starch_raw"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

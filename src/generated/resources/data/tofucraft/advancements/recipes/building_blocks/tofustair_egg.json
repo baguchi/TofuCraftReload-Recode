@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofustair_egg"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

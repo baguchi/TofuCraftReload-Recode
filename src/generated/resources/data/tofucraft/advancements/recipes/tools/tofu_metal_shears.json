@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofu_metal_shears"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

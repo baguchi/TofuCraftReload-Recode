@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:soymilk_kinako"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

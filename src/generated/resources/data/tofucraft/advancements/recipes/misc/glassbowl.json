@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:glassbowl"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

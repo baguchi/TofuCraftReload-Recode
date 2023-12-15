@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tf_circuit"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

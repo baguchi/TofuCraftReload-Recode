@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:kinakomanju"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

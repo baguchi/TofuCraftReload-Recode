@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:smelting_tofuhamburg"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

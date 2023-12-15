@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofustair_hell"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

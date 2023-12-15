@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofusomen"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

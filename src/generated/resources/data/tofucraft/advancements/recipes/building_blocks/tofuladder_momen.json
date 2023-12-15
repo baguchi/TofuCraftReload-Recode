@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofuladder_momen"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

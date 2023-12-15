@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:nattobed"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

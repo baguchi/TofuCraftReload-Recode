@@ -30,6 +30,5 @@
     "recipes": [
       "tofucraft:cutting_tofuladder_ishi_from_blocktofuishi"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

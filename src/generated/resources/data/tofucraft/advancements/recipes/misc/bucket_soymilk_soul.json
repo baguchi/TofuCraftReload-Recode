@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:bucket_soymilk_soul"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

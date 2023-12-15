@@ -30,6 +30,5 @@
     "recipes": [
       "tofucraft:cutting_tofuslab_miso_from_blocktofumiso"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:foodplate"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

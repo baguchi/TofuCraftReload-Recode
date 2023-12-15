@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:yudofu"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

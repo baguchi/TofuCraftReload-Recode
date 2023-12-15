@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:chikuwa"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes": [
       "tofucraft:cutting_tofustair_hellbrick_from_tofuhell_brick"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:nether_nattobed"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

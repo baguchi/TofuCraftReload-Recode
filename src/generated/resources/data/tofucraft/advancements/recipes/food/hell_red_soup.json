@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:hell_red_soup"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

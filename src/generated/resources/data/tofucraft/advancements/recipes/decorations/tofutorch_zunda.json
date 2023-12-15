@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofutorch_zunda"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:gelatinraw"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

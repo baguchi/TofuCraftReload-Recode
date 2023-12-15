@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:ricesoborotofu"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }

@@ -30,6 +30,5 @@
     "recipes" : [
       "tofucraft:tofustem_planks_slab"
     ]
-  },
-  "sends_telemetry_event" : false
+  }
 }
