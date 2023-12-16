@@ -31,55 +31,55 @@ public class ItemModelGenerator extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		//block
-		toBlock(TofuBlocks.KINUTOFU.get());
-		toBlock(TofuBlocks.MOMENTOFU.get());
-		toBlock(TofuBlocks.ISHITOFU.get());
-		toBlock(TofuBlocks.ISHITOFU_BRICK.get());
-		toBlock(TofuBlocks.ISHITOFU_SMOOTH_BRICK.get());
-		toBlock(TofuBlocks.ISHITOFU_CHISELED_BRICK.get());
-		toBlock(TofuBlocks.METALTOFU.get());
-		toBlock(TofuBlocks.DIAMONDTOFU.get());
-		toBlock(TofuBlocks.TOFU_GEM_BLOCK.get());
-		toBlock(TofuBlocks.GRILLEDTOFU.get());
-		toBlock(TofuBlocks.ZUNDATOFU.get());
-		toBlock(TofuBlocks.MISOTOFU.get());
-		toBlock(TofuBlocks.DRIEDTOFU.get());
+		toBlock(TofuBlocks.KINUTOFU);
+		toBlock(TofuBlocks.MOMENTOFU);
+		toBlock(TofuBlocks.ISHITOFU);
+		toBlock(TofuBlocks.ISHITOFU_BRICK);
+		toBlock(TofuBlocks.ISHITOFU_SMOOTH_BRICK);
+		toBlock(TofuBlocks.ISHITOFU_CHISELED_BRICK);
+		toBlock(TofuBlocks.METALTOFU);
+		toBlock(TofuBlocks.DIAMONDTOFU);
+		toBlock(TofuBlocks.TOFU_GEM_BLOCK);
+		toBlock(TofuBlocks.GRILLEDTOFU);
+		toBlock(TofuBlocks.ZUNDATOFU);
+		toBlock(TofuBlocks.MISOTOFU);
+		toBlock(TofuBlocks.DRIEDTOFU);
 
-		toBlock(TofuBlocks.HELLTOFU.get());
-		toBlock(TofuBlocks.HELLTOFU_BRICK.get());
-		toBlock(TofuBlocks.HELLTOFU_SMOOTH_BRICK.get());
-		toBlock(TofuBlocks.SOULTOFU.get());
-		toBlock(TofuBlocks.SOULTOFU_BRICK.get());
-		toBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK.get());
-		toBlock(TofuBlocks.MINCEDTOFU.get());
+		toBlock(TofuBlocks.HELLTOFU);
+		toBlock(TofuBlocks.HELLTOFU_BRICK);
+		toBlock(TofuBlocks.HELLTOFU_SMOOTH_BRICK);
+		toBlock(TofuBlocks.SOULTOFU);
+		toBlock(TofuBlocks.SOULTOFU_BRICK);
+		toBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK);
+		toBlock(TofuBlocks.MINCEDTOFU);
 
-		toBlock(TofuBlocks.TOFUSTAIR_KINU.get());
-		toBlock(TofuBlocks.TOFUSTAIR_MOMEN.get());
-		toBlock(TofuBlocks.TOFUSTAIR_ISHI.get());
-		toBlock(TofuBlocks.TOFUSTAIR_METAL.get());
-		toBlock(TofuBlocks.TOFUSTAIR_GRILLED.get());
-		toBlock(TofuBlocks.TOFUSTAIR_ZUNDA.get());
-		toBlock(TofuBlocks.TOFUSTAIR_HELL.get());
-		toBlock(TofuBlocks.TOFUSTAIR_SOUL.get());
-		toBlock(TofuBlocks.TOFUSTAIR_ISHIBRICK.get());
-		toBlock(TofuBlocks.TOFUSTAIR_HELLBRICK.get());
-		toBlock(TofuBlocks.TOFUSTAIR_SOULBRICK.get());
-		toBlock(TofuBlocks.TOFUSTAIR_MISO.get());
-		toBlock(TofuBlocks.TOFUSTAIR_DRIED.get());
+		toBlock(TofuBlocks.TOFUSTAIR_KINU);
+		toBlock(TofuBlocks.TOFUSTAIR_MOMEN);
+		toBlock(TofuBlocks.TOFUSTAIR_ISHI);
+		toBlock(TofuBlocks.TOFUSTAIR_METAL);
+		toBlock(TofuBlocks.TOFUSTAIR_GRILLED);
+		toBlock(TofuBlocks.TOFUSTAIR_ZUNDA);
+		toBlock(TofuBlocks.TOFUSTAIR_HELL);
+		toBlock(TofuBlocks.TOFUSTAIR_SOUL);
+		toBlock(TofuBlocks.TOFUSTAIR_ISHIBRICK);
+		toBlock(TofuBlocks.TOFUSTAIR_HELLBRICK);
+		toBlock(TofuBlocks.TOFUSTAIR_SOULBRICK);
+		toBlock(TofuBlocks.TOFUSTAIR_MISO);
+		toBlock(TofuBlocks.TOFUSTAIR_DRIED);
 
-		toBlock(TofuBlocks.TOFUSLAB_KINU.get());
-		toBlock(TofuBlocks.TOFUSLAB_MOMEN.get());
-		toBlock(TofuBlocks.TOFUSLAB_ISHI.get());
-		toBlock(TofuBlocks.TOFUSLAB_METAL.get());
-		toBlock(TofuBlocks.TOFUSLAB_GRILLED.get());
-		toBlock(TofuBlocks.TOFUSLAB_ZUNDA.get());
-		toBlock(TofuBlocks.TOFUSLAB_HELL.get());
-		toBlock(TofuBlocks.TOFUSLAB_SOUL.get());
-		toBlock(TofuBlocks.TOFUSLAB_ISHIBRICK.get());
-		toBlock(TofuBlocks.TOFUSLAB_HELLBRICK.get());
-		toBlock(TofuBlocks.TOFUSLAB_SOULBRICK.get());
-		toBlock(TofuBlocks.TOFUSLAB_MISO.get());
-		toBlock(TofuBlocks.TOFUSLAB_DRIED.get());
+		toBlock(TofuBlocks.TOFUSLAB_KINU);
+		toBlock(TofuBlocks.TOFUSLAB_MOMEN);
+		toBlock(TofuBlocks.TOFUSLAB_ISHI);
+		toBlock(TofuBlocks.TOFUSLAB_METAL);
+		toBlock(TofuBlocks.TOFUSLAB_GRILLED);
+		toBlock(TofuBlocks.TOFUSLAB_ZUNDA);
+		toBlock(TofuBlocks.TOFUSLAB_HELL);
+		toBlock(TofuBlocks.TOFUSLAB_SOUL);
+		toBlock(TofuBlocks.TOFUSLAB_ISHIBRICK);
+		toBlock(TofuBlocks.TOFUSLAB_HELLBRICK);
+		toBlock(TofuBlocks.TOFUSLAB_SOULBRICK);
+		toBlock(TofuBlocks.TOFUSLAB_MISO);
+		toBlock(TofuBlocks.TOFUSLAB_DRIED);
 
 		wall(TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
 		wall(TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
@@ -99,77 +99,77 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.TOFUDOOR_GRILLED);
 		singleTex(TofuBlocks.TOFUDOOR_ZUNDA);
 
-		toBlockModel(TofuBlocks.TOFUTRAPDOOR_KINU.get(), "tofutrapdoor_kinu_bottom");
-		toBlockModel(TofuBlocks.TOFUTRAPDOOR_MOMEN.get(), "tofutrapdoor_momen_bottom");
-		toBlockModel(TofuBlocks.TOFUTRAPDOOR_ISHI.get(), "tofutrapdoor_ishi_bottom");
-		toBlockModel(TofuBlocks.TOFUTRAPDOOR_METAL.get(), "tofutrapdoor_metal_bottom");
-		toBlockModel(TofuBlocks.TOFUTRAPDOOR_HELL.get(), "tofutrapdoor_hell_bottom");
-		toBlockModel(TofuBlocks.TOFUTRAPDOOR_SOUL.get(), "tofutrapdoor_soul_bottom");
-		toBlockModel(TofuBlocks.TOFUTRAPDOOR_GRILLED.get(), "tofutrapdoor_grilled_bottom");
-		toBlockModel(TofuBlocks.TOFUTRAPDOOR_ZUNDA.get(), "tofutrapdoor_zunda_bottom");
+		toBlockModel(TofuBlocks.TOFUTRAPDOOR_KINU, "tofutrapdoor_kinu_bottom");
+		toBlockModel(TofuBlocks.TOFUTRAPDOOR_MOMEN, "tofutrapdoor_momen_bottom");
+		toBlockModel(TofuBlocks.TOFUTRAPDOOR_ISHI, "tofutrapdoor_ishi_bottom");
+		toBlockModel(TofuBlocks.TOFUTRAPDOOR_METAL, "tofutrapdoor_metal_bottom");
+		toBlockModel(TofuBlocks.TOFUTRAPDOOR_HELL, "tofutrapdoor_hell_bottom");
+		toBlockModel(TofuBlocks.TOFUTRAPDOOR_SOUL, "tofutrapdoor_soul_bottom");
+		toBlockModel(TofuBlocks.TOFUTRAPDOOR_GRILLED, "tofutrapdoor_grilled_bottom");
+		toBlockModel(TofuBlocks.TOFUTRAPDOOR_ZUNDA, "tofutrapdoor_zunda_bottom");
 
-		torchItem(TofuBlocks.TOFUTORCH_KINU.get());
-		torchItem(TofuBlocks.TOFUTORCH_MOMEN.get());
-		torchItem(TofuBlocks.TOFUTORCH_ISHI.get());
-		torchItem(TofuBlocks.TOFUTORCH_METAL.get());
-		torchItem(TofuBlocks.TOFUTORCH_GRILLED.get());
-		torchItem(TofuBlocks.TOFUTORCH_ZUNDA.get());
+		torchItem(TofuBlocks.TOFUTORCH_KINU);
+		torchItem(TofuBlocks.TOFUTORCH_MOMEN);
+		torchItem(TofuBlocks.TOFUTORCH_ISHI);
+		torchItem(TofuBlocks.TOFUTORCH_METAL);
+		torchItem(TofuBlocks.TOFUTORCH_GRILLED);
+		torchItem(TofuBlocks.TOFUTORCH_ZUNDA);
 
-		toBlock(TofuBlocks.TOFU_TERRAIN.get());
-		toBlock(TofuBlocks.TOFU_TERRAIN_ZUNDA.get());
-		toBlock(TofuBlocks.TOFUSLATE.get());
-		toBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
-		toBlock(TofuBlocks.ORE_TOFU_DIAMOND.get());
-		toBlock(TofuBlocks.ORE_TOFUGEM.get());
-		toBlock(TofuBlocks.TOFU_BEDROCK.get());
+		toBlock(TofuBlocks.TOFU_TERRAIN);
+		toBlock(TofuBlocks.TOFU_TERRAIN_ZUNDA);
+		toBlock(TofuBlocks.TOFUSLATE);
+		toBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE);
+		toBlock(TofuBlocks.ORE_TOFU_DIAMOND);
+		toBlock(TofuBlocks.ORE_TOFUGEM);
+		toBlock(TofuBlocks.TOFU_BEDROCK);
 
-		toBlock(TofuBlocks.LEEK_GREEN_STEM.get());
-		toBlock(TofuBlocks.LEEK_GREEN_PLANKS.get());
-		toBlock(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get());
-		toBlock(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get());
+		toBlock(TofuBlocks.LEEK_GREEN_STEM);
+		toBlock(TofuBlocks.LEEK_GREEN_PLANKS);
+		toBlock(TofuBlocks.LEEK_GREEN_PLANKS_STAIR);
+		toBlock(TofuBlocks.LEEK_GREEN_PLANKS_SLAB);
 		this.woodenFence(TofuBlocks.LEEK_GREEN_FENCE, TofuBlocks.LEEK_GREEN_PLANKS);
-		toBlock(TofuBlocks.LEEK_GREEN_FENCE_GATE.get());
+		toBlock(TofuBlocks.LEEK_GREEN_FENCE_GATE);
 		sign(TofuBlocks.LEEK_GREEN_SIGN);
 		sign(TofuBlocks.LEEK_GREEN_HANGING_SIGN);
 
-		toBlock(TofuBlocks.LEEK_STEM.get());
-		toBlock(TofuBlocks.LEEK_PLANKS.get());
-		toBlock(TofuBlocks.LEEK_PLANKS_STAIR.get());
-		toBlock(TofuBlocks.LEEK_PLANKS_SLAB.get());
+		toBlock(TofuBlocks.LEEK_STEM);
+		toBlock(TofuBlocks.LEEK_PLANKS);
+		toBlock(TofuBlocks.LEEK_PLANKS_STAIR);
+		toBlock(TofuBlocks.LEEK_PLANKS_SLAB);
 		this.woodenFence(TofuBlocks.LEEK_FENCE, TofuBlocks.LEEK_PLANKS);
-		toBlock(TofuBlocks.LEEK_FENCE_GATE.get());
+		toBlock(TofuBlocks.LEEK_FENCE_GATE);
 		sign(TofuBlocks.LEEK_SIGN);
 		sign(TofuBlocks.LEEK_HANGING_SIGN);
 
-		itemBlockFlat(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
+		itemBlockFlat(TofuBlocks.ZUNDATOFU_MUSHROOM);
 
 
-		toBlock(TofuBlocks.TOFU_STEM.get());
-		toBlock(TofuBlocks.TOFU_STEM_PLANKS.get());
-		toBlock(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get());
-		toBlock(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get());
+		toBlock(TofuBlocks.TOFU_STEM);
+		toBlock(TofuBlocks.TOFU_STEM_PLANKS);
+		toBlock(TofuBlocks.TOFU_STEM_PLANKS_STAIR);
+		toBlock(TofuBlocks.TOFU_STEM_PLANKS_SLAB);
 		this.woodenFence(TofuBlocks.TOFU_STEM_FENCE, TofuBlocks.TOFU_STEM_PLANKS);
-		toBlock(TofuBlocks.TOFU_STEM_FENCE_GATE.get());
+		toBlock(TofuBlocks.TOFU_STEM_FENCE_GATE);
 		sign(TofuBlocks.TOFU_STEM_SIGN);
 		sign(TofuBlocks.TOFU_STEM_HANGING_SIGN);
 
-		itemBlockFlat(TofuBlocks.SAPLING_TOFU.get());
-		toBlock(TofuBlocks.LEAVES_TOFU.get());
+		itemBlockFlat(TofuBlocks.SAPLING_TOFU);
+		toBlock(TofuBlocks.LEAVES_TOFU);
 
-		itemBlockFlat(TofuBlocks.SAPLING_APRICOT.get());
-		toBlock(TofuBlocks.LEAVES_APRICOT.get());
+		itemBlockFlat(TofuBlocks.SAPLING_APRICOT);
+		toBlock(TofuBlocks.LEAVES_APRICOT);
 		singleTex(TofuItems.APRICOT);
 		singleTex(TofuItems.APRICOTJERRY_BOTTLE);
 		singleTex(TofuItems.APRICOTJERRY_BREAD);
 		singleTex(TofuItems.APRICOTSEED);
 		singleTex(TofuItems.KYONINSO);
 
-		itemBlockFlat(TofuBlocks.LEEK.get());
+		itemBlockFlat(TofuBlocks.LEEK);
 		singleTex(TofuBlocks.TOFUCAKE);
 		singleTex(TofuBlocks.ZUNDATOFUCAKE);
 		singleTex(TofuBlocks.SOYCHEESE_TART);
 
-		toBlock(TofuBlocks.ZUNDAMA_BLOCK.get());
+		toBlock(TofuBlocks.ZUNDAMA_BLOCK);
 
 		//item
 		singleTex(TofuItems.TOFUKINU);
@@ -430,17 +430,17 @@ public class ItemModelGenerator extends ItemModelProvider {
 		trimmedArmor(TofuItems.SCULK_BONE_LEGGINGS);
 		trimmedArmor(TofuItems.SCULK_BONE_BOOTS);
 
-		egg(TofuItems.TOFUNIAN_SPAWNEGG.get());
-		egg(TofuItems.TRAVELER_TOFUNIAN_SPAWNEGG.get());
-		egg(TofuItems.TOFU_GANDLEM_SPAWNEGG.get());
-		egg(TofuItems.SHUDOFUSPIDER_SPAWNEGG.get());
-		egg(TofuItems.TOFUCOW_SPAWNEGG.get());
-		egg(TofuItems.TOFUPIG_SPAWNEGG.get());
-		egg(TofuItems.TOFUSLIME_SPAWNEGG.get());
-		egg(TofuItems.TOFUCREEPER_SPAWNEGG.get());
-		egg(TofuItems.TOFUSPIDER_SPAWNEGG.get());
-		egg(TofuItems.TOFUFISH_SPAWNEGG.get());
-		egg(TofuItems.FUKUMAME_THOWER_SPAWNEGG.get());
+		egg(TofuItems.TOFUNIAN_SPAWNEGG);
+		egg(TofuItems.TRAVELER_TOFUNIAN_SPAWNEGG);
+		egg(TofuItems.TOFU_GANDLEM_SPAWNEGG);
+		egg(TofuItems.SHUDOFUSPIDER_SPAWNEGG);
+		egg(TofuItems.TOFUCOW_SPAWNEGG);
+		egg(TofuItems.TOFUPIG_SPAWNEGG);
+		egg(TofuItems.TOFUSLIME_SPAWNEGG);
+		egg(TofuItems.TOFUCREEPER_SPAWNEGG);
+		egg(TofuItems.TOFUSPIDER_SPAWNEGG);
+		egg(TofuItems.TOFUFISH_SPAWNEGG);
+		egg(TofuItems.FUKUMAME_THOWER_SPAWNEGG);
 
 		singleTex(TofuItems.TOMATO_SOYBEAN_STEW);
 		singleTex(TofuItems.YUDOFU);
@@ -463,16 +463,16 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.SOY_NETHER_CHEESE);
 		singleTex(TofuItems.SOY_SOUL_CHEESE);
 
-		toBlock(TofuBlocks.EGGTOFU.get());
-		toBlock(TofuBlocks.TOFUSTAIR_EGG.get());
-		toBlock(TofuBlocks.TOFUSLAB_EGG.get());
+		toBlock(TofuBlocks.EGGTOFU);
+		toBlock(TofuBlocks.TOFUSTAIR_EGG);
+		toBlock(TofuBlocks.TOFUSLAB_EGG);
 
-		toBlock(TofuBlocks.SESAMETOFU.get());
-		toBlock(TofuBlocks.TOFUSTAIR_SESAME.get());
-		toBlock(TofuBlocks.TOFUSLAB_SESAME.get());
+		toBlock(TofuBlocks.SESAMETOFU);
+		toBlock(TofuBlocks.TOFUSTAIR_SESAME);
+		toBlock(TofuBlocks.TOFUSLAB_SESAME);
 
 		singleTex(TofuItems.NATTO_COBWEB);
-		toBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
+		toBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN);
 
 		singleTex(TofuItems.TOFUNIAN_BANNER_PATTERN);
 		singleTex(TofuItems.TOFU_STEM_BOAT);
@@ -485,13 +485,13 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.TOFU_METAL_CHAIN);
 		singleTex(TofuBlocks.TOFU_METAL_LANTERN);
 		singleTex(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
-		toBlock(TofuBlocks.TOFU_DETECTOR.get());
-		itemBlockFlat(TofuBlocks.ANTENNA_BASIC.get());
+		toBlock(TofuBlocks.TOFU_DETECTOR);
+		itemBlockFlat(TofuBlocks.ANTENNA_BASIC);
 	}
 
 	public void sign(Supplier<? extends SignBlock> sign) {
-		withExistingParent(blockName(sign.get()), mcLoc("item/generated"))
-				.texture("layer0", modLoc("item/" + blockName(sign.get())));
+		withExistingParent(blockName(sign), mcLoc("item/generated"))
+				.texture("layer0", modLoc("item/" + blockName(sign)));
 	}
 
 	private void woodenFence(Supplier<? extends Block> fence, Supplier<? extends Block> block) {
@@ -500,9 +500,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 				.texture("texture", "block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath());
 	}
 
-	public ItemModelBuilder torchItem(Block item) {
-		return withExistingParent(BuiltInRegistries.BLOCK.getKey(item).getPath(), mcLoc("item/generated"))
-				.texture("layer0", modLoc("block/" + BuiltInRegistries.BLOCK.getKey(item).getPath()));
+	public ItemModelBuilder torchItem(Supplier<Block> item) {
+		return withExistingParent(BuiltInRegistries.BLOCK.getKey(item.get()).getPath(), mcLoc("item/generated"))
+				.texture("layer0", modLoc("block/" + BuiltInRegistries.BLOCK.getKey(item.get()).getPath()));
 	}
 
 
@@ -570,8 +570,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 				.override().predicate(new ResourceLocation("pulling"), 1).predicate(new ResourceLocation("pull"), 0.9F).model(getExistingFile(modLoc("item/" + id.getPath() + "_pulling_2"))).end();
 	}
 
-	private void woodenButton(Block button, String variant) {
-		getBuilder(BuiltInRegistries.BLOCK.getKey(button).getPath())
+	private void woodenButton(Supplier<? extends Block> button, String variant) {
+		getBuilder(BuiltInRegistries.BLOCK.getKey(button.get()).getPath())
 				.parent(getExistingFile(mcLoc("block/button_inventory")))
 				.texture("texture", "block/wood/planks_" + variant + "_0");
 	}
@@ -583,36 +583,36 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	public ItemModelBuilder wall(Supplier<? extends WallBlock> wall, Supplier<? extends Block> fullBlock) {
-		return wallInventory(BuiltInRegistries.BLOCK.getKey(wall.get()).getPath(), texture(blockName(fullBlock.get())));
+		return wallInventory(BuiltInRegistries.BLOCK.getKey(wall.get()).getPath(), texture(blockName(fullBlock)));
 	}
 
-	private ItemModelBuilder toBlock(Block b) {
-		return toBlockModel(b, BuiltInRegistries.BLOCK.getKey(b).getPath());
+	private ItemModelBuilder toBlock(Supplier<? extends Block> b) {
+		return toBlockModel(b, BuiltInRegistries.BLOCK.getKey(b.get()).getPath());
 	}
 
-	private ItemModelBuilder toBlockModel(Block b, String model) {
+	private ItemModelBuilder toBlockModel(Supplier<? extends Block> b, String model) {
 		return toBlockModel(b, prefix("block/" + model));
 	}
 
-	private ItemModelBuilder toBlockModel(Block b, ResourceLocation model) {
-		return withExistingParent(BuiltInRegistries.BLOCK.getKey(b).getPath(), model);
+	private ItemModelBuilder toBlockModel(Supplier<? extends Block> b, ResourceLocation model) {
+		return withExistingParent(BuiltInRegistries.BLOCK.getKey(b.get()).getPath(), model);
 	}
 
-	public ItemModelBuilder itemBlockFlat(Block block) {
+	public ItemModelBuilder itemBlockFlat(Supplier<? extends Block> block) {
 		return itemBlockFlat(block, blockName(block));
 	}
 
-	public ItemModelBuilder itemBlockFlat(Block block, String name) {
+	public ItemModelBuilder itemBlockFlat(Supplier<? extends Block> block, String name) {
 		return withExistingParent(blockName(block), mcLoc("item/generated"))
 				.texture("layer0", modLoc("block/" + name));
 	}
 
-	public ItemModelBuilder egg(Item item) {
-		return withExistingParent(BuiltInRegistries.ITEM.getKey(item).getPath(), mcLoc("item/template_spawn_egg"));
+	public ItemModelBuilder egg(Supplier<Item> item) {
+		return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(), mcLoc("item/template_spawn_egg"));
 	}
 
-	public String blockName(Block block) {
-		return BuiltInRegistries.BLOCK.getKey(block).getPath();
+	public String blockName(Supplier<? extends Block> block) {
+		return BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
 	}
 
 	@Override

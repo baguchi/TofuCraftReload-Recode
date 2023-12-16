@@ -35,6 +35,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class BlockstateGenerator extends BlockStateProvider {
+	private Supplier<CandleTofuCakeBlock> block;
+
 	public BlockstateGenerator(PackOutput gen, ExistingFileHelper exFileHelper) {
 		super(gen, TofuCraftReload.MODID, exFileHelper);
 	}
@@ -63,33 +65,33 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK.get());
 		simpleBlock(TofuBlocks.MINCEDTOFU.get());
 
-		stairs(TofuBlocks.TOFUSTAIR_KINU.get(), TofuBlocks.KINUTOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_MOMEN.get(), TofuBlocks.MOMENTOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_ISHI.get(), TofuBlocks.ISHITOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_METAL.get(), TofuBlocks.METALTOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_GRILLED.get(), TofuBlocks.GRILLEDTOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_ZUNDA.get(), TofuBlocks.ZUNDATOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_HELL.get(), TofuBlocks.HELLTOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_SOUL.get(), TofuBlocks.SOULTOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
-		stairs(TofuBlocks.TOFUSTAIR_HELLBRICK.get(), TofuBlocks.HELLTOFU_BRICK.get());
-		stairs(TofuBlocks.TOFUSTAIR_SOULBRICK.get(), TofuBlocks.SOULTOFU_BRICK.get());
-		stairs(TofuBlocks.TOFUSTAIR_MISO.get(), TofuBlocks.MISOTOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_DRIED.get(), TofuBlocks.DRIEDTOFU.get());
+		stairs(TofuBlocks.TOFUSTAIR_KINU, TofuBlocks.KINUTOFU);
+		stairs(TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.MOMENTOFU);
+		stairs(TofuBlocks.TOFUSTAIR_ISHI, TofuBlocks.ISHITOFU);
+		stairs(TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.METALTOFU);
+		stairs(TofuBlocks.TOFUSTAIR_GRILLED, TofuBlocks.GRILLEDTOFU);
+		stairs(TofuBlocks.TOFUSTAIR_ZUNDA, TofuBlocks.ZUNDATOFU);
+		stairs(TofuBlocks.TOFUSTAIR_HELL, TofuBlocks.HELLTOFU);
+		stairs(TofuBlocks.TOFUSTAIR_SOUL, TofuBlocks.SOULTOFU);
+		stairs(TofuBlocks.TOFUSTAIR_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
+		stairs(TofuBlocks.TOFUSTAIR_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
+		stairs(TofuBlocks.TOFUSTAIR_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
+		stairs(TofuBlocks.TOFUSTAIR_MISO, TofuBlocks.MISOTOFU);
+		stairs(TofuBlocks.TOFUSTAIR_DRIED, TofuBlocks.DRIEDTOFU);
 
-		slab(TofuBlocks.TOFUSLAB_KINU.get(), TofuBlocks.KINUTOFU.get());
-		slab(TofuBlocks.TOFUSLAB_MOMEN.get(), TofuBlocks.MOMENTOFU.get());
-		slab(TofuBlocks.TOFUSLAB_ISHI.get(), TofuBlocks.ISHITOFU.get());
-		slab(TofuBlocks.TOFUSLAB_METAL.get(), TofuBlocks.METALTOFU.get());
-		slab(TofuBlocks.TOFUSLAB_GRILLED.get(), TofuBlocks.GRILLEDTOFU.get());
-		slab(TofuBlocks.TOFUSLAB_ZUNDA.get(), TofuBlocks.ZUNDATOFU.get());
-		slab(TofuBlocks.TOFUSLAB_HELL.get(), TofuBlocks.HELLTOFU.get());
-		slab(TofuBlocks.TOFUSLAB_SOUL.get(), TofuBlocks.SOULTOFU.get());
-		slab(TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.ISHITOFU_BRICK.get());
-		slab(TofuBlocks.TOFUSLAB_HELLBRICK.get(), TofuBlocks.HELLTOFU_BRICK.get());
-		slab(TofuBlocks.TOFUSLAB_SOULBRICK.get(), TofuBlocks.SOULTOFU_BRICK.get());
-		slab(TofuBlocks.TOFUSLAB_MISO.get(), TofuBlocks.MISOTOFU.get());
-		slab(TofuBlocks.TOFUSLAB_DRIED.get(), TofuBlocks.DRIEDTOFU.get());
+		slab(TofuBlocks.TOFUSLAB_KINU, TofuBlocks.KINUTOFU);
+		slab(TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.MOMENTOFU);
+		slab(TofuBlocks.TOFUSLAB_ISHI, TofuBlocks.ISHITOFU);
+		slab(TofuBlocks.TOFUSLAB_METAL, TofuBlocks.METALTOFU);
+		slab(TofuBlocks.TOFUSLAB_GRILLED, TofuBlocks.GRILLEDTOFU);
+		slab(TofuBlocks.TOFUSLAB_ZUNDA, TofuBlocks.ZUNDATOFU);
+		slab(TofuBlocks.TOFUSLAB_HELL, TofuBlocks.HELLTOFU);
+		slab(TofuBlocks.TOFUSLAB_SOUL, TofuBlocks.SOULTOFU);
+		slab(TofuBlocks.TOFUSLAB_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
+		slab(TofuBlocks.TOFUSLAB_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
+		slab(TofuBlocks.TOFUSLAB_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
+		slab(TofuBlocks.TOFUSLAB_MISO, TofuBlocks.MISOTOFU);
+		slab(TofuBlocks.TOFUSLAB_DRIED, TofuBlocks.DRIEDTOFU);
 
 		wall(TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
 		wall(TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
@@ -118,40 +120,40 @@ public class BlockstateGenerator extends BlockStateProvider {
 		trapdoor(TofuBlocks.TOFUTRAPDOOR_GRILLED);
 		trapdoor(TofuBlocks.TOFUTRAPDOOR_ZUNDA);
 
-		torchBlock(TofuBlocks.TOFUTORCH_KINU.get(), TofuBlocks.WALLTOFUTORCH_KINU.get());
-		torchBlock(TofuBlocks.TOFUTORCH_MOMEN.get(), TofuBlocks.WALLTOFUTORCH_MOMEN.get());
-		torchBlock(TofuBlocks.TOFUTORCH_ISHI.get(), TofuBlocks.WALLTOFUTORCH_ISHI.get());
-		torchBlock(TofuBlocks.TOFUTORCH_METAL.get(), TofuBlocks.WALLTOFUTORCH_METAL.get());
-		torchBlock(TofuBlocks.TOFUTORCH_GRILLED.get(), TofuBlocks.WALLTOFUTORCH_GRILLED.get());
-		torchBlock(TofuBlocks.TOFUTORCH_ZUNDA.get(), TofuBlocks.WALLTOFUTORCH_ZUNDA.get());
+		torchBlock(TofuBlocks.TOFUTORCH_KINU, TofuBlocks.WALLTOFUTORCH_KINU);
+		torchBlock(TofuBlocks.TOFUTORCH_MOMEN, TofuBlocks.WALLTOFUTORCH_MOMEN);
+		torchBlock(TofuBlocks.TOFUTORCH_ISHI, TofuBlocks.WALLTOFUTORCH_ISHI);
+		torchBlock(TofuBlocks.TOFUTORCH_METAL, TofuBlocks.WALLTOFUTORCH_METAL);
+		torchBlock(TofuBlocks.TOFUTORCH_GRILLED, TofuBlocks.WALLTOFUTORCH_GRILLED);
+		torchBlock(TofuBlocks.TOFUTORCH_ZUNDA, TofuBlocks.WALLTOFUTORCH_ZUNDA);
 
-		simpleBlock(TofuBlocks.TOFU_TERRAIN.get());
-		simpleBlock(TofuBlocks.TOFUSLATE.get());
-		simpleBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
-		simpleBlock(TofuBlocks.ORE_TOFU_DIAMOND.get());
-		simpleBlock(TofuBlocks.ORE_TOFUGEM.get());
-		simpleBlock(TofuBlocks.TOFU_BEDROCK.get());
+		simpleBlock(TofuBlocks.TOFU_TERRAIN);
+		simpleBlock(TofuBlocks.TOFUSLATE);
+		simpleBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE);
+		simpleBlock(TofuBlocks.ORE_TOFU_DIAMOND);
+		simpleBlock(TofuBlocks.ORE_TOFUGEM);
+		simpleBlock(TofuBlocks.TOFU_BEDROCK);
 
 		logBlock(TofuBlocks.LEEK_GREEN_STEM.get());
-		simpleBlock(TofuBlocks.LEEK_GREEN_PLANKS.get());
-		stairs(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get(), TofuBlocks.LEEK_GREEN_PLANKS.get());
-		slab(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get(), TofuBlocks.LEEK_GREEN_PLANKS.get());
+		simpleBlock(TofuBlocks.LEEK_GREEN_PLANKS);
+		stairs(TofuBlocks.LEEK_GREEN_PLANKS_STAIR, TofuBlocks.LEEK_GREEN_PLANKS);
+		slab(TofuBlocks.LEEK_GREEN_PLANKS_SLAB, TofuBlocks.LEEK_GREEN_PLANKS);
 		this.fenceBlock(TofuBlocks.LEEK_GREEN_FENCE.get(), texture(name(TofuBlocks.LEEK_GREEN_PLANKS.get())));
 		this.fenceGateBlock(TofuBlocks.LEEK_GREEN_FENCE_GATE.get(), texture(name(TofuBlocks.LEEK_GREEN_PLANKS.get())));
 
 		logBlock(TofuBlocks.LEEK_STEM.get());
-		simpleBlock(TofuBlocks.LEEK_PLANKS.get());
-		stairs(TofuBlocks.LEEK_PLANKS_STAIR.get(), TofuBlocks.LEEK_PLANKS.get());
-		slab(TofuBlocks.LEEK_PLANKS_SLAB.get(), TofuBlocks.LEEK_PLANKS.get());
+		simpleBlock(TofuBlocks.LEEK_PLANKS);
+		stairs(TofuBlocks.LEEK_PLANKS_STAIR, TofuBlocks.LEEK_PLANKS);
+		slab(TofuBlocks.LEEK_PLANKS_SLAB, TofuBlocks.LEEK_PLANKS);
 		this.fenceBlock(TofuBlocks.LEEK_FENCE.get(), texture(name(TofuBlocks.LEEK_PLANKS.get())));
 		this.fenceGateBlock(TofuBlocks.LEEK_FENCE_GATE.get(), texture(name(TofuBlocks.LEEK_PLANKS.get())));
 
-		crossBlock(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
+		crossBlock(TofuBlocks.ZUNDATOFU_MUSHROOM);
 
 		logGlowBlock(TofuBlocks.TOFU_STEM.get());
-		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS.get());
-		stairs(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get(), TofuBlocks.TOFU_STEM_PLANKS.get());
-		slab(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get(), TofuBlocks.TOFU_STEM_PLANKS.get());
+		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS);
+		stairs(TofuBlocks.TOFU_STEM_PLANKS_STAIR, TofuBlocks.TOFU_STEM_PLANKS);
+		slab(TofuBlocks.TOFU_STEM_PLANKS_SLAB, TofuBlocks.TOFU_STEM_PLANKS);
 		this.fenceBlock(TofuBlocks.TOFU_STEM_FENCE.get(), texture(name(TofuBlocks.TOFU_STEM_PLANKS.get())));
 		this.fenceGateBlock(TofuBlocks.TOFU_STEM_FENCE_GATE.get(), texture(name(TofuBlocks.TOFU_STEM_PLANKS.get())));
 		sign(TofuBlocks.TOFU_STEM_SIGN, TofuBlocks.TOFU_STEM_WALL_SIGN, "tofustem_planks");
@@ -163,41 +165,45 @@ public class BlockstateGenerator extends BlockStateProvider {
 		hangingSign(TofuBlocks.LEEK_HANGING_SIGN, TofuBlocks.LEEK_WALL_HANGING_SIGN, "leek_stem");
 
 
-		crossBlock(TofuBlocks.SAPLING_TOFU.get());
-		simpleLeavesBlock(TofuBlocks.LEAVES_TOFU.get());
+		crossBlock(TofuBlocks.SAPLING_TOFU);
+		simpleLeavesBlock(TofuBlocks.LEAVES_TOFU);
 
-		crossBlock(TofuBlocks.SAPLING_APRICOT.get());
-		simpleLeavesBlock(TofuBlocks.LEAVES_APRICOT.get());
+		crossBlock(TofuBlocks.SAPLING_APRICOT);
+		simpleLeavesBlock(TofuBlocks.LEAVES_APRICOT);
 
-		crossBlock(TofuBlocks.LEEK.get());
+		crossBlock(TofuBlocks.LEEK);
 
-		translucentBlock(TofuBlocks.TOFU_PORTAL.get());
+		translucentBlock(TofuBlocks.TOFU_PORTAL);
 
-		simpleBlock(TofuBlocks.EGGTOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_EGG.get(), TofuBlocks.EGGTOFU.get());
-		slab(TofuBlocks.TOFUSLAB_EGG.get(), TofuBlocks.EGGTOFU.get());
+		simpleBlock(TofuBlocks.EGGTOFU);
+		stairs(TofuBlocks.TOFUSTAIR_EGG, TofuBlocks.EGGTOFU);
+		slab(TofuBlocks.TOFUSLAB_EGG, TofuBlocks.EGGTOFU);
 
-		simpleBlock(TofuBlocks.SESAMETOFU.get());
-		stairs(TofuBlocks.TOFUSTAIR_SESAME.get(), TofuBlocks.SESAMETOFU.get());
-		slab(TofuBlocks.TOFUSLAB_SESAME.get(), TofuBlocks.SESAMETOFU.get());
+		simpleBlock(TofuBlocks.SESAMETOFU);
+		stairs(TofuBlocks.TOFUSTAIR_SESAME, TofuBlocks.SESAMETOFU);
+		slab(TofuBlocks.TOFUSLAB_SESAME, TofuBlocks.SESAMETOFU);
 
 		cake(TofuBlocks.TOFUCAKE, "tofucake");
 		cake(TofuBlocks.ZUNDATOFUCAKE, "zundatofucake");
 		cake(TofuBlocks.SOYCHEESE_TART, "soycheese_tart");
 
-		CandleTofuCakeBlock.getCandleCakes().forEach((block -> this.candleCake((CandleTofuCakeBlock) block)));
-		this.carpet(TofuBlocks.YUBA.get());
-		this.simpleBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
-		this.chainBlock(TofuBlocks.TOFU_METAL_CHAIN.get());
-		this.lantern(TofuBlocks.TOFU_METAL_LANTERN.get());
-		this.lantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
-		this.translucentBlock(TofuBlocks.ZUNDAMA_BLOCK.get());
-		crossBlock(TofuBlocks.ANTENNA_BASIC.get());
+		CandleTofuCakeBlock.getCandleCakes().forEach((block -> this.candleCake(() -> (CandleTofuCakeBlock) block)));
+		this.carpet(TofuBlocks.YUBA);
+		this.simpleBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN);
+		this.chainBlock(TofuBlocks.TOFU_METAL_CHAIN);
+		this.lantern(TofuBlocks.TOFU_METAL_LANTERN);
+		this.lantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
+		this.translucentBlock(TofuBlocks.ZUNDAMA_BLOCK);
+		crossBlock(TofuBlocks.ANTENNA_BASIC);
 	}
 
-	public void chainBlock(Block block) {
-		ModelFile cross = models().withExistingParent(name(block), TofuCraftReload.MODID + ":block/chain").texture("all", blockTexture(block)).renderType("minecraft:cutout");
-		getVariantBuilder(block).partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
+	public void simpleBlock(Supplier<Block> block) {
+		simpleBlock(block.get(), cubeAll(block.get()));
+	}
+
+	public void chainBlock(Supplier<Block> block) {
+		ModelFile cross = models().withExistingParent(name(block.get()), TofuCraftReload.MODID + ":block/chain").texture("all", blockTexture(block.get())).renderType("minecraft:cutout");
+		getVariantBuilder(block.get()).partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
 				.modelForState().modelFile(cross).addModel()
 				.partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
 				.modelForState().modelFile(cross).rotationX(90).addModel()
@@ -215,26 +221,26 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(wallBlock.get(), model);
 	}
 
-	public void lantern(Block block) {
-		ModelFile nonHanging = models().withExistingParent(name(block), "block/template_lantern").renderType("minecraft:cutout")
-				.texture("lantern", blockTexture(block));
-		ModelFile hanging = models().withExistingParent(name(block) + "_hanging", "block/template_hanging_lantern").renderType("minecraft:cutout")
-				.texture("lantern", blockTexture(block));
-		this.getVariantBuilder(block).forAllStates(state ->
+	public void lantern(Supplier<Block> block) {
+		ModelFile nonHanging = models().withExistingParent(name(block.get()), "block/template_lantern").renderType("minecraft:cutout")
+				.texture("lantern", blockTexture(block.get()));
+		ModelFile hanging = models().withExistingParent(name(block.get()) + "_hanging", "block/template_hanging_lantern").renderType("minecraft:cutout")
+				.texture("lantern", blockTexture(block.get()));
+		this.getVariantBuilder(block.get()).forAllStates(state ->
 				ConfiguredModel.builder()
 						.modelFile(state.getValue(LanternBlock.HANGING) ? hanging : nonHanging)
 						.build());
 	}
 
 
-	public void carpet(Block block) {
-		ModelFile carpet = models().withExistingParent(name(block), "block/carpet")
-				.texture("wool", blockTexture(block));
+	public void carpet(Supplier<Block> block) {
+		ModelFile carpet = models().withExistingParent(name(block.get()), "block/carpet")
+				.texture("wool", blockTexture(block.get()));
 		this.carpetBlock(block, (state -> carpet));
 	}
 
-	public void carpetBlock(Block block, Function<BlockState, ModelFile> modelFunc) {
-		this.getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).build());
+	public void carpetBlock(Supplier<Block> block, Function<BlockState, ModelFile> modelFunc) {
+		this.getVariantBuilder(block.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).build());
 	}
 
 	public void logGlowBlock(RotatedPillarBlock block) {
@@ -259,18 +265,18 @@ public class BlockstateGenerator extends BlockStateProvider {
 				glow_column_horizontal);
 	}
 
-	public void candleCake(CandleTofuCakeBlock block) {
-		Block candle = block.getCandle();
-		Block cake = block.getCake();
+	public void candleCake(Supplier<CandleTofuCakeBlock> block) {
+		Block candle = block.get().getCandle();
+		Block cake = block.get().getCake();
 
-		ModelFile candleCake = models().withExistingParent(name(block), "block/template_cake_with_candle")
+		ModelFile candleCake = models().withExistingParent(name(block.get()), "block/template_cake_with_candle")
 				.texture("candle", blockTexture(candle))
 				.texture("bottom", suffix(blockTexture(cake), "_bottom"))
 				.texture("side", suffix(blockTexture(cake), "_side"))
 				.texture("top", suffix(blockTexture(cake), "_top"))
 				.texture("particle", suffix(blockTexture(cake), "_side"));
 
-		ModelFile candleCakeLit = models().withExistingParent(name(block) + "_lit", "block/template_cake_with_candle")
+		ModelFile candleCakeLit = models().withExistingParent(name(block.get()) + "_lit", "block/template_cake_with_candle")
 				.texture("candle", suffix(blockTexture(candle), "_lit"))
 				.texture("bottom", suffix(blockTexture(cake), "_bottom"))
 				.texture("side", suffix(blockTexture(cake), "_side"))
@@ -280,66 +286,66 @@ public class BlockstateGenerator extends BlockStateProvider {
 		this.candleCakeBlock(block, (state -> state.getValue(BlockStateProperties.LIT) ? candleCakeLit : candleCake));
 	}
 
-	public void candleCakeBlock(Block block, Function<BlockState, ModelFile> modelFunc) {
-		this.getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).build());
+	public void candleCakeBlock(Supplier<CandleTofuCakeBlock> block, Function<BlockState, ModelFile> modelFunc) {
+		this.getVariantBuilder(block.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).build());
 	}
 
 	private ResourceLocation suffix(ResourceLocation rl, String suffix) {
 		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
 	}
 
-	public ModelFile cubeLeavesAll(Block block) {
-		return models().cubeAll(name(block), blockTexture(block)).renderType("minecraft:cutout_mipped");
+	public ModelFile cubeLeavesAll(Supplier<Block> block) {
+		return models().cubeAll(name(block.get()), blockTexture(block.get())).renderType("minecraft:cutout_mipped");
 	}
 
-	public void simpleLeavesBlock(Block block) {
-		simpleBlock(block, cubeLeavesAll(block));
+	public void simpleLeavesBlock(Supplier<Block> block) {
+		simpleBlock(block.get(), cubeLeavesAll(block));
 	}
 
-	public void translucentBlock(Block block) {
-		simpleBlock(block, translucentCubeAll(block));
+	public void translucentBlock(Supplier<? extends Block> block) {
+		simpleBlock(block.get(), translucentCubeAll(block));
 	}
 
-	private ModelFile translucentCubeAll(Block block) {
-		return models().cubeAll(name(block), blockTexture(block)).renderType("minecraft:translucent");
+	private ModelFile translucentCubeAll(Supplier<? extends Block> block) {
+		return models().cubeAll(name(block.get()), blockTexture(block.get())).renderType("minecraft:translucent");
 	}
 
-	public void torchBlock(Block block, Block wall) {
-		ModelFile torch = models().torch(name(block), texture(name(block))).renderType("minecraft:cutout");
-		ModelFile torchwall = models().torchWall(name(wall), texture(name(block))).renderType("minecraft:cutout");
-		simpleBlock(block, torch);
-		getVariantBuilder(wall).forAllStates(state ->
+	public void torchBlock(Supplier<Block> block, Supplier<Block> wall) {
+		ModelFile torch = models().torch(name(block.get()), texture(name(block.get()))).renderType("minecraft:cutout");
+		ModelFile torchwall = models().torchWall(name(wall.get()), texture(name(block.get()))).renderType("minecraft:cutout");
+		simpleBlock(block.get(), torch);
+		getVariantBuilder(wall.get()).forAllStates(state ->
 				ConfiguredModel.builder()
 						.modelFile(torchwall)
 						.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90) % 360)
 						.build());
 	}
 
-	public void stairs(StairBlock block, Block fullBlock) {
-		stairsBlock(block, texture(name(fullBlock)));
+	public void stairs(Supplier<StairBlock> block, Supplier<Block> fullBlock) {
+		stairsBlock(block.get(), texture(name(fullBlock.get())));
 	}
 
-	public void slab(SlabBlock block, Block fullBlock) {
-		slabBlock(block, texture(name(fullBlock)), texture(name(fullBlock)));
+	public void slab(Supplier<SlabBlock> block, Supplier<Block> fullBlock) {
+		slabBlock(block.get(), texture(name(fullBlock.get())), texture(name(fullBlock.get())));
 	}
 
-	public void crossBlock(Block block) {
-		crossBlock(block, models().cross(name(block), texture(name(block))).renderType("minecraft:cutout"));
+	public void crossBlock(Supplier<Block> block) {
+		crossBlock(block, models().cross(name(block.get()), texture(name(block.get()))).renderType("minecraft:cutout"));
 	}
 
-	private void crossBlock(Block block, ModelFile model) {
-		getVariantBuilder(block).forAllStates(state ->
+	private void crossBlock(Supplier<Block> block, ModelFile model) {
+		getVariantBuilder(block.get()).forAllStates(state ->
 				ConfiguredModel.builder()
 						.modelFile(model)
 						.build());
 	}
 
 
-	public void cake(Supplier<? extends Block> block, String name) {
-		cakeBlockInternal(block.get(), name(block.get()), texture(name + "_bottom"), texture(name + "_top"), texture(name + "_side"), texture(name + "_inner"));
+	public void cake(Supplier<Block> block, String name) {
+		cakeBlockInternal(block, name(block.get()), texture(name + "_bottom"), texture(name + "_top"), texture(name + "_side"), texture(name + "_inner"));
 	}
 
-	private void cakeBlockInternal(Block block, String baseName, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation inside) {
+	private void cakeBlockInternal(Supplier<Block> block, String baseName, ResourceLocation bottom, ResourceLocation top, ResourceLocation side, ResourceLocation inside) {
 		ModelFile cake = cake(baseName + "_uneaten", bottom, top, side);
 		ModelFile sliced1 = slicedCake(baseName + "_slice1", "cake_slice1", bottom, top, side, inside);
 		ModelFile sliced2 = slicedCake(baseName + "_slice2", "cake_slice2", bottom, top, side, inside);
@@ -351,8 +357,8 @@ public class BlockstateGenerator extends BlockStateProvider {
 		cakeBlock(block, cake, sliced1, sliced2, sliced3, sliced4, sliced5, sliced6);
 	}
 
-	public void cakeBlock(Block block, ModelFile uneat, ModelFile sliced1, ModelFile sliced2, ModelFile sliced3, ModelFile sliced4, ModelFile sliced5, ModelFile sliced6) {
-		getVariantBuilder(block).forAllStatesExcept(state -> {
+	public void cakeBlock(Supplier<Block> block, ModelFile uneat, ModelFile sliced1, ModelFile sliced2, ModelFile sliced3, ModelFile sliced4, ModelFile sliced5, ModelFile sliced6) {
+		getVariantBuilder(block.get()).forAllStatesExcept(state -> {
 			int bite = ((int) state.getValue(TofuCakeBlock.BITES));
 			ModelFile file;
 			switch (bite) {
