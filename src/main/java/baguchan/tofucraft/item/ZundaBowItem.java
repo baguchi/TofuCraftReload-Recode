@@ -43,7 +43,7 @@ public class ZundaBowItem extends BowItem implements IEnergyInsertable {
 					if (!p_40668_.isClientSide) {
 						ArrowItem arrowitem = (ArrowItem) (itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
 						AbstractArrow abstractarrow = arrowitem.createArrow(p_40668_, itemstack, player);
-						abstractarrow = customArrow(abstractarrow);
+						abstractarrow = customArrow(abstractarrow, itemstack);
 						abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, f * 3.0F, 1.0F);
 						if (f >= 1.0F) {
 							abstractarrow.setCritArrow(true);

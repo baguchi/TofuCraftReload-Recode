@@ -3,7 +3,6 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
-import net.minecraft.Util;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -27,7 +26,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.SignBlock;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.crafting.PartialNBTIngredient;
+import net.neoforged.neoforge.common.crafting.NBTIngredient;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
@@ -58,12 +57,12 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 
-	public final PartialNBTIngredient potion(Potion potion) {
-		return PartialNBTIngredient.of(Items.POTION, Util.make(() -> {
-			CompoundTag nbt = new CompoundTag();
-			nbt.putString("Potion", BuiltInRegistries.POTION.getKey(potion).toString());
-			return nbt;
-		}));
+	public final NBTIngredient potion(Potion potion) {
+		CompoundTag nbt = new CompoundTag();
+		nbt.putString("Potion", BuiltInRegistries.POTION.getKey(potion).toString());
+
+
+		return NBTIngredient.of(false, nbt, Items.POTION);
 	}
 
 	protected final void foodCooking(Supplier<? extends ItemLike> material, Supplier<? extends ItemLike> result, float xp, RecipeOutput consumer) {
