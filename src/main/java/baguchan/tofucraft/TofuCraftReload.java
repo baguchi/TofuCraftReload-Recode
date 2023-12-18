@@ -46,7 +46,6 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.NetworkRegistry;
@@ -74,12 +73,11 @@ public class TofuCraftReload {
 			.serverAcceptedVersions(NETWORK_PROTOCOL::equals)
 			.simpleChannel();
 
-	public TofuCraftReload() {
+	public TofuCraftReload(IEventBus modBus) {
 		IEventBus forgeBus = NeoForge.EVENT_BUS;
-		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		setupMessages();
 
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+		modBus.addListener(this::setup);
 
 		TofuBannerPatterns.BANNER_PATTERNS.register(modBus);
 		TofuCarvers.WORLD_CARVER.register(modBus);
@@ -107,7 +105,7 @@ public class TofuCraftReload {
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 
 		if (FMLEnvironment.dist == Dist.CLIENT) {
-			FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientRegistrar::setup);
+			modBus.addListener(ClientRegistrar::setup);
 		}
 		NeoForge.EVENT_BUS.register(new CraftingEvents());
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TofuConfig.COMMON_SPEC);
