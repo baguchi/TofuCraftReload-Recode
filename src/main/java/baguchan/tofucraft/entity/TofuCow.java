@@ -136,7 +136,13 @@ public class TofuCow extends Cow {
 
 	@Override
 	public TofuCow getBreedOffspring(ServerLevel p_148890_, AgeableMob p_148891_) {
-		return TofuEntityTypes.TOFUCOW.get().create(p_148890_);
+		TofuCow tofuCow = TofuEntityTypes.TOFUCOW.get().create(p_148890_);
+		if (tofuCow != null) {
+			TofuCowType variant = this.random.nextBoolean() ? this.getTofuCowType() : ((TofuCow) p_148891_).getTofuCowType();
+
+			tofuCow.setTofuCowType(variant);
+		}
+		return tofuCow;
 	}
 
 	public boolean isFood(ItemStack p_27600_) {
