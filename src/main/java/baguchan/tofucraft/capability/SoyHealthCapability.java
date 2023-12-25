@@ -36,11 +36,11 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, level, canUpdate);
 			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
 		}
-		this.soyHealthLevel = Mth.clamp(level, 1, 20);
+		this.soyHealthLevel = Mth.clamp(level, 0, 20);
 	}
 
 	public void setSoyHealthBaseLevel(int level) {
-		this.soyHealthBaseLevel = Mth.clamp(level, 1, 100);
+		this.soyHealthBaseLevel = Mth.clamp(level, 0, 100);
 	}
 
 	public void removeAllSoyHealth(LivingEntity entity) {
@@ -66,7 +66,7 @@ public class SoyHealthCapability implements ICapabilityProvider, ICapabilitySeri
 	public void tick(LivingEntity livingEntity) {
 		if (!livingEntity.level().isClientSide()) {
 			if (livingEntity.level().getGameTime() > this.lastChangedTick + 24000L) {
-				if (this.soyHealthLevel > 1) {
+				if (this.soyHealthLevel > 0) {
 					this.setSoyHealthLevel(livingEntity, this.soyHealthLevel - 2, false);
 					this.lastChangedTick = livingEntity.level().getGameTime();
 				}
