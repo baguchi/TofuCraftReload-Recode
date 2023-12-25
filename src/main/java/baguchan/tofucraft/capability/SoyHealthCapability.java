@@ -29,7 +29,7 @@ public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, level, canUpdate);
 			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
 		}
-		this.soyHealthLevel = Mth.clamp(level, 1, 20);
+		this.soyHealthLevel = Mth.clamp(level, 0, 20);
 	}
 
 	public void setSoyHealthBaseLevel(int level) {

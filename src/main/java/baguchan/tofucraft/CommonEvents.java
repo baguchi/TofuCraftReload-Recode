@@ -5,7 +5,6 @@ import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.entity.TofuGandlem;
-import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuDimensions;
@@ -61,7 +60,6 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.village.VillageSiegeEvent;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -81,23 +79,6 @@ public class CommonEvents {
 		}
 		TofuLivingCapability tofuLivingCapability = livingEntity.getData(TofuCapability.TOFU_LIVING);
 		tofuLivingCapability.tick(livingEntity);
-	}
-
-	@SubscribeEvent
-	public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-		Player player = event.getEntity();
-		if (player instanceof ServerPlayer) {
-			SoyHealthCapability soyHealth = player.getData(TofuCapability.SOY_HEALTH);
-
-			TofuCraftReload.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new SoyMilkDrinkedMessage(player, soyHealth.getSoyHealthLevel(), false));
-		}
-	}
-
-	@SubscribeEvent
-	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
-		Player playerEntity = event.getEntity();
-		SoyHealthCapability soyHealth = playerEntity.getData(TofuCapability.SOY_HEALTH);
-		TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> playerEntity), new SoyMilkDrinkedMessage(playerEntity, soyHealth.getSoyHealthLevel(), false));
 	}
 
 	protected static BlockHitResult getPlayerPOVHitResult(Level p_41436_, Player p_41437_, ClipContext.Fluid p_41438_) {
