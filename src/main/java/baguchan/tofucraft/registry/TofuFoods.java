@@ -6,7 +6,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 
 public class TofuFoods {
-	public static final FoodProperties TOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).fast().build();
+	public static final FoodProperties TOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).fast().meat().build();
 
 	public static final FoodProperties ISHITOFU = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUSTEAK = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).fast().build();
@@ -14,11 +14,11 @@ public class TofuFoods {
 
 	public static final FoodProperties TOFUHELL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().alwaysEat().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200), 1.0F).build();
 	public static final FoodProperties TOFUSOUL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().alwaysEat().effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 2400), 1.0F).build();
-	public static final FoodProperties TOFUGRILLED = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
+	public static final FoodProperties TOFUGRILLED = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().meat().build();
 	public static final FoodProperties TOFUZUNDA = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUMISO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).fast().build();
 	public static final FoodProperties TOFUDRIED = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.22F).fast().build();
-	public static final FoodProperties TOFUSMOKE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
+	public static final FoodProperties TOFUSMOKE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().meat().build();
 	public static final FoodProperties SHUDOFU = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).fast().build();
 	public static final FoodProperties TOFUSESAME = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).fast().build();
 	public static final FoodProperties TOFUFRIED = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.6F).fast().build();
