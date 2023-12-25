@@ -33,7 +33,7 @@ public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 	}
 
 	public void setSoyHealthBaseLevel(int level) {
-		this.soyHealthBaseLevel = Mth.clamp(level, 1, 100);
+		this.soyHealthBaseLevel = Mth.clamp(level, 0, 100);
 	}
 
 	public void removeAllSoyHealth(LivingEntity entity) {
