@@ -76,6 +76,9 @@ public class NattoCobWebEntity extends LivingEntity {
 		} else if (direction.getAxis() == Direction.Axis.X) {
 			d6 = this.getType().getHeight() / 2;
 			d7 = this.getType().getWidth() / 2;
+		} else if (direction == Direction.UP) {
+			d7 = (double) this.getType().getHeight() / 2;
+			d1 += (double) this.getType().getHeight() / 2;
 		}
 
 		return new AABB(d0 - d6, d1 - d7, d2 - d8, d0 + d6, d1 + d7, d2 + d8);
@@ -152,7 +155,6 @@ public class NattoCobWebEntity extends LivingEntity {
 			entity.makeStuckInBlock(Blocks.COBWEB.defaultBlockState(), new Vec3(0.3D, (double) 0.05F, 0.3D));
 		}
 	}
-
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 18.0D).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
 	}
