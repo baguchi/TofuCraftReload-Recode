@@ -3,11 +3,9 @@
   "category": "misc",
   "ingredients": [
     {
-      "type" : "neoforge:partial_nbt",
+      "type" : "neoforge:nbt",
       "item" : "minecraft:potion",
-      "tag" : {
-        "Potion" : "minecraft:water"
-      }
+      "tag" : "{Potion:\"minecraft:water\"}"
     },
     {
       "item": "minecraft:dried_kelp"

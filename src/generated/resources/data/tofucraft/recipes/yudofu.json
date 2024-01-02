@@ -14,11 +14,9 @@
       "item": "minecraft:bowl"
     },
     {
-      "type" : "neoforge:partial_nbt",
+      "type" : "neoforge:nbt",
       "item" : "minecraft:potion",
-      "tag" : {
-        "Potion" : "minecraft:water"
-      }
+      "tag" : "{Potion:\"minecraft:water\"}"
     }
   ],
   "result": {

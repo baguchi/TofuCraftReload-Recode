@@ -257,7 +257,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.DRIEDTOFU, TofuItems.TOFUDRIED);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.TOFUEGG.get(), 4)
-				.requires(Items.EGG)
+				.requires(Tags.Items.EGGS)
 				.requires(TofuItems.BOTTLE_DASHI.get())
 				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
 				.save(consumer);
@@ -632,7 +632,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" X ")
 				.define('X', ItemTags.FISHES)
 				.define('Y', TofuTags.Items.DUST_SALT)
-				.define('Z', Items.EGG)
+				.define('Z', Tags.Items.EGGS)
 				.define('I', TofuItems.STARCH.get())
 				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
 				.save(consumer);
@@ -858,7 +858,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_MOCHI.get()))
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.PUDDING.get(), 1)
-				.requires(Items.EGG)
+				.requires(Tags.Items.EGGS)
 				.requires(TofuItems.GELATIN.get())
 				.requires(Items.MILK_BUCKET)
 				.requires(Items.SUGAR)
@@ -866,7 +866,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.GELATIN.get()))
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.PUDDING_SOYMILK.get(), 1)
-				.requires(Items.EGG)
+				.requires(Tags.Items.EGGS)
 				.requires(TofuItems.GELATIN.get())
 				.requires(TofuItems.SOYMILK.get())
 				.requires(Items.SUGAR)
@@ -964,7 +964,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" E ")
 				.pattern(" W ")
 				.define('#', TofuItems.OKARA.get())
-				.define('E', Items.EGG)
+				.define('E', Tags.Items.EGGS)
 				.define('W', Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
 				.save(consumer);
@@ -973,7 +973,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("WEW")
 				.pattern("#W#")
 				.define('#', TofuItems.OKARA.get())
-				.define('E', Items.EGG)
+				.define('E', Tags.Items.EGGS)
 				.define('W', Items.WHEAT)
 				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
 				.save(consumer);
@@ -1033,7 +1033,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.NANBAN.get(), 1)
 				.requires(Items.COOKED_CHICKEN)
-				.requires(Items.EGG)
+				.requires(Tags.Items.EGGS)
 				.requires(Items.WHEAT)
 				.requires(Items.BOWL)
 				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
@@ -1043,7 +1043,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.NANBANTOFU.get(), 1)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
-				.requires(Items.EGG)
+				.requires(Tags.Items.EGGS)
 				.requires(Items.WHEAT)
 				.requires(Items.BOWL)
 				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
