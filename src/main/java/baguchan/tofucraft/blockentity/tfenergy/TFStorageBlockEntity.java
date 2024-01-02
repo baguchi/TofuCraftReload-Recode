@@ -1,6 +1,5 @@
 package baguchan.tofucraft.blockentity.tfenergy;
 
-import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.api.tfenergy.IEnergyExtractable;
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import baguchan.tofucraft.api.tfenergy.ITofuEnergy;
@@ -160,7 +159,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 
 		if (tfStorageBlockEntity.prevFluid != tfStorageBlockEntity.tank.getFluidAmount()) {
 			LevelChunk chunk = level.getChunkAt(blockPos);
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new TFStorageSoymilkMessage(blockPos, tfStorageBlockEntity.tank.getFluid()));
+			PacketDistributor.TRACKING_CHUNK.with(chunk).send(new TFStorageSoymilkMessage(blockPos, tfStorageBlockEntity.tank.getFluid()));
 			tfStorageBlockEntity.prevFluid = tfStorageBlockEntity.tank.getFluidAmount();
 		}
 	}

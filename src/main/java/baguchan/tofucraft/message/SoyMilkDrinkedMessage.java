@@ -1,15 +1,19 @@
 package baguchan.tofucraft.message;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.registry.TofuCapability;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.PlayPayloadContext;
 
-public class SoyMilkDrinkedMessage {
+public class SoyMilkDrinkedMessage implements CustomPacketPayload {
+	public static final ResourceLocation ID = TofuCraftReload.prefix("soy_milk_drinked");
+
 	private final int entityId;
 
 	private final int level;
@@ -27,29 +31,29 @@ public class SoyMilkDrinkedMessage {
 		this.canUpdate = canUpdate;
 	}
 
-	public void serialize(FriendlyByteBuf buffer) {
+	@Override
+	public ResourceLocation id() {
+		return ID;
+	}
+
+	public void write(FriendlyByteBuf buffer) {
 		buffer.writeInt(this.entityId);
 		buffer.writeInt(this.level);
 		buffer.writeBoolean(this.canUpdate);
 	}
 
-	public static SoyMilkDrinkedMessage deserialize(FriendlyByteBuf buffer) {
-		int entityId = buffer.readInt();
-		int level = buffer.readInt();
-		boolean update = buffer.readBoolean();
-		return new SoyMilkDrinkedMessage(entityId, level, update);
+	public SoyMilkDrinkedMessage(FriendlyByteBuf buffer) {
+		this(buffer.readInt(), buffer.readInt(), buffer.readBoolean());
 	}
 
-	public boolean handle(NetworkEvent.Context context) {
-		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
-			context.enqueueWork(() -> {
-				Entity entity = (Minecraft.getInstance()).player.level().getEntity(entityId);
-				if (entity != null && entity instanceof LivingEntity living) {
-					SoyHealthCapability cap = living.getData(TofuCapability.SOY_HEALTH);
-					cap.setSoyHealthLevel((LivingEntity) entity, level, canUpdate);
-				}
-			});
-		}
-		return true;
+	public static void handle(SoyMilkDrinkedMessage message, PlayPayloadContext context) {
+		context.workHandler().execute(() -> {
+			Entity entity = (Minecraft.getInstance()).player.level().getEntity(message.entityId);
+			if (entity != null && entity instanceof LivingEntity living) {
+				SoyHealthCapability cap = living.getData(TofuCapability.SOY_HEALTH);
+				cap.setSoyHealthLevel((LivingEntity) entity, message.level, message.canUpdate);
+			}
+		});
+
 	}
 }

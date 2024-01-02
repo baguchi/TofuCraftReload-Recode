@@ -48,8 +48,8 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.network.NetworkRegistry;
-import net.neoforged.neoforge.network.simple.SimpleChannel;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
+import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -67,18 +67,11 @@ public class TofuCraftReload {
 	public static final Logger LOGGER = LogManager.getLogger(TofuCraftReload.MODID);
 
 
-	public static final SimpleChannel CHANNEL = NetworkRegistry.ChannelBuilder.named(new ResourceLocation("tofucraft", "net"))
-			.networkProtocolVersion(() -> NETWORK_PROTOCOL)
-			.clientAcceptedVersions(NETWORK_PROTOCOL::equals)
-			.serverAcceptedVersions(NETWORK_PROTOCOL::equals)
-			.simpleChannel();
-
 	public TofuCraftReload(IEventBus modBus) {
 		IEventBus forgeBus = NeoForge.EVENT_BUS;
-		setupMessages();
 
 		modBus.addListener(this::setup);
-
+		modBus.addListener(this::setupPackets);
 		TofuBannerPatterns.BANNER_PATTERNS.register(modBus);
 		TofuCarvers.WORLD_CARVER.register(modBus);
 		TofuBlocks.BLOCKS.register(modBus);
@@ -140,23 +133,12 @@ public class TofuCraftReload {
 	}
 
 
-	private void setupMessages() {
-		CHANNEL.messageBuilder(SoyMilkDrinkedMessage.class, 0)
-				.encoder(SoyMilkDrinkedMessage::serialize).decoder(SoyMilkDrinkedMessage::deserialize)
-				.consumerMainThread(SoyMilkDrinkedMessage::handle)
-				.add();
-		CHANNEL.messageBuilder(SaltFurnaceBitternMessage.class, 1)
-				.encoder(SaltFurnaceBitternMessage::writePacketData).decoder(SaltFurnaceBitternMessage::readPacketData)
-				.consumerMainThread(SaltFurnaceBitternMessage::handle)
-				.add();
-		CHANNEL.messageBuilder(SaltFurnaceWaterMessage.class, 2)
-				.encoder(SaltFurnaceWaterMessage::writePacketData).decoder(SaltFurnaceWaterMessage::readPacketData)
-				.consumerMainThread(SaltFurnaceWaterMessage::handle)
-				.add();
-		CHANNEL.messageBuilder(TFStorageSoymilkMessage.class, 3)
-				.encoder(TFStorageSoymilkMessage::writePacketData).decoder(TFStorageSoymilkMessage::readPacketData)
-				.consumerMainThread(TFStorageSoymilkMessage::handle)
-				.add();
+	public void setupPackets(RegisterPayloadHandlerEvent event) {
+		IPayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
+		registrar.play(SaltFurnaceBitternMessage.ID, SaltFurnaceBitternMessage::new, payload -> payload.client(SaltFurnaceBitternMessage::handle));
+		registrar.play(SaltFurnaceWaterMessage.ID, SaltFurnaceWaterMessage::new, payload -> payload.client(SaltFurnaceWaterMessage::handle));
+		registrar.play(SoyMilkDrinkedMessage.ID, SoyMilkDrinkedMessage::new, payload -> payload.server(SoyMilkDrinkedMessage::handle));
+		registrar.play(TFStorageSoymilkMessage.ID, TFStorageSoymilkMessage::new, payload -> payload.server(TFStorageSoymilkMessage::handle));
 	}
 
 

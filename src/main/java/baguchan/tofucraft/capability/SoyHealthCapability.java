@@ -1,6 +1,5 @@
 package baguchan.tofucraft.capability;
 
-import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -27,7 +26,7 @@ public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 		}
 		if (!entity.level().isClientSide()) {
 			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, level, canUpdate);
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
+			PacketDistributor.TRACKING_ENTITY_AND_SELF.with(entity).send(message);
 		}
 		this.soyHealthLevel = Mth.clamp(level, 0, 20);
 	}
@@ -40,7 +39,7 @@ public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 		this.soyHealthLevel = 0;
 		if (!entity.level().isClientSide()) {
 			SoyMilkDrinkedMessage message = new SoyMilkDrinkedMessage(entity, this.soyHealthLevel, true);
-			TofuCraftReload.CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), message);
+			PacketDistributor.TRACKING_ENTITY_AND_SELF.with(entity).send(message);
 		}
 	}
 

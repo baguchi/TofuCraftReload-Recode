@@ -82,7 +82,7 @@ public class TFStorageBlock extends BaseEntityBlock {
 
 			if (flag) {
 				if (!p_48707_.isClientSide) {
-					TofuCraftReload.CHANNEL.send(PacketDistributor.ALL.noArg(), new TFStorageSoymilkMessage(p_48708_, ((TFStorageBlockEntity) blockentity).getTank().getFluid()));
+					PacketDistributor.ALL.noArg().send(new TFStorageSoymilkMessage(p_48708_, ((TFStorageBlockEntity) blockentity).getTank().getFluid()));
 				}
 			}
 		}

@@ -1,16 +1,20 @@
 package baguchan.tofucraft.message;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.PlayPayloadContext;
 
-public class TFStorageSoymilkMessage {
+public class TFStorageSoymilkMessage implements CustomPacketPayload {
+	public static final ResourceLocation ID = TofuCraftReload.prefix("tf_storage");
+
 	public BlockPos blockPos;
 
 	public FluidStack fluid;
@@ -20,7 +24,12 @@ public class TFStorageSoymilkMessage {
 		this.fluid = fluid;
 	}
 
-	public void writePacketData(FriendlyByteBuf buffer) {
+	@Override
+	public ResourceLocation id() {
+		return ID;
+	}
+
+	public void write(FriendlyByteBuf buffer) {
 		buffer.writeBlockPos(this.blockPos);
 		CompoundTag fluidTag = new CompoundTag();
 		if (this.fluid != null)
@@ -28,23 +37,17 @@ public class TFStorageSoymilkMessage {
 		buffer.writeNbt(fluidTag);
 	}
 
-	public static TFStorageSoymilkMessage readPacketData(FriendlyByteBuf buffer) {
-		BlockPos blockPos = buffer.readBlockPos();
-		FluidStack fluid = FluidStack.loadFluidStackFromNBT(buffer.readNbt());
-		return new TFStorageSoymilkMessage(blockPos, fluid);
+	public TFStorageSoymilkMessage(FriendlyByteBuf buffer) {
+		this(buffer.readBlockPos(), FluidStack.loadFluidStackFromNBT(buffer.readNbt()));
 	}
 
-	public boolean handle(NetworkEvent.Context context) {
-		if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
-			context.enqueueWork(() -> {
-				BlockEntity tileentity = (Minecraft.getInstance()).player.level().getBlockEntity(blockPos);
+	public static void handle(TFStorageSoymilkMessage message, PlayPayloadContext context) {
+		context.workHandler().execute(() -> {
+			BlockEntity tileentity = (Minecraft.getInstance()).player.level().getBlockEntity(message.blockPos);
 				if (tileentity instanceof TFStorageBlockEntity) {
 					TFStorageBlockEntity tileentity1 = (TFStorageBlockEntity) tileentity;
-					tileentity1.getTank().setFluid(fluid);
+					tileentity1.getTank().setFluid(message.fluid);
 				}
 			});
-		}
-		context.setPacketHandled(true);
-		return true;
 	}
 }
