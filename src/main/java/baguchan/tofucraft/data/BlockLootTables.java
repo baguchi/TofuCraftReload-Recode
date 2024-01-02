@@ -248,7 +248,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		add(TofuBlocks.NATTOBED.get(), applyExplosionDecay(TofuBlocks.NATTOBED.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.NATTO.get()).when(lootitemcondition$builder8).apply(SetItemCountFunction.setCount(ConstantValue.exactly(6.0F)))))));
 
-		LootItemCondition.Builder lootitemcondition$builder9 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.NATTOBED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
+		LootItemCondition.Builder lootitemcondition$builder9 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.NETHER_NATTOBED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
 
 		add(TofuBlocks.NETHER_NATTOBED.get(), applyExplosionDecay(TofuBlocks.NETHER_NATTOBED.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.NETHER_NATTO.get()).when(lootitemcondition$builder9).apply(SetItemCountFunction.setCount(ConstantValue.exactly(6.0F)))))));
 

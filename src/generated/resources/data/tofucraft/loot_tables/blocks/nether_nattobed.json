@@ -13,7 +13,7 @@
           "type" : "minecraft:item",
           "conditions" : [
             {
-              "block" : "tofucraft:nattobed",
+              "block" : "tofucraft:nether_nattobed",
               "condition" : "minecraft:block_state_property",
               "properties" : {
                 "stat" : "used"
