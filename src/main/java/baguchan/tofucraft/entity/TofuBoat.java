@@ -4,8 +4,6 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -14,7 +12,6 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.network.NetworkHooks;
 
 public class TofuBoat extends Boat {
 
@@ -67,12 +64,6 @@ public class TofuBoat extends Boat {
 			this.setTofuBoatType(TofuBoat.Type.getTypeFromString(tag.getString("Type")));
 		}
 	}
-
-	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
-	}
-
 	public enum Type {
 		LEEK(TofuBlocks.LEEK_PLANKS.get(), "leek"),
 		LEEK_GREEN(TofuBlocks.LEEK_GREEN_PLANKS.get(), "leek_green"),
