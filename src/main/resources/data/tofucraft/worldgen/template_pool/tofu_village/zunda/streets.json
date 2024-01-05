@@ -5,54 +5,54 @@
       "weight" : 3,
       "element": {
         "location" : "tofucraft:tofu_village/zunda/streets/road_1",
-        "processors": "minecraft:empty",
+        "processors" : "tofucraft:zunda_forest_village_road",
         "projection": "terrain_matching",
-        "element_type" : "minecraft:single_pool_element"
+        "element_type" : "minecraft:legacy_single_pool_element"
       }
     },
     {
       "weight": 2,
       "element": {
         "location" : "tofucraft:tofu_village/zunda/streets/road_2",
-        "processors": "minecraft:empty",
+        "processors" : "tofucraft:zunda_forest_village_road",
         "projection": "terrain_matching",
-        "element_type" : "minecraft:single_pool_element"
+        "element_type" : "minecraft:legacy_single_pool_element"
       }
     },
     {
       "weight": 2,
       "element": {
         "location" : "tofucraft:tofu_village/zunda/streets/road_3",
-        "processors": "minecraft:empty",
+        "processors" : "tofucraft:zunda_forest_village_road",
         "projection": "terrain_matching",
-        "element_type" : "minecraft:single_pool_element"
+        "element_type" : "minecraft:legacy_single_pool_element"
       }
     },
     {
       "weight" : 1,
       "element": {
         "location" : "tofucraft:tofu_village/zunda/streets/road_4",
-        "processors": "minecraft:empty",
+        "processors" : "tofucraft:zunda_forest_village_road",
         "projection": "terrain_matching",
-        "element_type" : "minecraft:single_pool_element"
+        "element_type" : "minecraft:legacy_single_pool_element"
       }
     },
     {
       "weight": 3,
       "element": {
         "location" : "tofucraft:tofu_village/zunda/streets/road_5",
-        "processors": "minecraft:empty",
+        "processors" : "tofucraft:zunda_forest_village_road",
         "projection": "terrain_matching",
-        "element_type" : "minecraft:single_pool_element"
+        "element_type" : "minecraft:legacy_single_pool_element"
       }
     },
     {
       "weight": 3,
       "element": {
         "location" : "tofucraft:tofu_village/zunda/streets/road_6",
-        "processors": "minecraft:empty",
+        "processors" : "tofucraft:zunda_forest_village_road",
         "projection": "terrain_matching",
-        "element_type" : "minecraft:single_pool_element"
+        "element_type" : "minecraft:legacy_single_pool_element"
       }
     }
   ]
