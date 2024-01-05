@@ -1,0 +1,54 @@
+{
+  "processors" : [
+    {
+      "processor_type" : "minecraft:rule",
+      "rules" : [
+        {
+          "location_predicate" : {
+            "predicate_type" : "minecraft:block_match",
+            "block" : "tofucraft:soymilk"
+          },
+          "input_predicate" : {
+            "predicate_type" : "minecraft:block_match",
+            "block" : "tofucraft:tofuishi_smooth_brick"
+          },
+          "output_state" : {
+            "Name" : "tofucraft:tofustem_planks"
+          }
+        },
+        {
+          "location_predicate" : {
+            "predicate_type" : "minecraft:always_true"
+          },
+          "input_predicate" : {
+            "predicate_type" : "minecraft:random_block_match",
+            "block" : "tofucraft:tofuishi_smooth_brick",
+            "probability" : 0.1
+          },
+          "output_state" : {
+            "Name" : "tofucraft:tofu_terrain",
+            "Properties" : {
+              "snowy" : "false"
+            }
+          }
+        },
+        {
+          "location_predicate" : {
+            "predicate_type" : "minecraft:block_match",
+            "block" : "tofucraft:soymilk"
+          },
+          "input_predicate" : {
+            "predicate_type" : "minecraft:block_match",
+            "block" : "tofucraft:tofu_terrain"
+          },
+          "output_state" : {
+            "Name" : "tofucraft:soymilk",
+            "Properties" : {
+              "level" : "0"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
