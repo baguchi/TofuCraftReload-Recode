@@ -7,7 +7,7 @@
     },
     "features": [
       {
-        "chance": 0.33333334,
+        "chance": 0.1,
         "feature": {
           "feature": "tofucraft:tofu_tree_big",
           "placement": []

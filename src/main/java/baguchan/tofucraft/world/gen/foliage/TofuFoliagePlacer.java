@@ -33,10 +33,10 @@ public class TofuFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected void createFoliage(LevelSimulatedReader p_161360_, FoliageSetter p_161361_, RandomSource p_161362_, TreeConfiguration p_161363_, int p_161364_, FoliagePlacer.FoliageAttachment p_161365_, int p_161366_, int p_161367_, int p_161368_) {
-		for (int i = p_161368_; i >= p_161368_ - p_161366_; --i) {
-			int j = Math.max(p_161367_ + p_161365_.radiusOffset(), 0);
-			this.placeLeavesRow(p_161360_, p_161361_, p_161362_, p_161363_, p_161365_.pos(), j, i, p_161365_.doubleTrunk());
+	protected void createFoliage(LevelSimulatedReader level, FoliageSetter blockSetter, RandomSource random, TreeConfiguration config, int maxFreeTreeHeight, FoliageAttachment attachment, int height, int radius, int offset) {
+		for (int i = offset; i >= offset - height; i--) {
+			int j = Math.max(radius + attachment.radiusOffset(), 0);
+			this.placeLeavesRow(level, blockSetter, random, config, attachment.pos(), j, i, attachment.doubleTrunk());
 		}
 
 	}

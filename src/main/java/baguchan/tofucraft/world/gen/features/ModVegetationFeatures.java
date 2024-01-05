@@ -27,6 +27,6 @@ public class ModVegetationFeatures {
 
 		Holder<ConfiguredFeature<?, ?>> holder1 = holdergetter.getOrThrow(ModTreeFeatures.TOFU_TREE);
 		Holder<ConfiguredFeature<?, ?>> holder2 = holdergetter.getOrThrow(ModTreeFeatures.TOFU_TREE_BIG);
-		FeatureUtils.register(context, TOFU_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(holder2), 0.33333334F)), PlacementUtils.inlinePlaced(holder1)));
+		FeatureUtils.register(context, TOFU_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(holder2), 0.1F)), PlacementUtils.inlinePlaced(holder1)));
 	}
 }

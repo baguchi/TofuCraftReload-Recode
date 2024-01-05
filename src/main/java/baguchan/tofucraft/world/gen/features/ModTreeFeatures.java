@@ -15,6 +15,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 
 public class ModTreeFeatures {
@@ -28,11 +29,15 @@ public class ModTreeFeatures {
 	}
 
 	private static TreeConfiguration.TreeConfigurationBuilder createTofuTreeBig() {
-		return createStraightBlobTree(TofuBlocks.ISHITOFU.get(), TofuBlocks.LEAVES_TOFU.get(), 5, 3).ignoreVines().dirt(BlockStateProvider.simple(TofuBlocks.TOFU_TERRAIN.get()));
+		return createBigTree(TofuBlocks.ISHITOFU.get(), TofuBlocks.LEAVES_TOFU.get(), 6, 2).ignoreVines().dirt(BlockStateProvider.simple(TofuBlocks.TOFU_TERRAIN.get()));
 	}
 
 	private static TreeConfiguration.TreeConfigurationBuilder createStraightBlobTree(Block trunk, Block leaves, int trunkSize, int foliageSize) {
 		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new StraightTrunkPlacer(trunkSize, 2, 0), BlockStateProvider.simple(leaves), new TofuFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(0), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1));
+	}
+
+	private static TreeConfiguration.TreeConfigurationBuilder createBigTree(Block trunk, Block leaves, int trunkSize, int foliageSize) {
+		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new FancyTrunkPlacer(trunkSize, 8, 0), BlockStateProvider.simple(leaves), new TofuFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(2), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1));
 	}
 
 	private static TreeConfiguration.TreeConfigurationBuilder createApricotTree() {
