@@ -2,6 +2,6 @@
   "parent": "block/cube_all",
   "textures": {
     "all": "tofucraft:block/blocktofuishi",
-    "particle": "tofucraft:block/blocktofuish"
+    "particle": "tofucraft:block/blocktofuishi"
   }
 }
