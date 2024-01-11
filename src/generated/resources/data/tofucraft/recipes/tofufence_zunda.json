@@ -1,17 +1,17 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:blocktofuzunda"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofuzunda"
     }
   },
-  "pattern" : [
+  "pattern": [
     "MMM",
     "MMM"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:tofufence_zunda"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:tofufence_zunda"
   }
 }

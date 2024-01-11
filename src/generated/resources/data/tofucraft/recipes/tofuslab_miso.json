@@ -1,16 +1,16 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:blocktofumiso"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofumiso"
     }
   },
-  "pattern" : [
+  "pattern": [
     "MMM"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:tofuslab_miso"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:tofuslab_miso"
   }
 }

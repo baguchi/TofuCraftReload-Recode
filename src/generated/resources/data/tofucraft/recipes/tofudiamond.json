@@ -1,17 +1,17 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:tofudiamondnugget"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofudiamondnugget"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "###",
     "###"
   ],
-  "result" : {
-    "item" : "tofucraft:tofudiamond"
+  "result": {
+    "item": "tofucraft:tofudiamond"
   }
 }

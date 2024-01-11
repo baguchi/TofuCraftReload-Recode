@@ -1,19 +1,19 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:leek_planks"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:leek_planks"
     },
-    "S" : {
-      "tag" : "forge:rods/wooden"
+    "S": {
+      "tag": "forge:rods/wooden"
     }
   },
-  "pattern" : [
+  "pattern": [
     "SMS",
     "SMS"
   ],
-  "result" : {
-    "item" : "tofucraft:leek_fence_gate"
+  "result": {
+    "item": "tofucraft:leek_fence_gate"
   }
 }

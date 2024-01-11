@@ -2,22 +2,22 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B" : {
-      "tag" : "forge:barrels/wooden"
+    "B": {
+      "tag": "forge:barrels/wooden"
     },
-    "K" : {
-      "item" : "tofucraft:kouji"
+    "K": {
+      "item": "tofucraft:kouji"
     },
-    "S" : {
-      "tag" : "forge:salt"
+    "S": {
+      "tag": "forge:salt"
     }
   },
-  "pattern" : [
+  "pattern": [
     "SSS",
     "KKK",
     " B "
   ],
-  "result" : {
-    "item" : "tofucraft:barrel_miso"
+  "result": {
+    "item": "tofucraft:barrel_miso"
   }
 }

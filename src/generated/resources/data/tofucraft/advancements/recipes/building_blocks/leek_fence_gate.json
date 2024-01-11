@@ -1,33 +1,33 @@
 {
-  "parent" : "minecraft:recipes/root",
-  "criteria" : {
-    "has_leek_planks" : {
-      "conditions" : {
-        "items" : [
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_leek_planks": {
+      "conditions": {
+        "items": [
           {
-            "items" : [
+            "items": [
               "tofucraft:leek_planks"
             ]
           }
         ]
       },
-      "trigger" : "minecraft:inventory_changed"
+      "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe" : {
-      "conditions" : {
-        "recipe" : "tofucraft:leek_fence_gate"
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:leek_fence_gate"
       },
-      "trigger" : "minecraft:recipe_unlocked"
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_the_recipe",
       "has_leek_planks"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:leek_fence_gate"
     ]
   }

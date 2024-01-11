@@ -1,25 +1,25 @@
 {
-  "feature" : "tofucraft:log",
-  "placement" : [
+  "feature": "tofucraft:log",
+  "placement": [
     {
-      "type" : "minecraft:environment_scan",
-      "direction_of_search" : "up",
-      "max_steps" : 64,
-      "target_condition" : {
-        "type" : "minecraft:any_of",
-        "predicates" : [
+      "type": "minecraft:environment_scan",
+      "direction_of_search": "up",
+      "max_steps": 64,
+      "target_condition": {
+        "type": "minecraft:any_of",
+        "predicates": [
           {
-            "type" : "minecraft:has_sturdy_face",
-            "direction" : "up",
-            "offset" : [
+            "type": "minecraft:has_sturdy_face",
+            "direction": "up",
+            "offset": [
               0,
               1,
               0
             ]
           },
           {
-            "type" : "minecraft:has_sturdy_face",
-            "direction" : "up"
+            "type": "minecraft:has_sturdy_face",
+            "direction": "up"
           }
         ]
       }

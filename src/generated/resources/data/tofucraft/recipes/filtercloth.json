@@ -1,16 +1,16 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "equipment",
-  "key" : {
-    "#" : {
-      "tag" : "minecraft:wool"
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "minecraft:wool"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###"
   ],
-  "result" : {
-    "count" : 32,
-    "item" : "tofucraft:filtercloth"
+  "result": {
+    "count": 32,
+    "item": "tofucraft:filtercloth"
   }
 }

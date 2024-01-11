@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#" : {
-      "item" : "tofucraft:soybeans_parched"
+    "#": {
+      "item": "tofucraft:soybeans_parched"
     },
-    "X" : {
-      "item" : "minecraft:bowl"
+    "X": {
+      "item": "minecraft:bowl"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "###",
     " X "
   ],
-  "result" : {
-    "item" : "tofucraft:fukumame"
+  "result": {
+    "item": "tofucraft:fukumame"
   }
 }

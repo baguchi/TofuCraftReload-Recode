@@ -1,33 +1,33 @@
 {
-  "parent" : "minecraft:recipes/root",
-  "criteria" : {
-    "has_item" : {
-      "conditions" : {
-        "items" : [
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
           {
-            "items" : [
+            "items": [
               "tofucraft:tofu_upgrade_smithing_template"
             ]
           }
         ]
       },
-      "trigger" : "minecraft:inventory_changed"
+      "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe" : {
-      "conditions" : {
-        "recipe" : "tofucraft:copy_tofu_template"
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:copy_tofu_template"
       },
-      "trigger" : "minecraft:recipe_unlocked"
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_the_recipe",
       "has_item"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:copy_tofu_template"
     ]
   }

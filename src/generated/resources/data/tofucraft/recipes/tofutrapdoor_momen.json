@@ -1,17 +1,17 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "P" : {
-      "item" : "tofucraft:tofumomen"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "tofucraft:tofumomen"
     }
   },
-  "pattern" : [
+  "pattern": [
     "PPP",
     "PPP"
   ],
-  "result" : {
-    "count" : 2,
-    "item" : "tofucraft:tofutrapdoor_momen"
+  "result": {
+    "count": 2,
+    "item": "tofucraft:tofutrapdoor_momen"
   }
 }

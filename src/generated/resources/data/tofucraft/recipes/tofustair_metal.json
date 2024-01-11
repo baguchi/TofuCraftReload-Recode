@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:blocktofumetal"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofumetal"
     }
   },
-  "pattern" : [
+  "pattern": [
     "M  ",
     "MM ",
     "MMM"
   ],
-  "result" : {
-    "count" : 4,
-    "item" : "tofucraft:tofustair_metal"
+  "result": {
+    "count": 4,
+    "item": "tofucraft:tofustair_metal"
   }
 }

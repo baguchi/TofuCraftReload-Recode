@@ -1,16 +1,16 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:blocktofuegg"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofuegg"
     }
   },
-  "pattern" : [
+  "pattern": [
     "MMM"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:tofuslab_egg"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:tofuslab_egg"
   }
 }

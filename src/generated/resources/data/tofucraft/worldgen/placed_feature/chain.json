@@ -1,25 +1,25 @@
 {
-  "feature" : "tofucraft:chain",
-  "placement" : [
+  "feature": "tofucraft:chain",
+  "placement": [
     {
-      "type" : "minecraft:environment_scan",
-      "direction_of_search" : "down",
-      "max_steps" : 64,
-      "target_condition" : {
-        "type" : "minecraft:any_of",
-        "predicates" : [
+      "type": "minecraft:environment_scan",
+      "direction_of_search": "down",
+      "max_steps": 64,
+      "target_condition": {
+        "type": "minecraft:any_of",
+        "predicates": [
           {
-            "type" : "minecraft:has_sturdy_face",
-            "direction" : "down",
-            "offset" : [
+            "type": "minecraft:has_sturdy_face",
+            "direction": "down",
+            "offset": [
               0,
               -1,
               0
             ]
           },
           {
-            "type" : "minecraft:has_sturdy_face",
-            "direction" : "down"
+            "type": "minecraft:has_sturdy_face",
+            "direction": "down"
           }
         ]
       }

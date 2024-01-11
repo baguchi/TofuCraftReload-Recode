@@ -1,32 +1,32 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "redstone",
-  "key" : {
-    "C" : {
-      "item" : "tofucraft:tf_circuit"
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "tofucraft:tf_circuit"
     },
-    "L" : {
-      "item" : "tofucraft:tf_coil"
+    "L": {
+      "item": "tofucraft:tf_coil"
     },
-    "O" : {
-      "item" : "tofucraft:tf_oscillator"
+    "O": {
+      "item": "tofucraft:tf_oscillator"
     },
-    "P" : {
-      "item" : "tofucraft:leek"
+    "P": {
+      "item": "tofucraft:leek"
     },
-    "R" : {
-      "item" : "tofucraft:tf_capacitor"
+    "R": {
+      "item": "tofucraft:tf_capacitor"
     },
-    "T" : {
-      "item" : "tofucraft:tofumetal"
+    "T": {
+      "item": "tofucraft:tofumetal"
     }
   },
-  "pattern" : [
+  "pattern": [
     " P ",
     "LOR",
     "TCT"
   ],
-  "result" : {
-    "item" : "tofucraft:antenna_basic"
+  "result": {
+    "item": "tofucraft:antenna_basic"
   }
 }

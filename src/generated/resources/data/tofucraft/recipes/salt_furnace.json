@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#" : {
-      "item" : "minecraft:iron_ingot"
+    "#": {
+      "item": "minecraft:iron_ingot"
     },
-    "S" : {
-      "tag" : "forge:cobblestone"
+    "S": {
+      "tag": "forge:cobblestone"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "# #",
     "SSS"
   ],
-  "result" : {
-    "item" : "tofucraft:salt_furnace"
+  "result": {
+    "item": "tofucraft:salt_furnace"
   }
 }

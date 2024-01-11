@@ -1,21 +1,21 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "/" : {
-      "tag" : "forge:rods/wooden"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "/": {
+      "tag": "forge:rods/wooden"
     },
-    "P" : {
-      "item" : "tofucraft:leek_planks"
+    "P": {
+      "item": "tofucraft:leek_planks"
     }
   },
-  "pattern" : [
+  "pattern": [
     "PPP",
     "PPP",
     " / "
   ],
-  "result" : {
-    "count" : 3,
-    "item" : "tofucraft:leek_sign"
+  "result": {
+    "count": 3,
+    "item": "tofucraft:leek_sign"
   }
 }

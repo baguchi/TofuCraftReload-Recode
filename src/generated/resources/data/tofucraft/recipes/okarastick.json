@@ -2,23 +2,23 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#" : {
-      "item" : "tofucraft:okara"
+    "#": {
+      "item": "tofucraft:okara"
     },
-    "E" : {
-      "tag" : "forge:eggs"
+    "E": {
+      "tag": "forge:eggs"
     },
-    "W" : {
-      "item" : "minecraft:wheat"
+    "W": {
+      "item": "minecraft:wheat"
     }
   },
-  "pattern" : [
+  "pattern": [
     " # ",
     " E ",
     " W "
   ],
-  "result" : {
-    "count" : 3,
-    "item" : "tofucraft:okarastick"
+  "result": {
+    "count": 3,
+    "item": "tofucraft:okarastick"
   }
 }

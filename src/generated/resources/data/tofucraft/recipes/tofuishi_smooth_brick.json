@@ -1,17 +1,17 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:tofuishi_brick"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofuishi_brick"
     }
   },
-  "pattern" : [
+  "pattern": [
     "##",
     "##"
   ],
-  "result" : {
-    "count" : 4,
-    "item" : "tofucraft:tofuishi_smooth_brick"
+  "result": {
+    "count": 4,
+    "item": "tofucraft:tofuishi_smooth_brick"
   }
 }

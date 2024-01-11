@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag" : "forge:eggs"
+      "tag": "forge:eggs"
     },
     {
       "item": "tofucraft:gelatin"

@@ -1,17 +1,17 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "P" : {
-      "item" : "tofucraft:tofuzunda"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "tofucraft:tofuzunda"
     }
   },
-  "pattern" : [
+  "pattern": [
     "PPP",
     "PPP"
   ],
-  "result" : {
-    "count" : 2,
-    "item" : "tofucraft:tofutrapdoor_zunda"
+  "result": {
+    "count": 2,
+    "item": "tofucraft:tofutrapdoor_zunda"
   }
 }

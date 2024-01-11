@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:blocktofudried"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofudried"
     }
   },
-  "pattern" : [
+  "pattern": [
     "M  ",
     "MM ",
     "MMM"
   ],
-  "result" : {
-    "count" : 4,
-    "item" : "tofucraft:tofustair_dried"
+  "result": {
+    "count": 4,
+    "item": "tofucraft:tofustair_dried"
   }
 }

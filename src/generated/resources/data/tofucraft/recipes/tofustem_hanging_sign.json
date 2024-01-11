@@ -1,21 +1,21 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:tofustem"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofustem"
     },
-    "|" : {
-      "item" : "minecraft:chain"
+    "|": {
+      "item": "minecraft:chain"
     }
   },
-  "pattern" : [
+  "pattern": [
     "| |",
     "###",
     "###"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:tofustem_hanging_sign"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:tofustem_hanging_sign"
   }
 }

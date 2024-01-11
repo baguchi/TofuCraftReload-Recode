@@ -1,20 +1,20 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "S" : {
-      "item" : "tofucraft:seeds_soybeans_nether"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "tofucraft:seeds_soybeans_nether"
     },
-    "W" : {
-      "tag" : "forge:crops/wheat"
+    "W": {
+      "tag": "forge:crops/wheat"
     }
   },
-  "pattern" : [
+  "pattern": [
     "SSS",
     "SSS",
     "WWW"
   ],
-  "result" : {
-    "item" : "tofucraft:nether_nattobed"
+  "result": {
+    "item": "tofucraft:nether_nattobed"
   }
 }

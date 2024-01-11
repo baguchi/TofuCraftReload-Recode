@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:tofumomen"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofumomen"
     }
   },
-  "pattern" : [
+  "pattern": [
     "# #",
     "###",
     "# #"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:tofuladder_momen"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:tofuladder_momen"
   }
 }

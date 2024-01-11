@@ -1,16 +1,16 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:tofuminced"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofuminced"
     }
   },
-  "pattern" : [
+  "pattern": [
     "##",
     "##"
   ],
-  "result" : {
-    "item" : "tofucraft:blocktofuminced"
+  "result": {
+    "item": "tofucraft:blocktofuminced"
   }
 }

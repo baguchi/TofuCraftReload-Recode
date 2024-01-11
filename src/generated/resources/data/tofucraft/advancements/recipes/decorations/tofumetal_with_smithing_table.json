@@ -1,33 +1,33 @@
 {
-  "parent" : "minecraft:recipes/root",
-  "criteria" : {
-    "has_item" : {
-      "conditions" : {
-        "items" : [
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
           {
-            "items" : [
+            "items": [
               "tofucraft:blocktofumetal"
             ]
           }
         ]
       },
-      "trigger" : "minecraft:inventory_changed"
+      "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe" : {
-      "conditions" : {
-        "recipe" : "tofucraft:tofumetal_with_smithing_table"
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:tofumetal_with_smithing_table"
       },
-      "trigger" : "minecraft:recipe_unlocked"
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_the_recipe",
       "has_item"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:tofumetal_with_smithing_table"
     ]
   }

@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:tofuishi"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofuishi"
     }
   },
-  "pattern" : [
+  "pattern": [
     "# #",
     "###",
     "# #"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:tofuladder_ishi"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:tofuladder_ishi"
   }
 }

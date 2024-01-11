@@ -1,16 +1,16 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "equipment",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:blocktofuishi"
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "tofucraft:blocktofuishi"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "# #"
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_solid_helmet"
+  "result": {
+    "item": "tofucraft:tofu_solid_helmet"
   }
 }

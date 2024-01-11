@@ -1,31 +1,31 @@
 {
-  "parent" : "minecraft:recipes/root",
-  "criteria" : {
-    "has_item" : {
-      "conditions" : {
-        "items" : [
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
           {
-            "tag" : "forge:crops/soybean"
+            "tag": "forge:crops/soybean"
           }
         ]
       },
-      "trigger" : "minecraft:inventory_changed"
+      "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe" : {
-      "conditions" : {
-        "recipe" : "tofucraft:bottle_soyoil"
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:bottle_soyoil"
       },
-      "trigger" : "minecraft:recipe_unlocked"
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_the_recipe",
       "has_item"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:bottle_soyoil"
     ]
   }

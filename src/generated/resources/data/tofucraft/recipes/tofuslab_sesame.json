@@ -1,16 +1,16 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:blocktofusesame"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofusesame"
     }
   },
-  "pattern" : [
+  "pattern": [
     "MMM"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:tofuslab_sesame"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:tofuslab_sesame"
   }
 }

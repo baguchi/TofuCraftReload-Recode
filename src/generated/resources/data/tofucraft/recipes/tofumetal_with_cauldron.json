@@ -1,17 +1,17 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:blocktofumetal"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:blocktofumetal"
     }
   },
-  "pattern" : [
+  "pattern": [
     "# #",
     "# #",
     "###"
   ],
-  "result" : {
-    "item" : "minecraft:cauldron"
+  "result": {
+    "item": "minecraft:cauldron"
   }
 }

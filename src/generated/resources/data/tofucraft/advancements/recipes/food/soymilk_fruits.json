@@ -20,14 +20,14 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_the_recipe",
       "has_item"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:soymilk_fruits"
     ]
   }
