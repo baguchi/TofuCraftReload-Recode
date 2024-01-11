@@ -89,7 +89,31 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		tag(BlockTags.WOODEN_STAIRS).add(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get()).add(TofuBlocks.LEEK_PLANKS_STAIR.get()).add(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get());
 		tag(BlockTags.WOODEN_FENCES).add(TofuBlocks.TOFU_STEM_FENCE.get()).add(TofuBlocks.LEEK_FENCE.get()).add(TofuBlocks.LEEK_GREEN_FENCE.get());
 		tag(BlockTags.FENCE_GATES).add(TofuBlocks.TOFU_STEM_FENCE_GATE.get()).add(TofuBlocks.LEEK_FENCE_GATE.get()).add(TofuBlocks.LEEK_GREEN_FENCE_GATE.get());
+		this.tag(BlockTags.STANDING_SIGNS)
+				.add(
+						TofuBlocks.LEEK_SIGN.get(),
+						TofuBlocks.LEEK_GREEN_SIGN.get(),
+						TofuBlocks.TOFU_STEM_SIGN.get()
+				);
+		this.tag(BlockTags.WALL_SIGNS)
+				.add(
+						TofuBlocks.LEEK_WALL_SIGN.get(),
+						TofuBlocks.LEEK_GREEN_WALL_SIGN.get(),
+						TofuBlocks.TOFU_STEM_WALL_SIGN.get()
+				);
 
+		this.tag(BlockTags.CEILING_HANGING_SIGNS)
+				.add(
+						TofuBlocks.LEEK_HANGING_SIGN.get(),
+						TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(),
+						TofuBlocks.TOFU_STEM_HANGING_SIGN.get()
+				);
+		this.tag(BlockTags.WALL_HANGING_SIGNS)
+				.add(
+						TofuBlocks.LEEK_WALL_HANGING_SIGN.get(),
+						TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get(),
+						TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get()
+				);
 
 		tag(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.SOYMILK.get())
 				.add(TofuBlocks.TOFUSLATE.get());
