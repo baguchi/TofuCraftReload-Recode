@@ -478,6 +478,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSlab(consumer, TofuBlocks.TOFU_STEM_PLANKS_SLAB, TofuBlocks.TOFU_STEM_PLANKS);
 		makeWoodFence(consumer, TofuBlocks.TOFU_STEM_FENCE.get(), TofuBlocks.TOFU_STEM_PLANKS.get());
 		makeFenceGate(consumer, TofuBlocks.TOFU_STEM_FENCE_GATE.get(), TofuBlocks.TOFU_STEM_PLANKS.get());
+		makeDoor(consumer, TofuBlocks.TOFU_STEM_DOOR, TofuBlocks.TOFU_STEM_PLANKS);
+		makeTrapdoor(consumer, TofuBlocks.TOFU_STEM_TRAPDOOR, TofuBlocks.TOFU_STEM_PLANKS);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, TofuBlocks.LEEK_PLANKS.get(), 4)
 				.requires(TofuBlocks.LEEK_STEM.get())
@@ -498,6 +500,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSlab(consumer, TofuBlocks.LEEK_GREEN_PLANKS_SLAB, TofuBlocks.LEEK_GREEN_PLANKS);
 		makeWoodFence(consumer, TofuBlocks.LEEK_GREEN_FENCE.get(), TofuBlocks.LEEK_GREEN_PLANKS.get());
 		makeFenceGate(consumer, TofuBlocks.LEEK_GREEN_FENCE_GATE.get(), TofuBlocks.LEEK_GREEN_PLANKS.get());
+		makeDoor(consumer, TofuBlocks.LEEK_GREEN_DOOR, TofuBlocks.LEEK_GREEN_PLANKS);
+		makeTrapdoor(consumer, TofuBlocks.LEEK_GREEN_TRAPDOOR, TofuBlocks.TOFU_STEM_PLANKS);
+
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SALT_FURNACE.get())
 				.pattern("###")

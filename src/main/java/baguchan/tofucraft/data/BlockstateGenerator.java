@@ -140,6 +140,9 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.LEEK_GREEN_PLANKS_SLAB, TofuBlocks.LEEK_GREEN_PLANKS);
 		this.fenceBlock(TofuBlocks.LEEK_GREEN_FENCE.get(), texture(name(TofuBlocks.LEEK_GREEN_PLANKS.get())));
 		this.fenceGateBlock(TofuBlocks.LEEK_GREEN_FENCE_GATE.get(), texture(name(TofuBlocks.LEEK_GREEN_PLANKS.get())));
+		door(TofuBlocks.LEEK_GREEN_DOOR, "leek_green");
+		trapdoor(TofuBlocks.LEEK_GREEN_TRAPDOOR);
+
 
 		logBlock(TofuBlocks.LEEK_STEM.get());
 		simpleBlock(TofuBlocks.LEEK_PLANKS);
@@ -156,6 +159,9 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFU_STEM_PLANKS_SLAB, TofuBlocks.TOFU_STEM_PLANKS);
 		this.fenceBlock(TofuBlocks.TOFU_STEM_FENCE.get(), texture(name(TofuBlocks.TOFU_STEM_PLANKS.get())));
 		this.fenceGateBlock(TofuBlocks.TOFU_STEM_FENCE_GATE.get(), texture(name(TofuBlocks.TOFU_STEM_PLANKS.get())));
+		door(TofuBlocks.TOFU_STEM_DOOR, "tofustem");
+		trapdoor(TofuBlocks.TOFU_STEM_TRAPDOOR);
+
 		sign(TofuBlocks.TOFU_STEM_SIGN, TofuBlocks.TOFU_STEM_WALL_SIGN, "tofustem_planks");
 		sign(TofuBlocks.LEEK_GREEN_SIGN, TofuBlocks.LEEK_GREEN_WALL_SIGN, "leek_green_planks");
 		sign(TofuBlocks.LEEK_SIGN, TofuBlocks.LEEK_WALL_SIGN, "leek_planks");

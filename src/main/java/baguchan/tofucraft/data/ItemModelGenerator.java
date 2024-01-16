@@ -131,6 +131,10 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.LEEK_GREEN_FENCE_GATE);
 		sign(TofuBlocks.LEEK_GREEN_SIGN);
 		sign(TofuBlocks.LEEK_GREEN_HANGING_SIGN);
+		singleTex(TofuBlocks.LEEK_GREEN_DOOR);
+		toBlockModel(TofuBlocks.LEEK_GREEN_TRAPDOOR, "leek_green_trapdoor_bottom");
+
+
 
 		toBlock(TofuBlocks.LEEK_STEM);
 		toBlock(TofuBlocks.LEEK_PLANKS);
@@ -152,6 +156,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFU_STEM_FENCE_GATE);
 		sign(TofuBlocks.TOFU_STEM_SIGN);
 		sign(TofuBlocks.TOFU_STEM_HANGING_SIGN);
+		singleTex(TofuBlocks.TOFU_STEM_DOOR);
+		toBlockModel(TofuBlocks.TOFU_STEM_TRAPDOOR, "tofustem_trapdoor_bottom");
 
 		itemBlockFlat(TofuBlocks.SAPLING_TOFU);
 		toBlock(TofuBlocks.LEAVES_TOFU);
