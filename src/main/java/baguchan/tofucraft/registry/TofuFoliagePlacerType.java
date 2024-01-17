@@ -1,6 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.world.gen.foliage.MushroomFoliagePlacer;
 import baguchan.tofucraft.world.gen.foliage.TofuFoliagePlacer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -13,4 +14,5 @@ public class TofuFoliagePlacerType {
 
 
 	public static final Supplier<FoliagePlacerType<TofuFoliagePlacer>> TOFU_FOLIAGE_PLACER = FOLIAGE_PLACER_TYPE.register("tofu_foliage_placer", () -> new FoliagePlacerType<>(TofuFoliagePlacer.CODEC));
+	public static final Supplier<FoliagePlacerType<MushroomFoliagePlacer>> MUSHROOM_FOLIAGE_PLACER = FOLIAGE_PLACER_TYPE.register("mushroom_foliage_placer", () -> new FoliagePlacerType<>(MushroomFoliagePlacer.CODEC));
 }

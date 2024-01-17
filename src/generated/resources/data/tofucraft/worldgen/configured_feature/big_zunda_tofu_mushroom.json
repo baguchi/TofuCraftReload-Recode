@@ -1,4 +1,18 @@
 {
-  "type": "tofucraft:big_zunda_tofu_mushroom",
-  "config": {}
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "tofucraft:zunda_mushroom_big",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.1,
+        "feature": {
+          "feature": "tofucraft:zunda_mushroom",
+          "placement": []
+        }
+      }
+    ]
+  }
 }

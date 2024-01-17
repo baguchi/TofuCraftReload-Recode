@@ -5,28 +5,23 @@
     "dirt_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:dirt"
+        "Name": "tofucraft:tofu_terrain"
       }
     },
     "foliage_placer": {
-      "type": "tofucraft:tofu_foliage_placer",
-      "height": 3,
-      "offset": 0,
-      "radius": 2
+      "type": "tofucraft:mushroom_foliage_placer",
+      "height": 2,
+      "offset": 1,
+      "radius": 1
     },
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "tofucraft:leaves_apricot",
-        "Properties": {
-          "distance": "7",
-          "persistent": "false",
-          "waterlogged": "false"
-        }
+        "Name": "tofucraft:blocktofuzunda"
       }
     },
     "force_dirt": false,
-    "ignore_vines": false,
+    "ignore_vines": true,
     "minimum_size": {
       "type": "minecraft:two_layers_feature_size",
       "limit": 1,
@@ -36,13 +31,13 @@
     "trunk_placer": {
       "type": "minecraft:straight_trunk_placer",
       "base_height": 4,
-      "height_rand_a": 2,
-      "height_rand_b": 1
+      "height_rand_a": 3,
+      "height_rand_b": 0
     },
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:oak_log",
+        "Name": "tofucraft:tofustem",
         "Properties": {
           "axis": "y"
         }

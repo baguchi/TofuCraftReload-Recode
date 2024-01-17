@@ -93,8 +93,7 @@ public class TofuWorldPlacements {
 		PlacementUtils.register(context, TOFU_BUILDING, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_BUILDING), PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
 		PlacementUtils.register(context, PATCH_ZUNDA_TOFU_MUSHROOM, configuredFeature.getOrThrow(TofuWorldFeatures.ZUNDA_TOFU_MUSHROOM), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
-
-		PlacementUtils.register(context, BIG_ZUNDA_TOFU_MUSHROOM, configuredFeature.getOrThrow(TofuWorldFeatures.BIG_ZUNDA_TOFU_MUSHUROOM), PlacementUtils.countExtra(2, 0.05F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, BIG_ZUNDA_TOFU_MUSHROOM, configuredFeature.getOrThrow(ModVegetationFeatures.BIG_ZUNDA_TOFU_MUSHROOM), treePlacement(PlacementUtils.countExtra(1, 0.1F, 1), TofuBlocks.ZUNDATOFU_MUSHROOM.get()));
 
 		PlacementUtils.register(context, TOFU_TREES_FOREST, configuredFeature.getOrThrow(ModVegetationFeatures.TOFU_TREES), treePlacement(PlacementUtils.countExtra(10, 0.1F, 1), TofuBlocks.SAPLING_TOFU.get()));
 		PlacementUtils.register(context, TOFU_TREES_PLAINS, configuredFeature.getOrThrow(ModVegetationFeatures.TOFU_TREES), treePlacement(PlacementUtils.countExtra(0, 0.01F, 1), TofuBlocks.SAPLING_TOFU.get()));
