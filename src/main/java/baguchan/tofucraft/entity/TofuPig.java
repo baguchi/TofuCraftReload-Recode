@@ -127,6 +127,9 @@ public class TofuPig extends Pig implements ItemInteractable {
 	}
 
 	public void thunderHit(ServerLevel p_29473_, LightningBolt p_29474_) {
+		if (this.getTofuPigType() == TofuPigType.NORMAL) {
+			this.setTofuPigType(TofuPigType.ZUNDA);
+		}
 	}
 
 	@Override
