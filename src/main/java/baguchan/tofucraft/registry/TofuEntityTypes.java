@@ -74,15 +74,17 @@ public class TofuEntityTypes {
 
 	public static final Supplier<EntityType<TofuSpider>> TOFUSPIDER = ENTITIES.register("tofuspider", () -> EntityType.Builder.of(TofuSpider::new, MobCategory.MONSTER)
 			.sized(0.95F, 0.55F).build("tofucraft:tofuspider"));
+	public static final Supplier<EntityType<TofuSpider>> ZUNDAMITE = ENTITIES.register("tofuspider", () -> EntityType.Builder.of(TofuSpider::new, MobCategory.MONSTER)
+			.sized(0.4F, 0.3F).clientTrackingRange(8).build("tofucraft:tofuspider"));
 
 	public static final Supplier<EntityType<FukumameEntity>> FUKUMAME = ENTITIES.register("fukumame", () -> EntityType.Builder.<FukumameEntity>of(FukumameEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F).updateInterval(20).build("tofucraft:fukumame"));
+			.sized(0.25F, 0.25F).updateInterval(30).build("tofucraft:fukumame"));
 
 	public static final Supplier<EntityType<NetherFukumameEntity>> NETHER_FUKUMAME = ENTITIES.register("nether_fukumame", () -> EntityType.Builder.<NetherFukumameEntity>of(NetherFukumameEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F).updateInterval(20).build("tofucraft:nether_fukumame"));
+			.sized(0.25F, 0.25F).updateInterval(30).build("tofucraft:nether_fukumame"));
 
 	public static final Supplier<EntityType<SoulFukumameEntity>> SOUL_FUKUMAME = ENTITIES.register("soul_fukumame", () -> EntityType.Builder.<SoulFukumameEntity>of(SoulFukumameEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F).updateInterval(40).build("tofucraft:soul_fukumame"));
+			.sized(0.25F, 0.25F).updateInterval(30).build("tofucraft:soul_fukumame"));
 
 	public static final Supplier<EntityType<NattoStringEntity>> NATTO_STRNIG = ENTITIES.register("natto_string", () -> EntityType.Builder.<NattoStringEntity>of(NattoStringEntity::new, MobCategory.MISC)
 			.sized(0.2F, 0.2F).updateInterval(40).build("tofucraft:natto_string"));
