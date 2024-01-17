@@ -7,6 +7,7 @@
     "CowMixin",
     "EntityMixin",
     "FishingHookMixin",
+    "LightningBoltMixin",
     "WardenAiMixin",
     "WardenMixin"
   ],
