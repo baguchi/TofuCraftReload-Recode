@@ -10,12 +10,14 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.item.ItemStack;
@@ -65,6 +67,13 @@ public class TofuSlime extends Slime {
 		this.shoot((double) f, (double) f1, (double) f2, p_37256_, p_37257_);
 		Vec3 vec3 = p_37252_.getDeltaMovement();
 		this.setDeltaMovement(this.getDeltaMovement().add(vec3.x, p_37252_.onGround() ? 0.0 : vec3.y, vec3.z));
+	}
+
+	@Override
+	public void thunderHit(ServerLevel p_19927_, LightningBolt p_19928_) {
+		if (!this.level().isClientSide && this.isAlive()) {
+			this.doZundaConversion();
+		}
 	}
 
 	public boolean isZundaConverting() {
