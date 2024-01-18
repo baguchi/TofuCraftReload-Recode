@@ -2,8 +2,13 @@ package baguchan.tofucraft.mixin;
 
 
 import baguchan.tofucraft.block.TofuTerrainBlock;
+import baguchan.tofucraft.entity.Zundamite;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuDimensions;
+import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
@@ -36,6 +41,22 @@ public abstract class LightningBoltMixin extends Entity {
 	public void tick(CallbackInfo callbackInfo) {
 		if (this.life == 2) {
 			makeZundaOnLightningStrike(this.level(), this.getStrikePosition());
+			makeZundamiteOnLightningStrike();
+		}
+	}
+
+	private void makeZundamiteOnLightningStrike() {
+		BlockState blockstate = this.level().getBlockState(this.getStrikePosition());
+		if (this.level().dimension() == TofuDimensions.tofu_world) {
+			if (!blockstate.is(Blocks.LIGHTNING_ROD) && this.random.nextInt(2) == 0) {
+				Zundamite zundamite = TofuEntityTypes.ZUNDAMITE.get().create(this.level());
+
+				if (zundamite != null) {
+					zundamite.setPos(this.getStrikePosition().above().getCenter());
+					zundamite.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600));
+					this.level().addFreshEntity(zundamite);
+				}
+			}
 		}
 	}
 
