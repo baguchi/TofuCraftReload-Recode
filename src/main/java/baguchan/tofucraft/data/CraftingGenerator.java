@@ -501,7 +501,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeWoodFence(consumer, TofuBlocks.LEEK_GREEN_FENCE.get(), TofuBlocks.LEEK_GREEN_PLANKS.get());
 		makeFenceGate(consumer, TofuBlocks.LEEK_GREEN_FENCE_GATE.get(), TofuBlocks.LEEK_GREEN_PLANKS.get());
 		makeDoor(consumer, TofuBlocks.LEEK_GREEN_DOOR, TofuBlocks.LEEK_GREEN_PLANKS);
-		makeTrapdoor(consumer, TofuBlocks.LEEK_GREEN_TRAPDOOR, TofuBlocks.TOFU_STEM_PLANKS);
+		makeTrapdoor(consumer, TofuBlocks.LEEK_GREEN_TRAPDOOR, TofuBlocks.LEEK_GREEN_PLANKS);
 
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SALT_FURNACE.get())
