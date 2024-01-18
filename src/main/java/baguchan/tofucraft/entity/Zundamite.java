@@ -107,10 +107,10 @@ public class Zundamite extends Monster {
 		super.aiStep();
 		if (this.level().isClientSide) {
 			for (int i = 0; i < 2; ++i) {
-				double xSpeed = (this.random.nextDouble() - 0.5) * 0.5F;
-				double ySpeed = (this.random.nextDouble() - 0.5) * 0.5F;
-				double zSpeed = (this.random.nextDouble() - 0.5) * 0.5F;
-				this.level().addParticle(new ParticleZundaCloud.CloudData(TofuParticleTypes.ZUNDA_CLOUD.get(), 5f, 10, ParticleZundaCloud.EnumCloudBehavior.GROW, 0.98f), this.getX(), this.getY(), this.getZ(), xSpeed, ySpeed, zSpeed);
+				double xSpeed = (this.random.nextDouble() - 0.5) * 0.15F;
+				double ySpeed = (this.random.nextDouble() - 0.5) * 0.15F;
+				double zSpeed = (this.random.nextDouble() - 0.5) * 0.15F;
+				this.level().addParticle(new ParticleZundaCloud.CloudData(TofuParticleTypes.ZUNDA_CLOUD.get(), 5f, 40, ParticleZundaCloud.EnumCloudBehavior.GROW, 0.98f), this.getX(), this.getY(), this.getZ(), xSpeed, ySpeed, zSpeed);
 			}
 		}
 	}
