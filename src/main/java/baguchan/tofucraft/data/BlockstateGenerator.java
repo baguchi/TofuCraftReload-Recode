@@ -201,6 +201,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		this.lantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
 		this.translucentBlock(TofuBlocks.ZUNDAMA_BLOCK);
 		crossBlock(TofuBlocks.ANTENNA_BASIC);
+		simpleBlock(TofuBlocks.SALT_BLOCK);
 	}
 
 	public void simpleBlock(Supplier<Block> block) {

@@ -1576,5 +1576,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('M', TofuItems.TOFUMETAL.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SALT_BLOCK.get())
+				.pattern("SSS")
+				.pattern("SSS")
+				.pattern("SSS")
+				.define('S', TofuItems.SALT.get())
+				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SALT.get(), 9)
+				.requires(TofuBlocks.SALT_BLOCK.get())
+				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(consumer);
 	}
 }

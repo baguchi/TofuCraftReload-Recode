@@ -494,6 +494,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
 		toBlock(TofuBlocks.TOFU_DETECTOR);
 		itemBlockFlat(TofuBlocks.ANTENNA_BASIC);
+
+		toBlock(TofuBlocks.SALT_BLOCK);
 	}
 
 	public void sign(Supplier<? extends SignBlock> sign) {

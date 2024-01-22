@@ -219,6 +219,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.ZUNDAMA_BLOCK,
 						TofuBlocks.SALTPAN,
 						TofuBlocks.SALT_FURNACE,
+						TofuBlocks.SALT_BLOCK,
 						TofuBlocks.MORIJIO).map(sup -> {
 					return sup.get().asItem().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
