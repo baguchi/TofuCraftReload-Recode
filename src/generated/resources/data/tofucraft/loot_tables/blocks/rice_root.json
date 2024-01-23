@@ -1,4 +1,4 @@
 {
-  "type" : "minecraft:block",
-  "random_sequence" : "tofucraft:blocks/rice_root"
+  "type": "minecraft:block",
+  "random_sequence": "tofucraft:blocks/rice_root"
 }

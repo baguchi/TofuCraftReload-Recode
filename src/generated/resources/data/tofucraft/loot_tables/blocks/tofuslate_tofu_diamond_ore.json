@@ -44,16 +44,16 @@
                   "function": "minecraft:apply_bonus"
                 },
                 {
-                  "function" : "minecraft:explosion_decay"
+                  "function": "minecraft:explosion_decay"
                 }
               ],
-              "name" : "tofucraft:tofudiamondnugget"
+              "name": "tofucraft:tofudiamondnugget"
             }
           ]
         }
       ],
-      "rolls" : 1.0
+      "rolls": 1.0
     }
   ],
-  "random_sequence" : "tofucraft:blocks/tofuslate_tofu_diamond_ore"
+  "random_sequence": "tofucraft:blocks/tofuslate_tofu_diamond_ore"
 }

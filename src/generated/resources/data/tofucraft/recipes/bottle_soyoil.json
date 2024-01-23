@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shapeless",
-  "category" : "misc",
-  "ingredients" : [
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
     {
-      "tag" : "forge:crops/soybean"
+      "tag": "forge:crops/soybean"
     },
     {
-      "item" : "minecraft:glass_bottle"
+      "item": "minecraft:glass_bottle"
     },
     {
-      "item" : "tofucraft:filtercloth"
+      "item": "tofucraft:filtercloth"
     }
   ],
-  "result" : {
-    "item" : "tofucraft:bottle_soyoil"
+  "result": {
+    "item": "tofucraft:bottle_soyoil"
   }
 }

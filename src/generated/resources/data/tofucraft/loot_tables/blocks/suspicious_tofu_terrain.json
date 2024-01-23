@@ -1,4 +1,4 @@
 {
-  "type" : "minecraft:block",
-  "random_sequence" : "tofucraft:blocks/suspicious_tofu_terrain"
+  "type": "minecraft:block",
+  "random_sequence": "tofucraft:blocks/suspicious_tofu_terrain"
 }

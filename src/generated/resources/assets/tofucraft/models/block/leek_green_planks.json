@@ -1,6 +1,6 @@
 {
-  "parent" : "minecraft:block/cube_all",
-  "textures" : {
-    "all" : "tofucraft:block/leek_green_planks"
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "tofucraft:block/leek_green_planks"
   }
 }

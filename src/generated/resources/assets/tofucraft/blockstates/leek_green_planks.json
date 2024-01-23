@@ -1,7 +1,7 @@
 {
-  "variants" : {
-    "" : {
-      "model" : "tofucraft:block/leek_green_planks"
+  "variants": {
+    "": {
+      "model": "tofucraft:block/leek_green_planks"
     }
   }
 }

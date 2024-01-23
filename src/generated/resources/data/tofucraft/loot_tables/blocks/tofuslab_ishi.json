@@ -22,14 +22,14 @@
               "function": "minecraft:set_count"
             },
             {
-              "function" : "minecraft:explosion_decay"
+              "function": "minecraft:explosion_decay"
             }
           ],
-          "name" : "tofucraft:tofuslab_ishi"
+          "name": "tofucraft:tofuslab_ishi"
         }
       ],
-      "rolls" : 1.0
+      "rolls": 1.0
     }
   ],
-  "random_sequence" : "tofucraft:blocks/tofuslab_ishi"
+  "random_sequence": "tofucraft:blocks/tofuslab_ishi"
 }

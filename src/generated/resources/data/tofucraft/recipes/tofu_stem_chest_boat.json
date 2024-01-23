@@ -1,15 +1,15 @@
 {
-  "type" : "minecraft:crafting_shapeless",
-  "category" : "misc",
-  "ingredients" : [
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
     {
-      "item" : "tofucraft:tofu_stem_boat"
+      "item": "tofucraft:tofu_stem_boat"
     },
     {
-      "tag" : "forge:chests/wooden"
+      "tag": "forge:chests/wooden"
     }
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_stem_chest_boat"
+  "result": {
+    "item": "tofucraft:tofu_stem_chest_boat"
   }
 }
