@@ -506,7 +506,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 0.9F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 12.0F).add(Attributes.ARMOR_TOUGHNESS, 2.0F).add(Attributes.ATTACK_DAMAGE, 6.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 0.9F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 12.0F).add(Attributes.ARMOR_TOUGHNESS, 2.0F).add(Attributes.ATTACK_DAMAGE, 5.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
@@ -545,7 +545,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 				double d3 = p_29912_.getZ() - this.getZ();
 				float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 				fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
-				fukumame.damage = 1.5F;
+				fukumame.damage = 1.0F;
 				this.level().addFreshEntity(fukumame);
 			}
 		}
@@ -610,7 +610,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 					this.gandlem.getLookControl().setLookAt(livingentity, 10.0F, 10.0F);
 					this.gandlem.getNavigation().moveTo(livingentity.getX(), livingentity.getY(), livingentity.getZ(), 1.0F);
-				} else if (d0 < this.getFollowDistance() * this.getFollowDistance() * 0.85F && flag) {
+				} else if (d0 < this.getFollowDistance() * this.getFollowDistance() * 0.75F && flag) {
 					if (!this.gandlem.isShoot()) {
 						this.gandlem.setShoot(true);
 					}
@@ -634,7 +634,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 							this.gandlem.performRangedAttack(livingentity, attackTime);
 						}
 					}
-					if (d0 < this.getFollowDistance() * this.getFollowDistance() * 0.75F && this.lastSeen <= 20) {
+					if (d0 < this.getFollowDistance() * this.getFollowDistance() * 0.5F && this.lastSeen <= 20) {
 						++this.strafingTime;
 						this.gandlem.getNavigation().stop();
 					} else {
@@ -655,9 +655,9 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 					}
 
 					if (this.strafingTime > -1) {
-						if (d0 > (double) (this.getFollowDistance() * this.getFollowDistance() * 0.6F)) {
+						if (d0 > (double) (this.getFollowDistance() * this.getFollowDistance() * 0.4F)) {
 							this.strafingBackwards = false;
-						} else if (d0 < (double) (this.getFollowDistance() * this.getFollowDistance() * 0.4F)) {
+						} else if (d0 < (double) (this.getFollowDistance() * this.getFollowDistance() * 0.25F)) {
 							this.strafingBackwards = true;
 						}
 
