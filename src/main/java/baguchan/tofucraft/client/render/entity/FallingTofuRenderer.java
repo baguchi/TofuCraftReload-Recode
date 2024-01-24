@@ -43,7 +43,7 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity> {
 				BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
 				var model = dispatcher.getBlockModel(blockstate);
 				for (var renderType : model.getRenderTypes(blockstate, RandomSource.create(blockstate.getSeed(entity.blockPosition())), ModelData.EMPTY))
-					dispatcher.getModelRenderer().tesselateBlock(world, model, blockstate, blockpos, ms, buffers.getBuffer(renderType), false, RandomSource.create(), 0L, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, renderType);
+					dispatcher.getModelRenderer().tesselateBlock(world, model, blockstate, blockpos, ms, buffers.getBuffer(renderType), false, entity.level().random, 0L, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, renderType);
 				ms.popPose();
 				super.render(entity, yaw, partialTicks, ms, buffers, light);
 			}
