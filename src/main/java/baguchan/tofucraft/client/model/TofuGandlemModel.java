@@ -64,7 +64,7 @@ public class TofuGandlemModel<T extends TofuGandlem> extends HierarchicalModel<T
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 
 
-		if (entity.isSleep()) {
+		if (entity.isSleepSelf()) {
 			this.head.xRot = 0.4F;
 			this.head.yRot = 0.0F;
 		} else {
