@@ -8,7 +8,6 @@ import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -16,7 +15,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
@@ -24,10 +22,8 @@ import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.Pose;
-import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -44,13 +40,11 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -82,8 +76,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	private int actionTick;
 
 
-	private BlockPos homePos;
-
 	public TofuGandlem(EntityType<? extends TofuGandlem> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
 		this.moveControl = new StafeableFlyingMoveControl(this, 20, false);
@@ -110,7 +102,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomFlyingGoal(this, 0.9D));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Mob.class, 6.0F));
-
 		this.goalSelector.addGoal(9, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
@@ -191,37 +182,16 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		return this.getChargeFlag(8);
 	}
 
-	@Override
-	public void restrictTo(BlockPos p_21447_, int p_21448_) {
-		super.restrictTo(p_21447_, p_21448_);
-		this.homePos = p_21447_;
-	}
-
-	@Override
-	public BlockPos getRestrictCenter() {
-		return this.homePos;
-	}
-
-	public boolean isWithinRestriction(BlockPos p_21445_) {
-		if (this.getRestrictRadius() == -1.0F) {
-			return true;
-		} else {
-			return this.homePos.distSqr(p_21445_) < (double) (this.getRestrictRadius() * this.getRestrictRadius());
-		}
-	}
-
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("Sleep", this.isSleepSelf());
 		compound.putBoolean("FullCharge", this.isFullCharge());
-		compound.put("HomePos", NbtUtils.writeBlockPos(this.homePos));
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.setSleepSelf(compound.getBoolean("Sleep"));
 		this.setFullCharge(compound.getBoolean("FullCharge"));
-		this.homePos = NbtUtils.readBlockPos(compound.getCompound("HomePos"));
 	}
 
 	@Override
@@ -236,16 +206,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	public int getAmbientSoundInterval() {
 		return 120;
-	}
-
-	@Nullable
-	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
-		if (p_21436_ == MobSpawnType.STRUCTURE) {
-			this.restrictTo(this.blockPosition(), 10);
-		}
-
-		return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
 	}
 
 	@Override
