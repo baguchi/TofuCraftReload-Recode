@@ -4,7 +4,7 @@
     "fluid": "tofucraft:soymilk"
   },
   "ingredient": {
-    "item": "tofucraft:bittern"
+    "item": "tofucraft:bittern_bottle"
   },
   "result" : "tofucraft:blocktofukinu"
 }
