@@ -84,36 +84,42 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Conta
 
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFCrafterBlockEntity tfcrafter) {
 		if (level.isClientSide()) return;
+
+		boolean flag = level.hasNeighborSignal(blockPos);
+
+
 		boolean worked = false;
-		if (tfcrafter.getEnergyStored() > 0) {
-			if (tfcrafter.refreshTime <= 0) {
+		if (flag) {
+			if (tfcrafter.getEnergyStored() > 0) {
+				if (tfcrafter.refreshTime <= 0) {
 
-				Optional<? extends RecipeHolder<? extends Recipe>> optional = tfcrafter.quickCheck.getRecipeFor(tfcrafter, level);
+					Optional<? extends RecipeHolder<? extends Recipe>> optional = tfcrafter.quickCheck.getRecipeFor(tfcrafter, level);
 
-				if (optional.isPresent() || tfcrafter.progress > 0) {
-					++tfcrafter.progress;
-					if (tfcrafter.progress == MAX_CRAFT_TIME) {
-						tfcrafter.progress = 0;
-						if (level instanceof ServerLevel serverLevel) {
-							dispenseFrom(tfcrafter, blockState, serverLevel, blockPos);
+					if (optional.isPresent() || tfcrafter.progress > 0) {
+						++tfcrafter.progress;
+						if (tfcrafter.progress == MAX_CRAFT_TIME) {
+							tfcrafter.progress = 0;
+							if (level instanceof ServerLevel serverLevel) {
+								dispenseFrom(tfcrafter, blockState, serverLevel, blockPos);
+							}
 						}
+						worked = true;
+
+						tfcrafter.drain(2, false);
+
+					} else {
+						tfcrafter.refreshTime = 30 + tfcrafter.level.random.nextInt(30);
 					}
-					worked = true;
-
-					tfcrafter.drain(2, false);
-
 				} else {
-					tfcrafter.refreshTime = 30 + tfcrafter.level.random.nextInt(30);
+					tfcrafter.progress = 0;
+					tfcrafter.refreshTime--;
 				}
-			} else {
-				tfcrafter.progress = 0;
-				tfcrafter.refreshTime--;
 			}
-		}
 
 
-		if (blockState.getValue(CRAFTING) != worked) {
-			level.setBlock(blockPos, blockState.setValue(CRAFTING, true), 2);
+			if (blockState.getValue(CRAFTING) != worked) {
+				level.setBlock(blockPos, blockState.setValue(CRAFTING, worked), 2);
+			}
 		}
 	}
 
