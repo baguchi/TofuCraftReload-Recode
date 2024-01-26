@@ -59,7 +59,8 @@ public class SenderBaseBlockEntity extends EnergyBaseBlockEntity {
 	public static void senderUpdate(SenderBaseBlockEntity senderBaseBlockEntity) {
 		if (!senderBaseBlockEntity.level.isClientSide() && senderBaseBlockEntity.getEnergyStored() > 0) {
 			if (senderBaseBlockEntity.isValid()) {
-				if (!senderBaseBlockEntity.isCached) senderBaseBlockEntity.onCache();
+				if (!senderBaseBlockEntity.isCached || senderBaseBlockEntity.cache.isEmpty())
+					senderBaseBlockEntity.onCache();
 				if (senderBaseBlockEntity.cache.size() > 0) {
 					List<BlockEntity> toSend = new ArrayList<>();
 

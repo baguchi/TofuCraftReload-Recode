@@ -3,7 +3,6 @@ package baguchan.tofucraft.blockentity.tfenergy;
 import baguchan.tofucraft.blockentity.tfenergy.base.WorkerBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFCrafterMenu;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
-import com.google.common.annotations.VisibleForTesting;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.core.BlockPos;
@@ -22,7 +21,6 @@ import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
@@ -42,7 +40,7 @@ import java.util.Optional;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.CRAFTING;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.ORIENTATION;
 
-public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements StackedContentsCompatible, Container, MenuProvider, CraftingContainer {
+public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Container, MenuProvider, CraftingContainer {
 
 	protected NonNullList<ItemStack> inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 	private int progress = 0;
@@ -183,7 +181,12 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Stack
 
 	@Override
 	public int getContainerSize() {
-		return 10;
+		return 9;
+	}
+
+	@Override
+	public ItemStack getItem(int index) {
+		return inventory.get(index);
 	}
 
 	@Override
@@ -193,17 +196,10 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Stack
 				return false;
 			}
 		}
+
 		return true;
 	}
 
-	@Override
-	public ItemStack getItem(int index) {
-		return inventory.get(index);
-	}
-
-	public ItemStack removeItem(int p_70298_1_, int p_70298_2_) {
-		return ContainerHelper.removeItem(this.inventory, p_70298_1_, p_70298_2_);
-	}
 
 	public ItemStack removeItemNoUpdate(int p_70304_1_) {
 		return ContainerHelper.takeItem(this.inventory, p_70304_1_);
@@ -212,10 +208,25 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Stack
 
 	@Override
 	public void setItem(int index, ItemStack stack) {
+		if (this.isSlotDisabled(index)) {
+			this.setSlotState(index, true);
+		}
 		inventory.set(index, stack);
 		if (stack.getCount() > this.getMaxStackSize()) {
 			stack.setCount(this.getMaxStackSize());
 		}
+
+		this.setChanged();
+	}
+
+	@Override
+	public ItemStack removeItem(int p_59613_, int p_59614_) {
+		ItemStack itemstack = ContainerHelper.removeItem(this.getItems(), p_59613_, p_59614_);
+		if (!itemstack.isEmpty()) {
+			this.setChanged();
+		}
+
+		return itemstack;
 	}
 
 	@Override
@@ -238,7 +249,6 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Stack
 		cmp.putInt("RefreshTime", this.refreshTime);
 
 		this.addDisabledSlots(cmp);
-		this.addTriggered(cmp);
 	}
 
 	public void load(CompoundTag cmp) {
@@ -258,8 +268,6 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Stack
 				this.containerData.set(j, 1);
 			}
 		}
-
-		this.containerData.set(9, cmp.getInt("triggered"));
 	}
 
 	@Override
@@ -323,19 +331,6 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Stack
 		return p_307658_ > -1 && p_307658_ < 9 && this.inventory.get(p_307658_).isEmpty();
 	}
 
-	private void addTriggered(CompoundTag p_307675_) {
-		p_307675_.putInt("triggered", this.containerData.get(9));
-	}
-
-	public void setTriggered(boolean p_307366_) {
-		this.containerData.set(9, p_307366_ ? 1 : 0);
-	}
-
-	@VisibleForTesting
-	public boolean isTriggered() {
-		return this.containerData.get(9) == 1;
-	}
-
 	@Override
 	public void clearContent() {
 		this.inventory.clear();
@@ -349,7 +344,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Stack
 	@Override
 	public void fillStackedContents(StackedContents p_40281_) {
 		for (ItemStack itemstack : this.inventory) {
-			p_40281_.accountStack(itemstack);
+			p_40281_.accountSimpleStack(itemstack);
 		}
 	}
 
@@ -361,7 +356,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Stack
 	@Nullable
 	@Override
 	public AbstractContainerMenu createMenu(int p_39954_, Inventory p_39955_, Player p_39956_) {
-		return new TFCrafterMenu(p_39954_, p_39955_);
+		return new TFCrafterMenu(p_39954_, p_39955_, this, this.containerData);
 	}
 
 	@Override
