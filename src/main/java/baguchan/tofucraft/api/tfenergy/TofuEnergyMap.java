@@ -14,15 +14,17 @@ public class TofuEnergyMap {
 	private static HashMap<FluidStack, Integer> fluidRecipes = new HashMap<>();
 
 	public static void init() {
-		register(new ItemStack(TofuItems.TOFUKINU.get(), 1), 10);
-		register(new ItemStack(TofuItems.TOFUMOMEN.get(), 1), 10);
-		register(new ItemStack(TofuItems.TOFUISHI.get(), 1), 10);
-		register(new ItemStack(TofuBlocks.KINUTOFU.get(), 1), 40);
-		register(new ItemStack(TofuBlocks.MOMENTOFU.get(), 1), 40);
-		register(new ItemStack(TofuBlocks.ISHITOFU.get(), 1), 40);
-		register(new ItemStack(TofuItems.SEEDS_SOYBEANS.get(), 1), 40);
-		register(new ItemStack(TofuItems.SOYBEAN_PARCHED.get(), 1), 40);
-		register(new FluidStack(TofuFluids.SOYMILK.get(), 100), 40);
+		register(new ItemStack(TofuItems.TOFUKINU.get(), 1), 100);
+		register(new ItemStack(TofuItems.TOFUMOMEN.get(), 1), 100);
+		register(new ItemStack(TofuItems.TOFUISHI.get(), 1), 100);
+		register(new ItemStack(TofuBlocks.KINUTOFU.get(), 1), 400);
+		register(new ItemStack(TofuBlocks.MOMENTOFU.get(), 1), 400);
+		register(new ItemStack(TofuBlocks.ISHITOFU.get(), 1), 400);
+		register(new ItemStack(TofuItems.SEEDS_SOYBEANS.get(), 1), 400);
+		register(new ItemStack(TofuItems.SOYBEAN_PARCHED.get(), 1), 400);
+		register(new FluidStack(TofuFluids.SOYMILK.get(), 100), 400);
+		register(new FluidStack(TofuFluids.SOYMILK_HELL.get(), 100), 600);
+		register(new FluidStack(TofuFluids.SOYMILK_SOUL.get(), 100), 800);
 	}
 
 	public static void register(ItemStack item, int loader) {
