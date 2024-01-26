@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "tofucraft:tofu_core"
+    },
+    "F": {
+      "item": "minecraft:crafter"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "M": {
+      "item": "tofucraft:blocktofumetal"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "RCR",
+    "GMG",
+    " F "
+  ],
+  "result": {
+    "item": "tofucraft:tf_crafter"
+  }
+}

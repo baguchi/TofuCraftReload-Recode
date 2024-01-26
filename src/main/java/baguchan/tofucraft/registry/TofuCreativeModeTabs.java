@@ -59,7 +59,8 @@ public class TofuCreativeModeTabs {
 			.icon(() -> TofuBlocks.TF_STORAGE.get().asItem().getDefaultInstance())
 			.displayItems((parameters, output) -> {
 				output.acceptAll(Stream.of(
-						TofuBlocks.TF_STORAGE
+						TofuBlocks.TF_STORAGE,
+						TofuBlocks.TF_CRAFTER
 						, TofuBlocks.ANTENNA_BASIC
 						, TofuBlocks.TOFU_DETECTOR
 						, TofuBlocks.TOFU_WORK_STATION).map(sup -> {

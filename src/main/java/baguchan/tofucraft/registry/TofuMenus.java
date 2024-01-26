@@ -2,6 +2,7 @@ package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.inventory.SaltFurnaceMenu;
+import baguchan.tofucraft.inventory.TFCrafterMenu;
 import baguchan.tofucraft.inventory.TFStorageMenu;
 import baguchan.tofucraft.inventory.TofuWorkStationMenu;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,5 +20,6 @@ public class TofuMenus {
 
 	public static final Supplier<MenuType<TFStorageMenu>> TF_STORAGE = MENU_TYPES.register("tf_storage", () -> new MenuType<>(TFStorageMenu::new, FeatureFlags.DEFAULT_FLAGS));
 	public static final Supplier<MenuType<TofuWorkStationMenu>> TOFU_WORK_STATION = MENU_TYPES.register("tofu_work_station", () -> new MenuType<>(TofuWorkStationMenu::new, FeatureFlags.DEFAULT_FLAGS));
+	public static final Supplier<MenuType<TFCrafterMenu>> TF_CRAFTER = MENU_TYPES.register("tf_crafter", () -> new MenuType<>(TFCrafterMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
 }

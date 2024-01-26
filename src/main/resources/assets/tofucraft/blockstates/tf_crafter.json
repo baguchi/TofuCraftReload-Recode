@@ -1,0 +1,110 @@
+{
+  "variants": {
+    "crafting=false,orientation=down_east": {
+      "model": "tofucraft:block/tf_crafter",
+      "x": 90,
+      "y": 90
+    },
+    "crafting=false,orientation=down_north": {
+      "model": "tofucraft:block/tf_crafter",
+      "x": 90
+    },
+    "crafting=false,orientation=down_south": {
+      "model": "tofucraft:block/tf_crafter",
+      "x": 90,
+      "y": 180
+    },
+    "crafting=false,orientation=down_west": {
+      "model": "tofucraft:block/tf_crafter",
+      "x": 90,
+      "y": 270
+    },
+    "crafting=false,orientation=east_up": {
+      "model": "tofucraft:block/tf_crafter",
+      "y": 90
+    },
+    "crafting=false,orientation=north_up": {
+      "model": "tofucraft:block/tf_crafter"
+    },
+    "crafting=false,orientation=south_up": {
+      "model": "tofucraft:block/tf_crafter",
+      "y": 180
+    },
+    "crafting=false,orientation=up_east": {
+      "model": "tofucraft:block/tf_crafter",
+      "x": 270,
+      "y": 270
+    },
+    "crafting=false,orientation=up_north": {
+      "model": "tofucraft:block/tf_crafter",
+      "x": 270,
+      "y": 180
+    },
+    "crafting=false,orientation=up_south": {
+      "model": "tofucraft:block/tf_crafter",
+      "x": 270
+    },
+    "crafting=false,orientation=up_west": {
+      "model": "tofucraft:block/tf_crafter",
+      "x": 270,
+      "y": 90
+    },
+    "crafting=false,orientation=west_up": {
+      "model": "tofucraft:block/tf_crafter",
+      "y": 270
+    },
+    "crafting=true,orientation=down_east": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "x": 90,
+      "y": 90
+    },
+    "crafting=true,orientation=down_north": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "x": 90
+    },
+    "crafting=true,orientation=down_south": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "x": 90,
+      "y": 180
+    },
+    "crafting=true,orientation=down_west": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "x": 90,
+      "y": 270
+    },
+    "crafting=true,orientation=east_up": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "y": 90
+    },
+    "crafting=true,orientation=north_up": {
+      "model": "tofucraft:block/tf_crafter_lit"
+    },
+    "crafting=true,orientation=south_up": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "y": 180
+    },
+    "crafting=true,orientation=up_east": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "x": 270,
+      "y": 270
+    },
+    "crafting=true,orientation=up_north": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "x": 270,
+      "y": 180
+    },
+    "crafting=true,orientation=up_south": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "x": 270
+    },
+    "crafting=true,orientation=up_west": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "x": 270,
+      "y": 90
+    },
+    "crafting=true,orientation=west_up": {
+      "model": "tofucraft:block/tf_crafter_lit",
+      "y": 270
+    }
+  }
+}

@@ -8,6 +8,7 @@
     "EntityMixin",
     "FishingHookMixin",
     "LightningBoltMixin",
+    "ServerGamePacketListenerImplMixin",
     "WardenAiMixin",
     "WardenMixin"
   ],

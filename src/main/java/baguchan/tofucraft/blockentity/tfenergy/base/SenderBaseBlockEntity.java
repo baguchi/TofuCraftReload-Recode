@@ -56,29 +56,29 @@ public class SenderBaseBlockEntity extends EnergyBaseBlockEntity {
 		tes.forEach(te -> ((SenderBaseBlockEntity) te).onCache());
 	}
 
-	public void exampleUpdate() {
-		if (!level.isClientSide() && this.getEnergyStored() > 0) {
-			if (isValid()) {
-				if (!isCached) onCache();
-				if (cache.size() > 0) {
+	public static void senderUpdate(SenderBaseBlockEntity senderBaseBlockEntity) {
+		if (!senderBaseBlockEntity.level.isClientSide() && senderBaseBlockEntity.getEnergyStored() > 0) {
+			if (senderBaseBlockEntity.isValid()) {
+				if (!senderBaseBlockEntity.isCached) senderBaseBlockEntity.onCache();
+				if (senderBaseBlockEntity.cache.size() > 0) {
 					List<BlockEntity> toSend = new ArrayList<>();
 
-					cache.forEach(tileEntity -> {
+					senderBaseBlockEntity.cache.forEach(tileEntity -> {
 						if (((EnergyBaseBlockEntity) tileEntity).getEnergyStored() < ((EnergyBaseBlockEntity) tileEntity).getMaxEnergyStored())
 							toSend.add(tileEntity);
 					});
 					if (toSend.size() > 0) {
-						int packSize = Math.max(Math.min(getTransferPower(),
-								this.getEnergyStored()) / toSend.size(), 1);
+						int packSize = Math.max(Math.min(senderBaseBlockEntity.getTransferPower(),
+								senderBaseBlockEntity.getEnergyStored()) / toSend.size(), 1);
 						for (BlockEntity te : toSend) {
-							this.drain(((ITofuEnergy) te).receive(Math.min(packSize, this.getEnergyStored()), false), false);
+							senderBaseBlockEntity.drain(((ITofuEnergy) te).receive(Math.min(packSize, senderBaseBlockEntity.getEnergyStored()), false), false);
 						}
 					}
 
 				}
 			} else {
-				cache.clear();
-				isCached = false;
+				senderBaseBlockEntity.cache.clear();
+				senderBaseBlockEntity.isCached = false;
 			}
 		}
 	}

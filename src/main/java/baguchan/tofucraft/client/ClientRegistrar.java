@@ -36,6 +36,7 @@ import baguchan.tofucraft.client.render.tileentity.FoodPlateRender;
 import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
+import baguchan.tofucraft.client.screen.TFCrafterScreen;
 import baguchan.tofucraft.client.screen.TFStorageScreen;
 import baguchan.tofucraft.client.screen.TofuWorkStationScreen;
 import baguchan.tofucraft.entity.TofuBoat;
@@ -97,6 +98,7 @@ public class ClientRegistrar {
 		MenuScreens.register(TofuMenus.SALT_FURNACE.get(), SaltFurnaceScreen::new);
 		MenuScreens.register(TofuMenus.TF_STORAGE.get(), TFStorageScreen::new);
 		MenuScreens.register(TofuMenus.TOFU_WORK_STATION.get(), TofuWorkStationScreen::new);
+		MenuScreens.register(TofuMenus.TF_CRAFTER.get(), TFCrafterScreen::new);
 	}
 
 	@SubscribeEvent
