@@ -1,9 +1,7 @@
 package baguchan.tofucraft.compat.jei;
-/*
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.HardenRecipe;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -86,4 +84,3 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
 }
-*/

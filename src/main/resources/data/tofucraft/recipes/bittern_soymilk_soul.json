@@ -1,0 +1,10 @@
+{
+  "type": "tofucraft:bittern",
+  "process": {
+    "fluid": "tofucraft:soymilk_soul"
+  },
+  "ingredient": {
+    "item": "tofucraft:crimson_fluid_bottle"
+  },
+  "result": "tofucraft:blocktofusoul"
+}

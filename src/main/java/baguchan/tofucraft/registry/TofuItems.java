@@ -121,8 +121,8 @@ public class TofuItems {
 
 
 	public static final Supplier<Item> BITTERN_BOTTLE = ITEMS.register("bittern_bottle", () -> new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
-	public static final Supplier<Item> CRIMSON_BOTTLE = ITEMS.register("crimson_fluid_bottle", () -> new SpecialBitternItem(TofuFluids.SOYMILK_SOUL, TofuBlocks.SOULTOFU, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
-	public static final Supplier<Item> WARPED_BOTTLE = ITEMS.register("warped_fluid_bottle", () -> new SpecialBitternItem(TofuFluids.SOYMILK_HELL, TofuBlocks.HELLTOFU, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final Supplier<Item> CRIMSON_BOTTLE = ITEMS.register("crimson_fluid_bottle", () -> new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final Supplier<Item> WARPED_BOTTLE = ITEMS.register("warped_fluid_bottle", () -> new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final Supplier<Item> SHROOM_BOTTLE = ITEMS.register("shroom_bottle", () -> new Item((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final Supplier<Item> SALT = ITEMS.register("salt", () -> new Item((new Item.Properties())));
 	public static final Supplier<Item> SEEDS_SOYBEANS = ITEMS.register("seeds_soybeans", () -> new ItemNameBlockItem(TofuBlocks.SOYBEAN.get(), (new Item.Properties())));
@@ -544,7 +544,7 @@ public class TofuItems {
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
 				BlockPos blockpos = p_123561_.pos().relative(p_123561_.state().getValue(DispenserBlock.FACING));
 				FluidState fluidState = p_123561_.level().getFluidState(blockpos);
-				ItemStack result = RecipeHelper.getBitternResult(p_123561_.level(), fluidState.getType());
+				ItemStack result = RecipeHelper.getBitternResult(p_123561_.level(), fluidState.getType(), p_123562_);
 				if (result != null) {
 					p_123561_.level().setBlock(blockpos, Block.byItem(result.getItem()).defaultBlockState(), 11);
 					p_123561_.level().levelEvent(2001, blockpos, Block.getId(p_123561_.level().getBlockState(blockpos)));

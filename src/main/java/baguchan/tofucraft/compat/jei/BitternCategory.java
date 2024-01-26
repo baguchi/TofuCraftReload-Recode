@@ -1,16 +1,27 @@
 package baguchan.tofucraft.compat.jei;
 
-/*import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.FluidIngredient;
 import baguchan.tofucraft.registry.TofuItems;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.drawable.IDrawableAnimated;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
+import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.neoforge.NeoForgeTypes;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
-import java.util.Arrays;*/
-/*
+import java.util.Arrays;
+
 
 public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 
@@ -59,7 +70,7 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 		int borderSlotSize = 18;
 		builder.addSlot(RecipeIngredientRole.INPUT, 38, 18)
 				.setFluidRenderer(1000, false, 16, 16)
-				.addIngredients(ForgeTypes.FLUID_STACK, Arrays.asList(recipeIngredients.getFluids()));
+				.addIngredients(NeoForgeTypes.FLUID_STACK, Arrays.asList(recipeIngredients.getFluidStacks()));
 
 		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).addItemStack(recipe.getResult());
 
@@ -71,5 +82,3 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
 }
-
-*/

@@ -34,7 +34,7 @@ public class BitternItem extends Item {
 				return new InteractionResultHolder<>(InteractionResult.PASS, itemstack);
 			if (blockraytraceresult.getType() == HitResult.Type.BLOCK) {
 				FluidState fluidState = worldIn.getFluidState(blockraytraceresult1.getBlockPos());
-				ItemStack result = RecipeHelper.getBitternResult(serverLevel, fluidState.getType());
+				ItemStack result = RecipeHelper.getBitternResult(serverLevel, fluidState.getType(), itemstack);
 				if (result != null) {
 					worldIn.setBlock(blockraytraceresult1.getBlockPos(), Block.byItem(result.getItem()).defaultBlockState(), 11);
 					worldIn.levelEvent(2001, blockraytraceresult1.getBlockPos(), Block.getId(worldIn.getBlockState(blockraytraceresult1.getBlockPos())));

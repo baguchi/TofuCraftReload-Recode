@@ -1,0 +1,10 @@
+{
+  "type": "tofucraft:bittern",
+  "process": {
+    "fluid": "tofucraft:soymilk_hell"
+  },
+  "ingredient": {
+    "item": "tofucraft:warped_fluid_bottle"
+  },
+  "result": "tofucraft:blocktofuhell"
+}

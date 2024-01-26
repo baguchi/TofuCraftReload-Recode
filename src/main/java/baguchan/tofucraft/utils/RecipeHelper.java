@@ -33,7 +33,7 @@ public class RecipeHelper {
 				return recipe.value() instanceof HardenRecipe hardenRecipe && hardenRecipe.getType() == TofuRecipes.RECIPETYPE_HARDER.get();
 			});
 			for (RecipeHolder<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe.value() instanceof HardenRecipe && ((HardenRecipe) recipe.value()).getTofu().test(new ItemStack(block.asItem()))) {
+				if (recipe.value() instanceof HardenRecipe hardenRecipe && hardenRecipe.getTofu().test(new ItemStack(block.asItem()))) {
 					return ((HardenRecipe) recipe.value()).getResultItem(serverLevel.registryAccess());
 				}
 			}
@@ -43,7 +43,7 @@ public class RecipeHelper {
 	}
 
 	@Nullable
-	public static ItemStack getBitternResult(ServerLevel serverLevel, Fluid fluid) {
+	public static ItemStack getBitternResult(ServerLevel serverLevel, Fluid fluid, ItemStack itemStack) {
 		final RecipeManager manager = serverLevel.getRecipeManager();
 
 		if (fluid != null) {
@@ -51,8 +51,10 @@ public class RecipeHelper {
 				return recipe.value() instanceof BitternRecipe bittern && bittern.getType() == TofuRecipes.RECIPETYPE_BITTERN.get();
 			});
 			for (RecipeHolder<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe.value() instanceof BitternRecipe && ((BitternRecipe) recipe.value()).getFluid().test(new FluidStack(fluid, 1000))) {
-					return ((BitternRecipe) recipe.value()).getResultItem(serverLevel.registryAccess());
+				if (recipe.value() instanceof BitternRecipe bitternRecipe && bitternRecipe.getFluid().test(new FluidStack(fluid, 1000))) {
+					if (bitternRecipe.getIngredient().test(itemStack)) {
+						return bitternRecipe.getResultItem(serverLevel.registryAccess());
+					}
 				}
 			}
 		}

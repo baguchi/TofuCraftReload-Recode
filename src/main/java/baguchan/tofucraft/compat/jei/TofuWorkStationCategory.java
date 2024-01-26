@@ -1,5 +1,4 @@
 package baguchan.tofucraft.compat.jei;
-/*
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.TofuWorkStationRecipe;
@@ -69,6 +68,3 @@ public class TofuWorkStationCategory implements IRecipeCategory<TofuWorkStationR
 
 	}
 }
-
-
-*/
