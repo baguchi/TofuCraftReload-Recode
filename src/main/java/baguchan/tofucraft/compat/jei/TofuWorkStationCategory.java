@@ -25,7 +25,7 @@ public class TofuWorkStationCategory implements IRecipeCategory<TofuWorkStationR
 	public TofuWorkStationCategory(IGuiHelper helper) {
 		title = Component.translatable("container.tofucraft.tofu_work_station");
 		ResourceLocation backgroundImage = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tofu_work_station.png");
-		background = helper.createDrawable(backgroundImage, 19, 16, 166 - 19, 70 - 16);
+		background = helper.createDrawable(backgroundImage, 19, 14, 166 - 19, 70 - 14);
 		icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(TofuBlocks.TOFU_WORK_STATION.get()));
 	}
 
@@ -57,14 +57,14 @@ public class TofuWorkStationCategory implements IRecipeCategory<TofuWorkStationR
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, TofuWorkStationRecipe recipe, IFocusGroup focuses) {
 
-		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 - 18 - 16)
+		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 - 18 - 14)
 				.addIngredients(recipe.getBaseIngredient());
-		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 - 16)
+		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 - 14)
 				.addIngredients(recipe.getIngredient());
-		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 + 18 - 16)
+		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 + 18 - 14)
 				.addIngredients(recipe.getSubIngredient());
 
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 143 - 19, 33 - 16).addItemStack(recipe.getResult());
+		builder.addSlot(RecipeIngredientRole.OUTPUT, 143 - 19, 33 - 14).addItemStack(recipe.getResult());
 
 	}
 }
