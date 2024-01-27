@@ -106,7 +106,6 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.COMPLETES_FIND_TREE_TUTORIAL).add(TofuBlocks.TOFU_STEM.get()).add(TofuBlocks.LEEK_STEM.get()).add(TofuBlocks.LEEK_GREEN_STEM.get());
 		tag(BlockTags.CROPS).add(TofuBlocks.RICE_CROP.get()).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get()).add(TofuBlocks.LEEK_CROP.get());
 		tag(BlockTags.SAPLINGS).add(TofuBlocks.SAPLING_TOFU.get(), TofuBlocks.SAPLING_APRICOT.get());
-		tag(BlockTags.LOGS).add(TofuBlocks.ISHITOFU.get());
 		tag(BlockTags.WOODEN_SLABS).add(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get());
 		tag(BlockTags.WOODEN_STAIRS).add(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get());
 		this.tag(BlockTags.CANDLE_CAKES).add(TofuBlocks.TOFU_CANDLE_CAKE.get(), TofuBlocks.WHITE_TOFU_CANDLE_CAKE.get(), TofuBlocks.ORANGE_TOFU_CANDLE_CAKE.get(), TofuBlocks.MAGENTA_TOFU_CANDLE_CAKE.get(), TofuBlocks.LIGHT_BLUE_TOFU_CANDLE_CAKE.get(), TofuBlocks.YELLOW_TOFU_CANDLE_CAKE.get(), TofuBlocks.LIME_TOFU_CANDLE_CAKE.get(), TofuBlocks.PINK_TOFU_CANDLE_CAKE.get(), TofuBlocks.GRAY_TOFU_CANDLE_CAKE.get(), TofuBlocks.LIGHT_GRAY_TOFU_CANDLE_CAKE.get(), TofuBlocks.CYAN_TOFU_CANDLE_CAKE.get(), TofuBlocks.PURPLE_TOFU_CANDLE_CAKE.get(), TofuBlocks.BLUE_TOFU_CANDLE_CAKE.get(), TofuBlocks.BROWN_TOFU_CANDLE_CAKE.get(), TofuBlocks.GREEN_TOFU_CANDLE_CAKE.get(), TofuBlocks.RED_TOFU_CANDLE_CAKE.get(), TofuBlocks.BLACK_TOFU_CANDLE_CAKE.get());
