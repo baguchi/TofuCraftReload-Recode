@@ -86,7 +86,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFCrafterBlockEntity tfcrafter) {
 		if (level.isClientSide()) return;
 
-		boolean flag = level.hasNeighborSignal(blockPos);
+		boolean flag = !level.hasNeighborSignal(blockPos);
 
 
 		boolean worked = false;
@@ -304,7 +304,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 	protected boolean hasNeedMoreStack() {
 		for (int i = 0; i < 9; ++i) {
 			ItemStack itemstack = this.getItem(i);
-			if (itemstack.getCount() == 1) {
+			if (itemstack.getCount() == 1 && !itemstack.isEmpty()) {
 				return true;
 			}
 		}

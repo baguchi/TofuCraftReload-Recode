@@ -10,12 +10,15 @@
     },
     "R": {
       "item": "tofucraft:tf_capacitor"
+    },
+    "T": {
+      "item": "tofucraft:tofugem"
     }
   },
   "pattern": [
-    "MMM",
-    "RMC",
-    "MMM"
+    "MTM",
+    "RTC",
+    "MTM"
   ],
   "result": {
     "item": "tofucraft:tofu_core"
