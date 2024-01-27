@@ -3,6 +3,7 @@ package baguchan.tofucraft.blockentity.tfenergy;
 import baguchan.tofucraft.blockentity.tfenergy.base.WorkerBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFCrafterMenu;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
+import com.google.common.annotations.VisibleForTesting;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.core.BlockPos;
@@ -40,9 +41,9 @@ import java.util.Optional;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.CRAFTING;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.ORIENTATION;
 
-public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Container, MenuProvider, CraftingContainer {
+public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuProvider, CraftingContainer {
 
-	protected NonNullList<ItemStack> inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+	protected NonNullList<ItemStack> inventory = NonNullList.withSize(9, ItemStack.EMPTY);
 	private int progress = 0;
 
 	private int refreshTime = 0;
@@ -95,7 +96,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Conta
 
 					Optional<? extends RecipeHolder<? extends Recipe>> optional = tfcrafter.quickCheck.getRecipeFor(tfcrafter, level);
 
-					if (optional.isPresent() || tfcrafter.progress > 0) {
+					if (optional.isPresent() && !tfcrafter.hasNeedMoreStack() || tfcrafter.progress > 0) {
 						++tfcrafter.progress;
 						if (tfcrafter.progress == MAX_CRAFT_TIME) {
 							tfcrafter.progress = 0;
@@ -115,11 +116,14 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Conta
 					tfcrafter.refreshTime--;
 				}
 			}
+		}
 
+		if (blockState.getValue(CRAFTING) != worked) {
+			level.setBlock(blockPos, blockState.setValue(CRAFTING, worked), 2);
+		}
 
-			if (blockState.getValue(CRAFTING) != worked) {
-				level.setBlock(blockPos, blockState.setValue(CRAFTING, worked), 2);
-			}
+		if (worked) {
+			tfcrafter.setChanged();
 		}
 	}
 
@@ -154,7 +158,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Conta
 		Direction direction = (p_307501_.getValue(ORIENTATION)).front();
 		Container container = HopperBlockEntity.getContainerAt(p_307361_, p_307620_.relative(direction));
 		ItemStack itemstack = p_307296_.copy();
-		if (container == null || !(container instanceof CrafterBlockEntity) && p_307296_.getCount() <= container.getMaxStackSize()) {
+		if (container == null || !(container instanceof TFCrafterBlockEntity) && !(container instanceof CrafterBlockEntity) && p_307296_.getCount() <= container.getMaxStackSize()) {
 			if (container != null) {
 				while (!itemstack.isEmpty()) {
 					int i = itemstack.getCount();
@@ -227,7 +231,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Conta
 
 	@Override
 	public ItemStack removeItem(int p_59613_, int p_59614_) {
-		ItemStack itemstack = ContainerHelper.removeItem(this.getItems(), p_59613_, p_59614_);
+		ItemStack itemstack = ContainerHelper.removeItem(this.inventory, p_59613_, p_59614_);
 		if (!itemstack.isEmpty()) {
 			this.setChanged();
 		}
@@ -255,10 +259,12 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Conta
 		cmp.putInt("RefreshTime", this.refreshTime);
 
 		this.addDisabledSlots(cmp);
+		this.addTriggered(cmp);
 	}
 
 	public void load(CompoundTag cmp) {
 		super.load(cmp);
+		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.inventory);
 
 		this.progress = cmp.getInt("progress");
@@ -274,6 +280,8 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Conta
 				this.containerData.set(j, 1);
 			}
 		}
+
+		this.containerData.set(9, cmp.getInt("triggered"));
 	}
 
 	@Override
@@ -293,13 +301,32 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Conta
 		}
 	}
 
-	private boolean smallerStackExist(int p_307396_, ItemStack p_307520_, int p_307348_) {
-		for (int i = p_307348_ + 1; i < 9; ++i) {
+	protected boolean hasNeedMoreStack() {
+		for (int i = 0; i < 9; ++i) {
 			ItemStack itemstack = this.getItem(i);
-			if (itemstack.isEmpty() || itemstack.getCount() < p_307396_ && ItemStack.isSameItemSameTags(itemstack, p_307520_)) {
+			if (itemstack.getCount() == 1) {
 				return true;
 			}
+		}
+		return false;
+	}
 
+	private boolean smallerStackExist(int count, ItemStack stack, int slot) {
+
+		for (int i = slot + 1; i < 9; ++i) {
+			if (!this.isSlotDisabled(i)) {
+				ItemStack itemstack = this.getItem(i);
+
+				if (itemstack.isEmpty() || itemstack.getCount() < count && ItemStack.isSameItemSameTags(itemstack, stack)) {
+					return true;
+				}
+
+
+			}
+		}
+		if (slot == 0) {
+			ItemStack itemstack2 = this.getItem(8);
+			return itemstack2.getCount() - 1 >= count;
 		}
 
 		return false;
@@ -342,10 +369,6 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Conta
 		this.inventory.clear();
 	}
 
-	@Override
-	public int getMaxStackSize() {
-		return 64;
-	}
 
 	@Override
 	public void fillStackedContents(StackedContents p_40281_) {
@@ -392,5 +415,18 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements Conta
 		}
 
 		return i;
+	}
+
+	private void addTriggered(CompoundTag p_307675_) {
+		p_307675_.putInt("triggered", this.containerData.get(9));
+	}
+
+	public void setTriggered(boolean p_307366_) {
+		this.containerData.set(9, p_307366_ ? 1 : 0);
+	}
+
+	@VisibleForTesting
+	public boolean isTriggered() {
+		return this.containerData.get(9) == 1;
 	}
 }

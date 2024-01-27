@@ -1,0 +1,16 @@
+{
+  "type": "tofucraft:tofu_work_station",
+  "ingredient": {
+    "item": "tofucraft:tofu_core"
+  },
+  "base": {
+    "item": "minecraft:crafter"
+  },
+  "result": {
+    "result": "tofucraft:tf_crafter",
+    "count": 1
+  },
+  "sub": {
+    "item": "tofucraft:blocktofumetal"
+  }
+}
