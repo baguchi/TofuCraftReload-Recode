@@ -37,6 +37,7 @@ import baguchan.tofucraft.client.render.tileentity.TofuBedRenderer;
 import baguchan.tofucraft.client.render.tileentity.TofuChestRenderer;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchan.tofucraft.client.screen.TFCrafterScreen;
+import baguchan.tofucraft.client.screen.TFOvenScreen;
 import baguchan.tofucraft.client.screen.TFStorageScreen;
 import baguchan.tofucraft.client.screen.TofuWorkStationScreen;
 import baguchan.tofucraft.entity.TofuBoat;
@@ -46,7 +47,6 @@ import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuWoodTypes;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -67,6 +67,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiOverlaysEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -95,10 +96,16 @@ public class ClientRegistrar {
 			Sheets.addWoodType(TofuWoodTypes.TOFU_STEM);
 		});
 
-		MenuScreens.register(TofuMenus.SALT_FURNACE.get(), SaltFurnaceScreen::new);
-		MenuScreens.register(TofuMenus.TF_STORAGE.get(), TFStorageScreen::new);
-		MenuScreens.register(TofuMenus.TOFU_WORK_STATION.get(), TofuWorkStationScreen::new);
-		MenuScreens.register(TofuMenus.TF_CRAFTER.get(), TFCrafterScreen::new);
+	}
+
+	@SubscribeEvent
+	public static void screenEvent(RegisterMenuScreensEvent event) {
+
+		event.register(TofuMenus.SALT_FURNACE.get(), SaltFurnaceScreen::new);
+		event.register(TofuMenus.TF_STORAGE.get(), TFStorageScreen::new);
+		event.register(TofuMenus.TOFU_WORK_STATION.get(), TofuWorkStationScreen::new);
+		event.register(TofuMenus.TF_CRAFTER.get(), TFCrafterScreen::new);
+		event.register(TofuMenus.TF_OVEN.get(), TFOvenScreen::new);
 	}
 
 	@SubscribeEvent

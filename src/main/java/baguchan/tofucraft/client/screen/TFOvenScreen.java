@@ -1,7 +1,6 @@
 package baguchan.tofucraft.client.screen;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.inventory.TFOvenMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -18,14 +17,14 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class TFOvenScreen<T extends TFOvenMenu> extends AbstractContainerScreen<T> implements RecipeUpdateListener {
+public class TFOvenScreen extends AbstractContainerScreen<baguchan.tofucraft.inventory.TFOvenMenu> implements RecipeUpdateListener {
 	private static final ResourceLocation texture = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tf_oven.png");
 
 	public final SmeltingRecipeBookComponent recipeBookComponent = new SmeltingRecipeBookComponent();
 	private boolean widthTooNarrow;
 
 	public TFOvenScreen(
-			T p_97825_,
+			baguchan.tofucraft.inventory.TFOvenMenu p_97825_,
 			Inventory p_97827_,
 			Component p_97828_
 	) {
