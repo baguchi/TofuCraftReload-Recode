@@ -73,11 +73,11 @@ public class TFOvenScreen extends AbstractContainerScreen<baguchan.tofucraft.inv
 		p_282928_.blit(texture, i, j, 0, 0, this.imageWidth, this.imageHeight);
 		int k = 14;
 		int l = Mth.ceil(this.menu.getTFForce() * 16.0F);
-		p_282928_.blit(texture, i + 72, j + 35, 176, 14, 24, l);
+		p_282928_.blit(texture, i + 72, j + 35, 176, 39, 24, l);
 
 
 		int j1 = Mth.ceil(this.menu.getProgress() * 28.0F);
-		p_282928_.blit(texture, i + 68, j + 10, 176, 39, j1, 17);
+		p_282928_.blit(texture, i + 67, j + 15, 176, 14, j1, 17);
 	}
 
 	@Override

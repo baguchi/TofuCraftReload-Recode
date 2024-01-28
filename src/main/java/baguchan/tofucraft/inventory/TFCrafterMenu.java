@@ -15,6 +15,7 @@ public class TFCrafterMenu extends CrafterMenu {
 
 	public TFCrafterMenu(int p_307363_, Inventory p_307517_, CraftingContainer p_307449_, ContainerData p_307285_) {
 		super(p_307363_, p_307517_, p_307449_, p_307285_);
+		p_307449_.startOpen(p_307517_.player);
 	}
 
 	@Override

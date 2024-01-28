@@ -140,13 +140,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		return this.tank;
 	}
 
-	protected void refresh() {
-		if (!getLevel().isClientSide()) {
-			BlockState state = getLevel().getBlockState(getBlockPos());
-			getLevel().markAndNotifyBlock(getBlockPos(), getLevel().getChunkAt(getBlockPos()), state, state, 11, 512);
-		}
-	}
-
 	@Override
 	public int getContainerSize() {
 		return 1;
@@ -259,7 +252,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 
 		@Override
 		protected void onContentsChanged() {
-			TFStorageBlockEntity.this.refresh();
 		}
 	}
 

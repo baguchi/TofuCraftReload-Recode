@@ -1,5 +1,6 @@
 package baguchan.tofucraft.inventory;
 
+import baguchan.tofucraft.inventory.slot.TFOvenResultSlot;
 import baguchan.tofucraft.registry.TofuMenus;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
@@ -8,7 +9,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.FurnaceResultSlot;
 import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.SimpleContainerData;
@@ -57,8 +57,9 @@ public class TFOvenMenu extends RecipeBookMenu<Container> {
 		this.container = p_38971_;
 		this.data = p_38972_;
 		this.level = p_38970_.player.level();
+		p_38971_.startOpen(p_38970_.player);
 		this.addSlot(new Slot(p_38971_, 0, 39, 15));
-		this.addSlot(new FurnaceResultSlot(p_38970_.player, p_38971_, 1, 109, 15));
+		this.addSlot(new TFOvenResultSlot(p_38970_.player, p_38971_, 1, 109, 15));
 
 		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
@@ -83,7 +84,6 @@ public class TFOvenMenu extends RecipeBookMenu<Container> {
 	@Override
 	public void clearCraftingContent() {
 		this.getSlot(0).set(ItemStack.EMPTY);
-		this.getSlot(1).set(ItemStack.EMPTY);
 	}
 
 	@Override
@@ -123,13 +123,7 @@ public class TFOvenMenu extends RecipeBookMenu<Container> {
 		if (slot != null && slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
-			if (p_38987_ == 2) {
-				if (!this.moveItemStackTo(itemstack1, 3, 39, true)) {
-					return ItemStack.EMPTY;
-				}
-
-				slot.onQuickCraft(itemstack1, itemstack);
-			} else if (p_38987_ != 1 && p_38987_ != 0) {
+			if (p_38987_ != 1 && p_38987_ != 0) {
 				if (this.canSmelt(itemstack1)) {
 					if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
 						return ItemStack.EMPTY;
@@ -170,8 +164,8 @@ public class TFOvenMenu extends RecipeBookMenu<Container> {
 	}
 
 	public float getTFForce() {
-		int i = this.data.get(0);
-		int j = this.data.get(1);
+		int i = this.data.get(1);
+		int j = this.data.get(2);
 		return j != 0 && i != 0 ? Mth.clamp((float) i / (float) j, 0.0F, 1.0F) : 0.0F;
 	}
 
