@@ -40,7 +40,7 @@ public class TFOvenMenu extends RecipeBookMenu<Container> {
 	public TFOvenMenu(
 			int p_38963_, Inventory p_38964_
 	) {
-		this(p_38963_, p_38964_, new SimpleContainer(3), new SimpleContainerData(4));
+		this(p_38963_, p_38964_, new SimpleContainer(2), new SimpleContainerData(3));
 	}
 
 	public TFOvenMenu(
@@ -52,8 +52,8 @@ public class TFOvenMenu extends RecipeBookMenu<Container> {
 		super(TofuMenus.TF_OVEN.get(), p_38969_);
 		this.recipeType = RecipeType.SMELTING;
 		this.recipeBookType = RecipeBookType.FURNACE;
-		checkContainerSize(p_38971_, 3);
-		checkContainerDataCount(p_38972_, 4);
+		checkContainerSize(p_38971_, 2);
+		checkContainerDataCount(p_38972_, 3);
 		this.container = p_38971_;
 		this.data = p_38972_;
 		this.level = p_38970_.player.level();
