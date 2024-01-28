@@ -60,7 +60,8 @@ public class TofuCreativeModeTabs {
 			.displayItems((parameters, output) -> {
 				output.acceptAll(Stream.of(
 						TofuBlocks.TF_STORAGE,
-						TofuBlocks.TF_CRAFTER
+						TofuBlocks.TF_CRAFTER,
+						TofuBlocks.TF_OVEN
 						, TofuBlocks.ANTENNA_BASIC
 						, TofuBlocks.TOFU_DETECTOR
 						, TofuBlocks.TOFU_WORK_STATION).map(sup -> {

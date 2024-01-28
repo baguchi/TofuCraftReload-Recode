@@ -34,7 +34,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 public class TFCrafterBlock extends BaseEntityBlock {
-	public static final MapCodec<TFStorageBlock> CODEC = simpleCodec(TFStorageBlock::new);
+	public static final MapCodec<TFCrafterBlock> CODEC = simpleCodec(TFCrafterBlock::new);
 	public static final BooleanProperty CRAFTING = BlockStateProperties.CRAFTING;
 	private static final EnumProperty<FrontAndTop> ORIENTATION = BlockStateProperties.ORIENTATION;
 

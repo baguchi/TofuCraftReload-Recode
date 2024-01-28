@@ -460,6 +460,7 @@
   "block.tofucraft.tofu_detector" : "Tofu Detector",
   "block.tofucraft.tf_storage" : "TF Storage",
   "block.tofucraft.tf_crafter": "TF Crafter",
+  "block.tofucraft.tf_oven": "TF Oven",
   "block.tofucraft.antenna_basic" : "Antenna Basic",
   "block.tofucraft.tofu_work_station" : "Tofu Work Station",
   "entity.tofucraft.tofunian.guard" : "Guard Tofunian",

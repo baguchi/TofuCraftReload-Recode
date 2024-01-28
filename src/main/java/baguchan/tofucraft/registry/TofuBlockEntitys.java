@@ -9,6 +9,7 @@ import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
 import baguchan.tofucraft.blockentity.TofuHangingSignBlockEntity;
 import baguchan.tofucraft.blockentity.TofuSignBlockEntity;
 import baguchan.tofucraft.blockentity.tfenergy.TFCrafterBlockEntity;
+import baguchan.tofucraft.blockentity.tfenergy.TFOvenBlockEntity;
 import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
 import com.mojang.datafixers.types.Type;
 import net.minecraft.Util;
@@ -44,6 +45,7 @@ public class TofuBlockEntitys {
 			TofuBlocks.LEEK_WALL_HANGING_SIGN.get())));
 	public static final Supplier<BlockEntityType<TFStorageBlockEntity>> TF_STORAGE = BLOCK_ENTITIES.register("tf_storage", () -> register("tofucraft:tf_storage", BlockEntityType.Builder.of(TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE.get())));
 	public static final Supplier<BlockEntityType<TFCrafterBlockEntity>> TF_CRAFTER = BLOCK_ENTITIES.register("tf_crafter", () -> register("tofucraft:tf_crafter", BlockEntityType.Builder.of(TFCrafterBlockEntity::new, TofuBlocks.TF_CRAFTER.get())));
+	public static final Supplier<BlockEntityType<TFOvenBlockEntity>> TF_OVEN = BLOCK_ENTITIES.register("tf_oven", () -> register("tofucraft:tf_oven", BlockEntityType.Builder.of(TFOvenBlockEntity::new, TofuBlocks.TF_OVEN.get())));
 
 	private static <T extends BlockEntity> BlockEntityType<T> register(String p_200966_0_, BlockEntityType.Builder<T> p_200966_1_) {
 		Type<?> type = Util.fetchChoiceType(References.BLOCK_ENTITY, p_200966_0_);

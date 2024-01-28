@@ -460,6 +460,7 @@
   "block.tofucraft.tofu_detector" : "豆腐センサー",
   "block.tofucraft.tf_storage" : "TFストレージ",
   "block.tofucraft.tf_crafter": "TFクラフター",
+  "block.tofucraft.tf_oven": "TFオーブン",
   "block.tofucraft.antenna_basic" : "ベーシックアンテナ",
   "block.tofucraft.tofu_work_station" : "豆腐加工台",
   "entity.tofucraft.tofunian.guard" : "衛兵のトーフニアン",

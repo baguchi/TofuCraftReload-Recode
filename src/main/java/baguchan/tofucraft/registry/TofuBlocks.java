@@ -36,6 +36,7 @@ import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
 import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
 import baguchan.tofucraft.block.tfenergy.TFCrafterBlock;
+import baguchan.tofucraft.block.tfenergy.TFOvenBlock;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
 import baguchan.tofucraft.block.tfenergy.TofuWorkStationBlock;
 import baguchan.tofucraft.block.tree.ApricotLeavesBlock;
@@ -433,6 +434,9 @@ public class TofuBlocks {
 	})));
 	public static final Supplier<Block> TF_CRAFTER = register("tf_crafter", () -> new TFCrafterBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
 		return p_50872_.getValue(TFCrafterBlock.CRAFTING) ? 10 : 0;
+	})));
+	public static final Supplier<Block> TF_OVEN = register("tf_oven", () -> new TFOvenBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
+		return p_50872_.getValue(TFOvenBlock.LIT) ? 13 : 0;
 	})));
 
 	public static final Supplier<Block> ANTENNA_BASIC = register("antenna_basic", () -> new TFAntennaBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL)));
