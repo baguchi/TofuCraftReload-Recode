@@ -23,7 +23,6 @@ public class SenderBaseBlockEntity extends EnergyBaseBlockEntity {
 	 * */
 
 	protected List<BlockEntity> cache = new ArrayList<>();
-	protected boolean isCached = false;
 
 	protected int findCooldown;
 
@@ -59,9 +58,7 @@ public class SenderBaseBlockEntity extends EnergyBaseBlockEntity {
 	public static void senderUpdate(SenderBaseBlockEntity senderBaseBlockEntity) {
 		if (!senderBaseBlockEntity.level.isClientSide() && senderBaseBlockEntity.getEnergyStored() > 0) {
 			if (senderBaseBlockEntity.isValid()) {
-				if (!senderBaseBlockEntity.isCached || senderBaseBlockEntity.cache.isEmpty())
-					senderBaseBlockEntity.onCache();
-				if (senderBaseBlockEntity.cache.size() > 0) {
+				if (!senderBaseBlockEntity.cache.isEmpty()) {
 					List<BlockEntity> toSend = new ArrayList<>();
 
 					senderBaseBlockEntity.cache.forEach(tileEntity -> {
@@ -77,9 +74,13 @@ public class SenderBaseBlockEntity extends EnergyBaseBlockEntity {
 					}
 
 				}
+				if (--senderBaseBlockEntity.findCooldown <= 0) {
+					senderBaseBlockEntity.onCache();
+				}
+
 			} else {
 				senderBaseBlockEntity.cache.clear();
-				senderBaseBlockEntity.isCached = false;
+
 			}
 		}
 	}
@@ -93,8 +94,7 @@ public class SenderBaseBlockEntity extends EnergyBaseBlockEntity {
 	//The onCache decides what TileEntities will be cached into the function and be send energy to.
 	public void onCache() {
 		cache = TofuNetwork.toTiles(TofuNetwork.Instance.getInsertableWithinRadius(this, ((IAnntena) antenna).getRadius(getBlockPos().above(), level)));
-		isCached = true;
-		findCooldown = 100;
+		findCooldown = 50 + level.random.nextInt(50);
 	}
 
 	public int getTransferPower() {
