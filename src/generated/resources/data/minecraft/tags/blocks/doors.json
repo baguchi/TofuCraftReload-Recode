@@ -1,5 +1,14 @@
 {
   "values": [
-    "tofucraft:tofudoor_metal"
+    "tofucraft:tofudoor_metal",
+    "tofucraft:tofudoor_kinu",
+    "tofucraft:tofudoor_momen",
+    "tofucraft:tofudoor_hell",
+    "tofucraft:tofudoor_soul",
+    "tofucraft:tofudoor_ishi",
+    "tofucraft:tofudoor_grilled",
+    "tofucraft:tofudoor_zunda",
+    "tofucraft:tofustem_door",
+    "tofucraft:leek_green_door"
   ]
 }

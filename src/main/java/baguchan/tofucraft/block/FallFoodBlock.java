@@ -2,8 +2,8 @@ package baguchan.tofucraft.block;
 
 import net.minecraft.world.level.block.FallingBlock;
 
-public class MincedTofuBlock extends FallingBlock {
-	public MincedTofuBlock(Properties properties) {
+public class FallFoodBlock extends FallingBlock {
+	public FallFoodBlock(Properties properties) {
 		super(properties);
 	}
 }

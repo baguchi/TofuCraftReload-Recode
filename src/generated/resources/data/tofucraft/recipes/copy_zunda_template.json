@@ -16,8 +16,8 @@
     }
   },
   "pattern" : [
-    "B#B",
     "BZB",
+    "B#B",
     "BDB"
   ],
   "result" : {

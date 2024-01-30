@@ -1,0 +1,18 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "P" : {
+      "item" : "tofucraft:tofustem_planks"
+    }
+  },
+  "pattern" : [
+    "PPP",
+    "PPP"
+  ],
+  "result" : {
+    "count" : 2,
+    "item" : "tofucraft:tofustem_trapdoor"
+  },
+  "show_notification" : true
+}

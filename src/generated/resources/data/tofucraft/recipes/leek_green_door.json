@@ -1,0 +1,19 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "P" : {
+      "item" : "tofucraft:leek_green_planks"
+    }
+  },
+  "pattern" : [
+    "PP",
+    "PP",
+    "PP"
+  ],
+  "result" : {
+    "count" : 3,
+    "item" : "tofucraft:leek_green_door"
+  },
+  "show_notification" : true
+}

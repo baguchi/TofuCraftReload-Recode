@@ -3,10 +3,10 @@ package baguchan.tofucraft.registry;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.block.BurnableRotatedPillarBlock;
 import baguchan.tofucraft.block.CandleTofuCakeBlock;
+import baguchan.tofucraft.block.FallFoodBlock;
 import baguchan.tofucraft.block.FoodPlateBlock;
 import baguchan.tofucraft.block.KinuTofuBlock;
 import baguchan.tofucraft.block.LeekBlock;
-import baguchan.tofucraft.block.MincedTofuBlock;
 import baguchan.tofucraft.block.MorijioBlock;
 import baguchan.tofucraft.block.RiceBlock;
 import baguchan.tofucraft.block.SuspiciousTofuTerrainBlock;
@@ -150,7 +150,7 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> SOULTOFU = register("blocktofusoul", () -> new TofuBlock(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).randomTicks().sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> SOULTOFU_BRICK = register("tofusoul_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SOULTOFU_SMOOTH_BRICK = register("tofusoul_smooth_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final RegistryObject<Block> MINCEDTOFU = register("blocktofuminced", () -> new MincedTofuBlock(BlockBehaviour.Properties.of().strength(0.2F, 0.3F).sound(SoundType.SNOW)));
+	public static final RegistryObject<Block> MINCEDTOFU = register("blocktofuminced", () -> new FallFoodBlock(BlockBehaviour.Properties.of().strength(0.2F, 0.3F).sound(SoundType.SNOW)));
 
 	public static final RegistryObject<StairBlock> TOFUSTAIR_KINU = register("tofustair_kinu", () -> new StairBlock(KINUTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(KINUTOFU.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_MOMEN = register("tofustair_momen", () -> new StairBlock(MOMENTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(MOMENTOFU.get())));
@@ -291,6 +291,8 @@ public class TofuBlocks {
 	public static final RegistryObject<WallSignBlock> LEEK_GREEN_WALL_SIGN = BLOCKS.register("leek_green_wall_sign", () -> new TofuWallSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_WALL_SIGN), TofuWoodTypes.LEEK_GREEN));
 	public static final RegistryObject<CeilingHangingSignBlock> LEEK_GREEN_HANGING_SIGN = register("leek_green_hanging_sign", () -> new TofuCeilingHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_HANGING_SIGN), TofuWoodTypes.LEEK_GREEN));
 	public static final RegistryObject<WallHangingSignBlock> LEEK_GREEN_WALL_HANGING_SIGN = BLOCKS.register("leek_green_wall_hanging_sign", () -> new TofuWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_WALL_HANGING_SIGN), TofuWoodTypes.LEEK_GREEN));
+	public static final RegistryObject<DoorBlock> LEEK_GREEN_DOOR = register("leek_green_door", () -> new DoorBlock(BlockBehaviour.Properties.copy(LEEK_GREEN_PLANKS.get()).noOcclusion(), TofuBlockSetTypes.LEEK_GREEN));
+	public static final RegistryObject<TrapDoorBlock> LEEK_GREEN_TRAPDOOR = register("leek_green_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(LEEK_GREEN_PLANKS.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false), TofuBlockSetTypes.LEEK_GREEN));
 
 
 	public static final RegistryObject<RotatedPillarBlock> LEEK_STEM = register("leek_stem", () -> new BurnableRotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM)));
@@ -315,6 +317,8 @@ public class TofuBlocks {
 	public static final RegistryObject<SlabBlock> TOFU_STEM_PLANKS_SLAB = register("tofustem_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(TOFU_STEM_PLANKS.get())));
 	public static final RegistryObject<FenceBlock> TOFU_STEM_FENCE = register("tofustem_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
 	public static final RegistryObject<FenceGateBlock> TOFU_STEM_FENCE_GATE = register("tofustem_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F), TofuWoodTypes.TOFU_STEM));
+	public static final RegistryObject<DoorBlock> TOFU_STEM_DOOR = register("tofustem_door", () -> new DoorBlock(BlockBehaviour.Properties.copy(TOFU_STEM_PLANKS.get()).noOcclusion(), TofuBlockSetTypes.TOFU_STEM));
+	public static final RegistryObject<TrapDoorBlock> TOFU_STEM_TRAPDOOR = register("tofustem_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(TOFU_STEM_PLANKS.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false), TofuBlockSetTypes.TOFU_STEM));
 
 
 	public static final RegistryObject<StandingSignBlock> TOFU_STEM_SIGN = register("tofustem_sign", () -> new TofuStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_SIGN), TofuWoodTypes.TOFU_STEM));
@@ -332,6 +336,7 @@ public class TofuBlocks {
 		return p_50872_.getValue(SaltFurnaceBlock.LIT) ? 13 : 0;
 	})));
 	public static final RegistryObject<Block> SPROUTSJAR = register("blocksproutsjar", () -> new SproutsJarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().sound(SoundType.GLASS)));
+	public static final Supplier<Block> SALT_BLOCK = register("salt_block", () -> new FallFoodBlock(BlockBehaviour.Properties.of().strength(0.1F, 0.2F).sound(SoundType.SAND)));
 	public static final RegistryObject<Block> MORIJIO = register("morijio", () -> new MorijioBlock(BlockBehaviour.Properties.of().strength(0.5F, 3.0F).noOcclusion().sound(SoundType.WOOD)));
 	//BARREL
 	public static final RegistryObject<Block> BARREL_MISO = register("barrel_miso", () -> new MisoBarrelBlock(TofuItems.BOTTLE_SOYSAUSE, BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD)));

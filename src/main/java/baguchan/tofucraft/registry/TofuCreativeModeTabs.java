@@ -175,6 +175,8 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.LEEK_GREEN_FENCE_GATE,
 						TofuBlocks.LEEK_GREEN_SIGN,
 						TofuBlocks.LEEK_GREEN_HANGING_SIGN,
+						TofuBlocks.LEEK_GREEN_TRAPDOOR,
+						TofuBlocks.LEEK_GREEN_DOOR,
 						TofuBlocks.LEEK_STEM,
 						TofuBlocks.LEEK_PLANKS,
 						TofuBlocks.LEEK_PLANKS_SLAB,
@@ -191,6 +193,8 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TOFU_STEM_FENCE_GATE,
 						TofuBlocks.TOFU_STEM_SIGN,
 						TofuBlocks.TOFU_STEM_HANGING_SIGN,
+						TofuBlocks.TOFU_STEM_TRAPDOOR,
+						TofuBlocks.TOFU_STEM_DOOR,
 						TofuBlocks.ZUNDATOFU_MUSHROOM,
 						TofuBlocks.SAPLING_TOFU,
 						TofuBlocks.LEAVES_TOFU,
@@ -206,7 +210,8 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.ZUNDAMA_BLOCK,
 						TofuBlocks.SALTPAN,
 						TofuBlocks.SALT_FURNACE,
-						TofuBlocks.MORIJIO).map(sup -> {
+						TofuBlocks.MORIJIO,
+						TofuBlocks.SALT_BLOCK).map(sup -> {
 					return sup.get().asItem().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());

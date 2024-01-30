@@ -131,6 +131,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.LEEK_GREEN_FENCE_GATE.get());
 		sign(TofuBlocks.LEEK_GREEN_SIGN);
 		sign(TofuBlocks.LEEK_GREEN_HANGING_SIGN);
+		toBlockModel(TofuBlocks.LEEK_GREEN_TRAPDOOR.get(), "leek_green_trapdoor_bottom");
+		singleTex(TofuBlocks.LEEK_GREEN_DOOR);
 
 		toBlock(TofuBlocks.LEEK_STEM.get());
 		toBlock(TofuBlocks.LEEK_PLANKS.get());
@@ -152,6 +154,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFU_STEM_FENCE_GATE.get());
 		sign(TofuBlocks.TOFU_STEM_SIGN);
 		sign(TofuBlocks.TOFU_STEM_HANGING_SIGN);
+		toBlockModel(TofuBlocks.TOFU_STEM_TRAPDOOR.get(), "tofustem_trapdoor_bottom");
+		singleTex(TofuBlocks.TOFU_STEM_DOOR);
+
 
 		itemBlockFlat(TofuBlocks.SAPLING_TOFU.get());
 		toBlock(TofuBlocks.LEAVES_TOFU.get());
@@ -170,6 +175,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.SOYCHEESE_TART);
 
 		toBlock(TofuBlocks.ZUNDAMA_BLOCK.get());
+		toBlock(TofuBlocks.SALT_BLOCK.get());
 
 		//item
 		singleTex(TofuItems.TOFUKINU);
