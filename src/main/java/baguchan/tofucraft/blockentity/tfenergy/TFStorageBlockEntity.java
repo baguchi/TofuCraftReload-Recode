@@ -105,8 +105,8 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 
 
 		if (from.getItem() instanceof IEnergyInsertable symbol) {
-			if (tfStorageBlockEntity.getEnergyStored() >= POWER * 20) {
-				tfStorageBlockEntity.drain(symbol.fill(from, POWER, false) * 20, false);
+			if (tfStorageBlockEntity.getEnergyStored() >= POWER * 5) {
+				tfStorageBlockEntity.drain(symbol.fill(from, POWER, false) * 5, false);
 			}
 		}
 		//Consume beans inside machine
