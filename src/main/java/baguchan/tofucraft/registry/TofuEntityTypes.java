@@ -15,6 +15,7 @@ import baguchan.tofucraft.entity.TofuSlime;
 import baguchan.tofucraft.entity.TofuSpider;
 import baguchan.tofucraft.entity.Tofunian;
 import baguchan.tofucraft.entity.TravelerTofunian;
+import baguchan.tofucraft.entity.Zundamite;
 import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.entity.projectile.FallingTofuEntity;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
@@ -38,6 +39,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuEntityTypes {
@@ -73,7 +76,8 @@ public class TofuEntityTypes {
 
 	public static final RegistryObject<EntityType<TofuSpider>> TOFUSPIDER = ENTITIES.register("tofuspider", () -> EntityType.Builder.of(TofuSpider::new, MobCategory.MONSTER)
 			.sized(0.95F, 0.55F).build("tofucraft:tofuspider"));
-
+	public static final Supplier<EntityType<Zundamite>> ZUNDAMITE = ENTITIES.register("zundamite", () -> EntityType.Builder.of(Zundamite::new, MobCategory.MONSTER)
+			.sized(0.4F, 0.3F).clientTrackingRange(8).build("tofucraft:zundamite"));
 	public static final RegistryObject<EntityType<FukumameEntity>> FUKUMAME = ENTITIES.register("fukumame", () -> EntityType.Builder.<FukumameEntity>of(FukumameEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).updateInterval(20).build("tofucraft:fukumame"));
 
@@ -129,6 +133,7 @@ public class TofuEntityTypes {
 		event.put(TOFUSLIME.get(), Monster.createMonsterAttributes().build());
 		event.put(TOFUCREEPER.get(), TofuCreeper.createAttributes().build());
 		event.put(TOFUSPIDER.get(), TofuSpider.createAttributes().build());
+		event.put(ZUNDAMITE.get(), Zundamite.createAttributes().build());
 		event.put(TOFU_GANDLEM.get(), TofuGandlem.createAttributes().build());
 		event.put(SHUDOFUSPIDER.get(), ShuDofuSpider.createAttributes().build());
 		event.put(NATTO_COBWEB.get(), NattoCobWebEntity.createAttributes().build());
@@ -150,5 +155,6 @@ public class TofuEntityTypes {
 		event.register(TOFU_GANDLEM.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 
 		event.register(FUKUMAME_THOWER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FukumameThower::checkFukumameSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(ZUNDAMITE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 	}
 }

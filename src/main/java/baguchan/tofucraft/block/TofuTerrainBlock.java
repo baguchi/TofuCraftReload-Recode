@@ -3,6 +3,7 @@ package baguchan.tofucraft.block;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.world.gen.placement.TofuWorldPlacements;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
@@ -11,11 +12,14 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.Nullable;
@@ -26,6 +30,31 @@ import java.util.Optional;
 public class TofuTerrainBlock extends Block implements BonemealableBlock {
 	public TofuTerrainBlock(Properties properties) {
 		super(properties);
+	}
+
+
+	public static boolean canBeGrass(BlockState p_56824_, LevelReader p_56825_, BlockPos p_56826_) {
+		BlockPos blockpos = p_56826_.above();
+		BlockState blockstate = p_56825_.getBlockState(blockpos);
+		if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowLayerBlock.LAYERS) == 1) {
+			return true;
+		} else if (blockstate.getFluidState().getAmount() == 8) {
+			return false;
+		} else {
+			int i = LightEngine.getLightBlockInto(
+					p_56825_, p_56824_, p_56826_, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(p_56825_, blockpos)
+			);
+			return i < p_56825_.getMaxLightLevel();
+		}
+	}
+
+	@Override
+	public void randomTick(BlockState p_222508_, ServerLevel p_222509_, BlockPos p_222510_, RandomSource p_222511_) {
+		if (!canBeGrass(p_222508_, p_222509_, p_222510_) && p_222508_.is(TofuBlocks.TOFU_TERRAIN_ZUNDA.get())) {
+			if (!p_222509_.isAreaLoaded(p_222510_, 1))
+				return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
+			p_222509_.setBlockAndUpdate(p_222510_, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState());
+		}
 	}
 
 	@Override

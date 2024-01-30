@@ -10,10 +10,12 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.item.ItemStack;
@@ -104,6 +106,13 @@ public class TofuSlime extends Slime {
 		} else {
 			int var3 = p_33009_.getLevel().isThundering() ? p_33009_.getMaxLocalRawBrightness(p_33010_, 10) : p_33009_.getMaxLocalRawBrightness(p_33010_);
 			return var3 <= p_33011_.nextInt(8);
+		}
+	}
+
+	@Override
+	public void thunderHit(ServerLevel p_19927_, LightningBolt p_19928_) {
+		if (!this.level().isClientSide && this.isAlive()) {
+			this.doZundaConversion();
 		}
 	}
 
