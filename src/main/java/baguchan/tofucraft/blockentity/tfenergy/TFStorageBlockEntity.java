@@ -3,10 +3,8 @@ package baguchan.tofucraft.blockentity.tfenergy;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.api.tfenergy.IEnergyExtractable;
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
-import baguchan.tofucraft.api.tfenergy.ITofuEnergy;
 import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
-import baguchan.tofucraft.blockentity.tfenergy.base.EnergyBaseBlockEntity;
 import baguchan.tofucraft.blockentity.tfenergy.base.SenderBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFStorageMenu;
 import baguchan.tofucraft.message.TFStorageSoymilkMessage;
@@ -28,7 +26,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.api.distmarker.Dist;
@@ -42,8 +39,6 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class TFStorageBlockEntity extends SenderBaseBlockEntity implements WorldlyContainer, StackedContentsCompatible, Container, MenuProvider {
@@ -104,30 +99,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFStorageBlockEntity tfStorageBlockEntity) {
 		if (level.isClientSide()) return;
 
-		if (tfStorageBlockEntity.getEnergyStored() > 0) {
-			if (tfStorageBlockEntity.isValid()) {
-				if (!tfStorageBlockEntity.isCached || --tfStorageBlockEntity.findCooldown <= 0)
-					tfStorageBlockEntity.onCache();
-				if (tfStorageBlockEntity.cache.size() > 0) {
-					List<BlockEntity> toSend = new ArrayList<>();
-
-					tfStorageBlockEntity.cache.forEach(tileEntity -> {
-						if (((EnergyBaseBlockEntity) tileEntity).getEnergyStored() < ((EnergyBaseBlockEntity) tileEntity).getMaxEnergyStored())
-							toSend.add(tileEntity);
-					});
-					if (toSend.size() > 0) {
-						int packSize = Math.max(Math.min(tfStorageBlockEntity.getTransferPower(),
-								tfStorageBlockEntity.getEnergyStored()) / toSend.size(), 1);
-						for (BlockEntity te : toSend) {
-							tfStorageBlockEntity.drain(((ITofuEnergy) te).receive(Math.min(packSize, tfStorageBlockEntity.getEnergyStored()), false), false);
-						}
-					}
-				}
-			} else {
-				tfStorageBlockEntity.cache.clear();
-				tfStorageBlockEntity.isCached = false;
-			}
-		}
+		SenderBaseBlockEntity.senderUpdate(tfStorageBlockEntity);
 
 		boolean worked = false;
 
@@ -140,8 +112,8 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 		ItemStack from = tfStorageBlockEntity.inventory.get(0);
 
 		if (from.getItem() instanceof IEnergyInsertable symbol) {
-			if (tfStorageBlockEntity.getEnergyStored() >= POWER * 20) {
-				tfStorageBlockEntity.drain(symbol.fill(from, POWER * 20, false), false);
+			if (tfStorageBlockEntity.getEnergyStored() >= POWER * 5) {
+				tfStorageBlockEntity.drain(symbol.fill(from, POWER, false) * 5, false);
 			}
 		}
 		//Consume beans inside machine
