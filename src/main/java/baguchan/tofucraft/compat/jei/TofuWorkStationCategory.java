@@ -23,7 +23,7 @@ public class TofuWorkStationCategory implements IRecipeCategory<TofuWorkStationR
 	private final IDrawable icon;
 
 	public TofuWorkStationCategory(IGuiHelper helper) {
-		title = Component.translatable("tofucraft.jei.harden");
+		title = Component.translatable("container.tofucraft.tofu_work_station");
 		ResourceLocation backgroundImage = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tofu_work_station.png");
 		background = helper.createDrawable(backgroundImage, 19, 16, 166 - 19, 70 - 16);
 		icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(TofuBlocks.TOFU_WORK_STATION.get()));

@@ -2,7 +2,7 @@
   "parent": "block/block",
   "textures": {
     "0": "minecraft:block/oak_planks",
-    "1": "tofucraft:block/blocksalt",
+    "1" : "tofucraft:block/salt_block",
     "particle": "minecraft:block/oak_planks"
   },
   "elements": [
