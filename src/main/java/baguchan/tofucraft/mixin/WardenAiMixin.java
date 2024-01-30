@@ -1,6 +1,6 @@
 package baguchan.tofucraft.mixin;
 
-import baguchan.tofucraft.entity.task.CoughTask;
+import baguchan.tofucraft.entity.behaviors.CoughTask;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.monster.warden.Warden;

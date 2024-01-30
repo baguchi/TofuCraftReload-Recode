@@ -1,4 +1,4 @@
-package baguchan.tofucraft.entity.task;
+package baguchan.tofucraft.entity.behaviors;
 
 import baguchan.tofucraft.api.ISmell;
 import com.google.common.collect.ImmutableMap;
@@ -26,7 +26,7 @@ public class CoughTask extends Behavior<Warden> {
 
 		if (p_217745_ > nextCoughStart + 100L) {
 			p_217744_.playSound(SoundEvents.WARDEN_HURT, 4.0F, 1.0F);
-			p_217743_.broadcastEntityEvent(p_217744_, (byte) 63);
+			p_217743_.broadcastEntityEvent(p_217744_, (byte) 64);
 			((ISmell) p_217744_).setCannotSmell(false);
 			nextCoughStart = p_217745_;
 		}
