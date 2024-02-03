@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 
@@ -41,8 +42,9 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 		super(p_155228_, p_155229_, p_155230_, energyMax);
 	}
 
+	//tick the client and server because client need beam render
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFMinerBlockEntity tfMinerBlock) {
-		if (level.isClientSide()) return;
+
 		int j = 0;
 
 		boolean worked = false;
@@ -51,7 +53,7 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 				if (!tfMinerBlock.isMinable(level, tfMinerBlock.workingBlockPos.mutable())) {
 					tfMinerBlock.nextPos();
 
-					j = 5;
+					j = 10;
 				} else {
 					++tfMinerBlock.processTime;
 
@@ -64,25 +66,31 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 								TFMinerBlockEntity.dispenseItem(level, tfMinerBlock.getBlockPos(), tfMinerBlock, stack, blockState);
 							}
 						}
-						level.levelEvent(2001, tfMinerBlock.workingBlockPos, Block.getId(level.getBlockState(tfMinerBlock.workingBlockPos)));
-						level.removeBlock(tfMinerBlock.workingBlockPos, false);
+						if (!level.isClientSide()) {
+							level.levelEvent(2001, tfMinerBlock.workingBlockPos, Block.getId(level.getBlockState(tfMinerBlock.workingBlockPos)));
+							level.removeBlock(tfMinerBlock.workingBlockPos, false);
+						}
 						tfMinerBlock.processTime = 0;
 						tfMinerBlock.nextPos();
 					}
-					j = 50;
+					j = 100;
 				}
 			}
 
 			if (j > 0) {
 				worked = true;
-				tfMinerBlock.drain(j, false);
+				if (!level.isClientSide()) {
+					tfMinerBlock.drain(j, false);
+				}
 			}
 		}
-		if (blockState.getValue(TFCollectorBlock.LIT) != worked) {
-			level.setBlock(blockPos, blockState.setValue(TFMinerBlock.LIT, worked), 2);
-		}
-		if (worked) {
-			tfMinerBlock.setChanged();
+		if (!level.isClientSide()) {
+			if (blockState.getValue(TFCollectorBlock.LIT) != worked) {
+				level.setBlock(blockPos, blockState.setValue(TFMinerBlock.LIT, worked), 2);
+			}
+			if (worked) {
+				tfMinerBlock.setChanged();
+			}
 		}
 	}
 
@@ -123,9 +131,9 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 
 	public void nextPos() {
 		if (workingBlockPos.getX() + 1 > this.getBlockPos().getX() + this.offset.getX() + this.size.getX()) {
-			workingBlockPos = workingBlockPos.offset(-workingBlockPos.getX(), 0, 1);
+			workingBlockPos = workingBlockPos.offset(-size.getX(), 0, 1);
 			if (workingBlockPos.getZ() + 1 > this.getBlockPos().getZ() + this.offset.getZ() + this.size.getZ()) {
-				workingBlockPos = workingBlockPos.offset(0, 1, -workingBlockPos.getZ());
+				workingBlockPos = workingBlockPos.offset(0, 1, -size.getZ());
 			}
 			if (workingBlockPos.getY() + 1 > this.getBlockPos().getY() + this.offset.getY() + this.size.getY()) {
 				workingBlockPos = null;
@@ -152,7 +160,7 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 		this.offset = blockPos;
 	}
 
-	public void setWorkingBlockPos(BlockPos blockPos) {
+	public void setWorkingBlockPos(@Nullable BlockPos blockPos) {
 		this.workingBlockPos = blockPos;
 	}
 
@@ -202,6 +210,7 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 		return offset;
 	}
 
+	@Nullable
 	public BlockPos getWorkingBlockPos() {
 		return workingBlockPos;
 	}
