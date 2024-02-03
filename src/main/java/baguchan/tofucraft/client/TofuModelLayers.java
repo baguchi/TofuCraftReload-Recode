@@ -14,7 +14,6 @@ public class TofuModelLayers {
 	public static final ModelLayerLocation TOFUFISH = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "tofufish"), "tofufish");
 	public static final ModelLayerLocation TOFU_GOLEM = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "tofu_golem"), "tofu_golem");
 
-	public static final ModelLayerLocation TF_TURRET = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "tf_turret"), "tff_turret");
 	public static final ModelLayerLocation TOFU_GANDLEM = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "tofu_gandlem"), "tofu_gandlem");
 
 	public static final ModelLayerLocation SHUDOFUSPIDER = new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, "shudofuspider"), "shudofuspider");

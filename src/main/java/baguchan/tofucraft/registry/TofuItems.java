@@ -27,7 +27,6 @@ import baguchan.tofucraft.item.SeedAndRootItem;
 import baguchan.tofucraft.item.SoulFukumameItem;
 import baguchan.tofucraft.item.SoymilkBottleItem;
 import baguchan.tofucraft.item.SpecialBitternItem;
-import baguchan.tofucraft.item.TFMinerTurretItem;
 import baguchan.tofucraft.item.TofuArmorItem;
 import baguchan.tofucraft.item.TofuAxeItem;
 import baguchan.tofucraft.item.TofuBoatItem;
@@ -371,7 +370,6 @@ public class TofuItems {
 	public static final Supplier<Item> TF_COIL = ITEMS.register("tf_coil", () -> new Item((new Item.Properties())));
 	public static final Supplier<Item> TF_CIRCUIT = ITEMS.register("tf_circuit", () -> new Item((new Item.Properties())));
 	public static final Supplier<Item> TF_OSCILLATOR = ITEMS.register("tf_oscillator", () -> new Item((new Item.Properties())));
-	public static final Supplier<Item> TF_MINING_TURRET = ITEMS.register("tf_mining_turret", () -> new TFMinerTurretItem((new Item.Properties())));
 	public static final Supplier<Item> TOFU_CORE = ITEMS.register("tofu_core", () -> new Item((new Item.Properties())));
 
 

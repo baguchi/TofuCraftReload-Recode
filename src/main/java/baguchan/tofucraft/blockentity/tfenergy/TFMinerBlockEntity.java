@@ -1,24 +1,33 @@
 package baguchan.tofucraft.blockentity.tfenergy;
 
 import baguchan.tofucraft.block.tfenergy.TFCollectorBlock;
+import baguchan.tofucraft.block.tfenergy.TFMinerBlock;
 import baguchan.tofucraft.blockentity.tfenergy.base.WorkerBaseBlockEntity;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.Optional;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.Vec3;
 
 public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 
-	private static final int POWER = 20;
 	protected boolean working;
+	protected int processTime;
 	protected BlockPos workingBlockPos;
 	protected BlockPos offset = BlockPos.ZERO;
 
@@ -32,52 +41,99 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 		super(p_155228_, p_155229_, p_155230_, energyMax);
 	}
 
-	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFMinerBlockEntity tfCollector) {
+	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFMinerBlockEntity tfMinerBlock) {
 		if (level.isClientSide()) return;
 		int j = 0;
 
 		boolean worked = false;
-		if (tfCollector.working) {
+		if (tfMinerBlock.working && tfMinerBlock.getEnergyStored() > 50) {
+			if (tfMinerBlock.workingBlockPos != null) {
+				if (!tfMinerBlock.isMinable(level, tfMinerBlock.workingBlockPos.mutable())) {
+					tfMinerBlock.nextPos();
 
-			if (tfCollector.workingBlockPos == null || !tfCollector.isMinable(level, tfCollector.workingBlockPos.mutable())) {
-				Optional<BlockPos> blockPos1 = tfCollector.findMinableBlock(level, blockPos);
-				if (blockPos1.isPresent()) {
-					tfCollector.workingBlockPos = blockPos1.get();
+					j = 5;
 				} else {
-					tfCollector.workingBlockPos = null;
-					tfCollector.working = false;
-				}
+					++tfMinerBlock.processTime;
 
-				j = 40;
+					if (tfMinerBlock.processTime == 4) {
+						if (level instanceof ServerLevel serverLevel) {
+							LootParams.Builder lootparams$builder = new LootParams.Builder(serverLevel)
+									.withParameter(LootContextParams.ORIGIN, tfMinerBlock.workingBlockPos.getCenter())
+									.withParameter(LootContextParams.TOOL, ItemStack.EMPTY);
+							for (ItemStack stack : level.getBlockState(tfMinerBlock.workingBlockPos).getDrops(lootparams$builder)) {
+								TFMinerBlockEntity.dispenseItem(level, tfMinerBlock.getBlockPos(), tfMinerBlock, stack, blockState);
+							}
+						}
+						level.levelEvent(2001, tfMinerBlock.workingBlockPos, Block.getId(level.getBlockState(tfMinerBlock.workingBlockPos)));
+						level.removeBlock(tfMinerBlock.workingBlockPos, false);
+						tfMinerBlock.processTime = 0;
+						tfMinerBlock.nextPos();
+					}
+					j = 50;
+				}
 			}
 
 			if (j > 0) {
 				worked = true;
-				tfCollector.drain(j, false);
+				tfMinerBlock.drain(j, false);
 			}
 		}
 		if (blockState.getValue(TFCollectorBlock.LIT) != worked) {
-			level.setBlock(blockPos, blockState.setValue(TFCollectorBlock.LIT, worked), 2);
+			level.setBlock(blockPos, blockState.setValue(TFMinerBlock.LIT, worked), 2);
 		}
 		if (worked) {
-			tfCollector.setChanged();
+			tfMinerBlock.setChanged();
 		}
 	}
 
-	public Optional<BlockPos> findMinableBlock(Level level, BlockPos blockPos) {
-		BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
-		BlockPos nearest = null;
-		for (int x = blockPos.getX() + offset.getX(); x < blockPos.getX() + offset.getX() + size.getX(); x++) {
-			for (int z = blockPos.getZ() + offset.getZ(); z < blockPos.getZ() + offset.getZ() + size.getZ(); z++) {
-				for (int y = blockPos.getY() + offset.getY(); y < blockPos.getY() + offset.getY() + size.getY(); y++) {
-					mutableBlockPos.set(x, y, z);
-					if (isMinable(level, mutableBlockPos) && (nearest == null || nearest.distSqr(blockPos) > mutableBlockPos.distSqr(blockPos))) {
-						nearest = mutableBlockPos.immutable();
+	private static void dispenseItem(Level p_307361_, BlockPos p_307620_, TFMinerBlockEntity p_307387_, ItemStack p_307296_, BlockState p_307501_) {
+		Direction direction = (p_307501_.getValue(TFMinerBlock.FACING));
+		Container container = HopperBlockEntity.getContainerAt(p_307361_, p_307620_.relative(direction));
+		ItemStack itemstack = p_307296_.copy();
+		if (container == null || !(container instanceof TFMinerBlockEntity) && p_307296_.getCount() <= container.getMaxStackSize()) {
+			if (container != null) {
+				while (!itemstack.isEmpty()) {
+					int i = itemstack.getCount();
+					itemstack = HopperBlockEntity.addItem(null, container, itemstack, direction.getOpposite());
+					if (i == itemstack.getCount()) {
+						break;
 					}
 				}
 			}
+		} else {
+			while (!itemstack.isEmpty()) {
+				ItemStack itemstack2 = itemstack.copyWithCount(1);
+				ItemStack itemstack1 = HopperBlockEntity.addItem(null, container, itemstack2, direction.getOpposite());
+				if (!itemstack1.isEmpty()) {
+					break;
+				}
+
+				itemstack.shrink(1);
+			}
 		}
-		return Optional.ofNullable(nearest);
+
+		if (!itemstack.isEmpty()) {
+			Vec3 vec3 = Vec3.atCenterOf(p_307620_).relative(direction, 0.7);
+			DefaultDispenseItemBehavior.spawnItem(p_307361_, itemstack, 6, direction, vec3);
+			p_307361_.levelEvent(1049, p_307620_, 0);
+			p_307361_.levelEvent(2010, p_307620_, direction.get3DDataValue());
+		}
+
+	}
+
+	public void nextPos() {
+		if (workingBlockPos.getX() + 1 > this.getBlockPos().getX() + this.offset.getX() + this.size.getX()) {
+			workingBlockPos = workingBlockPos.offset(-workingBlockPos.getX(), 0, 1);
+			if (workingBlockPos.getZ() + 1 > this.getBlockPos().getZ() + this.offset.getZ() + this.size.getZ()) {
+				workingBlockPos = workingBlockPos.offset(0, 1, -workingBlockPos.getZ());
+			}
+			if (workingBlockPos.getY() + 1 > this.getBlockPos().getY() + this.offset.getY() + this.size.getY()) {
+				workingBlockPos = null;
+				working = false;
+			}
+		} else {
+			workingBlockPos = workingBlockPos.offset(1, 0, 0);
+		}
 	}
 
 	private boolean isMinable(Level level, BlockPos.MutableBlockPos mutableBlockPos) {
@@ -112,6 +168,13 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 		cmp.putInt("sizeX", this.size.getX());
 		cmp.putInt("sizeY", this.size.getY());
 		cmp.putInt("sizeZ", this.size.getZ());
+		if (this.workingBlockPos != null) {
+			cmp.putInt("working_posX", this.workingBlockPos.getX());
+			cmp.putInt("working_posY", this.workingBlockPos.getY());
+			cmp.putInt("working_posZ", this.workingBlockPos.getZ());
+		}
+		cmp.putBoolean("Working", this.working);
+		cmp.putInt("process", this.processTime);
 	}
 
 	public void load(CompoundTag cmp) {
@@ -124,6 +187,11 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 		int i1 = Mth.clamp(cmp.getInt("sizeY"), 0, 10);
 		int j1 = Mth.clamp(cmp.getInt("sizeZ"), 0, 10);
 		this.size = new Vec3i(l, i1, j1);
+		if (cmp.contains("working_posX") && cmp.contains("working_posY") && cmp.contains("working_posZ")) {
+			this.workingBlockPos = new BlockPos(cmp.getInt("working_posX"), cmp.getInt("working_posY"), cmp.getInt("working_posZ"));
+		}
+		this.working = cmp.getBoolean("Working");
+		this.processTime = cmp.getInt("process");
 	}
 
 	public Vec3i getStructureSize() {

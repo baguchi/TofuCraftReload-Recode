@@ -51,6 +51,9 @@ public class SetTFMinerBlockPacket implements CustomPacketPayload {
 					minerBlockEntity.setSize(message.size);
 					if (message.working) {
 						minerBlockEntity.setWorking(!minerBlockEntity.isWorking());
+						minerBlockEntity.setWorkingBlockPos(message.blockPos.offset(message.offset.getX(), message.offset.getY(), message.offset.getZ()));
+					} else {
+						minerBlockEntity.setWorking(false);
 					}
 					minerBlockEntity.setChanged();
 					BlockState blockstate = context.level().get().getBlockState(message.blockPos);

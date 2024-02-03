@@ -3,7 +3,6 @@ package baguchan.tofucraft.client;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.client.model.FukumameThowerModel;
 import baguchan.tofucraft.client.model.ShuDofuSpiderModel;
-import baguchan.tofucraft.client.model.TFTurretModel;
 import baguchan.tofucraft.client.model.TofuFishModel;
 import baguchan.tofucraft.client.model.TofuGandlemModel;
 import baguchan.tofucraft.client.model.TofuGolemModel;
@@ -20,7 +19,6 @@ import baguchan.tofucraft.client.render.ZundaArrowRender;
 import baguchan.tofucraft.client.render.entity.FallingTofuRenderer;
 import baguchan.tofucraft.client.render.entity.FukumameThowerRenderer;
 import baguchan.tofucraft.client.render.entity.ShuDofuSpiderRender;
-import baguchan.tofucraft.client.render.entity.TFMiningTurretRenderer;
 import baguchan.tofucraft.client.render.entity.TofuBoatRenderer;
 import baguchan.tofucraft.client.render.entity.TofuCowRender;
 import baguchan.tofucraft.client.render.entity.TofuCreeperRender;
@@ -84,10 +82,10 @@ public class ClientRegistrar {
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFUBED.get(), TofuBedRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFUCHEST.get(), TofuChestRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.FOODPLATE.get(), FoodPlateRender::new);
+		BlockEntityRenderers.register(TofuBlockEntitys.TF_MINER.get(), TFMinerRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.SUSPICIOUS_TOFU.get(), BrushableBlockRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFU_SIGN.get(), SignRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFU_HANGING_SIGN.get(), HangingSignRenderer::new);
-		BlockEntityRenderers.register(TofuBlockEntitys.TF_MINER.get(), TFMinerRenderer::new);
 	}
 
 
@@ -149,7 +147,6 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.TRAVELER_TOFUNIAN.get(), TravelerTofunianRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUFISH.get(), TofuFishRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_GOLEM.get(), TofuGolemRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TF_MINING_TURRET.get(), TFMiningTurretRenderer::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUSLIME.get(), TofuSlimeRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUCREEPER.get(), TofuCreeperRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUSPIDER.get(), TofuSpiderRender::new);
@@ -180,7 +177,6 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.TOFUSPIDER, TofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFUFISH, TofuFishModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFU_GOLEM, TofuGolemModel::createBodyLayer);
-		event.registerLayerDefinition(TofuModelLayers.TF_TURRET, TFTurretModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFU_GANDLEM, TofuGandlemModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.FUKUMAME_THOWER, FukumameThowerModel::createBodyLayer);

@@ -3,7 +3,6 @@ package baguchan.tofucraft.client.render.tileentity;
 import baguchan.tofucraft.blockentity.tfenergy.TFMinerBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -17,7 +16,6 @@ public class TFMinerRenderer implements BlockEntityRenderer<TFMinerBlockEntity> 
 	}
 
 	public void render(TFMinerBlockEntity p_112583_, float p_112584_, PoseStack p_112585_, MultiBufferSource p_112586_, int p_112587_, int p_112588_) {
-		if (Minecraft.getInstance().player.canUseGameMasterBlocks() || Minecraft.getInstance().player.isSpectator()) {
 			BlockPos blockpos = p_112583_.getStructurePos();
 			Vec3i vec3i = p_112583_.getStructureSize();
 			if (vec3i.getX() >= 1 && vec3i.getY() >= 1 && vec3i.getZ() >= 1) {
@@ -45,8 +43,6 @@ public class TFMinerRenderer implements BlockEntityRenderer<TFMinerBlockEntity> 
 				float f2 = 0.5F;
 				VertexConsumer vertexconsumer = p_112586_.getBuffer(RenderType.lines());
 				LevelRenderer.renderLineBox(p_112585_, vertexconsumer, d4, d5, d6, d7, d8, d9, 0.9F, 0.9F, 0.9F, 1.0F, 0.5F, 0.5F, 0.5F);
-
-			}
 		}
 	}
 

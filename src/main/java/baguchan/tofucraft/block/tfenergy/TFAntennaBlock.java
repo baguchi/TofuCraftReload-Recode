@@ -12,7 +12,7 @@ public class TFAntennaBlock extends Block implements IAnntena {
 
 	@Override
 	public double getRadius(BlockPos pos, Level world) {
-		return 7;
+		return 16;
 	}
 
 	@Override

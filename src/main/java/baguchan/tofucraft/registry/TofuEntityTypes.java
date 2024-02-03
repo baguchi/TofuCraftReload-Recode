@@ -3,7 +3,6 @@ package baguchan.tofucraft.registry;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.FukumameThower;
 import baguchan.tofucraft.entity.ShuDofuSpider;
-import baguchan.tofucraft.entity.TFMiningTurret;
 import baguchan.tofucraft.entity.TofuBoat;
 import baguchan.tofucraft.entity.TofuChestBoat;
 import baguchan.tofucraft.entity.TofuCow;
@@ -63,9 +62,6 @@ public class TofuEntityTypes {
 
 	public static final Supplier<EntityType<TofuGolem>> TOFU_GOLEM = ENTITIES.register("tofu_golem", () -> EntityType.Builder.of(TofuGolem::new, MobCategory.MISC)
 			.sized(0.8F, 1.25F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_golem"));
-	public static final Supplier<EntityType<TFMiningTurret>> TF_MINING_TURRET = ENTITIES.register("tf_mining_turret", () -> EntityType.Builder.of(TFMiningTurret::new, MobCategory.MISC)
-			.sized(0.8F, 0.8F).clientTrackingRange(10).fireImmune().build("tofucraft:tf_mining_turret"));
-
 
 	public static final Supplier<EntityType<TofuGandlem>> TOFU_GANDLEM = ENTITIES.register("tofu_gandlem", () -> EntityType.Builder.of(TofuGandlem::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.6F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_gandlem"));
@@ -133,7 +129,6 @@ public class TofuEntityTypes {
 		event.put(TRAVELER_TOFUNIAN.get(), Tofunian.createAttributes().build());
 		event.put(TOFUFISH.get(), AbstractFish.createAttributes().build());
 		event.put(TOFU_GOLEM.get(), TofuGolem.createAttributes().build());
-		event.put(TF_MINING_TURRET.get(), TFMiningTurret.createAttributes().build());
 		event.put(TOFUSLIME.get(), Monster.createMonsterAttributes().build());
 		event.put(TOFUCREEPER.get(), TofuCreeper.createAttributes().build());
 		event.put(TOFUSPIDER.get(), TofuSpider.createAttributes().build());
@@ -152,7 +147,7 @@ public class TofuEntityTypes {
 		event.register(TOFUNIAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 		event.register(TRAVELER_TOFUNIAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 		event.register(TOFU_GOLEM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-		event.register(TF_MINING_TURRET.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+
 		event.register(TOFUSLIME.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSlime::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 		event.register(TOFUCREEPER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCreeper::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 		event.register(TOFUSPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSpider::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
