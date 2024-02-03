@@ -337,7 +337,7 @@ public class TofuBlocks {
 		return p_50872_.getValue(SaltFurnaceBlock.LIT) ? 13 : 0;
 	})));
 	public static final Supplier<Block> SPROUTSJAR = register("blocksproutsjar", () -> new SproutsJarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().sound(SoundType.GLASS)));
-	public static final Supplier<Block> SALT_BLOCK = register("salt_block", () -> new FallFoodBlock(BlockBehaviour.Properties.of().strength(0.1F, 0.2F).sound(SoundType.SAND)));
+	public static final Supplier<Block> SALT_BLOCK = register("salt_block", () -> new FallFoodBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.SAND)));
 
 	public static final Supplier<Block> MORIJIO = register("morijio", () -> new MorijioBlock(BlockBehaviour.Properties.of().strength(0.5F, 3.0F).noOcclusion().sound(SoundType.WOOD)));
 	//BARREL
