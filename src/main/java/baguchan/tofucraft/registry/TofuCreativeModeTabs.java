@@ -62,6 +62,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TF_STORAGE,
 						TofuBlocks.TF_CRAFTER,
 						TofuBlocks.TF_OVEN,
+						TofuBlocks.TF_MINER,
 						TofuBlocks.TF_COLLECTOR
 						, TofuBlocks.ANTENNA_BASIC
 						, TofuBlocks.TOFU_DETECTOR
@@ -73,6 +74,7 @@ public class TofuCreativeModeTabs {
 						, TofuItems.TF_CIRCUIT
 						, TofuItems.TF_COIL
 						, TofuItems.TF_OSCILLATOR
+						, TofuItems.TF_MINING_TURRET
 						, TofuItems.TOFU_CORE
 						, TofuItems.REFLECT_TOFU_SHIELD).map(sup -> {
 					return sup.get().getDefaultInstance();

@@ -242,6 +242,8 @@
   "item.tofucraft.tf_circuit": "TF基板",
   "item.tofucraft.tf_coil": "TFコイル",
   "item.tofucraft.tf_oscillator": "TF発振器",
+  "item.tofucraft.tf_miner_turret": "TF採掘用タレット",
+  "item.tofucraft.tf_miner_turret.tip": "TF Minerを右クリックして配置します。 それらを回収する場合は、シフト右クリックします。",
   "item.tofucraft.reflect_tofu_shield" : "反射式鋼豆腐の盾",
   "item.tofucraft.tofu_core" : "トーフコア",
   "item.tofucraft.tofu_bomb": "トーフボム",
@@ -463,6 +465,7 @@
   "block.tofucraft.tf_crafter": "TFクラフター",
   "block.tofucraft.tf_oven": "TFオーブン",
   "block.tofucraft.tf_collector": "TFコレクター",
+  "block.tofucraft.tf_miner": "TF採掘機",
   "block.tofucraft.antenna_basic" : "ベーシックアンテナ",
   "block.tofucraft.tofu_work_station" : "豆腐加工台",
   "entity.tofucraft.tofunian.guard" : "衛兵のトーフニアン",
@@ -483,6 +486,7 @@
   "entity.tofucraft.tofufish" : "トーフウオ",
   "entity.tofucraft.tofucreeper" : "豆腐クリーパー",
   "entity.tofucraft.tofu_golem" : "トーフゴーレム",
+  "entity.tofucraft.tf_miner_turret": "TF採掘用タレット",
   "entity.tofucraft.tofu_gandlem" : "トーフガンドレム",
   "entity.tofucraft.fukumame_thower" : "福豆投射のピグリン",
   "entity.tofucraft.fukumame" : "福豆",
@@ -636,5 +640,6 @@
   "trim_material.tofucraft.tofu_diamond" : "金剛豆腐製装飾",
   "trim_material.tofucraft.zunda_ruby" : "ずんだルビー製装飾",
   "tofucraft.has_comfort" : "健康入り",
-  "tofucraft.has_nourishment" : "栄養入り"
+  "tofucraft.has_nourishment": "栄養入り",
+  "tofucraft.tfminer.button.start_mining": "採掘 :　開始 / 停止"
 }

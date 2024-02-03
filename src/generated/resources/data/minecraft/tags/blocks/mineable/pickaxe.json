@@ -48,6 +48,7 @@
     "tofucraft:tf_oven",
     "tofucraft:antenna_basic",
     "tofucraft:tofu_work_station",
-    "tofucraft:tf_collector"
+    "tofucraft:tf_collector",
+    "tofucraft:tf_miner"
   ]
 }

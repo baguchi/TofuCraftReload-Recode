@@ -242,6 +242,8 @@
   "item.tofucraft.tf_circuit": "TFCircuit",
   "item.tofucraft.tf_coil": "TFCoil",
   "item.tofucraft.tf_oscillator": "TFOscillator",
+  "item.tofucraft.tf_mining_turret": "TF Miner Turret",
+  "item.tofucraft.tf_mining_turret.tip": "Right Click on TF Miner and place it. If you want pick up. shift right click those.",
   "item.tofucraft.reflect_tofu_shield" : "Reflect Tofu Metal Shield",
   "item.tofucraft.tofu_core" : "Tofu Core",
   "item.tofucraft.tofu_bomb": "Tofu Bomb",
@@ -463,6 +465,7 @@
   "block.tofucraft.tf_crafter": "TF Crafter",
   "block.tofucraft.tf_oven": "TF Oven",
   "block.tofucraft.tf_collector": "TF Collector",
+  "block.tofucraft.tf_miner": "TF Miner",
   "block.tofucraft.antenna_basic" : "Antenna Basic",
   "block.tofucraft.tofu_work_station" : "Tofu Work Station",
   "entity.tofucraft.tofunian.guard" : "Guard Tofunian",
@@ -483,6 +486,7 @@
   "entity.tofucraft.tofufish" : "Tofu Fish",
   "entity.tofucraft.tofucreeper" : "Tofu Creeper",
   "entity.tofucraft.tofu_golem" : "Tofu Golem",
+  "entity.tofucraft.tf_miner_turret": "TF Miner Turret",
   "entity.tofucraft.tofu_gandlem" : "Tofu Gandlem",
   "entity.tofucraft.fukumame_thower" : "Fukumame Thower",
   "entity.tofucraft.fukumame" : "Fukumame",
@@ -636,5 +640,6 @@
   "trim_material.tofucraft.tofu_diamond" : "Tofu Diamond Material",
   "trim_material.tofucraft.zunda_ruby" : "Zunda Ruby Material",
   "tofucraft.has_comfort" : "Has Comfort",
-  "tofucraft.has_nourishment" : "Has Nourishment"
+  "tofucraft.has_nourishment": "Has Nourishment",
+  "tofucraft.tfminer.button.start_mining": "Start or Stop Mining"
 }

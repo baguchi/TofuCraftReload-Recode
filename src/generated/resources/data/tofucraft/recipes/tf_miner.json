@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "tofucraft:adv_tofugem"
+    },
+    "C": {
+      "item": "tofucraft:tofu_core"
+    },
+    "M": {
+      "item": "tofucraft:blocktofumetal"
+    },
+    "O": {
+      "item": "tofucraft:tf_oscillator"
+    }
+  },
+  "pattern": [
+    "OCO",
+    "AMA"
+  ],
+  "result": {
+    "item": "tofucraft:tf_miner"
+  }
+}

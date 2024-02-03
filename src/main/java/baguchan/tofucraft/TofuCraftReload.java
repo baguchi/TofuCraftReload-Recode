@@ -6,6 +6,7 @@ import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.event.CraftingEvents;
 import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
+import baguchan.tofucraft.message.SetTFMinerBlockPacket;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
 import baguchan.tofucraft.message.TFStorageSoymilkMessage;
 import baguchan.tofucraft.registry.ModInteractionInformations;
@@ -137,8 +138,9 @@ public class TofuCraftReload {
 		IPayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
 		registrar.play(SaltFurnaceBitternMessage.ID, SaltFurnaceBitternMessage::new, payload -> payload.client(SaltFurnaceBitternMessage::handle));
 		registrar.play(SaltFurnaceWaterMessage.ID, SaltFurnaceWaterMessage::new, payload -> payload.client(SaltFurnaceWaterMessage::handle));
-		registrar.play(SoyMilkDrinkedMessage.ID, SoyMilkDrinkedMessage::new, payload -> payload.server(SoyMilkDrinkedMessage::handle));
-		registrar.play(TFStorageSoymilkMessage.ID, TFStorageSoymilkMessage::new, payload -> payload.server(TFStorageSoymilkMessage::handle));
+		registrar.play(SoyMilkDrinkedMessage.ID, SoyMilkDrinkedMessage::new, payload -> payload.client(SoyMilkDrinkedMessage::handle));
+		registrar.play(TFStorageSoymilkMessage.ID, TFStorageSoymilkMessage::new, payload -> payload.client(TFStorageSoymilkMessage::handle));
+		registrar.play(SetTFMinerBlockPacket.ID, SetTFMinerBlockPacket::new, payload -> payload.server(SetTFMinerBlockPacket::handle));
 	}
 
 

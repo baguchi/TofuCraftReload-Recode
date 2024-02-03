@@ -43,8 +43,9 @@ public class TofuScoopItem extends Item {
 	public InteractionResult useOn(UseOnContext context) {
 		Level worldIn = context.getLevel();
 		BlockPos pos = context.getClickedPos();
+		ItemStack stack = context.getItemInHand();
 		if (context.getLevel().getBlockState(context.getClickedPos()).is(TofuTags.Blocks.SOFT_TOFU)) {
-			ItemStack stack = new ItemStack(Item.BY_BLOCK.get(context.getLevel().getBlockState(context.getClickedPos()).getBlock()));
+			ItemStack stack2 = new ItemStack(Item.BY_BLOCK.get(context.getLevel().getBlockState(context.getClickedPos()).getBlock()));
 			worldIn.levelEvent(2001, context.getClickedPos(), Block.getId(worldIn.getBlockState(context.getClickedPos())));
 			worldIn.removeBlock(context.getClickedPos(), false);
 			if (!worldIn.isClientSide()) {
@@ -53,7 +54,7 @@ public class TofuScoopItem extends Item {
 				double d0 = (worldIn.random.nextFloat() * 0.5F) + 0.25D;
 				double d1 = (worldIn.random.nextFloat() * 0.5F);
 				double d2 = (worldIn.random.nextFloat() * 0.5F) + 0.25D;
-				ItemEntity itementity = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, stack);
+				ItemEntity itementity = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, stack2);
 				itementity.setDefaultPickUpDelay();
 				worldIn.addFreshEntity(itementity);
 			}

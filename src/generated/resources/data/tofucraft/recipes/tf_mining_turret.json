@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "tofucraft:adv_tofugem"
+    },
+    "C": {
+      "item": "tofucraft:tofu_core"
+    },
+    "D": {
+      "item": "tofucraft:tofudiamond"
+    },
+    "I": {
+      "item": "tofucraft:tofuishi_brick"
+    }
+  },
+  "pattern": [
+    "DAI",
+    "ICA",
+    "IDI"
+  ],
+  "result": {
+    "item": "tofucraft:tf_mining_turret"
+  }
+}

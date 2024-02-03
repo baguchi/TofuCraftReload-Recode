@@ -1559,6 +1559,18 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('C', TofuItems.TF_CIRCUIT.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuItems.TF_MINING_TURRET.get())
+				.pattern("DAI")
+				.pattern("ICA")
+				.pattern("IDI")
+				.define('I', TofuBlocks.ISHITOFU_BRICK.get())
+				.define('D', TofuItems.TOFUDIAMOND.get())
+				.define('C', TofuItems.TOFU_CORE.get())
+				.define('A', TofuItems.ADVANCE_TOFUGEM.get())
+				.unlockedBy("has_item", has(TofuItems.TOFU_CORE.get()))
+				.save(consumer);
+
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.ANTENNA_BASIC.get())
 				.pattern(" P ")
 				.pattern("LOR")
@@ -1586,6 +1598,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('M', TofuBlocks.METALTOFU.get())
 				.define('C', TofuItems.TOFU_CORE.get())
 				.define('H', Blocks.HOPPER)
+				.unlockedBy("has_item", has(TofuItems.ADVANCE_TOFUGEM.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TF_MINER.get())
+				.pattern("OCO")
+				.pattern("AMA")
+				.define('A', TofuItems.ADVANCE_TOFUGEM.get())
+				.define('M', TofuBlocks.METALTOFU.get())
+				.define('C', TofuItems.TOFU_CORE.get())
+				.define('O', TofuItems.TF_OSCILLATOR.get())
 				.unlockedBy("has_item", has(TofuItems.ADVANCE_TOFUGEM.get()))
 				.save(consumer);
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TF_OVEN.get())
