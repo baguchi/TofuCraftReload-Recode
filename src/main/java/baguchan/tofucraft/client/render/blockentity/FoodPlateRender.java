@@ -1,4 +1,4 @@
-package baguchan.tofucraft.client.render.tileentity;
+package baguchan.tofucraft.client.render.blockentity;
 
 import baguchan.tofucraft.block.FoodPlateBlock;
 import baguchan.tofucraft.blockentity.FoodPlateBlockEntity;

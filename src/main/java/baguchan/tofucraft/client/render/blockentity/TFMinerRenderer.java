@@ -1,4 +1,4 @@
-package baguchan.tofucraft.client.render.tileentity;
+package baguchan.tofucraft.client.render.blockentity;
 
 import baguchan.tofucraft.blockentity.tfenergy.TFMinerBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;

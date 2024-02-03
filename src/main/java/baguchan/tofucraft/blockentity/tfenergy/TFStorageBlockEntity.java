@@ -6,7 +6,7 @@ import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
 import baguchan.tofucraft.blockentity.tfenergy.base.SenderBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFStorageMenu;
-import baguchan.tofucraft.message.TFStorageSoymilkMessage;
+import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -137,7 +137,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 
 		if (tfStorageBlockEntity.prevFluid != tfStorageBlockEntity.tank.getFluidAmount()) {
 			LevelChunk chunk = level.getChunkAt(blockPos);
-			PacketDistributor.TRACKING_CHUNK.with(chunk).send(new TFStorageSoymilkMessage(blockPos, tfStorageBlockEntity.tank.getFluid()));
+			PacketDistributor.TRACKING_CHUNK.with(chunk).send(new TFStorageSoymilkPacket(blockPos, tfStorageBlockEntity.tank.getFluid()));
 			tfStorageBlockEntity.prevFluid = tfStorageBlockEntity.tank.getFluidAmount();
 		}
 	}

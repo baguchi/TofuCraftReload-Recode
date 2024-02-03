@@ -2,7 +2,7 @@ package baguchan.tofucraft.block.utils;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
-import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
+import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -71,7 +71,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 
 			if (flag) {
 				if (!level.isClientSide) {
-					PacketDistributor.ALL.noArg().send(new SaltFurnaceWaterMessage(pos, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()));
+					PacketDistributor.ALL.noArg().send(new SaltFurnaceWaterPacket(pos, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()));
 				}
 			}
 		}

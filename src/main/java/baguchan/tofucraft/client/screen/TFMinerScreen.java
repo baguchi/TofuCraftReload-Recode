@@ -1,7 +1,7 @@
 package baguchan.tofucraft.client.screen;
 
 import baguchan.tofucraft.blockentity.tfenergy.TFMinerBlockEntity;
-import baguchan.tofucraft.message.SetTFMinerBlockPacket;
+import baguchan.tofucraft.network.SetTFMinerBlockPacket;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;

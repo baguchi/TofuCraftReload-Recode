@@ -2,7 +2,7 @@ package baguchan.tofucraft.block.tfenergy;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
-import baguchan.tofucraft.message.TFStorageSoymilkMessage;
+import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -82,7 +82,7 @@ public class TFStorageBlock extends BaseEntityBlock {
 
 			if (flag) {
 				if (!p_48707_.isClientSide) {
-					PacketDistributor.ALL.noArg().send(new TFStorageSoymilkMessage(p_48708_, ((TFStorageBlockEntity) blockentity).getTank().getFluid()));
+					PacketDistributor.ALL.noArg().send(new TFStorageSoymilkPacket(p_48708_, ((TFStorageBlockEntity) blockentity).getTank().getFluid()));
 				}
 			}
 		}

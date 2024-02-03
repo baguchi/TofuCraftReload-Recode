@@ -1,4 +1,4 @@
-package baguchan.tofucraft.message;
+package baguchan.tofucraft.network;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.capability.SoyHealthCapability;
@@ -11,7 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.neoforge.network.handling.PlayPayloadContext;
 
-public class SoyMilkDrinkedMessage implements CustomPacketPayload {
+public class SoyMilkDrinkedPacket implements CustomPacketPayload {
 	public static final ResourceLocation ID = TofuCraftReload.prefix("soy_milk_drinked");
 
 	private final int entityId;
@@ -19,13 +19,13 @@ public class SoyMilkDrinkedMessage implements CustomPacketPayload {
 	private final int level;
 	private final boolean canUpdate;
 
-	public SoyMilkDrinkedMessage(LivingEntity entity, int level, boolean canUpdate) {
+	public SoyMilkDrinkedPacket(LivingEntity entity, int level, boolean canUpdate) {
 		this.entityId = entity.getId();
 		this.level = level;
 		this.canUpdate = canUpdate;
 	}
 
-	public SoyMilkDrinkedMessage(int id, int level, boolean canUpdate) {
+	public SoyMilkDrinkedPacket(int id, int level, boolean canUpdate) {
 		this.entityId = id;
 		this.level = level;
 		this.canUpdate = canUpdate;
@@ -42,11 +42,11 @@ public class SoyMilkDrinkedMessage implements CustomPacketPayload {
 		buffer.writeBoolean(this.canUpdate);
 	}
 
-	public SoyMilkDrinkedMessage(FriendlyByteBuf buffer) {
+	public SoyMilkDrinkedPacket(FriendlyByteBuf buffer) {
 		this(buffer.readInt(), buffer.readInt(), buffer.readBoolean());
 	}
 
-	public static void handle(SoyMilkDrinkedMessage message, PlayPayloadContext context) {
+	public static void handle(SoyMilkDrinkedPacket message, PlayPayloadContext context) {
 		context.workHandler().execute(() -> {
 			Entity entity = (Minecraft.getInstance()).player.level().getEntity(message.entityId);
 			if (entity != null && entity instanceof LivingEntity living) {

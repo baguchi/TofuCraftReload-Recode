@@ -4,11 +4,11 @@ import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.event.CraftingEvents;
-import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
-import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
-import baguchan.tofucraft.message.SetTFMinerBlockPacket;
-import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
-import baguchan.tofucraft.message.TFStorageSoymilkMessage;
+import baguchan.tofucraft.network.SaltFurnaceBitternPacket;
+import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
+import baguchan.tofucraft.network.SetTFMinerBlockPacket;
+import baguchan.tofucraft.network.SoyMilkDrinkedPacket;
+import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBannerPatterns;
@@ -136,10 +136,10 @@ public class TofuCraftReload {
 
 	public void setupPackets(RegisterPayloadHandlerEvent event) {
 		IPayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
-		registrar.play(SaltFurnaceBitternMessage.ID, SaltFurnaceBitternMessage::new, payload -> payload.client(SaltFurnaceBitternMessage::handle));
-		registrar.play(SaltFurnaceWaterMessage.ID, SaltFurnaceWaterMessage::new, payload -> payload.client(SaltFurnaceWaterMessage::handle));
-		registrar.play(SoyMilkDrinkedMessage.ID, SoyMilkDrinkedMessage::new, payload -> payload.client(SoyMilkDrinkedMessage::handle));
-		registrar.play(TFStorageSoymilkMessage.ID, TFStorageSoymilkMessage::new, payload -> payload.client(TFStorageSoymilkMessage::handle));
+		registrar.play(SaltFurnaceBitternPacket.ID, SaltFurnaceBitternPacket::new, payload -> payload.client(SaltFurnaceBitternPacket::handle));
+		registrar.play(SaltFurnaceWaterPacket.ID, SaltFurnaceWaterPacket::new, payload -> payload.client(SaltFurnaceWaterPacket::handle));
+		registrar.play(SoyMilkDrinkedPacket.ID, SoyMilkDrinkedPacket::new, payload -> payload.client(SoyMilkDrinkedPacket::handle));
+		registrar.play(TFStorageSoymilkPacket.ID, TFStorageSoymilkPacket::new, payload -> payload.client(TFStorageSoymilkPacket::handle));
 		registrar.play(SetTFMinerBlockPacket.ID, SetTFMinerBlockPacket::new, payload -> payload.server(SetTFMinerBlockPacket::handle));
 	}
 

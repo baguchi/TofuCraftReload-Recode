@@ -1,4 +1,4 @@
-package baguchan.tofucraft.message;
+package baguchan.tofucraft.network;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.tfenergy.TFMinerBlockEntity;

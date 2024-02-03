@@ -2,8 +2,8 @@ package baguchan.tofucraft.blockentity;
 
 import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
 import baguchan.tofucraft.inventory.SaltFurnaceMenu;
-import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
-import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
+import baguchan.tofucraft.network.SaltFurnaceBitternPacket;
+import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
@@ -163,12 +163,12 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		if (!p_155014_.isClientSide) {
 			if (saltFurnaceBlock.prevWaterFluid != saltFurnaceBlock.waterTank.getFluidAmount()) {
 				LevelChunk chunk = p_155014_.getChunkAt(p_155015_);
-				PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceWaterMessage(p_155015_, saltFurnaceBlock.waterTank.getFluid()));
+				PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceWaterPacket(p_155015_, saltFurnaceBlock.waterTank.getFluid()));
 				saltFurnaceBlock.prevWaterFluid = saltFurnaceBlock.waterTank.getFluidAmount();
 			}
 			if (saltFurnaceBlock.prevBitternFluid != saltFurnaceBlock.bitternTank.getFluidAmount()) {
 				LevelChunk chunk = p_155014_.getChunkAt(p_155015_);
-				PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceBitternMessage(p_155015_, saltFurnaceBlock.bitternTank.getFluid()));
+				PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceBitternPacket(p_155015_, saltFurnaceBlock.bitternTank.getFluid()));
 				saltFurnaceBlock.prevBitternFluid = saltFurnaceBlock.bitternTank.getFluidAmount();
 			}
 		}
@@ -221,8 +221,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		super.startOpen(p_18955_);
 		if (!this.level.isClientSide()) {
 			LevelChunk chunk = this.level.getChunkAt(this.getBlockPos());
-			PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceWaterMessage(this.getBlockPos(), this.waterTank.getFluid()));
-			PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceBitternMessage(this.getBlockPos(), this.bitternTank.getFluid()));
+			PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceWaterPacket(this.getBlockPos(), this.waterTank.getFluid()));
+			PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceBitternPacket(this.getBlockPos(), this.bitternTank.getFluid()));
 		}
 	}
 

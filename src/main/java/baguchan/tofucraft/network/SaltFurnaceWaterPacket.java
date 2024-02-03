@@ -1,4 +1,4 @@
-package baguchan.tofucraft.message;
+package baguchan.tofucraft.network;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
@@ -12,14 +12,14 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.network.handling.PlayPayloadContext;
 
-public class SaltFurnaceWaterMessage implements CustomPacketPayload {
+public class SaltFurnaceWaterPacket implements CustomPacketPayload {
 	public static final ResourceLocation ID = TofuCraftReload.prefix("salt_furnace_water");
 
 	public BlockPos blockPos;
 
 	public FluidStack fluid;
 
-	public SaltFurnaceWaterMessage(BlockPos blockPos, FluidStack fluid) {
+	public SaltFurnaceWaterPacket(BlockPos blockPos, FluidStack fluid) {
 		this.blockPos = blockPos;
 		this.fluid = fluid;
 	}
@@ -37,11 +37,11 @@ public class SaltFurnaceWaterMessage implements CustomPacketPayload {
 		buffer.writeNbt(fluidTag);
 	}
 
-	public SaltFurnaceWaterMessage(FriendlyByteBuf buffer) {
+	public SaltFurnaceWaterPacket(FriendlyByteBuf buffer) {
 		this(buffer.readBlockPos(), FluidStack.loadFluidStackFromNBT(buffer.readNbt()));
 	}
 
-	public static void handle(SaltFurnaceWaterMessage message, PlayPayloadContext context) {
+	public static void handle(SaltFurnaceWaterPacket message, PlayPayloadContext context) {
 		context.workHandler().execute(() -> {
 			BlockEntity tileentity = (Minecraft.getInstance()).player.level().getBlockEntity(message.blockPos);
 				if (tileentity instanceof SaltFurnaceBlockEntity) {

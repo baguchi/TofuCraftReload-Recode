@@ -1,4 +1,4 @@
-package baguchan.tofucraft.message;
+package baguchan.tofucraft.network;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
@@ -12,14 +12,14 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.network.handling.PlayPayloadContext;
 
-public class TFStorageSoymilkMessage implements CustomPacketPayload {
+public class TFStorageSoymilkPacket implements CustomPacketPayload {
 	public static final ResourceLocation ID = TofuCraftReload.prefix("tf_storage");
 
 	public BlockPos blockPos;
 
 	public FluidStack fluid;
 
-	public TFStorageSoymilkMessage(BlockPos blockPos, FluidStack fluid) {
+	public TFStorageSoymilkPacket(BlockPos blockPos, FluidStack fluid) {
 		this.blockPos = blockPos;
 		this.fluid = fluid;
 	}
@@ -37,11 +37,11 @@ public class TFStorageSoymilkMessage implements CustomPacketPayload {
 		buffer.writeNbt(fluidTag);
 	}
 
-	public TFStorageSoymilkMessage(FriendlyByteBuf buffer) {
+	public TFStorageSoymilkPacket(FriendlyByteBuf buffer) {
 		this(buffer.readBlockPos(), FluidStack.loadFluidStackFromNBT(buffer.readNbt()));
 	}
 
-	public static void handle(TFStorageSoymilkMessage message, PlayPayloadContext context) {
+	public static void handle(TFStorageSoymilkPacket message, PlayPayloadContext context) {
 		context.workHandler().execute(() -> {
 			BlockEntity tileentity = (Minecraft.getInstance()).player.level().getBlockEntity(message.blockPos);
 				if (tileentity instanceof TFStorageBlockEntity) {
