@@ -18,6 +18,7 @@ public class TofuTags {
 		public static final TagKey<Block> SOFT_TOFU = tag("soft_tofu");
 
 		public static final TagKey<Block> TOFU_TERRAIN = tag("tofu_terrain");
+		public static final TagKey<Block> TF_TRANSMITTER = tag("tf_transmitter");
 
 		public static final TagKey<Block> TOFU_WORLD_CARVER_REPLACEABLE = tag("tofu_world_replaceable");
 

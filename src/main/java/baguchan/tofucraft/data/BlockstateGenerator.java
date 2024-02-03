@@ -52,6 +52,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.METALTOFU.get());
 		simpleBlock(TofuBlocks.DIAMONDTOFU.get());
 		simpleBlock(TofuBlocks.TOFU_GEM_BLOCK.get());
+		simpleBlock(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());
 		simpleBlock(TofuBlocks.GRILLEDTOFU.get());
 		simpleBlock(TofuBlocks.ZUNDATOFU.get());
 		simpleBlock(TofuBlocks.MISOTOFU.get());
@@ -201,6 +202,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		this.lantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
 		this.translucentBlock(TofuBlocks.ZUNDAMA_BLOCK);
 		crossBlock(TofuBlocks.ANTENNA_BASIC);
+		simpleBlock(TofuBlocks.TF_COLLECTOR);
 		simpleBlock(TofuBlocks.SALT_BLOCK);
 	}
 

@@ -222,10 +222,21 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuItems.TOFUGEM.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get())
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.ADVANCE_TOFUGEM.get())
+				.unlockedBy("has_item", has(TofuItems.ADVANCE_TOFUGEM.get()))
+				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.TOFUGEM.get(), 9)
 				.requires(TofuBlocks.TOFU_GEM_BLOCK.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer, prefix("revert_to_tofu_gem"));
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.ADVANCE_TOFUGEM.get(), 9)
+				.requires(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get())
+				.unlockedBy("has_item", has(TofuItems.ADVANCE_TOFUGEM.get()))
+				.save(consumer, prefix("revert_to_adv_tofu_gem"));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.ZUNDAMA_BLOCK.get())
 				.pattern("###")
@@ -1568,6 +1579,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('C', TofuItems.TF_CAPACITOR.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TF_COLLECTOR.get())
+				.pattern("HCH")
+				.pattern("AMA")
+				.define('A', TofuItems.ADVANCE_TOFUGEM.get())
+				.define('M', TofuBlocks.METALTOFU.get())
+				.define('C', TofuItems.TOFU_CORE.get())
+				.define('H', Blocks.HOPPER)
+				.unlockedBy("has_item", has(TofuItems.ADVANCE_TOFUGEM.get()))
+				.save(consumer);
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TF_OVEN.get())
 				.pattern("OHC")
 				.pattern("H H")
@@ -1603,6 +1623,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("SSS")
 				.define('S', TofuItems.SALT.get())
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuItems.ADVANCE_TOFUGEM.get())
+				.pattern("SSS")
+				.pattern("STS")
+				.pattern("SSS")
+				.define('S', Items.REDSTONE)
+				.define('T', TofuItems.TOFUGEM.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SALT.get(), 9)

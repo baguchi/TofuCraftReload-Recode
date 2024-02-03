@@ -40,6 +40,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.METALTOFU);
 		toBlock(TofuBlocks.DIAMONDTOFU);
 		toBlock(TofuBlocks.TOFU_GEM_BLOCK);
+		toBlock(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK);
 		toBlock(TofuBlocks.GRILLEDTOFU);
 		toBlock(TofuBlocks.ZUNDATOFU);
 		toBlock(TofuBlocks.MISOTOFU);
@@ -366,6 +367,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.SOYMEATDON);
 
 		singleTex(TofuItems.TOFUGEM);
+		singleTex(TofuItems.ADVANCE_TOFUGEM);
 		singleTex(TofuItems.TF_COIL);
 		singleTex(TofuItems.TF_CIRCUIT);
 		singleTex(TofuItems.TF_CAPACITOR);

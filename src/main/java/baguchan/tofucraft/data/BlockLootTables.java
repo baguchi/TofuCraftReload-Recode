@@ -98,6 +98,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerTofuDrop(TofuBlocks.METALTOFU.get(), TofuItems.TOFUMETAL.get());
 		registerTofuDrop(TofuBlocks.DIAMONDTOFU.get(), TofuItems.TOFUDIAMOND.get());
 		dropSelf(TofuBlocks.TOFU_GEM_BLOCK.get());
+		dropSelf(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());
 		registerTofuDrop(TofuBlocks.GRILLEDTOFU.get(), TofuItems.TOFUGRILLED.get());
 		registerTofuDrop(TofuBlocks.ZUNDATOFU.get(), TofuItems.TOFUZUNDA.get());
 		registerTofuDrop(TofuBlocks.HELLTOFU.get(), TofuItems.TOFUHELL.get());
@@ -303,6 +304,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TF_OVEN.get());
 		dropSelf(TofuBlocks.ANTENNA_BASIC.get());
 		dropSelf(TofuBlocks.TOFU_WORK_STATION.get());
+		dropSelf(TofuBlocks.TF_COLLECTOR.get());
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

@@ -35,6 +35,7 @@ import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
 import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
+import baguchan.tofucraft.block.tfenergy.TFCollectorBlock;
 import baguchan.tofucraft.block.tfenergy.TFCrafterBlock;
 import baguchan.tofucraft.block.tfenergy.TFOvenBlock;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
@@ -133,6 +134,7 @@ public class TofuBlocks {
 	public static final Supplier<Block> METALTOFU = register("blocktofumetal", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final Supplier<Block> DIAMONDTOFU = register("blocktofudiamond", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final Supplier<Block> TOFU_GEM_BLOCK = register("tofu_gem_block", () -> new TofuGemBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL)));
+	public static final Supplier<Block> ADVANCE_TOFU_GEM_BLOCK = register("adv_tofu_gem_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL)));
 
 	public static final Supplier<Block> GRILLEDTOFU = register("blocktofugrilled", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final Supplier<Block> ZUNDATOFU = register("blocktofuzunda", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
@@ -438,7 +440,9 @@ public class TofuBlocks {
 	public static final Supplier<Block> TF_OVEN = register("tf_oven", () -> new TFOvenBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
 		return p_50872_.getValue(TFOvenBlock.LIT) ? 13 : 0;
 	})));
-
+	public static final Supplier<Block> TF_COLLECTOR = register("tf_collector", () -> new TFCollectorBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
+		return p_50872_.getValue(TFCollectorBlock.LIT) ? 13 : 0;
+	})));
 	public static final Supplier<Block> ANTENNA_BASIC = register("antenna_basic", () -> new TFAntennaBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final Supplier<Block> TOFU_WORK_STATION = register("tofu_work_station", () -> new TofuWorkStationBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 

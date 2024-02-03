@@ -61,7 +61,8 @@ public class TofuCreativeModeTabs {
 				output.acceptAll(Stream.of(
 						TofuBlocks.TF_STORAGE,
 						TofuBlocks.TF_CRAFTER,
-						TofuBlocks.TF_OVEN
+						TofuBlocks.TF_OVEN,
+						TofuBlocks.TF_COLLECTOR
 						, TofuBlocks.ANTENNA_BASIC
 						, TofuBlocks.TOFU_DETECTOR
 						, TofuBlocks.TOFU_WORK_STATION).map(sup -> {
@@ -127,6 +128,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TOFU_METAL_CHAIN,
 						TofuBlocks.DIAMONDTOFU,
 						TofuBlocks.TOFU_GEM_BLOCK,
+						TofuBlocks.ADVANCE_TOFU_GEM_BLOCK,
 						TofuBlocks.EGGTOFU,
 						TofuBlocks.TOFUSLAB_EGG,
 						TofuBlocks.TOFUSTAIR_EGG,
@@ -463,6 +465,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.ZUNDAMA,
 						TofuItems.ZUNDARUBY,
 						TofuItems.TOFUGEM,
+						TofuItems.ADVANCE_TOFUGEM,
 						TofuItems.NATTO_COBWEB).map(itemSupplier -> {
 					return itemSupplier.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event

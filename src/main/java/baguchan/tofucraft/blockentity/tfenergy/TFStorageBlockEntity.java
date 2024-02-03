@@ -23,6 +23,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.neoforged.api.distmarker.Dist;
@@ -85,6 +86,11 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 
 	public TFStorageBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
 		super(TofuBlockEntitys.TF_STORAGE.get(), p_155229_, p_155230_, 10000);
+	}
+
+	@Override
+	public boolean canReceive(BlockEntity from) {
+		return from instanceof TFCollectorBlockEntity || super.canReceive(from);
 	}
 
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFStorageBlockEntity tfStorageBlockEntity) {

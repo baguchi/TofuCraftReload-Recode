@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "tofucraft:adv_tofugem"
+    },
+    "C": {
+      "item": "tofucraft:tofu_core"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "M": {
+      "item": "tofucraft:blocktofumetal"
+    }
+  },
+  "pattern": [
+    "HCH",
+    "AMA"
+  ],
+  "result": {
+    "item": "tofucraft:tf_collector"
+  }
+}

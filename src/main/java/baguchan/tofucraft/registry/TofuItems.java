@@ -365,6 +365,7 @@ public class TofuItems {
 	public static final Supplier<Item> ZUNDAMUSHROOM_ON_A_STICK = ITEMS.register("zundamushroom_on_a_stick", () -> new ZundaMushroomOnAStickItem<>((new Item.Properties()).durability(25), TofuEntityTypes.TOFUPIG, 7));
 
 	public static final Supplier<Item> TOFUGEM = ITEMS.register("tofugem", () -> new Item((new Item.Properties())));
+	public static final Supplier<Item> ADVANCE_TOFUGEM = ITEMS.register("adv_tofugem", () -> new Item((new Item.Properties())));
 	public static final Supplier<Item> TF_CAPACITOR = ITEMS.register("tf_capacitor", () -> new Item((new Item.Properties())));
 	public static final Supplier<Item> TF_COIL = ITEMS.register("tf_coil", () -> new Item((new Item.Properties())));
 	public static final Supplier<Item> TF_CIRCUIT = ITEMS.register("tf_circuit", () -> new Item((new Item.Properties())));
