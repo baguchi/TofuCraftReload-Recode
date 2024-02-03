@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TFCollectorBlockEntity extends SenderBaseBlockEntity {
 
-	private static final int POWER = 10;
+	private static final int POWER = 20;
 	public static final List<BlockPos> COLLECTOR_OFFSETS = BlockPos.betweenClosedStream(-2, -2, -2, 2, 2, 2)
 			.filter(p_207914_ -> Math.abs(p_207914_.getX()) == 1 || Math.abs(p_207914_.getZ()) == 1)
 			.map(BlockPos::immutable)
