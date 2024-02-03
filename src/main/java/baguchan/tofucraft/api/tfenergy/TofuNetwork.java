@@ -87,13 +87,13 @@ public class TofuNetwork {
 
 	public Stream<Map.Entry<String, BlockEntity>> getTEWithinRadius(Level world, BlockPos pos, double radius) {
 		return getTEWithinDim(world.dimensionType())
-				.filter(entry -> entry.getValue().getBlockPos().distManhattan(pos) <= radius);
+				.filter(entry -> entry.getValue().getBlockPos().distSqr(pos) <= radius * radius);
 	}
 
 	public Stream<Map.Entry<String, BlockEntity>> getTEWithinRadius(BlockEntity center, double radius) {
 		BlockPos pos = center.getBlockPos();
 		return getTEWithinDim(center.getLevel().dimensionType())
-				.filter(entry -> entry.getValue().getBlockPos().distManhattan(pos) <= radius);
+				.filter(entry -> entry.getValue().getBlockPos().distSqr(pos) <= radius * radius);
 	}
 
 	public Stream<Map.Entry<String, BlockEntity>> getExtractableWithinRadius(Level world, BlockPos pos, double radius) {

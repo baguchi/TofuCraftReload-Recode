@@ -375,6 +375,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFU_CORE);
 		toBlock(TofuBlocks.TF_CRAFTER);
 		toBlock(TofuBlocks.TF_OVEN);
+		toBlock(TofuBlocks.TF_COLLECTOR);
 
 		singleTexTool(TofuItems.TOFU_KINU_SWORD);
 		singleTexTool(TofuItems.TOFU_KINU_PICKAXE);
