@@ -3,6 +3,7 @@ package baguchan.tofucraft.recipe;
 import baguchan.tofucraft.registry.TofuRecipes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -101,6 +102,16 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 
 		return TofuRecipes.RECIPE_TOFU_WORK_STATION.get();
 	}
+
+	@Override
+	public NonNullList<Ingredient> getIngredients() {
+		NonNullList<Ingredient> nonnulllist = NonNullList.create();
+		nonnulllist.add(this.baseIngredient);
+		nonnulllist.add(this.ingredient);
+		nonnulllist.add(this.subIngredient);
+		return nonnulllist;
+	}
+
 
 	@Override
 	public RecipeType<?> getType() {

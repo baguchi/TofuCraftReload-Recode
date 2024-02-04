@@ -32,9 +32,11 @@ import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
+import baguchan.tofucraft.registry.TofuRecipeBookTypes;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
 import com.google.common.collect.Maps;
+import com.google.common.reflect.Reflection;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
@@ -67,36 +69,37 @@ public class TofuCraftReload {
 
 	public static final Logger LOGGER = LogManager.getLogger(TofuCraftReload.MODID);
 
-
 	public TofuCraftReload(IEventBus modBus) {
 		IEventBus forgeBus = NeoForge.EVENT_BUS;
 
 		modBus.addListener(this::setup);
 		modBus.addListener(this::setupPackets);
 		TofuBannerPatterns.BANNER_PATTERNS.register(modBus);
-		TofuCarvers.WORLD_CARVER.register(modBus);
+
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuItems.ITEMS.register(modBus);
 		TofuEntityTypes.ENTITIES.register(modBus);
+
+		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
+		TofuMenus.MENU_TYPES.register(modBus);
 		TofuEffects.MOB_EFFECTS.register(modBus);
 		TofuFluidTypes.FLUID_TYPES.register(modBus);
 		TofuFluids.FLUIDS.register(modBus);
 		TofuCreativeModeTabs.CREATIVE_MODE_TABS.register(modBus);
-
+		TofuRecipes.RECIPE_TYPES.register(modBus);
+		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
 		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
-		TofuRecipes.RECIPE_TYPES.register(modBus);
-		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
-		TofuMenus.MENU_TYPES.register(modBus);
+
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
 		TofuFeatures.FEATURES.register(modBus);
 		TofuSounds.SOUND_EVENTS.register(modBus);
 		TofuCapability.ATTACHMENT_TYPES.register(modBus);
 		TofuParticleTypes.PARTICLE_TYPES.register(modBus);
 		TofuAdvancements.CRITERIONS_REGISTER.register(modBus);
+		TofuCarvers.WORLD_CARVER.register(modBus);
 
-		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			modBus.addListener(ClientRegistrar::setup);
@@ -107,6 +110,9 @@ public class TofuCraftReload {
 
 	private void setup(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
+
+			Reflection.initialize(TofuRecipeBookTypes.class);
+
 			Map<ResourceLocation, MultiNoiseBiomeSourceParameterList.Preset> map = Maps.newHashMap();
 			map.putAll(Map.copyOf(MultiNoiseBiomeSourceParameterList.Preset.BY_NAME));
 			map.put(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), TofuBiomeSources.TOFU_WORLD_PRESET);

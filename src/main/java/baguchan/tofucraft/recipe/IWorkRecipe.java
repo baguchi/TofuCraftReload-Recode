@@ -1,6 +1,7 @@
 package baguchan.tofucraft.recipe;
 
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
@@ -8,11 +9,11 @@ import net.minecraft.world.item.crafting.RecipeType;
 
 public interface IWorkRecipe extends Recipe<Container> {
 	default RecipeType<?> getType() {
-		return RecipeType.SMITHING;
+		return TofuRecipes.RECIPETYPE_TOFU_WORK_STATION.get();
 	}
 
 	default boolean canCraftInDimensions(int p_266835_, int p_266829_) {
-		return p_266835_ >= 3 && p_266829_ >= 1;
+		return p_266835_ >= 1 && p_266829_ >= 1;
 	}
 
 	default ItemStack getToastSymbol() {

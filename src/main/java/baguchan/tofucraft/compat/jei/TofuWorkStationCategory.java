@@ -57,11 +57,11 @@ public class TofuWorkStationCategory implements IRecipeCategory<TofuWorkStationR
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, TofuWorkStationRecipe recipe, IFocusGroup focuses) {
 
-		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 - 18 - 14)
+		builder.addSlot(RecipeIngredientRole.INPUT, 25 - 19, 33 - 18 - 14)
 				.addIngredients(recipe.getBaseIngredient());
-		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 - 14)
+		builder.addSlot(RecipeIngredientRole.INPUT, 25 - 19, 33 - 14)
 				.addIngredients(recipe.getIngredient());
-		builder.addSlot(RecipeIngredientRole.INPUT, 20 - 19, 33 + 18 - 14)
+		builder.addSlot(RecipeIngredientRole.INPUT, 25 - 19, 33 + 18 - 14)
 				.addIngredients(recipe.getSubIngredient());
 
 		builder.addSlot(RecipeIngredientRole.OUTPUT, 143 - 19, 33 - 14).addItemStack(recipe.getResult());

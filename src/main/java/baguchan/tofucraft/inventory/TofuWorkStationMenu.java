@@ -3,6 +3,7 @@ package baguchan.tofucraft.inventory;
 import baguchan.tofucraft.recipe.TofuWorkStationRecipe;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuMenus;
+import baguchan.tofucraft.registry.TofuRecipeBookTypes;
 import baguchan.tofucraft.registry.TofuRecipes;
 import com.google.common.collect.Lists;
 import net.minecraft.sounds.SoundEvents;
@@ -11,20 +12,23 @@ import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.RecipeBookMenu;
+import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class TofuWorkStationMenu extends AbstractContainerMenu {
+public class TofuWorkStationMenu extends RecipeBookMenu<Container> {
 	public static final int INPUT_SLOT = 0;
 	public static final int RESULT_SLOT = 1;
 	private static final int INV_SLOT_START = 2;
@@ -59,9 +63,9 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 		super(TofuMenus.TOFU_WORK_STATION.get(), p_40297_);
 		this.access = p_40299_;
 		this.level = p_40298_.player.level();
-		this.inputSlot = this.addSlot(new Slot(this.container, 0, 20, 33 - 18));
-		this.inputSlot2 = this.addSlot(new Slot(this.container, 1, 20, 33));
-		this.inputSlot3 = this.addSlot(new Slot(this.container, 2, 20, 33 + 18));
+		this.inputSlot = this.addSlot(new Slot(this.container, 0, 25, 33 - 18));
+		this.inputSlot2 = this.addSlot(new Slot(this.container, 1, 25, 33));
+		this.inputSlot3 = this.addSlot(new Slot(this.container, 2, 25, 33 + 18));
 		this.resultSlot = this.addSlot(new Slot(this.resultContainer, 3, 143, 33) {
 			public boolean mayPlace(ItemStack p_40362_) {
 				return false;
@@ -234,5 +238,54 @@ public class TofuWorkStationMenu extends AbstractContainerMenu {
 		this.access.execute((p_40313_, p_40314_) -> {
 			this.clearContainer(p_40326_, this.container);
 		});
+	}
+
+	@Override
+	public void fillCraftSlotsStackedContents(StackedContents p_39374_) {
+		for (int i = 0; i < this.container.getContainerSize(); i++) {
+			ItemStack itemstack = this.container.getItem(i);
+			p_39374_.accountStack(itemstack);
+		}
+	}
+
+	@Override
+	public void clearCraftingContent() {
+		this.container.clearContent();
+		this.resultContainer.clearContent();
+	}
+
+	@Override
+	public boolean recipeMatches(RecipeHolder<? extends Recipe<Container>> p_301144_) {
+		return p_301144_.value().matches(this.container, this.level);
+	}
+
+	@Override
+	public int getResultSlotIndex() {
+		return 3;
+	}
+
+	@Override
+	public int getGridWidth() {
+		return 1;
+	}
+
+	@Override
+	public int getGridHeight() {
+		return 1;
+	}
+
+	@Override
+	public int getSize() {
+		return 4;
+	}
+
+	@Override
+	public RecipeBookType getRecipeBookType() {
+		return TofuRecipeBookTypes.WORK_STATION;
+	}
+
+	@Override
+	public boolean shouldMoveToInventory(int p_150635_) {
+		return true;
 	}
 }

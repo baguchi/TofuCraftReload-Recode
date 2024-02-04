@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "tofucraft:tofugem"
+              "tofucraft:tofu_core"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tf_oven"
+        "recipe": "tofucraft:tf_crafter"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,9 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:tf_oven"
+      "tofucraft:tf_crafter",
+      "tofucraft:tf_oven",
+      "tofucraft:reflect_tofu_shield"
     ]
   }
 }
