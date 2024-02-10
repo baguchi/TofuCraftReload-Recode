@@ -203,6 +203,10 @@ public class TofuBlocks {
 			.noOcclusion().sound(SoundType.SNOW)));
 	public static final Supplier<Block> TOFUTORCH_ZUNDA = register("tofutorch_zunda", () -> new TorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).lightLevel(state -> 14)
 			.noOcclusion().sound(SoundType.SNOW)));
+	public static final Supplier<Block> TOFUTORCH_HELL = register("tofutorch_hell", () -> new TorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).lightLevel(state -> 14)
+			.noOcclusion().sound(SoundType.SNOW)));
+	public static final Supplier<Block> TOFUTORCH_SOUL = register("tofutorch_soul", () -> new TorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).lightLevel(state -> 14)
+			.noOcclusion().sound(SoundType.SNOW)));
 
 	public static final Supplier<Block> WALLTOFUTORCH_KINU = BLOCKS.register("walltofutorch_kinu", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).lightLevel(state -> 14)
 			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_KINU)));
@@ -216,6 +220,10 @@ public class TofuBlocks {
 			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_GRILLED)));
 	public static final Supplier<Block> WALLTOFUTORCH_ZUNDA = BLOCKS.register("walltofutorch_zunda", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).lightLevel(state -> 14)
 			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_ZUNDA)));
+	public static final Supplier<Block> WALLTOFUTORCH_HELL = BLOCKS.register("walltofutorch_hell", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).lightLevel(state -> 14)
+			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_HELL)));
+	public static final Supplier<Block> WALLTOFUTORCH_SOUL = BLOCKS.register("walltofutorch_soul", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).lightLevel(state -> 14)
+			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_SOUL)));
 
 	public static final Supplier<Block> TOFU_METAL_CHAIN = register("tofu_metal_chain", () -> new ChainBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHAIN)
 			.sound(SoundType.CHAIN)));
@@ -231,6 +239,8 @@ public class TofuBlocks {
 
 	public static final Supplier<Block> TOFULADDER_GRILLED = register("tofuladder_grilled", () -> new LadderBlock(BlockBehaviour.Properties.ofFullCopy(GRILLEDTOFU.get()).noOcclusion()));
 	public static final Supplier<Block> TOFULADDER_ZUNDA = register("tofuladder_zunda", () -> new LadderBlock(BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion()));
+	public static final Supplier<Block> TOFULADDER_HELL = register("tofuladder_hell", () -> new LadderBlock(BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion()));
+	public static final Supplier<Block> TOFULADDER_SOUL = register("tofuladder_soul", () -> new LadderBlock(BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion()));
 
 	public static final Supplier<Block> TOFULADDER_ISHIBRICK = register("tofuladder_ishibrick", () -> new LadderBlock(BlockBehaviour.Properties.ofFullCopy(ISHITOFU_BRICK.get()).noOcclusion()));
 

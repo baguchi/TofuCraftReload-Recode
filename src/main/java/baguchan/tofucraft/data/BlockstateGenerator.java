@@ -127,6 +127,8 @@ public class BlockstateGenerator extends BlockStateProvider {
 		torchBlock(TofuBlocks.TOFUTORCH_METAL, TofuBlocks.WALLTOFUTORCH_METAL);
 		torchBlock(TofuBlocks.TOFUTORCH_GRILLED, TofuBlocks.WALLTOFUTORCH_GRILLED);
 		torchBlock(TofuBlocks.TOFUTORCH_ZUNDA, TofuBlocks.WALLTOFUTORCH_ZUNDA);
+		torchBlock(TofuBlocks.TOFUTORCH_HELL, TofuBlocks.WALLTOFUTORCH_HELL);
+		torchBlock(TofuBlocks.TOFUTORCH_SOUL, TofuBlocks.WALLTOFUTORCH_SOUL);
 
 		simpleBlock(TofuBlocks.TOFU_TERRAIN);
 		simpleBlock(TofuBlocks.TOFUSLATE);

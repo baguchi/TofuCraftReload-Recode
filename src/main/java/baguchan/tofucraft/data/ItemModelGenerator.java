@@ -115,6 +115,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 		torchItem(TofuBlocks.TOFUTORCH_METAL);
 		torchItem(TofuBlocks.TOFUTORCH_GRILLED);
 		torchItem(TofuBlocks.TOFUTORCH_ZUNDA);
+		torchItem(TofuBlocks.TOFUTORCH_HELL);
+		torchItem(TofuBlocks.TOFUTORCH_SOUL);
+
+		itemBlockFlat(TofuBlocks.TOFULADDER_HELL);
+		itemBlockFlat(TofuBlocks.TOFULADDER_SOUL);
 
 		toBlock(TofuBlocks.TOFU_TERRAIN);
 		toBlock(TofuBlocks.TOFU_TERRAIN_ZUNDA);

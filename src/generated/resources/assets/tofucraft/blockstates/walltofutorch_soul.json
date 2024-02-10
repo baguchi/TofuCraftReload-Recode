@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tofucraft:block/walltofutorch_soul"
+    },
+    "facing=north": {
+      "model": "tofucraft:block/walltofutorch_soul",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "tofucraft:block/walltofutorch_soul",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "tofucraft:block/walltofutorch_soul",
+      "y": 180
+    }
+  }
+}
