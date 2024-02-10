@@ -2,16 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "tofucraft:tofusoul_brick"
+    "M": {
+      "item": "tofucraft:tofuegg_brick"
     }
   },
   "pattern": [
-    "##",
-    "##"
+    "M  ",
+    "MM ",
+    "MMM"
   ],
   "result": {
     "count": 4,
-    "item": "tofucraft:tofusoul_smooth_brick"
+    "item": "tofucraft:tofustair_eggbrick"
   }
 }

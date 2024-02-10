@@ -52,6 +52,21 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.SOULTOFU);
 		toBlock(TofuBlocks.SOULTOFU_BRICK);
 		toBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK);
+		toBlock(TofuBlocks.EGGTOFU_BRICK);
+
+		toBlock(TofuBlocks.EGGTOFU);
+		toBlock(TofuBlocks.TOFUSTAIR_EGG);
+		toBlock(TofuBlocks.TOFUSLAB_EGG);
+
+		toBlock(TofuBlocks.EGGTOFU_BRICK);
+		toBlock(TofuBlocks.TOFUSTAIR_EGGBRICK);
+		toBlock(TofuBlocks.TOFUSLAB_EGGBRICK);
+
+		toBlock(TofuBlocks.SESAMETOFU);
+		toBlock(TofuBlocks.TOFUSTAIR_SESAME);
+		toBlock(TofuBlocks.TOFUSLAB_SESAME);
+
+
 		toBlock(TofuBlocks.MINCEDTOFU);
 
 		toBlock(TofuBlocks.TOFUSTAIR_KINU);
@@ -480,14 +495,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.SOY_CHEESE);
 		singleTex(TofuItems.SOY_NETHER_CHEESE);
 		singleTex(TofuItems.SOY_SOUL_CHEESE);
-
-		toBlock(TofuBlocks.EGGTOFU);
-		toBlock(TofuBlocks.TOFUSTAIR_EGG);
-		toBlock(TofuBlocks.TOFUSLAB_EGG);
-
-		toBlock(TofuBlocks.SESAMETOFU);
-		toBlock(TofuBlocks.TOFUSTAIR_SESAME);
-		toBlock(TofuBlocks.TOFUSLAB_SESAME);
 
 		singleTex(TofuItems.NATTO_COBWEB);
 		toBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN);

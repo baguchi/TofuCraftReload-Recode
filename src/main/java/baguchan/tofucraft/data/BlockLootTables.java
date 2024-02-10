@@ -106,6 +106,18 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerTofuDrop(TofuBlocks.MISOTOFU.get(), TofuItems.TOFUMISO.get());
 		registerTofuDrop(TofuBlocks.DRIEDTOFU.get(), TofuItems.TOFUDRIED.get());
 
+		registerTofuDrop(TofuBlocks.EGGTOFU.get(), TofuItems.TOFUEGG.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_EGG.get());
+		registerSlab(TofuBlocks.TOFUSLAB_EGG.get());
+
+		dropSelf(TofuBlocks.EGGTOFU_BRICK.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_EGGBRICK.get());
+		registerSlab(TofuBlocks.TOFUSLAB_EGGBRICK.get());
+
+		registerTofuDrop(TofuBlocks.SESAMETOFU.get(), TofuItems.TOFUSESAME.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_SESAME.get());
+		registerSlab(TofuBlocks.TOFUSLAB_SESAME.get());
+
 		dropSelf(TofuBlocks.HELLTOFU_BRICK.get());
 		dropSelf(TofuBlocks.HELLTOFU_SMOOTH_BRICK.get());
 		dropSelf(TofuBlocks.SOULTOFU_BRICK.get());
@@ -275,13 +287,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);
 		});
 		dropSelf(TofuBlocks.TOFUCHEST.get());
-		registerTofuDrop(TofuBlocks.EGGTOFU.get(), TofuItems.TOFUEGG.get());
-		dropSelf(TofuBlocks.TOFUSTAIR_EGG.get());
-		registerSlab(TofuBlocks.TOFUSLAB_EGG.get());
 
-		registerTofuDrop(TofuBlocks.SESAMETOFU.get(), TofuItems.TOFUSESAME.get());
-		dropSelf(TofuBlocks.TOFUSTAIR_SESAME.get());
-		registerSlab(TofuBlocks.TOFUSLAB_SESAME.get());
 		registerEmpty(TofuBlocks.YUBA.get());
 		registerEmpty(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 		dropSelf(TofuBlocks.TOFU_STEM_SIGN.get());
