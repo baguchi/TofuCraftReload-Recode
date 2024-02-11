@@ -30,7 +30,7 @@ public class DataGenerators {
 		event.getGenerator().addProvider(event.includeServer(), new EntityTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
 		event.getGenerator().addProvider(event.includeServer(), new FluidTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
 		event.getGenerator().addProvider(event.includeServer(), TofuLootTableProvider.create(packOutput));
-		event.getGenerator().addProvider(event.includeServer(), new CraftingGenerator(packOutput, lookupProvider));
+		event.getGenerator().addProvider(event.includeServer(), new CraftingGenerator(packOutput));
 		event.getGenerator().addProvider(event.includeServer(), new RegistryDataGenerator(packOutput, lookupProvider));
 	}
 }

@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:cutting_tofusoul_brick_from_tofusoul_brick"
+        "recipe": "tofucraft:cutting_tofusoul_smooth_brick_from_tofusoul_brick"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:cutting_tofusoul_brick_from_tofusoul_brick"
+      "tofucraft:cutting_tofusoul_smooth_brick_from_tofusoul_brick"
     ]
   }
 }

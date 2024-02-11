@@ -3,7 +3,6 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuTags;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -17,13 +16,11 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 
-import java.util.concurrent.CompletableFuture;
-
 import static baguchan.tofucraft.TofuCraftReload.prefix;
 
 public class CraftingGenerator extends CraftingDataHelper {
-	public CraftingGenerator(PackOutput generator, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-		super(generator, lookupProvider);
+	public CraftingGenerator(PackOutput generator) {
+		super(generator);
 	}
 
 	@Override
@@ -472,7 +469,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		buildingTofuBlockItem(consumer, TofuBlocks.SOULTOFU_SMOOTH_BRICK, TofuBlocks.SOULTOFU_BRICK);
 
 		cuttingRecipe(consumer, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU_SMOOTH_BRICK, 2);
-		cuttingRecipe(consumer, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU_BRICK, 2);
+		cuttingRecipe(consumer, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU_SMOOTH_BRICK, 2);
 		tofuBlockItem(consumer, TofuBlocks.MINCEDTOFU, TofuItems.TOFU_MINCED);
 
 		tofuBlockItem(consumer, TofuBlocks.EGGTOFU, TofuItems.TOFUEGG);
@@ -482,6 +479,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 		buildingTofuBlockItem(consumer, TofuBlocks.EGGTOFU_BRICK, TofuBlocks.EGGTOFU);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
+
+		buildingTofuBlockItem(consumer, TofuBlocks.ZUNDATOFU_BRICK, TofuBlocks.ZUNDATOFU);
+		buildingTofuBlockItem(consumer, TofuBlocks.ZUNDATOFU_SMOOTH_BRICK, TofuBlocks.ZUNDATOFU_BRICK);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, TofuItems.TOFUZUNDA.get(), 1)
 				.requires(TofuItems.ZUNDA.get())

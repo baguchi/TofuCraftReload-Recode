@@ -43,6 +43,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK);
 		toBlock(TofuBlocks.GRILLEDTOFU);
 		toBlock(TofuBlocks.ZUNDATOFU);
+
+		toBlock(TofuBlocks.ZUNDATOFU_BRICK);
+		toBlock(TofuBlocks.ZUNDATOFU_SMOOTH_BRICK);
+		toBlock(TofuBlocks.TOFUSTAIR_ZUNDABRICK);
+		toBlock(TofuBlocks.TOFUSLAB_ZUNDABRICK);
+
 		toBlock(TofuBlocks.MISOTOFU);
 		toBlock(TofuBlocks.DRIEDTOFU);
 

@@ -139,6 +139,9 @@ public class TofuBlocks {
 
 	public static final Supplier<Block> GRILLEDTOFU = register("blocktofugrilled", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final Supplier<Block> ZUNDATOFU = register("blocktofuzunda", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
+	public static final Supplier<Block> ZUNDATOFU_BRICK = register("tofuzunda_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final Supplier<Block> ZUNDATOFU_SMOOTH_BRICK = register("tofuzunda_smooth_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+
 	public static final Supplier<Block> MISOTOFU = register("blocktofumiso", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final Supplier<Block> DRIEDTOFU = register("blocktofudried", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 
@@ -163,6 +166,7 @@ public class TofuBlocks {
 	public static final Supplier<StairBlock> TOFUSTAIR_GRILLED = register("tofustair_grilled", () -> new StairBlock(GRILLEDTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(GRILLEDTOFU.get())));
 
 	public static final Supplier<StairBlock> TOFUSTAIR_ZUNDA = register("tofustair_zunda", () -> new StairBlock(ZUNDATOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_ZUNDABRICK = register("tofustair_zundabrick", () -> new StairBlock(ZUNDATOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU_BRICK.get())));
 	public static final Supplier<StairBlock> TOFUSTAIR_HELL = register("tofustair_hell", () -> new StairBlock(HELLTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get())));
 	public static final Supplier<StairBlock> TOFUSTAIR_SOUL = register("tofustair_soul", () -> new StairBlock(SOULTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get())));
 
@@ -182,6 +186,7 @@ public class TofuBlocks {
 	public static final Supplier<SlabBlock> TOFUSLAB_GRILLED = register("tofuslab_grilled", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(GRILLEDTOFU.get())));
 
 	public static final Supplier<SlabBlock> TOFUSLAB_ZUNDA = register("tofuslab_zunda", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get())));
+	public static final Supplier<SlabBlock> TOFUSLAB_ZUNDABRICK = register("tofuslab_zundabrick", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU_BRICK.get())));
 	public static final Supplier<SlabBlock> TOFUSLAB_HELL = register("tofuslab_hell", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get())));
 	public static final Supplier<SlabBlock> TOFUSLAB_SOUL = register("tofuslab_soul", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get())));
 

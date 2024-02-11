@@ -3,7 +3,6 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -28,12 +27,11 @@ import net.minecraft.world.level.block.SignBlock;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.NBTIngredient;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public abstract class CraftingDataHelper extends RecipeProvider {
-	public CraftingDataHelper(PackOutput generator, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-		super(generator, lookupProvider);
+	public CraftingDataHelper(PackOutput generator) {
+		super(generator);
 	}
 
 	public ShapedRecipeBuilder makeSign(Supplier<? extends SignBlock> signOut, Supplier<? extends Block> planksIn) {
