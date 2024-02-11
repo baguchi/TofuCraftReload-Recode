@@ -232,8 +232,8 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.save(consumer);
 	}
 
-	protected final void decorationTofuBlockItem(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result.get(), 4)
+	protected final void buildingTofuBlockItem(Consumer<FinishedRecipe> consumer, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 4)
 				.pattern("##")
 				.pattern("##")
 				.define('#', material.get())
