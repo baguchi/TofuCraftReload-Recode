@@ -10,7 +10,7 @@
           },
           "input_predicate" : {
             "predicate_type" : "minecraft:block_match",
-            "block" : "tofucraft:tofuishi_smooth_brick"
+            "block": "tofucraft:tofuzunda_smooth_brick"
           },
           "output_state" : {
             "Name" : "tofucraft:tofustem_planks"
@@ -22,7 +22,7 @@
           },
           "input_predicate" : {
             "predicate_type" : "minecraft:random_block_match",
-            "block" : "tofucraft:tofuishi_smooth_brick",
+            "block": "tofucraft:tofuzunda_smooth_brick",
             "probability" : 0.1
           },
           "output_state" : {
