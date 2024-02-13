@@ -6,15 +6,21 @@ import baguchan.tofucraft.entity.goal.SpinAttackGoal;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuParticleTypes;
+import baguchan.tofucraft.registry.TofuStructures;
+import baguchan.tofucraft.world.TofuData;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
@@ -22,8 +28,10 @@ import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -40,11 +48,15 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -74,6 +86,9 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	public int failTick;
 	private int actionTick;
+
+	@Nullable
+	private BlockPos homePos;
 
 
 	public TofuGandlem(EntityType<? extends TofuGandlem> p_27508_, Level p_27509_) {
@@ -186,12 +201,29 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("Sleep", this.isSleepSelf());
 		compound.putBoolean("FullCharge", this.isFullCharge());
+		if (this.homePos != null) {
+			compound.put("HomePos", NbtUtils.writeBlockPos(this.homePos));
+		} else if (this.isPersistenceRequired()) {
+			compound.put("HomePos", NbtUtils.writeBlockPos(this.blockPosition()));
+		}
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		this.setSleepSelf(compound.getBoolean("Sleep"));
 		this.setFullCharge(compound.getBoolean("FullCharge"));
+		if (compound.contains("HomePos")) {
+			this.homePos = NbtUtils.readBlockPos(compound.getCompound("HomePos"));
+		}
+	}
+
+	@Nullable
+	@Override
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
+		if (p_21436_ == MobSpawnType.STRUCTURE) {
+			this.homePos = this.blockPosition();
+		}
+		return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
 	}
 
 	@Override
@@ -479,6 +511,16 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 		if (!this.level().isClientSide()) {
 			this.level().broadcastEntityEvent(this, (byte) 7);
+			if (this.level() instanceof ServerLevel serverLevel && this.homePos != null) {
+				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+				if (structure != null) {
+					TofuData data = TofuData.get(serverLevel);
+					StructureStart structureStart = serverLevel.structureManager().getStructureAt(this.homePos, structure);
+					if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
+						data.addBeatenDungeons(structureStart.getBoundingBox());
+					}
+				}
+			}
 		}
 	}
 

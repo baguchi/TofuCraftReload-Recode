@@ -4,7 +4,6 @@ import baguchan.tofucraft.api.tfenergy.IEnergyContained;
 import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
-import baguchan.tofucraft.entity.TofuGandlem;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuDimensions;
@@ -13,6 +12,7 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuStructures;
 import baguchan.tofucraft.utils.ContainerUtils;
 import baguchan.tofucraft.utils.JigsawHelper;
+import baguchan.tofucraft.world.TofuData;
 import baguchan.tofucraft.world.TofuLevelData;
 import baguchan.tofucraft.world.TravelerTofunianSpawner;
 import net.minecraft.core.BlockPos;
@@ -29,7 +29,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
@@ -57,6 +56,7 @@ import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.level.ExplosionEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.village.VillageSiegeEvent;
@@ -182,6 +182,24 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
+	public static void onBlockExplosion(ExplosionEvent.Detonate event) {
+		Level world = event.getLevel();
+		if (world instanceof ServerLevel) {
+			ServerLevel serverLevel = (ServerLevel) world;
+			Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+			if (structure != null) {
+				TofuData data = TofuData.get(serverLevel);
+				Vec3 center = event.getExplosion().center();
+				StructureStart structureStart = serverLevel.structureManager().getStructureAt(new BlockPos((int) center.x, (int) center.y, (int) center.z), structure);
+				if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
+					event.getAffectedBlocks().clear();
+
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
 	public static void onBlockBreaked(BlockEvent.BreakEvent event) {
 		if (event.getPlayer() instanceof ServerPlayer) {
 			net.minecraft.world.level.LevelAccessor world = event.getPlayer().level();
@@ -189,17 +207,15 @@ public class CommonEvents {
 				ServerLevel serverLevel = (ServerLevel) world;
 				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
 				if (structure != null) {
+					TofuData data = TofuData.get(serverLevel);
 					StructureStart structureStart = serverLevel.structureManager().getStructureAt(event.getPos(), structure);
-					if (structureStart.isValid()) {
-						TofuGandlem gandlem = serverLevel.getNearestEntity(TofuGandlem.class, TargetingConditions.forNonCombat(), (LivingEntity) event.getPlayer(), event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), event.getPlayer().getBoundingBox().inflate(35.0F));
+					if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
 
-						if (gandlem != null) {
 							ServerPlayer player = (ServerPlayer) event.getPlayer();
 							if (!player.isCreative() && !(event.getState().getBlock() instanceof TorchBlock)) {
 								player.displayClientMessage(Component.translatable("tofucraft.need_defeat_boss"), true);
 								event.setCanceled(true);
 							}
-						}
 					}
 				}
 			}
@@ -214,16 +230,15 @@ public class CommonEvents {
 				ServerLevel serverLevel = (ServerLevel) world;
 				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
 				if (structure != null) {
+					TofuData data = TofuData.get(serverLevel);
 					StructureStart structureStart = serverLevel.structureManager().getStructureAt(event.getPos(), structure);
-					if (structureStart.isValid()) {
-						TofuGandlem gandlem = serverLevel.getNearestEntity(TofuGandlem.class, TargetingConditions.forNonCombat(), (LivingEntity) event.getEntity(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), event.getEntity().getBoundingBox().inflate(35.0F));
-						if (gandlem != null) {
-							ServerPlayer player = (ServerPlayer) event.getEntity();
-							if (!player.isCreative() && !(event.getState().getBlock() instanceof TorchBlock)) {
-								player.displayClientMessage(Component.translatable("tofucraft.need_defeat_boss"), true);
-								event.setCanceled(true);
-							}
+					if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
+						ServerPlayer player = (ServerPlayer) event.getEntity();
+						if (!player.isCreative() && !(event.getState().getBlock() instanceof TorchBlock)) {
+							player.displayClientMessage(Component.translatable("tofucraft.need_defeat_boss"), true);
+							event.setCanceled(true);
 						}
+
 					}
 				}
 			}

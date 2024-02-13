@@ -1,13 +1,18 @@
 package baguchan.tofucraft.world;
 
+import baguchan.tofucraft.TofuCraftReload;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.datafix.DataFixTypes;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.storage.DimensionDataStorage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -20,6 +25,9 @@ public class TofuData extends SavedData {
 	private final ServerLevel server;
 	private static Map<Level, TofuData> dataMap = new HashMap<>();
 
+	public final List<BoundingBox> beatenDungeons = new ArrayList<>();
+
+
 	public TofuData(ServerLevel p_300199_) {
 		super();
 		this.server = p_300199_;
@@ -27,7 +35,7 @@ public class TofuData extends SavedData {
 
 	public static TofuData get(Level world) {
 		if (world instanceof ServerLevel serverLevel) {
-			ServerLevel overworld = world.getServer().getLevel(Level.OVERWORLD);
+			ServerLevel overworld = world.getServer().getLevel(world.dimension());
 			TofuData fromMap = dataMap.get(overworld);
 			if (fromMap == null) {
 				DimensionDataStorage storage = overworld.getDataStorage();
@@ -62,6 +70,9 @@ public class TofuData extends SavedData {
 		if (nbt.contains("TravelerUUID", 8)) {
 			data.travelerUUID = UUID.fromString(nbt.getString("TravelerUUID"));
 		}
+		data.beatenDungeons.add(BoundingBox.CODEC.parse(NbtOps.INSTANCE, nbt.get("DungeonsBoxes")).resultOrPartial(TofuCraftReload.LOGGER::error).orElseThrow(() -> {
+			return new IllegalArgumentException("Invalid saved Dungeons boundingbox");
+		}));
 		return data;
 	}
 
@@ -93,6 +104,22 @@ public class TofuData extends SavedData {
 		if (this.travelerUUID != null) {
 			compound.putString("TravelerUUID", this.travelerUUID.toString());
 		}
+		if (!this.beatenDungeons.isEmpty()) {
+			for (BoundingBox box : this.beatenDungeons) {
+				BoundingBox.CODEC.encodeStart(NbtOps.INSTANCE, box).resultOrPartial(TofuCraftReload.LOGGER::error).ifPresent((p_163579_) -> {
+					compound.put("DungeonsBoxes", p_163579_);
+				});
+			}
+		}
 		return compound;
+	}
+
+	public void addBeatenDungeons(BoundingBox box) {
+		this.beatenDungeons.add(box);
+		this.setDirty();
+	}
+
+	public List<BoundingBox> getBeatenDungeons() {
+		return beatenDungeons;
 	}
 }
