@@ -79,7 +79,7 @@ public class TofuCraftReload {
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuItems.ITEMS.register(modBus);
 		TofuEntityTypes.ENTITIES.register(modBus);
-
+		RecipeCo
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 		TofuMenus.MENU_TYPES.register(modBus);
 		TofuEffects.MOB_EFFECTS.register(modBus);
