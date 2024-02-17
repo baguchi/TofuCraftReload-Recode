@@ -330,7 +330,7 @@ public class TofuBlocks {
 	public static final RegistryObject<TofuPortalBlock> TOFU_PORTAL = BLOCKS.register("tofuportal", () -> new TofuPortalBlock(BlockBehaviour.Properties.of().strength(-1.0F).noCollission().noLootTable().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
 		return 11;
 	})));
-	public static final RegistryObject<Block> TOFU_FARMLAND = register("tofu_farmland", () -> new TofuFarmlandBlock(BlockBehaviour.Properties.of().strength(0.5F, 1.0F).noOcclusion().sound(SoundType.SNOW)));
+	public static final RegistryObject<Block> TOFU_FARMLAND = register("tofu_farmland", () -> new TofuFarmlandBlock(BlockBehaviour.Properties.of().strength(0.5F, 1.0F).noOcclusion().randomTicks().sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> SALTPAN = register("blocksaltpan", () -> new SaltPanBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().noOcclusion().sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> SALT_FURNACE = register("salt_furnace", () -> new SaltFurnaceBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.STONE).lightLevel((p_50872_) -> {
 		return p_50872_.getValue(SaltFurnaceBlock.LIT) ? 13 : 0;
