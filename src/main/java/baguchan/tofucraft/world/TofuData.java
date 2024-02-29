@@ -31,7 +31,7 @@ public class TofuData extends SavedData {
 
 	public static TofuData get(Level world) {
 		if (world instanceof ServerLevel) {
-			ServerLevel overworld = world.getServer().getLevel(Level.OVERWORLD);
+			ServerLevel overworld = world.getServer().getLevel(world.dimension());
 			TofuData fromMap = dataMap.get(overworld);
 			if (fromMap == null) {
 				DimensionDataStorage storage = overworld.getDataStorage();
