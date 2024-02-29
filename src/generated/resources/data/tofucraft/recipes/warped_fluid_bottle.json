@@ -1,0 +1,25 @@
+{
+  "type" : "minecraft:crafting_shapeless",
+  "category" : "misc",
+  "ingredients" : [
+    {
+      "item" : "tofucraft:shroom_bottle"
+    },
+    {
+      "item" : "minecraft:warped_fungus"
+    },
+    {
+      "item" : "minecraft:glass_bottle"
+    },
+    {
+      "item" : "minecraft:glass_bottle"
+    },
+    {
+      "item" : "minecraft:glass_bottle"
+    }
+  ],
+  "result" : {
+    "count" : 3,
+    "item" : "tofucraft:warped_fluid_bottle"
+  }
+}
