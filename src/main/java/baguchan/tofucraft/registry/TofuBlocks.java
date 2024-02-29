@@ -51,9 +51,9 @@ import baguchan.tofucraft.block.utils.TofuDoorBlock;
 import baguchan.tofucraft.block.utils.WeightBaseBlock;
 import baguchan.tofucraft.client.render.item.TofuBedBWLR;
 import baguchan.tofucraft.client.render.item.TofuChestBWLR;
-import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
 import baguchan.tofucraft.world.gen.grower.ApricotTreeGrower;
 import baguchan.tofucraft.world.gen.grower.TofuTreeGrower;
+import baguchan.tofucraft.world.gen.grower.ZundaTofuTreeGrower;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -308,7 +308,7 @@ public class TofuBlocks {
 	public static final RegistryObject<WallHangingSignBlock> LEEK_WALL_HANGING_SIGN = BLOCKS.register("leek_wall_hanging_sign", () -> new TofuWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_WALL_HANGING_SIGN), TofuWoodTypes.LEEK));
 
 
-	public static final RegistryObject<Block> ZUNDATOFU_MUSHROOM = register("zundatofu_mushroom", () -> new TofuMushroomBlock(BlockBehaviour.Properties.of().instabreak().noCollission().sound(SoundType.FUNGUS), TofuWorldFeatures.BIG_ZUNDA_TOFU_MUSHUROOM));
+	public static final RegistryObject<Block> ZUNDATOFU_MUSHROOM = register("zundatofu_mushroom", () -> new TofuMushroomBlock(new ZundaTofuTreeGrower(), BlockBehaviour.Properties.of().instabreak().noCollission().sound(SoundType.FUNGUS)));
 
 
 	public static final RegistryObject<RotatedPillarBlock> TOFU_STEM = register("tofustem", () -> new BurnableRotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM)));

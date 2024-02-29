@@ -47,8 +47,6 @@ public class TofuWorldFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ZUNDA_TOFU_MUSHROOM = registerKey("zunda_tofu_mushroom");
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> BIG_ZUNDA_TOFU_MUSHUROOM = registerKey("big_zunda_tofu_mushroom");
-
 	private static RandomPatchConfiguration grassPatch(BlockStateProvider p_195203_, int p_195204_) {
 		return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(p_195203_)));
 	}
@@ -76,8 +74,5 @@ public class TofuWorldFeatures {
 		FeatureUtils.register(context, TOFU_BUILDING, TofuFeatures.TOFU_BUILDING.get(), new BlockStateConfiguration(TofuBlocks.TOFU_TERRAIN.get().defaultBlockState()));
 
 		FeatureUtils.register(context, ZUNDA_TOFU_MUSHROOM, Feature.FLOWER, grassPatch(BlockStateProvider.simple(TofuBlocks.ZUNDATOFU_MUSHROOM.get()), 32));
-
-		FeatureUtils.register(context, BIG_ZUNDA_TOFU_MUSHUROOM, TofuFeatures.BIG_ZUNDA_TOFU_MUSHROOM.get(), RandomFeatureConfiguration.NONE);
-
 	}
 }

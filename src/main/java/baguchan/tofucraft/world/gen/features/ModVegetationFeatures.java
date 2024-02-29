@@ -17,6 +17,7 @@ import java.util.List;
 
 public class ModVegetationFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_TREES = registerKey("tofu_trees");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BIG_ZUNDA_TOFU_MUSHROOM = registerKey("big_zunda_tofu_mushroom");
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
 		return ResourceKey.create(Registries.CONFIGURED_FEATURE, TofuCraftReload.prefix(name));
@@ -28,5 +29,8 @@ public class ModVegetationFeatures {
 		Holder<ConfiguredFeature<?, ?>> holder1 = holdergetter.getOrThrow(ModTreeFeatures.TOFU_TREE);
 		Holder<ConfiguredFeature<?, ?>> holder2 = holdergetter.getOrThrow(ModTreeFeatures.TOFU_TREE_BIG);
 		FeatureUtils.register(context, TOFU_TREES, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(holder2), 0.33333334F)), PlacementUtils.inlinePlaced(holder1)));
+		Holder<ConfiguredFeature<?, ?>> holder3 = holdergetter.getOrThrow(ModTreeFeatures.ZUNDA_MUSHROOM);
+		Holder<ConfiguredFeature<?, ?>> holder4 = holdergetter.getOrThrow(ModTreeFeatures.ZUNDA_MUSHROOM_BIG);
+		FeatureUtils.register(context, BIG_ZUNDA_TOFU_MUSHROOM, Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(holder3), 0.1F)), PlacementUtils.inlinePlaced(holder4)));
 	}
 }
