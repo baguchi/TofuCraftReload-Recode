@@ -122,6 +122,10 @@ public class TofuItems {
 
 
 	public static final RegistryObject<Item> BITTERN_BOTTLE = ITEMS.register("bittern_bottle", () -> new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final RegistryObject<Item> CRIMSON_BOTTLE = ITEMS.register("crimson_fluid_bottle", () -> new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final RegistryObject<Item> WARPED_BOTTLE = ITEMS.register("warped_fluid_bottle", () -> new BitternItem((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final RegistryObject<Item> SHROOM_BOTTLE = ITEMS.register("shroom_bottle", () -> new Item((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
+
 	public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item((new Item.Properties())));
 	public static final RegistryObject<Item> SEEDS_SOYBEANS = ITEMS.register("seeds_soybeans", () -> new ItemNameBlockItem(TofuBlocks.SOYBEAN.get(), (new Item.Properties())));
 	public static final RegistryObject<Item> SEEDS_SOYBEANS_NETHER = ITEMS.register("seeds_soybeans_nether", () -> new ItemNameBlockItem(TofuBlocks.SOYBEAN_NETHER.get(), (new Item.Properties())));
@@ -543,7 +547,7 @@ public class TofuItems {
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
 				BlockPos blockpos = p_123561_.getPos().relative(p_123561_.getBlockState().getValue(DispenserBlock.FACING));
 				FluidState fluidState = p_123561_.getLevel().getFluidState(blockpos);
-				ItemStack result = RecipeHelper.getBitternResult(p_123561_.getLevel(), fluidState.getType());
+				ItemStack result = RecipeHelper.getBitternResult(p_123561_.getLevel(), fluidState.getType(), p_123562_);
 				if (result != null) {
 					p_123561_.getLevel().setBlock(blockpos, Block.byItem(result.getItem()).defaultBlockState(), 11);
 					p_123561_.getLevel().levelEvent(2001, blockpos, Block.getId(p_123561_.getLevel().getBlockState(blockpos)));

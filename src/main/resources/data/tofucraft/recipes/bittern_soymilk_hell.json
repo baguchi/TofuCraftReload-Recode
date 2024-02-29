@@ -3,6 +3,9 @@
   "process": {
     "fluid": "tofucraft:soymilk_hell"
   },
+  "ingredient" : {
+    "item" : "tofucraft:warped_fluid_bottle"
+  },
   "result": {
     "item": "tofucraft:blocktofuhell"
   }

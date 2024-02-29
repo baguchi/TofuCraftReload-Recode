@@ -5,6 +5,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
 import javax.annotation.Nullable;
@@ -17,9 +18,10 @@ public class BitternSerializer implements RecipeSerializer<BitternRecipe> {
 	public BitternRecipe fromJson(ResourceLocation id, JsonObject json) {
 
 		final FluidIngredient fluid = FluidIngredient.fromJson(GsonHelper.getAsJsonObject(json, "process"));
+		final Ingredient ingredient = Ingredient.fromJson(json);
 		final ItemStack results = itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 
-		return new BitternRecipe(id, fluid, results);
+		return new BitternRecipe(id, fluid, ingredient, results);
 	}
 
 	public static ItemStack itemStackFromJson(JsonObject p_151275_) {
@@ -32,9 +34,10 @@ public class BitternSerializer implements RecipeSerializer<BitternRecipe> {
 		try {
 
 			final FluidIngredient fluid = FluidIngredient.fromNetwork(buf);
+			final Ingredient ingredient = Ingredient.fromNetwork(buf);
 			ItemStack results = buf.readItem();
 
-			return new BitternRecipe(id, fluid, results);
+			return new BitternRecipe(id, fluid, ingredient, results);
 		} catch (final Exception e) {
 
 			throw new IllegalStateException("Failed to read bittern info from packet buffer. This is not good.");
@@ -44,6 +47,7 @@ public class BitternSerializer implements RecipeSerializer<BitternRecipe> {
 	@Override
 	public void toNetwork(FriendlyByteBuf p_44101_, BitternRecipe p_44102_) {
 		p_44102_.getFluid().toNetwork(p_44101_);
+		p_44102_.getIngredient().toNetwork(p_44101_);
 		p_44101_.writeItem(p_44102_.result);
 	}
 }

@@ -5,6 +5,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -17,16 +18,22 @@ public class BitternRecipe implements Recipe<Inventory> {
 	 * The ingredient used for the Before it hardens tofu.
 	 */
 	private FluidIngredient fluid;
+	protected Ingredient ingredient;
 	/**
 	 * This ingredient used for the harden tofu.
 	 */
 	final ItemStack result;
 
-	public BitternRecipe(ResourceLocation id, FluidIngredient fluid, ItemStack results) {
+	public BitternRecipe(ResourceLocation id, FluidIngredient fluid, Ingredient ingredient, ItemStack results) {
 
 		this.id = id;
 		this.fluid = fluid;
+		this.ingredient = ingredient;
 		this.result = results;
+	}
+
+	public Ingredient getIngredient() {
+		return ingredient;
 	}
 
 	/**

@@ -42,7 +42,7 @@ public class RecipeHelper {
 	}
 
 	@Nullable
-	public static ItemStack getBitternResult(ServerLevel serverLevel, Fluid fluid) {
+	public static ItemStack getBitternResult(ServerLevel serverLevel, Fluid fluid, ItemStack itemStack) {
 		final RecipeManager manager = serverLevel.getRecipeManager();
 
 		if (fluid != null) {
@@ -50,8 +50,10 @@ public class RecipeHelper {
 				return recipe.getType() == TofuRecipes.RECIPETYPE_BITTERN.get();
 			});
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe instanceof BitternRecipe && ((BitternRecipe) recipe).getFluid().test(new FluidStack(fluid, 1000))) {
-					return ((BitternRecipe) recipe).getResultItem(serverLevel.registryAccess());
+				if (recipe instanceof BitternRecipe bitternRecipe && ((BitternRecipe) recipe).getFluid().test(new FluidStack(fluid, 1000))) {
+					if (bitternRecipe.getIngredient().test(itemStack)) {
+						return ((BitternRecipe) recipe).getResultItem(serverLevel.registryAccess());
+					}
 				}
 			}
 		}

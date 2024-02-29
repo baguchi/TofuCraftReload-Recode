@@ -810,6 +810,25 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
 				.save(consumer);
 
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.CRIMSON_BOTTLE.get(), 3)
+				.requires(TofuItems.SHROOM_BOTTLE.get())
+				.requires(Items.CRIMSON_FUNGUS)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE)
+				.unlockedBy("has_item", has(TofuItems.SHROOM_BOTTLE.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.WARPED_BOTTLE.get(), 3)
+				.requires(TofuItems.SHROOM_BOTTLE.get())
+				.requires(Items.WARPED_FUNGUS)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE)
+				.unlockedBy("has_item", has(TofuItems.SHROOM_BOTTLE.get()))
+				.save(consumer);
+
+
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.KINAKO_MANJU.get(), 2)
 				.requires(TofuItems.KINAKO.get())
 				.requires(Items.WHEAT)
@@ -1554,6 +1573,18 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('C', TofuItems.TF_CAPACITOR.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuItems.TOFU_CORE.get())
+				.pattern("MTM")
+				.pattern("RTC")
+				.pattern("MTM")
+				.define('M', TofuItems.TOFUMETAL.get())
+				.define('C', TofuItems.TF_CIRCUIT.get())
+				.define('T', TofuItems.TOFUGEM.get())
+				.define('R', TofuItems.TF_CAPACITOR.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TOFU_WORK_STATION.get())
 				.pattern("MM")
 				.pattern("TT")

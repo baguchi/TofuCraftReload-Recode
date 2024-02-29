@@ -208,6 +208,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 
 		singleTex(TofuItems.BITTERN_BOTTLE);
+		singleTex(TofuItems.CRIMSON_BOTTLE);
+		singleTex(TofuItems.WARPED_BOTTLE);
 		singleTex(TofuItems.SALT);
 
 		singleTex(TofuItems.SEEDS_SOYBEANS);

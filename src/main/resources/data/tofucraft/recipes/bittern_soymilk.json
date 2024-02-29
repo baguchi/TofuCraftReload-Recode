@@ -3,6 +3,9 @@
   "process": {
     "fluid": "tofucraft:soymilk"
   },
+  "ingredient" : {
+    "item" : "tofucraft:bittern_bottle"
+  },
   "result": {
     "item": "tofucraft:blocktofukinu"
   }
