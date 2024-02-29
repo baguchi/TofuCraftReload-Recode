@@ -137,10 +137,14 @@ public class TofuBlocks {
 
 	public static final RegistryObject<Block> GRILLEDTOFU = register("blocktofugrilled", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> ZUNDATOFU = register("blocktofuzunda", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
+	public static final Supplier<Block> ZUNDATOFU_BRICK = register("tofuzunda_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+	public static final Supplier<Block> ZUNDATOFU_SMOOTH_BRICK = register("tofuzunda_smooth_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+
 	public static final RegistryObject<Block> MISOTOFU = register("blocktofumiso", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final RegistryObject<Block> DRIEDTOFU = register("blocktofudried", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 
 	public static final RegistryObject<Block> EGGTOFU = register("blocktofuegg", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
+	public static final Supplier<Block> EGGTOFU_BRICK = register("tofuegg_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final RegistryObject<Block> SESAMETOFU = register("blocktofusesame", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 
 	public static final RegistryObject<Block> HELLTOFU = register("blocktofuhell", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
@@ -159,6 +163,7 @@ public class TofuBlocks {
 	public static final RegistryObject<StairBlock> TOFUSTAIR_GRILLED = register("tofustair_grilled", () -> new StairBlock(GRILLEDTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(GRILLEDTOFU.get())));
 
 	public static final RegistryObject<StairBlock> TOFUSTAIR_ZUNDA = register("tofustair_zunda", () -> new StairBlock(ZUNDATOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(ZUNDATOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_ZUNDABRICK = register("tofustair_zundabrick", () -> new StairBlock(ZUNDATOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.copy(ZUNDATOFU_BRICK.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_HELL = register("tofustair_hell", () -> new StairBlock(HELLTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(HELLTOFU.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_SOUL = register("tofustair_soul", () -> new StairBlock(SOULTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(SOULTOFU.get())));
 
@@ -168,6 +173,7 @@ public class TofuBlocks {
 	public static final RegistryObject<StairBlock> TOFUSTAIR_MISO = register("tofustair_miso", () -> new StairBlock(MISOTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(MISOTOFU.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_DRIED = register("tofustair_dried", () -> new StairBlock(DRIEDTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(DRIEDTOFU.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_EGG = register("tofustair_egg", () -> new StairBlock(EGGTOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(EGGTOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_EGGBRICK = register("tofustair_eggbrick", () -> new StairBlock(EGGTOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.copy(EGGTOFU_BRICK.get())));
 	public static final RegistryObject<StairBlock> TOFUSTAIR_SESAME = register("tofustair_sesame", () -> new StairBlock(SESAMETOFU.get()::defaultBlockState, BlockBehaviour.Properties.copy(SESAMETOFU.get())));
 
 	public static final RegistryObject<SlabBlock> TOFUSLAB_KINU = register("tofuslab_kinu", () -> new SlabBlock(BlockBehaviour.Properties.copy(KINUTOFU.get())));
@@ -177,6 +183,7 @@ public class TofuBlocks {
 	public static final RegistryObject<SlabBlock> TOFUSLAB_GRILLED = register("tofuslab_grilled", () -> new SlabBlock(BlockBehaviour.Properties.copy(GRILLEDTOFU.get())));
 
 	public static final RegistryObject<SlabBlock> TOFUSLAB_ZUNDA = register("tofuslab_zunda", () -> new SlabBlock(BlockBehaviour.Properties.copy(ZUNDATOFU.get())));
+	public static final Supplier<SlabBlock> TOFUSLAB_ZUNDABRICK = register("tofuslab_zundabrick", () -> new SlabBlock(BlockBehaviour.Properties.copy(ZUNDATOFU_BRICK.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_HELL = register("tofuslab_hell", () -> new SlabBlock(BlockBehaviour.Properties.copy(HELLTOFU.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_SOUL = register("tofuslab_soul", () -> new SlabBlock(BlockBehaviour.Properties.copy(SOULTOFU.get())));
 
@@ -186,6 +193,7 @@ public class TofuBlocks {
 	public static final RegistryObject<SlabBlock> TOFUSLAB_MISO = register("tofuslab_miso", () -> new SlabBlock(BlockBehaviour.Properties.copy(MISOTOFU.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_DRIED = register("tofuslab_dried", () -> new SlabBlock(BlockBehaviour.Properties.copy(DRIEDTOFU.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_EGG = register("tofuslab_egg", () -> new SlabBlock(BlockBehaviour.Properties.copy(EGGTOFU.get())));
+	public static final Supplier<SlabBlock> TOFUSLAB_EGGBRICK = register("tofuslab_eggbrick", () -> new SlabBlock(BlockBehaviour.Properties.copy(EGGTOFU_BRICK.get())));
 	public static final RegistryObject<SlabBlock> TOFUSLAB_SESAME = register("tofuslab_sesame", () -> new SlabBlock(BlockBehaviour.Properties.copy(SESAMETOFU.get())));
 
 

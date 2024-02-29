@@ -1,0 +1,58 @@
+{
+  "name" : "硬豆腐",
+  "advancement" : "tofucraft:tofucraft/roots",
+  "icon" : "tofucraft:blocktofumomen",
+  "category" : "tofucraft:first_step",
+  "priority" : true,
+  "pages" : [
+    {
+      "type" : "text",
+      "text" : "豆腐在这个世界上是特别的.$(br2) 当你学会压制豆腐后, 你可以使用硬豆腐作为材料制作盔甲等等. $(br2)(不要对嫩豆腐块这么做)"
+    },
+    {
+      "type" : "crafting",
+      "title" : "豆腐块",
+      "recipe" : "tofucraft:blocktofumomen",
+      "text" : "制作豆腐块"
+    },
+    {
+      "type" : "multiblock",
+      "text" : "这里展示了压制豆腐的方法.",
+      "name" : "压制豆腐",
+      "multiblock" : {
+        "pattern" : [
+          [
+            "S"
+          ],
+          [
+            "0"
+          ],
+          [
+            "S"
+          ]
+        ],
+        "mapping" : {
+          "S" : "minecraft:cobblestone",
+          "0" : "tofucraft:blocktofumomen"
+        },
+        "symmetrical" : true
+      }
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:blocktofuishi",
+        "count" : 1
+      },
+      "text" : "这种豆腐主要用于建筑材料等."
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:blocktofumetal",
+        "count" : 1
+      },
+      "text" : "当石豆腐被压制到极致时就变成了钢豆腐.$(br2)硬度稍逊于铁, 但它是最好的材料."
+    }
+  ]
+}

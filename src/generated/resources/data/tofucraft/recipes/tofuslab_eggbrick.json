@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "building",
+  "key" : {
+    "M" : {
+      "item" : "tofucraft:tofuegg_brick"
+    }
+  },
+  "pattern" : [
+    "MMM"
+  ],
+  "result" : {
+    "count" : 6,
+    "item" : "tofucraft:tofuslab_eggbrick"
+  },
+  "show_notification" : true
+}

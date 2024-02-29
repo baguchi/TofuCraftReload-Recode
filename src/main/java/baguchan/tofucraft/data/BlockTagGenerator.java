@@ -37,6 +37,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.HELLTOFU_BRICK.get(), TofuBlocks.HELLTOFU_SMOOTH_BRICK.get()
 				, TofuBlocks.SOULTOFU_BRICK.get(), TofuBlocks.SOULTOFU_SMOOTH_BRICK.get()
 				, TofuBlocks.TOFUSTAIR_ISHI.get(), TofuBlocks.TOFUSTAIR_METAL.get(), TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.TOFUSTAIR_HELLBRICK.get(), TofuBlocks.TOFUSTAIR_SOULBRICK.get()
+				, TofuBlocks.ZUNDATOFU_BRICK.get(), TofuBlocks.ZUNDATOFU_SMOOTH_BRICK.get(), TofuBlocks.TOFUSTAIR_ZUNDABRICK.get(), TofuBlocks.TOFUSLAB_ZUNDABRICK.get()
+				, TofuBlocks.ZUNDATOFU_BRICK.get(), TofuBlocks.TOFUSTAIR_EGGBRICK.get(), TofuBlocks.TOFUSLAB_EGGBRICK.get()
 				, TofuBlocks.TOFUSLAB_ISHI.get(), TofuBlocks.TOFUSLAB_METAL.get(), TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.TOFUSLAB_HELLBRICK.get(), TofuBlocks.TOFUSLAB_SOULBRICK.get()
 				, TofuBlocks.TOFULADDER_ISHI.get(), TofuBlocks.TOFULADDER_ISHIBRICK.get(), TofuBlocks.TOFULADDER_METAL.get()
 				, TofuBlocks.TOFUFENCE_ISHI.get(), TofuBlocks.TOFUFENCE_METAL.get()

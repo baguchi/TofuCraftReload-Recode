@@ -1,0 +1,37 @@
+{
+  "name" : "另一种食物来源",
+  "advancement" : "tofucraft:tofucraft/roots",
+  "icon" : "tofucraft:seeds_rice",
+  "category" : "tofucraft:learning_from_soybean",
+  "priority" : true,
+  "pages" : [
+    {
+      "type" : "text",
+      "text" : "有时除了大豆还有其他东西从草里掉出来.$(br2)这些东西通常很难得到."
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:seeds_rice",
+        "count" : 1
+      },
+      "text" : "本物品可与大豆一起获得.$(br2)这种种子可以制成大米,是很好的食物来源"
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:seeds_chili",
+        "count" : 1
+      },
+      "text" : "由于未知原因，这个东西在深暗中被发现了.$(br2) 收割庄稼并用于躲避闻得到气味的怪物."
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:chili",
+        "count" : 1
+      },
+      "text" : "这个物品很难闻.$(br2) 它似乎可以防止某一个怪物的嗅探"
+    }
+  ]
+}

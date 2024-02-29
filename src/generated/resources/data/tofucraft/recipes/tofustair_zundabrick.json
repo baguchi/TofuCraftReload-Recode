@@ -1,0 +1,19 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "building",
+  "key" : {
+    "M" : {
+      "item" : "tofucraft:tofuzunda_brick"
+    }
+  },
+  "pattern" : [
+    "M  ",
+    "MM ",
+    "MMM"
+  ],
+  "result" : {
+    "count" : 4,
+    "item" : "tofucraft:tofustair_zundabrick"
+  },
+  "show_notification" : true
+}

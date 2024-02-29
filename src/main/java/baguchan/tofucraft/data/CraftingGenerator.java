@@ -377,6 +377,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
+		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
+		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_MISO, TofuBlocks.MISOTOFU);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_DRIED, TofuBlocks.DRIEDTOFU);
 
@@ -391,6 +393,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
+		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
+		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_MISO, TofuBlocks.MISOTOFU);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_DRIED, TofuBlocks.DRIEDTOFU);
 
@@ -457,6 +461,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.SOULTOFU, TofuItems.TOFUSOUL);
 		buildingTofuBlockItem(consumer, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU);
 		buildingTofuBlockItem(consumer, TofuBlocks.SOULTOFU_SMOOTH_BRICK, TofuBlocks.SOULTOFU_BRICK);
+
+		buildingTofuBlockItem(consumer, TofuBlocks.ZUNDATOFU_BRICK, TofuBlocks.ZUNDATOFU);
+		buildingTofuBlockItem(consumer, TofuBlocks.ZUNDATOFU_SMOOTH_BRICK, TofuBlocks.ZUNDATOFU_BRICK);
+
+		cuttingRecipe(consumer, TofuBlocks.ZUNDATOFU_BRICK, TofuBlocks.ZUNDATOFU_SMOOTH_BRICK, 2);
+
+		buildingTofuBlockItem(consumer, TofuBlocks.EGGTOFU_BRICK, TofuBlocks.EGGTOFU);
 
 		cuttingRecipe(consumer, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU_SMOOTH_BRICK, 2);
 		cuttingRecipe(consumer, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU_SMOOTH_BRICK, 2);

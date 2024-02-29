@@ -18,7 +18,7 @@ public class BitternSerializer implements RecipeSerializer<BitternRecipe> {
 	public BitternRecipe fromJson(ResourceLocation id, JsonObject json) {
 
 		final FluidIngredient fluid = FluidIngredient.fromJson(GsonHelper.getAsJsonObject(json, "process"));
-		final Ingredient ingredient = Ingredient.fromJson(json);
+		final Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
 		final ItemStack results = itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 
 		return new BitternRecipe(id, fluid, ingredient, results);

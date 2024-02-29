@@ -1,0 +1,48 @@
+{
+  "name" : "制作之前",
+  "advancement" : "tofucraft:tofucraft/roots",
+  "icon" : "tofucraft:tofukinu",
+  "category" : "tofucraft:first_step",
+  "priority" : true,
+  "pages" : [
+    {
+      "type" : "text",
+      "text" : "制作豆腐前需要做一些准备工作.$(br2)首先你要准备一个豆浆桶和一个盐卤瓶来使之凝固."
+    },
+    {
+      "type" : "crafting",
+      "title" : "豆浆桶",
+      "recipe" : "tofucraft:bucket_soymilk",
+      "text" : "豆浆的物理性质就像水一样.$(br2)但略有不同."
+    },
+    {
+      "type" : "image",
+      "images" : [
+        "tofucraft:textures/gui/page/before_the_making.png"
+      ],
+      "title" : "盐炉",
+      "border" : true,
+      "text" : "要制作盐卤，你需要先制作盐田或盐炉."
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:blocksaltpan",
+        "count" : 1
+      },
+      "text" : "盐田很容易制作，但也很容易受温度的影响.$(br2)你需要一个瓶子才能装起盐卤."
+    },
+    {
+      "type" : "patchouli:spotlight",
+      "item" : {
+        "item" : "tofucraft:salt_furnace",
+        "count" : 1
+      },
+      "text" : "盐炉有一个容易理解的内部GUI.$(br2)需要在盐炉上方放置一个炼药锅.$(br2)然后要用水桶将水放置进去."
+    },
+    {
+      "type" : "text",
+      "text" : "使用盐卤瓶右键豆浆流体时. 豆浆会变成嫩豆腐块!"
+    }
+  ]
+}
