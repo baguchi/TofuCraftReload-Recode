@@ -58,7 +58,6 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BannerPatternItem;
-import net.minecraft.world.item.BowlFoodItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.DispensibleContainerItem;
 import net.minecraft.world.item.HoeItem;
@@ -142,15 +141,15 @@ public class TofuItems {
 	public static final RegistryObject<Item> MABODOFU = ITEMS.register("mabodofu", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.MABODOFU).stacksTo(16)));
 
 	public static final RegistryObject<Item> FUKUMENI = ITEMS.register("fukumeni", () -> new Item((new Item.Properties()).food(TofuFoods.FUKUMENI)));
-	public static final RegistryObject<Item> KOYADOFUSTEW = ITEMS.register("koyadofustew", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.KOYADOFUSTEW).stacksTo(1)));
+	public static final RegistryObject<Item> KOYADOFUSTEW = ITEMS.register("koyadofustew", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.KOYADOFUSTEW).stacksTo(16)));
 
 	public static final RegistryObject<Item> KOUJI_BASE = ITEMS.register("koujibase", () -> new KoujiBaseItem((new Item.Properties()).stacksTo(1)));
 	public static final RegistryObject<Item> KOUJI = ITEMS.register("kouji", () -> new Item((new Item.Properties())));
 
 	public static final RegistryObject<Item> MISO = ITEMS.register("miso", () -> new Item((new Item.Properties())));
 	public static final RegistryObject<Item> BOTTLE_SOYSAUSE = ITEMS.register("bottle_soysause", () -> new Item((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
-	public static final RegistryObject<Item> NANBAN = ITEMS.register("nanban", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.NANBAN).stacksTo(1)));
-	public static final RegistryObject<Item> NANBANTOFU = ITEMS.register("nanbantofu", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.NANBANTOFU).stacksTo(1)));
+	public static final RegistryObject<Item> NANBAN = ITEMS.register("nanban", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.NANBAN).stacksTo(16)));
+	public static final RegistryObject<Item> NANBANTOFU = ITEMS.register("nanbantofu", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.NANBANTOFU).stacksTo(16)));
 
 	public static final RegistryObject<Item> SOY_CHEESE = ITEMS.register("soy_cheese", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_CHEESE)));
 	public static final RegistryObject<Item> SOY_NETHER_CHEESE = ITEMS.register("soy_nether_cheese", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_NETHER_CHEESE)));
@@ -202,9 +201,9 @@ public class TofuItems {
 	public static final RegistryObject<Item> SOYMEAT = ITEMS.register("soymeat", () -> new Item((new Item.Properties()).food(TofuFoods.SOYMEAT)));
 
 	public static final RegistryObject<Item> SOYSTICK = ITEMS.register("soystick", () -> new Item((new Item.Properties()).food(TofuFoods.SOYSTICK)));
-	public static final RegistryObject<Item> MISOSOUP = ITEMS.register("misosoup", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.MISOSOUP).stacksTo(1)));
-	public static final RegistryObject<Item> MOYASHIITAME = ITEMS.register("moyashiitame", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.MOYASHIITAME).stacksTo(1)));
-	public static final RegistryObject<Item> MOYASHIOHITASHI = ITEMS.register("moyashiohitashi", () -> new BowlFoodItem((new Item.Properties()).food(TofuFoods.MOYASHIOHITASHI).stacksTo(1)));
+	public static final RegistryObject<Item> MISOSOUP = ITEMS.register("misosoup", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.MISOSOUP).stacksTo(16)));
+	public static final RegistryObject<Item> MOYASHIITAME = ITEMS.register("moyashiitame", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.MOYASHIITAME).stacksTo(16)));
+	public static final RegistryObject<Item> MOYASHIOHITASHI = ITEMS.register("moyashiohitashi", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.MOYASHIOHITASHI).stacksTo(16)));
 	public static final RegistryObject<Item> SALTYMELON = ITEMS.register("saltymelon", () -> new Item((new Item.Properties()).food(TofuFoods.SALTYMELON)));
 
 	public static final RegistryObject<Item> SOYMILK = ITEMS.register("soymilk", () -> new SoymilkBottleItem(MobEffects.REGENERATION, MobEffects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
@@ -242,7 +241,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> OKARASTICK = ITEMS.register("okarastick", () -> new Item((new Item.Properties()).food(TofuFoods.OKARASTICK)));
 	public static final RegistryObject<Item> OKARA_DONUT = ITEMS.register("okara_donut", () -> new Item((new Item.Properties()).food(TofuFoods.OKARA_DONUT)));
 
-	public static final RegistryObject<Item> SOBOROTOFUSAUTE = ITEMS.register("soborotofusaute", () -> new BowlFoodItem((new Item.Properties()).stacksTo(1).food(TofuFoods.SOBOROTOFUSAUTE)));
+	public static final RegistryObject<Item> SOBOROTOFUSAUTE = ITEMS.register("soborotofusaute", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.SOBOROTOFUSAUTE)));
 
 	public static final RegistryObject<Item> YAKIONIGIRI_MISO = ITEMS.register("yakionigiri_miso", () -> new Item((new Item.Properties()).food(TofuFoods.YAKIONIGIRI_MISO)));
 	public static final RegistryObject<Item> YAKIONIGIRI_SHOYU = ITEMS.register("yakionigiri_shoyu", () -> new Item((new Item.Properties()).food(TofuFoods.YAKIONIGIRI_SHOYU)));
@@ -271,7 +270,7 @@ public class TofuItems {
 
 	public static final RegistryObject<Item> PUDDING = ITEMS.register("pudding", () -> new ReturnableDishItem(TofuItems.GLASSBOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.PUDDING), false));
 	public static final RegistryObject<Item> PUDDING_SOYMILK = ITEMS.register("pudding_soymilk", () -> new ReturnableDishItem(TofuItems.GLASSBOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.PUDDING_SOYMILK), false));
-	public static final RegistryObject<Item> NIKUJAGA = ITEMS.register("nikujaga", () -> new BowlFoodItem((new Item.Properties()).stacksTo(1).food(TofuFoods.NIKUJAGA)));
+	public static final RegistryObject<Item> NIKUJAGA = ITEMS.register("nikujaga", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.NIKUJAGA)));
 	public static final RegistryObject<Item> TOFUSOMEN = ITEMS.register("tofusomen", () -> new Item((new Item.Properties())));
 	public static final RegistryObject<Item> TOFUSOMENBOWL_GLASS = ITEMS.register("tofusomenbowl_glass", () -> new ReturnableDishItem(TofuItems.GLASSBOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.TOFUSOMEN), false));
 	public static final RegistryObject<Item> TASTYBEEFSTEW = ITEMS.register("tastybeefstew", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.TASTYSTEW)));
