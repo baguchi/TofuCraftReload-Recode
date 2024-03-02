@@ -23,7 +23,7 @@ public class TofunianStatueRender implements BlockEntityRenderer<TofunianStatueB
 
 	@Override
 	public void render(TofunianStatueBlockEntity plateBlockEntity, float p_112308_, PoseStack poseStack, MultiBufferSource p_112310_, int p_112311_, int p_112312_) {
-		float f = plateBlockEntity.getBlockState().getValue(TofunianStatueBlock.FACING).toYRot();
+		float f = plateBlockEntity.getBlockState().getValue(TofunianStatueBlock.FACING).getOpposite().toYRot();
 		poseStack.pushPose();
 		poseStack.scale(-1.0F, -1.0F, 1.0F);
 		poseStack.translate(0.0F, -1.501F, 0.0F);
