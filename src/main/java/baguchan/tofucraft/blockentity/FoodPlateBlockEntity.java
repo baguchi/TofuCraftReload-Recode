@@ -46,6 +46,15 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 		return false;
 	}
 
+	public boolean addAllItem(ItemStack itemStack) {
+		if (isEmpty() && !itemStack.isEmpty()) {
+			inventory.setStackInSlot(0, itemStack.split(64));
+			inventoryChanged();
+			return true;
+		}
+		return false;
+	}
+
 	public ItemStack removeItem() {
 		if (!isEmpty()) {
 			ItemStack item = getStoredItem().split(1);
@@ -87,7 +96,7 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 		return new ItemStackHandler() {
 			@Override
 			public int getSlotLimit(int slot) {
-				return 1;
+				return 64;
 			}
 
 			@Override
