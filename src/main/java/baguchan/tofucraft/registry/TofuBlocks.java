@@ -438,7 +438,7 @@ public class TofuBlocks {
 	public static final Supplier<Block> TOFUCHEST = register("tofuchest", () -> new TofuChestBlock(BlockBehaviour.Properties.of().strength(2.5F).noOcclusion().sound(SoundType.STONE), TofuBlockEntitys.TOFUCHEST::get));
 
 	public static final Supplier<Block> FOODPLATE = register("foodplate", () -> new FoodPlateBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.METAL)));
-	public static final Supplier<Block> TOFUNIAN_STATUE = register("tofunian_statue", () -> new TofunianStatueBlock(BlockBehaviour.Properties.of().strength(100F, 3600000.0F).sound(SoundType.LODESTONE)));
+	public static final Supplier<Block> TOFUNIAN_STATUE = register("tofunian_statue", () -> new TofunianStatueBlock(BlockBehaviour.Properties.of().strength(100F, 3600000.0F).pushReaction(PushReaction.BLOCK).sound(SoundType.LODESTONE)));
 
 	public static final Supplier<Block> RICE_BLOCK = register("rice_block",
 			() -> new RiceBlock(BlockBehaviour.Properties.of()
