@@ -25,6 +25,7 @@ import baguchan.tofucraft.block.TofuTerrainBlock;
 import baguchan.tofucraft.block.TofuTrapDoorBlock;
 import baguchan.tofucraft.block.TofuWallHangingSignBlock;
 import baguchan.tofucraft.block.TofuWallSignBlock;
+import baguchan.tofucraft.block.TofunianStatueBlock;
 import baguchan.tofucraft.block.YubaBlock;
 import baguchan.tofucraft.block.ZundamaBlock;
 import baguchan.tofucraft.block.crop.ChiliCropsBlock;
@@ -55,6 +56,7 @@ import baguchan.tofucraft.block.utils.TofuDoorBlock;
 import baguchan.tofucraft.block.utils.WeightBaseBlock;
 import baguchan.tofucraft.client.render.item.TofuBedBWLR;
 import baguchan.tofucraft.client.render.item.TofuChestBWLR;
+import baguchan.tofucraft.client.render.item.TofunianStatueBWLR;
 import baguchan.tofucraft.world.gen.grower.TofuTreeGrowers;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
@@ -436,6 +438,7 @@ public class TofuBlocks {
 	public static final Supplier<Block> TOFUCHEST = register("tofuchest", () -> new TofuChestBlock(BlockBehaviour.Properties.of().strength(2.5F).noOcclusion().sound(SoundType.STONE), TofuBlockEntitys.TOFUCHEST::get));
 
 	public static final Supplier<Block> FOODPLATE = register("foodplate", () -> new FoodPlateBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.METAL)));
+	public static final Supplier<Block> TOFUNIAN_STATUE = register("tofunian_statue", () -> new TofunianStatueBlock(BlockBehaviour.Properties.of().strength(100F, 3600000.0F).sound(SoundType.LODESTONE)));
 
 	public static final Supplier<Block> RICE_BLOCK = register("rice_block",
 			() -> new RiceBlock(BlockBehaviour.Properties.of()
@@ -542,6 +545,19 @@ public class TofuBlocks {
 							@Override
 							public BlockEntityWithoutLevelRenderer getCustomRenderer() {
 								return new TofuChestBWLR();
+							}
+						});
+					}
+				};
+			} else if (Objects.requireNonNull(block.get()) == TOFUNIAN_STATUE.get()) {
+				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties()) {
+					@Override
+					public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+						super.initializeClient(consumer);
+						consumer.accept(new IClientItemExtensions() {
+							@Override
+							public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+								return new TofunianStatueBWLR();
 							}
 						});
 					}

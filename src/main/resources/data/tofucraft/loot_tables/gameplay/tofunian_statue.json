@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 20.0,
+              "treasure": false
+            }
+          ],
+          "name": "tofucraft:tofu_metal_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 20.0,
+              "treasure": false
+            }
+          ],
+          "name": "tofucraft:tofu_metal_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "tofucraft:zundaruby",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

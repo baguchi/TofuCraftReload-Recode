@@ -33,6 +33,7 @@ import baguchan.tofucraft.client.render.entity.TofuPigRender;
 import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
 import baguchan.tofucraft.client.render.entity.TofuSpiderRender;
 import baguchan.tofucraft.client.render.entity.TofunianRender;
+import baguchan.tofucraft.client.render.entity.TofunianStatueRender;
 import baguchan.tofucraft.client.render.entity.TravelerTofunianRender;
 import baguchan.tofucraft.client.render.entity.ZundamiteRender;
 import baguchan.tofucraft.client.render.entity.effect.NattoCobWebRender;
@@ -82,6 +83,7 @@ public class ClientRegistrar {
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFUBED.get(), TofuBedRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFUCHEST.get(), TofuChestRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.FOODPLATE.get(), FoodPlateRender::new);
+		BlockEntityRenderers.register(TofuBlockEntitys.TOFUNIAN_STATUE.get(), TofunianStatueRender::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.TF_MINER.get(), TFMinerRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.SUSPICIOUS_TOFU.get(), BrushableBlockRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFU_SIGN.get(), SignRenderer::new);

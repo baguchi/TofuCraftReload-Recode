@@ -79,5 +79,11 @@ public class ItemTagGenerator extends ItemTagsProvider {
 						TofuBlocks.LEEK_GREEN_HANGING_SIGN.get().asItem(),
 						TofuBlocks.TOFU_STEM_HANGING_SIGN.get().asItem()
 				);
+
+		this.tag(TofuTags.Items.STATUE_HAPPY).add(TofuItems.EDAMAME_TEMPLA.get(), TofuItems.ZUNDA_MOCHI.get(), TofuItems.ZUNDA_MANJU.get()
+				, TofuItems.KINAKO_MOCHI.get(), TofuItems.KINAKO_MANJU.get(), TofuItems.GOHEIMOCHI.get()
+				, TofuItems.RICE_SOBORO_TOFU.get()
+				, TofuItems.NANBANTOFU.get(), TofuItems.KOYADOFUSTEW.get(), TofuItems.MOYASHIITAME.get(), TofuItems.MOYASHIOHITASHI.get());
+
 	}
 }
