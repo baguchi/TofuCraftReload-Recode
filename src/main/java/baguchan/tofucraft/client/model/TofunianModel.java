@@ -73,6 +73,7 @@ public class TofunianModel<T extends Tofunian> extends AbstractTofunianModel<T> 
 			this.leftLeg.xRot = (float) (-Math.PI / 2F);
 			this.leftLeg.yRot = -0.31415927F;
 			this.leftLeg.zRot = -0.07853982F;
+			this.root.y = 29.5F;
 		}
 	}
 }

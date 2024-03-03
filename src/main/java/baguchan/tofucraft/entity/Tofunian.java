@@ -259,7 +259,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public boolean isMeeting() {
 		long time = level().getDayTime();
 		long day = time / 24000;
-		return true;
+		return day % 5 == 0;
 	}
 
 	protected void defineSynchedData() {
