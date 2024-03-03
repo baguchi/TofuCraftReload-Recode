@@ -4,9 +4,11 @@ import baguchan.tofucraft.entity.goal.CropHarvestGoal;
 import baguchan.tofucraft.entity.goal.DoSleepingGoal;
 import baguchan.tofucraft.entity.goal.EatItemGoal;
 import baguchan.tofucraft.entity.goal.FindJobBlockGoal;
+import baguchan.tofucraft.entity.goal.FindStatueBlockGoal;
 import baguchan.tofucraft.entity.goal.LookAtTofunianTradingPlayerGoal;
 import baguchan.tofucraft.entity.goal.MakeFoodGoal;
 import baguchan.tofucraft.entity.goal.MoveToJobGoal;
+import baguchan.tofucraft.entity.goal.MoveToStatueGoal;
 import baguchan.tofucraft.entity.goal.OpenTofuDoorGoal;
 import baguchan.tofucraft.entity.goal.RestockGoal;
 import baguchan.tofucraft.entity.goal.ShareItemAndGossipGoal;
@@ -145,6 +147,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	private BlockPos tofunianJobBlock;
 
+	@Nullable
+	private BlockPos villageCenter;
+
 	private long lastGossipTime;
 	private long lastGossipDecay;
 	private long lastRestock;
@@ -219,19 +224,21 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}));
 		this.goalSelector.addGoal(4, new TofunianLoveGoal(this, 0.8F));
 		this.goalSelector.addGoal(5, new GetItemGoal<>(this));
-		this.goalSelector.addGoal(6, new TrickOrTreatGoal(this, 0.9F));
-		this.goalSelector.addGoal(7, new CropHarvestGoal(this, 0.9F));
-		this.goalSelector.addGoal(8, new MakeFoodGoal(this, 0.9F, 1));
-		this.goalSelector.addGoal(9, new RestockGoal(this, 0.9F, 1));
-		this.goalSelector.addGoal(10, new MoveToJobGoal(this, 0.9F, 1));
-		this.goalSelector.addGoal(11, new MoveToGoal(this, 42.0D, 1.0D));
-		this.goalSelector.addGoal(12, new FindJobBlockGoal(this, 0.85F, 6));
+		this.goalSelector.addGoal(6, new MoveToStatueGoal(this, 0.8F, 5));
+		this.goalSelector.addGoal(7, new TrickOrTreatGoal(this, 0.9F));
+		this.goalSelector.addGoal(8, new CropHarvestGoal(this, 0.9F));
+		this.goalSelector.addGoal(9, new MakeFoodGoal(this, 0.9F, 1));
+		this.goalSelector.addGoal(10, new RestockGoal(this, 0.9F, 1));
+		this.goalSelector.addGoal(11, new MoveToJobGoal(this, 0.9F, 1));
+		this.goalSelector.addGoal(12, new MoveToGoal(this, 42.0D, 1.0D));
+		this.goalSelector.addGoal(13, new FindJobBlockGoal(this, 0.85F, 6));
+		this.goalSelector.addGoal(14, new FindStatueBlockGoal(this, 0.85F, 6));
 
-		this.goalSelector.addGoal(13, new RandomStrollGoal(this, 0.9D));
-		this.goalSelector.addGoal(14, new InteractGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(15, new ShareItemAndGossipGoal(this, 0.9F));
-		this.goalSelector.addGoal(16, new LookAtPlayerGoal(this, Mob.class, 8.0F));
-		this.goalSelector.addGoal(17, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(15, new RandomStrollGoal(this, 0.9D));
+		this.goalSelector.addGoal(16, new InteractGoal(this, Player.class, 3.0F, 1.0F));
+		this.goalSelector.addGoal(17, new ShareItemAndGossipGoal(this, 0.9F));
+		this.goalSelector.addGoal(18, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		this.goalSelector.addGoal(19, new RandomLookAroundGoal(this));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -241,7 +248,18 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		return TofuEntityTypes.TOFUNIAN.get().create(p_241840_1_);
+		Tofunian tofunian = TofuEntityTypes.TOFUNIAN.get().create(p_241840_1_);
+		if (tofunian != null) {
+			TofunianType variant = this.random.nextBoolean() ? this.getTofunianType() : ((Tofunian) p_241840_2_).getTofunianType();
+			tofunian.setTofunianType(variant);
+		}
+		return tofunian;
+	}
+
+	public boolean isMeeting() {
+		long time = level().getDayTime();
+		long day = time / 24000;
+		return true;
 	}
 
 	protected void defineSynchedData() {
@@ -301,6 +319,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	public BlockPos getTofunianJobBlock() {
 		return this.tofunianJobBlock;
+	}
+
+	public void setVillageCenter(@Nullable BlockPos villageCenter) {
+		this.villageCenter = villageCenter;
+	}
+
+	@Nullable
+	public BlockPos getVillageCenter() {
+		return this.villageCenter;
 	}
 
 	@Nullable
@@ -700,6 +727,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		if (this.tofunianJobBlock != null) {
 			compound.put("TofunianJobBlock", NbtUtils.writeBlockPos(this.tofunianJobBlock));
 		}
+		if (this.villageCenter != null) {
+			compound.put("VillageCenter", NbtUtils.writeBlockPos(this.villageCenter));
+		}
 		compound.putString("Roles", getRole().name());
 		compound.putString("TofunianType", getTofunianType().name());
 	}
@@ -729,6 +759,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 		if (compound.contains("TofunianJobBlock")) {
 			this.tofunianJobBlock = NbtUtils.readBlockPos(compound.getCompound("TofunianJobBlock"));
+		}
+		if (compound.contains("VillageCenter")) {
+			this.villageCenter = NbtUtils.readBlockPos(compound.getCompound("VillageCenter"));
 		}
 		if (compound.contains("Roles")) {
 			setRole(Roles.get(compound.getString("Roles")));
@@ -1031,6 +1064,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		CRY(true, 80),
 		AVOID(true, -1),
 		ASK_FOOD(true, -1),
+		SIT(true, -1),
 		HAPPY(false, 30),
 		EAT(true, -1);
 

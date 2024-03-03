@@ -13,7 +13,7 @@ public class TofunianSleepOnBedGoal extends SleepOnBedGoal {
 
 	@Override
 	public boolean canUse() {
-		if (DayHelper.isHalloween()) {
+		if (DayHelper.isHalloween() || this.creature.isMeeting()) {
 			return false;
 		}
 		return super.canUse();

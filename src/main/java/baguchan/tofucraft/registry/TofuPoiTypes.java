@@ -18,11 +18,13 @@ public class TofuPoiTypes {
 	public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(BuiltInRegistries.POINT_OF_INTEREST_TYPE, TofuCraftReload.MODID);
 	public static final ResourceKey<PoiType> TOFU_CRAFTSMAN = createKey("tofu_craftsman");
 	public static final ResourceKey<PoiType> MORIJIO = createKey("morijio");
+	public static final ResourceKey<PoiType> TOFUNIAN_STATUE = createKey("tofunian_statue");
 
 	// CREATE TOFU_CRAFTSMAN WORKSTATION AND PROFESSION
 	public static final Supplier<PoiType> TOFU_CRAFTSMAN_POI = POI_TYPES.register("tofu_craftsman", () -> new PoiType(getBlockStates(TofuBlocks.SALT_FURNACE.get()), 1, 1));
 
 	public static final Supplier<PoiType> MORIJIO_POI = POI_TYPES.register("morijio", () -> new PoiType(getBlockStates(TofuBlocks.MORIJIO.get()), 1, 1));
+	public static final Supplier<PoiType> TOFUNIAN_STATUE_POI = POI_TYPES.register("tofunian_statue", () -> new PoiType(getBlockStates(TofuBlocks.TOFUNIAN_STATUE.get()), 32, 6));
 
 	private static ResourceKey<PoiType> createKey(String p_218091_) {
 		return ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, new ResourceLocation(TofuCraftReload.MODID, p_218091_));

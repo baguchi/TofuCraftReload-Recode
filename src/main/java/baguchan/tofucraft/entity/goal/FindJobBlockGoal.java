@@ -150,6 +150,6 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	}
 
 	public double acceptedDistance() {
-		return 2.0D;
+		return 3.0D;
 	}
 }
