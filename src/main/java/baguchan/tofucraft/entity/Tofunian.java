@@ -4,9 +4,11 @@ import baguchan.tofucraft.entity.goal.CropHarvestGoal;
 import baguchan.tofucraft.entity.goal.DoSleepingGoal;
 import baguchan.tofucraft.entity.goal.EatItemGoal;
 import baguchan.tofucraft.entity.goal.FindJobBlockGoal;
+import baguchan.tofucraft.entity.goal.FindStatueBlockGoal;
 import baguchan.tofucraft.entity.goal.LookAtTofunianTradingPlayerGoal;
 import baguchan.tofucraft.entity.goal.MakeFoodGoal;
 import baguchan.tofucraft.entity.goal.MoveToJobGoal;
+import baguchan.tofucraft.entity.goal.MoveToStatueGoal;
 import baguchan.tofucraft.entity.goal.OpenTofuDoorGoal;
 import baguchan.tofucraft.entity.goal.RestockGoal;
 import baguchan.tofucraft.entity.goal.ShareItemAndGossipGoal;
@@ -29,6 +31,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
@@ -107,7 +110,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.common.util.ITeleporter;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -145,6 +147,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	private BlockPos tofunianJobBlock;
 
+	@Nullable
+	private BlockPos villageCenter;
+
 	private long lastGossipTime;
 	private long lastGossipDecay;
 	private long lastRestock;
@@ -159,6 +164,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@Nullable
 	private Player previousTreat;
+
+	private long lastTreat;
 
 	private int xp;
 
@@ -217,19 +224,21 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}));
 		this.goalSelector.addGoal(4, new TofunianLoveGoal(this, 0.8F));
 		this.goalSelector.addGoal(5, new GetItemGoal<>(this));
-		this.goalSelector.addGoal(6, new TrickOrTreatGoal(this, 0.9F));
-		this.goalSelector.addGoal(7, new CropHarvestGoal(this, 0.9F));
-		this.goalSelector.addGoal(8, new MakeFoodGoal(this, 0.9F, 1));
-		this.goalSelector.addGoal(9, new RestockGoal(this, 0.9F, 1));
-		this.goalSelector.addGoal(10, new MoveToJobGoal(this, 0.9F, 1));
-		this.goalSelector.addGoal(11, new MoveToGoal(this, 42.0D, 1.0D));
-		this.goalSelector.addGoal(12, new FindJobBlockGoal(this, 0.85F, 6));
+		this.goalSelector.addGoal(6, new MoveToStatueGoal(this, 0.8F, 5));
+		this.goalSelector.addGoal(7, new TrickOrTreatGoal(this, 0.9F));
+		this.goalSelector.addGoal(8, new CropHarvestGoal(this, 0.9F));
+		this.goalSelector.addGoal(9, new MakeFoodGoal(this, 0.9F, 1));
+		this.goalSelector.addGoal(10, new RestockGoal(this, 0.9F, 1));
+		this.goalSelector.addGoal(11, new MoveToJobGoal(this, 0.9F, 1));
+		this.goalSelector.addGoal(12, new MoveToGoal(this, 42.0D, 1.0D));
+		this.goalSelector.addGoal(13, new FindJobBlockGoal(this, 0.85F, 6));
+		this.goalSelector.addGoal(14, new FindStatueBlockGoal(this, 0.85F, 6));
 
-		this.goalSelector.addGoal(13, new RandomStrollGoal(this, 0.9D));
-		this.goalSelector.addGoal(14, new InteractGoal(this, Player.class, 3.0F, 1.0F));
-		this.goalSelector.addGoal(15, new ShareItemAndGossipGoal(this, 0.9F));
-		this.goalSelector.addGoal(16, new LookAtPlayerGoal(this, Mob.class, 8.0F));
-		this.goalSelector.addGoal(17, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(15, new RandomStrollGoal(this, 0.9D));
+		this.goalSelector.addGoal(16, new InteractGoal(this, Player.class, 3.0F, 1.0F));
+		this.goalSelector.addGoal(17, new ShareItemAndGossipGoal(this, 0.9F));
+		this.goalSelector.addGoal(18, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+		this.goalSelector.addGoal(19, new RandomLookAroundGoal(this));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -239,7 +248,18 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		return TofuEntityTypes.TOFUNIAN.get().create(p_241840_1_);
+		Tofunian tofunian = TofuEntityTypes.TOFUNIAN.get().create(p_241840_1_);
+		if (tofunian != null) {
+			TofunianType variant = this.random.nextBoolean() ? this.getTofunianType() : ((Tofunian) p_241840_2_).getTofunianType();
+			tofunian.setTofunianType(variant);
+		}
+		return tofunian;
+	}
+
+	public boolean isMeeting() {
+		long time = level().getDayTime();
+		long day = time / 24000;
+		return day % 5 == 0;
 	}
 
 	protected void defineSynchedData() {
@@ -264,6 +284,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public void setAction(Actions action) {
 		this.entityData.set(ACTION, action.name());
+		this.actionTick = 0;
 	}
 
 	public void setRole(Roles role) {
@@ -298,6 +319,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	public BlockPos getTofunianJobBlock() {
 		return this.tofunianJobBlock;
+	}
+
+	public void setVillageCenter(@Nullable BlockPos villageCenter) {
+		this.villageCenter = villageCenter;
+	}
+
+	@Nullable
+	public BlockPos getVillageCenter() {
+		return this.villageCenter;
 	}
 
 	@Nullable
@@ -594,6 +624,17 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return (this.restocksToday == 0 || (this.restocksToday < 2 && level().getGameTime() > this.lastRestock + 2400L));
 	}
 
+	public boolean canLastTreat() {
+		long i = this.lastTreat + 12000L;
+		long j = this.level().getGameTime();
+		boolean flag = j > i;
+		return flag;
+	}
+
+	public void setLastTreat() {
+		this.lastTreat = this.level().getGameTime();
+	}
+
 	public boolean canResetStock() {
 		long i = this.lastRestock + 12000L;
 		long j = this.level().getGameTime();
@@ -679,11 +720,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		compound.putLong("LastRestock", this.lastRestock);
 		compound.putLong("LastGossipDecay", this.lastGossipDecay);
 		compound.putInt("RestocksToday", this.restocksToday);
+		compound.putLong("LastTreat", this.lastTreat);
 		if (this.tofunianHome != null) {
 			compound.put("TofunianHome", NbtUtils.writeBlockPos(this.tofunianHome));
 		}
 		if (this.tofunianJobBlock != null) {
 			compound.put("TofunianJobBlock", NbtUtils.writeBlockPos(this.tofunianJobBlock));
+		}
+		if (this.villageCenter != null) {
+			compound.put("VillageCenter", NbtUtils.writeBlockPos(this.villageCenter));
 		}
 		compound.putString("Roles", getRole().name());
 		compound.putString("TofunianType", getTofunianType().name());
@@ -708,11 +753,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.lastGossipDecay = compound.getLong("LastGossipDecay");
 		this.lastRestock = compound.getLong("LastRestock");
 		this.restocksToday = compound.getInt("RestocksToday");
+		this.lastTreat = compound.getLong("LastTreat");
 		if (compound.contains("TofunianHome")) {
 			this.tofunianHome = NbtUtils.readBlockPos(compound.getCompound("TofunianHome"));
 		}
 		if (compound.contains("TofunianJobBlock")) {
 			this.tofunianJobBlock = NbtUtils.readBlockPos(compound.getCompound("TofunianJobBlock"));
+		}
+		if (compound.contains("VillageCenter")) {
+			this.villageCenter = NbtUtils.readBlockPos(compound.getCompound("VillageCenter"));
 		}
 		if (compound.contains("Roles")) {
 			setRole(Roles.get(compound.getString("Roles")));
@@ -1015,6 +1064,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		CRY(true, 80),
 		AVOID(true, -1),
 		ASK_FOOD(true, -1),
+		SIT(true, -1),
 		HAPPY(false, 30),
 		EAT(true, -1);
 
@@ -1081,7 +1131,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		public static Roles get(BlockState blockState) {
 			for (Roles role : values()) {
 				if (role != TOFUNIAN) {
-					Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(role.getPoiType());
+					Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(role.getPoiType());
 
 					if (poiTypeHolder.isPresent() && poiTypeHolder.get().value().is(blockState)) {
 						return role;
@@ -1094,7 +1144,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		public static Set<BlockState> getJobBlock(ResourceKey<PoiType> poitypeIn) {
 			for (Roles role : values()) {
 				if (role != TOFUNIAN && role.getPoiType() == poitypeIn) {
-					Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(role.getPoiType());
+					Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(role.getPoiType());
 
 					if (poiTypeHolder.isPresent()) {
 						return poiTypeHolder.get().value().matchingStates();
@@ -1106,7 +1156,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 		public static Set<BlockState> getJobMatch(Roles roles, ResourceKey<PoiType> poitypeIn) {
 			if (roles != TOFUNIAN && roles.getPoiType() == poitypeIn) {
-				Optional<Holder<PoiType>> poiTypeHolder = ForgeRegistries.POI_TYPES.getHolder(roles.getPoiType());
+				Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(roles.getPoiType());
 
 				if (poiTypeHolder.isPresent()) {
 					return poiTypeHolder.get().value().matchingStates();
@@ -1130,7 +1180,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			this.tofunian = p_i50459_2_;
 			this.stopDistance = p_i50459_3_;
 			this.speedModifier = p_i50459_5_;
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+			this.setFlags(EnumSet.of(Flag.MOVE));
 		}
 
 		public void stop() {
@@ -1169,7 +1219,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 		public GetItemGoal(T p_i50572_2_) {
 			this.mob = p_i50572_2_;
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+			this.setFlags(EnumSet.of(Flag.MOVE));
 		}
 
 		public boolean canUse() {

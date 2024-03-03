@@ -45,7 +45,7 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 						ObjectArrayList<ItemStack> objectarraylist = loottable.getRandomItems(lootparams);
 						foodPlate.addAllItem(objectarraylist.get(0));
 						statue.processTick = 0;
-						statue.cooldown = 4000 + level.random.nextInt(4000);
+						statue.cooldown = 12000 + level.random.nextInt(12000);
 						level.playSound(null, platePos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS);
 					} else {
 						if (level.random.nextInt(4) == 0) {

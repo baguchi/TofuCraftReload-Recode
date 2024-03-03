@@ -37,7 +37,7 @@ public class TofunianModel<T extends Tofunian> extends AbstractTofunianModel<T> 
 
 		PartDefinition right_arm = root.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(28, 16).addBox(-2.0F, 0.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.0F, -11.5F, 0.0F));
 
-		PartDefinition left_arm = root.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(28, 16).mirror().addBox(0.0F, 0.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(3.0F, -11.5F, 0.0F));
+		PartDefinition left_arm = root.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(28, 16).mirror().addBox(0.0F, 0.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(3.0F, -11.5F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
@@ -60,6 +60,20 @@ public class TofunianModel<T extends Tofunian> extends AbstractTofunianModel<T> 
 			this.applyStatic(TofunianAnimation.ASK_FOOD);
 		} else if (entity.getAction() == Tofunian.Actions.AVOID) {
 			this.applyStatic(TofunianAnimation.AVOIDING);
+		} else if (entity.getAction() == Tofunian.Actions.SIT) {
+			this.rightArm.xRot = -0.62831855F;
+			this.rightArm.yRot = 0.0F;
+			this.rightArm.zRot = 0.0F;
+			this.leftArm.xRot = -0.62831855F;
+			this.leftArm.yRot = 0.0F;
+			this.leftArm.zRot = 0.0F;
+			this.rightLeg.xRot = (float) (-Math.PI / 2F);
+			this.rightLeg.yRot = 0.31415927F;
+			this.rightLeg.zRot = 0.07853982F;
+			this.leftLeg.xRot = (float) (-Math.PI / 2F);
+			this.leftLeg.yRot = -0.31415927F;
+			this.leftLeg.zRot = -0.07853982F;
+			this.root.y = 29.5F;
 		}
 	}
 }

@@ -51,6 +51,7 @@
     "tofucraft:tofu_detector",
     "tofucraft:tf_storage",
     "tofucraft:antenna_basic",
-    "tofucraft:tofu_work_station"
+    "tofucraft:tofu_work_station",
+    "tofucraft:tofunian_statue"
   ]
 }
