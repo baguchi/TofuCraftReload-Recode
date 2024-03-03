@@ -58,9 +58,11 @@ public class TofuData extends SavedData {
 		if (nbt.contains("TravelerUUID", 8)) {
 			data.travelerUUID = UUID.fromString(nbt.getString("TravelerUUID"));
 		}
-		data.beatenDungeons.add(BoundingBox.CODEC.parse(NbtOps.INSTANCE, nbt.get("DungeonsBoxes")).resultOrPartial(TofuCraftReload.LOGGER::error).orElseThrow(() -> {
-			return new IllegalArgumentException("Invalid saved Dungeons boundingbox");
-		}));
+		if (nbt.contains("DungeonsBoxes")) {
+			data.beatenDungeons.add(BoundingBox.CODEC.parse(NbtOps.INSTANCE, nbt.get("DungeonsBoxes")).resultOrPartial(TofuCraftReload.LOGGER::error).orElseThrow(() -> {
+				return new IllegalArgumentException("Invalid saved Dungeons boundingbox");
+			}));
+		}
 		return data;
 	}
 
