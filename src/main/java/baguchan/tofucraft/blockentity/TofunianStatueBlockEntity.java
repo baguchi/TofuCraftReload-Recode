@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -26,6 +27,8 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 	public static final ResourceLocation LOOT_TABLE = new ResourceLocation(TofuCraftReload.MODID, "gameplay/tofunian_statue");
 	private int processTick;
 	private int cooldown;
+	private float happyScale;
+	private int happyTime;
 
 	public TofunianStatueBlockEntity(BlockPos pos, BlockState state) {
 		super(TofuBlockEntitys.TOFUNIAN_STATUE.get(), pos, state);
@@ -41,11 +44,13 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 						foodPlate.removeItem();
 						LootTable loottable = level.getServer().getLootData().getLootTable(LOOT_TABLE);
 
-						LootParams lootparams = (new LootParams.Builder((ServerLevel) level)).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(platePos)).create(LootContextParamSets.CHEST);
+						LootParams lootparams = (new LootParams.Builder((ServerLevel) level)).withLuck(statue.happyScale).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(platePos)).create(LootContextParamSets.CHEST);
 						ObjectArrayList<ItemStack> objectarraylist = loottable.getRandomItems(lootparams);
 						foodPlate.addAllItem(objectarraylist.get(0));
 						statue.processTick = 0;
 						statue.cooldown = 12000 + level.random.nextInt(12000);
+						statue.happyTime = statue.getCooldown() + 12000;
+						statue.happyScale += 0.5F;
 						level.playSound(null, platePos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS);
 					} else {
 						if (level.random.nextInt(4) == 0) {
@@ -53,6 +58,10 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 						}
 					}
 				} else {
+					if (--statue.happyTime < 0) {
+						statue.happyTime = 12000;
+						statue.happyScale = Mth.clamp(statue.happyScale - 0.25F, 0F, 5F);
+					}
 					statue.processTick = 0;
 				}
 			}
@@ -64,6 +73,8 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 		super.load(compound);
 		this.setProcessTick(compound.getInt("ProcessTick"));
 		this.setCooldown(compound.getInt("Cooldown"));
+		this.setHappyScale(compound.getFloat("HappyScale"));
+		this.setHappyTime(compound.getInt("HappyTime"));
 	}
 
 	@Override
@@ -71,6 +82,8 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 		super.saveAdditional(compound);
 		compound.putInt("ProcessTick", getProcessTick());
 		compound.putInt("Cooldown", getCooldown());
+		compound.putFloat("HappyScale", getHappyScale());
+		compound.putInt("HappyTime", getHappyTime());
 	}
 
 	public int getProcessTick() {
@@ -79,6 +92,22 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 
 	public void setProcessTick(int process) {
 		this.processTick = process;
+	}
+
+	public void setHappyScale(float happyScale) {
+		this.happyScale = happyScale;
+	}
+
+	public float getHappyScale() {
+		return happyScale;
+	}
+
+	public void setHappyTime(int happyTime) {
+		this.happyTime = happyTime;
+	}
+
+	public int getHappyTime() {
+		return happyTime;
 	}
 
 	public int getCooldown() {
