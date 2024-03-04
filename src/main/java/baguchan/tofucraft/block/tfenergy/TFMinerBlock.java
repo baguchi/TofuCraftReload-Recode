@@ -1,10 +1,9 @@
 package baguchan.tofucraft.block.tfenergy;
 
 import baguchan.tofucraft.blockentity.tfenergy.TFMinerBlockEntity;
-import baguchan.tofucraft.client.screen.TFMinerScreen;
+import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -65,7 +64,8 @@ public class TFMinerBlock extends BaseEntityBlock {
 			if (p_48709_ instanceof LocalPlayer localPlayer) {
 				BlockEntity blockentity = p_48707_.getBlockEntity(p_48708_);
 				if (blockentity instanceof TFMinerBlockEntity tfMinerBlock) {
-					Minecraft.getInstance().setScreen(new TFMinerScreen(tfMinerBlock));
+
+					ClientProxy.PROXY.setRefrencedTE(tfMinerBlock);
 				}
 			}
 			return InteractionResult.SUCCESS;

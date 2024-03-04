@@ -2,6 +2,7 @@ package baguchan.tofucraft.client.screen;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
+import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.inventory.TFStorageMenu;
 import baguchan.tofucraft.registry.TofuFluids;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -57,8 +58,8 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		int j = this.topPos;
 		p_230450_1_.blit(texture, i, j, 0, 0, this.imageWidth, this.imageHeight);
 
-		if (TofuCraftReload.PROXY.getRefrencedTE() instanceof TFStorageBlockEntity && ((TFStorageBlockEntity) TofuCraftReload.PROXY.getRefrencedTE()).getTank().getFluid() != null) {
-			FluidTank fluidTank = ((TFStorageBlockEntity) TofuCraftReload.PROXY.getRefrencedTE()).getTank();
+		if (ClientProxy.PROXY.getRefrencedTE() instanceof TFStorageBlockEntity && ((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank().getFluid() != null) {
+			FluidTank fluidTank = ((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank();
 			int heightInd = (int) (44.0F * fluidTank.getFluidAmount() / fluidTank.getCapacity());
 			if (heightInd > 0)
 				renderFluidStack(i + 145, j + 69 - heightInd, 10, heightInd, 0.0F, fluidTank.getFluid());

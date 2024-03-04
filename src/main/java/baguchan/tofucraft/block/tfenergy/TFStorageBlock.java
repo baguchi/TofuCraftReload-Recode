@@ -1,7 +1,7 @@
 package baguchan.tofucraft.block.tfenergy;
 
-import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
+import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
@@ -90,7 +90,7 @@ public class TFStorageBlock extends BaseEntityBlock {
 
 		if (!flag) {
 			if (p_48707_.isClientSide) {
-				TofuCraftReload.PROXY.setRefrencedTE(p_48707_.getBlockEntity(p_48708_));
+				ClientProxy.PROXY.setRefrencedTE(p_48707_.getBlockEntity(p_48708_));
 				return InteractionResult.SUCCESS;
 			} else {
 				this.openContainer(p_48707_, p_48708_, p_48709_);

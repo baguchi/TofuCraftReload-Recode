@@ -2,6 +2,7 @@ package baguchan.tofucraft.client.screen;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
+import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.inventory.SaltFurnaceMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
@@ -53,16 +54,16 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 		int l = this.menu.getBurnProgress();
 		p_230450_1_.blit(texture, i + 54, j + 54, 176, 14, l + 1, 16);
 		p_230450_1_.pose().pushPose();
-		if (TofuCraftReload.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity && ((SaltFurnaceBlockEntity) TofuCraftReload.PROXY.getRefrencedTE()).bitternTank.getFluid() != null) {
-			FluidTank fluidTank = ((SaltFurnaceBlockEntity) TofuCraftReload.PROXY.getRefrencedTE()).bitternTank;
+		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity && ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).bitternTank.getFluid() != null) {
+			FluidTank fluidTank = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).bitternTank;
 			int heightInd = (int) (44.0F * fluidTank.getFluidAmount() / fluidTank.getCapacity());
 			if (heightInd > 0)
 				renderFluidStack(i + 145, j + 69 - heightInd, 10, heightInd, 0.0F, fluidTank.getFluid());
 		}
 		p_230450_1_.pose().popPose();
 		p_230450_1_.pose().pushPose();
-		if (TofuCraftReload.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity && ((SaltFurnaceBlockEntity) TofuCraftReload.PROXY.getRefrencedTE()).waterTank.getFluid() != null) {
-			FluidTank fluidTank2 = ((SaltFurnaceBlockEntity) TofuCraftReload.PROXY.getRefrencedTE()).waterTank;
+		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity && ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).waterTank.getFluid() != null) {
+			FluidTank fluidTank2 = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).waterTank;
 			int heightInd2 = (int) (44.0F * fluidTank2.getFluidAmount() / fluidTank2.getCapacity());
 			if (heightInd2 > 0)
 				renderFluidStack(i + 158, j + 69 - heightInd2, 10, heightInd2, 0.0F, fluidTank2.getFluid());

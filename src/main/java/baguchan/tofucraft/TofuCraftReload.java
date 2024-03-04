@@ -1,7 +1,6 @@
 package baguchan.tofucraft;
 
 import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
-import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.event.CraftingEvents;
 import baguchan.tofucraft.network.SaltFurnaceBitternPacket;
@@ -64,8 +63,6 @@ public class TofuCraftReload {
 	public static final String MODID = "tofucraft";
 
 	public static final String NETWORK_PROTOCOL = "2";
-
-	public static ClientProxy PROXY = new ClientProxy();
 
 	public static final Logger LOGGER = LogManager.getLogger(TofuCraftReload.MODID);
 

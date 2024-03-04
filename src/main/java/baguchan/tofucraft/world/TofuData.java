@@ -4,7 +4,6 @@ import baguchan.tofucraft.TofuCraftReload;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.datafix.DataFixTypes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.saveddata.SavedData;
@@ -56,7 +55,7 @@ public class TofuData extends SavedData {
 			return new TofuData(p_300199_);
 		}, (p_296865_) -> {
 			return load(p_300199_, p_296865_);
-		}, DataFixTypes.SAVED_DATA_RAIDS);
+		});
 	}
 
 	public static TofuData load(ServerLevel p_300199_, CompoundTag nbt) {

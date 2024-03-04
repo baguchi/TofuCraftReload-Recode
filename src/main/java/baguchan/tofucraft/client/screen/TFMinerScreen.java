@@ -2,7 +2,6 @@ package baguchan.tofucraft.client.screen;
 
 import baguchan.tofucraft.blockentity.tfenergy.TFMinerBlockEntity;
 import baguchan.tofucraft.network.SetTFMinerBlockPacket;
-import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -33,7 +32,7 @@ public class TFMinerScreen extends Screen {
 	private final DecimalFormat decimalFormat = new DecimalFormat("0.0###");
 
 	public TFMinerScreen(TFMinerBlockEntity p_99398_) {
-		super(Component.translatable(TofuBlocks.TF_MINER.get().getDescriptionId()));
+		super(Component.translatable("block.tofucraft.tf_miner"));
 		this.tfMiner = p_99398_;
 		this.decimalFormat.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
 	}

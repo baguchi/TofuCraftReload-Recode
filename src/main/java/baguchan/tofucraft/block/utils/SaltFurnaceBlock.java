@@ -1,7 +1,7 @@
 package baguchan.tofucraft.block.utils;
 
-import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
+import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
@@ -79,7 +79,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 
 		if (!flag) {
 			if (level.isClientSide) {
-				TofuCraftReload.PROXY.setRefrencedTE(level.getBlockEntity(pos));
+				ClientProxy.PROXY.setRefrencedTE(level.getBlockEntity(pos));
 				return InteractionResult.SUCCESS;
 			} else {
 				this.openContainer(level, pos, player);
