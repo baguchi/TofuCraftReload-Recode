@@ -33,9 +33,11 @@ import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
+import baguchan.tofucraft.registry.TofuRecipeBookTypes;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
 import com.google.common.collect.Maps;
+import com.google.common.reflect.Reflection;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
@@ -134,6 +136,7 @@ public class TofuCraftReload {
 			map.putAll(Map.copyOf(MultiNoiseBiomeSourceParameterList.Preset.BY_NAME));
 			map.put(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), TofuBiomeSources.TOFU_WORLD_PRESET);
 			MultiNoiseBiomeSourceParameterList.Preset.BY_NAME = map;
+			Reflection.initialize(TofuRecipeBookTypes.class);
 
 			TofuBlockSetTypes.init();
 			TofuAdvancements.init();

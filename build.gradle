@@ -20,7 +20,7 @@ mixin {
     add sourceSets.main, "tofucraft.refmap.json"
 }
 
-version = '1.20.1-5.10.1.2'
+version = '1.20.1-5.10.2.0'
 group = 'baguchan.tofucraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'TofuCraftReload'
 
@@ -142,11 +142,11 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.neoforged:forge:1.20.1-47.1.55'
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-    compileOnly(fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.2.0.25"))
-    compileOnly(fg.deobf("mezz.jei:jei-1.20.1-common-api:15.2.0.25"))
-    runtimeOnly(fg.deobf("mezz.jei:jei-1.20.1-forge:15.2.0.25"))
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-81-FORGE:api")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-81-FORGE")
+    compileOnly(fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.3.0.4"))
+    compileOnly(fg.deobf("mezz.jei:jei-1.20.1-common-api:15.3.0.4"))
+    runtimeOnly(fg.deobf("mezz.jei:jei-1.20.1-forge:15.3.0.4"))
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE")
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
     // compile "some.group:artifact:version"

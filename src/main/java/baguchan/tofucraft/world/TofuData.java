@@ -30,11 +30,10 @@ public class TofuData extends SavedData {
 	}
 
 	public static TofuData get(Level world) {
-		if (world instanceof ServerLevel) {
-			ServerLevel overworld = world.getServer().getLevel(world.dimension());
-			TofuData fromMap = dataMap.get(overworld);
+		if (world instanceof ServerLevel serverLevel) {
+			TofuData fromMap = dataMap.get(serverLevel);
 			if (fromMap == null) {
-				DimensionDataStorage storage = overworld.getDataStorage();
+				DimensionDataStorage storage = serverLevel.getDataStorage();
 				TofuData data = storage.computeIfAbsent(TofuData::load, TofuData::new, IDENTIFIER);
 				if (data != null) {
 					data.setDirty();

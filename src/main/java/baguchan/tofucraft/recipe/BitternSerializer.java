@@ -35,7 +35,7 @@ public class BitternSerializer implements RecipeSerializer<BitternRecipe> {
 
 			final FluidIngredient fluid = FluidIngredient.fromNetwork(buf);
 			final Ingredient ingredient = Ingredient.fromNetwork(buf);
-			ItemStack results = buf.readItem();
+			final ItemStack results = buf.readItem();
 
 			return new BitternRecipe(id, fluid, ingredient, results);
 		} catch (final Exception e) {

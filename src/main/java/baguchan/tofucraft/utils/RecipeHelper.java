@@ -47,12 +47,12 @@ public class RecipeHelper {
 
 		if (fluid != null) {
 			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
-				return recipe.getType() == TofuRecipes.RECIPETYPE_BITTERN.get();
+				return recipe instanceof BitternRecipe bittern && bittern.getType() == TofuRecipes.RECIPETYPE_BITTERN.get();
 			});
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe instanceof BitternRecipe bitternRecipe && ((BitternRecipe) recipe).getFluid().test(new FluidStack(fluid, 1000))) {
+				if (recipe instanceof BitternRecipe bitternRecipe && bitternRecipe.getFluid().test(new FluidStack(fluid, 1000))) {
 					if (bitternRecipe.getIngredient().test(itemStack)) {
-						return ((BitternRecipe) recipe).getResultItem(serverLevel.registryAccess());
+						return bitternRecipe.getResultItem(serverLevel.registryAccess());
 					}
 				}
 			}
