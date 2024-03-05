@@ -22,6 +22,7 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuCarvers;
 import baguchan.tofucraft.registry.TofuCreativeModeTabs;
 import baguchan.tofucraft.registry.TofuEffects;
+import baguchan.tofucraft.registry.TofuEnchantments;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuFeatures;
 import baguchan.tofucraft.registry.TofuFluidTypes;
@@ -107,6 +108,7 @@ public class TofuCraftReload {
 		TofuEffects.MOB_EFFECTS.register(modBus);
 		TofuFluidTypes.FLUID_TYPES.register(modBus);
 		TofuFluids.FLUIDS.register(modBus);
+		TofuEnchantments.DEFERRED_REGISTRY_ENCHANTMET.register(modBus);
 		TofuCreativeModeTabs.CREATIVE_MODE_TABS.register(modBus);
 
 		TofuPoiTypes.POI_TYPES.register(modBus);
@@ -120,7 +122,6 @@ public class TofuCraftReload {
 		TofuFeatures.FEATURES.register(modBus);
 		TofuSounds.SOUND_EVENTS.register(modBus);
 		TofuParticleTypes.PARTICLE_TYPES.register(modBus);
-
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 
 

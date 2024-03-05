@@ -50,7 +50,7 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 						statue.processTick = 0;
 						statue.cooldown = 12000 + level.random.nextInt(12000);
 						statue.happyTime = statue.getCooldown() + 12000;
-						statue.happyScale += 0.5F;
+						statue.happyScale = Mth.clamp(statue.happyScale + 1F, 0F, 5F);
 						level.playSound(null, platePos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS);
 					} else {
 						if (level.random.nextInt(4) == 0) {
