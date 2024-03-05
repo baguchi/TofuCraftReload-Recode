@@ -1,13 +1,13 @@
 package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
-import baguchan.tofucraft.registry.TofuItemTier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.Tier;
 
 public class TofuShovelItem extends ShovelItem implements IEnergyInsertable {
-	public TofuShovelItem(TofuItemTier tofuItemTier, float daamge, float speed, Properties properties) {
+	public TofuShovelItem(Tier tofuItemTier, float daamge, float speed, Properties properties) {
 		super(tofuItemTier, daamge, speed, properties);
 	}
 

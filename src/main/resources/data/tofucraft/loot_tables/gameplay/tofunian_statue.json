@@ -6,8 +6,8 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 20,
-          "quality": 2,
+          "weight": 2,
+          "quality": 1,
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
@@ -19,8 +19,8 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 20,
-          "quality": 2,
+          "weight": 2,
+          "quality": 1,
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
@@ -32,8 +32,8 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 20,
-          "quality": 2,
+          "weight": 2,
+          "quality": 1,
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
@@ -45,8 +45,8 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 20,
-          "quality": 2,
+          "weight": 2,
+          "quality": 1,
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
@@ -58,7 +58,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "weight": 2,
           "quality": 1,
           "functions": [
             {
@@ -71,7 +71,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "weight": 2,
           "quality": 1,
           "functions": [
             {
@@ -84,7 +84,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "weight": 2,
           "quality": 1,
           "functions": [
             {
@@ -97,7 +97,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "weight": 2,
           "quality": 1,
           "functions": [
             {
@@ -110,7 +110,23 @@
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "enchantments": [
+                "tofucraft:batch",
+                "tofucraft:drain"
+              ],
+              "function": "minecraft:enchant_randomly"
+            }
+          ],
+          "name": "minecraft:book",
+          "weight": 2,
+          "quality": 4
+        },
+        {
+          "type": "minecraft:item",
           "weight": 5,
+          "quality": -1,
           "name": "tofucraft:zundaruby",
           "functions": [
             {

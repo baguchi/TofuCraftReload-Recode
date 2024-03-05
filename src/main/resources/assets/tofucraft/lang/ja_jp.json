@@ -646,5 +646,7 @@
   "trim_material.tofucraft.tofu_metal": "鋼豆腐製装飾",
   "trim_material.tofucraft.zunda_ruby": "ずんだルビー製装飾",
   "upgrade.tofucraft.tofu_upgrade": "金剛豆腐強化",
-  "upgrade.tofucraft.zunda_upgrade": "ずんだ強化"
+  "upgrade.tofucraft.zunda_upgrade": "ずんだ強化",
+  "enchantment.tofucraft.batch": "一括採掘",
+  "enchantment.tofucraft.drain": "吸収"
 }

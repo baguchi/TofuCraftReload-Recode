@@ -646,5 +646,7 @@
   "trim_material.tofucraft.zunda_ruby" : "Zunda Ruby Material",
   "tofucraft.has_comfort" : "Has Comfort",
   "tofucraft.has_nourishment": "Has Nourishment",
-  "tofucraft.tfminer.button.start_mining": "Start or Stop Mining"
+  "tofucraft.tfminer.button.start_mining": "Start or Stop Mining",
+  "enchantment.tofucraft.batch": "Batch",
+  "enchantment.tofucraft.drain": "Drain"
 }
