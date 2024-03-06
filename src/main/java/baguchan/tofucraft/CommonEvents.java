@@ -6,6 +6,7 @@ import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuDimensions;
+import baguchan.tofucraft.registry.TofuEnchantments;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuStructures;
@@ -24,6 +25,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -33,6 +35,7 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -51,6 +54,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.living.ShieldBlockEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -404,6 +408,15 @@ public class CommonEvents {
 					level.removeBlock(pos, false);
 					event.setCancellationResult(InteractionResult.SUCCESS);
 				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPotionEffectApplied(MobEffectEvent.Applicable event) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.HARMFUL) {
+			if (EnchantmentHelper.getEnchantmentLevel(TofuEnchantments.EFFECT_PROTECTION.get(), event.getEntity()) > 0) {
+				event.setResult(Event.Result.DENY);
 			}
 		}
 	}

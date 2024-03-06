@@ -114,7 +114,8 @@
             {
               "enchantments" : [
                 "tofucraft:batch",
-                "tofucraft:drain"
+                "tofucraft:drain",
+                "tofucraft:effect_protection"
               ],
               "function" : "minecraft:enchant_randomly"
             }
