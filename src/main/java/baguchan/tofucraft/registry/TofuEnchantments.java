@@ -26,7 +26,7 @@ public class TofuEnchantments {
 		return item instanceof TofuSwordItem sword && sword.getTier() == TofuItemTier.TOFUDIAMOND;
 	});
 	public static final EnchantmentCategory TOFU_DIAMOND_ARMOR_CATEGORY = EnchantmentCategory.create("tofu_diamond_armor", (item) -> {
-		return item instanceof TofuArmorItem sword && sword.getMaterial() == TofuArmorMaterial.DIAMOND;
+		return item instanceof TofuArmorItem sword && (sword.getMaterial() == TofuArmorMaterial.DIAMOND || sword.getMaterial() == TofuArmorMaterial.SCULK_BONE);
 	});
 
 	public static final Supplier<Enchantment> BATCH = ENCHANTMENT.register("batch", () -> new BatchEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlot.MAINHAND));
