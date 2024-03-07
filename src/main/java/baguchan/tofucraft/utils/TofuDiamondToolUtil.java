@@ -219,6 +219,7 @@ public class TofuDiamondToolUtil {
 					block.popExperience(serverLevel, pos, xp);
 			}
 
+			//send breaking block update
 			if (((ServerPlayer) player).connection != null) {
 				((ServerPlayer) player).connection.send(new ClientboundBlockUpdatePacket(level, pos));
 			}
@@ -236,6 +237,7 @@ public class TofuDiamondToolUtil {
 
 			ClientPacketListener netHandlerPlayClient = Minecraft.getInstance().getConnection();
 			assert netHandlerPlayClient != null;
+			//send player action update
 			netHandlerPlayClient.send(new ServerboundPlayerActionPacket(ServerboundPlayerActionPacket.Action.STOP_DESTROY_BLOCK, pos, Minecraft
 					.getInstance().cameraEntity.getDirection()));
 		}
