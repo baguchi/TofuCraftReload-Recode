@@ -1,0 +1,17 @@
+{
+  "name": "豆腐ガンドレム",
+  "advancement": "tofucraft:tofucraft/find_tofu_castle",
+  "icon": "tofucraft:tofu_terrain",
+  "category": "tofucraft:strange_soy_magic",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "tofucraft:tofu_gandlem"
+    },
+    {
+      "type": "text",
+      "text": "このゴーレムは少々奇妙だ。$(br2)トーフニアンの脅威は、いないといっても過言ではないし、$(br2)famrlandを荒らす豆腐スライムぐらいだろう。$(br2)しかし、敵対をするのはなぜ・・・？$(br2)"
+    }
+  ]
+}
