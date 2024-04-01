@@ -1,8 +1,0 @@
-{
-  "type" : "minecraft:stonecutting",
-  "count" : 2,
-  "ingredient" : {
-    "item" : "tofucraft:tofuzunda_brick"
-  },
-  "result" : "tofucraft:tofustair_zundabrick"
-}

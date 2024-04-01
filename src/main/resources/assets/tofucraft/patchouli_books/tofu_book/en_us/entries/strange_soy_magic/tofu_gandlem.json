@@ -1,0 +1,17 @@
+{
+  "name" : "TofuGandlem",
+  "advancement" : "tofucraft:tofucraft/find_tofu_castle",
+  "icon" : "tofucraft:tofu_terrain",
+  "category" : "tofucraft:strange_soy_magic",
+  "priority" : true,
+  "pages" : [
+    {
+      "type" : "patchouli:entity",
+      "entity" : "tofucraft:tofu_gandlem"
+    },
+    {
+      "type" : "text",
+      "text" : "This golem is a little strange.$(br2) It's no exaggeration to say that there is no threat to the Tofunians,$(br2) and the only threat is the tofu slime that ravages famrland.$(br2)But why are they hostile?$(br2)"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "#" : {
+      "item" : "tofucraft:seeds_soybeans_soul"
+    }
+  },
+  "pattern" : [
+    "###",
+    "###",
+    "###"
+  ],
+  "result" : {
+    "item" : "tofucraft:seeds_soybeans_soul_block"
+  },
+  "show_notification" : true
+}

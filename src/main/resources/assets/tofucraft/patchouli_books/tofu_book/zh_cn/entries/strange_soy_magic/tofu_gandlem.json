@@ -1,0 +1,17 @@
+{
+  "name" : "豆腐战神",
+  "advancement" : "tofucraft:tofucraft/find_tofu_castle",
+  "icon" : "tofucraft:tofu_terrain",
+  "category" : "tofucraft:strange_soy_magic",
+  "priority" : true,
+  "pages" : [
+    {
+      "type" : "patchouli:entity",
+      "entity" : "tofucraft:tofu_gandlem"
+    },
+    {
+      "type" : "text",
+      "text" : "这个傀儡有些奇妙。$(br2)毫不夸张的说，对豆腐村民的唯一威胁是$(br2)会践踏他们的农田。$(br2)但是为什么对玩家充满敌意・・・？$(br2)"
+    }
+  ]
+}

@@ -1,8 +1,0 @@
-{
-  "type" : "minecraft:stonecutting",
-  "count" : 2,
-  "ingredient" : {
-    "item" : "tofucraft:tofuegg_brick"
-  },
-  "result" : "tofucraft:tofustair_eggbrick"
-}

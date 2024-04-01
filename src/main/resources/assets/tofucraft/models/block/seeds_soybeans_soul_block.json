@@ -1,0 +1,9 @@
+{
+  "parent" : "block/orientable",
+  "textures" : {
+    "top" : "tofucraft:block/seeds_soybeans_soul_block",
+    "front" : "tofucraft:block/leather_bag",
+    "side" : "tofucraft:block/leather_bag",
+    "bottom" : "tofucraft:block/leather_bag_bottom"
+  }
+}

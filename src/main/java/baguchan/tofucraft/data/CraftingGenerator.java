@@ -10,9 +10,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
@@ -223,10 +221,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuItems.TOFUGEM.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.TOFUGEM.get(), 9)
-				.requires(TofuBlocks.TOFU_GEM_BLOCK.get())
-				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
-				.save(consumer, prefix("revert_to_tofu_gem"));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.ZUNDAMA_BLOCK.get())
 				.pattern("###")
@@ -258,15 +252,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.DRIEDTOFU, TofuItems.TOFUDRIED);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.TOFUEGG.get(), 4)
-				.requires(Items.EGG)
+				.requires(Tags.Items.EGGS)
 				.requires(TofuItems.BOTTLE_DASHI.get())
 				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
 				.save(consumer);
-		//ポーションのレシピはうまく指定できないため別の方法で
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.YUDOFU.get(), 1)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(Items.BOWL)
-				.requires(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER)))
+				.requires(potion(Potions.WATER))
 				.unlockedBy("has_item", has(TofuItems.TOFUKINU.get()))
 				.save(consumer);
 
@@ -377,8 +370,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
-		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
-		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_MISO, TofuBlocks.MISOTOFU);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_DRIED, TofuBlocks.DRIEDTOFU);
 
@@ -393,8 +384,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
-		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
-		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_MISO, TofuBlocks.MISOTOFU);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_DRIED, TofuBlocks.DRIEDTOFU);
 
@@ -462,17 +451,22 @@ public class CraftingGenerator extends CraftingDataHelper {
 		buildingTofuBlockItem(consumer, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU);
 		buildingTofuBlockItem(consumer, TofuBlocks.SOULTOFU_SMOOTH_BRICK, TofuBlocks.SOULTOFU_BRICK);
 
-		buildingTofuBlockItem(consumer, TofuBlocks.ZUNDATOFU_BRICK, TofuBlocks.ZUNDATOFU);
-		buildingTofuBlockItem(consumer, TofuBlocks.ZUNDATOFU_SMOOTH_BRICK, TofuBlocks.ZUNDATOFU_BRICK);
-
-		cuttingRecipe(consumer, TofuBlocks.ZUNDATOFU_BRICK, TofuBlocks.ZUNDATOFU_SMOOTH_BRICK, 2);
-
-		buildingTofuBlockItem(consumer, TofuBlocks.EGGTOFU_BRICK, TofuBlocks.EGGTOFU);
-
 		cuttingRecipe(consumer, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU_SMOOTH_BRICK, 2);
 		cuttingRecipe(consumer, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU_SMOOTH_BRICK, 2);
 		tofuBlockItem(consumer, TofuBlocks.MINCEDTOFU, TofuItems.TOFU_MINCED);
 
+		tofuBlockItem(consumer, TofuBlocks.EGGTOFU, TofuItems.TOFUEGG);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_EGG, TofuBlocks.EGGTOFU);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_EGG, TofuBlocks.EGGTOFU);
+
+		buildingTofuBlockItem(consumer, TofuBlocks.EGGTOFU_BRICK, TofuBlocks.EGGTOFU);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
+
+		buildingTofuBlockItem(consumer, TofuBlocks.ZUNDATOFU_BRICK, TofuBlocks.ZUNDATOFU);
+		buildingTofuBlockItem(consumer, TofuBlocks.ZUNDATOFU_SMOOTH_BRICK, TofuBlocks.ZUNDATOFU_BRICK);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, TofuItems.TOFUZUNDA.get(), 1)
 				.requires(TofuItems.ZUNDA.get())
@@ -493,7 +487,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeFenceGate(consumer, TofuBlocks.TOFU_STEM_FENCE_GATE.get(), TofuBlocks.TOFU_STEM_PLANKS.get());
 		makeDoor(consumer, TofuBlocks.TOFU_STEM_DOOR, TofuBlocks.TOFU_STEM_PLANKS);
 		makeTrapdoor(consumer, TofuBlocks.TOFU_STEM_TRAPDOOR, TofuBlocks.TOFU_STEM_PLANKS);
-
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, TofuBlocks.LEEK_PLANKS.get(), 4)
 				.requires(TofuBlocks.LEEK_STEM.get())
@@ -539,7 +532,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.BOTTLE_DASHI.get(), 1)
-				.requires(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER)))
+				.requires(potion(Potions.WATER))
 				.requires(Items.DRIED_KELP)
 				.unlockedBy("has_item", has(Items.KELP))
 				.save(consumer);
@@ -821,7 +814,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
 				.save(consumer);
 
-
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.CRIMSON_BOTTLE.get(), 3)
 				.requires(TofuItems.SHROOM_BOTTLE.get())
 				.requires(Items.CRIMSON_FUNGUS)
@@ -838,7 +830,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.GLASS_BOTTLE)
 				.unlockedBy("has_item", has(TofuItems.SHROOM_BOTTLE.get()))
 				.save(consumer);
-
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.KINAKO_MANJU.get(), 2)
 				.requires(TofuItems.KINAKO.get())
@@ -1256,10 +1247,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Items.CLAY_BALL))
 				.save(consumer);
 
-		tofuBlockItem(consumer, TofuBlocks.EGGTOFU, TofuItems.TOFUEGG);
-		makeStairs(consumer, TofuBlocks.TOFUSTAIR_EGG, TofuBlocks.EGGTOFU);
-		makeSlab(consumer, TofuBlocks.TOFUSLAB_EGG, TofuBlocks.EGGTOFU);
-
 		tofuBlockItem(consumer, TofuBlocks.SESAMETOFU, TofuItems.TOFUSESAME);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_SESAME, TofuBlocks.SESAMETOFU);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_SESAME, TofuBlocks.SESAMETOFU);
@@ -1299,6 +1286,46 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.RICE.get(), 9)
 				.requires(TofuTags.Items.RICE_BLOCK)
 				.unlockedBy("has_item", has(TofuTags.Items.RICE_BLOCK))
+				.save(consumer);
+
+		//soy beans
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SOYBEANS_SEEDS_BLOCK.get())
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.SEEDS_SOYBEANS.get())
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.SEEDS_SOYBEANS.get(), 9)
+				.requires(TofuBlocks.SOYBEANS_SEEDS_BLOCK.get())
+				.unlockedBy("has_item", has(TofuBlocks.SOYBEANS_SEEDS_BLOCK.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get())
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.SEEDS_SOYBEANS_NETHER.get())
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.SEEDS_SOYBEANS_NETHER.get(), 9)
+				.requires(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get())
+				.unlockedBy("has_item", has(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get())
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.SEEDS_SOYBEANS_SOUL.get())
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.SEEDS_SOYBEANS_SOUL.get(), 9)
+				.requires(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get())
+				.unlockedBy("has_item", has(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get()))
 				.save(consumer);
 
 		// kinako_bread
@@ -1564,6 +1591,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('C', TofuItems.TF_CIRCUIT.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
+
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.ANTENNA_BASIC.get())
 				.pattern(" P ")
 				.pattern("LOR")
@@ -1584,7 +1613,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('C', TofuItems.TF_CAPACITOR.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
-
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuItems.TOFU_CORE.get())
 				.pattern("MTM")
 				.pattern("RTC")
@@ -1595,7 +1623,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('R', TofuItems.TF_CAPACITOR.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
-
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TOFU_WORK_STATION.get())
 				.pattern("MM")
 				.pattern("TT")
@@ -1604,7 +1631,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('M', TofuItems.TOFUMETAL.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
-
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SALT_BLOCK.get())
 				.pattern("SSS")
 				.pattern("SSS")

@@ -3,6 +3,7 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.nbt.CompoundTag;
@@ -12,6 +13,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -19,6 +21,7 @@ import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.SignBlock;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.CompoundIngredient;
+import net.minecraftforge.common.crafting.PartialNBTIngredient;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -39,6 +42,14 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.define('P', planksIn.get())
 				.define('/', Tags.Items.RODS_WOODEN)
 				.unlockedBy("has_" + ForgeRegistries.BLOCKS.getKey(planksIn.get()).getPath(), has(planksIn.get()));
+	}
+
+	public final PartialNBTIngredient potion(Potion potion) {
+		CompoundTag nbt = new CompoundTag();
+		nbt.putString("Potion", BuiltInRegistries.POTION.getKey(potion).toString());
+
+
+		return PartialNBTIngredient.of(nbt, Items.POTION);
 	}
 
 	protected ShapedRecipeBuilder makeHangingSign(Supplier<? extends CeilingHangingSignBlock> result, Supplier<? extends Block> log) {

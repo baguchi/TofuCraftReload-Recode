@@ -100,13 +100,29 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFU_GEM_BLOCK.get());
 		registerTofuDrop(TofuBlocks.GRILLEDTOFU.get(), TofuItems.TOFUGRILLED.get());
 		registerTofuDrop(TofuBlocks.ZUNDATOFU.get(), TofuItems.TOFUZUNDA.get());
+
+		dropSelf(TofuBlocks.ZUNDATOFU_BRICK.get());
+		dropSelf(TofuBlocks.ZUNDATOFU_SMOOTH_BRICK.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_ZUNDABRICK.get());
+		registerSlab(TofuBlocks.TOFUSLAB_ZUNDABRICK.get());
+
 		registerTofuDrop(TofuBlocks.HELLTOFU.get(), TofuItems.TOFUHELL.get());
 		registerTofuDrop(TofuBlocks.SOULTOFU.get(), TofuItems.TOFUSOUL.get());
 		registerTofuDrop(TofuBlocks.MISOTOFU.get(), TofuItems.TOFUMISO.get());
 		registerTofuDrop(TofuBlocks.DRIEDTOFU.get(), TofuItems.TOFUDRIED.get());
-		dropSelf(TofuBlocks.ZUNDATOFU_BRICK.get());
-		dropSelf(TofuBlocks.ZUNDATOFU_SMOOTH_BRICK.get());
+
+		registerTofuDrop(TofuBlocks.EGGTOFU.get(), TofuItems.TOFUEGG.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_EGG.get());
+		registerSlab(TofuBlocks.TOFUSLAB_EGG.get());
+
 		dropSelf(TofuBlocks.EGGTOFU_BRICK.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_EGGBRICK.get());
+		registerSlab(TofuBlocks.TOFUSLAB_EGGBRICK.get());
+
+		registerTofuDrop(TofuBlocks.SESAMETOFU.get(), TofuItems.TOFUSESAME.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_SESAME.get());
+		registerSlab(TofuBlocks.TOFUSLAB_SESAME.get());
+
 		dropSelf(TofuBlocks.HELLTOFU_BRICK.get());
 		dropSelf(TofuBlocks.HELLTOFU_SMOOTH_BRICK.get());
 		dropSelf(TofuBlocks.SOULTOFU_BRICK.get());
@@ -124,8 +140,6 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFUSTAIR_ISHIBRICK.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_HELLBRICK.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_SOULBRICK.get());
-		dropSelf(TofuBlocks.TOFUSTAIR_ZUNDABRICK.get());
-		dropSelf(TofuBlocks.TOFUSTAIR_EGGBRICK.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_MISO.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_DRIED.get());
 
@@ -135,8 +149,6 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerSlab(TofuBlocks.TOFUSLAB_METAL.get());
 		registerSlab(TofuBlocks.TOFUSLAB_GRILLED.get());
 		registerSlab(TofuBlocks.TOFUSLAB_ZUNDA.get());
-		registerSlab(TofuBlocks.TOFUSLAB_ZUNDABRICK.get());
-		registerSlab(TofuBlocks.TOFUSLAB_EGGBRICK.get());
 		registerSlab(TofuBlocks.TOFUSLAB_HELL.get());
 		registerSlab(TofuBlocks.TOFUSLAB_SOUL.get());
 		registerSlab(TofuBlocks.TOFUSLAB_ISHIBRICK.get());
@@ -178,13 +190,13 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFUTORCH_METAL.get());
 		dropSelf(TofuBlocks.TOFUTORCH_GRILLED.get());
 		dropSelf(TofuBlocks.TOFUTORCH_ZUNDA.get());
+
 		dropSelf(TofuBlocks.WALLTOFUTORCH_KINU.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_MOMEN.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_ISHI.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_METAL.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_GRILLED.get());
 		dropSelf(TofuBlocks.WALLTOFUTORCH_ZUNDA.get());
-
 		dropSelf(TofuBlocks.TOFULADDER_KINU.get());
 		dropSelf(TofuBlocks.TOFULADDER_MOMEN.get());
 		dropSelf(TofuBlocks.TOFULADDER_ISHI.get());
@@ -213,9 +225,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerSlab(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get());
 		dropSelf(TofuBlocks.LEEK_GREEN_FENCE.get());
 		dropSelf(TofuBlocks.LEEK_GREEN_FENCE_GATE.get());
-		this.add(TofuBlocks.LEEK_GREEN_TRAPDOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
-		dropSelf(TofuBlocks.LEEK_GREEN_DOOR.get());
-
+		this.add(TofuBlocks.LEEK_GREEN_DOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		dropSelf(TofuBlocks.LEEK_GREEN_TRAPDOOR.get());
 
 		dropSelf(TofuBlocks.LEEK_STEM.get());
 		dropSelf(TofuBlocks.LEEK_PLANKS.get());
@@ -223,6 +234,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerSlab(TofuBlocks.LEEK_PLANKS_SLAB.get());
 		dropSelf(TofuBlocks.LEEK_FENCE.get());
 		dropSelf(TofuBlocks.LEEK_FENCE_GATE.get());
+
 
 		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
 
@@ -232,8 +244,9 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerSlab(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get());
 		dropSelf(TofuBlocks.TOFU_STEM_FENCE.get());
 		dropSelf(TofuBlocks.TOFU_STEM_FENCE_GATE.get());
-		this.add(TofuBlocks.TOFU_STEM_TRAPDOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
-		dropSelf(TofuBlocks.TOFU_STEM_DOOR.get());
+		this.add(TofuBlocks.TOFU_STEM_DOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		dropSelf(TofuBlocks.TOFU_STEM_TRAPDOOR.get());
+
 
 		this.dropOther(TofuBlocks.LEEK.get(), TofuItems.LEEK.get());
 
@@ -246,6 +259,10 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.ZUNDAMA_BLOCK.get());
 
 		dropSelf(TofuBlocks.RICE_BLOCK.get());
+		dropSelf(TofuBlocks.SOYBEANS_SEEDS_BLOCK.get());
+		dropSelf(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get());
+		dropSelf(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get());
+		dropSelf(TofuBlocks.SALT_BLOCK.get());
 
 		LootItemCondition.Builder lootitemcondition$builder5 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WeightBaseBlock.Stat.USED));
 
@@ -272,13 +289,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 			return createSinglePropConditionTable(p_124233_, BedBlock.PART, BedPart.HEAD);
 		});
 		dropSelf(TofuBlocks.TOFUCHEST.get());
-		registerTofuDrop(TofuBlocks.EGGTOFU.get(), TofuItems.TOFUEGG.get());
-		dropSelf(TofuBlocks.TOFUSTAIR_EGG.get());
-		registerSlab(TofuBlocks.TOFUSLAB_EGG.get());
 
-		registerTofuDrop(TofuBlocks.SESAMETOFU.get(), TofuItems.TOFUSESAME.get());
-		dropSelf(TofuBlocks.TOFUSTAIR_SESAME.get());
-		registerSlab(TofuBlocks.TOFUSLAB_SESAME.get());
 		registerEmpty(TofuBlocks.YUBA.get());
 		registerEmpty(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 		dropSelf(TofuBlocks.TOFU_STEM_SIGN.get());
@@ -305,7 +316,6 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TF_STORAGE.get());
 		dropSelf(TofuBlocks.ANTENNA_BASIC.get());
 		dropSelf(TofuBlocks.TOFU_WORK_STATION.get());
-		dropSelf(TofuBlocks.SALT_BLOCK.get());
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {
