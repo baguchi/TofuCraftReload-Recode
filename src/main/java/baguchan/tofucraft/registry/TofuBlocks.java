@@ -1,6 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.block.BagBlock;
 import baguchan.tofucraft.block.BurnableRotatedPillarBlock;
 import baguchan.tofucraft.block.CandleTofuCakeBlock;
 import baguchan.tofucraft.block.FallFoodBlock;
@@ -446,6 +447,26 @@ public class TofuBlocks {
 					.sound(SoundType.GRASS)
 					.noOcclusion())
 	);
+	public static final Supplier<Block> SOYBEANS_SEEDS_BLOCK = register("seeds_soybeans_block",
+			() -> new BagBlock(BlockBehaviour.Properties.of()
+					.strength(1.0F)
+					.sound(SoundType.WOOL)
+					.noOcclusion())
+	);
+	public static final Supplier<Block> NETHER_SOYBEANS_SEEDS_BLOCK = register("seeds_soybeans_nether_block",
+			() -> new BagBlock(BlockBehaviour.Properties.of()
+					.strength(1.0F)
+					.sound(SoundType.WOOL)
+					.noOcclusion())
+	);
+
+	public static final Supplier<Block> SOUL_SOYBEANS_SEEDS_BLOCK = register("seeds_soul_soybeans_block",
+			() -> new BagBlock(BlockBehaviour.Properties.of()
+					.strength(1.0F)
+					.sound(SoundType.WOOL)
+					.noOcclusion())
+	);
+
 
 	public static final Supplier<FlowerPotBlock> POTTED_LEEK = BLOCKS.register("potted_leek", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, LEEK, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 

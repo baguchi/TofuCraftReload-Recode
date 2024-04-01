@@ -1305,6 +1305,46 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuTags.Items.RICE_BLOCK))
 				.save(consumer);
 
+		//soy beans
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SOYBEANS_SEEDS_BLOCK.get())
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.SEEDS_SOYBEANS.get())
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.SEEDS_SOYBEANS.get(), 9)
+				.requires(TofuItems.SEEDS_SOYBEANS.get())
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get())
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.SEEDS_SOYBEANS_NETHER.get())
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.SEEDS_SOYBEANS_NETHER.get(), 9)
+				.requires(TofuItems.SEEDS_SOYBEANS_NETHER.get())
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get())
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.SEEDS_SOYBEANS_SOUL.get())
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.SEEDS_SOYBEANS_SOUL.get(), 9)
+				.requires(TofuItems.SEEDS_SOYBEANS_SOUL.get())
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL.get()))
+				.save(consumer);
+
 		// kinako_bread
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.KINAKO_BREAD.get(), 3)
 				.requires(TofuItems.KINAKO.get())
