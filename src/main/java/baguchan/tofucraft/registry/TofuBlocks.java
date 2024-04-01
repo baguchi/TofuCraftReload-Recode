@@ -460,7 +460,7 @@ public class TofuBlocks {
 					.noOcclusion())
 	);
 
-	public static final Supplier<Block> SOUL_SOYBEANS_SEEDS_BLOCK = register("seeds_soul_soybeans_block",
+	public static final Supplier<Block> SOUL_SOYBEANS_SEEDS_BLOCK = register("seeds_soybeans_soul_block",
 			() -> new BagBlock(BlockBehaviour.Properties.of()
 					.strength(1.0F)
 					.sound(SoundType.WOOL)

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tofucraft:seeds_soul_soybeans_block"
+          "name": "tofucraft:seeds_soybeans_soul_block"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "tofucraft:blocks/seeds_soul_soybeans_block"
+  "random_sequence": "tofucraft:blocks/seeds_soybeans_soul_block"
 }

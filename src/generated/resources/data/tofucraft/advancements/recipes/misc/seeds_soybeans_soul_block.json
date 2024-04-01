@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:seeds_soul_soybeans_block"
+        "recipe": "tofucraft:seeds_soybeans_soul_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:seeds_soul_soybeans_block"
+      "tofucraft:seeds_soybeans_soul_block"
     ]
   }
 }

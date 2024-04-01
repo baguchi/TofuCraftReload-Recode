@@ -520,6 +520,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 		itemBlockFlat(TofuBlocks.ANTENNA_BASIC);
 
 		toBlock(TofuBlocks.SALT_BLOCK);
+		toBlock(TofuBlocks.SOYBEANS_SEEDS_BLOCK);
+		toBlock(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK);
+		toBlock(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK);
 	}
 
 	public void sign(Supplier<? extends SignBlock> sign) {
