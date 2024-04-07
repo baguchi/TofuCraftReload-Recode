@@ -1,21 +1,21 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:blocktofumetal"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:blocktofumetal"
     },
-    "P" : {
-      "tag" : "minecraft:planks"
+    "P": {
+      "tag": "minecraft:planks"
     }
   },
-  "pattern" : [
+  "pattern": [
     "##",
     "PP",
     "PP"
   ],
-  "result" : {
-    "item" : "minecraft:smithing_table"
+  "result": {
+    "item": "minecraft:smithing_table"
   },
-  "show_notification" : true
+  "show_notification": true
 }

@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:tofusoul_brick"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofusoul_brick"
     }
   },
-  "pattern" : [
+  "pattern": [
     "##",
     "##"
   ],
-  "result" : {
-    "count" : 4,
-    "item" : "tofucraft:tofusoul_smooth_brick"
+  "result": {
+    "count": 4,
+    "item": "tofucraft:tofusoul_smooth_brick"
   },
-  "show_notification" : true
+  "show_notification": true
 }

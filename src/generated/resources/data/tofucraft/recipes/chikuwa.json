@@ -2,27 +2,27 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I" : {
-      "item" : "tofucraft:starch"
+    "I": {
+      "item": "tofucraft:starch"
     },
-    "X" : {
-      "tag" : "minecraft:fishes"
+    "X": {
+      "tag": "minecraft:fishes"
     },
-    "Y" : {
-      "tag" : "forge:dust/salt"
+    "Y": {
+      "tag": "forge:dust/salt"
     },
-    "Z" : {
-      "tag" : "forge:eggs"
+    "Z": {
+      "tag": "forge:eggs"
     }
   },
-  "pattern" : [
+  "pattern": [
     " X ",
     "YZI",
     " X "
   ],
-  "result" : {
-    "count" : 4,
-    "item" : "tofucraft:chikuwa"
+  "result": {
+    "count": 4,
+    "item": "tofucraft:chikuwa"
   },
-  "show_notification" : true
+  "show_notification": true
 }

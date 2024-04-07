@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C" : {
-      "tag" : "minecraft:coals"
+    "C": {
+      "tag": "minecraft:coals"
     },
-    "M" : {
-      "item" : "tofucraft:tofugrilled"
+    "M": {
+      "item": "tofucraft:tofugrilled"
     }
   },
-  "pattern" : [
+  "pattern": [
     "C",
     "M"
   ],
-  "result" : {
-    "count" : 4,
-    "item" : "tofucraft:tofutorch_grilled"
+  "result": {
+    "count": 4,
+    "item": "tofucraft:tofutorch_grilled"
   },
-  "show_notification" : true
+  "show_notification": true
 }

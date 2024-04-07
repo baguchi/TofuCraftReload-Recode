@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "P" : {
-      "item" : "tofucraft:leek_green_planks"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "tofucraft:leek_green_planks"
     }
   },
-  "pattern" : [
+  "pattern": [
     "PPP",
     "PPP"
   ],
-  "result" : {
-    "count" : 2,
-    "item" : "tofucraft:leek_green_trapdoor"
+  "result": {
+    "count": 2,
+    "item": "tofucraft:leek_green_trapdoor"
   },
-  "show_notification" : true
+  "show_notification": true
 }

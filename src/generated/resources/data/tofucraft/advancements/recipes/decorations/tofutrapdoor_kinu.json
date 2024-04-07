@@ -20,16 +20,16 @@
       "trigger": "minecraft:inventory_changed"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_tofukinu",
       "has_the_recipe"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:tofutrapdoor_kinu"
     ]
   },
-  "sends_telemetry_event" : false
+  "sends_telemetry_event": false
 }

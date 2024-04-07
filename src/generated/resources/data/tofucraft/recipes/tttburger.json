@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#" : {
-      "item" : "tofucraft:tofufried_pouch"
+    "#": {
+      "item": "tofucraft:tofufried_pouch"
     },
-    "X" : {
-      "item" : "minecraft:bread"
+    "X": {
+      "item": "minecraft:bread"
     }
   },
-  "pattern" : [
+  "pattern": [
     " X ",
     "###",
     " X "
   ],
-  "result" : {
-    "item" : "tofucraft:tttburger"
+  "result": {
+    "item": "tofucraft:tttburger"
   },
-  "show_notification" : true
+  "show_notification": true
 }

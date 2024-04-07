@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#" : {
-      "tag" : "forge:rods/wooden"
+    "#": {
+      "tag": "forge:rods/wooden"
     },
-    "X" : {
-      "item" : "minecraft:blackstone_slab"
+    "X": {
+      "item": "minecraft:blackstone_slab"
     }
   },
-  "pattern" : [
+  "pattern": [
     "# #",
     " X "
   ],
-  "result" : {
-    "item" : "tofucraft:blocksaltpan"
+  "result": {
+    "item": "tofucraft:blocksaltpan"
   },
-  "show_notification" : true
+  "show_notification": true
 }

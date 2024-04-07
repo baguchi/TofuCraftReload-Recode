@@ -1,35 +1,35 @@
 {
-  "parent" : "minecraft:recipes/root",
-  "criteria" : {
-    "has_the_recipe" : {
-      "conditions" : {
-        "recipe" : "tofucraft:tofustem_fence"
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:tofustem_fence"
       },
-      "trigger" : "minecraft:recipe_unlocked"
+      "trigger": "minecraft:recipe_unlocked"
     },
-    "has_tofustem_planks" : {
-      "conditions" : {
-        "items" : [
+    "has_tofustem_planks": {
+      "conditions": {
+        "items": [
           {
-            "items" : [
+            "items": [
               "tofucraft:tofustem_planks"
             ]
           }
         ]
       },
-      "trigger" : "minecraft:inventory_changed"
+      "trigger": "minecraft:inventory_changed"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_tofustem_planks",
       "has_the_recipe"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:tofustem_fence"
     ]
   },
-  "sends_telemetry_event" : false
+  "sends_telemetry_event": false
 }

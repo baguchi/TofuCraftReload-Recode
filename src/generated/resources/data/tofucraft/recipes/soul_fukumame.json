@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#" : {
-      "item" : "tofucraft:seeds_soybeans_soul"
+    "#": {
+      "item": "tofucraft:seeds_soybeans_soul"
     },
-    "X" : {
-      "item" : "minecraft:bowl"
+    "X": {
+      "item": "minecraft:bowl"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "###",
     " X "
   ],
-  "result" : {
-    "item" : "tofucraft:soul_fukumame"
+  "result": {
+    "item": "tofucraft:soul_fukumame"
   },
-  "show_notification" : true
+  "show_notification": true
 }

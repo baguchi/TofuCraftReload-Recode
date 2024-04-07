@@ -1,23 +1,23 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "redstone",
-  "key" : {
-    "C" : {
-      "item" : "tofucraft:tf_circuit"
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "tofucraft:tf_circuit"
     },
-    "M" : {
-      "item" : "tofucraft:tofumetal"
+    "M": {
+      "item": "tofucraft:tofumetal"
     },
-    "T" : {
-      "item" : "tofucraft:tofukinu"
+    "T": {
+      "item": "tofucraft:tofukinu"
     }
   },
-  "pattern" : [
+  "pattern": [
     "TCT",
     "M M"
   ],
-  "result" : {
-    "item" : "tofucraft:tf_oscillator"
+  "result": {
+    "item": "tofucraft:tf_oscillator"
   },
-  "show_notification" : true
+  "show_notification": true
 }

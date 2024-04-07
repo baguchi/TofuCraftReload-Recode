@@ -1,19 +1,19 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "P" : {
-      "item" : "tofucraft:blocktofusoul"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "tofucraft:blocktofusoul"
     }
   },
-  "pattern" : [
+  "pattern": [
     "PP",
     "PP",
     "PP"
   ],
-  "result" : {
-    "count" : 3,
-    "item" : "tofucraft:tofudoor_soul"
+  "result": {
+    "count": 3,
+    "item": "tofucraft:tofudoor_soul"
   },
-  "show_notification" : true
+  "show_notification": true
 }

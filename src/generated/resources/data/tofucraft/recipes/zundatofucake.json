@@ -2,26 +2,26 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#" : {
-      "item" : "tofucraft:tofuzunda"
+    "#": {
+      "item": "tofucraft:tofuzunda"
     },
-    "E" : {
-      "tag" : "forge:eggs"
+    "E": {
+      "tag": "forge:eggs"
     },
-    "S" : {
-      "item" : "minecraft:sugar"
+    "S": {
+      "item": "minecraft:sugar"
     },
-    "W" : {
-      "item" : "minecraft:wheat"
+    "W": {
+      "item": "minecraft:wheat"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "SES",
     "WWW"
   ],
-  "result" : {
-    "item" : "tofucraft:zundatofucake"
+  "result": {
+    "item": "tofucraft:zundatofucake"
   },
-  "show_notification" : true
+  "show_notification": true
 }

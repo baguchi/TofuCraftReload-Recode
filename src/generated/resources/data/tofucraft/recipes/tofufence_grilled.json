@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:blocktofugrilled"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofugrilled"
     }
   },
-  "pattern" : [
+  "pattern": [
     "MMM",
     "MMM"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:tofufence_grilled"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:tofufence_grilled"
   },
-  "show_notification" : true
+  "show_notification": true
 }

@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#" : {
-      "item" : "tofucraft:blocktofumetal"
+    "#": {
+      "item": "tofucraft:blocktofumetal"
     },
-    "X" : {
-      "tag" : "forge:rods/wooden"
+    "X": {
+      "tag": "forge:rods/wooden"
     }
   },
-  "pattern" : [
+  "pattern": [
     "#",
     "#",
     "X"
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_metal_sword"
+  "result": {
+    "item": "tofucraft:tofu_metal_sword"
   },
-  "show_notification" : true
+  "show_notification": true
 }

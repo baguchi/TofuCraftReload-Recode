@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "P" : {
-      "item" : "tofucraft:tofugrilled"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "tofucraft:tofugrilled"
     }
   },
-  "pattern" : [
+  "pattern": [
     "PPP",
     "PPP"
   ],
-  "result" : {
-    "count" : 2,
-    "item" : "tofucraft:tofutrapdoor_grilled"
+  "result": {
+    "count": 2,
+    "item": "tofucraft:tofutrapdoor_grilled"
   },
-  "show_notification" : true
+  "show_notification": true
 }

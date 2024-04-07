@@ -1,16 +1,16 @@
 {
   "parent": "minecraft:item/bow",
-  "forge_data" : {
-    "layers" : {
-      "0" : {
-        "block_light" : 15,
-        "sky_light" : 15
+  "forge_data": {
+    "layers": {
+      "0": {
+        "block_light": 15,
+        "sky_light": 15
       }
     }
   },
-  "loader" : "forge:item_layers",
-  "render_types" : {
-    "minecraft:translucent" : [
+  "loader": "forge:item_layers",
+  "render_types": {
+    "minecraft:translucent": [
       0
     ]
   },

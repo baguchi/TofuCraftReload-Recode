@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:blocktofuzunda"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "tofucraft:blocktofuzunda"
     }
   },
-  "pattern" : [
+  "pattern": [
     "##",
     "##"
   ],
-  "result" : {
-    "count" : 4,
-    "item" : "tofucraft:tofuzunda_brick"
+  "result": {
+    "count": 4,
+    "item": "tofucraft:tofuzunda_brick"
   },
-  "show_notification" : true
+  "show_notification": true
 }

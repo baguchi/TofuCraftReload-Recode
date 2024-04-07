@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:zundama"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:zundama"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "###",
     "###"
   ],
-  "result" : {
-    "item" : "tofucraft:zundama_block"
+  "result": {
+    "item": "tofucraft:zundama_block"
   },
-  "show_notification" : true
+  "show_notification": true
 }

@@ -1,21 +1,21 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:tofumetal"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "item": "tofucraft:tofumetal"
     },
-    "T" : {
-      "item" : "minecraft:torch"
+    "T": {
+      "item": "minecraft:torch"
     }
   },
-  "pattern" : [
+  "pattern": [
     " M ",
     "MTM",
     " M "
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_metal_lantern"
+  "result": {
+    "item": "tofucraft:tofu_metal_lantern"
   },
-  "show_notification" : true
+  "show_notification": true
 }

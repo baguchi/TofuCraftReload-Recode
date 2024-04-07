@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:tofumetal"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofumetal"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "###",
     " # "
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_shield"
+  "result": {
+    "item": "tofucraft:tofu_shield"
   },
-  "show_notification" : true
+  "show_notification": true
 }

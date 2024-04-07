@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:blocktofusoul"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:blocktofusoul"
     }
   },
-  "pattern" : [
+  "pattern": [
     "MMM",
     "MMM"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:tofufence_soul"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:tofufence_soul"
   },
-  "show_notification" : true
+  "show_notification": true
 }

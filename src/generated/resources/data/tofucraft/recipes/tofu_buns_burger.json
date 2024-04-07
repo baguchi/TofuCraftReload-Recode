@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G" : {
-      "item" : "tofucraft:tofugrilled"
+    "G": {
+      "item": "tofucraft:tofugrilled"
     },
-    "M" : {
-      "item" : "tofucraft:tofuhamburg"
+    "M": {
+      "item": "tofucraft:tofuhamburg"
     }
   },
-  "pattern" : [
+  "pattern": [
     "G",
     "M",
     "G"
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_buns_burger"
+  "result": {
+    "item": "tofucraft:tofu_buns_burger"
   },
-  "show_notification" : true
+  "show_notification": true
 }

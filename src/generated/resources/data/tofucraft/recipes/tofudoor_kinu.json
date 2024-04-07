@@ -1,19 +1,19 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "P" : {
-      "item" : "tofucraft:blocktofukinu"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "tofucraft:blocktofukinu"
     }
   },
-  "pattern" : [
+  "pattern": [
     "PP",
     "PP",
     "PP"
   ],
-  "result" : {
-    "count" : 3,
-    "item" : "tofucraft:tofudoor_kinu"
+  "result": {
+    "count": 3,
+    "item": "tofucraft:tofudoor_kinu"
   },
-  "show_notification" : true
+  "show_notification": true
 }

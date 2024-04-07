@@ -1,28 +1,28 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:zunda_upgrade_smithing_template"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:zunda_upgrade_smithing_template"
     },
-    "B" : {
-      "item" : "minecraft:diamond"
+    "B": {
+      "item": "minecraft:diamond"
     },
-    "D" : {
-      "item" : "tofucraft:tofudiamond"
+    "D": {
+      "item": "tofucraft:tofudiamond"
     },
-    "Z" : {
-      "item" : "tofucraft:zundama"
+    "Z": {
+      "item": "tofucraft:zundama"
     }
   },
-  "pattern" : [
+  "pattern": [
     "BZB",
     "B#B",
     "BDB"
   ],
-  "result" : {
-    "count" : 2,
-    "item" : "tofucraft:zunda_upgrade_smithing_template"
+  "result": {
+    "count": 2,
+    "item": "tofucraft:zunda_upgrade_smithing_template"
   },
-  "show_notification" : true
+  "show_notification": true
 }

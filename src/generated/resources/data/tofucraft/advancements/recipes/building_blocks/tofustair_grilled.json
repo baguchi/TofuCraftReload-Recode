@@ -20,16 +20,16 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_item",
       "has_the_recipe"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:tofustair_grilled"
     ]
   },
-  "sends_telemetry_event" : false
+  "sends_telemetry_event": false
 }

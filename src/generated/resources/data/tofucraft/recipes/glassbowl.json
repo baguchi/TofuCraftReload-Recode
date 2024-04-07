@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "minecraft:glass_pane"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:glass_pane"
     }
   },
-  "pattern" : [
+  "pattern": [
     "# #",
     " # "
   ],
-  "result" : {
-    "count" : 2,
-    "item" : "tofucraft:glassbowl"
+  "result": {
+    "count": 2,
+    "item": "tofucraft:glassbowl"
   },
-  "show_notification" : true
+  "show_notification": true
 }

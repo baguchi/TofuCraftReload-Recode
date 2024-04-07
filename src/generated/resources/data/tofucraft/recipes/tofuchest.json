@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:tofuishi"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofuishi"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "# #",
     "###"
   ],
-  "result" : {
-    "item" : "tofucraft:tofuchest"
+  "result": {
+    "item": "tofucraft:tofuchest"
   },
-  "show_notification" : true
+  "show_notification": true
 }

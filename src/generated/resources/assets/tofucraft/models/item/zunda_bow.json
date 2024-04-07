@@ -1,14 +1,14 @@
 {
   "parent": "minecraft:item/bow",
-  "forge_data" : {
-    "layers" : {
-      "0" : {
-        "block_light" : 15,
-        "sky_light" : 15
+  "forge_data": {
+    "layers": {
+      "0": {
+        "block_light": 15,
+        "sky_light": 15
       }
     }
   },
-  "loader" : "forge:item_layers",
+  "loader": "forge:item_layers",
   "overrides": [
     {
       "model": "tofucraft:item/zunda_bow_pulling_0",
@@ -31,8 +31,8 @@
       }
     }
   ],
-  "render_types" : {
-    "minecraft:translucent" : [
+  "render_types": {
+    "minecraft:translucent": [
       0
     ]
   },

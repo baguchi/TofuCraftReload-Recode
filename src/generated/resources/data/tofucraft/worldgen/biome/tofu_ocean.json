@@ -8,18 +8,18 @@
   },
   "downfall": 0.0,
   "effects": {
-    "fog_color" : 9671612,
-    "foliage_color" : 7115607,
-    "grass_color" : 7115607,
-    "music" : {
-      "max_delay" : 24000,
-      "min_delay" : 12000,
-      "replace_current_music" : false,
-      "sound" : "tofucraft:music.tofu_road"
+    "fog_color": 9671612,
+    "foliage_color": 7115607,
+    "grass_color": 7115607,
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "tofucraft:music.tofu_road"
     },
-    "sky_color" : 16777215,
-    "water_color" : 12311280,
-    "water_fog_color" : 6330816
+    "sky_color": 16777215,
+    "water_color": 12311280,
+    "water_fog_color": 6330816
   },
   "features": [
     [],
@@ -42,44 +42,44 @@
       "tofucraft:patch_leek"
     ]
   ],
-  "has_precipitation" : true,
-  "spawn_costs" : {},
-  "spawners" : {
-    "ambient" : [],
-    "axolotls" : [],
-    "creature" : [
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
       {
-        "type" : "tofucraft:tofucow",
-        "maxCount" : 4,
-        "minCount" : 4,
-        "weight" : 100
+        "type": "tofucraft:tofucow",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
       },
       {
-        "type" : "tofucraft:tofupig",
-        "maxCount" : 4,
-        "minCount" : 4,
-        "weight" : 200
+        "type": "tofucraft:tofupig",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 200
       }
     ],
     "misc": [],
     "monster": [
       {
-        "type" : "tofucraft:tofuslime",
-        "maxCount" : 4,
-        "minCount" : 4,
-        "weight" : 100
+        "type": "tofucraft:tofuslime",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
       },
       {
-        "type" : "tofucraft:tofucreeper",
-        "maxCount" : 3,
-        "minCount" : 2,
-        "weight" : 10
+        "type": "tofucraft:tofucreeper",
+        "maxCount": 3,
+        "minCount": 2,
+        "weight": 10
       },
       {
-        "type" : "tofucraft:tofuspider",
-        "maxCount" : 3,
-        "minCount" : 2,
-        "weight" : 30
+        "type": "tofucraft:tofuspider",
+        "maxCount": 3,
+        "minCount": 2,
+        "weight": 30
       }
     ],
     "underground_water_creature": [],

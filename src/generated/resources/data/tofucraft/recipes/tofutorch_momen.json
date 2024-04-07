@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C" : {
-      "tag" : "minecraft:coals"
+    "C": {
+      "tag": "minecraft:coals"
     },
-    "M" : {
-      "item" : "tofucraft:tofumomen"
+    "M": {
+      "item": "tofucraft:tofumomen"
     }
   },
-  "pattern" : [
+  "pattern": [
     "C",
     "M"
   ],
-  "result" : {
-    "count" : 4,
-    "item" : "tofucraft:tofutorch_momen"
+  "result": {
+    "count": 4,
+    "item": "tofucraft:tofutorch_momen"
   },
-  "show_notification" : true
+  "show_notification": true
 }

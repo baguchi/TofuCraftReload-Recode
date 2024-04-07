@@ -1,17 +1,17 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:leek_planks"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:leek_planks"
     }
   },
-  "pattern" : [
+  "pattern": [
     "MMM"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:leek_planks_slab"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:leek_planks_slab"
   },
-  "show_notification" : true
+  "show_notification": true
 }

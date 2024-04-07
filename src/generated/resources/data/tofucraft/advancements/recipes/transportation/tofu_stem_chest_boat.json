@@ -1,35 +1,35 @@
 {
-  "parent" : "minecraft:recipes/root",
-  "criteria" : {
-    "has_item" : {
-      "conditions" : {
-        "items" : [
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
           {
-            "items" : [
+            "items": [
               "tofucraft:tofu_stem_boat"
             ]
           }
         ]
       },
-      "trigger" : "minecraft:inventory_changed"
+      "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe" : {
-      "conditions" : {
-        "recipe" : "tofucraft:tofu_stem_chest_boat"
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:tofu_stem_chest_boat"
       },
-      "trigger" : "minecraft:recipe_unlocked"
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_item",
       "has_the_recipe"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:tofu_stem_chest_boat"
     ]
   },
-  "sends_telemetry_event" : false
+  "sends_telemetry_event": false
 }

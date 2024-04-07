@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "equipment",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:blocktofumomen"
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "tofucraft:blocktofumomen"
     }
   },
-  "pattern" : [
+  "pattern": [
     "# #",
     "###",
     "###"
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_momen_chestplate"
+  "result": {
+    "item": "tofucraft:tofu_momen_chestplate"
   },
-  "show_notification" : true
+  "show_notification": true
 }

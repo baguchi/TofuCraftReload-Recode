@@ -1,19 +1,19 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "P" : {
-      "item" : "tofucraft:blocktofuishi"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "tofucraft:blocktofuishi"
     }
   },
-  "pattern" : [
+  "pattern": [
     "PP",
     "PP",
     "PP"
   ],
-  "result" : {
-    "count" : 3,
-    "item" : "tofucraft:tofudoor_ishi"
+  "result": {
+    "count": 3,
+    "item": "tofucraft:tofudoor_ishi"
   },
-  "show_notification" : true
+  "show_notification": true
 }

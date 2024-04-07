@@ -1,17 +1,17 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:tofuslab_ishibrick"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofuslab_ishibrick"
     }
   },
-  "pattern" : [
+  "pattern": [
     "#",
     "#"
   ],
-  "result" : {
-    "item" : "tofucraft:tofuishi_chiseled_brick"
+  "result": {
+    "item": "tofucraft:tofuishi_chiseled_brick"
   },
-  "show_notification" : true
+  "show_notification": true
 }

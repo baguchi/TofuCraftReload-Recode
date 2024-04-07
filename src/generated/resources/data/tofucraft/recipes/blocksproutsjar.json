@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G" : {
-      "item" : "minecraft:glass"
+    "G": {
+      "item": "minecraft:glass"
     },
-    "W" : {
-      "tag" : "minecraft:wool"
+    "W": {
+      "tag": "minecraft:wool"
     }
   },
-  "pattern" : [
+  "pattern": [
     "G",
     "W"
   ],
-  "result" : {
-    "item" : "tofucraft:blocksproutsjar"
+  "result": {
+    "item": "tofucraft:blocksproutsjar"
   },
-  "show_notification" : true
+  "show_notification": true
 }

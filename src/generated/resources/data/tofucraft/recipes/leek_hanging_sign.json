@@ -1,22 +1,22 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:leek_stem"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:leek_stem"
     },
-    "|" : {
-      "item" : "minecraft:chain"
+    "|": {
+      "item": "minecraft:chain"
     }
   },
-  "pattern" : [
+  "pattern": [
     "| |",
     "###",
     "###"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:leek_hanging_sign"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:leek_hanging_sign"
   },
-  "show_notification" : true
+  "show_notification": true
 }

@@ -23,8 +23,7 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 	public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
 			.add(Registries.NOISE, (context) -> {
 			})
-			.add(Registries.DENSITY_FUNCTION, (context) -> {
-			})
+			.add(Registries.DENSITY_FUNCTION, TofuNoiseBuilder::bootstrapDensity)
 			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrapConfiguredFeature)
 			.add(Registries.PLACED_FEATURE, ModConfiguredFeatures::bootstrapPlacedFeature)
 			.add(Registries.CONFIGURED_CARVER, TofuConfiguredWorldCarvers::bootstrap)

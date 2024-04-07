@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#" : {
-      "item" : "tofucraft:blocktofuishi"
+    "#": {
+      "item": "tofucraft:blocktofuishi"
     },
-    "X" : {
-      "tag" : "forge:rods/wooden"
+    "X": {
+      "tag": "forge:rods/wooden"
     }
   },
-  "pattern" : [
+  "pattern": [
     "##",
     " X",
     " X"
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_solid_hoe"
+  "result": {
+    "item": "tofucraft:tofu_solid_hoe"
   },
-  "show_notification" : true
+  "show_notification": true
 }

@@ -1,35 +1,35 @@
 {
-  "parent" : "minecraft:recipes/root",
-  "criteria" : {
-    "has_leek_stem" : {
-      "conditions" : {
-        "items" : [
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_leek_stem": {
+      "conditions": {
+        "items": [
           {
-            "items" : [
+            "items": [
               "tofucraft:leek_stem"
             ]
           }
         ]
       },
-      "trigger" : "minecraft:inventory_changed"
+      "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe" : {
-      "conditions" : {
-        "recipe" : "tofucraft:leek_hanging_sign"
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:leek_hanging_sign"
       },
-      "trigger" : "minecraft:recipe_unlocked"
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_leek_stem",
       "has_the_recipe"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:leek_hanging_sign"
     ]
   },
-  "sends_telemetry_event" : false
+  "sends_telemetry_event": false
 }

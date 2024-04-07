@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "equipment",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:blocktofuishi"
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "tofucraft:blocktofuishi"
     }
   },
-  "pattern" : [
+  "pattern": [
     "# #",
     "###",
     "###"
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_solid_chestplate"
+  "result": {
+    "item": "tofucraft:tofu_solid_chestplate"
   },
-  "show_notification" : true
+  "show_notification": true
 }

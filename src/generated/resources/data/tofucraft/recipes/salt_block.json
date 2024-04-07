@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "S" : {
-      "item" : "tofucraft:salt"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "tofucraft:salt"
     }
   },
-  "pattern" : [
+  "pattern": [
     "SSS",
     "SSS",
     "SSS"
   ],
-  "result" : {
-    "item" : "tofucraft:salt_block"
+  "result": {
+    "item": "tofucraft:salt_block"
   },
-  "show_notification" : true
+  "show_notification": true
 }

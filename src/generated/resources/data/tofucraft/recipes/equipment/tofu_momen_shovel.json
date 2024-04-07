@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#" : {
-      "item" : "tofucraft:blocktofumomen"
+    "#": {
+      "item": "tofucraft:blocktofumomen"
     },
-    "X" : {
-      "tag" : "forge:rods/wooden"
+    "X": {
+      "tag": "forge:rods/wooden"
     }
   },
-  "pattern" : [
+  "pattern": [
     "#",
     "X",
     "X"
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_momen_shovel"
+  "result": {
+    "item": "tofucraft:tofu_momen_shovel"
   },
-  "show_notification" : true
+  "show_notification": true
 }

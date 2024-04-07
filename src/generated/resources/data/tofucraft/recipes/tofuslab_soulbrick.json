@@ -1,17 +1,17 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "building",
-  "key" : {
-    "M" : {
-      "item" : "tofucraft:tofusoul_brick"
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": {
+      "item": "tofucraft:tofusoul_brick"
     }
   },
-  "pattern" : [
+  "pattern": [
     "MMM"
   ],
-  "result" : {
-    "count" : 6,
-    "item" : "tofucraft:tofuslab_soulbrick"
+  "result": {
+    "count": 6,
+    "item": "tofucraft:tofuslab_soulbrick"
   },
-  "show_notification" : true
+  "show_notification": true
 }

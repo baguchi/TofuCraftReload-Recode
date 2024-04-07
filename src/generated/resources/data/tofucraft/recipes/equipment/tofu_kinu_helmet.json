@@ -1,17 +1,17 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "equipment",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:blocktofukinu"
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "tofucraft:blocktofukinu"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "# #"
   ],
-  "result" : {
-    "item" : "tofucraft:tofu_kinu_helmet"
+  "result": {
+    "item": "tofucraft:tofu_kinu_helmet"
   },
-  "show_notification" : true
+  "show_notification": true
 }

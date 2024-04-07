@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:seeds_soybeans"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:seeds_soybeans"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "###",
     "###"
   ],
-  "result" : {
-    "item" : "tofucraft:seeds_soybeans_block"
+  "result": {
+    "item": "tofucraft:seeds_soybeans_block"
   },
-  "show_notification" : true
+  "show_notification": true
 }

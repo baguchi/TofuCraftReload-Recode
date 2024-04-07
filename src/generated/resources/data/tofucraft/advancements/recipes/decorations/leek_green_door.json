@@ -1,35 +1,35 @@
 {
-  "parent" : "minecraft:recipes/root",
-  "criteria" : {
-    "has_leek_green_planks" : {
-      "conditions" : {
-        "items" : [
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_leek_green_planks": {
+      "conditions": {
+        "items": [
           {
-            "items" : [
+            "items": [
               "tofucraft:leek_green_planks"
             ]
           }
         ]
       },
-      "trigger" : "minecraft:inventory_changed"
+      "trigger": "minecraft:inventory_changed"
     },
-    "has_the_recipe" : {
-      "conditions" : {
-        "recipe" : "tofucraft:leek_green_door"
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:leek_green_door"
       },
-      "trigger" : "minecraft:recipe_unlocked"
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "requirements" : [
+  "requirements": [
     [
       "has_leek_green_planks",
       "has_the_recipe"
     ]
   ],
-  "rewards" : {
-    "recipes" : [
+  "rewards": {
+    "recipes": [
       "tofucraft:leek_green_door"
     ]
   },
-  "sends_telemetry_event" : false
+  "sends_telemetry_event": false
 }

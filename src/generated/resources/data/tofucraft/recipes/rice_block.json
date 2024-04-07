@@ -1,18 +1,18 @@
 {
-  "type" : "minecraft:crafting_shaped",
-  "category" : "misc",
-  "key" : {
-    "#" : {
-      "item" : "tofucraft:rice"
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tofucraft:rice"
     }
   },
-  "pattern" : [
+  "pattern": [
     "###",
     "###",
     "###"
   ],
-  "result" : {
-    "item" : "tofucraft:rice_block"
+  "result": {
+    "item": "tofucraft:rice_block"
   },
-  "show_notification" : true
+  "show_notification": true
 }

@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#" : {
-      "tag" : "minecraft:planks"
+    "#": {
+      "tag": "minecraft:planks"
     },
-    "S" : {
-      "tag" : "forge:rods/wooden"
+    "S": {
+      "tag": "forge:rods/wooden"
     }
   },
-  "pattern" : [
+  "pattern": [
     "  S",
     " # ",
     "S  "
   ],
-  "result" : {
-    "item" : "tofucraft:rollingpin"
+  "result": {
+    "item": "tofucraft:rollingpin"
   },
-  "show_notification" : true
+  "show_notification": true
 }

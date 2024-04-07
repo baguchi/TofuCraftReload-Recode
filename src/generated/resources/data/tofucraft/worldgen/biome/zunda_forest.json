@@ -8,18 +8,18 @@
   },
   "downfall": 0.0,
   "effects": {
-    "fog_color" : 11534282,
-    "foliage_color" : 7115607,
-    "grass_color" : 7115607,
-    "music" : {
-      "max_delay" : 24000,
-      "min_delay" : 12000,
-      "replace_current_music" : false,
-      "sound" : "tofucraft:music.green_branch"
+    "fog_color": 11534282,
+    "foliage_color": 7115607,
+    "grass_color": 7115607,
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "tofucraft:music.green_branch"
     },
-    "sky_color" : 16777215,
-    "water_color" : 14481125,
-    "water_fog_color" : 6999949
+    "sky_color": 16777215,
+    "water_color": 14481125,
+    "water_fog_color": 6999949
   },
   "features": [
     [],
@@ -42,23 +42,23 @@
       "tofucraft:patch_zunda_tofu_mushroom"
     ]
   ],
-  "has_precipitation" : true,
-  "spawn_costs" : {},
-  "spawners" : {
-    "ambient" : [],
-    "axolotls" : [],
-    "creature" : [
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
       {
-        "type" : "tofucraft:tofucow",
-        "maxCount" : 4,
-        "minCount" : 4,
-        "weight" : 100
+        "type": "tofucraft:tofucow",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
       },
       {
-        "type" : "tofucraft:tofupig",
-        "maxCount" : 4,
-        "minCount" : 4,
-        "weight" : 200
+        "type": "tofucraft:tofupig",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 200
       }
     ],
     "misc": [],
