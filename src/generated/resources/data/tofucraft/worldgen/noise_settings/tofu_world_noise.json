@@ -24,9 +24,9 @@
       "xz_scale": 1.0,
       "y_scale": 0.5
     },
-    "continents": "minecraft:overworld/continents",
-    "depth": "minecraft:overworld/depth",
-    "erosion": "minecraft:overworld/erosion",
+    "continents": "tofucraft:tofu_world/continents",
+    "depth": "tofucraft:tofu_world/depth",
+    "erosion": "tofucraft:tofu_world/erosion",
     "final_density": {
       "type": "minecraft:min",
       "argument1": {
@@ -70,12 +70,12 @@
                           "argument1": 0.078125,
                           "argument2": {
                             "type": "minecraft:range_choice",
-                            "input": "minecraft:overworld/sloped_cheese",
+                            "input": "minecraft:tofu_world/sloped_cheese",
                             "max_exclusive": 1.5625,
                             "min_inclusive": -1000000.0,
                             "when_in_range": {
                               "type": "minecraft:min",
-                              "argument1": "minecraft:overworld/sloped_cheese",
+                              "argument1": "minecraft:tofu_world/sloped_cheese",
                               "argument2": {
                                 "type": "minecraft:mul",
                                 "argument1": 5.0,
@@ -128,7 +128,7 @@
                                           "argument2": {
                                             "type": "minecraft:mul",
                                             "argument1": -0.64,
-                                            "argument2": "minecraft:overworld/sloped_cheese"
+                                            "argument2": "minecraft:tofu_world/sloped_cheese"
                                           }
                                         },
                                         "max": 0.5,
@@ -220,10 +220,10 @@
                         "type": "minecraft:quarter_negative",
                         "argument": {
                           "type": "minecraft:mul",
-                          "argument1": "minecraft:overworld/depth",
+                          "argument1": "tofucraft:tofu_world/depth",
                           "argument2": {
                             "type": "minecraft:cache_2d",
-                            "argument": "minecraft:overworld/factor"
+                            "argument": "tofucraft:tofu_world/factor"
                           }
                         }
                       }
