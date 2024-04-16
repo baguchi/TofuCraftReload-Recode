@@ -72,6 +72,9 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
+        url = "https://api.modrinth.com/maven"
+    }
+    maven {
         // location of the maven that hosts JEI files since January 2023
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
@@ -90,7 +93,7 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     implementation "net.neoforged:neoforge:${neo_version}"
-
+    implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
     compileOnly("mezz.jei:jei-1.20.4-common-api:17.0.0.30")
     compileOnly("mezz.jei:jei-1.20.4-neoforge-api:17.0.0.30")
     // at runtime, use the full JEI jar for NeoForge
@@ -113,7 +116,7 @@ tasks.withType(ProcessResources).configureEach {
             loader_version_range: loader_version_range,
             mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
             mod_authors: mod_authors, mod_description: mod_description,
-            mod_credits         : mod_credits,
+            mod_credits: mod_credits, bagus_lib_version: bagus_lib_version, bagus_lib_version_range: bagus_lib_version_range,
     ]
     inputs.properties replaceProperties
 

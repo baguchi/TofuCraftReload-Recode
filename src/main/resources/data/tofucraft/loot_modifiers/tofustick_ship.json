@@ -1,5 +1,5 @@
 {
-  "type" : "tofucraft:loot_in_loot",
+  "type": "bagus_lib:loot_in_loot",
   "conditions" : [
     {
       "condition" : "neoforge:loot_table_id",

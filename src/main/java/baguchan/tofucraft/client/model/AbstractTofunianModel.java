@@ -1,6 +1,9 @@
 package baguchan.tofucraft.client.model;
 
+import bagu_chan.bagus_lib.client.layer.IArmor;
+import baguchan.tofucraft.client.animation.definitions.TofunianAnimation;
 import baguchan.tofucraft.entity.AbstractTofunian;
+import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.HeadedModel;
@@ -9,7 +12,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 
-public class AbstractTofunianModel<T extends AbstractTofunian> extends HierarchicalModel<T> implements ArmedModel, HeadedModel {
+public class AbstractTofunianModel<T extends AbstractTofunian> extends HierarchicalModel<T> implements ArmedModel, HeadedModel, IArmor {
 	public final ModelPart realRoot;
 	public final ModelPart root;
 	public final ModelPart head;
@@ -52,30 +55,14 @@ public class AbstractTofunianModel<T extends AbstractTofunian> extends Hierarchi
 
 		if (this.riding) {
 			this.rightArm.xRot = -0.62831855F;
-			this.rightArm.yRot = 0.0F;
-			this.rightArm.zRot = 0.0F;
 			this.leftArm.xRot = -0.62831855F;
-			this.leftArm.yRot = 0.0F;
-			this.leftArm.zRot = 0.0F;
 			this.rightLeg.xRot = -1.4137167F;
-			this.rightLeg.yRot = 0.31415927F;
-			this.rightLeg.zRot = 0.07853982F;
 			this.leftLeg.xRot = -1.4137167F;
-			this.leftLeg.yRot = -0.31415927F;
-			this.leftLeg.zRot = -0.07853982F;
 		} else {
 			this.rightArm.xRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 2.0F * limbSwingAmount * 0.5F;
-			this.rightArm.yRot = 0.0F;
-			this.rightArm.zRot = 0.0F;
 			this.leftArm.xRot = Mth.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F;
-			this.leftArm.yRot = 0.0F;
-			this.leftArm.zRot = 0.0F;
 			this.rightLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
-			this.rightLeg.yRot = 0.0F;
-			this.rightLeg.zRot = 0.0F;
 			this.leftLeg.xRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount * 0.5F;
-			this.leftLeg.yRot = 0.0F;
-			this.leftLeg.zRot = 0.0F;
 		}
 
 		if (attackTime > 0) {
@@ -91,12 +78,11 @@ public class AbstractTofunianModel<T extends AbstractTofunian> extends Hierarchi
 		float f6 = 12.0F;
 
 		if (entity.isBaby()) {
-			this.head.y = -7.0F;
+			this.applyStatic(TofunianAnimation.BABY);
 			this.rightArm.visible = false;
 			this.leftArm.visible = false;
 			this.body.visible = false;
 		} else {
-			this.head.y = -11.0F;
 			this.rightArm.visible = true;
 			this.leftArm.visible = true;
 			this.body.visible = true;
@@ -118,5 +104,63 @@ public class AbstractTofunianModel<T extends AbstractTofunian> extends Hierarchi
 			p_102926_.translate(0, -0.15D, 0);
 			p_102926_.scale(0.95F, 0.95F, 0.95F);
 		}
+	}
+
+
+	@Override
+	public void translateToHead(ModelPart modelPart, PoseStack poseStack) {
+		this.root.translateAndRotate(poseStack);
+		modelPart.translateAndRotate(poseStack);
+	}
+
+	@Override
+	public void translateToChest(ModelPart modelPart, PoseStack poseStack) {
+		this.root.translateAndRotate(poseStack);
+		modelPart.translateAndRotate(poseStack);
+		poseStack.scale(0.75F, 0.75F, 0.75F);
+	}
+
+	@Override
+	public void translateToLeg(ModelPart modelPart, PoseStack poseStack) {
+		this.root.translateAndRotate(poseStack);
+		modelPart.translateAndRotate(poseStack);
+		poseStack.scale(0.5F, 0.5F, 0.5F);
+	}
+
+	@Override
+	public void translateToChestPat(ModelPart modelPart, PoseStack poseStack) {
+		this.root.translateAndRotate(poseStack);
+		modelPart.translateAndRotate(poseStack);
+		poseStack.scale(0.75F, 0.75F, 0.75F);
+	}
+
+	@Override
+	public Iterable<ModelPart> rightHandArmors() {
+		return ImmutableList.of(this.rightArm);
+	}
+
+	@Override
+	public Iterable<ModelPart> leftHandArmors() {
+		return ImmutableList.of(this.leftArm);
+	}
+
+	@Override
+	public Iterable<ModelPart> rightLegPartArmors() {
+		return ImmutableList.of(this.rightLeg);
+	}
+
+	@Override
+	public Iterable<ModelPart> leftLegPartArmors() {
+		return ImmutableList.of(this.leftLeg);
+	}
+
+	@Override
+	public Iterable<ModelPart> bodyPartArmors() {
+		return ImmutableList.of(this.body);
+	}
+
+	@Override
+	public Iterable<ModelPart> headPartArmors() {
+		return ImmutableList.of(this.head);
 	}
 }

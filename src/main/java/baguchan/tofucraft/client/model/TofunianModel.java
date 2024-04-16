@@ -2,8 +2,6 @@ package baguchan.tofucraft.client.model;
 
 import baguchan.tofucraft.client.animation.definitions.TofunianAnimation;
 import baguchan.tofucraft.entity.Tofunian;
-import net.minecraft.client.model.ArmedModel;
-import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -12,7 +10,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class TofunianModel<T extends Tofunian> extends AbstractTofunianModel<T> implements ArmedModel, HeadedModel {
+public class TofunianModel<T extends Tofunian> extends AbstractTofunianModel<T> {
 
 	public TofunianModel(ModelPart p_170688_) {
 		super(p_170688_);
@@ -76,4 +74,5 @@ public class TofunianModel<T extends Tofunian> extends AbstractTofunianModel<T> 
 			this.root.y = 29.5F;
 		}
 	}
+
 }

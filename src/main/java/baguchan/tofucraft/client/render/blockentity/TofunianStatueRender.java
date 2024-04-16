@@ -1,4 +1,4 @@
-package baguchan.tofucraft.client.render.entity;
+package baguchan.tofucraft.client.render.blockentity;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.block.TofunianStatueBlock;

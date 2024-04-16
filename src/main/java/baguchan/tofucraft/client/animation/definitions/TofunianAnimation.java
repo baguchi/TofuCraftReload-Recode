@@ -103,4 +103,15 @@ public class TofunianAnimation {
 					new AnimationChannel(AnimationChannel.Targets.ROTATION,
 							new Keyframe(0f, KeyframeAnimations.degreeVec(-192.78f, -1.15f, 27.48f),
 									AnimationChannel.Interpolations.LINEAR))).build();
+	public static final AnimationDefinition BABY = AnimationDefinition.Builder.withLength(0.0F)
+			.addAnimation("root", new AnimationChannel(AnimationChannel.Targets.SCALE,
+					new Keyframe(0.0F, KeyframeAnimations.scaleVec(0.6F, 0.6F, 0.6F), AnimationChannel.Interpolations.LINEAR)
+			))
+			.addAnimation("head", new AnimationChannel(AnimationChannel.Targets.POSITION,
+					new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, -5.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)
+			))
+			.addAnimation("head", new AnimationChannel(AnimationChannel.Targets.SCALE,
+					new Keyframe(0.0F, KeyframeAnimations.scaleVec(1.3F, 1.3F, 1.3F), AnimationChannel.Interpolations.LINEAR)
+			))
+			.build();
 }
