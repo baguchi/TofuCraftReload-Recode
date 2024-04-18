@@ -26,16 +26,16 @@ import net.minecraft.world.phys.Vec3;
 public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 	public static final ResourceLocation LOOT_TABLE = new ResourceLocation(TofuCraftReload.MODID, "gameplay/tofunian_statue");
 	private int processTick;
-	private int cooldown;
+	private long cooldown;
 	private float happyScale;
-	private int happyTime;
+	private long happyTime;
 
 	public TofunianStatueBlockEntity(BlockPos pos, BlockState state) {
 		super(TofuBlockEntitys.TOFUNIAN_STATUE.get(), pos, state);
 	}
 
 	public static void tick(Level level, BlockPos pos, BlockState blockstate, TofunianStatueBlockEntity statue) {
-		if (!level.isClientSide() && --statue.cooldown <= 0) {
+		if (!level.isClientSide() && statue.cooldown <= level.getGameTime()) {
 			BlockPos platePos = pos.relative(blockstate.getValue(TofunianStatueBlock.FACING));
 			BlockEntity blockEntity = level.getBlockEntity(platePos);
 			if (blockEntity instanceof FoodPlateBlockEntity foodPlate) {
@@ -48,8 +48,8 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 						ObjectArrayList<ItemStack> objectarraylist = loottable.getRandomItems(lootparams);
 						foodPlate.addAllItem(objectarraylist.get(0));
 						statue.processTick = 0;
-						statue.cooldown = 12000 + level.random.nextInt(12000);
-						statue.happyTime = statue.getCooldown() + 12000;
+						statue.cooldown = level.getGameTime() + 12000 + level.random.nextInt(12000);
+						statue.happyTime = statue.getCooldown() + 24000;
 						statue.happyScale = Mth.clamp(statue.happyScale + 1F, 0F, 5F);
 						level.playSound(null, platePos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS);
 					} else {
@@ -58,8 +58,8 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 						}
 					}
 				} else {
-					if (--statue.happyTime < 0) {
-						statue.happyTime = 12000;
+					if (statue.happyTime < level.getGameTime()) {
+						statue.happyTime = 12000 + level.getGameTime();
 						statue.happyScale = Mth.clamp(statue.happyScale - 0.25F, 0F, 5F);
 					}
 					statue.processTick = 0;
@@ -72,18 +72,18 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 	public void load(CompoundTag compound) {
 		super.load(compound);
 		this.setProcessTick(compound.getInt("ProcessTick"));
-		this.setCooldown(compound.getInt("Cooldown"));
+		this.setCooldown(compound.getLong("CooldownAt"));
 		this.setHappyScale(compound.getFloat("HappyScale"));
-		this.setHappyTime(compound.getInt("HappyTime"));
+		this.setHappyTime(compound.getLong("HappyTimeAt"));
 	}
 
 	@Override
 	public void saveAdditional(CompoundTag compound) {
 		super.saveAdditional(compound);
 		compound.putInt("ProcessTick", getProcessTick());
-		compound.putInt("Cooldown", getCooldown());
+		compound.putLong("CooldownAt", getCooldown());
 		compound.putFloat("HappyScale", getHappyScale());
-		compound.putInt("HappyTime", getHappyTime());
+		compound.putLong("HappyTimeAt", getHappyTime());
 	}
 
 	public int getProcessTick() {
@@ -102,19 +102,19 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 		return happyScale;
 	}
 
-	public void setHappyTime(int happyTime) {
+	public void setHappyTime(long happyTime) {
 		this.happyTime = happyTime;
 	}
 
-	public int getHappyTime() {
+	public long getHappyTime() {
 		return happyTime;
 	}
 
-	public int getCooldown() {
+	public long getCooldown() {
 		return cooldown;
 	}
 
-	public void setCooldown(int cooldown) {
+	public void setCooldown(long cooldown) {
 		this.cooldown = cooldown;
 	}
 }
