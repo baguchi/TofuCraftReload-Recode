@@ -58,8 +58,8 @@ public class TFMinerRenderer implements BlockEntityRenderer<TFMinerBlockEntity> 
 			float x = (float) (workPos.getX() - originalPos.getX()) + 0.5F;
 			float y = (float) (workPos.getY() - originalPos.getY()) + 0.5F;
 			float z = (float) (workPos.getZ() - originalPos.getZ()) + 0.5F;
-			vertexconsumer.vertex(matrix4f, (float) 0.5F, (float) 1.5F, (float) 0.5F).color(0.9F, 0.9F, 0.9F, 1.0F).normal(matrix3f, 0, 0, 0).endVertex();
-			vertexconsumer.vertex(matrix4f, x, y, (float) z).color(0.9F, 0.9F, 0.9F, 1.0F).normal(matrix3f, 0, 0, 0).endVertex();
+			vertexconsumer.vertex(matrix4f, (float) 0.5F, (float) 1.5F, (float) 0.5F).color(0.9F, 0.9F, 0.9F, 1.0F).normal(p_112585_.last(), 0, 0, 0).endVertex();
+			vertexconsumer.vertex(matrix4f, x, y, (float) z).color(0.9F, 0.9F, 0.9F, 1.0F).normal(p_112585_.last(), 0, 0, 0).endVertex();
 
 			//box
 			LevelRenderer.renderLineBox(p_112585_, vertexconsumer, -0.3F + 0.5F, 1.5F - 0.3F, -0.3F + 0.5F, 0.3F + 0.5F, 1.5F + 0.3F, 0.3F + 0.5F, 0.9F, 0.9F, 0.9F, 1.0F, 0.5F, 0.5F, 0.5F);

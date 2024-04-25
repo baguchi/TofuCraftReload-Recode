@@ -6,7 +6,7 @@
       "item": "minecraft:iron_bars"
     },
     "X": {
-      "tag": "forge:rods/wooden"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [
@@ -15,6 +15,7 @@
     "X"
   ],
   "result": {
-    "item": "tofucraft:tofuscoop"
+    "count": 1,
+    "id": "tofucraft:tofuscoop"
   }
 }

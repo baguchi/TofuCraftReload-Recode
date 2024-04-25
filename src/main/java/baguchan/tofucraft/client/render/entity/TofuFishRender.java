@@ -25,14 +25,15 @@ public class TofuFishRender extends MobRenderer<TofuFish, TofuFishModel<TofuFish
 		return LOCATION;
 	}
 
-	protected void setupRotations(TofuFish p_114017_, PoseStack p_114018_, float p_114019_, float p_114020_, float p_114021_) {
-		super.setupRotations(p_114017_, p_114018_, p_114019_, p_114020_, p_114021_);
-		float f = 4.3F * Mth.sin(0.6F * p_114019_);
-		p_114018_.mulPose(Axis.YP.rotationDegrees(f));
-		if (!p_114017_.isInWater()) {
-			p_114018_.translate((double) 0.1F, (double) 0.1F, (double) -0.1F);
-			p_114018_.mulPose(Axis.ZP.rotationDegrees(90.0F));
-		}
 
+	@Override
+	protected void setupRotations(TofuFish p_320712_, PoseStack p_114010_, float p_114011_, float p_114012_, float p_114013_, float p_320770_) {
+		super.setupRotations(p_320712_, p_114010_, p_114011_, p_114012_, p_114013_, p_320770_);
+		float f = 4.3F * Mth.sin(0.6F * p_114011_);
+		p_114010_.mulPose(Axis.YP.rotationDegrees(f));
+		if (!p_320712_.isInWater()) {
+			p_114010_.translate(0.1F, 0.1F, -0.1F);
+			p_114010_.mulPose(Axis.ZP.rotationDegrees(90.0F));
+		}
 	}
 }

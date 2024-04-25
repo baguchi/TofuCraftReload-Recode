@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:eggs"
+      "tag": "c:eggs"
     },
     {
       "item": "tofucraft:bottle_dashi"
@@ -11,6 +11,6 @@
   ],
   "result": {
     "count": 4,
-    "item": "tofucraft:tofuegg"
+    "id": "tofucraft:tofuegg"
   }
 }

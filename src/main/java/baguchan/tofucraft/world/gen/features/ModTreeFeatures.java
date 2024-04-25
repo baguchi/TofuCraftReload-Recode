@@ -5,7 +5,7 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.world.gen.foliage.MushroomFoliagePlacer;
 import baguchan.tofucraft.world.gen.foliage.TofuFoliagePlacer;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -77,7 +77,7 @@ public class ModTreeFeatures {
 		return ResourceKey.create(Registries.CONFIGURED_FEATURE, TofuCraftReload.prefix(name));
 	}
 
-	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 		FeatureUtils.register(context, TOFU_TREE, Feature.TREE, createTofuTree().build());
 		FeatureUtils.register(context, TOFU_TREE_BIG, Feature.TREE, createTofuTreeBig().build());
 		FeatureUtils.register(context, APRICOT_TREE, Feature.TREE, createApricotTree().build());

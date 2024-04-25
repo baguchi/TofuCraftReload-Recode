@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "tofucraft:starch_raw"
   },
-  "result": "tofucraft:starch"
+  "result": {
+    "count": 1,
+    "id": "tofucraft:starch"
+  }
 }

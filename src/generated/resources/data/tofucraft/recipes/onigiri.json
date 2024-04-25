@@ -3,11 +3,11 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:crops/rice"
+      "tag": "c:crops/rice"
     }
   ],
   "result": {
     "count": 2,
-    "item": "tofucraft:onigiri"
+    "id": "tofucraft:onigiri"
   }
 }

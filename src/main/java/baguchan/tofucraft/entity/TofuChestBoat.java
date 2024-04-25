@@ -4,7 +4,7 @@ import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,6 +23,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.loot.LootTable;
 
 import javax.annotation.Nullable;
 
@@ -30,7 +31,7 @@ public class TofuChestBoat extends TofuBoat implements HasCustomInventoryScreen,
 
 	private NonNullList<ItemStack> itemStacks = NonNullList.withSize(27, ItemStack.EMPTY);
 	@Nullable
-	private ResourceLocation lootTable;
+	private ResourceKey<LootTable> lootTable;
 	private long lootTableSeed;
 
 	public TofuChestBoat(EntityType<? extends TofuBoat> type, Level level) {
@@ -58,13 +59,13 @@ public class TofuChestBoat extends TofuBoat implements HasCustomInventoryScreen,
 	@Override
 	protected void addAdditionalSaveData(CompoundTag tag) {
 		super.addAdditionalSaveData(tag);
-		this.addChestVehicleSaveData(tag);
+		this.addChestVehicleSaveData(tag, this.registryAccess());
 	}
 
 	@Override
 	protected void readAdditionalSaveData(CompoundTag tag) {
 		super.readAdditionalSaveData(tag);
-		this.readChestVehicleSaveData(tag);
+		this.readChestVehicleSaveData(tag, this.registryAccess());
 	}
 
 	@Override
@@ -177,12 +178,12 @@ public class TofuChestBoat extends TofuBoat implements HasCustomInventoryScreen,
 
 	@Nullable
 	@Override
-	public ResourceLocation getLootTable() {
+	public ResourceKey<LootTable> getLootTable() {
 		return this.lootTable;
 	}
 
 	@Override
-	public void setLootTable(@Nullable ResourceLocation location) {
+	public void setLootTable(@Nullable ResourceKey<LootTable> location) {
 		this.lootTable = location;
 	}
 

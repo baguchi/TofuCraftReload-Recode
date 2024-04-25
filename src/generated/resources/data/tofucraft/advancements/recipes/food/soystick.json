@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:salt"
+            "items": "#c:salt"
           }
         ]
       },

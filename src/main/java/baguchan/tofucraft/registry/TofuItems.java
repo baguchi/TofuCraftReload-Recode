@@ -4,10 +4,6 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.data.CustomTagGenerator;
 import baguchan.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
 import baguchan.tofucraft.entity.TofuBoat;
-import baguchan.tofucraft.entity.projectile.FukumameEntity;
-import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
-import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
-import baguchan.tofucraft.entity.projectile.ZundaArrow;
 import baguchan.tofucraft.item.BitternItem;
 import baguchan.tofucraft.item.BreakableTofuArmorItem;
 import baguchan.tofucraft.item.BugleItem;
@@ -44,21 +40,16 @@ import baguchan.tofucraft.utils.RecipeHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.Position;
-import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BannerPatternItem;
 import net.minecraft.world.item.BucketItem;
@@ -71,7 +62,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SmithingTemplateItem;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -80,10 +70,8 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
-import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -277,37 +265,37 @@ public class TofuItems {
 	public static final Supplier<Item> HIYAYAKKO_GLASS = ITEMS.register("hiyayakko", () -> new ReturnableDishItem(TofuItems.GLASSBOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.HIYAYAKKO), false));
 	public static final Supplier<Item> NATTOHIYAYAKKO_GLASS = ITEMS.register("nattohiyayakko", () -> new ReturnableDishItem(TofuItems.GLASSBOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.NATTOHIYAYAKKO)));
 
-	public static final Supplier<Item> TOFU_KINU_SWORD = ITEMS.register("tofu_kinu_sword", () -> new TofuSwordItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_KINU_AXE = ITEMS.register("tofu_kinu_axe", () -> new TofuAxeItem(TofuItemTier.KINU, 0.0F, -2.25F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_KINU_PICKAXE = ITEMS.register("tofu_kinu_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.KINU, 0, -2.2F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_KINU_SHOVEL = ITEMS.register("tofu_kinu_shovel", () -> new TofuShovelItem(TofuItemTier.KINU, 0.0F, -2.2F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_KINU_HOE = ITEMS.register("tofu_kinu_hoe", () -> new HoeItem(TofuItemTier.KINU, 0, 1.0F, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_KINU_SWORD = ITEMS.register("tofu_kinu_sword", () -> new TofuSwordItem(TofuItemTier.KINU, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_KINU_AXE = ITEMS.register("tofu_kinu_axe", () -> new TofuAxeItem(TofuItemTier.KINU, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_KINU_PICKAXE = ITEMS.register("tofu_kinu_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.KINU, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_KINU_SHOVEL = ITEMS.register("tofu_kinu_shovel", () -> new TofuShovelItem(TofuItemTier.KINU, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_KINU_HOE = ITEMS.register("tofu_kinu_hoe", () -> new HoeItem(TofuItemTier.KINU, (new Item.Properties())));
 
-	public static final Supplier<Item> TOFU_MOMEN_SWORD = ITEMS.register("tofu_momen_sword", () -> new TofuSwordItem(TofuItemTier.MOMEN, 0, -2.2F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_MOMEN_AXE = ITEMS.register("tofu_momen_axe", () -> new TofuAxeItem(TofuItemTier.MOMEN, 1.0F, -2.5F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_MOMEN_PICKAXE = ITEMS.register("tofu_momen_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.MOMEN, 0, -2.25F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_MOMEN_SHOVEL = ITEMS.register("tofu_momen_shovel", () -> new TofuShovelItem(TofuItemTier.MOMEN, 0.0F, -2.25F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_MOMEN_HOE = ITEMS.register("tofu_momen_hoe", () -> new HoeItem(TofuItemTier.MOMEN, 0, 1.0F, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_MOMEN_SWORD = ITEMS.register("tofu_momen_sword", () -> new TofuSwordItem(TofuItemTier.MOMEN, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_MOMEN_AXE = ITEMS.register("tofu_momen_axe", () -> new TofuAxeItem(TofuItemTier.MOMEN, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_MOMEN_PICKAXE = ITEMS.register("tofu_momen_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.MOMEN, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_MOMEN_SHOVEL = ITEMS.register("tofu_momen_shovel", () -> new TofuShovelItem(TofuItemTier.MOMEN, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_MOMEN_HOE = ITEMS.register("tofu_momen_hoe", () -> new HoeItem(TofuItemTier.MOMEN, (new Item.Properties())));
 
-	public static final Supplier<Item> TOFU_SOLID_SWORD = ITEMS.register("tofu_solid_sword", () -> new TofuSwordItem(TofuItemTier.SOLID, 3, -2.3F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_SOLID_AXE = ITEMS.register("tofu_solid_axe", () -> new TofuAxeItem(TofuItemTier.SOLID, 6.0F, -2.9F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_SOLID_PICKAXE = ITEMS.register("tofu_solid_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.SOLID, 1, -2.7F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_SOLID_SHOVEL = ITEMS.register("tofu_solid_shovel", () -> new TofuShovelItem(TofuItemTier.SOLID, 1.5F, -2.9F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_SOLID_HOE = ITEMS.register("tofu_solid_hoe", () -> new HoeItem(TofuItemTier.SOLID, -1, -1.0F, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_SOLID_SWORD = ITEMS.register("tofu_solid_sword", () -> new TofuSwordItem(TofuItemTier.SOLID, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_SOLID_AXE = ITEMS.register("tofu_solid_axe", () -> new TofuAxeItem(TofuItemTier.SOLID, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_SOLID_PICKAXE = ITEMS.register("tofu_solid_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.SOLID, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_SOLID_SHOVEL = ITEMS.register("tofu_solid_shovel", () -> new TofuShovelItem(TofuItemTier.SOLID, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_SOLID_HOE = ITEMS.register("tofu_solid_hoe", () -> new HoeItem(TofuItemTier.SOLID, (new Item.Properties())));
 
-	public static final Supplier<Item> TOFU_METAL_SWORD = ITEMS.register("tofu_metal_sword", () -> new TofuSwordItem(TofuItemTier.METAL, 3, -2.3F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_METAL_AXE = ITEMS.register("tofu_metal_axe", () -> new TofuAxeItem(TofuItemTier.METAL, 5.0F, -3.1F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_METAL_PICKAXE = ITEMS.register("tofu_metal_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.METAL, 1, -2.7F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_METAL_SHOVEL = ITEMS.register("tofu_metal_shovel", () -> new TofuShovelItem(TofuItemTier.METAL, 1.5F, -2.9F, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_METAL_SWORD = ITEMS.register("tofu_metal_sword", () -> new TofuSwordItem(TofuItemTier.METAL, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_METAL_AXE = ITEMS.register("tofu_metal_axe", () -> new TofuAxeItem(TofuItemTier.METAL, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_METAL_PICKAXE = ITEMS.register("tofu_metal_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.METAL, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_METAL_SHOVEL = ITEMS.register("tofu_metal_shovel", () -> new TofuShovelItem(TofuItemTier.METAL, (new Item.Properties())));
 	public static final Supplier<Item> TOFU_METAL_SHEARS = ITEMS.register("tofu_metal_shears", () -> new TofuShearsItem((new Item.Properties()).stacksTo(1).durability(224)));
-	public static final Supplier<Item> TOFU_METAL_HOE = ITEMS.register("tofu_metal_hoe", () -> new HoeItem(TofuItemTier.METAL, -2, -1.0F, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_METAL_HOE = ITEMS.register("tofu_metal_hoe", () -> new HoeItem(TofuItemTier.METAL, (new Item.Properties())));
 
 
-	public static final Supplier<Item> TOFU_DIAMOND_SWORD = ITEMS.register("tofu_diamond_sword", () -> new TofuSwordItem(TofuItemTier.TOFUDIAMOND, 3, -2.4F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_DIAMOND_AXE = ITEMS.register("tofu_diamond_axe", () -> new TofuAxeItem(TofuItemTier.TOFUDIAMOND, 5.0F, -3.2F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_DIAMOND_PICKAXE = ITEMS.register("tofu_diamond_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.TOFUDIAMOND, 1, -2.8F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_DIAMOND_SHOVEL = ITEMS.register("tofu_diamond_shovel", () -> new TofuShovelItem(TofuItemTier.TOFUDIAMOND, 1.5F, -3.0F, (new Item.Properties())));
-	public static final Supplier<Item> TOFU_DIAMOND_HOE = ITEMS.register("tofu_diamond_hoe", () -> new HoeItem(TofuItemTier.TOFUDIAMOND, -4, 0.0F, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_DIAMOND_SWORD = ITEMS.register("tofu_diamond_sword", () -> new TofuSwordItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_DIAMOND_AXE = ITEMS.register("tofu_diamond_axe", () -> new TofuAxeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_DIAMOND_PICKAXE = ITEMS.register("tofu_diamond_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_DIAMOND_SHOVEL = ITEMS.register("tofu_diamond_shovel", () -> new TofuShovelItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_DIAMOND_HOE = ITEMS.register("tofu_diamond_hoe", () -> new HoeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties())));
 	public static final Supplier<Item> TOFU_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("tofu_upgrade_smithing_template", TofuItems::createTofuUpgradeTemplate);
 	public static final Supplier<Item> ZUNDA_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("zunda_upgrade_smithing_template", TofuItems::createZundaBowUpgradeTemplate);
 
@@ -566,9 +554,8 @@ public class TofuItems {
 					p_123561_.level().levelEvent(2001, blockpos, Block.getId(p_123561_.level().getBlockState(blockpos)));
 					p_123561_.level().removeBlock(blockpos, false);
 					this.defaultDispenseItemBehavior.dispense(p_123561_, stack);
-					if (p_123562_.hurt(1, p_123561_.level().getRandom(), null)) {
-						p_123562_.setCount(0);
-					}
+					p_123562_.hurtAndBreak(1, p_123561_.level().getRandom(), null, () -> p_123562_.setCount(0));
+
 					setSuccess(true);
 				}
 				return p_123562_;
@@ -588,69 +575,31 @@ public class TofuItems {
 		};
 		DispenserBlock.registerBehavior(TOFUSCOOP.get(), dispenseitembehavior3);
 
-		DispenserBlock.registerBehavior(FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
-			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
-				return Util.make(new FukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
-				});
-			}
+		DispenserBlock.registerBehavior(FUKUMAME.get(), new DamageableProjectileDispenseBehavior(FUKUMAME.get()) {
 
 			protected int shootCount() {
 				return 6;
 			}
 		});
-		DispenserBlock.registerBehavior(NETHER_FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
-			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
-				return Util.make(new NetherFukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
-				});
-			}
+		DispenserBlock.registerBehavior(NETHER_FUKUMAME.get(), new DamageableProjectileDispenseBehavior(NETHER_FUKUMAME.get()) {
 
 			protected int shootCount() {
 				return 6;
 			}
 		});
-		DispenserBlock.registerBehavior(INFERNO_NETHER_FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
-			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
-				return Util.make(new NetherFukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
-				});
-			}
-
-			public ItemStack execute(BlockSource p_123366_, ItemStack p_123367_) {
-				Level level = p_123366_.level();
-				Position position = DispenserBlock.getDispensePosition(p_123366_);
-				Direction direction = p_123366_.state().getValue(DispenserBlock.FACING);
-				for (int i = 0; i < shootCount(); i++) {
-					Projectile projectile = this.getProjectile(level, position, p_123367_);
-					projectile.shoot((double) direction.getStepX(), (double) ((float) direction.getStepY() + 0.1F), (double) direction.getStepZ(), this.getPower(), this.getUncertainty());
-					projectile.setSecondsOnFire(60);
-					level.addFreshEntity(projectile);
-				}
-				if (p_123367_.hurt(1, p_123366_.level().getRandom(), null)) {
-					p_123367_.setCount(0);
-				}
-				return p_123367_;
-			}
-
+		DispenserBlock.registerBehavior(INFERNO_NETHER_FUKUMAME.get(), new DamageableProjectileDispenseBehavior(INFERNO_NETHER_FUKUMAME.get()) {
 			protected int shootCount() {
 				return 6;
 			}
 		});
-		DispenserBlock.registerBehavior(SOUL_FUKUMAME.get(), new DamageableProjectileDispenseBehavior() {
-			protected Projectile getProjectile(Level p_123476_, Position p_123477_, ItemStack p_123478_) {
-				return Util.make(new SoulFukumameEntity(p_123476_, p_123477_.x(), p_123477_.y(), p_123477_.z()), (p_123474_) -> {
-				});
-			}
+		DispenserBlock.registerBehavior(SOUL_FUKUMAME.get(), new DamageableProjectileDispenseBehavior(SOUL_FUKUMAME.get()) {
 
 			protected int shootCount() {
 				return 6;
 			}
 		});
 
-		DispenserBlock.registerBehavior(ZUNDA_ARROW.get(), new AbstractProjectileDispenseBehavior() {
-			protected Projectile getProjectile(Level p_123456_, Position p_123457_, ItemStack p_123458_) {
-				AbstractArrow abstractarrow = new ZundaArrow(p_123456_, p_123457_.x(), p_123457_.y(), p_123457_.z(), p_123458_);
-				abstractarrow.pickup = AbstractArrow.Pickup.ALLOWED;
-				return abstractarrow;
-			}
+		DispenserBlock.registerBehavior(ZUNDA_ARROW.get(), new ProjectileDispenseBehavior(ZUNDA_ARROW.get()) {
 		});
 
 		DispenseItemBehavior dispenseitembehavior4 = new DefaultDispenseItemBehavior() {
@@ -670,11 +619,5 @@ public class TofuItems {
 		};
 		DispenserBlock.registerBehavior(CRIMSON_BOTTLE.get(), dispenseitembehavior4);
 		DispenserBlock.registerBehavior(WARPED_BOTTLE.get(), dispenseitembehavior4);
-	}
-
-	public static void registerAnimalFeed() {
-		Ingredient newChickenFood = Ingredient.of(TofuItems.SEEDS_RICE.get(), TofuItems.SOYBEAN_PARCHED.get());
-		Chicken.FOOD_ITEMS = new CompoundIngredient(Arrays.asList(Chicken.FOOD_ITEMS, newChickenFood)) {
-		};
 	}
 }

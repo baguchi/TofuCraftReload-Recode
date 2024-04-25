@@ -37,7 +37,7 @@ public abstract class LightningBoltMixin extends Entity {
 		super(p_19870_, p_19871_);
 	}
 
-	@Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LightningBolt;gameEvent(Lnet/minecraft/world/level/gameevent/GameEvent;)V", shift = At.Shift.AFTER))
+	@Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LightningBolt;powerLightningRod()V", shift = At.Shift.AFTER))
 	public void tick(CallbackInfo callbackInfo) {
 		if (this.life == 2) {
 			makeZundaOnLightningStrike(this.level(), this.getStrikePosition());

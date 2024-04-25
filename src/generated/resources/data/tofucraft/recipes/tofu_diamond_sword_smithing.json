@@ -7,7 +7,8 @@
     "item": "tofucraft:tofu_metal_sword"
   },
   "result": {
-    "item": "tofucraft:tofu_diamond_sword"
+    "count": 1,
+    "id": "tofucraft:tofu_diamond_sword"
   },
   "template": {
     "item": "tofucraft:tofu_upgrade_smithing_template"

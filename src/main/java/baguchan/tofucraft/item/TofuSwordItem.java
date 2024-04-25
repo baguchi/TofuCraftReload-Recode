@@ -11,8 +11,8 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class TofuSwordItem extends SwordItem implements IEnergyInsertable {
-	public TofuSwordItem(Tier tofuItemTier, int daamge, float speed, Properties properties) {
-		super(tofuItemTier, daamge, speed, properties);
+	public TofuSwordItem(Tier tofuItemTier, Properties properties) {
+		super(tofuItemTier, properties);
 	}
 
 	@Override

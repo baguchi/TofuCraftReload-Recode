@@ -3,13 +3,14 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:crops/soybean"
+      "tag": "c:crops/soybean"
     },
     {
       "item": "minecraft:bucket"
     }
   ],
   "result": {
-    "item": "tofucraft:bucket_soymilk"
+    "count": 1,
+    "id": "tofucraft:bucket_soymilk"
   }
 }

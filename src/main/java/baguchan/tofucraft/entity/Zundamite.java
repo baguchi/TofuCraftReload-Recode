@@ -1,6 +1,5 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.client.particle.ParticleZundaCloud;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -12,7 +11,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -28,7 +26,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import org.joml.Vector3f;
+import net.minecraft.world.phys.Vec3;
 
 public class Zundamite extends Monster {
 	public Zundamite(EntityType<? extends Monster> p_33002_, Level p_33003_) {
@@ -49,7 +47,7 @@ public class Zundamite extends Monster {
 	}
 
 	@Override
-	protected float getStandingEyeHeight(Pose p_32604_, EntityDimensions p_32605_) {
+	public float getEyeHeightAccess(Pose pose) {
 		return 0.13F;
 	}
 
@@ -109,17 +107,12 @@ public class Zundamite extends Monster {
 			double xSpeed = (this.random.nextDouble() - 0.5) * 0.15F;
 			double ySpeed = (this.random.nextDouble() - 0.5) * 0.15F;
 			double zSpeed = (this.random.nextDouble() - 0.5) * 0.15F;
-			this.level().addParticle(new ParticleZundaCloud.CloudData(TofuParticleTypes.ZUNDA_CLOUD.get(), 5f, 40, ParticleZundaCloud.EnumCloudBehavior.GROW, 0.98f), this.getX(), this.getY(), this.getZ(), xSpeed, ySpeed, zSpeed);
+			this.level().addParticle(TofuParticleTypes.ZUNDA_CLOUD.get(), this.getX(), this.getY(), this.getZ(), xSpeed, ySpeed, zSpeed);
 		}
 	}
 
 	@Override
-	public MobType getMobType() {
-		return MobType.ARTHROPOD;
-	}
-
-	@Override
-	protected Vector3f getPassengerAttachmentPoint(Entity p_295545_, EntityDimensions p_295894_, float p_295337_) {
-		return new Vector3f(0.0F, p_295894_.height - 0.0625F * p_295337_, 0.0F);
+	protected Vec3 getPassengerAttachmentPoint(Entity p_295545_, EntityDimensions p_295894_, float p_295337_) {
+		return new Vec3(0.0F, p_295894_.height() - 0.0625F * p_295337_, 0.0F);
 	}
 }

@@ -4,7 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantFloat;
@@ -30,7 +30,7 @@ public class TofuConfiguredWorldCarvers {
 		return ResourceKey.create(Registries.CONFIGURED_CARVER, new ResourceLocation(TofuCraftReload.MODID, p_256085_));
 	}
 
-	public static void bootstrap(BootstapContext<ConfiguredWorldCarver<?>> p_255626_) {
+	public static void bootstrap(BootstrapContext<ConfiguredWorldCarver<?>> p_255626_) {
 		HolderGetter<Block> holdergetter = p_255626_.lookup(Registries.BLOCK);
 		p_255626_.register(TofuConfiguredWorldCarvers.CAVE, WorldCarver.CAVE.configured(new CaveCarverConfiguration(0.15F, UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(180)), UniformFloat.of(0.1F, 0.9F), VerticalAnchor.aboveBottom(8), CarverDebugSettings.of(false, Blocks.CRIMSON_BUTTON.defaultBlockState()), holdergetter.getOrThrow(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE), UniformFloat.of(0.7F, 1.4F), UniformFloat.of(0.8F, 1.3F), UniformFloat.of(-1.0F, -0.4F))));
 		p_255626_.register(TofuConfiguredWorldCarvers.CAVE_EXTRA_UNDERGROUND, WorldCarver.CAVE.configured(new CaveCarverConfiguration(0.07F, UniformHeight.of(VerticalAnchor.aboveBottom(8), VerticalAnchor.absolute(47)), UniformFloat.of(0.1F, 0.9F), VerticalAnchor.aboveBottom(8), CarverDebugSettings.of(false, Blocks.OAK_BUTTON.defaultBlockState()), holdergetter.getOrThrow(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE), UniformFloat.of(0.7F, 1.4F), UniformFloat.of(0.8F, 1.3F), UniformFloat.of(-1.0F, -0.4F))));

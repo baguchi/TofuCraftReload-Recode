@@ -66,15 +66,15 @@ public abstract class EntityMixin implements net.neoforged.neoforge.common.exten
 
 		float f2 = (float) Mth.floor(realEntity.getY());
 
-		for (int i = 0; (float) i < 1.0F + this.dimensions.width * 20.0F; ++i) {
-			double d0 = (this.random.nextDouble() * 2.0D - 1.0D) * (double) this.dimensions.width;
-			double d1 = (this.random.nextDouble() * 2.0D - 1.0D) * (double) this.dimensions.width;
+		for (int i = 0; (float) i < 1.0F + this.dimensions.width() * 20.0F; ++i) {
+			double d0 = (this.random.nextDouble() * 2.0D - 1.0D) * (double) this.dimensions.width();
+			double d1 = (this.random.nextDouble() * 2.0D - 1.0D) * (double) this.dimensions.width();
 			this.level().addParticle(ParticleTypes.BUBBLE, realEntity.getX() + d0, (double) (f2 + 1.0F), realEntity.getZ() + d1, vec3.x, vec3.y - this.random.nextDouble() * (double) 0.2F, vec3.z);
 		}
 
-		for (int j = 0; (float) j < 1.0F + this.dimensions.width * 20.0F; ++j) {
-			double d2 = (this.random.nextDouble() * 2.0D - 1.0D) * (double) this.dimensions.width;
-			double d3 = (this.random.nextDouble() * 2.0D - 1.0D) * (double) this.dimensions.width;
+		for (int j = 0; (float) j < 1.0F + this.dimensions.width() * 20.0F; ++j) {
+			double d2 = (this.random.nextDouble() * 2.0D - 1.0D) * (double) this.dimensions.width();
+			double d3 = (this.random.nextDouble() * 2.0D - 1.0D) * (double) this.dimensions.width();
 			this.level().addParticle(TofuParticleTypes.SOYMILK_SPLASH.get(), realEntity.getX() + d2, (double) (f2 + 1.0F), realEntity.getZ() + d3, vec3.x, vec3.y, vec3.z);
 		}
 

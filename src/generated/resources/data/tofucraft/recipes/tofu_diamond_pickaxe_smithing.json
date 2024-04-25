@@ -7,7 +7,8 @@
     "item": "tofucraft:tofu_metal_pickaxe"
   },
   "result": {
-    "item": "tofucraft:tofu_diamond_pickaxe"
+    "count": 1,
+    "id": "tofucraft:tofu_diamond_pickaxe"
   },
   "template": {
     "item": "tofucraft:tofu_upgrade_smithing_template"

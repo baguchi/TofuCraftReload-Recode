@@ -6,7 +6,7 @@
       "item": "tofucraft:tofukinu"
     },
     "E": {
-      "tag": "forge:eggs"
+      "tag": "c:eggs"
     },
     "S": {
       "item": "minecraft:sugar"
@@ -21,6 +21,7 @@
     "WWW"
   ],
   "result": {
-    "item": "tofucraft:tofucake"
+    "count": 1,
+    "id": "tofucraft:tofucake"
   }
 }

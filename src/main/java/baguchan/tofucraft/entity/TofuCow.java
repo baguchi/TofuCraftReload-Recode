@@ -46,7 +46,6 @@ import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -59,9 +58,9 @@ public class TofuCow extends Cow {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(TOFUCOW_TYPE, TofuCowType.NORMAL.name());
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(TOFUCOW_TYPE, TofuCowType.NORMAL.name());
 	}
 
 	protected void registerGoals() {
@@ -102,13 +101,13 @@ public class TofuCow extends Cow {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @org.jetbrains.annotations.Nullable SpawnGroupData p_146749_, @org.jetbrains.annotations.Nullable CompoundTag p_146750_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @org.jetbrains.annotations.Nullable SpawnGroupData p_146749_) {
 		if (p_146746_.getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
 			this.setTofuCowType(TofuCowType.ZUNDA);
 		}
 
 
-		return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
+		return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_);
 	}
 
 
@@ -119,7 +118,7 @@ public class TofuCow extends Cow {
 	public InteractionResult mobInteract(Player p_28298_, InteractionHand p_28299_) {
 		ItemStack itemstack = p_28298_.getItemInHand(p_28299_);
 		if (!this.isBaby()) {
-			IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(itemstack, 1)).orElse(null);
+			IFluidHandlerItem handler = FluidUtil.getFluidHandler(itemstack.copyWithCount(1)).orElse(null);
 			if (handler != null && handler instanceof FluidBucketWrapper && ((FluidBucketWrapper) handler).getFluid().isEmpty()) {
 				p_28298_.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
 				AtomicReference<ItemStack> resultItemStack = new AtomicReference<>(itemstack.copy());

@@ -21,11 +21,6 @@ public class SeasoningItem extends Item {
 	}
 
 	@Override
-	public boolean canBeDepleted() {
-		return false;
-	}
-
-	@Override
 	public boolean isDamageable(ItemStack stack) {
 		return true;
 	}

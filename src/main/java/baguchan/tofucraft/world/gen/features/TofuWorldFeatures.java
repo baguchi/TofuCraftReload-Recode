@@ -7,7 +7,7 @@ import baguchan.tofucraft.registry.TofuTags;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
@@ -64,7 +64,7 @@ public class TofuWorldFeatures {
 		return ResourceKey.create(Registries.CONFIGURED_FEATURE, TofuCraftReload.prefix(name));
 	}
 
-	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 		RuleTest ruletest = new TagMatchTest(TofuTags.Blocks.TOFU_TERRAIN);
 		FeatureUtils.register(context, ORE_KINU_TOFU, Feature.ORE, new OreConfiguration(ruletest, TofuBlocks.KINUTOFU.get().defaultBlockState(), 20));
 		FeatureUtils.register(context, ORE_MINCED_TOFU, Feature.ORE, new OreConfiguration(ruletest, TofuBlocks.MINCEDTOFU.get().defaultBlockState(), 28));

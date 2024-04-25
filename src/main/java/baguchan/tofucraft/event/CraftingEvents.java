@@ -2,7 +2,6 @@ package baguchan.tofucraft.event;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuItems;
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
@@ -31,8 +30,8 @@ public class CraftingEvents {
 		if (item.is(TofuItems.BUCKET_SOYMILK.get())) {
 			if (craftMatrix.hasAnyOf(Set.of(Items.BUCKET, TofuItems.FILTERCLOTH.get(), TofuItems.SEEDS_SOYBEANS.get()))) {
 				CraftingContainer craftingcontainer = makeCraftContainer(craftMatrix);
-				Optional<Pair<ResourceLocation, RecipeHolder<CraftingRecipe>>> recipe = player.level().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingcontainer, player.level(), new ResourceLocation(TofuCraftReload.MODID, "bucket_soymilk_okara"));
-				if (recipe.isPresent() && Objects.equals(recipe.get().getFirst(), new ResourceLocation(TofuCraftReload.MODID, "bucket_soymilk_okara"))) {
+				Optional<RecipeHolder<CraftingRecipe>> recipe = player.level().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingcontainer, player.level(), new ResourceLocation(TofuCraftReload.MODID, "bucket_soymilk_okara"));
+				if (recipe.isPresent() && Objects.equals(recipe.get(), new ResourceLocation(TofuCraftReload.MODID, "bucket_soymilk_okara"))) {
 					player.getInventory().add(new ItemStack(TofuItems.OKARA.get(), 1));
 				}
 			}

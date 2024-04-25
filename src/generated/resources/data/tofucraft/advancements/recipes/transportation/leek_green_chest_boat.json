@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:leek_green_boat"
-            ]
+            "items": "tofucraft:leek_green_boat"
           }
         ]
       },

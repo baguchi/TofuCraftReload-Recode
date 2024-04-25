@@ -7,7 +7,8 @@
     "item": "tofucraft:tofu_metal_boots"
   },
   "result": {
-    "item": "tofucraft:tofu_diamond_boots"
+    "count": 1,
+    "id": "tofucraft:tofu_diamond_boots"
   },
   "template": {
     "item": "tofucraft:tofu_upgrade_smithing_template"

@@ -6,7 +6,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.level.LevelEvent;
 
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class TofuNetwork {
 	/*
 	 * Feature:

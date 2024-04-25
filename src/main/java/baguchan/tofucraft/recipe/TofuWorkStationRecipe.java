@@ -1,11 +1,12 @@
 package baguchan.tofucraft.recipe;
 
 import baguchan.tofucraft.registry.TofuRecipes;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -55,7 +56,7 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 	}
 
 	@Override
-	public ItemStack assemble(Container p_267036_, RegistryAccess p_266699_) {
+	public ItemStack assemble(Container p_267036_, HolderLookup.Provider p_266699_) {
 		ItemStack itemstack = this.result.copy();
 
 		return itemstack;
@@ -89,7 +90,7 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 	}
 
 	@Override
-	public ItemStack getResultItem(RegistryAccess registryAccess) {
+	public ItemStack getResultItem(HolderLookup.Provider registryAccess) {
 		return this.result;
 	}
 
@@ -120,35 +121,45 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 	}
 
 	public static class Serializer implements RecipeSerializer<TofuWorkStationRecipe> {
-		private static final Codec<TofuWorkStationRecipe> CODEC = RecordCodecBuilder.create((p_301330_) -> {
+		private static final MapCodec<TofuWorkStationRecipe> CODEC = RecordCodecBuilder.mapCodec((p_301330_) -> {
 			return p_301330_.group(Ingredient.CODEC.fieldOf("base").forGetter((p_298250_) -> {
 				return p_298250_.baseIngredient;
 			}), Ingredient.CODEC.fieldOf("ingredient").forGetter((p_297231_) -> {
 				return p_297231_.ingredient;
 			}), Ingredient.CODEC.fieldOf("sub").forGetter((p_299654_) -> {
 				return p_299654_.subIngredient;
-			}), ItemStack.RESULT_CODEC.fieldOf("result").forGetter((p_297480_) -> {
+			}), ItemStack.SINGLE_ITEM_CODEC.fieldOf("result").forGetter((p_297480_) -> {
 				return p_297480_.result;
 			})).apply(p_301330_, TofuWorkStationRecipe::new);
 		});
 
-		public Codec<TofuWorkStationRecipe> codec() {
+		public static final StreamCodec<RegistryFriendlyByteBuf, TofuWorkStationRecipe> STREAM_CODEC = StreamCodec.of(
+				Serializer::toNetwork, Serializer::fromNetwork
+		);
+
+		@Override
+		public MapCodec<TofuWorkStationRecipe> codec() {
 			return CODEC;
 		}
 
-		public TofuWorkStationRecipe fromNetwork(FriendlyByteBuf p_267316_) {
-			Ingredient ingredient = Ingredient.fromNetwork(p_267316_);
-			Ingredient ingredient1 = Ingredient.fromNetwork(p_267316_);
-			Ingredient ingredient2 = Ingredient.fromNetwork(p_267316_);
-			ItemStack itemstack = p_267316_.readItem();
+		@Override
+		public StreamCodec<RegistryFriendlyByteBuf, TofuWorkStationRecipe> streamCodec() {
+			return STREAM_CODEC;
+		}
+
+		public static TofuWorkStationRecipe fromNetwork(RegistryFriendlyByteBuf p_320719_) {
+			Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(p_320719_);
+			Ingredient ingredient1 = Ingredient.CONTENTS_STREAM_CODEC.decode(p_320719_);
+			Ingredient ingredient2 = Ingredient.CONTENTS_STREAM_CODEC.decode(p_320719_);
+			ItemStack itemstack = ItemStack.STREAM_CODEC.decode(p_320719_);
 			return new TofuWorkStationRecipe(ingredient, ingredient1, ingredient2, itemstack);
 		}
 
-		public void toNetwork(FriendlyByteBuf p_266746_, TofuWorkStationRecipe p_266927_) {
-			p_266927_.baseIngredient.toNetwork(p_266746_);
-			p_266927_.ingredient.toNetwork(p_266746_);
-			p_266927_.subIngredient.toNetwork(p_266746_);
-			p_266746_.writeItem(p_266927_.result);
+		public static void toNetwork(RegistryFriendlyByteBuf p_320719_, TofuWorkStationRecipe p_266927_) {
+			Ingredient.CONTENTS_STREAM_CODEC.encode(p_320719_, p_266927_.baseIngredient);
+			Ingredient.CONTENTS_STREAM_CODEC.encode(p_320719_, p_266927_.ingredient);
+			Ingredient.CONTENTS_STREAM_CODEC.encode(p_320719_, p_266927_.subIngredient);
+			ItemStack.STREAM_CODEC.encode(p_320719_, p_266927_.result);
 		}
 	}
 }

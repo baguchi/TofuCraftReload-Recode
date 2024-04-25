@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "/": {
-      "tag": "forge:rods/wooden"
+      "tag": "c:rods/wooden"
     },
     "P": {
       "item": "tofucraft:tofustem_planks"
@@ -16,6 +16,6 @@
   ],
   "result": {
     "count": 3,
-    "item": "tofucraft:tofustem_sign"
+    "id": "tofucraft:tofustem_sign"
   }
 }

@@ -9,7 +9,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -65,34 +65,34 @@ public class FoodPlateBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
+	protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+		BlockEntity tileEntity = level.getBlockEntity(blockPos);
 		if (tileEntity instanceof FoodPlateBlockEntity) {
 			FoodPlateBlockEntity plateBlockEntity = (FoodPlateBlockEntity) tileEntity;
-			ItemStack heldStack = player.getItemInHand(handIn);
+			ItemStack heldStack = player.getItemInHand(hand);
 
 			if (plateBlockEntity.isEmpty()) {
 				if (heldStack.isEmpty()) {
-					return InteractionResult.PASS;
+					return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 				} else if (plateBlockEntity.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
-					worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 0.8F);
-					return InteractionResult.SUCCESS;
+					level.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 0.8F);
+					return ItemInteractionResult.SUCCESS;
 				}
 			} else if (!heldStack.isEmpty()) {
-				return InteractionResult.CONSUME;
-			} else if (handIn.equals(InteractionHand.MAIN_HAND)) {
+				return ItemInteractionResult.CONSUME;
+			} else if (hand.equals(InteractionHand.MAIN_HAND)) {
 				if (!player.isCreative()) {
 					if (!player.getInventory().add(plateBlockEntity.removeItem())) {
-						Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), plateBlockEntity.removeItem());
+						Containers.dropItemStack(level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), plateBlockEntity.removeItem());
 					}
 				} else {
 					plateBlockEntity.removeItem();
 				}
-				worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 0.25F, 0.5F);
-				return InteractionResult.SUCCESS;
+				level.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 0.25F, 0.5F);
+				return ItemInteractionResult.SUCCESS;
 			}
 		}
-		return InteractionResult.PASS;
+		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
 
 	@Override

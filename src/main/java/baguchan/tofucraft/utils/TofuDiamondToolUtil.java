@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -24,7 +25,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.CommonHooks;
-import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.EventHooks;
 
 public class TofuDiamondToolUtil {
@@ -41,7 +41,7 @@ public class TofuDiamondToolUtil {
 		float f5 = Mth.sin(-f * 0.017453292F);
 		float f6 = f3 * f4;
 		float f7 = f2 * f4;
-		double d3 = playerIn.getAttributeValue(NeoForgeMod.BLOCK_REACH);
+		double d3 = playerIn.getAttributeValue(Attributes.BLOCK_INTERACTION_RANGE);
 		Vec3 vec3d1 = vec3d.add((double) f6 * d3, (double) f5 * d3, (double) f7 * d3);
 		return level.clip(new ClipContext(vec3d, vec3d1, ClipContext.Block.COLLIDER, !useLiquids ? ClipContext.Fluid.NONE : ClipContext.Fluid.ANY, playerIn));
 	}

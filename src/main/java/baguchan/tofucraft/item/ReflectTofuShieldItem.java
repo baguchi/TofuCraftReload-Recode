@@ -2,7 +2,9 @@ package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyContained;
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
+import baguchan.tofucraft.api.tfenergy.TFEnergyData;
 import baguchan.tofucraft.client.render.item.TofuShieldBWLR;
+import baguchan.tofucraft.registry.TofuDataComponents;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -67,14 +69,9 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 		}
 		return 0;
 	}
-
-
-	public static final String TAG_TF = "tf_energy";
-	public static final String TAG_TFMAX = "tf_energymax";
-
 	@Override
 	public int getEnergy(ItemStack inst) {
-		return inst.getTag() != null && inst.getTag().contains(TAG_TF) ? inst.getTag().getInt(TAG_TF) : 0;
+		return inst.get(TofuDataComponents.TF_ENERGY_DATA) != null ? inst.get(TofuDataComponents.TF_ENERGY_DATA).storeTF() : 0;
 	}
 
 	@Override
@@ -84,7 +81,7 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 
 	@Override
 	public void setEnergy(ItemStack inst, int amount) {
-		inst.getOrCreateTag().putInt(TAG_TF, amount);
+		inst.set(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(amount, getEnergyMax(inst)));
 	}
 
 	@Override

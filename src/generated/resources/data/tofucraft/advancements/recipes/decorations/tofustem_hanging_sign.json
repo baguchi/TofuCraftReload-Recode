@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:tofustem"
-            ]
+            "items": "tofucraft:tofustem"
           }
         ]
       },

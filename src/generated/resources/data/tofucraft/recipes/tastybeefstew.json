@@ -12,7 +12,7 @@
       "item": "minecraft:cooked_beef"
     },
     {
-      "tag": "forge:dust/salt"
+      "tag": "c:dust/salt"
     },
     {
       "item": "minecraft:milk_bucket"
@@ -25,6 +25,7 @@
     }
   ],
   "result": {
-    "item": "tofucraft:tastybeefstew"
+    "count": 1,
+    "id": "tofucraft:tastybeefstew"
   }
 }

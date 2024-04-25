@@ -7,13 +7,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -61,29 +58,23 @@ public class TFOvenBlock extends BaseEntityBlock {
 		return p_48719_.rotate(p_48720_.getRotation(p_48719_.getValue(FACING)));
 	}
 
-	public InteractionResult use(BlockState p_48706_, Level p_48707_, BlockPos p_48708_, Player p_48709_, InteractionHand p_48710_, BlockHitResult p_48711_) {
-		if (p_48707_.isClientSide) {
+	@Override
+	protected InteractionResult useWithoutItem(BlockState p_307454_, Level p_307255_, BlockPos p_307303_, Player p_307670_, BlockHitResult p_307546_) {
+		if (p_307255_.isClientSide) {
 			return InteractionResult.SUCCESS;
 		} else {
-			this.openContainer(p_48707_, p_48708_, p_48709_);
+			BlockEntity blockentity = p_307255_.getBlockEntity(p_307303_);
+			openContainer(p_307255_, p_307303_, p_307670_);
+
 			return InteractionResult.CONSUME;
 		}
 	}
+
 
 	protected void openContainer(Level p_53631_, BlockPos p_53632_, Player p_53633_) {
 		BlockEntity blockentity = p_53631_.getBlockEntity(p_53632_);
 		if (blockentity instanceof TFOvenBlockEntity) {
 			p_53633_.openMenu((MenuProvider) blockentity);
-		}
-
-	}
-
-	public void setPlacedBy(Level p_48694_, BlockPos p_48695_, BlockState p_48696_, LivingEntity p_48697_, ItemStack p_48698_) {
-		if (p_48698_.hasCustomHoverName()) {
-			BlockEntity blockentity = p_48694_.getBlockEntity(p_48695_);
-			if (blockentity instanceof TFOvenBlockEntity) {
-				//((TFOvenBlockEntity) blockentity).setCustomName(p_48698_.getHoverName());
-			}
 		}
 
 	}

@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:zundatofu_mushroom"
-            ]
+            "items": "tofucraft:zundatofu_mushroom"
           }
         ]
       },

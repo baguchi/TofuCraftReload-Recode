@@ -2,16 +2,17 @@ package baguchan.tofucraft.blockentity;
 
 import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
 import baguchan.tofucraft.inventory.SaltFurnaceMenu;
-import baguchan.tofucraft.network.SaltFurnaceBitternPacket;
-import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
@@ -31,14 +32,11 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -123,36 +121,36 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	@Override
-	public void load(CompoundTag p_230337_2_) {
-		super.load(p_230337_2_);
+	public void loadAdditional(CompoundTag cmp, HolderLookup.Provider provider) {
+		super.loadAdditional(cmp, provider);
 		this.items = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
-		if (p_230337_2_.contains("WaterTank", 10)) {
-			CompoundTag nbt = p_230337_2_.getCompound("WaterTank");
-			this.waterTank = this.waterTank.readFromNBT(nbt);
+		if (cmp.contains("WaterTank", 10)) {
+			CompoundTag nbt = cmp.getCompound("WaterTank");
+			this.waterTank = this.waterTank.readFromNBT(provider, nbt);
 		}
-		if (p_230337_2_.contains("BitternTank", 10)) {
-			CompoundTag nbt = p_230337_2_.getCompound("BitternTank");
-			this.bitternTank = this.bitternTank.readFromNBT(nbt);
+		if (cmp.contains("BitternTank", 10)) {
+			CompoundTag nbt = cmp.getCompound("BitternTank");
+			this.bitternTank = this.bitternTank.readFromNBT(provider, nbt);
 		}
-		ContainerHelper.loadAllItems(p_230337_2_, this.items);
-		this.litTime = p_230337_2_.getInt("BurnTime");
-		this.cookingProgress = p_230337_2_.getInt("CookTime");
-		this.cookingTotalTime = p_230337_2_.getInt("CookTimeTotal");
+		ContainerHelper.loadAllItems(cmp, this.items, provider);
+		this.litTime = cmp.getInt("BurnTime");
+		this.cookingProgress = cmp.getInt("CookTime");
+		this.cookingTotalTime = cmp.getInt("CookTimeTotal");
 		this.litDuration = getBurnDuration(this.items.get(1));
 	}
 
-	public void saveAdditional(CompoundTag p_189515_1_) {
-		super.saveAdditional(p_189515_1_);
+	public void saveAdditional(CompoundTag p_189515_1_, HolderLookup.Provider provider) {
+		super.saveAdditional(p_189515_1_, provider);
 		CompoundTag nbt = new CompoundTag();
 		CompoundTag nbt2 = new CompoundTag();
-		this.waterTank.writeToNBT(nbt);
-		this.bitternTank.writeToNBT(nbt2);
+		this.waterTank.writeToNBT(provider, nbt);
+		this.bitternTank.writeToNBT(provider, nbt2);
 		p_189515_1_.put("WaterTank", nbt);
 		p_189515_1_.put("BitternTank", nbt2);
 		p_189515_1_.putInt("BurnTime", this.litTime);
 		p_189515_1_.putInt("CookTime", this.cookingProgress);
 		p_189515_1_.putInt("CookTimeTotal", this.cookingTotalTime);
-		ContainerHelper.saveAllItems(p_189515_1_, this.items);
+		ContainerHelper.saveAllItems(p_189515_1_, this.items, provider);
 	}
 
 	public static void tick(Level p_155014_, BlockPos p_155015_, BlockState p_155016_, SaltFurnaceBlockEntity saltFurnaceBlock) {
@@ -162,14 +160,10 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			saltFurnaceBlock.litTime--;
 		if (!p_155014_.isClientSide) {
 			if (saltFurnaceBlock.prevWaterFluid != saltFurnaceBlock.waterTank.getFluidAmount()) {
-				LevelChunk chunk = p_155014_.getChunkAt(p_155015_);
-				PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceWaterPacket(p_155015_, saltFurnaceBlock.waterTank.getFluid()));
-				saltFurnaceBlock.prevWaterFluid = saltFurnaceBlock.waterTank.getFluidAmount();
+				saltFurnaceBlock.setChanged();
 			}
 			if (saltFurnaceBlock.prevBitternFluid != saltFurnaceBlock.bitternTank.getFluidAmount()) {
-				LevelChunk chunk = p_155014_.getChunkAt(p_155015_);
-				PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceBitternPacket(p_155015_, saltFurnaceBlock.bitternTank.getFluid()));
-				saltFurnaceBlock.prevBitternFluid = saltFurnaceBlock.bitternTank.getFluidAmount();
+				saltFurnaceBlock.setChanged();
 			}
 		}
 		ItemStack itemstack = saltFurnaceBlock.items.get(0);
@@ -220,9 +214,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	public void startOpen(Player p_18955_) {
 		super.startOpen(p_18955_);
 		if (!this.level.isClientSide()) {
-			LevelChunk chunk = this.level.getChunkAt(this.getBlockPos());
-			PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceWaterPacket(this.getBlockPos(), this.waterTank.getFluid()));
-			PacketDistributor.TRACKING_CHUNK.with(chunk).send(new SaltFurnaceBitternPacket(this.getBlockPos(), this.bitternTank.getFluid()));
+			this.setChanged();
 		}
 	}
 
@@ -320,7 +312,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	protected int getBurnDuration(ItemStack p_213997_1_) {
 		if (p_213997_1_.isEmpty())
 			return 0;
-		return CommonHooks.getBurnTime(p_213997_1_, RecipeType.SMELTING);
+		return p_213997_1_.getBurnTime(RecipeType.SMELTING);
 	}
 
 	protected int getTotalCookTime() {
@@ -328,7 +320,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	public static boolean isFuel(ItemStack p_213991_0_) {
-		return (CommonHooks.getBurnTime(p_213991_0_, null) > 0);
+		return (p_213991_0_.getBurnTime(null) > 0);
 	}
 
 	@Override
@@ -396,6 +388,16 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		return this.items.get(p_70301_1_);
 	}
 
+	@Override
+	public NonNullList<ItemStack> getItems() {
+		return items;
+	}
+
+	@Override
+	protected void setItems(NonNullList<ItemStack> p_332640_) {
+		this.items = p_332640_;
+	}
+
 	public ItemStack removeItem(int p_70298_1_, int p_70298_2_) {
 		return ContainerHelper.removeItem(this.items, p_70298_1_, p_70298_2_);
 	}
@@ -406,7 +408,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	public void setItem(int p_70299_1_, ItemStack p_70299_2_) {
 		ItemStack itemstack = this.items.get(p_70299_1_);
-		boolean flag = !p_70299_2_.isEmpty() && ItemStack.isSameItemSameTags(itemstack, p_70299_2_);
+		boolean flag = !p_70299_2_.isEmpty() && ItemStack.isSameItemSameComponents(itemstack, p_70299_2_);
 		this.items.set(p_70299_1_, p_70299_2_);
 		if (p_70299_2_.getCount() > this.getMaxStackSize()) {
 			p_70299_2_.setCount(this.getMaxStackSize());
@@ -447,5 +449,15 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		for (ItemStack itemstack : this.items) {
 			p_40281_.accountStack(itemstack);
 		}
+	}
+
+	@Override
+	public CompoundTag getUpdateTag(HolderLookup.Provider p_323910_) {
+		return saveWithoutMetadata(p_323910_);
+	}
+
+	@Override
+	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider p_323910_) {
+		loadAdditional(pkt.getTag(), p_323910_);
 	}
 }

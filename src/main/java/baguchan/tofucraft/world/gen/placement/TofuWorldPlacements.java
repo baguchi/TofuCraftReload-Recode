@@ -10,7 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
@@ -69,7 +69,7 @@ public class TofuWorldPlacements {
 		return ResourceKey.create(Registries.PLACED_FEATURE, TofuCraftReload.prefix(name));
 	}
 
-	public static void bootstrap(BootstapContext<PlacedFeature> context) {
+	public static void bootstrap(BootstrapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeature = context.lookup(Registries.CONFIGURED_FEATURE);
 
 		PlacementUtils.register(context, ORE_KINU_TOFU, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_KINU_TOFU), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top())));

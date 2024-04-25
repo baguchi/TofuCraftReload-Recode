@@ -6,7 +6,7 @@
       "item": "tofucraft:okara"
     },
     "E": {
-      "tag": "forge:eggs"
+      "tag": "c:eggs"
     },
     "W": {
       "item": "minecraft:wheat"
@@ -19,6 +19,6 @@
   ],
   "result": {
     "count": 3,
-    "item": "tofucraft:okarastick"
+    "id": "tofucraft:okarastick"
   }
 }

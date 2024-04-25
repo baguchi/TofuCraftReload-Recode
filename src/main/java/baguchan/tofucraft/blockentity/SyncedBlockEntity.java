@@ -1,6 +1,7 @@
 package baguchan.tofucraft.blockentity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -23,13 +24,13 @@ public class SyncedBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag getUpdateTag() {
-		return saveWithoutMetadata();
+	public CompoundTag getUpdateTag(HolderLookup.Provider p_323910_) {
+		return saveWithoutMetadata(p_323910_);
 	}
 
 	@Override
-	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-		load(pkt.getTag());
+	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider p_323910_) {
+		loadAdditional(pkt.getTag(), p_323910_);
 	}
 
 	protected void inventoryChanged() {

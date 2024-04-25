@@ -6,10 +6,11 @@
       "item": "tofucraft:tofu_stem_boat"
     },
     {
-      "tag": "forge:chests/wooden"
+      "tag": "c:chests/wooden"
     }
   ],
   "result": {
-    "item": "tofucraft:tofu_stem_chest_boat"
+    "count": 1,
+    "id": "tofucraft:tofu_stem_chest_boat"
   }
 }

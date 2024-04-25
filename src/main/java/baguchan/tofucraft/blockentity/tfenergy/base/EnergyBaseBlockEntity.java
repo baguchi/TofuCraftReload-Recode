@@ -3,6 +3,7 @@ package baguchan.tofucraft.blockentity.tfenergy.base;
 import baguchan.tofucraft.api.tfenergy.ITofuEnergy;
 import baguchan.tofucraft.api.tfenergy.TofuNetwork;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -81,15 +82,16 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 
 
 	@Override
-	public void saveAdditional(CompoundTag compound) {
-		super.saveAdditional(compound);
+	public void saveAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
+		super.saveAdditional(compound, p_338445_);
 		compound.putInt(TAG_ENERGY, energy);
 		compound.putString(TAG_UUID, uuid);
 		compound.putInt(TAG_ENERGY_MAX, energyMax);
 	}
 
-	public void load(CompoundTag compound) {
-		super.load(compound);
+	@Override
+	protected void loadAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
+		super.loadAdditional(compound, p_338445_);
 		this.energyMax = compound.getInt(TAG_ENERGY_MAX);
 		this.energy = compound.getInt(TAG_ENERGY);
 		this.uuid = compound.getString(TAG_UUID);
@@ -121,13 +123,14 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 	}
 
 	@Override
-	public CompoundTag getUpdateTag() {
-		return saveWithoutMetadata();
+	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+		super.onDataPacket(net, pkt, lookupProvider);
+		loadAdditional(pkt.getTag(), lookupProvider);
 	}
 
 	@Override
-	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-		load(pkt.getTag());
+	public CompoundTag getUpdateTag(HolderLookup.Provider p_323910_) {
+		return saveWithoutMetadata(p_323910_);
 	}
 
 	protected void inventoryChanged() {

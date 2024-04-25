@@ -2,7 +2,7 @@ package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -36,7 +36,7 @@ public class TofuDimensionTypes {
 		);
 	}
 
-	public static void bootstrap(BootstapContext<DimensionType> p_256376_) {
+	public static void bootstrap(BootstrapContext<DimensionType> p_256376_) {
 		p_256376_.register(TOFU_WORLD_TYPE, TofuDimensionTypes.tofuDimType());
 	}
 }

@@ -23,7 +23,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -50,7 +49,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
@@ -70,7 +69,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@Mod.EventBusSubscriber(modid = TofuCraftReload.MODID)
+@EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
 	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
 
@@ -87,17 +86,8 @@ public class CommonEvents {
 	}
 
 	protected static BlockHitResult getPlayerPOVHitResult(Level p_41436_, Player p_41437_, ClipContext.Fluid p_41438_) {
-		float f = p_41437_.getXRot();
-		float f1 = p_41437_.getYRot();
 		Vec3 vec3 = p_41437_.getEyePosition();
-		float f2 = Mth.cos(-f1 * ((float) Math.PI / 180F) - (float) Math.PI);
-		float f3 = Mth.sin(-f1 * ((float) Math.PI / 180F) - (float) Math.PI);
-		float f4 = -Mth.cos(-f * ((float) Math.PI / 180F));
-		float f5 = Mth.sin(-f * ((float) Math.PI / 180F));
-		float f6 = f3 * f4;
-		float f7 = f2 * f4;
-		double d0 = p_41437_.getBlockReach();
-		Vec3 vec31 = vec3.add((double) f6 * d0, (double) f5 * d0, (double) f7 * d0);
+		Vec3 vec31 = vec3.add(p_41437_.calculateViewVector(p_41437_.getXRot(), p_41437_.getYRot()).scale(p_41437_.blockInteractionRange()));
 		return p_41436_.clip(new ClipContext(vec3, vec31, ClipContext.Block.OUTLINE, p_41438_, p_41437_));
 	}
 
@@ -117,9 +107,7 @@ public class CommonEvents {
 					SuspiciousTofuBlockEntity suspicioussandblockentity = (SuspiciousTofuBlockEntity) $$11;
 					boolean flag = suspicioussandblockentity.brush(level.getGameTime(), player, blockhitresult.getDirection());
 					if (flag) {
-						stack.hurtAndBreak(1, event.getEntity(), (p_272600_) -> {
-							p_272600_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-						});
+						stack.hurtAndBreak(1, event.getEntity(), EquipmentSlot.MAINHAND);
 					}
 				}
 			}
@@ -333,7 +321,7 @@ public class CommonEvents {
 		if (!event.isWasDeath()) {
 			SoyHealthCapability soyHealth = oldPlayer.getData(TofuCapability.SOY_HEALTH);
 			SoyHealthCapability soyHealth2 = newPlayer.getData(TofuCapability.SOY_HEALTH);
-			soyHealth2.deserializeNBT(soyHealth.serializeNBT());
+			soyHealth2.deserializeNBT(newPlayer.level().registryAccess(), soyHealth.serializeNBT(newPlayer.level().registryAccess()));
 		}
 	}
 
@@ -395,7 +383,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onPotionEffectApplied(MobEffectEvent.Applicable event) {
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.HARMFUL) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
 			if (EnchantmentHelper.getEnchantmentLevel(TofuEnchantments.EFFECT_PROTECTION.get(), event.getEntity()) > 0) {
 				event.setResult(Event.Result.DENY);
 			}

@@ -6,7 +6,7 @@
       "item": "tofucraft:soy_cheese"
     },
     "E": {
-      "tag": "forge:eggs"
+      "tag": "c:eggs"
     },
     "S": {
       "item": "minecraft:sugar"
@@ -21,6 +21,7 @@
     "WWW"
   ],
   "result": {
-    "item": "tofucraft:soycheese_tart"
+    "count": 1,
+    "id": "tofucraft:soycheese_tart"
   }
 }

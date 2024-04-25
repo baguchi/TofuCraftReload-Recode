@@ -281,7 +281,7 @@ public class FukumameThowerAi {
 	}
 
 	private static List<ItemStack> getBarterResponseItems(Piglin p_34997_) {
-		LootTable loottable = p_34997_.level().getServer().getLootData().getLootTable(BuiltInLootTables.PIGLIN_BARTERING);
+		LootTable loottable = p_34997_.level().getServer().reloadableRegistries().getLootTable(BuiltInLootTables.PIGLIN_BARTERING);
 		List<ItemStack> list = loottable.getRandomItems((new LootParams.Builder((ServerLevel) p_34997_.level())).withParameter(LootContextParams.THIS_ENTITY, p_34997_).create(LootContextParamSets.PIGLIN_BARTER));
 		return list;
 	}

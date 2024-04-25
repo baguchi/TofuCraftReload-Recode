@@ -1,7 +1,7 @@
 package baguchan.tofucraft.recipe;
 
 import baguchan.tofucraft.registry.TofuRecipes;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -53,7 +53,7 @@ public class HardenRecipe implements Recipe<Inventory> {
 	}
 
 	@Override
-	public ItemStack assemble(Inventory p_44001_, RegistryAccess p_267165_) {
+	public ItemStack assemble(Inventory p_44001_, HolderLookup.Provider p_336092_) {
 		return null;
 	}
 
@@ -64,7 +64,7 @@ public class HardenRecipe implements Recipe<Inventory> {
 	}
 
 	@Override
-	public ItemStack getResultItem(RegistryAccess p_267052_) {
+	public ItemStack getResultItem(HolderLookup.Provider p_267052_) {
 		return this.result;
 	}
 

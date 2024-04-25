@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
@@ -51,7 +50,7 @@ public class RecipeHelper {
 				return recipe.value() instanceof BitternRecipe bittern && bittern.getType() == TofuRecipes.RECIPETYPE_BITTERN.get();
 			});
 			for (RecipeHolder<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe.value() instanceof BitternRecipe bitternRecipe && bitternRecipe.getFluid().test(new FluidStack(fluid, 1000))) {
+				if (recipe.value() instanceof BitternRecipe bitternRecipe && bitternRecipe.getFluid().is(fluid)) {
 					if (bitternRecipe.getIngredient().test(itemStack)) {
 						return bitternRecipe.getResultItem(serverLevel.registryAccess());
 					}

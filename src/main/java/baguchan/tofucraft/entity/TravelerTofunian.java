@@ -16,13 +16,27 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.InteractGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MoveTowardsRestrictionGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.UseItemGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.monster.Evoker;
+import net.minecraft.world.entity.monster.Illusioner;
+import net.minecraft.world.entity.monster.Pillager;
+import net.minecraft.world.entity.monster.Vex;
+import net.minecraft.world.entity.monster.Vindicator;
+import net.minecraft.world.entity.monster.Zoglin;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
@@ -44,7 +58,7 @@ public class TravelerTofunian extends AbstractTofunian {
 
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY), TofuSounds.TOFUNIAN_YES.get(), (p_35882_) -> {
+		this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionContents.createItemStack(Items.POTION, Potions.INVISIBILITY), TofuSounds.TOFUNIAN_YES.get(), (p_35882_) -> {
 			return this.level().isNight() && !p_35882_.isInvisible();
 		}));
 		this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), TofuSounds.TOFUNIAN_YES.get(), (p_35880_) -> {
@@ -127,7 +141,7 @@ public class TravelerTofunian extends AbstractTofunian {
 		}
 
 		if (p_35852_.contains("WanderTarget")) {
-			this.wanderTarget = NbtUtils.readBlockPos(p_35852_.getCompound("WanderTarget"));
+			this.wanderTarget = NbtUtils.readBlockPos(p_35852_, "WanderTarget").orElse(null);
 		}
 
 		this.setAge(Math.max(0, this.getAge()));

@@ -1,6 +1,5 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.client.particle.ParticleStink;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.registry.TofuDamageSource;
@@ -73,10 +72,10 @@ public class ShuDofuSpider extends Monster {
 
 
 	private static final UUID ATTACK_MODIFIER_UUID = UUID.fromString("084afd3c-89c3-f8bd-1c76-c9a7a507c9f3");
-	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(ATTACK_MODIFIER_UUID, "attack boost", 0.1D, AttributeModifier.Operation.MULTIPLY_BASE);
+	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(ATTACK_MODIFIER_UUID, "attack boost", 0.1D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("216e1242-75c7-8114-0500-6fc7e324dae6");
-	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ARMOR_MODIFIER_UUID, "armor boost", -0.15D, AttributeModifier.Operation.MULTIPLY_BASE);
+	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ARMOR_MODIFIER_UUID, "armor boost", -0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
 
 	private int attackTime;
@@ -107,14 +106,14 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(ATTACK_ANIMATION, false);
-		this.entityData.define(JUMP_ANIMATION, false);
-		this.entityData.define(DATA_ID_JUMP, false);
-		this.entityData.define(DATA_ID_RANGED, false);
-		this.entityData.define(GRASP_ANIMATION, false);
-		this.entityData.define(ANGRY, false);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(ATTACK_ANIMATION, false);
+		builder.define(JUMP_ANIMATION, false);
+		builder.define(DATA_ID_JUMP, false);
+		builder.define(DATA_ID_RANGED, false);
+		builder.define(GRASP_ANIMATION, false);
+		builder.define(ANGRY, false);
 	}
 
 	@Override
@@ -176,7 +175,7 @@ public class ShuDofuSpider extends Monster {
 	protected void positionRider(Entity passenger, Entity.MoveFunction p_19958_) {
 		if (this.isGraspAnim()) {
 			if (!this.getPassengers().isEmpty()) {
-				Vec3 riderPos = this.getRiderPosition();
+				Vec3 riderPos = this.getRiderPosition(passenger);
 				p_19958_.accept(passenger, riderPos.x(), riderPos.y(), riderPos.z());
 			}
 		} else {
@@ -189,16 +188,18 @@ public class ShuDofuSpider extends Monster {
 		return true;
 	}
 
-	private Vec3 getRiderPosition() {
-		if (!this.getPassengers().isEmpty()) {
+	private Vec3 getRiderPosition(Entity entity) {
+		if (!this.getPassengers().isEmpty() && this.isGraspAnim()) {
 			float distance = 3.0F;
 
 			double dx = Math.cos((this.getYRot() + 90) * Math.PI / 180.0D) * distance;
 			double dz = Math.sin((this.getYRot() + 90) * Math.PI / 180.0D) * distance;
 
-			return new Vec3(this.getX() + dx, this.getY() + this.getDimensions(this.getPose()).height * 0.15D + this.getPassengers().get(0).getMyRidingOffset(this), this.getZ() + dz);
+			return new Vec3(this.getX() + dx, this.getY() + this.getDimensions(this.getPose()).height() * 0.15D + this.getPassengers().get(0).getVehicleAttachmentPoint(this).y, this.getZ() + dz);
 		} else {
-			return new Vec3(this.getX(), this.getY(), this.getZ());
+			Vec3 vec3 = this.getPassengerRidingPosition(entity);
+			Vec3 vec31 = entity.getVehicleAttachmentPoint(this);
+			return new Vec3(vec3.x - vec31.x, vec3.y - vec31.y, vec3.z - vec31.z);
 		}
 	}
 
@@ -206,7 +207,7 @@ public class ShuDofuSpider extends Monster {
 	public void tick() {
 		++this.stinkTime;
 		if (this.stinkTime == 120) {
-			this.level().addParticle(new ParticleStink.StinkData(TofuParticleTypes.STINK.get(), 45f, 20, ParticleStink.EnumStinkBehavior.GROW, 2.0f), this.getX(), this.getY() + 1.0, this.getZ(), 0, 0, 0);
+			this.level().addParticle(TofuParticleTypes.STINK.get(), this.getX(), this.getY() + 1.0, this.getZ(), 0, 0, 0);
 			this.stinkTime = this.random.nextInt(0, 20);
 		}
 		if (this.isAlive() && !this.isMovingOnLand()) {
@@ -305,7 +306,7 @@ public class ShuDofuSpider extends Monster {
 					float distance = 4;
 					for (int i = 1; i <= count; i++) {
 						double yaw = i * 360f / count;
-						world.sendParticles(new ParticleStink.StinkData(TofuParticleTypes.STINK.get(), 20f, 20, ParticleStink.EnumStinkBehavior.GROW, 1.0f), this.getX() + Math.cos(Math.toRadians(yaw)) * distance, this.getY(), this.getZ() + Math.sin(Math.toRadians(yaw)) * distance, 0, 0, 0, 0, 0);
+						world.sendParticles(TofuParticleTypes.STINK.get(), this.getX() + Math.cos(Math.toRadians(yaw)) * distance, this.getY(), this.getZ() + Math.sin(Math.toRadians(yaw)) * distance, 0, 0, 0, 0, 0);
 					}
 					float radius = 5;
 					AABB hitBox = new AABB(ShuDofuSpider.this.getX() - radius, ShuDofuSpider.this.getY() - 1, ShuDofuSpider.this.getZ() - radius, ShuDofuSpider.this.getX() + radius, ShuDofuSpider.this.getY() + 2, ShuDofuSpider.this.getZ() + radius);
@@ -992,9 +993,9 @@ public class ShuDofuSpider extends Monster {
 		this.entityData.set(ANGRY, angry);
 		if (this.level() != null && !this.level().isClientSide) {
 			AttributeInstance attributeinstance = this.getAttribute(Attributes.ATTACK_DAMAGE);
-			attributeinstance.removeModifier(ATTACK_MODIFIER.getId());
+			attributeinstance.removeModifier(ATTACK_MODIFIER.id());
 			AttributeInstance attributeinstance2 = this.getAttribute(Attributes.ARMOR);
-			attributeinstance2.removeModifier(ARMOR_MODIFIER.getId());
+			attributeinstance2.removeModifier(ARMOR_MODIFIER.id());
 			if (angry) {
 				attributeinstance.addTransientModifier(ATTACK_MODIFIER);
 				attributeinstance2.addTransientModifier(ARMOR_MODIFIER);

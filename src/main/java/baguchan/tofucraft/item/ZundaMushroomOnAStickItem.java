@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ItemSteerable;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -38,17 +39,14 @@ public class ZundaMushroomOnAStickItem<T extends Entity & ItemSteerable> extends
 				ItemInteractable itemInteractable = (ItemInteractable) entity;
 				if (pig.getTofuPigType() == TofuPig.TofuPigType.ZUNDA && itemInteractable.canHeal()) {
 					p_41315_.getCooldowns().addCooldown(itemstack.getItem(), 200);
-					itemstack.hurtAndBreak(this.consumeItemDamage, p_41315_, (p_41312_) -> {
-						p_41312_.broadcastBreakEvent(p_41316_);
-					});
+					itemstack.hurtAndBreak(this.consumeItemDamage, p_41315_, LivingEntity.getSlotForHand(p_41316_));
 
 					if (p_41315_ instanceof ServerPlayer) {
 						TofuAdvancements.TOFUPIG_POP.get().trigger((ServerPlayer) p_41315_);
 					}
 
 					if (itemstack.isEmpty()) {
-						ItemStack itemstack1 = new ItemStack(Items.FISHING_ROD);
-						itemstack1.setTag(itemstack.getTag());
+						ItemStack itemstack1 = itemstack.transmuteCopyIgnoreEmpty(Items.FISHING_ROD, 1);
 						return InteractionResultHolder.success(itemstack1);
 					}
 

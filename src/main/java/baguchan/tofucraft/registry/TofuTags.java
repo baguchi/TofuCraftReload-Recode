@@ -28,31 +28,34 @@ public class TofuTags {
 	}
 
 	public static class Items {
-		public static final TagKey<Item> SOYBEAN = forgeTag("crops/soybean");
-		public static final TagKey<Item> SALT = forgeTag("salt");
-		public static final TagKey<Item> DUST_SALT = forgeTag("dust/salt");
-		public static final TagKey<Item> RICE = forgeTag("crops/rice");
-		public static final TagKey<Item> EGGS = forgeTag("eggs");
-		public static final TagKey<Item> SOYMILK = forgeTag("soy_milk");
-		public static final TagKey<Item> MILK_SOYMILK = forgeTag("milk/soy_milk");
+		public static final TagKey<Item> SOYBEAN = universalTag("crops/soybean");
+		public static final TagKey<Item> SALT = universalTag("salt");
+		public static final TagKey<Item> DUST_SALT = universalTag("dust/salt");
+		public static final TagKey<Item> RICE = universalTag("crops/rice");
+		public static final TagKey<Item> EGGS = universalTag("eggs");
+		public static final TagKey<Item> SOYMILK = universalTag("soy_milk");
+		public static final TagKey<Item> MILK_SOYMILK = universalTag("milk/soy_milk");
 
-		public static final TagKey<Item> RICE_BLOCK = forgeTag("block/rice_block");
-		public static final TagKey<Item> TOFU = forgeTag("tofu");
-		public static final TagKey<Item> TOFU_FRIED = forgeTag("tofu/fried");
+		public static final TagKey<Item> RICE_BLOCK = universalTag("block/rice_block");
+		public static final TagKey<Item> TOFU = universalTag("tofu");
+		public static final TagKey<Item> TOFU_FRIED = universalTag("tofu/fried");
 
-		public static final TagKey<Item> MISO = forgeTag("miso");
-		public static final TagKey<Item> NATTO = forgeTag("natto");
+		public static final TagKey<Item> MISO = universalTag("miso");
+		public static final TagKey<Item> NATTO = universalTag("natto");
 
-		public static final TagKey<Item> SOYSAUCE = forgeTag("soysauce");
-		public static final TagKey<Item> SOYSAUCE_SOYSAUCE = forgeTag("soysauce/soysauce");
+		public static final TagKey<Item> SOYSAUCE = universalTag("soysauce");
+		public static final TagKey<Item> SOYSAUCE_SOYSAUCE = universalTag("soysauce/soysauce");
 		public static final TagKey<Item> STATUE_HAPPY = tag("statue_happy");
+		public static final TagKey<Item> TOFU_DIAMOND_ARMOR_ENCHANTABLE = tag("tofu_diamond_armor_enchantable");
+		public static final TagKey<Item> TOFU_DIAMOND_SWORD_ENCHANTABLE = tag("tofu_diamond_sword_enchantable");
+		public static final TagKey<Item> TOFU_DIAMOND_MINEABLE_ENCHANTABLE = tag("tofu_diamond_mineable_enchantable");
 
 		private static TagKey<Item> tag(String name) {
 			return ItemTags.create(new ResourceLocation(TofuCraftReload.MODID, name));
 		}
 
-		private static TagKey<Item> forgeTag(String name) {
-			return ItemTags.create(new ResourceLocation("forge", name));
+		private static TagKey<Item> universalTag(String name) {
+			return ItemTags.create(new ResourceLocation("c", name));
 		}
 	}
 

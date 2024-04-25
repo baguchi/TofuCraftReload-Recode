@@ -25,7 +25,7 @@ public class ZundaBowItem extends BowItem implements IEnergyInsertable {
 
 	public void releaseUsing(ItemStack p_40667_, Level p_40668_, LivingEntity p_40669_, int p_40670_) {
 		if (p_40669_ instanceof Player player) {
-			boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, p_40667_) > 0;
+			boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY, p_40667_) > 0;
 			ItemStack itemstack = player.getProjectile(p_40667_);
 
 			int i = this.getUseDuration(p_40667_) - p_40670_;
@@ -49,23 +49,21 @@ public class ZundaBowItem extends BowItem implements IEnergyInsertable {
 							abstractarrow.setCritArrow(true);
 						}
 
-						int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, p_40667_);
+						int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER, p_40667_);
 						if (j > 0) {
 							abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + (double) j * 0.5D + 0.5D);
 						}
 
-						int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, p_40667_);
+						int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH, p_40667_);
 						if (k > 0) {
 							abstractarrow.setKnockback(k);
 						}
 
-						if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, p_40667_) > 0) {
-							abstractarrow.setSecondsOnFire(100);
+						if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAME, p_40667_) > 0) {
+							abstractarrow.igniteForTicks(100);
 						}
 
-						p_40667_.hurtAndBreak(1, player, (p_40665_) -> {
-							p_40665_.broadcastBreakEvent(player.getUsedItemHand());
-						});
+						p_40667_.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
 						if (flag1 || player.getAbilities().instabuild && (itemstack.is(Items.SPECTRAL_ARROW) || itemstack.is(Items.TIPPED_ARROW))) {
 							abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 						}

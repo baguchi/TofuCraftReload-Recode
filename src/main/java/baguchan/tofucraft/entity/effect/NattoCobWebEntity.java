@@ -48,9 +48,9 @@ public class NattoCobWebEntity extends LivingEntity {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(DATA_ATTACH_FACE_ID, Direction.DOWN);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_ATTACH_FACE_ID, Direction.DOWN);
 	}
 
 	public Direction getAttachFace() {

@@ -8,7 +8,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.player.Player;
@@ -16,7 +15,9 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.NaturalSpawner;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.material.FluidState;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
@@ -119,7 +120,10 @@ public class TravelerTofunianSpawner {
 			int k = center.getZ() + this.random.nextInt(xzDistance * 2) - xzDistance;
 			int l = this.world.getHeight(Heightmap.Types.WORLD_SURFACE, j, k);
 			BlockPos blockpos1 = new BlockPos(j, l, k);
-			if (NaturalSpawner.isSpawnPositionOk(SpawnPlacements.Type.ON_GROUND, this.world, blockpos1, TofuEntityTypes.TRAVELER_TOFUNIAN.get())) {
+			BlockState blockstate = this.world.getBlockState(blockpos1);
+			FluidState fluidState = this.world.getFluidState(blockpos1);
+
+			if (NaturalSpawner.isValidEmptySpawnBlock(this.world, blockpos1, blockstate, fluidState, TofuEntityTypes.TRAVELER_TOFUNIAN.get())) {
 				blockpos = blockpos1;
 				break;
 			}

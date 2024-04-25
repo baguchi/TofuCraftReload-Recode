@@ -4,7 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.world.gen.features.ModNetherFeatures;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -30,7 +30,7 @@ public class ModNetherPlacements {
 		return ResourceKey.create(Registries.PLACED_FEATURE, TofuCraftReload.prefix(name));
 	}
 
-	public static void bootstrap(BootstapContext<PlacedFeature> context) {
+	public static void bootstrap(BootstrapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeature = context.lookup(Registries.CONFIGURED_FEATURE);
 		PlacementUtils.register(context, PATCH_NETHER_SOYBEAN_NORMAL, configuredFeature.getOrThrow(ModNetherFeatures.NETHER_SOYBEAN), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), NETHER_SOYBEAN_HEIGHT, BiomeFilter.biome()));
 

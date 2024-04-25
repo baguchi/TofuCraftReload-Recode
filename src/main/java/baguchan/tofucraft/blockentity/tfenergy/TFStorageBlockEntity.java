@@ -6,12 +6,14 @@ import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
 import baguchan.tofucraft.blockentity.tfenergy.base.SenderBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFStorageMenu;
-import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
@@ -31,7 +33,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.Map;
 
@@ -137,7 +138,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 
 		if (tfStorageBlockEntity.prevFluid != tfStorageBlockEntity.tank.getFluidAmount()) {
 			LevelChunk chunk = level.getChunkAt(blockPos);
-			PacketDistributor.TRACKING_CHUNK.with(chunk).send(new TFStorageSoymilkPacket(blockPos, tfStorageBlockEntity.tank.getFluid()));
+			tfStorageBlockEntity.setChanged();
 			tfStorageBlockEntity.prevFluid = tfStorageBlockEntity.tank.getFluidAmount();
 		}
 	}
@@ -201,27 +202,28 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		return inventory;
 	}
 
-	public void saveAdditional(CompoundTag cmp) {
-		super.saveAdditional(cmp);
-		ContainerHelper.saveAllItems(cmp, this.inventory);
+	@Override
+	public void saveAdditional(CompoundTag cmp, HolderLookup.Provider provider) {
+		super.saveAdditional(cmp, provider);
+		ContainerHelper.saveAllItems(cmp, this.inventory, provider);
 		cmp.putInt("workload", this.workload);
 		cmp.putInt("current", this.current_workload);
 
-		CompoundTag tankTag = this.tank.writeToNBT(new CompoundTag());
+		CompoundTag tankTag = this.tank.writeToNBT(this.level.registryAccess(), new CompoundTag());
 
 		cmp.put("Tank", tankTag);
 	}
 
-	public void load(CompoundTag cmp) {
-		super.load(cmp);
-		ContainerHelper.loadAllItems(cmp, this.inventory);
+	@Override
+	protected void loadAdditional(CompoundTag cmp, HolderLookup.Provider provider) {
+		super.loadAdditional(cmp, provider);
+		ContainerHelper.loadAllItems(cmp, this.inventory, provider);
 
 		this.workload = cmp.getInt("workload");
 		this.current_workload = cmp.getInt("current");
 
-		this.tank = this.tank.readFromNBT(cmp.getCompound("Tank"));
+		this.tank = this.tank.readFromNBT(provider, cmp.getCompound("Tank"));
 	}
-
 	@Override
 	public void clearContent() {
 		this.inventory.clear();
@@ -248,6 +250,16 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 	@Override
 	public AbstractContainerMenu createMenu(int p_39954_, Inventory p_39955_, Player p_39956_) {
 		return new TFStorageMenu(p_39954_, p_39955_, this, this.dataAccess);
+	}
+
+	@Override
+	public CompoundTag getUpdateTag(HolderLookup.Provider p_323910_) {
+		return saveWithoutMetadata(p_323910_);
+	}
+
+	@Override
+	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider p_323910_) {
+		loadAdditional(pkt.getTag(), p_323910_);
 	}
 
 

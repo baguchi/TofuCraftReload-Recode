@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:shroom_bottle"
-            ]
+            "items": "tofucraft:shroom_bottle"
           }
         ]
       },

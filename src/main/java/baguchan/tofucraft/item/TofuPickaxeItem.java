@@ -12,8 +12,8 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.block.Block;
 
 public class TofuPickaxeItem extends PickaxeItem implements IEnergyInsertable {
-	public TofuPickaxeItem(Tier tofuItemTier, int daamge, float speed, Properties properties) {
-		super(tofuItemTier, daamge, speed, properties);
+	public TofuPickaxeItem(Tier tofuItemTier, Properties properties) {
+		super(tofuItemTier, properties);
 	}
 
 	@Override

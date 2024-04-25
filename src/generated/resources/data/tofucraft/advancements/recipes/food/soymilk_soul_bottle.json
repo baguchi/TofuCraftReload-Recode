@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:bucket_soymilk_soul"
-            ]
+            "items": "tofucraft:bucket_soymilk_soul"
           }
         ]
       },

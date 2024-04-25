@@ -3,13 +3,14 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:milk/soy_milk"
+      "tag": "c:milk/soy_milk"
     },
     {
       "item": "minecraft:honey_bottle"
     }
   ],
   "result": {
-    "item": "tofucraft:soymilk_honey"
+    "count": 1,
+    "id": "tofucraft:soymilk_honey"
   }
 }

@@ -3,6 +3,7 @@ package baguchan.tofucraft.world.gen.foliage;
 import baguchan.tofucraft.registry.TofuFoliagePlacerType;
 import com.mojang.datafixers.Products;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -13,7 +14,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
 public class MushroomFoliagePlacer extends FoliagePlacer {
-	public static final Codec<MushroomFoliagePlacer> CODEC = RecordCodecBuilder.create((p_68427_) -> {
+	public static final MapCodec<MushroomFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec((p_68427_) -> {
 		return blobParts(p_68427_).apply(p_68427_, MushroomFoliagePlacer::new);
 	});
 	protected final int height;

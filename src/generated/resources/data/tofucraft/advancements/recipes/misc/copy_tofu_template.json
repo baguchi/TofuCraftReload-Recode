@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:tofu_upgrade_smithing_template"
-            ]
+            "items": "tofucraft:tofu_upgrade_smithing_template"
           }
         ]
       },

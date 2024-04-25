@@ -24,47 +24,48 @@ import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
 import baguchan.tofucraft.entity.projectile.ZundaArrow;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.SpawnPlacementType;
+import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.SpawnPlacementRegisterEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(modid = TofuCraftReload.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuEntityTypes {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, TofuCraftReload.MODID);
 
 	public static final Supplier<EntityType<Tofunian>> TOFUNIAN = ENTITIES.register("tofunian", () -> EntityType.Builder.of(Tofunian::new, MobCategory.CREATURE)
-			.sized(0.6F, 1.2F).clientTrackingRange(10).build("tofucraft:tofunian"));
+			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).clientTrackingRange(10).build("tofucraft:tofunian"));
 
 	public static final Supplier<EntityType<TravelerTofunian>> TRAVELER_TOFUNIAN = ENTITIES.register("traveler_tofunian", () -> EntityType.Builder.of(TravelerTofunian::new, MobCategory.CREATURE)
-			.sized(0.6F, 1.2F).build("tofucraft:traveler_tofunian"));
+			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).build("tofucraft:traveler_tofunian"));
 
 	public static final Supplier<EntityType<TofuCow>> TOFUCOW = ENTITIES.register("tofucow", () -> EntityType.Builder.of(TofuCow::new, MobCategory.CREATURE)
-			.sized(0.9F, 1.4F).build("tofucraft:tofucow"));
+			.sized(0.9F, 1.4F).eyeHeight(1.4F * 0.8F).build("tofucraft:tofucow"));
 
 	public static final Supplier<EntityType<TofuPig>> TOFUPIG = ENTITIES.register("tofupig", () -> EntityType.Builder.of(TofuPig::new, MobCategory.CREATURE)
-			.sized(0.9F, 0.9F).build("tofucraft:tofupig"));
+			.sized(0.9F, 0.9F).eyeHeight(0.9F * 0.8F).build("tofucraft:tofupig"));
 
 	public static final Supplier<EntityType<TofuFish>> TOFUFISH = ENTITIES.register("tofufish", () -> EntityType.Builder.of(TofuFish::new, MobCategory.WATER_AMBIENT)
-			.sized(0.5F, 0.35F).setTrackingRange(4).build("tofucraft:tofufish"));
+			.sized(0.5F, 0.35F).eyeHeight(0.3F).setTrackingRange(4).build("tofucraft:tofufish"));
 
 	public static final Supplier<EntityType<TofuGolem>> TOFU_GOLEM = ENTITIES.register("tofu_golem", () -> EntityType.Builder.of(TofuGolem::new, MobCategory.MISC)
-			.sized(0.8F, 1.25F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_golem"));
+			.sized(0.8F, 1.25F).eyeHeight(1.25F * 0.8F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_golem"));
 
 	public static final Supplier<EntityType<TofuGandlem>> TOFU_GANDLEM = ENTITIES.register("tofu_gandlem", () -> EntityType.Builder.of(TofuGandlem::new, MobCategory.CREATURE)
-			.sized(0.6F, 1.6F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_gandlem"));
+			.sized(0.6F, 1.6F).eyeHeight(1.6F * 0.8F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_gandlem"));
 
 
 	public static final Supplier<EntityType<TofuSlime>> TOFUSLIME = ENTITIES.register("tofuslime", () -> EntityType.Builder.of(TofuSlime::new, MobCategory.MONSTER)
@@ -114,13 +115,14 @@ public class TofuEntityTypes {
 	public static final Supplier<EntityType<FukumameThower>> FUKUMAME_THOWER = ENTITIES.register("fukumame_thower", () -> EntityType.Builder.of(FukumameThower::new, MobCategory.MONSTER).sized(0.6F, 1.85F).clientTrackingRange(8).build("tofucraft:fukumame_thower"));
 
 
-	public static final SpawnPlacements.Type IN_SOYMILK = SpawnPlacements.Type.create("in_soymilk", (levelReader, pos, entityType) -> {
-		return levelReader.getFluidState(pos).is(TofuTags.Fluids.SOYMILK);
-	});
-
-	public static final BlockPathTypes UNSTABLE_TOFU_PATH = BlockPathTypes.create("tofucraft:unstable_tofu", 4.0F);
-	public static final BlockPathTypes MINCED_TOFU_PATH = BlockPathTypes.create("tofucraft:minced_tofu", -1.0F);
-
+	public static final SpawnPlacementType IN_SOYMILK = (p_325672_, p_325673_, p_325674_) -> {
+		if (p_325674_ != null && p_325672_.getWorldBorder().isWithinBounds(p_325673_)) {
+			BlockPos blockpos = p_325673_.above();
+			return p_325672_.getFluidState(p_325673_).is(TofuTags.Fluids.SOYMILK) && !p_325672_.getBlockState(blockpos).isRedstoneConductor(p_325672_, blockpos);
+		} else {
+			return false;
+		}
+	};
 	@SubscribeEvent
 	public static void registerEntityAttribute(EntityAttributeCreationEvent event) {
 		event.put(TOFUCOW.get(), TofuCow.createAttributes().build());
@@ -142,19 +144,19 @@ public class TofuEntityTypes {
 
 	@SubscribeEvent
 	public static void registerEntityAttribute(SpawnPlacementRegisterEvent event) {
-		event.register(TOFUCOW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCow::checkTofuAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-		event.register(TOFUPIG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuPig::checkTofuAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-		event.register(TOFUNIAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-		event.register(TRAVELER_TOFUNIAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-		event.register(TOFU_GOLEM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(TOFUCOW.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCow::checkTofuAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(TOFUPIG.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuPig::checkTofuAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(TOFUNIAN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(TRAVELER_TOFUNIAN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(TOFU_GOLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 
-		event.register(TOFUSLIME.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSlime::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-		event.register(TOFUCREEPER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCreeper::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-		event.register(TOFUSPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSpider::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(TOFUSLIME.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSlime::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(TOFUCREEPER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCreeper::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(TOFUSPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSpider::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 		event.register(TOFUFISH.get(), IN_SOYMILK, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuFish::checkTofuFishSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-		event.register(TOFU_GANDLEM.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(TOFU_GANDLEM.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 
-		event.register(FUKUMAME_THOWER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FukumameThower::checkFukumameSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-		event.register(ZUNDAMITE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(FUKUMAME_THOWER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FukumameThower::checkFukumameSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(ZUNDAMITE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 	}
 }

@@ -14,12 +14,17 @@
       "item": "minecraft:bowl"
     },
     {
-      "type": "neoforge:nbt",
-      "item": "minecraft:potion",
-      "tag": "{Potion:\"minecraft:water\"}"
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:water"
+        }
+      },
+      "items": "minecraft:potion"
     }
   ],
   "result": {
-    "item": "tofucraft:yudofu"
+    "count": 1,
+    "id": "tofucraft:yudofu"
   }
 }

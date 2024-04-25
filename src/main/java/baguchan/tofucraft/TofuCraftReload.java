@@ -3,13 +3,11 @@ package baguchan.tofucraft;
 import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.event.CraftingEvents;
-import baguchan.tofucraft.network.SaltFurnaceBitternPacket;
-import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.network.SetTFMinerBlockPacket;
 import baguchan.tofucraft.network.SoyMilkDrinkedPacket;
-import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
+import baguchan.tofucraft.registry.TofuArmorMaterial;
 import baguchan.tofucraft.registry.TofuBannerPatterns;
 import baguchan.tofucraft.registry.TofuBiomeSources;
 import baguchan.tofucraft.registry.TofuBiomes;
@@ -19,6 +17,7 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuCarvers;
 import baguchan.tofucraft.registry.TofuCreativeModeTabs;
+import baguchan.tofucraft.registry.TofuDataComponents;
 import baguchan.tofucraft.registry.TofuEffects;
 import baguchan.tofucraft.registry.TofuEnchantments;
 import baguchan.tofucraft.registry.TofuEntityTypes;
@@ -38,6 +37,8 @@ import baguchan.tofucraft.registry.TofuSounds;
 import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
@@ -45,14 +46,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
-import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -67,15 +68,18 @@ public class TofuCraftReload {
 
 	public static final Logger LOGGER = LogManager.getLogger(TofuCraftReload.MODID);
 
-	public TofuCraftReload(IEventBus modBus) {
+	public TofuCraftReload(ModContainer modContainer, IEventBus modBus) {
 		IEventBus forgeBus = NeoForge.EVENT_BUS;
 
 		modBus.addListener(this::setup);
 		modBus.addListener(this::setupPackets);
-		TofuBannerPatterns.BANNER_PATTERNS.register(modBus);
 
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuItems.ITEMS.register(modBus);
+		TofuBannerPatterns.BANNER_PATTERNS.register(modBus);
+
+		TofuDataComponents.DATA_COMPONENT_TYPES.register(modBus);
+		TofuArmorMaterial.ARMOR_MATERIALS.register(modBus);
 		TofuEntityTypes.ENTITIES.register(modBus);
 
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
@@ -104,7 +108,7 @@ public class TofuCraftReload {
 			modBus.addListener(ClientRegistrar::setup);
 		}
 		NeoForge.EVENT_BUS.register(new CraftingEvents());
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TofuConfig.COMMON_SPEC);
+		modContainer.registerConfig(ModConfig.Type.COMMON, TofuConfig.COMMON_SPEC);
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
@@ -121,9 +125,8 @@ public class TofuCraftReload {
 			TofuAdvancements.init();
 			TofuItems.registerDispenserItem();
 			TofuItems.registerCompostableItem();
-			TofuItems.registerAnimalFeed();
 			TofuBlocks.flamableInit();
-			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift"));
+			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift")));
 			TofuBiomes.init();
 			TofuEnergyMap.init();
 			ModInteractionInformations.init();
@@ -139,13 +142,10 @@ public class TofuCraftReload {
 	}
 
 
-	public void setupPackets(RegisterPayloadHandlerEvent event) {
-		IPayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
-		registrar.play(SaltFurnaceBitternPacket.ID, SaltFurnaceBitternPacket::new, payload -> payload.client(SaltFurnaceBitternPacket::handle));
-		registrar.play(SaltFurnaceWaterPacket.ID, SaltFurnaceWaterPacket::new, payload -> payload.client(SaltFurnaceWaterPacket::handle));
-		registrar.play(SoyMilkDrinkedPacket.ID, SoyMilkDrinkedPacket::new, payload -> payload.client(SoyMilkDrinkedPacket::handle));
-		registrar.play(TFStorageSoymilkPacket.ID, TFStorageSoymilkPacket::new, payload -> payload.client(TFStorageSoymilkPacket::handle));
-		registrar.play(SetTFMinerBlockPacket.ID, SetTFMinerBlockPacket::new, payload -> payload.server(SetTFMinerBlockPacket::handle));
+	public void setupPackets(RegisterPayloadHandlersEvent event) {
+		PayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
+		registrar.playBidirectional(SoyMilkDrinkedPacket.TYPE, SoyMilkDrinkedPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playBidirectional(SetTFMinerBlockPacket.TYPE, SetTFMinerBlockPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 	}
 
 

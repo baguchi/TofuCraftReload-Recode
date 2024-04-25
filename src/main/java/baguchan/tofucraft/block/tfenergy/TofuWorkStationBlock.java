@@ -4,7 +4,6 @@ import baguchan.tofucraft.inventory.TofuWorkStationMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
@@ -42,11 +41,12 @@ public class TofuWorkStationBlock extends Block {
 		return this.defaultBlockState().setValue(FACING, p_57070_.getHorizontalDirection().getOpposite());
 	}
 
-	public InteractionResult use(BlockState p_57083_, Level p_57084_, BlockPos p_57085_, Player p_57086_, InteractionHand p_57087_, BlockHitResult p_57088_) {
-		if (p_57084_.isClientSide) {
+	@Override
+	protected InteractionResult useWithoutItem(BlockState p_60503_, Level p_60504_, BlockPos p_60505_, Player p_60506_, BlockHitResult p_60508_) {
+		if (p_60504_.isClientSide) {
 			return InteractionResult.SUCCESS;
 		} else {
-			p_57086_.openMenu(p_57083_.getMenuProvider(p_57084_, p_57085_));
+			p_60506_.openMenu(p_60503_.getMenuProvider(p_60504_, p_60505_));
 			return InteractionResult.CONSUME;
 		}
 	}
@@ -82,7 +82,8 @@ public class TofuWorkStationBlock extends Block {
 		p_57096_.add(FACING);
 	}
 
-	public boolean isPathfindable(BlockState p_57078_, BlockGetter p_57079_, BlockPos p_57080_, PathComputationType p_57081_) {
+	@Override
+	protected boolean isPathfindable(BlockState p_60475_, PathComputationType p_60478_) {
 		return false;
 	}
 }

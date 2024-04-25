@@ -262,11 +262,11 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return day % 5 == 0;
 	}
 
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(ROLE, Roles.TOFUNIAN.name());
-		this.entityData.define(ACTION, Actions.NORMAL.name());
-		this.entityData.define(TOFUNIAN_TYPE, TofunianType.NORMAL.name());
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(ROLE, Roles.TOFUNIAN.name());
+		builder.define(ACTION, Actions.NORMAL.name());
+		builder.define(TOFUNIAN_TYPE, TofunianType.NORMAL.name());
 	}
 
 	@Override
@@ -510,12 +510,12 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, MobSpawnType p_35284_, @org.jetbrains.annotations.Nullable SpawnGroupData p_35285_, @org.jetbrains.annotations.Nullable CompoundTag p_35286_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, MobSpawnType p_35284_, @org.jetbrains.annotations.Nullable SpawnGroupData p_35285_) {
 		if (p_35282_.getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
 			this.setTofunianType(TofunianType.ZUNDA);
 		}
 
-		return super.finalizeSpawn(p_35282_, p_35283_, p_35284_, p_35285_, p_35286_);
+		return super.finalizeSpawn(p_35282_, p_35283_, p_35284_, p_35285_);
 	}
 
 	public InteractionResult mobInteract(Player p_35472_, InteractionHand p_35473_) {
@@ -748,9 +748,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		if (compound.contains("Offers", 10)) {
-			this.offers = new MerchantOffers(compound.getCompound("Offers"));
-		}
 		if (compound.contains("FoodLevel", 1)) {
 			this.foodLevel = compound.getByte("FoodLevel");
 		}
@@ -767,13 +764,13 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.restocksToday = compound.getInt("RestocksToday");
 		this.lastTreat = compound.getLong("LastTreat");
 		if (compound.contains("TofunianHome")) {
-			this.tofunianHome = NbtUtils.readBlockPos(compound.getCompound("TofunianHome"));
+			this.tofunianHome = NbtUtils.readBlockPos(compound, "TofunianHome").orElse(null);
 		}
 		if (compound.contains("TofunianJobBlock")) {
-			this.tofunianJobBlock = NbtUtils.readBlockPos(compound.getCompound("TofunianJobBlock"));
+			this.tofunianJobBlock = NbtUtils.readBlockPos(compound, "TofunianJobBlock").orElse(null);
 		}
 		if (compound.contains("VillageCenter")) {
-			this.villageCenter = NbtUtils.readBlockPos(compound.getCompound("VillageCenter"));
+			this.villageCenter = NbtUtils.readBlockPos(compound, "VillageCenter").orElse(null);
 		}
 		if (compound.contains("Roles")) {
 			setRole(Roles.get(compound.getString("Roles")));
@@ -901,7 +898,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public ItemStack eat(Level p_36185_, ItemStack p_36186_) {
-		this.heal(p_36186_.getFoodProperties(this).getNutrition());
+		this.heal(p_36186_.getFoodProperties(this).nutrition());
 		this.playSound(SoundEvents.PLAYER_BURP, 0.5F, p_36185_.random.nextFloat() * 0.1F + 0.9F);
 
 		return super.eat(p_36185_, p_36186_);

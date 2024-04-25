@@ -34,10 +34,10 @@ public class FukumameThower extends Piglin {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(DATA_CHARGE, false);
-		this.entityData.define(DATA_FUKUMAME_COUNT, 64);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_CHARGE, false);
+		builder.define(DATA_FUKUMAME_COUNT, 64);
 	}
 
 	public void setCharge(boolean charge) {
@@ -127,9 +127,9 @@ public class FukumameThower extends Piglin {
 
 	@Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_34717_, DifficultyInstance p_34718_, MobSpawnType p_34719_, @Nullable SpawnGroupData p_34720_, @Nullable CompoundTag p_34721_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_34717_, DifficultyInstance p_34718_, MobSpawnType p_34719_, @Nullable SpawnGroupData p_34720_) {
 
-		return super.finalizeSpawn(p_34717_, p_34718_, p_34719_, p_34720_, p_34721_);
+		return super.finalizeSpawn(p_34717_, p_34718_, p_34719_, p_34720_);
 	}
 
 	@Override

@@ -3,12 +3,14 @@ package baguchan.tofucraft.capability;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.INBTSerializable;
+import org.jetbrains.annotations.UnknownNullability;
 
 public class TofuLivingCapability implements INBTSerializable<CompoundTag> {
 
@@ -96,11 +98,14 @@ public class TofuLivingCapability implements INBTSerializable<CompoundTag> {
 		return this.prevPortalAnimTime;
 	}
 
-	public CompoundTag serializeNBT() {
+	@Override
+	public @UnknownNullability CompoundTag serializeNBT(HolderLookup.Provider provider) {
 		CompoundTag nbt = new CompoundTag();
 		return nbt;
 	}
 
-	public void deserializeNBT(CompoundTag nbt) {
+	@Override
+	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
+
 	}
 }

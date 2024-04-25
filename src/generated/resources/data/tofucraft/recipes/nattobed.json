@@ -6,7 +6,7 @@
       "item": "tofucraft:seeds_soybeans"
     },
     "W": {
-      "tag": "forge:crops/wheat"
+      "tag": "c:crops/wheat"
     }
   },
   "pattern": [
@@ -15,6 +15,7 @@
     "WWW"
   ],
   "result": {
-    "item": "tofucraft:nattobed"
+    "count": 1,
+    "id": "tofucraft:nattobed"
   }
 }

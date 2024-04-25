@@ -3,6 +3,7 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuTags;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -16,11 +17,13 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 
+import java.util.concurrent.CompletableFuture;
+
 import static baguchan.tofucraft.TofuCraftReload.prefix;
 
 public class CraftingGenerator extends CraftingDataHelper {
-	public CraftingGenerator(PackOutput generator) {
-		super(generator);
+	public CraftingGenerator(PackOutput generator, CompletableFuture<HolderLookup.Provider> completableFuture) {
+		super(generator, completableFuture);
 	}
 
 	@Override
@@ -533,7 +536,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("# #")
 				.pattern("SSS")
 				.define('#', Items.IRON_INGOT)
-				.define('S', Tags.Items.COBBLESTONE)
+				.define('S', Tags.Items.COBBLESTONES)
 				.unlockedBy("has_item", has(Items.IRON_INGOT))
 				.save(consumer);
 
@@ -1572,7 +1575,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("BBB")
 				.define('G', TofuItems.TOFUGEM.get())
 				.define('R', Items.REDSTONE)
-				.define('B', Tags.Items.STONE)
+				.define('B', Tags.Items.COBBLESTONES)
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuItems.TF_CAPACITOR.get())

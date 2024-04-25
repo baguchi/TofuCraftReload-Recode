@@ -8,7 +8,6 @@ import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.ExtraCodecs;
 
 import java.util.Optional;
 
@@ -27,7 +26,7 @@ public class NightmaresEchoTrigger extends SimpleCriterionTrigger<NightmaresEcho
 
 	public static class Instance implements SimpleCriterionTrigger.SimpleInstance {
 		public static final Codec<NightmaresEchoTrigger.Instance> CODEC = RecordCodecBuilder.create((p_311988_) -> {
-			return p_311988_.group(ExtraCodecs.strictOptionalField(EntityPredicate.ADVANCEMENT_CODEC, "player").forGetter(NightmaresEchoTrigger.Instance::player)).apply(p_311988_, NightmaresEchoTrigger.Instance::new);
+			return p_311988_.group(EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(NightmaresEchoTrigger.Instance::player)).apply(p_311988_, NightmaresEchoTrigger.Instance::new);
 		});
 		private final Optional<ContextAwarePredicate> player;
 		public Instance(Optional<ContextAwarePredicate> player) {

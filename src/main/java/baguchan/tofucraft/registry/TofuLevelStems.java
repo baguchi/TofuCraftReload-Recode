@@ -3,7 +3,7 @@ package baguchan.tofucraft.registry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSource;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 import net.minecraft.world.level.dimension.DimensionType;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
 public class TofuLevelStems {
-	public static void bootstrapLevelStem(BootstapContext<LevelStem> context) {
+	public static void bootstrapLevelStem(BootstrapContext<LevelStem> context) {
 		HolderGetter<DimensionType> dimTypes = context.lookup(Registries.DIMENSION_TYPE);
 		HolderGetter<NoiseGeneratorSettings> noiseGenSettings = context.lookup(Registries.NOISE_SETTINGS);
 

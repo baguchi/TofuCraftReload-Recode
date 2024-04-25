@@ -7,7 +7,8 @@
     "item": "tofucraft:tofu_diamond_helmet"
   },
   "result": {
-    "item": "tofucraft:sculk_bone_helmet"
+    "count": 1,
+    "id": "tofucraft:sculk_bone_helmet"
   },
   "template": {
     "item": "tofucraft:tofu_upgrade_smithing_template"

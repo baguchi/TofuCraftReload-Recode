@@ -7,6 +7,7 @@ import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.nbt.CompoundTag;
@@ -168,8 +169,8 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 		this.size = vec3i;
 	}
 
-	public void saveAdditional(CompoundTag cmp) {
-		super.saveAdditional(cmp);
+	public void saveAdditional(CompoundTag cmp, HolderLookup.Provider p_338445_) {
+		super.saveAdditional(cmp, p_338445_);
 		cmp.putInt("posX", this.offset.getX());
 		cmp.putInt("posY", this.offset.getY());
 		cmp.putInt("posZ", this.offset.getZ());
@@ -185,8 +186,8 @@ public class TFMinerBlockEntity extends WorkerBaseBlockEntity {
 		cmp.putInt("process", this.processTime);
 	}
 
-	public void load(CompoundTag cmp) {
-		super.load(cmp);
+	public void loadAdditional(CompoundTag cmp, HolderLookup.Provider p_338445_) {
+		super.loadAdditional(cmp, p_338445_);
 		int i = Mth.clamp(cmp.getInt("posX"), -15, 5);
 		int j = Mth.clamp(cmp.getInt("posY"), -15, 5);
 		int k = Mth.clamp(cmp.getInt("posZ"), -15, 5);

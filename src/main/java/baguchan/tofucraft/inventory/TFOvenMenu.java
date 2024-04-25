@@ -159,10 +159,6 @@ public class TFOvenMenu extends RecipeBookMenu<Container> {
 		return this.level.getRecipeManager().getRecipeFor((RecipeType<AbstractCookingRecipe>) this.recipeType, new SimpleContainer(p_38978_), this.level).isPresent();
 	}
 
-	protected boolean isFuel(ItemStack p_38989_) {
-		return net.neoforged.neoforge.common.CommonHooks.getBurnTime(p_38989_, this.recipeType) > 0;
-	}
-
 	public float getTFForce() {
 		int i = this.data.get(1);
 		int j = this.data.get(2);

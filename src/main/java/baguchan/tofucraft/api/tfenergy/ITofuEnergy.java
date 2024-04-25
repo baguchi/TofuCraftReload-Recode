@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 
 public interface ITofuEnergy {
 
+
 	int getEnergyStored();
 
 	int getMaxEnergyStored();

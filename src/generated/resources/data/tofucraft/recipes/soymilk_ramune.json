@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:milk/soy_milk"
+      "tag": "c:milk/soy_milk"
     },
     {
       "item": "minecraft:glass_bottle"
@@ -16,6 +16,7 @@
     }
   ],
   "result": {
-    "item": "tofucraft:soymilk_ramune"
+    "count": 1,
+    "id": "tofucraft:soymilk_ramune"
   }
 }

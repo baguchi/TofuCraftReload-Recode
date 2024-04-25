@@ -2,6 +2,7 @@ package baguchan.tofucraft.blockentity;
 
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,17 +16,16 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 		super(TofuBlockEntitys.FOODPLATE.get(), pos, state);
 		inventory = createHandler();
 	}
-
 	@Override
-	public void load(CompoundTag compound) {
-		super.load(compound);
-		inventory.deserializeNBT(compound.getCompound("Inventory"));
+	public void loadAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
+		super.loadAdditional(compound, p_338445_);
+		inventory.deserializeNBT(p_338445_, compound.getCompound("Inventory"));
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag compound) {
-		super.saveAdditional(compound);
-		compound.put("Inventory", inventory.serializeNBT());
+	public void saveAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
+		super.saveAdditional(compound, p_338445_);
+		compound.put("Inventory", inventory.serializeNBT(p_338445_));
 	}
 
 	public boolean addItem(ItemStack itemStack) {

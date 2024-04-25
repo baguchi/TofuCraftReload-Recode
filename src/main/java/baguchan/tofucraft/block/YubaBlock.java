@@ -8,7 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -100,8 +100,7 @@ public class YubaBlock extends Block {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		ItemStack itemstack = player.getItemInHand(handIn);
+	protected ItemInteractionResult useItemOn(ItemStack itemstack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
 
 		if (itemstack.is(Tags.Items.RODS_WOODEN)) {
 			if (!worldIn.isClientSide()) {
@@ -117,8 +116,8 @@ public class YubaBlock extends Block {
 			}
 			player.playSound(SoundEvents.BOAT_PADDLE_WATER, 1.0F, 1.0F);
 
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
-		return InteractionResult.PASS;
+		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
 }

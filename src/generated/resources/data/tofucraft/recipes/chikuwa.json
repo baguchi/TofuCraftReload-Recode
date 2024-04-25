@@ -9,10 +9,10 @@
       "tag": "minecraft:fishes"
     },
     "Y": {
-      "tag": "forge:dust/salt"
+      "tag": "c:dust/salt"
     },
     "Z": {
-      "tag": "forge:eggs"
+      "tag": "c:eggs"
     }
   },
   "pattern": [
@@ -22,6 +22,6 @@
   ],
   "result": {
     "count": 4,
-    "item": "tofucraft:chikuwa"
+    "id": "tofucraft:chikuwa"
   }
 }

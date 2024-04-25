@@ -4,6 +4,7 @@ import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuEffects;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -22,11 +23,11 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
 public class SoymilkBottleItem extends Item {
-	private final MobEffect effect;
+	private final Holder<MobEffect> effect;
 
-	private final MobEffect secondEffect;
+	private final Holder<MobEffect> secondEffect;
 
-	public SoymilkBottleItem(MobEffect effect, MobEffect secondEffect, Item.Properties properties) {
+	public SoymilkBottleItem(Holder<MobEffect> effect, Holder<MobEffect> secondEffect, Item.Properties properties) {
 		super(properties);
 		this.effect = effect;
 		this.secondEffect = secondEffect;
@@ -45,7 +46,7 @@ public class SoymilkBottleItem extends Item {
 					}
 					cap.setSoyHealthBaseLevel(1 + cap.getSoyHealthBaseLevel());
 				}
-				p_41411_.addEffect(new MobEffectInstance(TofuEffects.SOY_HEALTHY.get(), 600 + 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
+				p_41411_.addEffect(new MobEffectInstance(TofuEffects.SOY_HEALTHY, 600 + 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
 				p_41411_.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
 			}
 		if (p_41411_ instanceof ServerPlayer) {
@@ -93,11 +94,11 @@ public class SoymilkBottleItem extends Item {
 		return ItemUtils.startUsingInstantly(p_41432_, p_41433_, p_41434_);
 	}
 
-	public MobEffect getEffect() {
+	public Holder<MobEffect> getEffect() {
 		return effect;
 	}
 
-	public MobEffect getSecondEffect() {
+	public Holder<MobEffect> getSecondEffect() {
 		return secondEffect;
 	}
 }

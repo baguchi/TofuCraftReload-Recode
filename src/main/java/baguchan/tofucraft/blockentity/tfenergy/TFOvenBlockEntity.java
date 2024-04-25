@@ -8,6 +8,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
@@ -221,9 +222,10 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 		return inventory;
 	}
 
-	public void saveAdditional(CompoundTag cmp) {
-		super.saveAdditional(cmp);
-		ContainerHelper.saveAllItems(cmp, this.inventory);
+	@Override
+	public void saveAdditional(CompoundTag cmp, HolderLookup.Provider p_338445_) {
+		super.saveAdditional(cmp, p_338445_);
+		ContainerHelper.saveAllItems(cmp, this.inventory, p_338445_);
 		cmp.putInt("progress", this.progress);
 		cmp.putInt("RefreshTime", this.refreshTime);
 		CompoundTag compoundtag = new CompoundTag();
@@ -231,10 +233,11 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 		cmp.put("RecipesUsed", compoundtag);
 	}
 
-	public void load(CompoundTag cmp) {
-		super.load(cmp);
+	@Override
+	public void loadAdditional(CompoundTag cmp, HolderLookup.Provider p_338445_) {
+		super.loadAdditional(cmp, p_338445_);
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(cmp, this.inventory);
+		ContainerHelper.loadAllItems(cmp, this.inventory, p_338445_);
 
 		this.progress = cmp.getInt("progress");
 		this.refreshTime = cmp.getInt("RefreshTime");
@@ -274,7 +277,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 			return false;
 		} else {
 			ItemStack itemstack = this.inventory.get(0);
-			return net.neoforged.neoforge.common.CommonHooks.getBurnTime(p_58390_, this.recipeType) > 0 || p_58390_.is(Items.BUCKET) && !itemstack.is(Items.BUCKET);
+			return p_58390_.getBurnTime(this.recipeType) > 0 || p_58390_.is(Items.BUCKET) && !itemstack.is(Items.BUCKET);
 		}
 	}
 	@Override

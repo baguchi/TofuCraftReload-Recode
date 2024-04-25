@@ -98,15 +98,16 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		this.xpReward = 60;
 	}
 
+
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(DATA_ID_SHOOT, false);
-		this.entityData.define(DATA_ID_RUSH, false);
-		this.entityData.define(DATA_ID_SLEEP, false);
-		this.entityData.define(DATA_CHARGE_FLAGS_ID, (byte) 0);
-		this.entityData.define(DATA_CHARGE_HEALTH, 0F);
-		this.entityData.define(ACTION, Actions.NORMAL.name());
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_ID_SHOOT, false);
+		builder.define(DATA_ID_RUSH, false);
+		builder.define(DATA_ID_SLEEP, false);
+		builder.define(DATA_CHARGE_FLAGS_ID, (byte) 0);
+		builder.define(DATA_CHARGE_HEALTH, 0F);
+		builder.define(ACTION, Actions.NORMAL.name());
 	}
 
 	@Override
@@ -233,17 +234,17 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		this.setFullCharge(compound.getBoolean("FullCharge"));
 		this.setChargeHealth(compound.getFloat("ChargeHealth"));
 		if (compound.contains("HomePos")) {
-			this.homePos = NbtUtils.readBlockPos(compound.getCompound("HomePos"));
+			this.homePos = NbtUtils.readBlockPos(compound, "HomePos").orElse(null);
 		}
 	}
 
 	@Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_, @Nullable CompoundTag p_21438_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_) {
 		if (p_21436_ == MobSpawnType.STRUCTURE) {
 			this.homePos = this.blockPosition();
 		}
-		return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_, p_21438_);
+		return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_);
 	}
 
 	@Override
@@ -586,11 +587,10 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	@Override
-	public EntityDimensions getDimensions(Pose p_21047_) {
+	protected EntityDimensions getDefaultDimensions(Pose p_21047_) {
 		EntityDimensions entitydimensions = super.getDimensions(p_21047_);
-		return this.isRush() ? EntityDimensions.fixed(entitydimensions.width, entitydimensions.height * 0.45F) : entitydimensions;
+		return this.isRush() ? EntityDimensions.fixed(entitydimensions.width(), entitydimensions.height() * 0.45F) : entitydimensions;
 	}
-
 	@Override
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
 		this.playSound(SoundEvents.SHULKER_SHOOT, 3.0F, 1.0F);

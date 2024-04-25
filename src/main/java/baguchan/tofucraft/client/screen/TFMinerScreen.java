@@ -109,7 +109,7 @@ public class TFMinerScreen extends Screen {
 				this.parseCoordinate(this.sizeXEdit.getValue()), this.parseCoordinate(this.sizeYEdit.getValue()), this.parseCoordinate(this.sizeZEdit.getValue())
 		);
 		if (tfMiner.getLevel() != null) {
-			PacketDistributor.SERVER.noArg().send(new SetTFMinerBlockPacket(tfMiner.getBlockPos(), blockpos, vec3i, work));
+			PacketDistributor.sendToServer(new SetTFMinerBlockPacket(tfMiner.getBlockPos(), blockpos, vec3i, work));
 		}
 		return true;
 	}

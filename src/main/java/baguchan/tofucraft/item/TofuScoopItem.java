@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -33,8 +32,6 @@ import net.minecraft.world.phys.Vec3;
 
 public class TofuScoopItem extends Item {
 
-	private static final double MAX_BRUSH_DISTANCE = Math.sqrt(ServerGamePacketListenerImpl.MAX_INTERACTION_DISTANCE) - 1.0D;
-
 	public TofuScoopItem(Properties group) {
 		super(group);
 	}
@@ -50,7 +47,7 @@ public class TofuScoopItem extends Item {
 			worldIn.removeBlock(context.getClickedPos(), false);
 			if (!worldIn.isClientSide()) {
 				if (context.getPlayer() != null)
-					stack.hurtAndBreak(1, (LivingEntity) context.getPlayer(), p_220036_0_ -> p_220036_0_.broadcastBreakEvent(context.getHand()));
+					stack.hurtAndBreak(1, (LivingEntity) context.getPlayer(), LivingEntity.getSlotForHand(context.getHand()));
 				double d0 = (worldIn.random.nextFloat() * 0.5F) + 0.25D;
 				double d1 = (worldIn.random.nextFloat() * 0.5F);
 				double d2 = (worldIn.random.nextFloat() * 0.5F) + 0.25D;
@@ -78,7 +75,7 @@ public class TofuScoopItem extends Item {
 
 	public void onUseTick(Level p_273467_, LivingEntity p_273619_, ItemStack p_273316_, int p_273101_) {
 		if (p_273101_ >= 0 && p_273619_ instanceof Player player) {
-			HitResult hitresult = this.calculateHitResult(p_273619_);
+			HitResult hitresult = this.calculateHitResult(player);
 			if (hitresult instanceof BlockHitResult blockhitresult) {
 				if (hitresult.getType() == HitResult.Type.BLOCK) {
 					int i = this.getUseDuration(p_273316_) - p_273101_ + 1;
@@ -105,9 +102,7 @@ public class TofuScoopItem extends Item {
 								boolean flag1 = brushableblockentity.brush(p_273467_.getGameTime(), player, blockhitresult.getDirection());
 								if (flag1) {
 									EquipmentSlot equipmentslot = p_273316_.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
-									p_273316_.hurtAndBreak(1, p_273619_, (p_279044_) -> {
-										p_279044_.broadcastBreakEvent(equipmentslot);
-									});
+									p_273316_.hurtAndBreak(1, p_273619_, equipmentslot);
 								}
 							}
 						}
@@ -123,10 +118,10 @@ public class TofuScoopItem extends Item {
 		}
 	}
 
-	private HitResult calculateHitResult(LivingEntity p_281264_) {
-		return ProjectileUtil.getHitResultOnViewVector(p_281264_, (p_281111_) -> {
-			return !p_281111_.isSpectator() && p_281111_.isPickable();
-		}, MAX_BRUSH_DISTANCE);
+	private HitResult calculateHitResult(Player p_305856_) {
+		return ProjectileUtil.getHitResultOnViewVector(
+				p_305856_, p_281111_ -> !p_281111_.isSpectator() && p_281111_.isPickable(), p_305856_.blockInteractionRange()
+		);
 	}
 
 	public void spawnDustParticles(Level p_278327_, BlockHitResult p_278272_, BlockState p_278235_, Vec3 p_278337_, HumanoidArm p_285071_) {

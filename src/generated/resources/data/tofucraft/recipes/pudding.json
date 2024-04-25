@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:eggs"
+      "tag": "c:eggs"
     },
     {
       "item": "tofucraft:gelatin"
@@ -19,6 +19,7 @@
     }
   ],
   "result": {
-    "item": "tofucraft:pudding"
+    "count": 1,
+    "id": "tofucraft:pudding"
   }
 }

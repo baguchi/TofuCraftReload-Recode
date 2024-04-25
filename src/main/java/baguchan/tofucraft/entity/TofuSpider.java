@@ -51,9 +51,9 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		this.xpReward = 4;
 	}
 
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(DATA_CONVERTING_ID, false);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_CONVERTING_ID, false);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -131,7 +131,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 
 	private void finishConversion(ServerLevel p_34399_) {
 		ShuDofuSpider shudofuSpider = this.convertTo(TofuEntityTypes.SHUDOFUSPIDER.get(), false);
-		shudofuSpider.finalizeSpawn(p_34399_, p_34399_.getCurrentDifficultyAt(shudofuSpider.blockPosition()), MobSpawnType.CONVERSION, (SpawnGroupData) null, (CompoundTag) null);
+		shudofuSpider.finalizeSpawn(p_34399_, p_34399_.getCurrentDifficultyAt(shudofuSpider.blockPosition()), MobSpawnType.CONVERSION, (SpawnGroupData) null);
 
 		List<Player> players = p_34399_.getNearbyPlayers(TargetingConditions.forNonCombat().ignoreInvisibilityTesting().ignoreLineOfSight(), this, this.getBoundingBox().inflate(60D));
 

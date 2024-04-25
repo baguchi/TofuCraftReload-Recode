@@ -10,7 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -83,25 +83,21 @@ public class CandleTofuCakeBlock extends AbstractCandleBlock {
 		return SHAPE;
 	}
 
-	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-		ItemStack itemstack = player.getItemInHand(hand);
-		if (!itemstack.is(Items.FLINT_AND_STEEL) && !itemstack.is(Items.FIRE_CHARGE) && baseCake instanceof TofuCakeBlock cakeBlock) {
-			if (candleHit(result) && player.getItemInHand(hand).isEmpty() && state.getValue(LIT)) {
-				extinguish(player, state, level, pos);
-				return InteractionResult.sidedSuccess(level.isClientSide);
-			} else {
-				InteractionResult interactionresult = cakeBlock.eatSlice(level, pos, cakeBlock.defaultBlockState(), player);
-				if (interactionresult.consumesAction()) {
-					dropResources(state, level, pos);
-				}
 
-				return interactionresult;
-			}
+	@Override
+	protected ItemInteractionResult useItemOn(
+			ItemStack p_316571_, BlockState p_316514_, Level p_316171_, BlockPos p_316112_, Player p_316172_, InteractionHand p_316257_, BlockHitResult p_316286_
+	) {
+		if (p_316571_.is(Items.FLINT_AND_STEEL) || p_316571_.is(Items.FIRE_CHARGE)) {
+			return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
+		} else if (candleHit(p_316286_) && p_316571_.isEmpty() && p_316514_.getValue(LIT)) {
+			extinguish(p_316172_, p_316514_, p_316171_, p_316112_);
+			return ItemInteractionResult.sidedSuccess(p_316171_.isClientSide);
 		} else {
-			return InteractionResult.PASS;
+			return super.useItemOn(p_316571_, p_316514_, p_316171_, p_316112_, p_316172_, p_316257_, p_316286_);
 		}
 	}
+
 
 	@Override
 	public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
@@ -138,7 +134,7 @@ public class CandleTofuCakeBlock extends AbstractCandleBlock {
 	}
 
 	@Override
-	public boolean isPathfindable(BlockState p_152870_, BlockGetter p_152871_, BlockPos p_152872_, PathComputationType p_152873_) {
+	protected boolean isPathfindable(BlockState p_60475_, PathComputationType p_60478_) {
 		return false;
 	}
 

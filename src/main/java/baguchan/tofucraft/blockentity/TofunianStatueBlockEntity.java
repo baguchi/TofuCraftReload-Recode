@@ -7,7 +7,10 @@ import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuTags;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -24,7 +27,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 
 public class TofunianStatueBlockEntity extends SyncedBlockEntity {
-	public static final ResourceLocation LOOT_TABLE = new ResourceLocation(TofuCraftReload.MODID, "gameplay/tofunian_statue");
+	public static final ResourceKey<LootTable> LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation(TofuCraftReload.MODID, "gameplay/tofunian_statue"));
 	private int processTick;
 	private long cooldown;
 	private float happyScale;
@@ -42,7 +45,7 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 				if (foodPlate.getStoredItem().is(TofuTags.Items.STATUE_HAPPY)) {
 					if (++statue.processTick > 200) {
 						foodPlate.removeItem();
-						LootTable loottable = level.getServer().getLootData().getLootTable(LOOT_TABLE);
+						LootTable loottable = level.getServer().reloadableRegistries().getLootTable(LOOT_TABLE);
 
 						LootParams lootparams = (new LootParams.Builder((ServerLevel) level)).withLuck(statue.happyScale).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(platePos)).create(LootContextParamSets.CHEST);
 						ObjectArrayList<ItemStack> objectarraylist = loottable.getRandomItems(lootparams);
@@ -69,8 +72,8 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 	}
 
 	@Override
-	public void load(CompoundTag compound) {
-		super.load(compound);
+	public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+		super.loadAdditional(compound, provider);
 		this.setProcessTick(compound.getInt("ProcessTick"));
 		this.setCooldown(compound.getLong("CooldownAt"));
 		this.setHappyScale(compound.getFloat("HappyScale"));
@@ -78,8 +81,8 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag compound) {
-		super.saveAdditional(compound);
+	public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+		super.saveAdditional(compound, provider);
 		compound.putInt("ProcessTick", getProcessTick());
 		compound.putLong("CooldownAt", getCooldown());
 		compound.putFloat("HappyScale", getHappyScale());

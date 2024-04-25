@@ -10,18 +10,17 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.neoforged.neoforge.client.gui.overlay.ExtendedGui;
-import net.neoforged.neoforge.client.gui.overlay.IGuiOverlay;
 
-public class TofuPortalOverlay implements IGuiOverlay {
+public class TofuPortalOverlay implements LayeredDraw.Layer {
 	@Override
-	public void render(ExtendedGui gui, GuiGraphics poseStack, float partialTick, int width, int height) {
+	public void render(GuiGraphics poseStack, float partialTick) {
 		Minecraft mc = Minecraft.getInstance();
 		TofuLivingCapability tofuLivingCapability = mc.player.getData(TofuCapability.TOFU_LIVING);
-		renderTofuPortalOverlay(poseStack, mc, partialTick, width, height, tofuLivingCapability);
+		renderTofuPortalOverlay(poseStack, mc, partialTick, poseStack.guiWidth(), poseStack.guiHeight(), tofuLivingCapability);
 
 	}
 

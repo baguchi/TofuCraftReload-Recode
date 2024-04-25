@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "#": {
-      "tag": "forge:rods/wooden"
+      "tag": "c:rods/wooden"
     },
     "X": {
       "item": "minecraft:cobblestone_slab"
@@ -14,6 +14,7 @@
     " X "
   ],
   "result": {
-    "item": "tofucraft:blocksaltpan"
+    "count": 1,
+    "id": "tofucraft:blocksaltpan"
   }
 }

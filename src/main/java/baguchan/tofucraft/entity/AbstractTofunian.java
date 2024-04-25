@@ -1,9 +1,13 @@
 package baguchan.tofucraft.entity;
 
+import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuSounds;
 import com.google.common.collect.Sets;
+import net.minecraft.Util;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -33,7 +37,7 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.util.ITeleporter;
 
@@ -41,6 +45,9 @@ import javax.annotation.Nullable;
 import java.util.Set;
 
 public abstract class AbstractTofunian extends AgeableMob implements InventoryCarrier, Npc, Merchant {
+
+	private static final EntityDimensions BABY_DIMENSIONS = TofuEntityTypes.TOFUNIAN.get().getDimensions().scale(0.5F).withEyeHeight(0.3F);
+
 	private static final EntityDataAccessor<Integer> DATA_UNHAPPY_COUNTER = SynchedEntityData.defineId(AbstractTofunian.class, EntityDataSerializers.INT);
 	@Nullable
 	private Player tradingPlayer;
@@ -52,8 +59,8 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 
 	public AbstractTofunian(EntityType<? extends AbstractTofunian> type, Level worldIn) {
 		super(type, worldIn);
-		this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 16.0F);
-		this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, -1.0F);
+		this.setPathfindingMalus(PathType.DANGER_FIRE, 16.0F);
+		this.setPathfindingMalus(PathType.DAMAGE_FIRE, -1.0F);
 	}
 
 	@Override
@@ -103,20 +110,16 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		return TofuSounds.TOFUNIAN_YES.get();
 	}
 
-	protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-		return isBaby() ? 0.3F : (sizeIn.height * 0.8F);
-	}
-
 	public boolean removeWhenFarAway(double distanceToClosestPlayer) {
 		return false;
 	}
 
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, MobSpawnType p_35284_, @Nullable SpawnGroupData p_35285_, @Nullable CompoundTag p_35286_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, MobSpawnType p_35284_, @Nullable SpawnGroupData p_35285_) {
 		if (p_35285_ == null) {
 			p_35285_ = new AgeableMob.AgeableMobGroupData(false);
 		}
 
-		return super.finalizeSpawn(p_35282_, p_35283_, p_35284_, p_35285_, p_35286_);
+		return super.finalizeSpawn(p_35282_, p_35283_, p_35284_, p_35285_);
 	}
 
 	public int getUnhappyCounter() {
@@ -131,9 +134,10 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		return 0;
 	}
 
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(DATA_UNHAPPY_COUNTER, 0);
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_UNHAPPY_COUNTER, 0);
 	}
 
 	public void setTradingPlayer(@Nullable Player p_35314_) {
@@ -191,19 +195,29 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		super.addAdditionalSaveData(p_35301_);
 		MerchantOffers merchantoffers = this.getOffers();
 		if (!merchantoffers.isEmpty()) {
-			p_35301_.put("Offers", merchantoffers.createTag());
+			p_35301_.put(
+					"Offers", MerchantOffers.CODEC.encodeStart(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), merchantoffers).getOrThrow()
+			);
 		}
 
-		this.writeInventoryToTag(p_35301_);
+		this.writeInventoryToTag(p_35301_, this.registryAccess());
 	}
 
 	public void readAdditionalSaveData(CompoundTag p_35290_) {
 		super.readAdditionalSaveData(p_35290_);
 		if (p_35290_.contains("Offers", 10)) {
-			this.offers = new MerchantOffers(p_35290_.getCompound("Offers"));
+			MerchantOffers.CODEC
+					.parse(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), p_35290_.get("Offers"))
+					.resultOrPartial(Util.prefix("Failed to load offers: ", TofuCraftReload.LOGGER::warn))
+					.ifPresent(p_323775_ -> this.offers = p_323775_);
 		}
 
-		this.readInventoryFromTag(p_35290_);
+		this.readInventoryFromTag(p_35290_, this.registryAccess());
+	}
+
+	@Override
+	protected EntityDimensions getDefaultDimensions(Pose p_316700_) {
+		return super.getDefaultDimensions(p_316700_);
 	}
 
 	@Nullable

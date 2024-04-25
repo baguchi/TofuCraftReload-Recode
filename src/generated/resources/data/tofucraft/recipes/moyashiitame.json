@@ -9,7 +9,7 @@
       "item": "tofucraft:bottle_soysause"
     },
     {
-      "tag": "forge:dust/salt"
+      "tag": "c:dust/salt"
     },
     {
       "item": "tofucraft:sprouts"
@@ -19,6 +19,7 @@
     }
   ],
   "result": {
-    "item": "tofucraft:moyashiitame"
+    "count": 1,
+    "id": "tofucraft:moyashiitame"
   }
 }

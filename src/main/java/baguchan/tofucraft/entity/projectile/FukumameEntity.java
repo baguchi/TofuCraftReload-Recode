@@ -67,8 +67,8 @@ public class FukumameEntity extends ThrowableProjectile {
 		super(entityType, throwerIn, worldIn);
 	}
 
-	protected void defineSynchedData() {
-		this.entityData.define(BOUNCE_LEVEL, 0);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		builder.define(BOUNCE_LEVEL, 0);
 	}
 
 	public void setBounceLevel(int bounceLevel) {

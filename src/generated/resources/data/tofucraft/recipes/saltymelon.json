@@ -3,13 +3,14 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:salt"
+      "tag": "c:salt"
     },
     {
       "item": "minecraft:melon_slice"
     }
   ],
   "result": {
-    "item": "tofucraft:saltymelon"
+    "count": 1,
+    "id": "tofucraft:saltymelon"
   }
 }

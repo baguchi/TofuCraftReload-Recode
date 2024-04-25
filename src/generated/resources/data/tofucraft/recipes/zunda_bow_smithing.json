@@ -7,7 +7,8 @@
     "item": "minecraft:bow"
   },
   "result": {
-    "item": "tofucraft:zunda_bow"
+    "count": 1,
+    "id": "tofucraft:zunda_bow"
   },
   "template": {
     "item": "tofucraft:zunda_upgrade_smithing_template"

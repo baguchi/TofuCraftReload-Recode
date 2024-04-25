@@ -38,9 +38,9 @@ public class TofuSlime extends Slime {
 		super(p_33588_, p_33589_);
 	}
 
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.getEntityData().define(DATA_CONVERSION_ID, false);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_CONVERSION_ID, false);
 	}
 
 	public void shoot(double p_37266_, double p_37267_, double p_37268_, float p_37269_, float p_37270_) {

@@ -3,7 +3,7 @@ package baguchan.tofucraft.loot;
 import baguchan.tofucraft.registry.TofuItems;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.Lists;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.item.Item;
@@ -19,8 +19,8 @@ import java.util.function.Supplier;
 
 public class SeedDropModifier extends LootModifier {
 
-	public static final Supplier<Codec<SeedDropModifier>> CODEC = Suppliers.memoize(() ->
-			RecordCodecBuilder.create(inst -> codecStart(inst)
+	public static final Supplier<MapCodec<SeedDropModifier>> CODEC = Suppliers.memoize(() ->
+			RecordCodecBuilder.mapCodec(inst -> codecStart(inst)
 					.apply(inst, SeedDropModifier::new)));
 
 	protected SeedDropModifier(LootItemCondition[] conditionsIn) {
@@ -36,7 +36,7 @@ public class SeedDropModifier extends LootModifier {
 	}
 
 	@Override
-	public Codec<? extends IGlobalLootModifier> codec() {
+	public MapCodec<? extends IGlobalLootModifier> codec() {
 		return CODEC.get();
 	}
 }

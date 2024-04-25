@@ -11,7 +11,7 @@
       }
     ],
     {
-      "tag": "forge:eggs"
+      "tag": "c:eggs"
     },
     {
       "item": "minecraft:wheat"
@@ -30,6 +30,7 @@
     }
   ],
   "result": {
-    "item": "tofucraft:nanbantofu"
+    "count": 1,
+    "id": "tofucraft:nanbantofu"
   }
 }

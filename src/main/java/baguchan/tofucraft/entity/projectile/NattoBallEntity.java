@@ -3,6 +3,7 @@ package baguchan.tofucraft.entity.projectile;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
@@ -60,6 +61,11 @@ public class NattoBallEntity extends ThrowableProjectile {
 			}
 
 		}
+	}
+
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder p_326003_) {
+
 	}
 
 	public boolean isPickable() {

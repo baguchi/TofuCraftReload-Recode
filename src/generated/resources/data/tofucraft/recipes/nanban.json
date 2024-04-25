@@ -6,7 +6,7 @@
       "item": "minecraft:cooked_chicken"
     },
     {
-      "tag": "forge:eggs"
+      "tag": "c:eggs"
     },
     {
       "item": "minecraft:wheat"
@@ -25,6 +25,7 @@
     }
   ],
   "result": {
-    "item": "tofucraft:nanban"
+    "count": 1,
+    "id": "tofucraft:nanban"
   }
 }

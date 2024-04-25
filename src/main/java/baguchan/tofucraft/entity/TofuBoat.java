@@ -48,9 +48,9 @@ public class TofuBoat extends Boat {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.getEntityData().define(BOAT_TYPE, Type.TOFU_STEM.ordinal());
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(BOAT_TYPE, Type.TOFU_STEM.ordinal());
 	}
 
 	@Override

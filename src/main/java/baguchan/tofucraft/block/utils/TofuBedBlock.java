@@ -3,14 +3,9 @@ package baguchan.tofucraft.block.utils;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.DyeColor;
@@ -18,7 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.CollisionGetter;
-import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BedBlock;
@@ -36,8 +30,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -45,7 +37,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Optional;
 
 public class TofuBedBlock extends BedBlock {
@@ -68,62 +59,6 @@ public class TofuBedBlock extends BedBlock {
 
 		this.registerDefaultState((BlockState) ((BlockState) ((BlockState) this.stateDefinition.any()).setValue(PART, BedPart.FOOT)).setValue(OCCUPIED, false));
 	}
-
-	@Override
-	public InteractionResult use(BlockState p_49515_, Level p_49516_, BlockPos p_49517_, Player p_49518_, InteractionHand p_49519_, BlockHitResult p_49520_) {
-		if (p_49516_.isClientSide) {
-			return InteractionResult.CONSUME;
-		} else {
-			if (p_49515_.getValue(PART) != BedPart.HEAD) {
-				p_49517_ = p_49517_.relative((Direction) p_49515_.getValue(FACING));
-				p_49515_ = p_49516_.getBlockState(p_49517_);
-				if (!p_49515_.is(this)) {
-					return InteractionResult.CONSUME;
-				}
-			}
-
-			if (!canSetSpawn(p_49516_)) {
-				p_49516_.removeBlock(p_49517_, false);
-				BlockPos var7 = p_49517_.relative(((Direction) p_49515_.getValue(FACING)).getOpposite());
-				if (p_49516_.getBlockState(var7).is(this)) {
-					p_49516_.removeBlock(var7, false);
-				}
-
-				Vec3 vec3 = p_49517_.getCenter();
-				p_49516_.explode((Entity) null, p_49518_.damageSources().badRespawnPointExplosion(vec3), (ExplosionDamageCalculator) null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
-				return InteractionResult.SUCCESS;
-			} else if ((Boolean) p_49515_.getValue(OCCUPIED)) {
-				if (!this.kickVillagerOutOfBed(p_49516_, p_49517_)) {
-					p_49518_.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
-				}
-
-				return InteractionResult.SUCCESS;
-			} else {
-				p_49518_.startSleepInBed(p_49517_).ifLeft((p_49477_) -> {
-					if (p_49477_ != null) {
-						p_49518_.displayClientMessage(p_49477_.getMessage(), true);
-					}
-
-				});
-				return InteractionResult.SUCCESS;
-			}
-		}
-	}
-
-	public static boolean canSetSpawn(Level p_49489_) {
-		return p_49489_.dimensionType().bedWorks();
-	}
-
-	private boolean kickVillagerOutOfBed(Level p_49491_, BlockPos p_49492_) {
-		List<AbstractVillager> var3 = p_49491_.getEntitiesOfClass(AbstractVillager.class, new AABB(p_49492_), LivingEntity::isSleeping);
-		if (var3.isEmpty()) {
-			return false;
-		} else {
-			((AbstractVillager) var3.get(0)).stopSleeping();
-			return true;
-		}
-	}
-
 	@Override
 	public BlockState updateShape(BlockState p_49525_, Direction p_49526_, BlockState p_49527_, LevelAccessor p_49528_, BlockPos p_49529_, BlockPos p_49530_) {
 		if (p_49526_ == getNeighbourDirection((BedPart) p_49525_.getValue(PART), (Direction) p_49525_.getValue(FACING))) {

@@ -23,7 +23,7 @@
       }
     ],
     {
-      "tag": "forge:dust/salt"
+      "tag": "c:dust/salt"
     },
     {
       "item": "minecraft:milk_bucket"
@@ -36,6 +36,7 @@
     }
   ],
   "result": {
-    "item": "tofucraft:tastystew"
+    "count": 1,
+    "id": "tofucraft:tastystew"
   }
 }

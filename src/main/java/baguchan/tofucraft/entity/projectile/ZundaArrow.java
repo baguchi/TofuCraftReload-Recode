@@ -7,6 +7,7 @@ import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -15,7 +16,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -52,7 +52,8 @@ public class ZundaArrow extends AbstractArrow {
 
 	}
 
-	protected ItemStack getPickupItem() {
+	@Override
+	protected ItemStack getDefaultPickupItem() {
 		return new ItemStack(TofuItems.ZUNDA_ARROW.get());
 	}
 
@@ -76,7 +77,7 @@ public class ZundaArrow extends AbstractArrow {
 				this.spawnAtLocation(new ItemStack(TofuItems.TOFUZUNDA.get(), slime.getSize() * 2));
 				p_36757_.getEntity().discard();
 				this.discard();
-			} else if (p_36757_.getEntity() instanceof Mob && ((Mob) p_36757_.getEntity()).getMobType() == MobType.UNDEAD) {
+			} else if (p_36757_.getEntity().getType().is(EntityTypeTags.UNDEAD)) {
 
 				if (((Mob) p_36757_.getEntity()).hurt(zundaAttack(this.getOwner()), i)) {
 					this.discard();

@@ -5,14 +5,19 @@ import baguchan.tofucraft.blockentity.tfenergy.TFMinerBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.network.handling.PlayPayloadContext;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.handling.IPayloadHandler;
 
-public class SetTFMinerBlockPacket implements CustomPacketPayload {
-	public static final ResourceLocation ID = TofuCraftReload.prefix("set_miner_block");
+public class SetTFMinerBlockPacket implements CustomPacketPayload, IPayloadHandler<SetTFMinerBlockPacket> {
+
+	public static final StreamCodec<FriendlyByteBuf, SetTFMinerBlockPacket> STREAM_CODEC = CustomPacketPayload.codec(
+			SetTFMinerBlockPacket::write, SetTFMinerBlockPacket::new
+	);
+	public static final CustomPacketPayload.Type<SetTFMinerBlockPacket> TYPE = CustomPacketPayload.createType(TofuCraftReload.prefix("set_miner_block").toString());
 
 	public BlockPos blockPos;
 	private BlockPos offset;
@@ -27,8 +32,8 @@ public class SetTFMinerBlockPacket implements CustomPacketPayload {
 	}
 
 	@Override
-	public ResourceLocation id() {
-		return ID;
+	public Type<? extends CustomPacketPayload> type() {
+		return TYPE;
 	}
 
 	public void write(FriendlyByteBuf buffer) {
@@ -42,10 +47,11 @@ public class SetTFMinerBlockPacket implements CustomPacketPayload {
 		this(buffer.readBlockPos(), buffer.readBlockPos(), buffer.readJsonWithCodec(Vec3i.CODEC), buffer.readBoolean());
 	}
 
-	public static void handle(SetTFMinerBlockPacket message, PlayPayloadContext context) {
-		context.workHandler().execute(() -> {
-			if (context.level().isPresent()) {
-				BlockEntity tileentity = context.level().get().getBlockEntity(message.blockPos);
+	@Override
+	public void handle(SetTFMinerBlockPacket message, IPayloadContext context) {
+		context.enqueueWork(() -> {
+			if (context.player().level() != null) {
+				BlockEntity tileentity = context.player().level().getBlockEntity(message.blockPos);
 				if (tileentity instanceof TFMinerBlockEntity minerBlockEntity) {
 					minerBlockEntity.setOffset(message.offset);
 					minerBlockEntity.setSize(message.size);
@@ -56,8 +62,8 @@ public class SetTFMinerBlockPacket implements CustomPacketPayload {
 						minerBlockEntity.setWorking(false);
 					}
 					minerBlockEntity.setChanged();
-					BlockState blockstate = context.level().get().getBlockState(message.blockPos);
-					context.level().get().sendBlockUpdated(message.blockPos, blockstate, blockstate, 3);
+					BlockState blockstate = context.player().level().getBlockState(message.blockPos);
+					context.player().level().sendBlockUpdated(message.blockPos, blockstate, blockstate, 3);
 				}
 			}
 		});

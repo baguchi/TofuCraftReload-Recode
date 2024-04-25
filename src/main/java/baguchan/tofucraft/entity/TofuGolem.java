@@ -86,9 +86,9 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(DATA_FLAGS_ID, (byte) 0);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_FLAGS_ID, (byte) 0);
 	}
 
 	@Override

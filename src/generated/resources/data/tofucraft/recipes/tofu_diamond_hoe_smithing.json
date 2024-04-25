@@ -7,7 +7,8 @@
     "item": "tofucraft:tofu_metal_hoe"
   },
   "result": {
-    "item": "tofucraft:tofu_diamond_hoe"
+    "count": 1,
+    "id": "tofucraft:tofu_diamond_hoe"
   },
   "template": {
     "item": "tofucraft:tofu_upgrade_smithing_template"

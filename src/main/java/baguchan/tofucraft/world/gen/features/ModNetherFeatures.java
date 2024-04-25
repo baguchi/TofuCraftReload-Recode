@@ -5,7 +5,7 @@ import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
@@ -24,7 +24,7 @@ public class ModNetherFeatures {
 		return ResourceKey.create(Registries.CONFIGURED_FEATURE, TofuCraftReload.prefix(name));
 	}
 
-	public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 		FeatureUtils.register(context, NETHER_SOYBEAN, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(TofuBlocks.SOYBEAN_NETHER.get().defaultBlockState().setValue(SoybeanNetherCropsBlock.AGE, 7)), 32));
 		FeatureUtils.register(context, SOUL_SOYBEAN, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(TofuBlocks.SOYBEAN_SOUL.get().defaultBlockState().setValue(SoybeanSoulCropsBlock.AGE, 7)), 32));
 	}

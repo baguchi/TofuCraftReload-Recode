@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "tofucraft:tofudried"
   },
-  "result": "tofucraft:smoketofu"
+  "result": {
+    "count": 1,
+    "id": "tofucraft:smoketofu"
+  }
 }

@@ -14,16 +14,17 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = TofuCraftReload.MODID)
+@EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class TofuVillagerTradeEvent {
 	@SubscribeEvent
 	public static void wanderTradeEvent(VillagerTradesEvent event) {
@@ -96,7 +97,7 @@ public class TofuVillagerTradeEvent {
 		}
 
 		public MerchantOffer getOffer(Entity p_35662_, RandomSource p_35663_) {
-			ItemStack itemstack = new ItemStack(this.item, this.cost);
+			ItemCost itemstack = new ItemCost(this.item, this.cost);
 			return new MerchantOffer(itemstack, new ItemStack(Items.EMERALD), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
 	}
@@ -135,7 +136,7 @@ public class TofuVillagerTradeEvent {
 		}
 
 		public MerchantOffer getOffer(Entity p_35771_, RandomSource p_35772_) {
-			return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.villagerXp, this.priceMultiplier);
+			return new MerchantOffer(new ItemCost(Items.EMERALD, this.emeraldCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
 	}
 }

@@ -6,7 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -45,8 +45,7 @@ public class SoymilkCauldronBlock extends Block {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		ItemStack itemHeld = player.getItemInHand(handIn);
+	protected ItemInteractionResult useItemOn(ItemStack itemHeld, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
 		if (state.getValue(SOYCHEESE)) {
 			ItemStack cheese = new ItemStack(this.cheeseSupplier.get(), 4);
 			float f = 0.7F;
@@ -57,7 +56,7 @@ public class SoymilkCauldronBlock extends Block {
 			itemEntity.setPickUpDelay(10);
 			worldIn.addFreshEntity(itemEntity);
 			worldIn.setBlock(pos, Blocks.CAULDRON.defaultBlockState(), 2);
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		} else if (itemHeld.is(Items.BUCKET)) {
 			ItemStack bucket = new ItemStack(itemSupplier.get());
 			worldIn.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -69,10 +68,9 @@ public class SoymilkCauldronBlock extends Block {
 				itemHeld.shrink(1);
 			}
 			worldIn.setBlock(pos, Blocks.CAULDRON.defaultBlockState(), 2);
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
-
-		return super.use(state, worldIn, pos, player, handIn, hit);
+		return super.useItemOn(itemHeld, state, worldIn, pos, player, handIn, p_316140_);
 	}
 
 	@Override
@@ -93,7 +91,7 @@ public class SoymilkCauldronBlock extends Block {
 	}
 
 	@Override
-	public boolean isPathfindable(BlockState p_151959_, BlockGetter p_151960_, BlockPos p_151961_, PathComputationType p_151962_) {
+	protected boolean isPathfindable(BlockState p_60475_, PathComputationType p_60478_) {
 		return false;
 	}
 

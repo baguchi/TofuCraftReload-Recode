@@ -63,16 +63,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.client.event.RegisterGuiOverlaysEvent;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ClientRegistrar {
 	private static final ResourceLocation TEXTURE_SOYHEARTS = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/soy_hearts.png");
 
@@ -190,7 +190,7 @@ public class ClientRegistrar {
 	}
 
 	@SubscribeEvent
-	public static void registerOverlay(RegisterGuiOverlaysEvent event) {
+	public static void registerOverlay(RegisterGuiLayersEvent event) {
 		event.registerAboveAll(TofuCraftReload.prefix("tofu_portal_overlay"), new TofuPortalOverlay());
 	}
 }

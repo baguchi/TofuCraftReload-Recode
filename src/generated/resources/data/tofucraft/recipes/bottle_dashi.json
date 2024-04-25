@@ -3,15 +3,20 @@
   "category": "misc",
   "ingredients": [
     {
-      "type": "neoforge:nbt",
-      "item": "minecraft:potion",
-      "tag": "{Potion:\"minecraft:water\"}"
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:water"
+        }
+      },
+      "items": "minecraft:potion"
     },
     {
       "item": "minecraft:dried_kelp"
     }
   ],
   "result": {
-    "item": "tofucraft:bottle_dashi"
+    "count": 1,
+    "id": "tofucraft:bottle_dashi"
   }
 }

@@ -1,6 +1,7 @@
 package baguchan.tofucraft.capability;
 
 import baguchan.tofucraft.network.SoyMilkDrinkedPacket;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
@@ -26,7 +27,7 @@ public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 		}
 		if (!entity.level().isClientSide()) {
 			SoyMilkDrinkedPacket message = new SoyMilkDrinkedPacket(entity, level, canUpdate);
-			PacketDistributor.TRACKING_ENTITY_AND_SELF.with(entity).send(message);
+			PacketDistributor.sendToPlayersTrackingEntity(entity, message);
 		}
 		this.soyHealthLevel = Mth.clamp(level, 0, 20);
 	}
@@ -39,7 +40,7 @@ public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 		this.soyHealthLevel = 0;
 		if (!entity.level().isClientSide()) {
 			SoyMilkDrinkedPacket message = new SoyMilkDrinkedPacket(entity, this.soyHealthLevel, true);
-			PacketDistributor.TRACKING_ENTITY_AND_SELF.with(entity).send(message);
+			PacketDistributor.sendToPlayersTrackingEntity(entity, message);
 		}
 	}
 
@@ -66,7 +67,8 @@ public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 		}
 	}
 
-	public CompoundTag serializeNBT() {
+	@Override
+	public CompoundTag serializeNBT(HolderLookup.Provider provider) {
 		CompoundTag nbt = new CompoundTag();
 		nbt.putLong("RemainTick", this.lastTick);
 		nbt.putLong("RemainChangedTick", this.lastChangedTick);
@@ -75,7 +77,8 @@ public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 		return nbt;
 	}
 
-	public void deserializeNBT(CompoundTag nbt) {
+	@Override
+	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
 		this.lastTick = nbt.getLong("RemainTick");
 		this.lastChangedTick = nbt.getLong("RemainChangedTick");
 		this.soyHealthLevel = nbt.getInt("SoyHealthLevel");

@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "tofucraft:gelatinraw"
   },
-  "result": "tofucraft:gelatin"
+  "result": {
+    "count": 1,
+    "id": "tofucraft:gelatin"
+  }
 }

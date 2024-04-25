@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:block/rice_block"
+            "items": "#c:block/rice_block"
           }
         ]
       },

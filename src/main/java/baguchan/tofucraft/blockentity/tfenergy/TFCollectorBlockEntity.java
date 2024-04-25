@@ -6,7 +6,6 @@ import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -60,14 +59,5 @@ public class TFCollectorBlockEntity extends SenderBaseBlockEntity {
 
 	public static boolean isValidTF(Level p_207910_, BlockPos p_207911_, BlockPos p_207912_) {
 		return p_207910_.getBlockState(p_207911_.offset(p_207912_)).is(TofuTags.Blocks.TF_TRANSMITTER);
-	}
-
-
-	public void saveAdditional(CompoundTag cmp) {
-		super.saveAdditional(cmp);
-	}
-
-	public void load(CompoundTag cmp) {
-		super.load(cmp);
 	}
 }

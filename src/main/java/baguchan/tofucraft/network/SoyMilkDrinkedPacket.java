@@ -5,14 +5,19 @@ import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.registry.TofuCapability;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.neoforged.neoforge.network.handling.PlayPayloadContext;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.handling.IPayloadHandler;
 
-public class SoyMilkDrinkedPacket implements CustomPacketPayload {
-	public static final ResourceLocation ID = TofuCraftReload.prefix("soy_milk_drinked");
+public class SoyMilkDrinkedPacket implements CustomPacketPayload, IPayloadHandler<SoyMilkDrinkedPacket> {
+
+	public static final StreamCodec<FriendlyByteBuf, SoyMilkDrinkedPacket> STREAM_CODEC = CustomPacketPayload.codec(
+			SoyMilkDrinkedPacket::write, SoyMilkDrinkedPacket::new
+	);
+	public static final CustomPacketPayload.Type<SoyMilkDrinkedPacket> TYPE = CustomPacketPayload.createType(TofuCraftReload.prefix("soy_milk_drinked").toString());
 
 	private final int entityId;
 
@@ -32,8 +37,8 @@ public class SoyMilkDrinkedPacket implements CustomPacketPayload {
 	}
 
 	@Override
-	public ResourceLocation id() {
-		return ID;
+	public Type<? extends CustomPacketPayload> type() {
+		return TYPE;
 	}
 
 	public void write(FriendlyByteBuf buffer) {
@@ -46,8 +51,8 @@ public class SoyMilkDrinkedPacket implements CustomPacketPayload {
 		this(buffer.readInt(), buffer.readInt(), buffer.readBoolean());
 	}
 
-	public static void handle(SoyMilkDrinkedPacket message, PlayPayloadContext context) {
-		context.workHandler().execute(() -> {
+	public void handle(SoyMilkDrinkedPacket message, IPayloadContext context) {
+		context.enqueueWork(() -> {
 			Entity entity = (Minecraft.getInstance()).player.level().getEntity(message.entityId);
 			if (entity != null && entity instanceof LivingEntity living) {
 				SoyHealthCapability cap = living.getData(TofuCapability.SOY_HEALTH);

@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:zunda_mochi"
-            ]
+            "items": "tofucraft:zunda_mochi"
           }
         ]
       },

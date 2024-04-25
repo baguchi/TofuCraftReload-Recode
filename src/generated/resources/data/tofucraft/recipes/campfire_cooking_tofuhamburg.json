@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "tofucraft:tofuhamburg_raw"
   },
-  "result": "tofucraft:tofuhamburg"
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tofuhamburg"
+  }
 }

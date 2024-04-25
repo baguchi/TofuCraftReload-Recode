@@ -6,10 +6,11 @@
       "item": "tofucraft:kinako"
     },
     {
-      "tag": "forge:crops/rice"
+      "tag": "c:crops/rice"
     }
   ],
   "result": {
-    "item": "tofucraft:kinako_mochi"
+    "count": 1,
+    "id": "tofucraft:kinako_mochi"
   }
 }

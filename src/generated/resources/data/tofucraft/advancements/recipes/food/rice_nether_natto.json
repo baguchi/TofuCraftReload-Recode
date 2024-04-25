@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:nether_natto"
-            ]
+            "items": "tofucraft:nether_natto"
           }
         ]
       },

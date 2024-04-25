@@ -1,6 +1,5 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.client.particle.ParticleZundaCloud;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
@@ -133,11 +132,11 @@ public class TofuPig extends Pig implements ItemInteractable {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @org.jetbrains.annotations.Nullable SpawnGroupData p_146749_, @org.jetbrains.annotations.Nullable CompoundTag p_146750_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @org.jetbrains.annotations.Nullable SpawnGroupData p_146749_) {
 		if (p_146746_.getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
 			this.setTofuPigType(TofuPigType.ZUNDA);
 		}
-		return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
+		return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_);
 	}
 
 	public boolean isActivated() {
@@ -214,7 +213,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 				double speed = 0.5;
 				double xSpeed = speed * Math.cos(Math.toRadians(yaw));
 				double zSpeed = speed * Math.sin(Math.toRadians(yaw));
-				this.level().addParticle(new ParticleZundaCloud.CloudData(TofuParticleTypes.ZUNDA_CLOUD.get(), 40f, 20, ParticleZundaCloud.EnumCloudBehavior.GROW, 1f), this.getX(), this.getY(), this.getZ(), xSpeed, 0, zSpeed);
+				this.level().addParticle(TofuParticleTypes.ZUNDA_CLOUD.get(), this.getX(), this.getY(), this.getZ(), xSpeed, 0, zSpeed);
 			}
 		}
 	}
@@ -254,10 +253,10 @@ public class TofuPig extends Pig implements ItemInteractable {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(TOFUPIG_TYPE, TofuPig.TofuPigType.NORMAL.name());
-		this.entityData.define(DATA_HEALING_TIME, 0);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(TOFUPIG_TYPE, TofuPig.TofuPigType.NORMAL.name());
+		builder.define(DATA_HEALING_TIME, 0);
 	}
 
 	public float getSteeringSpeed() {

@@ -7,8 +7,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 
 public class TofuAxeItem extends AxeItem implements IEnergyInsertable {
-	public TofuAxeItem(Tier tofuItemTier, float daamge, float speed, Properties properties) {
-		super(tofuItemTier, daamge, speed, properties);
+	public TofuAxeItem(Tier tofuItemTier, Properties properties) {
+		super(tofuItemTier, properties);
 	}
 
 

@@ -3,11 +3,11 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:block/rice_block"
+      "tag": "c:block/rice_block"
     }
   ],
   "result": {
     "count": 9,
-    "item": "tofucraft:rice"
+    "id": "tofucraft:rice"
   }
 }

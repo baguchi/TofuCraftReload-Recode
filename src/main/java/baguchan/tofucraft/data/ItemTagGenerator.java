@@ -41,7 +41,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
 
 
 		tag(ItemTags.TRIMMABLE_ARMOR).add(TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), TofuItems.TOFU_DIAMOND_LEGGINGS.get(), TofuItems.TOFU_DIAMOND_BOOTS.get())
-				.add(TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.TOFU_METAL_CHESTPLATE.get(), TofuItems.TOFU_METAL_LEGGINGS.get(), TofuItems.TOFU_METAL_BOOTS.get())
+				.add(TofuItems.TOFU_METAL_HELMET.get(), TofuItems.TOFU_METAL_CHESTPLATE.get(), TofuItems.TOFU_METAL_LEGGINGS.get(), TofuItems.TOFU_METAL_BOOTS.get())
 				.add(TofuItems.SCULK_BONE_HELMET.get(), TofuItems.SCULK_BONE_CHESTPLATE.get(), TofuItems.SCULK_BONE_LEGGINGS.get(), TofuItems.SCULK_BONE_BOOTS.get());
 		tag(TofuTags.Items.NATTO).add(TofuItems.NATTO.get());
 		tag(TofuTags.Items.MISO).add(TofuItems.MISO.get());
@@ -85,5 +85,11 @@ public class ItemTagGenerator extends ItemTagsProvider {
 				, TofuItems.RICE_SOBORO_TOFU.get()
 				, TofuItems.NANBANTOFU.get(), TofuItems.KOYADOFUSTEW.get(), TofuItems.MOYASHIITAME.get(), TofuItems.MOYASHIOHITASHI.get(), TofuItems.TOFUCOOKIE.get(), TofuItems.TOFUANNIN.get());
 
+		this.tag(TofuTags.Items.TOFU_DIAMOND_ARMOR_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), TofuItems.TOFU_DIAMOND_LEGGINGS.get(), TofuItems.TOFU_DIAMOND_BOOTS.get());
+		this.tag(TofuTags.Items.TOFU_DIAMOND_SWORD_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_SWORD.get());
+		this.tag(TofuTags.Items.TOFU_DIAMOND_MINEABLE_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_PICKAXE.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get());
+
+		this.tag(ItemTags.MEAT).add(TofuItems.TOFUKINU.get()).add(TofuItems.TOFUMOMEN.get()).add(TofuItems.SOYMEAT.get());
+		this.tag(ItemTags.CHICKEN_FOOD).add(TofuItems.SEEDS_RICE.get(), TofuItems.SOYBEAN_PARCHED.get());
 	}
 }

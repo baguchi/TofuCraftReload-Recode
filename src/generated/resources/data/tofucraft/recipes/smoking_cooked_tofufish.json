@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "tofucraft:raw_tofufish"
   },
-  "result": "tofucraft:cooked_tofufish"
+  "result": {
+    "count": 1,
+    "id": "tofucraft:cooked_tofufish"
+  }
 }

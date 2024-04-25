@@ -7,19 +7,18 @@ import baguchan.tofucraft.client.particle.ParticleZundaCloud;
 import baguchan.tofucraft.client.particle.SoymilkDripParticle;
 import baguchan.tofucraft.client.particle.SoymilkSplashParticle;
 import baguchan.tofucraft.client.particle.TofuPortalParticle;
-import com.mojang.serialization.Codec;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(modid = TofuCraftReload.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class TofuParticleTypes {
 
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, TofuCraftReload.MODID);
@@ -28,19 +27,9 @@ public class TofuParticleTypes {
 	public static final Supplier<SimpleParticleType> DRIP_SOYMILK_HANG = PARTICLE_TYPES.register("drip_soymilk_hang", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> DRIP_SOYMILK_FALL = PARTICLE_TYPES.register("drip_soymilk_fall", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> SOYMILK_SPLASH = PARTICLE_TYPES.register("soymilk_splash", () -> new SimpleParticleType(false));
-	public static final Supplier<ParticleType<ParticleZundaCloud.CloudData>> ZUNDA_CLOUD = PARTICLE_TYPES.register("zunda_cloud", () -> new ParticleType<ParticleZundaCloud.CloudData>(false, ParticleZundaCloud.CloudData.DESERIALIZER) {
-		@Override
-		public Codec<ParticleZundaCloud.CloudData> codec() {
-			return ParticleZundaCloud.CloudData.CODEC(ZUNDA_CLOUD.get());
-		}
-	});
+	public static final Supplier<SimpleParticleType> ZUNDA_CLOUD = PARTICLE_TYPES.register("zunda_cloud", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> SIMPLE_STINKE = PARTICLE_TYPES.register("simple_stink", () -> new SimpleParticleType(false));
-	public static final Supplier<ParticleType<ParticleStink.StinkData>> STINK = PARTICLE_TYPES.register("stink", () -> new ParticleType<ParticleStink.StinkData>(false, ParticleStink.StinkData.DESERIALIZER) {
-		@Override
-		public Codec<ParticleStink.StinkData> codec() {
-			return ParticleStink.StinkData.CODEC(STINK.get());
-		}
-	});
+	public static final Supplier<SimpleParticleType> STINK = PARTICLE_TYPES.register("stink", () -> new SimpleParticleType(false));
 
 	@SubscribeEvent
 	public static void registerFactories(RegisterParticleProvidersEvent event) {

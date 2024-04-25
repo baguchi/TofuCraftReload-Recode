@@ -3,6 +3,10 @@ package baguchan.tofucraft.data;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -12,26 +16,27 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.SignBlock;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.crafting.NBTIngredient;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public abstract class CraftingDataHelper extends RecipeProvider {
-	public CraftingDataHelper(PackOutput generator) {
-		super(generator);
+	public CraftingDataHelper(PackOutput generator, CompletableFuture<HolderLookup.Provider> completableFuture) {
+		super(generator, completableFuture);
 	}
 
 	public ShapedRecipeBuilder makeSign(Supplier<? extends SignBlock> signOut, Supplier<? extends Block> planksIn) {
@@ -55,12 +60,12 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 	}
 
 
-	public final NBTIngredient potion(Potion potion) {
-		CompoundTag nbt = new CompoundTag();
-		nbt.putString("Potion", BuiltInRegistries.POTION.getKey(potion).toString());
+	public final Ingredient potion(Holder<Potion> potion) {
+		PotionContents potionContents = new PotionContents(potion);
+		DataComponentMap componentMap = DataComponentMap.builder().set(DataComponents.POTION_CONTENTS, potionContents).build();
 
 
-		return NBTIngredient.of(false, nbt, Items.POTION);
+		return DataComponentIngredient.of(false, componentMap, Items.POTION);
 	}
 
 	protected final void foodCooking(Supplier<? extends ItemLike> material, Supplier<? extends ItemLike> result, float xp, RecipeOutput consumer) {

@@ -61,7 +61,7 @@ public class EatItemGoal<T extends Tofunian> extends Goal {
 	}
 
 	private List<ItemStack> getItemToThrow(Tofunian p_23010_) {
-		LootTable loottable = p_23010_.level().getServer().getLootData().getLootTable(TofuLootTables.TOFUNIAN_GIFT_LOOT_TABLE);
+		LootTable loottable = p_23010_.level().getServer().reloadableRegistries().getLootTable(TofuLootTables.TOFUNIAN_GIFT_LOOT_TABLE);
 		LootParams lootparams = (new LootParams.Builder((ServerLevel) p_23010_.level())).withParameter(LootContextParams.ORIGIN, p_23010_.position()).withParameter(LootContextParams.THIS_ENTITY, p_23010_).create(LootContextParamSets.GIFT);
 		return loottable.getRandomItems(lootparams);
 	}

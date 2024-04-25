@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "tofucraft:seeds_soybeans"
   },
-  "result": "tofucraft:soybeans_parched"
+  "result": {
+    "count": 1,
+    "id": "tofucraft:soybeans_parched"
+  }
 }

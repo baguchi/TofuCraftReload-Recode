@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:soy_sculk_bone"
-            ]
+            "items": "tofucraft:soy_sculk_bone"
           }
         ]
       },

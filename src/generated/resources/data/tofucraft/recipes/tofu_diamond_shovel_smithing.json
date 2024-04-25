@@ -7,7 +7,8 @@
     "item": "tofucraft:tofu_metal_shovel"
   },
   "result": {
-    "item": "tofucraft:tofu_diamond_shovel"
+    "count": 1,
+    "id": "tofucraft:tofu_diamond_shovel"
   },
   "template": {
     "item": "tofucraft:tofu_upgrade_smithing_template"

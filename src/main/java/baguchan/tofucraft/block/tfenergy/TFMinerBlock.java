@@ -7,11 +7,8 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -59,10 +56,11 @@ public class TFMinerBlock extends BaseEntityBlock {
 		return p_48719_.rotate(p_48720_.getRotation(p_48719_.getValue(FACING)));
 	}
 
-	public InteractionResult use(BlockState p_48706_, Level p_48707_, BlockPos p_48708_, Player p_48709_, InteractionHand p_48710_, BlockHitResult p_48711_) {
-		if (p_48707_.isClientSide) {
-			if (p_48709_ instanceof LocalPlayer localPlayer) {
-				BlockEntity blockentity = p_48707_.getBlockEntity(p_48708_);
+	@Override
+	protected InteractionResult useWithoutItem(BlockState p_307454_, Level p_307255_, BlockPos p_307303_, Player p_307670_, BlockHitResult p_307546_) {
+		if (p_307255_.isClientSide) {
+			if (p_307670_ instanceof LocalPlayer localPlayer) {
+				BlockEntity blockentity = p_307255_.getBlockEntity(p_307303_);
 				if (blockentity instanceof TFMinerBlockEntity tfMinerBlock) {
 
 					ClientProxy.PROXY.setRefrencedTE(tfMinerBlock);
@@ -72,16 +70,6 @@ public class TFMinerBlock extends BaseEntityBlock {
 		} else {
 			return InteractionResult.CONSUME;
 		}
-	}
-
-	public void setPlacedBy(Level p_48694_, BlockPos p_48695_, BlockState p_48696_, LivingEntity p_48697_, ItemStack p_48698_) {
-		if (p_48698_.hasCustomHoverName()) {
-			BlockEntity blockentity = p_48694_.getBlockEntity(p_48695_);
-			if (blockentity instanceof TFMinerBlockEntity) {
-				//((TFMinerBlockEntity) blockentity).setCustomName(p_48698_.getHoverName());
-			}
-		}
-
 	}
 
 	public RenderShape getRenderShape(BlockState p_48727_) {

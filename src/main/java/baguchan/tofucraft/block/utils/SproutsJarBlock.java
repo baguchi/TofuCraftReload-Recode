@@ -11,7 +11,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -104,8 +104,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		ItemStack itemHeld = player.getItemInHand(handIn);
+	protected ItemInteractionResult useItemOn(ItemStack itemHeld, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
 		SproutsJarBlock.Stat stat = getStat(state);
 		if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
 			if (stat == Stat.EMPTY && itemHeld != null && itemHeld.getItem() == Items.WATER_BUCKET) {
@@ -120,7 +119,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 					}
 				});
 				worldIn.setBlock(pos, state.setValue(STAT, SproutsJarBlock.Stat.WATER), 3);
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 			if (stat == Stat.WATER && itemHeld != null && itemHeld.getItem() == Items.BUCKET) {
 				ItemStack water = new ItemStack(Items.WATER_BUCKET);
@@ -133,14 +132,14 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 					itemHeld.shrink(1);
 				}
 				worldIn.setBlock(pos, state.setValue(STAT, SproutsJarBlock.Stat.EMPTY), 3);
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 			if (stat == Stat.WATER && itemHeld != null && itemHeld.getItem() == TofuItems.SEEDS_SOYBEANS.get()) {
 				if (!player.isCreative())
 					itemHeld.shrink(1);
 				worldIn.playSound(null, pos, SoundEvents.CORAL_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
 				worldIn.setBlock(pos, state.setValue(STAT, Stat.SPROUTS_0), 3);
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 			if (stat == Stat.SPROUTS_3) {
 				ItemStack salt = new ItemStack(TofuItems.SPROUTS.get(), 1);
@@ -152,10 +151,10 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 				itemEntity.setPickUpDelay(10);
 				worldIn.addFreshEntity(itemEntity);
 				worldIn.setBlock(pos, state.setValue(STAT, SproutsJarBlock.Stat.WATER), 3);
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 		}
-		return InteractionResult.PASS;
+		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
 
 	@Override

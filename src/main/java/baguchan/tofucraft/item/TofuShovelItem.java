@@ -7,8 +7,8 @@ import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.Tier;
 
 public class TofuShovelItem extends ShovelItem implements IEnergyInsertable {
-	public TofuShovelItem(Tier tofuItemTier, float daamge, float speed, Properties properties) {
-		super(tofuItemTier, daamge, speed, properties);
+	public TofuShovelItem(Tier tofuItemTier, Properties properties) {
+		super(tofuItemTier, properties);
 	}
 
 

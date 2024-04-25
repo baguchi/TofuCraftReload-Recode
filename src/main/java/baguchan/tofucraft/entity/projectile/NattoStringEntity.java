@@ -3,6 +3,7 @@ package baguchan.tofucraft.entity.projectile;
 import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -58,6 +59,11 @@ public class NattoStringEntity extends ThrowableProjectile {
 	public void addAdditionalSaveData(CompoundTag p_37222_) {
 		super.addAdditionalSaveData(p_37222_);
 		p_37222_.putFloat("Damage", (byte) this.damage);
+	}
+
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder p_326003_) {
+
 	}
 
 	public void readAdditionalSaveData(CompoundTag p_37220_) {

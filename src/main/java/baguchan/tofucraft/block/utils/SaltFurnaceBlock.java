@@ -2,7 +2,6 @@ package baguchan.tofucraft.block.utils;
 
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchan.tofucraft.client.ClientProxy;
-import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -14,9 +13,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
@@ -37,8 +35,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -57,36 +53,34 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+	protected ItemInteractionResult useItemOn(ItemStack p_316304_, BlockState p_48706_, Level p_48707_, BlockPos p_48708_, Player p_48709_, InteractionHand p_48710_, BlockHitResult p_48711_) {
 
 		boolean flag = false;
-		ItemStack stack = player.getItemInHand(hand);
-		BlockEntity blockentity = level.getBlockEntity(pos);
+		ItemStack stack = p_48709_.getItemInHand(p_48710_);
+		BlockEntity blockentity = p_48707_.getBlockEntity(p_48708_);
 		if (blockentity instanceof SaltFurnaceBlockEntity) {
-			IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1)).orElse(null);
+			IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack.copyWithCount(1)).orElse(null);
 			if (handler != null && handler instanceof FluidBucketWrapper) {
-				FluidUtil.interactWithFluidHandler(player, hand, level, pos, null);
+				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, p_48707_, p_48708_, null);
 				flag = true;
 			}
 
 			if (flag) {
-				if (!level.isClientSide) {
-					PacketDistributor.ALL.noArg().send(new SaltFurnaceWaterPacket(pos, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()));
-				}
+				blockentity.setChanged();
 			}
 		}
 
 
 		if (!flag) {
-			if (level.isClientSide) {
-				ClientProxy.PROXY.setRefrencedTE(level.getBlockEntity(pos));
-				return InteractionResult.SUCCESS;
+			if (p_48707_.isClientSide) {
+				ClientProxy.PROXY.setRefrencedTE(p_48707_.getBlockEntity(p_48708_));
+				return ItemInteractionResult.SUCCESS;
 			} else {
-				this.openContainer(level, pos, player);
-				return InteractionResult.CONSUME;
+				this.openContainer(p_48707_, p_48708_, p_48709_);
+				return ItemInteractionResult.CONSUME;
 			}
 		} else {
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
 	}
 
@@ -94,17 +88,6 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 		BlockEntity blockentity = p_53631_.getBlockEntity(p_53632_);
 		if (blockentity instanceof SaltFurnaceBlockEntity) {
 			p_53633_.openMenu((MenuProvider) blockentity);
-		}
-
-	}
-
-	@Override
-	public void setPlacedBy(Level p_48694_, BlockPos p_48695_, BlockState p_48696_, LivingEntity p_48697_, ItemStack p_48698_) {
-		if (p_48698_.hasCustomHoverName()) {
-			BlockEntity blockentity = p_48694_.getBlockEntity(p_48695_);
-			if (blockentity instanceof SaltFurnaceBlockEntity) {
-				((SaltFurnaceBlockEntity) blockentity).setCustomName(p_48698_.getHoverName());
-			}
 		}
 
 	}

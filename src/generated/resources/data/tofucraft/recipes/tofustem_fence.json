@@ -6,7 +6,7 @@
       "item": "tofucraft:tofustem_planks"
     },
     "S": {
-      "tag": "forge:rods/wooden"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [
@@ -15,6 +15,6 @@
   ],
   "result": {
     "count": 3,
-    "item": "tofucraft:tofustem_fence"
+    "id": "tofucraft:tofustem_fence"
   }
 }

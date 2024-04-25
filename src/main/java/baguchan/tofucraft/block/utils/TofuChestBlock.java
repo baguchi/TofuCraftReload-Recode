@@ -15,17 +15,14 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.CompoundContainer;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -229,17 +226,6 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 	}
 
 	@Override
-	public void setPlacedBy(Level p_51503_, BlockPos p_51504_, BlockState p_51505_, LivingEntity p_51506_, ItemStack p_51507_) {
-		if (p_51507_.hasCustomHoverName()) {
-			BlockEntity blockentity = p_51503_.getBlockEntity(p_51504_);
-			if (blockentity instanceof TofuChestBlockEntity) {
-				((TofuChestBlockEntity) blockentity).setCustomName(p_51507_.getHoverName());
-			}
-		}
-
-	}
-
-	@Override
 	public void onRemove(BlockState p_51538_, Level p_51539_, BlockPos p_51540_, BlockState p_51541_, boolean p_51542_) {
 		if (!p_51538_.is(p_51541_.getBlock())) {
 			BlockEntity blockentity = p_51539_.getBlockEntity(p_51540_);
@@ -253,7 +239,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 	}
 
 	@Override
-	public InteractionResult use(BlockState p_51531_, Level p_51532_, BlockPos p_51533_, Player p_51534_, InteractionHand p_51535_, BlockHitResult p_51536_) {
+	protected InteractionResult useWithoutItem(BlockState p_51531_, Level p_51532_, BlockPos p_51533_, Player p_51534_, BlockHitResult p_51536_) {
 		if (p_51532_.isClientSide) {
 			return InteractionResult.SUCCESS;
 		} else {
@@ -267,7 +253,6 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 			return InteractionResult.CONSUME;
 		}
 	}
-
 	protected Stat<ResourceLocation> getOpenChestStat() {
 		return Stats.CUSTOM.get(Stats.OPEN_CHEST);
 	}
@@ -377,7 +362,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 	}
 
 	@Override
-	public boolean isPathfindable(BlockState p_51522_, BlockGetter p_51523_, BlockPos p_51524_, PathComputationType p_51525_) {
+	protected boolean isPathfindable(BlockState p_60475_, PathComputationType p_60478_) {
 		return false;
 	}
 

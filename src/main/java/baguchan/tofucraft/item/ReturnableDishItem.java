@@ -2,6 +2,7 @@ package baguchan.tofucraft.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -17,9 +18,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ReturnableDishItem extends Item {
@@ -45,10 +46,10 @@ public class ReturnableDishItem extends Item {
 		}
 
 		if (this.comfortable) {
-			MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation("farmersdelight", "comfort"));
+			Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.getHolder(new ResourceLocation("farmersdelight", "comfort"));
 			FoodProperties foodProperties = this.getFoodProperties(itemStack, livingEntity);
-			if (foodProperties != null && effect != null) {
-				livingEntity.addEffect(new MobEffectInstance(effect, 600 * foodProperties.getNutrition()));
+			if (foodProperties != null && effect.isPresent()) {
+				livingEntity.addEffect(new MobEffectInstance(effect.get(), 600 * foodProperties.nutrition()));
 			}
 		}
 
@@ -66,8 +67,8 @@ public class ReturnableDishItem extends Item {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack p_41421_, @Nullable Level p_41422_, List<Component> p_41423_, TooltipFlag p_41424_) {
-		super.appendHoverText(p_41421_, p_41422_, p_41423_, p_41424_);
+	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
+		super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
 		MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation("farmersdelight", "comfort"));
 		if (effect != null) {
 			p_41423_.add(Component.translatable("tofucraft.has_comfort").withStyle(ChatFormatting.GOLD));

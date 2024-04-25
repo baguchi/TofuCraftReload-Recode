@@ -85,7 +85,7 @@ public abstract class FishingHookMixin extends Projectile {
 			net.neoforged.neoforge.event.entity.player.ItemFishedEvent event = null;
 			if (this.level() != null && this.level().dimension().equals(TofuDimensions.tofu_world) && this.nibble > 0) {
 				LootParams lootparams = (new LootParams.Builder((ServerLevel) this.level())).withParameter(LootContextParams.ORIGIN, this.position()).withParameter(LootContextParams.TOOL, p_37157_).withParameter(LootContextParams.THIS_ENTITY, this).withParameter(LootContextParams.KILLER_ENTITY, this.getOwner()).withParameter(LootContextParams.THIS_ENTITY, this).withLuck((float) this.luck + player.getLuck()).create(LootContextParamSets.FISHING);
-				LootTable loottable = this.level().getServer().getLootData().getLootTable(TofuLootTables.TOFU_WORLD_FISHING_LOOT_TABLE);
+				LootTable loottable = this.level().getServer().reloadableRegistries().getLootTable(TofuLootTables.TOFU_WORLD_FISHING_LOOT_TABLE);
 				List<ItemStack> list = loottable.getRandomItems(lootparams);
 				event = new net.neoforged.neoforge.event.entity.player.ItemFishedEvent(list, this.onGround() ? 2 : 1, fishingHook);
 				NeoForge.EVENT_BUS.post(event);

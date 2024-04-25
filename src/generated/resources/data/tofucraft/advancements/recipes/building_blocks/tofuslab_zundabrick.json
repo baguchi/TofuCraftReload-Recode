@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:tofuzunda_brick"
-            ]
+            "items": "tofucraft:tofuzunda_brick"
           }
         ]
       },

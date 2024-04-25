@@ -1,6 +1,7 @@
 package baguchan.tofucraft.world;
 
 import baguchan.tofucraft.TofuCraftReload;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.level.ServerLevel;
@@ -53,7 +54,7 @@ public class TofuData extends SavedData {
 	public static SavedData.Factory<TofuData> factory(ServerLevel p_300199_) {
 		return new SavedData.Factory<>(() -> {
 			return new TofuData(p_300199_);
-		}, (p_296865_) -> {
+		}, (p_296865_, provider) -> {
 			return load(p_300199_, p_296865_);
 		});
 	}
@@ -99,7 +100,7 @@ public class TofuData extends SavedData {
 
 
 	@Override
-	public CompoundTag save(CompoundTag compound) {
+	public CompoundTag save(CompoundTag compound, HolderLookup.Provider p_323640_) {
 		compound.putInt("TravelerSpawnDelay", this.travelerSpawnDelay);
 		compound.putFloat("TravelerSpawnChance", this.travelerSpawnChance);
 		if (this.travelerUUID != null) {

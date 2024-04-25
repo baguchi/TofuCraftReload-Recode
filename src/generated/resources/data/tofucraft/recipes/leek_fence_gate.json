@@ -6,7 +6,7 @@
       "item": "tofucraft:leek_planks"
     },
     "S": {
-      "tag": "forge:rods/wooden"
+      "tag": "c:rods/wooden"
     }
   },
   "pattern": [
@@ -14,6 +14,7 @@
     "SMS"
   ],
   "result": {
-    "item": "tofucraft:leek_fence_gate"
+    "count": 1,
+    "id": "tofucraft:leek_fence_gate"
   }
 }

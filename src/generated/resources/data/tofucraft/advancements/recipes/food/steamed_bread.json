@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:milk/soy_milk"
+            "items": "#c:milk/soy_milk"
           }
         ]
       },

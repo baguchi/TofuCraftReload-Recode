@@ -11,12 +11,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
 
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class TofuRecipeCategories {
 	public static final Supplier<RecipeBookCategories> WORK_STATION_SEARCH = Suppliers.memoize(() -> RecipeBookCategories.create("TOFU_WORKSTATION_SEARCH", new ItemStack(Items.COMPASS)));
 	public static final Supplier<RecipeBookCategories> WORK_STATION_TF_MECH = Suppliers.memoize(() -> RecipeBookCategories.create("TOFU_WORKSTATION_TF_MECH", new ItemStack(TofuBlocks.TF_OVEN.get())));

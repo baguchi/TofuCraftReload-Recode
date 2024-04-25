@@ -1,8 +1,10 @@
 {
   "type": "minecraft:stonecutting",
-  "count": 1,
   "ingredient": {
     "item": "tofucraft:blocktofuishi"
   },
-  "result": "tofucraft:tofutrapdoor_ishi"
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tofutrapdoor_ishi"
+  }
 }

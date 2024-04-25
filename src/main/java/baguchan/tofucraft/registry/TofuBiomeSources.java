@@ -6,7 +6,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -36,7 +36,7 @@ public class TofuBiomeSources {
 		return ResourceKey.create(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, new ResourceLocation(TofuCraftReload.MODID, p_275281_));
 	}
 
-	public static void bootstrapPreset(BootstapContext<MultiNoiseBiomeSourceParameterList> p_275387_) {
+	public static void bootstrapPreset(BootstrapContext<MultiNoiseBiomeSourceParameterList> p_275387_) {
 		HolderGetter<Biome> holdergetter = p_275387_.lookup(Registries.BIOME);
 		p_275387_.register(TOFU_WORLD, new MultiNoiseBiomeSourceParameterList(TOFU_WORLD_PRESET, holdergetter));
 	}

@@ -10,11 +10,12 @@ public class SoyHealthyEffect extends MobEffect {
 		super(mobEffectCategory, i);
 	}
 
-	public void applyEffectTick(LivingEntity livingEntity, int p_301079_) {
+	public boolean applyEffectTick(LivingEntity livingEntity, int p_301079_) {
 		super.applyEffectTick(livingEntity, p_301079_);
 		if (livingEntity instanceof Player player) {
 			player.causeFoodExhaustion(-0.005F * (float) (p_301079_ + 1));
 		}
+		return true;
 	}
 
 	@Override

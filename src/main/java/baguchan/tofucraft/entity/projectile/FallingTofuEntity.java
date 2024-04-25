@@ -11,6 +11,7 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -56,8 +57,7 @@ public class FallingTofuEntity extends ThrowableProjectile {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 	}
 
 	@Override

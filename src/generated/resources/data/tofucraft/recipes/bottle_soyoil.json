@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:crops/soybean"
+      "tag": "c:crops/soybean"
     },
     {
       "item": "minecraft:glass_bottle"
@@ -13,6 +13,7 @@
     }
   ],
   "result": {
-    "item": "tofucraft:bottle_soyoil"
+    "count": 1,
+    "id": "tofucraft:bottle_soyoil"
   }
 }

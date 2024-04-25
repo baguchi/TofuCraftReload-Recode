@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -77,7 +78,7 @@ public class TofuTrades {
 		}
 
 		public MerchantOffer getOffer(Entity trader, RandomSource rand) {
-			ItemStack itemstack = new ItemStack(this.tradeItem, this.count);
+			ItemCost itemstack = new ItemCost(this.tradeItem, this.count);
 			return new MerchantOffer(itemstack, new ItemStack(TofuItems.ZUNDARUBY.get()), this.maxUses, this.xpValue, this.priceMultiplier);
 		}
 	}
@@ -124,8 +125,8 @@ public class TofuTrades {
 			int i = 2 + rand.nextInt(5);
 			int j = Math.min(this.rubyCount + i, 64);
 			ItemStack stack = new ItemStack(this.sellingItem.getItem(), 1);
-			EnchantmentHelper.enchantItem(rand, stack, i, false);
-			return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY.get(), j), stack, this.maxUses, this.xpValue, this.priceMultiplier);
+			EnchantmentHelper.enchantItem(trader.level().enabledFeatures(), rand, stack, i, false);
+			return new MerchantOffer(new ItemCost(TofuItems.ZUNDARUBY.get(), j), stack, this.maxUses, this.xpValue, this.priceMultiplier);
 		}
 	}
 
@@ -168,7 +169,7 @@ public class TofuTrades {
 		}
 
 		public MerchantOffer getOffer(Entity trader, RandomSource rand) {
-			return new MerchantOffer(new ItemStack(TofuItems.ZUNDARUBY.get(), this.rubyCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
+			return new MerchantOffer(new ItemCost(TofuItems.ZUNDARUBY.get(), this.rubyCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
 		}
 	}
 
@@ -188,7 +189,7 @@ public class TofuTrades {
 		@Nullable
 		@Override
 		public MerchantOffer getOffer(@NotNull Entity entity, @NotNull RandomSource randomSource) {
-			return new MerchantOffer(new ItemStack(targetItem), new ItemStack(sellingItem), maxUses, xpValue, 0.05f);
+			return new MerchantOffer(new ItemCost(targetItem), new ItemStack(sellingItem), maxUses, xpValue, 0.05f);
 		}
 	}
 }

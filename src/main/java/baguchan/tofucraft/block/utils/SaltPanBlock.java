@@ -4,18 +4,19 @@ import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.utils.TileScanner;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -42,7 +43,6 @@ import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
-import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
 
@@ -119,12 +119,12 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+	protected ItemInteractionResult useItemOn(ItemStack p_316304_, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		Stat stat = getStat(state);
 		if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
 			if (stat == Stat.EMPTY && itemHeld != null) {
-				IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(itemHeld, 1)).orElse(null);
+				IFluidHandlerItem handler = FluidUtil.getFluidHandler(itemHeld.copyWithCount(1)).orElse(null);
 				if (handler != null && handler instanceof FluidBucketWrapper && ((FluidBucketWrapper) handler).getFluid().getFluid() == Fluids.WATER) {
 
 					if (!player.isCreative()) {
@@ -140,9 +140,10 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 						}
 					});
 					level.setBlock(pos, state.setValue(STAT, Stat.WATER), 3);
-					return InteractionResult.SUCCESS;
+					return ItemInteractionResult.SUCCESS;
 				}
-				if (PotionUtils.getPotion(itemHeld) == Potions.WATER) {
+				PotionContents potioncontents = itemHeld.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+				if (potioncontents.is(Potions.WATER)) {
 					ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
 					level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
 					if (!player.isCreative()) {
@@ -156,7 +157,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 						}
 					}
 					level.setBlock(pos, state.setValue(SaltPanBlock.STAT, Stat.WATER), 3);
-					return InteractionResult.SUCCESS;
+					return ItemInteractionResult.SUCCESS;
 				}
 			}
 			if (stat == Stat.BITTERN && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
@@ -170,11 +171,11 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 					itemHeld.shrink(1);
 				}
 				level.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 			if (stat == Stat.BITTERN && itemHeld == null) {
 				level.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 			if (stat == Stat.SALT) {
 				ItemStack salt = new ItemStack(TofuItems.SALT.get(), 2);
@@ -186,11 +187,12 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 				itemEntity.setPickUpDelay(10);
 				level.addFreshEntity(itemEntity);
 				level.setBlock(pos, state.setValue(STAT, Stat.BITTERN), 3);
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 		}
-		return InteractionResult.PASS;
+		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
+
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {

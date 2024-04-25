@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "tofucraft:tofumomen"
   },
-  "result": "tofucraft:tofugrilled"
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tofugrilled"
+  }
 }

@@ -6,5 +6,8 @@
   "ingredient": {
     "item": "tofucraft:edamame"
   },
-  "result": "tofucraft:edamame_boild"
+  "result": {
+    "count": 1,
+    "id": "tofucraft:edamame_boild"
+  }
 }

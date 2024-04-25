@@ -6,7 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -49,8 +49,7 @@ public class MisoBarrelBlock extends WeightBaseBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		ItemStack itemHeld = player.getItemInHand(handIn);
+	protected ItemInteractionResult useItemOn(ItemStack itemHeld, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
 		Stat stat = getStat(state);
 		int fluidsAmounts = state.getValue(FLUIDS);
 
@@ -65,9 +64,9 @@ public class MisoBarrelBlock extends WeightBaseBlock {
 				itemHeld.shrink(1);
 			}
 			worldIn.setBlock(pos, state.setValue(STAT, Stat.USED).setValue(FLUIDS, fluidsAmounts - 1), 3);
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
-		return InteractionResult.PASS;
+		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
 
 	@Override

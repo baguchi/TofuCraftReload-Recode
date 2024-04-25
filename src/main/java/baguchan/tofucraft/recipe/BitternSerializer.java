@@ -1,51 +1,47 @@
 package baguchan.tofucraft.recipe;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-
-import javax.annotation.Nullable;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 public class BitternSerializer implements RecipeSerializer<BitternRecipe> {
-	private static final Codec<BitternRecipe> codec = RecordCodecBuilder.create((p_296927_) -> {
-		return p_296927_.group(FluidIngredient.CODEC.fieldOf("process").forGetter((p_296920_) -> {
-			return p_296920_.fluid;
-		}), Ingredient.CODEC.fieldOf("ingredient").forGetter((p_296920_) -> {
-			return p_296920_.ingredient;
-		}), BuiltInRegistries.ITEM.byNameCodec().xmap(ItemStack::new, ItemStack::getItem).fieldOf("result").forGetter((p_296923_) -> {
-			return p_296923_.result;
-		})).apply(p_296927_, BitternRecipe::new);
-	});
-
+	private static final MapCodec<BitternRecipe> CODEC = RecordCodecBuilder.mapCodec(
+			p_301227_ -> p_301227_.group(
+							FluidStack.CODEC.fieldOf("process").forGetter(p_301070_ -> p_301070_.fluid),
+							Ingredient.CODEC.fieldOf("ingredient").forGetter(p_300969_ -> p_300969_.ingredient),
+							ItemStack.SINGLE_ITEM_CODEC.fieldOf("result").forGetter(p_300977_ -> p_300977_.result)
+					)
+					.apply(p_301227_, BitternRecipe::new)
+	);
+	public static final StreamCodec<RegistryFriendlyByteBuf, BitternRecipe> STREAM_CODEC = StreamCodec.of(
+			BitternSerializer::toNetwork, BitternSerializer::fromNetwork
+	);
 
 	@Override
-	public Codec<BitternRecipe> codec() {
-		return codec;
-	}
-
-	@Nullable
-	@Override
-	public BitternRecipe fromNetwork(FriendlyByteBuf buf) {
-		try {
-			final FluidIngredient fluid = FluidIngredient.fromNetwork(buf);
-			final Ingredient ingredient = Ingredient.fromNetwork(buf);
-			ItemStack results = buf.readItem();
-
-			return new BitternRecipe(fluid, ingredient, results);
-		} catch (final Exception e) {
-
-			throw new IllegalStateException("Failed to read bittern info from packet buffer. This is not good.");
-		}
+	public MapCodec<BitternRecipe> codec() {
+		return CODEC;
 	}
 
 	@Override
-	public void toNetwork(FriendlyByteBuf p_44101_, BitternRecipe p_44102_) {
-		p_44102_.getFluid().toNetwork(p_44101_);
-		p_44102_.getIngredient().toNetwork(p_44101_);
-		p_44101_.writeItem(p_44102_.result);
+	public StreamCodec<RegistryFriendlyByteBuf, BitternRecipe> streamCodec() {
+		return STREAM_CODEC;
+	}
+
+	private static BitternRecipe fromNetwork(RegistryFriendlyByteBuf p_320719_) {
+		FluidStack ingredient = FluidStack.STREAM_CODEC.decode(p_320719_);
+		Ingredient ingredient1 = Ingredient.CONTENTS_STREAM_CODEC.decode(p_320719_);
+		ItemStack ingredient2 = ItemStack.STREAM_CODEC.decode(p_320719_);
+		return new BitternRecipe(ingredient, ingredient1, ingredient2);
+	}
+
+	private static void toNetwork(RegistryFriendlyByteBuf p_319922_, BitternRecipe p_320655_) {
+		FluidStack.STREAM_CODEC.encode(p_319922_, p_320655_.fluid);
+		Ingredient.CONTENTS_STREAM_CODEC.encode(p_319922_, p_320655_.ingredient);
+		ItemStack.STREAM_CODEC.encode(p_319922_, p_320655_.result);
 	}
 }

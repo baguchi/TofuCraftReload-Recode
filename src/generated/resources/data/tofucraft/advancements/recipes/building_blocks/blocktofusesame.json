@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tofucraft:tofusesame"
-            ]
+            "items": "tofucraft:tofusesame"
           }
         ]
       },

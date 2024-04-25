@@ -3,16 +3,17 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "forge:crops/soybean"
+      "tag": "c:crops/soybean"
     },
     {
       "item": "minecraft:wheat"
     },
     {
-      "tag": "forge:salt"
+      "tag": "c:salt"
     }
   ],
   "result": {
-    "item": "tofucraft:soystick"
+    "count": 1,
+    "id": "tofucraft:soystick"
   }
 }
