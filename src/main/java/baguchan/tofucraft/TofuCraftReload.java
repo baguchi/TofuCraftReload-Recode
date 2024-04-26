@@ -87,6 +87,7 @@ public class TofuCraftReload {
 		TofuEffects.MOB_EFFECTS.register(modBus);
 		TofuFluidTypes.FLUID_TYPES.register(modBus);
 		TofuFluids.FLUIDS.register(modBus);
+		modBus.addListener(TofuFluids::registerFluids);
 		TofuEnchantments.ENCHANTMENT.register(modBus);
 		TofuCreativeModeTabs.CREATIVE_MODE_TABS.register(modBus);
 		TofuRecipes.RECIPE_TYPES.register(modBus);

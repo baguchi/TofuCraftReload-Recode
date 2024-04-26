@@ -7,7 +7,7 @@
     "item" : "tofucraft:tofu_shield"
   },
   "result" : {
-    "result": "tofucraft:reflect_tofu_shield",
+    "id": "tofucraft:reflect_tofu_shield",
     "count": 1
   },
   "sub" : {

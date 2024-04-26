@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
@@ -42,7 +43,7 @@ public class RecipeHelper {
 	}
 
 	@Nullable
-	public static ItemStack getBitternResult(ServerLevel serverLevel, Fluid fluid, ItemStack itemStack) {
+	public static ItemStack getBitternResult(ServerLevel serverLevel, Fluid fluid, FluidStack extraFluid) {
 		final RecipeManager manager = serverLevel.getRecipeManager();
 
 		if (fluid != null) {
@@ -51,7 +52,7 @@ public class RecipeHelper {
 			});
 			for (RecipeHolder<?> recipe : tofuRecipe.collect(Collectors.toList())) {
 				if (recipe.value() instanceof BitternRecipe bitternRecipe && bitternRecipe.getFluid().is(fluid)) {
-					if (bitternRecipe.getIngredient().test(itemStack)) {
+					if (bitternRecipe.getExtraFluid().getFluid() == extraFluid.getFluid()) {
 						return bitternRecipe.getResultItem(serverLevel.registryAccess());
 					}
 				}

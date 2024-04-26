@@ -7,7 +7,7 @@
     "item": "tofucraft:tf_oscillator"
   },
   "result": {
-    "result": "tofucraft:tf_crafter",
+    "id": "tofucraft:tf_crafter",
     "count": 1
   },
   "sub": {

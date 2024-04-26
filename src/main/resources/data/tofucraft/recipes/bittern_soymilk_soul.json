@@ -1,10 +1,15 @@
 {
   "type": "tofucraft:bittern",
   "process": {
-    "fluid": "tofucraft:soymilk_soul"
+    "id": "tofucraft:soymilk_soul",
+    "amount": 1000
   },
-  "ingredient": {
-    "item": "tofucraft:crimson_fluid_bottle"
+  "extra_fluid": {
+    "id": "tofucraft:crimson_fluid_bottle",
+    "amount": 250
   },
-  "result": "tofucraft:blocktofusoul"
+  "result": {
+    "id": "tofucraft:blocktofusoul",
+    "count": 1
+  }
 }

@@ -1,10 +1,15 @@
 {
   "type": "tofucraft:bittern",
   "process": {
-    "fluid": "tofucraft:soymilk_hell"
+    "id": "tofucraft:soymilk_hell",
+    "amount": 1000
   },
-  "ingredient": {
-    "item": "tofucraft:warped_fluid_bottle"
+  "extra_fluid": {
+    "id": "tofucraft:warped_fluid_bottle",
+    "amount": 250
   },
-  "result": "tofucraft:blocktofuhell"
+  "result": {
+    "id": "tofucraft:blocktofuhell",
+    "count": 1
+  }
 }

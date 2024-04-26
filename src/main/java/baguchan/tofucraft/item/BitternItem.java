@@ -1,7 +1,10 @@
 package baguchan.tofucraft.item;
 
+import baguchan.tofucraft.api.IFluidBottle;
+import baguchan.tofucraft.capability.wrapper.FluidBottleWrapper;
 import baguchan.tofucraft.utils.ContainerUtils;
 import baguchan.tofucraft.utils.RecipeHelper;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -15,13 +18,20 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
-public class BitternItem extends Item {
-	public BitternItem(Properties group) {
+public class BitternItem extends Item implements IFluidBottle {
+
+	protected final Holder<Fluid> fluidHolder;
+
+	public BitternItem(Holder<Fluid> fluidHolder, Properties group) {
 		super(group);
+		this.fluidHolder = fluidHolder;
 	}
 
 	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
@@ -29,12 +39,14 @@ public class BitternItem extends Item {
 		BlockHitResult blockraytraceresult = getPlayerPOVHitResult(worldIn, playerIn, ClipContext.Fluid.SOURCE_ONLY);
 		BlockHitResult blockraytraceresult1 = blockraytraceresult.withPosition(blockraytraceresult.getBlockPos());
 
-		if (worldIn instanceof ServerLevel serverLevel) {
+		IFluidHandlerItem handler = FluidUtil.getFluidHandler(itemstack.copyWithCount(1)).orElse(null);
+		if (worldIn instanceof ServerLevel serverLevel && handler instanceof FluidBottleWrapper fluidBottleWrapper) {
 			if (blockraytraceresult.getType() == HitResult.Type.MISS)
 				return new InteractionResultHolder<>(InteractionResult.PASS, itemstack);
 			if (blockraytraceresult.getType() == HitResult.Type.BLOCK) {
 				FluidState fluidState = worldIn.getFluidState(blockraytraceresult1.getBlockPos());
-				ItemStack result = RecipeHelper.getBitternResult(serverLevel, fluidState.getType(), itemstack);
+
+				ItemStack result = RecipeHelper.getBitternResult(serverLevel, fluidState.getType(), fluidBottleWrapper.getFluid());
 				if (result != null) {
 					worldIn.setBlock(blockraytraceresult1.getBlockPos(), Block.byItem(result.getItem()).defaultBlockState(), 11);
 					worldIn.levelEvent(2001, blockraytraceresult1.getBlockPos(), Block.getId(worldIn.getBlockState(blockraytraceresult1.getBlockPos())));
@@ -47,5 +59,10 @@ public class BitternItem extends Item {
 		}
 		return new InteractionResultHolder<>(InteractionResult.PASS, itemstack);
 
+	}
+
+	@Override
+	public Holder<Fluid> getFluid() {
+		return this.fluidHolder;
 	}
 }

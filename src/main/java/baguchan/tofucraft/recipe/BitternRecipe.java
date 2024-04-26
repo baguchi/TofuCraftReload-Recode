@@ -4,7 +4,6 @@ import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -17,15 +16,15 @@ public class BitternRecipe implements Recipe<Inventory> {
 	 * The ingredient used for the Before it hardens tofu.
 	 */
 	protected FluidStack fluid;
-	protected Ingredient ingredient;
+	protected FluidStack extraFluid;
 	/**
 	 * This ingredient used for the harden tofu.
 	 */
 	final ItemStack result;
 
-	public BitternRecipe(FluidStack fluid, Ingredient ingredient, ItemStack results) {
+	public BitternRecipe(FluidStack fluid, FluidStack extraFluid, ItemStack results) {
 		this.fluid = fluid;
-		this.ingredient = ingredient;
+		this.extraFluid = extraFluid;
 		this.result = results;
 	}
 
@@ -39,8 +38,8 @@ public class BitternRecipe implements Recipe<Inventory> {
 		return this.fluid;
 	}
 
-	public Ingredient getIngredient() {
-		return ingredient;
+	public FluidStack getExtraFluid() {
+		return extraFluid;
 	}
 
 	@Override

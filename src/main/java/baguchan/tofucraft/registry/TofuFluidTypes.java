@@ -5,10 +5,12 @@ import baguchan.tofucraft.fluidtype.BitternFluidType;
 import baguchan.tofucraft.fluidtype.SoymilkFluidType;
 import baguchan.tofucraft.fluidtype.SoymilkHellFluidType;
 import baguchan.tofucraft.fluidtype.SoymilkSoulFluidType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
@@ -29,5 +31,7 @@ public class TofuFluidTypes {
 	public static final Supplier<FluidType> BITTERN = FLUID_TYPES.register("bittern", () -> new BitternFluidType(FluidType.Properties.create().pathType(PathType.WATER).canExtinguish(true).fallDistanceModifier(0F).motionScale(0.007F).canHydrate(true).supportsBoating(true).sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
 			.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
 			.sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)));
+	public static final DeferredHolder<FluidType, FluidType> CRIMSON = DeferredHolder.create(NeoForgeRegistries.Keys.FLUID_TYPES, new ResourceLocation("crimson"));
+	public static final DeferredHolder<FluidType, FluidType> WARPED = DeferredHolder.create(NeoForgeRegistries.Keys.FLUID_TYPES, new ResourceLocation("warped"));
 
 }

@@ -74,7 +74,7 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 
 		builder.addSlot(RecipeIngredientRole.INPUT, 10, 18)
 				.setFluidRenderer(1000, false, 16, 16)
-				.addIngredients(recipe.getIngredient());
+				.addIngredients(NeoForgeTypes.FLUID_STACK, Arrays.asList(recipe.getExtraFluid()));
 
 
 		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).addItemStack(recipe.getResult());
