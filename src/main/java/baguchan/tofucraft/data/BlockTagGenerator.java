@@ -110,6 +110,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		tag(BlockTags.FENCE_GATES).add(TofuBlocks.TOFU_STEM_FENCE_GATE.get()).add(TofuBlocks.LEEK_FENCE_GATE.get()).add(TofuBlocks.LEEK_GREEN_FENCE_GATE.get());
 
 		this.tag(BlockTags.FEATURES_CANNOT_REPLACE).add(TofuBlocks.TOFU_BEDROCK.get(), TofuBlocks.TOFUCHEST.get());
+		this.tag(BlockTags.PORTALS).add(TofuBlocks.TOFU_PORTAL.get());
+
 
 		tag(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.SOYMILK.get())
 				.add(TofuBlocks.TOFUSLATE.get());

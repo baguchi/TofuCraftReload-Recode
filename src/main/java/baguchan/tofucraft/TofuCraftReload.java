@@ -76,10 +76,8 @@ public class TofuCraftReload {
 
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuItems.ITEMS.register(modBus);
-		TofuBannerPatterns.BANNER_PATTERNS.register(modBus);
 
-		TofuDataComponents.DATA_COMPONENT_TYPES.register(modBus);
-		TofuArmorMaterial.ARMOR_MATERIALS.register(modBus);
+
 		TofuEntityTypes.ENTITIES.register(modBus);
 
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
@@ -91,10 +89,14 @@ public class TofuCraftReload {
 		TofuEnchantments.ENCHANTMENT.register(modBus);
 		TofuCreativeModeTabs.CREATIVE_MODE_TABS.register(modBus);
 		TofuRecipes.RECIPE_TYPES.register(modBus);
+		TofuDataComponents.DATA_COMPONENT_TYPES.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
 		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
+
+		TofuArmorMaterial.ARMOR_MATERIALS.register(modBus);
+		TofuBannerPatterns.BANNER_PATTERNS.register(modBus);
 
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
 		TofuFeatures.FEATURES.register(modBus);
