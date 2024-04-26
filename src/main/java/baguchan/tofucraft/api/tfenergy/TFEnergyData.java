@@ -22,4 +22,12 @@ public record TFEnergyData(int storeTF, int maxTF) {
 			TFEnergyData::new
 	);
 
+	public TFEnergyData setStoreTF(int storeTF) {
+		return new TFEnergyData(storeTF, this.maxTF);
+	}
+
+	public TFEnergyData setMaxTF(int maxTF) {
+		return new TFEnergyData(this.storeTF, maxTF);
+	}
+
 }

@@ -19,4 +19,7 @@ public record FermentationData(int fermentation) {
 			FermentationData::new
 	);
 
+	public FermentationData setFermentationData(int fermentation) {
+		return new FermentationData(fermentation);
+	}
 }
