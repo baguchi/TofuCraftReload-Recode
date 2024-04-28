@@ -113,10 +113,10 @@ import java.util.function.Supplier;
 public class TofuBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, TofuCraftReload.MODID);
 
-	public static final Supplier<Block> SOYMILK = noItemRegister("soymilk", () -> new LiquidBlock(TofuFluids.SOYMILK, BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
-	public static final Supplier<Block> SOYMILK_HELL = noItemRegister("soymilk_hell", () -> new LiquidBlock(TofuFluids.SOYMILK_HELL, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
-	public static final Supplier<Block> SOYMILK_SOUL = noItemRegister("soymilk_soul", () -> new LiquidBlock(TofuFluids.SOYMILK_SOUL, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
-	public static final Supplier<Block> BITTERN = noItemRegister("bittern", () -> new LiquidBlock(TofuFluids.BITTERN, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
+	public static final Supplier<Block> SOYMILK = noItemRegister("soymilk", () -> new LiquidBlock(TofuFluids.SOYMILK.value(), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
+	public static final Supplier<Block> SOYMILK_HELL = noItemRegister("soymilk_hell", () -> new LiquidBlock(TofuFluids.SOYMILK_HELL.value(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
+	public static final Supplier<Block> SOYMILK_SOUL = noItemRegister("soymilk_soul", () -> new LiquidBlock(TofuFluids.SOYMILK_SOUL.value(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
+	public static final Supplier<Block> BITTERN = noItemRegister("bittern", () -> new LiquidBlock(TofuFluids.BITTERN.value(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
 
 	public static final Supplier<Block> YUBA = noItemRegister("yuba", () -> new YubaBlock(BlockBehaviour.Properties.of().noOcclusion().randomTicks().strength(0.25F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.WOOL)));
 
@@ -162,25 +162,25 @@ public class TofuBlocks {
 	public static final Supplier<Block> SOULTOFU_SMOOTH_BRICK = register("tofusoul_smooth_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final Supplier<Block> MINCEDTOFU = register("blocktofuminced", () -> new FallFoodBlock(BlockBehaviour.Properties.of().strength(0.2F, 0.3F).sound(SoundType.SNOW)));
 
-	public static final Supplier<StairBlock> TOFUSTAIR_KINU = register("tofustair_kinu", () -> new StairBlock(KINUTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(KINUTOFU.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_MOMEN = register("tofustair_momen", () -> new StairBlock(MOMENTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(MOMENTOFU.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_ISHI = register("tofustair_ishi", () -> new StairBlock(ISHITOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(ISHITOFU.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_METAL = register("tofustair_metal", () -> new StairBlock(METALTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(METALTOFU.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_GRILLED = register("tofustair_grilled", () -> new StairBlock(GRILLEDTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(GRILLEDTOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_KINU = register("tofustair_kinu", () -> new StairBlock(KINUTOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(KINUTOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_MOMEN = register("tofustair_momen", () -> new StairBlock(MOMENTOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(MOMENTOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_ISHI = register("tofustair_ishi", () -> new StairBlock(ISHITOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(ISHITOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_METAL = register("tofustair_metal", () -> new StairBlock(METALTOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(METALTOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_GRILLED = register("tofustair_grilled", () -> new StairBlock(GRILLEDTOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(GRILLEDTOFU.get())));
 
-	public static final Supplier<StairBlock> TOFUSTAIR_ZUNDA = register("tofustair_zunda", () -> new StairBlock(ZUNDATOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_ZUNDABRICK = register("tofustair_zundabrick", () -> new StairBlock(ZUNDATOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU_BRICK.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_HELL = register("tofustair_hell", () -> new StairBlock(HELLTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_SOUL = register("tofustair_soul", () -> new StairBlock(SOULTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_ZUNDA = register("tofustair_zunda", () -> new StairBlock(ZUNDATOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_ZUNDABRICK = register("tofustair_zundabrick", () -> new StairBlock(ZUNDATOFU_BRICK.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU_BRICK.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_HELL = register("tofustair_hell", () -> new StairBlock(HELLTOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_SOUL = register("tofustair_soul", () -> new StairBlock(SOULTOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get())));
 
-	public static final Supplier<StairBlock> TOFUSTAIR_ISHIBRICK = register("tofustair_ishibrick", () -> new StairBlock(ISHITOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(ISHITOFU_BRICK.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_HELLBRICK = register("tofustair_hellbrick", () -> new StairBlock(HELLTOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(HELLTOFU_BRICK.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_SOULBRICK = register("tofustair_soulbrick", () -> new StairBlock(SOULTOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(SOULTOFU_BRICK.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_MISO = register("tofustair_miso", () -> new StairBlock(MISOTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(MISOTOFU.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_DRIED = register("tofustair_dried", () -> new StairBlock(DRIEDTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(DRIEDTOFU.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_EGG = register("tofustair_egg", () -> new StairBlock(EGGTOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(EGGTOFU.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_EGGBRICK = register("tofustair_eggbrick", () -> new StairBlock(EGGTOFU_BRICK.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(EGGTOFU_BRICK.get())));
-	public static final Supplier<StairBlock> TOFUSTAIR_SESAME = register("tofustair_sesame", () -> new StairBlock(SESAMETOFU.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_ISHIBRICK = register("tofustair_ishibrick", () -> new StairBlock(ISHITOFU_BRICK.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(ISHITOFU_BRICK.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_HELLBRICK = register("tofustair_hellbrick", () -> new StairBlock(HELLTOFU_BRICK.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(HELLTOFU_BRICK.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_SOULBRICK = register("tofustair_soulbrick", () -> new StairBlock(SOULTOFU_BRICK.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(SOULTOFU_BRICK.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_MISO = register("tofustair_miso", () -> new StairBlock(MISOTOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(MISOTOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_DRIED = register("tofustair_dried", () -> new StairBlock(DRIEDTOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(DRIEDTOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_EGG = register("tofustair_egg", () -> new StairBlock(EGGTOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(EGGTOFU.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_EGGBRICK = register("tofustair_eggbrick", () -> new StairBlock(EGGTOFU_BRICK.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(EGGTOFU_BRICK.get())));
+	public static final Supplier<StairBlock> TOFUSTAIR_SESAME = register("tofustair_sesame", () -> new StairBlock(SESAMETOFU.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get())));
 
 	public static final Supplier<SlabBlock> TOFUSLAB_KINU = register("tofuslab_kinu", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(KINUTOFU.get())));
 	public static final Supplier<SlabBlock> TOFUSLAB_MOMEN = register("tofuslab_momen", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(MOMENTOFU.get())));
@@ -307,7 +307,7 @@ public class TofuBlocks {
 	public static final Supplier<RotatedPillarBlock> LEEK_GREEN_STEM = register("leek_green_stem", () -> new BurnableRotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM)));
 
 	public static final Supplier<Block> LEEK_GREEN_PLANKS = register("leek_green_planks", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
-	public static final Supplier<StairBlock> LEEK_GREEN_PLANKS_STAIR = register("leek_green_planks_stair", () -> new StairBlock(LEEK_GREEN_PLANKS.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get())));
+	public static final Supplier<StairBlock> LEEK_GREEN_PLANKS_STAIR = register("leek_green_planks_stair", () -> new StairBlock(LEEK_GREEN_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get())));
 	public static final Supplier<SlabBlock> LEEK_GREEN_PLANKS_SLAB = register("leek_green_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get())));
 	public static final Supplier<FenceBlock> LEEK_GREEN_FENCE = register("leek_green_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
 	public static final Supplier<FenceGateBlock> LEEK_GREEN_FENCE_GATE = register("leek_green_fence_gate", () -> new FenceGateBlock(TofuWoodTypes.LEEK_GREEN, BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
@@ -323,7 +323,7 @@ public class TofuBlocks {
 	public static final Supplier<RotatedPillarBlock> LEEK_STEM = register("leek_stem", () -> new BurnableRotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM)));
 
 	public static final Supplier<Block> LEEK_PLANKS = register("leek_planks", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
-	public static final Supplier<StairBlock> LEEK_PLANKS_STAIR = register("leek_planks_stair", () -> new StairBlock(LEEK_PLANKS.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(LEEK_PLANKS.get())));
+	public static final Supplier<StairBlock> LEEK_PLANKS_STAIR = register("leek_planks_stair", () -> new StairBlock(LEEK_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(LEEK_PLANKS.get())));
 	public static final Supplier<SlabBlock> LEEK_PLANKS_SLAB = register("leek_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(LEEK_PLANKS.get())));
 	public static final Supplier<FenceBlock> LEEK_FENCE = register("leek_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
 	public static final Supplier<FenceGateBlock> LEEK_FENCE_GATE = register("leek_fence_gate", () -> new FenceGateBlock(TofuWoodTypes.LEEK, BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
@@ -338,7 +338,7 @@ public class TofuBlocks {
 
 	public static final Supplier<RotatedPillarBlock> TOFU_STEM = register("tofustem", () -> new BurnableRotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM)));
 	public static final Supplier<Block> TOFU_STEM_PLANKS = register("tofustem_planks", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
-	public static final Supplier<StairBlock> TOFU_STEM_PLANKS_STAIR = register("tofustem_planks_stair", () -> new StairBlock(TOFU_STEM_PLANKS.get()::defaultBlockState, BlockBehaviour.Properties.ofFullCopy(TOFU_STEM_PLANKS.get())));
+	public static final Supplier<StairBlock> TOFU_STEM_PLANKS_STAIR = register("tofustem_planks_stair", () -> new StairBlock(TOFU_STEM_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(TOFU_STEM_PLANKS.get())));
 	public static final Supplier<SlabBlock> TOFU_STEM_PLANKS_SLAB = register("tofustem_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(TOFU_STEM_PLANKS.get())));
 	public static final Supplier<FenceBlock> TOFU_STEM_FENCE = register("tofustem_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
 	public static final Supplier<FenceGateBlock> TOFU_STEM_FENCE_GATE = register("tofustem_fence_gate", () -> new FenceGateBlock(TofuWoodTypes.TOFU_STEM, BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));

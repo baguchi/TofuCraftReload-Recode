@@ -50,9 +50,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
-import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
@@ -63,6 +61,8 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.ExplosionEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.village.VillageSiegeEvent;
 
 import java.util.HashMap;
@@ -74,15 +74,15 @@ public class CommonEvents {
 	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
 
 	@SubscribeEvent
-	public static void onUpdate(LivingEvent.LivingTickEvent event) {
-		LivingEntity livingEntity = event.getEntity();
-		SoyHealthCapability soyHealth = livingEntity.getData(TofuCapability.SOY_HEALTH);
+	public static void onUpdate(EntityTickEvent.Post event) {
+		Entity entity = event.getEntity();
+		SoyHealthCapability soyHealth = entity.getData(TofuCapability.SOY_HEALTH);
 
-		if (!livingEntity.level().isClientSide()) {
+		if (!entity.level().isClientSide() && entity instanceof LivingEntity livingEntity) {
 			soyHealth.tick(livingEntity);
 		}
-		TofuLivingCapability tofuLivingCapability = livingEntity.getData(TofuCapability.TOFU_LIVING);
-		tofuLivingCapability.tick(livingEntity);
+		TofuLivingCapability tofuLivingCapability = entity.getData(TofuCapability.TOFU_LIVING);
+		tofuLivingCapability.tick(entity);
 	}
 
 	protected static BlockHitResult getPlayerPOVHitResult(Level p_41436_, Player p_41437_, ClipContext.Fluid p_41438_) {
@@ -290,8 +290,8 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onServerTick(TickEvent.LevelTickEvent tick) {
-		if (!tick.level.isClientSide && tick.level instanceof ServerLevel serverWorld) {
+	public static void onServerTick(LevelTickEvent.Post tick) {
+		if (!tick.getLevel().isClientSide && tick.getLevel() instanceof ServerLevel serverWorld) {
 			TRAVELER_TOFUNIAN_SPAWNER_MAP.computeIfAbsent(serverWorld,
 					k -> new TravelerTofunianSpawner(serverWorld));
 			TravelerTofunianSpawner spawner = TRAVELER_TOFUNIAN_SPAWNER_MAP.get(serverWorld);
