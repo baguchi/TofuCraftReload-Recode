@@ -27,7 +27,7 @@ public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 		}
 		if (!entity.level().isClientSide()) {
 			SoyMilkDrinkedPacket message = new SoyMilkDrinkedPacket(entity, level, canUpdate);
-			PacketDistributor.sendToPlayersTrackingEntity(entity, message);
+			PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, message);
 		}
 		this.soyHealthLevel = Mth.clamp(level, 0, 20);
 	}
@@ -40,7 +40,7 @@ public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
 		this.soyHealthLevel = 0;
 		if (!entity.level().isClientSide()) {
 			SoyMilkDrinkedPacket message = new SoyMilkDrinkedPacket(entity, this.soyHealthLevel, true);
-			PacketDistributor.sendToPlayersTrackingEntity(entity, message);
+			PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, message);
 		}
 	}
 
