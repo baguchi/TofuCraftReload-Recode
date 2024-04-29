@@ -11,9 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
@@ -27,7 +25,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.LevelChunk;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -43,7 +40,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 	protected NonNullList<ItemStack> inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 	private int workload = 0;
 	private int current_workload = 0;
-	private int prevFluid;
 
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
@@ -114,6 +110,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		if (from.getItem() instanceof IEnergyInsertable symbol) {
 			if (tfStorageBlockEntity.getEnergyStored() >= POWER * 5) {
 				tfStorageBlockEntity.drain(symbol.fill(from, POWER, false) * 5, false);
+				tfStorageBlockEntity.setChanged();
 			}
 		}
 		//Consume beans inside machine
@@ -121,6 +118,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 			FluidStack milk = tfStorageBlockEntity.getTank().getFluid();
 			if (from.getItem() instanceof IEnergyExtractable symbol) {
 				tfStorageBlockEntity.workload += symbol.drain(from, POWER * 20, false);
+				tfStorageBlockEntity.setChanged();
 			} else if (TofuEnergyMap.getFuel(from) != -1) {
 				tfStorageBlockEntity.workload += TofuEnergyMap.getFuel(from);
 				from.shrink(1);
@@ -131,15 +129,10 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 				if (recipe != null) {
 					tfStorageBlockEntity.tank.drain(recipe.getValue(), IFluidHandler.FluidAction.EXECUTE);
 					tfStorageBlockEntity.workload += recipe.getValue();
+					tfStorageBlockEntity.setChanged();
 				}
 			}
 			tfStorageBlockEntity.current_workload = tfStorageBlockEntity.workload;
-		}
-
-		if (tfStorageBlockEntity.prevFluid != tfStorageBlockEntity.tank.getFluidAmount()) {
-			LevelChunk chunk = level.getChunkAt(blockPos);
-			tfStorageBlockEntity.setChanged();
-			tfStorageBlockEntity.prevFluid = tfStorageBlockEntity.tank.getFluidAmount();
 		}
 	}
 
@@ -250,16 +243,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 	@Override
 	public AbstractContainerMenu createMenu(int p_39954_, Inventory p_39955_, Player p_39956_) {
 		return new TFStorageMenu(p_39954_, p_39955_, this, this.dataAccess);
-	}
-
-	@Override
-	public CompoundTag getUpdateTag(HolderLookup.Provider p_323910_) {
-		return saveWithoutMetadata(p_323910_);
-	}
-
-	@Override
-	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider p_323910_) {
-		loadAdditional(pkt.getTag(), p_323910_);
 	}
 
 

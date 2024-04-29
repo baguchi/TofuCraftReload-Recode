@@ -13,8 +13,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
@@ -60,7 +60,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 		BlockEntity blockentity = p_48707_.getBlockEntity(p_48708_);
 		if (blockentity instanceof SaltFurnaceBlockEntity) {
 			IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack.copyWithCount(1)).orElse(null);
-			if (handler != null && handler instanceof FluidBucketWrapper) {
+			if (handler instanceof FluidBucketWrapper) {
 				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, p_48707_, p_48708_, null);
 				flag = true;
 			}
@@ -72,22 +72,27 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 
 
 		if (!flag) {
-			if (p_48707_.isClientSide) {
-				ClientProxy.PROXY.setRefrencedTE(p_48707_.getBlockEntity(p_48708_));
-				return ItemInteractionResult.SUCCESS;
-			} else {
-				this.openContainer(p_48707_, p_48708_, p_48709_);
-				return ItemInteractionResult.CONSUME;
-			}
+			return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 		} else {
 			return ItemInteractionResult.SUCCESS;
 		}
 	}
 
+	@Override
+	protected InteractionResult useWithoutItem(BlockState p_60503_, Level p_60504_, BlockPos p_60505_, Player p_60506_, BlockHitResult p_60508_) {
+		if (p_60504_.isClientSide) {
+			ClientProxy.PROXY.setRefrencedTE(p_60504_.getBlockEntity(p_60505_));
+			return InteractionResult.SUCCESS;
+		} else {
+			this.openContainer(p_60504_, p_60505_, p_60506_);
+			return InteractionResult.CONSUME;
+		}
+	}
+
 	protected void openContainer(Level p_53631_, BlockPos p_53632_, Player p_53633_) {
 		BlockEntity blockentity = p_53631_.getBlockEntity(p_53632_);
-		if (blockentity instanceof SaltFurnaceBlockEntity) {
-			p_53633_.openMenu((MenuProvider) blockentity);
+		if (blockentity instanceof SaltFurnaceBlockEntity saltFurnaceBlock) {
+			p_53633_.openMenu(saltFurnaceBlock);
 		}
 
 	}

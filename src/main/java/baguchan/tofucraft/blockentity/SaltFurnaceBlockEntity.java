@@ -16,6 +16,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -49,12 +50,20 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
 
 	public FluidTank waterTank = new FluidTank(3000) {
+
+		@Override
+		protected void onContentsChanged() {
+		}
 		public boolean isFluidValid(FluidStack stack) {
 			return (stack.getFluid() == Fluids.WATER);
 		}
 	};
 
 	public FluidTank bitternTank = new FluidTank(2000) {
+
+		@Override
+		protected void onContentsChanged() {
+		}
 		public boolean isFluidValid(FluidStack stack) {
 			return (stack.getFluid() == TofuFluids.BITTERN.get());
 		}
@@ -67,11 +76,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	private int cookingProgress;
 
 	private int cookingTotalTime;
-
-	private int prevWaterFluid;
-
-	private int prevBitternFluid;
-
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
 		public int get(int p_221476_1_) {
@@ -154,20 +158,13 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	public static void tick(Level p_155014_, BlockPos p_155015_, BlockState p_155016_, SaltFurnaceBlockEntity saltFurnaceBlock) {
+		if (p_155014_.isClientSide()) return;
 		boolean flag = saltFurnaceBlock.isLit();
 		boolean flag1 = false;
 		if (saltFurnaceBlock.isLit())
 			saltFurnaceBlock.litTime--;
-		if (!p_155014_.isClientSide) {
-			if (saltFurnaceBlock.prevWaterFluid != saltFurnaceBlock.waterTank.getFluidAmount()) {
-				saltFurnaceBlock.setChanged();
-			}
-			if (saltFurnaceBlock.prevBitternFluid != saltFurnaceBlock.bitternTank.getFluidAmount()) {
-				saltFurnaceBlock.setChanged();
-			}
-		}
-		ItemStack itemstack = saltFurnaceBlock.items.get(0);
-		if (saltFurnaceBlock.isLit() || !saltFurnaceBlock.items.get(0).isEmpty()) {
+		ItemStack itemstack = saltFurnaceBlock.items.getFirst();
+		if (saltFurnaceBlock.isLit() || !saltFurnaceBlock.items.getFirst().isEmpty()) {
 			if (!saltFurnaceBlock.isLit() && saltFurnaceBlock.hasWater()) {
 				saltFurnaceBlock.litTime = saltFurnaceBlock.getBurnDuration(itemstack);
 				saltFurnaceBlock.litDuration = saltFurnaceBlock.litTime;
@@ -207,14 +204,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 		if (flag1) {
 			saltFurnaceBlock.setChanged();
-		}
-	}
-
-	@Override
-	public void startOpen(Player p_18955_) {
-		super.startOpen(p_18955_);
-		if (!this.level.isClientSide()) {
-			this.setChanged();
 		}
 	}
 
@@ -370,7 +359,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	public int getContainerSize() {
-		return this.items.size();
+		return 5;
 	}
 
 	@Override
@@ -423,11 +412,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	public boolean stillValid(Player p_70300_1_) {
-		if (this.level.getBlockEntity(this.worldPosition) != this) {
-			return false;
-		} else {
-			return p_70300_1_.distanceToSqr((double) this.worldPosition.getX() + 0.5D, (double) this.worldPosition.getY() + 0.5D, (double) this.worldPosition.getZ() + 0.5D) <= 64.0D;
-		}
+		return Container.stillValidBlockEntity(this, p_70300_1_);
 	}
 
 	public void clearContent() {
