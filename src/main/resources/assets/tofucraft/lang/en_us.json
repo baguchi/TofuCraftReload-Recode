@@ -477,6 +477,7 @@
   "block.tofucraft.antenna_basic" : "Antenna Basic",
   "block.tofucraft.tofu_work_station" : "Tofu Work Station",
   "block.tofucraft.tofunian_statue": "Tofunian Statue",
+  "block.minecraft.banner.tofucraft.tofunian": "Tofunian",
   "entity.tofucraft.tofunian.guard" : "Guard Tofunian",
   "entity.tofucraft.tofunian.tofucook" : "TofuCook Tofunian",
   "entity.tofucraft.tofunian.tofusmith" : "TofuSmith Tofunian",

@@ -1,6 +1,7 @@
 package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.registry.TofuBannerPatterns;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -27,7 +28,12 @@ public class CustomTagGenerator {
 
 		@Override
 		protected void addTags(HolderLookup.Provider p_256380_) {
-			//tag(TOFUNIAN_BANNER_PATTERN).add(TofuBannerPatterns.TOFUNIAN_KEY);
+			tag(TOFUNIAN_BANNER_PATTERN).add(TofuBannerPatterns.TOFUNIAN);
+		}
+
+		@Override
+		public String getName() {
+			return "Tofucraft Banner Pattern Tags";
 		}
 	}
 }

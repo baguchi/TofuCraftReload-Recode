@@ -11,7 +11,6 @@ import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuArmorMaterial;
-import baguchan.tofucraft.registry.TofuBannerPatterns;
 import baguchan.tofucraft.registry.TofuBiomeSources;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
@@ -99,7 +98,6 @@ public class TofuCraftReload {
 		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
 
 		TofuArmorMaterial.ARMOR_MATERIALS.register(modBus);
-		TofuBannerPatterns.BANNER_PATTERNS.register(modBus);
 
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
 		TofuFeatures.FEATURES.register(modBus);

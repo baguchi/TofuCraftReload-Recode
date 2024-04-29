@@ -8,6 +8,7 @@ import baguchan.tofucraft.blockentity.tfenergy.base.SenderBaseBlockEntity;
 import baguchan.tofucraft.inventory.TFStorageMenu;
 import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
+import baguchan.tofucraft.registry.TofuFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -149,6 +150,15 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		}
 	}
 
+	@Override
+	public void startOpen(Player p_18955_) {
+		if (!this.level.isClientSide() && this.level instanceof ServerLevel serverLevel) {
+			LevelChunk chunk = this.level.getChunkAt(this.getBlockPos());
+			PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new TFStorageSoymilkPacket(this.getBlockPos(), this.tank.getFluid()));
+			this.prevFluid = this.tank.getFluidAmount();
+		}
+	}
+
 	public FluidTank getTank() {
 		return this.tank;
 	}
@@ -263,6 +273,11 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		@Override
 		protected void onContentsChanged() {
 		}
+
+		public boolean isFluidValid(FluidStack stack) {
+			return (stack.getFluid() == TofuFluids.SOYMILK.get());
+		}
+
 	}
 
 }

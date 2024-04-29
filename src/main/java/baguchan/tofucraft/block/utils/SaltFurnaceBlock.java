@@ -2,7 +2,6 @@ package baguchan.tofucraft.block.utils;
 
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchan.tofucraft.client.ClientProxy;
-import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -37,7 +36,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -68,11 +66,11 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 				flag = true;
 			}
 
-			if (flag) {
+			/*if (flag) {
 				if (!p_48707_.isClientSide) {
-					PacketDistributor.sendToAllPlayers(new SaltFurnaceWaterPacket(p_48708_, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()));
+					PacketDistributor.sendToServer(new SaltFurnaceWaterPacket(p_48708_, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()));
 				}
-			}
+			}*/
 		}
 
 

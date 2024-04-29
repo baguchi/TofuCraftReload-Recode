@@ -162,8 +162,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		ContainerHelper.saveAllItems(p_189515_1_, this.items, provider);
 	}
 
-	public static void tick(Level p_155014_, BlockPos p_155015_, BlockState p_155016_, SaltFurnaceBlockEntity saltFurnaceBlock) {
-		if (p_155014_.isClientSide()) return;
+	public static void tick(Level level, BlockPos blockPos, BlockState p_155016_, SaltFurnaceBlockEntity saltFurnaceBlock) {
+
 		boolean flag = saltFurnaceBlock.isLit();
 		boolean flag1 = false;
 		if (saltFurnaceBlock.isLit())
@@ -201,7 +201,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		}
 		if (flag != saltFurnaceBlock.isLit()) {
 			flag1 = true;
-			saltFurnaceBlock.level.setBlock(p_155015_, saltFurnaceBlock.level.getBlockState(p_155015_).setValue(SaltFurnaceBlock.LIT, Boolean.valueOf(saltFurnaceBlock.isLit())), 3);
+			saltFurnaceBlock.level.setBlock(blockPos, saltFurnaceBlock.level.getBlockState(blockPos).setValue(SaltFurnaceBlock.LIT, Boolean.valueOf(saltFurnaceBlock.isLit())), 3);
 		}
 		saltFurnaceBlock.makeBittern();
 		saltFurnaceBlock.putWater();
@@ -211,20 +211,37 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			saltFurnaceBlock.setChanged();
 		}
 
-		if (saltFurnaceBlock.prevFluid != saltFurnaceBlock.waterTank.getFluidAmount()) {
-			LevelChunk chunk = p_155014_.getChunkAt(p_155015_);
-			if (p_155014_ instanceof ServerLevel serverLevel) {
-				PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceWaterPacket(p_155015_, saltFurnaceBlock.bitternTank.getFluid()));
-				saltFurnaceBlock.prevFluid = saltFurnaceBlock.waterTank.getFluidAmount();
+		if (!level.isClientSide) {
+			if (saltFurnaceBlock.prevFluid != saltFurnaceBlock.waterTank.getFluidAmount()) {
+				LevelChunk chunk = level.getChunkAt(blockPos);
+				if (level instanceof ServerLevel serverLevel) {
+					PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceWaterPacket(blockPos, saltFurnaceBlock.waterTank.getFluid()));
+					saltFurnaceBlock.prevFluid = saltFurnaceBlock.waterTank.getFluidAmount();
+				}
+			}
+
+			if (saltFurnaceBlock.prevBitternFluid != saltFurnaceBlock.bitternTank.getFluidAmount()) {
+				LevelChunk chunk = level.getChunkAt(blockPos);
+				if (level instanceof ServerLevel serverLevel) {
+					PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceBitternPacket(blockPos, saltFurnaceBlock.bitternTank.getFluid()));
+					saltFurnaceBlock.prevBitternFluid = saltFurnaceBlock.bitternTank.getFluidAmount();
+				}
 			}
 		}
+		if (flag1) {
+			saltFurnaceBlock.setChanged();
+		}
+	}
 
-		if (saltFurnaceBlock.prevBitternFluid != saltFurnaceBlock.bitternTank.getFluidAmount()) {
-			LevelChunk chunk = p_155014_.getChunkAt(p_155015_);
-			if (p_155014_ instanceof ServerLevel serverLevel) {
-				PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceBitternPacket(p_155015_, saltFurnaceBlock.bitternTank.getFluid()));
-				saltFurnaceBlock.prevBitternFluid = saltFurnaceBlock.bitternTank.getFluidAmount();
-			}
+	@Override
+	public void startOpen(Player p_18955_) {
+		super.startOpen(p_18955_);
+		if (!this.level.isClientSide() && this.level instanceof ServerLevel serverLevel) {
+			LevelChunk chunk = this.level.getChunkAt(this.getBlockPos());
+			PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceBitternPacket(this.getBlockPos(), this.bitternTank.getFluid()));
+			this.prevBitternFluid = this.bitternTank.getFluidAmount();
+			PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceWaterPacket(this.getBlockPos(), this.waterTank.getFluid()));
+			this.prevFluid = this.waterTank.getFluidAmount();
 		}
 	}
 
@@ -427,7 +444,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		if (p_70299_1_ == 0 && !flag && this.cookingTotalTime == 0) {
 			this.cookingTotalTime = this.getTotalCookTime();
 			this.cookingProgress = 0;
-			this.setChanged();
 		}
 
 	}
