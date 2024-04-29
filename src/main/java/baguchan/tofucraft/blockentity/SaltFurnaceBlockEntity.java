@@ -2,6 +2,8 @@ package baguchan.tofucraft.blockentity;
 
 import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
 import baguchan.tofucraft.inventory.SaltFurnaceMenu;
+import baguchan.tofucraft.network.SaltFurnaceBitternPacket;
+import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
@@ -10,9 +12,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
@@ -33,11 +33,13 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -115,6 +117,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			return 4;
 		}
 	};
+	private int prevFluid;
+	private int prevBitternFluid;
 
 	public SaltFurnaceBlockEntity(BlockPos p_155545_, BlockState p_155546_) {
 		super(TofuBlockEntitys.SALT_FURNACE.get(), p_155545_, p_155546_);
@@ -136,6 +140,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			CompoundTag nbt = cmp.getCompound("BitternTank");
 			this.bitternTank = this.bitternTank.readFromNBT(provider, nbt);
 		}
+		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.items, provider);
 		this.litTime = cmp.getInt("BurnTime");
 		this.cookingProgress = cmp.getInt("CookTime");
@@ -204,6 +209,22 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 		if (flag1) {
 			saltFurnaceBlock.setChanged();
+		}
+
+		if (saltFurnaceBlock.prevFluid != saltFurnaceBlock.waterTank.getFluidAmount()) {
+			LevelChunk chunk = p_155014_.getChunkAt(p_155015_);
+			if (p_155014_ instanceof ServerLevel serverLevel) {
+				PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceWaterPacket(p_155015_, saltFurnaceBlock.bitternTank.getFluid()));
+				saltFurnaceBlock.prevFluid = saltFurnaceBlock.waterTank.getFluidAmount();
+			}
+		}
+
+		if (saltFurnaceBlock.prevBitternFluid != saltFurnaceBlock.bitternTank.getFluidAmount()) {
+			LevelChunk chunk = p_155014_.getChunkAt(p_155015_);
+			if (p_155014_ instanceof ServerLevel serverLevel) {
+				PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceBitternPacket(p_155015_, saltFurnaceBlock.bitternTank.getFluid()));
+				saltFurnaceBlock.prevBitternFluid = saltFurnaceBlock.bitternTank.getFluidAmount();
+			}
 		}
 	}
 
@@ -425,6 +446,11 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	@Override
+	public AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_, Player p_58643_) {
+		return this.createMenu(p_58627_, p_58628_);
+	}
+
+	@Override
 	protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
 		return new SaltFurnaceMenu(p_58627_, p_58628_, this, this.dataAccess);
 	}
@@ -434,15 +460,5 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		for (ItemStack itemstack : this.items) {
 			p_40281_.accountStack(itemstack);
 		}
-	}
-
-	@Override
-	public CompoundTag getUpdateTag(HolderLookup.Provider p_323910_) {
-		return saveWithoutMetadata(p_323910_);
-	}
-
-	@Override
-	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider p_323910_) {
-		loadAdditional(pkt.getTag(), p_323910_);
 	}
 }

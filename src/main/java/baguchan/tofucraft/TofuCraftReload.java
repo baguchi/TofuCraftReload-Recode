@@ -3,8 +3,11 @@ package baguchan.tofucraft;
 import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.event.CraftingEvents;
+import baguchan.tofucraft.network.SaltFurnaceBitternPacket;
+import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.network.SetTFMinerBlockPacket;
 import baguchan.tofucraft.network.SoyMilkDrinkedPacket;
+import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuArmorMaterial;
@@ -149,6 +152,9 @@ public class TofuCraftReload {
 		PayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
 		registrar.playBidirectional(SoyMilkDrinkedPacket.TYPE, SoyMilkDrinkedPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playBidirectional(SetTFMinerBlockPacket.TYPE, SetTFMinerBlockPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playBidirectional(SaltFurnaceWaterPacket.TYPE, SaltFurnaceWaterPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playBidirectional(SaltFurnaceBitternPacket.TYPE, SaltFurnaceBitternPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playBidirectional(TFStorageSoymilkPacket.TYPE, TFStorageSoymilkPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 	}
 
 

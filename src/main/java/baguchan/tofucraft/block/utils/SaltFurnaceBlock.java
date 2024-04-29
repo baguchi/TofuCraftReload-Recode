@@ -2,6 +2,7 @@ package baguchan.tofucraft.block.utils;
 
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchan.tofucraft.client.ClientProxy;
+import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -15,6 +16,7 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
@@ -35,6 +37,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -66,7 +69,9 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 			}
 
 			if (flag) {
-				blockentity.setChanged();
+				if (!p_48707_.isClientSide) {
+					PacketDistributor.sendToAllPlayers(new SaltFurnaceWaterPacket(p_48708_, ((SaltFurnaceBlockEntity) blockentity).waterTank.getFluid()));
+				}
 			}
 		}
 
@@ -91,7 +96,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 
 	protected void openContainer(Level p_53631_, BlockPos p_53632_, Player p_53633_) {
 		BlockEntity blockentity = p_53631_.getBlockEntity(p_53632_);
-		if (blockentity instanceof SaltFurnaceBlockEntity saltFurnaceBlock) {
+		if (blockentity instanceof MenuProvider saltFurnaceBlock) {
 			p_53633_.openMenu(saltFurnaceBlock);
 		}
 

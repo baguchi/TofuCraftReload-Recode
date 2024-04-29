@@ -2,6 +2,7 @@ package baguchan.tofucraft.block.tfenergy;
 
 import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
 import baguchan.tofucraft.client.ClientProxy;
+import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -33,6 +34,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -78,7 +80,9 @@ public class TFStorageBlock extends BaseEntityBlock {
 			}
 
 			if (flag) {
-				blockentity.setChanged();
+				if (!p_48707_.isClientSide) {
+					PacketDistributor.sendToAllPlayers(new TFStorageSoymilkPacket(p_48708_, ((TFStorageBlockEntity) blockentity).getTank().getFluid()));
+				}
 			}
 		}
 
