@@ -450,6 +450,14 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 	}
 
+	private boolean findNearbyTofunianHadHome(Tofunian tofunian, BlockPos pos) {
+		List<Tofunian> list = tofunian.level().getEntitiesOfClass(Tofunian.class, tofunian.getBoundingBox().inflate(32.0D));
+
+		return list.stream().anyMatch((p_34881_) -> {
+			return p_34881_ != tofunian && (pos.equals(p_34881_.getTofunianHome()));
+		});
+	}
+
 	public void tofunianHomeCheck() {
 		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
 
@@ -466,12 +474,12 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 
 		if (tryFind) {
-			int range = 10;
+			int range = 8;
 			for (int x = -range; x <= range; x++) {
 				for (int y = -range / 2; y <= range / 2; y++) {
 					for (int z = -range; z <= range; z++) {
 						BlockPos pos = this.blockPosition().offset(x, y, z);
-						if (this.level().getBlockState(pos).is(BlockTags.BEDS)) {
+						if (this.level().getBlockState(pos).is(BlockTags.BEDS) && !this.findNearbyTofunianHadHome(this, pos)) {
 							setTofunianHome(pos);
 							return;
 						}

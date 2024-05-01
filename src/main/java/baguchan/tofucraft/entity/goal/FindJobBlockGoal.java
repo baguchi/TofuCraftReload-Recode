@@ -82,9 +82,11 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
 		Tofunian.Roles role = Tofunian.Roles.getJob(blockstate);
-		BlockHitResult hitResult = worldIn.clip(new ClipContext(this.creature.getEyePosition(), pos.getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this.creature));
-		if (role != null && hitResult.getBlockPos().equals(BlockPos.containing(pos.getCenter())) || hitResult.getType() == HitResult.Type.MISS) {
-			return true;
+		if (role != null) {
+			BlockHitResult hitResult = worldIn.clip(new ClipContext(this.creature.getEyePosition(), pos.getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this.creature));
+			if (hitResult.getBlockPos().equals(BlockPos.containing(pos.getCenter())) || hitResult.getType() == HitResult.Type.MISS) {
+				return true;
+			}
 		}
 		return false;
 	}
