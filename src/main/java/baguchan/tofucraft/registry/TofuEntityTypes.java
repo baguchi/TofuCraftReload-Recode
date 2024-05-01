@@ -69,14 +69,14 @@ public class TofuEntityTypes {
 
 
 	public static final Supplier<EntityType<TofuSlime>> TOFUSLIME = ENTITIES.register("tofuslime", () -> EntityType.Builder.of(TofuSlime::new, MobCategory.MONSTER)
-			.sized(2.04F, 2.04F).build("tofucraft:tofuslime"));
+			.sized(0.52F, 0.52F).eyeHeight(0.325F).build("tofucraft:tofuslime"));
 	public static final Supplier<EntityType<TofuCreeper>> TOFUCREEPER = ENTITIES.register("tofucreeper", () -> EntityType.Builder.of(TofuCreeper::new, MobCategory.MONSTER)
-			.sized(0.6F, 1.8F).build("tofucraft:tofucreeper"));
+			.sized(0.6F, 1.6F).build("tofucraft:tofucreeper"));
 
 	public static final Supplier<EntityType<TofuSpider>> TOFUSPIDER = ENTITIES.register("tofuspider", () -> EntityType.Builder.of(TofuSpider::new, MobCategory.MONSTER)
-			.sized(0.95F, 0.55F).build("tofucraft:tofuspider"));
+			.sized(0.95F, 0.55F).eyeHeight(0.3F).build("tofucraft:tofuspider"));
 	public static final Supplier<EntityType<Zundamite>> ZUNDAMITE = ENTITIES.register("zundamite", () -> EntityType.Builder.of(Zundamite::new, MobCategory.MONSTER)
-			.sized(0.4F, 0.3F).clientTrackingRange(8).build("tofucraft:zundamite"));
+			.sized(0.4F, 0.3F).eyeHeight(0.15F).clientTrackingRange(8).build("tofucraft:zundamite"));
 
 	public static final Supplier<EntityType<FukumameEntity>> FUKUMAME = ENTITIES.register("fukumame", () -> EntityType.Builder.<FukumameEntity>of(FukumameEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).updateInterval(30).build("tofucraft:fukumame"));
@@ -110,7 +110,7 @@ public class TofuEntityTypes {
 
 
 	public static final Supplier<EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
-			.sized(3.5F, 2.9F).clientTrackingRange(10).fireImmune().build("tofucraft:shudofuspider"));
+			.sized(3.5F, 2.9F).eyeHeight(2.0F).clientTrackingRange(10).fireImmune().build("tofucraft:shudofuspider"));
 
 	public static final Supplier<EntityType<FukumameThower>> FUKUMAME_THOWER = ENTITIES.register("fukumame_thower", () -> EntityType.Builder.of(FukumameThower::new, MobCategory.MONSTER).sized(0.6F, 1.85F).clientTrackingRange(8).build("tofucraft:fukumame_thower"));
 
