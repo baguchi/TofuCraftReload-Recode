@@ -1,12 +1,15 @@
 package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.registry.TofuBannerPatterns;
+import baguchan.tofucraft.registry.TofuPoiTypes;
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BannerPatternTagsProvider;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.level.block.entity.BannerPattern;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -28,12 +31,20 @@ public class CustomTagGenerator {
 
 		@Override
 		protected void addTags(HolderLookup.Provider p_256380_) {
-			tag(TOFUNIAN_BANNER_PATTERN).add(TofuBannerPatterns.TOFUNIAN);
+			//tag(TOFUNIAN_BANNER_PATTERN).add(TofuBannerPatterns.TOFUNIAN);
+		}
+	}
+
+	public static class PoiTypeTagGenerator extends TagsProvider<PoiType> {
+
+		public PoiTypeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @Nullable ExistingFileHelper existingFileHelper) {
+			super(output, Registries.POINT_OF_INTEREST_TYPE, provider, TofuCraftReload.MODID, existingFileHelper);
 		}
 
 		@Override
-		public String getName() {
-			return "Tofucraft Banner Pattern Tags";
+		protected void addTags(HolderLookup.Provider p_256380_) {
+			tag(TofuTags.PoiTypes.TOFU_VILLAGE).add(TofuPoiTypes.TOFUNIAN_STATUE);
 		}
+
 	}
 }

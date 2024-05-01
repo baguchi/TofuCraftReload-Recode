@@ -15,7 +15,6 @@ import baguchan.tofucraft.entity.goal.ShareItemAndGossipGoal;
 import baguchan.tofucraft.entity.goal.TofunianLoveGoal;
 import baguchan.tofucraft.entity.goal.TofunianSleepOnBedGoal;
 import baguchan.tofucraft.entity.goal.TofunianTradeWithPlayerGoal;
-import baguchan.tofucraft.entity.goal.TrickOrTreatGoal;
 import baguchan.tofucraft.entity.goal.WakeUpGoal;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBiomes;
@@ -24,14 +23,13 @@ import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.registry.TofuTrades;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
@@ -82,7 +80,6 @@ import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.village.ReputationEventType;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
-import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.monster.Illusioner;
@@ -102,6 +99,7 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -117,7 +115,6 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -225,7 +222,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(4, new TofunianLoveGoal(this, 0.8F));
 		this.goalSelector.addGoal(5, new GetItemGoal<>(this));
 		this.goalSelector.addGoal(6, new MoveToStatueGoal(this, 0.8F, 5));
-		this.goalSelector.addGoal(7, new TrickOrTreatGoal(this, 0.9F));
 		this.goalSelector.addGoal(8, new CropHarvestGoal(this, 0.9F));
 		this.goalSelector.addGoal(9, new MakeFoodGoal(this, 0.9F, 1));
 		this.goalSelector.addGoal(10, new RestockGoal(this, 0.9F, 1));
@@ -433,16 +429,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 		//validate job position
 		if (this.getTofunianJobBlock() != null && this.getRole() != Roles.TOFUNIAN) {
-			if (!Roles.getJobBlock(this.getRole().getPoiType()).contains(this.level().getBlockState(this.getTofunianJobBlock()))) {
-				if (this.level() instanceof ServerLevel) {
-					//don't forget release poi
-					PoiManager poimanager = ((ServerLevel) this.level()).getPoiManager();
-					if (poimanager.exists(this.getTofunianJobBlock(), (p_217230_) -> {
-						return true;
-					})) {
-						poimanager.release(this.getTofunianJobBlock());
-					}
-				}
+			if (!this.getRole().is(this.level().getBlockState(this.getTofunianJobBlock()))) {
 				this.setTofunianJobBlock(null);
 
 				if (this.getTofunianLevel() == 1 && this.getVillagerXp() == 0) {
@@ -951,18 +938,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public void die(DamageSource p_35419_) {
 		Entity entity = p_35419_.getEntity();
 
-		if (this.getTofunianJobBlock() != null) {
-			if (this.level() instanceof ServerLevel) {
-				//don't forget release poi
-				PoiManager poimanager = ((ServerLevel) this.level()).getPoiManager();
-				if (poimanager.exists(this.getTofunianJobBlock(), (p_217230_) -> {
-					return true;
-				})) {
-					poimanager.release(this.getTofunianJobBlock());
-				}
-			}
-		}
-
 		if (this.getVillageCenter() != null) {
 			if (this.level() instanceof ServerLevel) {
 				//don't forget release poi
@@ -975,6 +950,21 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			}
 		}
 		super.die(p_35419_);
+	}
+
+	@org.jetbrains.annotations.Nullable
+	@Override
+	public Entity changeDimension(ServerLevel serverLevel) {
+		if (this.getVillageCenter() != null) {
+				//don't forget release poi
+			PoiManager poimanager = serverLevel.getPoiManager();
+				if (poimanager.exists(this.getVillageCenter(), (p_217230_) -> {
+					return true;
+				})) {
+					poimanager.release(this.getVillageCenter());
+				}
+		}
+		return super.changeDimension(serverLevel);
 	}
 
 	@Override
@@ -1112,23 +1102,34 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public enum Roles implements IExtensibleEnum {
-		TOFUCOOK(PoiTypes.FARMER), TOFUSMITH(PoiTypes.ARMORER), SOYWORKER(PoiTypes.LEATHERWORKER), TOFUNIAN(null);
+		TOFUCOOK(getBlockStates(Blocks.COMPOSTER)), TOFUSMITH(getBlockStates(Blocks.BLAST_FURNACE)), SOYWORKER((Set) ImmutableList.of(Blocks.CAULDRON, Blocks.LAVA_CAULDRON, Blocks.WATER_CAULDRON, Blocks.POWDER_SNOW_CAULDRON).stream().flatMap((p_218093_) -> {
+			return p_218093_.getStateDefinition().getPossibleStates().stream();
+		}).collect(ImmutableSet.toImmutableSet())), TOFUNIAN(Set.of());
 
 		private static final Map<String, Roles> lookup;
-		private final ResourceKey<PoiType> poitype;
 
 		static {
 			lookup = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, p_220362_0_ -> p_220362_0_));
 		}
 
-		private Roles(ResourceKey<PoiType> poitype) {
-			this.poitype = poitype;
+		private final Set<BlockState> matchingStates;
+
+		private Roles(Set<BlockState> matchingStates) {
+			matchingStates = Set.copyOf(matchingStates);
+			this.matchingStates = matchingStates;
 		}
 
 		public static Roles create(String name, ResourceKey<PoiType> poitype) {
 			throw new IllegalStateException("Enum not extended");
 		}
 
+		public boolean is(BlockState p_148693_) {
+			return this.matchingStates.contains(p_148693_);
+		}
+
+		private static Set<BlockState> getBlockStates(Block p_218074_) {
+			return ImmutableSet.copyOf(p_218074_.getStateDefinition().getPossibleStates());
+		}
 
 		public static Roles get(String nameIn) {
 			for (Roles role : values()) {
@@ -1139,56 +1140,13 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 
 		@Nullable
-		public static Roles getJob(ResourceKey<PoiType> poitypeIn) {
+		public static Roles getJob(BlockState blockState) {
 			for (Roles role : values()) {
-				if (role != TOFUNIAN && role.getPoiType() == poitypeIn) {
+				if (role != TOFUNIAN && role.is(blockState)) {
 					return role;
 				}
 			}
 			return null;
-		}
-
-		@Nullable
-		public static Roles get(BlockState blockState) {
-			for (Roles role : values()) {
-				if (role != TOFUNIAN) {
-					Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(role.getPoiType());
-
-					if (poiTypeHolder.isPresent() && poiTypeHolder.get().value().is(blockState)) {
-						return role;
-					}
-				}
-			}
-			return null;
-		}
-
-		public static Set<BlockState> getJobBlock(ResourceKey<PoiType> poitypeIn) {
-			for (Roles role : values()) {
-				if (role != TOFUNIAN && role.getPoiType() == poitypeIn) {
-					Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(role.getPoiType());
-
-					if (poiTypeHolder.isPresent()) {
-						return poiTypeHolder.get().value().matchingStates();
-					}
-				}
-			}
-			return null;
-		}
-
-		public static Set<BlockState> getJobMatch(Roles roles, ResourceKey<PoiType> poitypeIn) {
-			if (roles != TOFUNIAN && roles.getPoiType() == poitypeIn) {
-				Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(roles.getPoiType());
-
-				if (poiTypeHolder.isPresent()) {
-					return poiTypeHolder.get().value().matchingStates();
-				}
-			}
-			return null;
-		}
-
-		@Nullable
-		public ResourceKey<PoiType> getPoiType() {
-			return poitype;
 		}
 	}
 

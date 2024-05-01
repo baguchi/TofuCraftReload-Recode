@@ -69,6 +69,7 @@ public class TofuTags {
 
 	public static class PoiTypes {
 		public static final TagKey<PoiType> TOFUNIAN_JOB = tag("tofunian_job");
+		public static final TagKey<PoiType> TOFU_VILLAGE = tag("tofu_village");
 
 		private static TagKey<PoiType> tag(String name) {
 			return TagKey.create(Registries.POINT_OF_INTEREST_TYPE, new ResourceLocation(TofuCraftReload.MODID, name));

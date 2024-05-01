@@ -47,7 +47,7 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		return Tofunian.Roles.getJobBlock(this.creature.getRole().getPoiType()).contains(blockstate);
+		return this.creature.getRole().is(blockstate);
 	}
 
 	protected boolean findNearestBlock() {
