@@ -459,7 +459,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public void tofunianHomeCheck() {
-		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
+		if ((level().getGameTime() + this.getId()) % (90) != 0) return;
 
 		//validate home position
 		boolean tryFind = false;
