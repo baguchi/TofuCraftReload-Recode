@@ -457,8 +457,13 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				PoiManager poimanager = ((ServerLevel) this.level()).getPoiManager();
 				if (poimanager.exists(this.getVillageCenter(), (p_217230_) -> {
 					return true;
-				})) {
+				}) && (this.getVillageCenter().distManhattan(this.blockPosition()) > 16 * 8)) {
 					poimanager.release(this.getVillageCenter());
+					this.setVillageCenter(null);
+				} else if (!poimanager.exists(this.getVillageCenter(), (p_217230_) -> {
+					return true;
+				})) {
+					this.setVillageCenter(null);
 				}
 			}
 		}
