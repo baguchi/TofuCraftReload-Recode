@@ -1,7 +1,6 @@
 package baguchan.tofucraft.entity.goal;
 
 import baguchan.tofucraft.registry.TofuPoiTypes;
-import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.PathfinderMob;
@@ -40,7 +39,7 @@ public class MoveBackToTofuVillageGoal extends RandomStrollGoal {
 		ServerLevel serverlevel = (ServerLevel) this.mob.level();
 		BlockPos blockpos = this.mob.blockPosition();
 		Optional<BlockPos> optional = ((ServerLevel) serverlevel).getPoiManager().findClosest((p_184069_) -> {
-			return p_184069_.is(TofuTags.PoiTypes.TOFU_VILLAGE);
+			return p_184069_.value() == TofuPoiTypes.TOFUNIAN_STATUE_POI.get();
 		}, (p_184055_) -> {
 			return true;
 		}, this.mob.blockPosition(), 42, PoiManager.Occupancy.IS_OCCUPIED);
