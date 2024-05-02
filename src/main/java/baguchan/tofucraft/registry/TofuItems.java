@@ -52,6 +52,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BannerPatternItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.DispensibleContainerItem;
@@ -61,8 +62,11 @@ import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SmithingTemplateItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -268,37 +272,37 @@ public class TofuItems {
 	public static final Supplier<Item> HIYAYAKKO_GLASS = ITEMS.register("hiyayakko", () -> new ReturnableDishItem(TofuItems.GLASSBOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.HIYAYAKKO), false));
 	public static final Supplier<Item> NATTOHIYAYAKKO_GLASS = ITEMS.register("nattohiyayakko", () -> new ReturnableDishItem(TofuItems.GLASSBOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.NATTOHIYAYAKKO)));
 
-	public static final Supplier<Item> TOFU_KINU_SWORD = ITEMS.register("tofu_kinu_sword", () -> new TofuSwordItem(TofuItemTier.KINU, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_KINU_AXE = ITEMS.register("tofu_kinu_axe", () -> new TofuAxeItem(TofuItemTier.KINU, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_KINU_PICKAXE = ITEMS.register("tofu_kinu_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.KINU, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_KINU_SHOVEL = ITEMS.register("tofu_kinu_shovel", () -> new TofuShovelItem(TofuItemTier.KINU, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_KINU_HOE = ITEMS.register("tofu_kinu_hoe", () -> new HoeItem(TofuItemTier.KINU, (new Item.Properties().stacksTo(1))));
+	public static final Supplier<Item> TOFU_KINU_SWORD = ITEMS.register("tofu_kinu_sword", () -> new TofuSwordItem(TofuItemTier.KINU, (new Item.Properties().attributes(SwordItem.createAttributes(TofuItemTier.KINU, 0, -0.5F)).stacksTo(1))));
+	public static final Supplier<Item> TOFU_KINU_AXE = ITEMS.register("tofu_kinu_axe", () -> new TofuAxeItem(TofuItemTier.KINU, (new Item.Properties().stacksTo(1).attributes(AxeItem.createAttributes(TofuItemTier.KINU, 0F, -0.5F)))));
+	public static final Supplier<Item> TOFU_KINU_PICKAXE = ITEMS.register("tofu_kinu_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.KINU, (new Item.Properties().stacksTo(1).attributes(PickaxeItem.createAttributes(TofuItemTier.KINU, 0F, -0.5F)))));
+	public static final Supplier<Item> TOFU_KINU_SHOVEL = ITEMS.register("tofu_kinu_shovel", () -> new TofuShovelItem(TofuItemTier.KINU, (new Item.Properties().stacksTo(1).attributes(ShovelItem.createAttributes(TofuItemTier.KINU, 0F, -0.5F)))));
+	public static final Supplier<Item> TOFU_KINU_HOE = ITEMS.register("tofu_kinu_hoe", () -> new HoeItem(TofuItemTier.KINU, (new Item.Properties().stacksTo(1).attributes(HoeItem.createAttributes(TofuItemTier.KINU, 0F, -0.5F)))));
 
-	public static final Supplier<Item> TOFU_MOMEN_SWORD = ITEMS.register("tofu_momen_sword", () -> new TofuSwordItem(TofuItemTier.MOMEN, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_MOMEN_AXE = ITEMS.register("tofu_momen_axe", () -> new TofuAxeItem(TofuItemTier.MOMEN, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_MOMEN_PICKAXE = ITEMS.register("tofu_momen_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.MOMEN, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_MOMEN_SHOVEL = ITEMS.register("tofu_momen_shovel", () -> new TofuShovelItem(TofuItemTier.MOMEN, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_MOMEN_HOE = ITEMS.register("tofu_momen_hoe", () -> new HoeItem(TofuItemTier.MOMEN, (new Item.Properties().stacksTo(1))));
+	public static final Supplier<Item> TOFU_MOMEN_SWORD = ITEMS.register("tofu_momen_sword", () -> new TofuSwordItem(TofuItemTier.MOMEN, (new Item.Properties().attributes(SwordItem.createAttributes(TofuItemTier.MOMEN, 0, -1.4F)).stacksTo(1))));
+	public static final Supplier<Item> TOFU_MOMEN_AXE = ITEMS.register("tofu_momen_axe", () -> new TofuAxeItem(TofuItemTier.MOMEN, (new Item.Properties().stacksTo(1).attributes(AxeItem.createAttributes(TofuItemTier.MOMEN, 0F, -1.4F)))));
+	public static final Supplier<Item> TOFU_MOMEN_PICKAXE = ITEMS.register("tofu_momen_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.MOMEN, (new Item.Properties().attributes(PickaxeItem.createAttributes(TofuItemTier.MOMEN, 0F, -1.4F)).stacksTo(1))));
+	public static final Supplier<Item> TOFU_MOMEN_SHOVEL = ITEMS.register("tofu_momen_shovel", () -> new TofuShovelItem(TofuItemTier.MOMEN, (new Item.Properties().stacksTo(1).attributes(ShovelItem.createAttributes(TofuItemTier.MOMEN, 0F, -1.4F)))));
+	public static final Supplier<Item> TOFU_MOMEN_HOE = ITEMS.register("tofu_momen_hoe", () -> new HoeItem(TofuItemTier.MOMEN, (new Item.Properties().stacksTo(1).attributes(HoeItem.createAttributes(TofuItemTier.MOMEN, 0F, -1.4F)))));
 
-	public static final Supplier<Item> TOFU_SOLID_SWORD = ITEMS.register("tofu_solid_sword", () -> new TofuSwordItem(TofuItemTier.SOLID, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_SOLID_AXE = ITEMS.register("tofu_solid_axe", () -> new TofuAxeItem(TofuItemTier.SOLID, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_SOLID_PICKAXE = ITEMS.register("tofu_solid_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.SOLID, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_SOLID_SHOVEL = ITEMS.register("tofu_solid_shovel", () -> new TofuShovelItem(TofuItemTier.SOLID, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_SOLID_HOE = ITEMS.register("tofu_solid_hoe", () -> new HoeItem(TofuItemTier.SOLID, (new Item.Properties().stacksTo(1))));
+	public static final Supplier<Item> TOFU_SOLID_SWORD = ITEMS.register("tofu_solid_sword", () -> new TofuSwordItem(TofuItemTier.SOLID, (new Item.Properties().attributes(SwordItem.createAttributes(TofuItemTier.SOLID, 3, -2.3F)).stacksTo(1))));
+	public static final Supplier<Item> TOFU_SOLID_AXE = ITEMS.register("tofu_solid_axe", () -> new TofuAxeItem(TofuItemTier.SOLID, (new Item.Properties().stacksTo(1).attributes(AxeItem.createAttributes(TofuItemTier.SOLID, 6.0F, -3.0F)))));
+	public static final Supplier<Item> TOFU_SOLID_PICKAXE = ITEMS.register("tofu_solid_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.SOLID, (new Item.Properties().attributes(PickaxeItem.createAttributes(TofuItemTier.SOLID, 1.0F, -2.8F)).stacksTo(1))));
+	public static final Supplier<Item> TOFU_SOLID_SHOVEL = ITEMS.register("tofu_solid_shovel", () -> new TofuShovelItem(TofuItemTier.SOLID, (new Item.Properties().attributes(ShovelItem.createAttributes(TofuItemTier.SOLID, 1.5F, -3.0F)).stacksTo(1))));
+	public static final Supplier<Item> TOFU_SOLID_HOE = ITEMS.register("tofu_solid_hoe", () -> new HoeItem(TofuItemTier.SOLID, (new Item.Properties().stacksTo(1).attributes(HoeItem.createAttributes(TofuItemTier.SOLID, -1.0F, 0.0F)))));
 
-	public static final Supplier<Item> TOFU_METAL_SWORD = ITEMS.register("tofu_metal_sword", () -> new TofuSwordItem(TofuItemTier.METAL, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_METAL_AXE = ITEMS.register("tofu_metal_axe", () -> new TofuAxeItem(TofuItemTier.METAL, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_METAL_PICKAXE = ITEMS.register("tofu_metal_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.METAL, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_METAL_SHOVEL = ITEMS.register("tofu_metal_shovel", () -> new TofuShovelItem(TofuItemTier.METAL, (new Item.Properties().stacksTo(1))));
+	public static final Supplier<Item> TOFU_METAL_SWORD = ITEMS.register("tofu_metal_sword", () -> new TofuSwordItem(TofuItemTier.METAL, (new Item.Properties().attributes(SwordItem.createAttributes(TofuItemTier.METAL, 3, -2.3F)).stacksTo(1))));
+	public static final Supplier<Item> TOFU_METAL_AXE = ITEMS.register("tofu_metal_axe", () -> new TofuAxeItem(TofuItemTier.METAL, (new Item.Properties().stacksTo(1).attributes(AxeItem.createAttributes(TofuItemTier.METAL, 6.0F, -3.0F)))));
+	public static final Supplier<Item> TOFU_METAL_PICKAXE = ITEMS.register("tofu_metal_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.METAL, (new Item.Properties().attributes(PickaxeItem.createAttributes(TofuItemTier.METAL, 1.0F, -2.8F)).stacksTo(1))));
+	public static final Supplier<Item> TOFU_METAL_SHOVEL = ITEMS.register("tofu_metal_shovel", () -> new TofuShovelItem(TofuItemTier.METAL, (new Item.Properties().attributes(ShovelItem.createAttributes(TofuItemTier.METAL, 1.5F, -3.0F)).stacksTo(1))));
 	public static final Supplier<Item> TOFU_METAL_SHEARS = ITEMS.register("tofu_metal_shears", () -> new TofuShearsItem((new Item.Properties()).stacksTo(1).durability(224)));
-	public static final Supplier<Item> TOFU_METAL_HOE = ITEMS.register("tofu_metal_hoe", () -> new HoeItem(TofuItemTier.METAL, (new Item.Properties().stacksTo(1))));
+	public static final Supplier<Item> TOFU_METAL_HOE = ITEMS.register("tofu_metal_hoe", () -> new HoeItem(TofuItemTier.METAL, (new Item.Properties().stacksTo(1).attributes(HoeItem.createAttributes(TofuItemTier.METAL, -2.0F, -1.0F)))));
 
 
-	public static final Supplier<Item> TOFU_DIAMOND_SWORD = ITEMS.register("tofu_diamond_sword", () -> new TofuSwordItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_DIAMOND_AXE = ITEMS.register("tofu_diamond_axe", () -> new TofuAxeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_DIAMOND_PICKAXE = ITEMS.register("tofu_diamond_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_DIAMOND_SHOVEL = ITEMS.register("tofu_diamond_shovel", () -> new TofuShovelItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1))));
-	public static final Supplier<Item> TOFU_DIAMOND_HOE = ITEMS.register("tofu_diamond_hoe", () -> new HoeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1))));
+	public static final Supplier<Item> TOFU_DIAMOND_SWORD = ITEMS.register("tofu_diamond_sword", () -> new TofuSwordItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().attributes(SwordItem.createAttributes(TofuItemTier.TOFUDIAMOND, 3, -2.3F)).stacksTo(1))));
+	public static final Supplier<Item> TOFU_DIAMOND_AXE = ITEMS.register("tofu_diamond_axe", () -> new TofuAxeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1).attributes(AxeItem.createAttributes(TofuItemTier.TOFUDIAMOND, 6.0F, -3.0F)))));
+	public static final Supplier<Item> TOFU_DIAMOND_PICKAXE = ITEMS.register("tofu_diamond_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1).attributes(PickaxeItem.createAttributes(TofuItemTier.TOFUDIAMOND, 1.0F, -2.8F)))));
+	public static final Supplier<Item> TOFU_DIAMOND_SHOVEL = ITEMS.register("tofu_diamond_shovel", () -> new TofuShovelItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().attributes(ShovelItem.createAttributes(TofuItemTier.TOFUDIAMOND, 1.5F, -3.0F)).stacksTo(1))));
+	public static final Supplier<Item> TOFU_DIAMOND_HOE = ITEMS.register("tofu_diamond_hoe", () -> new HoeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1).attributes(HoeItem.createAttributes(TofuItemTier.TOFUDIAMOND, -3.0F, 0.0F)))));
 	public static final Supplier<Item> TOFU_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("tofu_upgrade_smithing_template", TofuItems::createTofuUpgradeTemplate);
 	public static final Supplier<Item> ZUNDA_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("zunda_upgrade_smithing_template", TofuItems::createZundaBowUpgradeTemplate);
 
