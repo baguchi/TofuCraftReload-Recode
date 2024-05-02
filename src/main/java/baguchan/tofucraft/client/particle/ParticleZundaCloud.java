@@ -10,6 +10,7 @@ import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -34,9 +35,10 @@ public class ParticleZundaCloud extends TextureSheetParticle {
 	@Override
 	public void render(VertexConsumer consumer, Camera camera, float tick) {
 		var time = (age + tick) / (float) lifetime;
-		alpha = time;
+		alpha = Mth.clamp(1.0F - time, 0.1F, 1F);
 
 		this.quadSize = scale * ((0.7f * time) + 0.3f);
+
 		super.render(consumer, camera, tick);
 	}
 
