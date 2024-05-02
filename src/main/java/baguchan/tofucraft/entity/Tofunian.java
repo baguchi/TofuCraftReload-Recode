@@ -437,7 +437,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			}
 		}
 
-		if (this.getVillageCenter() != null) {
+		if (this.getVillageCenter() != null || this.getVillageCenter().distManhattan(this.blockPosition()) > 16 * 8) {
 			if (this.level() instanceof ServerLevel) {
 				//don't forget release poi
 				PoiManager poimanager = ((ServerLevel) this.level()).getPoiManager();
@@ -445,6 +445,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 					return true;
 				})) {
 					poimanager.release(this.getVillageCenter());
+					this.setVillageCenter(null);
 				}
 			}
 		}
@@ -969,7 +970,10 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				})) {
 					poimanager.release(this.getVillageCenter());
 				}
+			this.setVillageCenter(null);
 		}
+
+		this.setTofunianHome(null);
 		return super.changeDimension(serverLevel);
 	}
 
