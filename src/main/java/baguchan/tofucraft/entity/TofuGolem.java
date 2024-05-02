@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.entity.goal.DefendTofuVillageTargetGoal;
+import baguchan.tofucraft.entity.goal.MoveBackToTofuVillageGoal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -19,10 +20,8 @@ import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
-import net.minecraft.world.entity.ai.goal.GolemRandomStrollInVillageGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.MoveBackToVillageGoal;
 import net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
@@ -70,8 +69,8 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2D, true));
 		this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 1.0D, 32.0F));
-		this.goalSelector.addGoal(2, new MoveBackToVillageGoal(this, 1.0D, false));
-		this.goalSelector.addGoal(4, new GolemRandomStrollInVillageGoal(this, 1.0D));
+		this.goalSelector.addGoal(2, new MoveBackToTofuVillageGoal(this, 1.0D, false));
+		//this.goalSelector.addGoal(4, new GolemRandomStrollInVillageGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Mob.class, 6.0F));
