@@ -34,8 +34,7 @@ public class ParticleZundaCloud extends TextureSheetParticle {
 	@Override
 	public void render(VertexConsumer consumer, Camera camera, float tick) {
 		var time = (age + tick) / (float) lifetime;
-		alpha = 0.5f * ((float) (1 - Math.exp(4 * (time - 1)) - Math.pow(1500, -time)));
-		if (alpha <= 1.1) alpha = 1f;
+		alpha = time;
 
 		this.quadSize = scale * ((0.7f * time) + 0.3f);
 		super.render(consumer, camera, tick);
@@ -64,7 +63,7 @@ public class ParticleZundaCloud extends TextureSheetParticle {
 
 		@Override
 		public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			ParticleZundaCloud particleCloud = new ParticleZundaCloud(level, x, y, z, xSpeed, ySpeed, zSpeed, 5F, 40, 1.05F);
+			ParticleZundaCloud particleCloud = new ParticleZundaCloud(level, x, y, z, xSpeed, ySpeed, zSpeed, 3F, 20, 1.1F);
 			particleCloud.setSpriteFromAge(sprite);
 			return particleCloud;
 		}

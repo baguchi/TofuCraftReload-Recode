@@ -33,8 +33,7 @@ public class ParticleStink extends TextureSheetParticle {
 	@Override
 	public void render(VertexConsumer consumer, Camera camera, float tick) {
 		var time = (age + tick) / (float) lifetime;
-		alpha = 0.5f * ((float) (1 - Math.exp(4 * (time - 1)) - Math.pow(1500, -time)));
-		if (alpha <= 0.1) alpha = 0.1f;
+		alpha = time;
 		this.quadSize = scale * ((0.7f * time) + 0.3f);
 		super.render(consumer, camera, tick);
 	}
