@@ -11,13 +11,13 @@
           "weight": 60
         },
         {
-          "valve": "tofucraft:gameplay/fishing/junk",
+          "value": "tofucraft:gameplay/fishing/junk",
           "type": "minecraft:loot_table",
           "quality": -2,
           "weight": 30
         },
         {
-          "valve": "tofucraft:gameplay/fishing/treasure",
+          "value": "tofucraft:gameplay/fishing/treasure",
           "type": "minecraft:loot_table",
           "quality": 2,
           "weight": 5,
