@@ -91,7 +91,6 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
@@ -122,8 +121,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> TOFUNIAN_TYPE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
-
-	public static Ingredient FAVORITE_FOOD_ITEMS = Ingredient.of(TofuItems.TOFUCOOKIE.get(), TofuItems.PUDDING.get(), TofuItems.PUDDING_SOYMILK.get(), TofuItems.SOY_CHOCOLATE.get(), TofuItems.TOFUNIAN_SOY_CHOCOLATE.get(), TofuItems.OKARASTICK.get(), TofuItems.TTTBURGER.get(), TofuItems.NANBANTOFU.get());
 
 	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK.get(), 3, TofuItems.TOFUCOOKIE.get(), 3, TofuItems.TOFUGRILLED.get(), 1);
 
@@ -157,10 +154,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	private Player previousCustomer;
 
-	@Nullable
-	private Player previousTreat;
-
-	private long lastTreat;
 
 	private int xp;
 
@@ -333,6 +326,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return super.changeDimension(server, teleporter);
 	}
 
+	@Override
 	protected void customServerAiStep() {
 		if (!isTrading() && this.timeUntilReset > 0) {
 			this.timeUntilReset--;
@@ -359,6 +353,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		super.customServerAiStep();
 	}
 
+	@Override
 	public void aiStep() {
 		this.updateSwingTime();
 		super.aiStep();
@@ -372,6 +367,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public void actionTicks() {
+		// if action tick is -1. loop
 		if (getAction().tick > -1) {
 			if (getAction().tick <= this.actionTick) {
 				this.actionTick = 0;
@@ -413,15 +409,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		happyAnimationState.stop();
 	}
 
-	@Nullable
-	public Player getPreviousTreat() {
-		return previousTreat;
-	}
-
-	public void setPreviousTreat(@Nullable Player previousTreat) {
-		this.previousTreat = previousTreat;
-	}
-
 	public void tofunianJobCheck() {
 		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
 
@@ -430,6 +417,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			if (!this.getRole().is(this.level().getBlockState(this.getTofunianJobBlock()))) {
 				this.setTofunianJobBlock(null);
 
+				//if xp is none. set role normal
 				if (this.getTofunianLevel() == 1 && this.getVillagerXp() == 0) {
 					this.setOffers(null);
 					this.setRole(Roles.TOFUNIAN);
@@ -494,6 +482,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 	}
 
+	@Override
 	protected void rewardTradeXp(MerchantOffer offer) {
 		int i = 3 + this.random.nextInt(4);
 		this.xp += offer.getXp();
@@ -516,6 +505,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return super.finalizeSpawn(p_35282_, p_35283_, p_35284_, p_35285_);
 	}
 
+	@Override
 	public InteractionResult mobInteract(Player p_35472_, InteractionHand p_35473_) {
 		ItemStack itemstack = p_35472_.getItemInHand(p_35473_);
 		if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG.get() && this.isAlive() && !this.isTrading() && !this.isSleeping() && !p_35472_.isSecondaryUseActive()) {
@@ -527,13 +517,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			} else {
 				boolean flag = this.getOffers().isEmpty();
-				if (this.getAction() == Actions.ASK_FOOD && this.getMainHandItem().isEmpty()) {
-					if (this.isAcceptFoods(itemstack)) {
-						this.setItemInHand(InteractionHand.MAIN_HAND, itemstack.split(1));
-						this.setPreviousTreat(p_35472_);
-						return InteractionResult.SUCCESS;
-					}
-				}
 				if (this.getAction() == Actions.HAPPY || this.getAction() == Actions.EAT || this.getAction() == Actions.CRY) {
 					return InteractionResult.CONSUME;
 
@@ -559,10 +542,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		} else {
 			return super.mobInteract(p_35472_, p_35473_);
 		}
-	}
-
-	private boolean isAcceptFoods(ItemStack itemstack) {
-		return FAVORITE_FOOD_ITEMS.test(itemstack);
 	}
 
 	private void setUnhappy() {
@@ -600,6 +579,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.openTradingScreen(p_35537_, this.getDisplayName(), this.getTofunianLevel());
 	}
 
+	@Override
 	public void setTradingPlayer(@Nullable Player player) {
 		boolean flag = (getTradingPlayer() != null && player == null);
 		super.setTradingPlayer(player);
@@ -607,6 +587,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			stopTrading();
 	}
 
+	@Override
 	protected void stopTrading() {
 		super.stopTrading();
 		resetSpecialPrices();
@@ -632,17 +613,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	private boolean allowedToRestock() {
 		return (this.restocksToday == 0 || (this.restocksToday < 2 && level().getGameTime() > this.lastRestock + 2400L));
-	}
-
-	public boolean canLastTreat() {
-		long i = this.lastTreat + 12000L;
-		long j = this.level().getGameTime();
-		boolean flag = j > i;
-		return flag;
-	}
-
-	public void setLastTreat() {
-		this.lastTreat = this.level().getGameTime();
 	}
 
 	public boolean canResetStock() {
@@ -730,7 +700,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		compound.putLong("LastRestock", this.lastRestock);
 		compound.putLong("LastGossipDecay", this.lastGossipDecay);
 		compound.putInt("RestocksToday", this.restocksToday);
-		compound.putLong("LastTreat", this.lastTreat);
 		if (this.tofunianHome != null) {
 			compound.put("TofunianHome", NbtUtils.writeBlockPos(this.tofunianHome));
 		}
@@ -760,7 +729,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.lastGossipDecay = compound.getLong("LastGossipDecay");
 		this.lastRestock = compound.getLong("LastRestock");
 		this.restocksToday = compound.getInt("RestocksToday");
-		this.lastTreat = compound.getLong("LastTreat");
 		if (compound.contains("TofunianHome")) {
 			this.tofunianHome = NbtUtils.readBlockPos(compound, "TofunianHome").orElse(null);
 		}
@@ -895,13 +863,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.getInventory().addItem(new ItemStack(TofuItems.TOFUGRILLED.get()));
 	}
 
-	public ItemStack eat(Level p_36185_, ItemStack p_36186_) {
-		this.heal(p_36186_.getFoodProperties(this).nutrition());
-		this.playSound(SoundEvents.PLAYER_BURP, 0.5F, p_36185_.random.nextFloat() * 0.1F + 0.9F);
+	@Override
+	public ItemStack eat(Level level, ItemStack stack) {
+		this.heal(stack.getFoodProperties(this).nutrition());
+		this.playSound(SoundEvents.PLAYER_BURP, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
 
-		return super.eat(p_36185_, p_36186_);
+		return super.eat(level, stack);
 	}
 
+	@Override
 	public void updateTrades() {
 		Int2ObjectMap<VillagerTrades.ItemListing[]> int2objectmap = TofuTrades.TOFUNIAN_TRADE.get(getRole());
 		if (int2objectmap != null && !int2objectmap.isEmpty()) {
@@ -914,11 +884,13 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 
+	@Override
 	public void tick() {
 		super.tick();
 		this.maybeDecayGossip();
 	}
 
+	@Override
 	public void setLastHurtByMob(@Nullable LivingEntity p_70604_1_) {
 		if (p_70604_1_ != null && this.level() instanceof ServerLevel) {
 			((ServerLevel) this.level()).onReputationEvent(ReputationEventType.VILLAGER_HURT, p_70604_1_, this);
@@ -946,6 +918,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	}
 
+	@Override
 	public void die(DamageSource p_35419_) {
 		Entity entity = p_35419_.getEntity();
 
@@ -963,7 +936,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		super.die(p_35419_);
 	}
 
-	@org.jetbrains.annotations.Nullable
+	@Nullable
 	@Override
 	public Entity changeDimension(ServerLevel serverLevel) {
 		if (this.getVillageCenter() != null) {
@@ -1054,6 +1027,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.gossips.update(new Dynamic<>(NbtOps.INSTANCE, p_35456_));
 	}
 
+	@Override
 	public float getWalkTargetValue(BlockPos p_27573_, LevelReader p_27574_) {
 		return p_27574_.getBlockState(p_27573_.below()).is(Blocks.GRASS_BLOCK) ? 10.0F : p_27574_.getPathfindingCostFromLightLevels(p_27573_);
 	}
@@ -1088,7 +1062,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		NORMAL(true, -1),
 		CRY(true, 80),
 		AVOID(true, -1),
-		ASK_FOOD(true, -1),
 		SIT(true, -1),
 		HAPPY(false, 30),
 		EAT(true, -1);
