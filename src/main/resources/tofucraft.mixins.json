@@ -4,7 +4,6 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "tofucraft.refmap.json",
   "mixins": [
-    "CowMixin",
     "EntityMixin",
     "FishingHookMixin",
     "LightningBoltMixin",
