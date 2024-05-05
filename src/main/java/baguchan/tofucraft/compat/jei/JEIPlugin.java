@@ -1,5 +1,6 @@
 package baguchan.tofucraft.compat.jei;
 
+/*
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.BitternRecipe;
@@ -103,3 +104,4 @@ public class JEIPlugin implements IModPlugin {
 		return PLUGIN_ID;
 	}
 }
+*/

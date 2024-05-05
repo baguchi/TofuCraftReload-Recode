@@ -477,6 +477,7 @@
   "block.tofucraft.antenna_basic" : "Antenna Basic",
   "block.tofucraft.tofu_work_station" : "Tofu Work Station",
   "block.tofucraft.tofunian_statue": "Tofunian Statue",
+  "block.tofucraft.tofuportal": "Tofu Portal",
   "block.minecraft.banner.tofucraft.tofunian": "Tofunian",
   "entity.tofucraft.tofunian.guard" : "Guard Tofunian",
   "entity.tofucraft.tofunian.tofucook" : "TofuCook Tofunian",
@@ -653,5 +654,6 @@
   "tofucraft.tfminer.button.start_mining": "Start or Stop Mining",
   "enchantment.tofucraft.batch": "Batch",
   "enchantment.tofucraft.drain": "Drain",
-  "enchantment.tofucraft.effect_protection": "Effect Protection"
+  "enchantment.tofucraft.effect_protection": "Effect Protection",
+  "multiplayer.tofucraft.travel_tofuworld": "Travel from Tofu Portal..."
 }

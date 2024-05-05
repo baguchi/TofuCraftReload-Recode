@@ -15,13 +15,11 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.common.ToolAction;
 import net.neoforged.neoforge.common.ToolActions;
 
-import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.List;
 import java.util.function.Consumer;
@@ -60,7 +58,7 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 		if (!simulate) {
 			if (inst.getDamageValue() > 0) {
 				inst.setDamageValue(Mth.clamp(inst.getDamageValue() - calculated, 0, inst.getMaxDamage()));
-				return calculated;
+				return calculated * 5;
 			} else {
 				int calculated2 = Math.min(energy, getEnergyMax(inst) - getEnergy(inst));
 				setEnergy(inst, getEnergy(inst) + calculated2);
@@ -69,6 +67,7 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 		}
 		return 0;
 	}
+
 	@Override
 	public int getEnergy(ItemStack inst) {
 		return inst.get(TofuDataComponents.TF_ENERGY_DATA) != null ? inst.get(TofuDataComponents.TF_ENERGY_DATA).storeTF() : 0;
@@ -112,7 +111,10 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 		return getShowState(p_150901_) ? Color.white.getRGB() : super.getBarColor(p_150901_);
 	}
 
-	public void appendHoverText(ItemStack p_41157_, @Nullable Level p_41158_, List<Component> p_41159_, TooltipFlag p_41160_) {
-		p_41159_.add(Component.translatable("tooltip.tofucraft.energy", getEnergy(p_41157_), getEnergyMax(p_41157_)));
+	@Override
+	public void appendHoverText(ItemStack p_43094_, TooltipContext p_339613_, List<Component> p_43096_, TooltipFlag p_43097_) {
+		super.appendHoverText(p_43094_, p_339613_, p_43096_, p_43097_);
+		p_43096_.add(Component.translatable("tooltip.tofucraft.energy", getEnergy(p_43094_), getEnergyMax(p_43094_)));
+
 	}
 }

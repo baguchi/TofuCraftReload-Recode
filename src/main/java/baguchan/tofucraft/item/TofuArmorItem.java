@@ -19,10 +19,9 @@ public class TofuArmorItem extends ArmorItem implements IEnergyInsertable {
 	public int fill(ItemStack inst, int energy, boolean simulate) {
 		int calculated = Math.min(energy, inst.getDamageValue());
 		if (!simulate) {
-			// if has damage valve. calculated energy with damage. like no more over usage
 			if (inst.getDamageValue() > 0) {
 				inst.setDamageValue(Mth.clamp(inst.getDamageValue() - calculated, 0, inst.getMaxDamage()));
-				return calculated;
+				return calculated * 5;
 			}
 		}
 		return 0;

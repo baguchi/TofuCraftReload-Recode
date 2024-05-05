@@ -31,7 +31,7 @@ public class TofuPickaxeItem extends PickaxeItem implements IEnergyInsertable {
 		if (!simulate) {
 			if (inst.getDamageValue() > 0) {
 				inst.setDamageValue(Mth.clamp(inst.getDamageValue() - calculated, 0, inst.getMaxDamage()));
-				return calculated;
+				return calculated * 5;
 			}
 		}
 		return 0;
