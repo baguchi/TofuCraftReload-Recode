@@ -35,7 +35,7 @@ public class TofuPortalOverlay implements LayeredDraw.Layer {
 
 			RenderSystem.disableDepthTest();
 			RenderSystem.depthMask(false);
-			RenderSystem.defaultBlendFunc();
+			RenderSystem.enableBlend();
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, timeInPortal);
 			RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
 			RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -52,6 +52,7 @@ public class TofuPortalOverlay implements LayeredDraw.Layer {
 			bufferbuilder.vertex((double) width, 0.0D, -90.0D).uv(f2, f1).endVertex();
 			bufferbuilder.vertex(0.0D, 0.0D, -90.0D).uv(f, f1).endVertex();
 			tesselator.end();
+			RenderSystem.disableBlend();
 			RenderSystem.depthMask(true);
 			RenderSystem.enableDepthTest();
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);

@@ -70,6 +70,7 @@ import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
@@ -191,6 +192,6 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiLayersEvent event) {
-		event.registerAboveAll(TofuCraftReload.prefix("tofu_portal_overlay"), new TofuPortalOverlay());
+		event.registerBelow(VanillaGuiLayers.CAMERA_OVERLAYS, TofuCraftReload.prefix("tofu_portal_overlay"), new TofuPortalOverlay());
 	}
 }
