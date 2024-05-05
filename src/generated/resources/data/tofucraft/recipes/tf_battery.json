@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "M": {
+      "item": "tofucraft:tofumetal"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "tofucraft:tofugem"
+    }
+  },
+  "pattern": [
+    "MRM",
+    "MTM",
+    "MTM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tf_battery"
+  }
+}

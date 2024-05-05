@@ -399,6 +399,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TF_CAPACITOR);
 		singleTex(TofuItems.TF_OSCILLATOR);
 		singleTex(TofuItems.TOFU_CORE);
+		singleTex(TofuItems.TF_BATTERY);
 		toBlock(TofuBlocks.TF_CRAFTER);
 		toBlock(TofuBlocks.TF_OVEN);
 		toBlock(TofuBlocks.TF_COLLECTOR);

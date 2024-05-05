@@ -75,7 +75,8 @@ public class TofuCreativeModeTabs {
 						, TofuItems.TF_COIL
 						, TofuItems.TF_OSCILLATOR
 						, TofuItems.TOFU_CORE
-						, TofuItems.REFLECT_TOFU_SHIELD).map(sup -> {
+						, TofuItems.REFLECT_TOFU_SHIELD
+						, TofuItems.TF_BATTERY).map(sup -> {
 					return sup.get().getDefaultInstance();
 				}).toList());
 			}).build());

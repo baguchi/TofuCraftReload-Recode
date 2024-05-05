@@ -75,8 +75,9 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 
 	@Override
 	public int getEnergyMax(ItemStack inst) {
-		return 5000;
+		return inst.get(TofuDataComponents.TF_ENERGY_DATA) != null ? inst.get(TofuDataComponents.TF_ENERGY_DATA).maxTF() : 5000;
 	}
+
 
 	@Override
 	public void setEnergy(ItemStack inst, int amount) {
@@ -85,7 +86,9 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 
 	@Override
 	public void setEnergyMax(ItemStack inst, int amount) {
+		inst.set(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(this.getEnergy(inst), amount));
 	}
+
 
 	private boolean getShowState(ItemStack stack) {
 		return Minecraft.getInstance().player != null && !Minecraft.getInstance().player.isShiftKeyDown() && getEnergy(stack) != 0;

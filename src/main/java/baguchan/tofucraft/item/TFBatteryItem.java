@@ -17,9 +17,9 @@ import net.minecraft.world.level.Level;
 import java.awt.*;
 import java.util.List;
 
-public class TofuBatteryItem extends Item implements IEnergyInsertable, IEnergyContained, IEnergyExtractable {
+public class TFBatteryItem extends Item implements IEnergyInsertable, IEnergyContained, IEnergyExtractable {
 
-	public TofuBatteryItem(Properties p_43089_) {
+	public TFBatteryItem(Properties p_43089_) {
 		super(p_43089_);
 	}
 
@@ -28,7 +28,7 @@ public class TofuBatteryItem extends Item implements IEnergyInsertable, IEnergyC
 		ItemStack stackBattery = player.getItemInHand(hand);
 		ItemStack stack = player.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
 		if (stack.getItem() instanceof IEnergyInsertable energyContained) {
-			energyContained.fill(stack, this.drain(stackBattery, 50, false), false);
+			this.drain(stackBattery, energyContained.fill(stack, 50, false), false);
 			return InteractionResultHolder.success(stackBattery);
 		}
 
@@ -52,16 +52,17 @@ public class TofuBatteryItem extends Item implements IEnergyInsertable, IEnergyC
 
 	@Override
 	public int getEnergyMax(ItemStack inst) {
-		return 10000;
+		return inst.get(TofuDataComponents.TF_ENERGY_DATA) != null ? inst.get(TofuDataComponents.TF_ENERGY_DATA).maxTF() : 10000;
 	}
 
 	@Override
 	public void setEnergy(ItemStack inst, int amount) {
-		inst.set(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(amount, getEnergyMax(inst)));
+		inst.set(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(amount, this.getEnergyMax(inst)));
 	}
 
 	@Override
 	public void setEnergyMax(ItemStack inst, int amount) {
+		inst.set(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(this.getEnergy(inst), amount));
 	}
 
 	private boolean getShowState(ItemStack stack) {
@@ -93,7 +94,7 @@ public class TofuBatteryItem extends Item implements IEnergyInsertable, IEnergyC
 	@Override
 	public int drain(ItemStack inst, int amount, boolean simulate) {
 		if (!simulate) {
-			int calculated2 = Math.min(amount, getEnergyMax(inst) - getEnergy(inst));
+			int calculated2 = Math.min(getEnergy(inst), amount);
 			setEnergy(inst, getEnergy(inst) - calculated2);
 			return calculated2;
 		}
