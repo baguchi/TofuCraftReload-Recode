@@ -26,4 +26,9 @@ public class TofuArmorItem extends ArmorItem implements IEnergyInsertable {
 		}
 		return 0;
 	}
+
+	@Override
+	public boolean isEnchantable(ItemStack p_41456_) {
+		return super.isEnchantable(p_41456_);
+	}
 }
