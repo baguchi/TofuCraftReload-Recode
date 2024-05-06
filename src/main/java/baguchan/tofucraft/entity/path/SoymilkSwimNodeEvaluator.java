@@ -1,5 +1,6 @@
 package baguchan.tofucraft.entity.path;
 
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Mob;
@@ -28,7 +29,7 @@ public class SoymilkSwimNodeEvaluator extends SwimNodeEvaluator {
 						return PathType.BREACH;
 					}
 
-					if (!fluidstate.is(FluidTags.WATER)) {
+					if (!fluidstate.is(FluidTags.WATER) && !fluidstate.is(TofuTags.Fluids.SOYMILK)) {
 						return PathType.BLOCKED;
 					}
 				}
