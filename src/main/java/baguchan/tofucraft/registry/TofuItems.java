@@ -45,6 +45,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -535,7 +536,7 @@ public class TofuItems {
 		DispenserBlock.registerBehavior(BUCKET_SOYMILK_NETHER.get(), dispenseitembehavior1);
 		DispenserBlock.registerBehavior(BUCKET_SOYMILK_SOUL.get(), dispenseitembehavior1);
 		DispenserBlock.registerBehavior(BUCKET_BITTERN.get(), dispenseitembehavior1);
-		DispenseItemBehavior dispenseitembehavior2 = new DefaultDispenseItemBehavior() {
+		OptionalDispenseItemBehavior dispenseitembehavior2 = new OptionalDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
@@ -549,6 +550,7 @@ public class TofuItems {
 						p_123561_.level().setBlock(blockpos, Block.byItem(result.getItem()).defaultBlockState(), 11);
 						p_123561_.level().levelEvent(2001, blockpos, Block.getId(p_123561_.level().getBlockState(blockpos)));
 						p_123562_.shrink(1);
+						this.setSuccess(true);
 						this.defaultDispenseItemBehavior.dispense(p_123561_, new ItemStack(Items.GLASS_BOTTLE));
 					}
 				}
@@ -615,7 +617,7 @@ public class TofuItems {
 		DispenserBlock.registerBehavior(ZUNDA_ARROW.get(), new ProjectileDispenseBehavior(ZUNDA_ARROW.get()) {
 		});
 
-		DispenseItemBehavior dispenseitembehavior4 = new DefaultDispenseItemBehavior() {
+		OptionalDispenseItemBehavior dispenseitembehavior4 = new OptionalDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
@@ -626,6 +628,7 @@ public class TofuItems {
 					p_123561_.level().levelEvent(2001, blockpos, Block.getId(p_123561_.level().getBlockState(blockpos)));
 					p_123562_.shrink(1);
 					this.defaultDispenseItemBehavior.dispense(p_123561_, new ItemStack(Items.GLASS_BOTTLE));
+					this.setSuccess(true);
 				}
 				return p_123562_;
 			}
