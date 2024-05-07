@@ -69,7 +69,7 @@ public class TofuFoods {
 	public static final FoodProperties KOYADOFUSTEW = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.35F).build();
 
 	public static final FoodProperties KINAKO_MANJU = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.35F).fast().build();
-	public static final FoodProperties ZUNDA_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.35F).fast().effect(() -> new MobEffectInstance(TofuEffects.SOY_HEALTHY, 600, 0), 1.0F).build();
+	public static final FoodProperties ZUNDA_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.4F).fast().effect(() -> new MobEffectInstance(TofuEffects.SOY_HEALTHY, 600, 0), 1.0F).build();
 	public static final FoodProperties NETHER_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.35F).fast().alwaysEdible().effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 400), 1.0F).build();
 	public static final FoodProperties SOUL_MANJU = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.35F).fast().alwaysEdible().effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 600), 1.0F).build();
 
