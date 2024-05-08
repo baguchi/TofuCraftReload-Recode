@@ -15,7 +15,6 @@ import baguchan.tofucraft.entity.goal.ShareItemAndGossipGoal;
 import baguchan.tofucraft.entity.goal.TofunianLoveGoal;
 import baguchan.tofucraft.entity.goal.TofunianSleepOnBedGoal;
 import baguchan.tofucraft.entity.goal.TofunianTradeWithPlayerGoal;
-import baguchan.tofucraft.entity.goal.TrickOrTreatGoal;
 import baguchan.tofucraft.entity.goal.WakeUpGoal;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBiomes;
@@ -24,14 +23,13 @@ import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.registry.TofuTrades;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
@@ -41,7 +39,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -81,8 +78,6 @@ import net.minecraft.world.entity.ai.gossip.GossipType;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.village.ReputationEventType;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
-import net.minecraft.world.entity.ai.village.poi.PoiType;
-import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.monster.Illusioner;
@@ -96,12 +91,12 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -117,7 +112,6 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -127,8 +121,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> TOFUNIAN_TYPE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
-
-	public static Ingredient FAVORITE_FOOD_ITEMS = Ingredient.of(TofuItems.TOFUCOOKIE.get(), TofuItems.PUDDING.get(), TofuItems.PUDDING_SOYMILK.get(), TofuItems.SOY_CHOCOLATE.get(), TofuItems.TOFUNIAN_SOY_CHOCOLATE.get(), TofuItems.OKARASTICK.get(), TofuItems.TTTBURGER.get(), TofuItems.NANBANTOFU.get());
 
 	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK.get(), 3, TofuItems.TOFUCOOKIE.get(), 3, TofuItems.TOFUGRILLED.get(), 1);
 
@@ -162,10 +154,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	private Player previousCustomer;
 
-	@Nullable
-	private Player previousTreat;
-
-	private long lastTreat;
 
 	private int xp;
 
@@ -225,7 +213,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(4, new TofunianLoveGoal(this, 0.8F));
 		this.goalSelector.addGoal(5, new GetItemGoal<>(this));
 		this.goalSelector.addGoal(6, new MoveToStatueGoal(this, 0.8F, 5));
-		this.goalSelector.addGoal(7, new TrickOrTreatGoal(this, 0.9F));
 		this.goalSelector.addGoal(8, new CropHarvestGoal(this, 0.9F));
 		this.goalSelector.addGoal(9, new MakeFoodGoal(this, 0.9F, 1));
 		this.goalSelector.addGoal(10, new RestockGoal(this, 0.9F, 1));
@@ -339,6 +326,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return super.changeDimension(server, teleporter);
 	}
 
+	@Override
 	protected void customServerAiStep() {
 		if (!isTrading() && this.timeUntilReset > 0) {
 			this.timeUntilReset--;
@@ -365,6 +353,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		super.customServerAiStep();
 	}
 
+	@Override
 	public void aiStep() {
 		this.updateSwingTime();
 		super.aiStep();
@@ -378,6 +367,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public void actionTicks() {
+		// if action tick is -1. loop
 		if (getAction().tick > -1) {
 			if (getAction().tick <= this.actionTick) {
 				this.actionTick = 0;
@@ -419,38 +409,22 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		happyAnimationState.stop();
 	}
 
-	@Nullable
-	public Player getPreviousTreat() {
-		return previousTreat;
-	}
-
-	public void setPreviousTreat(@Nullable Player previousTreat) {
-		this.previousTreat = previousTreat;
-	}
-
 	public void tofunianJobCheck() {
 		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
 
 		//validate job position
 		if (this.getTofunianJobBlock() != null && this.getRole() != Roles.TOFUNIAN) {
-			if (!Roles.getJobBlock(this.getRole().getPoiType()).contains(this.level().getBlockState(this.getTofunianJobBlock()))) {
-				if (this.level() instanceof ServerLevel) {
-					//don't forget release poi
-					PoiManager poimanager = ((ServerLevel) this.level()).getPoiManager();
-					if (poimanager.exists(this.getTofunianJobBlock(), (p_217230_) -> {
-						return true;
-					})) {
-						poimanager.release(this.getTofunianJobBlock());
-					}
-				}
+			if (!this.getRole().is(this.level().getBlockState(this.getTofunianJobBlock()))) {
 				this.setTofunianJobBlock(null);
 
+				//if xp is none. set role normal
 				if (this.getTofunianLevel() == 1 && this.getVillagerXp() == 0) {
 					this.setOffers(null);
 					this.setRole(Roles.TOFUNIAN);
 				}
 			}
 		}
+
 		if (this.getVillageCenter() != null) {
 			if (this.level() instanceof ServerLevel) {
 				//don't forget release poi
@@ -469,8 +443,16 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 	}
 
+	private boolean findNearbyTofunianHadHome(Tofunian tofunian, BlockPos pos) {
+		List<Tofunian> list = tofunian.level().getEntitiesOfClass(Tofunian.class, tofunian.getBoundingBox().inflate(32.0D));
+
+		return list.stream().anyMatch((p_34881_) -> {
+			return p_34881_ != tofunian && (pos.equals(p_34881_.getTofunianHome()));
+		});
+	}
+
 	public void tofunianHomeCheck() {
-		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
+		if ((level().getGameTime() + this.getId()) % (90) != 0) return;
 
 		//validate home position
 		boolean tryFind = false;
@@ -485,12 +467,12 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 
 		if (tryFind) {
-			int range = 10;
+			int range = 8;
 			for (int x = -range; x <= range; x++) {
 				for (int y = -range / 2; y <= range / 2; y++) {
 					for (int z = -range; z <= range; z++) {
 						BlockPos pos = this.blockPosition().offset(x, y, z);
-						if (this.level().getBlockState(pos).is(BlockTags.BEDS)) {
+						if (this.level().getBlockState(pos).is(BlockTags.BEDS) && !this.findNearbyTofunianHadHome(this, pos)) {
 							setTofunianHome(pos);
 							return;
 						}
@@ -500,6 +482,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 	}
 
+	@Override
 	protected void rewardTradeXp(MerchantOffer offer) {
 		int i = 3 + this.random.nextInt(4);
 		this.xp += offer.getXp();
@@ -522,6 +505,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return super.finalizeSpawn(p_35282_, p_35283_, p_35284_, p_35285_, p_35286_);
 	}
 
+	@Override
 	public InteractionResult mobInteract(Player p_35472_, InteractionHand p_35473_) {
 		ItemStack itemstack = p_35472_.getItemInHand(p_35473_);
 		if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWNEGG.get() && this.isAlive() && !this.isTrading() && !this.isSleeping() && !p_35472_.isSecondaryUseActive()) {
@@ -533,13 +517,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			} else {
 				boolean flag = this.getOffers().isEmpty();
-				if (this.getAction() == Actions.ASK_FOOD && this.getMainHandItem().isEmpty()) {
-					if (this.isAcceptFoods(itemstack)) {
-						this.setItemInHand(InteractionHand.MAIN_HAND, itemstack.split(1));
-						this.setPreviousTreat(p_35472_);
-						return InteractionResult.SUCCESS;
-					}
-				}
 				if (this.getAction() == Actions.HAPPY || this.getAction() == Actions.EAT || this.getAction() == Actions.CRY) {
 					return InteractionResult.CONSUME;
 
@@ -565,10 +542,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		} else {
 			return super.mobInteract(p_35472_, p_35473_);
 		}
-	}
-
-	private boolean isAcceptFoods(ItemStack itemstack) {
-		return FAVORITE_FOOD_ITEMS.test(itemstack);
 	}
 
 	private void setUnhappy() {
@@ -606,6 +579,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.openTradingScreen(p_35537_, this.getDisplayName(), this.getTofunianLevel());
 	}
 
+	@Override
 	public void setTradingPlayer(@Nullable Player player) {
 		boolean flag = (getTradingPlayer() != null && player == null);
 		super.setTradingPlayer(player);
@@ -613,6 +587,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			stopTrading();
 	}
 
+	@Override
 	protected void stopTrading() {
 		super.stopTrading();
 		resetSpecialPrices();
@@ -638,17 +613,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	private boolean allowedToRestock() {
 		return (this.restocksToday == 0 || (this.restocksToday < 2 && level().getGameTime() > this.lastRestock + 2400L));
-	}
-
-	public boolean canLastTreat() {
-		long i = this.lastTreat + 12000L;
-		long j = this.level().getGameTime();
-		boolean flag = j > i;
-		return flag;
-	}
-
-	public void setLastTreat() {
-		this.lastTreat = this.level().getGameTime();
 	}
 
 	public boolean canResetStock() {
@@ -736,7 +700,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		compound.putLong("LastRestock", this.lastRestock);
 		compound.putLong("LastGossipDecay", this.lastGossipDecay);
 		compound.putInt("RestocksToday", this.restocksToday);
-		compound.putLong("LastTreat", this.lastTreat);
 		if (this.tofunianHome != null) {
 			compound.put("TofunianHome", NbtUtils.writeBlockPos(this.tofunianHome));
 		}
@@ -752,9 +715,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		if (compound.contains("Offers", 10)) {
-			this.offers = new MerchantOffers(compound.getCompound("Offers"));
-		}
 		if (compound.contains("FoodLevel", 1)) {
 			this.foodLevel = compound.getByte("FoodLevel");
 		}
@@ -769,7 +729,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.lastGossipDecay = compound.getLong("LastGossipDecay");
 		this.lastRestock = compound.getLong("LastRestock");
 		this.restocksToday = compound.getInt("RestocksToday");
-		this.lastTreat = compound.getLong("LastTreat");
 		if (compound.contains("TofunianHome")) {
 			this.tofunianHome = NbtUtils.readBlockPos(compound.getCompound("TofunianHome"));
 		}
@@ -904,13 +863,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.getInventory().addItem(new ItemStack(TofuItems.TOFUGRILLED.get()));
 	}
 
-	public ItemStack eat(Level p_36185_, ItemStack p_36186_) {
-		this.heal(p_36186_.getFoodProperties(this).getNutrition());
-		this.playSound(SoundEvents.PLAYER_BURP, 0.5F, p_36185_.random.nextFloat() * 0.1F + 0.9F);
+	@Override
+	public ItemStack eat(Level level, ItemStack stack) {
+		this.heal(stack.getFoodProperties(this).getNutrition());
+		this.playSound(SoundEvents.PLAYER_BURP, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
 
-		return super.eat(p_36185_, p_36186_);
+		return super.eat(level, stack);
 	}
 
+	@Override
 	public void updateTrades() {
 		Int2ObjectMap<VillagerTrades.ItemListing[]> int2objectmap = TofuTrades.TOFUNIAN_TRADE.get(getRole());
 		if (int2objectmap != null && !int2objectmap.isEmpty()) {
@@ -923,11 +884,13 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 
+	@Override
 	public void tick() {
 		super.tick();
 		this.maybeDecayGossip();
 	}
 
+	@Override
 	public void setLastHurtByMob(@Nullable LivingEntity p_70604_1_) {
 		if (p_70604_1_ != null && this.level() instanceof ServerLevel) {
 			((ServerLevel) this.level()).onReputationEvent(ReputationEventType.VILLAGER_HURT, p_70604_1_, this);
@@ -955,20 +918,10 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	}
 
+	@Override
 	public void die(DamageSource p_35419_) {
 		Entity entity = p_35419_.getEntity();
 
-		if (this.getTofunianJobBlock() != null) {
-			if (this.level() instanceof ServerLevel) {
-				//don't forget release poi
-				PoiManager poimanager = ((ServerLevel) this.level()).getPoiManager();
-				if (poimanager.exists(this.getTofunianJobBlock(), (p_217230_) -> {
-					return true;
-				})) {
-					poimanager.release(this.getTofunianJobBlock());
-				}
-			}
-		}
 		if (this.getVillageCenter() != null) {
 			if (this.level() instanceof ServerLevel) {
 				//don't forget release poi
@@ -981,6 +934,24 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			}
 		}
 		super.die(p_35419_);
+	}
+
+	@Nullable
+	@Override
+	public Entity changeDimension(ServerLevel serverLevel) {
+		if (this.getVillageCenter() != null) {
+			//don't forget release poi
+			PoiManager poimanager = serverLevel.getPoiManager();
+			if (poimanager.exists(this.getVillageCenter(), (p_217230_) -> {
+				return true;
+			})) {
+				poimanager.release(this.getVillageCenter());
+			}
+			this.setVillageCenter(null);
+		}
+
+		this.setTofunianHome(null);
+		return super.changeDimension(serverLevel);
 	}
 
 	@Override
@@ -1056,6 +1027,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.gossips.update(new Dynamic<>(NbtOps.INSTANCE, p_35456_));
 	}
 
+	@Override
 	public float getWalkTargetValue(BlockPos p_27573_, LevelReader p_27574_) {
 		return p_27574_.getBlockState(p_27573_.below()).is(Blocks.GRASS_BLOCK) ? 10.0F : p_27574_.getPathfindingCostFromLightLevels(p_27573_);
 	}
@@ -1090,7 +1062,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		NORMAL(true, -1),
 		CRY(true, 80),
 		AVOID(true, -1),
-		ASK_FOOD(true, -1),
 		SIT(true, -1),
 		HAPPY(false, 30),
 		EAT(true, -1);
@@ -1118,23 +1089,34 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public enum Roles implements IExtensibleEnum {
-		TOFUCOOK(PoiTypes.FARMER), TOFUSMITH(PoiTypes.ARMORER), SOYWORKER(PoiTypes.LEATHERWORKER), TOFUNIAN(null);
+		TOFUCOOK(getBlockStates(Blocks.COMPOSTER)), TOFUSMITH(getBlockStates(Blocks.BLAST_FURNACE)), SOYWORKER((Set) ImmutableList.of(Blocks.CAULDRON, Blocks.LAVA_CAULDRON, Blocks.WATER_CAULDRON, Blocks.POWDER_SNOW_CAULDRON).stream().flatMap((p_218093_) -> {
+			return p_218093_.getStateDefinition().getPossibleStates().stream();
+		}).collect(ImmutableSet.toImmutableSet())), TOFUNIAN(Set.of());
 
 		private static final Map<String, Roles> lookup;
-		private final ResourceKey<PoiType> poitype;
 
 		static {
 			lookup = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, p_220362_0_ -> p_220362_0_));
 		}
 
-		private Roles(ResourceKey<PoiType> poitype) {
-			this.poitype = poitype;
+		private final Set<BlockState> matchingStates;
+
+		private Roles(Set<BlockState> matchingStates) {
+			matchingStates = Set.copyOf(matchingStates);
+			this.matchingStates = matchingStates;
 		}
 
-		public static Roles create(String name, ResourceKey<PoiType> poitype) {
+		public static Roles create(String name, Set<BlockState> poitype) {
 			throw new IllegalStateException("Enum not extended");
 		}
 
+		public boolean is(BlockState p_148693_) {
+			return this.matchingStates.contains(p_148693_);
+		}
+
+		private static Set<BlockState> getBlockStates(Block p_218074_) {
+			return ImmutableSet.copyOf(p_218074_.getStateDefinition().getPossibleStates());
+		}
 
 		public static Roles get(String nameIn) {
 			for (Roles role : values()) {
@@ -1145,56 +1127,13 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 
 		@Nullable
-		public static Roles getJob(ResourceKey<PoiType> poitypeIn) {
+		public static Roles getJob(BlockState blockState) {
 			for (Roles role : values()) {
-				if (role != TOFUNIAN && role.getPoiType() == poitypeIn) {
+				if (role != TOFUNIAN && role.is(blockState)) {
 					return role;
 				}
 			}
 			return null;
-		}
-
-		@Nullable
-		public static Roles get(BlockState blockState) {
-			for (Roles role : values()) {
-				if (role != TOFUNIAN) {
-					Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(role.getPoiType());
-
-					if (poiTypeHolder.isPresent() && poiTypeHolder.get().value().is(blockState)) {
-						return role;
-					}
-				}
-			}
-			return null;
-		}
-
-		public static Set<BlockState> getJobBlock(ResourceKey<PoiType> poitypeIn) {
-			for (Roles role : values()) {
-				if (role != TOFUNIAN && role.getPoiType() == poitypeIn) {
-					Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(role.getPoiType());
-
-					if (poiTypeHolder.isPresent()) {
-						return poiTypeHolder.get().value().matchingStates();
-					}
-				}
-			}
-			return null;
-		}
-
-		public static Set<BlockState> getJobMatch(Roles roles, ResourceKey<PoiType> poitypeIn) {
-			if (roles != TOFUNIAN && roles.getPoiType() == poitypeIn) {
-				Optional<Holder.Reference<PoiType>> poiTypeHolder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(roles.getPoiType());
-
-				if (poiTypeHolder.isPresent()) {
-					return poiTypeHolder.get().value().matchingStates();
-				}
-			}
-			return null;
-		}
-
-		@Nullable
-		public ResourceKey<PoiType> getPoiType() {
-			return poitype;
 		}
 	}
 
@@ -1207,7 +1146,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			this.tofunian = p_i50459_2_;
 			this.stopDistance = p_i50459_3_;
 			this.speedModifier = p_i50459_5_;
-			this.setFlags(EnumSet.of(Flag.MOVE));
+			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 		}
 
 		public void stop() {
@@ -1246,7 +1185,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 		public GetItemGoal(T p_i50572_2_) {
 			this.mob = p_i50572_2_;
-			this.setFlags(EnumSet.of(Flag.MOVE));
+			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
 		}
 
 		public boolean canUse() {

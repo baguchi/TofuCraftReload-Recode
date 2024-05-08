@@ -6,7 +6,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -48,15 +47,7 @@ public class EatItemGoal<T extends Tofunian> extends Goal {
 	}
 
 	public void stop() {
-		if (this.mob.getPreviousTreat() != null) {
-			for (ItemStack itemstack : getItemToThrow(this.mob)) {
-				BehaviorUtils.throwItem(this.mob, itemstack, this.mob.getPreviousTreat().position());
-			}
-			this.mob.setPreviousTreat(null);
-			this.mob.setAction(Tofunian.Actions.HAPPY);
-		} else {
-			this.mob.setAction(Tofunian.Actions.NORMAL);
-		}
+		this.mob.setAction(Tofunian.Actions.NORMAL);
 		this.mob.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 	}
 
