@@ -55,7 +55,7 @@ public class TFBatteryItem extends Item implements IEnergyInsertable, IEnergyCon
 
 	@Override
 	public int getEnergyMax(ItemStack inst) {
-		return 5000;
+		return 10000;
 	}
 
 	@Override
