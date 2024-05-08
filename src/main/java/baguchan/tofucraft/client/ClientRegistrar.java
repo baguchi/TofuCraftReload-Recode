@@ -64,6 +64,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -180,6 +181,6 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiOverlaysEvent event) {
-		event.registerAboveAll("tofu_portal_overlay", new TofuPortalOverlay());
+		event.registerBelow(VanillaGuiOverlay.PORTAL.id(), "tofu_portal_overlay", new TofuPortalOverlay());
 	}
 }
