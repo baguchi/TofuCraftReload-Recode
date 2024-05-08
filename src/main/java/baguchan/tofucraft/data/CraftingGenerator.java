@@ -1623,6 +1623,16 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('R', TofuItems.TF_CAPACITOR.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuItems.TF_BATTERY.get())
+				.pattern("MRM")
+				.pattern("MTM")
+				.pattern("MTM")
+				.define('M', TofuItems.TOFUMETAL.get())
+				.define('T', TofuItems.TOFUGEM.get())
+				.define('R', Items.REDSTONE)
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TOFU_WORK_STATION.get())
 				.pattern("MM")
 				.pattern("TT")

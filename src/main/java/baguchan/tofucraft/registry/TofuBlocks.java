@@ -284,6 +284,7 @@ public class TofuBlocks {
 	public static final RegistryObject<Block> TOFU_BEDROCK = register("tofu_bedrock", () -> new Block(BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).sound(SoundType.STONE).isValidSpawn((state, blockGetter, blockPos, entityType) -> false)));
 
 	public static final RegistryObject<Block> SAPLING_TOFU = register("sapling_tofu", () -> new TofuSaplingBlock(new TofuTreeGrower(), BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+	public static final RegistryObject<Block> TOFU_FLOWER = register("tofu_flower", () -> new TofuSaplingBlock(new TofuTreeGrower(), BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 	public static final RegistryObject<Block> LEAVES_TOFU = register("leaves_tofu", () -> new TofuLeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).noOcclusion().randomTicks().isSuffocating((state, getter, pos) -> false).sound(SoundType.GRASS)));
 
 	public static final RegistryObject<Block> LEEK = register("blockleek", () -> new LeekBlock(BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.GRASS)));
@@ -456,6 +457,7 @@ public class TofuBlocks {
 	public static final RegistryObject<FlowerPotBlock> POTTED_LEEK = BLOCKS.register("potted_leek", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, LEEK, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
 
 	public static final RegistryObject<FlowerPotBlock> POTTED_TOFU_SAPLING = BLOCKS.register("potted_tofu_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SAPLING_TOFU, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
+	public static final RegistryObject<FlowerPotBlock> POTTED_TOFU_FLOWER = BLOCKS.register("potted_tofu_flower", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, TOFU_FLOWER, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
 	public static final RegistryObject<FlowerPotBlock> POTTED_ZUNDA_TOFU_MUSHROOM = BLOCKS.register("potted_zunda_tofu_mushroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ZUNDATOFU_MUSHROOM, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
 	public static final RegistryObject<FlowerPotBlock> POTTED_APRICOT_SAPLING = BLOCKS.register("potted_apricot_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SAPLING_APRICOT, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT)));
 

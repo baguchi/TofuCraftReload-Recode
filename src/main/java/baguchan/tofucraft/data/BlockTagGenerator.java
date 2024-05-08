@@ -127,5 +127,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.WALL_SIGNS).add(TofuBlocks.TOFU_STEM_WALL_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_SIGN.get(), TofuBlocks.LEEK_WALL_SIGN.get());
 		this.tag(BlockTags.CEILING_HANGING_SIGNS).add(TofuBlocks.TOFU_STEM_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_HANGING_SIGN.get());
 		this.tag(BlockTags.WALL_HANGING_SIGNS).add(TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get(), TofuBlocks.LEEK_WALL_HANGING_SIGN.get());
+		this.tag(BlockTags.SMALL_FLOWERS).add(TofuBlocks.TOFU_FLOWER.get());
+		this.tag(BlockTags.BEE_GROWABLES).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get())
+				.add(TofuBlocks.RICE_CROP.get());
 	}
 }

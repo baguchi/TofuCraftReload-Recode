@@ -84,5 +84,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
 				, TofuItems.KINAKO_MOCHI.get(), TofuItems.KINAKO_MANJU.get(), TofuItems.GOHEIMOCHI.get()
 				, TofuItems.RICE_SOBORO_TOFU.get()
 				, TofuItems.NANBANTOFU.get(), TofuItems.KOYADOFUSTEW.get(), TofuItems.MOYASHIITAME.get(), TofuItems.MOYASHIOHITASHI.get(), TofuItems.TOFUCOOKIE.get(), TofuItems.TOFUANNIN.get());
+		this.tag(ItemTags.SMALL_FLOWERS).add(TofuBlocks.TOFU_FLOWER.get().asItem());
 	}
 }

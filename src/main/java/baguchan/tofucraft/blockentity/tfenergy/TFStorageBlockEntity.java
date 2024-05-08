@@ -113,13 +113,13 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 
 		if (from.getItem() instanceof IEnergyInsertable symbol) {
 			if (tfStorageBlockEntity.getEnergyStored() >= POWER * 5) {
-				tfStorageBlockEntity.drain(symbol.fill(from, POWER, false) * 5, false);
+				tfStorageBlockEntity.drain(symbol.fill(from, POWER, false), false);
 			}
 		}
 		//Consume beans inside machine
 		if (tfStorageBlockEntity.workload == 0) {
 			FluidStack milk = tfStorageBlockEntity.getTank().getFluid();
-			if (from.getItem() instanceof IEnergyExtractable symbol) {
+			if (from.getItem() instanceof IEnergyExtractable symbol && !(from.getItem() instanceof IEnergyInsertable)) {
 				tfStorageBlockEntity.workload += symbol.drain(from, POWER * 20, false);
 			} else if (TofuEnergyMap.getFuel(from) != -1) {
 				tfStorageBlockEntity.workload += TofuEnergyMap.getFuel(from);

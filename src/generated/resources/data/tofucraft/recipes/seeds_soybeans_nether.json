@@ -1,13 +1,13 @@
 {
-  "type" : "minecraft:crafting_shapeless",
-  "category" : "misc",
-  "ingredients" : [
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
     {
-      "item" : "tofucraft:seeds_soybeans_nether_block"
+      "item": "tofucraft:seeds_soybeans_nether_block"
     }
   ],
-  "result" : {
-    "count" : 9,
-    "item" : "tofucraft:seeds_soybeans_nether"
+  "result": {
+    "count": 9,
+    "item": "tofucraft:seeds_soybeans_nether"
   }
 }

@@ -89,8 +89,8 @@ public class ZundaBowItem extends BowItem implements IEnergyInsertable {
 	public static float getPowerForTime(int p_40662_) {
 		float f = (float) p_40662_ / 20.0F;
 		f = (f * f + f * 2.0F) / 3.0F;
-		if (f > 1.2F) {
-			f = 1.2F;
+		if (f > 1.0F) {
+			f = 1.0F;
 		}
 
 		return f;
@@ -106,7 +106,7 @@ public class ZundaBowItem extends BowItem implements IEnergyInsertable {
 		if (!simulate) {
 			if (inst.getDamageValue() > 0) {
 				inst.setDamageValue(Mth.clamp(inst.getDamageValue() - calculated, 0, inst.getMaxDamage()));
-				return calculated;
+				return calculated * 5;
 			}
 		}
 		return 0;

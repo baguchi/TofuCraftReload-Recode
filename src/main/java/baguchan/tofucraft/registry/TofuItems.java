@@ -25,6 +25,7 @@ import baguchan.tofucraft.item.RollingPinItem;
 import baguchan.tofucraft.item.SeedAndRootItem;
 import baguchan.tofucraft.item.SoulFukumameItem;
 import baguchan.tofucraft.item.SoymilkBottleItem;
+import baguchan.tofucraft.item.TFBatteryItem;
 import baguchan.tofucraft.item.TofuArmorItem;
 import baguchan.tofucraft.item.TofuAxeItem;
 import baguchan.tofucraft.item.TofuBoatItem;
@@ -371,6 +372,7 @@ public class TofuItems {
 	public static final RegistryObject<Item> TF_CIRCUIT = ITEMS.register("tf_circuit", () -> new Item((new Item.Properties())));
 	public static final RegistryObject<Item> TF_OSCILLATOR = ITEMS.register("tf_oscillator", () -> new Item((new Item.Properties())));
 	public static final RegistryObject<Item> TOFU_CORE = ITEMS.register("tofu_core", () -> new Item((new Item.Properties())));
+	public static final RegistryObject<Item> TF_BATTERY = ITEMS.register("tf_battery", () -> new TFBatteryItem((new Item.Properties().stacksTo(1))));
 
 
 	public static final RegistryObject<Item> TOFUNIAN_SPAWNEGG = ITEMS.register("tofunian_spawnegg", () -> new ForgeSpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties())));

@@ -13,12 +13,13 @@ public class SoyHealthyEffect extends MobEffect {
 	public void applyEffectTick(LivingEntity livingEntity, int p_301079_) {
 		super.applyEffectTick(livingEntity, p_301079_);
 		if (livingEntity instanceof Player player) {
-			player.causeFoodExhaustion(-0.005F * (float) (p_301079_ + 1));
+			player.heal(1);
 		}
 	}
 
 	@Override
-	public boolean isDurationEffectTick(int duration, int amplifier) {
-		return true;
+	public boolean isDurationEffectTick(int p_295368_, int p_294232_) {
+		int i = 160 >> p_294232_;
+		return i > 0 ? p_295368_ % i == 0 : true;
 	}
 }

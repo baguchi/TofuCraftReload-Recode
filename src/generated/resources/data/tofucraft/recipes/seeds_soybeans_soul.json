@@ -1,13 +1,13 @@
 {
-  "type" : "minecraft:crafting_shapeless",
-  "category" : "misc",
-  "ingredients" : [
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
     {
-      "item" : "tofucraft:seeds_soybeans_soul_block"
+      "item": "tofucraft:seeds_soybeans_soul_block"
     }
   ],
-  "result" : {
-    "count" : 9,
-    "item" : "tofucraft:seeds_soybeans_soul"
+  "result": {
+    "count": 9,
+    "item": "tofucraft:seeds_soybeans_soul"
   }
 }

@@ -58,7 +58,7 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 		if (!simulate) {
 			if (inst.getDamageValue() > 0) {
 				inst.setDamageValue(Mth.clamp(inst.getDamageValue() - calculated, 0, inst.getMaxDamage()));
-				return calculated;
+				return calculated * 5;
 			} else {
 				int calculated2 = Math.min(energy, getEnergyMax(inst) - getEnergy(inst));
 				setEnergy(inst, getEnergy(inst) + calculated2);

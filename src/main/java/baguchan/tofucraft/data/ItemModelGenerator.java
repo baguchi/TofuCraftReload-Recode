@@ -145,6 +145,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.ORE_TOFUGEM);
 		toBlock(TofuBlocks.TOFU_BEDROCK);
 
+		itemBlockFlat(TofuBlocks.TOFU_FLOWER);
+
 		toBlock(TofuBlocks.LEEK_GREEN_STEM);
 		toBlock(TofuBlocks.LEEK_GREEN_PLANKS);
 		toBlock(TofuBlocks.LEEK_GREEN_PLANKS_STAIR);
@@ -392,6 +394,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TF_CAPACITOR);
 		singleTex(TofuItems.TF_OSCILLATOR);
 		singleTex(TofuItems.TOFU_CORE);
+		singleTex(TofuItems.TF_BATTERY);
 
 		singleTexTool(TofuItems.TOFU_KINU_SWORD);
 		singleTexTool(TofuItems.TOFU_KINU_PICKAXE);

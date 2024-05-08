@@ -11,6 +11,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class TofuEffects {
 	public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, TofuCraftReload.MODID);
 
-	public static final RegistryObject<MobEffect> SOY_HEALTHY = MOB_EFFECTS.register("soy_healthy", () -> new SoyHealthyEffect(MobEffectCategory.BENEFICIAL, 0));
+	public static final RegistryObject<MobEffect> SOY_HEALTHY = MOB_EFFECTS.register("soy_healthy", () -> new SoyHealthyEffect(MobEffectCategory.BENEFICIAL, 0xFFFFFF));
 
 }

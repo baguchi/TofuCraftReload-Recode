@@ -1,13 +1,13 @@
 {
-  "type" : "minecraft:crafting_shapeless",
-  "category" : "building",
-  "ingredients" : [
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
     {
-      "item" : "tofucraft:leek_green_stem"
+      "item": "tofucraft:leek_green_stem"
     }
   ],
-  "result" : {
-    "count" : 4,
-    "item" : "tofucraft:leek_green_planks"
+  "result": {
+    "count": 4,
+    "item": "tofucraft:leek_green_planks"
   }
 }
