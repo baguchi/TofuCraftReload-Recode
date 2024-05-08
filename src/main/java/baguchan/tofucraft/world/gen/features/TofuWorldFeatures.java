@@ -45,6 +45,7 @@ public class TofuWorldFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_TOFUGEM_LARGE = registerKey("ore_tofugem_large");
 
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_FLOWER = registerKey("tofu_flower");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEEK = registerKey("leek");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BIG_LEEK = registerKey("big_leek");
 
@@ -77,6 +78,7 @@ public class TofuWorldFeatures {
 		FeatureUtils.register(context, ORE_TOFUGEM_LARGE, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 16));
 
 
+		FeatureUtils.register(context, TOFU_FLOWER, Feature.FLOWER, grassPatch(BlockStateProvider.simple(TofuBlocks.TOFU_FLOWER.get()), 32));
 		FeatureUtils.register(context, LEEK, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(TofuBlocks.LEEK.get()), 32));
 		FeatureUtils.register(context, BIG_LEEK, TofuFeatures.BIG_LEEK.get(), RandomFeatureConfiguration.NONE);
 

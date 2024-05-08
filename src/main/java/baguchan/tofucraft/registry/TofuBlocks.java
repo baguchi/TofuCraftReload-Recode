@@ -16,6 +16,7 @@ import baguchan.tofucraft.block.TofuCakeBlock;
 import baguchan.tofucraft.block.TofuCeilingHangingSignBlock;
 import baguchan.tofucraft.block.TofuDetectorBlock;
 import baguchan.tofucraft.block.TofuFarmlandBlock;
+import baguchan.tofucraft.block.TofuFlowerBlock;
 import baguchan.tofucraft.block.TofuGemBlock;
 import baguchan.tofucraft.block.TofuLeavesBlock;
 import baguchan.tofucraft.block.TofuMushroomBlock;
@@ -299,6 +300,8 @@ public class TofuBlocks {
 	public static final Supplier<Block> SAPLING_TOFU = register("sapling_tofu", () -> new TofuSaplingBlock(TofuTreeGrowers.TOFU_TREE, BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 	public static final Supplier<Block> LEAVES_TOFU = register("leaves_tofu", () -> new TofuLeavesBlock(BlockBehaviour.Properties.of().strength(0.2F).noOcclusion().randomTicks().isSuffocating((state, getter, pos) -> false).sound(SoundType.GRASS)));
 
+	public static final Supplier<Block> TOFU_FLOWER = register("tofu_flower", () -> new TofuFlowerBlock(TofuEffects.SOY_HEALTHY, 20.0F, BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.GRASS)));
+
 	public static final Supplier<Block> LEEK = register("blockleek", () -> new LeekBlock(BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.GRASS)));
 
 	public static final Supplier<Block> SAPLING_APRICOT = register("sapling_apricot", () -> new ApricotSaplingBlock(TofuTreeGrowers.APRICOT_TREE, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
@@ -471,6 +474,7 @@ public class TofuBlocks {
 	public static final Supplier<FlowerPotBlock> POTTED_LEEK = BLOCKS.register("potted_leek", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, LEEK, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 
 	public static final Supplier<FlowerPotBlock> POTTED_TOFU_SAPLING = BLOCKS.register("potted_tofu_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SAPLING_TOFU, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
+	public static final Supplier<FlowerPotBlock> POTTED_TOFU_FLOWER = BLOCKS.register("potted_tofu_flower", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, TOFU_FLOWER, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 	public static final Supplier<FlowerPotBlock> POTTED_ZUNDA_TOFU_MUSHROOM = BLOCKS.register("potted_zunda_tofu_mushroom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, ZUNDATOFU_MUSHROOM, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 	public static final Supplier<FlowerPotBlock> POTTED_APRICOT_SAPLING = BLOCKS.register("potted_apricot_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, SAPLING_APRICOT, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
 
