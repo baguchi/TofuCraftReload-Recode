@@ -50,10 +50,10 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
-import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -243,11 +243,11 @@ public class CommonEvents {
 	 *
 	 * */
 	@SubscribeEvent
-	public static void onCheckSpawn(MobSpawnEvent.FinalizeSpawn event) {
+	public static void onCheckSpawn(FinalizeSpawnEvent event) {
 		LivingEntity livingEntity = event.getEntity();
 		net.minecraft.world.level.LevelAccessor level = event.getLevel();
 		if (livingEntity instanceof Enemy) {
-			if (event.getSpawnType() != MobSpawnType.SPAWNER && event.getSpawnType() != MobSpawnType.EVENT && event.getSpawnType() != MobSpawnType.BREEDING && event.getSpawnType() != MobSpawnType.PATROL) {
+			if (event.getSpawnType() != MobSpawnType.SPAWNER && event.getSpawnType() != MobSpawnType.TRIAL_SPAWNER && event.getSpawnType() != MobSpawnType.EVENT && event.getSpawnType() != MobSpawnType.BREEDING && event.getSpawnType() != MobSpawnType.PATROL) {
 				if (level instanceof ServerLevel) {
 					Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
 						return p_184069_.is(TofuPoiTypes.MORIJIO);
