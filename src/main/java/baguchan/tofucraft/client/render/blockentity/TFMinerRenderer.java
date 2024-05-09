@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
+import net.minecraft.world.phys.AABB;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
@@ -79,6 +80,6 @@ public class TFMinerRenderer implements BlockEntityRenderer<TFMinerBlockEntity> 
 
 	@Override
 	public net.minecraft.world.phys.AABB getRenderBoundingBox(TFMinerBlockEntity blockEntity) {
-		return INFINITE_EXTENT_AABB;
+		return AABB.INFINITE;
 	}
 }
