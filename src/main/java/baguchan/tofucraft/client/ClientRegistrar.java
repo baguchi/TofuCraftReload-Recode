@@ -68,6 +68,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
@@ -193,5 +194,11 @@ public class ClientRegistrar {
 	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiLayersEvent event) {
 		event.registerBelow(VanillaGuiLayers.CAMERA_OVERLAYS, TofuCraftReload.prefix("tofu_portal_overlay"), new TofuPortalOverlay());
+	}
+
+	@SubscribeEvent
+	public static void registerDimensionEffect(RegisterDimensionSpecialEffectsEvent event) {
+		TofuDimensionEffects renderInfo = new TofuDimensionEffects();
+		event.register(TofuCraftReload.prefix("renderer"), renderInfo);
 	}
 }
