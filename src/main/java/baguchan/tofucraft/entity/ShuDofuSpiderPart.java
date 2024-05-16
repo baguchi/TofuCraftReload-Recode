@@ -1,13 +1,11 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.network.HurtMultipartPacket;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.Pose;
@@ -63,18 +61,18 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 
 	@Override
 	public boolean hurt(DamageSource damageSource, float damage) {
-		if (!this.isInvulnerableTo(damageSource) && !(damageSource.getEntity() instanceof FukumameEntity)) {
-			Entity entity = damageSource.getDirectEntity();
-
-			if (!parentMob.isAngry() && (damageSource.is(DamageTypes.MAGIC) || damageSource.is(DamageTypes.INDIRECT_MAGIC))) {
-				return false;
-			} else {
+		if (!this.isInvulnerableTo(damageSource)) {
 				if (this.level().isClientSide) {
-					PacketDistributor.sendToServer(new HurtMultipartPacket(parentMob.getId(), damage, this.damageSources().damageTypes.getKey(damageSource.type()).toString()));
+					Entity entity = damageSource.getEntity();
+					if (entity != null) {
+						if (this == parentMob.body) {
+							PacketDistributor.sendToServer(new HurtMultipartPacket(entity.getId(), parentMob.getId(), damage * 1.2F, this.damageSources().damageTypes.getKey(damageSource.type()).toString()));
+						} else {
+							PacketDistributor.sendToServer(new HurtMultipartPacket(entity.getId(), parentMob.getId(), damage * 0.85F, this.damageSources().damageTypes.getKey(damageSource.type()).toString()));
+						}
+					}
 				}
 				return true;
-
-			}
 
 		} else {
 			return false;

@@ -82,7 +82,7 @@ public class ShuDofuSpider extends Monster {
 	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ARMOR_MODIFIER_UUID, "armor boost", -0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
 	private final ShuDofuSpiderPart[] subEntities;
-	private final ShuDofuSpiderPart body;
+	public final ShuDofuSpiderPart body;
 	private final ShuDofuSpiderPart leg1;
 	private final ShuDofuSpiderPart leg2;
 	private final ShuDofuSpiderPart leg3;
@@ -602,10 +602,10 @@ public class ShuDofuSpider extends Monster {
 				this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
 			}
 
-			if (entity instanceof Projectile) {
-				return super.hurt(p_31461_, p_31462_ * 0.8F);
-			} else if (entity instanceof FukumameEntity || !this.isAngry() && (p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC))) {
+			if (entity instanceof FukumameEntity || !this.isAngry() && (p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC))) {
 				return false;
+			} else if (entity instanceof Projectile) {
+				return super.hurt(p_31461_, p_31462_ * 0.35F);
 			}
 
 			return super.hurt(p_31461_, p_31462_);

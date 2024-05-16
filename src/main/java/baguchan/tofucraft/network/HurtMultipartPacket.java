@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.neoforge.network.handling.IPayloadHandler;
@@ -22,27 +23,25 @@ public class HurtMultipartPacket implements CustomPacketPayload, IPayloadHandler
 	);
 	public static final Type<HurtMultipartPacket> TYPE = CustomPacketPayload.createType(TofuCraftReload.prefix("hurt_multipart").toString());
 
+	public int attacker;
 	public int parent;
 	public float damage;
 	public String damageType;
 
-	public HurtMultipartPacket(int parent, float damage) {
-		this.parent = parent;
-		this.damage = damage;
-		this.damageType = "";
-	}
 
-	public HurtMultipartPacket(int parent, float damage, String damageType) {
+	public HurtMultipartPacket(int attacker, int parent, float damage, String damageType) {
+		this.attacker = attacker;
 		this.parent = parent;
 		this.damage = damage;
 		this.damageType = damageType;
 	}
 
 	public HurtMultipartPacket(FriendlyByteBuf buf) {
-		this(buf.readInt(), buf.readFloat(), buf.readUtf());
+		this(buf.readInt(), buf.readInt(), buf.readFloat(), buf.readUtf());
 	}
 
 	public void write(FriendlyByteBuf buf) {
+		buf.writeInt(this.attacker);
 		buf.writeInt(this.parent);
 		buf.writeFloat(this.damage);
 		buf.writeUtf(this.damageType);
@@ -54,6 +53,8 @@ public class HurtMultipartPacket implements CustomPacketPayload, IPayloadHandler
 
 		if (player != null) {
 			if (player.level() != null) {
+				Entity attacker = player.level().getEntity(message.attacker);
+
 				Entity parent2 = player.level().getEntity(message.parent);
 				Registry<DamageType> registry = player.level().registryAccess().registry(Registries.DAMAGE_TYPE).get();
 				DamageType dmg = registry.get(new ResourceLocation(message.damageType));
@@ -63,6 +64,9 @@ public class HurtMultipartPacket implements CustomPacketPayload, IPayloadHandler
 						DamageSource source = new DamageSource(registry.getHolder(registry.getId(dmg)).get());
 						if (parent2 != null) {
 							parent2.hurt(source, message.damage);
+							if (attacker instanceof Player player1 && parent2 instanceof LivingEntity livingEntity) {
+								player1.getMainHandItem().hurtEnemy(livingEntity, player1);
+							}
 						}
 
 					}
