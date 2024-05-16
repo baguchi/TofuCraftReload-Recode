@@ -3,6 +3,7 @@ package baguchan.tofucraft.entity;
 import bagu_chan.bagus_lib.client.camera.CameraCore;
 import bagu_chan.bagus_lib.client.camera.holder.EntityCameraHolder;
 import bagu_chan.bagus_lib.util.GlobalVec3;
+import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.registry.TofuDamageSource;
@@ -45,7 +46,6 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Explosion;
@@ -58,6 +58,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.entity.PartEntity;
 import net.neoforged.neoforge.fluids.FluidType;
 
 import javax.annotation.Nullable;
@@ -80,6 +81,13 @@ public class ShuDofuSpider extends Monster {
 	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("216e1242-75c7-8114-0500-6fc7e324dae6");
 	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ARMOR_MODIFIER_UUID, "armor boost", -0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
+	private final ShuDofuSpiderPart[] subEntities;
+	private final ShuDofuSpiderPart leg1;
+	private final ShuDofuSpiderPart leg2;
+	private final ShuDofuSpiderPart leg3;
+	private final ShuDofuSpiderPart leg4;
+	private final ShuDofuSpiderPart leg5;
+	private final ShuDofuSpiderPart leg6;
 
 	private int attackTime;
 	private int jumpTime;
@@ -102,10 +110,19 @@ public class ShuDofuSpider extends Monster {
 	public final AnimationState graspPreAnimationState = new AnimationState();
 
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
+	private float graspDamageReceived;
 
 	public ShuDofuSpider(EntityType<? extends ShuDofuSpider> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
-		this.xpReward = 60;
+		this.xpReward = 200;
+		this.leg1 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
+		this.leg2 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
+		this.leg3 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
+		this.leg4 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
+		this.leg5 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
+		this.leg6 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
+		this.subEntities = new ShuDofuSpiderPart[]{this.leg1, this.leg2, this.leg3, this.leg4, this.leg5, this.leg6};
+		this.setId(ENTITY_COUNTER.getAndAdd(this.subEntities.length + 1) + 1);
 	}
 
 	@Override
@@ -238,7 +255,7 @@ public class ShuDofuSpider extends Monster {
 					List<LivingEntity> entitiesHit = this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
-							if (this.canAttack(entity)) {
+							if (this.canAttack(entity) && this.isWithinMeleeAttackRange(entity)) {
 								doHurtTarget(entity);
 							}
 						}
@@ -320,7 +337,7 @@ public class ShuDofuSpider extends Monster {
 								double d12 = Math.sqrt(entity.distanceToSqr(entity)) / (double) radius * 2.0F;
 								double d14 = (double) Explosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
 								double d10 = (1.0D - d12) * d14;
-								entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) (((d10 * d10 + d10) / 2.0D) * 38.0D));
+								entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) (((d10 * d10 + d10) / 2.0D) * 30.0D));
 							}
 						}
 					}
@@ -338,26 +355,23 @@ public class ShuDofuSpider extends Monster {
 		} else {
 			this.rightLegAnimationOld = this.rightLegAnimation;
 			this.leftLegAnimationOld = this.leftLegAnimation;
-			if (!this.isJump()) {
+			if (!this.isJump() && this.subEntities != null) {
 				var direction = Direction.fromYRot(this.yBodyRot);
 				var pos = this.blockPosition();
 				var air = Blocks.AIR.defaultBlockState();
 
-
-				if (direction == Direction.NORTH) {
-
-					var rBlock = this.level().getBlockState(pos.below().west().west());
-					var rBlockF = this.level().getBlockState(pos.below().west().west().north());
-					var rBlockB = this.level().getBlockState(pos.below().west().west().south());
+				var rBlock = this.level().getBlockState(this.leg1.blockPosition().below());
+				var rBlockF = this.level().getBlockState(this.leg2.blockPosition().below());
+				var rBlockB = this.level().getBlockState(this.leg3.blockPosition().below());
 					if (rBlock == air && rBlockF == air && rBlockB == air) {
 						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, -1, 1);
 					} else {
 						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation * 0.5F, -1, 1);
 
 					}
-					var lBlock = this.hasEmptyCollisionOnLeg(pos.below().east().east());
-					var lBlockF = this.hasEmptyCollisionOnLeg(pos.below().east().east().north());
-					var lBlockB = this.hasEmptyCollisionOnLeg(pos.below().east().east().south());
+				var lBlock = this.hasEmptyCollisionOnLeg(this.leg4.blockPosition().below());
+				var lBlockF = this.hasEmptyCollisionOnLeg(this.leg5.blockPosition().below());
+				var lBlockB = this.hasEmptyCollisionOnLeg(this.leg6.blockPosition().below());
 					if (lBlock && lBlockF && lBlockB) {
 						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.1F, -1, 1);
 					} else {
@@ -365,70 +379,56 @@ public class ShuDofuSpider extends Monster {
 
 					}
 
-				} else if (direction == Direction.EAST) {
-					var rBlock = this.hasEmptyCollisionOnLeg(pos.below().north().north());
-					var rBlockF = this.hasEmptyCollisionOnLeg(pos.below().north().north().east());
-					var rBlockB = this.hasEmptyCollisionOnLeg(pos.below().north().north().west());
-					if (rBlock && rBlockF && rBlockB) {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, -1, 1);
-					} else {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation * 0.5F, -1, 1);
-
-					}
-					var lBlock = this.hasEmptyCollisionOnLeg(pos.below().south().south());
-					var lBlockF = this.hasEmptyCollisionOnLeg(pos.below().south().south().east());
-					var lBlockB = this.hasEmptyCollisionOnLeg(pos.below().south().south().west());
-					if (lBlock && lBlockF && lBlockB) {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.1F, -1, 1);
-					} else {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation * 0.5F, -1, 1);
-
-					}
-				} else if (direction == Direction.WEST) {
-					var rBlock = this.hasEmptyCollisionOnLeg(pos.below().south().south());
-					var rBlockF = this.hasEmptyCollisionOnLeg(pos.below().south().south().west());
-					var rBlockB = this.hasEmptyCollisionOnLeg(pos.below().south().south().east());
-					if (rBlock && rBlockF && rBlockB) {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, -1, 1);
-					} else {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation * 0.5F, -1, 1);
-
-					}
-					var lBlock = this.hasEmptyCollisionOnLeg(pos.below().north().north());
-					var lBlockF = this.hasEmptyCollisionOnLeg(pos.below().north().north().west());
-					var lBlockB = this.hasEmptyCollisionOnLeg(pos.below().north().north().east());
-					if (lBlock && lBlockF && lBlockB) {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.1F, -1, 1);
-					} else {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation * 0.5F, -1, 1);
-
-					}
-				} else if (direction == Direction.SOUTH) {
-					var rBlock = this.hasEmptyCollisionOnLeg(pos.below().east().east());
-					var rBlockF = this.hasEmptyCollisionOnLeg(pos.below().east().east().south());
-					var rBlockB = this.hasEmptyCollisionOnLeg(pos.below().east().east().north());
-					if (rBlock && rBlockF && rBlockB) {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, -1, 1);
-					} else {
-						this.rightLegAnimation = Mth.clamp(this.rightLegAnimation * 0.5F, -1, 1);
-
-					}
-					var lBlock = this.hasEmptyCollisionOnLeg(pos.below().west().west());
-					var lBlockF = this.hasEmptyCollisionOnLeg(pos.below().west().west().south());
-					var lBlockB = this.hasEmptyCollisionOnLeg(pos.below().west().west().north());
-					if (lBlock && lBlockF && lBlockB) {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation - 0.1F, -1, 1);
-					} else {
-						this.leftLegAnimation = Mth.clamp(this.leftLegAnimation * 0.5F, -1, 1);
-
-					}
-				}
 			} else {
 				this.rightLegAnimation = Mth.clamp(this.rightLegAnimation + 0.1F, -1, 1);
 				this.leftLegAnimation = Mth.clamp(this.leftLegAnimation + 0.1F, -1, 1);
 			}
 		}
 		super.tick();
+	}
+
+	@Override
+	public void aiStep() {
+		super.aiStep();
+		Vec3[] avec3 = new Vec3[this.subEntities.length];
+
+		for (int j = 0; j < this.subEntities.length; j++) {
+			avec3[j] = new Vec3(this.subEntities[j].getX(), this.subEntities[j].getY(), this.subEntities[j].getZ());
+		}
+		Vec3 vec3 = new Vec3(0, 1, -2)
+				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
+		Vec3 vec32 = new Vec3(2.0F, 0, 1.0)
+				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
+		Vec3 vec33 = new Vec3(2.0F, 0, 0)
+				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
+		Vec3 vec34 = new Vec3(2.0F, 0, -1.0)
+				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
+		Vec3 vec35 = new Vec3(-2.0F, 0, 1.0)
+				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
+		Vec3 vec36 = new Vec3(-2.0F, 0, 0)
+				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
+		Vec3 vec37 = new Vec3(-2.0F, 0, -1.0)
+				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
+		this.tickPart(this.leg1, (double) vec32.x, vec32.y, (double) (vec32.z));
+		this.tickPart(this.leg2, (double) vec33.x, vec33.y, (double) (vec33.z));
+		this.tickPart(this.leg3, (double) vec34.x, vec34.y, (double) (vec34.z));
+		this.tickPart(this.leg4, (double) vec35.x, vec35.y, (double) (vec35.z));
+		this.tickPart(this.leg5, (double) vec36.x, vec36.y, (double) (vec36.z));
+		this.tickPart(this.leg6, (double) vec37.x, vec37.y, (double) (vec37.z));
+
+		for (int l = 0; l < this.subEntities.length; l++) {
+			this.subEntities[l].xo = avec3[l].x;
+			this.subEntities[l].yo = avec3[l].y;
+			this.subEntities[l].zo = avec3[l].z;
+			this.subEntities[l].xOld = avec3[l].x;
+			this.subEntities[l].yOld = avec3[l].y;
+			this.subEntities[l].zOld = avec3[l].z;
+		}
+
+	}
+
+	private void tickPart(ShuDofuSpiderPart p_31116_, double p_31117_, double p_31118_, double p_31119_) {
+		p_31116_.setPos(this.getX() + p_31117_, this.getY() + p_31118_, this.getZ() + p_31119_);
 	}
 
 	public boolean hasEmptyCollisionOnLeg(BlockPos blockPos) {
@@ -599,17 +599,9 @@ public class ShuDofuSpider extends Monster {
 				this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
 			}
 
-			if (this.isGraspAnim()) {
-				if (!this.level().isClientSide() && this.random.nextFloat() < 0.025F * p_31462_) {
-					this.setGraspAnimation(false);
-					this.ejectPassengers();
-					this.attackTime = -40;
-				}
-			}
-
-			if (entity instanceof AbstractArrow && ((AbstractArrow) entity).getPierceLevel() > 0) {
-				return super.hurt(p_31461_, p_31462_ * 0.15F * ((AbstractArrow) entity).getPierceLevel());
-			} else if (entity instanceof Projectile || !this.isAngry() && (p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC))) {
+			if (entity instanceof Projectile) {
+				return super.hurt(p_31461_, p_31462_ * 0.8F);
+			} else if (entity instanceof FukumameEntity || !this.isAngry() && (p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC))) {
 				return false;
 			}
 
@@ -649,6 +641,30 @@ public class ShuDofuSpider extends Monster {
 	protected int decreaseAirSupply(int p_28882_) {
 		return p_28882_;
 	}
+
+	public boolean hurt(ShuDofuSpiderPart shuDofuSpiderPart, DamageSource damageSource, float damage) {
+		float f = this.getHealth();
+
+		this.reallyHurt(damageSource, damage * 0.9F);
+
+		if (this.isGraspAnim()) {
+			this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
+			if (this.graspDamageReceived > 0.075F * this.getMaxHealth()) {
+				this.graspDamageReceived = 0.0F;
+				this.setGraspAnimation(false);
+				this.attackTime = -40;
+			}
+		}
+
+		return true;
+
+	}
+
+	private boolean reallyHurt(DamageSource damageSource, float damage) {
+		return super.hurt(damageSource, damage);
+	}
+
+	
 
 	static class AttackGoal extends Goal {
 		private final ShuDofuSpider spider;
@@ -710,7 +726,7 @@ public class ShuDofuSpider extends Monster {
 				if (!flag) {
 					return;
 				}
-				if (entity.distanceTo(entityTarget) <= 4F && attackTime <= 10) {
+				if (entity.isWithinMeleeAttackRange(entityTarget) && attackTime <= 10) {
 					entity.setAttackAnimation(true);
 					this.attackTime = 20;
 					this.attackStep = 0;
@@ -1009,5 +1025,15 @@ public class ShuDofuSpider extends Monster {
 
 	public boolean isAngry() {
 		return this.entityData.get(ANGRY);
+	}
+
+	@Override
+	public PartEntity<?>[] getParts() {
+		return subEntities;
+	}
+
+	@Override
+	public boolean isMultipartEntity() {
+		return true;
 	}
 }
