@@ -4,10 +4,10 @@ import baguchan.tofucraft.entity.TofuSlime;
 import baguchan.tofucraft.registry.TofuDamageSource;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -77,7 +77,7 @@ public class ZundaArrow extends AbstractArrow {
 				this.spawnAtLocation(new ItemStack(TofuItems.TOFUZUNDA.get(), slime.getSize() * 2));
 				p_36757_.getEntity().discard();
 				this.discard();
-			} else if (p_36757_.getEntity().getType().is(EntityTypeTags.UNDEAD)) {
+			} else if (p_36757_.getEntity().getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
 
 				if (((Mob) p_36757_.getEntity()).hurt(zundaAttack(this.getOwner()), i)) {
 					this.discard();
