@@ -63,7 +63,7 @@ public class ParticleStink extends TextureSheetParticle {
 
 		@Override
 		public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			ParticleStink particleCloud = new ParticleStink(level, x, y, z, xSpeed, ySpeed, zSpeed, 5.0F, 60, 1.01F);
+			ParticleStink particleCloud = new ParticleStink(level, x, y, z, xSpeed, ySpeed, zSpeed, 10.0F, 80, 1.2F);
 			particleCloud.setSpriteFromAge(sprite);
 			return particleCloud;
 		}

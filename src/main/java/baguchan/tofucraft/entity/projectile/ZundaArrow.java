@@ -4,8 +4,8 @@ import baguchan.tofucraft.entity.TofuSlime;
 import baguchan.tofucraft.registry.TofuDamageSource;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuTags;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -15,7 +15,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -47,7 +46,7 @@ public class ZundaArrow extends AbstractArrow {
 	public void tick() {
 		super.tick();
 		if (this.level().isClientSide && !this.inGround) {
-			this.level().addParticle(ParticleTypes.SPORE_BLOSSOM_AIR, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+			this.level().addParticle(TofuParticleTypes.ZUNDA_CLOUD.get(), this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
 		}
 
 	}
@@ -79,7 +78,7 @@ public class ZundaArrow extends AbstractArrow {
 				this.discard();
 			} else if (p_36757_.getEntity().getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
 
-				if (((Mob) p_36757_.getEntity()).hurt(zundaAttack(this.getOwner()), i)) {
+				if (p_36757_.getEntity().hurt(zundaAttack(this.getOwner()), i)) {
 					this.discard();
 				} else {
 					this.setDeltaMovement(this.getDeltaMovement().scale(-0.1D));
