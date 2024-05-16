@@ -7,6 +7,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -24,6 +25,14 @@ public class TofuTags {
 
 		private static TagKey<Block> tag(String name) {
 			return BlockTags.create(new ResourceLocation(TofuCraftReload.MODID, name));
+		}
+	}
+
+	public static class EntityTypes {
+		public static final TagKey<EntityType<?>> EXTRA_DAMAGE_ZUNDA = tag("extra_damage_zunda");
+
+		private static TagKey<EntityType<?>> tag(String name) {
+			return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(TofuCraftReload.MODID, name));
 		}
 	}
 
