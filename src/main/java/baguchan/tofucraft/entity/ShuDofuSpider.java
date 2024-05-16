@@ -82,6 +82,7 @@ public class ShuDofuSpider extends Monster {
 	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ARMOR_MODIFIER_UUID, "armor boost", -0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
 	private final ShuDofuSpiderPart[] subEntities;
+	private final ShuDofuSpiderPart body;
 	private final ShuDofuSpiderPart leg1;
 	private final ShuDofuSpiderPart leg2;
 	private final ShuDofuSpiderPart leg3;
@@ -115,13 +116,14 @@ public class ShuDofuSpider extends Monster {
 	public ShuDofuSpider(EntityType<? extends ShuDofuSpider> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
 		this.xpReward = 200;
+		this.body = new ShuDofuSpiderPart(this, "body", 2F, 3.0F);
 		this.leg1 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
 		this.leg2 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
 		this.leg3 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
 		this.leg4 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
 		this.leg5 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
 		this.leg6 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
-		this.subEntities = new ShuDofuSpiderPart[]{this.leg1, this.leg2, this.leg3, this.leg4, this.leg5, this.leg6};
+		this.subEntities = new ShuDofuSpiderPart[]{this.body, this.leg1, this.leg2, this.leg3, this.leg4, this.leg5, this.leg6};
 		this.setId(ENTITY_COUNTER.getAndAdd(this.subEntities.length + 1) + 1);
 	}
 
@@ -409,6 +411,7 @@ public class ShuDofuSpider extends Monster {
 				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
 		Vec3 vec37 = new Vec3(-2.0F, 0, -1.0)
 				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
+		this.tickPart(this.body, (double) vec3.x, vec3.y, (double) (vec3.z));
 		this.tickPart(this.leg1, (double) vec32.x, vec32.y, (double) (vec32.z));
 		this.tickPart(this.leg2, (double) vec33.x, vec33.y, (double) (vec33.z));
 		this.tickPart(this.leg3, (double) vec34.x, vec34.y, (double) (vec34.z));
