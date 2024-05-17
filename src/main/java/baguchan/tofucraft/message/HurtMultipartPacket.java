@@ -10,7 +10,6 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -52,8 +51,7 @@ public class HurtMultipartPacket {
 				if (dmg != null) {
 					Holder<DamageType> holder = registry.getHolder(registry.getId(dmg)).orElseGet(null);
 					if (holder != null) {
-						Vec3 vec3 = attacker != null ? attacker.position() : null;
-						DamageSource source = new DamageSource(registry.getHolder(registry.getId(dmg)).get(), attacker, attacker, vec3);
+						DamageSource source = new DamageSource(registry.getHolder(registry.getId(dmg)).get(), attacker);
 						if (parent2 != null) {
 							parent2.hurt(source, message.damage);
 							if (attacker instanceof Player player1 && parent2 instanceof LivingEntity livingEntity) {
