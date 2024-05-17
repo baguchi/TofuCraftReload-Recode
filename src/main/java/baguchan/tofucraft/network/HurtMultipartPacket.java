@@ -61,7 +61,7 @@ public class HurtMultipartPacket implements CustomPacketPayload, IPayloadHandler
 				if (dmg != null) {
 					Holder<DamageType> holder = registry.getHolder(registry.getId(dmg)).orElseGet(null);
 					if (holder != null) {
-						DamageSource source = new DamageSource(registry.getHolder(registry.getId(dmg)).get());
+						DamageSource source = new DamageSource(registry.getHolder(registry.getId(dmg)).get(), attacker);
 						if (parent2 != null) {
 							parent2.hurt(source, message.damage);
 							if (attacker instanceof Player player1 && parent2 instanceof LivingEntity livingEntity) {
