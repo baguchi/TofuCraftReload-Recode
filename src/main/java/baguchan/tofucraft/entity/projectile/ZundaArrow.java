@@ -1,10 +1,12 @@
 package baguchan.tofucraft.entity.projectile;
 
+import baguchan.tofucraft.client.particle.ParticleZundaCloud;
 import baguchan.tofucraft.entity.TofuSlime;
 import baguchan.tofucraft.registry.TofuDamageSource;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
-import net.minecraft.core.particles.ParticleTypes;
+import baguchan.tofucraft.registry.TofuParticleTypes;
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -41,7 +43,7 @@ public class ZundaArrow extends AbstractArrow {
 	public void tick() {
 		super.tick();
 		if (this.level().isClientSide && !this.inGround) {
-			this.level().addParticle(ParticleTypes.SPORE_BLOSSOM_AIR, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+			this.level().addParticle(new ParticleZundaCloud.CloudData(TofuParticleTypes.ZUNDA_CLOUD.get(), 5f, 20, ParticleZundaCloud.EnumCloudBehavior.GROW, 0.98f), this.getX(), this.getY(), this.getZ(), 0, 0, 0);
 		}
 
 	}
@@ -70,7 +72,7 @@ public class ZundaArrow extends AbstractArrow {
 				this.spawnAtLocation(new ItemStack(TofuItems.TOFUZUNDA.get(), slime.getSize() * 2));
 				p_36757_.getEntity().discard();
 				this.discard();
-			} else if (p_36757_.getEntity() instanceof Mob && ((Mob) p_36757_.getEntity()).getMobType() == MobType.UNDEAD) {
+			} else if (p_36757_.getEntity() instanceof Mob && ((Mob) p_36757_.getEntity()).getMobType() == MobType.UNDEAD || p_36757_.getEntity().getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
 
 				if (((Mob) p_36757_.getEntity()).hurt(zundaAttack(this.getOwner()), i)) {
 					this.discard();

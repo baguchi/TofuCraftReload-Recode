@@ -6,6 +6,7 @@ import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.ClientProxy;
 import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.event.CraftingEvents;
+import baguchan.tofucraft.message.HurtMultipartPacket;
 import baguchan.tofucraft.message.SaltFurnaceBitternMessage;
 import baguchan.tofucraft.message.SaltFurnaceWaterMessage;
 import baguchan.tofucraft.message.SoyMilkDrinkedMessage;
@@ -178,6 +179,10 @@ public class TofuCraftReload {
 		CHANNEL.messageBuilder(TFStorageSoymilkMessage.class, 3)
 				.encoder(TFStorageSoymilkMessage::writePacketData).decoder(TFStorageSoymilkMessage::readPacketData)
 				.consumerMainThread(TFStorageSoymilkMessage::handle)
+				.add();
+		CHANNEL.messageBuilder(HurtMultipartPacket.class, 4)
+				.encoder(HurtMultipartPacket::write).decoder(HurtMultipartPacket::read)
+				.consumerMainThread(HurtMultipartPacket::handle)
 				.add();
 	}
 
