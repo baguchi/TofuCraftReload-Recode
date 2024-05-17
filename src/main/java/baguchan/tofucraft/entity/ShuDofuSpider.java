@@ -56,6 +56,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.entity.PartEntity;
 import net.minecraftforge.fluids.FluidType;
 
 import javax.annotation.Nullable;
@@ -1001,5 +1002,15 @@ public class ShuDofuSpider extends Monster {
 
 	public boolean isAngry() {
 		return this.entityData.get(ANGRY);
+	}
+
+	@Override
+	public boolean isMultipartEntity() {
+		return true;
+	}
+
+	@Override
+	public @org.jetbrains.annotations.Nullable PartEntity<?>[] getParts() {
+		return subEntities;
 	}
 }
