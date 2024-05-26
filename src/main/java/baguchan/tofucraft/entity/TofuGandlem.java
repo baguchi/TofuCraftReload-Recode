@@ -588,7 +588,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	@Override
 	protected EntityDimensions getDefaultDimensions(Pose p_21047_) {
-		EntityDimensions entitydimensions = super.getDimensions(p_21047_);
+		EntityDimensions entitydimensions = super.getDefaultDimensions(p_21047_);
 		return this.isRush() ? EntityDimensions.fixed(entitydimensions.width(), entitydimensions.height() * 0.45F) : entitydimensions;
 	}
 	@Override
