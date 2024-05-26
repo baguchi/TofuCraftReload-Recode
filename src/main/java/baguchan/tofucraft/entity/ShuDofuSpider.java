@@ -337,7 +337,7 @@ public class ShuDofuSpider extends Monster {
 						if (entity != this) {
 							if (this.canAttack(entity)) {
 								double d12 = Math.sqrt(entity.distanceToSqr(entity)) / (double) radius * 2.0F;
-								double d14 = (double) Explosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
+								double d14 = Explosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
 								double d10 = (1.0D - d12) * d14;
 								entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) (((d10 * d10 + d10) / 2.0D) * 30.0D));
 							}
@@ -411,13 +411,13 @@ public class ShuDofuSpider extends Monster {
 				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
 		Vec3 vec37 = new Vec3(-2.0F, 0, -1.0)
 				.yRot(-this.yBodyRot * (float) (Math.PI / 180.0));
-		this.tickPart(this.body, (double) vec3.x, vec3.y, (double) (vec3.z));
-		this.tickPart(this.leg1, (double) vec32.x, vec32.y, (double) (vec32.z));
-		this.tickPart(this.leg2, (double) vec33.x, vec33.y, (double) (vec33.z));
-		this.tickPart(this.leg3, (double) vec34.x, vec34.y, (double) (vec34.z));
-		this.tickPart(this.leg4, (double) vec35.x, vec35.y, (double) (vec35.z));
-		this.tickPart(this.leg5, (double) vec36.x, vec36.y, (double) (vec36.z));
-		this.tickPart(this.leg6, (double) vec37.x, vec37.y, (double) (vec37.z));
+		this.tickPart(this.body, vec3.x * getScale(), vec3.y * getScale(), vec3.z * getScale());
+		this.tickPart(this.leg1, vec32.x * getScale(), vec32.y * getScale(), vec32.z * getScale());
+		this.tickPart(this.leg2, vec33.x * getScale(), vec33.y * getScale(), vec33.z * getScale());
+		this.tickPart(this.leg3, vec34.x * getScale(), vec34.y * getScale(), vec34.z * getScale());
+		this.tickPart(this.leg4, vec35.x * getScale(), vec35.y * getScale(), vec35.z * getScale());
+		this.tickPart(this.leg5, vec36.x * getScale(), vec36.y * getScale(), vec36.z * getScale());
+		this.tickPart(this.leg6, vec37.x * getScale(), vec37.y * getScale(), vec37.z * getScale());
 
 		for (int l = 0; l < this.subEntities.length; l++) {
 			this.subEntities[l].xo = avec3[l].x;
@@ -427,7 +427,10 @@ public class ShuDofuSpider extends Monster {
 			this.subEntities[l].yOld = avec3[l].y;
 			this.subEntities[l].zOld = avec3[l].z;
 		}
+	}
 
+	protected float sanitizeScale(float p_320290_) {
+		return 1F;
 	}
 
 	private void tickPart(ShuDofuSpiderPart p_31116_, double p_31117_, double p_31118_, double p_31119_) {
@@ -516,9 +519,9 @@ public class ShuDofuSpider extends Monster {
 
 			if (i > 0) {
 				if (p_36347_ instanceof LivingEntity) {
-					((LivingEntity) p_36347_).knockback((double) ((float) i), (double) Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), (double) (-Mth.cos(this.getYRot() * ((float) Math.PI / 180F))));
+					((LivingEntity) p_36347_).knockback(i, Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), -Mth.cos(this.getYRot() * ((float) Math.PI / 180F)));
 				} else {
-					p_36347_.push((double) (-Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * (float) i), 0.1D, (double) (Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * (float) i));
+					p_36347_.push(-Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * i, 0.1D, Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * i);
 				}
 				this.setSprinting(false);
 			}
@@ -710,7 +713,7 @@ public class ShuDofuSpider extends Monster {
 		}
 
 		protected double getAttackReachSqr(LivingEntity p_29587_) {
-			return (double) (4.0F + p_29587_.getBbWidth());
+			return 4.0F + p_29587_.getBbWidth();
 		}
 
 		public void tick() {

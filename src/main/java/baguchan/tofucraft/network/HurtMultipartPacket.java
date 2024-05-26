@@ -24,24 +24,27 @@ public class HurtMultipartPacket implements CustomPacketPayload, IPayloadHandler
 	public static final Type<HurtMultipartPacket> TYPE = CustomPacketPayload.createType(TofuCraftReload.prefix("hurt_multipart").toString());
 
 	public int attacker;
+	public int attackerProjectile;
 	public int parent;
 	public float damage;
 	public String damageType;
 
 
-	public HurtMultipartPacket(int attacker, int parent, float damage, String damageType) {
+	public HurtMultipartPacket(int attacker, int attackerProjectile, int parent, float damage, String damageType) {
 		this.attacker = attacker;
+		this.attackerProjectile = attackerProjectile;
 		this.parent = parent;
 		this.damage = damage;
 		this.damageType = damageType;
 	}
 
 	public HurtMultipartPacket(FriendlyByteBuf buf) {
-		this(buf.readInt(), buf.readInt(), buf.readFloat(), buf.readUtf());
+		this(buf.readInt(), buf.readInt(), buf.readInt(), buf.readFloat(), buf.readUtf());
 	}
 
 	public void write(FriendlyByteBuf buf) {
 		buf.writeInt(this.attacker);
+		buf.writeInt(this.attackerProjectile);
 		buf.writeInt(this.parent);
 		buf.writeFloat(this.damage);
 		buf.writeUtf(this.damageType);
@@ -54,6 +57,7 @@ public class HurtMultipartPacket implements CustomPacketPayload, IPayloadHandler
 		if (player != null) {
 			if (player.level() != null) {
 				Entity attacker = player.level().getEntity(message.attacker);
+				Entity attackerProjectile = player.level().getEntity(message.attackerProjectile);
 
 				Entity parent2 = player.level().getEntity(message.parent);
 				Registry<DamageType> registry = player.level().registryAccess().registry(Registries.DAMAGE_TYPE).get();
@@ -61,11 +65,13 @@ public class HurtMultipartPacket implements CustomPacketPayload, IPayloadHandler
 				if (dmg != null) {
 					Holder<DamageType> holder = registry.getHolder(registry.getId(dmg)).orElseGet(null);
 					if (holder != null) {
-						DamageSource source = new DamageSource(registry.getHolder(registry.getId(dmg)).get(), attacker);
+						DamageSource source = new DamageSource(registry.getHolder(registry.getId(dmg)).get(), attacker, attackerProjectile);
 						if (parent2 != null) {
 							parent2.hurt(source, message.damage);
-							if (attacker instanceof Player player1 && parent2 instanceof LivingEntity livingEntity) {
-								player1.getMainHandItem().hurtEnemy(livingEntity, player1);
+							if (attacker == attackerProjectile) {
+								if (attacker instanceof Player player1 && parent2 instanceof LivingEntity livingEntity) {
+									player1.getMainHandItem().hurtEnemy(livingEntity, player1);
+								}
 							}
 						}
 

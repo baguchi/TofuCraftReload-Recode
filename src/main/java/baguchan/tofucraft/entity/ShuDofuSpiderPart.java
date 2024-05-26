@@ -19,6 +19,7 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 	public final ShuDofuSpider parentMob;
 	public final String name;
 	private final EntityDimensions size;
+	private float appliedScale;
 
 	public ShuDofuSpiderPart(ShuDofuSpider p_31014_, String p_31015_, float p_31016_, float p_31017_) {
 		super(p_31014_);
@@ -64,11 +65,12 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 		if (!this.isInvulnerableTo(damageSource)) {
 				if (this.level().isClientSide) {
 					Entity entity = damageSource.getEntity();
+					Entity entity2 = damageSource.getDirectEntity();
 					if (entity != null) {
 						if (this == parentMob.body) {
-							PacketDistributor.sendToServer(new HurtMultipartPacket(entity.getId(), parentMob.getId(), damage * 1.2F, this.damageSources().damageTypes.getKey(damageSource.type()).toString()));
+							PacketDistributor.sendToServer(new HurtMultipartPacket(entity.getId(), entity2 != null ? entity2.getId() : entity.getId(), parentMob.getId(), damage * 1.2F, this.damageSources().damageTypes.getKey(damageSource.type()).toString()));
 						} else {
-							PacketDistributor.sendToServer(new HurtMultipartPacket(entity.getId(), parentMob.getId(), damage * 0.85F, this.damageSources().damageTypes.getKey(damageSource.type()).toString()));
+							PacketDistributor.sendToServer(new HurtMultipartPacket(entity.getId(), entity2 != null ? entity2.getId() : entity.getId(), parentMob.getId(), damage * 0.85F, this.damageSources().damageTypes.getKey(damageSource.type()).toString()));
 						}
 					}
 				}
@@ -78,6 +80,7 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 			return false;
 		}
 	}
+
 
 	@Override
 	public boolean is(Entity p_31031_) {
