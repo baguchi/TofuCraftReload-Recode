@@ -74,6 +74,13 @@ public class ShuDofuSpiderPart extends PartEntity<ShuDofuSpider> {
 						TofuCraftReload.CHANNEL.send(PacketDistributor.SERVER.noArg(), new HurtMultipartPacket(entity.getId(), parentMob.getId(), damage * 0.85F, this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getKey(damageSource.type()).toString()));
 					}
 				}
+			} else {
+				if (this == parentMob.body) {
+					return this.parentMob.hurt(damageSource, damage * 1.2F);
+				} else {
+					return this.parentMob.hurt(damageSource, damage * 0.8F);
+				}
+
 			}
 			return true;
 
