@@ -73,6 +73,13 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 							PacketDistributor.sendToServer(new HurtMultipartPacket(entity.getId(), entity2 != null ? entity2.getId() : entity.getId(), parentMob.getId(), damage * 0.85F, this.damageSources().damageTypes.getKey(damageSource.type()).toString()));
 						}
 					}
+				} else {
+					if (this == parentMob.body) {
+						return this.parentMob.hurt(damageSource, damage * 1.2F);
+					} else {
+						return this.parentMob.hurt(damageSource, damage * 0.8F);
+					}
+
 				}
 				return true;
 
