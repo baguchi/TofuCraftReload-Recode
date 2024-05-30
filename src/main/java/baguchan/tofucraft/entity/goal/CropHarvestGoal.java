@@ -31,7 +31,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 
 	public boolean canUse() {
 		if (this.nextStartTick <= 0) {
-			if (!EventHooks.getMobGriefingEvent(this.tofunian.level(), this.tofunian))
+			if (!EventHooks.canEntityGrief(this.tofunian.level(), this.tofunian))
 				return false;
 			this.canHarvest = false;
 			this.canPlant = false;

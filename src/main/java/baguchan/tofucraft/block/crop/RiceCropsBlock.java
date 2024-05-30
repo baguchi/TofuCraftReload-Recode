@@ -46,9 +46,9 @@ public class RiceCropsBlock extends CropBlock {
 		int i = getAge(state);
 		if (i < getMaxAge()) {
 			float f = getGrowthChance(this, worldIn, pos);
-			if (CommonHooks.onCropsGrowPre(worldIn, pos, state, (random.nextInt((int) (25.0F / f) + 1) == 0))) {
+			if (CommonHooks.canCropGrow(worldIn, pos, state, (random.nextInt((int) (25.0F / f) + 1) == 0))) {
 				worldIn.setBlock(pos, this.getStateForAge(i + 1), 2);
-				CommonHooks.onCropsGrowPost(worldIn, pos, state);
+				CommonHooks.fireCropGrowPost(worldIn, pos, state);
 			}
 		}
 	}

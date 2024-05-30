@@ -98,7 +98,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 			this.conversionTime -= 1;
 			if (this.conversionTime <= 0 && EventHooks.canLivingConvert(this, TofuEntityTypes.SHUDOFUSPIDER.get(), (timer) -> this.conversionTime = timer)) {
 				this.finishConversion((ServerLevel) this.level());
-				if (EventHooks.getMobGriefingEvent(this.level(), this)) {
+				if (EventHooks.canEntityGrief(this.level(), this)) {
 					int j1 = Mth.floor(this.getY());
 					int i2 = Mth.floor(this.getX());
 					int j2 = Mth.floor(this.getZ());

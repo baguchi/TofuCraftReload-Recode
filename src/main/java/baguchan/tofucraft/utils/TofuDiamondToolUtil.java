@@ -28,6 +28,8 @@ import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.event.EventHooks;
 
 public class TofuDiamondToolUtil {
+
+
 	protected static BlockHitResult rayTrace(Level level, Player playerIn, boolean useLiquids) {
 		float f = playerIn.getXRot();
 		float f1 = playerIn.getYRot();
@@ -205,7 +207,7 @@ public class TofuDiamondToolUtil {
 
 		if (!level.isClientSide()) {
 
-			int xp = CommonHooks.onBlockBreakEvent(level, ((ServerPlayer) player).gameMode.getGameModeForPlayer(), (ServerPlayer) player, pos);
+			int xp = CommonHooks.fireBlockBreak(level, ((ServerPlayer) player).gameMode.getGameModeForPlayer(), (ServerPlayer) player, pos, state);
 			if (xp == -1) {
 				return;
 			}

@@ -8,11 +8,13 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuEnchantments;
+import baguchan.tofucraft.registry.TofuItemTier;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuStructures;
 import baguchan.tofucraft.utils.ContainerUtils;
 import baguchan.tofucraft.utils.JigsawHelper;
+import baguchan.tofucraft.utils.TofuDiamondToolUtil;
 import baguchan.tofucraft.world.TofuData;
 import baguchan.tofucraft.world.TofuLevelData;
 import baguchan.tofucraft.world.TravelerTofunianSpawner;
@@ -35,6 +37,7 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -47,7 +50,6 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
@@ -385,8 +387,21 @@ public class CommonEvents {
 	public static void onPotionEffectApplied(MobEffectEvent.Applicable event) {
 		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
 			if (EnchantmentHelper.getEnchantmentLevel(TofuEnchantments.EFFECT_PROTECTION.get(), event.getEntity()) > 0) {
-				event.setResult(Event.Result.DENY);
+				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}
+	}
+
+
+	@SubscribeEvent
+	public static boolean onBlockStartBreak(BlockEvent.BreakEvent event) {
+		ItemStack hand = event.getPlayer().getItemInHand(InteractionHand.MAIN_HAND);
+		if (hand.getItem() instanceof PickaxeItem pickaxeItem && pickaxeItem.getTier() == TofuItemTier.TOFUDIAMOND) {
+			Block blockDestroyed = event.getLevel().getBlockState(event.getPos()).getBlock();
+			if (event.getLevel() instanceof Level level) {
+				TofuDiamondToolUtil.onBlockStartBreak(hand, level, blockDestroyed, event.getPos(), event.getPlayer());
+			}
+		}
+		return false;
 	}
 }
