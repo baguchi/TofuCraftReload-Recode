@@ -1,6 +1,5 @@
 package baguchan.tofucraft.entity;
 
-import baguchan.tofucraft.network.HurtMultipartPacket;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -10,8 +9,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.AABB;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -27,14 +24,6 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 		this.refreshDimensions();
 		this.parentMob = p_31014_;
 		this.name = p_31015_;
-	}
-
-	protected AABB makeBoundingBox() {
-		if (this.size != null) {
-			return this.size.makeBoundingBox(this.position());
-		} else {
-			return super.makeBoundingBox();
-		}
 	}
 
 	@Override
@@ -63,26 +52,12 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 	@Override
 	public boolean hurt(DamageSource damageSource, float damage) {
 		if (!this.isInvulnerableTo(damageSource)) {
-				if (this.level().isClientSide) {
-					Entity entity = damageSource.getEntity();
-					Entity entity2 = damageSource.getDirectEntity();
-					if (entity != null) {
-						if (this == parentMob.body) {
-							PacketDistributor.sendToServer(new HurtMultipartPacket(entity.getId(), entity2 != null ? entity2.getId() : entity.getId(), parentMob.getId(), damage * 1.2F, this.damageSources().damageTypes.getKey(damageSource.type()).toString()));
-						} else {
-							PacketDistributor.sendToServer(new HurtMultipartPacket(entity.getId(), entity2 != null ? entity2.getId() : entity.getId(), parentMob.getId(), damage * 0.85F, this.damageSources().damageTypes.getKey(damageSource.type()).toString()));
-						}
-					}
-				} else {
-					if (this == parentMob.body) {
-						return this.parentMob.hurt(damageSource, damage * 1.2F);
-					} else {
-						return this.parentMob.hurt(damageSource, damage * 0.8F);
-					}
 
-				}
-				return true;
-
+			if (this == parentMob.body) {
+				return this.parentMob.hurt(damageSource, damage * 1.2F);
+			} else {
+				return this.parentMob.hurt(damageSource, damage * 0.8F);
+			}
 		} else {
 			return false;
 		}

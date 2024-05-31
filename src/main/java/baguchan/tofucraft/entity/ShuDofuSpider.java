@@ -124,7 +124,14 @@ public class ShuDofuSpider extends Monster {
 		this.leg5 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
 		this.leg6 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
 		this.subEntities = new ShuDofuSpiderPart[]{this.body, this.leg1, this.leg2, this.leg3, this.leg4, this.leg5, this.leg6};
-		this.setId(ENTITY_COUNTER.getAndAdd(this.subEntities.length + 1) + 1);
+		this.setId(ENTITY_COUNTER.getAndAdd(this.subEntities.length + 1) + 1); // Forge: Fix MC-158205: Make sure part ids are successors of parent mob id
+	}
+
+	@Override
+	public void setId(int id) {
+		super.setId(id);
+		for (int i = 0; i < this.subEntities.length; i++) // Forge: Fix MC-158205: Set part ids to successors of parent mob id
+			this.subEntities[i].setId(id + i + 1);
 	}
 
 	@Override
