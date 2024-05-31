@@ -1,9 +1,5 @@
 package baguchan.tofucraft.entity;
 
-
-import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.message.HurtMultipartPacket;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -14,7 +10,6 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.entity.PartEntity;
-import net.minecraftforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -65,25 +60,11 @@ public class ShuDofuSpiderPart extends PartEntity<ShuDofuSpider> {
 	@Override
 	public boolean hurt(DamageSource damageSource, float damage) {
 		if (!this.isInvulnerableTo(damageSource)) {
-			if (this.level().isClientSide) {
-				Entity entity = damageSource.getEntity();
-				if (entity != null) {
-					if (this == parentMob.body) {
-						TofuCraftReload.CHANNEL.send(PacketDistributor.SERVER.noArg(), new HurtMultipartPacket(entity.getId(), parentMob.getId(), damage * 1.2F, this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getKey(damageSource.type()).toString()));
-					} else {
-						TofuCraftReload.CHANNEL.send(PacketDistributor.SERVER.noArg(), new HurtMultipartPacket(entity.getId(), parentMob.getId(), damage * 0.85F, this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getKey(damageSource.type()).toString()));
-					}
-				}
+			if (this == parentMob.body) {
+				return this.parentMob.hurt(damageSource, damage * 1.2F);
 			} else {
-				if (this == parentMob.body) {
-					return this.parentMob.hurt(damageSource, damage * 1.2F);
-				} else {
-					return this.parentMob.hurt(damageSource, damage * 0.8F);
-				}
-
+				return this.parentMob.hurt(damageSource, damage * 0.8F);
 			}
-			return true;
-
 		} else {
 			return false;
 		}

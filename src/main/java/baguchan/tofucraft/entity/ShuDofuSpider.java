@@ -125,6 +125,13 @@ public class ShuDofuSpider extends Monster {
 		this.setId(ENTITY_COUNTER.getAndAdd(this.subEntities.length + 1) + 1);
 	}
 
+	public void setId(int id) {
+		super.setId(id);
+		for (int i = 0; i < this.subEntities.length; ++i) {
+			this.subEntities[i].setId(id + i + 1);
+		}
+	}
+
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
