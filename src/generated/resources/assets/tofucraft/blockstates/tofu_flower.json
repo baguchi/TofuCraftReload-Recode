@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "tofucraft:block/tofu_flower"
+    },
+    "stage=1": {
+      "model": "tofucraft:block/tofu_flower"
+    }
+  }
+}
