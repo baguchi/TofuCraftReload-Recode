@@ -9,11 +9,11 @@ import net.minecraft.world.effect.MobEffects;
 import java.util.List;
 import java.util.Random;
 
-public class RamuneSoymilkBottleItem extends SoymilkBottleItem {
+public class RandomSoymilkBottleItem extends SoymilkBottleItem {
 	private final Random random = new Random();
 	private List<Holder.Reference<MobEffect>> effectList = null;
 
-	public RamuneSoymilkBottleItem(Properties properties) {
+	public RandomSoymilkBottleItem(Properties properties) {
 		super(MobEffects.WATER_BREATHING, MobEffects.REGENERATION, properties);
 	}
 
