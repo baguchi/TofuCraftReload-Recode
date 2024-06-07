@@ -235,7 +235,7 @@ public class TofuBlocks {
 			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_ZUNDA)));
 	public static final Supplier<Block> WALLTOFUTORCH_HELL = BLOCKS.register("walltofutorch_hell", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
 			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_HELL)));
-	public static final Supplier<Block> WALLTOFUTORCH_SOUL = BLOCKS.register("walltofutorch_soul", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
+	public static final Supplier<Block> WALLTOFUTORCH_SOUL = BLOCKS.register("walltofutorch_soul", () -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
 			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_SOUL)));
 
 	public static final Supplier<Block> TOFU_METAL_CHAIN = register("tofu_metal_chain", () -> new ChainBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHAIN)
@@ -536,6 +536,10 @@ public class TofuBlocks {
 				return new StandingAndWallBlockItem(TOFUTORCH_GRILLED.get(), WALLTOFUTORCH_GRILLED.get(), new Item.Properties(), Direction.DOWN);
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_ZUNDA.get()) {
 				return new StandingAndWallBlockItem(TOFUTORCH_ZUNDA.get(), WALLTOFUTORCH_ZUNDA.get(), new Item.Properties(), Direction.DOWN);
+			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_HELL.get()) {
+				return new StandingAndWallBlockItem(TOFUTORCH_HELL.get(), WALLTOFUTORCH_HELL.get(), new Item.Properties(), Direction.DOWN);
+			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_SOUL.get()) {
+				return new StandingAndWallBlockItem(TOFUTORCH_SOUL.get(), WALLTOFUTORCH_SOUL.get(), new Item.Properties(), Direction.DOWN);
 			} else if (Objects.requireNonNull(block.get()) == TOFU_STEM_SIGN.get()) {
 				return new SignItem(new Item.Properties().stacksTo(16), TOFU_STEM_SIGN.get(), TOFU_STEM_WALL_SIGN.get());
 			} else if (Objects.requireNonNull(block.get()) == LEEK_GREEN_SIGN.get()) {
