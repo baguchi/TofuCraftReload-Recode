@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "tofucraft:tofutorch_soul"
         }
       ],
       "rolls": 1.0
