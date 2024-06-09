@@ -27,8 +27,9 @@ public class NattoCobWebItem extends Item {
 		}
 		playerIn.awardStat(Stats.ITEM_USED.get(this));
 		playerIn.getCooldowns().addCooldown(itemstack.getItem(), 20);
-
-		itemstack.shrink(1);
+		if (!playerIn.isCreative()) {
+			itemstack.shrink(1);
+		}
 		return InteractionResultHolder.sidedSuccess(itemstack, levelIn.isClientSide());
 	}
 }

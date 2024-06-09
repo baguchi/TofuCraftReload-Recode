@@ -24,6 +24,8 @@ import baguchan.tofucraft.client.render.blockentity.TofunianStatueRender;
 import baguchan.tofucraft.client.render.entity.FallingTofuRenderer;
 import baguchan.tofucraft.client.render.entity.FukumameThowerRenderer;
 import baguchan.tofucraft.client.render.entity.ShuDofuSpiderRender;
+import baguchan.tofucraft.client.render.entity.TFShulkerBulletRenderer;
+import baguchan.tofucraft.client.render.entity.TFShulkerRenderer;
 import baguchan.tofucraft.client.render.entity.TofuBoatRenderer;
 import baguchan.tofucraft.client.render.entity.TofuCowRender;
 import baguchan.tofucraft.client.render.entity.TofuCreeperRender;
@@ -137,10 +139,15 @@ public class ClientRegistrar {
 
 
 	@SubscribeEvent
-	public static void registerColor(RegisterColorHandlersEvent.Block event) {
+	public static void registerColorBlock(RegisterColorHandlersEvent.Block event) {
 		event.register((p_92621_, p_92622_, p_92623_, p_92624_) -> {
 			return p_92622_ != null && p_92623_ != null ? BiomeColors.getAverageWaterColor(p_92622_, p_92623_) : -1;
 		}, TofuBlocks.SALTPAN.get(), TofuBlocks.SPROUTSJAR.get());
+	}
+
+	@SubscribeEvent
+	public static void registerColorItem(RegisterColorHandlersEvent.Item event) {
+
 	}
 
 	@SubscribeEvent
@@ -172,6 +179,9 @@ public class ClientRegistrar {
 			return new FukumameThowerRenderer<>(p_174064_, TofuModelLayers.FUKUMAME_THOWER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
 		});
 		event.registerEntityRenderer(TofuEntityTypes.ZUNDAMITE.get(), ZundamiteRender::new);
+
+		event.registerEntityRenderer(TofuEntityTypes.TF_SHULKER.get(), TFShulkerRenderer::new);
+		event.registerEntityRenderer(TofuEntityTypes.TF_SHULKER_BULLET.get(), TFShulkerBulletRenderer::new);
 	}
 
 	@SubscribeEvent

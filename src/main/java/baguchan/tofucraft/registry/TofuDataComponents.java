@@ -22,7 +22,6 @@ public class TofuDataComponents {
 	public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> FERMENTATION_DATA = DATA_COMPONENT_TYPES.register("fermentation_data", () -> DataComponentType.<Integer>builder().persistent(ExtraCodecs.NON_NEGATIVE_INT.orElse(0)).networkSynchronized(ByteBufCodecs.VAR_INT).cacheEncoding().build());
 
 
-
 	private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String p_332092_, UnaryOperator<DataComponentType.Builder<T>> p_331261_) {
 		return DATA_COMPONENT_TYPES.register(p_332092_, () -> p_331261_.apply(DataComponentType.builder()).build());
 	}
