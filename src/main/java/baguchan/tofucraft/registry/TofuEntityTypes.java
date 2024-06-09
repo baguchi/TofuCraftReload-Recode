@@ -116,7 +116,7 @@ public class TofuEntityTypes {
 			.sized(3.5F, 2.9F).eyeHeight(2.0F).clientTrackingRange(10).fireImmune().build("tofucraft:shudofuspider"));
 
 	public static final Supplier<EntityType<FukumameThower>> FUKUMAME_THOWER = ENTITIES.register("fukumame_thower", () -> EntityType.Builder.of(FukumameThower::new, MobCategory.MONSTER).sized(0.6F, 1.85F).clientTrackingRange(8).build("tofucraft:fukumame_thower"));
-	public static final Supplier<EntityType<TFShulker>> TF_SHULKER = ENTITIES.register("tf_shulker", () -> EntityType.Builder.of(TFShulker::new, MobCategory.MISC).sized(1F, 1F).clientTrackingRange(8).build("tofucraft:tf_shulker"));
+	public static final Supplier<EntityType<TFShulker>> TF_SHULKER = ENTITIES.register("tf_shulker", () -> EntityType.Builder.of(TFShulker::new, MobCategory.CREATURE).sized(1F, 1F).clientTrackingRange(8).build("tofucraft:tf_shulker"));
 	public static final Supplier<EntityType<TFShulkerBullet>> TF_SHULKER_BULLET = ENTITIES.register("tf_shulker_bullet", () -> EntityType.Builder.<TFShulkerBullet>of(TFShulkerBullet::new, MobCategory.MISC).sized(0.3125F, 0.3125F).clientTrackingRange(8).build("tofucraft:tf_shulker_bullet"));
 
 	public static final SpawnPlacementType IN_SOYMILK = (p_325672_, p_325673_, p_325674_) -> {

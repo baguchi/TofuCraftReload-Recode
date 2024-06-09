@@ -3,6 +3,7 @@ package baguchan.tofucraft.entity;
 import baguchan.tofucraft.entity.projectile.TFShulkerBullet;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
@@ -13,6 +14,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -20,6 +22,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.HasCustomInventoryScreen;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
@@ -73,6 +76,11 @@ public class TFShulker extends Shulker implements HasCustomInventoryScreen, Cont
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 	}
 
+	@Override
+	public void tick() {
+		super.tick();
+	}
+
 	private ItemStack findItem() {
 		for (int i = 0; i < this.itemStacks.size(); ++i) {
 			ItemStack itemstack = this.itemStacks.get(i);
@@ -81,6 +89,16 @@ public class TFShulker extends Shulker implements HasCustomInventoryScreen, Cont
 			}
 		}
 		return ItemStack.EMPTY;
+	}
+
+	private boolean hasEmptySpace(Container container) {
+		for (int i = 0; i < container.getContainerSize(); ++i) {
+			ItemStack itemstack = container.getItem(i);
+			if (itemstack.isEmpty()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -96,9 +114,18 @@ public class TFShulker extends Shulker implements HasCustomInventoryScreen, Cont
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
 		super.readAdditionalSaveData(compoundTag);
 		this.readChestVehicleSaveData(compoundTag, this.registryAccess());
-		if (compoundTag.contains("TargetPos")) {
-			this.setTargetPos(NbtUtils.readBlockPos(compoundTag, "TargetPos"));
-		}
+		this.setTargetPos(NbtUtils.readBlockPos(compoundTag, "TargetPos"));
+	}
+
+	@Override
+	public void addChestVehicleSaveData(CompoundTag p_219944_, HolderLookup.Provider p_332101_) {
+		ContainerHelper.saveAllItems(p_219944_, this.getItemStacks(), p_332101_);
+	}
+
+	@Override
+	public void readChestVehicleSaveData(CompoundTag p_219935_, HolderLookup.Provider p_331073_) {
+		this.clearItemStacks();
+		ContainerHelper.loadAllItems(p_219935_, this.getItemStacks(), p_331073_);
 	}
 
 	public void destroy(DamageSource p_219892_) {
@@ -143,9 +170,9 @@ public class TFShulker extends Shulker implements HasCustomInventoryScreen, Cont
 
 	public void setRawPeekAmount(int p_33419_) {
 		if (!this.level().isClientSide) {
-			//this.getAttribute(Attributes.ARMOR).removeModifier(COVERED_ARMOR_MODIFIER.id());
+			this.getAttribute(Attributes.ARMOR).removeModifier(COVERED_ARMOR_MODIFIER.id());
 			if (p_33419_ == 0) {
-				//this.getAttribute(Attributes.ARMOR).addPermanentModifier(COVERED_ARMOR_MODIFIER);
+				this.getAttribute(Attributes.ARMOR).addPermanentModifier(COVERED_ARMOR_MODIFIER);
 				this.playSound(SoundEvents.SHULKER_CLOSE, 1.0F, 1.0F);
 				this.gameEvent(GameEvent.CONTAINER_CLOSE);
 			} else {
@@ -195,28 +222,28 @@ public class TFShulker extends Shulker implements HasCustomInventoryScreen, Cont
 	}
 
 	@Override
-	public ItemStack getItem(int p_219880_) {
-		return this.itemStacks.get(p_219880_);
+	public ItemStack getItem(int p_38218_) {
+		return this.getChestVehicleItem(p_38218_);
 	}
 
 	@Override
-	public ItemStack removeItem(int p_219882_, int p_219883_) {
-		return this.removeChestVehicleItem(p_219882_, p_219883_);
+	public ItemStack removeItem(int p_38220_, int p_38221_) {
+		return this.removeChestVehicleItem(p_38220_, p_38221_);
 	}
 
 	@Override
-	public ItemStack removeItemNoUpdate(int p_219904_) {
-		return this.removeChestVehicleItemNoUpdate(p_219904_);
+	public ItemStack removeItemNoUpdate(int p_38244_) {
+		return this.removeChestVehicleItemNoUpdate(p_38244_);
 	}
 
 	@Override
-	public void setItem(int p_219885_, ItemStack p_219886_) {
-		this.setChestVehicleItem(p_219885_, p_219886_);
+	public void setItem(int p_38225_, ItemStack p_38226_) {
+		this.setChestVehicleItem(p_38225_, p_38226_);
 	}
 
 	@Override
-	public SlotAccess getSlot(int p_219918_) {
-		return this.getChestVehicleSlot(p_219918_);
+	public SlotAccess getSlot(int p_150257_) {
+		return this.getChestVehicleSlot(p_150257_);
 	}
 
 	@Override
@@ -224,8 +251,8 @@ public class TFShulker extends Shulker implements HasCustomInventoryScreen, Cont
 	}
 
 	@Override
-	public boolean stillValid(Player p_219896_) {
-		return this.isChestVehicleStillValid(p_219896_);
+	public boolean stillValid(Player p_38230_) {
+		return this.isChestVehicleStillValid(p_38230_);
 	}
 
 	@Nullable
@@ -235,13 +262,20 @@ public class TFShulker extends Shulker implements HasCustomInventoryScreen, Cont
 	}
 
 	@Override
-	public void setLootTable(@org.jetbrains.annotations.Nullable ResourceKey<LootTable> p_336019_) {
-
+	public void unpackChestVehicleLootTable(@org.jetbrains.annotations.Nullable Player p_219950_) {
 	}
 
 	@Override
-	public void setLootTableSeed(long p_219925_) {
+	public void setLootTable(@Nullable ResourceKey<LootTable> p_336075_) {
+	}
 
+	@Override
+	public long getLootTableSeed() {
+		return 0;
+	}
+
+	@Override
+	public void setLootTableSeed(long p_219857_) {
 	}
 
 	@Override
@@ -278,7 +312,7 @@ public class TFShulker extends Shulker implements HasCustomInventoryScreen, Cont
 
 		@Override
 		public boolean canUse() {
-			return TFShulker.this.getTargetPos().isPresent() && !TFShulker.this.itemStacks.isEmpty() && TFShulker.this.getTargetPos().get().distManhattan(TFShulker.this.blockPosition()) < MOVING_LIMIT_DISTANCE;
+			return TFShulker.this.getTargetPos().isPresent() && TFShulker.this.getTargetPos().get().distManhattan(TFShulker.this.blockPosition()) < MOVING_LIMIT_DISTANCE;
 		}
 
 		@Override
@@ -303,12 +337,14 @@ public class TFShulker extends Shulker implements HasCustomInventoryScreen, Cont
 			if (TFShulker.this.getTargetPos().isPresent()) {
 				TFShulker.this.getLookControl().setLookAt(TFShulker.this.getTargetPos().get().getCenter());
 				double d0 = TFShulker.this.distanceToSqr(TFShulker.this.getTargetPos().get().getCenter());
-				if (d0 < MOVING_LIMIT_DISTANCE) {
+				ItemStack stack = TFShulker.this.findItem();
+
+				if (d0 < MOVING_LIMIT_DISTANCE && !stack.isEmpty()) {
 					if (this.attackTime <= 0) {
 						this.attackTime = 20 + TFShulker.this.random.nextInt(10) * 20 / 2;
-						if (TFShulker.this.level().getBlockEntity(TFShulker.this.getTargetPos().get()) instanceof Container) {
+						if (TFShulker.this.level().getBlockEntity(TFShulker.this.getTargetPos().get()) instanceof Container container && TFShulker.this.hasEmptySpace(container)) {
 							TFShulkerBullet bullet = new TFShulkerBullet(TFShulker.this.level(), TFShulker.this, TFShulker.this.getTargetPos().get(), TFShulker.this.getAttachFace().getAxis());
-							bullet.setItemstack(TFShulker.this.findItem().copyAndClear());
+							bullet.setItemstack(stack.copyAndClear());
 							TFShulker.this.level()
 									.addFreshEntity(bullet);
 							TFShulker.this.playSound(

@@ -1,5 +1,6 @@
 package baguchan.tofucraft.client.render.entity;
 
+import baguchan.tofucraft.client.render.layer.TFShulkerHeadLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.ShulkerModel;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -27,7 +28,7 @@ public class TFShulkerRenderer extends MobRenderer<Shulker, ShulkerModel<Shulker
 
 	public TFShulkerRenderer(EntityRendererProvider.Context p_174370_) {
 		super(p_174370_, new ShulkerModel<>(p_174370_.bakeLayer(ModelLayers.SHULKER)), 0.0F);
-		//this.addLayer(new ShulkerHeadLayer(this));
+		this.addLayer(new TFShulkerHeadLayer(this));
 	}
 
 	public Vec3 getRenderOffset(Shulker p_115904_, float p_115905_) {

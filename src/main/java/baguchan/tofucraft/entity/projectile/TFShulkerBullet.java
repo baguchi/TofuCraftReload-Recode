@@ -27,7 +27,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
@@ -49,7 +48,6 @@ public class TFShulkerBullet extends Projectile {
 
 	public TFShulkerBullet(EntityType<? extends TFShulkerBullet> p_37319_, Level p_37320_) {
 		super(p_37319_, p_37320_);
-		this.noPhysics = true;
 	}
 
 	public TFShulkerBullet(Level p_37330_, LivingEntity p_37331_, BlockPos p_37332_, Direction.Axis p_37333_) {
@@ -210,13 +208,29 @@ public class TFShulkerBullet extends Projectile {
 
 	@Override
 	protected double getDefaultGravity() {
-		return 0.04;
+		return 0.0;
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
 		if (!this.level().isClientSide) {
+
+			if (this.finalTarget != null && this.finalTarget.distManhattan(this.blockPosition()) <= 1.5F) {
+				if (this.level().getBlockEntity(this.finalTarget) instanceof Container container) {
+					for (int i = 0; i < container.getContainerSize(); ++i) {
+						ItemStack stack = this.addItem(container, this.getItemstack().copyAndClear());
+						if (!this.getItemstack().isEmpty()) {
+							this.spawnAtLocation(stack);
+						}
+						this.destroy();
+						((ServerLevel) this.level()).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 2, 0.2, 0.2, 0.2, 0.0);
+						this.playSound(SoundEvents.SHULKER_BULLET_HIT, 1.0F, 1.0F);
+
+						break;
+					}
+				}
+			}
 
 			if (this.finalTarget == null) {
 				this.applyGravity();
@@ -225,16 +239,15 @@ public class TFShulkerBullet extends Projectile {
 				this.targetDeltaY = Mth.clamp(this.targetDeltaY * 1.025, -1.0, 1.0);
 				this.targetDeltaZ = Mth.clamp(this.targetDeltaZ * 1.025, -1.0, 1.0);
 				Vec3 vec3 = this.getDeltaMovement();
-				this.setDeltaMovement(vec3.add((this.targetDeltaX - vec3.x) * 0.2, (this.targetDeltaY - vec3.y) * 0.2, (this.targetDeltaZ - vec3.z) * 0.2));
+				this.setDeltaMovement(vec3.add((this.targetDeltaX - vec3.x) * 0.25, (this.targetDeltaY - vec3.y) * 0.25, (this.targetDeltaZ - vec3.z) * 0.25));
 			}
 
 			HitResult hitresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
 			if (hitresult.getType() != HitResult.Type.MISS && !net.neoforged.neoforge.event.EventHooks.onProjectileImpact(this, hitresult)) {
 				this.hitTargetOrDeflectSelf(hitresult);
 			}
-		}
 
-		this.checkInsideBlocks();
+		}
 		Vec3 vec31 = this.getDeltaMovement();
 		this.move(MoverType.SELF, vec31);
 		ProjectileUtil.rotateTowardsMovement(this, 0.5F);
@@ -286,23 +299,20 @@ public class TFShulkerBullet extends Projectile {
 	}
 
 	@Override
-	protected void onHitEntity(EntityHitResult p_37345_) {
-		super.onHitEntity(p_37345_);
-	}
-
-	@Override
 	protected void onHitBlock(BlockHitResult p_37343_) {
 		super.onHitBlock(p_37343_);
-		((ServerLevel) this.level()).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 2, 0.2, 0.2, 0.2, 0.0);
-		this.playSound(SoundEvents.SHULKER_BULLET_HIT, 1.0F, 1.0F);
 		if (!this.getItemstack().isEmpty()) {
 			if (this.level().getBlockEntity(p_37343_.getBlockPos()) instanceof Container container) {
-				for (int i = 0; i < container.getContainerSize(); i++) {
-					if (container.canPlaceItem(i, this.getItemstack())) {
-						container.setItem(i, this.getItemstack().copyAndClear());
-						this.destroy();
-						break;
+				for (int i = 0; i < container.getContainerSize(); ++i) {
+					ItemStack stack = this.addItem(container, this.getItemstack().copyAndClear());
+					if (!this.getItemstack().isEmpty()) {
+						this.spawnAtLocation(stack);
 					}
+					this.destroy();
+					((ServerLevel) this.level()).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 2, 0.2, 0.2, 0.2, 0.0);
+					this.playSound(SoundEvents.SHULKER_BULLET_HIT, 1.0F, 1.0F);
+
+					break;
 				}
 			}
 		} else {
@@ -310,8 +320,47 @@ public class TFShulkerBullet extends Projectile {
 		}
 	}
 
+	@Nullable
+	public ItemStack addItem(Container chest, ItemStack stack) {
+		ItemStack itemstack = stack.copy();
+
+		for (int i = 0; i < chest.getContainerSize(); ++i) {
+			ItemStack itemstack1 = chest.getItem(i);
+
+			if (itemstack1.isEmpty()) {
+				chest.setItem(i, itemstack);
+				chest.setChanged();
+				return ItemStack.EMPTY;
+			}
+
+			if (ItemStack.isSameItemSameComponents(itemstack1, itemstack)) {
+				int j = Math.min(chest.getMaxStackSize(), itemstack1.getMaxStackSize());
+				int k = Math.min(itemstack.getCount(), j - itemstack1.getCount());
+
+				if (k > 0) {
+					itemstack1.grow(k);
+					itemstack.shrink(k);
+
+					if (itemstack.getCount() <= 0) {
+						chest.setChanged();
+						return ItemStack.EMPTY;
+					}
+				}
+			}
+		}
+
+		if (itemstack.getCount() != stack.getCount()) {
+			chest.setChanged();
+		}
+
+		return itemstack;
+	}
+
 	private void destroy() {
 		this.discard();
+		if (!this.getItemstack().isEmpty()) {
+			this.spawnAtLocation(this.getItemstack());
+		}
 		this.level().gameEvent(GameEvent.ENTITY_DAMAGE, this.position(), GameEvent.Context.of(this));
 	}
 
