@@ -2,22 +2,31 @@ package baguchan.tofucraft.client.render.entity;
 
 import baguchan.tofucraft.client.render.layer.TFShulkerHeadLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import net.minecraft.client.model.ShulkerModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Matrix4f;
 
 import javax.annotation.Nullable;
 
 public class TFShulkerRenderer extends MobRenderer<Shulker, ShulkerModel<Shulker>> {
+	private static final float HALF_SQRT_3 = (float) (Math.sqrt(30.0) / 2.0);
+
+
 	private static final ResourceLocation DEFAULT_TEXTURE_LOCATION = new ResourceLocation(
 			"textures/" + Sheets.DEFAULT_SHULKER_TEXTURE_LOCATION.texture().getPath() + ".png"
 	);
@@ -30,6 +39,43 @@ public class TFShulkerRenderer extends MobRenderer<Shulker, ShulkerModel<Shulker
 		super(p_174370_, new ShulkerModel<>(p_174370_.bakeLayer(ModelLayers.SHULKER)), 0.0F);
 		this.addLayer(new TFShulkerHeadLayer(this));
 	}
+
+	@Override
+	public void render(Shulker p_115455_, float p_115456_, float p_115457_, PoseStack poseStack, MultiBufferSource p_115459_, int p_115460_) {
+		super.render(p_115455_, p_115456_, p_115457_, poseStack, p_115459_, p_115460_);
+
+		float length = 0.5F;
+		float f4 = 0.15F;
+		int j = (int) (255.0F * (1F));
+		poseStack.pushPose();
+		VertexConsumer vertexconsumer2 = p_115459_.getBuffer(RenderType.lightning());
+		poseStack.rotateAround(p_115455_.getAttachFace().getOpposite().getRotation(), 0F, 0.5F, 0F);
+		poseStack.mulPose(Axis.ZP.rotationDegrees((float) -180.0F));
+		poseStack.translate(0, 0F, 0);
+
+		poseStack.scale(-1.0F, -1.0F, 1.0F);
+		Matrix4f matrix4f = poseStack.last().pose();
+		PoseStack.Pose pose = poseStack.last();
+		originVertex(vertexconsumer2, matrix4f, pose, 255);
+		leftVertex(vertexconsumer2, matrix4f, pose, length, f4);
+		rightVertex(vertexconsumer2, matrix4f, pose, length, f4);
+		leftVertex(vertexconsumer2, matrix4f, pose, length, f4);
+		poseStack.popPose();
+	}
+
+	private static void originVertex(VertexConsumer p_254498_, Matrix4f p_253891_, PoseStack.Pose p_114092_, int p_254278_) {
+		p_254498_.vertex(p_253891_, 0.0F, 0.0F, 0.0F).color(255, 255, 255, p_254278_).uv(0 + 0.5F, 0).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(240).normal(p_114092_, 0.0F, 1.0F, 0.0F).endVertex();
+	}
+
+	private static void leftVertex(VertexConsumer p_253956_, Matrix4f p_254053_, PoseStack.Pose p_114092_, float p_253704_, float p_253701_) {
+		p_253956_.vertex(p_254053_, -HALF_SQRT_3 * p_253701_, p_253704_, 0).color(0, 0, 255, 0).uv(0, 0 + 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(240).normal(p_114092_, 0.0F, -1.0F, 0.0F).endVertex();
+	}
+
+	private static void rightVertex(VertexConsumer p_253850_, Matrix4f p_254379_, PoseStack.Pose p_114092_, float p_253729_, float p_254030_) {
+		p_253850_.vertex(p_254379_, HALF_SQRT_3 * p_254030_, p_253729_, 0).color(0, 0, 255, 0).uv(0 + 1, 0 + 1).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(240).normal(p_114092_, 0.0F, -1.0F, 0.0F).endVertex();
+	}
+
+
 
 	public Vec3 getRenderOffset(Shulker p_115904_, float p_115905_) {
 		return p_115904_.getRenderPosition(p_115905_).orElse(super.getRenderOffset(p_115904_, p_115905_)).scale((double) p_115904_.getScale());
