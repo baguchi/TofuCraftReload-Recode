@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -93,9 +94,9 @@ public class TFShulkerItem extends Item {
 			if (player != null) {
 				BlockPos blockPos = context.getClickedPos();
 				CustomData customData = itemStack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY);
-
-				customData.update(compoundTag -> compoundTag.put("TargetPos", NbtUtils.writeBlockPos(blockPos)));
-				itemStack.set(DataComponents.CUSTOM_DATA, customData);
+				CompoundTag compoundTag2 = customData.copyTag();
+				compoundTag2.put("TargetPos", NbtUtils.writeBlockPos(blockPos));
+				CustomData.set(DataComponents.CUSTOM_DATA, itemStack, compoundTag2);
 				player.playSound(SoundEvents.NOTE_BLOCK_CHIME.value(), 1F, 1F);
 			}
 			return InteractionResult.CONSUME;
