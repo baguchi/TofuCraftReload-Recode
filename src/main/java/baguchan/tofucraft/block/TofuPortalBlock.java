@@ -1,8 +1,8 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.capability.TofuLivingCapability;
+import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.world.TofuLevelTeleporter;
@@ -71,7 +71,7 @@ public class TofuPortalBlock extends Block {
 	public void entityInside(BlockState p_196262_1_, Level p_196262_2_, BlockPos p_196262_3_, Entity p_196262_4_) {
 		super.entityInside(p_196262_1_, p_196262_2_, p_196262_3_, p_196262_4_);
 
-		TofuLivingCapability tofuLivingCapability = p_196262_4_.getData(TofuCapability.TOFU_LIVING.get());
+		TofuLivingCapability tofuLivingCapability = p_196262_4_.getData(TofuAttachments.TOFU_LIVING.get());
 		tofuLivingCapability.setInPortal(true);
 		if (tofuLivingCapability.tofuPortalCooldown <= 0) {
 			int waitTime = tofuLivingCapability.getPortalTimer();

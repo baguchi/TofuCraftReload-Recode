@@ -9,7 +9,7 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.function.Supplier;
 
-public class TofuCapability {
+public class TofuAttachments {
 	public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.Keys.ATTACHMENT_TYPES, TofuCraftReload.MODID);
 
 	public static final Supplier<AttachmentType<SoyHealthCapability>> SOY_HEALTH = ATTACHMENT_TYPES.register(

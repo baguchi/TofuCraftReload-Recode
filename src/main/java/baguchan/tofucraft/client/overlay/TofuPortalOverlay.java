@@ -1,8 +1,8 @@
 package baguchan.tofucraft.client.overlay;
 
 import baguchan.tofucraft.capability.TofuLivingCapability;
+import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.registry.TofuCapability;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -19,7 +19,7 @@ public class TofuPortalOverlay implements LayeredDraw.Layer {
 	@Override
 	public void render(GuiGraphics poseStack, float partialTick) {
 		Minecraft mc = Minecraft.getInstance();
-		TofuLivingCapability tofuLivingCapability = mc.player.getData(TofuCapability.TOFU_LIVING);
+		TofuLivingCapability tofuLivingCapability = mc.player.getData(TofuAttachments.TOFU_LIVING);
 		renderTofuPortalOverlay(poseStack, mc, partialTick, poseStack.guiWidth(), poseStack.guiHeight(), tofuLivingCapability);
 
 	}

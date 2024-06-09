@@ -4,8 +4,8 @@ import baguchan.tofucraft.api.tfenergy.IEnergyContained;
 import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
+import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.registry.TofuCapability;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuEnchantments;
 import baguchan.tofucraft.registry.TofuItemTier;
@@ -78,12 +78,12 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onUpdate(EntityTickEvent.Post event) {
 		Entity entity = event.getEntity();
-		SoyHealthCapability soyHealth = entity.getData(TofuCapability.SOY_HEALTH);
+		SoyHealthCapability soyHealth = entity.getData(TofuAttachments.SOY_HEALTH);
 
 		if (!entity.level().isClientSide() && entity instanceof LivingEntity livingEntity) {
 			soyHealth.tick(livingEntity);
 		}
-		TofuLivingCapability tofuLivingCapability = entity.getData(TofuCapability.TOFU_LIVING);
+		TofuLivingCapability tofuLivingCapability = entity.getData(TofuAttachments.TOFU_LIVING);
 		tofuLivingCapability.tick(entity);
 	}
 
@@ -321,8 +321,8 @@ public class CommonEvents {
 		Player oldPlayer = event.getOriginal();
 		Player newPlayer = event.getEntity();
 		if (!event.isWasDeath()) {
-			SoyHealthCapability soyHealth = oldPlayer.getData(TofuCapability.SOY_HEALTH);
-			SoyHealthCapability soyHealth2 = newPlayer.getData(TofuCapability.SOY_HEALTH);
+			SoyHealthCapability soyHealth = oldPlayer.getData(TofuAttachments.SOY_HEALTH);
+			SoyHealthCapability soyHealth2 = newPlayer.getData(TofuAttachments.SOY_HEALTH);
 			soyHealth2.deserializeNBT(newPlayer.level().registryAccess(), soyHealth.serializeNBT(newPlayer.level().registryAccess()));
 		}
 	}
