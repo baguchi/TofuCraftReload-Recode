@@ -137,7 +137,7 @@ public class ClientRegistrar {
 
 
 	@SubscribeEvent
-	public static void registerColor(RegisterColorHandlersEvent.Block event) {
+	public static void registerColorBlock(RegisterColorHandlersEvent.Block event) {
 		event.register((p_92621_, p_92622_, p_92623_, p_92624_) -> {
 			return p_92622_ != null && p_92623_ != null ? BiomeColors.getAverageWaterColor(p_92622_, p_92623_) : -1;
 		}, TofuBlocks.SALTPAN.get(), TofuBlocks.SPROUTSJAR.get());
