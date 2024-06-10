@@ -25,6 +25,7 @@ import baguchan.tofucraft.item.SoulFukumameItem;
 import baguchan.tofucraft.item.SoymilkBottleItem;
 import baguchan.tofucraft.item.SpecialBitternItem;
 import baguchan.tofucraft.item.TFBatteryItem;
+import baguchan.tofucraft.item.TFShulkerItem;
 import baguchan.tofucraft.item.TofuArmorItem;
 import baguchan.tofucraft.item.TofuAxeItem;
 import baguchan.tofucraft.item.TofuBoatItem;
@@ -367,6 +368,7 @@ public class TofuItems {
 	public static final Supplier<Item> TF_OSCILLATOR = ITEMS.register("tf_oscillator", () -> new Item((new Item.Properties())));
 	public static final Supplier<Item> TOFU_CORE = ITEMS.register("tofu_core", () -> new Item((new Item.Properties())));
 	public static final Supplier<Item> TF_BATTERY = ITEMS.register("tf_battery", () -> new TFBatteryItem((new Item.Properties().stacksTo(1))));
+	public static final Supplier<Item> TF_SHULKER = ITEMS.register("tf_shulker", () -> new TFShulkerItem((new Item.Properties().stacksTo(1))));
 
 
 	public static final Supplier<Item> TOFUNIAN_SPAWNEGG = ITEMS.register("tofunian_spawnegg", () -> new DeferredSpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties())));

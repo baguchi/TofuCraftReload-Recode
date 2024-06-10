@@ -3,6 +3,7 @@ package baguchan.tofucraft.registry;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.FukumameThower;
 import baguchan.tofucraft.entity.ShuDofuSpider;
+import baguchan.tofucraft.entity.TFShulker;
 import baguchan.tofucraft.entity.TofuBoat;
 import baguchan.tofucraft.entity.TofuChestBoat;
 import baguchan.tofucraft.entity.TofuCow;
@@ -23,6 +24,7 @@ import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
+import baguchan.tofucraft.entity.projectile.TFShulkerBullet;
 import baguchan.tofucraft.entity.projectile.ZundaArrow;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -33,6 +35,7 @@ import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -113,7 +116,8 @@ public class TofuEntityTypes {
 			.sized(3.5F, 2.9F).eyeHeight(2.0F).clientTrackingRange(10).fireImmune().build("tofucraft:shudofuspider"));
 
 	public static final Supplier<EntityType<FukumameThower>> FUKUMAME_THOWER = ENTITIES.register("fukumame_thower", () -> EntityType.Builder.of(FukumameThower::new, MobCategory.MONSTER).sized(0.6F, 1.85F).clientTrackingRange(8).build("tofucraft:fukumame_thower"));
-
+	public static final Supplier<EntityType<TFShulker>> TF_SHULKER = ENTITIES.register("tf_shulker", () -> EntityType.Builder.of(TFShulker::new, MobCategory.CREATURE).sized(1F, 1F).clientTrackingRange(8).build("tofucraft:tf_shulker"));
+	public static final Supplier<EntityType<TFShulkerBullet>> TF_SHULKER_BULLET = ENTITIES.register("tf_shulker_bullet", () -> EntityType.Builder.<TFShulkerBullet>of(TFShulkerBullet::new, MobCategory.MISC).sized(0.3125F, 0.3125F).clientTrackingRange(8).build("tofucraft:tf_shulker_bullet"));
 
 	public static final SpawnPlacementType IN_SOYMILK = (p_325672_, p_325673_, p_325674_) -> {
 		if (p_325674_ != null && p_325672_.getWorldBorder().isWithinBounds(p_325673_)) {
@@ -139,7 +143,7 @@ public class TofuEntityTypes {
 		event.put(SHUDOFUSPIDER.get(), ShuDofuSpider.createAttributes().build());
 		event.put(NATTO_COBWEB.get(), NattoCobWebEntity.createAttributes().build());
 		event.put(FUKUMAME_THOWER.get(), FukumameThower.createAttributes().build());
-
+		event.put(TF_SHULKER.get(), Shulker.createAttributes().build());
 	}
 
 	@SubscribeEvent
@@ -158,5 +162,6 @@ public class TofuEntityTypes {
 
 		event.register(FUKUMAME_THOWER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FukumameThower::checkFukumameSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 		event.register(ZUNDAMITE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+		event.register(TF_SHULKER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 	}
 }
