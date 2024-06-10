@@ -45,7 +45,7 @@ public class TFShulkerRenderer extends MobRenderer<Shulker, ShulkerModel<Shulker
 		super.render(p_115455_, p_115456_, p_115457_, poseStack, p_115459_, p_115460_);
 
 		float length = 0.5F;
-		float f4 = 0.15F;
+		float range = 0.15F;
 		int j = (int) (255.0F * (1F));
 		poseStack.pushPose();
 		VertexConsumer vertexconsumer2 = p_115459_.getBuffer(RenderType.lightning());
@@ -54,12 +54,22 @@ public class TFShulkerRenderer extends MobRenderer<Shulker, ShulkerModel<Shulker
 		poseStack.translate(0, 0F, 0);
 
 		poseStack.scale(-1.0F, -1.0F, 1.0F);
-		Matrix4f matrix4f = poseStack.last().pose();
-		PoseStack.Pose pose = poseStack.last();
-		originVertex(vertexconsumer2, matrix4f, pose, 255);
-		leftVertex(vertexconsumer2, matrix4f, pose, length, f4);
-		rightVertex(vertexconsumer2, matrix4f, pose, length, f4);
-		leftVertex(vertexconsumer2, matrix4f, pose, length, f4);
+		for (int i = 0; i < 4; ++i) {
+
+			poseStack.pushPose();
+			poseStack.mulPose(Axis.YP.rotationDegrees((float) -90.0F * i));
+
+			poseStack.mulPose(Axis.XP.rotationDegrees(i % 2 == 0 ? -range * 360.0F : range * 360.0F));
+
+			Matrix4f matrix4f = poseStack.last().pose();
+			PoseStack.Pose pose = poseStack.last();
+
+			originVertex(vertexconsumer2, matrix4f, pose, 255);
+			leftVertex(vertexconsumer2, matrix4f, pose, length, range);
+			rightVertex(vertexconsumer2, matrix4f, pose, length, range);
+			leftVertex(vertexconsumer2, matrix4f, pose, length, range);
+			poseStack.popPose();
+		}
 		poseStack.popPose();
 	}
 
