@@ -17,7 +17,7 @@ public class TFStorageSoymilkPacket implements CustomPacketPayload, IPayloadHand
 	public static final StreamCodec<FriendlyByteBuf, TFStorageSoymilkPacket> STREAM_CODEC = CustomPacketPayload.codec(
 			TFStorageSoymilkPacket::write, TFStorageSoymilkPacket::new
 	);
-	public static final Type<TFStorageSoymilkPacket> TYPE = CustomPacketPayload.createType(TofuCraftReload.prefix("storage_soymilk").toString());
+	public static final Type<TFStorageSoymilkPacket> TYPE = new Type<>(TofuCraftReload.prefix("storage_soymilk"));
 
 	public BlockPos blockPos;
 

@@ -1,13 +1,20 @@
 package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
-import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuDimensions;
+import baguchan.tofucraft.world.TofuPortalShape;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.portal.PortalShape;
+
+import java.util.Optional;
 
 public class TofuStickItem extends Item implements IEnergyInsertable {
 	public TofuStickItem(Properties tab) {
@@ -16,13 +23,47 @@ public class TofuStickItem extends Item implements IEnergyInsertable {
 
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
-		if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() == TofuBlocks.GRILLEDTOFU.get() &&
-				TofuBlocks.TOFU_PORTAL.get().trySpawnPortal(context.getLevel(), context.getClickedPos().above())) {
-			if (!context.getPlayer().isCreative())
-				context.getItemInHand().hurtAndBreak(1, (LivingEntity) context.getPlayer(), LivingEntity.getSlotForHand(context.getHand()));
-			return InteractionResult.SUCCESS;
+
+		if (inPortalDimension(context.getLevel())) {
+			Optional<TofuPortalShape> optional = TofuPortalShape.findEmptyPortalShape(context.getLevel(), context.getClickedPos().offset(context.getClickedFace().getNormal()), Direction.Axis.X);
+			if (optional.isPresent()) {
+				optional.get().createPortalBlocks();
+				if (!context.getPlayer().isCreative())
+					context.getItemInHand().hurtAndBreak(1, (LivingEntity) context.getPlayer(), LivingEntity.getSlotForHand(context.getHand()));
+				return InteractionResult.SUCCESS;
+			}
 		}
+
 		return super.useOn(context);
+	}
+
+	private static boolean inPortalDimension(Level p_49249_) {
+		return p_49249_.dimension() == Level.OVERWORLD || p_49249_.dimension() == TofuDimensions.tofu_world;
+	}
+
+	private static boolean isPortal(Level p_49270_, BlockPos p_49271_, Direction p_49272_) {
+		if (!inPortalDimension(p_49270_)) {
+			return false;
+		} else {
+			BlockPos.MutableBlockPos blockpos$mutableblockpos = p_49271_.mutable();
+			boolean flag = false;
+
+			for (Direction direction : Direction.values()) {
+				if (p_49270_.getBlockState(blockpos$mutableblockpos.set(p_49271_).move(direction)).isPortalFrame(p_49270_, blockpos$mutableblockpos)) {
+					flag = true;
+					break;
+				}
+			}
+
+			if (!flag) {
+				return false;
+			} else {
+				Direction.Axis direction$axis = p_49272_.getAxis().isHorizontal()
+						? p_49272_.getCounterClockWise().getAxis()
+						: Direction.Plane.HORIZONTAL.getRandomAxis(p_49270_.random);
+				return PortalShape.findEmptyPortalShape(p_49270_, p_49271_, direction$axis).isPresent();
+			}
+		}
 	}
 
 	@Override

@@ -9,7 +9,6 @@ import baguchan.tofucraft.client.model.TofuGolemModel;
 import baguchan.tofucraft.client.model.TofuSpiderModel;
 import baguchan.tofucraft.client.model.TofunianModel;
 import baguchan.tofucraft.client.model.TravelerTofunianModel;
-import baguchan.tofucraft.client.overlay.TofuPortalOverlay;
 import baguchan.tofucraft.client.render.FukumameRender;
 import baguchan.tofucraft.client.render.NattoBallRender;
 import baguchan.tofucraft.client.render.NattoStringRender;
@@ -70,7 +69,6 @@ import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
@@ -196,7 +194,6 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiLayersEvent event) {
-		event.registerBelow(VanillaGuiLayers.CAMERA_OVERLAYS, TofuCraftReload.prefix("tofu_portal_overlay"), new TofuPortalOverlay());
 	}
 
 	@SubscribeEvent

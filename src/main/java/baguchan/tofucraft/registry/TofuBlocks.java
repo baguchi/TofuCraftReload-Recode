@@ -18,6 +18,7 @@ import baguchan.tofucraft.block.TofuDetectorBlock;
 import baguchan.tofucraft.block.TofuFarmlandBlock;
 import baguchan.tofucraft.block.TofuFlowerBlock;
 import baguchan.tofucraft.block.TofuGemBlock;
+import baguchan.tofucraft.block.TofuGrilledBlock;
 import baguchan.tofucraft.block.TofuLeavesBlock;
 import baguchan.tofucraft.block.TofuMushroomBlock;
 import baguchan.tofucraft.block.TofuPortalBlock;
@@ -140,7 +141,7 @@ public class TofuBlocks {
 	public static final Supplier<Block> TOFU_GEM_BLOCK = register("tofu_gem_block", () -> new TofuGemBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL)));
 	public static final Supplier<Block> ADVANCE_TOFU_GEM_BLOCK = register("adv_tofu_gem_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL)));
 
-	public static final Supplier<Block> GRILLEDTOFU = register("blocktofugrilled", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
+	public static final Supplier<RotatedPillarBlock> GRILLEDTOFU = register("blocktofugrilled", () -> new TofuGrilledBlock(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final Supplier<Block> ZUNDATOFU = register("blocktofuzunda", () -> new Block(BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
 	public static final Supplier<Block> ZUNDATOFU_BRICK = register("tofuzunda_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final Supplier<Block> ZUNDATOFU_SMOOTH_BRICK = register("tofuzunda_smooth_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));

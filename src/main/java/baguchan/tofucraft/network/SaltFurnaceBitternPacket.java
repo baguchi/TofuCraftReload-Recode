@@ -17,7 +17,7 @@ public class SaltFurnaceBitternPacket implements CustomPacketPayload, IPayloadHa
 	public static final StreamCodec<FriendlyByteBuf, SaltFurnaceBitternPacket> STREAM_CODEC = CustomPacketPayload.codec(
 			SaltFurnaceBitternPacket::write, SaltFurnaceBitternPacket::new
 	);
-	public static final Type<SaltFurnaceBitternPacket> TYPE = CustomPacketPayload.createType(TofuCraftReload.prefix("salt_furnace_bittern").toString());
+	public static final Type<SaltFurnaceBitternPacket> TYPE = new Type<>(TofuCraftReload.prefix("salt_furnace_bittern"));
 
 	public BlockPos blockPos;
 

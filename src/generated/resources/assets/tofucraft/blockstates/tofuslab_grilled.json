@@ -4,7 +4,7 @@
       "model": "tofucraft:block/tofuslab_grilled"
     },
     "type=double": {
-      "model": "tofucraft:block/blocktofugrilled"
+      "model": "tofucraft:block/tofuslab_grilled"
     },
     "type=top": {
       "model": "tofucraft:block/tofuslab_grilled_top"

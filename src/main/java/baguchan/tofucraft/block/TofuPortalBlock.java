@@ -4,6 +4,7 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.world.TofuPortalForcer;
+import baguchan.tofucraft.world.TofuPortalShape;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,7 +30,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.portal.DimensionTransition;
-import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -87,7 +87,7 @@ public class TofuPortalBlock extends Block implements Portal {
 		Direction.Axis direction$axis = p_54929_.getAxis();
 		Direction.Axis direction$axis1 = p_54928_.getValue(AXIS);
 		boolean flag = direction$axis1 != direction$axis && direction$axis.isHorizontal();
-		return !flag && !p_54930_.is(this) && !new PortalShape(p_54931_, p_54932_, direction$axis1).isComplete()
+		return !flag && !p_54930_.is(this) && !new TofuPortalShape(p_54931_, p_54932_, direction$axis1).isComplete()
 				? Blocks.AIR.defaultBlockState()
 				: super.updateShape(p_54928_, p_54929_, p_54930_, p_54931_, p_54932_, p_54933_);
 	}
@@ -156,8 +156,7 @@ public class TofuPortalBlock extends Block implements Portal {
 	private DimensionTransition getExitPortal(
 			ServerLevel p_350564_, Entity p_350493_, BlockPos p_350379_, BlockPos p_350747_, boolean p_350326_, WorldBorder p_350718_
 	) {
-		Optional<BlockPos> optional = new TofuPortalForcer((ServerLevel) p_350493_
-				.level()).findClosestPortalPosition(p_350747_, p_350326_, p_350718_);
+		Optional<BlockPos> optional = new TofuPortalForcer(p_350564_).findClosestPortalPosition(p_350747_, p_350326_, p_350718_);
 		BlockUtil.FoundRectangle blockutil$foundrectangle;
 		DimensionTransition.PostDimensionTransition dimensiontransition$postdimensiontransition;
 		if (optional.isPresent()) {
@@ -165,7 +164,7 @@ public class TofuPortalBlock extends Block implements Portal {
 			BlockState blockstate = p_350564_.getBlockState(blockpos);
 			blockutil$foundrectangle = BlockUtil.getLargestRectangleAround(
 					blockpos,
-					blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS),
+					blockstate.getValue(AXIS),
 					21,
 					Direction.Axis.Y,
 					21,
@@ -174,8 +173,7 @@ public class TofuPortalBlock extends Block implements Portal {
 			dimensiontransition$postdimensiontransition = DimensionTransition.PLAY_PORTAL_SOUND.then(p_351967_ -> p_351967_.placePortalTicket(blockpos));
 		} else {
 			Direction.Axis direction$axis = p_350493_.level().getBlockState(p_350379_).getOptionalValue(AXIS).orElse(Direction.Axis.X);
-			Optional<BlockUtil.FoundRectangle> optional1 = new TofuPortalForcer((ServerLevel) p_350493_
-					.level()).createPortal(p_350747_, direction$axis);
+			Optional<BlockUtil.FoundRectangle> optional1 = new TofuPortalForcer(p_350564_).createPortal(p_350747_, direction$axis);
 
 			blockutil$foundrectangle = optional1.get();
 			dimensiontransition$postdimensiontransition = DimensionTransition.PLAY_PORTAL_SOUND.then(DimensionTransition.PLACE_PORTAL_TICKET);
@@ -229,13 +227,13 @@ public class TofuPortalBlock extends Block implements Portal {
 		double d4 = 0.5 + p_351020_.z();
 		boolean flag = direction$axis == Direction.Axis.X;
 		Vec3 vec31 = new Vec3((double) blockpos.getX() + (flag ? d2 : d4), (double) blockpos.getY() + d3, (double) blockpos.getZ() + (flag ? d4 : d2));
-		Vec3 vec32 = PortalShape.findCollisionFreePosition(vec31, p_350955_, p_350578_, entitydimensions);
+		Vec3 vec32 = TofuPortalShape.findCollisionFreePosition(vec31, p_350955_, p_350578_, entitydimensions);
 		return new DimensionTransition(p_350955_, vec32, vec3, p_350648_ + (float) i, p_350338_, p_352441_);
 	}
 
 	@Override
 	public Portal.Transition getLocalTransition() {
-		return Transition.NONE;
+		return Transition.CONFUSION;
 	}
 
 	public static class Size {

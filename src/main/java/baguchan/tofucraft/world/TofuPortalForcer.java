@@ -20,14 +20,13 @@ import net.minecraft.world.level.portal.PortalForcer;
 
 import java.util.Comparator;
 import java.util.Optional;
-import java.util.Set;
 
 public class TofuPortalForcer extends PortalForcer {
 	public TofuPortalForcer(ServerLevel p_77650_) {
 		super(p_77650_);
 	}
 
-	@Override
+
 	public Optional<BlockPos> findClosestPortalPosition(BlockPos p_352378_, boolean p_352309_, WorldBorder p_352374_) {
 		PoiManager poimanager = this.level.getPoiManager();
 		int i = p_352309_ ? 16 : 128;
@@ -39,7 +38,6 @@ public class TofuPortalForcer extends PortalForcer {
 				.min(Comparator.<BlockPos>comparingDouble(p_352046_ -> p_352046_.distSqr(p_352378_)).thenComparingInt(Vec3i::getY));
 	}
 
-	@Override
 	public Optional<BlockUtil.FoundRectangle> createPortal(BlockPos p_77667_, Direction.Axis p_77668_) {
 		Direction direction = Direction.get(Direction.AxisDirection.POSITIVE, p_77668_);
 		double d0 = -1.0;
@@ -165,27 +163,5 @@ public class TofuPortalForcer extends PortalForcer {
 		}
 
 		return true;
-	}
-
-	private static boolean isPortal(BlockState state) {
-		return state.getBlock() == TofuBlocks.TOFU_PORTAL.get();
-	}
-
-
-	private static void checkAdjacent(ServerLevel world, BlockPos pos, Set<BlockPos> checked, Set<BlockPos> result) {
-		for (Direction facing : Direction.Plane.HORIZONTAL) {
-			BlockPos offset = pos.relative(facing);
-			if (!checked.add(offset))
-				continue;
-			if (isPortalAt(world, offset)) {
-				checkAdjacent(world, offset, checked, result);
-			} else {
-				result.add(offset);
-			}
-		}
-	}
-
-	private static boolean isPortalAt(ServerLevel world, BlockPos pos) {
-		return isPortal(world.getBlockState(pos));
 	}
 }

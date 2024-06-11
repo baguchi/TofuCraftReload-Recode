@@ -17,7 +17,7 @@ public class SaltFurnaceWaterPacket implements CustomPacketPayload, IPayloadHand
 	public static final StreamCodec<FriendlyByteBuf, SaltFurnaceWaterPacket> STREAM_CODEC = CustomPacketPayload.codec(
 			SaltFurnaceWaterPacket::write, SaltFurnaceWaterPacket::new
 	);
-	public static final CustomPacketPayload.Type<SaltFurnaceWaterPacket> TYPE = CustomPacketPayload.createType(TofuCraftReload.prefix("salt_furnace_water").toString());
+	public static final CustomPacketPayload.Type<SaltFurnaceWaterPacket> TYPE = new Type<>(TofuCraftReload.prefix("salt_furnace_water"));
 
 	public BlockPos blockPos;
 

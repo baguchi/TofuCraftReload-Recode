@@ -17,7 +17,7 @@ public class SoyMilkDrinkedPacket implements CustomPacketPayload, IPayloadHandle
 	public static final StreamCodec<FriendlyByteBuf, SoyMilkDrinkedPacket> STREAM_CODEC = CustomPacketPayload.codec(
 			SoyMilkDrinkedPacket::write, SoyMilkDrinkedPacket::new
 	);
-	public static final CustomPacketPayload.Type<SoyMilkDrinkedPacket> TYPE = CustomPacketPayload.createType(TofuCraftReload.prefix("soy_milk_drinked").toString());
+	public static final CustomPacketPayload.Type<SoyMilkDrinkedPacket> TYPE = new Type<>(TofuCraftReload.prefix("soy_milk_drinked"));
 
 	private final int entityId;
 

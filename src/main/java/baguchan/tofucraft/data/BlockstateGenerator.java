@@ -53,7 +53,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.DIAMONDTOFU.get());
 		simpleBlock(TofuBlocks.TOFU_GEM_BLOCK.get());
 		simpleBlock(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());
-		simpleBlock(TofuBlocks.GRILLEDTOFU.get());
+		logBlock(TofuBlocks.GRILLEDTOFU.get());
 		simpleBlock(TofuBlocks.ZUNDATOFU.get());
 
 		simpleBlock(TofuBlocks.ZUNDATOFU_BRICK.get());
@@ -88,7 +88,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		stairs(TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.MOMENTOFU);
 		stairs(TofuBlocks.TOFUSTAIR_ISHI, TofuBlocks.ISHITOFU);
 		stairs(TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.METALTOFU);
-		stairs(TofuBlocks.TOFUSTAIR_GRILLED, TofuBlocks.GRILLEDTOFU);
+		stairsBlock(TofuBlocks.TOFUSTAIR_GRILLED.get(), texture(name(TofuBlocks.MOMENTOFU.get())), texture(name(TofuBlocks.GRILLEDTOFU.get()) + "_top"), texture(name(TofuBlocks.GRILLEDTOFU.get()) + "_top"));
 		stairs(TofuBlocks.TOFUSTAIR_ZUNDA, TofuBlocks.ZUNDATOFU);
 		stairs(TofuBlocks.TOFUSTAIR_HELL, TofuBlocks.HELLTOFU);
 		stairs(TofuBlocks.TOFUSTAIR_SOUL, TofuBlocks.SOULTOFU);
@@ -102,7 +102,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.MOMENTOFU);
 		slab(TofuBlocks.TOFUSLAB_ISHI, TofuBlocks.ISHITOFU);
 		slab(TofuBlocks.TOFUSLAB_METAL, TofuBlocks.METALTOFU);
-		slab(TofuBlocks.TOFUSLAB_GRILLED, TofuBlocks.GRILLEDTOFU);
+		slab(TofuBlocks.TOFUSLAB_GRILLED, texture(name(TofuBlocks.MOMENTOFU.get())), texture(name(TofuBlocks.GRILLEDTOFU.get()) + "_top"), texture(name(TofuBlocks.GRILLEDTOFU.get()) + "_top"));
 		slab(TofuBlocks.TOFUSLAB_ZUNDA, TofuBlocks.ZUNDATOFU);
 		slab(TofuBlocks.TOFUSLAB_HELL, TofuBlocks.HELLTOFU);
 		slab(TofuBlocks.TOFUSLAB_SOUL, TofuBlocks.SOULTOFU);
@@ -118,7 +118,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		wall(TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
 		wall(TofuBlocks.TOFUFENCE_HELL, TofuBlocks.HELLTOFU);
 		wall(TofuBlocks.TOFUFENCE_SOUL, TofuBlocks.SOULTOFU);
-		wall(TofuBlocks.TOFUFENCE_GRILLED, TofuBlocks.GRILLEDTOFU);
+		wallBlock(TofuBlocks.TOFUFENCE_GRILLED.get(), texture(name(TofuBlocks.GRILLEDTOFU.get()) + "_top"));
 		wall(TofuBlocks.TOFUFENCE_ZUNDA, TofuBlocks.ZUNDATOFU);
 
 		ancientFormatDoor(TofuBlocks.TOFUDOOR_KINU, "kinu");
@@ -347,6 +347,10 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 	public void slab(Supplier<SlabBlock> block, Supplier<Block> fullBlock) {
 		slabBlock(block.get(), texture(name(fullBlock.get())), texture(name(fullBlock.get())));
+	}
+
+	public void slab(Supplier<SlabBlock> block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		slabBlock(block.get(), texture(name(block.get())), side, bottom, top);
 	}
 
 	public void crossBlock(Supplier<Block> block) {
