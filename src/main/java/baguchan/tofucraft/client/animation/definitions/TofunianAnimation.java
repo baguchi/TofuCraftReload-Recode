@@ -117,4 +117,11 @@ public class TofunianAnimation {
 					new Keyframe(0.0F, KeyframeAnimations.scaleVec(1.3F, 1.3F, 1.3F), AnimationChannel.Interpolations.LINEAR)
 			))
 			.build();
+
+	public static final AnimationDefinition SIT = AnimationDefinition.Builder.withLength(0.0F)
+			.addAnimation("root", new AnimationChannel(AnimationChannel.Targets.POSITION,
+					new Keyframe(0.0F, KeyframeAnimations.scaleVec(0F, 5F, 0F), AnimationChannel.Interpolations.LINEAR)
+			))
+
+			.build();
 }
