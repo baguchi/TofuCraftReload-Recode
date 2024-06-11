@@ -454,6 +454,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public void tofunianHomeCheck() {
 		if ((level().getGameTime() + this.getId()) % (90) != 0) return;
 
+		this.level().getProfiler().push("tofunianHomeCheck");
 		//validate home position
 		boolean tryFind = false;
 		if (getTofunianHome() == null) {
@@ -480,6 +481,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				}
 			}
 		}
+		this.level().getProfiler().pop();
 	}
 
 	@Override
