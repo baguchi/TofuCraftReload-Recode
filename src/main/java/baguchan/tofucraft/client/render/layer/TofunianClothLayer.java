@@ -17,17 +17,28 @@ import java.time.temporal.ChronoField;
 
 @OnlyIn(Dist.CLIENT)
 public class TofunianClothLayer extends RenderLayer<Tofunian, TofunianModel<Tofunian>> {
-	public static final ResourceLocation BAGU_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagu_chan.png");
-	public static final ResourceLocation ZUNDAMON_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/secret/zundamon.png");
+	public static final ResourceLocation BAGU_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagu_chan.png");
+	public static final ResourceLocation ZUNDAMON_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/zundamon.png");
 
 
 	public TofunianClothLayer(RenderLayerParent<Tofunian, TofunianModel<Tofunian>> tofunianRender) {
 		super(tofunianRender);
 	}
 
-	public void render(PoseStack p_117720_, MultiBufferSource p_117721_, int p_117722_, Tofunian p_117723_, float p_117724_, float p_117725_, float p_117726_, float p_117727_, float p_117728_, float p_117729_) {
-		if (!p_117723_.isInvisible() && p_117723_.getTofunianType() != Tofunian.TofunianType.NORMAL) {
-			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117723_), p_117720_, p_117721_, p_117722_, p_117723_, 1.0F, 1.0F, 1.0F);
+	public void render(
+			PoseStack p_117148_,
+			MultiBufferSource p_117149_,
+			int p_117150_,
+			Tofunian p_117151_,
+			float p_117152_,
+			float p_117153_,
+			float p_117154_,
+			float p_117155_,
+			float p_117156_,
+			float p_117157_
+	) {
+		if (!p_117151_.isInvisible() && p_117151_.getTofunianType() != Tofunian.TofunianType.NORMAL) {
+			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117151_), p_117148_, p_117149_, p_117150_, p_117151_, -1);
 		}
 	}
 
@@ -50,6 +61,6 @@ public class TofunianClothLayer extends RenderLayer<Tofunian, TofunianModel<Tofu
 		String cloth = "";
 		if (entity.getTofunianType() != Tofunian.TofunianType.NORMAL)
 			cloth = entity.getTofunianType().name().toLowerCase();
-		return new ResourceLocation("tofucraft:textures/entity/tofunian/" + cloth + "_cloth.png");
+		return ResourceLocation.parse("tofucraft:textures/entity/tofunian/" + cloth + "_cloth.png");
 	}
 }

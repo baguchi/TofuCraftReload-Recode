@@ -15,7 +15,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuFishRender extends MobRenderer<TofuFish, TofuFishModel<TofuFish>> {
-	private static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofufish.png");
+	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofufish.png");
 
 	public TofuFishRender(EntityRendererProvider.Context p_173954_) {
 		super(p_173954_, new TofuFishModel<>(p_173954_.bakeLayer(TofuModelLayers.TOFUFISH)), 0.3F);

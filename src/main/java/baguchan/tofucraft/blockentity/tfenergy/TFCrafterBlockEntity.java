@@ -24,6 +24,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -51,7 +52,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 	public static final int MAX_CRAFT_TIME = 80;
 	private final RecipeType<? extends CraftingRecipe> recipeType;
 
-	private final RecipeManager.CachedCheck<CraftingContainer, ? extends Recipe> quickCheck;
+	private final RecipeManager.CachedCheck<CraftingInput, ? extends Recipe> quickCheck;
 
 
 	protected final ContainerData containerData = new ContainerData() {
@@ -95,7 +96,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 			if (tfcrafter.getEnergyStored() > 0) {
 				if (tfcrafter.refreshTime <= 0) {
 
-					Optional<? extends RecipeHolder<? extends Recipe>> optional = tfcrafter.quickCheck.getRecipeFor(tfcrafter, level);
+					Optional<? extends RecipeHolder<? extends Recipe>> optional = tfcrafter.quickCheck.getRecipeFor(CraftingInput.of(3, 3, tfcrafter.inventory), level);
 
 					if (optional.isPresent() && !tfcrafter.hasNeedMoreStack() || tfcrafter.progress > 0) {
 						++tfcrafter.progress;
@@ -131,16 +132,16 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 	protected static void dispenseFrom(TFCrafterBlockEntity blockEntity, BlockState p_307495_, ServerLevel p_307310_, BlockPos p_307672_) {
 		BlockEntity $$5 = p_307310_.getBlockEntity(p_307672_);
 		if ($$5 instanceof TFCrafterBlockEntity crafterblockentity) {
-			Optional<? extends RecipeHolder<? extends Recipe>> optional = blockEntity.quickCheck.getRecipeFor(blockEntity, p_307310_);
+			Optional<? extends RecipeHolder<? extends Recipe>> optional = blockEntity.quickCheck.getRecipeFor(CraftingInput.of(3, 3, crafterblockentity.inventory), p_307310_);
 			if (optional.isEmpty()) {
 				p_307310_.levelEvent(1050, p_307672_, 0);
 			} else {
 				p_307310_.setBlock(p_307672_, (BlockState) p_307495_.setValue(CRAFTING, true), 2);
 				CraftingRecipe craftingrecipe = (CraftingRecipe) optional.get().value();
-				ItemStack itemstack = craftingrecipe.assemble(crafterblockentity, p_307310_.registryAccess());
+				ItemStack itemstack = craftingrecipe.assemble(CraftingInput.of(3, 3, crafterblockentity.inventory), p_307310_.registryAccess());
 				itemstack.onCraftedBySystem(p_307310_);
 				dispenseItem(p_307310_, p_307672_, crafterblockentity, itemstack, p_307495_);
-				craftingrecipe.getRemainingItems(crafterblockentity).forEach((p_307328_) -> {
+				craftingrecipe.getRemainingItems(CraftingInput.of(3, 3, crafterblockentity.inventory)).forEach((p_307328_) -> {
 					dispenseItem(p_307310_, p_307672_, crafterblockentity, p_307328_, p_307495_);
 				});
 				crafterblockentity.getItems().forEach((p_307295_) -> {

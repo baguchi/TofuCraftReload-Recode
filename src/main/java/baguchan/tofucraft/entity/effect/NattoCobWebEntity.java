@@ -207,7 +207,7 @@ public class NattoCobWebEntity extends LivingEntity {
 		switch (p_31612_.getType()) {
 			case HAND:
 				return this.handItems.get(p_31612_.getIndex());
-			case ARMOR:
+			case HUMANOID_ARMOR:
 				return this.armorItems.get(p_31612_.getIndex());
 			default:
 				return ItemStack.EMPTY;
@@ -220,7 +220,7 @@ public class NattoCobWebEntity extends LivingEntity {
 			case HAND:
 				this.onEquipItem(p_31584_, this.handItems.set(p_31584_.getIndex(), p_31585_), p_31585_);
 				break;
-			case ARMOR:
+			case HUMANOID_ARMOR:
 				this.onEquipItem(p_31584_, this.armorItems.set(p_31584_.getIndex(), p_31585_), p_31585_);
 		}
 

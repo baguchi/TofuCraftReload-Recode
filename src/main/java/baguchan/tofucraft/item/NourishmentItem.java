@@ -26,7 +26,7 @@ public class NourishmentItem extends Item {
 	@Override
 	public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull LivingEntity livingEntity) {
 		var resultItem = super.finishUsingItem(itemStack, level, livingEntity);
-		Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.getHolder(new ResourceLocation("farmersdelight", "nourishment"));
+		Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.fromNamespaceAndPath("farmersdelight", "nourishment"));
 		if (effect.isPresent()) {
 			FoodProperties foodProperties = this.getFoodProperties(itemStack, livingEntity);
 			if (foodProperties != null && effect.isPresent()) {
@@ -40,7 +40,7 @@ public class NourishmentItem extends Item {
 	@Override
 	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
 		super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
-		MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation("farmersdelight", "nourishment"));
+		MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.fromNamespaceAndPath("farmersdelight", "nourishment"));
 		if (effect != null) {
 			p_41423_.add(Component.translatable("tofucraft.has_nourishment").withStyle(ChatFormatting.GOLD));
 		}

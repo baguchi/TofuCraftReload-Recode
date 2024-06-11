@@ -35,7 +35,7 @@ public class TofuGandlemChargedLayer<T extends TofuGandlem, M extends TofuGandle
 			float f = (float) p_234905_.tickCount + p_234908_;
 			this.onlyDrawSelectedParts();
 			VertexConsumer vertexconsumer = p_234903_.getBuffer(RenderType.energySwirl(this.texture, this.xOffset(f) % 1.0F, f * 0.01F % 1.0F));
-			this.getParentModel().renderToBuffer(p_234902_, vertexconsumer, p_234904_, LivingEntityRenderer.getOverlayCoords(p_234905_, 0.0F), 1.0F, 1.0F, 1.0F, this.alphaFunction.apply(p_234905_, p_234908_, p_234909_));
+			this.getParentModel().renderToBuffer(p_234902_, vertexconsumer, p_234904_, LivingEntityRenderer.getOverlayCoords(p_234905_, 0.0F));
 			this.resetDrawForAllParts();
 		}
 	}

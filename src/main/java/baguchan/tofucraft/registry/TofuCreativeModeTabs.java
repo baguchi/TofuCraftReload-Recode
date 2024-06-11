@@ -21,7 +21,7 @@ public class TofuCreativeModeTabs {
 	public static final ResourceKey<CreativeModeTab> TOFU_BUILDING_BLOCKS_KEY = createKey("tofu_building_blocks");
 
 	private static ResourceKey<CreativeModeTab> createKey(String p_281544_) {
-		return ResourceKey.create(Registries.CREATIVE_MODE_TAB, new ResourceLocation(TofuCraftReload.MODID, p_281544_));
+		return ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, p_281544_));
 	}
 
 	public static final Supplier<CreativeModeTab> TOFUS = CREATIVE_MODE_TABS.register("tofus", () -> CreativeModeTab.builder()
@@ -62,7 +62,6 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TF_STORAGE,
 						TofuBlocks.TF_CRAFTER,
 						TofuBlocks.TF_OVEN,
-						TofuBlocks.TF_MINER,
 						TofuBlocks.TF_COLLECTOR
 						, TofuBlocks.ANTENNA_BASIC
 						, TofuBlocks.TOFU_DETECTOR

@@ -14,12 +14,12 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuPigRender extends MobRenderer<TofuPig, PigModel<TofuPig>> {
-	private static final ResourceLocation PIG_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofupig/tofupig.png");
+	private static final ResourceLocation PIG_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofupig/tofupig.png");
 
 	public TofuPigRender(EntityRendererProvider.Context p_174304_) {
 		super(p_174304_, new PigModel<>(p_174304_.bakeLayer(ModelLayers.PIG)), 0.5F);
 		this.addLayer(new TofuPigTypeLayer(this));
-		this.addLayer(new SaddleLayer<>(this, new PigModel<>(p_174304_.bakeLayer(ModelLayers.PIG_SADDLE)), new ResourceLocation("textures/entity/pig/pig_saddle.png")));
+		this.addLayer(new SaddleLayer<>(this, new PigModel<>(p_174304_.bakeLayer(ModelLayers.PIG_SADDLE)), ResourceLocation.parse("textures/entity/pig/pig_saddle.png")));
 	}
 
 	@Override

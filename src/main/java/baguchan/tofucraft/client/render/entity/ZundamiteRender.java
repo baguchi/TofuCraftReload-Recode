@@ -12,7 +12,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ZundamiteRender<T extends Zundamite> extends MobRenderer<T, EndermiteModel<T>> {
-	private static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/zundamite.png");
+	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/zundamite.png");
 
 	public ZundamiteRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_, new EndermiteModel<>(p_173956_.bakeLayer(ModelLayers.ENDERMITE)), 0.3F);

@@ -18,7 +18,7 @@ import java.util.function.Function;
 public class TofuBiomeSources {
 	public static final ResourceKey<MultiNoiseBiomeSourceParameterList> TOFU_WORLD = registerPreset("tofu_world");
 
-	public static final MultiNoiseBiomeSourceParameterList.Preset TOFU_WORLD_PRESET = new MultiNoiseBiomeSourceParameterList.Preset(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), new MultiNoiseBiomeSourceParameterList.Preset.SourceProvider() {
+	public static final MultiNoiseBiomeSourceParameterList.Preset TOFU_WORLD_PRESET = new MultiNoiseBiomeSourceParameterList.Preset(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world"), new MultiNoiseBiomeSourceParameterList.Preset.SourceProvider() {
 		public <T> Climate.ParameterList<T> apply(Function<ResourceKey<Biome>, T> p_275530_) {
 			return generateTofuBiomes(p_275530_);
 		}
@@ -33,7 +33,7 @@ public class TofuBiomeSources {
 	}
 
 	private static ResourceKey<MultiNoiseBiomeSourceParameterList> registerPreset(String p_275281_) {
-		return ResourceKey.create(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, new ResourceLocation(TofuCraftReload.MODID, p_275281_));
+		return ResourceKey.create(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, p_275281_));
 	}
 
 	public static void bootstrapPreset(BootstrapContext<MultiNoiseBiomeSourceParameterList> p_275387_) {

@@ -13,7 +13,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofunianEyeLayer<T extends AbstractTofunian, M extends AbstractTofunianModel<T>> extends RenderLayer<T, M> {
-	public static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian_eye.png");
+	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian_eye.png");
 
 	public TofunianEyeLayer(RenderLayerParent<T, M> tofunianRender) {
 		super(tofunianRender);
@@ -23,7 +23,7 @@ public class TofunianEyeLayer<T extends AbstractTofunian, M extends AbstractTofu
 		float f3 = (p_117723_.tickCount + p_117726_ + p_117723_.getId());
 
 		if (!p_117723_.isInvisible() && 0 > Math.sin(f3 * 0.05F) + Math.sin(f3 * 0.13F) + Math.sin(f3 * 0.7F) + 2.55F) {
-			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117723_), p_117720_, p_117721_, p_117722_, p_117723_, 1.0F, 1.0F, 1.0F);
+			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117723_), p_117720_, p_117721_, p_117722_, p_117723_, -1);
 		}
 	}
 

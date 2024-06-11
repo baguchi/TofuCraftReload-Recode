@@ -24,7 +24,7 @@ public class TofuTags {
 		public static final TagKey<Block> TOFU_WORLD_CARVER_REPLACEABLE = tag("tofu_world_replaceable");
 
 		private static TagKey<Block> tag(String name) {
-			return BlockTags.create(new ResourceLocation(TofuCraftReload.MODID, name));
+			return BlockTags.create(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 
@@ -32,7 +32,7 @@ public class TofuTags {
 		public static final TagKey<EntityType<?>> EXTRA_DAMAGE_ZUNDA = tag("extra_damage_zunda");
 
 		private static TagKey<EntityType<?>> tag(String name) {
-			return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(TofuCraftReload.MODID, name));
+			return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 
@@ -60,11 +60,11 @@ public class TofuTags {
 		public static final TagKey<Item> TOFU_DIAMOND_MINEABLE_ENCHANTABLE = tag("tofu_diamond_mineable_enchantable");
 
 		private static TagKey<Item> tag(String name) {
-			return ItemTags.create(new ResourceLocation(TofuCraftReload.MODID, name));
+			return ItemTags.create(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 
 		private static TagKey<Item> universalTag(String name) {
-			return ItemTags.create(new ResourceLocation("c", name));
+			return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
 		}
 	}
 
@@ -72,7 +72,7 @@ public class TofuTags {
 		public static final TagKey<Fluid> SOYMILK = tag("soymilk");
 
 		private static TagKey<Fluid> tag(String name) {
-			return FluidTags.create(new ResourceLocation(TofuCraftReload.MODID, name));
+			return FluidTags.create(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 
@@ -80,7 +80,7 @@ public class TofuTags {
 		public static final TagKey<PoiType> TOFU_VILLAGE = tag("tofu_village");
 
 		private static TagKey<PoiType> tag(String name) {
-			return TagKey.create(Registries.POINT_OF_INTEREST_TYPE, new ResourceLocation(TofuCraftReload.MODID, name));
+			return TagKey.create(Registries.POINT_OF_INTEREST_TYPE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 }

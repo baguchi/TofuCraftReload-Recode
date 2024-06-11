@@ -28,25 +28,25 @@ public class TofuShieldBWLR extends BlockEntityWithoutLevelRenderer {
 		if (pStack.is(TofuItems.TOFU_SHIELD.get())) {
 			pPoseStack.pushPose();
 			pPoseStack.scale(1.0F, -1.0F, -1.0F);
-			VertexConsumer vertexconsumer = ItemRenderer.getFoilBufferDirect(pBuffer, this.shieldModel.renderType(new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofumetal_shield.png")), true, pStack.hasFoil());
-			this.shieldModel.handle().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
-			this.shieldModel.plate().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
+			VertexConsumer vertexconsumer = ItemRenderer.getFoilBufferDirect(pBuffer, this.shieldModel.renderType(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofumetal_shield.png")), true, pStack.hasFoil());
+			this.shieldModel.handle().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay);
+			this.shieldModel.plate().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay);
 
 			pPoseStack.popPose();
 		}
 		if (pStack.is(TofuItems.REFLECT_TOFU_SHIELD.get())) {
 			pPoseStack.pushPose();
 			pPoseStack.scale(1.0F, -1.0F, -1.0F);
-			VertexConsumer vertexconsumer = ItemRenderer.getFoilBufferDirect(pBuffer, this.shieldModel.renderType(new ResourceLocation(TofuCraftReload.MODID, "textures/entity/reflect_tofu_shield.png")), true, pStack.hasFoil());
-			this.shieldModel.handle().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
-			this.shieldModel.plate().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
+			VertexConsumer vertexconsumer = ItemRenderer.getFoilBufferDirect(pBuffer, this.shieldModel.renderType(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/reflect_tofu_shield.png")), true, pStack.hasFoil());
+			this.shieldModel.handle().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay);
+			this.shieldModel.plate().render(pPoseStack, vertexconsumer, pPackedLight, pOverlay);
 
 			pPoseStack.popPose();
 
 			pPoseStack.pushPose();
 			pPoseStack.scale(1.0F, -1.0F, -1.0F);
-			VertexConsumer vertexconsumer2 = ItemRenderer.getFoilBufferDirect(pBuffer, RenderType.eyes(new ResourceLocation(TofuCraftReload.MODID, "textures/entity/reflect_tofu_shield_overlay.png")), true, pStack.hasFoil());
-			this.shieldModel.plate().render(pPoseStack, vertexconsumer2, pPackedLight, pOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
+			VertexConsumer vertexconsumer2 = ItemRenderer.getFoilBufferDirect(pBuffer, RenderType.eyes(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/reflect_tofu_shield_overlay.png")), true, pStack.hasFoil());
+			this.shieldModel.plate().render(pPoseStack, vertexconsumer2, pPackedLight, pOverlay);
 
 			pPoseStack.popPose();
 		}

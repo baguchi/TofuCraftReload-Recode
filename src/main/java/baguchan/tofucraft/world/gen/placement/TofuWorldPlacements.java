@@ -6,9 +6,7 @@ import baguchan.tofucraft.world.gen.features.ModVegetationFeatures;
 import baguchan.tofucraft.world.gen.features.TofuWorldFeatures;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -20,7 +18,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
-import net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.NoiseThresholdCountPlacement;
@@ -62,10 +59,6 @@ public class TofuWorldPlacements {
 	public static final ResourceKey<PlacedFeature> TOFU_TREES_FOREST = registerKey("tofu_trees_forest");
 	public static final ResourceKey<PlacedFeature> TOFU_TREES_PLAINS = registerKey("tofu_trees_plains");
 
-	public static final ResourceKey<PlacedFeature> LOG_PLACE = registerKey("log");
-	public static final ResourceKey<PlacedFeature> CHAIN_PLACE = registerKey("chain");
-
-
 	public static ResourceKey<PlacedFeature> registerKey(String name) {
 		return ResourceKey.create(Registries.PLACED_FEATURE, TofuCraftReload.prefix(name));
 	}
@@ -98,10 +91,6 @@ public class TofuWorldPlacements {
 
 		PlacementUtils.register(context, TOFU_TREES_FOREST, configuredFeature.getOrThrow(ModVegetationFeatures.TOFU_TREES), treePlacement(PlacementUtils.countExtra(10, 0.1F, 1), TofuBlocks.SAPLING_TOFU.get()));
 		PlacementUtils.register(context, TOFU_TREES_PLAINS, configuredFeature.getOrThrow(ModVegetationFeatures.TOFU_TREES), treePlacement(PlacementUtils.countExtra(0, 0.01F, 1), TofuBlocks.SAPLING_TOFU.get()));
-
-		PlacementUtils.register(context, LOG_PLACE, configuredFeature.getOrThrow(TofuWorldFeatures.LOG), EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.anyOf(BlockPredicate.hasSturdyFace(new Vec3i(0, 1, 0), Direction.UP), BlockPredicate.hasSturdyFace(Direction.UP)), 64));
-		PlacementUtils.register(context, CHAIN_PLACE, configuredFeature.getOrThrow(TofuWorldFeatures.CHAIN), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.anyOf(BlockPredicate.hasSturdyFace(new Vec3i(0, -1, 0), Direction.DOWN), BlockPredicate.hasSturdyFace(Direction.DOWN)), 64));
-
 	}
 
 	private static ImmutableList.Builder<PlacementModifier> treePlacementBase(PlacementModifier p_195485_) {

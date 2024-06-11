@@ -12,7 +12,7 @@ import net.minecraft.world.level.dimension.DimensionType;
 import java.util.OptionalLong;
 
 public class TofuDimensionTypes {
-	public static final ResourceKey<DimensionType> TOFU_WORLD_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(TofuCraftReload.MODID, "tofu_world_type"));
+	public static final ResourceKey<DimensionType> TOFU_WORLD_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world_type"));
 
 
 	private static DimensionType tofuDimType() {

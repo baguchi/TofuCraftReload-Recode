@@ -37,11 +37,11 @@ public class TofuFluids {
 	public static final DeferredHolder<Fluid, FlowingFluid> BITTERN = FLUIDS.register("bittern", () -> new NigariFluid.Source());
 	public static final DeferredHolder<Fluid, FlowingFluid> BITTERN_FLOW = FLUIDS.register("bittern_flow", () -> new NigariFluid.Flowing());
 
-	public static final DeferredHolder<Fluid, Fluid> CRIMSON = DeferredHolder.create(Registries.FLUID, new ResourceLocation(TofuCraftReload.MODID, "crimson"));
-	public static final DeferredHolder<Fluid, Fluid> FLOWING_CRIMSON = DeferredHolder.create(Registries.FLUID, new ResourceLocation(TofuCraftReload.MODID, "flowing_crimson"));
+	public static final DeferredHolder<Fluid, Fluid> CRIMSON = DeferredHolder.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "crimson"));
+	public static final DeferredHolder<Fluid, Fluid> FLOWING_CRIMSON = DeferredHolder.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "flowing_crimson"));
 
-	public static final DeferredHolder<Fluid, Fluid> WARPED = DeferredHolder.create(Registries.FLUID, new ResourceLocation(TofuCraftReload.MODID, "warped"));
-	public static final DeferredHolder<Fluid, Fluid> FLOWING_WARPED = DeferredHolder.create(Registries.FLUID, new ResourceLocation(TofuCraftReload.MODID, "flowing_warped"));
+	public static final DeferredHolder<Fluid, Fluid> WARPED = DeferredHolder.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "warped"));
+	public static final DeferredHolder<Fluid, Fluid> FLOWING_WARPED = DeferredHolder.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "flowing_warped"));
 
 
 	public static void registerFluids(RegisterEvent event) {
@@ -53,8 +53,8 @@ public class TofuFluids {
 			@Override
 			public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
 				consumer.accept(new IClientFluidTypeExtensions() {
-					private static final ResourceLocation STILL = new ResourceLocation(TofuCraftReload.MODID, "block/crimson"),
-							FLOW = new ResourceLocation(TofuCraftReload.MODID, "block/crimson");
+					private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson"),
+							FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson");
 
 					@Override
 					public ResourceLocation getStillTexture() {
@@ -86,8 +86,8 @@ public class TofuFluids {
 			@Override
 			public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
 				consumer.accept(new IClientFluidTypeExtensions() {
-					private static final ResourceLocation STILL = new ResourceLocation(TofuCraftReload.MODID, "block/crimson"),
-							FLOW = new ResourceLocation(TofuCraftReload.MODID, "block/crimson");
+					private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson"),
+							FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson");
 
 					@Override
 					public ResourceLocation getStillTexture() {

@@ -30,7 +30,7 @@ public class TofuBoatRenderer extends EntityRenderer<TofuBoat> {
 	public TofuBoatRenderer(EntityRendererProvider.Context context, boolean chest) {
 		super(context);
 		this.shadowRadius = 0.8F;
-		this.boatResources = Stream.of(TofuBoat.Type.values()).collect(ImmutableMap.toImmutableMap(type -> type, type -> Pair.of(new ResourceLocation(TofuCraftReload.MODID, getTextureLocation(type, chest)), this.createBoatModel(context, type, chest))));
+		this.boatResources = Stream.of(TofuBoat.Type.values()).collect(ImmutableMap.toImmutableMap(type -> type, type -> Pair.of(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, getTextureLocation(type, chest)), this.createBoatModel(context, type, chest))));
 	}
 
 	private BoatModel createBoatModel(EntityRendererProvider.Context context, TofuBoat.Type type, boolean chest) {
@@ -40,7 +40,7 @@ public class TofuBoatRenderer extends EntityRenderer<TofuBoat> {
 	}
 
 	private static ModelLayerLocation createLocation(String path) {
-		return new ModelLayerLocation(new ResourceLocation(TofuCraftReload.MODID, path), "main");
+		return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, path), "main");
 	}
 
 	public static ModelLayerLocation createBoatModelName(TofuBoat.Type type) {
@@ -82,7 +82,7 @@ public class TofuBoatRenderer extends EntityRenderer<TofuBoat> {
 		stack.mulPose(Axis.YP.rotationDegrees(90.0F));
 		model.setupAnim(boat, partialTicks, 0.0F, -0.1F, 0.0F, 0.0F);
 		VertexConsumer vertexconsumer = buffer.getBuffer(model.renderType(resourcelocation));
-		model.renderToBuffer(stack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+		model.renderToBuffer(stack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
 		if (!boat.isUnderWater()) {
 			VertexConsumer vertexconsumer1 = buffer.getBuffer(RenderType.waterMask());
 			model.waterPatch().render(stack, vertexconsumer1, light, OverlayTexture.NO_OVERLAY);

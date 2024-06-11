@@ -18,14 +18,14 @@ import net.minecraft.world.item.ItemStack;
 
 public class TofuWorkStationCategory implements IRecipeCategory<TofuWorkStationRecipe> {
 
-	public static final ResourceLocation UID = new ResourceLocation(TofuCraftReload.MODID, "tofu_work_station");
+	public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_work_station");
 	private final Component title;
 	private final IDrawable background;
 	private final IDrawable icon;
 
 	public TofuWorkStationCategory(IGuiHelper helper) {
 		title = Component.translatable("container.tofucraft.tofu_work_station");
-		ResourceLocation backgroundImage = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tofu_work_station.png");
+		ResourceLocation backgroundImage = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tofu_work_station.png");
 		background = helper.createDrawable(backgroundImage, 19, 14, 166 - 19, 70 - 14);
 		icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(TofuBlocks.TOFU_WORK_STATION.get()));
 	}

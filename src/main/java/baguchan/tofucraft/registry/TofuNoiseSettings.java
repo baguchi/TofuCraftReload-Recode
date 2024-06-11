@@ -7,6 +7,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
 public class TofuNoiseSettings {
-	public static final ResourceKey<NoiseGeneratorSettings> TOFU_WORLD = ResourceKey.create(Registries.NOISE_SETTINGS, new ResourceLocation(TofuCraftReload.MODID, "tofu_world_noise"));
+	public static final ResourceKey<NoiseGeneratorSettings> TOFU_WORLD = ResourceKey.create(Registries.NOISE_SETTINGS, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world_noise"));
 
 }

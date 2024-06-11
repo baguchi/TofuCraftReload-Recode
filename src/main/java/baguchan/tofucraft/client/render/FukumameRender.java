@@ -9,7 +9,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class FukumameRender extends AbstractSoybeanRender<FukumameEntity> {
-	public static final ResourceLocation FUKUMAME_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/projectiles/fukumame.png");
+	public static final ResourceLocation FUKUMAME_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/fukumame.png");
 
 	public FukumameRender(EntityRendererProvider.Context p_174399_) {
 		super(p_174399_);

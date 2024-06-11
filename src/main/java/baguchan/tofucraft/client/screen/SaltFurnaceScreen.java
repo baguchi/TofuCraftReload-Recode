@@ -29,7 +29,7 @@ import org.joml.Matrix4f;
 
 @OnlyIn(Dist.CLIENT)
 public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> {
-	private static final ResourceLocation texture = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/salt_furnace.png");
+	private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/salt_furnace.png");
 
 	public SaltFurnaceScreen(SaltFurnaceMenu p_i51104_1_, Inventory p_i51104_3_, Component p_i51104_4_) {
 		super(p_i51104_1_, p_i51104_3_, p_i51104_4_);
@@ -90,8 +90,7 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 		float uDif = uMax - uMin;
 		float vDif = vMax - vMin;
 		RenderSystem.enableBlend();
-		BufferBuilder vertexBuffer = Tesselator.getInstance().getBuilder();
-		vertexBuffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+		BufferBuilder vertexBuffer = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
 		Matrix4f matrix4f = stack.last().pose();
 		for (int xTile = 0; xTile <= xTileCount; xTile++) {
 			int width = (xTile == xTileCount) ? xRemainder : 16;
@@ -112,13 +111,13 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 				int maskTop = 16 - height;
 				float vLocalDif = vDif * maskTop / 16;
 
-				vertexBuffer.vertex(matrix4f, x, y + 16, 0).uv(uMin + uLocalDif, vMax).endVertex();
-				vertexBuffer.vertex(matrix4f, shiftedX, y + 16, 0).uv(uMax, vMax).endVertex();
-				vertexBuffer.vertex(matrix4f, shiftedX, y + maskTop, 0).uv(uMax, vMin + vLocalDif).endVertex();
-				vertexBuffer.vertex(matrix4f, x, y + maskTop, 0).uv(uMin + uLocalDif, vMin + vLocalDif).endVertex();
+				vertexBuffer.addVertex(matrix4f, x, y + 16, 0).setUv(uMin + uLocalDif, vMax);
+				vertexBuffer.addVertex(matrix4f, shiftedX, y + 16, 0).setUv(uMax, vMax);
+				vertexBuffer.addVertex(matrix4f, shiftedX, y + maskTop, 0).setUv(uMax, vMin + vLocalDif);
+				vertexBuffer.addVertex(matrix4f, x, y + maskTop, 0).setUv(uMin + uLocalDif, vMin + vLocalDif);
 			}
 		}
-		BufferUploader.drawWithShader(vertexBuffer.end());
+		BufferUploader.drawWithShader(vertexBuffer.buildOrThrow());
 		RenderSystem.disableBlend();
 	}
 }

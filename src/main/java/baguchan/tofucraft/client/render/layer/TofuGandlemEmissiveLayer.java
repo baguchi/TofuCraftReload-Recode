@@ -33,7 +33,7 @@ public class TofuGandlemEmissiveLayer<T extends TofuGandlem, M extends TofuGandl
 		if (!p_234905_.isInvisible()) {
 			this.onlyDrawSelectedParts();
 			VertexConsumer vertexconsumer = p_234903_.getBuffer(RenderType.entityTranslucentEmissive(this.texture));
-			this.getParentModel().renderToBuffer(p_234902_, vertexconsumer, p_234904_, LivingEntityRenderer.getOverlayCoords(p_234905_, 0.0F), 1.0F, 1.0F, 1.0F, this.alphaFunction.apply(p_234905_, p_234908_, p_234909_));
+			this.getParentModel().renderToBuffer(p_234902_, vertexconsumer, p_234904_, LivingEntityRenderer.getOverlayCoords(p_234905_, 0.0F));
 			this.resetDrawForAllParts();
 		}
 	}

@@ -88,7 +88,7 @@ public abstract class FishingHookMixin extends Projectile {
 						.withParameter(LootContextParams.ORIGIN, this.position())
 						.withParameter(LootContextParams.TOOL, p_37157_)
 						.withParameter(LootContextParams.THIS_ENTITY, this)
-						.withParameter(LootContextParams.KILLER_ENTITY, this.getOwner())
+						.withParameter(LootContextParams.ATTACKING_ENTITY, this.getOwner())
 						.withLuck((float) this.luck + player.getLuck())
 						.create(LootContextParamSets.FISHING);
 				LootTable loottable = this.level().getServer().reloadableRegistries().getLootTable(TofuLootTables.TOFU_WORLD_FISHING_LOOT_TABLE);

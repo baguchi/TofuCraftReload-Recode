@@ -16,7 +16,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class FukumameThowerRenderer<T extends FukumameThower> extends HumanoidMobRenderer<T, FukumameThowerModel<T>> {
-	private static final ResourceLocation TEXTURE = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/piglin_fukumame_thower.png");
+	private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/piglin_fukumame_thower.png");
 
 	public FukumameThowerRenderer(EntityRendererProvider.Context p_174344_, ModelLayerLocation p_174345_, ModelLayerLocation p_174346_, ModelLayerLocation p_174347_, boolean p_174348_) {
 		super(p_174344_, (FukumameThowerModel<T>) createModel(p_174344_.getModelSet(), p_174345_, p_174348_), 0.5F, 1.0019531F, 1.0F, 1.0019531F);

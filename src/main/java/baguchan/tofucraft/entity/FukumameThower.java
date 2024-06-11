@@ -12,7 +12,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.Brain;
@@ -97,7 +96,7 @@ public class FukumameThower extends Piglin {
 	}
 
 	public boolean canReplaceCurrentItem(ItemStack p_34788_) {
-		EquipmentSlot equipmentslot = Mob.getEquipmentSlotForItem(p_34788_);
+		EquipmentSlot equipmentslot = this.getEquipmentSlotForItem(p_34788_);
 		ItemStack itemstack = this.getItemBySlot(equipmentslot);
 		return this.canReplaceCurrentItem(p_34788_, itemstack);
 	}

@@ -2,7 +2,6 @@ package baguchan.tofucraft.recipe;
 
 import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -10,7 +9,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-public class HardenRecipe implements Recipe<Inventory> {
+public class HardenRecipe implements Recipe<EmptyRecipeInput> {
 
 	/**
 	 * The ingredient used for the Before it hardens tofu.
@@ -48,12 +47,12 @@ public class HardenRecipe implements Recipe<Inventory> {
 	}
 
 	@Override
-	public boolean matches(Inventory p_44002_, Level p_44003_) {
+	public boolean matches(EmptyRecipeInput p_44002_, Level p_44003_) {
 		return false;
 	}
 
 	@Override
-	public ItemStack assemble(Inventory p_44001_, HolderLookup.Provider p_336092_) {
+	public ItemStack assemble(EmptyRecipeInput p_44001_, HolderLookup.Provider p_336092_) {
 		return null;
 	}
 

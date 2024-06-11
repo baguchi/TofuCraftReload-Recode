@@ -89,6 +89,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -99,12 +100,12 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.IExtensibleEnum;
-import net.neoforged.neoforge.common.util.ITeleporter;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -317,13 +318,14 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return this.villageCenter;
 	}
 
-	@Nullable
-	public Entity changeDimension(ServerLevel server, ITeleporter teleporter) {
+
+	@Override
+	public @org.jetbrains.annotations.Nullable Entity changeDimension(DimensionTransition p_350951_) {
 		setTofunianHome(null);
 		if (xp != 0) {
 			setTofunianJobBlock(null);
 		}
-		return super.changeDimension(server, teleporter);
+		return super.changeDimension(p_350951_);
 	}
 
 	@Override
@@ -866,11 +868,11 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	@Override
-	public ItemStack eat(Level level, ItemStack stack) {
+	public ItemStack eat(Level level, ItemStack stack, FoodProperties foodProperties) {
 		this.heal(stack.getFoodProperties(this).nutrition());
-		this.playSound(SoundEvents.PLAYER_BURP, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
+		this.playSound(SoundEvents.PLAYER_BURP, 0.5F, this.random.nextFloat() * 0.1F + 0.9F);
 
-		return super.eat(level, stack);
+		return super.eat(level, stack, foodProperties);
 	}
 
 	@Override
@@ -936,24 +938,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			}
 		}
 		super.die(p_35419_);
-	}
-
-	@Nullable
-	@Override
-	public Entity changeDimension(ServerLevel serverLevel) {
-		if (this.getVillageCenter() != null) {
-				//don't forget release poi
-			PoiManager poimanager = serverLevel.getPoiManager();
-				if (poimanager.exists(this.getVillageCenter(), (p_217230_) -> {
-					return true;
-				})) {
-					poimanager.release(this.getVillageCenter());
-				}
-			this.setVillageCenter(null);
-		}
-
-		this.setTofunianHome(null);
-		return super.changeDimension(serverLevel);
 	}
 
 	@Override

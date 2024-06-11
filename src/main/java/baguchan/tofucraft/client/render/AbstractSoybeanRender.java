@@ -12,8 +12,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import org.joml.Matrix3f;
-import org.joml.Matrix4f;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class AbstractSoybeanRender<T extends ThrowableProjectile> extends EntityRenderer<T> {
@@ -25,50 +23,51 @@ public abstract class AbstractSoybeanRender<T extends ThrowableProjectile> exten
 		p_113842_.pushPose();
 		p_113842_.mulPose(Axis.YP.rotationDegrees(Mth.lerp(p_113841_, p_113839_.yRotO, p_113839_.getYRot()) - 90.0F));
 		p_113842_.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(p_113841_, p_113839_.xRotO, p_113839_.getXRot())));
-		float var8 = 0.0F;
-		float var9 = 0.5F;
-		float var10 = 0.0F;
-		float var11 = 0.15625F;
-		float var12 = 0.0F;
-		float var13 = 0.15625F;
-		float var14 = 0.15625F;
-		float var15 = 0.3125F;
-		float var16 = 0.05625F;
-		float var17 = p_113841_;
-		if (var17 > 0.0F) {
-			float var18 = -Mth.sin(var17 * 3.0F) * var17;
-			p_113842_.mulPose(Axis.ZP.rotationDegrees(var18));
-		}
 
 		p_113842_.mulPose(Axis.XP.rotationDegrees(45.0F));
 		p_113842_.scale(0.05625F, 0.05625F, 0.05625F);
-		p_113842_.translate(-4.0D, 0.0D, 0.0D);
-		VertexConsumer var23 = p_113843_.getBuffer(RenderType.entityCutout(this.getTextureLocation(p_113839_)));
-		PoseStack.Pose var19 = p_113842_.last();
-		Matrix4f var20 = var19.pose();
-		Matrix3f var21 = var19.normal();
-		this.vertex(var20, var19, var23, -7, -2, -2, 0.0F, 0.15625F, -1, 0, 0, p_113844_);
-		this.vertex(var20, var19, var23, -7, -2, 2, 0.15625F, 0.15625F, -1, 0, 0, p_113844_);
-		this.vertex(var20, var19, var23, -7, 2, 2, 0.15625F, 0.3125F, -1, 0, 0, p_113844_);
-		this.vertex(var20, var19, var23, -7, 2, -2, 0.0F, 0.3125F, -1, 0, 0, p_113844_);
-		this.vertex(var20, var19, var23, -7, 2, -2, 0.0F, 0.15625F, 1, 0, 0, p_113844_);
-		this.vertex(var20, var19, var23, -7, 2, 2, 0.15625F, 0.15625F, 1, 0, 0, p_113844_);
-		this.vertex(var20, var19, var23, -7, -2, 2, 0.15625F, 0.3125F, 1, 0, 0, p_113844_);
-		this.vertex(var20, var19, var23, -7, -2, -2, 0.0F, 0.3125F, 1, 0, 0, p_113844_);
+		p_113842_.translate(-4.0F, 0.0F, 0.0F);
+		VertexConsumer vertexconsumer = p_113843_.getBuffer(RenderType.entityCutout(this.getTextureLocation(p_113839_)));
+		PoseStack.Pose posestack$pose = p_113842_.last();
+		this.vertex(posestack$pose, vertexconsumer, -7, -2, -2, 0.0F, 0.15625F, -1, 0, 0, p_113844_);
+		this.vertex(posestack$pose, vertexconsumer, -7, -2, 2, 0.15625F, 0.15625F, -1, 0, 0, p_113844_);
+		this.vertex(posestack$pose, vertexconsumer, -7, 2, 2, 0.15625F, 0.3125F, -1, 0, 0, p_113844_);
+		this.vertex(posestack$pose, vertexconsumer, -7, 2, -2, 0.0F, 0.3125F, -1, 0, 0, p_113844_);
+		this.vertex(posestack$pose, vertexconsumer, -7, 2, -2, 0.0F, 0.15625F, 1, 0, 0, p_113844_);
+		this.vertex(posestack$pose, vertexconsumer, -7, 2, 2, 0.15625F, 0.15625F, 1, 0, 0, p_113844_);
+		this.vertex(posestack$pose, vertexconsumer, -7, -2, 2, 0.15625F, 0.3125F, 1, 0, 0, p_113844_);
+		this.vertex(posestack$pose, vertexconsumer, -7, -2, -2, 0.0F, 0.3125F, 1, 0, 0, p_113844_);
 
-		for (int var22 = 0; var22 < 4; ++var22) {
+		for (int j = 0; j < 4; j++) {
 			p_113842_.mulPose(Axis.XP.rotationDegrees(90.0F));
-			this.vertex(var20, var19, var23, -8, -2, 0, 0.0F, 0.0F, 0, 1, 0, p_113844_);
-			this.vertex(var20, var19, var23, 8, -2, 0, 0.5F, 0.0F, 0, 1, 0, p_113844_);
-			this.vertex(var20, var19, var23, 8, 2, 0, 0.5F, 0.15625F, 0, 1, 0, p_113844_);
-			this.vertex(var20, var19, var23, -8, 2, 0, 0.0F, 0.15625F, 0, 1, 0, p_113844_);
+			this.vertex(posestack$pose, vertexconsumer, -8, -2, 0, 0.0F, 0.0F, 0, 1, 0, p_113844_);
+			this.vertex(posestack$pose, vertexconsumer, 8, -2, 0, 0.5F, 0.0F, 0, 1, 0, p_113844_);
+			this.vertex(posestack$pose, vertexconsumer, 8, 2, 0, 0.5F, 0.15625F, 0, 1, 0, p_113844_);
+			this.vertex(posestack$pose, vertexconsumer, -8, 2, 0, 0.0F, 0.15625F, 0, 1, 0, p_113844_);
 		}
 
 		p_113842_.popPose();
 		super.render(p_113839_, p_113840_, p_113841_, p_113842_, p_113843_, p_113844_);
 	}
 
-	public void vertex(Matrix4f p_113826_, PoseStack.Pose p_113827_, VertexConsumer p_113828_, int p_113829_, int p_113830_, int p_113831_, float p_113832_, float p_113833_, int p_113834_, int p_113835_, int p_113836_, int p_113837_) {
-		p_113828_.vertex(p_113826_, (float) p_113829_, (float) p_113830_, (float) p_113831_).color(255, 255, 255, 255).uv(p_113832_, p_113833_).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(p_113837_).normal(p_113827_, (float) p_113834_, (float) p_113836_, (float) p_113835_).endVertex();
+	public void vertex(
+			PoseStack.Pose p_324380_,
+			VertexConsumer p_253902_,
+			int p_254058_,
+			int p_254338_,
+			int p_254196_,
+			float p_254003_,
+			float p_254165_,
+			int p_253982_,
+			int p_254037_,
+			int p_254038_,
+			int p_254271_
+	) {
+		p_253902_.addVertex(p_324380_, (float) p_254058_, (float) p_254338_, (float) p_254196_)
+				.setColor(-1)
+				.setUv(p_254003_, p_254165_)
+				.setOverlay(OverlayTexture.NO_OVERLAY)
+				.setLight(p_254271_)
+				.setNormal(p_324380_, (float) p_253982_, (float) p_254038_, (float) p_254037_);
 	}
 }

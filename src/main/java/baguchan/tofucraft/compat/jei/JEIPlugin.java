@@ -31,7 +31,7 @@ import java.util.List;
 
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
-	public static final ResourceLocation PLUGIN_ID = new ResourceLocation(TofuCraftReload.MODID, "jei_plugin");
+	public static final ResourceLocation PLUGIN_ID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "jei_plugin");
 
 	private static final Minecraft MC = Minecraft.getInstance();
 

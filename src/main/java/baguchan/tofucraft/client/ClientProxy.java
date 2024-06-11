@@ -1,8 +1,5 @@
 package baguchan.tofucraft.client;
 
-import baguchan.tofucraft.blockentity.tfenergy.TFMinerBlockEntity;
-import baguchan.tofucraft.client.screen.TFMinerScreen;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -20,9 +17,5 @@ public class ClientProxy {
 	@OnlyIn(Dist.CLIENT)
 	public void setRefrencedTE(BlockEntity te) {
 		refrencedTileEntity = te;
-	}
-
-	public void setTFMinerScreen(TFMinerBlockEntity tfMinerBlock) {
-		Minecraft.getInstance().setScreen(new TFMinerScreen(tfMinerBlock));
 	}
 }

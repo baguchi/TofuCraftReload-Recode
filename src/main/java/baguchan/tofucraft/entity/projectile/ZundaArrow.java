@@ -27,20 +27,16 @@ public class ZundaArrow extends AbstractArrow {
 	private int duration = 100;
 	private static final ItemStack DEFAULT_ARROW_STACK = new ItemStack(Items.ARROW);
 
-	public ZundaArrow(EntityType<? extends ZundaArrow> p_36858_, Level p_36859_) {
-		super(p_36858_, p_36859_, DEFAULT_ARROW_STACK);
+	public ZundaArrow(EntityType<? extends ZundaArrow> p_37411_, Level p_37412_) {
+		super(p_37411_, p_37412_);
 	}
 
-	public ZundaArrow(EntityType<? extends ZundaArrow> p_37411_, Level p_37412_, ItemStack p_308982_) {
-		super(p_37411_, p_37412_, p_308982_);
+	public ZundaArrow(Level p_37414_, LivingEntity p_309162_, ItemStack p_309167_, @Nullable ItemStack p_346408_) {
+		super(TofuEntityTypes.ZUNDA_ARROW.get(), p_309162_, p_37414_, p_309167_, p_346408_);
 	}
 
-	public ZundaArrow(Level p_37419_, LivingEntity p_37420_, ItemStack p_308982_) {
-		super(TofuEntityTypes.ZUNDA_ARROW.get(), p_37420_, p_37419_, p_308982_);
-	}
-
-	public ZundaArrow(Level p_37414_, double p_37415_, double p_37416_, double p_37417_, ItemStack p_308982_) {
-		super(TofuEntityTypes.ZUNDA_ARROW.get(), p_37415_, p_37416_, p_37417_, p_37414_, p_308982_);
+	public ZundaArrow(Level p_37419_, double p_309044_, double p_309099_, double p_308873_, ItemStack p_308959_, @Nullable ItemStack p_345907_) {
+		super(TofuEntityTypes.ZUNDA_ARROW.get(), p_309044_, p_309099_, p_308873_, p_37419_, p_308959_, p_345907_);
 	}
 
 	public void tick() {

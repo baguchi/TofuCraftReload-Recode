@@ -16,12 +16,12 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
-public class TFOvenMenu extends RecipeBookMenu<Container> {
+public class TFOvenMenu extends RecipeBookMenu<SingleRecipeInput, AbstractCookingRecipe> {
 	public static final int INGREDIENT_SLOT = 0;
 	public static final int FUEL_SLOT = 1;
 	public static final int RESULT_SLOT = 2;
@@ -87,8 +87,8 @@ public class TFOvenMenu extends RecipeBookMenu<Container> {
 	}
 
 	@Override
-	public boolean recipeMatches(RecipeHolder<? extends Recipe<Container>> p_300882_) {
-		return p_300882_.value().matches(this.container, this.level);
+	public boolean recipeMatches(RecipeHolder<AbstractCookingRecipe> p_300882_) {
+		return p_300882_.value().matches(new SingleRecipeInput(this.container.getItem(0)), this.level);
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public class TFOvenMenu extends RecipeBookMenu<Container> {
 	}
 
 	protected boolean canSmelt(ItemStack p_38978_) {
-		return this.level.getRecipeManager().getRecipeFor((RecipeType<AbstractCookingRecipe>) this.recipeType, new SimpleContainer(p_38978_), this.level).isPresent();
+		return this.level.getRecipeManager().getRecipeFor((RecipeType<AbstractCookingRecipe>) this.recipeType, new SingleRecipeInput(p_38978_), this.level).isPresent();
 	}
 
 	public float getTFForce() {

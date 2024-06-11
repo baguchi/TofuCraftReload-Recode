@@ -5,9 +5,11 @@ import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlocks;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferUploader;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
@@ -17,10 +19,10 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 
 public class TofuPortalOverlay implements LayeredDraw.Layer {
 	@Override
-	public void render(GuiGraphics poseStack, float partialTick) {
+	public void render(GuiGraphics poseStack, DeltaTracker partialTick) {
 		Minecraft mc = Minecraft.getInstance();
 		TofuLivingCapability tofuLivingCapability = mc.player.getData(TofuAttachments.TOFU_LIVING);
-		renderTofuPortalOverlay(poseStack, mc, partialTick, poseStack.guiWidth(), poseStack.guiHeight(), tofuLivingCapability);
+		renderTofuPortalOverlay(poseStack, mc, partialTick.getGameTimeDeltaTicks(), poseStack.guiWidth(), poseStack.guiHeight(), tofuLivingCapability);
 
 	}
 
@@ -45,13 +47,12 @@ public class TofuPortalOverlay implements LayeredDraw.Layer {
 			float f2 = textureatlassprite.getU1();
 			float f3 = textureatlassprite.getV1();
 			Tesselator tesselator = Tesselator.getInstance();
-			BufferBuilder bufferbuilder = tesselator.getBuilder();
-			bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-			bufferbuilder.vertex(0.0D, (double) height, -90.0D).uv(f, f3).endVertex();
-			bufferbuilder.vertex((double) width, (double) height, -90.0D).uv(f2, f3).endVertex();
-			bufferbuilder.vertex((double) width, 0.0D, -90.0D).uv(f2, f1).endVertex();
-			bufferbuilder.vertex(0.0D, 0.0D, -90.0D).uv(f, f1).endVertex();
-			tesselator.end();
+			BufferBuilder bufferbuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+			bufferbuilder.addVertex(0.0F, height, -90.0F).setUv(f, f3);
+			bufferbuilder.addVertex(width, height, -90.0F).setUv(f2, f3);
+			bufferbuilder.addVertex(width, 0.0F, -90.0F).setUv(f2, f1);
+			bufferbuilder.addVertex(0.0F, 0.0F, -90.0F).setUv(f, f1);
+			BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
 			RenderSystem.disableBlend();
 			RenderSystem.depthMask(true);
 			RenderSystem.enableDepthTest();

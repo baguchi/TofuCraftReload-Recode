@@ -5,7 +5,6 @@ import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.event.CraftingEvents;
 import baguchan.tofucraft.network.SaltFurnaceBitternPacket;
 import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
-import baguchan.tofucraft.network.SetTFMinerBlockPacket;
 import baguchan.tofucraft.network.SoyMilkDrinkedPacket;
 import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.ModInteractionInformations;
@@ -21,7 +20,6 @@ import baguchan.tofucraft.registry.TofuCarvers;
 import baguchan.tofucraft.registry.TofuCreativeModeTabs;
 import baguchan.tofucraft.registry.TofuDataComponents;
 import baguchan.tofucraft.registry.TofuEffects;
-import baguchan.tofucraft.registry.TofuEnchantments;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuFeatures;
 import baguchan.tofucraft.registry.TofuFluidTypes;
@@ -87,7 +85,6 @@ public class TofuCraftReload {
 		TofuFluidTypes.FLUID_TYPES.register(modBus);
 		TofuFluids.FLUIDS.register(modBus);
 		modBus.addListener(TofuFluids::registerFluids);
-		TofuEnchantments.ENCHANTMENT.register(modBus);
 		TofuCreativeModeTabs.CREATIVE_MODE_TABS.register(modBus);
 		TofuRecipes.RECIPE_TYPES.register(modBus);
 		TofuDataComponents.DATA_COMPONENT_TYPES.register(modBus);
@@ -121,7 +118,7 @@ public class TofuCraftReload {
 
 			Map<ResourceLocation, MultiNoiseBiomeSourceParameterList.Preset> map = Maps.newHashMap();
 			map.putAll(Map.copyOf(MultiNoiseBiomeSourceParameterList.Preset.BY_NAME));
-			map.put(new ResourceLocation(TofuCraftReload.MODID, "tofu_world"), TofuBiomeSources.TOFU_WORLD_PRESET);
+			map.put(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world"), TofuBiomeSources.TOFU_WORLD_PRESET);
 			MultiNoiseBiomeSourceParameterList.Preset.BY_NAME = map;
 
 			TofuBlockSetTypes.init();
@@ -129,7 +126,7 @@ public class TofuCraftReload {
 			TofuItems.registerDispenserItem();
 			TofuItems.registerCompostableItem();
 			TofuBlocks.flamableInit();
-			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift")));
+			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift")));
 			TofuBiomes.init();
 			TofuEnergyMap.init();
 			ModInteractionInformations.init();
@@ -149,7 +146,6 @@ public class TofuCraftReload {
 	public void setupPackets(RegisterPayloadHandlersEvent event) {
 		PayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
 		registrar.playBidirectional(SoyMilkDrinkedPacket.TYPE, SoyMilkDrinkedPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
-		registrar.playBidirectional(SetTFMinerBlockPacket.TYPE, SetTFMinerBlockPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playBidirectional(SaltFurnaceWaterPacket.TYPE, SaltFurnaceWaterPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playBidirectional(SaltFurnaceBitternPacket.TYPE, SaltFurnaceBitternPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playBidirectional(TFStorageSoymilkPacket.TYPE, TFStorageSoymilkPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
@@ -157,6 +153,6 @@ public class TofuCraftReload {
 
 
 	public static ResourceLocation prefix(String name) {
-		return new ResourceLocation(TofuCraftReload.MODID, name.toLowerCase(Locale.ROOT));
+		return ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name.toLowerCase(Locale.ROOT));
 	}
 }

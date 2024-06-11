@@ -14,8 +14,8 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuGolemRender extends MobRenderer<TofuGolem, TofuGolemModel<TofuGolem>> {
-	private static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofu_golem/tofu_golem.png");
-	private static final ResourceLocation GLOW_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofu_golem/tofu_golem_glow.png");
+	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_golem/tofu_golem.png");
+	private static final ResourceLocation GLOW_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_golem/tofu_golem_glow.png");
 
 	public TofuGolemRender(EntityRendererProvider.Context p_173954_) {
 		super(p_173954_, new TofuGolemModel<>(p_173954_.bakeLayer(TofuModelLayers.TOFU_GOLEM)), 0.3F);

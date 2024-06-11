@@ -7,8 +7,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -30,16 +30,16 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 	}
 
 	@Override
-	public boolean matches(Container p_266855_, Level p_266781_) {
+	public boolean matches(CraftingInput p_266855_, Level p_266781_) {
 		return this.hasAnyMatching(p_266855_);
 	}
 
-	private boolean hasAnyMatching(Container container) {
+	private boolean hasAnyMatching(CraftingInput container) {
 		boolean flag = false;
 		boolean flag2 = false;
 		boolean flag3 = false;
 
-		for (int i = 0; i < container.getContainerSize(); ++i) {
+		for (int i = 0; i < container.height() * container.width(); ++i) {
 			ItemStack itemstack = container.getItem(i);
 			if (this.baseIngredient.test(itemstack)) {
 				flag = true;
@@ -56,7 +56,7 @@ public class TofuWorkStationRecipe implements IWorkRecipe {
 	}
 
 	@Override
-	public ItemStack assemble(Container p_267036_, HolderLookup.Provider p_266699_) {
+	public ItemStack assemble(CraftingInput p_267036_, HolderLookup.Provider p_266699_) {
 		ItemStack itemstack = this.result.copy();
 
 		return itemstack;

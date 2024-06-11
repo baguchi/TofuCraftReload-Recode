@@ -46,6 +46,6 @@ public class TofuBiomes {
 	}
 
 	private static ResourceKey<Biome> register(String p_48229_) {
-		return ResourceKey.create(Registries.BIOME, new ResourceLocation(TofuCraftReload.MODID, p_48229_));
+		return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, p_48229_));
 	}
 }

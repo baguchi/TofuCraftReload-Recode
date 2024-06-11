@@ -19,7 +19,7 @@ import java.util.List;
 
 public class JigsawHelper {
 	private static final ResourceKey<StructureProcessorList> EMPTY_PROCESSOR_LIST_KEY = ResourceKey.create(
-			Registries.PROCESSOR_LIST, new ResourceLocation("minecraft", "empty"));
+			Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath("minecraft", "empty"));
 
 	public static void registerJigsaw(MinecraftServer server, ResourceLocation poolLocation, ResourceLocation nbtLocation, int weight) {
 		RegistryAccess manager = server.registryAccess();

@@ -17,7 +17,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
-import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.WorldlyContainer;
@@ -36,6 +35,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -56,7 +56,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 	public static final int MAX_CRAFT_TIME = 200;
 	private final RecipeType<? extends SmeltingRecipe> recipeType;
 
-	private final RecipeManager.CachedCheck<Container, ? extends Recipe> quickCheck;
+	private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends Recipe> quickCheck;
 
 	private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
 
@@ -112,7 +112,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 			if (tfoven.getEnergyStored() > 0) {
 				if (tfoven.refreshTime <= 0) {
 
-					Optional<? extends RecipeHolder<? extends Recipe>> optional = tfoven.quickCheck.getRecipeFor(tfoven, level);
+					Optional<? extends RecipeHolder<? extends Recipe>> optional = tfoven.quickCheck.getRecipeFor(new SingleRecipeInput(tfoven.inventory.get(0)), level);
 
 					if (optional.isPresent()) {
 						++tfoven.progress;
@@ -147,7 +147,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 	private boolean burn(RegistryAccess p_266740_, @javax.annotation.Nullable RecipeHolder<?> p_300910_, NonNullList<ItemStack> p_267073_) {
 		if (p_300910_ != null) {
 			ItemStack itemstack = p_267073_.get(0);
-			ItemStack itemstack1 = ((RecipeHolder<net.minecraft.world.item.crafting.Recipe<WorldlyContainer>>) p_300910_).value().assemble(this, p_266740_);
+			ItemStack itemstack1 = ((RecipeHolder<net.minecraft.world.item.crafting.Recipe<SingleRecipeInput>>) p_300910_).value().assemble(new SingleRecipeInput(p_267073_.get(0)), p_266740_);
 			ItemStack itemstack2 = p_267073_.get(1);
 			if (itemstack2.isEmpty()) {
 				p_267073_.set(1, itemstack1.copy());
@@ -244,7 +244,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 		CompoundTag compoundtag = cmp.getCompound("RecipesUsed");
 
 		for (String s : compoundtag.getAllKeys()) {
-			this.recipesUsed.put(new ResourceLocation(s), compoundtag.getInt(s));
+			this.recipesUsed.put(ResourceLocation.parse(s), compoundtag.getInt(s));
 		}
 	}
 

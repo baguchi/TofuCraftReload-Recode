@@ -74,7 +74,7 @@ public class SpinAttackGoal extends Goal {
 		if (this.attackTime == 24) {
 			this.gandlem.setRush(true);
 
-			this.gandlem.playSound(SoundEvents.TRIDENT_RIPTIDE_3, 3.0F, 1.0F);
+			this.gandlem.playSound(SoundEvents.TRIDENT_RIPTIDE_3.value(), 3.0F, 1.0F);
 		}
 
 		if (this.attackTime < 40 && this.attackTime > 24) {

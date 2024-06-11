@@ -1,10 +1,9 @@
 package baguchan.tofucraft.item;
 
-import baguchan.tofucraft.compat.CompatHandler;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -16,7 +15,6 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -34,7 +32,7 @@ public class SoulFukumameItem extends Item implements ProjectileItem {
 			for (int i = 0; i < 5; i++) {
 				SoulFukumameEntity fukumamentity = new SoulFukumameEntity(levelIn, playerIn, itemstack);
 				fukumamentity.damage = 2.0F;
-				fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, playerIn) * 0.5F;
+				fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(levelIn.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.POWER), playerIn) * 0.5F;
 				float d0 = levelIn.random.nextFloat() * 20.0F - 10.0F;
 				fukumamentity.shootFromRotation(playerIn, playerIn.getXRot() + d0 * 0.325F, playerIn.getYRot() + d0, 0.0F, 1.5F, 0.8F);
 				levelIn.addFreshEntity(fukumamentity);
@@ -46,12 +44,6 @@ public class SoulFukumameItem extends Item implements ProjectileItem {
 			itemstack.hurtAndBreak(1, (LivingEntity) playerIn, LivingEntity.getSlotForHand(handIn));
 		return InteractionResultHolder.sidedSuccess(itemstack, levelIn.isClientSide());
 	}
-
-	@Override
-	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-		return enchantment == Enchantments.POWER || BuiltInRegistries.ENCHANTMENT.getKey(enchantment).compareTo(CompatHandler.HUNTERILLAGER_BOUNCE.location()) == 0 || super.canApplyAtEnchantingTable(stack, enchantment);
-	}
-
 	@Override
 	public int getEnchantmentValue(ItemStack stack) {
 		return 3;

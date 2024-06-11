@@ -20,7 +20,7 @@ public class TofuPigTypeLayer extends RenderLayer<TofuPig, PigModel<TofuPig>> {
 	@Override
 	public void render(PoseStack p_117349_, MultiBufferSource p_117350_, int p_117351_, TofuPig p_117352_, float p_117353_, float p_117354_, float p_117355_, float p_117356_, float p_117357_, float p_117358_) {
 		if (!p_117352_.isInvisible() && p_117352_.getTofuPigType() != TofuPig.TofuPigType.NORMAL) {
-			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117352_), p_117349_, p_117350_, p_117351_, p_117352_, 1.0F, 1.0F, 1.0F);
+			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117352_), p_117349_, p_117350_, p_117351_, p_117352_, -1);
 		}
 	}
 
@@ -30,7 +30,7 @@ public class TofuPigTypeLayer extends RenderLayer<TofuPig, PigModel<TofuPig>> {
 
 		if (entity.getTofuPigType() != TofuPig.TofuPigType.NORMAL)
 			type = entity.getTofuPigType().name().toLowerCase();
-		return new ResourceLocation("tofucraft:textures/entity/tofupig/tofupig_" + type + ".png");
+		return ResourceLocation.parse("tofucraft:textures/entity/tofupig/tofupig_" + type + ".png");
 	}
 
 }

@@ -1,22 +1,15 @@
 package baguchan.tofucraft.entity.projectile;
 
-import baguchan.tofucraft.compat.CompatHandler;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-
-import java.util.Optional;
 
 public class SoulFukumameEntity extends FukumameEntity {
 	public SoulFukumameEntity(EntityType<? extends SoulFukumameEntity> p_i50154_1_, Level p_i50154_2_) {
@@ -29,10 +22,6 @@ public class SoulFukumameEntity extends FukumameEntity {
 
 	public SoulFukumameEntity(Level worldIn, LivingEntity throwerIn, ItemStack stack) {
 		super(TofuEntityTypes.SOUL_FUKUMAME.get(), throwerIn, worldIn);
-		Optional<Holder.Reference<Enchantment>> resourceKey = BuiltInRegistries.ENCHANTMENT.getHolder(CompatHandler.HUNTERILLAGER_BOUNCE);
-		if (resourceKey.isPresent()) {
-			this.setBounceLevel(EnchantmentHelper.getItemEnchantmentLevel(resourceKey.get().value(), stack));
-		}
 	}
 
 	public SoulFukumameEntity(Level worldIn, double x, double y, double z) {

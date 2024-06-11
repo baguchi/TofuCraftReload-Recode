@@ -1,6 +1,5 @@
 package baguchan.tofucraft.utils;
 
-import baguchan.tofucraft.registry.TofuEnchantments;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
@@ -15,7 +14,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -148,13 +146,14 @@ public class TofuDiamondToolUtil {
 	}
 
 	public static void onBlockStartBreak(ItemStack stack, Level level, Block blockDestroyed, BlockPos pos, Player owner) {
-		int lvl = EnchantmentHelper.getEnchantmentLevel(TofuEnchantments.BATCH.get(), owner);
+		//TODO
+		/*int lvl = EnchantmentHelper.getEnchantmentLevel(TofuEnchantments.BATCH.get(), owner);
 		if (lvl > 0) {
 			ImmutableList<BlockPos> poses = calcAOEBlocks(stack, level, owner, pos, 1 + lvl * 2, 1 + lvl * 2, lvl);
 			for (BlockPos extraPos : poses) {
 				breakExtraBlock(stack, owner.level(), owner, extraPos, pos);
 			}
-		}
+		}*/
 
 	}
 
@@ -207,7 +206,8 @@ public class TofuDiamondToolUtil {
 
 		if (!level.isClientSide()) {
 
-			int xp = CommonHooks.fireBlockBreak(level, ((ServerPlayer) player).gameMode.getGameModeForPlayer(), (ServerPlayer) player, pos, state);
+			//TODO
+			int xp = 0;//CommonHooks.fireBlockBreak(level, ((ServerPlayer) player).gameMode.getGameModeForPlayer(), (ServerPlayer) player, pos, state);
 			if (xp == -1) {
 				return;
 			}

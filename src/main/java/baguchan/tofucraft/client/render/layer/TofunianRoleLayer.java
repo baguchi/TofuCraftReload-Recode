@@ -18,7 +18,7 @@ public class TofunianRoleLayer extends RenderLayer<Tofunian, TofunianModel<Tofun
 
 	public void render(PoseStack p_117720_, MultiBufferSource p_117721_, int p_117722_, Tofunian p_117723_, float p_117724_, float p_117725_, float p_117726_, float p_117727_, float p_117728_, float p_117729_) {
 		if (!p_117723_.isInvisible() && p_117723_.getRole() != Tofunian.Roles.TOFUNIAN) {
-			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117723_), p_117720_, p_117721_, p_117722_, p_117723_, 1.0F, 1.0F, 1.0F);
+			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117723_), p_117720_, p_117721_, p_117722_, p_117723_, -1);
 		}
 	}
 
@@ -27,6 +27,6 @@ public class TofunianRoleLayer extends RenderLayer<Tofunian, TofunianModel<Tofun
 		String role = "";
 		if (entity.getRole() != Tofunian.Roles.TOFUNIAN)
 			role = entity.getRole().name().toLowerCase();
-		return new ResourceLocation("tofucraft:textures/entity/tofunian/" + role + ".png");
+		return ResourceLocation.parse("tofucraft:textures/entity/tofunian/" + role + ".png");
 	}
 }

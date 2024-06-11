@@ -18,7 +18,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TFOvenScreen extends AbstractContainerScreen<baguchan.tofucraft.inventory.TFOvenMenu> implements RecipeUpdateListener {
-	private static final ResourceLocation texture = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tf_oven.png");
+	private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tf_oven.png");
 
 	public final SmeltingRecipeBookComponent recipeBookComponent = new SmeltingRecipeBookComponent();
 	private boolean widthTooNarrow;

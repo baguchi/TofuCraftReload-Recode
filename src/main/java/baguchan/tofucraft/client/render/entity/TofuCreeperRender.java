@@ -10,7 +10,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuCreeperRender extends CreeperRenderer {
-	private static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofucreeper.png");
+	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofucreeper.png");
 
 	public TofuCreeperRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_);

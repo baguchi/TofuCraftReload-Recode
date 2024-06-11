@@ -201,8 +201,6 @@ public class BlockstateGenerator extends BlockStateProvider {
 		crossBlock(TofuBlocks.TOFU_FLOWER);
 		crossBlock(TofuBlocks.LEEK);
 
-		translucentBlock(TofuBlocks.TOFU_PORTAL);
-
 		cake(TofuBlocks.TOFUCAKE, "tofucake");
 		cake(TofuBlocks.ZUNDATOFUCAKE, "zundatofucake");
 		cake(TofuBlocks.SOYCHEESE_TART, "soycheese_tart");
@@ -313,7 +311,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 	private ResourceLocation suffix(ResourceLocation rl, String suffix) {
-		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
+		return ResourceLocation.fromNamespaceAndPath(rl.getNamespace(), rl.getPath() + suffix);
 	}
 
 	public ModelFile cubeLeavesAll(Supplier<Block> block) {
@@ -503,7 +501,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 	}
 
 	private ResourceLocation extend(ResourceLocation rl, String suffix) {
-		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
+		return ResourceLocation.fromNamespaceAndPath(rl.getNamespace(), rl.getPath() + suffix);
 	}
 
 	@Nonnull

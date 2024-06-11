@@ -26,7 +26,7 @@ import java.util.Arrays;
 
 public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 
-	public static final ResourceLocation UID = new ResourceLocation(TofuCraftReload.MODID, "bittern");
+	public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "bittern");
 	protected final IDrawableAnimated arrow;
 	private final Component title;
 	private final IDrawable background;
@@ -34,7 +34,7 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 
 	public BitternCategory(IGuiHelper helper) {
 		title = Component.translatable("tofucraft.jei.bittern");
-		ResourceLocation backgroundImage = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/general_jei_recipe.png");
+		ResourceLocation backgroundImage = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/general_jei_recipe.png");
 		background = helper.createDrawable(backgroundImage, 16, 16, 144, 54);
 		icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(TofuItems.BITTERN_BOTTLE.get()));
 		arrow = helper.drawableBuilder(backgroundImage, 176, 14, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);

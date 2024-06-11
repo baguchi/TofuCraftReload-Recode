@@ -7,6 +7,7 @@ import baguchan.tofucraft.inventory.TFStorageMenu;
 import baguchan.tofucraft.registry.TofuFluids;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferUploader;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
@@ -30,7 +31,7 @@ import java.util.Optional;
 
 @OnlyIn(Dist.CLIENT)
 public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
-	private static final ResourceLocation texture = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tf_storage.png");
+	private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tf_storage.png");
 	private static final Component MISSING_ITEM_TOOLTIP = Component.translatable("container.tofucraft.tf_storage.missing_item_tooltip");
 	public TFStorageScreen(TFStorageMenu p_i51104_1_, Inventory p_i51104_3_, Component p_i51104_4_) {
 		super(p_i51104_1_, p_i51104_3_, p_i51104_4_);
@@ -84,7 +85,7 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 
 		int col = props.getTintColor(fluidStack);
 		Tesselator tessellator = Tesselator.getInstance();
-		BufferBuilder bufferbuilder = tessellator.getBuilder();
+		BufferBuilder bufferbuilder = tessellator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
 		float u1 = sprite.getU0();
 		float v1 = sprite.getV0();
 		float u2 = sprite.getU1();
@@ -97,18 +98,17 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 			do {
 				int currentWidth = Math.min(sprite.getY(), width2);
 				width2 -= currentWidth;
-				bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
-				bufferbuilder.vertex(x2, y, depth).uv(u1, v1).color((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255).endVertex();
-				bufferbuilder.vertex(x2, y + currentHeight, depth).uv(u1, v2).color((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255).endVertex();
-				bufferbuilder.vertex(x2 + currentWidth, y + currentHeight, depth).uv(u2, v2).color((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255).endVertex();
-				bufferbuilder.vertex(x2 + currentWidth, y, depth).uv(u2, v1).color((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255).endVertex();
-				tessellator.end();
+				bufferbuilder.addVertex(x2, y, depth).setUv(u1, v1).setColor((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255);
+				bufferbuilder.addVertex(x2, y + currentHeight, depth).setUv(u1, v2).setColor((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255);
+				bufferbuilder.addVertex(x2 + currentWidth, y + currentHeight, depth).setUv(u2, v2).setColor((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255);
+				bufferbuilder.addVertex(x2 + currentWidth, y, depth).setUv(u2, v1).setColor((col >> 16 & 255), (col >> 8 & 255), (col & 255), 255);
+				BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
 				x2 += currentWidth;
 			} while (width2 > 0);
 
 			y += currentHeight;
 		} while (height > 0);
-		bufferbuilder.unsetDefaultColor();
+		bufferbuilder.setColor(1F, 1F, 1F, 1F);
 		RenderSystem.disableBlend();
 	}
 

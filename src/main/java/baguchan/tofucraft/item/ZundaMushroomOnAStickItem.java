@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ItemSteerable;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -46,7 +47,8 @@ public class ZundaMushroomOnAStickItem<T extends Entity & ItemSteerable> extends
 					}
 
 					if (itemstack.isEmpty()) {
-						ItemStack itemstack1 = itemstack.transmuteCopyIgnoreEmpty(Items.FISHING_ROD, 1);
+						EquipmentSlot equipmentslot = LivingEntity.getSlotForHand(p_41316_);
+						ItemStack itemstack1 = itemstack.hurtAndConvertOnBreak(this.consumeItemDamage, Items.FISHING_ROD, p_41315_, equipmentslot);
 						return InteractionResultHolder.success(itemstack1);
 					}
 

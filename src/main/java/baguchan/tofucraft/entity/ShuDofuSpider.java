@@ -3,6 +3,7 @@ package baguchan.tofucraft.entity;
 import bagu_chan.bagus_lib.client.camera.CameraCore;
 import bagu_chan.bagus_lib.client.camera.holder.EntityCameraHolder;
 import bagu_chan.bagus_lib.util.GlobalVec3;
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
@@ -16,6 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -47,7 +49,6 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -64,7 +65,6 @@ import net.neoforged.neoforge.fluids.FluidType;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.UUID;
 
 public class ShuDofuSpider extends Monster {
 	private static final EntityDataAccessor<Boolean> DATA_ID_JUMP = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -75,11 +75,9 @@ public class ShuDofuSpider extends Monster {
 	private static final EntityDataAccessor<Boolean> ANGRY = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 
 
-	private static final UUID ATTACK_MODIFIER_UUID = UUID.fromString("084afd3c-89c3-f8bd-1c76-c9a7a507c9f3");
-	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(ATTACK_MODIFIER_UUID, "attack boost", 0.1D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "attack_boost"), 0.1D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
-	private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("216e1242-75c7-8114-0500-6fc7e324dae6");
-	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ARMOR_MODIFIER_UUID, "armor boost", -0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "armor_boost"), -0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
 	private final ShuDofuSpiderPart[] subEntities;
 	public final ShuDofuSpiderPart body;
@@ -522,7 +520,7 @@ public class ShuDofuSpider extends Monster {
 		if (p_36347_.isAttackable() && !this.isAlliedTo(p_36347_)) {
 			p_36347_.hurt(this.damageSources().mobAttack(this), 18.0F);
 			float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
-			i += EnchantmentHelper.getKnockbackBonus(this) + 1.5F;
+			i += 1.5F;
 
 			if (i > 0) {
 				if (p_36347_ instanceof LivingEntity) {

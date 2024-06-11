@@ -36,7 +36,7 @@ public class TofuSounds {
 	public static final Supplier<SoundEvent> SOYBEAN_CRACK = createEvent("item.soybean.crack");
 
 	private static Supplier<SoundEvent> createEvent(String sound) {
-		ResourceLocation name = new ResourceLocation(TofuCraftReload.MODID, sound);
+		ResourceLocation name = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, sound);
 		return SOUND_EVENTS.register(sound, () -> SoundEvent.createVariableRangeEvent(name));
 	}
 

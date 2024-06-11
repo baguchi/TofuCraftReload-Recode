@@ -12,19 +12,22 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
 import net.minecraft.world.level.Level;
 
+import javax.annotation.Nullable;
+
 public class ZundaArrowItem extends ArrowItem implements ProjectileItem {
 	public ZundaArrowItem(Item.Properties p_43235_) {
 		super(p_43235_);
 	}
 
-	public AbstractArrow createArrow(Level p_43237_, ItemStack p_43238_, LivingEntity p_43239_) {
-		return new ZundaArrow(p_43237_, p_43239_, p_43238_);
+	@Override
+	public AbstractArrow createArrow(Level p_43237_, ItemStack p_43238_, LivingEntity p_43239_, @Nullable ItemStack p_345773_) {
+		return new ZundaArrow(p_43237_, p_43239_, p_43238_.copyWithCount(1), p_345773_);
 	}
 
 	@Override
-	public Projectile asProjectile(Level p_338330_, Position p_338329_, ItemStack p_338197_, Direction p_338469_) {
-		ZundaArrow arrow = new ZundaArrow(p_338330_, p_338329_.x(), p_338329_.y(), p_338329_.z(), p_338197_.copyWithCount(1));
-		arrow.pickup = AbstractArrow.Pickup.ALLOWED;
-		return arrow;
+	public Projectile asProjectile(Level p_338332_, Position p_338313_, ItemStack p_338304_, Direction p_338842_) {
+		ZundaArrow spectralarrow = new ZundaArrow(p_338332_, p_338313_.x(), p_338313_.y(), p_338313_.z(), p_338304_.copyWithCount(1), null);
+		spectralarrow.pickup = AbstractArrow.Pickup.ALLOWED;
+		return spectralarrow;
 	}
 }

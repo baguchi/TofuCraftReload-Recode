@@ -15,10 +15,10 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuGandlemRender<T extends TofuGandlem> extends MobRenderer<T, TofuGandlemModel<T>> {
-	private static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem.png");
-	private static final ResourceLocation SHOOTING_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_shooting.png");
+	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem.png");
+	private static final ResourceLocation SHOOTING_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_shooting.png");
 
-	private static final ResourceLocation CHARGE_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_charge.png");
+	private static final ResourceLocation CHARGE_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_charge.png");
 
 	public TofuGandlemRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_, new TofuGandlemModel<>(p_173956_.bakeLayer(TofuModelLayers.TOFU_GANDLEM)), 0.5F);

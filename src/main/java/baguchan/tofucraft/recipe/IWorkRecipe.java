@@ -2,12 +2,12 @@ package baguchan.tofucraft.recipe;
 
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuRecipes;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 
-public interface IWorkRecipe extends Recipe<Container> {
+public interface IWorkRecipe extends Recipe<CraftingInput> {
 	default RecipeType<?> getType() {
 		return TofuRecipes.RECIPETYPE_TOFU_WORK_STATION.get();
 	}

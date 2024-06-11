@@ -11,7 +11,6 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -38,8 +37,8 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.util.ITeleporter;
 
 import javax.annotation.Nullable;
 import java.util.Set;
@@ -220,16 +219,18 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		return super.getDefaultDimensions(p_316700_);
 	}
 
-	@Nullable
-	public Entity changeDimension(ServerLevel p_35295_, ITeleporter teleporter) {
+	@org.jetbrains.annotations.Nullable
+	@Override
+	public Entity changeDimension(DimensionTransition p_350951_) {
 		this.stopTrading();
-		return super.changeDimension(p_35295_, teleporter);
+		return super.changeDimension(p_350951_);
 	}
 
 	protected void stopTrading() {
 		this.setTradingPlayer((Player) null);
 	}
 
+	@Override
 	public void die(DamageSource p_35270_) {
 		super.die(p_35270_);
 		this.stopTrading();

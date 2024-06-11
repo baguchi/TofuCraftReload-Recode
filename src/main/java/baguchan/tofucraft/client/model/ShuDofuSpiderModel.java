@@ -2,8 +2,6 @@ package baguchan.tofucraft.client.model;
 
 import baguchan.tofucraft.client.animation.definitions.ShuDofuSpiderAnimation;
 import baguchan.tofucraft.entity.ShuDofuSpider;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -221,10 +219,6 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 		this.animate(entity.graspPreAnimationState, ShuDofuSpiderAnimation.GRASP_PRE, ageInTicks);
 	}
 
-	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-	}
 
 	@Override
 	public ModelPart root() {

@@ -58,11 +58,11 @@ public class TofuNoiseBuilder {
 	}
 
 	private static ResourceKey<DensityFunction> createKey(String p_209537_) {
-		return ResourceKey.create(Registries.DENSITY_FUNCTION, new ResourceLocation(p_209537_));
+		return ResourceKey.create(Registries.DENSITY_FUNCTION, ResourceLocation.parse(p_209537_));
 	}
 
 	private static ResourceKey<DensityFunction> createModKey(String p_209537_) {
-		return ResourceKey.create(Registries.DENSITY_FUNCTION, new ResourceLocation(TofuCraftReload.MODID, p_209537_));
+		return ResourceKey.create(Registries.DENSITY_FUNCTION, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, p_209537_));
 	}
 
 

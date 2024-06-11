@@ -14,7 +14,7 @@ import net.minecraft.world.entity.monster.Shulker;
 
 public class TFShulkerHeadLayer extends RenderLayer<Shulker, ShulkerModel<Shulker>> {
 
-	private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tf_shulker.png");
+	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tf_shulker.png");
 
 	public TFShulkerHeadLayer(RenderLayerParent<Shulker, ShulkerModel<Shulker>> p_117432_) {
 		super(p_117432_);

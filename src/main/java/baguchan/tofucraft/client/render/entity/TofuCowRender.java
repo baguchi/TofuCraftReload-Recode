@@ -12,8 +12,8 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuCowRender extends MobRenderer<TofuCow, CowModel<TofuCow>> {
-	private static final ResourceLocation LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofucow/tofucow.png");
-	private static final ResourceLocation TOFU_COW_LOCATION = new ResourceLocation(TofuCraftReload.MODID, "textures/entity/tofucow/tofuzundacow.png");
+	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofucow/tofucow.png");
+	private static final ResourceLocation TOFU_COW_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofucow/tofuzundacow.png");
 
 	public TofuCowRender(EntityRendererProvider.Context p_174304_) {
 		super(p_174304_, new CowModel<>(p_174304_.bakeLayer(ModelLayers.COW)), 0.5F);
@@ -25,6 +25,6 @@ public class TofuCowRender extends MobRenderer<TofuCow, CowModel<TofuCow>> {
 
 		if (entity.getTofuCowType() != TofuCow.TofuCowType.NORMAL)
 			type = "_" + entity.getTofuCowType().name().toLowerCase();
-		return new ResourceLocation("tofucraft:textures/entity/tofucow/tofucow" + type + ".png");
+		return ResourceLocation.parse("tofucraft:textures/entity/tofucow/tofucow" + type + ".png");
 	}
 }

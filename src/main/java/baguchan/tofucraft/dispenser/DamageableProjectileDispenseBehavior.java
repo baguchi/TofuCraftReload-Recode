@@ -4,11 +4,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 
 public abstract class DamageableProjectileDispenseBehavior extends ProjectileDispenseBehavior {
@@ -26,7 +26,7 @@ public abstract class DamageableProjectileDispenseBehavior extends ProjectileDis
 	}
 
 	public ItemStack execute(BlockSource p_123366_, ItemStack p_123367_) {
-		Level level = p_123366_.level();
+		ServerLevel level = p_123366_.level();
 		Position position = DispenserBlock.getDispensePosition(p_123366_);
 		Direction direction = p_123366_.state().getValue(DispenserBlock.FACING);
 		for (int i = 0; i < shootCount(); i++) {
@@ -35,7 +35,8 @@ public abstract class DamageableProjectileDispenseBehavior extends ProjectileDis
 					this.dispenseConfig.uncertainty());
 			level.addFreshEntity(projectile);
 		}
-		p_123367_.hurtAndBreak(1, level.getRandom(), null, () -> p_123367_.setCount(0));
+		p_123367_.hurtAndBreak(1, level, null, p_348118_ -> {
+		});
 		return p_123367_;
 	}
 

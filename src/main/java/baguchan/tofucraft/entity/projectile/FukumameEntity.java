@@ -1,15 +1,12 @@
 package baguchan.tofucraft.entity.projectile;
 
-import baguchan.tofucraft.compat.CompatHandler;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -19,8 +16,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -29,8 +24,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-
-import java.util.Optional;
 
 public class FukumameEntity extends ThrowableProjectile {
 	public float damage = 1;
@@ -48,10 +41,6 @@ public class FukumameEntity extends ThrowableProjectile {
 
 	public FukumameEntity(Level worldIn, LivingEntity throwerIn, ItemStack stack) {
 		super(TofuEntityTypes.FUKUMAME.get(), throwerIn, worldIn);
-		Optional<Holder.Reference<Enchantment>> resourceKey = BuiltInRegistries.ENCHANTMENT.getHolder(CompatHandler.HUNTERILLAGER_BOUNCE);
-		if (resourceKey.isPresent()) {
-			this.entityData.set(BOUNCE_LEVEL, EnchantmentHelper.getItemEnchantmentLevel(resourceKey.get().value(), stack));
-		}
 	}
 
 	public FukumameEntity(Level worldIn, double x, double y, double z) {
