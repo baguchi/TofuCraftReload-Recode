@@ -33,5 +33,7 @@ public class DataGenerators {
 		event.getGenerator().addProvider(event.includeServer(), TofuLootTableProvider.create(packOutput, lookupProvider));
 		event.getGenerator().addProvider(event.includeServer(), new CraftingGenerator(packOutput, lookupProvider));
 		event.getGenerator().addProvider(event.includeServer(), new RegistryDataGenerator(packOutput, lookupProvider));
+		//event.getGenerator().addProvider(event.includeServer(), new EnchantTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
+
 	}
 }

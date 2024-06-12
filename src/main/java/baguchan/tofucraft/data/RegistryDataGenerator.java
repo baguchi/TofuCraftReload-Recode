@@ -7,6 +7,7 @@ import baguchan.tofucraft.data.resources.TofuNoiseBuilder;
 import baguchan.tofucraft.registry.TofuBiomeSources;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuDimensionTypes;
+import baguchan.tofucraft.registry.TofuEnchantments;
 import baguchan.tofucraft.registry.TofuLevelStems;
 import baguchan.tofucraft.registry.TofuTrimMaterials;
 import net.minecraft.core.HolderLookup;
@@ -32,7 +33,8 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.DIMENSION_TYPE, TofuDimensionTypes::bootstrap)
 			.add(Registries.BIOME, TofuBiomes::bootstrap)
 			.add(Registries.LEVEL_STEM, TofuLevelStems::bootstrapLevelStem)
-			.add(Registries.TRIM_MATERIAL, TofuTrimMaterials::bootstrap);
+			.add(Registries.TRIM_MATERIAL, TofuTrimMaterials::bootstrap)
+			.add(Registries.ENCHANTMENT, TofuEnchantments::bootstrap);
 
 
 	public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

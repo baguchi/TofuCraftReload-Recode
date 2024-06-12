@@ -1,19 +1,21 @@
 package baguchan.tofucraft.utils;
 
+import baguchan.tofucraft.registry.TofuEnchantments;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -146,14 +148,13 @@ public class TofuDiamondToolUtil {
 	}
 
 	public static void onBlockStartBreak(ItemStack stack, Level level, Block blockDestroyed, BlockPos pos, Player owner) {
-		//TODO
-		/*int lvl = EnchantmentHelper.getEnchantmentLevel(TofuEnchantments.BATCH.get(), owner);
+		int lvl = EnchantmentHelper.getEnchantmentLevel(level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.BATCH), owner);
 		if (lvl > 0) {
 			ImmutableList<BlockPos> poses = calcAOEBlocks(stack, level, owner, pos, 1 + lvl * 2, 1 + lvl * 2, lvl);
 			for (BlockPos extraPos : poses) {
 				breakExtraBlock(stack, owner.level(), owner, extraPos, pos);
 			}
-		}*/
+		}
 
 	}
 
@@ -206,19 +207,10 @@ public class TofuDiamondToolUtil {
 
 		if (!level.isClientSide()) {
 
-			//TODO
-			int xp = 0;//CommonHooks.fireBlockBreak(level, ((ServerPlayer) player).gameMode.getGameModeForPlayer(), (ServerPlayer) player, pos, state);
-			if (xp == -1) {
-				return;
-			}
-
-
 			BlockEntity tileEntity = level.getBlockEntity(pos);
 			if (block.onDestroyedByPlayer(state, level, pos, player, true, fluidState)) {
 				block.destroy(level, pos, state);
 				block.playerDestroy(level, player, pos, state, tileEntity, stack);
-				if (level instanceof ServerLevel serverLevel)
-					block.popExperience(serverLevel, pos, xp);
 			}
 
 			//send breaking block update
