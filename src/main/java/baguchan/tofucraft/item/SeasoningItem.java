@@ -3,7 +3,6 @@ package baguchan.tofucraft.item;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantment;
 
 public class SeasoningItem extends Item {
 	public SeasoningItem(Properties properties) {
@@ -12,11 +11,6 @@ public class SeasoningItem extends Item {
 
 	@Override
 	public boolean isEnchantable(ItemStack p_41456_) {
-		return false;
-	}
-
-	@Override
-	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
 		return false;
 	}
 
