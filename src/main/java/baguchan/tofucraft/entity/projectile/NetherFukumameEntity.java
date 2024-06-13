@@ -55,8 +55,6 @@ public class NetherFukumameEntity extends FukumameEntity {
 
 	@Override
 	protected void onHitEntity(EntityHitResult p_37404_) {
-		p_37404_.getEntity().igniteForSeconds(8);
-
 		super.onHitEntity(p_37404_);
 	}
 }
