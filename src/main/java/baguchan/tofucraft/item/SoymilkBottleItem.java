@@ -72,7 +72,8 @@ public class SoymilkBottleItem extends Item {
 	}
 
 
-	public int getUseDuration(ItemStack p_77626_1_) {
+	@Override
+	public int getUseDuration(ItemStack p_41454_, LivingEntity p_344979_) {
 		return 32;
 	}
 

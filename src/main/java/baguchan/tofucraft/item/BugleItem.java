@@ -31,7 +31,7 @@ public class BugleItem extends Item {
 
 	@Override
 	public void releaseUsing(ItemStack p_41412_, Level p_41413_, LivingEntity p_41414_, int p_41415_) {
-		int i = getUseDuration(p_41412_) - p_41415_;
+		int i = getUseDuration(p_41412_, p_41414_) - p_41415_;
 
 		if (p_41414_ instanceof Player) {
 			Player playerentity = (Player) p_41414_;
@@ -88,7 +88,8 @@ public class BugleItem extends Item {
 		return InteractionResultHolder.success(itemstack);
 	}
 
-	public int getUseDuration(ItemStack p_77626_1_) {
+	@Override
+	public int getUseDuration(ItemStack p_41454_, LivingEntity p_344979_) {
 		return 72000;
 	}
 
