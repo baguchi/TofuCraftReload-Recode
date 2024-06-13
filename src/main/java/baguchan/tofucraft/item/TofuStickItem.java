@@ -5,9 +5,12 @@ import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.world.TofuPortalShape;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -23,13 +26,18 @@ public class TofuStickItem extends Item implements IEnergyInsertable {
 
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
-
-		if (inPortalDimension(context.getLevel())) {
-			Optional<TofuPortalShape> optional = TofuPortalShape.findEmptyPortalShape(context.getLevel(), context.getClickedPos().offset(context.getClickedFace().getNormal()), Direction.Axis.X);
+		Level level = context.getLevel();
+		Player player = context.getPlayer();
+		BlockPos pos = context.getClickedPos();
+		if (inPortalDimension(level)) {
+			Optional<TofuPortalShape> optional = TofuPortalShape.findEmptyPortalShape(level, pos.offset(context.getClickedFace().getNormal()), Direction.Axis.X);
 			if (optional.isPresent()) {
 				optional.get().createPortalBlocks();
-				if (!context.getPlayer().isCreative())
-					context.getItemInHand().hurtAndBreak(1, (LivingEntity) context.getPlayer(), LivingEntity.getSlotForHand(context.getHand()));
+				if (!player.isCreative()) {
+					context.getItemInHand().hurtAndBreak(1, (LivingEntity) player, LivingEntity.getSlotForHand(context.getHand()));
+				}
+				level.playSound(player, pos, SoundEvents.ZOMBIE_VILLAGER_CONVERTED, SoundSource.BLOCKS, 2.0F, 1.0F);
+
 				return InteractionResult.SUCCESS;
 			}
 		}
