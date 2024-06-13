@@ -1,6 +1,6 @@
 {
   "type" : "minecraft:jigsaw",
-  "start_pool" : "tofucraft:tofu_ruins",
+  "start_pool": "tofucraft:tofu_ruins/tofu_ruins",
   "size" : 7,
   "max_distance_from_center" : 80,
   "biomes" : "#tofucraft:has_structure/tofu_ruins",
