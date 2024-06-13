@@ -87,17 +87,6 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
-    maven {
-        name 'Maven for PR #1076' // https://github.com/neoforged/NeoForge/pull/1076
-        url 'https://prmaven.neoforged.net/NeoForge/pr1076'
-        content {
-            includeModule('net.neoforged', 'testframework')
-            includeModule('net.neoforged', 'neoforge')
-        }
-    }
-    maven {
-        url = "https://raw.github.com/baguchan/BagusMaven/main/repository"
-    }
 }
 
 dependencies {
@@ -107,8 +96,7 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     implementation "net.neoforged:neoforge:${neo_version}"
-    //implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
-    implementation "baguchan.bagus_lib:BagusLib:${bagus_lib_version}"
+    implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
     //compileOnly("mezz.jei:jei-1.20.4-common-api:17.0.0.30")
     //compileOnly("mezz.jei:jei-1.20.4-neoforge-api:17.0.0.30")
     // at runtime, use the full JEI jar for NeoForge
