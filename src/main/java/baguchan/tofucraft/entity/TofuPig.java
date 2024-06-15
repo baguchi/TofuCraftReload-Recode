@@ -48,7 +48,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.AABB;
-import net.neoforged.neoforge.common.IExtensibleEnum;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -174,7 +173,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 		return this.healilng.active(this.getRandom());
 	}
 
-	public enum TofuPigType implements IExtensibleEnum {
+	public enum TofuPigType {
 		NORMAL,
 		METAL,
 		GRILLED,
@@ -190,10 +189,6 @@ public class TofuPig extends Pig implements ItemInteractable {
 					return role;
 			}
 			return NORMAL;
-		}
-
-		public static TofuPig.TofuPigType create(String name) {
-			throw new IllegalStateException("Enum not extended");
 		}
 	}
 

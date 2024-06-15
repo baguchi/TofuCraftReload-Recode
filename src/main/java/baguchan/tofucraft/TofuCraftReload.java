@@ -31,11 +31,9 @@ import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
-import baguchan.tofucraft.registry.TofuRecipeBookTypes;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
 import com.google.common.collect.Maps;
-import com.google.common.reflect.Reflection;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -113,9 +111,6 @@ public class TofuCraftReload {
 
 	private void setup(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-
-			Reflection.initialize(TofuRecipeBookTypes.class);
-
 			Map<ResourceLocation, MultiNoiseBiomeSourceParameterList.Preset> map = Maps.newHashMap();
 			map.putAll(Map.copyOf(MultiNoiseBiomeSourceParameterList.Preset.BY_NAME));
 			map.put(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world"), TofuBiomeSources.TOFU_WORLD_PRESET);

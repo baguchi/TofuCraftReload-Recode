@@ -39,7 +39,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.neoforged.neoforge.common.IExtensibleEnum;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.FluidUtil;
@@ -148,7 +147,7 @@ public class TofuCow extends Cow {
 		return p_27600_.is(TofuItems.LEEK.get());
 	}
 
-	public enum TofuCowType implements IExtensibleEnum {
+	public enum TofuCowType {
 		NORMAL,
 		ZUNDA;
 
@@ -162,10 +161,6 @@ public class TofuCow extends Cow {
 					return role;
 			}
 			return NORMAL;
-		}
-
-		public static TofuCowType create(String name) {
-			throw new IllegalStateException("Enum not extended");
 		}
 	}
 }

@@ -105,7 +105,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.IExtensibleEnum;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -1023,7 +1022,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().name().toLowerCase(Locale.ROOT));
 	}
 
-	public enum TofunianType implements IExtensibleEnum {
+	public enum TofunianType {
 		NORMAL,
 		ZUNDA;
 
@@ -1044,7 +1043,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 	}
 
-	public enum Actions implements IExtensibleEnum {
+	public enum Actions {
 		NORMAL(true, -1),
 		CRY(true, 80),
 		AVOID(true, -1),
@@ -1069,12 +1068,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			return NORMAL;
 		}
 
-		public static Actions create(String name, boolean loop, int tick) {
-			throw new IllegalStateException("Enum not extended");
-		}
 	}
 
-	public enum Roles implements IExtensibleEnum {
+	public enum Roles {
 		TOFUCOOK(getBlockStates(Blocks.COMPOSTER)), TOFUSMITH(getBlockStates(Blocks.BLAST_FURNACE)), SOYWORKER((Set) ImmutableList.of(Blocks.CAULDRON, Blocks.LAVA_CAULDRON, Blocks.WATER_CAULDRON, Blocks.POWDER_SNOW_CAULDRON).stream().flatMap((p_218093_) -> {
 			return p_218093_.getStateDefinition().getPossibleStates().stream();
 		}).collect(ImmutableSet.toImmutableSet())), TOFUNIAN(Set.of());
@@ -1090,10 +1086,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		private Roles(Set<BlockState> matchingStates) {
 			matchingStates = Set.copyOf(matchingStates);
 			this.matchingStates = matchingStates;
-		}
-
-		public static Roles create(String name, Set<BlockState> poitype) {
-			throw new IllegalStateException("Enum not extended");
 		}
 
 		public boolean is(BlockState p_148693_) {
