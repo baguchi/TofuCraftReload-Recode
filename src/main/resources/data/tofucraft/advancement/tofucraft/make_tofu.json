@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/bittern_bottle",
   "display": {
     "icon": {
-      "item": "tofucraft:blocktofukinu"
+      "id": "tofucraft:blocktofukinu",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.make_tofu.title"

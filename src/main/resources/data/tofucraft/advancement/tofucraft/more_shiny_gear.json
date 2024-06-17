@@ -37,8 +37,9 @@
     "frame": "challenge",
     "hidden": false,
     "icon": {
-      "item": "tofucraft:tofu_diamond_chestplate",
-      "nbt": "{Damage:0}"
+      "id": "tofucraft:tofu_diamond_chestplate",
+      "nbt": "{Damage:0}",
+      "count": 1
     },
     "show_toast": true,
     "title": {

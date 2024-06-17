@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/nether_soybeans",
   "display": {
     "icon": {
-      "item": "tofucraft:seeds_soybeans_soul"
+      "id": "tofucraft:seeds_soybeans_soul",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.very_strange_soybeans.title"

@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/tofuworld",
   "display": {
     "icon": {
-      "item": "minecraft:echo_shard"
+      "id": "minecraft:echo_shard",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.nightmares_echo.title"

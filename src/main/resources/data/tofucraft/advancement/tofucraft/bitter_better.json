@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/bittern_bottle",
   "display": {
     "icon": {
-      "item": "tofucraft:salt_furnace"
+      "id": "tofucraft:salt_furnace",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.bitter_better.title"

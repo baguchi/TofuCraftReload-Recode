@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/fermentation_basics",
   "display": {
     "icon": {
-      "item": "tofucraft:miso"
+      "id": "tofucraft:miso",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.miso.title"

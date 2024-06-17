@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/make_tofu",
   "display": {
     "icon": {
-      "item": "tofucraft:koujibase"
+      "id": "tofucraft:koujibase",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.fermentation_basics.title"

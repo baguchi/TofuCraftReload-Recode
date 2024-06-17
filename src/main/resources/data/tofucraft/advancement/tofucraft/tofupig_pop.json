@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/tofuworld",
   "display": {
     "icon": {
-      "item": "tofucraft:zundamushroom_on_a_stick"
+      "id": "tofucraft:zundamushroom_on_a_stick",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.tofupig_pop.title"

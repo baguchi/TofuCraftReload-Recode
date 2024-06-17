@@ -1,7 +1,8 @@
 {
   "display": {
     "icon": {
-      "item": "tofucraft:seeds_soybeans"
+      "id": "tofucraft:seeds_soybeans",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.root.title"

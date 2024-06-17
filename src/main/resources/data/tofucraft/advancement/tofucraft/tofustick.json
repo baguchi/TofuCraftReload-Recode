@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/make_tofu",
   "display": {
     "icon": {
-      "item": "tofucraft:tofustick"
+      "id": "tofucraft:tofustick",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.tofustick.title"

@@ -37,8 +37,9 @@
     "frame": "challenge",
     "hidden": true,
     "icon": {
-      "item": "tofucraft:sculk_bone_chestplate",
-      "nbt": "{Damage:0}"
+      "id": "tofucraft:sculk_bone_chestplate",
+      "nbt": "{Damage:0}",
+      "count": 1
     },
     "show_toast": true,
     "title": {

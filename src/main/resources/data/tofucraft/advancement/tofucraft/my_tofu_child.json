@@ -2,7 +2,8 @@
   "parent" : "tofucraft:tofucraft/tofuworld",
   "display" : {
     "icon" : {
-      "item" : "tofucraft:tofunian_soy_chocolate"
+      "id": "tofucraft:tofunian_soy_chocolate",
+      "count": 1
     },
     "title" : {
       "translate" : "advancements.tofucraft.my_tofu_child.title"

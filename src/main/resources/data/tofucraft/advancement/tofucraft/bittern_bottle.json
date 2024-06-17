@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/make_saltpan",
   "display": {
     "icon": {
-      "item": "tofucraft:bittern_bottle"
+      "id": "tofucraft:bittern_bottle",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.bittern_bottle.title"

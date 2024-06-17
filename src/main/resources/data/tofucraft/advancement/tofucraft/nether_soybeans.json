@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/make_tofu",
   "display": {
     "icon": {
-      "item": "tofucraft:seeds_soybeans_nether"
+      "id": "tofucraft:seeds_soybeans_nether",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.nether_soybeans.title"

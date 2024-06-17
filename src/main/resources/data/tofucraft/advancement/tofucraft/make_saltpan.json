@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/roots",
   "display": {
     "icon": {
-      "item": "tofucraft:blocksaltpan"
+      "id": "tofucraft:blocksaltpan",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.make_saltpan.title"

@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/make_tofu",
   "display": {
     "icon": {
-      "item": "tofucraft:blocktofumetal"
+      "id": "tofucraft:blocktofumetal",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.harder_tofu.title"

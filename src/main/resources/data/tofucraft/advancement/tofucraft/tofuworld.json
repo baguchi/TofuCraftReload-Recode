@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/tofustick",
   "display": {
     "icon": {
-      "item": "tofucraft:tofu_terrain"
+      "id": "tofucraft:tofu_terrain",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.tofuworld.title"

@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/make_tofu",
   "display": {
     "icon": {
-      "item": "tofucraft:chili"
+      "id": "tofucraft:chili",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.sniffed_revenge.title"

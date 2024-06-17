@@ -2,7 +2,8 @@
   "parent": "tofucraft:tofucraft/find_tofu_castle",
   "display": {
     "icon": {
-      "item": "tofucraft:zunda_bow"
+      "id": "tofucraft:zunda_bow",
+      "count": 1
     },
     "title": {
       "translate": "advancements.tofucraft.zunda_legends.title"
