@@ -56,6 +56,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.blockentity.VaultRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -86,6 +87,7 @@ public class ClientRegistrar {
 		BlockEntityRenderers.register(TofuBlockEntitys.SUSPICIOUS_TOFU.get(), BrushableBlockRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFU_SIGN.get(), SignRenderer::new);
 		BlockEntityRenderers.register(TofuBlockEntitys.TOFU_HANGING_SIGN.get(), HangingSignRenderer::new);
+		BlockEntityRenderers.register(TofuBlockEntitys.TOFU_VAULT.get(), VaultRenderer::new);
 	}
 
 

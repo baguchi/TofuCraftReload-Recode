@@ -331,6 +331,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.ANTENNA_BASIC.get());
 		dropSelf(TofuBlocks.TOFU_WORK_STATION.get());
 		dropSelf(TofuBlocks.TF_COLLECTOR.get());
+		dropSelf(TofuBlocks.TOFU_VAULT.get());
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

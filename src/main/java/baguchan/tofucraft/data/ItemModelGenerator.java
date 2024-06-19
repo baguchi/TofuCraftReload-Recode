@@ -186,6 +186,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.TOFU_STEM_DOOR);
 		toBlockModel(TofuBlocks.TOFU_STEM_TRAPDOOR, "tofustem_trapdoor_bottom");
 
+
 		itemBlockFlat(TofuBlocks.SAPLING_TOFU);
 		toBlock(TofuBlocks.LEAVES_TOFU);
 
@@ -204,6 +205,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.SOYCHEESE_TART);
 
 		toBlock(TofuBlocks.ZUNDAMA_BLOCK);
+
+		toBlock(TofuBlocks.TOFU_VAULT);
 
 		//item
 		singleTex(TofuItems.TOFUKINU);
@@ -524,6 +527,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.SOYBEANS_SEEDS_BLOCK);
 		toBlock(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK);
 		toBlock(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK);
+
+		singleTex(TofuItems.TOFU_KEY);
 	}
 
 	public void sign(Supplier<? extends SignBlock> sign) {
