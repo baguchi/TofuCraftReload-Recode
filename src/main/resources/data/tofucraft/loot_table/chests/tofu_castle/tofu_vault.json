@@ -6,12 +6,12 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "value": "tofucraft:chests/tofu_castle/tofu_castle_chest",
+          "value": "tofucraft:chests/tofu_castle/tofu_castle_chest_vault",
           "weight": 8
         },
         {
           "type": "minecraft:loot_table",
-          "value": "tofucraft:chests/tofu_castle/tofu_castle_food_container",
+          "value": "tofucraft:chests/tofu_castle/tofu_castle_food_container_vault",
           "weight": 2
         }
       ],
@@ -22,27 +22,23 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "value": "tofucraft:chests/tofu_castle/tofu_castle_food_container",
+          "value": "tofucraft:chests/tofu_castle/tofu_castle_food_container_vault",
           "weight": 5
         },
         {
           "type": "minecraft:loot_table",
-          "value": "tofucraft:chests/tofu_castle/tofu_castle_chest",
+          "value": "tofucraft:chests/tofu_castle/tofu_castle_chest_vault",
           "weight": 2
         }
       ],
-      "rolls": {
-        "type": "minecraft:uniform",
-        "max": 5.0,
-        "min": 3.0
-      }
+      "rolls": 1.0
     },
     {
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "value": "tofucraft:chests/tofu_castle/tofu_castle_chest"
+          "value": "tofucraft:chests/tofu_castle/tofu_castle_chest_vault"
         }
       ],
       "rolls": 1.0

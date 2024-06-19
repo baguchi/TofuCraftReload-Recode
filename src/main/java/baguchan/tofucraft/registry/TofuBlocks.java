@@ -497,7 +497,7 @@ public class TofuBlocks {
 	public static final Supplier<Block> ANTENNA_BASIC = register("antenna_basic", () -> new TFAntennaBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final Supplier<Block> TOFU_WORK_STATION = register("tofu_work_station", () -> new TofuWorkStationBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final Supplier<Block> TOFU_VAULT = register("tofu_vault", () -> new TofuVaultBlock(BlockBehaviour.Properties.of().lightLevel(p_323402_ -> p_323402_.getValue(VaultBlock.STATE).lightLevel())
-			.strength(50.0F).sound(SoundType.VAULT)));
+			.strength(50.0F).noOcclusion().isViewBlocking((state, blockGetter, blockPos) -> false).sound(SoundType.VAULT)));
 
 
 	private static boolean always(BlockState p_50775_, BlockGetter p_50776_, BlockPos p_50777_) {
