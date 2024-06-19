@@ -52,6 +52,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
@@ -189,6 +190,23 @@ public class CommonEvents {
 				if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
 					event.getAffectedBlocks().clear();
 
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onBlockGriefing(EntityMobGriefingEvent event) {
+		Level world = event.getEntity().level();
+		if (world instanceof ServerLevel) {
+			ServerLevel serverLevel = (ServerLevel) world;
+			Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+			if (structure != null) {
+				TofuData data = TofuData.get(serverLevel);
+				Vec3 center = event.getEntity().position();
+				StructureStart structureStart = serverLevel.structureManager().getStructureAt(new BlockPos((int) center.x, (int) center.y, (int) center.z), structure);
+				if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
+					event.setCanGrief(false);
 				}
 			}
 		}
