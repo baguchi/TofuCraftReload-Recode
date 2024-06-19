@@ -1,7 +1,5 @@
 package baguchan.tofucraft.compat.jei;
 
-/*
-
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.HardenRecipe;
@@ -19,10 +17,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Blocks;
 
@@ -35,7 +33,7 @@ public class JEIPlugin implements IModPlugin {
 
 	private static final Minecraft MC = Minecraft.getInstance();
 
-	private static <C extends Container, T extends Recipe<C>> List<T> findRecipesByType(RecipeType<T> type) {
+	private static <C extends RecipeInput, T extends Recipe<C>> List<T> findRecipesByType(RecipeType<T> type) {
 		return MC.level.getRecipeManager().getAllRecipesFor(type).stream().map(recipeholder -> {
 			return recipeholder.value();
 		}).toList();
@@ -104,4 +102,3 @@ public class JEIPlugin implements IModPlugin {
 		return PLUGIN_ID;
 	}
 }
-*/
