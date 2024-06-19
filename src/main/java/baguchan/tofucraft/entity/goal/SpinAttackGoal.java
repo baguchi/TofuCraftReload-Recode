@@ -26,6 +26,9 @@ public class SpinAttackGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
+		if (this.gandlem.isInWall() && this.gandlem.hurtMarked) {
+			return true;
+		}
 		if (this.maxCooldown <= 0) {
 			this.maxCooldown = timeBetweenCooldown.sample(this.gandlem.getRandom());
 			return false;
