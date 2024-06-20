@@ -230,7 +230,6 @@ public class CommonEvents {
 	public static void onBlockGriefing(EntityMobGriefingEvent event) {
 		Entity entity = event.getEntity();
 		Level world = event.getEntity().level();
-		if (!(entity instanceof TofuGandlem) || !entity.isInWall()) {
 
 		if (world instanceof ServerLevel) {
 			ServerLevel serverLevel = (ServerLevel) world;
@@ -243,7 +242,6 @@ public class CommonEvents {
 					event.setCanGrief(false);
 				}
 			}
-		}
 		}
 	}
 

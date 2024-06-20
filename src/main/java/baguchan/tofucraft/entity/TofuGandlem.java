@@ -4,6 +4,7 @@ import baguchan.tofucraft.entity.control.StafeableFlyingMoveControl;
 import baguchan.tofucraft.entity.goal.ChargeGoal;
 import baguchan.tofucraft.entity.goal.SpinAttackGoal;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuStructures;
@@ -604,6 +605,14 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		if (!this.isSleepSelf()) {
 			super.push(p_21294_);
 		}
+	}
+
+	@Override
+	public boolean isAlliedTo(Entity p_20355_) {
+		if (p_20355_.getType() == TofuEntityTypes.TOFU_GANDLEM) {
+			return true;
+		}
+		return super.isAlliedTo(p_20355_);
 	}
 
 	@Override

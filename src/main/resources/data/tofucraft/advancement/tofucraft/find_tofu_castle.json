@@ -25,7 +25,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "structure": "tofucraft:tofu_castle"
+                "structures": "tofucraft:tofu_castle"
               }
             }
           }
