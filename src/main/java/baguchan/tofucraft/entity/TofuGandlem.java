@@ -344,7 +344,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 		} else if (this.horizontalCollision && this.tickCount % 3 == 0) {
 			boolean flag = false;
 			int l = Mth.floor(this.getBbWidth() / 2.0F + 1.0F);
-			int i1 = Mth.floor(this.getBbHeight());
+			int i1 = Mth.floor(this.getBbHeight()) + 1;
 
 			for (BlockPos blockpos : BlockPos.betweenClosed(
 					this.getBlockX() - l, this.getBlockY(), this.getBlockZ() - l, this.getBlockX() + l, this.getBlockY() + i1, this.getBlockZ() + l
