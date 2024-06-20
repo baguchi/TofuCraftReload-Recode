@@ -4,25 +4,10 @@
     {
       "rolls": {
         "min": 2.0,
-        "max": 3.0,
+        "max": 4.0,
         "type": "minecraft:uniform"
       },
       "entries": [
-        {
-          "type": "minecraft:item",
-          "weight": 15,
-          "name": "tofucraft:tofudiamondnugget",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ]
-        },
         {
           "type": "minecraft:item",
           "weight": 10,
@@ -55,7 +40,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
+          "weight": 1,
           "name": "tofucraft:blocktofudiamond"
         },
         {
@@ -72,21 +57,16 @@
               }
             }
           ]
-        }
-      ]
-    },
-    {
-      "rolls": 1.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "tofucraft:zunda_upgrade_smithing_template"
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
+          "weight": 3,
           "name": "tofucraft:tofu_upgrade_smithing_template"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "tofucraft:zunda_upgrade_smithing_template"
         }
       ]
     }
