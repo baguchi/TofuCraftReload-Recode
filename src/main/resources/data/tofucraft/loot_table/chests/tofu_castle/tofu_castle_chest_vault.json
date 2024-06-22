@@ -11,12 +11,12 @@
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "tofucraft:tofudiamond",
+          "name": "tofucraft:tofumetal",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 3.0,
+                "min": 4.0,
                 "max": 6.0,
                 "type": "minecraft:uniform"
               }
@@ -25,7 +25,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 15,
+          "weight": 5,
           "name": "tofucraft:zundaruby",
           "functions": [
             {
@@ -41,11 +41,6 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "tofucraft:blocktofudiamond"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
           "name": "tofucraft:zunda_arrow",
           "functions": [
             {
@@ -57,15 +52,44 @@
               }
             }
           ]
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1.0,
+        "max": 2.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "tofucraft:tofudiamond",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "weight": 3,
+          "weight": 1,
+          "name": "tofucraft:blocktofudiamond"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
           "name": "tofucraft:tofu_upgrade_smithing_template"
         },
         {
           "type": "minecraft:item",
-          "weight": 3,
+          "weight": 2,
           "name": "tofucraft:zunda_upgrade_smithing_template"
         }
       ]

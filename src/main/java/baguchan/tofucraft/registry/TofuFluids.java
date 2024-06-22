@@ -86,8 +86,8 @@ public class TofuFluids {
 			@Override
 			public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
 				consumer.accept(new IClientFluidTypeExtensions() {
-					private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson"),
-							FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson");
+					private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped"),
+							FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped");
 
 					@Override
 					public ResourceLocation getStillTexture() {
