@@ -2,55 +2,117 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "bonus_rolls": 0.0,
+      "rolls": {
+        "min": 3.0,
+        "max": 5.0,
+        "type": "minecraft:uniform"
+      },
       "entries": [
         {
-          "type": "minecraft:loot_table",
-          "value": "tofucraft:chests/tofu_castle/tofu_castle_chest_vault",
-          "weight": 5
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "tofucraft:apricot",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
         },
         {
-          "type": "minecraft:loot_table",
-          "value": "tofucraft:chests/tofu_castle/tofu_castle_food_container_vault",
-          "weight": 2
-        }
-      ],
-      "rolls": {
-        "min": 0.0,
-        "max": 1.0,
-        "type": "minecraft:uniform"
-      }
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:loot_table",
-          "value": "tofucraft:chests/tofu_castle/tofu_castle_food_container_vault",
-          "weight": 5
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "tofucraft:sapling_apricot",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
         },
         {
-          "type": "minecraft:loot_table",
-          "value": "tofucraft:chests/tofu_castle/tofu_castle_chest_vault",
-          "weight": 2
+          "type": "minecraft:item",
+          "weight": 8,
+          "name": "tofucraft:tofumetal",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "tofucraft:zundaruby",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4.0,
+                "max": 6.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "tofucraft:zunda_arrow",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 8.0,
+                "max": 16.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
         }
-      ],
-      "rolls": {
-        "min": 0.0,
-        "max": 1.0,
-        "type": "minecraft:uniform"
-      }
+      ]
     },
     {
-      "bonus_rolls": 0.0,
+      "rolls": {
+        "min": 1.0,
+        "max": 2.0,
+        "type": "minecraft:uniform"
+      },
       "entries": [
         {
-          "type": "minecraft:loot_table",
-          "value": "tofucraft:chests/tofu_castle/tofu_castle_chest_vault"
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "tofucraft:tofunian_banner_pattern"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "tofucraft:tofu_upgrade_smithing_template"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "tofucraft:zunda_upgrade_smithing_template"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "tofucraft:music_disc_green_branch"
         }
-      ],
-      "rolls": 1.0
+      ]
     }
-  ],
-  "random_sequence": "tofucraft:chests/tofu_castle/tofu_vault"
+  ]
 }

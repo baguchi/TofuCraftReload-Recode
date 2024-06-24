@@ -3,14 +3,44 @@
   "pools": [
     {
       "rolls": {
-        "min": 2.0,
-        "max": 4.0,
+        "min": 3.0,
+        "max": 5.0,
         "type": "minecraft:uniform"
       },
       "entries": [
         {
           "type": "minecraft:item",
           "weight": 10,
+          "name": "tofucraft:apricot",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "tofucraft:sapling_apricot",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
           "name": "tofucraft:tofumetal",
           "functions": [
             {
@@ -40,7 +70,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1,
+          "weight": 10,
           "name": "tofucraft:zunda_arrow",
           "functions": [
             {
@@ -64,23 +94,8 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 5,
-          "name": "tofucraft:tofudiamond",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 3.0,
-                "max": 6.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "tofucraft:blocktofudiamond"
+          "weight": 3,
+          "name": "tofucraft:tofunian_banner_pattern"
         },
         {
           "type": "minecraft:item",

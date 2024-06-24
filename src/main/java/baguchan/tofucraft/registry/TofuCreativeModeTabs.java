@@ -481,7 +481,8 @@ public class TofuCreativeModeTabs {
 						TofuItems.TOFUGEM,
 						TofuItems.ADVANCE_TOFUGEM,
 						TofuItems.NATTO_COBWEB,
-						TofuItems.TOFU_KEY).map(itemSupplier -> {
+						TofuItems.TOFU_KEY,
+						TofuItems.MUSIC_DISC_GREEN_BRANCH).map(itemSupplier -> {
 					return itemSupplier.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());

@@ -419,6 +419,7 @@ public class TofuItems {
 	public static final Supplier<Item> LEEK_GREEN_CHEST_BOAT = ITEMS.register("leek_green_chest_boat", () -> new TofuBoatItem(true, TofuBoat.Type.LEEK_GREEN, new Item.Properties().stacksTo(1)));
 	public static final Supplier<Item> TOFU_STEM_CHEST_BOAT = ITEMS.register("tofu_stem_chest_boat", () -> new TofuBoatItem(true, TofuBoat.Type.TOFU_STEM, new Item.Properties().stacksTo(1)));
 	public static final Supplier<Item> TOFU_KEY = ITEMS.register("tofu_key", () -> new Item(new Item.Properties()));
+	public static final Supplier<Item> MUSIC_DISC_GREEN_BRANCH = ITEMS.register("music_disc_green_branch", () -> new Item(new Item.Properties().jukeboxPlayable(TofuJukeboxSongs.GREEN_BRANCH)));
 
 
 	private static Supplier<Item> register(String name, Supplier<Item> item) {

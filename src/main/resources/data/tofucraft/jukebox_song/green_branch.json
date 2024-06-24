@@ -1,0 +1,8 @@
+{
+  "comparator_output": 1,
+  "description": {
+    "translate": "item.tofucraft.music_disc_green_branch.desc"
+  },
+  "length_in_seconds": 108.0,
+  "sound_event": "tofucraft:music.green_branch"
+}
