@@ -61,9 +61,9 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
-import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
-import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -379,7 +379,7 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onHurt(LivingHurtEvent event) {
+	public static void onHurt(LivingIncomingDamageEvent event) {
 		LivingEntity entity = event.getEntity();
 		if (entity.isDamageSourceBlocked(event.getSource())) {
 			if (entity.getUseItem().is(TofuItems.REFLECT_TOFU_SHIELD.get())) {
@@ -399,12 +399,12 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onShieldEvent(ShieldBlockEvent event) {
+	public static void onShieldEvent(LivingShieldBlockEvent event) {
 		if (event.getEntity().getUseItem().is(TofuItems.REFLECT_TOFU_SHIELD.get())) {
 			if (event.getEntity().getUseItem().getItem() instanceof IEnergyContained energyContained) {
 
 				if (energyContained.getEnergy(event.getEntity().getUseItem()) >= 50) {
-					event.setShieldTakesDamage(false);
+					event.setBlockedDamage(0);
 				}
 			}
 		}
