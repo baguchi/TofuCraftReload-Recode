@@ -21,7 +21,7 @@ public class MoveToStatueGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse());
+		return (this.creature.level().isDay() && this.creature.isMeeting() && super.canContinueToUse());
 	}
 
 	@Override
