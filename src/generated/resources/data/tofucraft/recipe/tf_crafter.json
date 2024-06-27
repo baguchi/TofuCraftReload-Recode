@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "minecraft:crafter"
+    },
+    "F": {
+      "item": "tofucraft:tofu_core"
+    },
+    "M": {
+      "item": "tofucraft:tofumetal"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "MFM",
+    "RCR",
+    "MRM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tf_crafter"
+  }
+}

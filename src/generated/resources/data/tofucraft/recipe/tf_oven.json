@@ -9,16 +9,16 @@
       "item": "tofucraft:tf_coil"
     },
     "M": {
-      "item": "tofucraft:tofumetal"
+      "item": "tofucraft:blocktofumetal"
     },
     "T": {
       "item": "tofucraft:tofuhell_brick"
     }
   },
   "pattern": [
-    "MCM",
-    "L L",
-    "MTM"
+    " C ",
+    "LML",
+    " T "
   ],
   "result": {
     "count": 1,
