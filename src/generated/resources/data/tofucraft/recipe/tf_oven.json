@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "tofucraft:tofu_core"
+    },
+    "L": {
+      "item": "tofucraft:tf_coil"
+    },
+    "M": {
+      "item": "tofucraft:tofumetal"
+    },
+    "T": {
+      "item": "tofucraft:tofuhell_brick"
+    }
+  },
+  "pattern": [
+    "MCM",
+    "L L",
+    "MTM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tf_oven"
+  }
+}

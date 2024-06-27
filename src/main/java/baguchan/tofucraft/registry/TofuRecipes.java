@@ -5,7 +5,6 @@ import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.BitternSerializer;
 import baguchan.tofucraft.recipe.HardenRecipe;
 import baguchan.tofucraft.recipe.HardenSerializer;
-import baguchan.tofucraft.recipe.TofuWorkStationRecipe;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
@@ -25,8 +24,6 @@ public class TofuRecipes {
 
 	public static final Supplier<RecipeType<BitternRecipe>> RECIPETYPE_BITTERN = RECIPE_TYPES.register("bittern", () -> register(TofuCraftReload.prefix("bittern")));
 	public static final Supplier<BitternSerializer> RECIPE_BITTERN = RECIPE_SERIALIZERS.register("bittern", BitternSerializer::new);
-	public static final Supplier<RecipeType<TofuWorkStationRecipe>> RECIPETYPE_TOFU_WORK_STATION = RECIPE_TYPES.register("tofu_work_station", () -> register(TofuCraftReload.prefix("tofu_work_station")));
-	public static final Supplier<TofuWorkStationRecipe.Serializer> RECIPE_TOFU_WORK_STATION = RECIPE_SERIALIZERS.register("tofu_work_station", TofuWorkStationRecipe.Serializer::new);
 
 	static <T extends Recipe<?>> RecipeType<T> register(final ResourceLocation p_44120_) {
 		return new RecipeType<T>() {

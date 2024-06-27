@@ -1,14 +1,10 @@
 package baguchan.tofucraft.block.tfenergy;
 
-import baguchan.tofucraft.inventory.TofuWorkStationMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -24,8 +20,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import javax.annotation.Nullable;
 
 public class TofuWorkStationBlock extends Block {
 	private static final Component CONTAINER_TITLE = Component.translatable("container.tofucraft.tofu_work_station");
@@ -49,13 +43,6 @@ public class TofuWorkStationBlock extends Block {
 			p_60506_.openMenu(p_60503_.getMenuProvider(p_60504_, p_60505_));
 			return InteractionResult.CONSUME;
 		}
-	}
-
-	@Nullable
-	public MenuProvider getMenuProvider(BlockState p_57105_, Level p_57106_, BlockPos p_57107_) {
-		return new SimpleMenuProvider((p_57074_, p_57075_, p_57076_) -> {
-			return new TofuWorkStationMenu(p_57074_, p_57075_, ContainerLevelAccess.create(p_57106_, p_57107_));
-		}, CONTAINER_TITLE);
 	}
 
 	public VoxelShape getShape(BlockState p_57100_, BlockGetter p_57101_, BlockPos p_57102_, CollisionContext p_57103_) {

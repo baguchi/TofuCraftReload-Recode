@@ -29,7 +29,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.RecipeCraftingHolder;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -264,11 +263,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 
 	@Override
 	public boolean canTakeItemThroughFace(int p_58392_, ItemStack p_58393_, Direction p_58394_) {
-		if (p_58394_ == Direction.DOWN && p_58392_ == 1) {
-			return p_58393_.is(Items.WATER_BUCKET) || p_58393_.is(Items.BUCKET);
-		} else {
-			return true;
-		}
+		return p_58392_ == 1;
 	}
 
 	@Override
@@ -276,8 +271,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 		if (p_58389_ == 1) {
 			return false;
 		} else {
-			ItemStack itemstack = this.inventory.get(0);
-			return p_58390_.getBurnTime(this.recipeType) > 0 || p_58390_.is(Items.BUCKET) && !itemstack.is(Items.BUCKET);
+			return true;
 		}
 	}
 	@Override
