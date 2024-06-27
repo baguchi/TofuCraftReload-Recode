@@ -207,10 +207,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		saltFurnaceBlock.putWater();
 
 
-		if (flag1) {
-			saltFurnaceBlock.setChanged();
-		}
-
 		if (!level.isClientSide) {
 			if (saltFurnaceBlock.prevFluid != saltFurnaceBlock.waterTank.getFluidAmount()) {
 				LevelChunk chunk = level.getChunkAt(blockPos);

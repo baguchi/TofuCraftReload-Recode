@@ -1,5 +1,6 @@
 package baguchan.tofucraft.inventory;
 
+import baguchan.tofucraft.inventory.slot.TFCrafterSlot;
 import baguchan.tofucraft.registry.TofuMenus;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
@@ -8,7 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerListener;
-import net.minecraft.world.inventory.CrafterSlot;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.NonInteractiveResultSlot;
 import net.minecraft.world.inventory.ResultContainer;
@@ -37,6 +37,8 @@ public class TFCrafterMenu extends AbstractContainerMenu implements ContainerLis
 		this.containerData = new SimpleContainerData(11);
 		this.container = new TransientCraftingContainer(this, 3, 3);
 		this.addSlots(p_307257_);
+
+		this.addSlotListener(this);
 	}
 
 	public TFCrafterMenu(int p_307363_, Inventory p_307517_, CraftingContainer p_307449_, ContainerData p_307285_) {
@@ -74,7 +76,7 @@ public class TFCrafterMenu extends AbstractContainerMenu implements ContainerLis
 	}
 
 	public void setSlotState(int p_307384_, boolean p_307499_) {
-		CrafterSlot crafterslot = (CrafterSlot) this.getSlot(p_307384_);
+		TFCrafterSlot crafterslot = (TFCrafterSlot) this.getSlot(p_307384_);
 		this.containerData.set(crafterslot.index, p_307499_ ? 0 : 1);
 		this.broadcastChanges();
 	}
@@ -87,8 +89,8 @@ public class TFCrafterMenu extends AbstractContainerMenu implements ContainerLis
 		return this.containerData.get(9) == 1;
 	}
 
-	public float getProgress() {
-		return this.containerData.get(10) / 80F;
+	public int getProgress() {
+		return (int) ((this.containerData.get(10) / 40F) * 16);
 	}
 
 	@Override

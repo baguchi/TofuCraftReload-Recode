@@ -49,7 +49,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 	private int progress = 0;
 
 	private int refreshTime = 0;
-	public static final int MAX_CRAFT_TIME = 80;
+	public static final int MAX_CRAFT_TIME = 40;
 	private final RecipeType<? extends CraftingRecipe> recipeType;
 
 	private final RecipeManager.CachedCheck<CraftingInput, ? extends Recipe> quickCheck;

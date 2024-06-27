@@ -1,5 +1,6 @@
-package baguchan.tofucraft.inventory;
+package baguchan.tofucraft.inventory.slot;
 
+import baguchan.tofucraft.inventory.TFCrafterMenu;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
