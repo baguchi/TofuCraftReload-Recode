@@ -20,8 +20,8 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.lighting.LightEngine;
-import net.neoforged.neoforge.common.ToolAction;
-import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -108,7 +108,7 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
-		return toolAction == ToolActions.HOE_TILL ? TofuBlocks.TOFU_FARMLAND.get().defaultBlockState() : null;
+	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility toolAction, boolean simulate) {
+		return toolAction == ItemAbilities.HOE_TILL ? TofuBlocks.TOFU_FARMLAND.get().defaultBlockState() : null;
 	}
 }

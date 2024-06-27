@@ -4,6 +4,7 @@ import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -25,7 +26,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.common.FarmlandWaterManager;
-import net.neoforged.neoforge.common.IPlantable;
 
 public class TofuFarmlandBlock extends Block {
 	public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE;
@@ -74,7 +74,7 @@ public class TofuFarmlandBlock extends Block {
 		if (!isNearWater(p_53286_, p_53287_) && !p_53286_.isRainingAt(p_53287_.above())) {
 			if (i > 0) {
 				p_53286_.setBlock(p_53287_, p_53285_.setValue(MOISTURE, Integer.valueOf(i - 1)), 2);
-			} else if (!isUnderCrops(p_53286_, p_53287_)) {
+			} else if (!shouldMaintainFarmland(p_53286_, p_53287_)) {
 				turnToDirt(p_53285_, p_53286_, p_53287_);
 			}
 		} else if (i < 7) {
@@ -95,10 +95,8 @@ public class TofuFarmlandBlock extends Block {
 		p_53298_.setBlockAndUpdate(p_53299_, pushEntitiesUp(p_53297_, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), p_53298_, p_53299_));
 	}
 
-	private static boolean isUnderCrops(BlockGetter p_53251_, BlockPos p_53252_) {
-		BlockState plant = p_53251_.getBlockState(p_53252_.above());
-		BlockState state = p_53251_.getBlockState(p_53252_);
-		return plant.getBlock() instanceof IPlantable && state.canSustainPlant(p_53251_, p_53252_, Direction.UP, (IPlantable) plant.getBlock());
+	private static boolean shouldMaintainFarmland(BlockGetter p_279219_, BlockPos p_279209_) {
+		return p_279219_.getBlockState(p_279209_.above()).is(BlockTags.MAINTAINS_FARMLAND);
 	}
 
 	private static boolean isNearWater(LevelReader p_53259_, BlockPos p_53260_) {
@@ -115,7 +113,8 @@ public class TofuFarmlandBlock extends Block {
 		p_53283_.add(MOISTURE);
 	}
 
-	public boolean isPathfindable(BlockState p_53267_, BlockGetter p_53268_, BlockPos p_53269_, PathComputationType p_53270_) {
+	@Override
+	protected boolean isPathfindable(BlockState p_60475_, PathComputationType p_60478_) {
 		return false;
 	}
 }

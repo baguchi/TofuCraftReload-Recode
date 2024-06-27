@@ -13,8 +13,8 @@ import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
-import net.neoforged.neoforge.common.ToolAction;
-import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -29,13 +29,14 @@ public class TofuShieldItem extends ShieldItem implements IEnergyInsertable {
 		DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);
 	}
 
+	@Override
 	public boolean isValidRepairItem(ItemStack p_43091_, ItemStack p_43092_) {
 		return p_43092_.is(TofuItems.TOFUMETAL.get()) || !p_43092_.is(ItemTags.PLANKS) && super.isValidRepairItem(p_43091_, p_43092_);
 	}
 
 	@Override
-	public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
-		return toolAction == ToolActions.SHIELD_BLOCK;
+	public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
+		return itemAbility == ItemAbilities.SHIELD_BLOCK;
 	}
 
 	@Override

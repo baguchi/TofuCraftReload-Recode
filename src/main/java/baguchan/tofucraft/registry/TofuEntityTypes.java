@@ -76,7 +76,7 @@ public class TofuEntityTypes {
 	public static final Supplier<EntityType<TofuSpider>> TOFUSPIDER = ENTITIES.register("tofuspider", () -> EntityType.Builder.of(TofuSpider::new, MobCategory.MONSTER)
 			.sized(0.95F, 0.55F).eyeHeight(0.3F).build("tofucraft:tofuspider"));
 	public static final Supplier<EntityType<Zundamite>> ZUNDAMITE = ENTITIES.register("zundamite", () -> EntityType.Builder.of(Zundamite::new, MobCategory.MONSTER)
-			.sized(0.4F, 0.3F).eyeHeight(0.15F).clientTrackingRange(8).build("tofucraft:zundamite"));
+			.sized(0.4F, 0.3F).eyeHeight(0.13F).clientTrackingRange(8).build("tofucraft:zundamite"));
 
 	public static final Supplier<EntityType<FukumameEntity>> FUKUMAME = ENTITIES.register("fukumame", () -> EntityType.Builder.<FukumameEntity>of(FukumameEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).updateInterval(30).build("tofucraft:fukumame"));
