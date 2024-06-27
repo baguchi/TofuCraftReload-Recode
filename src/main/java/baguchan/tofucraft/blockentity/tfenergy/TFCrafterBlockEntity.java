@@ -61,12 +61,18 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 
 		@Override
 		public int get(int p_307671_) {
+			if (p_307671_ == 10) {
+				return TFCrafterBlockEntity.this.progress;
+			}
+
 			return p_307671_ == 9 ? this.triggered : this.slotStates[p_307671_];
 		}
 
 		@Override
 		public void set(int p_307241_, int p_307484_) {
-			if (p_307241_ == 9) {
+			if (p_307241_ == 10) {
+				TFCrafterBlockEntity.this.progress = p_307484_;
+			} else if (p_307241_ == 9) {
 				this.triggered = p_307484_;
 			} else {
 				this.slotStates[p_307241_] = p_307484_;
@@ -75,7 +81,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 
 		@Override
 		public int getCount() {
-			return 10;
+			return 11;
 		}
 	};
 

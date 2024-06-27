@@ -106,7 +106,7 @@ public class TFCrafterScreen extends AbstractContainerScreen<TFCrafterMenu> {
 			resourcelocation = UNPOWERED_REDSTONE_LOCATION_SPRITE;
 		}
 
-		p_307600_.blitSprite(resourcelocation, i, j, 16, 16);
+		p_307600_.blitSprite(resourcelocation, i, j, (int) (16 * this.menu.getProgress()), 16);
 	}
 
 	@Override
