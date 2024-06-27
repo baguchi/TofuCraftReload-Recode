@@ -137,5 +137,6 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.SMALL_FLOWERS).add(TofuBlocks.TOFU_FLOWER.get());
 		this.tag(BlockTags.BEE_GROWABLES).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get())
 				.add(TofuBlocks.RICE_CROP.get());
+		this.tag(BlockTags.MAINTAINS_FARMLAND).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get());
 	}
 }

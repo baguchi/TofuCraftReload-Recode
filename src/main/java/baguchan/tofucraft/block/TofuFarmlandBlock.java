@@ -1,6 +1,7 @@
 package baguchan.tofucraft.block;
 
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -101,7 +102,7 @@ public class TofuFarmlandBlock extends Block {
 
 	private static boolean isNearWater(LevelReader p_53259_, BlockPos p_53260_) {
 		for (BlockPos blockpos : BlockPos.betweenClosed(p_53260_.offset(-4, 0, -4), p_53260_.offset(4, 1, 4))) {
-			if (p_53259_.getFluidState(blockpos).is(FluidTags.WATER)) {
+			if (p_53259_.getFluidState(blockpos).is(FluidTags.WATER) || p_53259_.getFluidState(blockpos).is(TofuTags.Fluids.SOYMILK)) {
 				return true;
 			}
 		}
