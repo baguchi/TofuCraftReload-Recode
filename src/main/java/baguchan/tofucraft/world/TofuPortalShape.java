@@ -10,7 +10,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -147,7 +146,7 @@ public class TofuPortalShape {
 					return i;
 				}
 
-				if (blockstate.is(Blocks.NETHER_PORTAL)) {
+				if (blockstate.is(TofuBlocks.TOFU_PORTAL.get())) {
 					this.numPortalBlocks++;
 				}
 			}
@@ -157,7 +156,7 @@ public class TofuPortalShape {
 	}
 
 	private static boolean isEmpty(BlockState p_77718_) {
-		return p_77718_.isAir() || p_77718_.is(BlockTags.FIRE) || p_77718_.is(Blocks.NETHER_PORTAL);
+		return p_77718_.isAir() || p_77718_.is(BlockTags.FIRE) || p_77718_.is(TofuBlocks.TOFU_PORTAL.get());
 	}
 
 	public boolean isValid() {
