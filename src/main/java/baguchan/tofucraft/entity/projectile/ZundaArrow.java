@@ -6,7 +6,12 @@ import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuTags;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -15,17 +20,26 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 
 public class ZundaArrow extends AbstractArrow {
 	private int duration = 100;
 	private static final ItemStack DEFAULT_ARROW_STACK = new ItemStack(Items.ARROW);
+	@Nullable
+	private IntOpenHashSet piercingIgnoreEntityIds;
+	@Nullable
+	private List<Entity> piercedAndKilledEntities;
 
 	public ZundaArrow(EntityType<? extends ZundaArrow> p_37411_, Level p_37412_) {
 		super(p_37411_, p_37412_);
@@ -59,13 +73,16 @@ public class ZundaArrow extends AbstractArrow {
 	@Override
 	protected void onHitEntity(EntityHitResult p_36757_) {
 		if (!this.level().isClientSide()) {
+			Entity entity = p_36757_.getEntity();
+			Entity entity1 = this.getOwner();
 			float f = (float) this.getDeltaMovement().length();
-			int i = Mth.ceil(Mth.clamp((double) f * this.getBaseDamage(), 0.0D, 2.147483647E9D));
-
-			if (this.isCritArrow()) {
-				long j = (long) this.random.nextInt(i / 2 + 2);
-				i = (int) Math.min(j + (long) i, 2147483647L);
+			double d0 = this.getBaseDamage();
+			DamageSource source = zundaAttack(this.getOwner());
+			if (this.getWeaponItem() != null && this.level() instanceof ServerLevel serverlevel) {
+				d0 = (double) EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, source, (float) d0);
 			}
+			int i = entity.getRemainingFireTicks();
+			int j = Mth.ceil(Mth.clamp((double) f * d0, 0.0, 2.147483647E9));
 
 			if (p_36757_.getEntity() instanceof TofuSlime slime) {
 				this.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 1.0F);
@@ -74,13 +91,36 @@ public class ZundaArrow extends AbstractArrow {
 				this.discard();
 			} else if (p_36757_.getEntity().getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
 
-				if (p_36757_.getEntity().hurt(zundaAttack(this.getOwner()), i)) {
-					this.discard();
+				if (p_36757_.getEntity().hurt(source, j)) {
+
+					if (entity instanceof LivingEntity livingentity) {
+						if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
+							livingentity.setArrowCount(livingentity.getArrowCount() + 1);
+						}
+
+						this.doKnockback(livingentity, source);
+						if (this.level() instanceof ServerLevel serverlevel1) {
+							EnchantmentHelper.doPostAttackEffectsWithItemSource(serverlevel1, livingentity, source, this.getWeaponItem());
+						}
+
+						this.doPostHurtEffects(livingentity);
+						if (livingentity != entity1 && livingentity instanceof Player && entity1 instanceof ServerPlayer && !this.isSilent()) {
+							((ServerPlayer) entity1).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
+						}
+
+						if (!this.level().isClientSide && entity1 instanceof ServerPlayer serverplayer) {
+							if (!entity.isAlive() && this.shotFromCrossbow()) {
+								CriteriaTriggers.KILLED_BY_CROSSBOW.trigger(serverplayer, Arrays.asList(entity));
+							}
+						}
+					}
+
+					this.playSound(SoundEvents.SLIME_ATTACK, 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
 				} else {
-					this.setDeltaMovement(this.getDeltaMovement().scale(-0.1D));
-					this.setYRot(this.getYRot() + 180.0F);
-					this.yRotO += 180.0F;
-					if (!this.level().isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7D) {
+					entity.setRemainingFireTicks(i);
+					this.deflect(ProjectileDeflection.REVERSE, entity, this.getOwner(), false);
+					this.setDeltaMovement(this.getDeltaMovement().scale(0.2));
+					if (!this.level().isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7) {
 						if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
 							this.spawnAtLocation(this.getPickupItem(), 0.1F);
 						}
@@ -97,6 +137,7 @@ public class ZundaArrow extends AbstractArrow {
 			}
 		}
 	}
+
 
 	public void readAdditionalSaveData(CompoundTag p_37424_) {
 		super.readAdditionalSaveData(p_37424_);
