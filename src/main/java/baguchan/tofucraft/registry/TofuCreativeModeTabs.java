@@ -117,6 +117,8 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.ISHITOFU_CHISELED_BRICK,
 						TofuBlocks.ISHITOFU_SMOOTH_BRICK,
 						TofuBlocks.METALTOFU,
+						TofuBlocks.METAL_TOFU_GRATE,
+						TofuBlocks.METAL_TOFU_LUMP,
 						TofuBlocks.TOFUSLAB_METAL,
 						TofuBlocks.TOFUSTAIR_METAL,
 						TofuBlocks.TOFUFENCE_METAL,

@@ -531,6 +531,23 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeTrapdoor(consumer, TofuBlocks.LEEK_GREEN_TRAPDOOR, TofuBlocks.LEEK_GREEN_PLANKS);
 
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, TofuBlocks.METAL_TOFU_GRATE.get(), 8)
+				.pattern(" # ")
+				.pattern("# #")
+				.pattern(" # ")
+				.define('#', TofuBlocks.METALTOFU.get())
+				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, TofuBlocks.METAL_TOFU_LUMP.get(), 4)
+				.pattern(" # ")
+				.pattern("#Z#")
+				.pattern(" # ")
+				.define('#', TofuBlocks.METALTOFU.get())
+				.define('Z', TofuItems.ZUNDAMA.get())
+				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SALT_FURNACE.get())
 				.pattern("###")
 				.pattern("# #")

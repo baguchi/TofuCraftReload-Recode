@@ -18,6 +18,7 @@ import baguchan.tofucraft.block.TofuDetectorBlock;
 import baguchan.tofucraft.block.TofuFarmlandBlock;
 import baguchan.tofucraft.block.TofuFlowerBlock;
 import baguchan.tofucraft.block.TofuGemBlock;
+import baguchan.tofucraft.block.TofuGrateBlock;
 import baguchan.tofucraft.block.TofuGrilledBlock;
 import baguchan.tofucraft.block.TofuLeavesBlock;
 import baguchan.tofucraft.block.TofuMushroomBlock;
@@ -139,6 +140,10 @@ public class TofuBlocks {
 	public static final Supplier<Block> ISHITOFU_SMOOTH_BRICK = register("tofuishi_smooth_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final Supplier<Block> ISHITOFU_CHISELED_BRICK = register("tofuishi_chiseled_brick", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 	public static final Supplier<Block> METALTOFU = register("blocktofumetal", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+	public static final Supplier<Block> METAL_TOFU_GRATE = register("tofu_metal_grate", () -> new TofuGrateBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 6.0F).noOcclusion().sound(SoundType.COPPER_GRATE)));
+	public static final Supplier<Block> METAL_TOFU_LUMP = register("tofu_metal_lump", () -> new TofuGrateBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).lightLevel(state -> {
+		return 15;
+	}).sound(SoundType.METAL)));
 	public static final Supplier<Block> DIAMONDTOFU = register("blocktofudiamond", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final Supplier<Block> TOFU_GEM_BLOCK = register("tofu_gem_block", () -> new TofuGemBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL)));
 	public static final Supplier<Block> ADVANCE_TOFU_GEM_BLOCK = register("adv_tofu_gem_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL)));

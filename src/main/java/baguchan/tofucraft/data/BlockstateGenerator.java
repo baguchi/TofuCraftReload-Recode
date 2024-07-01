@@ -50,6 +50,8 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.ISHITOFU_SMOOTH_BRICK.get());
 		simpleBlock(TofuBlocks.ISHITOFU_CHISELED_BRICK.get());
 		simpleBlock(TofuBlocks.METALTOFU.get());
+		cutBlock(TofuBlocks.METAL_TOFU_GRATE);
+		simpleBlock(TofuBlocks.METAL_TOFU_LUMP);
 		simpleBlock(TofuBlocks.DIAMONDTOFU.get());
 		simpleBlock(TofuBlocks.TOFU_GEM_BLOCK.get());
 		simpleBlock(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());
@@ -320,6 +322,14 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 	public void simpleLeavesBlock(Supplier<Block> block) {
 		simpleBlock(block.get(), cubeLeavesAll(block));
+	}
+
+	public void cutBlock(Supplier<? extends Block> block) {
+		simpleBlock(block.get(), cutCubeAll(block));
+	}
+
+	private ModelFile cutCubeAll(Supplier<? extends Block> block) {
+		return models().cubeAll(name(block.get()), blockTexture(block.get())).renderType("minecraft:cutout");
 	}
 
 	public void translucentBlock(Supplier<? extends Block> block) {
