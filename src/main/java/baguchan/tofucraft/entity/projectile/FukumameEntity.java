@@ -3,21 +3,19 @@ package baguchan.tofucraft.entity.projectile;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -25,11 +23,13 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
+
 public class FukumameEntity extends ThrowableProjectile {
 	public float damage = 1;
 	private int totalHits;
-	private static final EntityDataAccessor<Integer> BOUNCE_LEVEL = SynchedEntityData.defineId(FukumameEntity.class, EntityDataSerializers.INT);
-
+	@Nullable
+	protected ItemStack firedFromWeapon = null;
 
 	public FukumameEntity(EntityType<? extends FukumameEntity> p_i50154_1_, Level p_i50154_2_) {
 		super(p_i50154_1_, p_i50154_2_);
@@ -41,6 +41,7 @@ public class FukumameEntity extends ThrowableProjectile {
 
 	public FukumameEntity(Level worldIn, LivingEntity throwerIn, ItemStack stack) {
 		super(TofuEntityTypes.FUKUMAME.get(), throwerIn, worldIn);
+		this.firedFromWeapon = stack.copy();
 	}
 
 	public FukumameEntity(Level worldIn, double x, double y, double z) {
@@ -57,15 +58,6 @@ public class FukumameEntity extends ThrowableProjectile {
 	}
 
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		builder.define(BOUNCE_LEVEL, 0);
-	}
-
-	public void setBounceLevel(int bounceLevel) {
-		this.entityData.set(BOUNCE_LEVEL, bounceLevel);
-	}
-
-	public int getBounceLevel() {
-		return this.entityData.get(BOUNCE_LEVEL);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -80,13 +72,39 @@ public class FukumameEntity extends ThrowableProjectile {
 	protected void onHitEntity(EntityHitResult p_37404_) {
 		super.onHitEntity(p_37404_);
 		Entity entity = p_37404_.getEntity();
-		int i = 2;
-		entity.hurt(this.damageSources().thrown(this, this.getOwner()), (float) this.damage);
+		DamageSource damagesource = this.damageSources().thrown(this, this.getOwner());
+		double d0 = this.damage;
+		if (this.getWeaponItem() != null && this.level() instanceof ServerLevel serverlevel) {
+			d0 = (double) EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, damagesource, (float) d0);
+		}
+		if (entity.hurt(damagesource, (float) d0) && this.level() instanceof ServerLevel serverlevel) {
+			EnchantmentHelper.doPostAttackEffects(serverlevel, entity, damagesource);
+		}
+
 		entity.invulnerableTime = 5;
 		if (!this.level().isClientSide) {
 			this.level().broadcastEntityEvent(this, (byte) 3);
 			this.discard();
 		}
+	}
+
+	protected void hitBlockEnchantmentEffects(ServerLevel p_345462_, BlockHitResult p_345204_, ItemStack p_345083_) {
+		Vec3 vec3 = p_345204_.getBlockPos().clampLocationWithin(p_345204_.getLocation());
+		EnchantmentHelper.onHitBlock(
+				p_345462_,
+				p_345083_,
+				this.getOwner() instanceof LivingEntity livingentity ? livingentity : null,
+				this,
+				null,
+				vec3,
+				p_345462_.getBlockState(p_345204_.getBlockPos()),
+				p_348569_ -> this.firedFromWeapon = null
+		);
+	}
+
+	@Override
+	public ItemStack getWeaponItem() {
+		return this.firedFromWeapon;
 	}
 
 	protected void onHit(HitResult p_37406_) {
@@ -97,39 +115,14 @@ public class FukumameEntity extends ThrowableProjectile {
 	@Override
 	protected void onHitBlock(BlockHitResult result) {
 		super.onHitBlock(result);
-		BlockPos pos = result.getBlockPos();
-		BlockState state = this.level().getBlockState(pos);
 
-		BlockState blockstate = this.level().getBlockState(result.getBlockPos());
-		if (!blockstate.getCollisionShape(this.level(), result.getBlockPos()).isEmpty()) {
-			Direction face = result.getDirection();
-			Vec3 motion = getDeltaMovement();
-			double motionX = motion.x;
-			double motionY = motion.y;
-			double motionZ = motion.z;
-			if (face == Direction.EAST) {
-				motionX = -motionX;
-			} else if (face == Direction.SOUTH) {
-				motionZ = -motionZ;
-			} else if (face == Direction.WEST) {
-				motionX = -motionX;
-			} else if (face == Direction.NORTH) {
-				motionZ = -motionZ;
-			} else if (face == Direction.UP) {
-				motionY = -motionY;
-			} else if (face == Direction.DOWN) {
-				motionY = -motionY;
-			}
-			setDeltaMovement(motionX, motionY, motionZ);
+		ItemStack itemstack = this.getWeaponItem();
+		if (this.level() instanceof ServerLevel serverlevel && itemstack != null) {
+			this.hitBlockEnchantmentEffects(serverlevel, result, itemstack);
 		}
-
-		if (this.totalHits >= this.getBounceLevel()) {
-			if (!this.level().isClientSide) {
-				this.level().broadcastEntityEvent(this, (byte) 3);
-				this.discard();
-			}
-		} else {
-			this.totalHits++;
+		if (!this.level().isClientSide) {
+			this.level().broadcastEntityEvent(this, (byte) 3);
+			this.discard();
 		}
 	}
 
@@ -137,7 +130,9 @@ public class FukumameEntity extends ThrowableProjectile {
 		super.addAdditionalSaveData(p_37222_);
 		p_37222_.putFloat("Damage", (byte) this.damage);
 		p_37222_.putInt("TotalHits", this.totalHits);
-		p_37222_.putInt("BounceLevel", this.getBounceLevel());
+		if (this.firedFromWeapon != null) {
+			p_37222_.put("weapon", this.firedFromWeapon.save(this.registryAccess(), new CompoundTag()));
+		}
 	}
 
 	public void readAdditionalSaveData(CompoundTag p_37220_) {
@@ -146,6 +141,10 @@ public class FukumameEntity extends ThrowableProjectile {
 			this.damage = p_37220_.getFloat("Damage");
 		}
 		this.totalHits = p_37220_.getInt("TotalHits");
-		this.setBounceLevel(p_37220_.getInt("BounceLevel"));
+		if (p_37220_.contains("weapon", 10)) {
+			this.firedFromWeapon = ItemStack.parse(this.registryAccess(), p_37220_.getCompound("weapon")).orElse(null);
+		} else {
+			this.firedFromWeapon = null;
+		}
 	}
 }

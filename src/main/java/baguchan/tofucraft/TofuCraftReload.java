@@ -20,6 +20,7 @@ import baguchan.tofucraft.registry.TofuCarvers;
 import baguchan.tofucraft.registry.TofuCreativeModeTabs;
 import baguchan.tofucraft.registry.TofuDataComponents;
 import baguchan.tofucraft.registry.TofuEffects;
+import baguchan.tofucraft.registry.TofuEnchantmentEffects;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuFeatures;
 import baguchan.tofucraft.registry.TofuFluidTypes;
@@ -76,7 +77,7 @@ public class TofuCraftReload {
 		TofuItems.ITEMS.register(modBus);
 
 		TofuEntityTypes.ENTITIES.register(modBus);
-
+		TofuEnchantmentEffects.ENTITY_EFFECTS.register(modBus);
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 		TofuMenus.MENU_TYPES.register(modBus);
 		TofuEffects.MOB_EFFECTS.register(modBus);

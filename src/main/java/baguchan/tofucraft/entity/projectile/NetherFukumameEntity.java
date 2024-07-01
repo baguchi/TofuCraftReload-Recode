@@ -23,6 +23,7 @@ public class NetherFukumameEntity extends FukumameEntity {
 
 	public NetherFukumameEntity(Level worldIn, LivingEntity throwerIn, ItemStack stack) {
 		super(TofuEntityTypes.NETHER_FUKUMAME.get(), throwerIn, worldIn);
+		this.firedFromWeapon = stack.copy();
 	}
 
 	public NetherFukumameEntity(Level worldIn, double x, double y, double z) {

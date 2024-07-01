@@ -22,6 +22,7 @@ public class SoulFukumameEntity extends FukumameEntity {
 
 	public SoulFukumameEntity(Level worldIn, LivingEntity throwerIn, ItemStack stack) {
 		super(TofuEntityTypes.SOUL_FUKUMAME.get(), throwerIn, worldIn);
+		this.firedFromWeapon = stack.copy();
 	}
 
 	public SoulFukumameEntity(Level worldIn, double x, double y, double z) {

@@ -16,11 +16,13 @@ public class EnchantTagGenerator extends EnchantmentTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider p_256380_) {
-		/*this.tag(EnchantmentTags.TOOLTIP_ORDER).add(
+		this.tag(EnchantmentTags.TOOLTIP_ORDER).add(
 				TofuEnchantments.BATCH,
 				TofuEnchantments.DRAIN,
-				TofuEnchantments.EFFECT_PROTECTION
-		);*/
+				TofuEnchantments.EFFECT_PROTECTION,
+				TofuEnchantments.SHAPED_BEAN,
+				TofuEnchantments.CRACK_BURST
+		);
 		this.tag(EnchantmentTags.TREASURE)
 				.add(
 						TofuEnchantments.BATCH,

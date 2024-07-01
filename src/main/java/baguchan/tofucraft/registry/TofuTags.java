@@ -58,6 +58,7 @@ public class TofuTags {
 		public static final TagKey<Item> TOFU_DIAMOND_ARMOR_ENCHANTABLE = tag("tofu_diamond_armor_enchantable");
 		public static final TagKey<Item> TOFU_DIAMOND_SWORD_ENCHANTABLE = tag("tofu_diamond_sword_enchantable");
 		public static final TagKey<Item> TOFU_DIAMOND_MINEABLE_ENCHANTABLE = tag("tofu_diamond_mineable_enchantable");
+		public static final TagKey<Item> FUKUMAME_ENCHANTABLE = tag("fukumame_enchantable");
 
 		private static TagKey<Item> tag(String name) {
 			return ItemTags.create(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));

@@ -1,0 +1,100 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.tofucraft.crack_burst"
+  },
+  "effects": {
+    "minecraft:hit_block": [
+      {
+        "effect": {
+          "type": "minecraft:all_of",
+          "effects": [
+            {
+              "type": "tofucraft:no_item_damage_explode",
+              "attribute_to_user": true,
+              "block_interaction": "none",
+              "damage_type": "minecraft:explosion",
+              "knockback_multiplier": {
+                "type": "minecraft:lookup",
+                "fallback": {
+                  "type": "minecraft:linear",
+                  "base": 0.5,
+                  "per_level_above_first": 0.25
+                },
+                "values": [
+                  1.0,
+                  1.25,
+                  1.5
+                ]
+              },
+              "large_particle": {
+                "type": "minecraft:gust_emitter_small"
+              },
+              "radius": {
+                "type": "minecraft:linear",
+                "base": 0.5,
+                "per_level_above_first": 0.25
+              },
+              "small_particle": {
+                "type": "minecraft:gust_emitter_small"
+              },
+              "sound": "minecraft:entity.wind_charge.wind_burst"
+            }
+          ]
+        }
+      }
+    ],
+    "minecraft:post_attack": [
+      {
+        "affected": "damaging_entity",
+        "effect": {
+          "type": "tofucraft:no_item_damage_explode",
+          "attribute_to_user": true,
+          "block_interaction": "none",
+          "damage_type": "minecraft:explosion",
+          "immune_blocks": "#minecraft:blocks_wind_charge_explosions",
+          "knockback_multiplier": {
+            "type": "minecraft:lookup",
+            "fallback": {
+              "type": "minecraft:linear",
+              "base": 0.5,
+              "per_level_above_first": 0.25
+            },
+            "values": [
+              1.0,
+              1.25,
+              1.5
+            ]
+          },
+          "large_particle": {
+            "type": "minecraft:gust_emitter_small"
+          },
+          "radius": {
+            "type": "minecraft:linear",
+            "base": 0.5,
+            "per_level_above_first": 0.25
+          },
+          "small_particle": {
+            "type": "minecraft:gust_emitter_small"
+          },
+          "sound": "minecraft:entity.wind_charge.wind_burst"
+        },
+        "enchanted": "attacker"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 65,
+    "per_level_above_first": 9
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 15,
+    "per_level_above_first": 9
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#tofucraft:fukumame_enchantable",
+  "weight": 1
+}
