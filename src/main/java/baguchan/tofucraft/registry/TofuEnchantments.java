@@ -138,7 +138,7 @@ public class TofuEnchantments {
 										Optional.of(LevelBasedValue.lookup(List.of(1.0F, 1.25F, 1.5F), LevelBasedValue.perLevel(0.5F, 0.25F))),
 										holdergetter3.get(BlockTags.BLOCKS_WIND_CHARGE_EXPLOSIONS).map(Function.identity()),
 										Vec3.ZERO,
-										LevelBasedValue.perLevel(0.5F, 0.25F),
+										LevelBasedValue.perLevel(0.25F, 0.25F),
 										false,
 										Level.ExplosionInteraction.NONE,
 										ParticleTypes.GUST_EMITTER_SMALL,

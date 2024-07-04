@@ -71,7 +71,7 @@
           },
           "radius": {
             "type": "minecraft:linear",
-            "base": 0.5,
+            "base": 0.25,
             "per_level_above_first": 0.25
           },
           "small_particle": {
