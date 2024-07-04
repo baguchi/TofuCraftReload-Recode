@@ -11,7 +11,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -111,7 +110,7 @@ public class TofuEnchantments {
 								EnchantmentEffectComponents.DAMAGE,
 								new AddValue(LevelBasedValue.perLevel(0.5F)),
 								LootItemEntityPropertyCondition.hasProperties(
-										LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(EntityTypeTags.ARROWS).build()
+										LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(TofuTags.EntityTypes.FUKUMAME).build()
 								)
 						)
 		);

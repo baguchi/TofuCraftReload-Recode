@@ -18,7 +18,7 @@
           "condition": "minecraft:entity_properties",
           "entity": "direct_attacker",
           "predicate": {
-            "type": "#minecraft:arrows"
+            "type": "#tofucraft:fukumame"
           }
         }
       }
