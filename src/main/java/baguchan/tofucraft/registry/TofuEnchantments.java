@@ -108,7 +108,7 @@ public class TofuEnchantments {
 						)
 						.withEffect(
 								EnchantmentEffectComponents.DAMAGE,
-								new AddValue(LevelBasedValue.perLevel(0.5F)),
+								new AddValue(LevelBasedValue.perLevel(0.1F)),
 								LootItemEntityPropertyCondition.hasProperties(
 										LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(TofuTags.EntityTypes.FUKUMAME).build()
 								)
