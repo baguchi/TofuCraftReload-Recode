@@ -23,6 +23,7 @@ import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
+import baguchan.tofucraft.entity.projectile.SoyballEntity;
 import baguchan.tofucraft.entity.projectile.ZundaArrow;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -62,7 +63,7 @@ public class TofuEntityTypes {
 			.sized(0.5F, 0.35F).eyeHeight(0.3F).setTrackingRange(4).build("tofucraft:tofufish"));
 
 	public static final Supplier<EntityType<TofuGolem>> TOFU_GOLEM = ENTITIES.register("tofu_golem", () -> EntityType.Builder.of(TofuGolem::new, MobCategory.MISC)
-			.sized(0.8F, 1.25F).eyeHeight(1.25F * 0.8F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_golem"));
+			.sized(0.8F, 0.9F).eyeHeight(0.9F * 0.55F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_golem"));
 
 	public static final Supplier<EntityType<TofuGandlem>> TOFU_GANDLEM = ENTITIES.register("tofu_gandlem", () -> EntityType.Builder.of(TofuGandlem::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.6F).eyeHeight(1.6F * 0.8F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_gandlem"));
@@ -86,6 +87,10 @@ public class TofuEntityTypes {
 
 	public static final Supplier<EntityType<SoulFukumameEntity>> SOUL_FUKUMAME = ENTITIES.register("soul_fukumame", () -> EntityType.Builder.<SoulFukumameEntity>of(SoulFukumameEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).updateInterval(30).build("tofucraft:soul_fukumame"));
+	public static final Supplier<EntityType<SoyballEntity>> SOYBALL = ENTITIES.register("soyball", () -> EntityType.Builder.<SoyballEntity>of(SoyballEntity::new, MobCategory.MISC)
+			.sized(0.3F, 0.3F).updateInterval(30).build("tofucraft:soyball"));
+
+
 
 	public static final Supplier<EntityType<NattoStringEntity>> NATTO_STRNIG = ENTITIES.register("natto_string", () -> EntityType.Builder.<NattoStringEntity>of(NattoStringEntity::new, MobCategory.MISC)
 			.sized(0.2F, 0.2F).updateInterval(40).build("tofucraft:natto_string"));

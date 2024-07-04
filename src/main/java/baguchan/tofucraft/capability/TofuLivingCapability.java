@@ -13,8 +13,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 import org.jetbrains.annotations.UnknownNullability;
 
@@ -61,14 +59,6 @@ public class TofuLivingCapability implements INBTSerializable<CompoundTag> {
 	}
 
 
-	@OnlyIn(Dist.CLIENT)
-	private void playPortalSound(Minecraft mc) {
-		if (mc.player != null) {
-			mc.getSoundManager().play(SimpleSoundInstance.forLocalAmbience(SoundEvents.PORTAL_TRIGGER, mc.player.getRandom().nextFloat() * 0.4F + 0.8F, 0.25F));
-		}
-	}
-
-
 	@Override
 	public @UnknownNullability CompoundTag serializeNBT(HolderLookup.Provider provider) {
 		CompoundTag nbt = new CompoundTag();
@@ -78,5 +68,13 @@ public class TofuLivingCapability implements INBTSerializable<CompoundTag> {
 	@Override
 	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
 
+	}
+
+	public float getPrevPortalAnimTime() {
+		return this.oPortalIntensity;
+	}
+
+	public float getPortalAnimTime() {
+		return this.portalIntensity;
 	}
 }
