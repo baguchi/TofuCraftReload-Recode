@@ -19,9 +19,6 @@ import net.neoforged.neoforge.common.util.INBTSerializable;
 import org.jetbrains.annotations.UnknownNullability;
 
 public class TofuLivingCapability implements INBTSerializable<CompoundTag> {
-
-	public boolean isInTofuPortal = false;
-	public int tofuPortalTimer = 0;
 	public float portalIntensity;
 	public float oPortalIntensity;
 
@@ -71,29 +68,6 @@ public class TofuLivingCapability implements INBTSerializable<CompoundTag> {
 		}
 	}
 
-	public boolean isInPortal() {
-		return this.isInTofuPortal;
-	}
-
-	public void setInPortal(boolean inPortal) {
-		this.isInTofuPortal = inPortal;
-	}
-
-	public void setPortalTimer(int timer) {
-		this.tofuPortalTimer = timer;
-	}
-
-	public int getPortalTimer() {
-		return this.tofuPortalTimer;
-	}
-
-	public float getPortalAnimTime() {
-		return this.portalAnimTime;
-	}
-
-	public float getPrevPortalAnimTime() {
-		return this.prevPortalAnimTime;
-	}
 
 	@Override
 	public @UnknownNullability CompoundTag serializeNBT(HolderLookup.Provider provider) {
