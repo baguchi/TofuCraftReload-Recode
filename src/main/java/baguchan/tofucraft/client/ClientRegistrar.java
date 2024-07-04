@@ -1,6 +1,7 @@
 package baguchan.tofucraft.client;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.client.model.FukumameThowerModel;
 import baguchan.tofucraft.client.model.ShuDofuSpiderModel;
 import baguchan.tofucraft.client.model.TofuFishModel;
@@ -40,15 +41,22 @@ import baguchan.tofucraft.client.screen.TFCrafterScreen;
 import baguchan.tofucraft.client.screen.TFOvenScreen;
 import baguchan.tofucraft.client.screen.TFStorageScreen;
 import baguchan.tofucraft.entity.TofuBoat;
+import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuWoodTypes;
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.DeltaTracker;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -57,7 +65,9 @@ import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.blockentity.VaultRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -194,6 +204,36 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiLayersEvent event) {
+		event.registerAboveAll(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_portal_overlay"), (guiGraphics, partialTicks) -> {
+			Minecraft minecraft = Minecraft.getInstance();
+			Window window = minecraft.getWindow();
+			LocalPlayer player = minecraft.player;
+			if (player != null) {
+				renderTofuPortalOverlay(guiGraphics, minecraft, window, player.getData(TofuAttachments.TOFU_LIVING.get()), partialTicks);
+			}
+		});
+	}
+
+	private static void renderTofuPortalOverlay(GuiGraphics guiGraphics, Minecraft minecraft, Window window, TofuLivingCapability handler, DeltaTracker partialTicks) {
+		float timeInPortal = Mth.lerp(partialTicks.getGameTimeDeltaPartialTick(false), handler.getPrevPortalAnimTime(), handler.getPortalAnimTime());
+		if (timeInPortal > 0.0F) {
+			if (timeInPortal < 1.0F) {
+				timeInPortal *= timeInPortal;
+				timeInPortal *= timeInPortal;
+				timeInPortal = timeInPortal * 0.8F + 0.2F;
+			}
+
+			RenderSystem.disableDepthTest();
+			RenderSystem.depthMask(false);
+			RenderSystem.enableBlend();
+			guiGraphics.setColor(1.0F, 1.0F, 1.0F, timeInPortal);
+			TextureAtlasSprite textureatlassprite = minecraft.getBlockRenderer().getBlockModelShaper().getParticleIcon(TofuBlocks.TOFU_PORTAL.get().defaultBlockState());
+			guiGraphics.blit(0, 0, -90, guiGraphics.guiWidth(), guiGraphics.guiHeight(), textureatlassprite);
+			RenderSystem.disableBlend();
+			RenderSystem.depthMask(true);
+			RenderSystem.enableDepthTest();
+			guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+		}
 	}
 
 	@SubscribeEvent
