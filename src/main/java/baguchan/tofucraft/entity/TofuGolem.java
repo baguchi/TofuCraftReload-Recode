@@ -4,6 +4,7 @@ import baguchan.tofucraft.entity.goal.DefendTofuVillageTargetGoal;
 import baguchan.tofucraft.entity.goal.MoveBackToTofuVillageGoal;
 import baguchan.tofucraft.entity.projectile.SoyballEntity;
 import baguchan.tofucraft.registry.TofuEntityTypes;
+import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -13,6 +14,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
@@ -39,6 +42,7 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -96,6 +100,24 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 		builder.define(DATA_FLAGS_ID, (byte) 0);
 	}
 
+	@Override
+	protected InteractionResult mobInteract(Player p_28861_, InteractionHand p_28862_) {
+		ItemStack itemstack = p_28861_.getItemInHand(p_28862_);
+		if (!itemstack.is(TofuItems.TOFUISHI.get())) {
+			return InteractionResult.PASS;
+		} else {
+			float f = this.getHealth();
+			this.heal(20.0F);
+			if (this.getHealth() == f) {
+				return InteractionResult.PASS;
+			} else {
+				float f1 = 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
+				this.playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, f1);
+				itemstack.consume(1, p_28861_);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
+			}
+		}
+	}
 	@Override
 	public void tick() {
 		super.tick();
