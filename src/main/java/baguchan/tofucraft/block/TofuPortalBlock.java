@@ -231,11 +231,6 @@ public class TofuPortalBlock extends Block implements Portal {
 		return new DimensionTransition(p_350955_, vec32, vec3, p_350648_ + (float) i, p_350338_, p_352441_);
 	}
 
-	@Override
-	public Portal.Transition getLocalTransition() {
-		return Transition.CONFUSION;
-	}
-
 	public static class Size {
 		private static final int MAX_SIZE = 12;
 

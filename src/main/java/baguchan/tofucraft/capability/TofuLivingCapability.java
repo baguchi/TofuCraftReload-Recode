@@ -1,18 +1,16 @@
 package baguchan.tofucraft.capability;
 
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.utils.ClientUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
-import net.minecraft.client.gui.screens.ReceivingLevelScreen;
 import net.minecraft.client.gui.screens.WinScreen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 import org.jetbrains.annotations.UnknownNullability;
 
@@ -24,31 +22,29 @@ public class TofuLivingCapability implements INBTSerializable<CompoundTag> {
 		this.handleTofuPortal(entity);
 	}
 
-	private void handleTofuPortal(Entity player) {
-		if (player instanceof LocalPlayer localPlayer) {
-			if (!(Minecraft.getInstance().screen instanceof ReceivingLevelScreen)) {
+	private void handleTofuPortal(Entity entity) {
+		if (entity instanceof Player player) {
+			if (!player.level().isClientSide()) {
 				this.oPortalIntensity = this.portalIntensity;
 				float f = 0.0F;
-				if (localPlayer.portalProcess != null && localPlayer.portalProcess.isInsidePortalThisTick() && localPlayer.portalProcess.isSamePortal(TofuBlocks.TOFU_PORTAL.get())) {
+				if (player.portalProcess != null && player.portalProcess.isInsidePortalThisTick() && player.portalProcess.isSamePortal(TofuBlocks.TOFU_PORTAL.get())) {
 					if (Minecraft.getInstance().screen != null
 							&& !Minecraft.getInstance().screen.isPauseScreen()
 							&& !(Minecraft.getInstance().screen instanceof DeathScreen)
 							&& !(Minecraft.getInstance().screen instanceof WinScreen)) {
 						if (Minecraft.getInstance().screen instanceof AbstractContainerScreen) {
-							localPlayer.closeContainer();
+							player.closeContainer();
 						}
 
 						Minecraft.getInstance().setScreen(null);
 					}
 
 					if (this.portalIntensity == 0.0F) {
-						Minecraft.getInstance()
-								.getSoundManager()
-								.play(SimpleSoundInstance.forLocalAmbience(SoundEvents.PORTAL_TRIGGER, localPlayer.getRandom().nextFloat() * 0.4F + 0.8F, 0.25F));
+						ClientUtils.playPortalSound(player);
 					}
 
 					f = 0.0125F;
-					localPlayer.portalProcess.setAsInsidePortalThisTick(false);
+					player.portalProcess.setAsInsidePortalThisTick(false);
 				} else if (this.portalIntensity > 0.0F) {
 					f = -0.05F;
 				}
