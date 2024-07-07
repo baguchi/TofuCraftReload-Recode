@@ -7,8 +7,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 
 public class TofuHoeItem extends HoeItem implements IEnergyInsertable {
-	public TofuHoeItem(Tier tofuItemTier, Properties properties) {
-		super(tofuItemTier, properties);
+	public TofuHoeItem(Tier tofuItemTier, int p_41337_, float p_41338_, Properties properties) {
+		super(tofuItemTier, p_41337_, p_41338_, properties);
 	}
 
 
