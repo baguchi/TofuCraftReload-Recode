@@ -1,4 +1,4 @@
-package baguchan.tofucraft.item;
+package baguchan.tofucraft.item.tool;
 
 import baguchan.tofucraft.block.SuspiciousTofuTerrainBlock;
 import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;

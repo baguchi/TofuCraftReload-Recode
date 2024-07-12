@@ -1,4 +1,4 @@
-package baguchan.tofucraft.item;
+package baguchan.tofucraft.item.armor;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import net.minecraft.core.Holder;

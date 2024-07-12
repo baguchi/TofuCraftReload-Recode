@@ -3,8 +3,10 @@ package baguchan.tofucraft.item;
 import baguchan.tofucraft.attachment.SoyHealthAttachment;
 import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuEffects;
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -19,8 +21,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+
+import java.util.List;
 
 public class SoymilkBottleItem extends Item {
 	private final Holder<MobEffect> effect;
@@ -34,41 +39,41 @@ public class SoymilkBottleItem extends Item {
 	}
 
 	@Override
-	public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
-		super.finishUsingItem(p_41409_, p_41410_, p_41411_);
-		SoyHealthAttachment cap = p_41411_.getData(TofuAttachments.SOY_HEALTH);
-			if (!p_41410_.isClientSide) {
-				if (p_41410_.getGameTime() > cap.getRemainTick() + 12000L) {
-					cap.setSoyHealthLevel(p_41411_, cap.getSoyHealthLevel() + 1, true);
+	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+		super.finishUsingItem(stack, level, livingEntity);
+		SoyHealthAttachment cap = livingEntity.getData(TofuAttachments.SOY_HEALTH);
+		if (!level.isClientSide) {
+			if (level.getGameTime() > cap.getRemainTick() + 12000L) {
+				cap.setSoyHealthLevel(livingEntity, cap.getSoyHealthLevel() + 1, true);
 
 					if (cap.getSoyHealthLevel() > 4) {
-						p_41411_.addEffect(new MobEffectInstance(this.getSecondEffect(), 24000, 0));
+						livingEntity.addEffect(new MobEffectInstance(this.getSecondEffect(), 24000, 0));
 					}
 					cap.setSoyHealthBaseLevel(1 + cap.getSoyHealthBaseLevel());
 				}
-				p_41411_.addEffect(new MobEffectInstance(TofuEffects.SOY_HEALTHY, 600 + 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
-				p_41411_.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
+			livingEntity.addEffect(new MobEffectInstance(TofuEffects.SOY_HEALTHY, 600 + 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
+			livingEntity.addEffect(new MobEffectInstance(this.getEffect(), 200 * cap.getSoyHealthLevel() + cap.getSoyHealthBaseLevel() * 40, 0));
 			}
-		if (p_41411_ instanceof ServerPlayer) {
-			ServerPlayer serverplayerentity = (ServerPlayer) p_41411_;
-			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, p_41409_);
+		if (livingEntity instanceof ServerPlayer) {
+			ServerPlayer serverplayerentity = (ServerPlayer) livingEntity;
+			CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, stack);
 			serverplayerentity.awardStat(Stats.ITEM_USED.get(this));
 		}
-		if (p_41409_.isEmpty()) {
+		if (stack.isEmpty()) {
 			return new ItemStack(Items.GLASS_BOTTLE);
 		} else {
-			if (!(p_41411_ instanceof Player) || !((Player) p_41411_).getAbilities().instabuild) {
-				p_41409_.shrink(1);
+			if (!(livingEntity instanceof Player) || !((Player) livingEntity).getAbilities().instabuild) {
+				stack.shrink(1);
 			}
-			if (p_41411_ instanceof Player && !((Player) p_41411_).getAbilities().instabuild) {
+			if (livingEntity instanceof Player && !((Player) livingEntity).getAbilities().instabuild) {
 				ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
-				Player playerentity = (Player) p_41411_;
+				Player playerentity = (Player) livingEntity;
 				if (!playerentity.getInventory().add(itemstack)) {
 					playerentity.drop(itemstack, false);
 				}
 			}
 		}
-		return p_41409_;
+		return stack;
 	}
 
 
@@ -91,8 +96,14 @@ public class SoymilkBottleItem extends Item {
 	}
 
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level p_41432_, Player p_41433_, InteractionHand p_41434_) {
-		return ItemUtils.startUsingInstantly(p_41432_, p_41433_, p_41434_);
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+		return ItemUtils.startUsingInstantly(level, player, hand);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, TooltipContext tooltipContext, List<Component> components, TooltipFlag flag) {
+		super.appendHoverText(stack, tooltipContext, components, flag);
+		components.add(this.getEffect().value().getDisplayName().copy().withStyle(ChatFormatting.BLUE));
 	}
 
 	public Holder<MobEffect> getEffect() {

@@ -1,4 +1,4 @@
-package baguchan.tofucraft.item;
+package baguchan.tofucraft.item.tool;
 
 import baguchan.tofucraft.entity.projectile.ZundaArrow;
 import net.minecraft.core.Direction;

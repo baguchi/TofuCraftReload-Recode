@@ -1,4 +1,4 @@
-package baguchan.tofucraft.item;
+package baguchan.tofucraft.item.tool;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import baguchan.tofucraft.registry.TofuEnchantments;
