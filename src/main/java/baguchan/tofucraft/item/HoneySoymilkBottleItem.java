@@ -27,6 +27,6 @@ public class HoneySoymilkBottleItem extends SoymilkBottleItem {
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext tooltipContext, List<Component> components, TooltipFlag flag) {
 		super.appendHoverText(stack, tooltipContext, components, flag);
-		components.add(Component.translatable("item.tofucraft.soymilk_honey.desc").withStyle(ChatFormatting.DARK_GRAY));
+		components.add(Component.translatable("item.tofucraft.soymilk_honey.desc").withStyle(ChatFormatting.GRAY));
 	}
 }
