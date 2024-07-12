@@ -1,9 +1,9 @@
 package baguchan.tofucraft;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyContained;
+import baguchan.tofucraft.attachment.SoyHealthAttachment;
+import baguchan.tofucraft.attachment.TofuLivingAttachment;
 import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
-import baguchan.tofucraft.capability.SoyHealthCapability;
-import baguchan.tofucraft.capability.TofuLivingCapability;
 import baguchan.tofucraft.entity.TofuGandlem;
 import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlocks;
@@ -83,9 +83,9 @@ public class CommonEvents {
 	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
 
 	@SubscribeEvent
-	public static void onUpdate(EntityTickEvent.Post event) {
+	public static void onUpdate(EntityTickEvent.Pre event) {
 		Entity entity = event.getEntity();
-		SoyHealthCapability soyHealth = entity.getData(TofuAttachments.SOY_HEALTH);
+		SoyHealthAttachment soyHealth = entity.getData(TofuAttachments.SOY_HEALTH);
 
 		if (!entity.level().isClientSide() && entity instanceof LivingEntity livingEntity) {
 			soyHealth.tick(livingEntity);
@@ -115,8 +115,8 @@ public class CommonEvents {
 				}
 			}
 		}
-		TofuLivingCapability tofuLivingCapability = entity.getData(TofuAttachments.TOFU_LIVING);
-		tofuLivingCapability.tick(entity);
+		TofuLivingAttachment tofuLivingAttachment = entity.getData(TofuAttachments.TOFU_LIVING);
+		tofuLivingAttachment.tick(entity);
 	}
 
 	protected static BlockHitResult getPlayerPOVHitResult(Level p_41436_, Player p_41437_, ClipContext.Fluid p_41438_) {
@@ -372,8 +372,8 @@ public class CommonEvents {
 		Player oldPlayer = event.getOriginal();
 		Player newPlayer = event.getEntity();
 		if (!event.isWasDeath()) {
-			SoyHealthCapability soyHealth = oldPlayer.getData(TofuAttachments.SOY_HEALTH);
-			SoyHealthCapability soyHealth2 = newPlayer.getData(TofuAttachments.SOY_HEALTH);
+			SoyHealthAttachment soyHealth = oldPlayer.getData(TofuAttachments.SOY_HEALTH);
+			SoyHealthAttachment soyHealth2 = newPlayer.getData(TofuAttachments.SOY_HEALTH);
 			soyHealth2.deserializeNBT(newPlayer.level().registryAccess(), soyHealth.serializeNBT(newPlayer.level().registryAccess()));
 		}
 	}

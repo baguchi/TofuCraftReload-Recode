@@ -1,7 +1,7 @@
 package baguchan.tofucraft.network;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.capability.SoyHealthCapability;
+import baguchan.tofucraft.attachment.SoyHealthAttachment;
 import baguchan.tofucraft.registry.TofuAttachments;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
@@ -55,7 +55,7 @@ public class SoyMilkDrinkedPacket implements CustomPacketPayload, IPayloadHandle
 		context.enqueueWork(() -> {
 			Entity entity = (Minecraft.getInstance()).player.level().getEntity(message.entityId);
 			if (entity != null && entity instanceof LivingEntity living) {
-				SoyHealthCapability cap = living.getData(TofuAttachments.SOY_HEALTH);
+				SoyHealthAttachment cap = living.getData(TofuAttachments.SOY_HEALTH);
 				cap.setSoyHealthLevel((LivingEntity) entity, message.level, message.canUpdate);
 			}
 		});

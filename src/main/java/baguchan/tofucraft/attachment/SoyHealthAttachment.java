@@ -1,4 +1,4 @@
-package baguchan.tofucraft.capability;
+package baguchan.tofucraft.attachment;
 
 import baguchan.tofucraft.network.SoyMilkDrinkedPacket;
 import net.minecraft.core.HolderLookup;
@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-public class SoyHealthCapability implements INBTSerializable<CompoundTag> {
+public class SoyHealthAttachment implements INBTSerializable<CompoundTag> {
 	private int soyHealthLevel;
 	private int soyHealthBaseLevel;
 	private long lastTick = -12000L;

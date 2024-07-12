@@ -1,7 +1,7 @@
 package baguchan.tofucraft.client;
 
 import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.capability.TofuLivingCapability;
+import baguchan.tofucraft.attachment.TofuLivingAttachment;
 import baguchan.tofucraft.client.model.FukumameThowerModel;
 import baguchan.tofucraft.client.model.ShuDofuSpiderModel;
 import baguchan.tofucraft.client.model.TofuFishModel;
@@ -216,7 +216,7 @@ public class ClientRegistrar {
 		});
 	}
 
-	private static void renderTofuPortalOverlay(GuiGraphics guiGraphics, Minecraft minecraft, Window window, TofuLivingCapability handler, DeltaTracker partialTicks) {
+	private static void renderTofuPortalOverlay(GuiGraphics guiGraphics, Minecraft minecraft, Window window, TofuLivingAttachment handler, DeltaTracker partialTicks) {
 		float timeInPortal = Mth.lerp(partialTicks.getGameTimeDeltaPartialTick(false), handler.getPrevPortalAnimTime(), handler.getPortalAnimTime());
 		if (timeInPortal > 0.0F) {
 			if (timeInPortal < 1.0F) {

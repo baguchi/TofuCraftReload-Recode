@@ -1,6 +1,6 @@
 package baguchan.tofucraft.item;
 
-import baguchan.tofucraft.capability.SoyHealthCapability;
+import baguchan.tofucraft.attachment.SoyHealthAttachment;
 import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuEffects;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -36,7 +36,7 @@ public class SoymilkBottleItem extends Item {
 	@Override
 	public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
 		super.finishUsingItem(p_41409_, p_41410_, p_41411_);
-		SoyHealthCapability cap = p_41411_.getData(TofuAttachments.SOY_HEALTH);
+		SoyHealthAttachment cap = p_41411_.getData(TofuAttachments.SOY_HEALTH);
 			if (!p_41410_.isClientSide) {
 				if (p_41410_.getGameTime() > cap.getRemainTick() + 12000L) {
 					cap.setSoyHealthLevel(p_41411_, cap.getSoyHealthLevel() + 1, true);

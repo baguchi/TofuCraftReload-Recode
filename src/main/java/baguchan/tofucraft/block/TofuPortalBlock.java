@@ -1,5 +1,7 @@
 package baguchan.tofucraft.block;
 
+import baguchan.tofucraft.attachment.TofuLivingAttachment;
+import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuParticleTypes;
@@ -72,15 +74,6 @@ public class TofuPortalBlock extends Block implements Portal {
 		return Shapes.empty();
 	}
 
-	public boolean trySpawnPortal(Level worldIn, BlockPos pos) {
-		Size size1 = new Size(worldIn, pos);
-		if (size1.isValid()) {
-			size1.placePortalBlocks();
-			worldIn.playSound(null, pos, SoundEvents.END_PORTAL_SPAWN, SoundSource.BLOCKS, 1.0F, 1.0F);
-			return true;
-		}
-		return false;
-	}
 
 	@Override
 	protected BlockState updateShape(BlockState p_54928_, Direction p_54929_, BlockState p_54930_, LevelAccessor p_54931_, BlockPos p_54932_, BlockPos p_54933_) {
@@ -94,9 +87,18 @@ public class TofuPortalBlock extends Block implements Portal {
 
 
 	@Override
-	protected void entityInside(BlockState p_54915_, Level p_54916_, BlockPos p_54917_, Entity p_54918_) {
-		if (p_54918_.canUsePortal(false)) {
-			p_54918_.setAsInsidePortal(this, p_54917_);
+	protected void entityInside(BlockState p_54915_, Level level, BlockPos p_54917_, Entity entity) {
+		if (entity.canUsePortal(false)) {
+			entity.setAsInsidePortal(this, p_54917_);
+			if (entity instanceof Player player) {
+				TofuLivingAttachment portal = player.getData(TofuAttachments.TOFU_LIVING);
+				portal.setInPortal(true);
+				int waitTime = portal.getPortalTimer();
+				if (waitTime >= this.getLevelPortalTransitionTime(level, player)) {
+					portal.handlePortal(player);
+					portal.setPortalTimer(0);
+				}
+			}
 		}
 
 	}
@@ -121,12 +123,11 @@ public class TofuPortalBlock extends Block implements Portal {
 		}
 	}
 
-	@Override
-	public int getPortalTransitionTime(ServerLevel p_350689_, Entity p_350280_) {
-		return p_350280_ instanceof Player player
+	private int getLevelPortalTransitionTime(Level level, Entity entity) {
+		return entity instanceof Player player
 				? Math.max(
 				1,
-				p_350689_.getGameRules()
+				level.getGameRules()
 						.getInt(
 								player.getAbilities().invulnerable
 										? GameRules.RULE_PLAYERS_NETHER_PORTAL_CREATIVE_DELAY
@@ -134,6 +135,11 @@ public class TofuPortalBlock extends Block implements Portal {
 						)
 		)
 				: 0;
+	}
+
+	@Override
+	public int getPortalTransitionTime(ServerLevel p_350689_, Entity p_350280_) {
+		return getLevelPortalTransitionTime(p_350689_, p_350280_);
 	}
 
 	@javax.annotation.Nullable
