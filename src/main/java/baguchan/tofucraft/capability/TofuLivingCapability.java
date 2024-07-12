@@ -24,7 +24,7 @@ public class TofuLivingCapability implements INBTSerializable<CompoundTag> {
 
 	private void handleTofuPortal(Entity entity) {
 		if (entity instanceof Player player) {
-			if (!player.level().isClientSide()) {
+			if (player.level().isClientSide()) {
 				this.oPortalIntensity = this.portalIntensity;
 				float f = 0.0F;
 				if (player.portalProcess != null && player.portalProcess.isInsidePortalThisTick() && player.portalProcess.isSamePortal(TofuBlocks.TOFU_PORTAL.get())) {
