@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.VaultBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.vault.VaultBlockEntity;
 import net.minecraft.world.level.block.entity.vault.VaultState;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -32,7 +31,7 @@ public class TofuVaultBlock extends VaultBlock {
 		if (p_324161_.isEmpty() || p_323816_.getValue(STATE) != VaultState.ACTIVE) {
 			return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 		} else if (p_324403_ instanceof ServerLevel serverlevel) {
-			if (serverlevel.getBlockEntity(p_324623_) instanceof VaultBlockEntity vaultblockentity) {
+			if (serverlevel.getBlockEntity(p_324623_) instanceof TofuVaultBlockEntity vaultblockentity) {
 				TofuVaultBlockEntity.tryInsertKey(
 						serverlevel,
 						p_324623_,
@@ -65,14 +64,14 @@ public class TofuVaultBlock extends VaultBlock {
 				? createTickerHelper(
 				p_323541_,
 				TofuBlockEntitys.TOFU_VAULT.get(),
-				(p_323957_, p_324322_, p_323828_, p_323769_) -> VaultBlockEntity.Server.tick(
+				(p_323957_, p_324322_, p_323828_, p_323769_) -> TofuVaultBlockEntity.Server.tick(
 						serverlevel, p_324322_, p_323828_, p_323769_.getConfig(), p_323769_.getServerData(), p_323769_.getSharedData()
 				)
 		)
 				: createTickerHelper(
 				p_323541_,
 				TofuBlockEntitys.TOFU_VAULT.get(),
-				(p_324290_, p_323926_, p_323941_, p_323489_) -> VaultBlockEntity.Client.tick(
+				(p_324290_, p_323926_, p_323941_, p_323489_) -> TofuVaultBlockEntity.Client.tick(
 						p_324290_, p_323926_, p_323941_, p_323489_.getClientData(), p_323489_.getSharedData()
 				)
 		);
