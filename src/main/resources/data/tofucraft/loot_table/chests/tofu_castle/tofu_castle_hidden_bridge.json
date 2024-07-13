@@ -106,8 +106,8 @@
               "add": false,
               "damage": {
                 "type": "minecraft:uniform",
-                "max": 0.25,
-                "min": 0.0
+                "max": 0.95,
+                "min": 0.8
               },
               "function": "minecraft:set_damage"
             },
@@ -131,8 +131,8 @@
               "add": false,
               "damage": {
                 "type": "minecraft:uniform",
-                "max": 0.25,
-                "min": 0.0
+                "max": 0.95,
+                "min": 0.8
               },
               "function": "minecraft:set_damage"
             },
@@ -156,8 +156,8 @@
               "add": false,
               "damage": {
                 "type": "minecraft:uniform",
-                "max": 0.25,
-                "min": 0.0
+                "max": 0.95,
+                "min": 0.8
               },
               "function": "minecraft:set_damage"
             },
@@ -181,8 +181,8 @@
               "add": false,
               "damage": {
                 "type": "minecraft:uniform",
-                "max": 0.25,
-                "min": 0.0
+                "max": 0.95,
+                "min": 0.8
               },
               "function": "minecraft:set_damage"
             },
@@ -206,8 +206,8 @@
               "add": false,
               "damage": {
                 "type": "minecraft:uniform",
-                "max": 0.25,
-                "min": 0.0
+                "max": 0.95,
+                "min": 0.8
               },
               "function": "minecraft:set_damage"
             },
@@ -231,8 +231,8 @@
               "add": false,
               "damage": {
                 "type": "minecraft:uniform",
-                "max": 0.25,
-                "min": 0.0
+                "max": 0.95,
+                "min": 0.8
               },
               "function": "minecraft:set_damage"
             },
@@ -256,8 +256,8 @@
               "add": false,
               "damage": {
                 "type": "minecraft:uniform",
-                "max": 0.25,
-                "min": 0.0
+                "max": 0.95,
+                "min": 0.8
               },
               "function": "minecraft:set_damage"
             },
