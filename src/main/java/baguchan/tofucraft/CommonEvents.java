@@ -20,12 +20,15 @@ import baguchan.tofucraft.utils.TofuDiamondToolUtil;
 import baguchan.tofucraft.world.TofuData;
 import baguchan.tofucraft.world.TofuLevelData;
 import baguchan.tofucraft.world.TravelerTofunianSpawner;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.SpawnUtil;
@@ -46,6 +49,7 @@ import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
@@ -58,6 +62,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.SelectMusicEvent;
 import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
@@ -119,6 +124,15 @@ public class CommonEvents {
 		tofuLivingAttachment.tick(entity);
 	}
 
+	@SubscribeEvent
+	public static void onMusicPlayed(SelectMusicEvent event) {
+		if (Minecraft.getInstance().level != null && Minecraft.getInstance().player != null) {
+			Holder<Biome> biome = Minecraft.getInstance().player.level().getBiome(Minecraft.getInstance().player.blockPosition());
+			if (Minecraft.getInstance().level.dimension() == TofuDimensions.tofu_world) {
+				event.setMusic(biome.value().getBackgroundMusic().orElse(Musics.GAME));
+			}
+		}
+	}
 	protected static BlockHitResult getPlayerPOVHitResult(Level p_41436_, Player p_41437_, ClipContext.Fluid p_41438_) {
 		Vec3 vec3 = p_41437_.getEyePosition();
 		Vec3 vec31 = vec3.add(p_41437_.calculateViewVector(p_41437_.getXRot(), p_41437_.getYRot()).scale(p_41437_.blockInteractionRange()));

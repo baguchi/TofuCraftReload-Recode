@@ -12,7 +12,6 @@
     "WardenMixin"
   ],
   "client": [
-    "client.MinecraftMixin",
     "client.WardenModelMixin"
   ],
   "injectors": {
