@@ -23,6 +23,7 @@ import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchan.tofucraft.entity.projectile.SoulFukumameEntity;
+import baguchan.tofucraft.entity.projectile.SoyballEntity;
 import baguchan.tofucraft.entity.projectile.ZundaArrow;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -86,6 +87,10 @@ public class TofuEntityTypes {
 
 	public static final RegistryObject<EntityType<SoulFukumameEntity>> SOUL_FUKUMAME = ENTITIES.register("soul_fukumame", () -> EntityType.Builder.<SoulFukumameEntity>of(SoulFukumameEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).updateInterval(40).build("tofucraft:soul_fukumame"));
+	public static final Supplier<EntityType<SoyballEntity>> SOYBALL = ENTITIES.register("soyball", () -> EntityType.Builder.<SoyballEntity>of(SoyballEntity::new, MobCategory.MISC)
+			.sized(0.3F, 0.3F).updateInterval(30).build("tofucraft:soyball"));
+
+
 
 	public static final RegistryObject<EntityType<NattoStringEntity>> NATTO_STRNIG = ENTITIES.register("natto_string", () -> EntityType.Builder.<NattoStringEntity>of(NattoStringEntity::new, MobCategory.MISC)
 			.sized(0.2F, 0.2F).updateInterval(40).build("tofucraft:natto_string"));

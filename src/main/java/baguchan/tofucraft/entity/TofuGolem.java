@@ -2,6 +2,9 @@ package baguchan.tofucraft.entity;
 
 import baguchan.tofucraft.entity.goal.DefendTofuVillageTargetGoal;
 import baguchan.tofucraft.entity.goal.MoveBackToTofuVillageGoal;
+import baguchan.tofucraft.entity.projectile.SoyballEntity;
+import baguchan.tofucraft.registry.TofuEntityTypes;
+import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -11,20 +14,22 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
-import net.minecraft.world.entity.ai.goal.GolemRandomStrollInVillageGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -35,7 +40,9 @@ import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -43,14 +50,16 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class TofuGolem extends AbstractGolem implements NeutralMob {
+public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttackMob {
 	protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(TofuGolem.class, EntityDataSerializers.BYTE);
-	private static final int STONE_HEAL_AMOUNT = 25;
-	private int attackAnimationTick;
 	private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
 	private int remainingPersistentAngerTime;
-	@javax.annotation.Nullable
+	@Nullable
 	private UUID persistentAngerTarget;
+	public AnimationState spitAnimationState = new AnimationState();
+	public AnimationState idleAnimationState = new AnimationState();
+
+	public int spitAnimationTick;
 
 	public TofuGolem(EntityType<? extends TofuGolem> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
@@ -58,7 +67,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 50.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 0.6F).add(Attributes.KNOCKBACK_RESISTANCE, 0.85D).add(Attributes.ARMOR, 8.0F).add(Attributes.ATTACK_DAMAGE, 10.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 30.0D).add(Attributes.FOLLOW_RANGE, 20F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 0.6F).add(Attributes.KNOCKBACK_RESISTANCE, 0.85D).add(Attributes.ARMOR, 8.0F).add(Attributes.ATTACK_DAMAGE, 10.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
@@ -68,10 +77,10 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 
 	@Override
 	protected void registerGoals() {
-		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2D, true));
+		this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.1, 15, 20, 10.0F));
 		this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 1.0D, 32.0F));
 		this.goalSelector.addGoal(2, new MoveBackToTofuVillageGoal(this, 1.0D, false));
-		this.goalSelector.addGoal(4, new GolemRandomStrollInVillageGoal(this, 1.0D));
+		//this.goalSelector.addGoal(4, new GolemRandomStrollInVillageGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Mob.class, 6.0F));
@@ -92,36 +101,59 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 	}
 
 	@Override
+	protected InteractionResult mobInteract(Player p_28861_, InteractionHand p_28862_) {
+		ItemStack itemstack = p_28861_.getItemInHand(p_28862_);
+		if (!itemstack.is(TofuItems.TOFUISHI.get())) {
+			return InteractionResult.PASS;
+		} else {
+			float f = this.getHealth();
+			this.heal(20.0F);
+			if (this.getHealth() == f) {
+				return InteractionResult.PASS;
+			} else {
+				float f1 = 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
+				this.playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, f1);
+				itemstack.shrink(1);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
+			}
+		}
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		if (this.level().isClientSide()) {
+			if (!this.spitAnimationState.isStarted()) {
+				this.idleAnimationState.startIfStopped(this.tickCount);
+			}
+
+			if (this.spitAnimationState.isStarted() && ++this.spitAnimationTick > 20) {
+				this.spitAnimationState.stop();
+			}
+		}
+	}
+
+	@Override
 	public void aiStep() {
 		super.aiStep();
-		if (this.attackAnimationTick > 0) {
-			--this.attackAnimationTick;
-		}
 
 		if (!this.level().isClientSide) {
 			this.updatePersistentAnger((ServerLevel) this.level(), true);
 		}
 	}
 
-	@Override
-	public boolean doHurtTarget(Entity p_21372_) {
-		this.attackAnimationTick = 10;
-		return super.doHurtTarget(p_21372_);
-	}
+
 
 	@Override
 	public void handleEntityEvent(byte p_28844_) {
 		if (p_28844_ == 4) {
-			this.attackAnimationTick = 10;
-			this.playSound(SoundEvents.IRON_GOLEM_ATTACK, 1.0F, 1.0F);
+			this.spitAnimationState.start(this.tickCount);
+			this.spitAnimationTick = 0;
 		} else {
 			super.handleEntityEvent(p_28844_);
 		}
 	}
 
-	public int getAttackAnimationTick() {
-		return this.attackAnimationTick;
-	}
 
 	public void addAdditionalSaveData(CompoundTag p_28867_) {
 		super.addAdditionalSaveData(p_28867_);
@@ -147,14 +179,6 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 			this.entityData.set(DATA_FLAGS_ID, (byte) (b0 & -2));
 		}
 
-	}
-
-	public boolean canAttackType(EntityType<?> p_28851_) {
-		if (this.isPlayerCreated() && p_28851_ == EntityType.PLAYER) {
-			return false;
-		} else {
-			return p_28851_ == EntityType.CREEPER ? false : super.canAttackType(p_28851_);
-		}
 	}
 
 	@Override
@@ -213,7 +237,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 	}
 
 	@Override
-	public void setPersistentAngerTarget(@javax.annotation.Nullable UUID p_28855_) {
+	public void setPersistentAngerTarget(@Nullable UUID p_28855_) {
 		this.persistentAngerTarget = p_28855_;
 	}
 
@@ -226,5 +250,40 @@ public class TofuGolem extends AbstractGolem implements NeutralMob {
 	@Override
 	public boolean removeWhenFarAway(double p_27519_) {
 		return false;
+	}
+
+	@Override
+	public void performRangedAttack(LivingEntity p_33317_, float p_33318_) {
+		this.playSound(SoundEvents.LLAMA_SPIT, 1.0F, 1.0F);
+
+		SoyballEntity fukumame = new SoyballEntity(this.level(), this);
+		double d1 = p_33317_.getX() - this.getX();
+		double d2 = p_33317_.getEyeY() - this.getEyeY();
+		double d3 = p_33317_.getZ() - this.getZ();
+		fukumame.shoot(d1, d2, d3, 1.25F, 6.0F + p_33318_);
+
+		this.level().addFreshEntity(fukumame);
+		this.level().broadcastEntityEvent(this, (byte) 4);
+	}
+
+	@Override
+	public boolean canAttack(LivingEntity p_21171_) {
+		if (p_21171_ instanceof AbstractTofunian) {
+			return false;
+		}
+		return super.canAttack(p_21171_);
+	}
+
+	@Override
+	public boolean canAttackType(EntityType<?> p_21399_) {
+		if (p_21399_ == TofuEntityTypes.TOFU_GOLEM.get()) {
+			return false;
+		}
+
+		if (this.isPlayerCreated() && p_21399_ == EntityType.PLAYER) {
+			return false;
+		} else {
+			return p_21399_ == EntityType.CREEPER ? false : super.canAttackType(p_21399_);
+		}
 	}
 }

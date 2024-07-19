@@ -134,6 +134,9 @@ repositories {
     maven { url = "https://dvs1.progwml6.com/files/maven/" } // JEI
     maven { url = "https://modmaven.k-4u.nl" } // Mirror for JEI
     maven { url = "https://maven.blamejared.com" } // Patchouli
+    maven {
+        url = "https://api.modrinth.com/maven"
+    }
 }
 
 dependencies {
@@ -147,6 +150,7 @@ dependencies {
     runtimeOnly(fg.deobf("mezz.jei:jei-1.20.1-forge:15.3.0.4"))
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE")
+    implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
     // compile "some.group:artifact:version"

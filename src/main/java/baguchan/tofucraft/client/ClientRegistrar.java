@@ -19,6 +19,7 @@ import baguchan.tofucraft.client.render.ZundaArrowRender;
 import baguchan.tofucraft.client.render.entity.FallingTofuRenderer;
 import baguchan.tofucraft.client.render.entity.FukumameThowerRenderer;
 import baguchan.tofucraft.client.render.entity.ShuDofuSpiderRender;
+import baguchan.tofucraft.client.render.entity.SoyballRenderer;
 import baguchan.tofucraft.client.render.entity.TofuBoatRenderer;
 import baguchan.tofucraft.client.render.entity.TofuCowRender;
 import baguchan.tofucraft.client.render.entity.TofuCreeperRender;
@@ -150,6 +151,7 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.NETHER_FUKUMAME.get(), NetherFukumameRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.SOUL_FUKUMAME.get(), SoulFukumameRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.ZUNDA_ARROW.get(), ZundaArrowRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.SOYBALL.get(), SoyballRenderer::new);
 
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_STRNIG.get(), (context) -> new NattoStringRender<>(context, 1.0F, true));
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_COBWEB.get(), NattoCobWebRender::new);
