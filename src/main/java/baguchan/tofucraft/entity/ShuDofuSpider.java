@@ -1,5 +1,8 @@
 package baguchan.tofucraft.entity;
 
+import bagu_chan.bagus_lib.client.camera.CameraEvent;
+import bagu_chan.bagus_lib.client.camera.CameraHolder;
+import bagu_chan.bagus_lib.util.GlobalVec3;
 import baguchan.tofucraft.client.particle.ParticleStink;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
@@ -354,6 +357,7 @@ public class ShuDofuSpider extends Monster {
 					this.impactTime = 0;
 					this.jumpTime = 0;
 					this.setJumpAnimation(false);
+					CameraEvent.addCameraHolderList(this.level(), new CameraHolder(16, 60, 0.4F, GlobalVec3.of(this.level().dimension(), this.position())));
 				}
 			}
 			if (this.isJump() && this.isInFluidType()) {
