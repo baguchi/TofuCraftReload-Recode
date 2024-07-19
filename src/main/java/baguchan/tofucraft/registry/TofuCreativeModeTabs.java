@@ -439,6 +439,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.KINAKO,
 						TofuItems.EDAMAME,
 						TofuItems.KINAKO,
+						TofuItems.SALT,
 						TofuItems.LEEK,
 						TofuItems.TOFUCOW_SPAWNEGG,
 						TofuItems.TOFUFISH_SPAWNEGG,

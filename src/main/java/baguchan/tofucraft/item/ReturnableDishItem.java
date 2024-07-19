@@ -1,5 +1,7 @@
 package baguchan.tofucraft.item;
 
+import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.capability.TofuLivingCapability;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
@@ -25,15 +27,21 @@ import java.util.function.Supplier;
 public class ReturnableDishItem extends Item {
 	private final Supplier<Item> dishItem;
 	private final boolean comfortable;
+	private final boolean salt;
 
 	public ReturnableDishItem(Supplier<Item> dishItem, Properties p_41383_) {
-		this(dishItem, p_41383_, true);
+		this(dishItem, p_41383_, true, false);
 	}
 
 	public ReturnableDishItem(Supplier<Item> dishItem, Properties p_41383_, boolean comfortable) {
+		this(dishItem, p_41383_, comfortable, false);
+	}
+
+	public ReturnableDishItem(Supplier<Item> dishItem, Properties p_41383_, boolean comfortable, boolean salt) {
 		super(p_41383_);
 		this.dishItem = dishItem;
 		this.comfortable = comfortable;
+		this.salt = salt;
 	}
 
 	@Override
@@ -49,6 +57,13 @@ public class ReturnableDishItem extends Item {
 			FoodProperties foodProperties = this.getFoodProperties(itemStack, livingEntity);
 			if (foodProperties != null && effect != null) {
 				livingEntity.addEffect(new MobEffectInstance(effect, 600 * foodProperties.getNutrition()));
+			}
+		}
+
+		if (this.salt) {
+			TofuLivingCapability capability = livingEntity.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).orElse(null);
+			if (capability != null && itemStack.isEdible()) {
+				capability.setSaltBoost(itemStack.getFoodProperties(livingEntity).getNutrition() * 20 * 20, itemStack.getFoodProperties(livingEntity).getNutrition() * 20 * 60, livingEntity);
 			}
 		}
 

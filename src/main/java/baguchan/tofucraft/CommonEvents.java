@@ -31,6 +31,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -139,6 +140,25 @@ public class CommonEvents {
 						});
 					}
 				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onUsedEntity(PlayerInteractEvent.EntityInteractSpecific event) {
+		ItemStack stack = event.getItemStack();
+		Level level = event.getLevel();
+		Entity entity = event.getTarget();
+		if (entity instanceof AbstractHorse horse && stack.is(TofuItems.SALT.get())) {
+			TofuLivingCapability capability = horse.getCapability(TofuCraftReload.TOFU_LIVING_CAPABILITY).orElse(null);
+			if (capability != null && capability.getSaltBoostCooldown() <= 0) {
+				capability.setSaltBoost(1200 * 3, 1200 * 3 + 600, horse);
+				if (!event.getEntity().isCreative()) {
+					stack.shrink(1);
+				}
+				horse.playSound(SoundEvents.HORSE_EAT);
+				event.setCancellationResult(InteractionResult.SUCCESS);
+				event.setCanceled(true);
 			}
 		}
 	}
