@@ -45,6 +45,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.phys.BlockHitResult;
@@ -156,6 +157,8 @@ public class CommonEvents {
 				if (!event.getEntity().isCreative()) {
 					stack.shrink(1);
 				}
+				horse.eating();
+				horse.gameEvent(GameEvent.EAT);
 				horse.playSound(SoundEvents.HORSE_EAT);
 				event.setCancellationResult(InteractionResult.SUCCESS);
 				event.setCanceled(true);

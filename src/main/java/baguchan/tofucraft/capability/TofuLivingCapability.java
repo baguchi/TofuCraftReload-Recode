@@ -12,7 +12,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
@@ -33,8 +32,6 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 	public int tofuPortalCooldown = 200;
 	public float prevPortalAnimTime, portalAnimTime = 0.0F;
 
-	public int saltEatCounter = 0;
-	public boolean resetEating;
 	public int saltBoostCooldown = 0;
 	public int saltBoost = 0;
 
@@ -99,17 +96,6 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 			if (this.saltBoostCooldown > 0) {
 				--this.saltBoostCooldown;
 			}
-			if (entity instanceof AbstractHorse horse) {
-				if (this.saltEatCounter > 0) {
-					horse.setEating(true);
-					this.resetEating = true;
-				} else {
-					if (this.resetEating && horse.isEating()) {
-						horse.setEating(false);
-						this.resetEating = false;
-					}
-				}
-			}
 		}
 	}
 
@@ -153,7 +139,6 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 		this.saltBoost = saltBoost;
 		this.saltBoostCooldown = cooldown;
 		this.tryAddSaltBoost(entity);
-		this.saltEatCounter = 10;
 	}
 
 	public int getSaltBoost() {

@@ -1,20 +1,9 @@
-buildscript {
-    repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
-        maven { url = 'https://maven.neoforged.net/releases' }
-        maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.neoforged', name: 'NeoGradle', version: '6.+', changing: true
-        classpath group: "org.spongepowered", name: "mixingradle", version: "0.7-SNAPSHOT"
-    }
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'org.spongepowered.mixin' version "${mixingradle_version}"
 }
-apply plugin: 'net.neoforged.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-apply plugin: "org.spongepowered.mixin"
 
 mixin {
     add sourceSets.main, "tofucraft.refmap.json"
@@ -22,7 +11,7 @@ mixin {
 
 version = '1.20.1-5.13.0.2'
 group = 'baguchan.tofucraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'TofuCraftReload'
+archivesBaseName = 'TofuCraftReload-Recode'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
@@ -143,7 +132,7 @@ dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.neoforged:forge:1.20.1-47.1.55'
+    minecraft "net.minecraftforge:forge:1.20.1-47.2.32"
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     compileOnly(fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.3.0.4"))
     compileOnly(fg.deobf("mezz.jei:jei-1.20.1-common-api:15.3.0.4"))
@@ -192,19 +181,6 @@ jar {
 jar.finalizedBy('reobfJar') 
 // However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
 //publish.dependsOn('reobfJar')
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
-        }
-    }
-}
 
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
