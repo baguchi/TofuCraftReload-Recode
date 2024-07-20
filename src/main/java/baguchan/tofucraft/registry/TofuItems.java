@@ -19,6 +19,7 @@ import baguchan.tofucraft.item.RamuneSoymilkBottleItem;
 import baguchan.tofucraft.item.ReflectTofuShieldItem;
 import baguchan.tofucraft.item.ReturnableDishItem;
 import baguchan.tofucraft.item.RollingPinItem;
+import baguchan.tofucraft.item.SaltFoodItem;
 import baguchan.tofucraft.item.SeedAndRootItem;
 import baguchan.tofucraft.item.SoulFukumameItem;
 import baguchan.tofucraft.item.SoymilkBottleItem;
@@ -198,7 +199,7 @@ public class TofuItems {
 	public static final Supplier<Item> MISOSOUP = ITEMS.register("misosoup", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.MISOSOUP).stacksTo(16)));
 	public static final Supplier<Item> MOYASHIITAME = ITEMS.register("moyashiitame", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.MOYASHIITAME).stacksTo(16)));
 	public static final Supplier<Item> MOYASHIOHITASHI = ITEMS.register("moyashiohitashi", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).food(TofuFoods.MOYASHIOHITASHI).stacksTo(16)));
-	public static final Supplier<Item> SALTYMELON = ITEMS.register("saltymelon", () -> new Item((new Item.Properties()).food(TofuFoods.SALTYMELON)));
+	public static final Supplier<Item> SALTYMELON = ITEMS.register("saltymelon", () -> new SaltFoodItem((new Item.Properties()).food(TofuFoods.SALTYMELON)));
 
 	public static final Supplier<Item> SOYMILK = ITEMS.register("soymilk", () -> new SoymilkBottleItem(MobEffects.REGENERATION, MobEffects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final Supplier<Item> SOYMILK_ANNIN = ITEMS.register("soymilk_annin", () -> new SoymilkBottleItem(MobEffects.HEALTH_BOOST, MobEffects.ABSORPTION, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
@@ -227,7 +228,7 @@ public class TofuItems {
 
 
 	public static final Supplier<Item> ONIGIRI = ITEMS.register("onigiri", () -> new Item((new Item.Properties()).food(TofuFoods.ONIGIRI)));
-	public static final Supplier<Item> ONIGIRI_SALT = ITEMS.register("onigiri_salt", () -> new Item((new Item.Properties()).food(TofuFoods.ONIGIRI_SALT)));
+	public static final Supplier<Item> ONIGIRI_SALT = ITEMS.register("onigiri_salt", () -> new SaltFoodItem((new Item.Properties()).food(TofuFoods.ONIGIRI_SALT)));
 
 	public static final Supplier<Item> INARI = ITEMS.register("inari", () -> new Item((new Item.Properties()).food(TofuFoods.INARI)));
 
@@ -267,8 +268,8 @@ public class TofuItems {
 	public static final Supplier<Item> NIKUJAGA = ITEMS.register("nikujaga", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.NIKUJAGA)));
 	public static final Supplier<Item> TOFUSOMEN = ITEMS.register("tofusomen", () -> new Item((new Item.Properties())));
 	public static final Supplier<Item> TOFUSOMENBOWL_GLASS = ITEMS.register("tofusomenbowl_glass", () -> new ReturnableDishItem(TofuItems.GLASSBOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.TOFUSOMEN), false));
-	public static final Supplier<Item> TASTYBEEFSTEW = ITEMS.register("tastybeefstew", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.TASTYSTEW)));
-	public static final Supplier<Item> TASTYSTEW = ITEMS.register("tastystew", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.TASTYSTEW)));
+	public static final Supplier<Item> TASTYBEEFSTEW = ITEMS.register("tastybeefstew", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.TASTYSTEW), true, true));
+	public static final Supplier<Item> TASTYSTEW = ITEMS.register("tastystew", () -> new ReturnableDishItem(() -> Items.BOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.TASTYSTEW), true, true));
 
 	public static final Supplier<Item> HIYAYAKKO_GLASS = ITEMS.register("hiyayakko", () -> new ReturnableDishItem(TofuItems.GLASSBOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.HIYAYAKKO), false));
 	public static final Supplier<Item> NATTOHIYAYAKKO_GLASS = ITEMS.register("nattohiyayakko", () -> new ReturnableDishItem(TofuItems.GLASSBOWL, (new Item.Properties()).stacksTo(16).food(TofuFoods.NATTOHIYAYAKKO)));
@@ -404,7 +405,7 @@ public class TofuItems {
 
 	public static final Supplier<Item> KINAKO_BREAD = ITEMS.register("kinako_bread", () -> new Item((new Item.Properties()).food(TofuFoods.KINAKO_BREAD)));
 
-	public static final Supplier<Item> EDAMAME_TEMPLA = ITEMS.register("edamame_templa", () -> new Item((new Item.Properties()).food(TofuFoods.EDAMAME_TEMPLA)));
+	public static final Supplier<Item> EDAMAME_TEMPLA = ITEMS.register("edamame_templa", () -> new SaltFoodItem((new Item.Properties()).food(TofuFoods.EDAMAME_TEMPLA)));
 	public static final Supplier<Item> NEGIMA = ITEMS.register("negima", () -> new ReturnableDishItem(() -> Items.STICK, (new Item.Properties()).food(TofuFoods.NEGIMA)));
 	public static final Supplier<Item> SOY_KARAAGE = ITEMS.register("soy_karaage", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_KARAAGE)));
 	public static final Supplier<Item> SOYMEATDON = ITEMS.register("soymeatdon", () -> new Item((new Item.Properties()).food(TofuFoods.SOYMEATDON)));

@@ -41,6 +41,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -55,6 +56,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
@@ -158,6 +160,27 @@ public class CommonEvents {
 						stack.hurtAndBreak(1, event.getEntity(), EquipmentSlot.MAINHAND);
 					}
 				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onUsedEntity(PlayerInteractEvent.EntityInteractSpecific event) {
+		ItemStack stack = event.getItemStack();
+		Level level = event.getLevel();
+		Entity entity = event.getTarget();
+		if (entity instanceof AbstractHorse horse && stack.is(TofuItems.SALT.get())) {
+			TofuLivingAttachment capability = horse.getData(TofuAttachments.TOFU_LIVING);
+			if (capability != null && capability.getSaltBoostCooldown() <= 0) {
+				capability.setSaltBoost(1200 * 3, 1200 * 3 + 600, horse);
+				if (!event.getEntity().isCreative()) {
+					stack.shrink(1);
+				}
+				horse.eating();
+				horse.gameEvent(GameEvent.EAT);
+				horse.playSound(SoundEvents.HORSE_EAT);
+				event.setCancellationResult(InteractionResult.SUCCESS);
+				event.setCanceled(true);
 			}
 		}
 	}
