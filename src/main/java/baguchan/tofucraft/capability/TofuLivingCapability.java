@@ -123,7 +123,7 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 			if (attributeinstance == null || attributeinstance2 == null) {
 				return;
 			}
-			attributeinstance.addTransientModifier(new AttributeModifier(MODIFIER_SPEED_BOOST_UUID, "SaltBoost", (double) 0.015, AttributeModifier.Operation.ADDITION));
+			attributeinstance.addTransientModifier(new AttributeModifier(MODIFIER_SPEED_BOOST_UUID, "SaltBoost", (double) 0.025, AttributeModifier.Operation.ADDITION));
 			attributeinstance2.addTransientModifier(new AttributeModifier(MODIFIER_HORSE_JUMP_BOOST_UUID, "SaltBoostJump", (double) 0.125, AttributeModifier.Operation.ADDITION));
 		}
 	}

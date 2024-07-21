@@ -60,7 +60,7 @@ public class TofuFoods {
 	public static final FoodProperties MOYASHIOHITASHI = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.55F).build();
 	public static final FoodProperties SALTYMELON = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.35F).build();
 
-	public static final FoodProperties CHILI = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200), 1.0F).build();
+	public static final FoodProperties CHILI = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200), 1.0F).effect(() -> new MobEffectInstance(TofuEffects.COUGH.get(), 600), 1.0F).build();
 	public static final FoodProperties MABODOFU = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.9F).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200), 1.0F).build();
 	public static final FoodProperties NANBAN = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.7F).build();
 	public static final FoodProperties NANBANTOFU = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build();
