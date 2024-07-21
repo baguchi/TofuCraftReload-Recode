@@ -8,12 +8,10 @@
     "EntityMixin",
     "FishingHookMixin",
     "LightningBoltMixin",
-    "WardenAiMixin",
-    "WardenMixin"
+    "WardenAiMixin"
   ],
   "client": [
-    "client.MinecraftMixin",
-    "client.WardenModelMixin"
+    "client.MinecraftMixin"
   ],
   "injectors": {
     "defaultRequire": 1
