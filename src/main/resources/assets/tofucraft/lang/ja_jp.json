@@ -288,6 +288,7 @@
   "death.attack.zunda": "%1$sは%2$sの%3$sで自然エネルギーにやられた",
   "death.attack.soy_splash": "%1$sは、%2$sの%3$sにやられた",
   "effect.tofucraft.soy_healthy": "豆乳効果",
+  "effect.tofucraft.cough": "むせ状態",
   "enchantment.tofucraft.batch": "一括採掘",
   "enchantment.tofucraft.drain": "吸収",
   "enchantment.tofucraft.shaped_bean": "尖り豆",

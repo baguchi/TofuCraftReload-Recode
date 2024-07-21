@@ -8,11 +8,7 @@
     "FishingHookMixin",
     "LightningBoltMixin",
     "ServerGamePacketListenerImplMixin",
-    "WardenAiMixin",
-    "WardenMixin"
-  ],
-  "client": [
-    "client.WardenModelMixin"
+    "WardenAiMixin"
   ],
   "injectors": {
     "defaultRequire": 1

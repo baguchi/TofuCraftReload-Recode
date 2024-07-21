@@ -1,8 +1,9 @@
 package baguchan.tofucraft.item;
 
-import baguchan.tofucraft.api.ISmell;
 import baguchan.tofucraft.registry.TofuAdvancements;
+import baguchan.tofucraft.registry.TofuEffects;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.warden.Warden;
@@ -23,7 +24,7 @@ public class ChiliItem extends Item {
 			List<Warden> wardenList = entity.level().getEntities(EntityTypeTest.forClass(Warden.class), entity.getBoundingBox().inflate(6.0F), EntitySelector.NO_SPECTATORS);
 
 			for (Warden warden : wardenList) {
-				((ISmell) warden).setCannotSmell(true);
+				warden.addEffect(new MobEffectInstance(TofuEffects.COUGH, 600));
 				if (entity.getOwner() instanceof ServerPlayer) {
 					TofuAdvancements.CHILI_DISTRACTION.get().trigger((ServerPlayer) entity.getOwner());
 				}

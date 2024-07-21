@@ -1,9 +1,8 @@
 package baguchan.tofucraft.entity.behaviors;
 
-import baguchan.tofucraft.api.ISmell;
+import baguchan.tofucraft.registry.TofuEffects;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Unit;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -25,9 +24,6 @@ public class CoughTask extends Behavior<Warden> {
 		Brain<Warden> brain = p_217744_.getBrain();
 
 		if (p_217745_ > nextCoughStart + 100L) {
-			p_217744_.playSound(SoundEvents.WARDEN_HURT, 4.0F, 1.0F);
-			p_217743_.broadcastEntityEvent(p_217744_, (byte) 64);
-			((ISmell) p_217744_).setCannotSmell(false);
 			nextCoughStart = p_217745_;
 		}
 
@@ -36,6 +32,6 @@ public class CoughTask extends Behavior<Warden> {
 
 	@Override
 	protected boolean checkExtraStartConditions(ServerLevel p_22538_, Warden p_22539_) {
-		return p_22539_ instanceof ISmell && ((ISmell) p_22539_).cannotSmell();
+		return p_22539_.hasEffect(TofuEffects.COUGH);
 	}
 }
