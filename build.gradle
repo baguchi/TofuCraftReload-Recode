@@ -12,7 +12,7 @@ mixin {
 
 version = '1.20.1-5.13.1.0'
 group = 'baguchan.tofucraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'TofuCraftReload-Recode'
+archivesBaseName = 'TofuCraftReload'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
