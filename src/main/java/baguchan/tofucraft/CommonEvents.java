@@ -157,7 +157,7 @@ public class CommonEvents {
 				if (!event.getEntity().isCreative()) {
 					stack.shrink(1);
 				}
-				horse.eating();
+				//horse.eating();
 				horse.gameEvent(GameEvent.EAT);
 				horse.playSound(SoundEvents.HORSE_EAT);
 				event.setCancellationResult(InteractionResult.SUCCESS);
