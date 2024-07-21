@@ -147,7 +147,7 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 			if (attributeinstance == null || attributeinstance2 == null) {
 				return;
 			}
-			attributeinstance.addTransientModifier(new AttributeModifier(MODIFIER_SPEED_BOOST, 0.015, AttributeModifier.Operation.ADD_VALUE));
+			attributeinstance.addTransientModifier(new AttributeModifier(MODIFIER_SPEED_BOOST, 0.025, AttributeModifier.Operation.ADD_VALUE));
 			attributeinstance2.addTransientModifier(new AttributeModifier(MODIFIER_HORSE_JUMP_BOOST, 0.125, AttributeModifier.Operation.ADD_VALUE));
 		}
 	}
