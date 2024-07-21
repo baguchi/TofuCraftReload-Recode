@@ -29,8 +29,9 @@ public class CoughEffect extends MobEffect {
 	}
 
 	@Override
-	public boolean shouldApplyEffectTickThisTick(int p_295368_, int p_294232_) {
+	public boolean isDurationEffectTick(int p_295368_, int p_294232_) {
 		int i = 140 >> p_294232_;
 		return i > 0 ? p_295368_ % i == 0 : true;
 	}
+
 }
