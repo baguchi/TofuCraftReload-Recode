@@ -53,6 +53,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityMobGriefingEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -223,6 +224,25 @@ public class CommonEvents {
 
 			event.setCancellationResult(InteractionResult.SUCCESS);
 			event.setCanceled(true);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onBlockGriefing(EntityMobGriefingEvent event) {
+		Entity entity = event.getEntity();
+		Level world = event.getEntity().level();
+
+		if (world instanceof ServerLevel) {
+			ServerLevel serverLevel = (ServerLevel) world;
+			Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+			if (structure != null) {
+				TofuData data = TofuData.get(serverLevel);
+				Vec3 center = event.getEntity().position();
+				StructureStart structureStart = serverLevel.structureManager().getStructureAt(new BlockPos((int) center.x, (int) center.y, (int) center.z), structure);
+				if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
+					event.setResult(Event.Result.DENY);
+				}
+			}
 		}
 	}
 

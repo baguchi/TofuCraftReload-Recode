@@ -51,6 +51,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -339,6 +340,22 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 				break;
 			}
 		} else if (this.horizontalCollision && this.tickCount % 3 == 0) {
+			boolean flag = false;
+			int l = Mth.floor(this.getBbWidth() / 2.0F + 1.0F);
+			int i1 = Mth.floor(this.getBbHeight()) + 1;
+
+			for (BlockPos blockpos : BlockPos.betweenClosed(
+					this.getBlockX() - l, this.getBlockY(), this.getBlockZ() - l, this.getBlockX() + l, this.getBlockY() + i1, this.getBlockZ() + l
+			)) {
+				BlockState blockstate = this.level().getBlockState(blockpos);
+				if (blockstate.canEntityDestroy(this.level(), blockpos, this) && ForgeEventFactory.onEntityDestroyBlock(this, blockpos, blockstate)) {
+					flag = this.level().destroyBlock(blockpos, true, this) || flag;
+				}
+			}
+
+			if (flag) {
+				this.level().levelEvent(null, 1022, this.blockPosition(), 0);
+			}
 			this.playSound(SoundEvents.PLAYER_ATTACK_KNOCKBACK, 2.0F, 1.0F);
 		}
 	}
