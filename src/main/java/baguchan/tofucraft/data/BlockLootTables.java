@@ -2,6 +2,7 @@ package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.block.crop.RiceCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
+import baguchan.tofucraft.block.crop.SproutsCropBlock;
 import baguchan.tofucraft.block.utils.MisoBarrelBlock;
 import baguchan.tofucraft.block.utils.WeightBaseBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
@@ -86,6 +87,11 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		this.add(TofuBlocks.RICE_CROP.get(), createCropDrops(TofuBlocks.RICE_CROP.get(), TofuItems.RICE.get(), TofuItems.SEEDS_RICE.get(), lootitemcondition$builder7));
 		registerEmpty(TofuBlocks.RICE_ROOT.get());
+
+		LootItemCondition.Builder lootitemconditon$sprouts = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.CHILI_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SproutsCropBlock.AGE, 3));
+
+		add(TofuBlocks.SPROUTS.get(), applyExplosionDecay(TofuBlocks.SPROUTS.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SPROUTS.get()).when(lootitemconditon$sprouts).otherwise(LootItem.lootTableItem(TofuItems.SPROUTS.get())))).withPool(LootPool.lootPool().when(lootitemconditon$sprouts).add(LootItem.lootTableItem(TofuItems.SPROUTS.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))))));
+
 
 		dropOther(TofuBlocks.SOYMILK_CAULDRON.get(), Blocks.CAULDRON);
 		dropOther(TofuBlocks.SOYMILK_NETHER_CAULDRON.get(), Blocks.CAULDRON);

@@ -40,6 +40,7 @@ import baguchan.tofucraft.block.crop.RiceRootBlock;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
+import baguchan.tofucraft.block.crop.SproutsCropBlock;
 import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
 import baguchan.tofucraft.block.tfenergy.TFCollectorBlock;
 import baguchan.tofucraft.block.tfenergy.TFCrafterBlock;
@@ -132,6 +133,7 @@ public class TofuBlocks {
 	public static final Supplier<Block> RICE_CROP = noItemRegister("rice", () -> new RiceCropsBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
 	public static final Supplier<Block> RICE_ROOT = noItemRegister("rice_root", () -> new RiceRootBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().strength(0.1F).sound(SoundType.CROP)));
 	public static final Supplier<Block> CHILI_CROP = noItemRegister("chili_crop", () -> new ChiliCropsBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
+	public static final Supplier<Block> SPROUTS = noItemRegister("sprouts_crop", () -> new SproutsCropBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
 
 	public static final Supplier<Block> KINUTOFU = register("blocktofukinu", () -> new KinuTofuBlock(BlockBehaviour.Properties.of().randomTicks().strength(0.1F, 0.2F).sound(SoundType.SNOW)));
 	public static final Supplier<Block> MOMENTOFU = register("blocktofumomen", () -> new TofuBlock(BlockBehaviour.Properties.of().randomTicks().strength(0.35F, 0.5F).sound(SoundType.SNOW)));
@@ -369,7 +371,7 @@ public class TofuBlocks {
 	public static final Supplier<Block> SALT_FURNACE = register("salt_furnace", () -> new SaltFurnaceBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.STONE).lightLevel((p_50872_) -> {
 		return p_50872_.getValue(SaltFurnaceBlock.LIT) ? 13 : 0;
 	})));
-	public static final Supplier<Block> SPROUTSJAR = register("blocksproutsjar", () -> new SproutsJarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().sound(SoundType.GLASS)));
+	public static final Supplier<Block> SPROUTSJAR = register("blocksproutsjar", () -> new SproutsJarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().noCollission().sound(SoundType.GLASS)));
 	public static final Supplier<Block> SALT_BLOCK = register("salt_block", () -> new FallFoodBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.SAND)));
 
 	public static final Supplier<Block> MORIJIO = register("morijio", () -> new MorijioBlock(BlockBehaviour.Properties.of().strength(0.5F, 3.0F).noOcclusion().sound(SoundType.WOOD)));

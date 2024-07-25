@@ -1477,9 +1477,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.SPROUTSJAR.get())
 				.pattern("G")
 				.pattern("W")
-				.define('G', Blocks.GLASS)
+				.define('G', Blocks.TINTED_GLASS)
 				.define('W', ItemTags.WOOL)
-				.unlockedBy("has_item", has(Blocks.GLASS))
+				.unlockedBy("has_item", has(Blocks.TINTED_GLASS))
 				.save(consumer);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.HELL_MABOU.get())

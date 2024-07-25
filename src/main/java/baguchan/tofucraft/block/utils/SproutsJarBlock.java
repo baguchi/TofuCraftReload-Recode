@@ -40,7 +40,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
-	public static VoxelShape SPROUTSJAR_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
+	public static VoxelShape SPROUTSJAR_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
 	public static final EnumProperty<SproutsJarBlock.Stat> STAT = EnumProperty.create("stat", SproutsJarBlock.Stat.class);
 
@@ -92,9 +92,9 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockState blockstate = context.getLevel().getBlockState(context.getClickedPos());
 		return (blockstate.getBlock() == this) ? context.getLevel().getBlockState(context.getClickedPos()).setValue(NORTH, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().north())))
-				.setValue(EAST, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().east())))
-				.setValue(SOUTH, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().south())))
-				.setValue(WEST, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().west()))) : super.getStateForPlacement(context);
+				.setValue(EAST, canConnectTo(context.getLevel(), context.getClickedPos().east()))
+				.setValue(SOUTH, canConnectTo(context.getLevel(), context.getClickedPos().south()))
+				.setValue(WEST, canConnectTo(context.getLevel(), context.getClickedPos().west())) : super.getStateForPlacement(context);
 	}
 
 
@@ -106,7 +106,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack itemHeld, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
 		SproutsJarBlock.Stat stat = getStat(state);
-		if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
+		if (!state.getValue(WATERLOGGED)) {
 			if (stat == Stat.EMPTY && itemHeld != null && itemHeld.getItem() == Items.WATER_BUCKET) {
 				if (!player.isCreative())
 					player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
@@ -189,7 +189,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	public boolean canGrowing(Level world, BlockPos pos) {
-		return world.getRawBrightness(pos, 0) <= 8;
+		return true;
 	}
 
 	@Override

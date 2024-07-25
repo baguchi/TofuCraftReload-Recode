@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "G": {
-      "item": "minecraft:glass"
+      "item": "minecraft:tinted_glass"
     },
     "W": {
       "tag": "minecraft:wool"

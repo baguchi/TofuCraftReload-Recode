@@ -66,7 +66,7 @@
         "stat": "sprouts_2"
       },
       "apply": {
-        "model": "tofucraft:block/jars_sprouts_1"
+        "model": "tofucraft:block/jars_sprouts_2"
       }
     },
     {
@@ -74,7 +74,7 @@
         "stat": "sprouts_3"
       },
       "apply": {
-        "model": "tofucraft:block/jars_sprouts_2"
+        "model": "tofucraft:block/jars_sprouts_3"
       }
     },
     {

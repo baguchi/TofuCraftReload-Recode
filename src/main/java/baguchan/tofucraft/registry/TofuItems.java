@@ -8,6 +8,7 @@ import baguchan.tofucraft.entity.TofuBoat;
 import baguchan.tofucraft.item.BitternItem;
 import baguchan.tofucraft.item.BugleItem;
 import baguchan.tofucraft.item.ChiliItem;
+import baguchan.tofucraft.item.DoubleUsageSeedItem;
 import baguchan.tofucraft.item.FukumameItem;
 import baguchan.tofucraft.item.HoneySoymilkBottleItem;
 import baguchan.tofucraft.item.InfernoNetherFukumameItem;
@@ -121,7 +122,7 @@ public class TofuItems {
 	public static final Supplier<Item> WARPED_BOTTLE = ITEMS.register("warped_fluid_bottle", () -> new BitternItem(TofuFluids.WARPED, (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final Supplier<Item> SHROOM_BOTTLE = ITEMS.register("shroom_bottle", () -> new Item((new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final Supplier<Item> SALT = ITEMS.register("salt", () -> new Item((new Item.Properties())));
-	public static final Supplier<Item> SEEDS_SOYBEANS = ITEMS.register("seeds_soybeans", () -> new ItemNameBlockItem(TofuBlocks.SOYBEAN.get(), (new Item.Properties())));
+	public static final Supplier<Item> SEEDS_SOYBEANS = ITEMS.register("seeds_soybeans", () -> new DoubleUsageSeedItem(TofuBlocks.SOYBEAN.get(), TofuBlocks.SPROUTS.get(), (new Item.Properties())));
 	public static final Supplier<Item> SEEDS_SOYBEANS_NETHER = ITEMS.register("seeds_soybeans_nether", () -> new ItemNameBlockItem(TofuBlocks.SOYBEAN_NETHER.get(), (new Item.Properties())));
 	public static final Supplier<Item> SEEDS_SOYBEANS_SOUL = ITEMS.register("seeds_soybeans_soul", () -> new ItemNameBlockItem(TofuBlocks.SOYBEAN_SOUL.get(), (new Item.Properties()).rarity(Rarity.UNCOMMON)));
 	public static final Supplier<Item> SOYBEAN_PARCHED = ITEMS.register("soybeans_parched", () -> new Item((new Item.Properties())));
