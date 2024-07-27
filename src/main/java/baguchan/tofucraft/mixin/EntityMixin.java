@@ -6,21 +6,37 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.fluids.FluidType;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = Entity.class)
 public abstract class EntityMixin implements net.neoforged.neoforge.common.extensions.IEntityExtension {
+
+	@Shadow
+	public abstract boolean isAttackable();
+
+	@Shadow
+	public abstract DamageSources damageSources();
+
+	@Shadow
+	public abstract boolean hurt(DamageSource source, float amount);
+
+	@Shadow
+	public abstract double getFluidTypeHeight(FluidType type);
 
 	@Shadow
 	protected boolean firstTick;
@@ -31,11 +47,28 @@ public abstract class EntityMixin implements net.neoforged.neoforge.common.exten
 	protected RandomSource random;
 	@Shadow
 	private EntityDimensions dimensions;
+	@Shadow
+	public float fallDistance;
 
 	@Inject(method = "updateInWaterStateAndDoFluidPushing",
 			at = @At(value = "RETURN"))
 	protected void updateInWaterStateAndDoFluidPushing(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		tofuCraftReload_Recode$updateInSoyMilk();
+	}
+
+	@Inject(method = "baseTick",
+			at = @At(value = "TAIL"))
+	public void baseTick(CallbackInfo ci) {
+		Entity entity = (Entity) (Object) this;
+		if (this.tofuCraftReload_Recode$isInDoubanjang() && this.isAttackable()) {
+			this.hurt(this.damageSources().lava(), 2.0F);
+			this.fallDistance *= this.getFluidFallDistanceModifier(TofuFluidTypes.DOUBANJIANG.get());
+		}
+	}
+
+	@Unique
+	public boolean tofuCraftReload_Recode$isInDoubanjang() {
+		return this.getFluidTypeHeight(TofuFluidTypes.DOUBANJIANG.get()) > 0.0F;
 	}
 
 	@Unique

@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:cave",
+  "type": "tofucraft:tofu_cave",
   "config": {
     "debug_settings": {
       "air_state": {
@@ -36,7 +36,7 @@
       "min_inclusive": 0.7
     },
     "lava_level": {
-      "above_bottom": 8
+      "above_bottom": 9
     },
     "probability": 0.15,
     "replaceable": "#tofucraft:tofu_world_replaceable",

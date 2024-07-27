@@ -54,8 +54,10 @@ import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuWoodTypes;
+import baguchan.tofucraft.utils.ClientUtils;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -125,6 +127,11 @@ public class ClientRegistrar {
 			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
 				return TEXTURE_OVERLAY;
 			}
+
+			@Override
+			public void renderOverlay(Minecraft mc, PoseStack stack) {
+				ClientUtils.renderOverlay(mc, stack, this);
+			}
 		}, TofuFluidTypes.SOYMILK.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell");
@@ -144,6 +151,11 @@ public class ClientRegistrar {
 			@Override
 			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
 				return TEXTURE_OVERLAY;
+			}
+
+			@Override
+			public void renderOverlay(Minecraft mc, PoseStack stack) {
+				ClientUtils.renderOverlay(mc, stack, this);
 			}
 		}, TofuFluidTypes.SOYMILK_HELL.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
@@ -165,6 +177,12 @@ public class ClientRegistrar {
 			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
 				return TEXTURE_OVERLAY;
 			}
+
+
+			@Override
+			public void renderOverlay(Minecraft mc, PoseStack stack) {
+				ClientUtils.renderOverlay(mc, stack, this);
+			}
 		}, TofuFluidTypes.SOYMILK_SOUL.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
@@ -185,7 +203,40 @@ public class ClientRegistrar {
 			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
 				return TEXTURE_OVERLAY;
 			}
+
+			@Override
+			public void renderOverlay(Minecraft mc, PoseStack stack) {
+				ClientUtils.renderOverlay(mc, stack, this);
+			}
 		}, TofuFluidTypes.BITTERN.get());
+
+		event.registerFluidType(new IClientFluidTypeExtensions() {
+			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang");
+			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang");
+			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/doubanjiang_overlay.png");
+
+			@Override
+			public ResourceLocation getStillTexture() {
+				return TEXTURE_STILL;
+			}
+
+			@Override
+			public ResourceLocation getFlowingTexture() {
+				return TEXTURE_FLOW;
+			}
+
+			@Override
+			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
+				return TEXTURE_OVERLAY;
+			}
+
+			@Override
+			public void renderOverlay(Minecraft mc, PoseStack stack) {
+				ClientUtils.renderOverlay(mc, stack, this);
+			}
+		}, TofuFluidTypes.DOUBANJIANG.get());
+
+
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson"),
 					FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson");

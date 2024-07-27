@@ -223,6 +223,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFULADDER_SOUL.get());
 
 		dropSelf(TofuBlocks.TOFU_TERRAIN.get());
+		dropSelf(TofuBlocks.MABOU_TERRAIN.get());
 		dropSelf(TofuBlocks.TOFU_TERRAIN_ZUNDA.get());
 		dropSelf(TofuBlocks.TOFUSLATE.get());
 		this.add(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), createTofuDiamondOreDrop(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuItems.TOFUDIAMOND_NUGGET.get()));

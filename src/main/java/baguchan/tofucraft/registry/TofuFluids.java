@@ -1,6 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.fluid.DoubanjiangFluid;
 import baguchan.tofucraft.fluid.NigariFluid;
 import baguchan.tofucraft.fluid.SoyMilkFluid;
 import baguchan.tofucraft.fluid.SoyMilkHellFluid;
@@ -33,6 +34,9 @@ public class TofuFluids {
 
 	public static final DeferredHolder<Fluid, FlowingFluid> BITTERN = FLUIDS.register("bittern", () -> new NigariFluid.Source());
 	public static final DeferredHolder<Fluid, FlowingFluid> BITTERN_FLOW = FLUIDS.register("bittern_flow", () -> new NigariFluid.Flowing());
+
+	public static final DeferredHolder<Fluid, FlowingFluid> DOUBANJIANG = FLUIDS.register("doubanjiang", () -> new DoubanjiangFluid.Source());
+	public static final DeferredHolder<Fluid, FlowingFluid> DOUBANJIANG_FLOW = FLUIDS.register("doubanjiang_flow", () -> new DoubanjiangFluid.Flowing());
 
 	public static final DeferredHolder<Fluid, Fluid> CRIMSON = DeferredHolder.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "crimson"));
 	public static final DeferredHolder<Fluid, Fluid> FLOWING_CRIMSON = DeferredHolder.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "flowing_crimson"));

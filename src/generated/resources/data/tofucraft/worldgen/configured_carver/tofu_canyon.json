@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:canyon",
+  "type": "tofucraft:tofu_canyon",
   "config": {
     "debug_settings": {
       "air_state": {
@@ -26,7 +26,7 @@
       }
     },
     "lava_level": {
-      "above_bottom": 8
+      "above_bottom": 9
     },
     "probability": 0.01,
     "replaceable": "#tofucraft:tofu_world_replaceable",

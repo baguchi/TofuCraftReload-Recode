@@ -145,6 +145,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		itemBlockFlat(TofuBlocks.TOFULADDER_SOUL);
 
 		toBlock(TofuBlocks.TOFU_TERRAIN);
+		toBlock(TofuBlocks.MABOU_TERRAIN);
 		toBlock(TofuBlocks.TOFU_TERRAIN_ZUNDA);
 		toBlock(TofuBlocks.TOFUSLATE);
 		toBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE);
@@ -365,6 +366,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.BUCKET_SOYMILK_NETHER);
 		singleTex(TofuItems.BUCKET_SOYMILK_SOUL);
 		singleTex(TofuItems.BUCKET_BITTERN);
+		singleTex(TofuItems.BUCKET_DOUBANJIANG);
 
 		singleTex(TofuItems.TOFUFISH_BUCKET);
 		singleTex(TofuItems.TOFUFISH_SOYMILK_BUCKET);

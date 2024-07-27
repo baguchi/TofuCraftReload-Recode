@@ -261,6 +261,7 @@ public class TofuItems {
 	public static final Supplier<Item> TOFUFISH_BUCKET = ITEMS.register("tofufish_bucket", () -> new MobBucketItem(TofuEntityTypes.TOFUFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final Supplier<Item> TOFUFISH_SOYMILK_BUCKET = ITEMS.register("tofufish_soymilk_bucket", () -> new MobBucketItem(TofuEntityTypes.TOFUFISH.get(), TofuFluids.SOYMILK.get(), SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final Supplier<Item> BUCKET_BITTERN = ITEMS.register("bucket_bittern", () -> new BucketItem(TofuFluids.BITTERN.value(), (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final Supplier<Item> BUCKET_DOUBANJIANG = ITEMS.register("bucket_doubanjiang", () -> new BucketItem(TofuFluids.DOUBANJIANG.value(), (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)));
 
 	public static final Supplier<Item> GLASSBOWL = ITEMS.register("glassbowl", () -> new Item((new Item.Properties())));
 

@@ -21,6 +21,7 @@ import baguchan.tofucraft.block.TofuGemBlock;
 import baguchan.tofucraft.block.TofuGrateBlock;
 import baguchan.tofucraft.block.TofuGrilledBlock;
 import baguchan.tofucraft.block.TofuLeavesBlock;
+import baguchan.tofucraft.block.TofuMagmaBlock;
 import baguchan.tofucraft.block.TofuMushroomBlock;
 import baguchan.tofucraft.block.TofuPortalBlock;
 import baguchan.tofucraft.block.TofuSaplingBlock;
@@ -100,6 +101,7 @@ import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -115,6 +117,7 @@ public class TofuBlocks {
 	public static final Supplier<Block> SOYMILK_HELL = noItemRegister("soymilk_hell", () -> new LiquidBlock(TofuFluids.SOYMILK_HELL.value(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
 	public static final Supplier<Block> SOYMILK_SOUL = noItemRegister("soymilk_soul", () -> new LiquidBlock(TofuFluids.SOYMILK_SOUL.value(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
 	public static final Supplier<Block> BITTERN = noItemRegister("bittern", () -> new LiquidBlock(TofuFluids.BITTERN.value(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
+	public static final Supplier<Block> DOUBANJIANG = noItemRegister("doubanjiang", () -> new LiquidBlock(TofuFluids.DOUBANJIANG.value(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().lightLevel((blockstate) -> 10).sound(SoundType.EMPTY)));
 
 	public static final Supplier<Block> YUBA = noItemRegister("yuba", () -> new YubaBlock(BlockBehaviour.Properties.of().noOcclusion().randomTicks().strength(0.25F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.WOOL)));
 
@@ -289,6 +292,12 @@ public class TofuBlocks {
 
 
 	public static final Supplier<Block> TOFU_TERRAIN = register("tofu_terrain", () -> new TofuTerrainBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.SNOW)));
+	public static final Supplier<Block> MABOU_TERRAIN = register("mabou_terrain", () -> new TofuMagmaBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).instrument(NoteBlockInstrument.BASEDRUM)
+			.lightLevel(p_152684_ -> 3)
+			.strength(0.6F)
+			.isValidSpawn((p_187421_, p_187422_, p_187423_, p_187424_) -> p_187424_.fireImmune())
+			.hasPostProcess(TofuBlocks::always)
+			.emissiveRendering(TofuBlocks::always)));
 	public static final Supplier<Block> TOFU_TERRAIN_ZUNDA = register("tofu_terrain_zunda", () -> new TofuTerrainBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).randomTicks().sound(SoundType.SNOW)));
 	public static final Supplier<Block> SUSPICIOUS_TOFU_TERRAIN = register("suspicious_tofu_terrain", () -> new SuspiciousTofuTerrainBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.SNOW)));
 
