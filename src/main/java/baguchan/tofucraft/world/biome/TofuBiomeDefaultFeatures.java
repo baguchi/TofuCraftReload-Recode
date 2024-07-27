@@ -66,6 +66,10 @@ public class TofuBiomeDefaultFeatures {
 		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.PATCH_LEEK);
 	}
 
+	public static void addMabouMountainFeatures(BiomeGenerationSettings.Builder p_194721_) {
+		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.TOFU_DELTA);
+	}
+
 	public static void addSoybeanForestSpareFeatures(BiomeGenerationSettings.Builder p_194721_) {
 		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.BIG_LEEK);
 		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.PATCH_LEEK);

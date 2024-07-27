@@ -297,7 +297,7 @@ public class TofuBlocks {
 			.strength(0.6F)
 			.isValidSpawn((p_187421_, p_187422_, p_187423_, p_187424_) -> p_187424_.fireImmune())
 			.hasPostProcess(TofuBlocks::always)
-			.emissiveRendering(TofuBlocks::always)));
+			.sound(SoundType.SNOW)));
 	public static final Supplier<Block> TOFU_TERRAIN_ZUNDA = register("tofu_terrain_zunda", () -> new TofuTerrainBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).randomTicks().sound(SoundType.SNOW)));
 	public static final Supplier<Block> SUSPICIOUS_TOFU_TERRAIN = register("suspicious_tofu_terrain", () -> new SuspiciousTofuTerrainBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.SNOW)));
 

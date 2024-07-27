@@ -16,6 +16,7 @@ public class TofuBiomes {
 	public static final ResourceKey<Biome> TOFU_FOREST = register("tofu_forest");
 	public static final ResourceKey<Biome> TOFU_WASTES = register("tofu_waste");
 	public static final ResourceKey<Biome> TOFU_MOUNTAIN = register("tofu_mountain");
+	public static final ResourceKey<Biome> MABOU_MOUNTAIN = register("mabou_mountain");
 
 	public static final ResourceKey<Biome> ZUNDA_FOREST = register("zunda_forest");
 	public static final ResourceKey<Biome> SOYBEAN_FOREST = register("soybean_forest");
@@ -40,6 +41,7 @@ public class TofuBiomes {
 		context.register(TOFU_FOREST, TofuBiomeBuilders.tofuForestBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(TOFU_WASTES, TofuBiomeBuilders.tofuWasteBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(TOFU_MOUNTAIN, TofuBiomeBuilders.tofuMountainBiome(placedFeatures, vanillaConfiguredCarvers));
+		context.register(MABOU_MOUNTAIN, TofuBiomeBuilders.mabouMountainBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(TOFU_OCEAN, TofuBiomeBuilders.tofuOceanBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(TOFU_BEACH, TofuBiomeBuilders.tofuBeachBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(TOFU_RIVER, TofuBiomeBuilders.tofuRiverBiome(placedFeatures, vanillaConfiguredCarvers));

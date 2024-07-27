@@ -10,9 +10,11 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.DeltaFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
@@ -39,6 +41,7 @@ public class TofuWorldFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_TOFUGEM_SMALL = registerKey("ore_tofugem_small");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_TOFUGEM_LARGE = registerKey("ore_tofugem_large");
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_DELTA = registerKey("tofu_delta");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_FLOWER = registerKey("tofu_flower");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEEK = registerKey("leek");
@@ -68,6 +71,12 @@ public class TofuWorldFeatures {
 		FeatureUtils.register(context, ORE_TOFUGEM_SMALL, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 8));
 		FeatureUtils.register(context, ORE_TOFUGEM_LARGE, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 16));
 
+		FeatureUtils.register(
+				context,
+				TOFU_DELTA,
+				Feature.DELTA_FEATURE,
+				new DeltaFeatureConfiguration(TofuBlocks.DOUBANJIANG.get().defaultBlockState(), TofuBlocks.MABOU_TERRAIN.get().defaultBlockState(), UniformInt.of(3, 7), UniformInt.of(2, 5))
+		);
 
 		FeatureUtils.register(context, TOFU_FLOWER, Feature.FLOWER, grassPatch(BlockStateProvider.simple(TofuBlocks.TOFU_FLOWER.get()), 32));
 		FeatureUtils.register(context, LEEK, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(TofuBlocks.LEEK.get()), 32));

@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "tofucraft:block/glow_cube",
+  "render_type": "minecraft:cutout",
   "textures": {
-    "all": "tofucraft:block/mabou_terrain"
+    "cube": "tofucraft:block/tofu_terrain",
+    "glow": "tofucraft:block/mabou_terrain_emissive"
   }
 }

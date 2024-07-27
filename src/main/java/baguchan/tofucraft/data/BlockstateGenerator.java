@@ -151,7 +151,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		torchBlock(TofuBlocks.TOFUTORCH_SOUL, TofuBlocks.WALLTOFUTORCH_SOUL);
 
 		simpleBlock(TofuBlocks.TOFU_TERRAIN);
-		simpleBlock(TofuBlocks.MABOU_TERRAIN);
+		glowBlock(TofuBlocks.MABOU_TERRAIN.get(), blockTexture(TofuBlocks.TOFU_TERRAIN.get()), suffix(blockTexture(TofuBlocks.MABOU_TERRAIN.get()), "_emissive"));
 		simpleBlock(TofuBlocks.TOFUSLATE);
 		simpleBlock(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE);
 		simpleBlock(TofuBlocks.ORE_TOFU_DIAMOND);
@@ -264,6 +264,13 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 	public void carpetBlock(Supplier<Block> block, Function<BlockState, ModelFile> modelFunc) {
 		this.getVariantBuilder(block.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(modelFunc.apply(state)).build());
+	}
+
+	public void glowBlock(Block block, ResourceLocation cube, ResourceLocation glow) {
+		ModelFile glow_cube = models().withExistingParent(name(block), TofuCraftReload.prefix("block/glow_cube"))
+				.texture("cube", cube)
+				.texture("glow", glow).renderType("minecraft:cutout");
+		simpleBlock(block, glow_cube);
 	}
 
 	public void logGlowBlock(RotatedPillarBlock block) {

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:delta_feature",
+  "config": {
+    "contents": {
+      "Name": "tofucraft:doubanjiang",
+      "Properties": {
+        "level": "0"
+      }
+    },
+    "rim": {
+      "Name": "tofucraft:mabou_terrain"
+    },
+    "rim_size": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 5,
+      "min_inclusive": 2
+    },
+    "size": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 7,
+      "min_inclusive": 3
+    }
+  }
+}

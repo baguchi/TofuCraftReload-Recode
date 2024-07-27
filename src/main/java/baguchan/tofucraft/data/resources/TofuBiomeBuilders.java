@@ -117,6 +117,15 @@ public class TofuBiomeBuilders {
 		return makeDefaultBiome(builder, builder1, TofuSounds.MILKY_EARTH_BGM);
 	}
 
+	public static Biome mabouMountainBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
+		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
+		MobSpawnSettings.Builder builder1 = new MobSpawnSettings.Builder();
+		TofuBiomeDefaultFeatures.addMountainFeatures(builder);
+		TofuBiomeDefaultFeatures.addMabouMountainFeatures(builder);
+		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
+		return makeDefaultBiome(builder, builder1, TofuSounds.ROUGH_GROUND_BGM);
+	}
+
 	public static Biome makeDefaultBiome(BiomeGenerationSettings.Builder builder, MobSpawnSettings.Builder mobSpawnSetting) {
 		return makeDefaultBiome(builder, mobSpawnSetting, TofuSounds.SOFT_BGM);
 	}
