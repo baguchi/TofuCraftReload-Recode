@@ -59,17 +59,12 @@ import baguchan.tofucraft.block.utils.TofuBedBlock;
 import baguchan.tofucraft.block.utils.TofuChestBlock;
 import baguchan.tofucraft.block.utils.TofuDoorBlock;
 import baguchan.tofucraft.block.utils.WeightBaseBlock;
-import baguchan.tofucraft.client.render.item.TofuBedBWLR;
-import baguchan.tofucraft.client.render.item.TofuChestBWLR;
-import baguchan.tofucraft.client.render.item.TofunianStatueBWLR;
 import baguchan.tofucraft.world.gen.grower.TofuTreeGrowers;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.BedItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.HangingSignItem;
@@ -107,11 +102,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -561,45 +554,6 @@ public class TofuBlocks {
 				return new HangingSignItem(LEEK_GREEN_HANGING_SIGN.get(), LEEK_GREEN_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16));
 			} else if (Objects.requireNonNull(block.get()) == LEEK_HANGING_SIGN.get()) {
 				return new HangingSignItem(LEEK_HANGING_SIGN.get(), LEEK_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16));
-			} else if (Objects.requireNonNull(block.get()) == TOFUBED.get()) {
-				return new BedItem(Objects.requireNonNull(block.get()), new Item.Properties().stacksTo(1)) {
-					@Override
-					public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-						super.initializeClient(consumer);
-						consumer.accept(new IClientItemExtensions() {
-							@Override
-							public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-								return new TofuBedBWLR();
-							}
-						});
-					}
-				};
-			} else if (Objects.requireNonNull(block.get()) == TOFUCHEST.get()) {
-				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties()) {
-					@Override
-					public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-						super.initializeClient(consumer);
-						consumer.accept(new IClientItemExtensions() {
-							@Override
-							public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-								return new TofuChestBWLR();
-							}
-						});
-					}
-				};
-			} else if (Objects.requireNonNull(block.get()) == TOFUNIAN_STATUE.get()) {
-				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties()) {
-					@Override
-					public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-						super.initializeClient(consumer);
-						consumer.accept(new IClientItemExtensions() {
-							@Override
-							public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-								return new TofunianStatueBWLR();
-							}
-						});
-					}
-				};
 			} else if (Objects.requireNonNull(block.get()) instanceof TofuCakeBlock) {
 				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().stacksTo(1));
 			} else if (Objects.requireNonNull(block.get()) instanceof DoorBlock) {

@@ -37,6 +37,10 @@ import baguchan.tofucraft.client.render.entity.TofunianRender;
 import baguchan.tofucraft.client.render.entity.TravelerTofunianRender;
 import baguchan.tofucraft.client.render.entity.ZundamiteRender;
 import baguchan.tofucraft.client.render.entity.effect.NattoCobWebRender;
+import baguchan.tofucraft.client.render.item.TofuBedBWLR;
+import baguchan.tofucraft.client.render.item.TofuChestBWLR;
+import baguchan.tofucraft.client.render.item.TofuShieldBWLR;
+import baguchan.tofucraft.client.render.item.TofunianStatueBWLR;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchan.tofucraft.client.screen.TFCrafterScreen;
 import baguchan.tofucraft.client.screen.TFOvenScreen;
@@ -46,6 +50,7 @@ import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuEntityTypes;
+import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuWoodTypes;
@@ -59,8 +64,8 @@ import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
@@ -80,36 +85,166 @@ import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import org.jetbrains.annotations.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ClientRegistrar {
 	private static final ResourceLocation TEXTURE_SOYHEARTS = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/soy_hearts.png");
 
-	public static void renderEntity() {
-	}
-
-	public static void renderTileEntity() {
-		BlockEntityRenderers.register(TofuBlockEntitys.TOFUBED.get(), TofuBedRenderer::new);
-		BlockEntityRenderers.register(TofuBlockEntitys.TOFUCHEST.get(), TofuChestRenderer::new);
-		BlockEntityRenderers.register(TofuBlockEntitys.FOODPLATE.get(), FoodPlateRender::new);
-		BlockEntityRenderers.register(TofuBlockEntitys.TOFUNIAN_STATUE.get(), TofunianStatueRender::new);
-		BlockEntityRenderers.register(TofuBlockEntitys.SUSPICIOUS_TOFU.get(), BrushableBlockRenderer::new);
-		BlockEntityRenderers.register(TofuBlockEntitys.TOFU_SIGN.get(), SignRenderer::new);
-		BlockEntityRenderers.register(TofuBlockEntitys.TOFU_HANGING_SIGN.get(), HangingSignRenderer::new);
-		BlockEntityRenderers.register(TofuBlockEntitys.TOFU_VAULT.get(), VaultRenderer::new);
-	}
-
-
 	public static void setup(FMLClientSetupEvent event) {
-		renderEntity();
-		renderTileEntity();
 		event.enqueueWork(() -> {
 			Sheets.addWoodType(TofuWoodTypes.LEEK);
 			Sheets.addWoodType(TofuWoodTypes.LEEK_GREEN);
 			Sheets.addWoodType(TofuWoodTypes.TOFU_STEM);
 		});
 
+	}
+
+	@SubscribeEvent
+	public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+		event.registerFluidType(new IClientFluidTypeExtensions() {
+			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk");
+			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_flow");
+			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/soymilk_overlay.png");
+
+			@Override
+			public ResourceLocation getStillTexture() {
+				return TEXTURE_STILL;
+			}
+
+			@Override
+			public ResourceLocation getFlowingTexture() {
+				return TEXTURE_FLOW;
+			}
+
+			@Override
+			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
+				return TEXTURE_OVERLAY;
+			}
+		}, TofuFluidTypes.SOYMILK.get());
+		event.registerFluidType(new IClientFluidTypeExtensions() {
+			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell");
+			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell_flow");
+			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/soymilk_hell_overlay.png");
+
+			@Override
+			public ResourceLocation getStillTexture() {
+				return TEXTURE_STILL;
+			}
+
+			@Override
+			public ResourceLocation getFlowingTexture() {
+				return TEXTURE_FLOW;
+			}
+
+			@Override
+			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
+				return TEXTURE_OVERLAY;
+			}
+		}, TofuFluidTypes.SOYMILK_HELL.get());
+		event.registerFluidType(new IClientFluidTypeExtensions() {
+			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul");
+			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul_flow");
+			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/soymilk_soul_overlay.png");
+
+			@Override
+			public ResourceLocation getStillTexture() {
+				return TEXTURE_STILL;
+			}
+
+			@Override
+			public ResourceLocation getFlowingTexture() {
+				return TEXTURE_FLOW;
+			}
+
+			@Override
+			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
+				return TEXTURE_OVERLAY;
+			}
+		}, TofuFluidTypes.SOYMILK_SOUL.get());
+		event.registerFluidType(new IClientFluidTypeExtensions() {
+			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
+			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
+			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/bittern_overlay.png");
+
+			@Override
+			public ResourceLocation getStillTexture() {
+				return TEXTURE_STILL;
+			}
+
+			@Override
+			public ResourceLocation getFlowingTexture() {
+				return TEXTURE_FLOW;
+			}
+
+			@Override
+			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
+				return TEXTURE_OVERLAY;
+			}
+		}, TofuFluidTypes.BITTERN.get());
+		event.registerFluidType(new IClientFluidTypeExtensions() {
+			private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson"),
+					FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson");
+
+			@Override
+			public ResourceLocation getStillTexture() {
+				return STILL;
+			}
+
+			@Override
+			public ResourceLocation getFlowingTexture() {
+				return FLOW;
+			}
+		}, TofuFluidTypes.CRIMSON.get());
+		event.registerFluidType(new IClientFluidTypeExtensions() {
+			private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped"),
+					FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped");
+
+			@Override
+			public ResourceLocation getStillTexture() {
+				return STILL;
+			}
+
+			@Override
+			public ResourceLocation getFlowingTexture() {
+				return FLOW;
+			}
+		}, TofuFluidTypes.WARPED.get());
+
+		event.registerItem(new IClientItemExtensions() {
+			@Override
+			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+				return new TofuShieldBWLR();
+			}
+		}, TofuItems.REFLECT_TOFU_SHIELD.get());
+		event.registerItem(new IClientItemExtensions() {
+			@Override
+			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+				return new TofuShieldBWLR();
+			}
+		}, TofuItems.TOFU_SHIELD.get());
+		event.registerItem(new IClientItemExtensions() {
+			@Override
+			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+				return new TofuChestBWLR();
+			}
+		}, TofuBlocks.TOFUCHEST.get().asItem());
+		event.registerItem(new IClientItemExtensions() {
+			@Override
+			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+				return new TofunianStatueBWLR();
+			}
+		}, TofuBlocks.TOFUNIAN_STATUE.get().asItem());
+		event.registerItem(new IClientItemExtensions() {
+			@Override
+			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+				return new TofuBedBWLR();
+			}
+		}, TofuBlocks.TOFUBED.get().asItem());
 	}
 
 	@SubscribeEvent
@@ -185,6 +320,14 @@ public class ClientRegistrar {
 			return new FukumameThowerRenderer<>(p_174064_, TofuModelLayers.FUKUMAME_THOWER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
 		});
 		event.registerEntityRenderer(TofuEntityTypes.ZUNDAMITE.get(), ZundamiteRender::new);
+		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUBED.get(), TofuBedRenderer::new);
+		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUCHEST.get(), TofuChestRenderer::new);
+		event.registerBlockEntityRenderer(TofuBlockEntitys.FOODPLATE.get(), FoodPlateRender::new);
+		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUNIAN_STATUE.get(), TofunianStatueRender::new);
+		event.registerBlockEntityRenderer(TofuBlockEntitys.SUSPICIOUS_TOFU.get(), BrushableBlockRenderer::new);
+		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFU_SIGN.get(), SignRenderer::new);
+		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFU_HANGING_SIGN.get(), HangingSignRenderer::new);
+		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFU_VAULT.get(), VaultRenderer::new);
 	}
 
 	@SubscribeEvent

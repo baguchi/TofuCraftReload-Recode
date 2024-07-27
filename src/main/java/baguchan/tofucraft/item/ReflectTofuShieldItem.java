@@ -3,11 +3,9 @@ package baguchan.tofucraft.item;
 import baguchan.tofucraft.api.tfenergy.IEnergyContained;
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import baguchan.tofucraft.api.tfenergy.TFEnergyData;
-import baguchan.tofucraft.client.render.item.TofuShieldBWLR;
 import baguchan.tofucraft.registry.TofuDataComponents;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
@@ -16,13 +14,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 
 import java.awt.*;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertable, IEnergyContained {
 
@@ -38,17 +34,6 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 	@Override
 	public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
 		return itemAbility == ItemAbilities.SHIELD_BLOCK;
-	}
-
-	@Override
-	public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-		super.initializeClient(consumer);
-		consumer.accept(new IClientItemExtensions() {
-			@Override
-			public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-				return new TofuShieldBWLR();
-			}
-		});
 	}
 
 	@Override

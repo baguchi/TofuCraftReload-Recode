@@ -11,7 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -19,8 +18,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.neoforged.neoforge.registries.RegisterEvent;
-
-import java.util.function.Consumer;
 
 public class TofuFluids {
 	public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(BuiltInRegistries.FLUID, TofuCraftReload.MODID);
@@ -49,25 +46,7 @@ public class TofuFluids {
 		event.register(NeoForgeRegistries.Keys.FLUID_TYPES, helper -> helper.register(TofuFluidTypes.CRIMSON.unwrapKey().orElseThrow(), new FluidType(
 				FluidType.Properties.create().density(1024).viscosity(1024)
 						.sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
-						.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA)) {
-			@Override
-			public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-				consumer.accept(new IClientFluidTypeExtensions() {
-					private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson"),
-							FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson");
-
-					@Override
-					public ResourceLocation getStillTexture() {
-						return STILL;
-					}
-
-					@Override
-					public ResourceLocation getFlowingTexture() {
-						return FLOW;
-					}
-				});
-			}
-		}));
+						.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA))));
 
 		// register fluids
 		event.register(Registries.FLUID, helper -> {
@@ -82,25 +61,7 @@ public class TofuFluids {
 		event.register(NeoForgeRegistries.Keys.FLUID_TYPES, helper -> helper.register(TofuFluidTypes.WARPED.unwrapKey().orElseThrow(), new FluidType(
 				FluidType.Properties.create().density(1024).viscosity(1024)
 						.sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
-						.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA)) {
-			@Override
-			public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-				consumer.accept(new IClientFluidTypeExtensions() {
-					private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped"),
-							FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped");
-
-					@Override
-					public ResourceLocation getStillTexture() {
-						return STILL;
-					}
-
-					@Override
-					public ResourceLocation getFlowingTexture() {
-						return FLOW;
-					}
-				});
-			}
-		}));
+						.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA))));
 
 		// register fluids
 		event.register(Registries.FLUID, helper -> {
