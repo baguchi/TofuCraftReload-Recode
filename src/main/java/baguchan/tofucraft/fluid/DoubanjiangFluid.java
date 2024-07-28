@@ -43,7 +43,7 @@ public abstract class DoubanjiangFluid extends WaterFluid {
 
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(Level level, BlockPos blockPos, FluidState p_204522_3_, RandomSource randomSource) {
-		if (!p_204522_3_.isSource() && !p_204522_3_.getValue(FALLING)) {
+		if (!p_204522_3_.getValue(FALLING)) {
 			if (randomSource.nextInt(64) == 0) {
 				level.addParticle(ParticleTypes.BUBBLE_POP, blockPos.getX() + randomSource.nextFloat(), (double) blockPos.getY() + 0.95F + randomSource.nextFloat() * 0.1F, (double) blockPos.getZ() + randomSource.nextFloat(), 0, 0, 0);
 				level.playLocalSound((double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, SoundEvents.LAVA_POP, SoundSource.BLOCKS, randomSource.nextFloat() * 0.25F + 0.75F, randomSource.nextFloat() * 0.25F + 1.25F, false);
