@@ -8,6 +8,7 @@ import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
 import baguchan.tofucraft.registry.TofuDamageSource;
+import baguchan.tofucraft.registry.TofuEffects;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
@@ -27,6 +28,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
@@ -344,7 +346,8 @@ public class ShuDofuSpider extends Monster {
 								double d12 = Math.sqrt(entity.distanceToSqr(entity)) / (double) radius * 2.0F;
 								double d14 = Explosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
 								double d10 = (1.0D - d12) * d14;
-								entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) (((d10 * d10 + d10) / 2.0D) * 30.0D));
+								entity.addEffect(new MobEffectInstance(TofuEffects.COUGH, (int) (400 * d10), 0));
+								entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) (((d10 * d10 + d10) / 2.0D) * 26.0D));
 							}
 						}
 					}
