@@ -87,6 +87,11 @@ public abstract class DoubanjiangFluid extends WaterFluid {
 	}
 
 	@Override
+	public int getTickDelay(LevelReader level) {
+		return 10;
+	}
+
+	@Override
 	public FluidType getFluidType() {
 		return TofuFluidTypes.DOUBANJIANG.get();
 	}
