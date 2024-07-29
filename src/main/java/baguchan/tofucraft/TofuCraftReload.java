@@ -21,6 +21,7 @@ import baguchan.tofucraft.registry.TofuCreativeModeTabs;
 import baguchan.tofucraft.registry.TofuDataComponents;
 import baguchan.tofucraft.registry.TofuEffects;
 import baguchan.tofucraft.registry.TofuEnchantmentEffects;
+import baguchan.tofucraft.registry.TofuEntityDatas;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuFeatures;
 import baguchan.tofucraft.registry.TofuFluidTypes;
@@ -86,6 +87,7 @@ public class TofuCraftReload {
 		modBus.addListener(TofuFluids::registerFluids);
 		TofuCreativeModeTabs.CREATIVE_MODE_TABS.register(modBus);
 		TofuRecipes.RECIPE_TYPES.register(modBus);
+		TofuEntityDatas.ENTITY_DATAS.register(modBus);
 		TofuDataComponents.DATA_COMPONENT_TYPES.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuPoiTypes.POI_TYPES.register(modBus);

@@ -14,7 +14,7 @@ import net.neoforged.neoforge.fluids.FluidType;
 public abstract class AbstractTofuFish extends AbstractFish {
 	private boolean wasTouchingSoymilk;
 
-	public AbstractTofuFish(EntityType<? extends AbstractFish> p_27461_, Level p_27462_) {
+	public AbstractTofuFish(EntityType<? extends AbstractTofuFish> p_27461_, Level p_27462_) {
 		super(p_27461_, p_27462_);
 	}
 

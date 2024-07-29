@@ -11,6 +11,7 @@ import baguchan.tofucraft.entity.TofuFish;
 import baguchan.tofucraft.entity.TofuGandlem;
 import baguchan.tofucraft.entity.TofuGolem;
 import baguchan.tofucraft.entity.TofuPig;
+import baguchan.tofucraft.entity.TofuPuffer;
 import baguchan.tofucraft.entity.TofuSlime;
 import baguchan.tofucraft.entity.TofuSpider;
 import baguchan.tofucraft.entity.Tofunian;
@@ -61,6 +62,9 @@ public class TofuEntityTypes {
 
 	public static final Supplier<EntityType<TofuFish>> TOFUFISH = ENTITIES.register("tofufish", () -> EntityType.Builder.of(TofuFish::new, MobCategory.WATER_AMBIENT)
 			.sized(0.5F, 0.35F).eyeHeight(0.3F).setTrackingRange(4).build("tofucraft:tofufish"));
+	public static final Supplier<EntityType<TofuPuffer>> TOFU_PUFFER = ENTITIES.register("tofu_puffer", () -> EntityType.Builder.of(TofuPuffer::new, MobCategory.WATER_AMBIENT)
+			.sized(0.8F, 0.6F).eyeHeight(0.35F).setTrackingRange(6).fireImmune().build("tofucraft:tofu_puffer"));
+
 
 	public static final Supplier<EntityType<TofuGolem>> TOFU_GOLEM = ENTITIES.register("tofu_golem", () -> EntityType.Builder.of(TofuGolem::new, MobCategory.MISC)
 			.sized(0.8F, 0.9F).eyeHeight(0.9F * 0.55F).clientTrackingRange(10).fireImmune().build("tofucraft:tofu_golem"));
@@ -119,6 +123,14 @@ public class TofuEntityTypes {
 
 	public static final Supplier<EntityType<FukumameThower>> FUKUMAME_THOWER = ENTITIES.register("fukumame_thower", () -> EntityType.Builder.of(FukumameThower::new, MobCategory.MONSTER).sized(0.6F, 1.85F).clientTrackingRange(8).build("tofucraft:fukumame_thower"));
 
+	public static final SpawnPlacementType IN_DOUBANJIANG = (p_325672_, p_325673_, p_325674_) -> {
+		if (p_325674_ != null && p_325672_.getWorldBorder().isWithinBounds(p_325673_)) {
+			BlockPos blockpos = p_325673_.above();
+			return p_325672_.getFluidState(p_325673_).getType() == TofuFluidTypes.DOUBANJIANG;
+		} else {
+			return false;
+		}
+	};
 	public static final SpawnPlacementType IN_SOYMILK = (p_325672_, p_325673_, p_325674_) -> {
 		if (p_325674_ != null && p_325672_.getWorldBorder().isWithinBounds(p_325673_)) {
 			BlockPos blockpos = p_325673_.above();
@@ -134,6 +146,8 @@ public class TofuEntityTypes {
 		event.put(TOFUNIAN.get(), Tofunian.createAttributes().build());
 		event.put(TRAVELER_TOFUNIAN.get(), Tofunian.createAttributes().build());
 		event.put(TOFUFISH.get(), AbstractFish.createAttributes().build());
+		event.put(TOFU_PUFFER.get(), TofuPuffer.createAttributes().build());
+
 		event.put(TOFU_GOLEM.get(), TofuGolem.createAttributes().build());
 		event.put(TOFUSLIME.get(), Monster.createMonsterAttributes().build());
 		event.put(TOFUCREEPER.get(), TofuCreeper.createAttributes().build());
@@ -157,7 +171,8 @@ public class TofuEntityTypes {
 		event.register(TOFUCREEPER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCreeper::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TOFUSPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSpider::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TOFUFISH.get(), IN_SOYMILK, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuFish::checkTofuFishSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TOFU_GANDLEM.get(), SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		event.register(TOFU_PUFFER.get(), IN_DOUBANJIANG, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuPuffer::checkTofuPufferSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		event.register(TOFU_GANDLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 
 		event.register(FUKUMAME_THOWER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FukumameThower::checkFukumameSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(ZUNDAMITE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);

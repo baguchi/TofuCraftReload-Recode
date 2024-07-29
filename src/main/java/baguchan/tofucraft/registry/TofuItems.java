@@ -384,6 +384,7 @@ public class TofuItems {
 	public static final Supplier<Item> SHUDOFUSPIDER_SPAWNEGG = ITEMS.register("shudofuspider_spawnegg", () -> new DeferredSpawnEggItem(TofuEntityTypes.SHUDOFUSPIDER, 0xDDD8B5, 0x5FA039, (new Item.Properties())));
 	public static final Supplier<Item> FUKUMAME_THOWER_SPAWNEGG = ITEMS.register("fukumame_thower_spawn_egg", () -> new DeferredSpawnEggItem(TofuEntityTypes.FUKUMAME_THOWER, 0xF2BA86, 0xAC452D, (new Item.Properties())));
 	public static final Supplier<Item> ZUNDAMITE_SPAWNEGG = ITEMS.register("zundamite_spawn_egg", () -> new DeferredSpawnEggItem(TofuEntityTypes.ZUNDAMITE, 15460584, 0xA4D148, (new Item.Properties())));
+	public static final Supplier<Item> TOFU_PUFFER_SPAWNEGG = ITEMS.register("tofu_puffer_spawn_egg", () -> new DeferredSpawnEggItem(TofuEntityTypes.TOFU_PUFFER, 0xFFFFFF, 0xB8B8B8, (new Item.Properties())));
 
 
 	public static final Supplier<Item> NATTO_COBWEB = ITEMS.register("natto_cobweb", () -> new NattoCobWebItem((new Item.Properties())));
