@@ -542,7 +542,7 @@ public class ShuDofuSpider extends Monster {
 		List<Entity> list = this.level().getEntities(this, aabb);
 		if (!list.isEmpty()) {
 			for (Entity entity : list) {
-				if (entity != this) {
+				if (entity != this && entity.isAttackable() && !this.isAlliedTo(entity) && !(entity instanceof NattoCobWebEntity)) {
 					this.graspAttack(entity);
 					break;
 				}
@@ -552,20 +552,18 @@ public class ShuDofuSpider extends Monster {
 		}
 	}
 
-	public void graspAttack(Entity p_36347_) {
-		if (p_36347_.isAttackable() && !this.isAlliedTo(p_36347_)) {
-			float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-			if (p_36347_.hurt(this.damageSources().mobAttack(this), f * 0.2F)) {
+	public void graspAttack(Entity entity) {
+		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
+		if (entity.hurt(this.damageSources().mobAttack(this), f * 0.2F)) {
 				this.heal(f * 0.2F);
 			}
-			if (p_36347_ instanceof LivingEntity && !p_36347_.getType().is(Tags.EntityTypes.BOSSES)) {
+		if (entity instanceof LivingEntity && !entity.getType().is(Tags.EntityTypes.BOSSES)) {
 				if (this.getPassengers().isEmpty()) {
-					p_36347_.stopRiding();
-					p_36347_.startRiding(this, true);
+					entity.stopRiding();
+					entity.startRiding(this, true);
 				}
 			}
 			this.setSprinting(false);
-		}
 	}
 
 	protected void playStepSound(BlockPos p_33804_, BlockState p_33805_) {

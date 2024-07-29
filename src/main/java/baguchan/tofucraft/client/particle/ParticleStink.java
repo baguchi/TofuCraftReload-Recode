@@ -36,7 +36,7 @@ public class ParticleStink extends TextureSheetParticle {
 		var time = (age + tick) / (float) lifetime;
 		alpha = Mth.clamp(1.0F - time, 0.1F, 1F);
 
-		this.quadSize = scale * ((0.7f * time) + 0.3f);
+		this.quadSize = scale * ((1.25f * time) + 0.3f);
 		super.render(consumer, camera, tick);
 	}
 

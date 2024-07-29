@@ -115,7 +115,6 @@ public class TofuPuffer extends AbstractTofuFish implements IFluidHandler {
 	protected InteractionResult mobInteract(Player p_27477_, InteractionHand p_27478_) {
 		return bucketMobPickup(p_27477_, p_27478_, this).orElse(super.mobInteract(p_27477_, p_27478_));
 	}
-
 	public static boolean checkTofuPufferSpawnRules(EntityType<? extends TofuPuffer> p_27468_, LevelAccessor p_27469_, MobSpawnType p_27470_, BlockPos p_27471_, RandomSource p_27472_) {
 		return p_27469_.getBlockState(p_27471_).is(TofuBlocks.DOUBANJIANG.get());
 	}

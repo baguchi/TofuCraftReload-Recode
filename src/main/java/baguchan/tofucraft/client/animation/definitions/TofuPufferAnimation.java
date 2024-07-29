@@ -9,7 +9,6 @@ import net.minecraft.client.animation.KeyframeAnimations;
 /**
  * Made with Blockbench 4.10.4
  * Exported for Minecraft version 1.19 or later with Mojang mappings
- *
  * @author Author
  */
 public class TofuPufferAnimation {

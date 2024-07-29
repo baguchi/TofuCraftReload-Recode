@@ -1,7 +1,6 @@
 package baguchan.tofucraft.item;
 
-import baguchan.tofucraft.attachment.TofuLivingAttachment;
-import baguchan.tofucraft.registry.TofuAttachments;
+import baguchan.tofucraft.registry.TofuEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.Holder;
@@ -62,10 +61,7 @@ public class ReturnableDishItem extends Item {
 		}
 
 		if (this.salt) {
-			TofuLivingAttachment capability = livingEntity.getData(TofuAttachments.TOFU_LIVING);
-			if (capability != null && itemStack.getFoodProperties(livingEntity) != null) {
-				capability.setSaltBoost(itemStack.getFoodProperties(livingEntity).nutrition() * 20 * 20, itemStack.getFoodProperties(livingEntity).nutrition() * 20 * 40, livingEntity);
-			}
+			livingEntity.addEffect(new MobEffectInstance(TofuEffects.SALT_BOOST, itemStack.getFoodProperties(livingEntity).nutrition() * 20 * 60));
 		}
 
 		if (livingEntity instanceof Player player && !player.getAbilities().instabuild) {

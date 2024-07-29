@@ -10,10 +10,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.util.INBTSerializable;
 import org.jetbrains.annotations.UnknownNullability;
@@ -26,16 +22,9 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 	public float portalAnimTime = 0;
 	public float prevPortalAnimTime = 0;
 
-	public int saltBoostCooldown = 0;
-	public int saltBoost = 0;
-
 	public void tick(Entity entity) {
 		if (entity instanceof Player player) {
 			this.handlePortal(player);
-		}
-
-		if (!entity.level().isClientSide) {
-			this.handleSaltBoost(entity);
 		}
 	}
 
@@ -109,78 +98,15 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 		}
 	}
 
-	private void handleSaltBoost(Entity entity) {
-		if (entity instanceof LivingEntity livingEntity) {
-			if (this.saltBoost == 0) {
-				this.removeBoost(livingEntity);
-				this.saltBoost = -1;
-			} else if (this.saltBoost > 0) {
-				--this.saltBoost;
-			}
-			if (this.saltBoostCooldown > 0) {
-				--this.saltBoostCooldown;
-			}
-		}
-	}
-
-	protected void removeBoost(LivingEntity entity) {
-		AttributeInstance attributeinstance = entity.getAttribute(Attributes.JUMP_STRENGTH);
-		if (attributeinstance != null) {
-			if (attributeinstance.getModifier(MODIFIER_HORSE_JUMP_BOOST) != null) {
-				attributeinstance.removeModifier(MODIFIER_HORSE_JUMP_BOOST);
-			}
-
-		}
-		AttributeInstance attributeinstance2 = entity.getAttribute(Attributes.MOVEMENT_SPEED);
-		if (attributeinstance2 != null) {
-			if (attributeinstance2.getModifier(MODIFIER_SPEED_BOOST) != null) {
-				attributeinstance2.removeModifier(MODIFIER_SPEED_BOOST);
-			}
-
-		}
-	}
-
-	public void tryAddSaltBoost(LivingEntity entity) {
-		if (!entity.level().isClientSide) {
-			AttributeInstance attributeinstance = entity.getAttribute(Attributes.MOVEMENT_SPEED);
-			AttributeInstance attributeinstance2 = entity.getAttribute(Attributes.JUMP_STRENGTH);
-			if (attributeinstance == null || attributeinstance2 == null) {
-				return;
-			}
-			attributeinstance.addTransientModifier(new AttributeModifier(MODIFIER_SPEED_BOOST, 0.025, AttributeModifier.Operation.ADD_VALUE));
-			attributeinstance2.addTransientModifier(new AttributeModifier(MODIFIER_HORSE_JUMP_BOOST, 0.125, AttributeModifier.Operation.ADD_VALUE));
-		}
-	}
-
-	public void setSaltBoost(int saltBoost, int cooldown, LivingEntity entity) {
-		if (this.saltBoostCooldown <= 0) {
-			this.saltBoost = saltBoost;
-			this.saltBoostCooldown = cooldown;
-			this.tryAddSaltBoost(entity);
-		}
-	}
-
-	public int getSaltBoost() {
-		return saltBoost;
-	}
-
-	public int getSaltBoostCooldown() {
-		return saltBoostCooldown;
-	}
-
 
 
 	@Override
 	public @UnknownNullability CompoundTag serializeNBT(HolderLookup.Provider provider) {
 		CompoundTag nbt = new CompoundTag();
-		nbt.putInt("SaltBoost", this.saltBoost);
-		nbt.putInt("SaltBoostCooldown", this.saltBoostCooldown);
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
-		this.saltBoost = nbt.getInt("SaltBoost");
-		this.saltBoostCooldown = nbt.getInt("SaltBoostCooldown");
 	}
 }
