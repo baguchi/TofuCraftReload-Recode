@@ -8,6 +8,7 @@ import baguchan.tofucraft.entity.TofuGandlem;
 import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuDimensions;
+import baguchan.tofucraft.registry.TofuEffects;
 import baguchan.tofucraft.registry.TofuEnchantments;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItemTier;
@@ -35,6 +36,7 @@ import net.minecraft.util.SpawnUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -170,18 +172,15 @@ public class CommonEvents {
 		Level level = event.getLevel();
 		Entity entity = event.getTarget();
 		if (entity instanceof AbstractHorse horse && stack.is(TofuItems.SALT.get())) {
-			TofuLivingAttachment capability = horse.getData(TofuAttachments.TOFU_LIVING);
-			if (capability != null && capability.getSaltBoostCooldown() <= 0) {
-				capability.setSaltBoost(1200 * 3, 1200 * 3 + 600, horse);
-				if (!event.getEntity().isCreative()) {
-					stack.shrink(1);
-				}
-				horse.eating();
-				horse.gameEvent(GameEvent.EAT);
-				horse.playSound(SoundEvents.HORSE_EAT);
-				event.setCancellationResult(InteractionResult.SUCCESS);
-				event.setCanceled(true);
+			horse.addEffect(new MobEffectInstance(TofuEffects.SALT_BOOST, 3600));
+			if (!event.getEntity().isCreative()) {
+				stack.shrink(1);
 			}
+			horse.eating();
+			horse.gameEvent(GameEvent.EAT);
+			horse.playSound(SoundEvents.HORSE_EAT);
+			event.setCancellationResult(InteractionResult.SUCCESS);
+			event.setCanceled(true);
 		}
 	}
 
