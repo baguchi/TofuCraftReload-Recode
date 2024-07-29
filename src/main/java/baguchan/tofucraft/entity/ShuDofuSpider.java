@@ -4,6 +4,7 @@ import bagu_chan.bagus_lib.client.camera.CameraCore;
 import bagu_chan.bagus_lib.client.camera.holder.EntityCameraHolder;
 import bagu_chan.bagus_lib.util.GlobalVec3;
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
@@ -264,7 +265,7 @@ public class ShuDofuSpider extends Monster {
 					List<LivingEntity> entitiesHit = this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
-							if (this.canAttack(entity) && this.isWithinMeleeAttackRange(entity)) {
+							if (this.canAttack(entity) && !this.isAlliedTo(entity) && this.isWithinMeleeAttackRange(entity)) {
 								doHurtTarget(entity);
 							}
 						}
@@ -342,7 +343,7 @@ public class ShuDofuSpider extends Monster {
 					List<LivingEntity> entitiesHit = ShuDofuSpider.this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
-							if (this.canAttack(entity)) {
+							if (!this.isAlliedTo(entity)) {
 								double d12 = Math.sqrt(entity.distanceToSqr(entity)) / (double) radius * 2.0F;
 								double d14 = Explosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
 								double d10 = (1.0D - d12) * d14;
@@ -647,6 +648,10 @@ public class ShuDofuSpider extends Monster {
 	public boolean isAlliedTo(Entity p_20355_) {
 		if (p_20355_ instanceof ShuDofuSpider || p_20355_ instanceof TofuSpider) {
 			return this.getTeam() == null && p_20355_.getTeam() == null;
+		}
+
+		if (p_20355_ instanceof NattoCobWebEntity) {
+			return false;
 		}
 
 		return super.isAlliedTo(p_20355_);
