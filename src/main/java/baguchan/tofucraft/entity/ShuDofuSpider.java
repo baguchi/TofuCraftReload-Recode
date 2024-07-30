@@ -542,13 +542,11 @@ public class ShuDofuSpider extends Monster {
 		List<Entity> list = this.level().getEntities(this, aabb);
 		if (!list.isEmpty()) {
 			for (Entity entity : list) {
-				if (entity != this && entity.isAttackable() && !this.isAlliedTo(entity) && !(entity instanceof NattoCobWebEntity)) {
+				if (entity != this && !(entity instanceof PartEntity<?>) && entity.isAttackable() && !this.isAlliedTo(entity) && !(entity instanceof NattoCobWebEntity)) {
 					this.graspAttack(entity);
 					break;
 				}
 			}
-		} else if (this.horizontalCollision && this.tickCount % 3 == 0) {
-			this.playSound(SoundEvents.PLAYER_ATTACK_KNOCKBACK, 2.0F, 1.0F);
 		}
 	}
 
