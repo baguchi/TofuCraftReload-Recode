@@ -116,6 +116,7 @@ public class ZundaArrow extends AbstractArrow {
 					}
 
 					this.playSound(SoundEvents.SLIME_ATTACK, 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+					this.discard();
 				} else {
 					entity.setRemainingFireTicks(i);
 					this.deflect(ProjectileDeflection.REVERSE, entity, this.getOwner(), false);
