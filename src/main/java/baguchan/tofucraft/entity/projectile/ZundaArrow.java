@@ -131,7 +131,7 @@ public class ZundaArrow extends AbstractArrow {
 				}
 			} else {
 				if (p_36757_.getEntity() instanceof LivingEntity) {
-					MobEffectInstance mobeffectinstance = new MobEffectInstance(MobEffects.REGENERATION, (int) (this.duration * i), 0);
+					MobEffectInstance mobeffectinstance = new MobEffectInstance(MobEffects.REGENERATION, (int) (this.duration * j), 0);
 					((LivingEntity) p_36757_.getEntity()).addEffect(mobeffectinstance, this.getEffectSource());
 					this.discard();
 				}
