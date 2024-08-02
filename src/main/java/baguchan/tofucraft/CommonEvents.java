@@ -472,7 +472,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onPotionEffectApplied(MobEffectEvent.Applicable event) {
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value().getCategory() == MobEffectCategory.HARMFUL && event.getEffectInstance().getEffect() != MobEffects.BAD_OMEN && event.getEffectInstance().getEffect() != MobEffects.RAID_OMEN) {
 			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
