@@ -113,7 +113,7 @@
   "textures": {
     "end": "tofucraft:block/tofustem_top",
     "end2": "tofucraft:block/tofustem_top_emissive",
-    "particle": "#bottom",
+    "particle": "#side",
     "side": "tofucraft:block/tofustem",
     "side2": "tofucraft:block/tofustem_emissive"
   }

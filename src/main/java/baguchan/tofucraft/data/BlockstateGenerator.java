@@ -536,7 +536,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 	protected VariantBlockStateBuilder make2LayerLog(RotatedPillarBlock block, ResourceLocation renderType,
 													 int layer1emN, int layer1emS, int layer1emW, int layer1emE, int layer1emU, int layer1emD,
 													 int layer2emN, int layer2emS, int layer2emW, int layer2emE, int layer2emU, int layer2emD, boolean shade) {
-		BlockModelBuilder builder = models().withExistingParent(blockTexture(block).getPath(), "minecraft:block/block").renderType(renderType).texture("particle", "#bottom")
+		BlockModelBuilder builder = models().withExistingParent(blockTexture(block).getPath(), "minecraft:block/block").renderType(renderType).texture("particle", "#side")
 				.element().from(0.0F, 0.0F, 0.0F).to(16.0F, 16.0F, 16.0F).shade(shade)
 				.face(Direction.NORTH).texture("#side").cullface(Direction.NORTH).emissivity(layer1emN, layer1emN).end()
 				.face(Direction.EAST).texture("#side").cullface(Direction.EAST).emissivity(layer1emE, layer1emE).end()
