@@ -40,7 +40,7 @@ public class TofuTags {
 	public static class Items {
 		public static final TagKey<Item> SOYBEAN = universalTag("crops/soybean");
 		public static final TagKey<Item> SALT = universalTag("salt");
-		public static final TagKey<Item> DUST_SALT = universalTag("dust/salt");
+		public static final TagKey<Item> DUST_SALT = universalTag("dusts/salt");
 		public static final TagKey<Item> RICE = universalTag("crops/rice");
 		public static final TagKey<Item> EGGS = universalTag("eggs");
 		public static final TagKey<Item> SOYMILK = universalTag("soy_milk");
