@@ -8,14 +8,14 @@
           "condition": "minecraft:survives_explosion"
         }
       ],
-      "entries" : [
+      "entries": [
         {
-          "type" : "minecraft:item",
-          "name" : "tofucraft:tofufence_zunda"
+          "type": "minecraft:item",
+          "name": "tofucraft:tofufence_zunda"
         }
       ],
-      "rolls" : 1.0
+      "rolls": 1.0
     }
   ],
-  "random_sequence" : "tofucraft:blocks/tofufence_zunda"
+  "random_sequence": "tofucraft:blocks/tofufence_zunda"
 }

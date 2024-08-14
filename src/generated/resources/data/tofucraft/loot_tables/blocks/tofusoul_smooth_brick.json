@@ -8,14 +8,14 @@
           "condition": "minecraft:survives_explosion"
         }
       ],
-      "entries" : [
+      "entries": [
         {
-          "type" : "minecraft:item",
-          "name" : "tofucraft:tofusoul_smooth_brick"
+          "type": "minecraft:item",
+          "name": "tofucraft:tofusoul_smooth_brick"
         }
       ],
-      "rolls" : 1.0
+      "rolls": 1.0
     }
   ],
-  "random_sequence" : "tofucraft:blocks/tofusoul_smooth_brick"
+  "random_sequence": "tofucraft:blocks/tofusoul_smooth_brick"
 }

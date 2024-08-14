@@ -22,16 +22,16 @@
           ],
           "functions": [
             {
-              "add" : false,
-              "count" : 6.0,
-              "function" : "minecraft:set_count"
+              "add": false,
+              "count": 6.0,
+              "function": "minecraft:set_count"
             }
           ],
-          "name" : "tofucraft:natto"
+          "name": "tofucraft:natto"
         }
       ],
-      "rolls" : 1.0
+      "rolls": 1.0
     }
   ],
-  "random_sequence" : "tofucraft:blocks/nattobed"
+  "random_sequence": "tofucraft:blocks/nattobed"
 }

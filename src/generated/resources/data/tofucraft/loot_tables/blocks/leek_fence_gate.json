@@ -1,21 +1,21 @@
 {
-  "type" : "minecraft:block",
-  "pools" : [
+  "type": "minecraft:block",
+  "pools": [
     {
-      "bonus_rolls" : 0.0,
-      "conditions" : [
+      "bonus_rolls": 0.0,
+      "conditions": [
         {
-          "condition" : "minecraft:survives_explosion"
+          "condition": "minecraft:survives_explosion"
         }
       ],
-      "entries" : [
+      "entries": [
         {
-          "type" : "minecraft:item",
-          "name" : "tofucraft:leek_fence_gate"
+          "type": "minecraft:item",
+          "name": "tofucraft:leek_fence_gate"
         }
       ],
-      "rolls" : 1.0
+      "rolls": 1.0
     }
   ],
-  "random_sequence" : "tofucraft:blocks/leek_fence_gate"
+  "random_sequence": "tofucraft:blocks/leek_fence_gate"
 }

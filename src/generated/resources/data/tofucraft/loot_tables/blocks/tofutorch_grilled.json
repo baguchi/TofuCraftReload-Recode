@@ -8,14 +8,14 @@
           "condition": "minecraft:survives_explosion"
         }
       ],
-      "entries" : [
+      "entries": [
         {
-          "type" : "minecraft:item",
-          "name" : "tofucraft:tofutorch_grilled"
+          "type": "minecraft:item",
+          "name": "tofucraft:tofutorch_grilled"
         }
       ],
-      "rolls" : 1.0
+      "rolls": 1.0
     }
   ],
-  "random_sequence" : "tofucraft:blocks/tofutorch_grilled"
+  "random_sequence": "tofucraft:blocks/tofutorch_grilled"
 }

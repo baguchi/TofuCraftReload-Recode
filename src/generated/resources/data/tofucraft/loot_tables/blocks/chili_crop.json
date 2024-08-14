@@ -54,16 +54,16 @@
               "formula": "minecraft:binomial_with_bonus_count",
               "function": "minecraft:apply_bonus",
               "parameters": {
-                "extra" : 3,
-                "probability" : 0.5714286
+                "extra": 3,
+                "probability": 0.5714286
               }
             }
           ],
-          "name" : "tofucraft:chili"
+          "name": "tofucraft:chili"
         }
       ],
-      "rolls" : 1.0
+      "rolls": 1.0
     }
   ],
-  "random_sequence" : "tofucraft:blocks/chili_crop"
+  "random_sequence": "tofucraft:blocks/chili_crop"
 }

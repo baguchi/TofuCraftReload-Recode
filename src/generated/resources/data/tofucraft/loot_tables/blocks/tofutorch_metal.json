@@ -8,14 +8,14 @@
           "condition": "minecraft:survives_explosion"
         }
       ],
-      "entries" : [
+      "entries": [
         {
-          "type" : "minecraft:item",
-          "name" : "tofucraft:tofutorch_metal"
+          "type": "minecraft:item",
+          "name": "tofucraft:tofutorch_metal"
         }
       ],
-      "rolls" : 1.0
+      "rolls": 1.0
     }
   ],
-  "random_sequence" : "tofucraft:blocks/tofutorch_metal"
+  "random_sequence": "tofucraft:blocks/tofutorch_metal"
 }

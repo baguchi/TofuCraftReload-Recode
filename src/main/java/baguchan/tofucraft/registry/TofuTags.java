@@ -38,7 +38,7 @@ public class TofuTags {
 	public static class Items {
 		public static final TagKey<Item> SOYBEAN = forgeTag("crops/soybean");
 		public static final TagKey<Item> SALT = forgeTag("salt");
-		public static final TagKey<Item> DUST_SALT = forgeTag("dust/salt");
+		public static final TagKey<Item> DUST_SALT = forgeTag("dusts/salt");
 		public static final TagKey<Item> RICE = forgeTag("crops/rice");
 		public static final TagKey<Item> EGGS = forgeTag("eggs");
 		public static final TagKey<Item> SOYMILK = forgeTag("soy_milk");
