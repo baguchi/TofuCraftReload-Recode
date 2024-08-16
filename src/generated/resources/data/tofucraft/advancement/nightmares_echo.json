@@ -1,0 +1,26 @@
+{
+  "parent": "tofucraft:tofuworld",
+  "criteria": {
+    "echo": {
+      "trigger": "tofucraft:nightmares_echo"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.nightmares_echo.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:echo_shard"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.nightmares_echo.title"
+    }
+  },
+  "requirements": [
+    [
+      "echo"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

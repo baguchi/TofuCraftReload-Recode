@@ -1,0 +1,37 @@
+{
+  "parent": "tofucraft:find_tofu_castle",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:zunda_bow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.zunda_legends.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:zunda_bow"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.zunda_legends.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

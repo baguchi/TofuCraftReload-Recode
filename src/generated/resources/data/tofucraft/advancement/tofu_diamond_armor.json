@@ -1,0 +1,46 @@
+{
+  "parent": "tofucraft:tofuworld",
+  "criteria": {
+    "tofu_diamond_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:tofu_diamond_helmet"
+          },
+          {
+            "items": "tofucraft:tofu_diamond_chestplate"
+          },
+          {
+            "items": "tofucraft:tofu_diamond_leggings"
+          },
+          {
+            "items": "tofucraft:tofu_diamond_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.more_shiny_gear.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:tofu_diamond_chestplate"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.more_shiny_gear.title"
+    }
+  },
+  "requirements": [
+    [
+      "tofu_diamond_armor"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

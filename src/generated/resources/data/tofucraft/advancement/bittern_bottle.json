@@ -1,0 +1,33 @@
+{
+  "parent": "tofucraft:make_saltpan",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:air"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.bittern_bottle.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:bittern_bottle"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.bittern_bottle.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

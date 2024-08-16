@@ -1,0 +1,33 @@
+{
+  "parent": "tofucraft:make_tofu",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:seeds_soybeans_soul"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.very_strange_soybeans.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:seeds_soybeans_soul"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.very_strange_soybeans.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

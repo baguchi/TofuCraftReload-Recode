@@ -2,7 +2,7 @@ package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.capability.wrapper.FluidBottleWrapper;
-import baguchan.tofucraft.data.CustomTagGenerator;
+import baguchan.tofucraft.data.generator.CustomTagGenerator;
 import baguchan.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
 import baguchan.tofucraft.entity.TofuBoat;
 import baguchan.tofucraft.item.BitternItem;

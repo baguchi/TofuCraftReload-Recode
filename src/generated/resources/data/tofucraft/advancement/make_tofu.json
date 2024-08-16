@@ -1,0 +1,44 @@
+{
+  "parent": "tofucraft:bittern_bottle",
+  "criteria": {
+    "do_the_tofu": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "tofucraft:soymilk"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": "tofucraft:bittern_bottle"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.make_tofu.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:tofukinu"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.make_tofu.title"
+    }
+  },
+  "requirements": [
+    [
+      "do_the_tofu"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

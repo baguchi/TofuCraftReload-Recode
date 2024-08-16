@@ -1,0 +1,26 @@
+{
+  "parent": "tofucraft:tofuworld",
+  "criteria": {
+    "trigger": {
+      "trigger": "tofucraft:tofupig_pop"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.tofupig_pop.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:zundamushroom_on_a_stick"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.tofupig_pop.title"
+    }
+  },
+  "requirements": [
+    [
+      "trigger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

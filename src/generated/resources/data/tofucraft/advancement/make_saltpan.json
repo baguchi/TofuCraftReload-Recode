@@ -1,0 +1,33 @@
+{
+  "parent": "tofucraft:root",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:blocksaltpan"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.make_saltpan.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:blocksaltpan"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.make_saltpan.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

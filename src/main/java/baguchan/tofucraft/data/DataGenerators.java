@@ -1,6 +1,16 @@
 package baguchan.tofucraft.data;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.data.generator.BlockTagGenerator;
+import baguchan.tofucraft.data.generator.BlockstateGenerator;
+import baguchan.tofucraft.data.generator.CraftingGenerator;
+import baguchan.tofucraft.data.generator.CustomTagGenerator;
+import baguchan.tofucraft.data.generator.EntityTagGenerator;
+import baguchan.tofucraft.data.generator.FluidTagGenerator;
+import baguchan.tofucraft.data.generator.ItemModelGenerator;
+import baguchan.tofucraft.data.generator.ItemTagGenerator;
+import baguchan.tofucraft.data.generator.RegistryDataGenerator;
+import baguchan.tofucraft.data.generator.TofuAdvancementGenerator;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -34,7 +44,7 @@ public class DataGenerators {
 		event.getGenerator().addProvider(event.includeServer(), TofuLootTableProvider.create(packOutput, lookupProvider));
 		event.getGenerator().addProvider(event.includeServer(), new CraftingGenerator(packOutput, lookupProvider));
 		event.getGenerator().addProvider(event.includeServer(), new RegistryDataGenerator(packOutput, lookupProvider));
-		//event.getGenerator().addProvider(event.includeServer(), new EnchantTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
+		event.getGenerator().addProvider(event.includeServer(), new TofuAdvancementGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
 
 	}
 }

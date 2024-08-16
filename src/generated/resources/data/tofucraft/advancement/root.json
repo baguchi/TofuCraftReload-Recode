@@ -1,0 +1,33 @@
+{
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:seeds_soybeans"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "tofucraft:textures/block/blockkinutofu.png",
+    "description": {
+      "translate": "advancements.tofucraft.root.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:seeds_soybeans"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

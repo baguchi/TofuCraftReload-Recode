@@ -1,0 +1,33 @@
+{
+  "parent": "tofucraft:make_tofu",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:tofustick"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.tofustick.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:tofustick"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.tofustick.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

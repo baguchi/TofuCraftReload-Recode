@@ -110,6 +110,7 @@ public class TofuCraftReload {
 		}
 		NeoForge.EVENT_BUS.register(new CraftingEvents());
 		modContainer.registerConfig(ModConfig.Type.COMMON, TofuConfig.COMMON_SPEC);
+
 	}
 
 	private void setup(FMLCommonSetupEvent event) {
@@ -139,6 +140,8 @@ public class TofuCraftReload {
 			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.TOFU_FLOWER.get()), TofuBlocks.POTTED_TOFU_FLOWER);
 		});
 	}
+
+	IdMappingEvent
 
 
 	public void setupPackets(RegisterPayloadHandlersEvent event) {

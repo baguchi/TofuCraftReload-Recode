@@ -2,6 +2,7 @@ package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.entity.TofuSpider;
 import baguchan.tofucraft.registry.TofuSounds;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -30,21 +31,23 @@ public class BugleItem extends Item {
 	}
 
 	@Override
-	public void releaseUsing(ItemStack p_41412_, Level p_41413_, LivingEntity p_41414_, int p_41415_) {
-		int i = getUseDuration(p_41412_, p_41414_) - p_41415_;
+	public void releaseUsing(ItemStack p_41412_, Level p_41413_, LivingEntity livingEntity, int p_41415_) {
+		int i = getUseDuration(p_41412_, livingEntity) - p_41415_;
 
-		if (p_41414_ instanceof Player) {
-			Player playerentity = (Player) p_41414_;
+		if (livingEntity instanceof Player) {
+			Player playerentity = (Player) livingEntity;
 			if (i >= 20) {
+
+				playerentity.awardStat(Stats.ITEM_USED.get(this));
 				playerentity.getCooldowns().addCooldown(this, 80);
 			}
 		}
 		if (i >= 20) {
-			p_41413_.gameEvent(p_41414_, GameEvent.INSTRUMENT_PLAY, p_41414_.position());
-			if (p_41414_.getOffhandItem().is(Items.ECHO_SHARD)) {
-				if (p_41414_ instanceof Player) {
-					Player playerentity = (Player) p_41414_;
-					List<TofuSpider> entities = p_41413_.getNearbyEntities(TofuSpider.class, TARGETING, p_41414_, p_41414_.getBoundingBox().inflate(6.0D));
+			p_41413_.gameEvent(livingEntity, GameEvent.INSTRUMENT_PLAY, livingEntity.position());
+			if (livingEntity.getOffhandItem().is(Items.ECHO_SHARD)) {
+				if (livingEntity instanceof Player) {
+					Player playerentity = (Player) livingEntity;
+					List<TofuSpider> entities = p_41413_.getNearbyEntities(TofuSpider.class, TARGETING, livingEntity, livingEntity.getBoundingBox().inflate(6.0D));
 
 
 					if (!entities.isEmpty()) {
@@ -52,7 +55,7 @@ public class BugleItem extends Item {
 
 						if (hasLineOfSight(playerentity, entities.get(0))) {
 							playerentity.getCooldowns().addCooldown(this, 600);
-							p_41414_.getOffhandItem().shrink(1);
+							livingEntity.getOffhandItem().shrink(1);
 
 							entities.get(0).startConverting(300);
 							p_41413_.levelEvent(3007, entities.get(0).blockPosition(), 0);
@@ -60,7 +63,8 @@ public class BugleItem extends Item {
 					}
 				}
 			} else {
-				p_41414_.playSound(TofuSounds.TOFUBUGLE.get(), 3.0F, 1.0F);
+
+				livingEntity.playSound(TofuSounds.TOFUBUGLE.get(), 3.0F, 1.0F);
 			}
 		}
 	}

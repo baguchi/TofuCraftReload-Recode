@@ -1,0 +1,26 @@
+{
+  "parent": "tofucraft:tofuworld",
+  "criteria": {
+    "trigger": {
+      "trigger": "tofucraft:my_tofu_child"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.my_tofu_child.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:tofunian_soy_chocolate"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.my_tofu_child.title"
+    }
+  },
+  "requirements": [
+    [
+      "trigger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

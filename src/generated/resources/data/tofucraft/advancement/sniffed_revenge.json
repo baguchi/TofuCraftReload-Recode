@@ -1,0 +1,33 @@
+{
+  "parent": "tofucraft:ancient_chili",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:chili"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.sniffed_revenge.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:chili"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.sniffed_revenge.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

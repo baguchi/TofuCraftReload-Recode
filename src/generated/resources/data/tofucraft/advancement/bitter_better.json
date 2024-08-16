@@ -1,0 +1,33 @@
+{
+  "parent": "tofucraft:make_saltpan",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:salt_furnace"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.bitter_better.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:salt_furnace"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.bitter_better.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

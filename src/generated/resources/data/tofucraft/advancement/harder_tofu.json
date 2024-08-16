@@ -1,0 +1,33 @@
+{
+  "parent": "tofucraft:make_tofu",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:blocktofumetal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.harder_tofu.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:blocktofumetal"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.harder_tofu.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

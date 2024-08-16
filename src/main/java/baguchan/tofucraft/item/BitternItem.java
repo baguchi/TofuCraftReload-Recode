@@ -4,8 +4,10 @@ import baguchan.tofucraft.api.IFluidBottle;
 import baguchan.tofucraft.capability.wrapper.FluidBottleWrapper;
 import baguchan.tofucraft.utils.ContainerUtils;
 import baguchan.tofucraft.utils.RecipeHelper;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -34,6 +36,7 @@ public class BitternItem extends Item implements IFluidBottle {
 		this.fluidHolder = fluidHolder;
 	}
 
+	@Override
 	public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		BlockHitResult blockraytraceresult = getPlayerPOVHitResult(worldIn, playerIn, ClipContext.Fluid.SOURCE_ONLY);
@@ -48,10 +51,13 @@ public class BitternItem extends Item implements IFluidBottle {
 
 				ItemStack result = RecipeHelper.getBitternResult(serverLevel, fluidState.getType(), fluidBottleWrapper.getFluid());
 				if (result != null) {
+					if (playerIn instanceof ServerPlayer serverPlayer) {
+						CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, blockraytraceresult1.getBlockPos(), itemstack);
+					}
+
 					worldIn.setBlock(blockraytraceresult1.getBlockPos(), Block.byItem(result.getItem()).defaultBlockState(), 11);
 					worldIn.levelEvent(2001, blockraytraceresult1.getBlockPos(), Block.getId(worldIn.getBlockState(blockraytraceresult1.getBlockPos())));
 					worldIn.playSound(null, blockraytraceresult1.getBlockPos(), SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1F, 1F);
-
 					ContainerUtils.addWithContainer(playerIn, handIn, itemstack, new ItemStack(Items.GLASS_BOTTLE), false);
 					return new InteractionResultHolder<>(InteractionResult.SUCCESS, playerIn.getItemInHand(handIn));
 				}
