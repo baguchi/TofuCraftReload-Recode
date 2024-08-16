@@ -1,0 +1,7 @@
+{
+  "values": {
+    "tofucraft:tofu_craftsman": {
+      "loot_table": "tofucraft:gameplay/hero_of_the_village/tofu_craftsman_gift"
+    }
+  }
+}

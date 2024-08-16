@@ -37,10 +37,7 @@ import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
 import com.google.common.collect.Maps;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.ai.behavior.GiveGiftToHero;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -123,9 +120,7 @@ public class TofuCraftReload {
 			TofuBlockSetTypes.init();
 			TofuAdvancements.init();
 			TofuItems.registerDispenserItem();
-			TofuItems.registerCompostableItem();
 			TofuBlocks.flamableInit();
-			GiveGiftToHero.GIFTS.put(TofuProfessions.TOFU_CRAFTSMAN.get(), ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift")));
 			TofuBiomes.init();
 			TofuEnergyMap.init();
 			ModInteractionInformations.init();
@@ -140,8 +135,6 @@ public class TofuCraftReload {
 			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.TOFU_FLOWER.get()), TofuBlocks.POTTED_TOFU_FLOWER);
 		});
 	}
-
-	IdMappingEvent
 
 
 	public void setupPackets(RegisterPayloadHandlersEvent event) {

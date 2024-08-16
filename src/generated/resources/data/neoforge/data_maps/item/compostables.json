@@ -1,0 +1,76 @@
+{
+  "values": {
+    "tofucraft:edamame": {
+      "chance": 0.1
+    },
+    "tofucraft:edamame_boild": {
+      "chance": 0.1
+    },
+    "tofucraft:leek": {
+      "chance": 0.5
+    },
+    "tofucraft:onigiri": {
+      "chance": 0.35
+    },
+    "tofucraft:onigiri_salt": {
+      "chance": 0.35
+    },
+    "tofucraft:rice": {
+      "chance": 0.5
+    },
+    "tofucraft:saltymelon": {
+      "chance": 0.3
+    },
+    "tofucraft:sapling_apricot": {
+      "chance": 0.3
+    },
+    "tofucraft:sapling_tofu": {
+      "chance": 0.3
+    },
+    "tofucraft:seeds_chili": {
+      "chance": 0.3
+    },
+    "tofucraft:seeds_rice": {
+      "chance": 0.3
+    },
+    "tofucraft:seeds_soybeans": {
+      "chance": 0.3
+    },
+    "tofucraft:seeds_soybeans_nether": {
+      "chance": 0.3
+    },
+    "tofucraft:seeds_soybeans_soul": {
+      "chance": 0.3
+    },
+    "tofucraft:tofuannin": {
+      "chance": 0.5
+    },
+    "tofucraft:tofucookie": {
+      "chance": 0.85
+    },
+    "tofucraft:tofudried": {
+      "chance": 0.3
+    },
+    "tofucraft:tofuegg": {
+      "chance": 0.5
+    },
+    "tofucraft:tofufried": {
+      "chance": 0.5
+    },
+    "tofucraft:tofufried_pouch": {
+      "chance": 0.5
+    },
+    "tofucraft:tofukinu": {
+      "chance": 0.3
+    },
+    "tofucraft:tofumiso": {
+      "chance": 0.5
+    },
+    "tofucraft:tofumomen": {
+      "chance": 0.3
+    },
+    "tofucraft:tofuzunda": {
+      "chance": 0.5
+    }
+  }
+}
