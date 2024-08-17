@@ -5,6 +5,7 @@ import baguchan.tofucraft.data.generator.BlockTagGenerator;
 import baguchan.tofucraft.data.generator.BlockstateGenerator;
 import baguchan.tofucraft.data.generator.CraftingGenerator;
 import baguchan.tofucraft.data.generator.CustomTagGenerator;
+import baguchan.tofucraft.data.generator.EnchantTagGenerator;
 import baguchan.tofucraft.data.generator.EntityTagGenerator;
 import baguchan.tofucraft.data.generator.FluidTagGenerator;
 import baguchan.tofucraft.data.generator.ItemModelGenerator;
@@ -18,6 +19,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
@@ -30,23 +32,24 @@ public class DataGenerators {
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-
-		event.getGenerator().addProvider(event.includeClient(), new BlockstateGenerator(packOutput, event.getExistingFileHelper()));
-		event.getGenerator().addProvider(event.includeClient(), new ItemModelGenerator(packOutput, event.getExistingFileHelper()));
-		generator.addProvider(event.includeServer(), new CustomTagGenerator.BannerPatternTagGenerator(packOutput, lookupProvider, existingFileHelper));
+		DatapackBuiltinEntriesProvider datapackProvider = new RegistryDataGenerator(packOutput, event.getLookupProvider());
+		CompletableFuture<HolderLookup.Provider> lookupProvider = datapackProvider.getRegistryProvider();
+		generator.addProvider(event.includeServer(), datapackProvider);
+		generator.addProvider(event.includeClient(), new BlockstateGenerator(packOutput, event.getExistingFileHelper()));
+		generator.addProvider(event.includeClient(), new ItemModelGenerator(packOutput, event.getExistingFileHelper()));
 		BlockTagsProvider blocktags = new BlockTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper());
-		event.getGenerator().addProvider(event.includeServer(), blocktags);
-		event.getGenerator().addProvider(event.includeServer(), new ItemTagGenerator(packOutput, lookupProvider, blocktags.contentsGetter(), event.getExistingFileHelper()));
-		event.getGenerator().addProvider(event.includeServer(), new EntityTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
-		event.getGenerator().addProvider(event.includeServer(), new TofuDamageTypeTags(packOutput, lookupProvider, event.getExistingFileHelper()));
+		generator.addProvider(event.includeServer(), blocktags);
+		generator.addProvider(event.includeServer(), new ItemTagGenerator(packOutput, lookupProvider, blocktags.contentsGetter(), event.getExistingFileHelper()));
+		generator.addProvider(event.includeServer(), new EntityTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
+		generator.addProvider(event.includeServer(), new TofuDamageTypeTags(packOutput, lookupProvider, event.getExistingFileHelper()));
+		generator.addProvider(event.includeServer(), new EnchantTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
+		generator.addProvider(event.includeServer(), new CustomTagGenerator.BannerPatternTagGenerator(packOutput, lookupProvider, existingFileHelper));
 		generator.addProvider(event.includeServer(), new CustomTagGenerator.PoiTypeTagGenerator(packOutput, lookupProvider, existingFileHelper));
-		event.getGenerator().addProvider(event.includeServer(), new FluidTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
-		event.getGenerator().addProvider(event.includeServer(), TofuLootTableProvider.create(packOutput, lookupProvider));
-		event.getGenerator().addProvider(event.includeServer(), new CraftingGenerator(packOutput, lookupProvider));
-		event.getGenerator().addProvider(event.includeServer(), new RegistryDataGenerator(packOutput, lookupProvider));
-		event.getGenerator().addProvider(event.includeServer(), new TofuAdvancementGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
-		event.getGenerator().addProvider(event.includeServer(), new TofuDataMapsProvider(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new FluidTagGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
+		generator.addProvider(event.includeServer(), TofuLootTableProvider.create(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new CraftingGenerator(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new TofuAdvancementGenerator(packOutput, lookupProvider, event.getExistingFileHelper()));
+		generator.addProvider(event.includeServer(), new TofuDataMapsProvider(packOutput, lookupProvider));
 
 	}
 }

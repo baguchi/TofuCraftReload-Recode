@@ -14,6 +14,6 @@ public class TofuBannerPatterns {
 	}
 
 	public static void bootstrap(BootstrapContext<BannerPattern> context) {
-		context.register(TOFUNIAN, new BannerPattern(TofuCraftReload.prefix("tofunian"), "block.minecraft.banner.tofucraft.tofunian"));
+		context.register(TOFUNIAN, new BannerPattern(TOFUNIAN.location(), "block.minecraft.banner.tofucraft.tofunian"));
 	}
 }
