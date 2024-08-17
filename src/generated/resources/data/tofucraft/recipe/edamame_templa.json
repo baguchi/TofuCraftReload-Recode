@@ -9,13 +9,13 @@
       "item": "tofucraft:edamame_boild"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
       "item": "tofucraft:salt"

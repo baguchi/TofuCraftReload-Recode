@@ -6,7 +6,7 @@
       "item": "tofucraft:tofukinu"
     },
     "X": {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     }
   },
   "pattern": [

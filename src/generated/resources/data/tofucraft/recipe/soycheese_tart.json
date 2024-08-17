@@ -12,7 +12,7 @@
       "item": "minecraft:sugar"
     },
     "W": {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     }
   },
   "pattern": [

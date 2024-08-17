@@ -6,7 +6,7 @@
       "item": "tofucraft:seeds_soybeans_soul"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     }
   ],
   "result": {

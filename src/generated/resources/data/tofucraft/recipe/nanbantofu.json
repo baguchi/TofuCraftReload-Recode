@@ -14,7 +14,7 @@
       "tag": "c:eggs"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
       "item": "minecraft:bowl"

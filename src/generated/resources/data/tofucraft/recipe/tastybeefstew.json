@@ -18,7 +18,7 @@
       "item": "minecraft:milk_bucket"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
       "item": "minecraft:bowl"

@@ -6,7 +6,7 @@
       "item": "tofucraft:tofumomen"
     },
     "X": {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     }
   },
   "pattern": [

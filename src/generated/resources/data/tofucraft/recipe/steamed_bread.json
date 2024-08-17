@@ -12,7 +12,7 @@
       "item": "minecraft:sugar"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
       "item": "minecraft:honey_bottle"

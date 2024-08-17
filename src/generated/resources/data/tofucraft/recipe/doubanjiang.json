@@ -6,7 +6,7 @@
       "item": "tofucraft:chili"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
       "item": "minecraft:sugar"
