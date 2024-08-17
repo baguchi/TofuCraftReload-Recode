@@ -301,11 +301,11 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_METAL_HOE = ITEMS.register("tofu_metal_hoe", () -> new TofuHoeItem(TofuItemTier.METAL, (new Item.Properties().stacksTo(1).attributes(TofuHoeItem.createAttributes(TofuItemTier.METAL, -2.0F, -1.0F)))));
 
 
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SWORD = ITEMS.register("tofu_diamond_sword", () -> new TofuSwordItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().attributes(SwordItem.createAttributes(TofuItemTier.TOFUDIAMOND, 3, -2.3F)).stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_AXE = ITEMS.register("tofu_diamond_axe", () -> new TofuAxeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1).attributes(AxeItem.createAttributes(TofuItemTier.TOFUDIAMOND, 6.0F, -3.0F)))));
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_PICKAXE = ITEMS.register("tofu_diamond_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1).attributes(PickaxeItem.createAttributes(TofuItemTier.TOFUDIAMOND, 1.0F, -2.8F)))));
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SHOVEL = ITEMS.register("tofu_diamond_shovel", () -> new TofuShovelItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().attributes(ShovelItem.createAttributes(TofuItemTier.TOFUDIAMOND, 1.5F, -3.0F)).stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_HOE = ITEMS.register("tofu_diamond_hoe", () -> new TofuHoeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().stacksTo(1).attributes(TofuHoeItem.createAttributes(TofuItemTier.TOFUDIAMOND, -3.0F, 0.0F)))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SWORD = ITEMS.register("tofu_diamond_sword", () -> new TofuSwordItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().rarity(Rarity.UNCOMMON).attributes(SwordItem.createAttributes(TofuItemTier.TOFUDIAMOND, 3, -2.3F)).stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_AXE = ITEMS.register("tofu_diamond_axe", () -> new TofuAxeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1).attributes(AxeItem.createAttributes(TofuItemTier.TOFUDIAMOND, 6.0F, -3.0F)))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_PICKAXE = ITEMS.register("tofu_diamond_pickaxe", () -> new TofuPickaxeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1).attributes(PickaxeItem.createAttributes(TofuItemTier.TOFUDIAMOND, 1.0F, -2.8F)))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SHOVEL = ITEMS.register("tofu_diamond_shovel", () -> new TofuShovelItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().rarity(Rarity.UNCOMMON).attributes(ShovelItem.createAttributes(TofuItemTier.TOFUDIAMOND, 1.5F, -3.0F)).stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_HOE = ITEMS.register("tofu_diamond_hoe", () -> new TofuHoeItem(TofuItemTier.TOFUDIAMOND, (new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1).attributes(TofuHoeItem.createAttributes(TofuItemTier.TOFUDIAMOND, -3.0F, 0.0F)))));
 	public static final DeferredHolder<Item, Item> TOFU_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("tofu_upgrade_smithing_template", TofuItems::createTofuUpgradeTemplate);
 	public static final DeferredHolder<Item, Item> ZUNDA_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("zunda_upgrade_smithing_template", TofuItems::createZundaBowUpgradeTemplate);
 
@@ -349,7 +349,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> SOUL_FUKUMAME = ITEMS.register("soul_fukumame", () -> new SoulFukumameItem((new Item.Properties()).stacksTo(1).durability(64).rarity(Rarity.UNCOMMON)));
 
-	public static final DeferredHolder<Item, Item> ZUNDA_BOW = ITEMS.register("zunda_bow", () -> new ZundaBowItem((new Item.Properties()).durability(426)));
+	public static final DeferredHolder<Item, Item> ZUNDA_BOW = ITEMS.register("zunda_bow", () -> new ZundaBowItem((new Item.Properties()).rarity(Rarity.UNCOMMON).durability(426)));
 
 	public static final DeferredHolder<Item, Item> ZUNDA_ARROW = ITEMS.register("zunda_arrow", () -> new ZundaArrowItem((new Item.Properties())));
 
