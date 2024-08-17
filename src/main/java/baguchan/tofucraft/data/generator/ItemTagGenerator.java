@@ -115,5 +115,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		this.tag(ItemTags.COW_FOOD).add(TofuItems.RICE.get());
 		this.tag(ItemTags.PARROT_FOOD).add(TofuItems.SEEDS_RICE.get(), TofuItems.SOYBEAN_PARCHED.get());
 		this.tag(ItemTags.SMALL_FLOWERS).add(TofuBlocks.TOFU_FLOWER.get().asItem());
+
 	}
 }

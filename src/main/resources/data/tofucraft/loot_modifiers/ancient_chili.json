@@ -1,10 +1,10 @@
 {
-  "type": "bagus_lib:loot_in_loot",
+  "type": "neoforge:add_table",
   "conditions" : [
     {
       "condition" : "neoforge:loot_table_id",
       "loot_table_id" : "minecraft:chests/ancient_city"
     }
   ],
-  "loot_table" : "tofucraft:injections/seeds_chili_ancient_city"
+  "table": "tofucraft:injections/seeds_chili_ancient_city"
 }
