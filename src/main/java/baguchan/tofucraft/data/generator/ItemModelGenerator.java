@@ -229,7 +229,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFUFRIED);
 		singleTex(TofuItems.TOFUSMOKE);
 		singleTex(TofuItems.SHUDOFU);
-		singleTex(TofuItems.SOY_SCULK_BONE);
 		singleTex(TofuItems.TOFUSESAME);
 		singleTex(TofuItems.TOFUFRIED_POUCH);
 		singleTex(TofuItems.TOFUANNIN);
@@ -470,11 +469,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 		trimmedArmor(TofuItems.TOFU_DIAMOND_CHESTPLATE);
 		trimmedArmor(TofuItems.TOFU_DIAMOND_LEGGINGS);
 		trimmedArmor(TofuItems.TOFU_DIAMOND_BOOTS);
-
-		trimmedArmor(TofuItems.SCULK_BONE_HELMET);
-		trimmedArmor(TofuItems.SCULK_BONE_CHESTPLATE);
-		trimmedArmor(TofuItems.SCULK_BONE_LEGGINGS);
-		trimmedArmor(TofuItems.SCULK_BONE_BOOTS);
 
 		egg(TofuItems.TOFUNIAN_SPAWNEGG);
 		egg(TofuItems.TRAVELER_TOFUNIAN_SPAWNEGG);

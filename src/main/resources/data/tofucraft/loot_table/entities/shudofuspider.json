@@ -87,35 +87,6 @@
           ]
         }
       ]
-    },
-    {
-      "name": "sculk",
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "item",
-          "name": "tofucraft:soy_sculk_bone",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 8,
-                "max": 12
-              }
-            },
-            {
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 1.0,
-                "min": 0.0
-              },
-              "enchantment": "minecraft:looting",
-              "function": "minecraft:enchanted_count_increase"
-            }
-          ]
-        }
-      ]
     }
   ]
 }

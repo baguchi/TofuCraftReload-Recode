@@ -52,7 +52,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 					.display(TofuItems.SEEDS_SOYBEANS.get(),
 							Component.translatable("advancements.tofucraft.root.title"),
 							Component.translatable("advancements.tofucraft.root.desc"),
-							ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/blockkinutofu.png"),
+							ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/blocktofukinu.png"),
 							AdvancementType.TASK, true, true, false)
 					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuItems.SEEDS_SOYBEANS.get()))
 					.save(consumer, "tofucraft:root");

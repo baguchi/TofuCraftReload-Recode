@@ -97,9 +97,6 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuItems.ZUNDAMA.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.ZUNDAMA.get())).save(consumer, TofuCraftReload.prefix(BuiltInRegistries.ITEM.getKey(result.get().asItem()).getPath() + "_smithing"));
 	}
 
-	public static void sculkSmithing(RecipeOutput consumer, ItemLike smithItem, RecipeCategory recipeCategory, Supplier<? extends Item> result) {
-		SmithingTransformRecipeBuilder.smithing(Ingredient.of(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()), Ingredient.of(smithItem), Ingredient.of(TofuItems.SOY_SCULK_BONE.get()), recipeCategory, result.get()).unlocks("has_item", has(TofuItems.SOY_SCULK_BONE.get())).save(consumer, TofuCraftReload.prefix(BuiltInRegistries.ITEM.getKey(result.get().asItem()).getPath() + "_smithing"));
-	}
 
 	protected final void helmetItem(RecipeOutput consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())

@@ -46,11 +46,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_LEGGINGS.get(), RecipeCategory.COMBAT, TofuItems.TOFU_DIAMOND_LEGGINGS);
 		tofuDiamondSmithing(consumer, TofuItems.TOFU_METAL_BOOTS.get(), RecipeCategory.COMBAT, TofuItems.TOFU_DIAMOND_BOOTS);
 
-		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_HELMET.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_HELMET);
-		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_CHESTPLATE);
-		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_LEGGINGS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_LEGGINGS);
-		sculkSmithing(consumer, TofuItems.TOFU_DIAMOND_BOOTS.get(), RecipeCategory.COMBAT, TofuItems.SCULK_BONE_BOOTS);
-
 		zundaSmithing(consumer, Items.BOW, RecipeCategory.COMBAT, TofuItems.ZUNDA_BOW);
 
 

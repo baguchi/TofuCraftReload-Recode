@@ -62,20 +62,12 @@ public class TofuArmorMaterial {
 		p_323383_.put(ArmorItem.Type.BODY, 7);
 	}), 9, SoundEvents.ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> Ingredient.of(TofuItems.TOFUMETAL.get()));
 	public static final Holder<ArmorMaterial> DIAMOND = register("diamond", Util.make(new EnumMap<>(ArmorItem.Type.class), p_323379_ -> {
-		p_323379_.put(ArmorItem.Type.BOOTS, 3);
+		p_323379_.put(ArmorItem.Type.BOOTS, 4);
 		p_323379_.put(ArmorItem.Type.LEGGINGS, 6);
 		p_323379_.put(ArmorItem.Type.CHESTPLATE, 8);
-		p_323379_.put(ArmorItem.Type.HELMET, 3);
-		p_323379_.put(ArmorItem.Type.BODY, 11);
-	}), 18, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.05F, () -> Ingredient.of(TofuItems.TOFUDIAMOND.get()));
-
-	public static final Holder<ArmorMaterial> SCULK_BONE = register("sculk_bone", Util.make(new EnumMap<>(ArmorItem.Type.class), p_323379_ -> {
-		p_323379_.put(ArmorItem.Type.BOOTS, 3);
-		p_323379_.put(ArmorItem.Type.LEGGINGS, 6);
-		p_323379_.put(ArmorItem.Type.CHESTPLATE, 8);
-		p_323379_.put(ArmorItem.Type.HELMET, 3);
-		p_323379_.put(ArmorItem.Type.BODY, 11);
-	}), 18, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(TofuItems.SOY_SCULK_BONE.get()));
+		p_323379_.put(ArmorItem.Type.HELMET, 4);
+		p_323379_.put(ArmorItem.Type.BODY, 18);
+	}), 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.5F, 0.05F, () -> Ingredient.of(TofuItems.TOFUDIAMOND.get()));
 
 	private static Holder<ArmorMaterial> register(
 			String p_323589_,

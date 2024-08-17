@@ -7,10 +7,6 @@
     "tofucraft:tofu_metal_helmet",
     "tofucraft:tofu_metal_chestplate",
     "tofucraft:tofu_metal_leggings",
-    "tofucraft:tofu_metal_boots",
-    "tofucraft:sculk_bone_helmet",
-    "tofucraft:sculk_bone_chestplate",
-    "tofucraft:sculk_bone_leggings",
-    "tofucraft:sculk_bone_boots"
+    "tofucraft:tofu_metal_boots"
   ]
 }

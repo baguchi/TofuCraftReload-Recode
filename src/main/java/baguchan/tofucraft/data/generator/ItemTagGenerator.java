@@ -43,7 +43,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
 
 		tag(ItemTags.TRIMMABLE_ARMOR).add(TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), TofuItems.TOFU_DIAMOND_LEGGINGS.get(), TofuItems.TOFU_DIAMOND_BOOTS.get())
 				.add(TofuItems.TOFU_METAL_HELMET.get(), TofuItems.TOFU_METAL_CHESTPLATE.get(), TofuItems.TOFU_METAL_LEGGINGS.get(), TofuItems.TOFU_METAL_BOOTS.get())
-				.add(TofuItems.SCULK_BONE_HELMET.get(), TofuItems.SCULK_BONE_CHESTPLATE.get(), TofuItems.SCULK_BONE_LEGGINGS.get(), TofuItems.SCULK_BONE_BOOTS.get());
+		;
 		tag(TofuTags.Items.NATTO).add(TofuItems.NATTO.get());
 		tag(TofuTags.Items.MISO).add(TofuItems.MISO.get());
 		tag(TofuTags.Items.SOYSAUCE_SOYSAUCE).add(TofuItems.BOTTLE_SOYSAUSE.get());
@@ -93,13 +93,13 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		this.tag(TofuTags.Items.FUKUMAME_ENCHANTABLE).add(TofuItems.FUKUMAME.get()).add(TofuItems.NETHER_FUKUMAME.get()).add(TofuItems.SOUL_FUKUMAME.get());
 
 		this.tag(ItemTags.DURABILITY_ENCHANTABLE).addTag(TofuTags.Items.FUKUMAME_ENCHANTABLE);
-		this.tag(ItemTags.HEAD_ARMOR).add(TofuItems.SCULK_BONE_HELMET.get()).add(TofuItems.TOFU_KINU_HELMET.get()).add(TofuItems.TOFU_MOMEN_HELMET.get())
+		this.tag(ItemTags.HEAD_ARMOR).add(TofuItems.TOFU_KINU_HELMET.get()).add(TofuItems.TOFU_MOMEN_HELMET.get())
 				.add(TofuItems.TOFU_METAL_HELMET.get()).add(TofuItems.TOFU_DIAMOND_HELMET.get());
-		this.tag(ItemTags.CHEST_ARMOR).add(TofuItems.SCULK_BONE_CHESTPLATE.get()).add(TofuItems.TOFU_KINU_CHESTPLATE.get()).add(TofuItems.TOFU_MOMEN_CHESTPLATE.get())
+		this.tag(ItemTags.CHEST_ARMOR).add(TofuItems.TOFU_KINU_CHESTPLATE.get()).add(TofuItems.TOFU_MOMEN_CHESTPLATE.get())
 				.add(TofuItems.TOFU_METAL_CHESTPLATE.get()).add(TofuItems.TOFU_DIAMOND_CHESTPLATE.get());
-		this.tag(ItemTags.LEG_ARMOR).add(TofuItems.SCULK_BONE_LEGGINGS.get()).add(TofuItems.TOFU_KINU_LEGGINGS.get()).add(TofuItems.TOFU_MOMEN_LEGGINGS.get())
+		this.tag(ItemTags.LEG_ARMOR).add(TofuItems.TOFU_KINU_LEGGINGS.get()).add(TofuItems.TOFU_MOMEN_LEGGINGS.get())
 				.add(TofuItems.TOFU_METAL_LEGGINGS.get()).add(TofuItems.TOFU_DIAMOND_LEGGINGS.get());
-		this.tag(ItemTags.FOOT_ARMOR).add(TofuItems.SCULK_BONE_BOOTS.get()).add(TofuItems.TOFU_KINU_BOOTS.get()).add(TofuItems.TOFU_MOMEN_BOOTS.get())
+		this.tag(ItemTags.FOOT_ARMOR).add(TofuItems.TOFU_KINU_BOOTS.get()).add(TofuItems.TOFU_MOMEN_BOOTS.get())
 				.add(TofuItems.TOFU_METAL_BOOTS.get()).add(TofuItems.TOFU_DIAMOND_BOOTS.get());
 		this.tag(ItemTags.SWORDS).add(TofuItems.TOFU_KINU_SWORD.get()).add(TofuItems.TOFU_MOMEN_SWORD.get())
 				.add(TofuItems.TOFU_METAL_SWORD.get()).add(TofuItems.TOFU_DIAMOND_SWORD.get());
