@@ -1,6 +1,7 @@
 package baguchan.tofucraft.data.generator;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.advancements.ChiliDistractionTrigger;
 import baguchan.tofucraft.advancements.MyTofuChildTrigger;
 import baguchan.tofucraft.advancements.NightmaresEchoTrigger;
 import baguchan.tofucraft.advancements.TofuPigPopTrigger;
@@ -118,7 +119,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							Component.translatable("advancements.tofucraft.sniffed_revenge.desc"),
 							null,
 							AdvancementType.TASK, true, true, false)
-					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuItems.CHILI.get()))
+					.addCriterion("has_item", ChiliDistractionTrigger.get())
 					.save(consumer, "tofucraft:sniffed_revenge");
 
 

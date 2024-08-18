@@ -2,14 +2,7 @@
   "parent": "tofucraft:ancient_chili",
   "criteria": {
     "has_item": {
-      "conditions": {
-        "items": [
-          {
-            "items": "tofucraft:chili"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "tofucraft:chili_distraction"
     }
   },
   "display": {
