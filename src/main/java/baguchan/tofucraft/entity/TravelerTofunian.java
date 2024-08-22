@@ -10,12 +10,17 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -41,6 +46,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -120,7 +126,7 @@ public class TravelerTofunian extends AbstractTofunian {
 		if (avillagertrades$itemlisting != null && avillagertrades$itemlisting1 != null) {
 			MerchantOffers merchantoffers = this.getOffers();
 			this.addOffersFromItemListings(merchantoffers, avillagertrades$itemlisting, 3);
-			this.addOffersFromItemListings(merchantoffers, avillagertrades$itemlisting1, 4);
+			this.addOffersFromItemListings(merchantoffers, avillagertrades$itemlisting1, 5);
 
 		}
 	}
@@ -145,6 +151,25 @@ public class TravelerTofunian extends AbstractTofunian {
 		}
 
 		this.setAge(Math.max(0, this.getAge()));
+	}
+
+	@Override
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, MobSpawnType p_35284_, @org.jetbrains.annotations.Nullable SpawnGroupData p_35285_) {
+		RandomSource randomsource = p_35282_.getRandom();
+		this.populateDefaultEquipmentSlots(randomsource, p_35283_);
+
+		return super.finalizeSpawn(p_35282_, p_35283_, p_35284_, p_35285_);
+	}
+
+	@Override
+	protected void populateDefaultEquipmentSlots(RandomSource p_217055_, DifficultyInstance p_217056_) {
+		if (p_217055_.nextFloat() < 0.15F + p_217056_.getEffectiveDifficulty() * 0.01F) {
+			this.setItemSlot(EquipmentSlot.FEET, new ItemStack(Items.LEATHER_BOOTS));
+			this.setDropChance(EquipmentSlot.FEET, 0.0F);
+		} else if (p_217055_.nextFloat() < 0.25F) {
+			this.setItemSlot(EquipmentSlot.FEET, new ItemStack(TofuItems.TOFU_MOMEN_BOOTS));
+			this.setDropChance(EquipmentSlot.FEET, 0.0F);
+		}
 	}
 
 	public boolean removeWhenFarAway(double p_35886_) {
