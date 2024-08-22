@@ -6,8 +6,6 @@ import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
-import baguchan.tofucraft.blockentity.TofuHangingSignBlockEntity;
-import baguchan.tofucraft.blockentity.TofuSignBlockEntity;
 import baguchan.tofucraft.blockentity.TofuVaultBlockEntity;
 import baguchan.tofucraft.blockentity.TofunianStatueBlockEntity;
 import baguchan.tofucraft.blockentity.tfenergy.TFCollectorBlockEntity;
@@ -34,20 +32,6 @@ public class TofuBlockEntitys {
 	public static final Supplier<BlockEntityType<TofunianStatueBlockEntity>> TOFUNIAN_STATUE = BLOCK_ENTITIES.register("tofunian_statue", () -> register("tofucraft:tofunian_statue", BlockEntityType.Builder.of(TofunianStatueBlockEntity::new, TofuBlocks.TOFUNIAN_STATUE.get())));
 
 	public static final Supplier<BlockEntityType<SuspiciousTofuBlockEntity>> SUSPICIOUS_TOFU = BLOCK_ENTITIES.register("suspicious_tofu_terrain", () -> register("tofucraft:suspicious_tofu_terrain", BlockEntityType.Builder.of(SuspiciousTofuBlockEntity::new, TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get())));
-	public static final Supplier<BlockEntityType<TofuSignBlockEntity>> TOFU_SIGN = BLOCK_ENTITIES.register("tofu_sign", () -> register("tofucraft:tofu_sign", BlockEntityType.Builder.of(TofuSignBlockEntity::new,
-			TofuBlocks.TOFU_STEM_SIGN.get(),
-			TofuBlocks.TOFU_STEM_WALL_SIGN.get(),
-			TofuBlocks.LEEK_GREEN_SIGN.get(),
-			TofuBlocks.LEEK_GREEN_WALL_SIGN.get(),
-			TofuBlocks.LEEK_SIGN.get(),
-			TofuBlocks.LEEK_WALL_SIGN.get())));
-	public static final Supplier<BlockEntityType<TofuHangingSignBlockEntity>> TOFU_HANGING_SIGN = BLOCK_ENTITIES.register("tofu_hanging_sign", () -> register("tofucraft:tofu_hanging_sign", BlockEntityType.Builder.of(TofuHangingSignBlockEntity::new,
-			TofuBlocks.TOFU_STEM_HANGING_SIGN.get(),
-			TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get(),
-			TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(),
-			TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get(),
-			TofuBlocks.LEEK_HANGING_SIGN.get(),
-			TofuBlocks.LEEK_WALL_HANGING_SIGN.get())));
 	public static final Supplier<BlockEntityType<TFStorageBlockEntity>> TF_STORAGE = BLOCK_ENTITIES.register("tf_storage", () -> register("tofucraft:tf_storage", BlockEntityType.Builder.of(TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE.get())));
 	public static final Supplier<BlockEntityType<TFCrafterBlockEntity>> TF_CRAFTER = BLOCK_ENTITIES.register("tf_crafter", () -> register("tofucraft:tf_crafter", BlockEntityType.Builder.of(TFCrafterBlockEntity::new, TofuBlocks.TF_CRAFTER.get())));
 	public static final Supplier<BlockEntityType<TFOvenBlockEntity>> TF_OVEN = BLOCK_ENTITIES.register("tf_oven", () -> register("tofucraft:tf_oven", BlockEntityType.Builder.of(TFOvenBlockEntity::new, TofuBlocks.TF_OVEN.get())));

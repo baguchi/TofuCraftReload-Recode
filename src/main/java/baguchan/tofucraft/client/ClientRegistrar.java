@@ -25,7 +25,6 @@ import baguchan.tofucraft.client.render.entity.FallingTofuRenderer;
 import baguchan.tofucraft.client.render.entity.FukumameThowerRenderer;
 import baguchan.tofucraft.client.render.entity.ShuDofuSpiderRender;
 import baguchan.tofucraft.client.render.entity.SoyballRenderer;
-import baguchan.tofucraft.client.render.entity.TofuBoatRenderer;
 import baguchan.tofucraft.client.render.entity.TofuCowRender;
 import baguchan.tofucraft.client.render.entity.TofuCreeperRender;
 import baguchan.tofucraft.client.render.entity.TofuFishRender;
@@ -47,7 +46,6 @@ import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchan.tofucraft.client.screen.TFCrafterScreen;
 import baguchan.tofucraft.client.screen.TFOvenScreen;
 import baguchan.tofucraft.client.screen.TFStorageScreen;
-import baguchan.tofucraft.entity.TofuBoat;
 import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
@@ -63,16 +61,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.blockentity.VaultRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -367,8 +361,6 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_COBWEB.get(), NattoCobWebRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_BALL.get(), NattoBallRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.FALLING_TOFU.get(), FallingTofuRenderer::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFU_BOAT.get(), (r) -> new TofuBoatRenderer(r, false));
-		event.registerEntityRenderer(TofuEntityTypes.TOFU_CHEST_BOAT.get(), (r) -> new TofuBoatRenderer(r, true));
 		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME_THOWER.get(), (p_174064_) -> {
 			return new FukumameThowerRenderer<>(p_174064_, TofuModelLayers.FUKUMAME_THOWER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
 		});
@@ -382,8 +374,6 @@ public class ClientRegistrar {
 		event.registerBlockEntityRenderer(TofuBlockEntitys.FOODPLATE.get(), FoodPlateRender::new);
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUNIAN_STATUE.get(), TofunianStatueRender::new);
 		event.registerBlockEntityRenderer(TofuBlockEntitys.SUSPICIOUS_TOFU.get(), BrushableBlockRenderer::new);
-		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFU_SIGN.get(), SignRenderer::new);
-		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFU_HANGING_SIGN.get(), HangingSignRenderer::new);
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFU_VAULT.get(), VaultRenderer::new);
 	}
 
@@ -398,11 +388,6 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.FUKUMAME_THOWER, FukumameThowerModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFU_PUFFER, TofuPufferModel::createBodyLayer);
-
-		for (TofuBoat.Type boatType : TofuBoat.Type.values()) {
-			event.registerLayerDefinition(TofuBoatRenderer.createBoatModelName(boatType), BoatModel::createBodyModel);
-			event.registerLayerDefinition(TofuBoatRenderer.createChestBoatModelName(boatType), ChestBoatModel::createBodyModel);
-		}
 	}
 
 	@SubscribeEvent

@@ -13,7 +13,6 @@ import baguchan.tofucraft.block.RiceBlock;
 import baguchan.tofucraft.block.SuspiciousTofuTerrainBlock;
 import baguchan.tofucraft.block.TofuBlock;
 import baguchan.tofucraft.block.TofuCakeBlock;
-import baguchan.tofucraft.block.TofuCeilingHangingSignBlock;
 import baguchan.tofucraft.block.TofuDetectorBlock;
 import baguchan.tofucraft.block.TofuFarmlandBlock;
 import baguchan.tofucraft.block.TofuFlowerBlock;
@@ -25,12 +24,9 @@ import baguchan.tofucraft.block.TofuMagmaBlock;
 import baguchan.tofucraft.block.TofuMushroomBlock;
 import baguchan.tofucraft.block.TofuPortalBlock;
 import baguchan.tofucraft.block.TofuSaplingBlock;
-import baguchan.tofucraft.block.TofuStandingSignBlock;
 import baguchan.tofucraft.block.TofuTerrainBlock;
 import baguchan.tofucraft.block.TofuTrapDoorBlock;
 import baguchan.tofucraft.block.TofuVaultBlock;
-import baguchan.tofucraft.block.TofuWallHangingSignBlock;
-import baguchan.tofucraft.block.TofuWallSignBlock;
 import baguchan.tofucraft.block.TofunianStatueBlock;
 import baguchan.tofucraft.block.YubaBlock;
 import baguchan.tofucraft.block.ZundamaBlock;
@@ -325,10 +321,10 @@ public class TofuBlocks {
 	public static final Supplier<SlabBlock> LEEK_GREEN_PLANKS_SLAB = register("leek_green_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get())));
 	public static final Supplier<FenceBlock> LEEK_GREEN_FENCE = register("leek_green_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
 	public static final Supplier<FenceGateBlock> LEEK_GREEN_FENCE_GATE = register("leek_green_fence_gate", () -> new FenceGateBlock(TofuWoodTypes.LEEK_GREEN, BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
-	public static final Supplier<StandingSignBlock> LEEK_GREEN_SIGN = register("leek_green_sign", () -> new TofuStandingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SIGN), TofuWoodTypes.LEEK_GREEN));
-	public static final Supplier<WallSignBlock> LEEK_GREEN_WALL_SIGN = BLOCKS.register("leek_green_wall_sign", () -> new TofuWallSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_SIGN), TofuWoodTypes.LEEK_GREEN));
-	public static final Supplier<CeilingHangingSignBlock> LEEK_GREEN_HANGING_SIGN = register("leek_green_hanging_sign", () -> new TofuCeilingHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_HANGING_SIGN), TofuWoodTypes.LEEK_GREEN));
-	public static final Supplier<WallHangingSignBlock> LEEK_GREEN_WALL_HANGING_SIGN = BLOCKS.register("leek_green_wall_hanging_sign", () -> new TofuWallHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_HANGING_SIGN), TofuWoodTypes.LEEK_GREEN));
+	public static final Supplier<StandingSignBlock> LEEK_GREEN_SIGN = register("leek_green_sign", () -> new StandingSignBlock(TofuWoodTypes.LEEK_GREEN, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SIGN)));
+	public static final Supplier<WallSignBlock> LEEK_GREEN_WALL_SIGN = BLOCKS.register("leek_green_wall_sign", () -> new WallSignBlock(TofuWoodTypes.LEEK_GREEN, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_SIGN)));
+	public static final Supplier<CeilingHangingSignBlock> LEEK_GREEN_HANGING_SIGN = register("leek_green_hanging_sign", () -> new CeilingHangingSignBlock(TofuWoodTypes.LEEK_GREEN, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_HANGING_SIGN)));
+	public static final Supplier<WallHangingSignBlock> LEEK_GREEN_WALL_HANGING_SIGN = BLOCKS.register("leek_green_wall_hanging_sign", () -> new WallHangingSignBlock(TofuWoodTypes.LEEK_GREEN, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_HANGING_SIGN)));
 	public static final Supplier<DoorBlock> LEEK_GREEN_DOOR = register("leek_green_door", () -> new DoorBlock(TofuBlockSetTypes.LEEK_GREEN, BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get()).noOcclusion()));
 	public static final Supplier<TrapDoorBlock> LEEK_GREEN_TRAPDOOR = register("leek_green_trapdoor", () -> new TrapDoorBlock(TofuBlockSetTypes.LEEK_GREEN, BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false)));
 
@@ -341,10 +337,10 @@ public class TofuBlocks {
 	public static final Supplier<SlabBlock> LEEK_PLANKS_SLAB = register("leek_planks_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(LEEK_PLANKS.get())));
 	public static final Supplier<FenceBlock> LEEK_FENCE = register("leek_fence", () -> new FenceBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
 	public static final Supplier<FenceGateBlock> LEEK_FENCE_GATE = register("leek_fence_gate", () -> new FenceGateBlock(TofuWoodTypes.LEEK, BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
-	public static final Supplier<StandingSignBlock> LEEK_SIGN = register("leek_sign", () -> new TofuStandingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SIGN), TofuWoodTypes.LEEK));
-	public static final Supplier<WallSignBlock> LEEK_WALL_SIGN = BLOCKS.register("leek_wall_sign", () -> new TofuWallSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_SIGN), TofuWoodTypes.LEEK));
-	public static final Supplier<CeilingHangingSignBlock> LEEK_HANGING_SIGN = register("leek_hanging_sign", () -> new TofuCeilingHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_HANGING_SIGN), TofuWoodTypes.LEEK));
-	public static final Supplier<WallHangingSignBlock> LEEK_WALL_HANGING_SIGN = BLOCKS.register("leek_wall_hanging_sign", () -> new TofuWallHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_HANGING_SIGN), TofuWoodTypes.LEEK));
+	public static final Supplier<StandingSignBlock> LEEK_SIGN = register("leek_sign", () -> new StandingSignBlock(TofuWoodTypes.LEEK, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SIGN)));
+	public static final Supplier<WallSignBlock> LEEK_WALL_SIGN = BLOCKS.register("leek_wall_sign", () -> new WallSignBlock(TofuWoodTypes.LEEK, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_SIGN)));
+	public static final Supplier<CeilingHangingSignBlock> LEEK_HANGING_SIGN = register("leek_hanging_sign", () -> new CeilingHangingSignBlock(TofuWoodTypes.LEEK, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_HANGING_SIGN)));
+	public static final Supplier<WallHangingSignBlock> LEEK_WALL_HANGING_SIGN = BLOCKS.register("leek_wall_hanging_sign", () -> new WallHangingSignBlock(TofuWoodTypes.LEEK, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_HANGING_SIGN)));
 
 
 	public static final Supplier<Block> ZUNDATOFU_MUSHROOM = register("zundatofu_mushroom", () -> new TofuMushroomBlock(TofuTreeGrowers.ZUNDA_MUSHROOM, BlockBehaviour.Properties.of().instabreak().noCollission().sound(SoundType.FUNGUS)));
@@ -358,10 +354,10 @@ public class TofuBlocks {
 	public static final Supplier<FenceGateBlock> TOFU_STEM_FENCE_GATE = register("tofustem_fence_gate", () -> new FenceGateBlock(TofuWoodTypes.TOFU_STEM, BlockBehaviour.Properties.of().strength(2.0F, 3.0F)));
 
 
-	public static final Supplier<StandingSignBlock> TOFU_STEM_SIGN = register("tofustem_sign", () -> new TofuStandingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SIGN), TofuWoodTypes.TOFU_STEM));
-	public static final Supplier<WallSignBlock> TOFU_STEM_WALL_SIGN = BLOCKS.register("tofustem_wall_sign", () -> new TofuWallSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_SIGN), TofuWoodTypes.TOFU_STEM));
-	public static final Supplier<CeilingHangingSignBlock> TOFU_STEM_HANGING_SIGN = register("tofustem_hanging_sign", () -> new TofuCeilingHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_HANGING_SIGN), TofuWoodTypes.TOFU_STEM));
-	public static final Supplier<WallHangingSignBlock> TOFU_STEM_WALL_HANGING_SIGN = BLOCKS.register("tofustem_wall_hanging_sign", () -> new TofuWallHangingSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_HANGING_SIGN), TofuWoodTypes.TOFU_STEM));
+	public static final Supplier<StandingSignBlock> TOFU_STEM_SIGN = register("tofustem_sign", () -> new StandingSignBlock(TofuWoodTypes.TOFU_STEM, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SIGN)));
+	public static final Supplier<WallSignBlock> TOFU_STEM_WALL_SIGN = BLOCKS.register("tofustem_wall_sign", () -> new WallSignBlock(TofuWoodTypes.TOFU_STEM, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_SIGN)));
+	public static final Supplier<CeilingHangingSignBlock> TOFU_STEM_HANGING_SIGN = register("tofustem_hanging_sign", () -> new CeilingHangingSignBlock(TofuWoodTypes.TOFU_STEM, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_HANGING_SIGN)));
+	public static final Supplier<WallHangingSignBlock> TOFU_STEM_WALL_HANGING_SIGN = BLOCKS.register("tofustem_wall_hanging_sign", () -> new WallHangingSignBlock(TofuWoodTypes.TOFU_STEM, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_HANGING_SIGN)));
 	public static final Supplier<DoorBlock> TOFU_STEM_DOOR = register("tofustem_door", () -> new DoorBlock(TofuBlockSetTypes.TOFU_STEM, BlockBehaviour.Properties.ofFullCopy(TOFU_STEM_PLANKS.get()).noOcclusion()));
 	public static final Supplier<TrapDoorBlock> TOFU_STEM_TRAPDOOR = register("tofustem_trapdoor", () -> new TrapDoorBlock(TofuBlockSetTypes.TOFU_STEM, BlockBehaviour.Properties.ofFullCopy(TOFU_STEM_PLANKS.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false)));
 
