@@ -26,6 +26,7 @@ import baguchan.tofucraft.item.SoymilkBottleItem;
 import baguchan.tofucraft.item.SpecialBitternItem;
 import baguchan.tofucraft.item.TFBatteryItem;
 import baguchan.tofucraft.item.armor.BreakableTofuArmorItem;
+import baguchan.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchan.tofucraft.item.armor.TofuArmorItem;
 import baguchan.tofucraft.item.tool.TofuAxeItem;
 import baguchan.tofucraft.item.tool.TofuHoeItem;
@@ -313,12 +314,12 @@ public class TofuItems {
 	public static final DeferredHolder<Item, ArmorItem> TOFU_KINU_HELMET = ITEMS.register("tofu_kinu_helmet", () -> new BreakableTofuArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.HELMET, (new Item.Properties().stacksTo(1).durability(1))));
 	public static final DeferredHolder<Item, ArmorItem> TOFU_KINU_CHESTPLATE = ITEMS.register("tofu_kinu_chestplate", () -> new BreakableTofuArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.CHESTPLATE, (new Item.Properties().stacksTo(1).durability(1))));
 	public static final DeferredHolder<Item, ArmorItem> TOFU_KINU_LEGGINGS = ITEMS.register("tofu_kinu_leggings", () -> new BreakableTofuArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.LEGGINGS, (new Item.Properties().stacksTo(1).durability(1))));
-	public static final DeferredHolder<Item, ArmorItem> TOFU_KINU_BOOTS = ITEMS.register("tofu_kinu_boots", () -> new BreakableTofuArmorItem(TofuArmorMaterial.KINU, ArmorItem.Type.BOOTS, (new Item.Properties().stacksTo(1).durability(1))));
+	public static final DeferredHolder<Item, ArmorItem> TOFU_KINU_BOOTS = ITEMS.register("tofu_kinu_boots", () -> new BreakableTofuBootsItem(TofuArmorMaterial.KINU, ArmorItem.Type.BOOTS, -0.5F, (new Item.Properties().stacksTo(1).component(TofuDataComponents.MAX_FALL_DURABILITY, 1).durability(1))));
 
 	public static final DeferredHolder<Item, ArmorItem> TOFU_MOMEN_HELMET = ITEMS.register("tofu_momen_helmet", () -> new BreakableTofuArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.HELMET, (new Item.Properties().stacksTo(1).durability(1))));
 	public static final DeferredHolder<Item, ArmorItem> TOFU_MOMEN_CHESTPLATE = ITEMS.register("tofu_momen_chestplate", () -> new BreakableTofuArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.CHESTPLATE, (new Item.Properties().stacksTo(1).durability(1))));
 	public static final DeferredHolder<Item, ArmorItem> TOFU_MOMEN_LEGGINGS = ITEMS.register("tofu_momen_leggings", () -> new BreakableTofuArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.LEGGINGS, (new Item.Properties().stacksTo(1).durability(1))));
-	public static final DeferredHolder<Item, ArmorItem> TOFU_MOMEN_BOOTS = ITEMS.register("tofu_momen_boots", () -> new BreakableTofuArmorItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.BOOTS, (new Item.Properties().stacksTo(1).durability(1))));
+	public static final DeferredHolder<Item, ArmorItem> TOFU_MOMEN_BOOTS = ITEMS.register("tofu_momen_boots", () -> new BreakableTofuBootsItem(TofuArmorMaterial.MOMEN, ArmorItem.Type.BOOTS, -0.25F, (new Item.Properties().stacksTo(1).component(TofuDataComponents.MAX_FALL_DURABILITY, 16).durability(1))));
 
 	public static final DeferredHolder<Item, ArmorItem> ARMOR_TOFU_SOLIDHELMET = ITEMS.register("tofu_solid_helmet", () -> new TofuArmorItem(TofuArmorMaterial.SOLID, ArmorItem.Type.HELMET, (new Item.Properties().stacksTo(1).durability(ArmorItem.Type.HELMET.getDurability(9)))));
 	public static final DeferredHolder<Item, ArmorItem> ARMOR_TOFU_SOLIDCHESTPLATE = ITEMS.register("tofu_solid_chestplate", () -> new TofuArmorItem(TofuArmorMaterial.SOLID, ArmorItem.Type.CHESTPLATE, (new Item.Properties().stacksTo(1).durability(ArmorItem.Type.CHESTPLATE.getDurability(9)))));

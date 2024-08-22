@@ -1,0 +1,27 @@
+{
+  "parent": "tofucraft:make_tofu",
+  "criteria": {
+    "has_item": {
+      "trigger": "tofucraft:narrow_escape"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.ancient_chili.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:tofu_kinu_boots"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.ancient_chili.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

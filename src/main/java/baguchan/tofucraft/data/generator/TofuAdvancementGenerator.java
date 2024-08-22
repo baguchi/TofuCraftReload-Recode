@@ -3,6 +3,7 @@ package baguchan.tofucraft.data.generator;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.advancements.ChiliDistractionTrigger;
 import baguchan.tofucraft.advancements.MyTofuChildTrigger;
+import baguchan.tofucraft.advancements.NarrowEscapeTrigger;
 import baguchan.tofucraft.advancements.NightmaresEchoTrigger;
 import baguchan.tofucraft.advancements.TofuPigPopTrigger;
 import baguchan.tofucraft.registry.TofuBlocks;
@@ -110,6 +111,15 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							AdvancementType.TASK, true, true, false)
 					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuItems.CHILI.get()))
 					.save(consumer, "tofucraft:ancient_chili");
+			AdvancementHolder narrow_escape = Advancement.Builder.advancement()
+					.parent(make_tofu)
+					.display(TofuItems.TOFU_KINU_BOOTS.get(),
+							Component.translatable("advancements.tofucraft.narrow_escape.title"),
+							Component.translatable("advancements.tofucraft.narrow_escape.desc"),
+							null,
+							AdvancementType.CHALLENGE, true, true, false)
+					.addCriterion("has_item", NarrowEscapeTrigger.get())
+					.save(consumer, "tofucraft:narrow_escape");
 
 
 			AdvancementHolder sniffed_revenge = Advancement.Builder.advancement()

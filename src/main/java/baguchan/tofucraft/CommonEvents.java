@@ -5,8 +5,11 @@ import baguchan.tofucraft.attachment.SoyHealthAttachment;
 import baguchan.tofucraft.attachment.TofuLivingAttachment;
 import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.entity.TofuGandlem;
+import baguchan.tofucraft.item.armor.BreakableTofuBootsItem;
+import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuDataComponents;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuEffects;
 import baguchan.tofucraft.registry.TofuEnchantments;
@@ -32,6 +35,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.Mth;
 import net.minecraft.util.SpawnUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -69,6 +74,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.SelectMusicEvent;
 import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
@@ -411,6 +417,30 @@ public class CommonEvents {
 			SoyHealthAttachment soyHealth = oldPlayer.getData(TofuAttachments.SOY_HEALTH);
 			SoyHealthAttachment soyHealth2 = newPlayer.getData(TofuAttachments.SOY_HEALTH);
 			soyHealth2.deserializeNBT(newPlayer.level().registryAccess(), soyHealth.serializeNBT(newPlayer.level().registryAccess()));
+		}
+	}
+
+	//on fall with tofu boots
+	@SubscribeEvent
+	public static void onFall(LivingDamageEvent.Post event) {
+		float damage = event.getNewDamage();
+		LivingEntity entity = event.getEntity();
+		ItemStack feet = entity.getItemBySlot(EquipmentSlot.FEET);
+		if (event.getSource().is(DamageTypeTags.IS_FALL)) {
+			if (feet.getItem() instanceof BreakableTofuBootsItem bootsItem) {
+				int unstability = feet.getOrDefault(TofuDataComponents.UNSTABILITY.get(), 0);
+				if (damage + unstability < feet.getOrDefault(TofuDataComponents.MAX_FALL_DURABILITY.get(), 0)) {
+					feet.set(TofuDataComponents.UNSTABILITY.get(), Mth.ceil(damage + 1) + unstability);
+				} else {
+					feet.hurtAndBreak(10, entity, EquipmentSlot.FEET);
+					entity.playSound(SoundEvents.SLIME_BLOCK_FALL);
+				}
+				if (entity.isAlive() && damage >= 10) {
+					if (entity instanceof ServerPlayer serverPlayer) {
+						TofuAdvancements.NARROW_ESCAPE_TRIGGER.get().trigger((ServerPlayer) serverPlayer);
+					}
+				}
+			}
 		}
 	}
 

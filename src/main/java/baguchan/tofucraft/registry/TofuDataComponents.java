@@ -18,6 +18,14 @@ public class TofuDataComponents {
 			"tf_energy_data",
 			p_341845_ -> p_341845_.persistent(TFEnergyData.CODEC).networkSynchronized(TFEnergyData.DIRECT_STREAM_CODEC).cacheEncoding()
 	);
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> MAX_FALL_DURABILITY = register(
+			"max_fall_durability",
+			p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
+	);
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> UNSTABILITY = register(
+			"unstability",
+			p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
+	);
 
 	public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> FERMENTATION_DATA = DATA_COMPONENT_TYPES.register("fermentation_data", () -> DataComponentType.<Integer>builder().persistent(ExtraCodecs.NON_NEGATIVE_INT.orElse(0)).networkSynchronized(ByteBufCodecs.VAR_INT).cacheEncoding().build());
 
