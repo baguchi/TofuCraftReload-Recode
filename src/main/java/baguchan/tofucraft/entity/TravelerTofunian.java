@@ -163,7 +163,7 @@ public class TravelerTofunian extends AbstractTofunian {
 
 	@Override
 	protected void populateDefaultEquipmentSlots(RandomSource p_217055_, DifficultyInstance p_217056_) {
-		if (p_217055_.nextFloat() < 0.15F + p_217056_.getEffectiveDifficulty() * 0.01F) {
+		if (p_217055_.nextFloat() < 0.1F + p_217056_.getEffectiveDifficulty() * 0.01F) {
 			this.setItemSlot(EquipmentSlot.FEET, new ItemStack(Items.LEATHER_BOOTS));
 			this.setDropChance(EquipmentSlot.FEET, 0.0F);
 		} else if (p_217055_.nextFloat() < 0.25F) {
