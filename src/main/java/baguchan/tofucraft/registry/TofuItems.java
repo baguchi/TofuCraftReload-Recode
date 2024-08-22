@@ -408,13 +408,13 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFUNIAN_BANNER_PATTERN = ITEMS.register("tofunian_banner_pattern", () -> new BannerPatternItem(CustomTagGenerator.BannerPatternTagGenerator.TOFUNIAN_BANNER_PATTERN, new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
 
-	public static final DeferredHolder<Item, Item> LEEK_BOAT = ITEMS.register("leek_boat", () -> new BoatItem(false, Boat.Type.valueOf("LEEK_BOAT"), new Item.Properties().stacksTo(1)));
-	public static final DeferredHolder<Item, Item> LEEK_GREEN_BOAT = ITEMS.register("leek_green_boat", () -> new BoatItem(false, Boat.Type.valueOf("LEEK_GREEN_BOAT"), new Item.Properties().stacksTo(1)));
-	public static final DeferredHolder<Item, Item> TOFU_STEM_BOAT = ITEMS.register("tofu_stem_boat", () -> new BoatItem(false, Boat.Type.valueOf("TOFU_STEM"), new Item.Properties().stacksTo(1)));
+	public static final DeferredHolder<Item, Item> LEEK_BOAT = ITEMS.register("leek_boat", () -> new BoatItem(false, Boat.Type.valueOf("TOFUCRAFT_LEEK"), new Item.Properties().stacksTo(1)));
+	public static final DeferredHolder<Item, Item> LEEK_GREEN_BOAT = ITEMS.register("leek_green_boat", () -> new BoatItem(false, Boat.Type.valueOf("TOFUCRAFT_LEEK_GREEN"), new Item.Properties().stacksTo(1)));
+	public static final DeferredHolder<Item, Item> TOFU_STEM_BOAT = ITEMS.register("tofu_stem_boat", () -> new BoatItem(false, Boat.Type.valueOf("TOFUCRAFT_TOFU_STEM"), new Item.Properties().stacksTo(1)));
 
-	public static final DeferredHolder<Item, Item> LEEK_CHEST_BOAT = ITEMS.register("leek_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("LEEK_BOAT"), new Item.Properties().stacksTo(1)));
-	public static final DeferredHolder<Item, Item> LEEK_GREEN_CHEST_BOAT = ITEMS.register("leek_green_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("LEEK_GREEN_BOAT"), new Item.Properties().stacksTo(1)));
-	public static final DeferredHolder<Item, Item> TOFU_STEM_CHEST_BOAT = ITEMS.register("tofu_stem_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("TOFU_STEM"), new Item.Properties().stacksTo(1)));
+	public static final DeferredHolder<Item, Item> LEEK_CHEST_BOAT = ITEMS.register("leek_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("TOFUCRAFT_LEEK"), new Item.Properties().stacksTo(1)));
+	public static final DeferredHolder<Item, Item> LEEK_GREEN_CHEST_BOAT = ITEMS.register("leek_green_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("TOFUCRAFT_LEEK_GREEN"), new Item.Properties().stacksTo(1)));
+	public static final DeferredHolder<Item, Item> TOFU_STEM_CHEST_BOAT = ITEMS.register("tofu_stem_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("TOFUCRAFT_TOFU_STEM"), new Item.Properties().stacksTo(1)));
 	public static final DeferredHolder<Item, Item> TOFU_KEY = ITEMS.register("tofu_key", () -> new Item(new Item.Properties()));
 	public static final DeferredHolder<Item, Item> MUSIC_DISC_GREEN_BRANCH = ITEMS.register("music_disc_green_branch", () -> new Item(new Item.Properties().jukeboxPlayable(TofuJukeboxSongs.GREEN_BRANCH)));
 
