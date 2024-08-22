@@ -21,7 +21,7 @@ public class TofuConfig {
 			travelerTofunianSpawn = builder
 					.translation(TofuCraftReload.MODID + ".config.travelerTofunianSpawn")
 					.comment("Spawn Traveler Tofunian.")
-					.define("Traveler Tofunian Spawn", false);
+					.define("Traveler Tofunian Spawn", true);
 		}
 	}
 }
