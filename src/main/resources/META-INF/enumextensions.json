@@ -5,7 +5,7 @@
       "name": "TOFUCRAFT_TOFU_STEM",
       "constructor": "(Ljava/util/function/Supplier;Ljava/lang/String;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Z)V",
       "parameters": {
-        "class": "quek/undergarden/UGEnumExtensions",
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
         "method": "TOFU_STEM_BOAT"
       }
     },
@@ -14,7 +14,7 @@
       "name": "TOFUCRAFT_LEEK",
       "constructor": "(Ljava/util/function/Supplier;Ljava/lang/String;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Z)V",
       "parameters": {
-        "class": "quek/undergarden/UGEnumExtensions",
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
         "method": "LEEK_BOAT"
       }
     },
@@ -23,7 +23,7 @@
       "name": "TOFUCRAFT_GREEN_LEEK",
       "constructor": "(Ljava/util/function/Supplier;Ljava/lang/String;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Z)V",
       "parameters": {
-        "class": "quek/undergarden/UGEnumExtensions",
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
         "method": "GREEN_LEEK_BOAT"
       }
     }
