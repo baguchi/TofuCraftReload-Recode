@@ -27,10 +27,12 @@ public class TofuParticleTypes {
 	public static final Supplier<SimpleParticleType> DRIP_SOYMILK_HANG = PARTICLE_TYPES.register("drip_soymilk_hang", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> DRIP_SOYMILK_FALL = PARTICLE_TYPES.register("drip_soymilk_fall", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> SOYMILK_SPLASH = PARTICLE_TYPES.register("soymilk_splash", () -> new SimpleParticleType(false));
+	public static final Supplier<SimpleParticleType> DRIP_MISO_HANG = PARTICLE_TYPES.register("drip_miso_hang", () -> new SimpleParticleType(false));
+	public static final Supplier<SimpleParticleType> DRIP_MISO_FALL = PARTICLE_TYPES.register("drip_miso_fall", () -> new SimpleParticleType(false));
+	public static final Supplier<SimpleParticleType> MISO_SPLASH = PARTICLE_TYPES.register("miso_splash", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> ZUNDA_CLOUD = PARTICLE_TYPES.register("zunda_cloud", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> SIMPLE_STINKE = PARTICLE_TYPES.register("simple_stink", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> STINK = PARTICLE_TYPES.register("stink", () -> new SimpleParticleType(false));
-
 	@SubscribeEvent
 	public static void registerFactories(RegisterParticleProvidersEvent event) {
 		event.registerSpriteSet(TofuParticleTypes.TOFU_PORTAL.get(), TofuPortalParticle.Provider::new);
@@ -38,6 +40,9 @@ public class TofuParticleTypes {
 		event.registerSpriteSet(TofuParticleTypes.DRIP_SOYMILK_HANG.get(), SoymilkDripParticle.SoymilkHangProvider::new);
 		event.registerSpriteSet(TofuParticleTypes.DRIP_SOYMILK_FALL.get(), SoymilkDripParticle.SoymilkFallProvider::new);
 		event.registerSpriteSet(TofuParticleTypes.SOYMILK_SPLASH.get(), SoymilkSplashParticle.Provider::new);
+		event.registerSpriteSet(TofuParticleTypes.DRIP_MISO_HANG.get(), SoymilkDripParticle.MisoHangProvider::new);
+		event.registerSpriteSet(TofuParticleTypes.DRIP_MISO_FALL.get(), SoymilkDripParticle.MisoFallProvider::new);
+		event.registerSpriteSet(TofuParticleTypes.MISO_SPLASH.get(), SoymilkSplashParticle.MisoProvider::new);
 		event.registerSpriteSet(TofuParticleTypes.ZUNDA_CLOUD.get(), ParticleZundaCloud.CloudFactory::new);
 		event.registerSpriteSet(TofuParticleTypes.STINK.get(), ParticleStink.StinkFactory::new);
 		event.registerSpriteSet(TofuParticleTypes.SIMPLE_STINKE.get(), ParticleSimpleStink.Provider::new);

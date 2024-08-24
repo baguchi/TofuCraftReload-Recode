@@ -38,17 +38,17 @@ public class SoymilkSplashParticle extends WaterDropParticle {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static class HellProvider implements ParticleProvider<SimpleParticleType> {
+	public static class MisoProvider implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet sprite;
 
-		public HellProvider(SpriteSet p_107947_) {
+		public MisoProvider(SpriteSet p_107947_) {
 			this.sprite = p_107947_;
 		}
 
 		public Particle createParticle(SimpleParticleType p_107958_, ClientLevel p_107959_, double p_107960_, double p_107961_, double p_107962_, double p_107963_, double p_107964_, double p_107965_) {
 			SoymilkSplashParticle splashparticle = new SoymilkSplashParticle(p_107959_, p_107960_, p_107961_, p_107962_, p_107963_, p_107964_, p_107965_);
 			splashparticle.pickSprite(this.sprite);
-			splashparticle.setColor(1.0F, 0.4F, 0.4F);
+			splashparticle.setColor(32 / 255F, 10 / 255F, 11 / 255F);
 			return splashparticle;
 		}
 	}

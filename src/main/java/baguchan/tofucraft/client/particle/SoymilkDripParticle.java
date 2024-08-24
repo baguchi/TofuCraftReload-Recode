@@ -13,6 +13,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -187,6 +188,38 @@ public class SoymilkDripParticle extends TextureSheetParticle {
 		public Particle createParticle(SimpleParticleType p_106405_, ClientLevel p_106406_, double p_106407_, double p_106408_, double p_106409_, double p_106410_, double p_106411_, double p_106412_) {
 			SoymilkDripParticle dripparticle = new SoymilkDripParticle.DripHangParticle(p_106406_, p_106407_, p_106408_, p_106409_, TofuFluids.SOYMILK.get(), TofuParticleTypes.DRIP_SOYMILK_FALL.get());
 			dripparticle.setColor(1.0F, 1.0F, 1.0F);
+			dripparticle.pickSprite(this.sprite);
+			return dripparticle;
+		}
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public static class MisoFallProvider implements ParticleProvider<SimpleParticleType> {
+		protected final SpriteSet sprite;
+
+		public MisoFallProvider(SpriteSet p_106373_) {
+			this.sprite = p_106373_;
+		}
+
+		public Particle createParticle(SimpleParticleType p_106384_, ClientLevel p_106385_, double p_106386_, double p_106387_, double p_106388_, double p_106389_, double p_106390_, double p_106391_) {
+			SoymilkDripParticle dripparticle = new SoymilkDripParticle.FallAndLandParticle(p_106385_, p_106386_, p_106387_, p_106388_, Fluids.EMPTY, TofuParticleTypes.MISO_SPLASH.get());
+			dripparticle.setColor(32 / 255F, 10 / 255F, 11 / 255F);
+			dripparticle.pickSprite(this.sprite);
+			return dripparticle;
+		}
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public static class MisoHangProvider implements ParticleProvider<SimpleParticleType> {
+		protected final SpriteSet sprite;
+
+		public MisoHangProvider(SpriteSet p_106394_) {
+			this.sprite = p_106394_;
+		}
+
+		public Particle createParticle(SimpleParticleType p_106405_, ClientLevel p_106406_, double p_106407_, double p_106408_, double p_106409_, double p_106410_, double p_106411_, double p_106412_) {
+			SoymilkDripParticle dripparticle = new SoymilkDripParticle.DripHangParticle(p_106406_, p_106407_, p_106408_, p_106409_, Fluids.EMPTY, TofuParticleTypes.DRIP_MISO_FALL.get());
+			dripparticle.setColor(32 / 255F, 10 / 255F, 11 / 255F);
 			dripparticle.pickSprite(this.sprite);
 			return dripparticle;
 		}

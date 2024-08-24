@@ -1,6 +1,8 @@
 package baguchan.tofucraft.block.utils;
 
+import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,6 +20,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.function.Supplier;
 
@@ -30,6 +34,23 @@ public class MisoBarrelBlock extends WeightBaseBlock {
 		super(properties);
 		this.finishedBottleItem = finishedBottleItem;
 		registerDefaultState(this.stateDefinition.any().setValue(STAT, Stat.USING).setValue(TIME, 0).setValue(FLUIDS, 0));
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
+		super.animateTick(stateIn, worldIn, pos, rand);
+		if (isUnderWeight(worldIn, pos)) {
+			if (rand.nextInt(3) == 0) {
+				double d4 = rand.nextBoolean() ? 0.8D : -0.8D;
+				double d0 = pos.getX() + 0.5D + rand.nextFloat() * d4;
+				double d1 = (pos.getY() + rand.nextFloat());
+				double d2 = pos.getZ() + 0.5D + rand.nextFloat() * d4;
+				ParticleOptions particle = TofuParticleTypes.DRIP_MISO_HANG.get();
+
+				worldIn.addParticle(particle, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+			}
+		}
 	}
 
 	@Override
