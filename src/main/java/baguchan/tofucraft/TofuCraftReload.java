@@ -42,7 +42,6 @@ import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.pathfinder.PathType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -116,9 +115,6 @@ public class TofuCraftReload {
 		modContainer.registerConfig(ModConfig.Type.COMMON, TofuConfig.COMMON_SPEC);
 		modBus.addListener(TofuCraftReload::registerBETypes);
 	}
-
-	PathType
-
 
 	private static void registerBETypes(BlockEntityTypeAddBlocksEvent event) {
 		event.modify(BlockEntityType.SIGN,

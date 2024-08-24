@@ -7,17 +7,22 @@ import baguchan.tofucraft.advancements.NarrowEscapeTrigger;
 import baguchan.tofucraft.advancements.NightmaresEchoTrigger;
 import baguchan.tofucraft.advancements.TofuPigPopTrigger;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuItems;
+import baguchan.tofucraft.registry.TofuStructures;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.BlockPredicate;
+import net.minecraft.advancements.critereon.ChangeDimensionTrigger;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.ItemUsedOnLocationTrigger;
 import net.minecraft.advancements.critereon.LocationPredicate;
+import net.minecraft.advancements.critereon.PlayerTrigger;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -202,7 +207,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							Component.translatable("advancements.tofucraft.tofuworld.desc"),
 							null,
 							AdvancementType.GOAL, true, true, false)
-					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuBlocks.TOFU_TERRAIN.get()))
+					.addCriterion("has_item", ChangeDimensionTrigger.TriggerInstance.changedDimensionTo(TofuDimensions.tofu_world))
 					.save(consumer, "tofucraft:tofuworld");
 			AdvancementHolder my_tofu_child = Advancement.Builder.advancement()
 					.parent(tofu_world)
@@ -220,7 +225,9 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							Component.translatable("advancements.tofucraft.find_tofu_castle.desc"),
 							null,
 							AdvancementType.GOAL, true, true, false)
-					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuBlocks.ISHITOFU_BRICK.get()))
+					.addCriterion("has_item", PlayerTrigger.TriggerInstance.located(
+							LocationPredicate.Builder.inStructure(provider.lookupOrThrow(Registries.STRUCTURE).getOrThrow(TofuStructures.TOFU_CASTLE))
+					))
 					.save(consumer, "tofucraft:find_tofu_castle");
 			AdvancementHolder zunda_legends = Advancement.Builder.advancement()
 					.rewards(AdvancementRewards.Builder.experience(100))
