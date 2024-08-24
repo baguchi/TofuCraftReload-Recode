@@ -38,10 +38,10 @@ public class SoymilkSplashParticle extends WaterDropParticle {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static class MisoProvider implements ParticleProvider<SimpleParticleType> {
+	public static class SoysauceProvider implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet sprite;
 
-		public MisoProvider(SpriteSet p_107947_) {
+		public SoysauceProvider(SpriteSet p_107947_) {
 			this.sprite = p_107947_;
 		}
 

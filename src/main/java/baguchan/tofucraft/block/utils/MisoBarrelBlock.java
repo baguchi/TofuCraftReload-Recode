@@ -46,7 +46,7 @@ public class MisoBarrelBlock extends WeightBaseBlock {
 				double d0 = pos.getX() + 0.5D + rand.nextFloat() * d4;
 				double d1 = (pos.getY() + rand.nextFloat());
 				double d2 = pos.getZ() + 0.5D + rand.nextFloat() * d4;
-				ParticleOptions particle = TofuParticleTypes.DRIP_MISO_HANG.get();
+				ParticleOptions particle = TofuParticleTypes.DRIP_SOYSAUCE_HANG.get();
 
 				worldIn.addParticle(particle, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 			}
