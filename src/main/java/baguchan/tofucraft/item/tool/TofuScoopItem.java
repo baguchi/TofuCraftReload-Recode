@@ -1,7 +1,6 @@
 package baguchan.tofucraft.item.tool;
 
 import baguchan.tofucraft.block.SuspiciousTofuTerrainBlock;
-import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,6 +24,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BrushableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -97,12 +97,14 @@ public class TofuScoopItem extends Item {
 						p_273467_.playSound(player, blockpos, soundevent, SoundSource.BLOCKS);
 						if (!p_273467_.isClientSide()) {
 							BlockEntity blockentity = p_273467_.getBlockEntity(blockpos);
-							if (blockentity instanceof SuspiciousTofuBlockEntity) {
-								SuspiciousTofuBlockEntity brushableblockentity = (SuspiciousTofuBlockEntity) blockentity;
-								boolean flag1 = brushableblockentity.brush(p_273467_.getGameTime(), player, blockhitresult.getDirection());
-								if (flag1) {
-									EquipmentSlot equipmentslot = p_273316_.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
-									p_273316_.hurtAndBreak(1, p_273619_, equipmentslot);
+							if ($$18 instanceof SuspiciousTofuTerrainBlock) {
+								if (blockentity instanceof BrushableBlockEntity) {
+									BrushableBlockEntity brushableblockentity = (BrushableBlockEntity) blockentity;
+									boolean flag1 = brushableblockentity.brush(p_273467_.getGameTime(), player, blockhitresult.getDirection());
+									if (flag1) {
+										EquipmentSlot equipmentslot = p_273316_.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+										p_273316_.hurtAndBreak(1, p_273619_, equipmentslot);
+									}
 								}
 							}
 						}

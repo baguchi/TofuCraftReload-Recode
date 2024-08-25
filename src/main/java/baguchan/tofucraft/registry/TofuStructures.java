@@ -159,48 +159,48 @@ public class TofuStructures {
 		HolderGetter<StructureProcessorList> processors = context.lookup(Registries.PROCESSOR_LIST);
 
 		context.register(TOFU_VILLAGE_TOWN_CENTERS, new StructureTemplatePool(emptyPool, ImmutableList.of(
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/town_centers/rest_place")), 1)
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/town_centers/rest_place")), 1)
 		), StructureTemplatePool.Projection.RIGID));
 
 		context.register(TOFU_VILLAGE_HOUSE, new StructureTemplatePool(emptyPool, ImmutableList.of(
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/house/hut_1")), 4),
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/house/farmlands")), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/house/smithing_hut")), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/house/water_space")), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/house/smithing_hut_2")), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/house/water_space_2")), 1)
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/hut_1")), 4),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/farmlands")), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/smithing_hut")), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/water_space")), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/smithing_hut_2")), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/water_space_2")), 1)
 		), StructureTemplatePool.Projection.RIGID));
 
 
 		context.register(TOFU_VILLAGE_STREETS, new StructureTemplatePool(emptyPool, ImmutableList.of(
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/streets/road_1"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 2),
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/streets/road_2"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/streets/road_3"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/streets/road_4"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 2),
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/streets/road_5"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 3),
-				Pair.of(StructurePoolElement.single(name("tofu_village/plains/streets/road_6"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 3)
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/streets/road_1"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 2),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/streets/road_2"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/streets/road_3"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/streets/road_4"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 2),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/streets/road_5"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 3),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/streets/road_6"), processors.getOrThrow(TOFU_PLAIN_VILLAGE_ROAD)), 3)
 		), StructureTemplatePool.Projection.TERRAIN_MATCHING));
 
 
 		context.register(ZUNDA_TOFU_VILLAGE_TOWN_CENTERS, new StructureTemplatePool(emptyPool, ImmutableList.of(
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/town_centers/rest_place")), 1)
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/town_centers/rest_place")), 1)
 		), StructureTemplatePool.Projection.RIGID));
 		context.register(ZUNDA_TOFU_VILLAGE_STREETS, new StructureTemplatePool(emptyPool, ImmutableList.of(
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/streets/road_1"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 3),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/streets/road_2"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 2),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/streets/road_3"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 2),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/streets/road_4"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/streets/road_5"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 3),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/streets/road_6"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 3)
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/streets/road_1"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 3),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/streets/road_2"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 2),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/streets/road_3"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 2),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/streets/road_4"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/streets/road_5"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 3),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/streets/road_6"), processors.getOrThrow(ZUNDA_FOREST_VILLAGE_ROAD)), 3)
 		), StructureTemplatePool.Projection.TERRAIN_MATCHING));
 		context.register(ZUNDA_TOFU_VILLAGE_HOUSE, new StructureTemplatePool(emptyPool, ImmutableList.of(
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/house/hut_1")), 4),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/house/hut_2")), 2),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/house/farmlands")), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/house/smithing_hut")), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/house/water_space")), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/house/smithing_hut_2")), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_village/zunda/house/water_space_2")), 1)
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/hut_1")), 4),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/hut_2")), 2),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/farmlands")), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/smithing_hut")), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/water_space")), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/smithing_hut_2")), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/water_space_2")), 1)
 		), StructureTemplatePool.Projection.RIGID));
 
 		context.register(TOFUNIAN, new StructureTemplatePool(emptyPool, ImmutableList.of(

@@ -3,10 +3,8 @@ package baguchan.tofucraft.registry;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.blockentity.FoodPlateBlockEntity;
 import baguchan.tofucraft.blockentity.SaltFurnaceBlockEntity;
-import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
-import baguchan.tofucraft.blockentity.TofuVaultBlockEntity;
 import baguchan.tofucraft.blockentity.TofunianStatueBlockEntity;
 import baguchan.tofucraft.blockentity.tfenergy.TFCollectorBlockEntity;
 import baguchan.tofucraft.blockentity.tfenergy.TFCrafterBlockEntity;
@@ -31,14 +29,10 @@ public class TofuBlockEntitys {
 	public static final Supplier<BlockEntityType<FoodPlateBlockEntity>> FOODPLATE = BLOCK_ENTITIES.register("foodplate", () -> register("tofucraft:foodplate", BlockEntityType.Builder.of(FoodPlateBlockEntity::new, TofuBlocks.FOODPLATE.get())));
 	public static final Supplier<BlockEntityType<TofunianStatueBlockEntity>> TOFUNIAN_STATUE = BLOCK_ENTITIES.register("tofunian_statue", () -> register("tofucraft:tofunian_statue", BlockEntityType.Builder.of(TofunianStatueBlockEntity::new, TofuBlocks.TOFUNIAN_STATUE.get())));
 
-	public static final Supplier<BlockEntityType<SuspiciousTofuBlockEntity>> SUSPICIOUS_TOFU = BLOCK_ENTITIES.register("suspicious_tofu_terrain", () -> register("tofucraft:suspicious_tofu_terrain", BlockEntityType.Builder.of(SuspiciousTofuBlockEntity::new, TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get())));
 	public static final Supplier<BlockEntityType<TFStorageBlockEntity>> TF_STORAGE = BLOCK_ENTITIES.register("tf_storage", () -> register("tofucraft:tf_storage", BlockEntityType.Builder.of(TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE.get())));
 	public static final Supplier<BlockEntityType<TFCrafterBlockEntity>> TF_CRAFTER = BLOCK_ENTITIES.register("tf_crafter", () -> register("tofucraft:tf_crafter", BlockEntityType.Builder.of(TFCrafterBlockEntity::new, TofuBlocks.TF_CRAFTER.get())));
 	public static final Supplier<BlockEntityType<TFOvenBlockEntity>> TF_OVEN = BLOCK_ENTITIES.register("tf_oven", () -> register("tofucraft:tf_oven", BlockEntityType.Builder.of(TFOvenBlockEntity::new, TofuBlocks.TF_OVEN.get())));
 	public static final Supplier<BlockEntityType<TFCollectorBlockEntity>> TF_COLLECTOR = BLOCK_ENTITIES.register("tf_collector", () -> register("tofucraft:tf_collector", BlockEntityType.Builder.of(TFCollectorBlockEntity::new, TofuBlocks.TF_COLLECTOR.get())));
-
-	public static final Supplier<BlockEntityType<TofuVaultBlockEntity>> TOFU_VAULT = BLOCK_ENTITIES.register("tofu_vault", () -> register("tofucraft:tofu_vault", BlockEntityType.Builder.of(TofuVaultBlockEntity::new, TofuBlocks.TOFU_VAULT.get())));
-
 
 
 	private static <T extends BlockEntity> BlockEntityType<T> register(String p_200966_0_, BlockEntityType.Builder<T> p_200966_1_) {

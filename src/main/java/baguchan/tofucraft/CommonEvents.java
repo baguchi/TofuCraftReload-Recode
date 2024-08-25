@@ -3,7 +3,6 @@ package baguchan.tofucraft;
 import baguchan.tofucraft.api.tfenergy.IEnergyContained;
 import baguchan.tofucraft.attachment.SoyHealthAttachment;
 import baguchan.tofucraft.attachment.TofuLivingAttachment;
-import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.entity.TofuGandlem;
 import baguchan.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchan.tofucraft.registry.TofuAdvancements;
@@ -61,8 +60,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -75,7 +72,6 @@ import net.neoforged.neoforge.client.event.SelectMusicEvent;
 import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
@@ -147,29 +143,6 @@ public class CommonEvents {
 		Vec3 vec3 = p_41437_.getEyePosition();
 		Vec3 vec31 = vec3.add(p_41437_.calculateViewVector(p_41437_.getXRot(), p_41437_.getYRot()).scale(p_41437_.blockInteractionRange()));
 		return p_41436_.clip(new ClipContext(vec3, vec31, ClipContext.Block.OUTLINE, p_41438_, p_41437_));
-	}
-
-
-	@SubscribeEvent
-	public static void onUsingItem(LivingEntityUseItemEvent event) {
-		ItemStack stack = event.getItem();
-		Level level = event.getEntity().level();
-
-		if (stack.is(Items.BRUSH) && event.getEntity() instanceof Player player) {
-			BlockHitResult blockhitresult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
-			BlockPos $$7 = blockhitresult.getBlockPos();
-			BlockState blockstate = level.getBlockState($$7);
-			if (!level.isClientSide() && blockstate.is(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get())) {
-				BlockEntity $$11 = level.getBlockEntity($$7);
-				if ($$11 instanceof SuspiciousTofuBlockEntity) {
-					SuspiciousTofuBlockEntity suspicioussandblockentity = (SuspiciousTofuBlockEntity) $$11;
-					boolean flag = suspicioussandblockentity.brush(level.getGameTime(), player, blockhitresult.getDirection());
-					if (flag) {
-						stack.hurtAndBreak(1, event.getEntity(), EquipmentSlot.MAINHAND);
-					}
-				}
-			}
-		}
 	}
 
 	@SubscribeEvent

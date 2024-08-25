@@ -66,8 +66,6 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
-import net.minecraft.client.renderer.blockentity.VaultRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
@@ -373,8 +371,6 @@ public class ClientRegistrar {
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUCHEST.get(), TofuChestRenderer::new);
 		event.registerBlockEntityRenderer(TofuBlockEntitys.FOODPLATE.get(), FoodPlateRender::new);
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUNIAN_STATUE.get(), TofunianStatueRender::new);
-		event.registerBlockEntityRenderer(TofuBlockEntitys.SUSPICIOUS_TOFU.get(), BrushableBlockRenderer::new);
-		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFU_VAULT.get(), VaultRenderer::new);
 	}
 
 	@SubscribeEvent

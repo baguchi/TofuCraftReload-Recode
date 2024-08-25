@@ -2,7 +2,7 @@
   "elements": [
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/plains/streets/road_1",
         "processors": "tofucraft:tofu_plain_village_road",
         "projection": "terrain_matching"
@@ -11,7 +11,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/plains/streets/road_2",
         "processors": "tofucraft:tofu_plain_village_road",
         "projection": "terrain_matching"
@@ -20,7 +20,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/plains/streets/road_3",
         "processors": "tofucraft:tofu_plain_village_road",
         "projection": "terrain_matching"
@@ -29,7 +29,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/plains/streets/road_4",
         "processors": "tofucraft:tofu_plain_village_road",
         "projection": "terrain_matching"
@@ -38,7 +38,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/plains/streets/road_5",
         "processors": "tofucraft:tofu_plain_village_road",
         "projection": "terrain_matching"
@@ -47,7 +47,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/plains/streets/road_6",
         "processors": "tofucraft:tofu_plain_village_road",
         "projection": "terrain_matching"

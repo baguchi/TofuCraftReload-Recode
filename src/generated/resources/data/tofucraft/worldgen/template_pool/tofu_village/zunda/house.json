@@ -2,7 +2,7 @@
   "elements": [
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/zunda/house/hut_1",
         "processors": {
           "processors": []
@@ -13,7 +13,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/zunda/house/hut_2",
         "processors": {
           "processors": []
@@ -24,7 +24,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/zunda/house/farmlands",
         "processors": {
           "processors": []
@@ -35,7 +35,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/zunda/house/smithing_hut",
         "processors": {
           "processors": []
@@ -46,7 +46,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/zunda/house/water_space",
         "processors": {
           "processors": []
@@ -57,7 +57,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/zunda/house/smithing_hut_2",
         "processors": {
           "processors": []
@@ -68,7 +68,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "tofucraft:tofu_village/zunda/house/water_space_2",
         "processors": {
           "processors": []
