@@ -3,13 +3,19 @@
   "criteria": {
     "has_item": {
       "conditions": {
-        "items": [
+        "player": [
           {
-            "items": "tofucraft:tofuishi_brick"
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "tofucraft:tofu_castle"
+              }
+            }
           }
         ]
       },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "minecraft:location"
     }
   },
   "display": {

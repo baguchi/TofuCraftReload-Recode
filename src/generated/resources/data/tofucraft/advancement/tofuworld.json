@@ -3,13 +3,9 @@
   "criteria": {
     "has_item": {
       "conditions": {
-        "items": [
-          {
-            "items": "tofucraft:tofu_terrain"
-          }
-        ]
+        "to": "tofucraft:tofu_world"
       },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "minecraft:changed_dimension"
     }
   },
   "display": {

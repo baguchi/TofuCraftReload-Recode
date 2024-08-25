@@ -1,0 +1,18 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 16324620,
+    "separation": 8,
+    "spacing": 32
+  },
+  "structures": [
+    {
+      "structure": "tofucraft:tofu_village",
+      "weight": 1
+    },
+    {
+      "structure": "tofucraft:zunda_tofu_village",
+      "weight": 1
+    }
+  ]
+}

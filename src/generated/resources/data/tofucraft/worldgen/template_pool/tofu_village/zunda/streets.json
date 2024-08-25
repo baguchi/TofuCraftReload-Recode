@@ -1,0 +1,59 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "tofucraft:tofu_village/zunda/streets/road_1",
+        "processors": "tofucraft:zunda_forest_village_road",
+        "projection": "terrain_matching"
+      },
+      "weight": 3
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "tofucraft:tofu_village/zunda/streets/road_2",
+        "processors": "tofucraft:zunda_forest_village_road",
+        "projection": "terrain_matching"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "tofucraft:tofu_village/zunda/streets/road_3",
+        "processors": "tofucraft:zunda_forest_village_road",
+        "projection": "terrain_matching"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "tofucraft:tofu_village/zunda/streets/road_4",
+        "processors": "tofucraft:zunda_forest_village_road",
+        "projection": "terrain_matching"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "tofucraft:tofu_village/zunda/streets/road_5",
+        "processors": "tofucraft:zunda_forest_village_road",
+        "projection": "terrain_matching"
+      },
+      "weight": 3
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "tofucraft:tofu_village/zunda/streets/road_6",
+        "processors": "tofucraft:zunda_forest_village_road",
+        "projection": "terrain_matching"
+      },
+      "weight": 3
+    }
+  ],
+  "fallback": "minecraft:empty"
+}

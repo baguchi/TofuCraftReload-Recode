@@ -10,10 +10,22 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 
 public class TofuTags {
+	public static class Biomes {
+		public static final TagKey<Biome> TOFU_CASTLE = tag("has_structure/tofu_castle");
+		public static final TagKey<Biome> TOFU_RUINS = tag("has_structure/tofu_ruins");
+		public static final TagKey<Biome> TOFU_VILLAGE = tag("has_structure/tofu_village");
+		public static final TagKey<Biome> ZUNDA_TOFU_VILLAGE = tag("has_structure/zunda_tofu_village");
+
+		private static TagKey<Biome> tag(String name) {
+			return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+		}
+	}
+
 	public static class Blocks {
 		public static final TagKey<Block> TOFU_METAL = tag("tofu_metal");
 		public static final TagKey<Block> SOFT_TOFU = tag("soft_tofu");

@@ -10,6 +10,7 @@ import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuDimensionTypes;
 import baguchan.tofucraft.registry.TofuEnchantments;
 import baguchan.tofucraft.registry.TofuLevelStems;
+import baguchan.tofucraft.registry.TofuStructures;
 import baguchan.tofucraft.registry.TofuTrimMaterials;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -28,6 +29,10 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.DENSITY_FUNCTION, TofuNoiseBuilder::bootstrapDensity)
 			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrapConfiguredFeature)
 			.add(Registries.PLACED_FEATURE, ModConfiguredFeatures::bootstrapPlacedFeature)
+			.add(Registries.PROCESSOR_LIST, TofuStructures::bootstrapProcessors)
+			.add(Registries.STRUCTURE, TofuStructures::bootstrapStructures)
+			.add(Registries.STRUCTURE_SET, TofuStructures::bootstrapSets)
+			.add(Registries.TEMPLATE_POOL, TofuStructures::bootstrapPools)
 			.add(Registries.CONFIGURED_CARVER, TofuConfiguredWorldCarvers::bootstrap)
 			.add(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, TofuBiomeSources::bootstrapPreset)
 			.add(Registries.NOISE_SETTINGS, TofuNoiseBuilder::bootstrap)

@@ -27,6 +27,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -54,6 +55,8 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 		@SuppressWarnings("unused")
 		@Override
 		public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer, ExistingFileHelper existingFileHelper) {
+
+			HolderLookup.RegistryLookup<Structure> structures = provider.lookupOrThrow(Registries.STRUCTURE);
 
 			AdvancementHolder root = Advancement.Builder.advancement()
 					.display(TofuItems.SEEDS_SOYBEANS.get(),
@@ -226,7 +229,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							null,
 							AdvancementType.GOAL, true, true, false)
 					.addCriterion("has_item", PlayerTrigger.TriggerInstance.located(
-							LocationPredicate.Builder.inStructure(provider.lookupOrThrow(Registries.STRUCTURE).getOrThrow(TofuStructures.TOFU_CASTLE))
+							LocationPredicate.Builder.inStructure(structures.getOrThrow(TofuStructures.TOFU_CASTLE))
 					))
 					.save(consumer, "tofucraft:find_tofu_castle");
 			AdvancementHolder zunda_legends = Advancement.Builder.advancement()

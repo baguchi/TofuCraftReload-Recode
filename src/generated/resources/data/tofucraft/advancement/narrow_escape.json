@@ -7,7 +7,7 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.tofucraft.ancient_chili.desc"
+      "translate": "advancements.tofucraft.narrow_escape.desc"
     },
     "frame": "challenge",
     "icon": {
@@ -15,7 +15,7 @@
       "id": "tofucraft:tofu_kinu_boots"
     },
     "title": {
-      "translate": "advancements.tofucraft.ancient_chili.title"
+      "translate": "advancements.tofucraft.narrow_escape.title"
     }
   },
   "requirements": [
