@@ -98,7 +98,7 @@ public class TofuStructures {
 						6,
 						ConstantHeight.of(VerticalAnchor.absolute(0)),
 						false,
-						Optional.empty(),
+						Optional.of(Heightmap.Types.WORLD_SURFACE_WG),
 						80,
 						List.of(),
 						JigsawStructure.DEFAULT_DIMENSION_PADDING,
