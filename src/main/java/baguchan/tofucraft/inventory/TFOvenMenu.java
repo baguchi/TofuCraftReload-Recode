@@ -138,7 +138,7 @@ public class TFOvenMenu extends RecipeBookMenu<SingleRecipeInput, AbstractCookin
 			} else if (!this.moveItemStackTo(itemstack1, 2, 38, false)) {
 				return ItemStack.EMPTY;
 			}
-
+			slot.onQuickCraft(itemstack1, itemstack);
 			if (itemstack1.isEmpty()) {
 				slot.setByPlayer(ItemStack.EMPTY);
 			} else {

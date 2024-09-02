@@ -110,15 +110,19 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		if (blockState.getValue(TFStorageBlock.LIT) != worked) {
 			level.setBlock(blockPos, blockState.setValue(TFStorageBlock.LIT, worked), 2);
 		}
-		ItemStack from = tfStorageBlockEntity.inventory.get(0);
+
+		ItemStack to = tfStorageBlockEntity.inventory.get(1);
 
 
-		if (from.getItem() instanceof IEnergyInsertable symbol) {
+		if (to.getItem() instanceof IEnergyInsertable symbol) {
 			if (tfStorageBlockEntity.getEnergyStored() >= POWER * 5) {
-				tfStorageBlockEntity.drain(symbol.fill(from, POWER, false), false);
+				tfStorageBlockEntity.drain(symbol.fill(to, POWER, false), false);
 				tfStorageBlockEntity.setChanged();
 			}
 		}
+
+		ItemStack from = tfStorageBlockEntity.inventory.get(0);
+
 		//Consume beans inside machine
 		if (tfStorageBlockEntity.workload == 0) {
 			FluidStack milk = tfStorageBlockEntity.getTank().getFluid();
@@ -165,7 +169,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 
 	@Override
 	public int getContainerSize() {
-		return 1;
+		return 2;
 	}
 
 	@Override

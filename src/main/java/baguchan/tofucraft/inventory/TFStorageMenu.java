@@ -31,7 +31,8 @@ public class TFStorageMenu extends AbstractContainerMenu {
 		this.data = dataIn;
 		this.level = playerInventoryIn.player.level();
 		furnaceInventoryIn.startOpen(playerInventoryIn.player);
-		addSlot(new Slot(this.container, 0, 23, 34));
+		addSlot(new Slot(this.container, 0, 23, 34 - 8));
+		addSlot(new Slot(this.container, 1, 23, 44));
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++)
 				addSlot(new Slot(playerInventoryIn, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
@@ -54,16 +55,22 @@ public class TFStorageMenu extends AbstractContainerMenu {
 			itemstack = itemstack1.copy();
 			switch (slotIndex) {
 				case 0:
-					if (!moveItemStackTo(itemstack1, 1, 37, true))
+					if (!moveItemStackTo(itemstack1, 3, 39, true))
+						return ItemStack.EMPTY;
+					break;
+				case 1:
+					if (!moveItemStackTo(itemstack1, 3, 39, true))
+						return ItemStack.EMPTY;
+					break;
+				case 2:
+					if (!moveItemStackTo(itemstack1, 3, 39, true))
 						return ItemStack.EMPTY;
 					break;
 				default:
-					if (!moveItemStackTo(itemstack1, 0, 0, false))
+					if (!moveItemStackTo(itemstack1, 0, 3, false))
 						return ItemStack.EMPTY;
 					break;
 			}
-			if (!moveItemStackTo(itemstack1, 0, 0, false))
-				return ItemStack.EMPTY;
 			slot.onQuickCraft(itemstack1, itemstack);
 			if (itemstack1.isEmpty()) {
 				slot.set(ItemStack.EMPTY);
