@@ -12,6 +12,8 @@ import baguchan.tofucraft.registry.TofuFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -25,6 +27,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -244,6 +247,18 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		this.current_workload = cmp.getInt("current");
 
 		this.tank = this.tank.readFromNBT(provider, cmp.getCompound("Tank"));
+	}
+
+	@Override
+	protected void applyImplicitComponents(BlockEntity.DataComponentInput p_338855_) {
+		super.applyImplicitComponents(p_338855_);
+		p_338855_.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).copyInto(this.getInventory());
+	}
+
+	@Override
+	protected void collectImplicitComponents(DataComponentMap.Builder p_338252_) {
+		super.collectImplicitComponents(p_338252_);
+		p_338252_.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(this.getInventory()));
 	}
 
 	@Override

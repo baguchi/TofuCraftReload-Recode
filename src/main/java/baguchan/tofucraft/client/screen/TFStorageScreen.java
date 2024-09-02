@@ -32,7 +32,8 @@ import java.util.Optional;
 @OnlyIn(Dist.CLIENT)
 public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tf_storage.png");
-	private static final Component MISSING_ITEM_TOOLTIP = Component.translatable("container.tofucraft.tf_storage.missing_item_tooltip");
+	private static final Component MISSING_ITEM_TOOLTIP = Component.translatable("container.tofucraft.tf_storage.missing_item_tooltip_consume");
+	private static final Component MISSING_ITEM_TOOLTIP_2 = Component.translatable("container.tofucraft.tf_storage.missing_item_tooltip_repair");
 	public TFStorageScreen(TFStorageMenu p_i51104_1_, Inventory p_i51104_3_, Component p_i51104_4_) {
 		super(p_i51104_1_, p_i51104_3_, p_i51104_4_);
 	}
@@ -42,16 +43,11 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
 	}
 
+	@Override
 	public void render(GuiGraphics p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
-		this.renderBackground(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
 		super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
 		this.renderTooltip(p_230430_1_, p_230430_2_, p_230430_3_);
 		this.renderOnboardingTooltips(p_230430_1_, p_230430_2_, p_230430_3_);
-	}
-
-	@Override
-	public void renderBackground(GuiGraphics p_300197_, int p_297538_, int p_300104_, float p_298759_) {
-		super.renderBackground(p_300197_, p_297538_, p_300104_, p_298759_);
 	}
 
 	protected void renderBg(GuiGraphics p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
@@ -117,10 +113,14 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 
 		if (this.hoveredSlot != null) {
 			ItemStack itemstack = this.menu.getSlot(0).getItem();
-			ItemStack itemstack1 = this.hoveredSlot.getItem();
 			if (itemstack.isEmpty()) {
 				if (this.hoveredSlot.index == 0) {
 					optional = Optional.of(MISSING_ITEM_TOOLTIP);
+				}
+			}
+			if (itemstack.isEmpty()) {
+				if (this.hoveredSlot.index == 1) {
+					optional = Optional.of(MISSING_ITEM_TOOLTIP_2);
 				}
 			}
 		}

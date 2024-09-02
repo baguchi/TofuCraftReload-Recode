@@ -40,12 +40,13 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 		this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
 	}
 
+	@Override
 	public void render(GuiGraphics p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
-		this.renderBackground(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
 		super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
 		renderTooltip(p_230430_1_, p_230430_2_, p_230430_3_);
 	}
 
+	@Override
 	protected void renderBg(GuiGraphics p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
 		int i = this.leftPos;
 		int j = this.topPos;

@@ -22,7 +22,7 @@ public class TFStorageMenu extends AbstractContainerMenu {
 	protected final Level level;
 
 	public TFStorageMenu(int i, Inventory playerInventory) {
-		this(i, playerInventory, new SimpleContainer(1), new SimpleContainerData(4));
+		this(i, playerInventory, new SimpleContainer(2), new SimpleContainerData(4));
 	}
 
 	public TFStorageMenu(int id, Inventory playerInventoryIn, Container furnaceInventoryIn, ContainerData dataIn) {
@@ -55,19 +55,15 @@ public class TFStorageMenu extends AbstractContainerMenu {
 			itemstack = itemstack1.copy();
 			switch (slotIndex) {
 				case 0:
-					if (!moveItemStackTo(itemstack1, 3, 39, true))
+					if (!moveItemStackTo(itemstack1, 2, 38, true))
 						return ItemStack.EMPTY;
 					break;
 				case 1:
-					if (!moveItemStackTo(itemstack1, 3, 39, true))
-						return ItemStack.EMPTY;
-					break;
-				case 2:
-					if (!moveItemStackTo(itemstack1, 3, 39, true))
+					if (!moveItemStackTo(itemstack1, 2, 38, true))
 						return ItemStack.EMPTY;
 					break;
 				default:
-					if (!moveItemStackTo(itemstack1, 0, 3, false))
+					if (!moveItemStackTo(itemstack1, 0, 2, false))
 						return ItemStack.EMPTY;
 					break;
 			}

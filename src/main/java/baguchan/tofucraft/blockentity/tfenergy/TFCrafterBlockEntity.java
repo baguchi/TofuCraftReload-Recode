@@ -10,6 +10,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -24,6 +26,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
@@ -293,6 +296,19 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 
 		this.containerData.set(9, cmp.getInt("triggered"));
 	}
+
+	@Override
+	protected void applyImplicitComponents(BlockEntity.DataComponentInput p_338855_) {
+		super.applyImplicitComponents(p_338855_);
+		p_338855_.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).copyInto(this.getInventory());
+	}
+
+	@Override
+	protected void collectImplicitComponents(DataComponentMap.Builder p_338252_) {
+		super.collectImplicitComponents(p_338252_);
+		p_338252_.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(this.getInventory()));
+	}
+
 
 	@Override
 	public boolean canPlaceItem(int p_307543_, ItemStack p_307267_) {
