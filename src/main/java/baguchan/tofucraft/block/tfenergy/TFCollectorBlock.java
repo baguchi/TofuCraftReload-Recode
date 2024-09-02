@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 import javax.annotation.Nullable;
 
-public class TFCollectorBlock extends BaseEntityBlock {
+public class TFCollectorBlock extends TFBaseEntityBlock {
 	public static final MapCodec<TFCollectorBlock> CODEC = simpleCodec(TFCollectorBlock::new);
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 

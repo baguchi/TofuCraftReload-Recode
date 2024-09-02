@@ -342,6 +342,15 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 	}
 
 	@Override
+	public void removeComponentsFromTag(CompoundTag p_331127_) {
+		super.removeComponentsFromTag(p_331127_);
+		p_331127_.remove("Items");
+		p_331127_.remove("progress");
+		p_331127_.remove("RefreshTime");
+		p_331127_.remove("RecipesUsed");
+	}
+
+	@Override
 	public Component getDisplayName() {
 		return Component.translatable("container.tofucraft.tfoven.name");
 	}

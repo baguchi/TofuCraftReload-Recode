@@ -6,6 +6,7 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.util.ExtraCodecs;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -17,6 +18,10 @@ public class TofuDataComponents {
 	public static final DeferredHolder<DataComponentType<?>, DataComponentType<TFEnergyData>> TF_ENERGY_DATA = register(
 			"tf_energy_data",
 			p_341845_ -> p_341845_.persistent(TFEnergyData.CODEC).networkSynchronized(TFEnergyData.DIRECT_STREAM_CODEC).cacheEncoding()
+	);
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<FluidStack>> FLUID_STACK = register(
+			"fluid_stack",
+			p_341845_ -> p_341845_.persistent(FluidStack.CODEC).networkSynchronized(FluidStack.STREAM_CODEC).cacheEncoding()
 	);
 	public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> MAX_FALL_DURABILITY = register(
 			"max_fall_durability",

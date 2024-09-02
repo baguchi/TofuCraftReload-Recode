@@ -6,6 +6,7 @@ import baguchan.tofucraft.block.crop.SproutsCropBlock;
 import baguchan.tofucraft.block.utils.MisoBarrelBlock;
 import baguchan.tofucraft.block.utils.WeightBaseBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuDataComponents;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
@@ -27,6 +28,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
@@ -334,13 +336,46 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropPottedContents(TofuBlocks.POTTED_LEEK.get());
 		dropPottedContents(TofuBlocks.POTTED_TOFU_FLOWER.get());
 		dropSelf(TofuBlocks.TOFU_DETECTOR.get());
-		dropSelf(TofuBlocks.TF_STORAGE.get());
-		dropSelf(TofuBlocks.TF_CRAFTER.get());
-		dropSelf(TofuBlocks.TF_OVEN.get());
+		this.add(TofuBlocks.TF_STORAGE.get(), this::createTFMechaTable);
+		this.add(TofuBlocks.TF_CRAFTER.get(), this::createTFMechaTable);
+		this.add(TofuBlocks.TF_OVEN.get(), this::createTFMechaTable);
 		dropSelf(TofuBlocks.ANTENNA_BASIC.get());
 		dropSelf(TofuBlocks.TOFU_WORK_STATION.get());
-		dropSelf(TofuBlocks.TF_COLLECTOR.get());
+		this.add(TofuBlocks.TF_COLLECTOR.get(), this::createTFMechaTable);
 		dropSelf(TofuBlocks.TOFU_VAULT.get());
+	}
+
+	private LootTable.Builder createTFMechaTable(Block p_277929_) {
+		return LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+								.setRolls(ConstantValue.exactly(1.0F))
+								.add(
+										LootItem.lootTableItem(p_277929_)
+												.apply(
+														CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+																.include(TofuDataComponents.TF_ENERGY_DATA.get())
+												)
+								)
+
+				);
+	}
+
+	private LootTable.Builder createTFStorageTable(Block p_277929_) {
+		return LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+								.setRolls(ConstantValue.exactly(1.0F))
+								.add(
+										LootItem.lootTableItem(p_277929_)
+												.apply(
+														CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+																.include(TofuDataComponents.TF_ENERGY_DATA.get())
+																.include(TofuDataComponents.FLUID_STACK.get())
+												)
+								)
+
+				);
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

@@ -27,10 +27,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 
-public class TFOvenBlock extends BaseEntityBlock {
+public class TFOvenBlock extends TFBaseEntityBlock {
 	public static final MapCodec<TFOvenBlock> CODEC = simpleCodec(TFOvenBlock::new);
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -85,7 +86,7 @@ public class TFOvenBlock extends BaseEntityBlock {
 			if (blockentity instanceof TFOvenBlockEntity) {
 				if (p_48714_ instanceof ServerLevel) {
 					Containers.dropContents(p_48714_, p_48715_, (TFOvenBlockEntity) blockentity);
-					//((TFOvenBlockEntity) blockentity).getRecipesToAwardAndPopExperience((ServerLevel) p_48714_, Vec3.atCenterOf(p_48715_));
+					((TFOvenBlockEntity) blockentity).getRecipesToAwardAndPopExperience((ServerLevel) p_48714_, Vec3.atCenterOf(p_48715_));
 				}
 
 				p_48714_.updateNeighbourForOutputSignal(p_48715_, this);

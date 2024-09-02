@@ -36,7 +36,7 @@ import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
 
 import javax.annotation.Nullable;
 
-public class TFStorageBlock extends BaseEntityBlock {
+public class TFStorageBlock extends TFBaseEntityBlock {
 	public static final MapCodec<TFStorageBlock> CODEC = simpleCodec(TFStorageBlock::new);
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -76,12 +76,6 @@ public class TFStorageBlock extends BaseEntityBlock {
 				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, p_48707_, p_48708_, null);
 				flag = true;
 			}
-
-			/*if (flag) {
-				if (!p_48707_.isClientSide) {
-					PacketDistributor.sendToAllPlayers(new TFStorageSoymilkPacket(p_48708_, ((TFStorageBlockEntity) blockentity).getTank().getFluid()));
-				}
-			}*/
 		}
 
 

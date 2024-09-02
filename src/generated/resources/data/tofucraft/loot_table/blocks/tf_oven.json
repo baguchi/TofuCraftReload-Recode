@@ -3,14 +3,18 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_components",
+              "include": [
+                "tofucraft:tf_energy_data"
+              ],
+              "source": "block_entity"
+            }
+          ],
           "name": "tofucraft:tf_oven"
         }
       ],

@@ -241,6 +241,16 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 
 		this.tank = this.tank.readFromNBT(provider, cmp.getCompound("Tank"));
 	}
+
+	@Override
+	public void removeComponentsFromTag(CompoundTag p_331127_) {
+		super.removeComponentsFromTag(p_331127_);
+		p_331127_.remove("Items");
+		p_331127_.remove("current");
+		p_331127_.remove("workload");
+		p_331127_.remove("Tank");
+	}
+
 	@Override
 	public void clearContent() {
 		this.inventory.clear();

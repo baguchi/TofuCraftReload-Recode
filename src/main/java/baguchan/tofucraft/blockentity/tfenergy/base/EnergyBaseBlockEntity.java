@@ -1,9 +1,12 @@
 package baguchan.tofucraft.blockentity.tfenergy.base;
 
 import baguchan.tofucraft.api.tfenergy.ITofuEnergy;
+import baguchan.tofucraft.api.tfenergy.TFEnergyData;
 import baguchan.tofucraft.api.tfenergy.TofuNetwork;
+import baguchan.tofucraft.registry.TofuDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -95,6 +98,30 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 		this.energyMax = compound.getInt(TAG_ENERGY_MAX);
 		this.energy = compound.getInt(TAG_ENERGY);
 		this.uuid = compound.getString(TAG_UUID);
+	}
+
+	@Override
+	protected void applyImplicitComponents(BlockEntity.DataComponentInput p_338244_) {
+		super.applyImplicitComponents(p_338244_);
+
+		TFEnergyData tfEnergyData = p_338244_.getOrDefault(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(energy, energyMax));
+
+		this.energy = tfEnergyData.storeTF();
+		this.energyMax = tfEnergyData.maxTF();
+	}
+
+	@Override
+	protected void collectImplicitComponents(DataComponentMap.Builder p_338540_) {
+		super.collectImplicitComponents(p_338540_);
+		p_338540_.set(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(energy, energyMax));
+	}
+
+	@Override
+	public void removeComponentsFromTag(CompoundTag p_331127_) {
+		super.removeComponentsFromTag(p_331127_);
+		p_331127_.remove("tf_uuid");
+		p_331127_.remove("tf_energy");
+		p_331127_.remove("tf_energy_max");
 	}
 
 
