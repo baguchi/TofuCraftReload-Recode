@@ -196,7 +196,7 @@ public class TofuPortalBlock extends Block {
 		public static final int MAX_WIDTH = 21;
 		private static final int MIN_HEIGHT = 2;
 		public static final int MAX_HEIGHT = 21;
-		private static final BlockBehaviour.StatePredicate FRAME = (state, getter, pos) -> state.is(TofuBlocks.TOFU_PORTAL.get());
+		private static final BlockBehaviour.StatePredicate FRAME = (state, getter, pos) -> state.is(TofuBlocks.GRILLEDTOFU.get());
 		private final LevelAccessor level;
 		private final Direction.Axis axis;
 		private final Direction rightDir;

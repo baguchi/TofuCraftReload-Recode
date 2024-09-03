@@ -1,14 +1,20 @@
 package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
+import baguchan.tofucraft.block.TofuPortalBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuDimensions;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 
 public class TofuStickItem extends Item implements IEnergyInsertable {
 	public TofuStickItem(Properties tab) {
@@ -17,13 +23,18 @@ public class TofuStickItem extends Item implements IEnergyInsertable {
 
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
-		if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() == TofuBlocks.GRILLEDTOFU.get() &&
-				TofuBlocks.TOFU_PORTAL.get().trySpawnPortal(context.getLevel(), context.getClickedPos().above())) {
-			if (!context.getPlayer().isCreative())
-				context.getItemInHand().hurtAndBreak(1, (LivingEntity) context.getPlayer(), p_213625_1_ -> p_213625_1_.broadcastBreakEvent(context.getHand()));
-			return InteractionResult.SUCCESS;
+		if (context.getPlayer() != null) {
+			if (context.getPlayer().level().dimension() == TofuDimensions.tofu_world || context.getPlayer().level().dimension() == Level.OVERWORLD) {
+				for (Direction direction : Direction.Plane.VERTICAL) {
+					BlockPos framePos = context.getClickedPos().relative(direction);
+					if (((TofuPortalBlock) TofuBlocks.TOFU_PORTAL.get()).trySpawnPortal(context.getLevel(), framePos)) {
+						context.getLevel().playSound(context.getPlayer(), framePos, SoundEvents.ZOMBIE_VILLAGER_CONVERTED, SoundSource.BLOCKS, 1.0F, 1.0F);
+						return InteractionResult.CONSUME;
+					} else return InteractionResult.FAIL;
+				}
+			}
 		}
-		return super.useOn(context);
+		return InteractionResult.FAIL;
 	}
 
 	@Override
