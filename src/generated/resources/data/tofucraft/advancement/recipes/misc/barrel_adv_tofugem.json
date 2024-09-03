@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:adv_tofugem"
+        "recipe": "tofucraft:barrel_adv_tofugem"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:adv_tofugem"
+      "tofucraft:barrel_adv_tofugem"
     ]
   }
 }

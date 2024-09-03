@@ -61,7 +61,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.LEEK_STEM.get(), TofuBlocks.LEEK_PLANKS.get(), TofuBlocks.LEEK_PLANKS_STAIR.get(), TofuBlocks.LEEK_PLANKS_SLAB.get(), TofuBlocks.LEEK_FENCE.get(), TofuBlocks.LEEK_FENCE_GATE.get()
 				, TofuBlocks.LEEK_GREEN_STEM.get(), TofuBlocks.LEEK_GREEN_PLANKS.get(), TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get(), TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get(), TofuBlocks.LEEK_GREEN_FENCE.get(), TofuBlocks.LEEK_GREEN_FENCE_GATE.get(), TofuBlocks.LEEK_GREEN_DOOR.get(), TofuBlocks.LEEK_GREEN_TRAPDOOR.get()
 				, TofuBlocks.MORIJIO.get()
-				, TofuBlocks.BARREL_MISO.get(), TofuBlocks.BARREL_MISOTOFU.get()
+				, TofuBlocks.BARREL_MISO.get(), TofuBlocks.BARREL_MISOTOFU.get(), TofuBlocks.BARREL_ADV_TOFUGEM.get()
 				, TofuBlocks.TOFU_STEM_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_SIGN.get(), TofuBlocks.TOFU_STEM_HANGING_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get()
 				, TofuBlocks.LEEK_GREEN_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_SIGN.get(), TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get()
 				, TofuBlocks.LEEK_SIGN.get(), TofuBlocks.LEEK_WALL_SIGN.get(), TofuBlocks.LEEK_HANGING_SIGN.get(), TofuBlocks.LEEK_WALL_HANGING_SIGN.get());

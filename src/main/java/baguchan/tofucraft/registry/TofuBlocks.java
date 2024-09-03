@@ -376,6 +376,7 @@ public class TofuBlocks {
 	//BARREL
 	public static final Supplier<Block> BARREL_MISO = register("barrel_miso", () -> new MisoBarrelBlock(TofuItems.BOTTLE_SOYSAUSE, BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD)));
 	public static final Supplier<Block> BARREL_MISOTOFU = register("barrel_misotofu", () -> new WeightBaseBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD)));
+	public static final Supplier<Block> BARREL_ADV_TOFUGEM = register("barrel_adv_tofugem", () -> new WeightBaseBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD)));
 	public static final Supplier<Block> NATTOBED = register("nattobed", () -> new NoWeightBaseBlock(BlockBehaviour.Properties.of().strength(1.0F, 2.0F).randomTicks().sound(SoundType.GRASS)));
 	public static final Supplier<Block> NETHER_NATTOBED = register("nether_nattobed", () -> new NoWeightBaseBlock(BlockBehaviour.Properties.of().strength(1.0F, 2.0F).randomTicks().sound(SoundType.GRASS)));
 

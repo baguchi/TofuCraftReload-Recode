@@ -231,6 +231,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.LEAVES_APRICOT,
 						TofuBlocks.BARREL_MISO,
 						TofuBlocks.BARREL_MISOTOFU,
+						TofuBlocks.BARREL_ADV_TOFUGEM,
 						TofuBlocks.RICE_BLOCK,
 						TofuBlocks.SOYBEANS_SEEDS_BLOCK,
 						TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK,

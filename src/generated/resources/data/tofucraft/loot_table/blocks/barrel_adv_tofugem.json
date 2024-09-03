@@ -1,0 +1,52 @@
+{
+  "type": "minecraft:block",
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "tofucraft:barrel_adv_tofugem",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "stat": "used"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "count": 3.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "tofucraft:adv_tofugem"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:survives_explosion"
+            }
+          ],
+          "name": "minecraft:barrel"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "tofucraft:blocks/barrel_adv_tofugem"
+}
