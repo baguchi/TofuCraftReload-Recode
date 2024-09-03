@@ -4,6 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.attachment.TofuLivingAttachment;
 import baguchan.tofucraft.client.model.FukumameThowerModel;
 import baguchan.tofucraft.client.model.ShuDofuSpiderModel;
+import baguchan.tofucraft.client.model.SoyBallModel;
 import baguchan.tofucraft.client.model.TofuFishModel;
 import baguchan.tofucraft.client.model.TofuGandlemModel;
 import baguchan.tofucraft.client.model.TofuGolemModel;
@@ -384,6 +385,7 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.FUKUMAME_THOWER, FukumameThowerModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFU_PUFFER, TofuPufferModel::createBodyLayer);
+		event.registerLayerDefinition(TofuModelLayers.SOYBALL, SoyBallModel::createBodyLayer);
 	}
 
 	@SubscribeEvent

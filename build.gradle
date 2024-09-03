@@ -97,9 +97,10 @@ dependencies {
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     implementation "net.neoforged:neoforge:${neo_version}"
     implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
-    compileOnly("mezz.jei:jei-1.21-common-api:19.0.0.7")
-    compileOnly("mezz.jei:jei-1.21-neoforge-api:19.0.0.7")
-    //runtimeOnly("mezz.jei:jei-1.21-neoforge:19.0.0.7")
+    compileOnly("mezz.jei:jei-1.21.1-common-api:19.16.1.156")
+    compileOnly("mezz.jei:jei-1.21.1-neoforge-api:19.16.1.156")
+    // at runtime, use the full JEI jar for NeoForge
+    runtimeOnly("mezz.jei:jei-1.21.1-neoforge:19.16.1.156")
     // at runtime, use the full JEI jar for NeoForge
     //runtimeOnly("mezz.jei:jei-1.20.4-neoforge:17.0.0.30")
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
