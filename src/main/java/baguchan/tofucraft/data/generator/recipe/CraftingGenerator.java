@@ -1640,14 +1640,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.ANTENNA_BASIC.get())
 				.pattern(" P ")
-				.pattern("LOR")
-				.pattern("TCT")
+				.pattern("LCO")
+				.pattern("TTT")
 				.define('P', TofuItems.LEEK.get())
-				.define('R', TofuItems.TF_CAPACITOR.get())
 				.define('O', TofuItems.TF_OSCILLATOR.get())
 				.define('L', TofuItems.TF_COIL.get())
+				.define('C', TofuItems.TOFU_CORE.get())
 				.define('T', TofuItems.TOFUMETAL.get())
-				.define('C', TofuItems.TF_CIRCUIT.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TF_STORAGE.get())

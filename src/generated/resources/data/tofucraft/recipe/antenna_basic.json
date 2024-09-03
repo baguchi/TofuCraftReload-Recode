@@ -3,7 +3,7 @@
   "category": "redstone",
   "key": {
     "C": {
-      "item": "tofucraft:tf_circuit"
+      "item": "tofucraft:tofu_core"
     },
     "L": {
       "item": "tofucraft:tf_coil"
@@ -14,17 +14,14 @@
     "P": {
       "item": "tofucraft:leek"
     },
-    "R": {
-      "item": "tofucraft:tf_capacitor"
-    },
     "T": {
       "item": "tofucraft:tofumetal"
     }
   },
   "pattern": [
     " P ",
-    "LOR",
-    "TCT"
+    "LCO",
+    "TTT"
   ],
   "result": {
     "count": 1,
