@@ -91,7 +91,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 	};
 
 	public TFStorageBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
-		super(TofuBlockEntitys.TF_STORAGE.get(), p_155229_, p_155230_, 10000);
+		super(TofuBlockEntitys.TF_STORAGE.get(), p_155229_, p_155230_, 5000);
 	}
 
 	@Override

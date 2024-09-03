@@ -36,7 +36,7 @@ public class TFBatteryItem extends Item implements IEnergyInsertable, IEnergyCon
 
 	@Override
 	public int getEnergyMax(ItemStack inst) {
-		return inst.get(TofuDataComponents.TF_ENERGY_DATA) != null ? inst.get(TofuDataComponents.TF_ENERGY_DATA).maxTF() : 10000;
+		return inst.get(TofuDataComponents.TF_ENERGY_DATA) != null ? inst.get(TofuDataComponents.TF_ENERGY_DATA).maxTF() : 5000;
 	}
 
 	@Override
