@@ -212,6 +212,29 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							AdvancementType.GOAL, true, true, false)
 					.addCriterion("has_item", ChangeDimensionTrigger.TriggerInstance.changedDimensionTo(TofuDimensions.tofu_world))
 					.save(consumer, "tofucraft:tofuworld");
+
+
+			AdvancementHolder tofu_industry_key = Advancement.Builder.advancement()
+					.parent(tofu_world)
+					.display(TofuItems.TOFUGEM.get(),
+							Component.translatable("advancements.tofucraft.tofu_industry_key.title"),
+							Component.translatable("advancements.tofucraft.tofu_industry_key.desc"),
+							null,
+							AdvancementType.TASK, true, true, false)
+					.addCriterion("trigger", InventoryChangeTrigger.TriggerInstance.hasItems(TofuItems.TOFUGEM.get()))
+					.save(consumer, "tofucraft:tofu_industry_key");
+			AdvancementHolder tofu_industry = Advancement.Builder.advancement()
+					.parent(tofu_industry_key)
+					.display(TofuBlocks.TF_STORAGE.get(),
+							Component.translatable("advancements.tofucraft.tofu_industry.title"),
+							Component.translatable("advancements.tofucraft.tofu_industry.desc"),
+							null,
+							AdvancementType.GOAL, true, true, false)
+					.addCriterion("trigger", InventoryChangeTrigger.TriggerInstance.hasItems(TofuBlocks.TF_STORAGE.get()))
+					.save(consumer, "tofucraft:tofu_industry");
+
+
+
 			AdvancementHolder my_tofu_child = Advancement.Builder.advancement()
 					.parent(tofu_world)
 					.display(TofuItems.TOFUNIAN_SOY_CHOCOLATE.get(),

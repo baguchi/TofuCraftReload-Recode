@@ -1,0 +1,33 @@
+{
+  "parent": "tofucraft:tofuworld",
+  "criteria": {
+    "trigger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:tofugem"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.tofu_industry_key.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:tofugem"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.tofu_industry_key.title"
+    }
+  },
+  "requirements": [
+    [
+      "trigger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
