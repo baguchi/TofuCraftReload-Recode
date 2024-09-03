@@ -6,6 +6,7 @@ package baguchan.tofucraft.client.model;// Made with Blockbench 4.10.4
 import baguchan.tofucraft.entity.projectile.SoyballEntity;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
