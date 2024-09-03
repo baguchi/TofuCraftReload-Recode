@@ -3,7 +3,7 @@
   "category": "redstone",
   "key": {
     "C": {
-      "item": "tofucraft:tf_circuit"
+      "item": "minecraft:quartz"
     },
     "M": {
       "item": "tofucraft:tofumetal"

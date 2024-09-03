@@ -1,6 +1,9 @@
-package baguchan.tofucraft.data.generator;
+package baguchan.tofucraft.data.generator.recipe;
 
+import baguchan.tofucraft.data.generator.recipe.builder.BitternRecipeBuilder;
+import baguchan.tofucraft.data.generator.recipe.builder.HardenRecipeBuilder;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.HolderLookup;
@@ -16,6 +19,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -1620,7 +1624,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("M M")
 				.define('M', TofuItems.TOFUMETAL.get())
 				.define('T', TofuItems.TOFUKINU.get())
-				.define('C', TofuItems.TF_CIRCUIT.get())
+				.define('C', Items.QUARTZ)
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
 
@@ -1650,7 +1654,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("AMA")
 				.define('A', TofuItems.ADVANCE_TOFUGEM.get())
 				.define('M', TofuBlocks.METALTOFU.get())
-				.define('C', TofuItems.TOFU_CORE.get())
+				.define('C', TofuItems.TF_CIRCUIT.get())
 				.define('H', Blocks.HOPPER)
 				.unlockedBy("has_item", has(TofuItems.ADVANCE_TOFUGEM.get()))
 				.save(consumer);
@@ -1722,5 +1726,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuBlocks.SALT_BLOCK.get())
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
 				.save(consumer);
+
+		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), new FluidStack(TofuFluids.BITTERN.get(), 250));
+		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_HELL.get(), 1000), new FluidStack(TofuFluids.WARPED.get(), 250));
+		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_SOUL.get(), 1000), new FluidStack(TofuFluids.CRIMSON.get(), 250));
+		HardenRecipeBuilder.harden(TofuBlocks.ISHITOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuBlocks.MOMENTOFU.get()));
+		HardenRecipeBuilder.harden(TofuBlocks.METALTOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuBlocks.ISHITOFU.get()));
 	}
 }

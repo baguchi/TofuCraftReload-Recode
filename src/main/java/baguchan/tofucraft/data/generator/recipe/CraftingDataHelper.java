@@ -1,4 +1,4 @@
-package baguchan.tofucraft.data.generator;
+package baguchan.tofucraft.data.generator.recipe;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
