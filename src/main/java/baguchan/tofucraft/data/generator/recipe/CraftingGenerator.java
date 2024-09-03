@@ -1727,10 +1727,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
 				.save(consumer);
 
-		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), new FluidStack(TofuFluids.BITTERN.get(), 250));
-		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_HELL.get(), 1000), new FluidStack(TofuFluids.WARPED.get(), 250));
-		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_SOUL.get(), 1000), new FluidStack(TofuFluids.CRIMSON.get(), 250));
-		HardenRecipeBuilder.harden(TofuBlocks.ISHITOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuBlocks.MOMENTOFU.get()));
-		HardenRecipeBuilder.harden(TofuBlocks.METALTOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuBlocks.ISHITOFU.get()));
+		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), new FluidStack(TofuFluids.BITTERN.get(), 250)).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(consumer, prefix("bittern_to_kinu"));
+		BitternRecipeBuilder.bittern(TofuBlocks.HELLTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_HELL.get(), 1000), new FluidStack(TofuFluids.WARPED.get(), 250)).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(consumer, prefix("bittern_to_hell"));
+		BitternRecipeBuilder.bittern(TofuBlocks.SOULTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_SOUL.get(), 1000), new FluidStack(TofuFluids.CRIMSON.get(), 250)).unlockedBy("has_item", has(TofuItems.CRIMSON_BOTTLE.get())).save(consumer, prefix("bittern_to_soul"));
+		HardenRecipeBuilder.harden(TofuBlocks.ISHITOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuBlocks.MOMENTOFU.get())).unlockedBy("has_item", has(TofuBlocks.MOMENTOFU.get())).save(consumer, prefix("harden_to_ishi"));
+		HardenRecipeBuilder.harden(TofuBlocks.METALTOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuBlocks.ISHITOFU.get())).unlockedBy("has_item", has(TofuBlocks.ISHITOFU.get())).save(consumer, prefix("harden_to_metal"));
 	}
 }

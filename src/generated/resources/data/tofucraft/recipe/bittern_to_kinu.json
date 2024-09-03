@@ -1,0 +1,14 @@
+{
+  "type": "tofucraft:bittern",
+  "extra_fluid": {
+    "amount": 250,
+    "id": "tofucraft:bittern"
+  },
+  "process": {
+    "amount": 1000,
+    "id": "tofucraft:soymilk"
+  },
+  "result": {
+    "id": "tofucraft:blocktofukinu"
+  }
+}
