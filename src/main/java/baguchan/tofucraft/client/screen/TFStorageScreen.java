@@ -30,8 +30,9 @@ import java.util.Optional;
 @OnlyIn(Dist.CLIENT)
 public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	private static final ResourceLocation texture = new ResourceLocation(TofuCraftReload.MODID, "textures/gui/tf_storage.png");
-	private static final Component MISSING_ITEM_TOOLTIP = Component.translatable("container.tofucraft.tf_storage.missing_item_tooltip");
 
+	private static final Component MISSING_ITEM_TOOLTIP = Component.translatable("container.tofucraft.tf_storage.missing_item_tooltip_consume");
+	private static final Component MISSING_ITEM_TOOLTIP_2 = Component.translatable("container.tofucraft.tf_storage.missing_item_tooltip_repair");
 	public TFStorageScreen(TFStorageMenu p_i51104_1_, Inventory p_i51104_3_, Component p_i51104_4_) {
 		super(p_i51104_1_, p_i51104_3_, p_i51104_4_);
 	}
@@ -118,6 +119,10 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 			if (itemstack.isEmpty()) {
 				if (this.hoveredSlot.index == 0) {
 					optional = Optional.of(MISSING_ITEM_TOOLTIP);
+				}
+
+				if (this.hoveredSlot.index == 1) {
+					optional = Optional.of(MISSING_ITEM_TOOLTIP_2);
 				}
 			}
 		}

@@ -64,8 +64,8 @@ public class TofuWorldFeatures {
 		FeatureUtils.register(context, ORE_DIAMOND_LARGE, Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 12, 0.5F));
 		FeatureUtils.register(context, ORE_DIAMOND_BURIED, Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 8, 1.0F));
 
-		FeatureUtils.register(context, ORE_TOFUGEM_SMALL, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 8));
-		FeatureUtils.register(context, ORE_TOFUGEM_LARGE, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 16));
+		FeatureUtils.register(context, ORE_TOFUGEM_SMALL, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 6));
+		FeatureUtils.register(context, ORE_TOFUGEM_LARGE, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 10));
 
 		FeatureUtils.register(context, TOFU_FLOWER, Feature.FLOWER, grassPatch(BlockStateProvider.simple(TofuBlocks.TOFU_FLOWER.get()), 32));
 		FeatureUtils.register(context, LEEK, Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(TofuBlocks.LEEK.get()), 32));

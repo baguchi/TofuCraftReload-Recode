@@ -13,7 +13,7 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "tofucraft:barrel_miso",
+              "block": "tofucraft:barrel_adv_tofugem",
               "condition": "minecraft:block_state_property",
               "properties": {
                 "stat": "used"
@@ -27,7 +27,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "tofucraft:miso"
+          "name": "tofucraft:adv_tofugem"
         }
       ],
       "rolls": 1.0
@@ -42,7 +42,7 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "block": "tofucraft:barrel_miso",
+                  "block": "tofucraft:barrel_adv_tofugem",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "stat": "used"
@@ -61,7 +61,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "tofucraft:barrel_miso"
+              "name": "tofucraft:barrel_adv_tofugem"
             }
           ]
         }
@@ -69,5 +69,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "tofucraft:blocks/barrel_miso"
+  "random_sequence": "tofucraft:blocks/barrel_adv_tofugem"
 }

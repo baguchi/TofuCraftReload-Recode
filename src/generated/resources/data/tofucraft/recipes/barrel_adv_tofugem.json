@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "forge:barrels/wooden"
+    },
+    "G": {
+      "item": "tofucraft:tofugem"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "RRR",
+    "GGG",
+    " B "
+  ],
+  "result": {
+    "item": "tofucraft:barrel_adv_tofugem"
+  },
+  "show_notification": true
+}

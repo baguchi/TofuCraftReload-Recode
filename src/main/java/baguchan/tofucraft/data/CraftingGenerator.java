@@ -1588,21 +1588,20 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("M M")
 				.define('M', TofuItems.TOFUMETAL.get())
 				.define('T', TofuItems.TOFUKINU.get())
-				.define('C', TofuItems.TF_CIRCUIT.get())
+				.define('C', Items.QUARTZ)
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
 
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.ANTENNA_BASIC.get())
 				.pattern(" P ")
-				.pattern("LOR")
-				.pattern("TCT")
+				.pattern("LCO")
+				.pattern("TTT")
 				.define('P', TofuItems.LEEK.get())
-				.define('R', TofuItems.TF_CAPACITOR.get())
 				.define('O', TofuItems.TF_OSCILLATOR.get())
 				.define('L', TofuItems.TF_COIL.get())
+				.define('C', TofuItems.TOFU_CORE.get())
 				.define('T', TofuItems.TOFUMETAL.get())
-				.define('C', TofuItems.TF_CIRCUIT.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
 		ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TofuBlocks.TF_STORAGE.get())
@@ -1652,6 +1651,16 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SALT.get(), 9)
 				.requires(TofuBlocks.SALT_BLOCK.get())
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.BARREL_ADV_TOFUGEM.get(), 1)
+				.pattern("RRR")
+				.pattern("GGG")
+				.pattern(" B ")
+				.define('R', Items.REDSTONE)
+				.define('G', TofuItems.TOFUGEM.get())
+				.define('B', Tags.Items.BARRELS_WOODEN)
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(consumer);
 	}
 }

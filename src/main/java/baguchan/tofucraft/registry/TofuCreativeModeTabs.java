@@ -210,6 +210,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.LEAVES_APRICOT,
 						TofuBlocks.BARREL_MISO,
 						TofuBlocks.BARREL_MISOTOFU,
+						TofuBlocks.BARREL_ADV_TOFUGEM,
 						TofuBlocks.NATTOBED,
 						TofuBlocks.NETHER_NATTOBED,
 						TofuBlocks.TOFUBED,

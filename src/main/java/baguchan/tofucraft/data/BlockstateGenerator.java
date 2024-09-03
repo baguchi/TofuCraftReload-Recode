@@ -183,9 +183,6 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 		crossBlock(TofuBlocks.LEEK.get());
 		crossBlock(TofuBlocks.TOFU_FLOWER.get());
-
-		translucentBlock(TofuBlocks.TOFU_PORTAL.get());
-
 		simpleBlock(TofuBlocks.EGGTOFU.get());
 		stairs(TofuBlocks.TOFUSTAIR_EGG.get(), TofuBlocks.EGGTOFU.get());
 		slab(TofuBlocks.TOFUSLAB_EGG.get(), TofuBlocks.EGGTOFU.get());

@@ -1,397 +1,221 @@
 package baguchan.tofucraft.world;
 
+import baguchan.tofucraft.block.TofuPortalBlock;
 import baguchan.tofucraft.registry.TofuBlocks;
-import com.google.common.collect.Maps;
-import it.unimi.dsi.fastutil.objects.Object2LongMap;
-import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
+import baguchan.tofucraft.registry.TofuDimensions;
+import baguchan.tofucraft.registry.TofuPoiTypes;
+import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ColumnPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.TicketType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.ai.village.poi.PoiRecord;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.border.WorldBorder;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.portal.PortalInfo;
+import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.ITeleporter;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 public class TofuLevelTeleporter implements ITeleporter {
-	private static final Map<ResourceLocation, Map<ColumnPos, PortalPosition>> destinationCoordinateCache = new HashMap<>();
-	private static final Object2LongMap<ColumnPos> columnMap = new Object2LongOpenHashMap<>();
+
+	protected final ServerLevel level;
+	private final BlockState frame = TofuBlocks.GRILLEDTOFU.get().defaultBlockState();
+
+	public TofuLevelTeleporter(ServerLevel level) {
+		this.level = level;
+	}
+
+	public Optional<BlockUtil.FoundRectangle> getExistingPortal(BlockPos pos) {
+		PoiManager poiManager = this.level.getPoiManager();
+		poiManager.ensureLoadedAndValid(this.level, pos, 64);
+		Optional<PoiRecord> optional = poiManager.getInSquare((poiType) ->
+				poiType.is(TofuPoiTypes.TOFU_PORTAL_POI.getKey()), pos, 64, PoiManager.Occupancy.ANY).sorted(Comparator.<PoiRecord>comparingDouble((poi) ->
+				poi.getPos().distSqr(pos)).thenComparingInt((poi) ->
+				poi.getPos().getY())).filter((poi) ->
+				this.level.getBlockState(poi.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_AXIS)).findFirst();
+		return optional.map((poi) -> {
+			BlockPos blockpos = poi.getPos();
+			this.level.getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, blockpos);
+			BlockState blockstate = this.level.getBlockState(blockpos);
+			return BlockUtil.getLargestRectangleAround(blockpos, blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, (blockPos) ->
+					this.level.getBlockState(blockPos) == blockstate);
+		});
+	}
+
+	public Optional<BlockUtil.FoundRectangle> makePortal(BlockPos pos, Direction.Axis axis) {
+		Direction direction = Direction.get(Direction.AxisDirection.POSITIVE, axis);
+		double d0 = -1.0D;
+		BlockPos blockpos = null;
+		double d1 = -1.0D;
+		BlockPos blockpos1 = null;
+		WorldBorder worldborder = this.level.getWorldBorder();
+		int i = Math.min(this.level.getMaxBuildHeight(), this.level.getMinBuildHeight() + this.level.getLogicalHeight()) - 1;
+		BlockPos.MutableBlockPos blockpos$mutableblockpos = pos.mutable();
+
+		for (BlockPos.MutableBlockPos checkPos : BlockPos.spiralAround(pos, 16, Direction.EAST, Direction.SOUTH)) {
+			int validStartHeight = Math.min(i, this.level.getHeight(Heightmap.Types.MOTION_BLOCKING, checkPos.getX(), checkPos.getZ()));
+			if (worldborder.isWithinBounds(checkPos) && worldborder.isWithinBounds(checkPos.move(direction, 1))) {
+				checkPos.move(direction.getOpposite(), 1);
+
+				for (int l = validStartHeight; l >= this.level.getMinBuildHeight(); --l) {
+					checkPos.setY(l);
+					if (this.canPortalReplaceBlock(checkPos)) {
+						int i1;
+						for (i1 = l; l > this.level.getMinBuildHeight() && this.canPortalReplaceBlock(checkPos.move(Direction.DOWN)); --l) {
+						}
+
+						if (l + 4 <= i) {
+							int j1 = i1 - l;
+							if (j1 <= 0 || j1 >= 3) {
+								checkPos.setY(l);
+								if (this.canHostFrame(checkPos, blockpos$mutableblockpos, direction, 0)) {
+									double d2 = pos.distSqr(checkPos);
+									if (this.canHostFrame(checkPos, blockpos$mutableblockpos, direction, -1) && this.canHostFrame(checkPos, blockpos$mutableblockpos, direction, 1) && (d0 == -1.0D || d0 > d2)) {
+										d0 = d2;
+										blockpos = checkPos.immutable();
+									}
+
+									if (d0 == -1.0D && (d1 == -1.0D || d1 > d2)) {
+										d1 = d2;
+										blockpos1 = checkPos.immutable();
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		if (d0 == -1.0D && d1 != -1.0D) {
+			blockpos = blockpos1;
+			d0 = d1;
+		}
+
+		if (d0 == -1.0D) {
+			int k1 = Math.max(this.level.getMinBuildHeight() + 1, 70);
+			int i2 = i - 9;
+			if (i2 < k1) {
+				return Optional.empty();
+			}
+
+			blockpos = (new BlockPos(pos.getX(), Mth.clamp(pos.getY(), k1, i2), pos.getZ())).immutable();
+			Direction direction1 = direction.getClockWise();
+			if (!worldborder.isWithinBounds(blockpos)) {
+				return Optional.empty();
+			}
+
+			for (int i3 = -1; i3 < 2; ++i3) {
+				for (int j3 = 0; j3 < 2; ++j3) {
+					for (int k3 = -1; k3 < 3; ++k3) {
+						BlockState blockstate1 = k3 < 0 ? this.frame : Blocks.AIR.defaultBlockState();
+						blockpos$mutableblockpos.setWithOffset(blockpos, j3 * direction.getStepX() + i3 * direction1.getStepX(), k3, j3 * direction.getStepZ() + i3 * direction1.getStepZ());
+						this.level.setBlockAndUpdate(blockpos$mutableblockpos, blockstate1);
+					}
+				}
+			}
+		}
+
+		for (int l1 = -1; l1 < 3; ++l1) {
+			for (int j2 = -1; j2 < 4; ++j2) {
+				if (l1 == -1 || l1 == 2 || j2 == -1 || j2 == 3) {
+					blockpos$mutableblockpos.setWithOffset(blockpos, l1 * direction.getStepX(), j2, l1 * direction.getStepZ());
+					this.level.setBlock(blockpos$mutableblockpos, this.frame, 3);
+				}
+			}
+		}
+
+		BlockState blockstate = TofuBlocks.TOFU_PORTAL.get().defaultBlockState().setValue(TofuPortalBlock.AXIS, axis);
+
+		for (int k2 = 0; k2 < 2; ++k2) {
+			for (int l2 = 0; l2 < 3; ++l2) {
+				blockpos$mutableblockpos.setWithOffset(blockpos, k2 * direction.getStepX(), l2, k2 * direction.getStepZ());
+				this.level.setBlock(blockpos$mutableblockpos, blockstate, 18);
+			}
+		}
+
+		return Optional.of(new BlockUtil.FoundRectangle(blockpos.immutable(), 2, 3));
+	}
+
+	private boolean canPortalReplaceBlock(BlockPos.MutableBlockPos pos) {
+		BlockState blockstate = this.level.getBlockState(pos);
+		return blockstate.canBeReplaced() && blockstate.getFluidState().isEmpty();
+	}
+
+	private boolean canHostFrame(BlockPos originalPos, BlockPos.MutableBlockPos offsetPos, Direction direction, int offsetScale) {
+		Direction checkDir = direction.getClockWise();
+
+		for (int i = -1; i < 3; ++i) {
+			for (int j = -1; j < 4; ++j) {
+				offsetPos.setWithOffset(originalPos, direction.getStepX() * i + checkDir.getStepX() * offsetScale, j, direction.getStepZ() * i + checkDir.getStepZ() * offsetScale);
+				if (j < 0 && !this.level.getBlockState(offsetPos).isSolid()) {
+					return false;
+				}
+
+				if (j >= 0 && !this.canPortalReplaceBlock(offsetPos)) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
 
 	@Nullable
 	@Override
-	public PortalInfo getPortalInfo(Entity entity, ServerLevel dest, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
-		PortalInfo pos;
-		if ((pos = placeInExistingPortal(dest, entity, entity.blockPosition(), entity instanceof Player)) == null) {
-			pos = moveToSafeCoords(dest, entity);
-			makePortal(entity, dest, pos.pos);
-			pos = placeInExistingPortal(dest, entity, BlockPos.containing(pos.pos), entity instanceof Player);
-		}
-		return pos;
-	}
-
-	@Nullable
-	private static PortalInfo placeInExistingPortal(ServerLevel world, Entity entity, BlockPos pos, boolean isPlayer) {
-		int i = 200; // scan radius up to 200, and also un-inline this variable back into below
-		boolean flag = true;
-		BlockPos blockpos = BlockPos.ZERO;
-		ColumnPos columnPos = new ColumnPos(pos.getX(), pos.getZ());
-
-		if (!isPlayer && columnMap.containsKey(columnPos)) {
+	public PortalInfo getPortalInfo(Entity entity, ServerLevel level, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
+		boolean destinationIs = level.dimension() == TofuDimensions.tofu_world;
+		if (entity.level().dimension() != TofuDimensions.tofu_world && !destinationIs) {
 			return null;
 		} else {
-			PortalPosition portalPosition = destinationCoordinateCache.containsKey(world.dimension().location()) ? destinationCoordinateCache.get(world.dimension().location()).get(columnPos) : null;
-			if (portalPosition != null) {
-				blockpos = portalPosition.pos;
-				portalPosition.lastUpdateTime = world.getGameTime();
-				flag = false;
-			} else {
-				//BlockPos blockpos3 = new BlockPos(entity);
-				double d0 = Double.MAX_VALUE;
-
-				for (int i1 = -i; i1 <= i; ++i1) {
-					BlockPos blockpos2;
-
-					for (int j1 = -i; j1 <= i; ++j1) {
-
-						// skip positions outside current world border (MC-114796)
-						if (!world.getWorldBorder().isWithinBounds(pos.offset(i1, 0, j1))) {
-							continue;
-						}
-
-						// skip chunks that aren't generated
-						ChunkPos chunkPos = new ChunkPos(pos.offset(i1, 0, j1));
-						if (!world.getChunkSource().hasChunk(chunkPos.x, chunkPos.z)) {
-							continue;
-						}
-
-						// explicitly fetch chunk so it can be unloaded if needed
-						LevelChunk chunk = world.getChunk(chunkPos.x, chunkPos.z);
-
-						for (BlockPos blockpos1 = pos.offset(i1, getScanHeight(world, pos) - pos.getY(), j1); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
-							blockpos2 = blockpos1.below();
-
-							// don't lookup state if inner condition would fail
-							if (d0 >= 0.0D && blockpos1.distSqr(pos) >= d0) {
-								continue;
-							}
-
-							// use our portal block
-							if (isPortal(chunk.getBlockState(blockpos1))) {
-								for (blockpos2 = blockpos1.below(); isPortal(chunk.getBlockState(blockpos2)); blockpos2 = blockpos2.below()) {
-									blockpos1 = blockpos2;
-								}
-
-								double d1 = blockpos1.distSqr(pos);
-								if (d0 < 0.0D || d1 < d0) {
-									d0 = d1;
-									blockpos = blockpos1;
-									// restrict search radius to new distance
-									i = Mth.ceil(Math.sqrt(d1));
-								}
-							}
-						}
-
-						// mark unwatched chunks for unload
-						//						if (!this.world.getPlayerChunkMap().contains(chunkPos.x, chunkPos.z)) {
-						//							this.world.getChunkProvider().queueUnload(chunk);
-						//						}
-					}
+			WorldBorder border = level.getWorldBorder();
+			double coordinateDifference = DimensionType.getTeleportationScale(entity.level().dimensionType(), level.dimensionType());
+			BlockPos pos = border.clampToBounds(entity.getX() * coordinateDifference, entity.getY(), entity.getZ() * coordinateDifference);
+			return this.getOrMakePortal(entity, pos).map((result) -> {
+				BlockState blockstate = entity.level().getBlockState(entity.portalEntrancePos);
+				Direction.Axis axis;
+				Vec3 vector3d;
+				if (blockstate.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
+					axis = blockstate.getValue(BlockStateProperties.HORIZONTAL_AXIS);
+					BlockUtil.FoundRectangle rectangle = BlockUtil.getLargestRectangleAround(entity.portalEntrancePos, axis, 21, Direction.Axis.Y, 21, blockPos -> entity.level().getBlockState(blockPos) == blockstate);
+					vector3d = PortalShape.getRelativePosition(rectangle, axis, entity.position(), entity.getDimensions(entity.getPose()));
+				} else {
+					axis = Direction.Axis.X;
+					vector3d = new Vec3(0.5D, 0.0D, 0.0D);
 				}
-			}
-		}
 
-		if (blockpos.equals(BlockPos.ZERO)) {
-			long factor = world.getGameTime() + 300L;
-			columnMap.put(columnPos, factor);
-			return null;
+				return PortalShape.createPortalInfo(level, result, axis, vector3d, entity, entity.getDeltaMovement(), entity.getYRot(), entity.getXRot());
+			}).orElse(null);
+		}
+	}
+
+	protected Optional<BlockUtil.FoundRectangle> getOrMakePortal(Entity entity, BlockPos pos) {
+		Optional<BlockUtil.FoundRectangle> existingPortal = this.getExistingPortal(pos);
+		if (existingPortal.isPresent()) {
+			return existingPortal;
 		} else {
-			if (flag) {
-				destinationCoordinateCache.putIfAbsent(world.dimension().location(), Maps.newHashMapWithExpectedSize(4096));
-				destinationCoordinateCache.get(world.dimension().location()).put(columnPos, new PortalPosition(blockpos, world.getGameTime()));
-				world.getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockpos), 3, new BlockPos(columnPos.x(), blockpos.getY(), columnPos.z()));
-			}
-
-			// replace with our own placement logic
-			BlockPos[] portalBorder = getBoundaryPositions(world, blockpos).toArray(new BlockPos[0]);
-			BlockPos borderPos = portalBorder[0/*random.nextInt(portalBorder.length)*/];
-
-			double portalX = borderPos.getX() + 0.5;
-			double portalY = borderPos.getY() + 1.0;
-			double portalZ = borderPos.getZ() + 0.5;
-
-			return makePortalInfo(entity, portalX, portalY, portalZ);
+			Direction.Axis portalAxis = this.level.getBlockState(entity.portalEntrancePos).getOptionalValue(TofuPortalBlock.AXIS).orElse(Direction.Axis.X);
+			return this.makePortal(pos, portalAxis);
 		}
 	}
 
-	private static int getScanHeight(ServerLevel world, BlockPos pos) {
-		return getScanHeight(world, pos.getX(), pos.getZ());
-	}
-
-	private static int getScanHeight(ServerLevel world, int x, int z) {
-		int worldHeight = world.getHeight() - 1;
-		int chunkHeight = world.getChunk(x >> 4, z >> 4).getHeight() + 15;
-		return Math.min(worldHeight, chunkHeight);
-	}
-
-	private static boolean isPortal(BlockState state) {
-		return state.getBlock() == TofuBlocks.TOFU_PORTAL.get();
-	}
-
-	// from the start point, builds a set of all directly adjacent non-portal blocks
-	private static Set<BlockPos> getBoundaryPositions(ServerLevel world, BlockPos start) {
-		Set<BlockPos> result = new HashSet<>(), checked = new HashSet<>();
-		checked.add(start);
-		checkAdjacent(world, start, checked, result);
-		return result;
-	}
-
-	private static void checkAdjacent(ServerLevel world, BlockPos pos, Set<BlockPos> checked, Set<BlockPos> result) {
-		for (Direction facing : Direction.Plane.HORIZONTAL) {
-			BlockPos offset = pos.relative(facing);
-			if (!checked.add(offset))
-				continue;
-			if (isPortalAt(world, offset)) {
-				checkAdjacent(world, offset, checked, result);
-			} else {
-				result.add(offset);
-			}
-		}
-	}
-
-	private static boolean isPortalAt(ServerLevel world, BlockPos pos) {
-		return isPortal(world.getBlockState(pos));
-	}
-
-	private static PortalInfo moveToSafeCoords(ServerLevel world, Entity entity) {
-		BlockPos pos = entity.blockPosition();
-		if (isSafeAround(world, pos, entity)) {
-			return makePortalInfo(entity, entity.position());
-		}
-		BlockPos safeCoords = findSafeCoords(world, 200, pos, entity);
-		if (safeCoords != null) {
-			return makePortalInfo(entity, safeCoords.getX(), entity.getY(), safeCoords.getZ());
-		}
-
-		safeCoords = findSafeCoords(world, 400, pos, entity);
-
-		if (safeCoords != null) {
-			return makePortalInfo(entity, safeCoords.getX(), entity.getY(), safeCoords.getZ());
-		}
-
-		return makePortalInfo(entity, entity.position());
-	}
-
-	public static boolean isSafeAround(Level world, BlockPos pos, Entity entity) {
-
-		if (!isSafe(world, pos, entity)) {
-			return false;
-		}
-
-		for (Direction facing : Direction.Plane.HORIZONTAL) {
-			if (!isSafe(world, pos.relative(facing, 16), entity)) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	private static boolean isSafe(Level world, BlockPos pos, Entity entity) {
-		return checkPos(world, pos);
-	}
-
-	private static boolean checkPos(Level world, BlockPos pos) {
-		return world.getWorldBorder().isWithinBounds(pos);
-	}
-
-
-	@Nullable
-	private static BlockPos findSafeCoords(ServerLevel world, int range, BlockPos pos, Entity entity) {
-		int attempts = range / 8;
-		for (int x = 0; x < attempts; x++) {
-			for (int z = 0; z < attempts; z++) {
-				BlockPos dPos = new BlockPos(pos.getX() + (x * attempts) - (range / 2), 100, pos.getZ() + (z * attempts) - (range / 2));
-
-				if (isSafeAround(world, dPos, entity)) {
-					return dPos;
-				}
-			}
-		}
-		return null;
-	}
-
-	private static void makePortal(Entity entity, ServerLevel world, Vec3 pos) {
-		loadSurroundingArea(world, pos);
-
-		BlockPos spot = findPortalCoords(world, pos, blockPos -> isPortalAt(world, blockPos));
-		
-		if (spot != null) {
-			cachePortalCoords(world, pos, spot);
-			return;
-		}
-
-		spot = findPortalCoords(world, pos, blockpos -> isIdealForPortal(world, blockpos));
-
-		if (spot != null) {
-			cachePortalCoords(world, pos, makePortalAt(world, spot));
-			return;
-		}
-
-		spot = findPortalCoords(world, pos, blockPos -> isOkayForPortal(world, blockPos));
-
-		if (spot != null) {
-			cachePortalCoords(world, pos, makePortalAt(world, spot));
-			return;
-		}
-
-		double yFactor = getYFactor(world);
-		cachePortalCoords(world, pos, makePortalAt(world, BlockPos.containing(entity.getX(), (entity.getY() * yFactor) - 1.0, entity.getZ())));
-	}
-
-	private static boolean isOkayForPortal(ServerLevel world, BlockPos pos) {
-		for (int potentialZ = 0; potentialZ < 4; potentialZ++) {
-			for (int potentialX = 0; potentialX < 4; potentialX++) {
-				for (int potentialY = 0; potentialY < 4; potentialY++) {
-					BlockPos tPos = pos.offset(potentialX - 1, potentialY, potentialZ - 1);
-					BlockState blockState = world.getBlockState(tPos);
-					if (potentialY == 0 && !blockState.isSolid() && !blockState.getFluidState().isEmpty() || potentialY >= 1 && !blockState.canBeReplaced()) {
-						return false;
-					}
-				}
-			}
-		}
-		return true;
-	}
-
-	private static void loadSurroundingArea(ServerLevel world, Vec3 pos) {
-
-		int x = Mth.floor(pos.x) >> 4;
-		int z = Mth.floor(pos.y) >> 4;
-
-		for (int dx = -2; dx <= 2; dx++) {
-			for (int dz = -2; dz <= 2; dz++) {
-				world.getChunk(x + dx, z + dz);
-			}
-		}
-	}
-
-	@Nullable
-	private static BlockPos findPortalCoords(ServerLevel world, Vec3 loc, Predicate<BlockPos> predicate) {
-		// adjust the height based on what world we're traveling to
-		double yFactor = getYFactor(world);
-		// modified copy of base Teleporter method:
-		int entityX = Mth.floor(loc.x);
-		int entityZ = Mth.floor(loc.z);
-
-		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
-
-		double spotWeight = -1D;
-		BlockPos spot = null;
-
-		int range = 16;
-		for (int rx = entityX - range; rx <= entityX + range; rx++) {
-			double xWeight = (rx + 0.5D) - loc.x;
-			for (int rz = entityZ - range; rz <= entityZ + range; rz++) {
-				double zWeight = (rz + 0.5D) - loc.z;
-
-				for (int ry = getScanHeight(world, rx, rz); ry >= world.getMinBuildHeight(); ry--) {
-
-					if (!world.isEmptyBlock(pos.set(rx, ry, rz))) {
-						continue;
-					}
-
-					while (ry > world.getMinBuildHeight() && world.isEmptyBlock(pos.set(rx, ry - 1, rz))) {
-						ry--;
-					}
-
-					double yWeight = (ry + 0.5D) - loc.y * yFactor;
-					double rPosWeight = xWeight * xWeight + yWeight * yWeight + zWeight * zWeight;
-
-					if (spotWeight < 0.0D || rPosWeight < spotWeight) {
-						// check from the "in ground" pos
-						if (predicate.test(pos)) {
-							spotWeight = rPosWeight;
-							spot = pos.immutable();
-						}
-					}
-				}
-			}
-		}
-
-		return spot;
-	}
-
-	private static double getYFactor(ServerLevel world) {
-		return 2.0;
-	}
-
-	private static void cachePortalCoords(ServerLevel world, Vec3 loc, BlockPos pos) {
-		int x = Mth.floor(loc.x), z = Mth.floor(loc.z);
-		destinationCoordinateCache.putIfAbsent(world.dimension().location(), Maps.newHashMapWithExpectedSize(4096));
-		destinationCoordinateCache.get(world.dimension().location()).put(new ColumnPos(x, z), new PortalPosition(pos, world.getGameTime()));
-	}
-
-	private static boolean isIdealForPortal(ServerLevel world, BlockPos pos) {
-		for (int potentialZ = 0; potentialZ < 4; potentialZ++) {
-			for (int potentialX = 0; potentialX < 4; potentialX++) {
-				for (int potentialY = 0; potentialY < 4; potentialY++) {
-					BlockPos tPos = pos.offset(potentialX - 1, potentialY, potentialZ - 1);
-					BlockState blockState = world.getBlockState(tPos);
-
-					if (potentialY == 0 && !blockState.canBeReplaced() || potentialY >= 1) {
-						return false;
-					}
-				}
-			}
-		}
-		return true;
-	}
-
-	public static BlockPos makePortalAt(Level world, BlockPos pos) {
-		BlockState portalState = TofuBlocks.TOFU_PORTAL.get().defaultBlockState();
-		BlockState snowstate = TofuBlocks.GRILLEDTOFU.get().defaultBlockState();
-		for (BlockPos basePos : BlockPos.MutableBlockPos.betweenClosed(pos.offset(-2, 0, -2), pos.offset(2, 1, 2)))
-			world.setBlock(basePos, snowstate, 2);
-		for (BlockPos airPos : BlockPos.MutableBlockPos.betweenClosed(pos.offset(-2, 2, -1), pos.offset(2, 3, 1)))
-			world.setBlock(airPos, Blocks.AIR.defaultBlockState(), 2);
-		for (BlockPos portalPos : BlockPos.MutableBlockPos.betweenClosed(pos.offset(-1, 1, -1), pos.offset(1, 1, 1)))
-			world.setBlock(portalPos, portalState, 2);
-		return pos;
-	}
-
-	private static PortalInfo makePortalInfo(Entity entity, double x, double y, double z) {
-		return makePortalInfo(entity, new Vec3(x, y, z));
-	}
-
-	private static PortalInfo makePortalInfo(Entity entity, Vec3 pos) {
-		return new PortalInfo(pos, Vec3.ZERO, entity.getXRot(), entity.getYRot());
-	}
-
-	static class PortalPosition {
-		public final BlockPos pos;
-
-		public long lastUpdateTime;
-
-		public PortalPosition(BlockPos pos, long time) {
-			this.pos = pos;
-			this.lastUpdateTime = time;
-		}
+	@Override
+	public boolean playTeleportSound(ServerPlayer player, ServerLevel sourceWorld, ServerLevel destWorld) {
+		return false;
 	}
 }

@@ -92,7 +92,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 	};
 
 	public TFStorageBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
-		super(TofuBlockEntitys.TF_STORAGE.get(), p_155229_, p_155230_, 10000);
+		super(TofuBlockEntitys.TF_STORAGE.get(), p_155229_, p_155230_, 5000);
 		this.holder = LazyOptional.of(() -> this.tank);
 	}
 
@@ -116,14 +116,17 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 				tfStorageBlockEntity.drain(symbol.fill(from, POWER, false), false);
 			}
 		}
+
+		ItemStack to = tfStorageBlockEntity.inventory.get(1);
+
 		//Consume beans inside machine
 		if (tfStorageBlockEntity.workload == 0) {
 			FluidStack milk = tfStorageBlockEntity.getTank().getFluid();
-			if (from.getItem() instanceof IEnergyExtractable symbol && !(from.getItem() instanceof IEnergyInsertable)) {
-				tfStorageBlockEntity.workload += symbol.drain(from, POWER * 20, false);
-			} else if (TofuEnergyMap.getFuel(from) != -1) {
-				tfStorageBlockEntity.workload += TofuEnergyMap.getFuel(from);
-				from.shrink(1);
+			if (to.getItem() instanceof IEnergyExtractable symbol && !(to.getItem() instanceof IEnergyInsertable)) {
+				tfStorageBlockEntity.workload += symbol.drain(to, POWER * 20, false);
+			} else if (TofuEnergyMap.getFuel(to) != -1) {
+				tfStorageBlockEntity.workload += TofuEnergyMap.getFuel(to);
+				to.shrink(1);
 			}
 
 			if (!milk.isEmpty()) {
@@ -156,7 +159,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 
 	@Override
 	public int getContainerSize() {
-		return 1;
+		return 2;
 	}
 
 	@Override

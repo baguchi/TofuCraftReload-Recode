@@ -4,9 +4,6 @@ import baguchan.tofucraft.api.tfenergy.IEnergyContained;
 import baguchan.tofucraft.api.tfenergy.IEnergyExtractable;
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -20,18 +17,6 @@ public class TFBatteryItem extends Item implements IEnergyInsertable, IEnergyCon
 
 	public TFBatteryItem(Properties p_43089_) {
 		super(p_43089_);
-	}
-
-	@Override
-	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-		ItemStack stackBattery = player.getItemInHand(hand);
-		ItemStack stack = player.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
-		if (stack.getItem() instanceof IEnergyInsertable energyContained) {
-			this.drain(stackBattery, energyContained.fill(stack, 50, false), false);
-			return InteractionResultHolder.success(stackBattery);
-		}
-
-		return super.use(level, player, hand);
 	}
 
 	@Override
@@ -55,7 +40,7 @@ public class TFBatteryItem extends Item implements IEnergyInsertable, IEnergyCon
 
 	@Override
 	public int getEnergyMax(ItemStack inst) {
-		return 10000;
+		return 5000;
 	}
 
 	@Override

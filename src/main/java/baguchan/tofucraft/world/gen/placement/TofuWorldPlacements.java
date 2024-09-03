@@ -73,8 +73,8 @@ public class TofuWorldPlacements {
 		PlacementUtils.register(context, ORE_TOFU_DIAMOND_LARGE, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_LARGE), rareOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 		PlacementUtils.register(context, ORE_TOFU_DIAMOND_BURIED, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_BURIED), commonOrePlacement(12, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 
-		PlacementUtils.register(context, ORE_TOFUGEM, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_TOFUGEM_SMALL), commonOrePlacement(25, HeightRangePlacement.uniform(VerticalAnchor.absolute(136), VerticalAnchor.top())));
-		PlacementUtils.register(context, ORE_TOFUGEM_LARGE, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_TOFUGEM_LARGE), commonOrePlacement(25, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
+		PlacementUtils.register(context, ORE_TOFUGEM, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_TOFUGEM_SMALL), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(136), VerticalAnchor.top())));
+		PlacementUtils.register(context, ORE_TOFUGEM_LARGE, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_TOFUGEM_LARGE), commonOrePlacement(22, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
 
 		PlacementUtils.register(context, PATCH_TOFU_FLOWER, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_FLOWER), RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 		PlacementUtils.register(context, PATCH_LEEK, configuredFeature.getOrThrow(TofuWorldFeatures.LEEK), NoiseThresholdCountPlacement.of(-0.8D, 5, 10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
