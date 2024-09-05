@@ -14,7 +14,7 @@ public enum TofuItemTier implements Tier {
 	MOMEN(BlockTags.INCORRECT_FOR_WOODEN_TOOL, 1, 0.25F, 0.25F, 5, () -> Ingredient.of(TofuItems.TOFUMOMEN.get())),
 	SOLID(BlockTags.INCORRECT_FOR_STONE_TOOL, 126, 5.0F, 1.0F, 12, () -> Ingredient.of(TofuItems.TOFUISHI.get())),
 	METAL(BlockTags.INCORRECT_FOR_IRON_TOOL, 245, 6.0F, 2.0F, 16, () -> Ingredient.of(TofuItems.TOFUMETAL.get())),
-	TOFUDIAMOND(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 1724, 8.5F, 5.0F, 18, () -> Ingredient.of(TofuItems.TOFUDIAMOND.get()));
+	TOFUDIAMOND(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2224, 8.5F, 5.0F, 18, () -> Ingredient.of(TofuItems.TOFUDIAMOND.get()));
 
 	private final TagKey<Block> incorrectBlocksForDrops;
 
