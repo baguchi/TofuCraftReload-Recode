@@ -343,7 +343,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> BUGLE = ITEMS.register("bugle", () -> new BugleItem((new Item.Properties()).stacksTo(1)));
 	public static final DeferredHolder<Item, Item> TOFUSCOOP = ITEMS.register("tofuscoop", () -> new TofuScoopItem((new Item.Properties()).stacksTo(1).durability(264)));
-	public static final DeferredHolder<Item, Item> TOFUSTICK = ITEMS.register("tofustick", () -> new TofuStickItem((new Item.Properties()).stacksTo(1).durability(264)));
+	public static final DeferredHolder<Item, Item> TOFUSTICK = ITEMS.register("tofustick", () -> new TofuStickItem((new Item.Properties()).stacksTo(1).rarity(Rarity.UNCOMMON).durability(264)));
 	public static final DeferredHolder<Item, Item> FUKUMAME = ITEMS.register("fukumame", () -> new FukumameItem((new Item.Properties()).stacksTo(1).durability(64)));
 	public static final DeferredHolder<Item, Item> NETHER_FUKUMAME = ITEMS.register("nether_fukumame", () -> new NetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64)));
 	public static final DeferredHolder<Item, Item> INFERNO_NETHER_FUKUMAME = ITEMS.register("inferno_nether_fukumame", () -> new InfernoNetherFukumameItem((new Item.Properties()).stacksTo(1).durability(64)));

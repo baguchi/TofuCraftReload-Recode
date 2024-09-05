@@ -43,6 +43,7 @@ import baguchan.tofucraft.client.render.item.TofuBedBWLR;
 import baguchan.tofucraft.client.render.item.TofuChestBWLR;
 import baguchan.tofucraft.client.render.item.TofuShieldBWLR;
 import baguchan.tofucraft.client.render.item.TofunianStatueBWLR;
+import baguchan.tofucraft.client.screen.ReceivingTofuLevelScreen;
 import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchan.tofucraft.client.screen.TFCrafterScreen;
 import baguchan.tofucraft.client.screen.TFOvenScreen;
@@ -50,6 +51,7 @@ import baguchan.tofucraft.client.screen.TFStorageScreen;
 import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
+import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuItems;
@@ -80,6 +82,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
+import net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
@@ -99,6 +102,12 @@ public class ClientRegistrar {
 			Sheets.addWoodType(TofuWoodTypes.TOFU_STEM);
 		});
 
+	}
+
+	@SubscribeEvent
+	public static void registerDimensionTransitionScreens(RegisterDimensionTransitionScreenEvent event) {
+		event.registerIncomingEffect(TofuDimensions.tofu_world, (supplier, reason) -> new ReceivingTofuLevelScreen(supplier));
+		event.registerOutgoingEffect(TofuDimensions.tofu_world, (supplier, reason) -> new ReceivingTofuLevelScreen(supplier));
 	}
 
 	@SubscribeEvent
