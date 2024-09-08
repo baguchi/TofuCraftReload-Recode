@@ -2,6 +2,7 @@ package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.effect.CoughEffect;
+import baguchan.tofucraft.effect.MisoBoostEffect;
 import baguchan.tofucraft.effect.SaltBoostEffect;
 import baguchan.tofucraft.effect.SoyHealthyEffect;
 import net.minecraft.core.Holder;
@@ -19,5 +20,6 @@ public class TofuEffects {
 	public static final Holder<MobEffect> SOY_HEALTHY = MOB_EFFECTS.register("soy_healthy", () -> new SoyHealthyEffect(MobEffectCategory.BENEFICIAL, 0xFFFFFF));
 	public static final Holder<MobEffect> COUGH = MOB_EFFECTS.register("cough", () -> new CoughEffect(MobEffectCategory.HARMFUL, 0xFF7D7D));
 	public static final Holder<MobEffect> SALT_BOOST = MOB_EFFECTS.register("salt_boost", () -> new SaltBoostEffect(MobEffectCategory.BENEFICIAL, 0xFFFFFF).addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "salt_speed"), 0.1F, AttributeModifier.Operation.ADD_MULTIPLIED_BASE).addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "salt_attack_speed"), 0.1F, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+	public static final Holder<MobEffect> MISO_BOOST = MOB_EFFECTS.register("miso_boost", () -> new MisoBoostEffect(MobEffectCategory.BENEFICIAL, 0xA97D26).addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "salt_speed"), 0.1F, AttributeModifier.Operation.ADD_MULTIPLIED_BASE).addAttributeModifier(Attributes.ATTACK_SPEED, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "salt_attack_speed"), 0.1F, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
 
 }

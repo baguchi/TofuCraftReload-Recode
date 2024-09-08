@@ -39,7 +39,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.SpawnUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -475,8 +474,39 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onPotionEffectApplied(MobEffectEvent.Applicable event) {
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value().getCategory() == MobEffectCategory.HARMFUL && event.getEffectInstance().getEffect() != MobEffects.BAD_OMEN && event.getEffectInstance().getEffect() != MobEffects.RAID_OMEN && event.getEffectInstance().getEffect() != MobEffects.TRIAL_OMEN) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.BLINDNESS) {
 			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
+				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+			}
+		}
+
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.OOZING) {
+			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
+				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+			}
+		}
+
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.MOVEMENT_SLOWDOWN) {
+			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
+				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+			}
+		}
+
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.INFESTED) {
+			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
+				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+			}
+		}
+
+
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.HUNGER) {
+			if (event.getEntity().hasEffect(TofuEffects.MISO_BOOST)) {
+				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+			}
+		}
+
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.CONFUSION) {
+			if (event.getEntity().hasEffect(TofuEffects.MISO_BOOST)) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}

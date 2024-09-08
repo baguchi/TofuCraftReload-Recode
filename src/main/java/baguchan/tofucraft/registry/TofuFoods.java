@@ -16,7 +16,7 @@ public class TofuFoods {
 	public static final FoodProperties TOFUSOUL = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3F).fast().alwaysEdible().effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 2400), 1.0F).build();
 	public static final FoodProperties TOFUGRILLED = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.3F).fast().build();
 	public static final FoodProperties TOFUZUNDA = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.3F).fast().effect(() -> new MobEffectInstance(TofuEffects.SOY_HEALTHY, 600, 0), 1.0F).build();
-	public static final FoodProperties TOFUMISO = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).fast().build();
+	public static final FoodProperties TOFUMISO = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).fast().effect(() -> new MobEffectInstance(TofuEffects.MISO_BOOST, 600, 0), 1.0F).build();
 	public static final FoodProperties TOFUDRIED = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.22F).fast().build();
 	public static final FoodProperties TOFUSMOKE = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3F).fast().build();
 	public static final FoodProperties SHUDOFU = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.3F).fast().build();
@@ -47,7 +47,7 @@ public class TofuFoods {
 
 	public static final FoodProperties COOKED_TOFUFISH = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6F).build();
 
-	public static final FoodProperties MISODENGAKU = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6F).fast().build();
+	public static final FoodProperties MISODENGAKU = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6F).fast().effect(() -> new MobEffectInstance(TofuEffects.MISO_BOOST, 1200, 0), 1.0F).build();
 	public static final FoodProperties TOFUCOOKIE = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.1F).build();
 	public static final FoodProperties TTTBURGER = (new FoodProperties.Builder()).nutrition(9).saturationModifier(0.85F).build();
 	public static final FoodProperties MEAT_WRAPPED_YUBA = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.825F).build();
@@ -55,7 +55,7 @@ public class TofuFoods {
 
 	public static final FoodProperties SOYSTICK = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.4F).fast().effect(() -> new MobEffectInstance(TofuEffects.SOY_HEALTHY, 600), 1).build();
 
-	public static final FoodProperties MISOSOUP = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).build();
+	public static final FoodProperties MISOSOUP = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).effect(() -> new MobEffectInstance(TofuEffects.MISO_BOOST, 2400, 0), 1.0F).build();
 	public static final FoodProperties MOYASHIITAME = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.55F).build();
 	public static final FoodProperties MOYASHIOHITASHI = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.55F).build();
 	public static final FoodProperties SALTYMELON = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.35F).build();
@@ -81,8 +81,8 @@ public class TofuFoods {
 
 	public static final FoodProperties ONIGIRI = (new FoodProperties.Builder()).nutrition(3).fast().saturationModifier(0.6F).build();
 	public static final FoodProperties ONIGIRI_SALT = (new FoodProperties.Builder()).nutrition(3).fast().saturationModifier(0.625F).build();
-	public static final FoodProperties YAKIONIGIRI_MISO = (new FoodProperties.Builder()).nutrition(3).fast().saturationModifier(0.65F).build();
-	public static final FoodProperties YAKIONIGIRI_SHOYU = (new FoodProperties.Builder()).nutrition(3).fast().saturationModifier(0.65F).build();
+	public static final FoodProperties YAKIONIGIRI_MISO = (new FoodProperties.Builder()).nutrition(4).fast().saturationModifier(0.65F).effect(() -> new MobEffectInstance(TofuEffects.MISO_BOOST, 1200, 0), 1.0F).build();
+	public static final FoodProperties YAKIONIGIRI_SHOYU = (new FoodProperties.Builder()).nutrition(4).fast().saturationModifier(0.65F).build();
 	public static final FoodProperties RICE_BURGER = (new FoodProperties.Builder()).nutrition(8).saturationModifier(0.85F).build();
 	public static final FoodProperties RICE_NATTO = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.65F).build();
 	public static final FoodProperties RICE_NATTOLEEK = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.675F).build();
@@ -91,7 +91,7 @@ public class TofuFoods {
 
 	public static final FoodProperties RICE_TOFU = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.625F).build();
 	public static final FoodProperties RICE_SOBORO_TOFU = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.65F).build();
-	public static final FoodProperties GOHEIMOCHI = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.65F).build();
+	public static final FoodProperties GOHEIMOCHI = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.65F).effect(() -> new MobEffectInstance(TofuEffects.MISO_BOOST, 1200, 0), 1.0F).build();
 
 	public static final FoodProperties INARI = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.8F).build();
 
