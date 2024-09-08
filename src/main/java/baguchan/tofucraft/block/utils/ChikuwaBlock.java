@@ -10,27 +10,56 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Fallable;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
-public class ChikuwaBlock extends Block implements Fallable {
+public class ChikuwaBlock extends Block implements Fallable, SimpleWaterloggedBlock {
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+
+	private static final VoxelShape TIP_X = Block.box(0.0, 0.0, 5.0, 16.0, 5.0, 11.0);
+	private static final VoxelShape TIP_2_X = Block.box(0.0, 11.0, 5.0, 16.0, 16.0, 11.0);
+	private static final VoxelShape BASE_X = Block.box(0, 0, 0, 16.0, 16.0, 5.0);
+	private static final VoxelShape BASE_2_X = Block.box(0, 0, 11, 16, 16, 16);
+	private static final VoxelShape X_AXIS_AABB = Shapes.or(TIP_X, TIP_2_X, BASE_X, BASE_2_X);
+
+	private static final VoxelShape TIP_Z = Block.box(5.0, 0.0, 0.0, 11.0, 5.0, 16.0);
+	private static final VoxelShape TIP_2_Z = Block.box(5.0, 11.0, 0.0, 11.0, 16.0, 16.0);
+	private static final VoxelShape BASE_Z = Block.box(0, 0, 0, 5.0, 16.0, 16.0);
+	private static final VoxelShape BASE_2_Z = Block.box(11, 0, 0, 16, 16, 16);
+	private static final VoxelShape Z_AXIS_AABB = Shapes.or(TIP_Z, TIP_2_Z, BASE_Z, BASE_2_Z);
 
 	public ChikuwaBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
 	}
 
 	@Override
-	protected void onPlace(BlockState p_53233_, Level p_53234_, BlockPos p_53235_, BlockState p_53236_, boolean p_53237_) {
+	protected VoxelShape getShape(BlockState p_48816_, BlockGetter p_48817_, BlockPos p_48818_, CollisionContext p_48819_) {
+		Direction direction = p_48816_.getValue(FACING);
+		return direction.getAxis() == Direction.Axis.X ? X_AXIS_AABB : Z_AXIS_AABB;
 	}
 
 	public boolean canChikuwaConnectTo(Level level, BlockPos blockPos, BlockState blockState, Direction dir) {
@@ -115,6 +144,30 @@ public class ChikuwaBlock extends Block implements Fallable {
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_277652_) {
 		super.createBlockStateDefinition(p_277652_);
 		p_277652_.add(FACING);
+		p_277652_.add(WATERLOGGED);
+	}
+
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext p_48689_) {
+		FluidState fluidstate = p_48689_.getLevel().getFluidState(p_48689_.getClickedPos());
+		boolean flag = fluidstate.getType() == Fluids.WATER;
+		return this.defaultBlockState().setValue(FACING, p_48689_.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, flag);
+	}
+
+	@Override
+	protected BlockState updateShape(
+			BlockState p_152151_, Direction p_152152_, BlockState p_152153_, LevelAccessor p_152154_, BlockPos p_152155_, BlockPos p_152156_
+	) {
+		if (p_152151_.getValue(WATERLOGGED)) {
+			p_152154_.scheduleTick(p_152155_, Fluids.WATER, Fluids.WATER.getTickDelay(p_152154_));
+		}
+
+		return super.updateShape(p_152151_, p_152152_, p_152153_, p_152154_, p_152155_, p_152156_);
+	}
+
+	@Override
+	protected FluidState getFluidState(BlockState p_152158_) {
+		return p_152158_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_152158_);
 	}
 
 	@Override
@@ -127,4 +180,13 @@ public class ChikuwaBlock extends Block implements Fallable {
 		return p_277615_.rotate(p_277916_.getRotation(p_277615_.getValue(FACING)));
 	}
 
+	@Override
+	public @Nullable PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+		return PathType.DAMAGE_OTHER;
+	}
+
+	@Override
+	public @Nullable PathType getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, PathType originalType) {
+		return PathType.DANGER_OTHER;
+	}
 }

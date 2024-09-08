@@ -64,11 +64,11 @@ public class KinuTofuBlock extends Block {
 
 	@Override
 	public @Nullable PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
-		return PathType.POWDER_SNOW;
+		return PathType.DAMAGE_OTHER;
 	}
 
 	@Override
 	public @Nullable PathType getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, PathType originalType) {
-		return PathType.POWDER_SNOW;
+		return PathType.DANGER_OTHER;
 	}
 }
