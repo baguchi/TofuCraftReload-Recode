@@ -57,6 +57,7 @@ import baguchan.tofucraft.block.utils.TofuBedBlock;
 import baguchan.tofucraft.block.utils.TofuChestBlock;
 import baguchan.tofucraft.block.utils.TofuDoorBlock;
 import baguchan.tofucraft.block.utils.WeightBaseBlock;
+import baguchan.tofucraft.item.block.EdiableBlockItem;
 import baguchan.tofucraft.world.gen.grower.TofuTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -535,7 +536,9 @@ public class TofuBlocks {
 
 	private static <T extends Block> Supplier<BlockItem> registerBlockItem(final Supplier<T> block) {
 		return () -> {
-			if (Objects.requireNonNull(block.get()) == TOFUTORCH_KINU.get()) {
+			if (Objects.requireNonNull(block.get()) == GRILLEDTOFU.get()) {
+				return new EdiableBlockItem(GRILLEDTOFU.get(), new Item.Properties().food(TofuFoods.TOFU_GRILLED_BLOCK));
+			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_KINU.get()) {
 				return new StandingAndWallBlockItem(TOFUTORCH_KINU.get(), WALLTOFUTORCH_KINU.get(), new Item.Properties(), Direction.DOWN);
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_MOMEN.get()) {
 				return new StandingAndWallBlockItem(TOFUTORCH_MOMEN.get(), WALLTOFUTORCH_MOMEN.get(), new Item.Properties(), Direction.DOWN);

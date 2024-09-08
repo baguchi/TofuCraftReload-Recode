@@ -2,17 +2,13 @@ package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.registry.TofuEffects;
 import net.minecraft.ChatFormatting;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -22,24 +18,21 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
-public class ReturnableDishItem extends Item {
-	private final Supplier<Item> dishItem;
+public class DishItem extends Item {
 	private final boolean comfortable;
 	private final boolean salt;
 
-	public ReturnableDishItem(Supplier<Item> dishItem, Properties p_41383_) {
-		this(dishItem, p_41383_, true, false);
+	public DishItem(Properties p_41383_) {
+		this(p_41383_, true, false);
 	}
 
-	public ReturnableDishItem(Supplier<Item> dishItem, Properties p_41383_, boolean comfortable) {
-		this(dishItem, p_41383_, comfortable, false);
+	public DishItem(Properties p_41383_, boolean comfortable) {
+		this(p_41383_, comfortable, false);
 	}
 
-	public ReturnableDishItem(Supplier<Item> dishItem, Properties p_41383_, boolean comfortable, boolean salt) {
+	public DishItem(Properties p_41383_, boolean comfortable, boolean salt) {
 		super(p_41383_);
-		this.dishItem = dishItem;
 		this.comfortable = comfortable;
 		this.salt = salt;
 	}
@@ -47,10 +40,6 @@ public class ReturnableDishItem extends Item {
 	@Override
 	public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull LivingEntity livingEntity) {
 		var resultItem = super.finishUsingItem(itemStack, level, livingEntity);
-		if (livingEntity instanceof ServerPlayer serverPlayer) {
-			CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, itemStack);
-			serverPlayer.awardStat(Stats.ITEM_USED.get(this));
-		}
 
 		if (this.comfortable) {
 			Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.fromNamespaceAndPath("farmersdelight", "comfort"));
@@ -62,17 +51,6 @@ public class ReturnableDishItem extends Item {
 
 		if (this.salt) {
 			livingEntity.addEffect(new MobEffectInstance(TofuEffects.SALT_BOOST, itemStack.getFoodProperties(livingEntity).nutrition() * 20 * 60));
-		}
-
-		if (livingEntity instanceof Player player && !player.getAbilities().instabuild) {
-			if (itemStack.isEmpty()) {
-				resultItem = new ItemStack(dishItem.get());
-			} else {
-				ItemStack itemstack = new ItemStack(dishItem.get());
-				if (!player.getInventory().add(itemstack)) {
-					player.drop(itemstack, false);
-				}
-			}
 		}
 		return resultItem;
 	}
