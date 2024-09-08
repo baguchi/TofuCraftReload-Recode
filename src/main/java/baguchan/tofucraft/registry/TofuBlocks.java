@@ -380,8 +380,8 @@ public class TofuBlocks {
 	public static final Supplier<Block> NATTOBED = register("nattobed", () -> new NoWeightBaseBlock(BlockBehaviour.Properties.of().strength(1.0F, 2.0F).randomTicks().sound(SoundType.GRASS)));
 	public static final Supplier<Block> NETHER_NATTOBED = register("nether_nattobed", () -> new NoWeightBaseBlock(BlockBehaviour.Properties.of().strength(1.0F, 2.0F).randomTicks().sound(SoundType.GRASS)));
 
-	public static final Supplier<Block> TOFU_CHIKUWA_BLOCK = register("tofu_chikuwa_block", () -> new ChikuwaBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.SNOW)));
-	public static final Supplier<Block> CHIKUWA_BLOCK = register("chikuwa_block", () -> new ChikuwaBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.SNOW)));
+	public static final Supplier<Block> TOFU_CHIKUWA_BLOCK = register("tofu_chikuwa_block", () -> new ChikuwaBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).isValidSpawn(Blocks::never).noOcclusion().sound(SoundType.SNOW)));
+	public static final Supplier<Block> CHIKUWA_BLOCK = register("chikuwa_block", () -> new ChikuwaBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).isValidSpawn(Blocks::never).noOcclusion().sound(SoundType.SNOW)));
 
 
 	public static final Supplier<Block> TOFUCAKE = register("tofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of().strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.1F));

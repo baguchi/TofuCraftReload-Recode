@@ -43,6 +43,7 @@ public class TofuTags {
 	public static class EntityTypes {
 		public static final TagKey<EntityType<?>> EXTRA_DAMAGE_ZUNDA = tag("extra_damage_zunda");
 		public static final TagKey<EntityType<?>> FUKUMAME = tag("fukumame");
+		public static final TagKey<EntityType<?>> WALKABLE_WITHOUT_TRIGGER = tag("walkable_without_trigger");
 
 		private static TagKey<EntityType<?>> tag(String name) {
 			return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));

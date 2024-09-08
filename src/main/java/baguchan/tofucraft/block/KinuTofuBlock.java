@@ -1,10 +1,10 @@
 package baguchan.tofucraft.block;
 
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
@@ -38,7 +38,7 @@ public class KinuTofuBlock extends Block {
 	@Override
 	public void fallOn(Level p_152426_, BlockState p_152427_, BlockPos p_152428_, Entity p_152429_, float p_152430_) {
 		super.fallOn(p_152426_, p_152427_, p_152428_, p_152429_, p_152430_ * 0.25F);
-		if (p_152430_ > 0.5F && !p_152429_.getType().is(EntityTypeTags.POWDER_SNOW_WALKABLE_MOBS)) {
+		if (p_152430_ > 0.5F && !p_152429_.getType().is(TofuTags.EntityTypes.WALKABLE_WITHOUT_TRIGGER)) {
 			p_152426_.destroyBlock(p_152428_, true);
 		}
 	}

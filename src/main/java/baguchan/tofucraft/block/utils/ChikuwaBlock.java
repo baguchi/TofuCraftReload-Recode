@@ -1,5 +1,6 @@
 package baguchan.tofucraft.block.utils;
 
+import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -47,35 +48,49 @@ public class ChikuwaBlock extends Block implements Fallable {
 	}
 
 	@Override
-	public void fallOn(Level level, BlockState p_152427_, BlockPos pos, Entity p_152429_, float p_152430_) {
-		super.fallOn(level, p_152427_, pos, p_152429_, p_152430_);
-		if (!level.getBlockTicks().hasScheduledTick(pos, this)) {
-			this.triggerChikuwa(level, pos, p_152427_);
+	public void stepOn(Level level, BlockPos pos, BlockState blockState, Entity p_152434_) {
+		super.stepOn(level, pos, blockState, p_152434_);
+		if (!p_152434_.isSteppingCarefully() && !p_152434_.getType().is(TofuTags.EntityTypes.WALKABLE_WITHOUT_TRIGGER)) {
+			if (isFree(level.getBlockState(pos.below()))) {
+				if (!level.getBlockTicks().hasScheduledTick(pos, this)) {
+					this.triggerChikuwa(level, pos, blockState);
+				}
+			}
 		}
 	}
 
 	private void triggerChikuwa(Level level, BlockPos pos, BlockState blockState) {
 		if (!level.getBlockTicks().hasScheduledTick(pos, this)) {
 			level.scheduleTick(pos, this, 10);
-		}
-		for (Direction dir : Direction.Plane.HORIZONTAL) {
-			if (this.canChikuwaConnectTo(level, pos, blockState, dir)) {
-				BlockState blockState1 = level.getBlockState(pos.relative(dir));
-				this.triggerChikuwa(level, pos.relative(dir), blockState1);
+			if (this.canChikuwaConnectTo(level, pos, blockState, blockState.getValue(FACING))) {
+				if (!level.getBlockTicks().hasScheduledTick(pos.relative(blockState.getValue(FACING)), this)) {
+					level.scheduleTick(pos.relative(blockState.getValue(FACING)), this, 11);
+				}
 			}
-			if (this.canChikuwaConnectTo(level, pos, blockState, dir.getOpposite())) {
-				BlockState blockState1 = level.getBlockState(pos.relative(dir.getOpposite()));
-				this.triggerChikuwa(level, pos.relative(dir.getOpposite()), blockState1);
+			if (this.canChikuwaConnectTo(level, pos, blockState, blockState.getValue(FACING).getOpposite())) {
+				if (!level.getBlockTicks().hasScheduledTick(pos.relative(blockState.getValue(FACING).getOpposite()), this)) {
+					level.scheduleTick(pos.relative(blockState.getValue(FACING).getOpposite()), this, 11);
+				}
 			}
+
 		}
 	}
 
 	@Override
 	protected void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource p_221127_) {
 		if (isFree(serverLevel.getBlockState(blockPos.below())) && blockPos.getY() >= serverLevel.getMinBuildHeight()) {
+			if (this.canChikuwaConnectTo(serverLevel, blockPos, blockState, blockState.getValue(FACING))) {
+				if (!serverLevel.getBlockTicks().hasScheduledTick(blockPos.relative(blockState.getValue(FACING)), this)) {
+					serverLevel.scheduleTick(blockPos.relative(blockState.getValue(FACING)), this, 1);
+				}
+			}
+			if (this.canChikuwaConnectTo(serverLevel, blockPos, blockState, blockState.getValue(FACING).getOpposite())) {
+				if (!serverLevel.getBlockTicks().hasScheduledTick(blockPos.relative(blockState.getValue(FACING).getOpposite()), this)) {
+					serverLevel.scheduleTick(blockPos.relative(blockState.getValue(FACING).getOpposite()), this, 1);
+				}
+			}
 			FallingBlockEntity fallingblockentity = FallingBlockEntity.fall(serverLevel, blockPos, blockState);
 			this.falling(fallingblockentity);
-
 		}
 	}
 
