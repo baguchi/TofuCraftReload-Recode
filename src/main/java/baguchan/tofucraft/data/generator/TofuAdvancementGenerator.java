@@ -16,6 +16,7 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.BlockPredicate;
 import net.minecraft.advancements.critereon.ChangeDimensionTrigger;
+import net.minecraft.advancements.critereon.ConsumeItemTrigger;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.ItemUsedOnLocationTrigger;
@@ -110,6 +111,17 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							ItemPredicate.Builder.item().of(TofuItems.BITTERN_BOTTLE.get())))
 					.save(consumer, "tofucraft:make_tofu");
 
+			AdvancementHolder eat_tofu_block = Advancement.Builder.advancement()
+					.parent(make_tofu)
+					.display(TofuBlocks.GRILLEDTOFU.get(),
+							Component.translatable("advancements.tofucraft.eat_tofu_block.title"),
+							Component.translatable("advancements.tofucraft.eat_tofu_block.desc"),
+							null,
+							AdvancementType.CHALLENGE, true, true, true)
+					.addCriterion("has_item", ConsumeItemTrigger.TriggerInstance.usedItem(TofuBlocks.GRILLEDTOFU.get()))
+					.rewards(AdvancementRewards.Builder.experience(50))
+					.save(consumer, "tofucraft:eat_tofu_block");
+
 			AdvancementHolder ancient_chili = Advancement.Builder.advancement()
 					.parent(make_tofu)
 					.display(TofuItems.CHILI.get(),
@@ -126,6 +138,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							Component.translatable("advancements.tofucraft.narrow_escape.desc"),
 							null,
 							AdvancementType.CHALLENGE, true, true, false)
+					.rewards(AdvancementRewards.Builder.experience(100))
 					.addCriterion("has_item", NarrowEscapeTrigger.get())
 					.save(consumer, "tofucraft:narrow_escape");
 

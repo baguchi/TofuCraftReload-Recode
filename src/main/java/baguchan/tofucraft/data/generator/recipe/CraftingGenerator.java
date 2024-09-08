@@ -734,7 +734,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" Y ")
 				.pattern(" Z ")
 				.define('X', TofuItems.MISO.get())
-				.define('Y', TofuBlocks.MOMENTOFU.get())
+				.define('Y', TofuItems.TOFUMOMEN.get())
 				.define('Z', Items.STICK)
 				.unlockedBy("has_item", has(TofuItems.MISO.get()))
 				.save(consumer);

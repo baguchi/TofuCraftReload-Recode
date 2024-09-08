@@ -1,0 +1,36 @@
+{
+  "parent": "tofucraft:make_tofu",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "item": {
+          "items": "tofucraft:blocktofugrilled"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.eat_tofu_block.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:blocktofugrilled"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.eat_tofu_block.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

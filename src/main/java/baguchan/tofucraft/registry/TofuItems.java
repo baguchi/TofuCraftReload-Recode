@@ -271,7 +271,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> PUDDING_SOYMILK = ITEMS.register("pudding_soymilk", () -> new GlassBowlItem((new Item.Properties()).stacksTo(16).food(TofuFoods.PUDDING_SOYMILK)));
 	public static final DeferredHolder<Item, Item> NIKUJAGA = ITEMS.register("nikujaga", () -> new DishItem((new Item.Properties()).stacksTo(16).food(TofuFoods.NIKUJAGA)));
 	public static final DeferredHolder<Item, Item> TOFUSOMEN = ITEMS.register("tofusomen", () -> new Item((new Item.Properties())));
-	public static final DeferredHolder<Item, Item> TOFUSOMENBOWL_GLASS = ITEMS.register("tofusomenbowl_glass", () -> new DishItem((new Item.Properties()).stacksTo(16).food(TofuFoods.TOFUSOMEN), false));
+	public static final DeferredHolder<Item, Item> TOFUSOMENBOWL_GLASS = ITEMS.register("tofusomenbowl_glass", () -> new GlassBowlItem((new Item.Properties()).stacksTo(16).food(TofuFoods.TOFUSOMEN)));
 	public static final DeferredHolder<Item, Item> TASTYBEEFSTEW = ITEMS.register("tastybeefstew", () -> new DishItem((new Item.Properties()).stacksTo(16).food(TofuFoods.TASTYSTEW), true, true));
 	public static final DeferredHolder<Item, Item> TASTYSTEW = ITEMS.register("tastystew", () -> new DishItem((new Item.Properties()).stacksTo(16).food(TofuFoods.TASTYSTEW), true, true));
 

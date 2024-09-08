@@ -356,6 +356,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.TASTYBEEFSTEW,
 						TofuItems.TASTYSTEW,
 						TofuItems.CRIMSON_SOUP,
+						TofuItems.MISODENGAKU,
 						TofuItems.MISOSOUP,
 						TofuItems.NANBAN,
 						TofuItems.NANBANTOFU,
