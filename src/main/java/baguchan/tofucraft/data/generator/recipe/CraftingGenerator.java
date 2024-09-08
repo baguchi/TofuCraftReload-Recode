@@ -738,6 +738,16 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('Z', Items.STICK)
 				.unlockedBy("has_item", has(TofuItems.MISO.get()))
 				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, TofuItems.MISO_CHEESE_DENGAKU.get(), 1)
+				.pattern(" X ")
+				.pattern("CYC")
+				.pattern(" Z ")
+				.define('X', TofuItems.MISO.get())
+				.define('Y', TofuItems.TOFUMOMEN.get())
+				.define('C', TofuItems.SOY_CHEESE.get())
+				.define('Z', Items.STICK)
+				.unlockedBy("has_item", has(TofuItems.MISO.get()))
+				.save(consumer);
 		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, TofuItems.TOFUCOOKIE.get(), 8)
 				.pattern("X#X")
 				.define('#', TofuItems.TOFUKINU.get())

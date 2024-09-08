@@ -52,7 +52,7 @@ public class TofuFoods {
 	public static final FoodProperties COOKED_TOFUFISH = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6F).build();
 
 	public static final FoodProperties MISODENGAKU = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6F).usingConvertsTo(Items.STICK).fast().effect(() -> new MobEffectInstance(TofuEffects.MISO_BOOST, 1200, 0), 1.0F).build();
-	public static final FoodProperties MISO_CHEESE_DENGAKU = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6F).usingConvertsTo(Items.STICK).fast().effect(() -> new MobEffectInstance(TofuEffects.MISO_BOOST, 3600, 0), 1.0F).build();
+	public static final FoodProperties MISO_CHEESE_DENGAKU = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.8F).usingConvertsTo(Items.STICK).fast().effect(() -> new MobEffectInstance(TofuEffects.MISO_BOOST, 3600, 0), 1.0F).build();
 	public static final FoodProperties TOFUCOOKIE = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.1F).build();
 	public static final FoodProperties TTTBURGER = (new FoodProperties.Builder()).nutrition(9).saturationModifier(0.85F).build();
 	public static final FoodProperties MEAT_WRAPPED_YUBA = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.825F).build();

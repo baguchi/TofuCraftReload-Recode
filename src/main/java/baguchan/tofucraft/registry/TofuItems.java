@@ -193,7 +193,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> RAW_TOFU_FISH = ITEMS.register("raw_tofufish", () -> new Item((new Item.Properties()).food(TofuFoods.RAW_TOFUFISH)));
 	public static final DeferredHolder<Item, Item> COOKED_TOFU_FISH = ITEMS.register("cooked_tofufish", () -> new Item((new Item.Properties()).food(TofuFoods.COOKED_TOFUFISH)));
 	public static final DeferredHolder<Item, Item> MISODENGAKU = ITEMS.register("misodengaku", () -> new DishItem((new Item.Properties()).food(TofuFoods.MISODENGAKU)));
-	public static final DeferredHolder<Item, Item> MISO_CHEESE_DENGAKU = ITEMS.register("misodengaku", () -> new DishItem((new Item.Properties()).food(TofuFoods.MISODENGAKU)));
+	public static final DeferredHolder<Item, Item> MISO_CHEESE_DENGAKU = ITEMS.register("miso_cheese_dengaku", () -> new DishItem((new Item.Properties()).food(TofuFoods.MISO_CHEESE_DENGAKU)));
 	public static final DeferredHolder<Item, Item> TOFUCOOKIE = ITEMS.register("tofucookie", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUCOOKIE)));
 	public static final DeferredHolder<Item, Item> TTTBURGER = ITEMS.register("tttburger", () -> new Item((new Item.Properties()).food(TofuFoods.TTTBURGER)));
 	public static final DeferredHolder<Item, Item> MEAT_WRAPPED_YUBA = ITEMS.register("meatwrapped_yuba", () -> new Item((new Item.Properties()).food(TofuFoods.MEAT_WRAPPED_YUBA)));
