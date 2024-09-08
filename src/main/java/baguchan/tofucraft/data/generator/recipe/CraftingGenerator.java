@@ -617,6 +617,21 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER.get()))
 				.save(consumer);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.TOFU_CHIKUWA_BLOCK.get(), 1)
+				.pattern(" S ")
+				.pattern("S S")
+				.pattern(" S ")
+				.define('S', TofuItems.TOFU_CHIKUWA.get())
+				.unlockedBy("has_item", has(TofuItems.TOFU_CHIKUWA.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.CHIKUWA_BLOCK.get(), 1)
+				.pattern(" S ")
+				.pattern("S S")
+				.pattern(" S ")
+				.define('S', TofuItems.CHIKUWA.get())
+				.unlockedBy("has_item", has(TofuItems.CHIKUWA.get()))
+				.save(consumer);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, TofuBlocks.TOFUCAKE.get())
 				.pattern("###")
 				.pattern("SES")

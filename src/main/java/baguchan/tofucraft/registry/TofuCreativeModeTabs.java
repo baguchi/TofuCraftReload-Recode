@@ -238,6 +238,8 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK,
 						TofuBlocks.NATTOBED,
 						TofuBlocks.NETHER_NATTOBED,
+						TofuBlocks.TOFU_CHIKUWA_BLOCK,
+						TofuBlocks.CHIKUWA_BLOCK,
 						TofuBlocks.TOFUBED,
 						TofuBlocks.TOFUCHEST,
 						TofuBlocks.FOODPLATE,

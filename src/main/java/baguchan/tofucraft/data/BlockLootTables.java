@@ -306,6 +306,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		add(TofuBlocks.BARREL_ADV_TOFUGEM.get(), applyExplosionDecay(TofuBlocks.BARREL_ADV_TOFUGEM.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.ADVANCE_TOFUGEM.get()).when(tofugemAdvBuilder).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(tofugemAdvBuilder).when(ExplosionCondition.survivesExplosion()).otherwise(LootItem.lootTableItem(TofuBlocks.BARREL_ADV_TOFUGEM.get()).when(ExplosionCondition.survivesExplosion()))))));
 
+		dropSelf(TofuBlocks.TOFU_CHIKUWA_BLOCK.get());
+		dropSelf(TofuBlocks.CHIKUWA_BLOCK.get());
 
 		registerEmpty(TofuBlocks.TOFUCAKE.get());
 		registerEmpty(TofuBlocks.ZUNDATOFUCAKE.get());

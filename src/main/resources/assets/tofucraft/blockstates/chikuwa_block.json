@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east,lit=false": {
+      "model": "tofucraft:block/chikuwa_block",
+      "y": 90
+    },
+    "facing=north,lit=false": {
+      "model": "tofucraft:block/chikuwa_block"
+    },
+    "facing=south,lit=false": {
+      "model": "tofucraft:block/chikuwa_block",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "tofucraft:block/chikuwa_block",
+      "y": 270
+    }
+  }
+}

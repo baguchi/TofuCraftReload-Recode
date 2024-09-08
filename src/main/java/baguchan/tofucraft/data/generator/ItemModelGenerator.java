@@ -203,6 +203,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		itemBlockFlat(TofuBlocks.TOFU_FLOWER);
 		itemBlockFlat(TofuBlocks.LEEK);
+		toBlock(TofuBlocks.TOFU_CHIKUWA_BLOCK);
+		toBlock(TofuBlocks.CHIKUWA_BLOCK);
 		singleTex(TofuBlocks.TOFUCAKE);
 		singleTex(TofuBlocks.ZUNDATOFUCAKE);
 		singleTex(TofuBlocks.SOYCHEESE_TART);

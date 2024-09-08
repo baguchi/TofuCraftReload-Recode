@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "tofucraft:chikuwa"
+    }
+  },
+  "pattern": [
+    " S ",
+    "S S",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:chikuwa_block"
+  }
+}

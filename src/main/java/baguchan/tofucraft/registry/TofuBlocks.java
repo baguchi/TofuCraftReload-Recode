@@ -46,6 +46,7 @@ import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
 import baguchan.tofucraft.block.tfenergy.TofuWorkStationBlock;
 import baguchan.tofucraft.block.tree.ApricotLeavesBlock;
 import baguchan.tofucraft.block.tree.ApricotSaplingBlock;
+import baguchan.tofucraft.block.utils.ChikuwaBlock;
 import baguchan.tofucraft.block.utils.MisoBarrelBlock;
 import baguchan.tofucraft.block.utils.NoWeightBaseBlock;
 import baguchan.tofucraft.block.utils.SaltFurnaceBlock;
@@ -286,7 +287,6 @@ public class TofuBlocks {
 	public static final Supplier<TrapDoorBlock> TOFUTRAPDOOR_GRILLED = register("tofutrapdoor_grilled", () -> new TofuTrapDoorBlock(BlockBehaviour.Properties.ofFullCopy(GRILLEDTOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false), BlockSetType.OAK));
 	public static final Supplier<TrapDoorBlock> TOFUTRAPDOOR_ZUNDA = register("tofutrapdoor_zunda", () -> new TofuTrapDoorBlock(BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false), BlockSetType.OAK));
 
-
 	public static final Supplier<Block> TOFU_TERRAIN = register("tofu_terrain", () -> new TofuTerrainBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.SNOW)));
 	public static final Supplier<Block> MABOU_TERRAIN = register("mabou_terrain", () -> new TofuMagmaBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).instrument(NoteBlockInstrument.BASEDRUM)
 			.lightLevel(p_152684_ -> 3)
@@ -379,6 +379,9 @@ public class TofuBlocks {
 	public static final Supplier<Block> BARREL_ADV_TOFUGEM = register("barrel_adv_tofugem", () -> new WeightBaseBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().sound(SoundType.WOOD)));
 	public static final Supplier<Block> NATTOBED = register("nattobed", () -> new NoWeightBaseBlock(BlockBehaviour.Properties.of().strength(1.0F, 2.0F).randomTicks().sound(SoundType.GRASS)));
 	public static final Supplier<Block> NETHER_NATTOBED = register("nether_nattobed", () -> new NoWeightBaseBlock(BlockBehaviour.Properties.of().strength(1.0F, 2.0F).randomTicks().sound(SoundType.GRASS)));
+
+	public static final Supplier<Block> TOFU_CHIKUWA_BLOCK = register("tofu_chikuwa_block", () -> new ChikuwaBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.SNOW)));
+	public static final Supplier<Block> CHIKUWA_BLOCK = register("chikuwa_block", () -> new ChikuwaBlock(BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.SNOW)));
 
 
 	public static final Supplier<Block> TOFUCAKE = register("tofucake", () -> new TofuCakeBlock(BlockBehaviour.Properties.of().strength(0.5F).noOcclusion().sound(SoundType.WOOL), 1, 0.1F));
