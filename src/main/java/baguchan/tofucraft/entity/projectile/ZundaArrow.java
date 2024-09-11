@@ -63,7 +63,7 @@ public class ZundaArrow extends AbstractArrow {
 			int i = Mth.ceil(Mth.clamp((double) f * this.getBaseDamage(), 0.0D, 2.147483647E9D));
 
 			if (this.isCritArrow()) {
-				long j = (long) this.random.nextInt(i / 2 + 2);
+				long j = this.random.nextInt(i / 2 + 2);
 				i = (int) Math.min(j + (long) i, 2147483647L);
 			}
 
@@ -74,7 +74,7 @@ public class ZundaArrow extends AbstractArrow {
 				this.discard();
 			} else if (p_36757_.getEntity() instanceof Mob && ((Mob) p_36757_.getEntity()).getMobType() == MobType.UNDEAD || p_36757_.getEntity().getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
 
-				if (((Mob) p_36757_.getEntity()).hurt(zundaAttack(this.getOwner()), i)) {
+				if (p_36757_.getEntity().hurt(zundaAttack(this.getOwner()), i)) {
 					this.discard();
 				} else {
 					this.setDeltaMovement(this.getDeltaMovement().scale(-0.1D));
@@ -90,7 +90,7 @@ public class ZundaArrow extends AbstractArrow {
 				}
 			} else {
 				if (p_36757_.getEntity() instanceof LivingEntity) {
-					MobEffectInstance mobeffectinstance = new MobEffectInstance(MobEffects.REGENERATION, (int) (this.duration * i), 0);
+					MobEffectInstance mobeffectinstance = new MobEffectInstance(MobEffects.REGENERATION, this.duration * i, 0);
 					((LivingEntity) p_36757_.getEntity()).addEffect(mobeffectinstance, this.getEffectSource());
 					this.discard();
 				}
