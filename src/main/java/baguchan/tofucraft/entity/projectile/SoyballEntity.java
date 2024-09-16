@@ -75,6 +75,9 @@ public class SoyballEntity extends ThrowableProjectile {
 		if (this.getWeaponItem() != null && this.level() instanceof ServerLevel serverlevel) {
 			d0 = (double) EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, damagesource, (float) d0);
 		}
+		if (this.getOwner() != null && this.getOwner().isAlliedTo(entity)) {
+			return;
+		}
 		if (entity.hurt(damagesource, (float) d0) && this.level() instanceof ServerLevel serverlevel) {
 			EnchantmentHelper.doPostAttackEffects(serverlevel, entity, damagesource);
 			if (!this.level().isClientSide) {
