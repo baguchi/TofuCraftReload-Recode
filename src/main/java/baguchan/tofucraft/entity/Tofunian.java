@@ -18,7 +18,6 @@ import baguchan.tofucraft.entity.goal.TofunianTradeWithPlayerGoal;
 import baguchan.tofucraft.entity.goal.WakeUpGoal;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBiomes;
-import baguchan.tofucraft.registry.TofuDamageSource;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuParticleTypes;
@@ -893,14 +892,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public void tick() {
 		super.tick();
 		this.maybeDecayGossip();
-	}
-
-	@Override
-	public boolean hurt(DamageSource p_21016_, float p_21017_) {
-		if (p_21016_.is(TofuDamageSource.SOY_SPLASH)) {
-			return false;
-		}
-		return super.hurt(p_21016_, p_21017_);
 	}
 
 	@Override
