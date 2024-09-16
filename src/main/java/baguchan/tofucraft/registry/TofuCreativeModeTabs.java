@@ -471,6 +471,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.TOFUCREEPER_SPAWNEGG,
 						TofuItems.TOFUSPIDER_SPAWNEGG,
 						TofuItems.TOFU_GANDLEM_SPAWNEGG,
+						TofuItems.TOFU_GOLEM_SPAWNEGG,
 						TofuItems.SHUDOFUSPIDER_SPAWNEGG,
 						TofuItems.FUKUMAME_THOWER_SPAWNEGG,
 						TofuItems.ZUNDAMITE_SPAWNEGG,
