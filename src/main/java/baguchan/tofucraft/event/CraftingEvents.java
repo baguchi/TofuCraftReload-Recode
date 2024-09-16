@@ -17,7 +17,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,7 +31,7 @@ public class CraftingEvents {
 			if (craftMatrix.hasAnyOf(Set.of(Items.BUCKET, TofuItems.FILTERCLOTH.get(), TofuItems.SEEDS_SOYBEANS.get()))) {
 				CraftingContainer craftingcontainer = makeCraftContainer(craftMatrix);
 				Optional<RecipeHolder<CraftingRecipe>> recipe = player.level().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, CraftingInput.of(3, 3, craftingcontainer.getItems()), player.level(), ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "bucket_soymilk_okara"));
-				if (recipe.isPresent() && Objects.equals(recipe.get(), ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "bucket_soymilk_okara"))) {
+				if (recipe.isPresent()) {
 					player.getInventory().add(new ItemStack(TofuItems.OKARA.get(), 1));
 				}
 			}
