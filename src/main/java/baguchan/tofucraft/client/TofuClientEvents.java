@@ -19,7 +19,7 @@ public class TofuClientEvents {
 	@SubscribeEvent
 	public static void onInitModelEvent(BagusModelEvent.Init event) {
 		IRootModel rootModel = event.getRootModel();
-		if (rootModel != null) {
+		if (event.isSupportedAnimateModel()) {
 			rootModel.getBagusRoot().getAllParts().forEach(ModelPart::resetPose);
 		}
 	}
@@ -28,7 +28,7 @@ public class TofuClientEvents {
 	public static void onAnimateModelEvent(BagusModelEvent.PostAnimate event) {
 		IRootModel rootModel = event.getRootModel();
 		BaguAnimationController controller = AnimationUtil.getAnimationController(event.getEntity());
-		if (rootModel != null && controller != null) {
+		if (event.isSupportedAnimateModel() && controller != null) {
 			rootModel.animateBagu(controller.getAnimationState(TofuAnimations.COUGH), CoughAnimation.COUGH, event.getAgeInTick());
 			if (event.getModel() instanceof HumanoidModel<?> humanoidModel) {
 				humanoidModel.hat.copyFrom(humanoidModel.head);
