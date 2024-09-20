@@ -54,6 +54,6 @@ side = "BOTH"
 [[dependencies.tofucraft]]
 modId = "bagus_lib"
 mandatory = true
-versionRange = "[1.20.1-5.1.2,]"
+versionRange = "[1.20.1-5.3.0,]"
 ordering = "NONE"
 side = "BOTH"
