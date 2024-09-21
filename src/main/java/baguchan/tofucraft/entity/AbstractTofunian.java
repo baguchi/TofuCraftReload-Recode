@@ -292,4 +292,12 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 	public boolean isClientSide() {
 		return this.level().isClientSide;
 	}
+
+	@Override
+	public boolean isAlliedTo(Entity p_20355_) {
+		if (p_20355_ instanceof AbstractTofunian || p_20355_.getType() == TofuEntityTypes.TOFU_GOLEM) {
+			return true;
+		}
+		return super.isAlliedTo(p_20355_);
+	}
 }

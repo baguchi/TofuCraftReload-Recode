@@ -895,23 +895,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	@Override
-	public boolean canAttack(LivingEntity p_21171_) {
-		if (p_21171_ instanceof AbstractTofunian) {
-			return false;
-		}
-		return super.canAttack(p_21171_);
-	}
-
-	@Override
-	public boolean canAttackType(EntityType<?> p_21399_) {
-		if (p_21399_ == TofuEntityTypes.TOFU_GOLEM.get()) {
-			return false;
-		}
-
-		return super.canAttackType(p_21399_);
-	}
-
-	@Override
 	public void setLastHurtByMob(@Nullable LivingEntity p_70604_1_) {
 		if (p_70604_1_ != null && this.level() instanceof ServerLevel) {
 			((ServerLevel) this.level()).onReputationEvent(ReputationEventType.VILLAGER_HURT, p_70604_1_, this);
