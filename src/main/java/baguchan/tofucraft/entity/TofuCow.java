@@ -3,7 +3,6 @@ package baguchan.tofucraft.entity;
 import baguchan.tofucraft.registry.TofuBiomes;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuFluids;
-import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -66,7 +65,7 @@ public class TofuCow extends Cow {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(TofuItems.LEEK.get()), false));
+		this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(TofuTags.Items.TOFU_COW_FOOD), false));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -143,8 +142,9 @@ public class TofuCow extends Cow {
 		return tofuCow;
 	}
 
-	public boolean isFood(ItemStack p_27600_) {
-		return p_27600_.is(TofuItems.LEEK.get());
+	@Override
+	public boolean isFood(ItemStack p_335696_) {
+		return p_335696_.is(TofuTags.Items.TOFU_COW_FOOD);
 	}
 
 	public enum TofuCowType {

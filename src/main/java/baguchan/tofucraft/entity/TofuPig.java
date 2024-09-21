@@ -67,7 +67,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, FOOD_ITEMS, false));
+		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, Ingredient.of(TofuTags.Items.TOFU_PIG_FOOD), false));
 		this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -259,7 +259,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 	}
 
 	public boolean isFood(ItemStack p_27600_) {
-		return FOOD_ITEMS.test(p_27600_);
+		return p_27600_.is(TofuTags.Items.TOFU_PIG_FOOD);
 	}
 
 }
