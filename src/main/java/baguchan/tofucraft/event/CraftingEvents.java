@@ -9,7 +9,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -28,7 +27,7 @@ public class CraftingEvents {
 		ItemStack item = event.getCrafting();
 		Container craftMatrix = event.getInventory();
 		if (item.is(TofuItems.BUCKET_SOYMILK.get())) {
-			if (craftMatrix.hasAnyOf(Set.of(Items.BUCKET, TofuItems.FILTERCLOTH.get(), TofuItems.SEEDS_SOYBEANS.get()))) {
+			if (craftMatrix.hasAnyOf(Set.of(TofuItems.FILTERCLOTH.get()))) {
 				CraftingContainer craftingcontainer = makeCraftContainer(craftMatrix);
 				Optional<RecipeHolder<CraftingRecipe>> recipe = player.level().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, CraftingInput.of(3, 3, craftingcontainer.getItems()), player.level(), ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "bucket_soymilk_okara"));
 				if (recipe.isPresent()) {
