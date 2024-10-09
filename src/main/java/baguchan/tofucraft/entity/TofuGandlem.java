@@ -670,7 +670,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 	@Override
 	public Music getBossMusic() {
-		return GANDLEM_MUSIC;
+		return null;
 	}
 
 	static class AttackGoal extends Goal {
