@@ -80,6 +80,9 @@ If you want to include pictures you can upload them somewhere and then include t
 
 ## Credit
 
+The Aether Team. who made original Music Manager Source
+Code https://github.com/The-Aether-Team/The-Aether/blob/1.20.4-develop/src/main/java/com/aetherteam/aether/client/AetherMusicManager.java
+
 iduki and turtton helping Revamped Content
 
 46mofu for add new texture.

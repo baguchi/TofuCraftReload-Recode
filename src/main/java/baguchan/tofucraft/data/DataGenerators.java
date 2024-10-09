@@ -46,11 +46,11 @@ public class DataGenerators {
 		generator.addProvider(event.includeServer(), new EnchantTagGenerator(packOutput, lookupProvider, existingFileHelper));
 		generator.addProvider(event.includeServer(), new CustomTagGenerator.BannerPatternTagGenerator(packOutput, lookupProvider, existingFileHelper));
 		generator.addProvider(event.includeServer(), new CustomTagGenerator.PoiTypeTagGenerator(packOutput, lookupProvider, existingFileHelper));
+		generator.addProvider(event.includeServer(), new CustomTagGenerator.SoundEventTagGenerator(packOutput, lookupProvider, existingFileHelper));
 		generator.addProvider(event.includeServer(), new FluidTagGenerator(packOutput, lookupProvider, existingFileHelper));
 		generator.addProvider(event.includeServer(), TofuLootTableProvider.create(packOutput, lookupProvider));
 		generator.addProvider(event.includeServer(), new CraftingGenerator(packOutput, lookupProvider));
 		generator.addProvider(event.includeServer(), new TofuAdvancementGenerator(packOutput, lookupProvider, existingFileHelper));
 		generator.addProvider(event.includeServer(), new TofuDataMapsProvider(packOutput, lookupProvider));
-
 	}
 }

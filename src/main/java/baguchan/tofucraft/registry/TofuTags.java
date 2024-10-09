@@ -3,6 +3,7 @@ package baguchan.tofucraft.registry;
 import baguchan.tofucraft.TofuCraftReload;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
@@ -100,6 +101,14 @@ public class TofuTags {
 
 		private static TagKey<PoiType> tag(String name) {
 			return TagKey.create(Registries.POINT_OF_INTEREST_TYPE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+		}
+	}
+
+	public static class SoundEvents {
+		public static final TagKey<SoundEvent> BOSS_MUSIC = tag("boss_music");
+
+		private static TagKey<SoundEvent> tag(String name) {
+			return TagKey.create(Registries.SOUND_EVENT, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 }

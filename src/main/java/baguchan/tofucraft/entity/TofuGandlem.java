@@ -1,12 +1,15 @@
 package baguchan.tofucraft.entity;
 
+import baguchan.tofucraft.api.TofuBossMob;
 import baguchan.tofucraft.entity.control.StafeableFlyingMoveControl;
 import baguchan.tofucraft.entity.goal.ChargeGoal;
 import baguchan.tofucraft.entity.goal.SpinAttackGoal;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.tofucraft.network.BossInfoPacket;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuParticleTypes;
+import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.registry.TofuStructures;
 import baguchan.tofucraft.world.TofuData;
 import net.minecraft.core.BlockPos;
@@ -16,11 +19,15 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
@@ -59,12 +66,15 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
 import java.util.List;
 
-public class TofuGandlem extends Monster implements RangedAttackMob {
+public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob {
+	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setPlayBossMusic(true);
+
 	private static final EntityDataAccessor<Boolean> DATA_ID_SHOOT = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> DATA_ID_RUSH = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> DATA_ID_SLEEP = SynchedEntityData.defineId(TofuGandlem.class, EntityDataSerializers.BOOLEAN);
@@ -94,6 +104,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 
 	@Nullable
 	private BlockPos homePos;
+
+	private static final Music GANDLEM_MUSIC = new Music(TofuSounds.TOFU_DUNGEON_BGM, 0, 0, true);
 
 
 	public TofuGandlem(EntityType<? extends TofuGandlem> p_27508_, Level p_27509_) {
@@ -172,6 +184,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	public void setSleepSelf(boolean sleep) {
+		this.bossEvent.setVisible(!sleep);
+
 		this.entityData.set(DATA_ID_SLEEP, sleep);
 	}
 
@@ -281,6 +295,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 				this.shootAnimationState.stop();
 				this.shootingAnimationState.stop();
 			}
+		} else {
+			this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
 		}
 
 		if (this.isAlive() && this.isRush()) {
@@ -616,10 +632,27 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 	}
 
 	@Override
+	public void startSeenByPlayer(ServerPlayer player) {
+		super.startSeenByPlayer(player);
+		PacketDistributor.sendToPlayer(player, new BossInfoPacket.Display(this.bossEvent.getId(), this.getId()));
+		if (this.homePos != null) {
+			this.bossEvent.addPlayer(player);
+		}
+	}
+
+	@Override
+	public void stopSeenByPlayer(ServerPlayer player) {
+		super.stopSeenByPlayer(player);
+		PacketDistributor.sendToPlayer(player, new BossInfoPacket.Remove(this.bossEvent.getId(), this.getId()));
+		this.bossEvent.removePlayer(player);
+	}
+
+	@Override
 	protected EntityDimensions getDefaultDimensions(Pose p_21047_) {
 		EntityDimensions entitydimensions = super.getDefaultDimensions(p_21047_);
 		return this.isRush() ? EntityDimensions.fixed(entitydimensions.width(), entitydimensions.height() * 0.45F) : entitydimensions;
 	}
+
 	@Override
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
 		this.playSound(SoundEvents.SHULKER_SHOOT, 3.0F, 1.0F);
@@ -633,6 +666,11 @@ public class TofuGandlem extends Monster implements RangedAttackMob {
 			fukumame.damage = 1.0F;
 			this.level().addFreshEntity(fukumame);
 		}
+	}
+
+	@Override
+	public Music getBossMusic() {
+		return GANDLEM_MUSIC;
 	}
 
 	static class AttackGoal extends Goal {

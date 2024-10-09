@@ -1,6 +1,7 @@
 package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -11,12 +12,12 @@ import java.util.function.Supplier;
 public class TofuSounds {
 	public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, TofuCraftReload.MODID);
 
-	public static final Supplier<SoundEvent> SOFT_BGM = createEvent("music.soft");
-	public static final Supplier<SoundEvent> MILKY_EARTH_BGM = createEvent("music.milky_earth");
-	public static final Supplier<SoundEvent> ROUGH_GROUND_BGM = createEvent("music.rough_ground");
-	public static final Supplier<SoundEvent> TOFU_ROAD_BGM = createEvent("music.tofu_road");
-	public static final Supplier<SoundEvent> GREEN_BRANCH_BGM = createEvent("music.green_branch");
-	public static final Supplier<SoundEvent> TOFU_DUNGEON_BGM = createEvent("music.tofu_dungeon");
+	public static final Holder<SoundEvent> SOFT_BGM = createHolderEvent("music.soft");
+	public static final Holder<SoundEvent> MILKY_EARTH_BGM = createHolderEvent("music.milky_earth");
+	public static final Holder<SoundEvent> ROUGH_GROUND_BGM = createHolderEvent("music.rough_ground");
+	public static final Holder<SoundEvent> TOFU_ROAD_BGM = createHolderEvent("music.tofu_road");
+	public static final Holder<SoundEvent> GREEN_BRANCH_BGM = createHolderEvent("music.green_branch");
+	public static final Holder<SoundEvent> TOFU_DUNGEON_BGM = createHolderEvent("music.tofu_dungeon");
 
 	public static final Supplier<SoundEvent> TOFUBUGLE = createEvent("tofubugle");
 
@@ -40,4 +41,9 @@ public class TofuSounds {
 		return SOUND_EVENTS.register(sound, () -> SoundEvent.createVariableRangeEvent(name));
 	}
 
+
+	private static Holder<SoundEvent> createHolderEvent(String sound) {
+		ResourceLocation name = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, sound);
+		return SOUND_EVENTS.register(sound, () -> SoundEvent.createVariableRangeEvent(name));
+	}
 }

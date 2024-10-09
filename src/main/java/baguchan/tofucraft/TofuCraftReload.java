@@ -3,6 +3,7 @@ package baguchan.tofucraft;
 import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.client.ClientRegistrar;
 import baguchan.tofucraft.event.CraftingEvents;
+import baguchan.tofucraft.network.BossInfoPacket;
 import baguchan.tofucraft.network.SaltFurnaceBitternPacket;
 import baguchan.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchan.tofucraft.network.SoyMilkDrinkedPacket;
@@ -164,6 +165,10 @@ public class TofuCraftReload {
 		registrar.playBidirectional(SaltFurnaceWaterPacket.TYPE, SaltFurnaceWaterPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playBidirectional(SaltFurnaceBitternPacket.TYPE, SaltFurnaceBitternPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playBidirectional(TFStorageSoymilkPacket.TYPE, TFStorageSoymilkPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playToClient(BossInfoPacket.Display.TYPE, BossInfoPacket.Display.STREAM_CODEC, BossInfoPacket.Display::execute);
+		registrar.playToClient(BossInfoPacket.Remove.TYPE, BossInfoPacket.Remove.STREAM_CODEC, BossInfoPacket.Remove::execute);
+
+
 	}
 
 

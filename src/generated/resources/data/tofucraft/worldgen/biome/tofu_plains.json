@@ -15,9 +15,7 @@
       "max_delay": 24000,
       "min_delay": 12000,
       "replace_current_music": false,
-      "sound": {
-        "sound_id": "tofucraft:music.soft"
-      }
+      "sound": "tofucraft:music.soft"
     },
     "sky_color": 16777215,
     "water_color": 12311280,

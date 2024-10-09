@@ -8,6 +8,7 @@ import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import baguchan.tofucraft.entity.projectile.NattoStringEntity;
+import baguchan.tofucraft.network.BossInfoPacket;
 import baguchan.tofucraft.registry.TofuDamageSource;
 import baguchan.tofucraft.registry.TofuEffects;
 import baguchan.tofucraft.registry.TofuParticleTypes;
@@ -64,6 +65,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.entity.PartEntity;
 import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
@@ -954,14 +956,18 @@ public class ShuDofuSpider extends Monster {
 		return true;
 	}
 
-	public void startSeenByPlayer(ServerPlayer p_31483_) {
-		super.startSeenByPlayer(p_31483_);
-		this.bossEvent.addPlayer(p_31483_);
+	@Override
+	public void startSeenByPlayer(ServerPlayer player) {
+		super.startSeenByPlayer(player);
+		PacketDistributor.sendToPlayer(player, new BossInfoPacket.Display(this.bossEvent.getId(), this.getId()));
+		this.bossEvent.addPlayer(player);
 	}
 
-	public void stopSeenByPlayer(ServerPlayer p_31488_) {
-		super.stopSeenByPlayer(p_31488_);
-		this.bossEvent.removePlayer(p_31488_);
+	@Override
+	public void stopSeenByPlayer(ServerPlayer player) {
+		super.stopSeenByPlayer(player);
+		PacketDistributor.sendToPlayer(player, new BossInfoPacket.Remove(this.bossEvent.getId(), this.getId()));
+		this.bossEvent.removePlayer(player);
 	}
 
 

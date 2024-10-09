@@ -13,8 +13,6 @@ import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
-import java.util.function.Supplier;
-
 public class TofuBiomeBuilders {
 	public static Biome zundaForestBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
@@ -35,7 +33,7 @@ public class TofuBiomeBuilders {
 						.grassColorOverride(7115607)
 						.foliageColorOverride(7115607)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
-						.backgroundMusic(new Music(Holder.direct(TofuSounds.GREEN_BRANCH_BGM.get()), 12000, 24000, false))
+						.backgroundMusic(new Music(TofuSounds.GREEN_BRANCH_BGM, 12000, 24000, false))
 						.build(),
 				builder1.build(),
 				builder.build(),
@@ -130,7 +128,7 @@ public class TofuBiomeBuilders {
 		return makeDefaultBiome(builder, mobSpawnSetting, TofuSounds.SOFT_BGM);
 	}
 
-	public static Biome makeDefaultBiome(BiomeGenerationSettings.Builder builder, MobSpawnSettings.Builder mobSpawnSetting, Supplier<SoundEvent> soundEvent) {
+	public static Biome makeDefaultBiome(BiomeGenerationSettings.Builder builder, MobSpawnSettings.Builder mobSpawnSetting, Holder<SoundEvent> soundEvent) {
 		TofuBiomeDefaultFeatures.addDefaultCarvers(builder);
 		TofuBiomeDefaultFeatures.addDefaultOres(builder);
 		TofuBiomeDefaultFeatures.tofuCreatureSpawns(mobSpawnSetting);
@@ -146,7 +144,7 @@ public class TofuBiomeBuilders {
 						.grassColorOverride(7115607)
 						.foliageColorOverride(7115607)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
-						.backgroundMusic(new Music(Holder.direct(soundEvent.get()), 12000, 24000, false))
+						.backgroundMusic(new Music(soundEvent, 12000, 24000, false))
 						.build(),
 				mobSpawnSetting.build(),
 				builder.build(),
