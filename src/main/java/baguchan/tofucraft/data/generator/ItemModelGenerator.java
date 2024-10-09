@@ -11,7 +11,9 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.SignBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -163,7 +165,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		sign(TofuBlocks.LEEK_GREEN_HANGING_SIGN);
 		singleTex(TofuBlocks.LEEK_GREEN_DOOR);
 		toBlockModel(TofuBlocks.LEEK_GREEN_TRAPDOOR, "leek_green_trapdoor_bottom");
-
+		toBlock(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE);
+		button(TofuBlocks.LEEK_GREEN_BUTTON, TofuBlocks.LEEK_GREEN_PLANKS);
 
 
 		toBlock(TofuBlocks.LEEK_STEM);
@@ -174,6 +177,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.LEEK_FENCE_GATE);
 		sign(TofuBlocks.LEEK_SIGN);
 		sign(TofuBlocks.LEEK_HANGING_SIGN);
+		toBlock(TofuBlocks.LEEK_PRESSURE_PLATE);
+		button(TofuBlocks.LEEK_BUTTON, TofuBlocks.LEEK_PLANKS);
 
 		itemBlockFlat(TofuBlocks.ZUNDATOFU_MUSHROOM);
 
@@ -188,7 +193,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		sign(TofuBlocks.TOFU_STEM_HANGING_SIGN);
 		singleTex(TofuBlocks.TOFU_STEM_DOOR);
 		toBlockModel(TofuBlocks.TOFU_STEM_TRAPDOOR, "tofustem_trapdoor_bottom");
-
+		toBlock(TofuBlocks.TOFU_STEM_PRESSURE_PLATE);
+		button(TofuBlocks.TOFU_STEM_BUTTON, TofuBlocks.TOFU_STEM_PLANKS);
 
 		itemBlockFlat(TofuBlocks.SAPLING_TOFU);
 		toBlock(TofuBlocks.LEAVES_TOFU);
@@ -533,6 +539,14 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		singleTex(TofuItems.TOFU_KEY);
 		singleTex(TofuItems.MUSIC_DISC_GREEN_BRANCH);
+	}
+
+	public ItemModelBuilder button(Supplier<? extends ButtonBlock> button, Supplier<? extends Block> fullBlock) {
+		return buttonInventory(BuiltInRegistries.BLOCK.getKey(button.get()).getPath(), texture(blockName(fullBlock)));
+	}
+
+	public void trapdoor(Supplier<? extends TrapDoorBlock> trapdoor) {
+		withExistingParent(BuiltInRegistries.BLOCK.getKey(trapdoor.get()).getPath(), ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/" + blockName(trapdoor) + "_bottom"));
 	}
 
 	public void sign(Supplier<? extends SignBlock> sign) {

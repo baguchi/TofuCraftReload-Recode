@@ -66,6 +66,8 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(ItemTags.DOORS).add(TofuBlocks.TOFU_STEM_DOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_DOOR.get().asItem());
 		tag(ItemTags.WOODEN_TRAPDOORS).add(TofuBlocks.TOFU_STEM_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.get().asItem());
 		tag(ItemTags.TRAPDOORS).add(TofuBlocks.TOFU_STEM_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.get().asItem());
+		tag(ItemTags.WOODEN_PRESSURE_PLATES).add(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.get().asItem()).add(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.get().asItem()).add(TofuBlocks.LEEK_PRESSURE_PLATE.get().asItem());
+		tag(ItemTags.WOODEN_BUTTONS).add(TofuBlocks.TOFU_STEM_BUTTON.get().asItem()).add(TofuBlocks.LEEK_GREEN_BUTTON.get().asItem()).add(TofuBlocks.LEEK_BUTTON.get().asItem());
 
 
 		this.tag(ItemTags.SIGNS)

@@ -64,7 +64,10 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.BARREL_MISO.get(), TofuBlocks.BARREL_MISOTOFU.get(), TofuBlocks.BARREL_ADV_TOFUGEM.get()
 				, TofuBlocks.TOFU_STEM_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_SIGN.get(), TofuBlocks.TOFU_STEM_HANGING_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get()
 				, TofuBlocks.LEEK_GREEN_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_SIGN.get(), TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get()
-				, TofuBlocks.LEEK_SIGN.get(), TofuBlocks.LEEK_WALL_SIGN.get(), TofuBlocks.LEEK_HANGING_SIGN.get(), TofuBlocks.LEEK_WALL_HANGING_SIGN.get());
+						, TofuBlocks.LEEK_SIGN.get(), TofuBlocks.LEEK_WALL_SIGN.get(), TofuBlocks.LEEK_HANGING_SIGN.get(), TofuBlocks.LEEK_WALL_HANGING_SIGN.get())
+				.add(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.get(), TofuBlocks.TOFU_STEM_BUTTON.get())
+				.add(TofuBlocks.LEEK_PRESSURE_PLATE.get(), TofuBlocks.LEEK_BUTTON.get())
+				.add(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.get(), TofuBlocks.LEEK_GREEN_BUTTON.get());
 		tag(BlockTags.MINEABLE_WITH_HOE).add(TofuBlocks.RICE_ROOT.get(), TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.RICE_BLOCK.get(), TofuBlocks.SOYBEANS_SEEDS_BLOCK.get(), TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get(), TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get());
 
 		tag(BlockTags.NEEDS_STONE_TOOL)

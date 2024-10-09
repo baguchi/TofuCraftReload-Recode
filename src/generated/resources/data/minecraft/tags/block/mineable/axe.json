@@ -40,6 +40,12 @@
     "tofucraft:leek_sign",
     "tofucraft:leek_wall_sign",
     "tofucraft:leek_hanging_sign",
-    "tofucraft:leek_wall_hanging_sign"
+    "tofucraft:leek_wall_hanging_sign",
+    "tofucraft:tofustem_pressure_plate",
+    "tofucraft:tofustem_button",
+    "tofucraft:leek_pressure_plate",
+    "tofucraft:leek_button",
+    "tofucraft:leek_green_pressure_plate",
+    "tofucraft:leek_green_button"
   ]
 }
