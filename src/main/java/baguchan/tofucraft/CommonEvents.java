@@ -17,6 +17,7 @@ import baguchan.tofucraft.registry.TofuItemTier;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuStructures;
+import baguchan.tofucraft.registry.TofuTags;
 import baguchan.tofucraft.utils.ContainerUtils;
 import baguchan.tofucraft.utils.JigsawHelper;
 import baguchan.tofucraft.utils.TofuDiamondToolUtil;
@@ -26,6 +27,7 @@ import baguchan.tofucraft.world.TravelerTofunianSpawner;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -53,6 +55,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
@@ -237,6 +240,17 @@ public class CommonEvents {
 					event.getAffectedBlocks().clear();
 
 				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onBreakingSpeed(PlayerEvent.BreakSpeed event) {
+		ItemStack stack = event.getEntity().getMainHandItem();
+		if (stack.is(TofuTags.Items.TOFU_DIAMOND_MINEABLE_ENCHANTABLE)) {
+			ItemEnchantments enchantments = stack.get(DataComponents.ENCHANTMENTS);
+			if (enchantments != null) {
+				event.setNewSpeed(event.getNewSpeed() / (enchantments.getLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.BATCH))) + 1);
 			}
 		}
 	}
