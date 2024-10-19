@@ -250,7 +250,7 @@ public class CommonEvents {
 		if (stack.is(TofuTags.Items.TOFU_DIAMOND_MINEABLE_ENCHANTABLE)) {
 			ItemEnchantments enchantments = stack.get(DataComponents.ENCHANTMENTS);
 			if (enchantments != null) {
-				event.setNewSpeed(event.getOriginalSpeed() / (enchantments.getLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.BATCH)) + 1));
+				event.setNewSpeed(event.getOriginalSpeed() / (enchantments.getLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.BATCH)) + 1.25F));
 			}
 		}
 	}
