@@ -71,6 +71,7 @@ import net.neoforged.neoforge.client.event.SelectMusicEvent;
 import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDestroyBlockEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
@@ -235,6 +236,24 @@ public class CommonEvents {
 				if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
 					event.getAffectedBlocks().clear();
 
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onBlockDestroyByEntity(LivingDestroyBlockEvent event) {
+		Level world = event.getEntity().level();
+
+		if (world instanceof ServerLevel) {
+			ServerLevel serverLevel = (ServerLevel) world;
+			Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+			if (structure != null) {
+				TofuData data = TofuData.get(serverLevel);
+				Vec3 center = event.getEntity().position();
+				StructureStart structureStart = serverLevel.structureManager().getStructureAt(new BlockPos((int) center.x, (int) center.y, (int) center.z), structure);
+				if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
+					event.setCanceled(true);
 				}
 			}
 		}
