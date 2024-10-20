@@ -4,6 +4,7 @@ import baguchan.tofucraft.api.tfenergy.IEnergyContained;
 import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.capability.SoyHealthCapability;
 import baguchan.tofucraft.capability.TofuLivingCapability;
+import baguchan.tofucraft.item.TofuPickaxeItem;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuEnchantments;
@@ -54,6 +55,7 @@ import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
+import net.minecraftforge.event.entity.living.LivingDestroyBlockEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -241,6 +243,35 @@ public class CommonEvents {
 				StructureStart structureStart = serverLevel.structureManager().getStructureAt(new BlockPos((int) center.x, (int) center.y, (int) center.z), structure);
 				if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
 					event.setResult(Event.Result.DENY);
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onBreakingSpeed(PlayerEvent.BreakSpeed event) {
+		ItemStack stack = event.getEntity().getMainHandItem();
+		if (stack.getItem() instanceof TofuPickaxeItem pickaxeItem) {
+			int level = EnchantmentHelper.getEnchantmentLevel(TofuEnchantments.BATCH.get(), event.getEntity());
+			if (level > 0) {
+				event.setNewSpeed(event.getOriginalSpeed() / (level + 1.25F));
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onBlockDestroyByEntity(LivingDestroyBlockEvent event) {
+		Level world = event.getEntity().level();
+
+		if (world instanceof ServerLevel) {
+			ServerLevel serverLevel = (ServerLevel) world;
+			Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+			if (structure != null) {
+				TofuData data = TofuData.get(serverLevel);
+				Vec3 center = event.getEntity().position();
+				StructureStart structureStart = serverLevel.structureManager().getStructureAt(new BlockPos((int) center.x, (int) center.y, (int) center.z), structure);
+				if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
+					event.setCanceled(true);
 				}
 			}
 		}
