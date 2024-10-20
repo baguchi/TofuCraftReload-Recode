@@ -30,7 +30,7 @@ public class BatchEnchantment extends Enchantment {
 	}
 
 	public int getMaxLevel() {
-		return 1;
+		return 2;
 	}
 
 	/*public boolean checkCompatibility(Enchantment p_77326_1_) {
