@@ -1,5 +1,6 @@
 package baguchan.tofucraft.entity;
 
+import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuSounds;
 import com.google.common.collect.Sets;
 import net.minecraft.core.particles.ParticleOptions;
@@ -14,7 +15,15 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.entity.npc.Npc;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -267,5 +276,13 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 
 	public boolean isClientSide() {
 		return this.level().isClientSide;
+	}
+
+	@Override
+	public boolean isAlliedTo(Entity p_20355_) {
+		if (p_20355_ instanceof AbstractTofunian || p_20355_.getType() == TofuEntityTypes.TOFU_GOLEM.get()) {
+			return true;
+		}
+		return super.isAlliedTo(p_20355_);
 	}
 }

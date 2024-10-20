@@ -18,6 +18,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -267,11 +268,11 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 	}
 
 	@Override
-	public boolean canAttack(LivingEntity p_21171_) {
-		if (p_21171_ instanceof AbstractTofunian) {
-			return false;
+	public boolean isAlliedTo(Entity p_20355_) {
+		if (p_20355_ instanceof AbstractTofunian || p_20355_.getType() == TofuEntityTypes.TOFU_GOLEM.get()) {
+			return true;
 		}
-		return super.canAttack(p_21171_);
+		return super.isAlliedTo(p_20355_);
 	}
 
 	@Override

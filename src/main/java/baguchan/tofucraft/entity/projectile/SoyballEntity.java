@@ -71,7 +71,9 @@ public class SoyballEntity extends ThrowableProjectile {
 		Entity entity = p_37404_.getEntity();
 		DamageSource damagesource = this.damageSources().source(TofuDamageSource.SOY_SPLASH, this, this.getOwner());
 		double d0 = this.damage;
-
+		if (this.getOwner() != null && this.getOwner().isAlliedTo(entity)) {
+			return;
+		}
 		if (entity.hurt(damagesource, (float) d0) && this.level() instanceof ServerLevel serverlevel) {
 			if (!this.level().isClientSide) {
 				this.level().broadcastEntityEvent(this, (byte) 3);
