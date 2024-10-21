@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -39,7 +40,6 @@ public class NattoCobWebEntity extends LivingEntity {
 
 	public NattoCobWebEntity(EntityType<? extends NattoCobWebEntity> p_19870_, Level p_19871_) {
 		super(p_19870_, p_19871_);
-		noCulling = true;
 	}
 
 	public NattoCobWebEntity(Level level, double x, double y, double z) {
@@ -178,15 +178,15 @@ public class NattoCobWebEntity extends LivingEntity {
 	}
 
 	@Override
-	public boolean hurt(DamageSource p_31461_, float p_31462_) {
-		if (this.isInvulnerableTo(p_31461_)) {
+	public boolean hurtServer(ServerLevel serverLevel, DamageSource p_31461_, float p_31462_) {
+		if (this.isInvulnerableTo(serverLevel, p_31461_)) {
 			return false;
 		} else if (!p_31461_.is(DamageTypes.SWEET_BERRY_BUSH) && !p_31461_.is(DamageTypes.CACTUS) && !p_31461_.is(DamageTypes.CRAMMING) && !p_31461_.is(DamageTypes.IN_WALL) && !p_31461_.is(DamageTypes.STALAGMITE) && !p_31461_.is(DamageTypes.DROWN) && !(p_31461_.getEntity() instanceof ShuDofuSpider)) {
 			Entity entity = p_31461_.getDirectEntity();
 			if (entity instanceof Projectile) {
 				return false;
 			}
-			return super.hurt(p_31461_, p_31462_);
+			return super.hurtServer(serverLevel, p_31461_, p_31462_);
 		} else {
 			return false;
 		}

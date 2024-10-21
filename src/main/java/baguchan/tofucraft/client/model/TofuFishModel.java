@@ -3,7 +3,7 @@ package baguchan.tofucraft.client.model;// Made with Blockbench 4.4.2
 // Paste this class into your mod and generate all required imports
 
 
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -11,10 +11,11 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
-public class TofuFishModel<T extends Entity> extends HierarchicalModel<T> {
+public class TofuFishModel extends EntityModel<LivingEntityRenderState> {
 	private final ModelPart root;
 	private final ModelPart body;
 	private final ModelPart head;
@@ -23,6 +24,7 @@ public class TofuFishModel<T extends Entity> extends HierarchicalModel<T> {
 	private final ModelPart tailfin;
 
 	public TofuFishModel(ModelPart root) {
+		super(root);
 		this.root = root;
 		this.body = root.getChild("body");
 		this.head = root.getChild("head");
@@ -51,18 +53,14 @@ public class TofuFishModel<T extends Entity> extends HierarchicalModel<T> {
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(LivingEntityRenderState entity) {
 		float f = 1.0F;
-		if (!entity.isInWater()) {
+		if (!entity.isInWater) {
 			f = 1.5F;
 		}
 
-		this.tailfin.yRot = -f * 0.45F * Mth.sin(0.6F * limbSwingAmount);
-		this.rightFin.zRot = -0.2F + 0.4F * Mth.sin(ageInTicks * 0.2F);
-		this.leftFin.zRot = 0.2F - 0.4F * Mth.sin(ageInTicks * 0.2F);
-	}
-
-	public ModelPart root() {
-		return this.root;
+		this.tailfin.yRot = -f * 0.45F * Mth.sin(0.6F * entity.walkAnimationSpeed);
+		this.rightFin.zRot = -0.2F + 0.4F * Mth.sin(entity.ageInTicks * 0.2F);
+		this.leftFin.zRot = 0.2F - 0.4F * Mth.sin(entity.ageInTicks * 0.2F);
 	}
 }

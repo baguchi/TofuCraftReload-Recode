@@ -22,6 +22,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -99,42 +100,42 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 
 		boolean flag = !level.hasNeighborSignal(blockPos);
 
+		if (level instanceof ServerLevel serverLevel) {
+			boolean worked = false;
+			if (flag) {
+				if (tfcrafter.getEnergyStored() > 0) {
+					if (tfcrafter.refreshTime <= 0) {
 
-		boolean worked = false;
-		if (flag) {
-			if (tfcrafter.getEnergyStored() > 0) {
-				if (tfcrafter.refreshTime <= 0) {
+						Optional<? extends RecipeHolder<? extends Recipe>> optional = tfcrafter.quickCheck.getRecipeFor(CraftingInput.of(3, 3, tfcrafter.inventory), serverLevel);
 
-					Optional<? extends RecipeHolder<? extends Recipe>> optional = tfcrafter.quickCheck.getRecipeFor(CraftingInput.of(3, 3, tfcrafter.inventory), level);
-
-					if (optional.isPresent() && !tfcrafter.hasNeedMoreStack() || tfcrafter.progress > 0) {
-						++tfcrafter.progress;
-						if (tfcrafter.progress == MAX_CRAFT_TIME) {
-							tfcrafter.progress = 0;
-							if (level instanceof ServerLevel serverLevel) {
+						if (optional.isPresent() && !tfcrafter.hasNeedMoreStack() || tfcrafter.progress > 0) {
+							++tfcrafter.progress;
+							if (tfcrafter.progress == MAX_CRAFT_TIME) {
+								tfcrafter.progress = 0;
 								dispenseFrom(tfcrafter, blockState, serverLevel, blockPos);
+
 							}
+							worked = true;
+
+							tfcrafter.drain(2, false);
+
+						} else {
+							tfcrafter.refreshTime = 30 + tfcrafter.level.random.nextInt(30);
 						}
-						worked = true;
-
-						tfcrafter.drain(2, false);
-
 					} else {
-						tfcrafter.refreshTime = 30 + tfcrafter.level.random.nextInt(30);
+						tfcrafter.progress = 0;
+						tfcrafter.refreshTime--;
 					}
-				} else {
-					tfcrafter.progress = 0;
-					tfcrafter.refreshTime--;
 				}
 			}
-		}
 
-		if (blockState.getValue(CRAFTING) != worked) {
-			level.setBlock(blockPos, blockState.setValue(CRAFTING, worked), 2);
-		}
+			if (blockState.getValue(CRAFTING) != worked) {
+				level.setBlock(blockPos, blockState.setValue(CRAFTING, worked), 2);
+			}
 
-		if (worked) {
-			tfcrafter.setChanged();
+			if (worked) {
+				tfcrafter.setChanged();
+			}
 		}
 	}
 
@@ -397,7 +398,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 
 
 	@Override
-	public void fillStackedContents(StackedContents p_40281_) {
+	public void fillStackedContents(StackedItemContents p_40281_) {
 		for (ItemStack itemstack : this.inventory) {
 			p_40281_.accountSimpleStack(itemstack);
 		}

@@ -11,6 +11,7 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -21,9 +22,11 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.Relative;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.npc.InventoryCarrier;
@@ -37,7 +40,6 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.PathType;
-import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -113,7 +115,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		return false;
 	}
 
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, MobSpawnType p_35284_, @Nullable SpawnGroupData p_35285_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, EntitySpawnReason p_35284_, @Nullable SpawnGroupData p_35285_) {
 		if (p_35285_ == null) {
 			p_35285_ = new AgeableMob.AgeableMobGroupData(false);
 		}
@@ -219,12 +221,6 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		return super.getDefaultDimensions(p_316700_);
 	}
 
-	@org.jetbrains.annotations.Nullable
-	@Override
-	public Entity changeDimension(DimensionTransition p_350951_) {
-		this.stopTrading();
-		return super.changeDimension(p_350951_);
-	}
 
 	protected void stopTrading() {
 		this.setTradingPlayer((Player) null);
@@ -294,10 +290,10 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 	}
 
 	@Override
-	public boolean isAlliedTo(Entity p_20355_) {
+	public boolean canAttack(LivingEntity p_20355_) {
 		if (p_20355_ instanceof AbstractTofunian || p_20355_.getType() == TofuEntityTypes.TOFU_GOLEM) {
 			return true;
 		}
-		return super.isAlliedTo(p_20355_);
+		return super.canAttack(p_20355_);
 	}
 }

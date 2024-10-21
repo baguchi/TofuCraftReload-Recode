@@ -3,6 +3,7 @@ package baguchan.tofucraft.item;
 import baguchan.tofucraft.registry.TofuEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -42,15 +43,18 @@ public class DishItem extends Item {
 		var resultItem = super.finishUsingItem(itemStack, level, livingEntity);
 
 		if (this.comfortable) {
-			Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.fromNamespaceAndPath("farmersdelight", "comfort"));
-			FoodProperties foodProperties = this.getFoodProperties(itemStack, livingEntity);
+			Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.fromNamespaceAndPath("farmersdelight", "comfort"));
+			FoodProperties foodProperties = itemStack.get(DataComponents.FOOD);
 			if (foodProperties != null && effect.isPresent()) {
 				livingEntity.addEffect(new MobEffectInstance(effect.get(), 600 * foodProperties.nutrition()));
 			}
 		}
 
 		if (this.salt) {
-			livingEntity.addEffect(new MobEffectInstance(TofuEffects.SALT_BOOST, itemStack.getFoodProperties(livingEntity).nutrition() * 20 * 60));
+			FoodProperties foodProperties = itemStack.get(DataComponents.FOOD);
+			if (foodProperties != null) {
+				livingEntity.addEffect(new MobEffectInstance(TofuEffects.SALT_BOOST, foodProperties.nutrition() * 20 * 60));
+			}
 		}
 		return resultItem;
 	}
@@ -58,8 +62,8 @@ public class DishItem extends Item {
 	@Override
 	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
 		super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
-		MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.fromNamespaceAndPath("farmersdelight", "comfort"));
-		if (effect != null) {
+		Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.fromNamespaceAndPath("farmersdelight", "comfort"));
+		if (effect.isPresent()) {
 			p_41423_.add(Component.translatable("tofucraft.has_comfort").withStyle(ChatFormatting.GOLD));
 		}
 	}

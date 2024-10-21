@@ -89,7 +89,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 		this.targetSelector.addGoal(1, new DefendTofuVillageTargetGoal(this));
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (p_28879_) -> {
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (p_28879_, level) -> {
 			return p_28879_ instanceof Enemy && !(p_28879_ instanceof Creeper);
 		}));
 		this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
@@ -115,7 +115,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 				float f1 = 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
 				this.playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, f1);
 				itemstack.consume(1, p_28861_);
-				return InteractionResult.sidedSuccess(this.level().isClientSide);
+				return InteractionResult.TRY_WITH_EMPTY_HAND;
 			}
 		}
 	}
@@ -267,11 +267,11 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 	}
 
 	@Override
-	public boolean isAlliedTo(Entity p_20355_) {
+	public boolean canAttack(LivingEntity p_20355_) {
 		if (p_20355_ instanceof AbstractTofunian || p_20355_.getType() == TofuEntityTypes.TOFU_GOLEM) {
 			return true;
 		}
-		return super.isAlliedTo(p_20355_);
+		return super.canAttack(p_20355_);
 	}
 	@Override
 	public boolean canAttackType(EntityType<?> p_21399_) {

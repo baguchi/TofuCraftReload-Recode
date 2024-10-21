@@ -27,7 +27,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -56,6 +58,8 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 		@SuppressWarnings("unused")
 		@Override
 		public void generate(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer, ExistingFileHelper existingFileHelper) {
+			HolderLookup.RegistryLookup<Item> items = provider.lookupOrThrow(Registries.ITEM);
+			HolderLookup.RegistryLookup<Block> blocks = provider.lookupOrThrow(Registries.BLOCK);
 
 			HolderLookup.RegistryLookup<Structure> structures = provider.lookupOrThrow(Registries.STRUCTURE);
 
@@ -105,10 +109,11 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 									.setBlock(
 											BlockPredicate.Builder.block()
 													.of(
+															blocks,
 															TofuBlocks.SOYMILK.get()
 													)
 									),
-							ItemPredicate.Builder.item().of(TofuItems.BITTERN_BOTTLE.get())))
+							ItemPredicate.Builder.item().of(items, TofuItems.BITTERN_BOTTLE.get())))
 					.save(consumer, "tofucraft:make_tofu");
 
 			AdvancementHolder eat_tofu_block = Advancement.Builder.advancement()
@@ -118,7 +123,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							Component.translatable("advancements.tofucraft.eat_tofu_block.desc"),
 							null,
 							AdvancementType.CHALLENGE, true, true, true)
-					.addCriterion("has_item", ConsumeItemTrigger.TriggerInstance.usedItem(TofuBlocks.GRILLEDTOFU.get()))
+					.addCriterion("has_item", ConsumeItemTrigger.TriggerInstance.usedItem(items, TofuBlocks.GRILLEDTOFU.get()))
 					.rewards(AdvancementRewards.Builder.experience(50))
 					.save(consumer, "tofucraft:eat_tofu_block");
 

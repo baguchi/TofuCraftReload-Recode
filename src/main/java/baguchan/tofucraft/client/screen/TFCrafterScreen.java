@@ -4,12 +4,14 @@ import baguchan.tofucraft.inventory.TFCrafterMenu;
 import baguchan.tofucraft.inventory.slot.TFCrafterSlot;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.CrafterSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
@@ -79,8 +81,8 @@ public class TFCrafterScreen extends AbstractContainerScreen<TFCrafterMenu> {
 		super.renderSlot(p_307608_, p_307570_);
 	}
 
-	private void renderDisabledSlot(GuiGraphics p_307416_, TFCrafterSlot p_307247_) {
-		p_307416_.blitSprite(DISABLED_SLOT_LOCATION_SPRITE, p_307247_.x - 1, p_307247_.y - 1, 18, 18);
+	private void renderDisabledSlot(GuiGraphics guiGraphics, TFCrafterSlot slot) {
+		guiGraphics.blitSprite(RenderType::guiTextured, DISABLED_SLOT_LOCATION_SPRITE, slot.x - 1, slot.y - 1, 18, 18);
 	}
 
 	@Override
@@ -100,8 +102,8 @@ public class TFCrafterScreen extends AbstractContainerScreen<TFCrafterMenu> {
 		int i = this.width / 2 + 9;
 		int j = this.height / 2 - 48;
 
-		p_307600_.blitSprite(UNPOWERED_REDSTONE_LOCATION_SPRITE, i, j, 16, 16);
-		p_307600_.blitSprite(POWERED_REDSTONE_LOCATION_SPRITE, 16, 16, 0, 0, i, j, this.menu.getProgress(), 16);
+		p_307600_.blitSprite(RenderType::guiTextured, UNPOWERED_REDSTONE_LOCATION_SPRITE, i, j, 16, 16);
+		p_307600_.blitSprite(RenderType::guiTextured, POWERED_REDSTONE_LOCATION_SPRITE, 16, 16, 0, 0, i, j, this.menu.getProgress(), 16);
 
 	}
 
@@ -109,6 +111,6 @@ public class TFCrafterScreen extends AbstractContainerScreen<TFCrafterMenu> {
 	protected void renderBg(GuiGraphics p_307513_, float p_307580_, int p_307561_, int p_307248_) {
 		int i = (this.width - this.imageWidth) / 2;
 		int j = (this.height - this.imageHeight) / 2;
-		p_307513_.blit(CONTAINER_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight);
+		p_307513_.blit(RenderType::guiTextured, CONTAINER_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 	}
 }

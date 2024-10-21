@@ -32,20 +32,20 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 		super(properties);
 	}
 
-	public static boolean canBeGrass(BlockState p_56824_, LevelReader p_56825_, BlockPos p_56826_) {
-		BlockPos blockpos = p_56826_.above();
-		BlockState blockstate = p_56825_.getBlockState(blockpos);
+
+	public static boolean canBeGrass(BlockState state, LevelReader levelReader, BlockPos pos) {
+		BlockPos blockpos = pos.above();
+		BlockState blockstate = levelReader.getBlockState(blockpos);
 		if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowLayerBlock.LAYERS) == 1) {
 			return true;
 		} else if (blockstate.getFluidState().getAmount() == 8) {
 			return false;
 		} else {
-			int i = LightEngine.getLightBlockInto(
-					p_56825_, p_56824_, p_56826_, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(p_56825_, blockpos)
-			);
-			return i < p_56825_.getMaxLightLevel();
+			int i = LightEngine.getLightBlockInto(state, blockstate, Direction.UP, blockstate.getLightBlock());
+			return i < 15;
 		}
 	}
+
 
 	@Override
 	public void randomTick(BlockState p_222508_, ServerLevel p_222509_, BlockPos p_222510_, RandomSource p_222511_) {
@@ -70,7 +70,7 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 	public void performBonemeal(ServerLevel p_221270_, RandomSource p_221271_, BlockPos p_221272_, BlockState p_221273_) {
 		BlockPos blockpos = p_221272_.above();
 		BlockState blockstate = TofuBlocks.LEEK.get().defaultBlockState();
-		Optional<Holder.Reference<PlacedFeature>> optional = p_221270_.registryAccess().registryOrThrow(Registries.PLACED_FEATURE).getHolder(TofuWorldPlacements.LEEK_BONEMEAL);
+		Optional<Holder.Reference<PlacedFeature>> optional = p_221270_.registryAccess().lookupOrThrow(Registries.PLACED_FEATURE).get(TofuWorldPlacements.LEEK_BONEMEAL);
 
 		label49:
 		for (int i = 0; i < 128; ++i) {

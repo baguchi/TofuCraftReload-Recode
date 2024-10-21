@@ -26,7 +26,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -67,7 +67,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
 		this.goalSelector.addGoal(3, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, Ingredient.of(TofuTags.Items.TOFU_PIG_FOOD), false));
+		this.goalSelector.addGoal(4, new TemptGoal(this, 1.2D, itemstack -> itemstack.is(TofuTags.Items.TOFU_PIG_FOOD), false));
 		this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -78,7 +78,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, 0.25D);
 	}
 
-	public static boolean checkTofuAnimalSpawnRules(EntityType<? extends Animal> p_27578_, LevelAccessor p_27579_, MobSpawnType p_27580_, BlockPos p_27581_, RandomSource p_27582_) {
+	public static boolean checkTofuAnimalSpawnRules(EntityType<? extends Animal> p_27578_, LevelAccessor p_27579_, EntitySpawnReason p_27580_, BlockPos p_27581_, RandomSource p_27582_) {
 		return p_27579_.getBlockState(p_27581_.below()).is(TofuTags.Blocks.TOFU_TERRAIN) && p_27579_.getRawBrightness(p_27581_, 0) > 8;
 	}
 
@@ -88,17 +88,17 @@ public class TofuPig extends Pig implements ItemInteractable {
 			p_28298_.playSound(SoundEvents.ANVIL_USE, 1.0F, 1.0F);
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.METAL);
-			return InteractionResult.sidedSuccess(this.level().isClientSide);
+			return InteractionResult.TRY_WITH_EMPTY_HAND;
 		} else if (var3.is(TofuItems.TOFUGRILLED.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
-			p_28298_.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.0F);
+			p_28298_.playSound(SoundEvents.GENERIC_EAT.value(), 1.0F, 1.0F);
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.GRILLED);
-			return InteractionResult.sidedSuccess(this.level().isClientSide);
+			return InteractionResult.TRY_WITH_EMPTY_HAND;
 		} else if (var3.is(TofuItems.TOFUZUNDA.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
-			p_28298_.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.0F);
+			p_28298_.playSound(SoundEvents.GENERIC_EAT.value(), 1.0F, 1.0F);
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.ZUNDA);
-			return InteractionResult.sidedSuccess(this.level().isClientSide);
+			return InteractionResult.TRY_WITH_EMPTY_HAND;
 		} else {
 			return super.mobInteract(p_28298_, p_28299_);
 		}
@@ -131,7 +131,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @org.jetbrains.annotations.Nullable SpawnGroupData p_146749_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, EntitySpawnReason p_146748_, @org.jetbrains.annotations.Nullable SpawnGroupData p_146749_) {
 		if (p_146746_.getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
 			this.setTofuPigType(TofuPigType.ZUNDA);
 		}
@@ -152,13 +152,13 @@ public class TofuPig extends Pig implements ItemInteractable {
 	}
 
 	@Override
-	public boolean hurt(DamageSource source, float damage) {
+	public boolean hurtServer(ServerLevel serverLevel, DamageSource source, float damage) {
 		if (this.getTofuPigType() == TofuPigType.METAL) {
 			damage = (float) (damage * 0.5);
 		} else if (this.getTofuPigType() == TofuPigType.GRILLED && source.is(DamageTypeTags.IS_FIRE)) {
 			return false;
 		}
-		return super.hurt(source, damage);
+		return super.hurtServer(serverLevel, source, damage);
 	}
 
 	public void setTofuPigType(TofuPigType type) {
@@ -215,7 +215,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 
 	@Override
 	public TofuPig getBreedOffspring(ServerLevel p_148890_, AgeableMob p_148891_) {
-		TofuPig tofuPig = TofuEntityTypes.TOFUPIG.get().create(p_148890_);
+		TofuPig tofuPig = TofuEntityTypes.TOFUPIG.get().create(p_148890_, EntitySpawnReason.BREEDING);
 		if (tofuPig != null) {
 			TofuPigType variant = this.random.nextBoolean() ? this.getTofuPigType() : ((TofuPig) p_148891_).getTofuPigType();
 

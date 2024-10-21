@@ -1,5 +1,6 @@
 package baguchan.tofucraft.client.render;
 
+import baguchan.tofucraft.client.render.state.ProjectileRenderState;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -17,7 +18,7 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 @OnlyIn(Dist.CLIENT)
-public class NattoBallRender extends EntityRenderer<NattoBallEntity> {
+public class NattoBallRender extends EntityRenderer<NattoBallEntity, ProjectileRenderState> {
 	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.parse("textures/entity/enderdragon/dragon_fireball.png");
 	private static final RenderType RENDER_TYPE = RenderType.entityCutoutNoCull(TEXTURE_LOCATION);
 
@@ -29,7 +30,13 @@ public class NattoBallRender extends EntityRenderer<NattoBallEntity> {
 		return 15;
 	}
 
-	public void render(NattoBallEntity p_114080_, float p_114081_, float p_114082_, PoseStack p_114083_, MultiBufferSource p_114084_, int p_114085_) {
+	@Override
+	public ProjectileRenderState createRenderState() {
+		return new ProjectileRenderState();
+	}
+
+	@Override
+	public void render(ProjectileRenderState p_114080_, PoseStack p_114083_, MultiBufferSource p_114084_, int p_114085_) {
 		p_114083_.pushPose();
 		p_114083_.scale(2.0F, 2.0F, 2.0F);
 		p_114083_.mulPose(this.entityRenderDispatcher.cameraOrientation());
@@ -43,7 +50,7 @@ public class NattoBallRender extends EntityRenderer<NattoBallEntity> {
 		vertex(vertexconsumer, matrix4f, posestack$pose, p_114085_, 1.0F, 1, 1, 0);
 		vertex(vertexconsumer, matrix4f, posestack$pose, p_114085_, 0.0F, 1, 0, 0);
 		p_114083_.popPose();
-		super.render(p_114080_, p_114081_, p_114082_, p_114083_, p_114084_, p_114085_);
+		super.render(p_114080_, p_114083_, p_114084_, p_114085_);
 	}
 
 	private static void vertex(VertexConsumer p_114090_, Matrix4f p_114091_, PoseStack.Pose p_114092_, int p_114093_, float p_114094_, int p_114095_, int p_114096_, int p_114097_) {

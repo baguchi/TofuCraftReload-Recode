@@ -227,21 +227,21 @@ public class TofuBlocks {
 			.noOcclusion().sound(SoundType.SNOW)));
 
 	public static final DeferredBlock<Block> WALLTOFUTORCH_KINU = BLOCKS.register("walltofutorch_kinu", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_KINU)));
+			.noCollission().sound(SoundType.SNOW)));
 	public static final DeferredBlock<Block> WALLTOFUTORCH_MOMEN = BLOCKS.register("walltofutorch_momen", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_MOMEN)));
+			.noCollission().sound(SoundType.SNOW)));
 	public static final DeferredBlock<Block> WALLTOFUTORCH_ISHI = BLOCKS.register("walltofutorch_ishi", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 6.0F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.STONE).lootFrom(TOFUTORCH_ISHI)));
+			.noCollission().sound(SoundType.STONE)));
 	public static final DeferredBlock<Block> WALLTOFUTORCH_METAL = BLOCKS.register("walltofutorch_metal", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 7.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.METAL).lootFrom(TOFUTORCH_METAL)));
+			.noCollission().sound(SoundType.METAL)));
 	public static final DeferredBlock<Block> WALLTOFUTORCH_GRILLED = BLOCKS.register("walltofutorch_grilled", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_GRILLED)));
+			.noCollission().sound(SoundType.SNOW)));
 	public static final DeferredBlock<Block> WALLTOFUTORCH_ZUNDA = BLOCKS.register("walltofutorch_zunda", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_ZUNDA)));
+			.noCollission().sound(SoundType.SNOW)));
 	public static final DeferredBlock<Block> WALLTOFUTORCH_HELL = BLOCKS.register("walltofutorch_hell", () -> new WallTorchBlock(ParticleTypes.FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_HELL)));
+			.noCollission().sound(SoundType.SNOW)));
 	public static final DeferredBlock<Block> WALLTOFUTORCH_SOUL = BLOCKS.register("walltofutorch_soul", () -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW).lootFrom(TOFUTORCH_SOUL)));
+			.noCollission().sound(SoundType.SNOW)));
 
 	public static final DeferredBlock<Block> TOFU_METAL_CHAIN = register("tofu_metal_chain", () -> new ChainBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHAIN)
 			.sound(SoundType.CHAIN)));
@@ -546,27 +546,27 @@ public class TofuBlocks {
 			if (Objects.requireNonNull(block.get()) == GRILLEDTOFU.get()) {
 				return new EdiableBlockItem(GRILLEDTOFU.get(), new Item.Properties().food(TofuFoods.TOFU_GRILLED_BLOCK));
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_KINU.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_KINU.get(), WALLTOFUTORCH_KINU.get(), new Item.Properties(), Direction.DOWN);
+				return new StandingAndWallBlockItem(TOFUTORCH_KINU.get(), WALLTOFUTORCH_KINU.get(), Direction.DOWN, new Item.Properties());
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_MOMEN.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_MOMEN.get(), WALLTOFUTORCH_MOMEN.get(), new Item.Properties(), Direction.DOWN);
+				return new StandingAndWallBlockItem(TOFUTORCH_MOMEN.get(), WALLTOFUTORCH_MOMEN.get(), Direction.DOWN, new Item.Properties());
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_ISHI.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_ISHI.get(), WALLTOFUTORCH_ISHI.get(), new Item.Properties(), Direction.DOWN);
+				return new StandingAndWallBlockItem(TOFUTORCH_ISHI.get(), WALLTOFUTORCH_ISHI.get(), Direction.DOWN, new Item.Properties());
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_METAL.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_METAL.get(), WALLTOFUTORCH_METAL.get(), new Item.Properties(), Direction.DOWN);
+				return new StandingAndWallBlockItem(TOFUTORCH_METAL.get(), WALLTOFUTORCH_METAL.get(), Direction.DOWN, new Item.Properties());
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_GRILLED.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_GRILLED.get(), WALLTOFUTORCH_GRILLED.get(), new Item.Properties(), Direction.DOWN);
+				return new StandingAndWallBlockItem(TOFUTORCH_GRILLED.get(), WALLTOFUTORCH_GRILLED.get(), Direction.DOWN, new Item.Properties());
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_ZUNDA.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_ZUNDA.get(), WALLTOFUTORCH_ZUNDA.get(), new Item.Properties(), Direction.DOWN);
+				return new StandingAndWallBlockItem(TOFUTORCH_ZUNDA.get(), WALLTOFUTORCH_ZUNDA.get(), Direction.DOWN, new Item.Properties());
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_HELL.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_HELL.get(), WALLTOFUTORCH_HELL.get(), new Item.Properties(), Direction.DOWN);
+				return new StandingAndWallBlockItem(TOFUTORCH_HELL.get(), WALLTOFUTORCH_HELL.get(), Direction.DOWN, new Item.Properties());
 			} else if (Objects.requireNonNull(block.get()) == TOFUTORCH_SOUL.get()) {
-				return new StandingAndWallBlockItem(TOFUTORCH_SOUL.get(), WALLTOFUTORCH_SOUL.get(), new Item.Properties(), Direction.DOWN);
+				return new StandingAndWallBlockItem(TOFUTORCH_SOUL.get(), WALLTOFUTORCH_SOUL.get(), Direction.DOWN, new Item.Properties());
 			} else if (Objects.requireNonNull(block.get()) == TOFU_STEM_SIGN.get()) {
-				return new SignItem(new Item.Properties().stacksTo(16), TOFU_STEM_SIGN.get(), TOFU_STEM_WALL_SIGN.get());
+				return new SignItem(TOFU_STEM_SIGN.get(), TOFU_STEM_WALL_SIGN.get(), new Item.Properties().stacksTo(16));
 			} else if (Objects.requireNonNull(block.get()) == LEEK_GREEN_SIGN.get()) {
-				return new SignItem(new Item.Properties().stacksTo(16), LEEK_GREEN_SIGN.get(), LEEK_GREEN_WALL_SIGN.get());
+				return new SignItem(LEEK_GREEN_SIGN.get(), LEEK_GREEN_WALL_SIGN.get(), new Item.Properties().stacksTo(16));
 			} else if (Objects.requireNonNull(block.get()) == LEEK_SIGN.get()) {
-				return new SignItem(new Item.Properties().stacksTo(16), LEEK_SIGN.get(), LEEK_WALL_SIGN.get());
+				return new SignItem(LEEK_SIGN.get(), LEEK_WALL_SIGN.get(), new Item.Properties().stacksTo(16));
 			} else if (Objects.requireNonNull(block.get()) == TOFU_STEM_HANGING_SIGN.get()) {
 				return new HangingSignItem(TOFU_STEM_HANGING_SIGN.get(), TOFU_STEM_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16));
 			} else if (Objects.requireNonNull(block.get()) == LEEK_GREEN_HANGING_SIGN.get()) {

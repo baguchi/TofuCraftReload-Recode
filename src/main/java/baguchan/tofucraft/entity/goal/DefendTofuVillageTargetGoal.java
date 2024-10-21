@@ -27,8 +27,10 @@ public class DefendTofuVillageTargetGoal extends TargetGoal {
 
 	public boolean canUse() {
 		AABB aabb = this.golem.getBoundingBox().inflate(10.0D, 8.0D, 10.0D);
-		List<? extends LivingEntity> list = this.golem.level().getNearbyEntities(Tofunian.class, this.attackTargeting, this.golem, aabb);
-		List<Player> list1 = this.golem.level().getNearbyPlayers(this.attackTargeting, this.golem, aabb);
+		List<? extends LivingEntity> list = this.golem.level().getEntitiesOfClass(Tofunian.class, aabb);
+		List<Player> list1 = this.golem.level().getEntitiesOfClass(Player.class, aabb, player -> {
+			return !player.isSpectator() && !player.isCreative();
+		});
 
 		for (LivingEntity livingentity : list) {
 			Tofunian villager = (Tofunian) livingentity;

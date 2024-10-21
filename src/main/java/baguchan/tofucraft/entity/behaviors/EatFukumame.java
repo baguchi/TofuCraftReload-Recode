@@ -46,7 +46,7 @@ public class EatFukumame<E extends FukumameThower> extends Behavior<E> {
 		if (--this.ticks == 10) {
 			p_22552_.swing(InteractionHand.MAIN_HAND);
 			p_22552_.setCharge(false);
-			p_22552_.playSound(SoundEvents.GENERIC_EAT);
+			p_22552_.playSound(SoundEvents.GENERIC_EAT.value());
 			p_22552_.eatFukumame();
 		}
 

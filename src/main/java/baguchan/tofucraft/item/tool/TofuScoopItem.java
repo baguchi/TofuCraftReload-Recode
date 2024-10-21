@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,7 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -65,8 +66,9 @@ public class TofuScoopItem extends Item {
 		return InteractionResult.CONSUME;
 	}
 
-	public UseAnim getUseAnimation(ItemStack p_273490_) {
-		return UseAnim.BRUSH;
+	@Override
+	public ItemUseAnimation getUseAnimation(ItemStack p_41452_) {
+		return ItemUseAnimation.BRUSH;
 	}
 
 	public int getUseDuration(ItemStack p_272765_) {
@@ -76,7 +78,7 @@ public class TofuScoopItem extends Item {
 	public void onUseTick(Level p_273467_, LivingEntity p_273619_, ItemStack p_273316_, int p_273101_) {
 		if (p_273101_ >= 0 && p_273619_ instanceof Player player) {
 			HitResult hitresult = this.calculateHitResult(player);
-			if (hitresult instanceof BlockHitResult blockhitresult) {
+			if (hitresult instanceof BlockHitResult blockhitresult && p_273467_ instanceof ServerLevel serverLevel) {
 				if (hitresult.getType() == HitResult.Type.BLOCK) {
 					int i = this.getUseDuration(p_273316_) - p_273101_ + 1;
 					boolean flag = i % 10 == 5;
@@ -100,7 +102,7 @@ public class TofuScoopItem extends Item {
 							if ($$18 instanceof SuspiciousTofuTerrainBlock) {
 								if (blockentity instanceof BrushableBlockEntity) {
 									BrushableBlockEntity brushableblockentity = (BrushableBlockEntity) blockentity;
-									boolean flag1 = brushableblockentity.brush(p_273467_.getGameTime(), player, blockhitresult.getDirection());
+									boolean flag1 = brushableblockentity.brush(p_273467_.getGameTime(), serverLevel, player, blockhitresult.getDirection(), p_273316_);
 									if (flag1) {
 										EquipmentSlot equipmentslot = p_273316_.equals(player.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
 										p_273316_.hurtAndBreak(1, p_273619_, equipmentslot);

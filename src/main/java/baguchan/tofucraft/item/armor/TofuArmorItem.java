@@ -4,14 +4,14 @@ import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import net.minecraft.core.Holder;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.equipment.ArmorType;
 
 public class TofuArmorItem extends ArmorItem implements IEnergyInsertable {
 	public static final String TAG_TF = "tf_energy";
 	public static final String TAG_TFMAX = "tf_energymax";
 
-	public TofuArmorItem(Holder<ArmorMaterial> tofuArmorMaterial, Type type, Properties properties) {
+	public TofuArmorItem(net.minecraft.world.item.equipment.ArmorMaterial tofuArmorMaterial, ArmorType type, Properties properties) {
 		super(tofuArmorMaterial, type, properties);
 	}
 
@@ -25,10 +25,5 @@ public class TofuArmorItem extends ArmorItem implements IEnergyInsertable {
 			}
 		}
 		return 0;
-	}
-
-	@Override
-	public boolean isEnchantable(ItemStack p_41456_) {
-		return super.isEnchantable(p_41456_);
 	}
 }

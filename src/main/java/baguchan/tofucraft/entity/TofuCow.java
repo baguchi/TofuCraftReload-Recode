@@ -18,7 +18,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -65,7 +65,7 @@ public class TofuCow extends Cow {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(TofuTags.Items.TOFU_COW_FOOD), false));
+		this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, itemstack -> itemstack.is(TofuTags.Items.TOFU_COW_FOOD), false));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -99,7 +99,7 @@ public class TofuCow extends Cow {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @org.jetbrains.annotations.Nullable SpawnGroupData p_146749_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, EntitySpawnReason p_146748_, @org.jetbrains.annotations.Nullable SpawnGroupData p_146749_) {
 		if (p_146746_.getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
 			this.setTofuCowType(TofuCowType.ZUNDA);
 		}
@@ -109,7 +109,7 @@ public class TofuCow extends Cow {
 	}
 
 
-	public static boolean checkTofuAnimalSpawnRules(EntityType<? extends Animal> p_27578_, LevelAccessor p_27579_, MobSpawnType p_27580_, BlockPos p_27581_, RandomSource p_27582_) {
+	public static boolean checkTofuAnimalSpawnRules(EntityType<? extends Animal> p_27578_, LevelAccessor p_27579_, EntitySpawnReason p_27580_, BlockPos p_27581_, RandomSource p_27582_) {
 		return p_27579_.getBlockState(p_27581_.below()).is(TofuTags.Blocks.TOFU_TERRAIN) && p_27579_.getRawBrightness(p_27581_, 0) > 8;
 	}
 
@@ -125,7 +125,7 @@ public class TofuCow extends Cow {
 					resultItemStack.set(fluidHandler.getContainer());
 				});
 				p_28298_.setItemInHand(p_28299_, resultItemStack.get());
-				return InteractionResult.sidedSuccess(this.level().isClientSide);
+				return InteractionResult.TRY_WITH_EMPTY_HAND;
 			}
 		}
 		return super.mobInteract(p_28298_, p_28299_);
@@ -133,7 +133,7 @@ public class TofuCow extends Cow {
 
 	@Override
 	public TofuCow getBreedOffspring(ServerLevel p_148890_, AgeableMob p_148891_) {
-		TofuCow tofuCow = TofuEntityTypes.TOFUCOW.get().create(p_148890_);
+		TofuCow tofuCow = TofuEntityTypes.TOFUCOW.get().create(p_148890_, EntitySpawnReason.BREEDING);
 		if (tofuCow != null) {
 			TofuCowType variant = this.random.nextBoolean() ? this.getTofuCowType() : ((TofuCow) p_148891_).getTofuCowType();
 

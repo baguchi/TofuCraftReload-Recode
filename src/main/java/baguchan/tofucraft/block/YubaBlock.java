@@ -8,7 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -18,6 +18,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -66,12 +67,12 @@ public class YubaBlock extends Block {
 	}
 
 	@Override
-	public BlockState updateShape(BlockState p_152293_, Direction p_152294_, BlockState p_152295_, LevelAccessor p_152296_, BlockPos p_152297_, BlockPos p_152298_) {
-		if (!p_152296_.isClientSide()) {
-			p_152296_.scheduleTick(p_152297_, this, 5);
+	protected BlockState updateShape(BlockState p_60541_, LevelReader p_374332_, ScheduledTickAccess p_374457_, BlockPos p_60545_, Direction p_60542_, BlockPos p_60546_, BlockState p_60543_, RandomSource p_374120_) {
+		if (!p_374332_.isClientSide()) {
+			p_374457_.scheduleTick(p_60545_, this, 5);
 		}
 
-		return p_152293_;
+		return p_60541_;
 	}
 
 	@Override
@@ -100,7 +101,7 @@ public class YubaBlock extends Block {
 	}
 
 	@Override
-	protected ItemInteractionResult useItemOn(ItemStack itemstack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
+	protected InteractionResult useItemOn(ItemStack itemstack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
 
 		if (itemstack.is(Tags.Items.RODS_WOODEN)) {
 			if (!worldIn.isClientSide()) {
@@ -116,8 +117,8 @@ public class YubaBlock extends Block {
 			}
 			player.playSound(SoundEvents.BOAT_PADDLE_WATER, 1.0F, 1.0F);
 
-			return ItemInteractionResult.SUCCESS;
+			return InteractionResult.SUCCESS;
 		}
-		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+		return InteractionResult.TRY_WITH_EMPTY_HAND;
 	}
 }

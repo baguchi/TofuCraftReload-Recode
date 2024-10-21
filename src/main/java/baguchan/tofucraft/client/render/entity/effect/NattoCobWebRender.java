@@ -1,5 +1,6 @@
 package baguchan.tofucraft.client.render.entity.effect;
 
+import baguchan.tofucraft.client.render.state.NattoCobWebRenderState;
 import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.registry.TofuItems;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -20,7 +21,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 
 @OnlyIn(Dist.CLIENT)
-public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
+public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity, NattoCobWebRenderState> {
 	private final ItemRenderer itemRenderer;
 
 	public NattoCobWebRender(EntityRendererProvider.Context context) {
@@ -30,38 +31,46 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 	}
 
 	@Override
-	public void render(NattoCobWebEntity entity, float yaw, float delta, PoseStack stack, MultiBufferSource buffer, int packedLightIn) {
-		boolean isSpawing = entity.isSpawing();
+	public void render(NattoCobWebRenderState entity, PoseStack stack, MultiBufferSource buffer, int packedLightIn) {
+		boolean isSpawing = entity.isSpawning;
 		if (isSpawing) {
 			stack.pushPose();
 			stack.scale(5.5F, 6.0F, 5.5F);
-			stack.mulPose(entity.getAttachFace().getOpposite().getRotation());
+			stack.mulPose(entity.direction.getOpposite().getRotation());
 			stack.translate(0.0F, 0.0F, -0.125F);
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
 
 			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
-			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level(), (LivingEntity) null, entity.getId());
+			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, null, (LivingEntity) null, 0);
 
 			this.itemRenderer.render(itemStack, ItemDisplayContext.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
 			stack.popPose();
 		} else {
 			stack.pushPose();
 			stack.scale(6.0F, 6.0F, 6.0F);
-			stack.mulPose(entity.getAttachFace().getRotation());
+			stack.mulPose(entity.direction.getRotation());
 			stack.translate(0.0F, 0.0F, -0.125F);
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
 
 
 			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
-			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, entity.level(), (LivingEntity) null, entity.getId());
+			BakedModel bakedmodel = this.itemRenderer.getModel(itemStack, null, (LivingEntity) null, 0);
 
 			this.itemRenderer.render(itemStack, ItemDisplayContext.GROUND, false, stack, buffer, packedLightIn, OverlayTexture.NO_OVERLAY, bakedmodel);
 			stack.popPose();
 		}
-		super.render(entity, yaw, delta, stack, buffer, packedLightIn);
+		super.render(entity, stack, buffer, packedLightIn);
 	}
 
-	public ResourceLocation getTextureLocation(NattoCobWebEntity p_116083_) {
-		return TextureAtlas.LOCATION_BLOCKS;
+	@Override
+	public NattoCobWebRenderState createRenderState() {
+		return new NattoCobWebRenderState();
+	}
+
+	@Override
+	public void extractRenderState(NattoCobWebEntity p_362104_, NattoCobWebRenderState p_361028_, float p_362204_) {
+		super.extractRenderState(p_362104_, p_361028_, p_362204_);
+		p_361028_.direction = p_362104_.getAttachFace();
+		p_361028_.isSpawning = p_362104_.isSpawing();
 	}
 }

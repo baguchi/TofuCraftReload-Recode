@@ -23,6 +23,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.StackedContentsCompatible;
@@ -275,12 +276,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		this.inventory.clear();
 	}
 
-	@Override
-	public void fillStackedContents(StackedContents p_40281_) {
-		for (ItemStack itemstack : this.inventory) {
-			p_40281_.accountStack(itemstack);
-		}
-	}
 
 	@Override
 	public Component getDisplayName() {
@@ -291,6 +286,13 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 	@Override
 	public AbstractContainerMenu createMenu(int p_39954_, Inventory p_39955_, Player p_39956_) {
 		return new TFStorageMenu(p_39954_, p_39955_, this, this.dataAccess);
+	}
+
+	@Override
+	public void fillStackedContents(StackedItemContents p_364629_) {
+		for (ItemStack itemstack : this.inventory) {
+			p_364629_.accountSimpleStack(itemstack);
+		}
 	}
 
 

@@ -10,9 +10,9 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.monster.piglin.Piglin;
@@ -98,7 +98,7 @@ public class FukumameThower extends Piglin {
 	public boolean canReplaceCurrentItem(ItemStack p_34788_) {
 		EquipmentSlot equipmentslot = this.getEquipmentSlotForItem(p_34788_);
 		ItemStack itemstack = this.getItemBySlot(equipmentslot);
-		return this.canReplaceCurrentItem(p_34788_, itemstack);
+		return this.canReplaceCurrentItem(p_34788_, itemstack, equipmentslot);
 	}
 
 	public void holdInMainHand(ItemStack p_34784_) {
@@ -120,13 +120,13 @@ public class FukumameThower extends Piglin {
 		return false;
 	}
 
-	public static boolean checkFukumameSpawnRules(EntityType<? extends FukumameThower> p_219198_, LevelAccessor p_219199_, MobSpawnType p_219200_, BlockPos p_219201_, RandomSource p_219202_) {
+	public static boolean checkFukumameSpawnRules(EntityType<? extends FukumameThower> p_219198_, LevelAccessor p_219199_, EntitySpawnReason p_219200_, BlockPos p_219201_, RandomSource p_219202_) {
 		return !p_219199_.getBlockState(p_219201_.below()).is(Blocks.NETHER_WART_BLOCK);
 	}
 
 	@Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_34717_, DifficultyInstance p_34718_, MobSpawnType p_34719_, @Nullable SpawnGroupData p_34720_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_34717_, DifficultyInstance p_34718_, EntitySpawnReason p_34719_, @Nullable SpawnGroupData p_34720_) {
 
 		return super.finalizeSpawn(p_34717_, p_34718_, p_34719_, p_34720_);
 	}

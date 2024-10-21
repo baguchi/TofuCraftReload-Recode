@@ -1,7 +1,8 @@
 package baguchan.tofucraft.effect;
 
-import bagu_chan.bagus_lib.util.client.AnimationUtil;
 import baguchan.tofucraft.registry.TofuAnimations;
+import baguchi.bagus_lib.util.client.AnimationUtil;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -14,8 +15,9 @@ public class CoughEffect extends MobEffect {
 		super(mobEffectCategory, i);
 	}
 
-	public boolean applyEffectTick(LivingEntity livingEntity, int p_301079_) {
-		super.applyEffectTick(livingEntity, p_301079_);
+	@Override
+	public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity livingEntity, int p_301079_) {
+		super.applyEffectTick(serverLevel, livingEntity, p_301079_);
 
 		if (!livingEntity.level().isClientSide()) {
 			AnimationUtil.sendAnimation(livingEntity, TofuAnimations.COUGH);

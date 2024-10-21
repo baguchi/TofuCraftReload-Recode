@@ -2,6 +2,7 @@ package baguchan.tofucraft.entity.goal;
 
 import baguchan.tofucraft.entity.Tofunian;
 import baguchan.tofucraft.registry.TofuLootTables;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
@@ -27,7 +28,7 @@ public class EatItemGoal<T extends Tofunian> extends Goal {
 	}
 
 	public boolean canUse() {
-		if (!this.mob.getMainHandItem().isEmpty() && this.mob.getMainHandItem().getFoodProperties(this.mob) != null) {
+		if (!this.mob.getMainHandItem().isEmpty() && this.mob.getMainHandItem().get(DataComponents.FOOD) != null) {
 			return true;
 		}
 		if (this.canUseSelector.test(this.mob)) {

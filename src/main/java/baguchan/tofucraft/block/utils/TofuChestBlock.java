@@ -27,6 +27,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.AbstractChestBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
@@ -45,7 +47,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.ChestType;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -64,7 +65,7 @@ import java.util.function.Supplier;
 public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> implements SimpleWaterloggedBlock {
 	public static final MapCodec<TofuChestBlock> CODEC = simpleCodec(p_304364_ -> new TofuChestBlock(p_304364_, () -> TofuBlockEntitys.TOFUCHEST.get()));
 
-	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+	public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 	public static final EnumProperty<ChestType> TYPE = BlockStateProperties.CHEST_TYPE;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final int EVENT_SET_OPEN_COUNT = 1;
@@ -147,21 +148,21 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 	}
 
 	@Override
-	public BlockState updateShape(BlockState p_51555_, Direction p_51556_, BlockState p_51557_, LevelAccessor p_51558_, BlockPos p_51559_, BlockPos p_51560_) {
-		if (p_51555_.getValue(WATERLOGGED)) {
-			p_51558_.scheduleTick(p_51559_, Fluids.WATER, Fluids.WATER.getTickDelay(p_51558_));
+	protected BlockState updateShape(BlockState stateIn, LevelReader levelReader, ScheduledTickAccess access, BlockPos currentPos, Direction direction, BlockPos facingPos, BlockState facingState, RandomSource randomSource) {
+		if (stateIn.getValue(WATERLOGGED)) {
+			access.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelReader));
 		}
 
-		if (p_51557_.is(this) && p_51556_.getAxis().isHorizontal()) {
-			ChestType chesttype = p_51557_.getValue(TYPE);
-			if (p_51555_.getValue(TYPE) == ChestType.SINGLE && chesttype != ChestType.SINGLE && p_51555_.getValue(FACING) == p_51557_.getValue(FACING) && getConnectedDirection(p_51557_) == p_51556_.getOpposite()) {
-				return p_51555_.setValue(TYPE, chesttype.getOpposite());
+		if (facingState.is(this) && direction.getAxis().isHorizontal()) {
+			ChestType chesttype = facingState.getValue(TYPE);
+			if (stateIn.getValue(TYPE) == ChestType.SINGLE && chesttype != ChestType.SINGLE && stateIn.getValue(FACING) == facingState.getValue(FACING) && getConnectedDirection(facingState) == direction.getOpposite()) {
+				return stateIn.setValue(TYPE, chesttype.getOpposite());
 			}
-		} else if (getConnectedDirection(p_51555_) == p_51556_) {
-			return p_51555_.setValue(TYPE, ChestType.SINGLE);
+		} else if (getConnectedDirection(stateIn) == direction) {
+			return stateIn.setValue(TYPE, ChestType.SINGLE);
 		}
 
-		return super.updateShape(p_51555_, p_51556_, p_51557_, p_51558_, p_51559_, p_51560_);
+		return super.updateShape(stateIn, levelReader, access, currentPos, direction, facingPos, facingState, randomSource);
 	}
 
 	@Override
@@ -247,7 +248,9 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 			if (menuprovider != null) {
 				p_51534_.openMenu(menuprovider);
 				p_51534_.awardStat(this.getOpenChestStat());
-				PiglinAi.angerNearbyPiglins(p_51534_, true);
+				if (p_51532_ instanceof ServerLevel serverLevel) {
+					PiglinAi.angerNearbyPiglins(serverLevel, p_51534_, true);
+				}
 			}
 
 			return InteractionResult.CONSUME;

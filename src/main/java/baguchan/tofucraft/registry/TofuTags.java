@@ -75,6 +75,14 @@ public class TofuTags {
 		public static final TagKey<Item> TOFU_DIAMOND_MINEABLE_ENCHANTABLE = tag("tofu_diamond_mineable_enchantable");
 		public static final TagKey<Item> FUKUMAME_ENCHANTABLE = tag("fukumame_enchantable");
 
+		public static final TagKey<Item> TOFU_TOOL_MATERIAL = tag("tofutool_material");
+
+		public static final TagKey<Item> TOFU_SOLID_TOOL_MATERIAL = tag("tofu_solid_tool_material");
+
+		public static final TagKey<Item> TOFU_METAL_TOOL_MATERIAL = tag("tofu_metal_tool_material");
+		public static final TagKey<Item> TOFU_DIAMOND_TOOL_MATERIAL = tag("tofu_diamond_tool_material");
+
+
 		public static final TagKey<Item> TOFU_COW_FOOD = tag("tofu_cow_food");
 		public static final TagKey<Item> TOFU_PIG_FOOD = tag("tofu_pig_food");
 

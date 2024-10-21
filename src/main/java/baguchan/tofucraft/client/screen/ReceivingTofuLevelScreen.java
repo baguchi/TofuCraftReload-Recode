@@ -3,6 +3,7 @@ package baguchan.tofucraft.client.screen;
 import baguchan.tofucraft.registry.TofuBlocks;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.ReceivingLevelScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 
@@ -36,8 +37,8 @@ public class ReceivingTofuLevelScreen extends ReceivingLevelScreen {
 
 	@Override
 	public void renderBackground(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-		this.renderBlurredBackground(pPartialTick);
-		pGuiGraphics.blit(0, 0, -90, pGuiGraphics.guiWidth(), pGuiGraphics.guiHeight(), this.getTofuPortalSprite());
+		this.renderBlurredBackground();
+		pGuiGraphics.blitSprite(RenderType::guiTextured, this.getTofuPortalSprite(), 0, 0, pGuiGraphics.guiWidth(), pGuiGraphics.guiHeight(), 0);
 		this.renderTransparentBackground(pGuiGraphics);
 	}
 }

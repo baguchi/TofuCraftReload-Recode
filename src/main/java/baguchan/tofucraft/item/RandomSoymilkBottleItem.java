@@ -30,7 +30,7 @@ public class RandomSoymilkBottleItem extends SoymilkBottleItem {
 	private Holder<MobEffect> getRandomEffect() {
 		if (effectList == null) {
 			effectList = BuiltInRegistries.MOB_EFFECT
-					.holders()
+					.getAny()
 					.filter(mobEffect -> mobEffect.value().getCategory() != MobEffectCategory.HARMFUL)
 					.filter(mobEffect -> mobEffect.value().getCategory() != MobEffectCategory.NEUTRAL)
 					.filter(mobEffect -> !mobEffect.value().isInstantenous())
@@ -38,7 +38,7 @@ public class RandomSoymilkBottleItem extends SoymilkBottleItem {
 					.filter(mobEffect -> mobEffect != MobEffects.HERO_OF_THE_VILLAGE)
 					.filter(mobEffect -> mobEffect != MobEffects.DOLPHINS_GRACE)
 					.filter(mobEffect -> mobEffect != MobEffects.CONDUIT_POWER)
-					.toList();
+					.stream().toList();
 		}
 		return effectList.get(random.nextInt(effectList.size()));
 	}

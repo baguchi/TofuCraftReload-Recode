@@ -23,7 +23,7 @@ public class TofuDataMapsProvider extends DataMapProvider {
 	}
 
 	@Override
-	protected void gather() {
+	protected void gather(HolderLookup.Provider provider) {
 		final var compostables = builder(NeoForgeDataMaps.COMPOSTABLES);
 		compostables.add(TofuItems.EDAMAME, new Compostable(0.1F), false);
 		compostables.add(TofuItems.BOILED_EDAMAME, new Compostable(0.1F), false);

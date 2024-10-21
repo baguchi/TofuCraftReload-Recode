@@ -6,12 +6,15 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.HolderSet;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 
 import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
@@ -50,7 +53,7 @@ public class HardenRecipeBuilder implements RecipeBuilder {
 	}
 
 	@Override
-	public void save(RecipeOutput p_301266_, ResourceLocation p_126264_) {
+	public void save(RecipeOutput p_301266_, ResourceKey<Recipe<?>> p_126264_) {
 		this.ensureValid(p_126264_);
 		Advancement.Builder advancement$builder = p_301266_.advancement()
 				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_126264_))
@@ -58,10 +61,10 @@ public class HardenRecipeBuilder implements RecipeBuilder {
 				.requirements(AdvancementRequirements.Strategy.OR);
 		this.criteria.forEach(advancement$builder::addCriterion);
 		HardenRecipe recipe = new HardenRecipe(this.ingredient, this.stackResult);
-		p_301266_.accept(p_126264_, recipe, advancement$builder.build(p_126264_.withPrefix("recipes/harden/")));
+		p_301266_.accept(p_126264_, recipe, advancement$builder.build(p_126264_.location().withPrefix("recipes/harden/")));
 	}
 
-	private void ensureValid(ResourceLocation p_126266_) {
+	private void ensureValid(ResourceKey<Recipe<?>> p_126266_) {
 		if (this.criteria.isEmpty()) {
 			throw new IllegalStateException("No way of obtaining recipe " + p_126266_);
 		}

@@ -3,6 +3,7 @@ package baguchan.tofucraft.client.render.entity;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.client.TofuModelLayers;
 import baguchan.tofucraft.client.model.SoyBallModel;
+import baguchan.tofucraft.client.render.state.ProjectileRenderState;
 import baguchan.tofucraft.entity.projectile.SoyballEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -14,29 +15,39 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-public class SoyballRenderer<T extends SoyballEntity> extends EntityRenderer<T> {
+public class SoyballRenderer extends EntityRenderer<SoyballEntity, ProjectileRenderState> {
 	private static final ResourceLocation LLAMA_SPIT_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/soyball.png");
-	private final SoyBallModel<T> model;
+	private final SoyBallModel model;
 
 	public SoyballRenderer(EntityRendererProvider.Context context) {
 		super(context);
-		this.model = new SoyBallModel<>(context.bakeLayer(TofuModelLayers.SOYBALL));
+		this.model = new SoyBallModel(context.bakeLayer(TofuModelLayers.SOYBALL));
 	}
 
-	public void render(T llamaSpit, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
+	@Override
+	public ProjectileRenderState createRenderState() {
+		return new ProjectileRenderState();
+	}
+
+	@Override
+	public void render(ProjectileRenderState llamaSpit, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
 		poseStack.pushPose();
 		poseStack.translate(0.0F, 4F / 16F, 0.0F);
-		poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(g, llamaSpit.yRotO, llamaSpit.getYRot()) - 180F));
-		poseStack.mulPose(Axis.XP.rotationDegrees(Mth.lerp(g, llamaSpit.xRotO, llamaSpit.getXRot())));
+		poseStack.mulPose(Axis.YP.rotationDegrees(llamaSpit.yRot - 180F));
+		poseStack.mulPose(Axis.XP.rotationDegrees(llamaSpit.xRot));
 		poseStack.translate(0.0F, -1.501F + 3F / 16F, -2.5F / 16F);
-		this.model.setupAnim(llamaSpit, g, 0.0F, -0.1F, 0.0F, 0.0F);
+		this.model.setupAnim(llamaSpit);
 		VertexConsumer vertexConsumer = multiBufferSource.getBuffer(this.model.renderType(LLAMA_SPIT_LOCATION));
 		this.model.renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
 		poseStack.popPose();
-		super.render(llamaSpit, f, g, poseStack, multiBufferSource, i);
+		super.render(llamaSpit, poseStack, multiBufferSource, i);
 	}
 
-	public ResourceLocation getTextureLocation(T llamaSpit) {
-		return LLAMA_SPIT_LOCATION;
+
+	@Override
+	public void extractRenderState(SoyballEntity p_362104_, ProjectileRenderState p_361028_, float p_362204_) {
+		super.extractRenderState(p_362104_, p_361028_, p_362204_);
+		p_361028_.xRot = p_362104_.getXRot(p_362204_);
+		p_361028_.yRot = p_362104_.getYRot(p_362204_);
 	}
 }

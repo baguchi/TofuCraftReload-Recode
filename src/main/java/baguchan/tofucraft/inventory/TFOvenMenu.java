@@ -2,13 +2,21 @@ package baguchan.tofucraft.inventory;
 
 import baguchan.tofucraft.inventory.slot.TFOvenResultSlot;
 import baguchan.tofucraft.registry.TofuMenus;
+import net.minecraft.recipebook.ServerPlaceRecipe;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.entity.player.StackedItemContents;
+import baguchan.tofucraft.inventory.TFOvenMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.FurnaceFuelSlot;
+import net.minecraft.world.inventory.FurnaceResultSlot;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.SimpleContainerData;
@@ -17,11 +25,14 @@ import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipePropertySet;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
-public class TFOvenMenu extends RecipeBookMenu<SingleRecipeInput, AbstractCookingRecipe> {
+import java.util.List;
+
+public class TFOvenMenu extends RecipeBookMenu {
 	public static final int INGREDIENT_SLOT = 0;
 	public static final int FUEL_SLOT = 1;
 	public static final int RESULT_SLOT = 2;
@@ -31,91 +42,63 @@ public class TFOvenMenu extends RecipeBookMenu<SingleRecipeInput, AbstractCookin
 	private static final int INV_SLOT_END = 30;
 	private static final int USE_ROW_SLOT_START = 30;
 	private static final int USE_ROW_SLOT_END = 39;
-	private final Container container;
+	final Container container;
 	private final ContainerData data;
 	protected final Level level;
 	private final RecipeType<? extends AbstractCookingRecipe> recipeType;
+	private final RecipePropertySet acceptedInputs;
 	private final RecipeBookType recipeBookType;
 
 	public TFOvenMenu(
-			int p_38963_, Inventory p_38964_
+			int p_38969_,
+			Inventory p_38970_
 	) {
-		this(p_38963_, p_38964_, new SimpleContainer(2), new SimpleContainerData(3));
+		this(p_38969_, p_38970_, new SimpleContainer(2), new SimpleContainerData(3));
 	}
 
 	public TFOvenMenu(
-			int p_38969_,
-			Inventory p_38970_,
-			Container p_38971_,
-			ContainerData p_38972_
+			int p_38963_,
+			Inventory p_38964_,
+			Container p_379971_,
+			ContainerData p_379737_
 	) {
-		super(TofuMenus.TF_OVEN.get(), p_38969_);
+		super(TofuMenus.TF_OVEN.get(), p_38963_);
 		this.recipeType = RecipeType.SMELTING;
 		this.recipeBookType = RecipeBookType.FURNACE;
-		checkContainerSize(p_38971_, 2);
-		checkContainerDataCount(p_38972_, 3);
-		this.container = p_38971_;
-		this.data = p_38972_;
-		this.level = p_38970_.player.level();
-		p_38971_.startOpen(p_38970_.player);
-		this.addSlot(new Slot(p_38971_, 0, 39, 15));
-		this.addSlot(new TFOvenResultSlot(p_38970_.player, p_38971_, 1, 109, 15));
-
-		for (int i = 0; i < 3; ++i) {
-			for (int j = 0; j < 9; ++j) {
-				this.addSlot(new Slot(p_38970_, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-			}
-		}
-
-		for (int k = 0; k < 9; ++k) {
-			this.addSlot(new Slot(p_38970_, k, 8 + k * 18, 142));
-		}
-
-		this.addDataSlots(p_38972_);
+		checkContainerSize(p_379971_, 3);
+		checkContainerDataCount(p_379737_, 4);
+		this.container = p_379971_;
+		this.data = p_379737_;
+		this.level = p_38964_.player.level();
+		this.acceptedInputs = this.level.recipeAccess().propertySet(RecipePropertySet.FURNACE_INPUT);
+		this.addSlot(new Slot(p_379971_, 0, 39, 15));
+		this.addSlot(new FurnaceResultSlot(p_38964_.player, p_379971_, 1, 109, 15));
+		this.addStandardInventorySlots(p_38964_, 7, 83);
+		this.addDataSlots(p_379737_);
 	}
 
 	@Override
-	public void fillCraftSlotsStackedContents(StackedContents p_38976_) {
+	public void fillCraftSlotsStackedContents(StackedItemContents p_363436_) {
 		if (this.container instanceof StackedContentsCompatible) {
-			((StackedContentsCompatible) this.container).fillStackedContents(p_38976_);
+			((StackedContentsCompatible) this.container).fillStackedContents(p_363436_);
 		}
 	}
 
-	@Override
-	public void clearCraftingContent() {
-		this.getSlot(0).set(ItemStack.EMPTY);
+	public Slot getResultSlot() {
+		return this.slots.get(2);
 	}
 
+	/**
+	 * Determines whether supplied player can use this container
+	 */
 	@Override
-	public boolean recipeMatches(RecipeHolder<AbstractCookingRecipe> p_300882_) {
-		return p_300882_.value().matches(new SingleRecipeInput(this.container.getItem(0)), this.level);
+	public boolean stillValid(Player player) {
+		return this.container.stillValid(player);
 	}
 
-	@Override
-	public int getResultSlotIndex() {
-		return 1;
-	}
-
-	@Override
-	public int getGridWidth() {
-		return 1;
-	}
-
-	@Override
-	public int getGridHeight() {
-		return 1;
-	}
-
-	@Override
-	public int getSize() {
-		return 2;
-	}
-
-	@Override
-	public boolean stillValid(Player p_38974_) {
-		return this.container.stillValid(p_38974_);
-	}
-
+	/**
+	 * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
+	 */
 	@Override
 	public ItemStack quickMoveStack(Player p_38986_, int p_38987_) {
 		ItemStack itemstack = ItemStack.EMPTY;
@@ -155,10 +138,6 @@ public class TFOvenMenu extends RecipeBookMenu<SingleRecipeInput, AbstractCookin
 		return itemstack;
 	}
 
-	protected boolean canSmelt(ItemStack p_38978_) {
-		return this.level.getRecipeManager().getRecipeFor((RecipeType<AbstractCookingRecipe>) this.recipeType, new SingleRecipeInput(p_38978_), this.level).isPresent();
-	}
-
 	public float getTFForce() {
 		int i = this.data.get(1);
 		int j = this.data.get(2);
@@ -174,9 +153,10 @@ public class TFOvenMenu extends RecipeBookMenu<SingleRecipeInput, AbstractCookin
 		return Mth.clamp((float) this.data.get(0) / (float) i, 0.0F, 1.0F);
 	}
 
-	public boolean isLit() {
-		return this.data.get(0) > 0;
+	protected boolean canSmelt(ItemStack stack) {
+		return this.acceptedInputs.test(stack);
 	}
+
 
 	@Override
 	public RecipeBookType getRecipeBookType() {
@@ -184,7 +164,25 @@ public class TFOvenMenu extends RecipeBookMenu<SingleRecipeInput, AbstractCookin
 	}
 
 	@Override
-	public boolean shouldMoveToInventory(int p_150463_) {
-		return p_150463_ != 1;
+	public RecipeBookMenu.PostPlaceAction handlePlacement(
+			boolean p_361547_, boolean p_363944_, RecipeHolder<?> p_360938_, final ServerLevel p_379475_, Inventory p_361954_
+	) {
+		final List<Slot> list = List.of(this.getSlot(0), this.getSlot(2));
+		return ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<AbstractCookingRecipe>() {
+			@Override
+			public void fillCraftSlotsStackedContents(StackedItemContents p_361824_) {
+				TFOvenMenu.this.fillCraftSlotsStackedContents(p_361824_);
+			}
+
+			@Override
+			public void clearCraftingContent() {
+				list.forEach(p_362814_ -> p_362814_.set(ItemStack.EMPTY));
+			}
+
+			@Override
+			public boolean recipeMatches(RecipeHolder<AbstractCookingRecipe> p_361040_) {
+				return p_361040_.value().matches(new SingleRecipeInput(TFOvenMenu.this.container.getItem(0)), p_379475_);
+			}
+		}, 1, 1, List.of(this.getSlot(0)), list, p_361954_, (RecipeHolder<AbstractCookingRecipe>) p_360938_, p_361547_, p_363944_);
 	}
 }

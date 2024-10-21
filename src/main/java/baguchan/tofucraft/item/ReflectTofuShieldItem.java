@@ -24,13 +24,8 @@ public class ReflectTofuShieldItem extends ShieldItem implements IEnergyInsertab
 
 	public ReflectTofuShieldItem(Properties p_43089_) {
 		super(p_43089_);
-		DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);
 	}
 
-	@Override
-	public boolean isValidRepairItem(ItemStack p_43091_, ItemStack p_43092_) {
-		return p_43092_.is(TofuItems.TOFUMETAL.get()) || !p_43092_.is(ItemTags.PLANKS) && super.isValidRepairItem(p_43091_, p_43092_);
-	}
 	@Override
 	public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
 		return itemAbility == ItemAbilities.SHIELD_BLOCK;

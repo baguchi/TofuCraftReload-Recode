@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -20,7 +20,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 
 import javax.annotation.Nullable;
 
-public class DoubleUsageSeedItem extends ItemNameBlockItem {
+public class DoubleUsageSeedItem extends BlockItem {
 	private final Block sprouts;
 
 	public DoubleUsageSeedItem(Block p_220226_, Block sprouts, Properties p_220227_) {
@@ -71,7 +71,7 @@ public class DoubleUsageSeedItem extends ItemNameBlockItem {
 					);
 					level.gameEvent(GameEvent.BLOCK_PLACE, blockpos, GameEvent.Context.of(player, blockstate1));
 					itemstack.consume(1, player);
-					return InteractionResult.sidedSuccess(level.isClientSide);
+					return InteractionResult.SUCCESS_SERVER;
 				}
 			}
 		}

@@ -6,6 +6,8 @@ import baguchan.tofucraft.registry.TofuBlockEntitys;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Reference2IntMap;
+import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -13,8 +15,10 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,6 +30,7 @@ import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.RecipeCraftingHolder;
@@ -40,6 +45,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -61,7 +67,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 
 	private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends Recipe> quickCheck;
 
-	private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
+	private final Reference2IntOpenHashMap<ResourceKey<Recipe<?>>> recipesUsed = new Reference2IntOpenHashMap<>();
 
 
 	private static final int[] SLOTS_FOR_UP = new int[]{0};
@@ -111,11 +117,12 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFOvenBlockEntity tfoven) {
 		if (level.isClientSide()) return;
 
-		boolean worked = false;
+		if (level instanceof ServerLevel serverLevel) {
+			boolean worked = false;
 			if (tfoven.getEnergyStored() > 0) {
 				if (tfoven.refreshTime <= 0) {
 
-					Optional<? extends RecipeHolder<? extends Recipe>> optional = tfoven.quickCheck.getRecipeFor(new SingleRecipeInput(tfoven.inventory.get(0)), level);
+					Optional<? extends RecipeHolder<? extends Recipe>> optional = tfoven.quickCheck.getRecipeFor(new SingleRecipeInput(tfoven.inventory.get(0)), serverLevel);
 
 					if (optional.isPresent()) {
 						++tfoven.progress;
@@ -138,12 +145,13 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 				}
 			}
 
-		if (blockState.getValue(LIT) != worked) {
-			level.setBlock(blockPos, blockState.setValue(LIT, worked), 2);
+			if (blockState.getValue(LIT) != worked) {
+				level.setBlock(blockPos, blockState.setValue(LIT, worked), 2);
 
-		}
-		if (worked) {
-			tfoven.setChanged();
+			}
+			if (worked) {
+				tfoven.setChanged();
+			}
 		}
 	}
 
@@ -232,7 +240,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 		cmp.putInt("progress", this.progress);
 		cmp.putInt("RefreshTime", this.refreshTime);
 		CompoundTag compoundtag = new CompoundTag();
-		this.recipesUsed.forEach((p_187449_, p_187450_) -> compoundtag.putInt(p_187449_.toString(), p_187450_));
+		this.recipesUsed.forEach((p_380898_, p_380899_) -> compoundtag.putInt(p_380898_.location().toString(), p_380899_));
 		cmp.put("RecipesUsed", compoundtag);
 	}
 
@@ -247,7 +255,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 		CompoundTag compoundtag = cmp.getCompound("RecipesUsed");
 
 		for (String s : compoundtag.getAllKeys()) {
-			this.recipesUsed.put(ResourceLocation.parse(s), compoundtag.getInt(s));
+			this.recipesUsed.put(ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(s)), compoundtag.getInt(s));
 		}
 	}
 
@@ -287,7 +295,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 	@Override
 	public void setRecipeUsed(@javax.annotation.Nullable RecipeHolder<?> p_301245_) {
 		if (p_301245_ != null) {
-			ResourceLocation resourcelocation = p_301245_.id();
+			ResourceKey<Recipe<?>> resourcelocation = p_301245_.id();
 			this.recipesUsed.addTo(resourcelocation, 1);
 		}
 	}
@@ -302,30 +310,31 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 	public void awardUsedRecipes(Player p_58396_, List<ItemStack> p_282202_) {
 	}
 
-	public void awardUsedRecipesAndPopExperience(ServerPlayer p_155004_) {
-		List<RecipeHolder<?>> list = this.getRecipesToAwardAndPopExperience(p_155004_.serverLevel(), p_155004_.position());
-		p_155004_.awardRecipes(list);
-
-		for (RecipeHolder<?> recipeholder : list) {
-			if (recipeholder != null) {
-				p_155004_.triggerRecipeCrafted(recipeholder, this.inventory);
-			}
-		}
-
-		this.recipesUsed.clear();
-	}
-
-	public List<RecipeHolder<?>> getRecipesToAwardAndPopExperience(ServerLevel p_154996_, Vec3 p_154997_) {
+	public List<RecipeHolder<?>> getRecipesToAwardAndPopExperience(ServerLevel level, Vec3 popVec) {
 		List<RecipeHolder<?>> list = Lists.newArrayList();
 
-		for (Object2IntMap.Entry<ResourceLocation> entry : this.recipesUsed.object2IntEntrySet()) {
-			p_154996_.getRecipeManager().byKey(entry.getKey()).ifPresent(p_300839_ -> {
-				list.add(p_300839_);
-				createExperience(p_154996_, p_154997_, entry.getIntValue(), ((AbstractCookingRecipe) p_300839_.value()).getExperience());
+		for (Reference2IntMap.Entry<ResourceKey<Recipe<?>>> entry : this.recipesUsed.reference2IntEntrySet()) {
+			level.recipeAccess().byKey(entry.getKey()).ifPresent(p_379268_ -> {
+				list.add((RecipeHolder<?>) p_379268_);
+				createExperience(level, popVec, entry.getIntValue(), ((AbstractCookingRecipe) p_379268_.value()).experience());
 			});
 		}
 
 		return list;
+	}
+
+
+	public void awardUsedRecipesAndPopExperience(ServerPlayer player) {
+		List<RecipeHolder<?>> list = this.getRecipesToAwardAndPopExperience(player.serverLevel(), player.position());
+		player.awardRecipes(list);
+
+		for (RecipeHolder<?> recipeholder : list) {
+			if (recipeholder != null) {
+				player.triggerRecipeCrafted(recipeholder, this.inventory);
+			}
+		}
+
+		this.recipesUsed.clear();
 	}
 
 	private static void createExperience(ServerLevel p_154999_, Vec3 p_155000_, int p_155001_, float p_155002_) {
@@ -337,11 +346,10 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 
 		ExperienceOrb.award(p_154999_, p_155000_, i);
 	}
-
 	@Override
-	public void fillStackedContents(StackedContents p_40281_) {
+	public void fillStackedContents(StackedItemContents p_364785_) {
 		for (ItemStack itemstack : this.inventory) {
-			p_40281_.accountSimpleStack(itemstack);
+			p_364785_.accountSimpleStack(itemstack);
 		}
 	}
 

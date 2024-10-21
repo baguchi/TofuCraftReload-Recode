@@ -8,9 +8,11 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
@@ -53,18 +55,19 @@ public class BitternRecipeBuilder implements RecipeBuilder {
 	}
 
 	@Override
-	public void save(RecipeOutput p_301266_, ResourceLocation p_126264_) {
-		this.ensureValid(p_126264_);
-		Advancement.Builder advancement$builder = p_301266_.advancement()
-				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_126264_))
-				.rewards(AdvancementRewards.Builder.recipe(p_126264_))
+	public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> p_379998_) {
+		this.ensureValid(p_379998_);
+		Advancement.Builder advancement$builder = recipeOutput.advancement()
+				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_379998_))
+				.rewards(AdvancementRewards.Builder.recipe(p_379998_))
 				.requirements(AdvancementRequirements.Strategy.OR);
 		this.criteria.forEach(advancement$builder::addCriterion);
 		BitternRecipe recipe = new BitternRecipe(this.ingredient, this.extraIngredient, this.stackResult);
-		p_301266_.accept(p_126264_, recipe, advancement$builder.build(p_126264_.withPrefix("recipes/bittern/")));
+		recipeOutput.accept(p_379998_, recipe, advancement$builder.build(p_379998_.location().withPrefix("recipes/bittern/")));
+
 	}
 
-	private void ensureValid(ResourceLocation p_126266_) {
+	private void ensureValid(ResourceKey<Recipe<?>> p_126266_) {
 		if (this.criteria.isEmpty()) {
 			throw new IllegalStateException("No way of obtaining recipe " + p_126266_);
 		}

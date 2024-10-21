@@ -3,10 +3,12 @@ package baguchan.tofucraft.block.tfenergy;
 import baguchan.tofucraft.api.tfenergy.IAnntena;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,12 +39,10 @@ public class TFAntennaBlock extends Block implements IAnntena {
 	}
 
 	@Override
-	protected BlockState updateShape(
-			BlockState p_304418_, Direction p_304475_, BlockState p_304669_, LevelAccessor p_304637_, BlockPos p_304633_, BlockPos p_304603_
-	) {
-		return p_304475_ == Direction.DOWN && !this.canSurvive(p_304418_, p_304637_, p_304633_)
+	protected BlockState updateShape(BlockState p_60541_, LevelReader p_374332_, ScheduledTickAccess p_374457_, BlockPos p_60545_, Direction p_60542_, BlockPos p_60546_, BlockState p_60543_, RandomSource p_374120_) {
+		return p_60542_ == Direction.DOWN && !this.canSurvive(p_60541_, p_374332_, p_60545_)
 				? Blocks.AIR.defaultBlockState()
-				: super.updateShape(p_304418_, p_304475_, p_304669_, p_304637_, p_304633_, p_304603_);
+				: super.updateShape(p_60541_, p_374332_, p_374457_, p_60545_, p_60542_, p_60546_, p_60543_, p_374120_);
 	}
 
 	@Override

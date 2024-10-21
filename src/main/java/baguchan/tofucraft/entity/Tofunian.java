@@ -29,6 +29,7 @@ import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -60,7 +61,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.ReputationEventHandler;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -78,6 +79,7 @@ import net.minecraft.world.entity.ai.gossip.GossipType;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.village.ReputationEventType;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.monster.Illusioner;
@@ -100,7 +102,6 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -236,7 +237,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel p_241840_1_, AgeableMob p_241840_2_) {
-		Tofunian tofunian = TofuEntityTypes.TOFUNIAN.get().create(p_241840_1_);
+		Tofunian tofunian = TofuEntityTypes.TOFUNIAN.get().create(p_241840_1_, EntitySpawnReason.BREEDING);
 		if (tofunian != null) {
 			TofunianType variant = this.random.nextBoolean() ? this.getTofunianType() : ((Tofunian) p_241840_2_).getTofunianType();
 			tofunian.setTofunianType(variant);
@@ -318,18 +319,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return this.villageCenter;
 	}
 
-
 	@Override
-	public @org.jetbrains.annotations.Nullable Entity changeDimension(DimensionTransition p_350951_) {
-		setTofunianHome(null);
-		if (xp != 0) {
-			setTofunianJobBlock(null);
-		}
-		return super.changeDimension(p_350951_);
-	}
-
-	@Override
-	protected void customServerAiStep() {
+	protected void customServerAiStep(ServerLevel serverLevel) {
 		if (!isTrading() && this.timeUntilReset > 0) {
 			this.timeUntilReset--;
 			if (this.timeUntilReset <= 0) {
@@ -340,8 +331,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200, 0));
 			}
 		}
-		if (this.previousCustomer != null && level() instanceof ServerLevel) {
-			((ServerLevel) level()).onReputationEvent(ReputationEventType.TRADE, this.previousCustomer, this);
+		if (this.previousCustomer != null) {
+			serverLevel.onReputationEvent(ReputationEventType.TRADE, this.previousCustomer, this);
 			level().broadcastEntityEvent(this, (byte) 14);
 			this.previousCustomer = null;
 		}
@@ -352,7 +343,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.tofunianJobCheck();
 		this.tofunianHomeCheck();
 
-		super.customServerAiStep();
+		super.customServerAiStep(serverLevel);
 	}
 
 	@Override
@@ -456,7 +447,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public void tofunianHomeCheck() {
 		if ((level().getGameTime() + this.getId()) % (90) != 0) return;
 
-		this.level().getProfiler().push("tofunianHomeCheck");
 		//validate home position
 		boolean tryFind = false;
 		if (getTofunianHome() == null) {
@@ -483,7 +473,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				}
 			}
 		}
-		this.level().getProfiler().pop();
 	}
 
 	@Override
@@ -501,7 +490,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, MobSpawnType p_35284_, @org.jetbrains.annotations.Nullable SpawnGroupData p_35285_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, EntitySpawnReason p_35284_, @org.jetbrains.annotations.Nullable SpawnGroupData p_35285_) {
 		if (p_35282_.getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
 			this.setTofunianType(TofunianType.ZUNDA);
 		}
@@ -518,7 +507,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			}
 			if (this.isBaby()) {
 				this.setUnhappy();
-				return InteractionResult.sidedSuccess(this.level().isClientSide);
+				return InteractionResult.TRY_WITH_EMPTY_HAND;
 			} else {
 				boolean flag = this.getOffers().isEmpty();
 				if (this.getAction() == Actions.HAPPY || this.getAction() == Actions.EAT || this.getAction() == Actions.CRY) {
@@ -534,13 +523,13 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				}
 
 				if (flag) {
-					return InteractionResult.sidedSuccess(this.level().isClientSide);
+					return InteractionResult.TRY_WITH_EMPTY_HAND;
 				} else {
 					if (!this.level().isClientSide && !this.offers.isEmpty()) {
 						this.startTrading(p_35472_);
 					}
 
-					return InteractionResult.sidedSuccess(this.level().isClientSide);
+					return InteractionResult.TRY_WITH_EMPTY_HAND;
 				}
 			}
 		} else {
@@ -867,12 +856,16 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.getInventory().addItem(new ItemStack(TofuItems.TOFUGRILLED.get()));
 	}
 
+
 	@Override
-	public ItemStack eat(Level level, ItemStack stack, FoodProperties foodProperties) {
-		this.heal(stack.getFoodProperties(this).nutrition());
+	protected void completeUsingItem() {
+		FoodProperties foodproperties = this.useItem.get(DataComponents.FOOD);
+		float f = foodproperties != null ? (float) foodproperties.nutrition() : 1.0F;
+
+		this.heal(f);
 		this.playSound(SoundEvents.PLAYER_BURP, 0.5F, this.random.nextFloat() * 0.1F + 0.9F);
 
-		return super.eat(level, stack, foodProperties);
+		super.completeUsingItem();
 	}
 
 	@Override
@@ -978,7 +971,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				return p_186293_.wantsToSpawnGolem(p_35398_, p_35399_) && p_186293_.getTofunianHome() != null;
 			}).limit(5L).collect(Collectors.toList());
 			if (list1.size() >= p_35400_) {
-				if (SpawnUtil.trySpawnMob(TofuEntityTypes.TOFU_GOLEM.get(), MobSpawnType.MOB_SUMMONED, p_35398_, this.blockPosition(), 10, 8, 6, SpawnUtil.Strategy.LEGACY_IRON_GOLEM).isPresent()) {
+				if (SpawnUtil.trySpawnMob(TofuEntityTypes.TOFU_GOLEM.get(), EntitySpawnReason.MOB_SUMMONED, p_35398_, this.blockPosition(), 10, 8, 6, SpawnUtil.Strategy.LEGACY_IRON_GOLEM).isPresent()) {
 				}
 			}
 		}

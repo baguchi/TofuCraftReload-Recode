@@ -1,5 +1,6 @@
 package baguchan.tofucraft.effect;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,8 +11,9 @@ public class SoyHealthyEffect extends MobEffect {
 		super(mobEffectCategory, i);
 	}
 
-	public boolean applyEffectTick(LivingEntity livingEntity, int p_301079_) {
-		super.applyEffectTick(livingEntity, p_301079_);
+	@Override
+	public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity livingEntity, int p_301079_) {
+		super.applyEffectTick(serverLevel, livingEntity, p_301079_);
 		if (livingEntity instanceof Player player) {
 			player.heal(1);
 		}

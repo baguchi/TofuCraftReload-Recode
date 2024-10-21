@@ -36,11 +36,13 @@ public class FukumameEntity extends ThrowableProjectile {
 	}
 
 	public FukumameEntity(Level worldIn, LivingEntity throwerIn) {
-		super(TofuEntityTypes.FUKUMAME.get(), throwerIn, worldIn);
+		super(TofuEntityTypes.FUKUMAME.get(), throwerIn.getX(), throwerIn.getY(), throwerIn.getZ(), worldIn);
+		this.setOwner(throwerIn);
 	}
 
 	public FukumameEntity(Level worldIn, LivingEntity throwerIn, ItemStack stack) {
-		super(TofuEntityTypes.FUKUMAME.get(), throwerIn, worldIn);
+		super(TofuEntityTypes.FUKUMAME.get(), throwerIn.getX(), throwerIn.getY(), throwerIn.getZ(), worldIn);
+		this.setOwner(throwerIn);
 		this.firedFromWeapon = stack.copy();
 	}
 
@@ -54,7 +56,8 @@ public class FukumameEntity extends ThrowableProjectile {
 	}
 
 	public FukumameEntity(EntityType<? extends FukumameEntity> entityType, LivingEntity throwerIn, Level worldIn) {
-		super(entityType, throwerIn, worldIn);
+		super(entityType, throwerIn.getX(), throwerIn.getY(), throwerIn.getZ(), worldIn);
+		this.setOwner(throwerIn);
 	}
 
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
@@ -74,11 +77,13 @@ public class FukumameEntity extends ThrowableProjectile {
 		Entity entity = p_37404_.getEntity();
 		DamageSource damagesource = this.damageSources().thrown(this, this.getOwner());
 		double d0 = this.damage;
-		if (this.getWeaponItem() != null && this.level() instanceof ServerLevel serverlevel) {
-			d0 = (double) EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, damagesource, (float) d0);
-		}
-		if (entity.hurt(damagesource, (float) d0) && this.level() instanceof ServerLevel serverlevel) {
-			EnchantmentHelper.doPostAttackEffects(serverlevel, entity, damagesource);
+		if (this.level() instanceof ServerLevel serverlevel) {
+			if (this.getWeaponItem() != null) {
+				d0 = (double) EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, damagesource, (float) d0);
+			}
+			if (entity.hurtServer(serverlevel, damagesource, (float) d0)) {
+				EnchantmentHelper.doPostAttackEffects(serverlevel, entity, damagesource);
+			}
 		}
 
 		entity.invulnerableTime = 5;

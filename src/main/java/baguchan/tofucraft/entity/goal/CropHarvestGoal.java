@@ -5,6 +5,7 @@ import baguchan.tofucraft.entity.Tofunian;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.item.ItemStack;
@@ -31,7 +32,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 
 	public boolean canUse() {
 		if (this.nextStartTick <= 0) {
-			if (!EventHooks.canEntityGrief(this.tofunian.level(), this.tofunian))
+			if (!EventHooks.canEntityGrief((ServerLevel) this.tofunian.level(), this.tofunian))
 				return false;
 			this.canHarvest = false;
 			this.canPlant = false;

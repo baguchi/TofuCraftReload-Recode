@@ -11,7 +11,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -24,6 +24,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -74,33 +75,24 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 		}
 	}
 
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (!stateIn.canSurvive(worldIn, currentPos) && !worldIn.getBlockTicks().hasScheduledTick(currentPos, this)) {
-			worldIn.scheduleTick(currentPos, this, 1);
+	@Override
+	protected BlockState updateShape(BlockState stateIn, LevelReader levelReader, ScheduledTickAccess access, BlockPos currentPos, Direction direction, BlockPos facingPos, BlockState facingState, RandomSource randomSource) {
+		if (!stateIn.canSurvive(levelReader, currentPos) && !access.getBlockTicks().hasScheduledTick(currentPos, this)) {
+			access.scheduleTick(currentPos, this, 1);
 		}
 		if (((Boolean) stateIn.getValue((Property) WATERLOGGED)).booleanValue()) {
-			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+			access.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelReader));
 			Stat stat = getStat(stateIn);
 			if (stat == Stat.EMPTY || stat == Stat.BITTERN) {
-				worldIn.setBlock(currentPos, stateIn.setValue(STAT, Stat.WATER), 3);
+				return stateIn.setValue(STAT, Stat.WATER);
 			} else if (stat == Stat.SALT) {
-				ItemStack salt = new ItemStack(TofuItems.SALT.get(), 1);
-				if (worldIn instanceof Level) {
-					float f = 0.7F;
-					double d0 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
-					double d1 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
-					double d2 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
-					ItemEntity itemEntity = new ItemEntity((Level) worldIn, currentPos.getX() + d0, currentPos.getY() + d1, currentPos.getZ() + d2, salt);
-					itemEntity.setPickUpDelay(10);
-					worldIn.addFreshEntity(itemEntity);
-				}
-				worldIn.setBlock(currentPos, stateIn.setValue(STAT, Stat.WATER), 3);
+				return stateIn.setValue(STAT, Stat.WATER);
 			}
 		}
-		return facing.getAxis().isHorizontal() ? stateIn.setValue(NORTH, Boolean.valueOf(canConnectTo(worldIn, currentPos.north())))
-				.setValue(EAST, Boolean.valueOf(canConnectTo(worldIn, currentPos.east())))
-				.setValue(SOUTH, Boolean.valueOf(canConnectTo(worldIn, currentPos.south())))
-				.setValue(WEST, Boolean.valueOf(canConnectTo(worldIn, currentPos.west()))) : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return direction.getAxis().isHorizontal() ? stateIn.setValue(NORTH, Boolean.valueOf(canConnectTo(levelReader, currentPos.north())))
+				.setValue(EAST, Boolean.valueOf(canConnectTo(levelReader, currentPos.east())))
+				.setValue(SOUTH, Boolean.valueOf(canConnectTo(levelReader, currentPos.south())))
+				.setValue(WEST, Boolean.valueOf(canConnectTo(levelReader, currentPos.west()))) : super.updateShape(stateIn, levelReader, access, currentPos, direction, facingPos, facingState, randomSource);
 	}
 
 	@Nullable
@@ -119,7 +111,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	protected ItemInteractionResult useItemOn(ItemStack p_316304_, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+	protected InteractionResult useItemOn(ItemStack p_316304_, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		Stat stat = getStat(state);
 		if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
@@ -140,7 +132,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 						}
 					});
 					level.setBlock(pos, state.setValue(STAT, Stat.WATER), 3);
-					return ItemInteractionResult.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 				PotionContents potioncontents = itemHeld.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
 				if (potioncontents.is(Potions.WATER)) {
@@ -157,7 +149,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 						}
 					}
 					level.setBlock(pos, state.setValue(SaltPanBlock.STAT, Stat.WATER), 3);
-					return ItemInteractionResult.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 			}
 			if (stat == Stat.BITTERN && itemHeld != null && itemHeld.getItem() == Items.GLASS_BOTTLE) {
@@ -171,11 +163,11 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 					itemHeld.shrink(1);
 				}
 				level.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.BITTERN && itemHeld == null) {
 				level.setBlock(pos, state.setValue(STAT, Stat.EMPTY), 3);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.SALT) {
 				ItemStack salt = new ItemStack(TofuItems.SALT.get(), 2);
@@ -187,10 +179,10 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 				itemEntity.setPickUpDelay(10);
 				level.addFreshEntity(itemEntity);
 				level.setBlock(pos, state.setValue(STAT, Stat.BITTERN), 3);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 		}
-		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+		return InteractionResult.TRY_WITH_EMPTY_HAND;
 	}
 
 
@@ -213,7 +205,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 		return Stat.NA;
 	}
 
-	public boolean canConnectTo(LevelAccessor worldIn, BlockPos pos) {
+	public boolean canConnectTo(LevelReader worldIn, BlockPos pos) {
 		Block block = worldIn.getBlockState(pos).getBlock();
 		return block instanceof SaltPanBlock;
 	}

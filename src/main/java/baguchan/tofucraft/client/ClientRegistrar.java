@@ -8,7 +8,6 @@ import baguchan.tofucraft.client.model.SoyBallModel;
 import baguchan.tofucraft.client.model.TofuFishModel;
 import baguchan.tofucraft.client.model.TofuGandlemModel;
 import baguchan.tofucraft.client.model.TofuGolemModel;
-import baguchan.tofucraft.client.model.TofuPufferModel;
 import baguchan.tofucraft.client.model.TofuSpiderModel;
 import baguchan.tofucraft.client.model.TofunianModel;
 import baguchan.tofucraft.client.model.TravelerTofunianModel;
@@ -32,7 +31,6 @@ import baguchan.tofucraft.client.render.entity.TofuFishRender;
 import baguchan.tofucraft.client.render.entity.TofuGandlemRender;
 import baguchan.tofucraft.client.render.entity.TofuGolemRender;
 import baguchan.tofucraft.client.render.entity.TofuPigRender;
-import baguchan.tofucraft.client.render.entity.TofuPufferRender;
 import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
 import baguchan.tofucraft.client.render.entity.TofuSpiderRender;
 import baguchan.tofucraft.client.render.entity.TofunianRender;
@@ -68,11 +66,14 @@ import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -369,11 +370,8 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_COBWEB.get(), NattoCobWebRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_BALL.get(), NattoBallRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.FALLING_TOFU.get(), FallingTofuRenderer::new);
-		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME_THOWER.get(), (p_174064_) -> {
-			return new FukumameThowerRenderer<>(p_174064_, TofuModelLayers.FUKUMAME_THOWER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
-		});
+		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME_THOWER.get(), FukumameThowerRenderer::new);
 		event.registerEntityRenderer(TofuEntityTypes.ZUNDAMITE.get(), ZundamiteRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFU_PUFFER.get(), TofuPufferRender::new);
 
 
 
@@ -393,7 +391,6 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.TOFU_GANDLEM, TofuGandlemModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.FUKUMAME_THOWER, FukumameThowerModel::createBodyLayer);
-		event.registerLayerDefinition(TofuModelLayers.TOFU_PUFFER, TofuPufferModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.SOYBALL, SoyBallModel::createBodyLayer);
 	}
 
@@ -421,13 +418,14 @@ public class ClientRegistrar {
 			RenderSystem.disableDepthTest();
 			RenderSystem.depthMask(false);
 			RenderSystem.enableBlend();
-			guiGraphics.setColor(1.0F, 1.0F, 1.0F, timeInPortal);
 			TextureAtlasSprite textureatlassprite = minecraft.getBlockRenderer().getBlockModelShaper().getParticleIcon(TofuBlocks.TOFU_PORTAL.get().defaultBlockState());
-			guiGraphics.blit(0, 0, -90, guiGraphics.guiWidth(), guiGraphics.guiHeight(), textureatlassprite);
+			guiGraphics.blitSprite(RenderType::guiTexturedOverlay, textureatlassprite, 0, 0,
+					guiGraphics.guiWidth(),
+					guiGraphics.guiHeight(),
+					0);
 			RenderSystem.disableBlend();
 			RenderSystem.depthMask(true);
 			RenderSystem.enableDepthTest();
-			guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
 		}
 	}
 

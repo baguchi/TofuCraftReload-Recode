@@ -12,7 +12,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 public class HardenSerializer implements RecipeSerializer<HardenRecipe> {
 
 	private static final MapCodec<HardenRecipe> CODEC = RecordCodecBuilder.mapCodec((p_296927_) -> {
-		return p_296927_.group(Ingredient.CODEC_NONEMPTY.fieldOf("tofu").forGetter((p_296920_) -> {
+		return p_296927_.group(Ingredient.CODEC.fieldOf("tofu").forGetter((p_296920_) -> {
 			return p_296920_.tofu;
 		}), BuiltInRegistries.ITEM.byNameCodec().xmap(ItemStack::new, ItemStack::getItem).fieldOf("result").forGetter((p_296923_) -> {
 			return p_296923_.result;

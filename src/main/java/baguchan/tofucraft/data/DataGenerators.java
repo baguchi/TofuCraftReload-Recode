@@ -16,6 +16,8 @@ import baguchan.tofucraft.data.generator.recipe.CraftingGenerator;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -49,8 +51,24 @@ public class DataGenerators {
 		generator.addProvider(event.includeServer(), new CustomTagGenerator.SoundEventTagGenerator(packOutput, lookupProvider, existingFileHelper));
 		generator.addProvider(event.includeServer(), new FluidTagGenerator(packOutput, lookupProvider, existingFileHelper));
 		generator.addProvider(event.includeServer(), TofuLootTableProvider.create(packOutput, lookupProvider));
-		generator.addProvider(event.includeServer(), new CraftingGenerator(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new Runner(packOutput, lookupProvider));
 		generator.addProvider(event.includeServer(), new TofuAdvancementGenerator(packOutput, lookupProvider, existingFileHelper));
 		generator.addProvider(event.includeServer(), new TofuDataMapsProvider(packOutput, lookupProvider));
+	}
+
+	public static final class Runner extends RecipeProvider.Runner {
+		public Runner(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+			super(output, lookupProvider);
+		}
+
+		@Override
+		protected RecipeProvider createRecipeProvider(HolderLookup.Provider lookupProvider, RecipeOutput output) {
+			return new CraftingGenerator(lookupProvider, output);
+		}
+
+		@Override
+		public String getName() {
+			return TofuCraftReload.MODID + "recipes";
+		}
 	}
 }

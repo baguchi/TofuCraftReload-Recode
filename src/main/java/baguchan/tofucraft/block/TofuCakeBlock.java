@@ -6,6 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CakeBlock;
@@ -100,14 +102,17 @@ public class TofuCakeBlock extends CakeBlock {
 		}
 	}
 
-	public BlockState updateShape(BlockState p_51213_, Direction p_51214_, BlockState p_51215_, LevelAccessor p_51216_, BlockPos p_51217_, BlockPos p_51218_) {
-		return p_51214_ == Direction.DOWN && !p_51213_.canSurvive(p_51216_, p_51217_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_51213_, p_51214_, p_51215_, p_51216_, p_51217_, p_51218_);
+	@Override
+	protected BlockState updateShape(BlockState p_51032_, LevelReader p_374532_, ScheduledTickAccess p_374466_, BlockPos p_51036_, Direction p_51033_, BlockPos p_51037_, BlockState p_51034_, RandomSource p_374272_) {
+		return p_51033_ == Direction.DOWN && !p_51032_.canSurvive(p_374532_, p_51036_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_51032_, p_374532_, p_374466_, p_51036_, p_51033_, p_51037_, p_51034_, p_374272_);
 	}
 
+	@Override
 	public boolean canSurvive(BlockState p_51209_, LevelReader p_51210_, BlockPos p_51211_) {
 		return p_51210_.getBlockState(p_51211_.below()).isSolid();
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_51220_) {
 		p_51220_.add(BITES);
 	}

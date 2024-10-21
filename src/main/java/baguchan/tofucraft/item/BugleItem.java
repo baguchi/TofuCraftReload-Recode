@@ -4,15 +4,15 @@ import baguchan.tofucraft.entity.TofuSpider;
 import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -31,7 +31,7 @@ public class BugleItem extends Item {
 	}
 
 	@Override
-	public void releaseUsing(ItemStack p_41412_, Level p_41413_, LivingEntity livingEntity, int p_41415_) {
+	public boolean releaseUsing(ItemStack p_41412_, Level p_41413_, LivingEntity livingEntity, int p_41415_) {
 		int i = getUseDuration(p_41412_, livingEntity) - p_41415_;
 
 		if (livingEntity instanceof Player) {
@@ -39,7 +39,7 @@ public class BugleItem extends Item {
 			if (i >= 20) {
 
 				playerentity.awardStat(Stats.ITEM_USED.get(this));
-				playerentity.getCooldowns().addCooldown(this, 80);
+				playerentity.getCooldowns().addCooldown(p_41412_, 80);
 			}
 		}
 		if (i >= 20) {
@@ -47,18 +47,21 @@ public class BugleItem extends Item {
 			if (livingEntity.getOffhandItem().is(Items.ECHO_SHARD)) {
 				if (livingEntity instanceof Player) {
 					Player playerentity = (Player) livingEntity;
-					List<TofuSpider> entities = p_41413_.getNearbyEntities(TofuSpider.class, TARGETING, livingEntity, livingEntity.getBoundingBox().inflate(6.0D));
+					List<TofuSpider> entities = p_41413_.getEntitiesOfClass(TofuSpider.class, livingEntity.getBoundingBox().inflate(6.0D), tofuSpider -> {
+						return true;
+					});
 
 
 					if (!entities.isEmpty()) {
 						Collections.shuffle(entities);
 
 						if (hasLineOfSight(playerentity, entities.get(0))) {
-							playerentity.getCooldowns().addCooldown(this, 600);
+							playerentity.getCooldowns().addCooldown(p_41412_, 600);
 							livingEntity.getOffhandItem().shrink(1);
 
 							entities.get(0).startConverting(300);
 							p_41413_.levelEvent(3007, entities.get(0).blockPosition(), 0);
+							return true;
 						}
 					}
 				}
@@ -67,6 +70,7 @@ public class BugleItem extends Item {
 				livingEntity.playSound(TofuSounds.TOFUBUGLE.get(), 3.0F, 1.0F);
 			}
 		}
+		return false;
 	}
 
 	//Prevent change in hasLineOfSight mixin
@@ -85,11 +89,11 @@ public class BugleItem extends Item {
 	}
 
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level p_41432_, Player p_41433_, InteractionHand p_41434_) {
+	public InteractionResult use(Level p_41432_, Player p_41433_, InteractionHand p_41434_) {
 		ItemStack itemstack = p_41433_.getItemInHand(p_41434_);
 		p_41433_.startUsingItem(p_41434_);
 
-		return InteractionResultHolder.success(itemstack);
+		return InteractionResult.SUCCESS;
 	}
 
 	@Override
@@ -98,7 +102,7 @@ public class BugleItem extends Item {
 	}
 
 	@Override
-	public UseAnim getUseAnimation(ItemStack p_41452_) {
-		return UseAnim.BOW;
+	public ItemUseAnimation getUseAnimation(ItemStack p_41452_) {
+		return ItemUseAnimation.BOW;
 	}
 }

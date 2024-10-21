@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.level.Level;
@@ -49,7 +50,7 @@ public abstract class LightningBoltMixin extends Entity {
 		BlockState blockstate = this.level().getBlockState(this.getStrikePosition());
 		if (this.level().dimension() == TofuDimensions.tofu_world) {
 			if (!blockstate.is(Blocks.LIGHTNING_ROD) && this.random.nextInt(2) == 0) {
-				Zundamite zundamite = TofuEntityTypes.ZUNDAMITE.get().create(this.level());
+				Zundamite zundamite = TofuEntityTypes.ZUNDAMITE.get().create(this.level(), EntitySpawnReason.MOB_SUMMONED);
 
 				if (zundamite != null) {
 					zundamite.setPos(this.getStrikePosition().above().getCenter());

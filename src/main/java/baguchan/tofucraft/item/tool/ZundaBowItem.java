@@ -24,12 +24,6 @@ public class ZundaBowItem extends BowItem implements IEnergyInsertable {
 
 		return projectile;
 	}
-
-	@Override
-	public int getEnchantmentValue() {
-		return 5;
-	}
-
 	@Override
 	public int getUseDuration(ItemStack p_41454_, LivingEntity p_344979_) {
 		return 70000;

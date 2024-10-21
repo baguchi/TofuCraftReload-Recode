@@ -8,7 +8,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -25,23 +25,23 @@ public class FukumameItem extends Item implements ProjectileItem {
 	}
 
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level levelIn, Player playerIn, InteractionHand handIn) {
+	public InteractionResult use(Level levelIn, Player playerIn, InteractionHand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (playerIn.getRandom().nextFloat() * 0.4F + 0.8F));
 		if (!levelIn.isClientSide) {
 			for (int i = 0; i < 5; i++) {
 				FukumameEntity fukumamentity = new FukumameEntity(levelIn, playerIn, itemstack);
 				float d0 = i * levelIn.random.nextFloat() * 10.0F - 5.0F * i;
-				fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(levelIn.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.POWER), playerIn) * 0.5F;
+				fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(levelIn.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.POWER), playerIn) * 0.5F;
 				fukumamentity.shootFromRotation(playerIn, playerIn.getXRot() + d0 * 0.325F, playerIn.getYRot() + d0, 0.0F, 1.5F, 0.8F);
 				levelIn.addFreshEntity(fukumamentity);
 			}
 		}
 		playerIn.awardStat(Stats.ITEM_USED.get(this));
-		playerIn.getCooldowns().addCooldown(itemstack.getItem(), 10);
+		playerIn.getCooldowns().addCooldown(itemstack, 10);
 		if (!playerIn.level().isClientSide)
 			itemstack.hurtAndBreak(1, (LivingEntity) playerIn, LivingEntity.getSlotForHand(handIn));
-		return InteractionResultHolder.sidedSuccess(itemstack, levelIn.isClientSide());
+		return InteractionResult.SUCCESS_SERVER;
 	}
 
 	@Override
@@ -50,8 +50,4 @@ public class FukumameItem extends Item implements ProjectileItem {
 		return thrownpotion;
 	}
 
-	@Override
-	public int getEnchantmentValue(ItemStack stack) {
-		return 3;
-	}
 }

@@ -1,18 +1,19 @@
 package baguchan.tofucraft.client.model;
 
-import bagu_chan.bagus_lib.client.layer.IArmor;
 import baguchan.tofucraft.client.animation.definitions.TofunianAnimation;
+import baguchan.tofucraft.client.render.state.AbstractTofunianRenderState;
 import baguchan.tofucraft.entity.AbstractTofunian;
+import baguchi.bagus_lib.client.layer.IArmor;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.ArmedModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HeadedModel;
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 
-public class AbstractTofunianModel<T extends AbstractTofunian> extends HierarchicalModel<T> implements ArmedModel, HeadedModel, IArmor {
+public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extends EntityModel<T> implements ArmedModel, HeadedModel, IArmor {
 	public final ModelPart realRoot;
 	public final ModelPart root;
 	public final ModelPart head;
@@ -24,6 +25,7 @@ public class AbstractTofunianModel<T extends AbstractTofunian> extends Hierarchi
 	public final ModelPart leftArm;
 
 	public AbstractTofunianModel(ModelPart p_170688_) {
+		super(p_170688_);
 		this.realRoot = p_170688_;
 		this.root = p_170688_.getChild("root");
 		this.head = this.root.getChild("head");
@@ -35,49 +37,46 @@ public class AbstractTofunianModel<T extends AbstractTofunian> extends Hierarchi
 		this.rightArm = this.root.getChild("right_arm");
 	}
 
-	public ModelPart root() {
-		return this.realRoot;
-	}
+	@Override
+	public void setupAnim(T entity) {
+		super.setupAnim(entity);
+		this.head.yRot = entity.yRot * 0.017453292F;
+		this.head.xRot = entity.xRot * 0.017453292F;
 
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-		this.head.yRot = netHeadYaw * 0.017453292F;
-		this.head.xRot = headPitch * 0.017453292F;
-
-		boolean flag = entity.getUnhappyCounter() > 0;
+		boolean flag = entity.unhappyCounter > 0;
 
 		if (flag) {
-			this.head.zRot = 0.3F * Mth.sin(0.45F * ageInTicks);
+			this.head.zRot = 0.3F * Mth.sin(0.45F * entity.ageInTicks);
 			this.head.xRot = 0.4F;
 		} else {
 			this.head.zRot = 0.0F;
 		}
 
-		if (this.riding) {
+		if (entity.riding) {
 			this.rightArm.xRot = -0.62831855F;
 			this.leftArm.xRot = -0.62831855F;
 			this.rightLeg.xRot = -1.4137167F;
 			this.leftLeg.xRot = -1.4137167F;
 		} else {
-			this.rightArm.xRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 2.0F * limbSwingAmount * 0.5F;
-			this.leftArm.xRot = Mth.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F;
-			this.rightLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
-			this.leftLeg.xRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount * 0.5F;
+			this.rightArm.xRot = Mth.cos(entity.walkAnimationPos * 0.6662F + 3.1415927F) * 2.0F * entity.walkAnimationSpeed * 0.5F;
+			this.leftArm.xRot = Mth.cos(entity.walkAnimationPos * 0.6662F) * 2.0F * entity.walkAnimationSpeed * 0.5F;
+			this.rightLeg.xRot = Mth.cos(entity.walkAnimationPos * 0.6662F) * 1.4F * entity.walkAnimationSpeed * 0.5F;
+			this.leftLeg.xRot = Mth.cos(entity.walkAnimationPos * 0.6662F + 3.1415927F) * 1.4F * entity.walkAnimationSpeed * 0.5F;
 		}
 
-		if (attackTime > 0) {
-			if (entity.getMainArm() == HumanoidArm.RIGHT) {
-				this.rightArm.xRot = attackTime * -0.75F;
-				this.rightArm.zRot = attackTime * -0.5F;
+		if (entity.attackTime > 0) {
+			if (entity.mainArm == HumanoidArm.RIGHT) {
+				this.rightArm.xRot = entity.attackTime * -0.75F;
+				this.rightArm.zRot = entity.attackTime * -0.5F;
 			} else {
-				this.rightArm.xRot = attackTime * -0.75F;
-				this.rightArm.zRot = attackTime * 0.5F;
+				this.rightArm.xRot = entity.attackTime * -0.75F;
+				this.rightArm.zRot = entity.attackTime * 0.5F;
 			}
 		}
 
 		float f6 = 12.0F;
 
-		if (entity.isBaby()) {
+		if (entity.isBaby) {
 			this.applyStatic(TofunianAnimation.BABY);
 			this.rightArm.visible = false;
 			this.leftArm.visible = false;
@@ -98,12 +97,10 @@ public class AbstractTofunianModel<T extends AbstractTofunian> extends Hierarchi
 	}
 
 	public void translateToHand(HumanoidArm p_102925_, PoseStack p_102926_) {
-		if (!this.young) {
-			this.root.translateAndRotate(p_102926_);
-			this.getArm(p_102925_).translateAndRotate(p_102926_);
-			p_102926_.translate(0, -0.15D, 0);
-			p_102926_.scale(0.95F, 0.95F, 0.95F);
-		}
+		this.root.translateAndRotate(p_102926_);
+		this.getArm(p_102925_).translateAndRotate(p_102926_);
+		p_102926_.translate(0, -0.15D, 0);
+		p_102926_.scale(0.95F, 0.95F, 0.95F);
 	}
 
 

@@ -1,6 +1,7 @@
 package baguchan.tofucraft.client.render.layer;
 
 import baguchan.tofucraft.client.model.TofuGandlemModel;
+import baguchan.tofucraft.client.render.state.TofuGandlemRenderState;
 import baguchan.tofucraft.entity.TofuGandlem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -18,7 +19,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class TofuGandlemChargedLayer<T extends TofuGandlem, M extends TofuGandlemModel<T>> extends RenderLayer<T, M> {
+public class TofuGandlemChargedLayer<T extends TofuGandlemRenderState, M extends TofuGandlemModel<T>> extends RenderLayer<T, M> {
 	private final ResourceLocation texture;
 	private final TofuGandlemChargedLayer.AlphaFunction<T> alphaFunction;
 	private final TofuGandlemChargedLayer.DrawSelector<T, M> drawSelector;
@@ -30,15 +31,17 @@ public class TofuGandlemChargedLayer<T extends TofuGandlem, M extends TofuGandle
 		this.drawSelector = p_234888_;
 	}
 
-	public void render(PoseStack p_234902_, MultiBufferSource p_234903_, int p_234904_, T p_234905_, float p_234906_, float p_234907_, float p_234908_, float p_234909_, float p_234910_, float p_234911_) {
-		if (p_234905_.isFullCharge()) {
-			float f = (float) p_234905_.tickCount + p_234908_;
+	@Override
+	public void render(PoseStack p_117349_, MultiBufferSource p_117350_, int p_117351_, T p_361554_, float p_117353_, float p_117354_) {
+		if (p_361554_.fullCharge) {
+			float f = (float) p_361554_.ageInTicks;
 			this.onlyDrawSelectedParts();
-			VertexConsumer vertexconsumer = p_234903_.getBuffer(RenderType.energySwirl(this.texture, this.xOffset(f) % 1.0F, f * 0.01F % 1.0F));
-			this.getParentModel().renderToBuffer(p_234902_, vertexconsumer, p_234904_, LivingEntityRenderer.getOverlayCoords(p_234905_, 0.0F));
+			VertexConsumer vertexconsumer = p_117350_.getBuffer(RenderType.energySwirl(this.texture, this.xOffset(f) % 1.0F, f * 0.01F % 1.0F));
+			this.getParentModel().renderToBuffer(p_117349_, vertexconsumer, p_117351_, LivingEntityRenderer.getOverlayCoords(p_361554_, 0.0F));
 			this.resetDrawForAllParts();
 		}
 	}
+
 
 	protected float xOffset(float p_117702_) {
 		return Mth.cos(p_117702_ * 0.02F) * 3.0F;
@@ -61,12 +64,12 @@ public class TofuGandlemChargedLayer<T extends TofuGandlem, M extends TofuGandle
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public interface AlphaFunction<T extends TofuGandlem> {
+	public interface AlphaFunction<T extends TofuGandlemRenderState> {
 		float apply(T p_234920_, float p_234921_, float p_234922_);
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public interface DrawSelector<T extends TofuGandlem, M extends EntityModel<T>> {
+	public interface DrawSelector<T extends TofuGandlemRenderState, M extends EntityModel<T>> {
 		List<ModelPart> getPartsToDraw(M p_234924_);
 	}
 }

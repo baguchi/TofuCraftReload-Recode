@@ -18,7 +18,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -112,7 +112,7 @@ public class TofuSlime extends Slime {
 	}
 
 	protected void doZundaConversion() {
-		this.spawnAtLocation(new ItemStack(TofuItems.TOFUZUNDA.get(), 2 * getSize()));
+		this.spawnAtLocation((ServerLevel) this.level(), new ItemStack(TofuItems.TOFUZUNDA.get(), 2 * getSize()));
 		this.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED);
 		this.discard();
 	}
@@ -146,7 +146,7 @@ public class TofuSlime extends Slime {
 		}
 	}
 
-	public static boolean checkMonsterSpawnRules(EntityType<? extends TofuSlime> p_33018_, ServerLevelAccessor p_33019_, MobSpawnType p_33020_, BlockPos p_33021_, RandomSource p_33022_) {
+	public static boolean checkMonsterSpawnRules(EntityType<? extends TofuSlime> p_33018_, ServerLevelAccessor p_33019_, EntitySpawnReason p_33020_, BlockPos p_33021_, RandomSource p_33022_) {
 		return p_33019_.getDifficulty() != Difficulty.PEACEFUL && isDarkEnoughToSpawn(p_33019_, p_33021_, p_33022_) && checkMobSpawnRules(p_33018_, p_33019_, p_33020_, p_33021_, p_33022_);
 	}
 }

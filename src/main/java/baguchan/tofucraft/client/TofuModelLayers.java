@@ -20,7 +20,6 @@ public class TofuModelLayers {
 
 	public static final ModelLayerLocation FUKUMAME_THOWER = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "fukumame_thower"), "main");
 
-	public static final ModelLayerLocation TOFU_PUFFER = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_puffer"), "main");
 	public static final ModelLayerLocation SOYBALL = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "soyball"), "main");
 
 }

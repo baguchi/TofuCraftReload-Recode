@@ -33,12 +33,14 @@ public class SoyballEntity extends ThrowableProjectile {
 		super(p_i50154_1_, p_i50154_2_);
 	}
 
-	public SoyballEntity(Level worldIn, LivingEntity throwerIn) {
-		super(TofuEntityTypes.SOYBALL.get(), throwerIn, worldIn);
+	public SoyballEntity(Level worldIn, LivingEntity thrower) {
+		super(TofuEntityTypes.SOYBALL.get(), thrower.getX(), thrower.getY(), thrower.getZ(), worldIn);
+		this.setOwner(thrower);
 	}
 
-	public SoyballEntity(Level worldIn, LivingEntity throwerIn, ItemStack stack) {
-		super(TofuEntityTypes.SOYBALL.get(), throwerIn, worldIn);
+	public SoyballEntity(Level level, LivingEntity thrower, ItemStack stack) {
+		super(TofuEntityTypes.SOYBALL.get(), thrower.getX(), thrower.getY(), thrower.getZ(), level);
+		this.setOwner(thrower);
 		this.firedFromWeapon = stack.copy();
 	}
 
@@ -51,8 +53,9 @@ public class SoyballEntity extends ThrowableProjectile {
 		super(p_i50154_1_, x, y, z, worldIn);
 	}
 
-	public SoyballEntity(EntityType<? extends SoyballEntity> entityType, LivingEntity throwerIn, Level worldIn) {
-		super(entityType, throwerIn, worldIn);
+	public SoyballEntity(EntityType<? extends SoyballEntity> entityType, LivingEntity thrower, Level level) {
+		super(entityType, thrower.getX(), thrower.getY(), thrower.getZ(), level);
+		this.setOwner(thrower);
 	}
 
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
@@ -75,14 +78,16 @@ public class SoyballEntity extends ThrowableProjectile {
 		if (this.getWeaponItem() != null && this.level() instanceof ServerLevel serverlevel) {
 			d0 = (double) EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, damagesource, (float) d0);
 		}
-		if (this.getOwner() != null && this.getOwner().isAlliedTo(entity)) {
+		if (this.getOwner() instanceof LivingEntity livingEntity && entity instanceof LivingEntity target && livingEntity.canAttack(target)) {
 			return;
 		}
-		if (entity.hurt(damagesource, (float) d0) && this.level() instanceof ServerLevel serverlevel) {
-			EnchantmentHelper.doPostAttackEffects(serverlevel, entity, damagesource);
-			if (!this.level().isClientSide) {
-				this.level().broadcastEntityEvent(this, (byte) 3);
-				this.discard();
+		if (this.level() instanceof ServerLevel serverLevel) {
+			if (entity.hurtServer(serverLevel, damagesource, (float) d0) && this.level() instanceof ServerLevel serverlevel) {
+				EnchantmentHelper.doPostAttackEffects(serverlevel, entity, damagesource);
+				if (!this.level().isClientSide) {
+					this.level().broadcastEntityEvent(this, (byte) 3);
+					this.discard();
+				}
 			}
 		}
 	}

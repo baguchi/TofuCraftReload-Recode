@@ -6,7 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -45,7 +45,7 @@ public class SoymilkCauldronBlock extends Block {
 	}
 
 	@Override
-	protected ItemInteractionResult useItemOn(ItemStack itemHeld, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
+	protected InteractionResult useItemOn(ItemStack itemHeld, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
 		if (state.getValue(SOYCHEESE)) {
 			ItemStack cheese = new ItemStack(this.cheeseSupplier.get(), 4);
 			float f = 0.7F;
@@ -56,7 +56,7 @@ public class SoymilkCauldronBlock extends Block {
 			itemEntity.setPickUpDelay(10);
 			worldIn.addFreshEntity(itemEntity);
 			worldIn.setBlock(pos, Blocks.CAULDRON.defaultBlockState(), 2);
-			return ItemInteractionResult.SUCCESS;
+			return InteractionResult.SUCCESS;
 		} else if (itemHeld.is(Items.BUCKET)) {
 			ItemStack bucket = new ItemStack(itemSupplier.get());
 			worldIn.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -68,7 +68,7 @@ public class SoymilkCauldronBlock extends Block {
 				itemHeld.shrink(1);
 			}
 			worldIn.setBlock(pos, Blocks.CAULDRON.defaultBlockState(), 2);
-			return ItemInteractionResult.SUCCESS;
+			return InteractionResult.SUCCESS;
 		}
 		return super.useItemOn(itemHeld, state, worldIn, pos, player, handIn, p_316140_);
 	}

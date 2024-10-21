@@ -78,62 +78,66 @@ public class ZundaArrow extends AbstractArrow {
 			float f = (float) this.getDeltaMovement().length();
 			double d0 = this.getBaseDamage();
 			DamageSource source = zundaAttack(this.getOwner());
-			if (this.getWeaponItem() != null && this.level() instanceof ServerLevel serverlevel) {
-				d0 = (double) EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, source, (float) d0);
-			}
-			int i = entity.getRemainingFireTicks();
-			int j = Mth.ceil(Mth.clamp((double) f * d0, 0.0, 2.147483647E9));
+			if (this.level() instanceof ServerLevel serverlevel) {
+				if (this.getWeaponItem() != null) {
+					d0 = (double) EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, source, (float) d0);
+				}
+				int i = entity.getRemainingFireTicks();
+				int j = Mth.ceil(Mth.clamp((double) f * d0, 0.0, 2.147483647E9));
 
-			if (p_36757_.getEntity() instanceof TofuSlime slime) {
-				this.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 1.0F);
-				this.spawnAtLocation(new ItemStack(TofuItems.TOFUZUNDA.get(), slime.getSize() * 2));
-				p_36757_.getEntity().discard();
-				this.discard();
-			} else if (p_36757_.getEntity().getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
+				if (p_36757_.getEntity() instanceof TofuSlime slime) {
+					this.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 1.0F);
+					this.spawnAtLocation(serverlevel, new ItemStack(TofuItems.TOFUZUNDA.get(), slime.getSize() * 2));
+					p_36757_.getEntity().discard();
+					this.discard();
+				} else if (p_36757_.getEntity().getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
 
-				if (p_36757_.getEntity().hurt(source, j)) {
+					if (p_36757_.getEntity().hurtServer(serverlevel, source, j)) {
 
-					if (entity instanceof LivingEntity livingentity) {
-						if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
-							livingentity.setArrowCount(livingentity.getArrowCount() + 1);
-						}
+						if (entity instanceof LivingEntity livingentity) {
+							if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
+								livingentity.setArrowCount(livingentity.getArrowCount() + 1);
+							}
 
-						this.doKnockback(livingentity, source);
-						if (this.level() instanceof ServerLevel serverlevel1) {
-							EnchantmentHelper.doPostAttackEffectsWithItemSource(serverlevel1, livingentity, source, this.getWeaponItem());
-						}
+							this.doKnockback(livingentity, source);
+							if (this.level() instanceof ServerLevel serverlevel1) {
+								EnchantmentHelper.doPostAttackEffectsWithItemSource(serverlevel1, livingentity, source, this.getWeaponItem());
+							}
 
-						this.doPostHurtEffects(livingentity);
-						if (livingentity != entity1 && livingentity instanceof Player && entity1 instanceof ServerPlayer && !this.isSilent()) {
-							((ServerPlayer) entity1).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
-						}
+							this.doPostHurtEffects(livingentity);
+							if (livingentity != entity1 && livingentity instanceof Player && entity1 instanceof ServerPlayer && !this.isSilent()) {
+								((ServerPlayer) entity1).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
+							}
 
-						if (!this.level().isClientSide && entity1 instanceof ServerPlayer serverplayer) {
-							if (!entity.isAlive() && this.shotFromCrossbow()) {
-								CriteriaTriggers.KILLED_BY_CROSSBOW.trigger(serverplayer, Arrays.asList(entity));
+							if (!this.level().isClientSide && entity1 instanceof ServerPlayer serverplayer) {
+								if (this.piercedAndKilledEntities != null) {
+									CriteriaTriggers.KILLED_BY_ARROW.trigger(serverplayer, this.piercedAndKilledEntities, this.getWeaponItem());
+								} else if (!entity.isAlive()) {
+									CriteriaTriggers.KILLED_BY_ARROW.trigger(serverplayer, List.of(entity), this.getWeaponItem());
+								}
 							}
 						}
-					}
 
-					this.playSound(SoundEvents.SLIME_ATTACK, 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
-					this.discard();
-				} else {
-					entity.setRemainingFireTicks(i);
-					this.deflect(ProjectileDeflection.REVERSE, entity, this.getOwner(), false);
-					this.setDeltaMovement(this.getDeltaMovement().scale(0.2));
-					if (!this.level().isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7) {
-						if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
-							this.spawnAtLocation(this.getPickupItem(), 0.1F);
+						this.playSound(SoundEvents.SLIME_ATTACK, 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+						this.discard();
+					} else {
+						entity.setRemainingFireTicks(i);
+						this.deflect(ProjectileDeflection.REVERSE, entity, this.getOwner(), false);
+						this.setDeltaMovement(this.getDeltaMovement().scale(0.2));
+						if (!this.level().isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7) {
+							if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
+								this.spawnAtLocation(serverlevel, this.getPickupItem(), 0.1F);
+							}
+
+							this.discard();
 						}
-
+					}
+				} else {
+					if (p_36757_.getEntity() instanceof LivingEntity) {
+						MobEffectInstance mobeffectinstance = new MobEffectInstance(MobEffects.REGENERATION, (int) (this.duration * j), 0);
+						((LivingEntity) p_36757_.getEntity()).addEffect(mobeffectinstance, this.getEffectSource());
 						this.discard();
 					}
-				}
-			} else {
-				if (p_36757_.getEntity() instanceof LivingEntity) {
-					MobEffectInstance mobeffectinstance = new MobEffectInstance(MobEffects.REGENERATION, (int) (this.duration * j), 0);
-					((LivingEntity) p_36757_.getEntity()).addEffect(mobeffectinstance, this.getEffectSource());
-					this.discard();
 				}
 			}
 		}

@@ -21,7 +21,8 @@ public class NattoStringEntity extends ThrowableProjectile {
 	}
 
 	public NattoStringEntity(Level worldIn, LivingEntity throwerIn) {
-		super(TofuEntityTypes.NATTO_STRNIG.get(), throwerIn, worldIn);
+		super(TofuEntityTypes.NATTO_STRNIG.get(), throwerIn.getX(), throwerIn.getY(), throwerIn.getZ(), worldIn);
+		this.setOwner(throwerIn);
 	}
 
 	protected void defineSynchedData() {

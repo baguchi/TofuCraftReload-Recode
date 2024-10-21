@@ -46,7 +46,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Enemy;
@@ -106,7 +106,7 @@ public class CommonEvents {
 			//bad omen
 			if (livingEntity.hasEffect(MobEffects.BAD_OMEN)) {
 				if (entity.level() instanceof ServerLevel serverLevel) {
-					Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+					Structure structure = serverLevel.registryAccess().lookupOrThrow(Registries.STRUCTURE).getValueOrThrow(TofuStructures.TOFU_CASTLE);
 					if (structure != null) {
 						TofuData data = TofuData.get(serverLevel);
 						StructureStart structureStart = serverLevel.structureManager().getStructureAt(entity.blockPosition(), structure);
@@ -114,7 +114,7 @@ public class CommonEvents {
 							BlockPos.MutableBlockPos blockPos = entity.blockPosition().mutable();
 
 							BoundingBox box = structureStart.getBoundingBox();
-							Optional<TofuGandlem> tofuGandlemOptional = SpawnUtil.trySpawnMob(TofuEntityTypes.TOFU_GANDLEM.get(), MobSpawnType.TRIGGERED, serverLevel, blockPos, 2, 8, 8, SpawnUtil.Strategy.ON_TOP_OF_COLLIDER);
+							Optional<TofuGandlem> tofuGandlemOptional = SpawnUtil.trySpawnMob(TofuEntityTypes.TOFU_GANDLEM.get(), EntitySpawnReason.TRIGGERED, serverLevel, blockPos, 2, 8, 8, SpawnUtil.Strategy.ON_TOP_OF_COLLIDER);
 
 							if (tofuGandlemOptional.isPresent()) {
 								TofuGandlem tofuGandlem = tofuGandlemOptional.get();
@@ -226,23 +226,6 @@ public class CommonEvents {
 		}
 	}
 
-	@SubscribeEvent
-	public static void onBlockExplosion(ExplosionEvent.Detonate event) {
-		Level world = event.getLevel();
-		if (world instanceof ServerLevel) {
-			ServerLevel serverLevel = (ServerLevel) world;
-			Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
-			if (structure != null) {
-				TofuData data = TofuData.get(serverLevel);
-				Vec3 center = event.getExplosion().center();
-				StructureStart structureStart = serverLevel.structureManager().getStructureAt(new BlockPos((int) center.x, (int) center.y, (int) center.z), structure);
-				if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
-					event.getAffectedBlocks().clear();
-
-				}
-			}
-		}
-	}
 
 	@SubscribeEvent
 	public static void onBreakingSpeed(PlayerEvent.BreakSpeed event) {
@@ -261,7 +244,7 @@ public class CommonEvents {
 
 		if (world instanceof ServerLevel) {
 			ServerLevel serverLevel = (ServerLevel) world;
-			Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+			Structure structure = serverLevel.registryAccess().lookupOrThrow(Registries.STRUCTURE).getValueOrThrow(TofuStructures.TOFU_CASTLE);
 			if (structure != null) {
 				TofuData data = TofuData.get(serverLevel);
 				Vec3 center = event.getEntity().position();
@@ -280,7 +263,7 @@ public class CommonEvents {
 
 		if (world instanceof ServerLevel) {
 			ServerLevel serverLevel = (ServerLevel) world;
-			Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+			Structure structure = serverLevel.registryAccess().lookupOrThrow(Registries.STRUCTURE).getValueOrThrow(TofuStructures.TOFU_CASTLE);
 			if (structure != null) {
 				TofuData data = TofuData.get(serverLevel);
 				Vec3 center = event.getEntity().position();
@@ -298,7 +281,7 @@ public class CommonEvents {
 			net.minecraft.world.level.LevelAccessor world = event.getPlayer().level();
 			if (world instanceof ServerLevel) {
 				ServerLevel serverLevel = (ServerLevel) world;
-				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+				Structure structure = serverLevel.registryAccess().lookupOrThrow(Registries.STRUCTURE).getValueOrThrow(TofuStructures.TOFU_CASTLE);
 				if (structure != null) {
 					TofuData data = TofuData.get(serverLevel);
 					StructureStart structureStart = serverLevel.structureManager().getStructureAt(event.getPos(), structure);
@@ -321,7 +304,7 @@ public class CommonEvents {
 			net.minecraft.world.level.LevelAccessor world = event.getEntity().level();
 			if (world instanceof ServerLevel) {
 				ServerLevel serverLevel = (ServerLevel) world;
-				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+				Structure structure = serverLevel.registryAccess().lookupOrThrow(Registries.STRUCTURE).getValueOrThrow(TofuStructures.TOFU_CASTLE);
 				if (structure != null) {
 					TofuData data = TofuData.get(serverLevel);
 					StructureStart structureStart = serverLevel.structureManager().getStructureAt(event.getPos(), structure);
@@ -347,7 +330,7 @@ public class CommonEvents {
 		LivingEntity livingEntity = event.getEntity();
 		net.minecraft.world.level.LevelAccessor level = event.getLevel();
 		if (livingEntity instanceof Enemy) {
-			if (event.getSpawnType() != MobSpawnType.SPAWNER && event.getSpawnType() != MobSpawnType.TRIAL_SPAWNER && event.getSpawnType() != MobSpawnType.EVENT && event.getSpawnType() != MobSpawnType.BREEDING && event.getSpawnType() != MobSpawnType.PATROL) {
+			if (event.getSpawnType() != EntitySpawnReason.SPAWNER && event.getSpawnType() != EntitySpawnReason.TRIAL_SPAWNER && event.getSpawnType() != EntitySpawnReason.EVENT && event.getSpawnType() != EntitySpawnReason.BREEDING && event.getSpawnType() != EntitySpawnReason.PATROL) {
 				if (level instanceof ServerLevel) {
 					Optional<BlockPos> optional = ((ServerLevel) level).getPoiManager().findClosest((p_184069_) -> {
 						return p_184069_.is(TofuPoiTypes.MORIJIO);
@@ -508,25 +491,25 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onPotionEffectApplied(MobEffectEvent.Applicable event) {
 		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.BLINDNESS) {
-			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
+			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}
 
 		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.OOZING) {
-			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
+			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}
 
 		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.MOVEMENT_SLOWDOWN) {
-			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
+			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}
 
 		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.INFESTED) {
-			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
+			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}
@@ -549,9 +532,9 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static boolean onBlockStartBreak(BlockEvent.BreakEvent event) {
 		ItemStack hand = event.getPlayer().getItemInHand(InteractionHand.MAIN_HAND);
-		if (hand.getItem() instanceof PickaxeItem pickaxeItem && pickaxeItem.getTier() == TofuItemTier.TOFUDIAMOND) {
+		if (hand.getItem() instanceof PickaxeItem pickaxeItem) {
 			Block blockDestroyed = event.getLevel().getBlockState(event.getPos()).getBlock();
-			if (event.getLevel() instanceof Level level) {
+			if (event.getLevel() instanceof ServerLevel level) {
 				TofuDiamondToolUtil.onBlockStartBreak(hand, level, blockDestroyed, event.getPos(), event.getPlayer());
 			}
 		}

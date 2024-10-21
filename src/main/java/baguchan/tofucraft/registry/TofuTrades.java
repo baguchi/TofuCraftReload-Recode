@@ -137,8 +137,8 @@ public class TofuTrades {
 			ItemStack stack = new ItemStack(this.sellingItem.getItem(), 1);
 			RegistryAccess registryaccess = trader.level().registryAccess();
 
-			Optional<HolderSet.Named<Enchantment>> optional = registryaccess.registryOrThrow(Registries.ENCHANTMENT)
-					.getTag(EnchantmentTags.ON_TRADED_EQUIPMENT);
+			Optional<HolderSet.Named<Enchantment>> optional = registryaccess.lookupOrThrow(Registries.ENCHANTMENT)
+					.get(EnchantmentTags.ON_TRADED_EQUIPMENT);
 			EnchantmentHelper.enchantItem(rand, stack, i, registryaccess, optional);
 			return new MerchantOffer(new ItemCost(TofuItems.ZUNDARUBY.get(), j), stack, this.maxUses, this.xpValue, this.priceMultiplier);
 		}

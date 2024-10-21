@@ -4,8 +4,9 @@ package baguchan.tofucraft.client.model;// Made with Blockbench 4.5.2
 
 
 import baguchan.tofucraft.client.animation.definitions.TofuGolemAnimation;
+import baguchan.tofucraft.client.render.state.TofuGolemRenderState;
 import baguchan.tofucraft.entity.TofuGolem;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -14,9 +15,10 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class TofuGolemModel<T extends TofuGolem> extends HierarchicalModel<T> {
+public class TofuGolemModel<T extends TofuGolemRenderState> extends EntityModel<T> {
 	private final ModelPart roots;
 	public TofuGolemModel(ModelPart root) {
+		super(root);
 		this.roots = root.getChild("roots");
 	}
 	public static LayerDefinition createBodyLayer() {
@@ -39,14 +41,9 @@ public class TofuGolemModel<T extends TofuGolem> extends HierarchicalModel<T> {
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-		this.animate(entity.spitAnimationState, TofuGolemAnimation.spit, ageInTicks, 1);
-		this.animate(entity.idleAnimationState, TofuGolemAnimation.idle, ageInTicks, 1);
-	}
-
-	@Override
-	public ModelPart root() {
-		return this.roots;
+	public void setupAnim(T entity) {
+		super.setupAnim(entity);
+		this.animate(entity.spitAnimationState, TofuGolemAnimation.spit, entity.ageInTicks, 1);
+		this.animate(entity.idleAnimationState, TofuGolemAnimation.idle, entity.ageInTicks, 1);
 	}
 }

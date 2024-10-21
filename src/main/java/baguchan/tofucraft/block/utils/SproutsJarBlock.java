@@ -11,7 +11,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +21,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -60,32 +61,23 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-		if (!stateIn.canSurvive(worldIn, currentPos) && !worldIn.getBlockTicks().hasScheduledTick(currentPos, this))
-			worldIn.scheduleTick(currentPos, this, 1);
-		if (((Boolean) stateIn.getValue((Property) WATERLOGGED)).booleanValue()) {
-			worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+	protected BlockState updateShape(BlockState stateIn, LevelReader levelReader, ScheduledTickAccess access, BlockPos currentPos, Direction direction, BlockPos facingPos, BlockState facingState, RandomSource randomSource) {
+		if (!stateIn.canSurvive(levelReader, currentPos) && !access.getBlockTicks().hasScheduledTick(currentPos, this))
+			access.scheduleTick(currentPos, this, 1);
+		if (stateIn.getValue(WATERLOGGED)) {
+			access.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelReader));
 			SproutsJarBlock.Stat stat = getStat(stateIn);
 			if (stat == SproutsJarBlock.Stat.EMPTY) {
-				worldIn.setBlock(currentPos, stateIn.setValue(STAT, SproutsJarBlock.Stat.WATER), 3);
+				return stateIn.setValue(STAT, SproutsJarBlock.Stat.WATER);
 			} else if (stat == Stat.SPROUTS_3) {
 				ItemStack sprouts = new ItemStack(TofuItems.SPROUTS.get(), 1);
-				if (worldIn instanceof Level) {
-					float f = 0.7F;
-					double d0 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
-					double d1 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
-					double d2 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
-					ItemEntity itemEntity = new ItemEntity((Level) worldIn, currentPos.getX() + d0, currentPos.getY() + d1, currentPos.getZ() + d2, sprouts);
-					itemEntity.setPickUpDelay(10);
-					worldIn.addFreshEntity(itemEntity);
-				}
-				worldIn.setBlock(currentPos, stateIn.setValue(STAT, SproutsJarBlock.Stat.WATER), 3);
+				return stateIn.setValue(STAT, SproutsJarBlock.Stat.WATER);
 			}
 		}
-		return facing.getAxis().isHorizontal() ? stateIn.setValue(NORTH, Boolean.valueOf(canConnectTo(worldIn, currentPos.north())))
-				.setValue(EAST, Boolean.valueOf(canConnectTo(worldIn, currentPos.east())))
-				.setValue(SOUTH, Boolean.valueOf(canConnectTo(worldIn, currentPos.south())))
-				.setValue(WEST, Boolean.valueOf(canConnectTo(worldIn, currentPos.west()))) : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+		return direction.getAxis().isHorizontal() ? stateIn.setValue(NORTH, Boolean.valueOf(canConnectTo(levelReader, currentPos.north())))
+				.setValue(EAST, Boolean.valueOf(canConnectTo(levelReader, currentPos.east())))
+				.setValue(SOUTH, Boolean.valueOf(canConnectTo(levelReader, currentPos.south())))
+				.setValue(WEST, Boolean.valueOf(canConnectTo(levelReader, currentPos.west()))) : super.updateShape(stateIn, levelReader, access, currentPos, direction, facingPos, facingState, randomSource);
 	}
 
 	@Nullable
@@ -104,7 +96,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 	}
 
 	@Override
-	protected ItemInteractionResult useItemOn(ItemStack itemHeld, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
+	protected InteractionResult useItemOn(ItemStack itemHeld, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
 		SproutsJarBlock.Stat stat = getStat(state);
 		if (!state.getValue(WATERLOGGED)) {
 			if (stat == Stat.EMPTY && itemHeld != null && itemHeld.getItem() == Items.WATER_BUCKET) {
@@ -119,7 +111,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 					}
 				});
 				worldIn.setBlock(pos, state.setValue(STAT, SproutsJarBlock.Stat.WATER), 3);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.WATER && itemHeld != null && itemHeld.getItem() == Items.BUCKET) {
 				ItemStack water = new ItemStack(Items.WATER_BUCKET);
@@ -132,14 +124,14 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 					itemHeld.shrink(1);
 				}
 				worldIn.setBlock(pos, state.setValue(STAT, SproutsJarBlock.Stat.EMPTY), 3);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.WATER && itemHeld != null && itemHeld.getItem() == TofuItems.SEEDS_SOYBEANS.get()) {
 				if (!player.isCreative())
 					itemHeld.shrink(1);
 				worldIn.playSound(null, pos, SoundEvents.CORAL_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
 				worldIn.setBlock(pos, state.setValue(STAT, Stat.SPROUTS_0), 3);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.SPROUTS_3) {
 				ItemStack salt = new ItemStack(TofuItems.SPROUTS.get(), 1);
@@ -151,10 +143,10 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 				itemEntity.setPickUpDelay(10);
 				worldIn.addFreshEntity(itemEntity);
 				worldIn.setBlock(pos, state.setValue(STAT, SproutsJarBlock.Stat.WATER), 3);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 		}
-		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+		return InteractionResult.TRY_WITH_EMPTY_HAND;
 	}
 
 	@Override
@@ -183,7 +175,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 		return SproutsJarBlock.Stat.NA;
 	}
 
-	public boolean canConnectTo(LevelAccessor worldIn, BlockPos pos) {
+	public boolean canConnectTo(LevelReader worldIn, BlockPos pos) {
 		Block block = worldIn.getBlockState(pos).getBlock();
 		return block instanceof SproutsJarBlock;
 	}

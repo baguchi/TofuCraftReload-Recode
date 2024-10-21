@@ -98,8 +98,6 @@ public class TofuCraftReload {
 		TofuProfessions.PROFESSIONS.register(modBus);
 		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
 
-		TofuArmorMaterial.ARMOR_MATERIALS.register(modBus);
-
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
 		TofuFeatures.FEATURES.register(modBus);
 		TofuSounds.SOUND_EVENTS.register(modBus);

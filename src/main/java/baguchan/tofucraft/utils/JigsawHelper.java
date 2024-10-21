@@ -16,6 +16,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JigsawHelper {
 	private static final ResourceKey<StructureProcessorList> EMPTY_PROCESSOR_LIST_KEY = ResourceKey.create(
@@ -23,27 +24,27 @@ public class JigsawHelper {
 
 	public static void registerJigsaw(MinecraftServer server, ResourceLocation poolLocation, ResourceLocation nbtLocation, int weight) {
 		RegistryAccess manager = server.registryAccess();
-		Registry<StructureTemplatePool> templatePoolRegistry = manager.registry(Registries.TEMPLATE_POOL).orElseThrow();
-		Registry<StructureProcessorList> processorListRegistry = manager.registry(Registries.PROCESSOR_LIST).orElseThrow();
-		StructureTemplatePool pool = templatePoolRegistry.get(poolLocation);
+		Registry<StructureTemplatePool> templatePoolRegistry = manager.lookupOrThrow(Registries.TEMPLATE_POOL);
+		Registry<StructureProcessorList> processorListRegistry = manager.lookupOrThrow(Registries.PROCESSOR_LIST);
+		Optional<Holder.Reference<StructureTemplatePool>> pool = templatePoolRegistry.get(poolLocation);
 
-		if (pool == null) return;
+		if (pool.isEmpty()) return;
 
-		ObjectArrayList<StructurePoolElement> elements = pool.templates;
+		ObjectArrayList<StructurePoolElement> elements = pool.get().value().templates;
 
-		Holder<StructureProcessorList> processorListHolder = processorListRegistry.getHolderOrThrow(EMPTY_PROCESSOR_LIST_KEY);
+		Holder<StructureProcessorList> processorListHolder = processorListRegistry.getOrThrow(EMPTY_PROCESSOR_LIST_KEY);
 
 		StructurePoolElement element = SinglePoolElement.legacy(nbtLocation.toString(), processorListHolder).apply(StructureTemplatePool.Projection.RIGID);
 		for (int i = 0; i < weight; i++) {
 			elements.add(element);
 		}
 
-			List<Pair<StructurePoolElement, Integer>> elementCounts = new ArrayList<>(pool.rawTemplates);
+		List<Pair<StructurePoolElement, Integer>> elementCounts = new ArrayList<>(pool.get().value().rawTemplates);
 
-			elements.addAll(pool.templates);
-			elementCounts.addAll(pool.rawTemplates);
+		elements.addAll(pool.get().value().templates);
+		elementCounts.addAll(pool.get().value().rawTemplates);
 
-			pool.templates = elements;
-			pool.rawTemplates = elementCounts;
+		pool.get().value().templates = elements;
+		pool.get().value().rawTemplates = elementCounts;
 	}
 }

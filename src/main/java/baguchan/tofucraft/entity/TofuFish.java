@@ -13,7 +13,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.player.Player;
@@ -72,7 +72,7 @@ public class TofuFish extends AbstractTofuFish {
 			}
 
 			p_148831_.discard();
-			return Optional.of(InteractionResult.sidedSuccess(level.isClientSide));
+			return Optional.of(InteractionResult.TRY_WITH_EMPTY_HAND);
 		} else if (itemstack.getItem() == TofuItems.BUCKET_SOYMILK.get() && p_148831_.isAlive()) {
 			p_148831_.playSound(p_148831_.getPickupSound(), 1.0F, 1.0F);
 			ItemStack itemstack1 = TofuItems.TOFUFISH_SOYMILK_BUCKET.get().getDefaultInstance();
@@ -85,13 +85,13 @@ public class TofuFish extends AbstractTofuFish {
 			}
 
 			p_148831_.discard();
-			return Optional.of(InteractionResult.sidedSuccess(level.isClientSide));
+			return Optional.of(InteractionResult.TRY_WITH_EMPTY_HAND);
 		} else {
 			return Bucketable.bucketMobPickup(p_148829_, p_148830_, p_148831_);
 		}
 	}
 
-	public static boolean checkTofuFishSpawnRules(EntityType<? extends AbstractFish> p_27468_, LevelAccessor p_27469_, MobSpawnType p_27470_, BlockPos p_27471_, RandomSource p_27472_) {
+	public static boolean checkTofuFishSpawnRules(EntityType<? extends AbstractFish> p_27468_, LevelAccessor p_27469_, EntitySpawnReason p_27470_, BlockPos p_27471_, RandomSource p_27472_) {
 		return p_27469_.getBlockState(p_27471_).is(TofuBlocks.SOYMILK.get()) && p_27469_.getBlockState(p_27471_.above()).is(TofuBlocks.SOYMILK.get());
 	}
 }

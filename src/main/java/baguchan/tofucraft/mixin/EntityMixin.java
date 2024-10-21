@@ -3,6 +3,7 @@ package baguchan.tofucraft.mixin;
 import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -33,7 +34,7 @@ public abstract class EntityMixin implements net.neoforged.neoforge.common.exten
 	public abstract DamageSources damageSources();
 
 	@Shadow
-	public abstract boolean hurt(DamageSource source, float amount);
+	public abstract boolean hurtServer(ServerLevel serverLevel, DamageSource source, float amount);
 
 	@Shadow
 	public abstract double getFluidTypeHeight(FluidType type);
@@ -61,8 +62,10 @@ public abstract class EntityMixin implements net.neoforged.neoforge.common.exten
 	public void baseTick(CallbackInfo ci) {
 		Entity entity = (Entity) (Object) this;
 		if (this.tofuCraftReload_Recode$isInDoubanjang() && this.isAttackable()) {
-			this.hurt(this.damageSources().lava(), 2.0F);
-			this.fallDistance *= this.getFluidFallDistanceModifier(TofuFluidTypes.DOUBANJIANG.get());
+			if (this.level() instanceof ServerLevel serverlevel
+					&& this.hurtServer(serverlevel, this.damageSources().lava(), 2.0F)) {
+				this.fallDistance *= this.getFluidFallDistanceModifier(TofuFluidTypes.DOUBANJIANG.get());
+			}
 		}
 	}
 

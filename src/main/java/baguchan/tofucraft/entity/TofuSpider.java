@@ -18,11 +18,12 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.ConversionParams;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -101,7 +102,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 			this.conversionTime -= 1;
 			if (this.conversionTime <= 0 && EventHooks.canLivingConvert(this, TofuEntityTypes.SHUDOFUSPIDER.get(), (timer) -> this.conversionTime = timer)) {
 				this.finishConversion((ServerLevel) this.level());
-				if (EventHooks.canEntityGrief(this.level(), this)) {
+				if (EventHooks.canEntityGrief((ServerLevel) this.level(), this)) {
 					int j1 = Mth.floor(this.getY());
 					int i2 = Mth.floor(this.getX());
 					int j2 = Mth.floor(this.getZ());
@@ -133,8 +134,10 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	}
 
 	private void finishConversion(ServerLevel p_34399_) {
-		ShuDofuSpider shudofuSpider = this.convertTo(TofuEntityTypes.SHUDOFUSPIDER.get(), false);
-		shudofuSpider.finalizeSpawn(p_34399_, p_34399_.getCurrentDifficultyAt(shudofuSpider.blockPosition()), MobSpawnType.CONVERSION, (SpawnGroupData) null);
+		ShuDofuSpider shudofuSpider = this.convertTo(TofuEntityTypes.SHUDOFUSPIDER.get(), ConversionParams.single(this, false, true), p_371719_ -> {
+
+		});
+		shudofuSpider.finalizeSpawn(p_34399_, p_34399_.getCurrentDifficultyAt(shudofuSpider.blockPosition()), EntitySpawnReason.CONVERSION, (SpawnGroupData) null);
 
 		List<Player> players = p_34399_.getNearbyPlayers(TargetingConditions.forNonCombat().ignoreInvisibilityTesting().ignoreLineOfSight(), this, this.getBoundingBox().inflate(60D));
 
@@ -170,12 +173,12 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	}
 
 	@Override
-	public boolean isAlliedTo(Entity p_20355_) {
+	public boolean canAttack(LivingEntity p_20355_) {
 		if (p_20355_ instanceof ShuDofuSpider) {
 			return this.getTeam() == null && p_20355_.getTeam() == null;
 		}
 
-		return super.isAlliedTo(p_20355_);
+		return super.canAttack(p_20355_);
 	}
 
 	@Override
@@ -227,7 +230,9 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 
 					if (d0 < 4.0D + this.spider.getBbWidth() && this.attackTime <= 0) {
 						this.attackTime = 20;
-						this.spider.doHurtTarget(livingentity);
+						if (this.spider.level() instanceof ServerLevel serverLevel) {
+							this.spider.doHurtTarget(serverLevel, livingentity);
+						}
 					}
 
 					this.spider.getLookControl().setLookAt(livingentity, 10.0F, 10.0F);
@@ -282,12 +287,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	}
 
 	@Nullable
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnType, @Nullable SpawnGroupData spawnGroupData) {
 		return spawnGroupData;
-	}
-
-	@Override
-	public float getScale() {
-		return this.isBaby() ? 0.65F : 1.15F;
 	}
 }

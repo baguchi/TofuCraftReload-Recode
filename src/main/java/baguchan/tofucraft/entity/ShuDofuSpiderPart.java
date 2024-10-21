@@ -5,6 +5,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerEntity;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
@@ -51,17 +52,14 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 	}
 
 	@Override
-	public boolean hurt(DamageSource damageSource, float damage) {
-		if (!this.isInvulnerableTo(damageSource)) {
+	public boolean hurtServer(ServerLevel serverLevel, DamageSource damageSource, float damage) {
 
 			if (this == parentMob.body) {
-				return this.parentMob.hurt(damageSource, damage * 1.2F);
+				return this.parentMob.hurtServer(serverLevel, damageSource, damage * 1.2F);
 			} else {
-				return this.parentMob.hurt(damageSource, damage * 0.8F);
+				return this.parentMob.hurtServer(serverLevel, damageSource, damage * 0.8F);
 			}
-		} else {
-			return false;
-		}
+
 	}
 
 

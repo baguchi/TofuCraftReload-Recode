@@ -19,7 +19,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -106,14 +106,14 @@ public class TravelerTofunian extends AbstractTofunian {
 			}
 
 			if (this.getOffers().isEmpty()) {
-				return InteractionResult.sidedSuccess(this.level().isClientSide);
+				return InteractionResult.TRY_WITH_EMPTY_HAND;
 			} else {
 				if (!this.level().isClientSide) {
 					this.setTradingPlayer(p_35856_);
 					this.openTradingScreen(p_35856_, this.getDisplayName(), 1);
 				}
 
-				return InteractionResult.sidedSuccess(this.level().isClientSide);
+				return InteractionResult.TRY_WITH_EMPTY_HAND;
 			}
 		} else {
 			return super.mobInteract(p_35856_, p_35857_);
@@ -154,7 +154,7 @@ public class TravelerTofunian extends AbstractTofunian {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, MobSpawnType p_35284_, @org.jetbrains.annotations.Nullable SpawnGroupData p_35285_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, EntitySpawnReason p_35284_, @org.jetbrains.annotations.Nullable SpawnGroupData p_35285_) {
 		RandomSource randomsource = p_35282_.getRandom();
 		this.populateDefaultEquipmentSlots(randomsource, p_35283_);
 

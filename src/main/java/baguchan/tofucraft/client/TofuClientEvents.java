@@ -1,13 +1,12 @@
 package baguchan.tofucraft.client;
 
-import bagu_chan.bagus_lib.animation.BaguAnimationController;
-import bagu_chan.bagus_lib.api.client.IRootModel;
-import bagu_chan.bagus_lib.client.event.BagusModelEvent;
-import bagu_chan.bagus_lib.util.client.AnimationUtil;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.client.animation.definitions.CoughAnimation;
 import baguchan.tofucraft.client.sound.TofuMusicManager;
 import baguchan.tofucraft.registry.TofuAnimations;
+import baguchi.bagus_lib.animation.BaguAnimationController;
+import baguchi.bagus_lib.client.event.BagusModelEvent;
+import baguchi.bagus_lib.util.client.AnimationUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -28,17 +27,9 @@ public class TofuClientEvents {
 		}
 	}
 
-	@SubscribeEvent
-	public static void onInitModelEvent(BagusModelEvent.Init event) {
-		IRootModel rootModel = event.getRootModel();
-		if (event.isSupportedAnimateModel()) {
-			rootModel.getBagusRoot().getAllParts().forEach(ModelPart::resetPose);
-		}
-	}
 
-	@SubscribeEvent
+	/*@SubscribeEvent
 	public static void onAnimateModelEvent(BagusModelEvent.PostAnimate event) {
-		IRootModel rootModel = event.getRootModel();
 		BaguAnimationController controller = AnimationUtil.getAnimationController(event.getEntity());
 		if (event.isSupportedAnimateModel() && controller != null) {
 			rootModel.animateBagu(controller.getAnimationState(TofuAnimations.COUGH), CoughAnimation.COUGH, event.getAgeInTick());
@@ -46,5 +37,5 @@ public class TofuClientEvents {
 				humanoidModel.hat.copyFrom(humanoidModel.head);
 			}
 		}
-	}
+	}*/
 }

@@ -10,9 +10,9 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 
 public class TofuBiomeDefaultFeatures {
 	public static void addDefaultCarvers(BiomeGenerationSettings.Builder p_194721_) {
-		p_194721_.addCarver(GenerationStep.Carving.AIR, TofuConfiguredWorldCarvers.CAVE);
-		p_194721_.addCarver(GenerationStep.Carving.AIR, TofuConfiguredWorldCarvers.CAVE_EXTRA_UNDERGROUND);
-		p_194721_.addCarver(GenerationStep.Carving.AIR, TofuConfiguredWorldCarvers.CANYON);
+		p_194721_.addCarver(TofuConfiguredWorldCarvers.CAVE);
+		p_194721_.addCarver(TofuConfiguredWorldCarvers.CAVE_EXTRA_UNDERGROUND);
+		p_194721_.addCarver(TofuConfiguredWorldCarvers.CANYON);
 	}
 
 	public static void tofuMonsterSpawns(MobSpawnSettings.Builder p_126813_) {

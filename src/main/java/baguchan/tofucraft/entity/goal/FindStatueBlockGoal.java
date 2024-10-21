@@ -50,7 +50,7 @@ public class FindStatueBlockGoal extends MoveToBlockGoal {
 					if (this.creature.level() instanceof ServerLevel) {
 						((ServerLevel) this.creature.level()).getPoiManager().getType(this.blockPos).ifPresent((p_217105_) -> {
 							((ServerLevel) this.creature.level()).getPoiManager().take(poiTypeHolder -> {
-								return poiTypeHolder == BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(this.poiTypeResourceKey).get();
+								return poiTypeHolder == BuiltInRegistries.POINT_OF_INTEREST_TYPE.get(this.poiTypeResourceKey).get();
 							}, (p_217108_, p_217109_) -> {
 								return p_217109_.equals(this.blockPos);
 							}, this.blockPos, 1);

@@ -24,7 +24,8 @@ public class NattoBallEntity extends ThrowableProjectile {
 	}
 
 	public NattoBallEntity(Level worldIn, LivingEntity throwerIn) {
-		super(TofuEntityTypes.NATTO_STRNIG.get(), throwerIn, worldIn);
+		super(TofuEntityTypes.NATTO_STRNIG.get(), throwerIn.getX(), throwerIn.getY(), throwerIn.getZ(), worldIn);
+		this.setOwner(throwerIn);
 	}
 
 	protected boolean canHitEntity(Entity p_37250_) {

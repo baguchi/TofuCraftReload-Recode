@@ -9,6 +9,7 @@ import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
@@ -454,30 +455,30 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE);
 		singleTex(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE);
 
-		trimmedArmor(TofuItems.TOFU_KINU_HELMET);
-		trimmedArmor(TofuItems.TOFU_KINU_CHESTPLATE);
-		trimmedArmor(TofuItems.TOFU_KINU_LEGGINGS);
-		trimmedArmor(TofuItems.TOFU_KINU_BOOTS);
+		trimmedArmor(TofuItems.TOFU_KINU_HELMET, ArmorType.HELMET);
+		trimmedArmor(TofuItems.TOFU_KINU_CHESTPLATE, ArmorType.CHESTPLATE);
+		trimmedArmor(TofuItems.TOFU_KINU_LEGGINGS, ArmorType.LEGGINGS);
+		trimmedArmor(TofuItems.TOFU_KINU_BOOTS, ArmorType.BOOTS);
 
-		trimmedArmor(TofuItems.TOFU_MOMEN_HELMET);
-		trimmedArmor(TofuItems.TOFU_MOMEN_CHESTPLATE);
-		trimmedArmor(TofuItems.TOFU_MOMEN_LEGGINGS);
-		trimmedArmor(TofuItems.TOFU_MOMEN_BOOTS);
+		trimmedArmor(TofuItems.TOFU_MOMEN_HELMET, ArmorType.HELMET);
+		trimmedArmor(TofuItems.TOFU_MOMEN_CHESTPLATE, ArmorType.CHESTPLATE);
+		trimmedArmor(TofuItems.TOFU_MOMEN_LEGGINGS, ArmorType.LEGGINGS);
+		trimmedArmor(TofuItems.TOFU_MOMEN_BOOTS, ArmorType.BOOTS);
 
-		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDHELMET);
-		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDCHESTPLATE);
-		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDLEGGINGS);
-		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDBOOTS);
+		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDHELMET, ArmorType.HELMET);
+		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDCHESTPLATE, ArmorType.CHESTPLATE);
+		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDLEGGINGS, ArmorType.LEGGINGS);
+		trimmedArmor(TofuItems.ARMOR_TOFU_SOLIDBOOTS, ArmorType.BOOTS);
 
-		trimmedArmor(TofuItems.TOFU_METAL_HELMET);
-		trimmedArmor(TofuItems.TOFU_METAL_CHESTPLATE);
-		trimmedArmor(TofuItems.TOFU_METAL_LEGGINGS);
-		trimmedArmor(TofuItems.TOFU_METAL_BOOTS);
+		trimmedArmor(TofuItems.TOFU_METAL_HELMET, ArmorType.HELMET);
+		trimmedArmor(TofuItems.TOFU_METAL_CHESTPLATE, ArmorType.CHESTPLATE);
+		trimmedArmor(TofuItems.TOFU_METAL_LEGGINGS, ArmorType.LEGGINGS);
+		trimmedArmor(TofuItems.TOFU_METAL_BOOTS, ArmorType.BOOTS);
 
-		trimmedArmor(TofuItems.TOFU_DIAMOND_HELMET);
-		trimmedArmor(TofuItems.TOFU_DIAMOND_CHESTPLATE);
-		trimmedArmor(TofuItems.TOFU_DIAMOND_LEGGINGS);
-		trimmedArmor(TofuItems.TOFU_DIAMOND_BOOTS);
+		trimmedArmor(TofuItems.TOFU_DIAMOND_HELMET, ArmorType.HELMET);
+		trimmedArmor(TofuItems.TOFU_DIAMOND_CHESTPLATE, ArmorType.CHESTPLATE);
+		trimmedArmor(TofuItems.TOFU_DIAMOND_LEGGINGS, ArmorType.LEGGINGS);
+		trimmedArmor(TofuItems.TOFU_DIAMOND_BOOTS, ArmorType.BOOTS);
 
 		egg(TofuItems.TOFUNIAN_SPAWNEGG);
 		egg(TofuItems.TRAVELER_TOFUNIAN_SPAWNEGG);
@@ -492,7 +493,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 		egg(TofuItems.TOFUFISH_SPAWNEGG);
 		egg(TofuItems.FUKUMAME_THOWER_SPAWNEGG);
 		egg(TofuItems.ZUNDAMITE_SPAWNEGG);
-		egg(TofuItems.TOFU_PUFFER_SPAWNEGG);
 
 		singleTex(TofuItems.TOMATO_SOYBEAN_STEW);
 		singleTex(TofuItems.YUDOFU);
@@ -689,14 +689,14 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	//Thanks Twilight Forest Team! https://github.com/TeamTwilight/twilightforest/blob/1.20.x/src/main/java/twilightforest/data/ItemModelGenerator.java#L827C23-L837
-	private void trimmedArmor(Supplier<ArmorItem> armor) {
+	private void trimmedArmor(Supplier<ArmorItem> armor, ArmorType type) {
 		ItemModelBuilder base = this.singleTex(armor);
 		for (ItemModelGenerators.TrimModelData trim : ItemModelGenerators.GENERATED_TRIM_MODELS) {
 			String material = trim.name();
 			String name = itemPath(armor).getPath() + "_" + material + "_trim";
 			ModelFile trimModel = this.withExistingParent(name, this.mcLoc("item/generated"))
 					.texture("layer0", prefix("item/" + itemPath(armor).getPath()))
-					.texture("layer1", this.mcLoc("trims/items/" + armor.get().getType().getName() + "_trim_" + material));
+					.texture("layer1", this.mcLoc("trims/items/" + type.getName() + "_trim_" + material));
 			base.override().predicate(ResourceLocation.parse("trim_type"), trim.itemModelIndex()).model(trimModel).end();
 		}
 	}

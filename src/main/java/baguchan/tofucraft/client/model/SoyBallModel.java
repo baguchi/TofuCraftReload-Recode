@@ -3,8 +3,9 @@ package baguchan.tofucraft.client.model;// Made with Blockbench 4.10.4
 // Paste this class into your mod and generate all required imports
 
 
+import baguchan.tofucraft.client.render.state.ProjectileRenderState;
 import baguchan.tofucraft.entity.projectile.SoyballEntity;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -13,10 +14,11 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class SoyBallModel<T extends SoyballEntity> extends HierarchicalModel<T> {
+public class SoyBallModel extends EntityModel<ProjectileRenderState> {
 	private final ModelPart root;
 
 	public SoyBallModel(ModelPart root) {
+		super(root);
 		this.root = root.getChild("root");
 	}
 
@@ -28,15 +30,5 @@ public class SoyBallModel<T extends SoyballEntity> extends HierarchicalModel<T> 
 				.texOffs(15, 0).addBox(-2.0F, -3.0F, 2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 23.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 32, 32);
-	}
-
-	@Override
-	public void setupAnim(SoyballEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
-	}
-
-	@Override
-	public ModelPart root() {
-		return this.root;
 	}
 }

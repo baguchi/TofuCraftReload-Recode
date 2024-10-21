@@ -3,7 +3,9 @@ package baguchan.tofucraft.recipe;
 import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -61,17 +63,7 @@ public class BitternRecipe implements Recipe<RecipeInput> {
 
 	@Override
 	public ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
-		return this.getResultItem(provider).copy();
-	}
-
-	@Override
-	public boolean canCraftInDimensions(int p_43999_, int p_44000_) {
-		return p_43999_ > 0 && p_44000_ > 0;
-	}
-
-	@Override
-	public ItemStack getResultItem(HolderLookup.Provider p_336125_) {
-		return this.result;
+		return this.getResult().copy();
 	}
 
 	public ItemStack getResult() {
@@ -79,14 +71,24 @@ public class BitternRecipe implements Recipe<RecipeInput> {
 	}
 
 	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public RecipeSerializer<? extends Recipe<RecipeInput>> getSerializer() {
 
 		return TofuRecipes.RECIPE_BITTERN.get();
 	}
 
 	@Override
-	public RecipeType<?> getType() {
+	public RecipeType<? extends Recipe<RecipeInput>> getType() {
 
 		return TofuRecipes.RECIPETYPE_BITTERN.get();
+	}
+
+	@Override
+	public PlacementInfo placementInfo() {
+		return null;
+	}
+
+	@Override
+	public RecipeBookCategory recipeBookCategory() {
+		return null;
 	}
 }

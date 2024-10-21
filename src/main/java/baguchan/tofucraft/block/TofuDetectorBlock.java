@@ -10,6 +10,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
@@ -18,6 +20,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.redstone.ExperimentalRedstoneUtils;
+import net.minecraft.world.level.redstone.Orientation;
 
 public class TofuDetectorBlock extends DirectionalBlock {
 	public static final MapCodec<TofuDetectorBlock> CODEC = simpleCodec(TofuDetectorBlock::new);
@@ -55,22 +59,23 @@ public class TofuDetectorBlock extends DirectionalBlock {
 		this.updateNeighborsInFront(p_221841_, p_221842_, p_221840_);
 	}
 
-	public BlockState updateShape(BlockState p_55118_, Direction p_55119_, BlockState p_55120_, LevelAccessor p_55121_, BlockPos p_55122_, BlockPos p_55123_) {
-		if (p_55118_.getValue(FACING) == p_55119_) {
-			Direction direction = p_55118_.getValue(FACING);
-			BlockPos blockpos = p_55122_.relative(direction);
-			this.startSignal(p_55121_, p_55122_, p_55118_, p_55121_.getBlockState(blockpos));
+	@Override
+	protected BlockState updateShape(BlockState p_60541_, LevelReader p_374332_, ScheduledTickAccess p_374457_, BlockPos p_60545_, Direction p_60542_, BlockPos p_60546_, BlockState p_60543_, RandomSource p_374120_) {
+		if (p_60541_.getValue(FACING) == p_60542_) {
+			Direction direction = p_60541_.getValue(FACING);
+			BlockPos blockpos = p_60545_.relative(direction);
+			this.startSignal(p_374332_, p_374457_, p_60545_, p_60541_, p_374332_.getBlockState(blockpos));
 		}
 
-		return super.updateShape(p_55118_, p_55119_, p_55120_, p_55121_, p_55122_, p_55123_);
+		return super.updateShape(p_60541_, p_374332_, p_374457_, p_60545_, p_60542_, p_60546_, p_60543_, p_374120_);
 	}
 
-	private void startSignal(LevelAccessor p_55093_, BlockPos p_55094_, BlockState p_55118_, BlockState p_55120_) {
-		if (!p_55093_.isClientSide() && !p_55093_.getBlockTicks().hasScheduledTick(p_55094_, this)) {
+	private void startSignal(LevelReader p_55093_, ScheduledTickAccess p_374457_, BlockPos p_55094_, BlockState p_55118_, BlockState p_55120_) {
+		if (!p_55093_.isClientSide() && !p_374457_.getBlockTicks().hasScheduledTick(p_55094_, this)) {
 			if (!p_55118_.getValue(POWERED) && (p_55120_.getBlock() instanceof TofuBlock || p_55120_.is(TofuTags.Blocks.SOFT_TOFU))) {
-				p_55093_.scheduleTick(p_55094_, this, 2);
+				p_374457_.scheduleTick(p_55094_, this, 2);
 			} else if (p_55118_.getValue(POWERED) && !(p_55120_.getBlock() instanceof TofuBlock || p_55120_.is(TofuTags.Blocks.SOFT_TOFU))) {
-				p_55093_.scheduleTick(p_55094_, this, 2);
+				p_374457_.scheduleTick(p_55094_, this, 2);
 			}
 		}
 
@@ -79,8 +84,10 @@ public class TofuDetectorBlock extends DirectionalBlock {
 	protected void updateNeighborsInFront(Level p_55089_, BlockPos p_55090_, BlockState p_55091_) {
 		Direction direction = p_55091_.getValue(FACING);
 		BlockPos blockpos = p_55090_.relative(direction.getOpposite());
-		p_55089_.neighborChanged(blockpos, this, p_55090_);
-		p_55089_.updateNeighborsAtExceptFromFacing(blockpos, this, direction);
+		Orientation orientation = ExperimentalRedstoneUtils.initialOrientation(p_55089_, direction.getOpposite(), null);
+
+		p_55089_.neighborChanged(blockpos, this, orientation);
+		p_55089_.updateNeighborsAtExceptFromFacing(blockpos, this, direction, orientation);
 	}
 
 	public boolean isSignalSource(BlockState p_55138_) {

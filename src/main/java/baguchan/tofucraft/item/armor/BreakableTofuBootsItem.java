@@ -8,10 +8,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.equipment.ArmorType;
 
 import java.awt.*;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 public class BreakableTofuBootsItem extends BreakableTofuArmorItem {
 	private final Supplier<ItemAttributeModifiers> defaultModifiers;
 
-	public BreakableTofuBootsItem(Holder<ArmorMaterial> tofuArmorMaterial, Type type, float reduceFallDamage, Properties properties) {
+	public BreakableTofuBootsItem(net.minecraft.world.item.equipment.ArmorMaterial tofuArmorMaterial, ArmorType type, float reduceFallDamage, Properties properties) {
 		super(tofuArmorMaterial, type, properties);
 		this.defaultModifiers = Suppliers.memoize(
 				() -> {
@@ -37,9 +37,10 @@ public class BreakableTofuBootsItem extends BreakableTofuArmorItem {
 	}
 
 	@Override
-	public ItemAttributeModifiers getDefaultAttributeModifiers() {
+	public ItemAttributeModifiers getDefaultAttributeModifiers(ItemStack stack) {
 		return this.defaultModifiers.get();
 	}
+
 
 	public int getUnstability(ItemStack inst) {
 		return inst.get(TofuDataComponents.UNSTABILITY) != null ? inst.get(TofuDataComponents.UNSTABILITY) : 0;

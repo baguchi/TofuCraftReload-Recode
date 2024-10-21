@@ -140,13 +140,14 @@ public class FukumameThowerAi {
 	}
 
 	private static void initIdleActivity(Brain<FukumameThower> p_34892_) {
-		p_34892_.addActivity(Activity.IDLE, 10, ImmutableList.of(SetEntityLookTarget.create(FukumameThowerAi::isPlayerHoldingLovedItem, 14.0F), StartAttacking.<Piglin>create(AbstractPiglin::isAdult, FukumameThowerAi::findNearestValidAttackTarget), BehaviorBuilder.triggerIf(FukumameThower::canHunt, StartHuntingHoglin.create()), new EatFukumame<>(), avoidRepellent(), babySometimesRideBabyHoglin(), createIdleLookBehaviors(), createIdleMovementBehaviors(), SetLookAndInteract.create(EntityType.PLAYER, 4)));
+		p_34892_.addActivity(Activity.IDLE, 10, ImmutableList.of(SetEntityLookTarget.create(FukumameThowerAi::isPlayerHoldingLovedItem, 14.0F), StartAttacking.<Piglin>create((serverlevel, living) -> living.isAdult(), FukumameThowerAi::findNearestValidAttackTarget), BehaviorBuilder.triggerIf(FukumameThower::canHunt, StartHuntingHoglin.create()), new EatFukumame<>(), avoidRepellent(), babySometimesRideBabyHoglin(), createIdleLookBehaviors(), createIdleMovementBehaviors(), SetLookAndInteract.create(EntityType.PLAYER, 4)));
 	}
 
 	private static void initFightActivity(FukumameThower p_34904_, Brain<FukumameThower> p_34905_) {
-		p_34905_.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.<BehaviorControl<? super FukumameThower>>of(StopAttackingIfTargetInvalid.<Piglin>create((p_34981_) -> {
-			return !isNearestValidAttackTarget(p_34904_, p_34981_);
-		}), BehaviorBuilder.triggerIf((entity) -> {
+		p_34905_.addActivityAndRemoveMemoryWhenStopped(Activity.FIGHT, 10, ImmutableList.<BehaviorControl<? super FukumameThower>>of(StopAttackingIfTargetInvalid.<Piglin>create((p_375910_, p_375911_, living) -> {
+					isNearestValidAttackTarget(p_375910_, p_34904_, living);
+				})
+				, BehaviorBuilder.triggerIf((entity) -> {
 			return p_34904_.getFukumameCount() > 0;
 		}, BackUpIfTooClose.create(10, 0.75F)), new EatFukumame<>(), BehaviorBuilder.triggerIf((entity) -> {
 			return p_34904_.getFukumameCount() <= 0;
@@ -156,7 +157,7 @@ public class FukumameThowerAi {
 	}
 
 	private static void initCelebrateActivity(Brain<FukumameThower> p_34921_) {
-		p_34921_.addActivityAndRemoveMemoryWhenStopped(Activity.CELEBRATE, 10, ImmutableList.of(avoidRepellent(), SetEntityLookTarget.create(FukumameThowerAi::isPlayerHoldingLovedItem, 14.0F), StartAttacking.<Piglin>create(AbstractPiglin::isAdult, FukumameThowerAi::findNearestValidAttackTarget), BehaviorBuilder.<Piglin>triggerIf((p_34804_) -> {
+		p_34921_.addActivityAndRemoveMemoryWhenStopped(Activity.CELEBRATE, 10, ImmutableList.of(avoidRepellent(), SetEntityLookTarget.create(FukumameThowerAi::isPlayerHoldingLovedItem, 14.0F), StartAttacking.<Piglin>create((serverlevel, living) -> living.isAdult(), FukumameThowerAi::findNearestValidAttackTarget), BehaviorBuilder.<Piglin>triggerIf((p_34804_) -> {
 			return !p_34804_.isDancing();
 		}, GoToTargetLocation.create(MemoryModuleType.CELEBRATE_LOCATION, 2, 1.0F)), BehaviorBuilder.<Piglin>triggerIf(Piglin::isDancing, GoToTargetLocation.create(MemoryModuleType.CELEBRATE_LOCATION, 4, 0.6F)), new RunOne<Piglin>(ImmutableList.of(Pair.of(SetEntityLookTarget.create(EntityType.PIGLIN, 8.0F), 1), Pair.of(RandomStroll.stroll(0.6F, 2, 1), 1), Pair.of(new DoNothing(10, 20), 1)))), MemoryModuleType.CELEBRATE_LOCATION);
 	}
@@ -208,15 +209,6 @@ public class FukumameThowerAi {
 		}
 	}
 
-
-	private static void holdInOffhand(FukumameThower p_34933_, ItemStack p_34934_) {
-		if (isHoldingItemInOffHand(p_34933_)) {
-			p_34933_.spawnAtLocation(p_34933_.getItemInHand(InteractionHand.OFF_HAND));
-		}
-
-		p_34933_.holdInOffHand(p_34934_);
-	}
-
 	private static void putInInventory(FukumameThower p_34953_, ItemStack p_34954_) {
 		ItemStack itemstack = p_34953_.addToInventory(p_34954_);
 		throwItemsTowardRandomPos(p_34953_, Collections.singletonList(itemstack));
@@ -251,7 +243,7 @@ public class FukumameThowerAi {
 
 	}
 
-	public static void stopHoldingOffHandItem(FukumameThower p_34868_, boolean p_34869_) {
+	public static void stopHoldingOffHandItem(ServerLevel serverLevel, FukumameThower p_34868_, boolean p_34869_) {
 		ItemStack itemstack = p_34868_.getItemInHand(InteractionHand.OFF_HAND);
 		p_34868_.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
 		if (p_34868_.isAdult()) {
@@ -259,13 +251,13 @@ public class FukumameThowerAi {
 			if (p_34869_ && flag) {
 				throwItems(p_34868_, getBarterResponseItems(p_34868_));
 			} else if (!flag) {
-				boolean flag1 = !p_34868_.equipItemIfPossible(itemstack).isEmpty();
+				boolean flag1 = !p_34868_.equipItemIfPossible(serverLevel, itemstack).isEmpty();
 				if (!flag1) {
 					putInInventory(p_34868_, itemstack);
 				}
 			}
 		} else {
-			boolean flag2 = !p_34868_.equipItemIfPossible(itemstack).isEmpty();
+			boolean flag2 = !p_34868_.equipItemIfPossible(serverLevel, itemstack).isEmpty();
 			if (!flag2) {
 				ItemStack itemstack1 = p_34868_.getMainHandItem();
 				if (isLovedItem(itemstack1)) {
@@ -329,8 +321,8 @@ public class FukumameThowerAi {
 		}
 	}
 
-	private static boolean isNearestValidAttackTarget(Piglin p_34901_, LivingEntity p_34902_) {
-		return findNearestValidAttackTarget(p_34901_).filter((p_34887_) -> {
+	private static boolean isNearestValidAttackTarget(ServerLevel server, Piglin p_34901_, LivingEntity p_34902_) {
+		return findNearestValidAttackTarget(server, p_34901_).filter((p_34887_) -> {
 			return p_34887_ == p_34902_;
 		}).isPresent();
 	}
@@ -345,13 +337,13 @@ public class FukumameThowerAi {
 		}
 	}
 
-	private static Optional<? extends LivingEntity> findNearestValidAttackTarget(Piglin p_35001_) {
+	private static Optional<? extends LivingEntity> findNearestValidAttackTarget(ServerLevel serverLevel, Piglin p_35001_) {
 		Brain<Piglin> brain = p_35001_.getBrain();
 		if (isNearZombified(p_35001_)) {
 			return Optional.empty();
 		} else {
 			Optional<LivingEntity> optional = BehaviorUtils.getLivingEntityFromUUIDMemory(p_35001_, MemoryModuleType.ANGRY_AT);
-			if (optional.isPresent() && Sensor.isEntityAttackableIgnoringLineOfSight(p_35001_, optional.get())) {
+			if (optional.isPresent() && Sensor.isEntityAttackableIgnoringLineOfSight(serverLevel, p_35001_, optional.get())) {
 				return optional;
 			} else {
 				if (brain.hasMemoryValue(MemoryModuleType.UNIVERSAL_ANGER)) {
@@ -366,7 +358,7 @@ public class FukumameThowerAi {
 					return optional3;
 				} else {
 					Optional<Player> optional2 = brain.getMemory(MemoryModuleType.NEAREST_TARGETABLE_PLAYER_NOT_WEARING_GOLD);
-					return optional2.isPresent() && Sensor.isEntityAttackable(p_35001_, optional2.get()) ? optional2 : Optional.empty();
+					return optional2.isPresent() && Sensor.isEntityAttackable(serverLevel, p_35001_, optional2.get()) ? optional2 : Optional.empty();
 				}
 			}
 		}

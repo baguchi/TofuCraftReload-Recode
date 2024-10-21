@@ -1,6 +1,7 @@
 package baguchan.tofucraft.client.model;
 
 import baguchan.tofucraft.client.animation.definitions.TofunianAnimation;
+import baguchan.tofucraft.client.render.state.TofunianRenderState;
 import baguchan.tofucraft.entity.Tofunian;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -10,7 +11,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class TofunianModel<T extends Tofunian> extends AbstractTofunianModel<T> {
+public class TofunianModel<T extends TofunianRenderState> extends AbstractTofunianModel<T> {
 
 	public TofunianModel(ModelPart p_170688_) {
 		super(p_170688_);
@@ -40,23 +41,22 @@ public class TofunianModel<T extends Tofunian> extends AbstractTofunianModel<T> 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-		this.head.yRot = netHeadYaw * 0.017453292F;
-		if (entity.getAction() != Tofunian.Actions.NORMAL) {
+	public void setupAnim(T entity) {
+		super.setupAnim(entity);
+		this.head.yRot = entity.yRot * 0.017453292F;
+		if (entity.actions != Tofunian.Actions.NORMAL) {
 			this.rightArm.xRot = 0.0F;
 			this.leftArm.xRot = 0.0F;
 		}
-		this.animate(entity.happyAnimationState, TofunianAnimation.HAPPY, ageInTicks);
-		this.animate(entity.eatFoodAnimationState, TofunianAnimation.EAT, ageInTicks);
-		if (entity.getAction() == Tofunian.Actions.CRY) {
+		this.animate(entity.happyAnimationState, TofunianAnimation.HAPPY, entity.ageInTicks);
+		this.animate(entity.eatFoodAnimationState, TofunianAnimation.EAT, entity.ageInTicks);
+		if (entity.actions == Tofunian.Actions.CRY) {
 			this.head.xRot = 0.0F;
 			this.head.yRot = 0.0F;
 			this.applyStatic(TofunianAnimation.CRY);
-		} else if (entity.getAction() == Tofunian.Actions.AVOID) {
+		} else if (entity.actions == Tofunian.Actions.AVOID) {
 			this.applyStatic(TofunianAnimation.AVOIDING);
-		} else if (entity.getAction() == Tofunian.Actions.SIT) {
+		} else if (entity.actions == Tofunian.Actions.SIT) {
 			this.rightArm.xRot = -0.62831855F;
 			this.rightArm.yRot = 0.0F;
 			this.rightArm.zRot = 0.0F;

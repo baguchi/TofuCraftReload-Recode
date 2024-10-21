@@ -72,7 +72,7 @@ public class TofuPortalShape {
 
 	@Nullable
 	private BlockPos calculateBottomLeft(BlockPos p_77734_) {
-		int i = Math.max(this.level.getMinBuildHeight(), p_77734_.getY() - 21);
+		int i = Math.max(this.level.getMinY(), p_77734_.getY() - 21);
 
 		while (p_77734_.getY() > i && isEmpty(this.level.getBlockState(p_77734_.below()))) {
 			p_77734_ = p_77734_.below();

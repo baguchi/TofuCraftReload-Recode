@@ -70,7 +70,9 @@ public class ShareItemAndGossipGoal extends Goal {
 
 	@Nullable
 	private Tofunian getFreePartner() {
-		List<Tofunian> list = this.tofunian.level().getNearbyEntities(Tofunian.class, PARTNER_TARGETING, this.tofunian, this.tofunian.getBoundingBox().inflate(8.0D));
+		List<Tofunian> list = this.tofunian.level().getEntitiesOfClass(Tofunian.class, this.tofunian.getBoundingBox().inflate(8.0D), tofunian1 -> {
+			return tofunian1 != tofunian;
+		});
 		double d0 = Double.MAX_VALUE;
 		Tofunian tofunian2 = null;
 		for (Tofunian tofunianEntity1 : list) {

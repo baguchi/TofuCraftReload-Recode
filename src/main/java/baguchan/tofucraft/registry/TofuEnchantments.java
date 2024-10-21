@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -45,6 +46,7 @@ public class TofuEnchantments {
 	public static void bootstrap(BootstrapContext<Enchantment> p_345935_) {
 		HolderGetter<DamageType> holdergetter = p_345935_.lookup(Registries.DAMAGE_TYPE);
 		HolderGetter<Enchantment> holdergetter1 = p_345935_.lookup(Registries.ENCHANTMENT);
+		HolderGetter<EntityType<?>> entityHolder = p_345935_.lookup(Registries.ENTITY_TYPE);
 		HolderGetter<Item> holdergetter2 = p_345935_.lookup(Registries.ITEM);
 		HolderGetter<Block> holdergetter3 = p_345935_.lookup(Registries.BLOCK);
 		register(
@@ -110,7 +112,7 @@ public class TofuEnchantments {
 								EnchantmentEffectComponents.DAMAGE,
 								new AddValue(LevelBasedValue.perLevel(0.2F)),
 								LootItemEntityPropertyCondition.hasProperties(
-										LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(TofuTags.EntityTypes.FUKUMAME).build()
+										LootContext.EntityTarget.DIRECT_ATTACKER, EntityPredicate.Builder.entity().of(entityHolder, TofuTags.EntityTypes.FUKUMAME).build()
 								)
 						)
 		);

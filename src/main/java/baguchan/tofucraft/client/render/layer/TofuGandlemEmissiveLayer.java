@@ -1,6 +1,7 @@
 package baguchan.tofucraft.client.render.layer;
 
 import baguchan.tofucraft.client.model.TofuGandlemModel;
+import baguchan.tofucraft.client.render.state.TofuGandlemRenderState;
 import baguchan.tofucraft.entity.TofuGandlem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -17,7 +18,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class TofuGandlemEmissiveLayer<T extends TofuGandlem, M extends TofuGandlemModel<T>> extends RenderLayer<T, M> {
+public class TofuGandlemEmissiveLayer<T extends TofuGandlemRenderState, M extends TofuGandlemModel<T>> extends RenderLayer<T, M> {
 	private final ResourceLocation texture;
 	private final TofuGandlemEmissiveLayer.AlphaFunction<T> alphaFunction;
 	private final TofuGandlemEmissiveLayer.DrawSelector<T, M> drawSelector;
@@ -27,15 +28,6 @@ public class TofuGandlemEmissiveLayer<T extends TofuGandlem, M extends TofuGandl
 		this.texture = p_234886_;
 		this.alphaFunction = p_234887_;
 		this.drawSelector = p_234888_;
-	}
-
-	public void render(PoseStack p_234902_, MultiBufferSource p_234903_, int p_234904_, T p_234905_, float p_234906_, float p_234907_, float p_234908_, float p_234909_, float p_234910_, float p_234911_) {
-		if (!p_234905_.isInvisible()) {
-			this.onlyDrawSelectedParts();
-			VertexConsumer vertexconsumer = p_234903_.getBuffer(RenderType.entityTranslucentEmissive(this.texture));
-			this.getParentModel().renderToBuffer(p_234902_, vertexconsumer, p_234904_, LivingEntityRenderer.getOverlayCoords(p_234905_, 0.0F));
-			this.resetDrawForAllParts();
-		}
 	}
 
 	private void onlyDrawSelectedParts() {
@@ -54,13 +46,23 @@ public class TofuGandlemEmissiveLayer<T extends TofuGandlem, M extends TofuGandl
 		});
 	}
 
+	@Override
+	public void render(PoseStack p_117349_, MultiBufferSource p_117350_, int p_117351_, T p_361554_, float p_117353_, float p_117354_) {
+		if (!p_361554_.isInvisible) {
+			this.onlyDrawSelectedParts();
+			VertexConsumer vertexconsumer = p_117350_.getBuffer(RenderType.entityTranslucentEmissive(this.texture));
+			this.getParentModel().renderToBuffer(p_117349_, vertexconsumer, p_117351_, LivingEntityRenderer.getOverlayCoords(p_361554_, 0.0F));
+			this.resetDrawForAllParts();
+		}
+	}
+
 	@OnlyIn(Dist.CLIENT)
-	public interface AlphaFunction<T extends TofuGandlem> {
+	public interface AlphaFunction<T extends TofuGandlemRenderState> {
 		float apply(T p_234920_, float p_234921_, float p_234922_);
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public interface DrawSelector<T extends TofuGandlem, M extends EntityModel<T>> {
+	public interface DrawSelector<T extends TofuGandlemRenderState, M extends EntityModel<T>> {
 		List<ModelPart> getPartsToDraw(M p_234924_);
 	}
 }

@@ -16,6 +16,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Fallable;
 import net.minecraft.world.level.block.Mirror;
@@ -25,7 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathType;
@@ -37,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
 public class ChikuwaBlock extends Block implements Fallable, SimpleWaterloggedBlock {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 	private static final VoxelShape TIP_X = Block.box(0.0, 0.0, 5.0, 16.0, 5.0, 11.0);
 	private static final VoxelShape TIP_2_X = Block.box(0.0, 11.0, 5.0, 16.0, 16.0, 11.0);
@@ -107,7 +109,7 @@ public class ChikuwaBlock extends Block implements Fallable, SimpleWaterloggedBl
 
 	@Override
 	protected void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource p_221127_) {
-		if (isFree(serverLevel.getBlockState(blockPos.below())) && blockPos.getY() >= serverLevel.getMinBuildHeight()) {
+		if (isFree(serverLevel.getBlockState(blockPos.below())) && blockPos.getY() >= serverLevel.getMinY()) {
 			if (this.canChikuwaConnectTo(serverLevel, blockPos, blockState, blockState.getValue(FACING))) {
 				if (!serverLevel.getBlockTicks().hasScheduledTick(blockPos.relative(blockState.getValue(FACING)), this)) {
 					serverLevel.scheduleTick(blockPos.relative(blockState.getValue(FACING)), this, 1);
@@ -156,14 +158,22 @@ public class ChikuwaBlock extends Block implements Fallable, SimpleWaterloggedBl
 
 	@Override
 	protected BlockState updateShape(
-			BlockState p_152151_, Direction p_152152_, BlockState p_152153_, LevelAccessor p_152154_, BlockPos p_152155_, BlockPos p_152156_
+			BlockState p_296123_,
+			LevelReader p_374369_,
+			ScheduledTickAccess p_374403_,
+			BlockPos p_294499_,
+			Direction p_294509_,
+			BlockPos p_295044_,
+			BlockState p_296367_,
+			RandomSource p_374441_
 	) {
-		if (p_152151_.getValue(WATERLOGGED)) {
-			p_152154_.scheduleTick(p_152155_, Fluids.WATER, Fluids.WATER.getTickDelay(p_152154_));
+		if (p_296123_.getValue(WATERLOGGED)) {
+			p_374403_.scheduleTick(p_294499_, Fluids.WATER, Fluids.WATER.getTickDelay(p_374369_));
 		}
 
-		return super.updateShape(p_152151_, p_152152_, p_152153_, p_152154_, p_152155_, p_152156_);
+		return super.updateShape(p_296123_, p_374369_, p_374403_, p_294499_, p_294509_, p_295044_, p_296367_, p_374441_);
 	}
+
 
 	@Override
 	protected FluidState getFluidState(BlockState p_152158_) {

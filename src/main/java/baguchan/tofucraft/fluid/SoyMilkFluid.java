@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -68,7 +69,7 @@ public abstract class SoyMilkFluid extends WaterFluid {
 	}
 
 	@Override
-	protected void randomTick(Level level, BlockPos blockPos, FluidState fluidState, RandomSource randomSource) {
+	protected void randomTick(ServerLevel level, BlockPos blockPos, FluidState fluidState, RandomSource randomSource) {
 		if (!level.isClientSide()) {
 			if (randomSource.nextInt(4) == 0) {
 				if (level.getBlockState(blockPos.above()).isAir() && level.getBlockState(blockPos.below()).is(Blocks.MAGMA_BLOCK)) {
@@ -79,10 +80,9 @@ public abstract class SoyMilkFluid extends WaterFluid {
 	}
 
 	@Override
-	public boolean canConvertToSource(FluidState state, Level level, BlockPos pos) {
+	protected boolean canConvertToSource(ServerLevel p_376722_) {
 		return false;
 	}
-
 	@Override
 	public BlockState createLegacyBlock(FluidState p_204527_1_) {
 		return TofuBlocks.SOYMILK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_204527_1_)));

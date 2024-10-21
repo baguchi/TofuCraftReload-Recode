@@ -36,7 +36,7 @@ import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
@@ -258,8 +258,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 	@Nullable
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, MobSpawnType p_21436_, @Nullable SpawnGroupData p_21437_) {
-		if (p_21436_ == MobSpawnType.STRUCTURE) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_21434_, DifficultyInstance p_21435_, EntitySpawnReason p_21436_, @Nullable SpawnGroupData p_21437_) {
+		if (p_21436_ == EntitySpawnReason.STRUCTURE) {
 			this.homePos = this.blockPosition();
 		}
 		return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_);
@@ -316,7 +316,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 
 	@Override
-	public boolean hurt(DamageSource p_21016_, float amount) {
+	public boolean hurtServer(ServerLevel serverLevel, DamageSource p_21016_, float amount) {
 		if (p_21016_.getDirectEntity() instanceof LivingEntity) {
 			if (this.isSleepSelf()) {
 				this.setSleepSelf(false);
@@ -338,15 +338,15 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 			this.setChargeFailed(true);
 			this.playSound(SoundEvents.SHIELD_BREAK, 2.0F, 1.0F);
 		} else if (this.isFullCharge()) {
-			return super.hurt(p_21016_, amount * 0.45F);
+			return super.hurtServer(serverLevel, p_21016_, amount * 0.45F);
 		}
 
 
 		if (p_21016_.is(DamageTypeTags.IS_PROJECTILE)) {
-			return super.hurt(p_21016_, amount * 0.8F);
+			return super.hurtServer(serverLevel, p_21016_, amount * 0.8F);
 		}
 
-		return super.hurt(p_21016_, amount);
+		return super.hurtServer(serverLevel, p_21016_, amount);
 	}
 
 	protected void checkRushAttack(AABB p_21072_, AABB p_21073_) {
@@ -420,9 +420,9 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 	}
 
 	@Override
-	public boolean doHurtTarget(Entity p_21372_) {
+	public boolean doHurtTarget(ServerLevel serverLevel, Entity p_21372_) {
 		this.level().broadcastEntityEvent(this, (byte) 4);
-		return super.doHurtTarget(p_21372_);
+		return super.doHurtTarget(serverLevel, p_21372_);
 	}
 
 	@Override
@@ -569,7 +569,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		if (!this.level().isClientSide()) {
 			this.level().broadcastEntityEvent(this, (byte) 7);
 			if (this.level() instanceof ServerLevel serverLevel && this.homePos != null) {
-				Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
+				Structure structure = serverLevel.registryAccess().lookupOrThrow(Registries.STRUCTURE).getValueOrThrow(TofuStructures.TOFU_CASTLE);
 				if (structure != null) {
 					TofuData data = TofuData.get(serverLevel);
 					StructureStart structureStart = serverLevel.structureManager().getStructureAt(this.homePos, structure);
@@ -578,7 +578,9 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 					}
 				}
 			}
-			List<Player> players = this.level().getNearbyPlayers(TargetingConditions.forNonCombat(), this, new AABB(this.blockPosition()).inflate(32F));
+			List<Player> players = this.level().getEntitiesOfClass(Player.class, new AABB(this.blockPosition()).inflate(32F), player -> {
+				return !player.isSpectator();
+			});
 			for (Player player : players) {
 				BehaviorUtils.throwItem(this, new ItemStack(TofuItems.TOFU_KEY.get()), player.position().add(0, 1, 0));
 			}
@@ -624,11 +626,11 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 	}
 
 	@Override
-	public boolean isAlliedTo(Entity p_20355_) {
+	public boolean canAttack(LivingEntity p_20355_) {
 		if (p_20355_.getType() == TofuEntityTypes.TOFU_GANDLEM) {
 			return true;
 		}
-		return super.isAlliedTo(p_20355_);
+		return super.canAttack(p_20355_);
 	}
 
 	@Override
@@ -727,7 +729,9 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 					if (d0 < 5.0D + this.gandlem.getBbWidth() && this.attackTime <= 0) {
 						this.attackTime = 20;
-						this.gandlem.doHurtTarget(livingentity);
+						if (this.gandlem.level() instanceof ServerLevel serverLevel) {
+							this.gandlem.doHurtTarget(serverLevel, livingentity);
+						}
 					}
 
 					this.gandlem.getLookControl().setLookAt(livingentity, 10.0F, 10.0F);

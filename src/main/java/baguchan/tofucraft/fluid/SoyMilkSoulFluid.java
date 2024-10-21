@@ -8,6 +8,7 @@ import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -70,10 +71,9 @@ public abstract class SoyMilkSoulFluid extends WaterFluid {
 	}
 
 	@Override
-	public boolean canConvertToSource(FluidState state, Level level, BlockPos pos) {
+	protected boolean canConvertToSource(ServerLevel p_376722_) {
 		return false;
 	}
-
 	@Override
 	public BlockState createLegacyBlock(FluidState p_204527_1_) {
 		return TofuBlocks.SOYMILK_SOUL.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_204527_1_)));

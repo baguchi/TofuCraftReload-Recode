@@ -7,6 +7,7 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -43,7 +44,7 @@ public class TofuGemBlock extends Block {
 	private void trySpawnGolem(Level p_51379_, BlockPos p_51380_) {
 		BlockPattern.BlockPatternMatch blockpattern$blockpatternmatch = this.getOrCreateTofuGolemFull().find(p_51379_, p_51380_);
 		if (blockpattern$blockpatternmatch != null) {
-			TofuGolem tofuGolem = TofuEntityTypes.TOFU_GOLEM.get().create(p_51379_);
+			TofuGolem tofuGolem = TofuEntityTypes.TOFU_GOLEM.get().create(p_51379_, EntitySpawnReason.MOB_SUMMONED);
 			if (tofuGolem != null) {
 				tofuGolem.setPlayerCreated(true);
 				spawnGolemInWorld(p_51379_, blockpattern$blockpatternmatch, tofuGolem, blockpattern$blockpatternmatch.getBlock(0, 2, 0).getPos());

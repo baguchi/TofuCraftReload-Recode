@@ -2,6 +2,7 @@ package baguchan.tofucraft.inventory;
 
 import baguchan.tofucraft.inventory.slot.TFCrafterSlot;
 import baguchan.tofucraft.registry.TofuMenus;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -131,7 +132,7 @@ public class TFCrafterMenu extends AbstractContainerMenu implements ContainerLis
 
 	private void refreshRecipeResult() {
 		if (this.player instanceof ServerPlayer serverplayer) {
-			Level level = serverplayer.level();
+			ServerLevel level = serverplayer.serverLevel();
 			CraftingInput craftinginput = this.container.asCraftInput();
 			ItemStack itemstack = CrafterBlock.getPotentialResults(level, craftinginput)
 					.map(p_344359_ -> p_344359_.value().assemble(craftinginput, level.registryAccess()))

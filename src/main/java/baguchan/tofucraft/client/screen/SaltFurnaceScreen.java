@@ -14,7 +14,9 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.CoreShaders;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -50,13 +52,13 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 	protected void renderBg(GuiGraphics p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
 		int i = this.leftPos;
 		int j = this.topPos;
-		p_230450_1_.blit(texture, i, j, 0, 0, this.imageWidth, this.imageHeight);
+		p_230450_1_.blit(RenderType::guiTextured, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 		if (this.menu.isLit()) {
 			int k = this.menu.getLitProgress();
-			p_230450_1_.blit(texture, i + 23, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+			p_230450_1_.blit(RenderType::guiTextured, texture, i + 23, j + 36 + 12 - k, 176, 12 - k, 14, k + 1, 256, 256);
 		}
 		int l = this.menu.getBurnProgress();
-		p_230450_1_.blit(texture, i + 54, j + 54, 176, 14, l + 1, 16);
+		p_230450_1_.blit(RenderType::guiTextured, texture, i + 54, j + 54, 176, 14, l + 1, 16, 256, 256);
 		p_230450_1_.pose().pushPose();
 		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity && ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).bitternTank.getFluid() != null) {
 			FluidTank fluidTank = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).bitternTank;
@@ -85,7 +87,7 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 		float green = (float) (color >> 8 & 0xFF) / 255.0F;
 		float blue = (float) (color & 0xFF) / 255.0F;
 
-		RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
+		RenderSystem.setShader(CoreShaders.POSITION_TEX_COLOR);
 		RenderSystem.setShaderTexture(0, InventoryMenu.BLOCK_ATLAS);
 		int xTileCount = desiredWidth / 16;
 		int xRemainder = desiredWidth - (xTileCount * 16);

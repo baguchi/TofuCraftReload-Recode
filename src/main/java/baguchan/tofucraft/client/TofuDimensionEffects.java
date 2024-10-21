@@ -9,7 +9,7 @@ import org.joml.Matrix4f;
 
 public class TofuDimensionEffects extends DimensionSpecialEffects {
 	public TofuDimensionEffects() {
-		super(192.0F, true, DimensionSpecialEffects.SkyType.NORMAL, false, false);
+		super(192.0F, true, SkyType.OVERWORLD, false, false);
 	}
 
 	@Override
@@ -23,8 +23,7 @@ public class TofuDimensionEffects extends DimensionSpecialEffects {
 	}
 
 	@Override
-	public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelViewMatrix, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-		PoseStack posestack = new PoseStack();
-		return super.renderSky(level, ticks, partialTick, modelViewMatrix, camera, projectionMatrix, isFoggy, setupFog);
+	public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelViewMatrix, Camera camera, Matrix4f projectionMatrix, Runnable setupFog) {
+		return super.renderSky(level, ticks, partialTick, modelViewMatrix, camera, projectionMatrix, setupFog);
 	}
 }

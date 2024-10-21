@@ -45,7 +45,8 @@ public class FallingTofuEntity extends ThrowableProjectile {
 	}
 
 	public FallingTofuEntity(Level world, LivingEntity thrower, @Nullable BlockState state) {
-		super(TofuEntityTypes.FALLING_TOFU.get(), thrower, world);
+		super(TofuEntityTypes.FALLING_TOFU.get(), thrower.getX(), thrower.getY(), thrower.getZ(), world);
+		this.setOwner(thrower);
 		if (state != null) {
 			this.state = state;
 		}

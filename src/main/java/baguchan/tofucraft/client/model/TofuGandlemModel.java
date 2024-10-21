@@ -3,9 +3,10 @@ package baguchan.tofucraft.client.model;// Made with Blockbench 4.3.0
 // Paste this class into your mod and generate all required imports
 
 import baguchan.tofucraft.client.animation.definitions.TofuGandlemAnimation;
+import baguchan.tofucraft.client.render.state.TofuGandlemRenderState;
 import baguchan.tofucraft.entity.TofuGandlem;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -16,7 +17,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 
 import java.util.List;
 
-public class TofuGandlemModel<T extends TofuGandlem> extends HierarchicalModel<T> {
+public class TofuGandlemModel<T extends TofuGandlemRenderState> extends EntityModel<T> {
 	private final ModelPart baseRoot;
 	private final ModelPart root;
 	private final ModelPart head;
@@ -26,6 +27,7 @@ public class TofuGandlemModel<T extends TofuGandlem> extends HierarchicalModel<T
 	private final List<ModelPart> coreModelParts;
 
 	public TofuGandlemModel(ModelPart root) {
+		super(root);
 		this.baseRoot = root;
 		this.root = root.getChild("root");
 		this.head = this.root.getChild("head");
@@ -60,35 +62,30 @@ public class TofuGandlemModel<T extends TofuGandlem> extends HierarchicalModel<T
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
+	public void setupAnim(T entity) {
+		super.setupAnim(entity);
 
 
-		if (entity.isSleepSelf()) {
+		if (entity.sleep) {
 			this.head.xRot = 0.4F;
 			this.head.yRot = 0.0F;
 		} else {
-			this.head.xRot = headPitch * 0.017453292F;
-			this.head.yRot = netHeadYaw * 0.017453292F;
+			this.head.xRot = entity.xRot * 0.017453292F;
+			this.head.yRot = entity.yRot * 0.017453292F;
 		}
 
-		this.animate(entity.attackAnimationState, TofuGandlemAnimation.ATTACK, ageInTicks);
-		this.animate(entity.shootAnimationState, TofuGandlemAnimation.SHOOT, ageInTicks);
-		this.animate(entity.shootingAnimationState, TofuGandlemAnimation.SHOOTING, ageInTicks);
-		this.animate(entity.rushAnimationState, TofuGandlemAnimation.RUSH, ageInTicks);
-		this.animate(entity.idleAnimationState, TofuGandlemAnimation.IDLE, ageInTicks);
-		this.animate(entity.deathAnimationState, TofuGandlemAnimation.DEATH, ageInTicks);
-		this.animate(entity.chargeAnimationState, TofuGandlemAnimation.CHARGE, ageInTicks);
-		this.animate(entity.chargeStopAnimationState, TofuGandlemAnimation.CHARGE_STOP, ageInTicks);
-		this.animate(entity.chargeFailAnimationState, TofuGandlemAnimation.CHARGE_FAIL, ageInTicks);
+		this.animate(entity.attackAnimationState, TofuGandlemAnimation.ATTACK, entity.ageInTicks);
+		this.animate(entity.shootAnimationState, TofuGandlemAnimation.SHOOT, entity.ageInTicks);
+		this.animate(entity.shootingAnimationState, TofuGandlemAnimation.SHOOTING, entity.ageInTicks);
+		this.animate(entity.rushAnimationState, TofuGandlemAnimation.RUSH, entity.ageInTicks);
+		this.animate(entity.idleAnimationState, TofuGandlemAnimation.IDLE, entity.ageInTicks);
+		this.animate(entity.deathAnimationState, TofuGandlemAnimation.DEATH, entity.ageInTicks);
+		this.animate(entity.chargeAnimationState, TofuGandlemAnimation.CHARGE, entity.ageInTicks);
+		this.animate(entity.chargeStopAnimationState, TofuGandlemAnimation.CHARGE_STOP, entity.ageInTicks);
+		this.animate(entity.chargeFailAnimationState, TofuGandlemAnimation.CHARGE_FAIL, entity.ageInTicks);
 	}
 
 	public List<ModelPart> getCoreModelParts() {
 		return coreModelParts;
-	}
-
-	@Override
-	public ModelPart root() {
-		return this.baseRoot;
 	}
 }

@@ -9,7 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 public class TFStorageBlock extends TFBaseEntityBlock {
 	public static final MapCodec<TFStorageBlock> CODEC = simpleCodec(TFStorageBlock::new);
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 	private static final VoxelShape TIP = Block.box(4.0, 11.0, 4.0, 12.0, 16.0, 12.0);
 	private static final VoxelShape BASE = Block.box(0, 0, 0, 16.0, 11.0, 16.0);
@@ -78,7 +78,7 @@ public class TFStorageBlock extends TFBaseEntityBlock {
 	}
 
 	@Override
-	protected ItemInteractionResult useItemOn(ItemStack p_316304_, BlockState p_48706_, Level p_48707_, BlockPos p_48708_, Player p_48709_, InteractionHand p_48710_, BlockHitResult p_48711_) {
+	protected InteractionResult useItemOn(ItemStack p_316304_, BlockState p_48706_, Level p_48707_, BlockPos p_48708_, Player p_48709_, InteractionHand p_48710_, BlockHitResult p_48711_) {
 
 		boolean flag = false;
 		ItemStack stack = p_48709_.getItemInHand(p_48710_);
@@ -95,13 +95,13 @@ public class TFStorageBlock extends TFBaseEntityBlock {
 		if (!flag) {
 			if (p_48707_.isClientSide) {
 				ClientProxy.PROXY.setRefrencedTE(p_48707_.getBlockEntity(p_48708_));
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			} else {
 				this.openContainer(p_48707_, p_48708_, p_48709_);
-				return ItemInteractionResult.CONSUME;
+				return InteractionResult.CONSUME;
 			}
 		} else {
-			return ItemInteractionResult.SUCCESS;
+			return InteractionResult.SUCCESS;
 		}
 	}
 	protected void openContainer(Level p_53631_, BlockPos p_53632_, Player p_53633_) {

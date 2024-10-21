@@ -38,7 +38,7 @@ public class SoymilkPathNavigation extends PathNavigation {
 	}
 
 	public boolean isStableDestination(BlockPos p_26608_) {
-		return !this.level.getBlockState(p_26608_).isSolidRender(this.level, p_26608_);
+		return !this.level.getBlockState(p_26608_).isSolidRender();
 	}
 
 	public void setCanFloat(boolean p_26612_) {

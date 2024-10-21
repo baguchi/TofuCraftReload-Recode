@@ -12,17 +12,17 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
@@ -83,20 +83,11 @@ public class SoymilkBottleItem extends Item {
 	}
 
 	@Override
-	public UseAnim getUseAnimation(ItemStack p_41452_) {
-		return UseAnim.DRINK;
+	public ItemUseAnimation getUseAnimation(ItemStack p_41452_) {
+		return ItemUseAnimation.DRINK;
 	}
-
-	public SoundEvent getDrinkingSound() {
-		return SoundEvents.GENERIC_DRINK;
-	}
-
-	public SoundEvent getEatingSound() {
-		return SoundEvents.GENERIC_DRINK;
-	}
-
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+	public InteractionResult use(Level level, Player player, InteractionHand hand) {
 		return ItemUtils.startUsingInstantly(level, player, hand);
 	}
 

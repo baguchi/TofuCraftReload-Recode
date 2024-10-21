@@ -14,6 +14,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.piston.MovingPistonBlock;
@@ -38,12 +39,12 @@ public class TofuFarmlandBlock extends Block {
 		this.registerDefaultState(this.stateDefinition.any().setValue(MOISTURE, Integer.valueOf(0)));
 	}
 
-	public BlockState updateShape(BlockState p_53276_, Direction p_53277_, BlockState p_53278_, LevelAccessor p_53279_, BlockPos p_53280_, BlockPos p_53281_) {
-		if (p_53277_ == Direction.UP && !p_53276_.canSurvive(p_53279_, p_53280_) && !p_53279_.getBlockTicks().hasScheduledTick(p_53280_, this)) {
-			p_53279_.scheduleTick(p_53280_, this, 1);
+	@Override
+	protected BlockState updateShape(BlockState p_60541_, LevelReader p_374332_, ScheduledTickAccess p_374457_, BlockPos p_60545_, Direction p_60542_, BlockPos p_60546_, BlockState p_60543_, RandomSource p_374120_) {
+		if (p_60542_ == Direction.UP && !p_60541_.canSurvive(p_374332_, p_60545_) && !p_374457_.getBlockTicks().hasScheduledTick(p_60545_, this)) {
+			p_374457_.scheduleTick(p_60545_, this, 1);
 		}
-
-		return super.updateShape(p_53276_, p_53277_, p_53278_, p_53279_, p_53280_, p_53281_);
+		return super.updateShape(p_60541_, p_374332_, p_374457_, p_60545_, p_60542_, p_60546_, p_60543_, p_374120_);
 	}
 
 	public boolean canSurvive(BlockState p_53272_, LevelReader p_53273_, BlockPos p_53274_) {
@@ -84,8 +85,9 @@ public class TofuFarmlandBlock extends Block {
 
 	}
 
+	@Override
 	public void fallOn(Level p_153227_, BlockState p_153228_, BlockPos p_153229_, Entity p_153230_, float p_153231_) {
-		if (!p_153227_.isClientSide && CommonHooks.onFarmlandTrample(p_153227_, p_153229_, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), p_153231_, p_153230_)) { // Forge: Move logic to Entity#canTrample
+		if (!p_153227_.isClientSide && CommonHooks.onFarmlandTrample((ServerLevel) p_153227_, p_153229_, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), p_153231_, p_153230_)) { // Forge: Move logic to Entity#canTrample
 			turnToDirt(p_153228_, p_153227_, p_153229_);
 		}
 

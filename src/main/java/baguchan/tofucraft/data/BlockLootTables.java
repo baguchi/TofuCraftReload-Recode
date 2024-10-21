@@ -206,14 +206,14 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFUTORCH_HELL.get());
 		dropSelf(TofuBlocks.TOFUTORCH_SOUL.get());
 
-		dropSelf(TofuBlocks.WALLTOFUTORCH_KINU.get());
-		dropSelf(TofuBlocks.WALLTOFUTORCH_MOMEN.get());
-		dropSelf(TofuBlocks.WALLTOFUTORCH_ISHI.get());
-		dropSelf(TofuBlocks.WALLTOFUTORCH_METAL.get());
-		dropSelf(TofuBlocks.WALLTOFUTORCH_GRILLED.get());
-		dropSelf(TofuBlocks.WALLTOFUTORCH_ZUNDA.get());
-		dropSelf(TofuBlocks.WALLTOFUTORCH_HELL.get());
-		dropSelf(TofuBlocks.WALLTOFUTORCH_SOUL.get());
+		dropOther(TofuBlocks.WALLTOFUTORCH_KINU.get(), TofuBlocks.TOFUTORCH_KINU.get());
+		dropOther(TofuBlocks.WALLTOFUTORCH_MOMEN.get(), TofuBlocks.TOFUTORCH_MOMEN);
+		dropOther(TofuBlocks.WALLTOFUTORCH_ISHI.get(), TofuBlocks.TOFUTORCH_ISHI);
+		dropOther(TofuBlocks.WALLTOFUTORCH_METAL.get(), TofuBlocks.TOFUTORCH_METAL);
+		dropOther(TofuBlocks.WALLTOFUTORCH_GRILLED.get(), TofuBlocks.TOFUTORCH_GRILLED);
+		dropOther(TofuBlocks.WALLTOFUTORCH_ZUNDA.get(), TofuBlocks.TOFUTORCH_ZUNDA);
+		dropOther(TofuBlocks.WALLTOFUTORCH_HELL.get(), TofuBlocks.TOFUTORCH_HELL);
+		dropOther(TofuBlocks.WALLTOFUTORCH_SOUL.get(), TofuBlocks.TOFUTORCH_SOUL);
 		dropSelf(TofuBlocks.TOFULADDER_KINU.get());
 		dropSelf(TofuBlocks.TOFULADDER_MOMEN.get());
 		dropSelf(TofuBlocks.TOFULADDER_ISHI.get());

@@ -1,8 +1,9 @@
 package baguchan.tofucraft.client.model;
 
 import baguchan.tofucraft.client.animation.definitions.ShuDofuSpiderAnimation;
+import baguchan.tofucraft.client.render.state.ShuDofuSpiderRenderState;
 import baguchan.tofucraft.entity.ShuDofuSpider;
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -12,7 +13,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
 
-public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalModel<T> {
+public class ShuDofuSpiderModel extends EntityModel<ShuDofuSpiderRenderState> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	private final ModelPart root;
 	private final ModelPart head;
@@ -32,7 +33,7 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 
 
 	public ShuDofuSpiderModel(ModelPart root) {
-		super(RenderType::entityTranslucent);
+		super(root, RenderType::entityTranslucent);
 		this.root = root.getChild("root");
 		this.neck = this.root.getChild("neck");
 		this.head = this.neck.getChild("head");
@@ -188,40 +189,34 @@ public class ShuDofuSpiderModel<T extends ShuDofuSpider> extends HierarchicalMod
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.root().getAllParts().forEach(ModelPart::resetPose);
-		this.head.xRot = headPitch * 0.017453292F;
-		this.head.yRot = netHeadYaw * 0.017453292F;
+	public void setupAnim(ShuDofuSpiderRenderState entity) {
+		super.setupAnim(entity);
+		this.head.xRot = entity.xRot * 0.017453292F;
+		this.head.yRot = entity.yRot * 0.017453292F;
 
-		float f = ageInTicks - entity.tickCount;
-		if (!entity.isJump()) {
-			this.leg2.zRot += ((0.6404F - 0.12F) * entity.getRightLegAnimationScale(f));
-			this.leg4.zRot += ((0.6404F - 0.12F) * entity.getRightLegAnimationScale(f));
-			this.leg6.zRot += ((0.6404F - 0.12F) * entity.getRightLegAnimationScale(f));
-			this.bone8.zRot -= ((1.9199F - 1.2F) * entity.getRightLegAnimationScale(f));
-			this.bone18.zRot -= ((1.9199F - 1.2F) * entity.getRightLegAnimationScale(f));
-			this.bone28.zRot -= ((1.9199F - 1.2F) * entity.getRightLegAnimationScale(f));
-			this.leg1.zRot -= ((0.6404F - 0.12F) * entity.getLeftLegAnimationScale(f));
-			this.leg3.zRot -= ((0.6404F - 0.12F) * entity.getLeftLegAnimationScale(f));
-			this.leg5.zRot -= ((0.6404F - 0.12F) * entity.getLeftLegAnimationScale(f));
-			this.bone.zRot += ((1.9199F - 1.2F) * entity.getLeftLegAnimationScale(f));
-			this.bone13.zRot += ((1.9199F - 1.2F) * entity.getLeftLegAnimationScale(f));
-			this.bone23.zRot += ((1.9199F - 1.2F) * entity.getLeftLegAnimationScale(f));
+		float f = entity.partialTick;
+		if (!entity.jump) {
+			this.leg2.zRot += ((0.6404F - 0.12F) * entity.rightLegAnimation);
+			this.leg4.zRot += ((0.6404F - 0.12F) * entity.rightLegAnimation);
+			this.leg6.zRot += ((0.6404F - 0.12F) * entity.rightLegAnimation);
+			this.bone8.zRot -= ((1.9199F - 1.2F) * entity.rightLegAnimation);
+			this.bone18.zRot -= ((1.9199F - 1.2F) * entity.rightLegAnimation);
+			this.bone28.zRot -= ((1.9199F - 1.2F) * entity.rightLegAnimation);
+			this.leg1.zRot -= ((0.6404F - 0.12F) * entity.leftLegAnimation);
+			this.leg3.zRot -= ((0.6404F - 0.12F) * entity.leftLegAnimation);
+			this.leg5.zRot -= ((0.6404F - 0.12F) * entity.leftLegAnimation);
+			this.bone.zRot += ((1.9199F - 1.2F) * entity.leftLegAnimation);
+			this.bone13.zRot += ((1.9199F - 1.2F) * entity.leftLegAnimation);
+			this.bone23.zRot += ((1.9199F - 1.2F) * entity.leftLegAnimation);
 		}
 
 
-		this.animate(entity.idleAnimationState, ShuDofuSpiderAnimation.IDLE, ageInTicks);
-		this.animateWalk(ShuDofuSpiderAnimation.WALK, limbSwing, limbSwingAmount, 1.0F, 2.5F);
-		this.animate(entity.attackAnimationState, ShuDofuSpiderAnimation.SWIPE, ageInTicks);
-		this.animate(entity.deathAnimationState, ShuDofuSpiderAnimation.DEATH, ageInTicks);
-		this.animate(entity.jumpAnimationState, ShuDofuSpiderAnimation.JUMP_ATTACK, ageInTicks);
-		this.animate(entity.graspAnimationState, ShuDofuSpiderAnimation.GRASP, ageInTicks);
-		this.animate(entity.graspPreAnimationState, ShuDofuSpiderAnimation.GRASP_PRE, ageInTicks);
-	}
-
-
-	@Override
-	public ModelPart root() {
-		return this.root;
+		this.animate(entity.idleAnimationState, ShuDofuSpiderAnimation.IDLE, entity.ageInTicks);
+		this.animateWalk(ShuDofuSpiderAnimation.WALK, entity.walkAnimationPos, entity.walkAnimationSpeed, 1.0F, 2.5F);
+		this.animate(entity.attackAnimationState, ShuDofuSpiderAnimation.SWIPE, entity.ageInTicks);
+		this.animate(entity.deathAnimationState, ShuDofuSpiderAnimation.DEATH, entity.ageInTicks);
+		this.animate(entity.jumpAnimationState, ShuDofuSpiderAnimation.JUMP_ATTACK, entity.ageInTicks);
+		this.animate(entity.graspAnimationState, ShuDofuSpiderAnimation.GRASP, entity.ageInTicks);
+		this.animate(entity.graspPreAnimationState, ShuDofuSpiderAnimation.GRASP_PRE, entity.ageInTicks);
 	}
 }

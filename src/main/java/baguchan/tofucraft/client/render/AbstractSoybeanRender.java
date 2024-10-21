@@ -1,5 +1,7 @@
 package baguchan.tofucraft.client.render;
 
+import baguchan.tofucraft.client.render.state.ProjectileRenderState;
+import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -8,21 +10,21 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.projectile.ThrowableProjectile;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public abstract class AbstractSoybeanRender<T extends ThrowableProjectile> extends EntityRenderer<T> {
+public abstract class AbstractSoybeanRender<T extends FukumameEntity, S extends ProjectileRenderState> extends EntityRenderer<T, S> {
 	public AbstractSoybeanRender(EntityRendererProvider.Context p_173917_) {
 		super(p_173917_);
 	}
 
-	public void render(T p_113839_, float p_113840_, float p_113841_, PoseStack p_113842_, MultiBufferSource p_113843_, int p_113844_) {
+	@Override
+	public void render(S p_113839_, PoseStack p_113842_, MultiBufferSource p_113843_, int p_113844_) {
 		p_113842_.pushPose();
-		p_113842_.mulPose(Axis.YP.rotationDegrees(Mth.lerp(p_113841_, p_113839_.yRotO, p_113839_.getYRot()) - 90.0F));
-		p_113842_.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(p_113841_, p_113839_.xRotO, p_113839_.getXRot())));
+		p_113842_.mulPose(Axis.YP.rotationDegrees(p_113839_.yRot - 90.0F));
+		p_113842_.mulPose(Axis.ZP.rotationDegrees(p_113839_.xRot));
 
 		p_113842_.mulPose(Axis.XP.rotationDegrees(45.0F));
 		p_113842_.scale(0.05625F, 0.05625F, 0.05625F);
@@ -47,8 +49,10 @@ public abstract class AbstractSoybeanRender<T extends ThrowableProjectile> exten
 		}
 
 		p_113842_.popPose();
-		super.render(p_113839_, p_113840_, p_113841_, p_113842_, p_113843_, p_113844_);
+		super.render(p_113839_, p_113842_, p_113843_, p_113844_);
 	}
+
+	protected abstract ResourceLocation getTextureLocation(S p113839);
 
 	public void vertex(
 			PoseStack.Pose p_324380_,

@@ -14,7 +14,9 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.CoreShaders;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
@@ -53,7 +55,7 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	protected void renderBg(GuiGraphics p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
 		int i = this.leftPos;
 		int j = this.topPos;
-		p_230450_1_.blit(texture, i, j, 0, 0, this.imageWidth, this.imageHeight);
+		p_230450_1_.blit(RenderType::guiTextured, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 
 		if (ClientProxy.PROXY.getRefrencedTE() instanceof TFStorageBlockEntity && ((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank().getFluid() != null) {
 			FluidTank fluidTank = ((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank();
@@ -72,7 +74,7 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 
 
 	public static void renderFluidStack(int x, int y, int width, int height, float depth, FluidStack fluidStack) {
-		RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
+		RenderSystem.setShader(CoreShaders.POSITION_TEX_COLOR);
 		RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();

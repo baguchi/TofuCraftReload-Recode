@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
@@ -63,7 +64,7 @@ public class ThrowFukumame<E extends FukumameThower> extends Behavior<E> {
 					double d2 = livingEntity.getZ() + vec3.z - p_22552_.getZ();
 					double d3 = Math.sqrt(d0 * d0 + d2 * d2);
 					for (int i = 0; i < 4; i++) {
-						NetherFukumameEntity entity = TofuEntityTypes.NETHER_FUKUMAME.get().create(p_22551_);
+						NetherFukumameEntity entity = TofuEntityTypes.NETHER_FUKUMAME.get().create(p_22551_, EntitySpawnReason.SPAWN_ITEM_USE);
 						entity.setXRot(entity.getXRot() - -20.0F);
 						entity.shoot(d0, d1 + d3 * 0.3D, d2, 0.75F, 8.0F);
 						entity.setOwner(p_22552_);

@@ -9,6 +9,7 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -77,7 +78,7 @@ public class TofuDiamondToolUtil {
 			case DOWN:
 			case UP:
 				// x y depends on the angle we look?
-				Vec3i vec = player.getDirection().getNormal();
+				Vec3i vec = player.getDirection().getUnitVec3i();
 				x = vec.getX() * height + vec.getZ() * width;
 				y = mop.getDirection().getAxisDirection().getStep() * -depth;
 				z = vec.getX() * width + vec.getZ() * height;
@@ -147,18 +148,18 @@ public class TofuDiamondToolUtil {
 		return builder.build();
 	}
 
-	public static void onBlockStartBreak(ItemStack stack, Level level, Block blockDestroyed, BlockPos pos, Player owner) {
-		int lvl = EnchantmentHelper.getEnchantmentLevel(level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.BATCH), owner);
+	public static void onBlockStartBreak(ItemStack stack, ServerLevel level, Block blockDestroyed, BlockPos pos, Player owner) {
+		int lvl = EnchantmentHelper.getEnchantmentLevel(level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.BATCH), owner);
 		if (lvl > 0) {
 			ImmutableList<BlockPos> poses = calcAOEBlocks(stack, level, owner, pos, 1 + lvl * 2, 1 + lvl * 2, lvl);
 			for (BlockPos extraPos : poses) {
-				breakExtraBlock(stack, owner.level(), owner, extraPos, pos);
+				breakExtraBlock(stack, level, owner, extraPos, pos);
 			}
 		}
 
 	}
 
-	private static boolean canBreakExtraBlock(ItemStack stack, Level world, Player player, BlockPos pos, BlockPos refPos) {
+	private static boolean canBreakExtraBlock(ItemStack stack, ServerLevel world, Player player, BlockPos pos, BlockPos refPos) {
 		if (world.isEmptyBlock(pos)) {
 			return false;
 		}
@@ -193,7 +194,7 @@ public class TofuDiamondToolUtil {
 	}
 
 
-	public static void breakExtraBlock(ItemStack stack, Level level, Player player, BlockPos pos, BlockPos refPos) {
+	public static void breakExtraBlock(ItemStack stack, ServerLevel level, Player player, BlockPos pos, BlockPos refPos) {
 		if (!canBreakExtraBlock(stack, level, player, pos, refPos) ||
 				level.getBlockState(pos).getBlock() != level.getBlockState(refPos).getBlock()) {
 			return;

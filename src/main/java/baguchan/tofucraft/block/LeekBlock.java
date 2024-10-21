@@ -39,7 +39,7 @@ public class LeekBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	private Optional<? extends Holder<ConfiguredFeature<?, ?>>> getFeature(LevelReader p_256589_) {
-		return p_256589_.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(TofuWorldFeatures.BIG_LEEK);
+		return p_256589_.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(TofuWorldFeatures.BIG_LEEK);
 	}
 
 	public void growLeek(ServerLevel p_54860_, BlockPos p_54861_, BlockState p_54862_, RandomSource p_54863_) {

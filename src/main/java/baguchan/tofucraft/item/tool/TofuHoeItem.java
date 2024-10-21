@@ -4,11 +4,11 @@ import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ToolMaterial;
 
 public class TofuHoeItem extends HoeItem implements IEnergyInsertable {
-	public TofuHoeItem(Tier tofuItemTier, Properties properties) {
-		super(tofuItemTier, properties);
+	public TofuHoeItem(ToolMaterial tofuItemTier, float p_362481_, float p_364182_, Properties properties) {
+		super(tofuItemTier, p_362481_, p_364182_, properties);
 	}
 
 

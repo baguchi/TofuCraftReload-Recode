@@ -2,6 +2,7 @@ package baguchan.tofucraft.client.render.layer;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.client.model.AbstractTofunianModel;
+import baguchan.tofucraft.client.render.state.AbstractTofunianRenderState;
 import baguchan.tofucraft.entity.AbstractTofunian;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -12,23 +13,19 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class TofunianEyeLayer<T extends AbstractTofunian, M extends AbstractTofunianModel<T>> extends RenderLayer<T, M> {
+public class TofunianEyeLayer<T extends AbstractTofunianRenderState, M extends AbstractTofunianModel<T>> extends RenderLayer<T, M> {
 	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian_eye.png");
 
 	public TofunianEyeLayer(RenderLayerParent<T, M> tofunianRender) {
 		super(tofunianRender);
 	}
 
-	public void render(PoseStack p_117720_, MultiBufferSource p_117721_, int p_117722_, T p_117723_, float p_117724_, float p_117725_, float p_117726_, float p_117727_, float p_117728_, float p_117729_) {
-		float f3 = (p_117723_.tickCount + p_117726_ + p_117723_.getId());
-
-		if (!p_117723_.isInvisible() && 0 > Math.sin(f3 * 0.05F) + Math.sin(f3 * 0.13F) + Math.sin(f3 * 0.7F) + 2.55F) {
-			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117723_), p_117720_, p_117721_, p_117722_, p_117723_, -1);
-		}
-	}
-
 	@Override
-	public ResourceLocation getTextureLocation(T entity) {
-		return LOCATION;
+	public void render(PoseStack p_117349_, MultiBufferSource p_117350_, int p_117351_, T p_361554_, float p_117353_, float p_117354_) {
+		float f3 = (p_361554_.ageInTicks + p_361554_.id);
+
+		if (!p_361554_.isInvisible && 0 > Math.sin(f3 * 0.05F) + Math.sin(f3 * 0.13F) + Math.sin(f3 * 0.7F) + 2.55F) {
+			renderColoredCutoutModel(this.getParentModel(), LOCATION, p_117349_, p_117350_, p_117351_, p_361554_, -1);
+		}
 	}
 }

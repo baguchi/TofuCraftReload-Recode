@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -23,6 +24,7 @@ import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.StackedContentsCompatible;
@@ -145,7 +147,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		this.litTime = cmp.getInt("BurnTime");
 		this.cookingProgress = cmp.getInt("CookTime");
 		this.cookingTotalTime = cmp.getInt("CookTimeTotal");
-		this.litDuration = getBurnDuration(this.items.get(1));
+		this.litDuration = getBurnDuration(this.level, this.items.get(1));
 	}
 
 	public void saveAdditional(CompoundTag p_189515_1_, HolderLookup.Provider provider) {
@@ -171,17 +173,17 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		ItemStack itemstack = saltFurnaceBlock.items.getFirst();
 		if (saltFurnaceBlock.isLit() || !saltFurnaceBlock.items.getFirst().isEmpty()) {
 			if (!saltFurnaceBlock.isLit() && saltFurnaceBlock.hasWater()) {
-				saltFurnaceBlock.litTime = saltFurnaceBlock.getBurnDuration(itemstack);
+				saltFurnaceBlock.litTime = saltFurnaceBlock.getBurnDuration(level, itemstack);
 				saltFurnaceBlock.litDuration = saltFurnaceBlock.litTime;
 				if (saltFurnaceBlock.isLit()) {
 					flag1 = true;
-					if (itemstack.hasCraftingRemainingItem()) {
-						saltFurnaceBlock.items.set(0, itemstack.getCraftingRemainingItem());
+					if (itemstack.get(DataComponents.CONTAINER) != null) {
+						saltFurnaceBlock.items.set(0, itemstack.get(DataComponents.CONTAINER).copyOne());
 					} else if (!itemstack.isEmpty()) {
 						Item item = itemstack.getItem();
 						itemstack.shrink(1);
 						if (itemstack.isEmpty())
-							saltFurnaceBlock.items.set(0, itemstack.getCraftingRemainingItem());
+							saltFurnaceBlock.items.set(0, itemstack.get(DataComponents.CONTAINER).copyOne());
 					}
 				}
 			}
@@ -332,18 +334,18 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		ExperienceOrb.award(p_154999_, p_155000_, i);
 	}
 
-	protected int getBurnDuration(ItemStack p_213997_1_) {
+	protected int getBurnDuration(Level level, ItemStack p_213997_1_) {
 		if (p_213997_1_.isEmpty())
 			return 0;
-		return p_213997_1_.getBurnTime(RecipeType.SMELTING);
+		return p_213997_1_.getBurnTime(RecipeType.SMELTING, level.fuelValues());
 	}
 
 	protected int getTotalCookTime() {
 		return 200;
 	}
 
-	public static boolean isFuel(ItemStack p_213991_0_) {
-		return (p_213991_0_.getBurnTime(null) > 0);
+	public static boolean isFuel(Level level, ItemStack p_213991_0_) {
+		return (p_213991_0_.getBurnTime(null, level.fuelValues()) > 0);
 	}
 
 	@Override
@@ -376,7 +378,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			return p_94041_2_.getItem() == Items.WATER_BUCKET;
 		}
 		ItemStack itemstack = this.items.get(0);
-		return (isFuel(p_94041_2_) || (p_94041_2_.getItem() == Items.BUCKET && itemstack.getItem() != Items.BUCKET));
+		return (isFuel(this.level, p_94041_2_) || (p_94041_2_.getItem() == Items.BUCKET && itemstack.getItem() != Items.BUCKET));
 	}
 
 	@Override
@@ -468,7 +470,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	@Override
-	public void fillStackedContents(StackedContents p_40281_) {
+	public void fillStackedContents(StackedItemContents p_40281_) {
 		for (ItemStack itemstack : this.items) {
 			p_40281_.accountStack(itemstack);
 		}

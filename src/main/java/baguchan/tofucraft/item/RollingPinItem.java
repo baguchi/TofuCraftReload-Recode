@@ -10,12 +10,7 @@ public class RollingPinItem extends Item {
 	}
 
 	@Override
-	public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
-		return new ItemStack(TofuItems.ROLLINGPIN.get());
-	}
-
-	@Override
-	public boolean hasCraftingRemainingItem(ItemStack stack) {
-		return true;
+	public ItemStack getCraftingRemainder(ItemStack itemStack) {
+		return itemStack;
 	}
 }

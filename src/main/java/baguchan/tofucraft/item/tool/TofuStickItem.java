@@ -30,7 +30,7 @@ public class TofuStickItem extends Item implements IEnergyInsertable {
 		Player player = context.getPlayer();
 		BlockPos pos = context.getClickedPos();
 		if (inPortalDimension(level)) {
-			Optional<TofuPortalShape> optional = TofuPortalShape.findEmptyPortalShape(level, pos.offset(context.getClickedFace().getNormal()), Direction.Axis.X);
+			Optional<TofuPortalShape> optional = TofuPortalShape.findEmptyPortalShape(level, pos.offset(context.getClickedFace().getUnitVec3i()), Direction.Axis.X);
 			if (optional.isPresent()) {
 				optional.get().createPortalBlocks();
 				if (!player.isCreative()) {

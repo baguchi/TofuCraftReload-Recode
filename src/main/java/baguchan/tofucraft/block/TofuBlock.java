@@ -68,7 +68,7 @@ public class TofuBlock extends Block {
 	}
 
 	private static void spawnDripParticle(Level p_154072_, BlockPos p_154073_, BlockState p_154074_) {
-		Vec3 vec3 = p_154074_.getOffset(p_154072_, p_154073_);
+		Vec3 vec3 = p_154074_.getOffset(p_154073_);
 		double d0 = 0.0625D;
 		double d1 = (double) p_154073_.getX() + 0.5D + vec3.x;
 		double d2 = (double) ((float) (p_154073_.getY() + 1) - 0.6875F) - 0.0625D;
@@ -137,30 +137,6 @@ public class TofuBlock extends Block {
 		}
 
 		return Optional.empty();
-	}
-
-	@Nullable
-	private static BlockPos findFillableCauldronBelowStalactiteTip(Level p_154077_, BlockPos p_154078_, Fluid p_154079_) {
-		Predicate<BlockState> predicate = (p_154162_) -> {
-			return p_154162_.getBlock() instanceof CauldronBlock;
-		};
-		BiPredicate<BlockPos, BlockState> bipredicate = (p_202034_, p_202035_) -> {
-			return canDripThrough(p_154077_, p_202034_, p_202035_);
-		};
-		return findBlockVertical(p_154077_, p_154078_, Direction.DOWN.getAxisDirection(), bipredicate, predicate, 11).orElse((BlockPos) null);
-	}
-
-	private static boolean canDripThrough(BlockGetter p_202018_, BlockPos p_202019_, BlockState p_202020_) {
-		if (p_202020_.isAir()) {
-			return true;
-		} else if (p_202020_.isSolidRender(p_202018_, p_202019_)) {
-			return false;
-		} else if (!p_202020_.getFluidState().isEmpty()) {
-			return false;
-		} else {
-			VoxelShape voxelshape = p_202020_.getCollisionShape(p_202018_, p_202019_);
-			return !Shapes.joinIsNotEmpty(REQUIRED_SPACE_TO_DRIP_THROUGH_NON_SOLID_BLOCK, voxelshape, BooleanOp.AND);
-		}
 	}
 
 	public boolean isMoreHardenCondition(Level world, BlockPos pos) {

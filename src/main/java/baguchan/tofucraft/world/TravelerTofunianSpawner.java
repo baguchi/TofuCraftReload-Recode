@@ -7,7 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.player.Player;
@@ -93,7 +93,7 @@ public class TravelerTofunianSpawner {
 						return false;
 					}
 
-					TravelerTofunian tofunian = TofuEntityTypes.TRAVELER_TOFUNIAN.get().spawn(world, blockpos2, MobSpawnType.EVENT);
+					TravelerTofunian tofunian = TofuEntityTypes.TRAVELER_TOFUNIAN.get().spawn(world, blockpos2, EntitySpawnReason.EVENT);
 					if (tofunian != null) {
 						if (worldinfo != null) {
 							worldinfo.setTravelerUUID(tofunian.getUUID());

@@ -8,6 +8,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.CoreShaders;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -33,7 +34,7 @@ public class ClientUtils {
 	public static void renderOverlay(Minecraft mc, PoseStack stack, IClientFluidTypeExtensions clientFluidTypeExtensions) {
 		ResourceLocation texture = clientFluidTypeExtensions.getRenderOverlayTexture(mc);
 		if (texture == null) return;
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShader(CoreShaders.POSITION_TEX);
 		RenderSystem.setShaderTexture(0, texture);
 		BufferBuilder buffer = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
 		BlockPos playerEyePos = BlockPos.containing(mc.player.getX(), mc.player.getEyeY(), mc.player.getZ());

@@ -26,7 +26,7 @@ public class RecipeHelper {
 	@Nullable
 	public static ItemStack getTofu(ServerLevel serverLevel, Block block) {
 
-		final RecipeManager manager = serverLevel.getRecipeManager();
+		final RecipeManager manager = serverLevel.recipeAccess();
 
 		if (block.asItem() != null) {
 			Stream<RecipeHolder<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
@@ -34,7 +34,7 @@ public class RecipeHelper {
 			});
 			for (RecipeHolder<?> recipe : tofuRecipe.collect(Collectors.toList())) {
 				if (recipe.value() instanceof HardenRecipe hardenRecipe && hardenRecipe.getTofu().test(new ItemStack(block.asItem()))) {
-					return ((HardenRecipe) recipe.value()).getResultItem(serverLevel.registryAccess());
+					return ((HardenRecipe) recipe.value()).getResult();
 				}
 			}
 		}
@@ -44,7 +44,7 @@ public class RecipeHelper {
 
 	@Nullable
 	public static ItemStack getBitternResult(ServerLevel serverLevel, Fluid fluid, FluidStack extraFluid) {
-		final RecipeManager manager = serverLevel.getRecipeManager();
+		final RecipeManager manager = serverLevel.recipeAccess();
 
 		if (fluid != null) {
 			Stream<RecipeHolder<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
@@ -53,27 +53,12 @@ public class RecipeHelper {
 			for (RecipeHolder<?> recipe : tofuRecipe.collect(Collectors.toList())) {
 				if (recipe.value() instanceof BitternRecipe bitternRecipe && bitternRecipe.getFluid().is(fluid)) {
 					if (bitternRecipe.getExtraFluid().getFluid() == extraFluid.getFluid()) {
-						return bitternRecipe.getResultItem(serverLevel.registryAccess());
+						return bitternRecipe.getResult();
 					}
 				}
 			}
 		}
 
 		return null;
-	}
-
-	public static RecipeManager getManager() {
-		return getManager(null);
-	}
-
-	public static RecipeManager getManager(@Nullable RecipeManager manager) {
-		if (manager != null) {
-			return manager;
-		}
-		if (FMLEnvironment.dist == Dist.CLIENT) {
-			return Minecraft.getInstance().player.connection.getRecipeManager();
-		} else {
-			return ServerLifecycleHooks.getCurrentServer().getRecipeManager();
-		}
 	}
 }

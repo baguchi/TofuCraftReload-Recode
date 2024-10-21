@@ -45,7 +45,7 @@ public class TofuPortalForcer extends PortalForcer {
 		double d1 = -1.0;
 		BlockPos blockpos1 = null;
 		WorldBorder worldborder = this.level.getWorldBorder();
-		int i = Math.min(this.level.getMaxBuildHeight(), this.level.getMinBuildHeight() + this.level.getLogicalHeight()) - 1;
+		int i = Math.min(this.level.getMaxY(), this.level.getMinY() + this.level.getLogicalHeight()) - 1;
 		int j = 1;
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = p_77667_.mutable();
 
@@ -54,12 +54,12 @@ public class TofuPortalForcer extends PortalForcer {
 			if (worldborder.isWithinBounds(blockpos$mutableblockpos1) && worldborder.isWithinBounds(blockpos$mutableblockpos1.move(direction, 1))) {
 				blockpos$mutableblockpos1.move(direction.getOpposite(), 1);
 
-				for (int l = k; l >= this.level.getMinBuildHeight(); l--) {
+				for (int l = k; l >= this.level.getMinY(); l--) {
 					blockpos$mutableblockpos1.setY(l);
 					if (this.canPortalReplaceBlock(blockpos$mutableblockpos1)) {
 						int i1 = l;
 
-						while (l > this.level.getMinBuildHeight() && this.canPortalReplaceBlock(blockpos$mutableblockpos1.move(Direction.DOWN))) {
+						while (l > this.level.getMinY() && this.canPortalReplaceBlock(blockpos$mutableblockpos1.move(Direction.DOWN))) {
 							l--;
 						}
 
@@ -94,7 +94,7 @@ public class TofuPortalForcer extends PortalForcer {
 		}
 
 		if (d0 == -1.0) {
-			int k1 = Math.max(this.level.getMinBuildHeight() - -1, 70);
+			int k1 = Math.max(this.level.getMinY() - -1, 70);
 			int i2 = i - 9;
 			if (i2 < k1) {
 				return Optional.empty();

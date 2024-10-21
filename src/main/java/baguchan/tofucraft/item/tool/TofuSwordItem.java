@@ -8,12 +8,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class TofuSwordItem extends SwordItem implements IEnergyInsertable {
-	public TofuSwordItem(Tier tofuItemTier, Properties properties) {
-		super(tofuItemTier, properties);
+	public TofuSwordItem(ToolMaterial tofuItemTier, float p_362481_, float p_364182_, Properties properties) {
+		super(tofuItemTier, p_362481_, p_364182_, properties);
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class TofuSwordItem extends SwordItem implements IEnergyInsertable {
 		float healthBeforeAttack = (float) attacker.getAttributeValue(Attributes.ATTACK_DAMAGE);
 		float damage = healthBeforeAttack - targetEntity.getHealth();
 		if (damage > 0.0f) {
-			int lvl = EnchantmentHelper.getEnchantmentLevel(attacker.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(TofuEnchantments.DRAIN), attacker);
+			int lvl = EnchantmentHelper.getEnchantmentLevel(attacker.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.DRAIN), attacker);
 			attacker.heal(damage * (lvl * 0.1f + 0.1f));
 		}
 		return super.hurtEnemy(itemStack, targetEntity, attacker);

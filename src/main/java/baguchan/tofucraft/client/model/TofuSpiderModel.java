@@ -13,10 +13,11 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
-public class TofuSpiderModel<T extends Entity> extends EntityModel<T> {
+public class TofuSpiderModel<T extends LivingEntityRenderState> extends EntityModel<T> {
 	private final ModelPart head;
 	private final ModelPart body;
 	private final ModelPart legR;
@@ -27,6 +28,7 @@ public class TofuSpiderModel<T extends Entity> extends EntityModel<T> {
 	private final ModelPart legL3;
 
 	public TofuSpiderModel(ModelPart root) {
+		super(root);
 		this.body = root.getChild("body");
 		this.head = this.body.getChild("head");
 		this.legR = this.body.getChild("legR");
@@ -71,19 +73,15 @@ public class TofuSpiderModel<T extends Entity> extends EntityModel<T> {
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
-		this.head.xRot = headPitch * ((float) Math.PI / 180F);
-		this.legR.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount + 0.4098033F;
-		this.legR2.yRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 0.5F * limbSwingAmount;
-		this.legR3.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount - 0.4098033F;
-		this.legL.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount + 0.4098033F;
-		this.legL2.yRot = Mth.cos(limbSwing * 0.6662F + 3.1415927F) * 0.6F * limbSwingAmount;
-		this.legL3.yRot = Mth.cos(limbSwing * 0.6662F) * 0.6F * limbSwingAmount - 0.4098033F;
+	public void setupAnim(T entity) {
+		this.head.yRot = entity.yRot * ((float) Math.PI / 180F);
+		this.head.xRot = entity.xRot * ((float) Math.PI / 180F);
+		this.legR.yRot = Mth.cos(entity.walkAnimationPos * 0.6662F) * 0.6F * entity.walkAnimationSpeed + 0.4098033F;
+		this.legR2.yRot = Mth.cos(entity.walkAnimationPos * 0.6662F + 3.1415927F) * 0.5F * entity.walkAnimationSpeed;
+		this.legR3.yRot = Mth.cos(entity.walkAnimationPos * 0.6662F) * 0.6F * entity.walkAnimationSpeed - 0.4098033F;
+		this.legL.yRot = Mth.cos(entity.walkAnimationPos * 0.6662F) * 0.6F * entity.walkAnimationSpeed + 0.4098033F;
+		this.legL2.yRot = Mth.cos(entity.walkAnimationPos * 0.6662F + 3.1415927F) * 0.6F * entity.walkAnimationSpeed;
+		this.legL3.yRot = Mth.cos(entity.walkAnimationPos * 0.6662F) * 0.6F * entity.walkAnimationSpeed - 0.4098033F;
 	}
 
-	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int p_350308_) {
-		body.render(poseStack, buffer, packedLight, packedOverlay);
-	}
 }

@@ -112,6 +112,12 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		this.tag(ItemTags.SHOVELS).add(TofuItems.TOFU_DIAMOND_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get())
 				.add(TofuItems.TOFU_DIAMOND_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get());
 
+		this.tag(TofuTags.Items.TOFU_TOOL_MATERIAL).add(TofuItems.TOFUMOMEN.get().asItem(), TofuItems.TOFUKINU.get().asItem());
+		this.tag(TofuTags.Items.TOFU_SOLID_TOOL_MATERIAL).add(TofuItems.TOFUISHI.get().asItem());
+		this.tag(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL).add(TofuItems.TOFUMETAL.get().asItem());
+		this.tag(TofuTags.Items.TOFU_DIAMOND_TOOL_MATERIAL).add(TofuItems.TOFUDIAMOND.get().asItem());
+
+
 		this.tag(ItemTags.MEAT).add(TofuItems.TOFUKINU.get()).add(TofuItems.TOFUMOMEN.get()).add(TofuItems.SOYMEAT.get());
 		this.tag(ItemTags.CHICKEN_FOOD).add(TofuItems.SEEDS_RICE.get(), TofuItems.SOYBEAN_PARCHED.get());
 		this.tag(ItemTags.COW_FOOD).add(TofuItems.RICE.get());

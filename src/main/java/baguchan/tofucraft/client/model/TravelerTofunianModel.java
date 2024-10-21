@@ -1,5 +1,6 @@
 package baguchan.tofucraft.client.model;
 
+import baguchan.tofucraft.client.render.state.AbstractTofunianRenderState;
 import baguchan.tofucraft.entity.TravelerTofunian;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.HeadedModel;
@@ -11,7 +12,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 
-public class TravelerTofunianModel<T extends TravelerTofunian> extends AbstractTofunianModel<T> implements ArmedModel, HeadedModel {
+public class TravelerTofunianModel<T extends AbstractTofunianRenderState> extends AbstractTofunianModel<T> implements ArmedModel, HeadedModel {
 
 	public TravelerTofunianModel(ModelPart p_170688_) {
 		super(p_170688_);
@@ -45,7 +46,7 @@ public class TravelerTofunianModel<T extends TravelerTofunian> extends AbstractT
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+	public void setupAnim(T entity) {
+		super.setupAnim(entity);
 	}
 }

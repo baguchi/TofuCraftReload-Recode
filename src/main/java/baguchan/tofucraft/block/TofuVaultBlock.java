@@ -7,7 +7,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -38,11 +38,11 @@ public class TofuVaultBlock extends VaultBlock {
 	}
 
 	@Override
-	public ItemInteractionResult useItemOn(
+	public InteractionResult useItemOn(
 			ItemStack p_324161_, BlockState p_323816_, Level p_324403_, BlockPos p_324623_, Player p_324219_, InteractionHand p_324416_, BlockHitResult p_324261_
 	) {
 		if (p_324161_.isEmpty() || p_323816_.getValue(STATE) != VaultState.ACTIVE) {
-			return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+			return InteractionResult.TRY_WITH_EMPTY_HAND;
 		} else if (p_324403_ instanceof ServerLevel serverlevel) {
 			if (serverlevel.getBlockEntity(p_324623_) instanceof VaultBlockEntity vaultblockentity) {
 				tryInsertKey(
@@ -55,12 +55,12 @@ public class TofuVaultBlock extends VaultBlock {
 						p_324219_,
 						p_324161_
 				);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			} else {
-				return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+				return InteractionResult.TRY_WITH_EMPTY_HAND;
 			}
 		} else {
-			return ItemInteractionResult.CONSUME;
+			return InteractionResult.CONSUME;
 		}
 	}
 
@@ -131,7 +131,7 @@ public class TofuVaultBlock extends VaultBlock {
 	}
 
 	private static boolean canEjectReward(VaultConfig p_323595_, VaultState p_324160_) {
-		return p_323595_.lootTable() != BuiltInLootTables.EMPTY && !p_323595_.keyItem().isEmpty() && p_324160_ != VaultState.INACTIVE;
+		return !p_323595_.keyItem().isEmpty() && p_324160_ != VaultState.INACTIVE;
 	}
 
 

@@ -1,8 +1,5 @@
 package baguchan.tofucraft.entity;
 
-import bagu_chan.bagus_lib.client.camera.CameraCore;
-import bagu_chan.bagus_lib.client.camera.holder.EntityCameraHolder;
-import bagu_chan.bagus_lib.util.GlobalVec3;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
@@ -13,6 +10,9 @@ import baguchan.tofucraft.registry.TofuDamageSource;
 import baguchan.tofucraft.registry.TofuEffects;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuSounds;
+import baguchi.bagus_lib.client.camera.CameraCore;
+import baguchi.bagus_lib.client.camera.holder.EntityCameraHolder;
+import baguchi.bagus_lib.util.GlobalVec3;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -55,6 +55,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerExplosion;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
@@ -263,12 +264,14 @@ public class ShuDofuSpider extends Monster {
 					float radius = 2;
 					float swipePosX = (float) (this.getX() + radius * Math.cos(Math.toRadians(this.getYHeadRot() + 90)));
 					float swipePosZ = (float) (this.getZ() + radius * Math.sin(Math.toRadians(this.getYHeadRot() + 90)));
-					AABB hitBox = new AABB(BlockPos.containing(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1.55, 1.55, 1.55);
-					List<LivingEntity> entitiesHit = this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
-					for (LivingEntity entity : entitiesHit) {
-						if (entity != this) {
-							if (this.canAttack(entity) && !this.isAlliedTo(entity) && this.isWithinMeleeAttackRange(entity)) {
-								doHurtTarget(entity);
+					if (this.level() instanceof ServerLevel serverLevel) {
+						AABB hitBox = new AABB(BlockPos.containing(swipePosX, this.getY() - 0.5f, swipePosZ)).inflate(1.55, 1.55, 1.55);
+						List<LivingEntity> entitiesHit = this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
+						for (LivingEntity entity : entitiesHit) {
+							if (entity != this) {
+								if (this.canAttack(entity) && !this.canAttack(entity) && this.isWithinMeleeAttackRange(entity)) {
+									doHurtTarget(serverLevel, entity);
+								}
 							}
 						}
 					}
@@ -345,9 +348,9 @@ public class ShuDofuSpider extends Monster {
 					List<LivingEntity> entitiesHit = ShuDofuSpider.this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
-							if (!this.isAlliedTo(entity)) {
+							if (!this.canAttack(entity)) {
 								double d12 = Math.sqrt(entity.distanceToSqr(entity)) / (double) radius * 2.0F;
-								double d14 = Explosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
+								double d14 = ServerExplosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
 								double d10 = (1.0D - d12) * d14;
 								entity.addEffect(new MobEffectInstance(TofuEffects.COUGH, (int) (400 * d10), 0));
 								entity.hurt(this.damageSources().source(TofuDamageSource.SOY_SPORE, ShuDofuSpider.this), (float) (((d10 * d10 + d10) / 2.0D) * 26.0D));
@@ -523,7 +526,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	public void jumpAttack(Entity p_36347_) {
-		if (p_36347_.isAttackable() && !this.isAlliedTo(p_36347_)) {
+		if (p_36347_.isAttackable() && (!(p_36347_ instanceof LivingEntity livingEntity) || !this.canAttack(livingEntity))) {
 			p_36347_.hurt(this.damageSources().mobAttack(this), 18.0F);
 			float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
 			i += 1.5F;
@@ -544,7 +547,7 @@ public class ShuDofuSpider extends Monster {
 		List<Entity> list = this.level().getEntities(this, aabb);
 		if (!list.isEmpty()) {
 			for (Entity entity : list) {
-				if (entity != this && !(entity instanceof PartEntity<?>) && entity.isAttackable() && !this.isAlliedTo(entity) && !(entity instanceof NattoCobWebEntity)) {
+				if (entity != this && !(entity instanceof PartEntity<?>) && entity.isAttackable() && (!(entity instanceof LivingEntity livingEntity) || !this.canAttack(livingEntity)) && !(entity instanceof NattoCobWebEntity)) {
 					this.graspAttack(entity);
 					break;
 				}
@@ -554,9 +557,11 @@ public class ShuDofuSpider extends Monster {
 
 	public void graspAttack(Entity entity) {
 		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-		if (entity.hurt(this.damageSources().mobAttack(this), f * 0.2F)) {
+		if (this.level() instanceof ServerLevel serverLevel) {
+			if (entity.hurtServer(serverLevel, this.damageSources().mobAttack(this), f * 0.2F)) {
 				this.heal(f * 0.2F);
 			}
+		}
 		if (entity instanceof LivingEntity && !entity.getType().is(Tags.EntityTypes.BOSSES)) {
 				if (this.getPassengers().isEmpty()) {
 					entity.stopRiding();
@@ -601,8 +606,8 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	@Override
-	public boolean hurt(DamageSource p_31461_, float p_31462_) {
-		if (this.isInvulnerableTo(p_31461_)) {
+	public boolean hurtServer(ServerLevel serverLevel, DamageSource p_31461_, float p_31462_) {
+		if (this.isInvulnerableTo(serverLevel, p_31461_)) {
 			return false;
 		} else if (!p_31461_.is(DamageTypes.SWEET_BERRY_BUSH) && !p_31461_.is(DamageTypes.CACTUS) && !p_31461_.is(DamageTypes.CRAMMING) && !p_31461_.is(DamageTypes.IN_WALL) && !p_31461_.is(DamageTypes.STALAGMITE)) {
 			Entity entity = p_31461_.getDirectEntity();
@@ -615,10 +620,10 @@ public class ShuDofuSpider extends Monster {
 			if (entity instanceof FukumameEntity || !this.isAngry() && (p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC))) {
 				return false;
 			} else if (entity instanceof Projectile) {
-				return super.hurt(p_31461_, p_31462_ * 0.35F);
+				return super.hurtServer(serverLevel, p_31461_, p_31462_ * 0.35F);
 			}
 
-			return super.hurt(p_31461_, p_31462_);
+			return super.hurtServer(serverLevel, p_31461_, p_31462_);
 		} else {
 			return false;
 		}
@@ -643,7 +648,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	@Override
-	public boolean isAlliedTo(Entity p_20355_) {
+	public boolean canAttack(LivingEntity p_20355_) {
 		if (p_20355_ instanceof ShuDofuSpider || p_20355_ instanceof TofuSpider) {
 			return this.getTeam() == null && p_20355_.getTeam() == null;
 		}
@@ -652,7 +657,7 @@ public class ShuDofuSpider extends Monster {
 			return false;
 		}
 
-		return super.isAlliedTo(p_20355_);
+		return super.canAttack(p_20355_);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
@@ -661,9 +666,9 @@ public class ShuDofuSpider extends Monster {
 
 	public boolean hurt(ShuDofuSpiderPart shuDofuSpiderPart, DamageSource damageSource, float damage) {
 		float f = this.getHealth();
-
-		this.reallyHurt(damageSource, damage * 0.9F);
-
+		if (this.level() instanceof ServerLevel serverLevel) {
+			this.reallyHurt(serverLevel, damageSource, damage * 0.9F);
+		}
 		if (this.isGraspAnim()) {
 			this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
 			if (this.graspDamageReceived > 0.075F * this.getMaxHealth()) {
@@ -677,8 +682,8 @@ public class ShuDofuSpider extends Monster {
 
 	}
 
-	private boolean reallyHurt(DamageSource damageSource, float damage) {
-		return super.hurt(damageSource, damage);
+	private boolean reallyHurt(ServerLevel serverLevel, DamageSource damageSource, float damage) {
+		return super.hurtServer(serverLevel, damageSource, damage);
 	}
 
 	

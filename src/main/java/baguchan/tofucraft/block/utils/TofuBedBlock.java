@@ -4,6 +4,7 @@ import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +16,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.CollisionGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -59,12 +62,14 @@ public class TofuBedBlock extends BedBlock {
 
 		this.registerDefaultState((BlockState) ((BlockState) ((BlockState) this.stateDefinition.any()).setValue(PART, BedPart.FOOT)).setValue(OCCUPIED, false));
 	}
+
 	@Override
-	public BlockState updateShape(BlockState p_49525_, Direction p_49526_, BlockState p_49527_, LevelAccessor p_49528_, BlockPos p_49529_, BlockPos p_49530_) {
+	protected BlockState updateShape(BlockState p_49525_, LevelReader p_374508_, ScheduledTickAccess p_374420_, BlockPos p_49529_, Direction p_49526_, BlockPos p_49530_, BlockState p_49527_, RandomSource p_374423_) {
 		if (p_49526_ == getNeighbourDirection((BedPart) p_49525_.getValue(PART), (Direction) p_49525_.getValue(FACING))) {
 			return p_49527_.is(this) && p_49527_.getValue(PART) != p_49525_.getValue(PART) ? (BlockState) p_49525_.setValue(OCCUPIED, (Boolean) p_49527_.getValue(OCCUPIED)) : Blocks.AIR.defaultBlockState();
 		} else {
-			return super.updateShape(p_49525_, p_49526_, p_49527_, p_49528_, p_49529_, p_49530_);
+
+			return super.updateShape(p_49525_, p_374508_, p_374420_, p_49529_, p_49526_, p_49530_, p_49527_, p_374423_);
 		}
 	}
 
