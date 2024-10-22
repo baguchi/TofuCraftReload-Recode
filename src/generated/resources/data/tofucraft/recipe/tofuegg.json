@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "c:eggs"
-    },
-    {
-      "item": "tofucraft:bottle_dashi"
-    }
+    "#c:eggs",
+    "tofucraft:bottle_dashi"
   ],
   "result": {
     "count": 4,

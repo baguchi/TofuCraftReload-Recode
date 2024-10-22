@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:bucket_soymilk"
-    },
-    {
-      "item": "minecraft:cocoa_beans"
-    },
-    {
-      "item": "minecraft:sugar"
-    }
+    "tofucraft:bucket_soymilk",
+    "minecraft:cocoa_beans",
+    "minecraft:sugar"
   ],
   "result": {
     "count": 6,

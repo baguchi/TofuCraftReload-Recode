@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": {
-      "item": "tofucraft:blocktofuishi"
-    }
+    "M": "tofucraft:blocktofuishi"
   },
   "pattern": [
     "MMM"

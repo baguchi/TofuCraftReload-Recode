@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "tofucraft:gelatinraw"
-  },
+  "ingredient": "tofucraft:gelatinraw",
   "result": {
     "count": 1,
     "id": "tofucraft:gelatin"

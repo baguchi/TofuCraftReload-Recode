@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:salt"
-    },
-    {
-      "item": "tofucraft:bottle_dashi"
-    },
-    {
-      "item": "tofucraft:tofudried"
-    }
+    "tofucraft:salt",
+    "tofucraft:bottle_dashi",
+    "tofucraft:tofudried"
   ],
   "result": {
     "count": 8,

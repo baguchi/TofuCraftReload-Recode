@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "c:salt"
-    },
-    {
-      "item": "minecraft:melon_slice"
-    }
+    "#c:salt",
+    "minecraft:melon_slice"
   ],
   "result": {
     "count": 1,

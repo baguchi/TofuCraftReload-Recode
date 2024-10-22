@@ -1,16 +1,10 @@
 {
   "type": "minecraft:smithing_transform",
-  "addition": {
-    "item": "tofucraft:blocktofudiamond"
-  },
-  "base": {
-    "item": "tofucraft:tofu_metal_axe"
-  },
+  "addition": "tofucraft:blocktofudiamond",
+  "base": "tofucraft:tofu_metal_axe",
   "result": {
     "count": 1,
     "id": "tofucraft:tofu_diamond_axe"
   },
-  "template": {
-    "item": "tofucraft:tofu_upgrade_smithing_template"
-  }
+  "template": "tofucraft:tofu_upgrade_smithing_template"
 }

@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "c:crops/soybean"
-    },
-    {
-      "item": "minecraft:glass_bottle"
-    },
-    {
-      "item": "tofucraft:filtercloth"
-    }
+    "#c:crops/soybean",
+    "minecraft:glass_bottle",
+    "tofucraft:filtercloth"
   ],
   "result": {
     "count": 1,

@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:kinako"
-    },
-    {
-      "tag": "c:crops/wheat"
-    }
+    "tofucraft:kinako",
+    "#c:crops/wheat"
   ],
   "result": {
     "count": 2,

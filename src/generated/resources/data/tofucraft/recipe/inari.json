@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:bottle_soysause"
-    },
-    {
-      "item": "tofucraft:oage"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "tofucraft:onigiri"
-    }
+    "tofucraft:bottle_soysause",
+    "tofucraft:oage",
+    "minecraft:sugar",
+    "tofucraft:onigiri"
   ],
   "result": {
     "count": 1,

@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:salt_block"
-    }
+    "tofucraft:salt_block"
   ],
   "result": {
     "count": 9,

@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:apricotjerry_bottle"
-    },
-    {
-      "item": "minecraft:bread"
-    }
+    "tofucraft:apricotjerry_bottle",
+    "minecraft:bread"
   ],
   "result": {
     "count": 1,

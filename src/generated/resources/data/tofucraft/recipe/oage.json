@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:tofuslab_momen"
-    },
-    {
-      "item": "tofucraft:bottle_soyoil"
-    }
+    "tofucraft:tofuslab_momen",
+    "tofucraft:bottle_soyoil"
   ],
   "result": {
     "count": 4,

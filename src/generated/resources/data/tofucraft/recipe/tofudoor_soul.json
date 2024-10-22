@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "P": {
-      "item": "tofucraft:blocktofusoul"
-    }
+    "P": "tofucraft:blocktofusoul"
   },
   "pattern": [
     "PP",

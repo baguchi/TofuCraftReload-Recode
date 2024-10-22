@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:onigiri"
-    },
-    {
-      "item": "tofucraft:bottle_soysause"
-    }
+    "tofucraft:onigiri",
+    "tofucraft:bottle_soysause"
   ],
   "result": {
     "count": 1,

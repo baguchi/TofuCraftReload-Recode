@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
-      "item": "tofucraft:seeds_soybeans_nether"
-    },
-    "X": {
-      "item": "minecraft:bowl"
-    }
+    "#": "tofucraft:seeds_soybeans_nether",
+    "X": "minecraft:bowl"
   },
   "pattern": [
     "###",

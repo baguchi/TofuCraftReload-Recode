@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "type": "neoforge:components",
+      "neoforge:ingredient_type": "neoforge:components",
       "components": {
         "minecraft:potion_contents": {
           "potion": "minecraft:water"
@@ -11,9 +11,7 @@
       },
       "items": "minecraft:potion"
     },
-    {
-      "item": "minecraft:dried_kelp"
-    }
+    "minecraft:dried_kelp"
   ],
   "result": {
     "count": 1,

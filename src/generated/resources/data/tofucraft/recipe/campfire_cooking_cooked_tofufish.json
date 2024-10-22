@@ -3,9 +3,7 @@
   "category": "food",
   "cookingtime": 600,
   "experience": 0.2,
-  "ingredient": {
-    "item": "tofucraft:raw_tofufish"
-  },
+  "ingredient": "tofucraft:raw_tofufish",
   "result": {
     "count": 1,
     "id": "tofucraft:cooked_tofufish"

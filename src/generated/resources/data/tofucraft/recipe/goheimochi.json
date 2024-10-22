@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "tofucraft:onigiri"
-    },
-    "M": {
-      "item": "tofucraft:miso"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    }
+    "#": "tofucraft:onigiri",
+    "M": "tofucraft:miso",
+    "S": "minecraft:stick"
   },
   "pattern": [
     "#",

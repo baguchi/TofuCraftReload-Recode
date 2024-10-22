@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:zundama_block"
-    }
+    "tofucraft:zundama_block"
   ],
   "result": {
     "count": 9,

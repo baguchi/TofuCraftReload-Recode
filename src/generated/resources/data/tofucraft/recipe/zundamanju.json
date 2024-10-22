@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:zunda"
-    },
-    {
-      "tag": "c:crops/wheat"
-    }
+    "tofucraft:zunda",
+    "#c:crops/wheat"
   ],
   "result": {
     "count": 2,

@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "M": {
-      "item": "tofucraft:tofumetal"
-    },
-    "S": {
-      "item": "minecraft:soul_torch"
-    }
+    "M": "tofucraft:tofumetal",
+    "S": "minecraft:soul_torch"
   },
   "pattern": [
     " M ",

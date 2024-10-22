@@ -1,11 +1,9 @@
 {
-  "carvers": {
-    "air": [
-      "tofucraft:tofu_cave",
-      "tofucraft:tofu_cave_extra_underground",
-      "tofucraft:tofu_canyon"
-    ]
-  },
+  "carvers": [
+    "tofucraft:tofu_cave",
+    "tofucraft:tofu_cave_extra_underground",
+    "tofucraft:tofu_canyon"
+  ],
   "downfall": 0.0,
   "effects": {
     "fog_color": 11534282,

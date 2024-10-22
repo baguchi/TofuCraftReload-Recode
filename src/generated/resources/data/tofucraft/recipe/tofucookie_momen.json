@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "tofucraft:tofumomen"
-    },
-    "X": {
-      "tag": "c:crops/wheat"
-    }
+    "#": "tofucraft:tofumomen",
+    "X": "#c:crops/wheat"
   },
   "pattern": [
     "X#X"

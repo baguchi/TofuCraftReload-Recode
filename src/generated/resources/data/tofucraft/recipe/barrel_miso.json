@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "tag": "c:barrels/wooden"
-    },
-    "K": {
-      "item": "tofucraft:kouji"
-    },
-    "S": {
-      "tag": "c:salt"
-    }
+    "B": "#c:barrels/wooden",
+    "K": "tofucraft:kouji",
+    "S": "#c:salt"
   },
   "pattern": [
     "SSS",

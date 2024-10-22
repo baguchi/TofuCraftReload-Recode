@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:onigiri"
-    },
-    {
-      "item": "tofucraft:edamame"
-    },
-    {
-      "item": "minecraft:bowl"
-    }
+    "tofucraft:onigiri",
+    "tofucraft:edamame",
+    "minecraft:bowl"
   ],
   "result": {
     "count": 1,

@@ -3,9 +3,7 @@
   "category": "food",
   "cookingtime": 600,
   "experience": 0.1,
-  "ingredient": {
-    "item": "tofucraft:tofukinu"
-  },
+  "ingredient": "tofucraft:tofukinu",
   "result": {
     "count": 1,
     "id": "tofucraft:tofugrilled"

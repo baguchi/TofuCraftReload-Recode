@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:leek"
-    },
-    {
-      "item": "tofucraft:soymeat"
-    },
-    {
-      "item": "minecraft:stick"
-    },
-    {
-      "item": "tofucraft:bottle_soysause"
-    }
+    "tofucraft:leek",
+    "tofucraft:soymeat",
+    "minecraft:stick",
+    "tofucraft:bottle_soysause"
   ],
   "result": {
     "count": 1,

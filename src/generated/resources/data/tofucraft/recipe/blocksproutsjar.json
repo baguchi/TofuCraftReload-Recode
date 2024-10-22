@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": {
-      "item": "minecraft:tinted_glass"
-    },
-    "W": {
-      "tag": "minecraft:wool"
-    }
+    "G": "minecraft:tinted_glass",
+    "W": "#minecraft:wool"
   },
   "pattern": [
     "G",

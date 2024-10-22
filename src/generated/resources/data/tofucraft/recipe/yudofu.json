@@ -3,18 +3,12 @@
   "category": "misc",
   "ingredients": [
     [
-      {
-        "item": "tofucraft:tofukinu"
-      },
-      {
-        "item": "tofucraft:tofumomen"
-      }
+      "tofucraft:tofukinu",
+      "tofucraft:tofumomen"
     ],
+    "minecraft:bowl",
     {
-      "item": "minecraft:bowl"
-    },
-    {
-      "type": "neoforge:components",
+      "neoforge:ingredient_type": "neoforge:components",
       "components": {
         "minecraft:potion_contents": {
           "potion": "minecraft:water"

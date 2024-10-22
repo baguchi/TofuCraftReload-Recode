@@ -2,21 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "C": {
-      "item": "tofucraft:tofu_core"
-    },
-    "L": {
-      "item": "tofucraft:tf_coil"
-    },
-    "O": {
-      "item": "tofucraft:tf_oscillator"
-    },
-    "P": {
-      "item": "tofucraft:leek"
-    },
-    "T": {
-      "item": "tofucraft:tofumetal"
-    }
+    "C": "tofucraft:tofu_core",
+    "L": "tofucraft:tf_coil",
+    "O": "tofucraft:tf_oscillator",
+    "P": "tofucraft:leek",
+    "T": "tofucraft:tofumetal"
   },
   "pattern": [
     " P ",

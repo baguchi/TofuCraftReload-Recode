@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:soymeat"
-    },
-    {
-      "item": "tofucraft:bottle_soysause"
-    },
-    {
-      "item": "tofucraft:bottle_soyoil"
-    }
+    "tofucraft:soymeat",
+    "tofucraft:bottle_soysause",
+    "tofucraft:bottle_soyoil"
   ],
   "result": {
     "count": 1,

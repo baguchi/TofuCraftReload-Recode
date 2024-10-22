@@ -2,27 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:edamame_boild"
-    },
-    {
-      "item": "tofucraft:edamame_boild"
-    },
-    {
-      "tag": "c:crops/wheat"
-    },
-    {
-      "tag": "c:crops/wheat"
-    },
-    {
-      "tag": "c:crops/wheat"
-    },
-    {
-      "item": "tofucraft:salt"
-    },
-    {
-      "item": "tofucraft:bottle_soyoil"
-    }
+    "tofucraft:edamame_boild",
+    "tofucraft:edamame_boild",
+    "#c:crops/wheat",
+    "#c:crops/wheat",
+    "#c:crops/wheat",
+    "tofucraft:salt",
+    "tofucraft:bottle_soyoil"
   ],
   "result": {
     "count": 6,

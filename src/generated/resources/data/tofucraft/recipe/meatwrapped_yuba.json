@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:cooked_chicken"
-    },
-    {
-      "item": "tofucraft:yuba"
-    }
+    "minecraft:cooked_chicken",
+    "tofucraft:yuba"
   ],
   "result": {
     "count": 1,

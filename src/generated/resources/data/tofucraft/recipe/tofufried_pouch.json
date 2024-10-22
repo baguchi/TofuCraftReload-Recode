@@ -2,19 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:starch"
-    },
-    {
-      "item": "tofucraft:bottle_soyoil"
-    },
+    "tofucraft:starch",
+    "tofucraft:bottle_soyoil",
     [
-      {
-        "item": "tofucraft:tofukinu"
-      },
-      {
-        "item": "tofucraft:tofumomen"
-      }
+      "tofucraft:tofukinu",
+      "tofucraft:tofumomen"
     ]
   ],
   "result": {

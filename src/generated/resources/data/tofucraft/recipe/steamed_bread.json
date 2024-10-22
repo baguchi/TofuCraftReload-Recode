@@ -2,21 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "c:milk/soy_milk"
-    },
-    {
-      "tag": "c:eggs"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "tag": "c:crops/wheat"
-    },
-    {
-      "item": "minecraft:honey_bottle"
-    }
+    "#c:milk/soy_milk",
+    "#c:eggs",
+    "minecraft:sugar",
+    "#c:crops/wheat",
+    "minecraft:honey_bottle"
   ],
   "result": {
     "count": 1,

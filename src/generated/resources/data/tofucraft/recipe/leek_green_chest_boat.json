@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:leek_green_boat"
-    },
-    {
-      "tag": "c:chests/wooden"
-    }
+    "tofucraft:leek_green_boat",
+    "#c:chests/wooden"
   ],
   "result": {
     "count": 1,

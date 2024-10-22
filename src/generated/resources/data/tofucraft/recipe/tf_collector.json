@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "A": {
-      "item": "tofucraft:adv_tofugem"
-    },
-    "C": {
-      "item": "tofucraft:tf_circuit"
-    },
-    "H": {
-      "item": "minecraft:hopper"
-    },
-    "M": {
-      "item": "tofucraft:blocktofumetal"
-    }
+    "A": "tofucraft:adv_tofugem",
+    "C": "tofucraft:tf_circuit",
+    "H": "minecraft:hopper",
+    "M": "tofucraft:blocktofumetal"
   },
   "pattern": [
     "HCH",

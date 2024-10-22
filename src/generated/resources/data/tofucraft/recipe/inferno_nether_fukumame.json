@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "item": "tofucraft:nether_fukumame"
-    },
-    {
-      "item": "minecraft:blaze_powder"
-    }
+    "tofucraft:nether_fukumame",
+    "minecraft:blaze_powder"
   ],
   "result": {
     "count": 1,

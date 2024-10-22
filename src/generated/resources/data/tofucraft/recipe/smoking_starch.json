@@ -3,9 +3,7 @@
   "category": "food",
   "cookingtime": 100,
   "experience": 0.1,
-  "ingredient": {
-    "item": "tofucraft:starch_raw"
-  },
+  "ingredient": "tofucraft:starch_raw",
   "result": {
     "count": 1,
     "id": "tofucraft:starch"

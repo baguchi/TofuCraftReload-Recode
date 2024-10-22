@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "C": {
-      "item": "minecraft:quartz"
-    },
-    "M": {
-      "item": "tofucraft:tofumetal"
-    },
-    "T": {
-      "item": "tofucraft:tofukinu"
-    }
+    "C": "minecraft:quartz",
+    "M": "tofucraft:tofumetal",
+    "T": "tofucraft:tofukinu"
   },
   "pattern": [
     "TCT",

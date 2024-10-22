@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "c:crops/soybean"
-    },
-    {
-      "tag": "c:crops/wheat"
-    },
-    {
-      "tag": "c:salt"
-    }
+    "#c:crops/soybean",
+    "#c:crops/wheat",
+    "#c:salt"
   ],
   "result": {
     "count": 1,

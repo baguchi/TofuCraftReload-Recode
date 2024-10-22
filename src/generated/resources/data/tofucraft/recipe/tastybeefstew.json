@@ -2,27 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:brown_mushroom"
-    },
-    {
-      "item": "minecraft:red_mushroom"
-    },
-    {
-      "item": "minecraft:cooked_beef"
-    },
-    {
-      "tag": "c:dusts/salt"
-    },
-    {
-      "item": "minecraft:milk_bucket"
-    },
-    {
-      "tag": "c:crops/wheat"
-    },
-    {
-      "item": "minecraft:bowl"
-    }
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom",
+    "minecraft:cooked_beef",
+    "#c:dusts/salt",
+    "minecraft:milk_bucket",
+    "#c:crops/wheat",
+    "minecraft:bowl"
   ],
   "result": {
     "count": 1,

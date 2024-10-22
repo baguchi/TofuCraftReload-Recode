@@ -2,21 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:zunda"
-    },
-    {
-      "item": "tofucraft:zunda"
-    },
-    {
-      "item": "tofucraft:zunda"
-    },
-    {
-      "item": "tofucraft:zunda"
-    },
-    {
-      "item": "minecraft:glowstone_dust"
-    }
+    "tofucraft:zunda",
+    "tofucraft:zunda",
+    "tofucraft:zunda",
+    "tofucraft:zunda",
+    "minecraft:glowstone_dust"
   ],
   "result": {
     "count": 1,

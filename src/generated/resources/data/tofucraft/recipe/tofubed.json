@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "tofucraft:yuba"
-    },
-    "P": {
-      "tag": "minecraft:planks"
-    }
+    "#": "tofucraft:yuba",
+    "P": "#minecraft:planks"
   },
   "pattern": [
     "###",

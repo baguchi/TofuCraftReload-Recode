@@ -2,27 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:bottle_soysause"
-    },
-    {
-      "item": "tofucraft:bottle_dashi"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:potato"
-    },
-    {
-      "item": "minecraft:carrot"
-    },
-    {
-      "item": "minecraft:cooked_beef"
-    },
-    {
-      "item": "minecraft:bowl"
-    }
+    "tofucraft:bottle_soysause",
+    "tofucraft:bottle_dashi",
+    "minecraft:sugar",
+    "minecraft:potato",
+    "minecraft:carrot",
+    "minecraft:cooked_beef",
+    "minecraft:bowl"
   ],
   "result": {
     "count": 1,

@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:tofusomen"
-    },
-    {
-      "item": "tofucraft:glassbowl"
-    },
-    {
-      "item": "tofucraft:bottle_soysause"
-    },
-    {
-      "item": "tofucraft:bottle_dashi"
-    }
+    "tofucraft:tofusomen",
+    "tofucraft:glassbowl",
+    "tofucraft:bottle_soysause",
+    "tofucraft:bottle_dashi"
   ],
   "result": {
     "count": 1,

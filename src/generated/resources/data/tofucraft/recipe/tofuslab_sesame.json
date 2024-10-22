@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": {
-      "item": "tofucraft:blocktofusesame"
-    }
+    "M": "tofucraft:blocktofusesame"
   },
   "pattern": [
     "MMM"

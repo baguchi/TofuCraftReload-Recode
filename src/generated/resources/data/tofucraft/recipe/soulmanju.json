@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:seeds_soybeans_soul"
-    },
-    {
-      "tag": "c:crops/wheat"
-    }
+    "tofucraft:seeds_soybeans_soul",
+    "#c:crops/wheat"
   ],
   "result": {
     "count": 2,

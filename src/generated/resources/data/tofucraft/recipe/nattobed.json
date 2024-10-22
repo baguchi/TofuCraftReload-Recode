@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "S": {
-      "item": "tofucraft:seeds_soybeans"
-    },
-    "W": {
-      "tag": "c:crops/wheat"
-    }
+    "S": "tofucraft:seeds_soybeans",
+    "W": "#c:crops/wheat"
   },
   "pattern": [
     "SSS",

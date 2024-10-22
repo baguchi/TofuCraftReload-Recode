@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:onigiri"
-    },
-    {
-      "item": "tofucraft:miso"
-    }
+    "tofucraft:onigiri",
+    "tofucraft:miso"
   ],
   "result": {
     "count": 1,

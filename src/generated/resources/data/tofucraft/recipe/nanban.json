@@ -2,27 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:cooked_chicken"
-    },
-    {
-      "tag": "c:eggs"
-    },
-    {
-      "tag": "c:crops/wheat"
-    },
-    {
-      "item": "minecraft:bowl"
-    },
-    {
-      "item": "tofucraft:bottle_soysause"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "tofucraft:chili"
-    }
+    "minecraft:cooked_chicken",
+    "#c:eggs",
+    "#c:crops/wheat",
+    "minecraft:bowl",
+    "tofucraft:bottle_soysause",
+    "minecraft:sugar",
+    "tofucraft:chili"
   ],
   "result": {
     "count": 1,

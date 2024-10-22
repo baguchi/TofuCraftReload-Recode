@@ -2,33 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:edamame_boild"
-    },
-    {
-      "item": "tofucraft:edamame_boild"
-    },
-    {
-      "item": "tofucraft:edamame_boild"
-    },
-    {
-      "item": "tofucraft:edamame_boild"
-    },
-    {
-      "item": "tofucraft:edamame_boild"
-    },
-    {
-      "item": "tofucraft:edamame_boild"
-    },
-    {
-      "item": "tofucraft:edamame_boild"
-    },
-    {
-      "item": "tofucraft:edamame_boild"
-    },
-    {
-      "item": "minecraft:sugar"
-    }
+    "tofucraft:edamame_boild",
+    "tofucraft:edamame_boild",
+    "tofucraft:edamame_boild",
+    "tofucraft:edamame_boild",
+    "tofucraft:edamame_boild",
+    "tofucraft:edamame_boild",
+    "tofucraft:edamame_boild",
+    "tofucraft:edamame_boild",
+    "minecraft:sugar"
   ],
   "result": {
     "count": 4,

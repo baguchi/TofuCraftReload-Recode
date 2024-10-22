@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:cooked_tofufish"
-    }
+    "tofucraft:cooked_tofufish"
   ],
   "result": {
     "count": 1,

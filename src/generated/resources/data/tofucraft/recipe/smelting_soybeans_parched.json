@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "tofucraft:seeds_soybeans"
-  },
+  "ingredient": "tofucraft:seeds_soybeans",
   "result": {
     "count": 1,
     "id": "tofucraft:soybeans_parched"

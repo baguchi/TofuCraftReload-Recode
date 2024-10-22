@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:onigiri"
-    },
-    {
-      "item": "minecraft:cooked_beef"
-    }
+    "tofucraft:onigiri",
+    "minecraft:cooked_beef"
   ],
   "result": {
     "count": 1,

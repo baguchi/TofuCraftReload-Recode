@@ -2,30 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:tofuhell"
-    },
-    {
-      "item": "minecraft:cooked_cod"
-    },
-    {
-      "item": "minecraft:carrot"
-    },
-    {
-      "item": "minecraft:beetroot"
-    },
-    {
-      "item": "minecraft:bowl"
-    },
-    {
-      "item": "tofucraft:doubanjiang"
-    },
-    {
-      "item": "tofucraft:chili"
-    },
-    {
-      "item": "tofucraft:chili"
-    }
+    "tofucraft:tofuhell",
+    "minecraft:cooked_cod",
+    "minecraft:carrot",
+    "minecraft:beetroot",
+    "minecraft:bowl",
+    "tofucraft:doubanjiang",
+    "tofucraft:chili",
+    "tofucraft:chili"
   ],
   "result": {
     "count": 1,

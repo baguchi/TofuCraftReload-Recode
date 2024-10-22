@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "G": {
-      "item": "tofucraft:tofugem"
-    },
-    "M": {
-      "item": "tofucraft:tofumetal"
-    },
-    "R": {
-      "item": "minecraft:redstone"
-    }
+    "G": "tofucraft:tofugem",
+    "M": "tofucraft:tofumetal",
+    "R": "minecraft:redstone"
   },
   "pattern": [
     " M ",

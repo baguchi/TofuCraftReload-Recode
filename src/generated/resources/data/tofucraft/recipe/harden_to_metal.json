@@ -1,7 +1,5 @@
 {
   "type": "tofucraft:harder",
   "result": "tofucraft:blocktofumetal",
-  "tofu": {
-    "item": "tofucraft:blocktofuishi"
-  }
+  "tofu": "tofucraft:blocktofuishi"
 }

@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "C": {
-      "item": "tofucraft:tf_circuit"
-    },
-    "M": {
-      "item": "tofucraft:tofumetal"
-    },
-    "R": {
-      "item": "tofucraft:tf_capacitor"
-    },
-    "T": {
-      "item": "tofucraft:tofugem"
-    }
+    "C": "tofucraft:tf_circuit",
+    "M": "tofucraft:tofumetal",
+    "R": "tofucraft:tf_capacitor",
+    "T": "tofucraft:tofugem"
   },
   "pattern": [
     "MTM",

@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": {
-      "item": "tofucraft:leek_planks"
-    },
-    "S": {
-      "tag": "c:rods/wooden"
-    }
+    "M": "tofucraft:leek_planks",
+    "S": "#c:rods/wooden"
   },
   "pattern": [
     "MSM",

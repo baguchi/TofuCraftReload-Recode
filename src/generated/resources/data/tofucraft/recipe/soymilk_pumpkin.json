@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "c:milk/soy_milk"
-    },
-    {
-      "item": "minecraft:glass_bottle"
-    },
-    {
-      "item": "minecraft:pumpkin"
-    }
+    "#c:milk/soy_milk",
+    "minecraft:glass_bottle",
+    "minecraft:pumpkin"
   ],
   "result": {
     "count": 1,

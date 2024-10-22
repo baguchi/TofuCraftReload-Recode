@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "c:milk/soy_milk"
-    },
-    {
-      "item": "minecraft:glass_bottle"
-    },
-    {
-      "item": "tofucraft:kyoninso"
-    },
-    {
-      "item": "tofucraft:kyoninso"
-    }
+    "#c:milk/soy_milk",
+    "minecraft:glass_bottle",
+    "tofucraft:kyoninso",
+    "tofucraft:kyoninso"
   ],
   "result": {
     "count": 1,

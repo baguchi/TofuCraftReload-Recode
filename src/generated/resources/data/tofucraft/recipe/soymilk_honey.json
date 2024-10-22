@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "c:milk/soy_milk"
-    },
-    {
-      "item": "minecraft:honey_bottle"
-    }
+    "#c:milk/soy_milk",
+    "minecraft:honey_bottle"
   ],
   "result": {
     "count": 1,

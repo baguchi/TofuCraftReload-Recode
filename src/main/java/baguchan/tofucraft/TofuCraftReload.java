@@ -35,7 +35,9 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
+import baguchan.tofucraft.registry.TofuTags;
 import com.google.common.collect.Maps;
+import com.google.common.reflect.Reflection;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
@@ -73,9 +75,9 @@ public class TofuCraftReload {
 		modBus.addListener(this::setup);
 		modBus.addListener(this::setupPackets);
 
+		Reflection.initialize(TofuTags.Items.class);
 
-		TofuFluidTypes.FLUID_TYPES.register(modBus);
-		TofuFluids.FLUIDS.register(modBus);
+
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuItems.ITEMS.register(modBus);
 		TofuItems.ITEMS.addAlias(prefix("sculk_bone_helmet"), prefix("tofu_diamond_helmet"));
@@ -88,6 +90,8 @@ public class TofuCraftReload {
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 		TofuMenus.MENU_TYPES.register(modBus);
 		TofuEffects.MOB_EFFECTS.register(modBus);
+		TofuFluidTypes.FLUID_TYPES.register(modBus);
+		TofuFluids.FLUIDS.register(modBus);
 		modBus.addListener(TofuFluids::registerFluids);
 		TofuCreativeModeTabs.CREATIVE_MODE_TABS.register(modBus);
 		TofuRecipes.RECIPE_TYPES.register(modBus);

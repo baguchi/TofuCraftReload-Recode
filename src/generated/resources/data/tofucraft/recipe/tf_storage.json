@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "C": {
-      "item": "tofucraft:tf_capacitor"
-    },
-    "G": {
-      "item": "minecraft:glass"
-    },
-    "T": {
-      "item": "tofucraft:blocktofumetal"
-    }
+    "C": "tofucraft:tf_capacitor",
+    "G": "minecraft:glass",
+    "T": "tofucraft:blocktofumetal"
   },
   "pattern": [
     "CCC",

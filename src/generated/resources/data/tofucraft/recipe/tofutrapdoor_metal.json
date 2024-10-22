@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "P": {
-      "item": "tofucraft:tofumetal"
-    }
+    "P": "tofucraft:tofumetal"
   },
   "pattern": [
     "PPP",

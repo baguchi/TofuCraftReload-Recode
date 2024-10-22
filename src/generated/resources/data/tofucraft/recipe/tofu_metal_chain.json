@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "M": {
-      "item": "tofucraft:tofumetal"
-    }
+    "M": "tofucraft:tofumetal"
   },
   "pattern": [
     "M",

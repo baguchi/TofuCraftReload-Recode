@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "P": {
-      "item": "tofucraft:tofustem_planks"
-    }
+    "P": "tofucraft:tofustem_planks"
   },
   "pattern": [
     "PP",

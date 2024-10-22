@@ -2,21 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "c:eggs"
-    },
-    {
-      "item": "tofucraft:gelatin"
-    },
-    {
-      "item": "minecraft:milk_bucket"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "tofucraft:glassbowl"
-    }
+    "#c:eggs",
+    "tofucraft:gelatin",
+    "minecraft:milk_bucket",
+    "minecraft:sugar",
+    "tofucraft:glassbowl"
   ],
   "result": {
     "count": 1,

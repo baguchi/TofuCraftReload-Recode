@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:tofudiamond"
-    }
+    "tofucraft:tofudiamond"
   ],
   "result": {
     "count": 9,

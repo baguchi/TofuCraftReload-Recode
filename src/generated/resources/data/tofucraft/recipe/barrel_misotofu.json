@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "tag": "c:barrels/wooden"
-    },
-    "M": {
-      "item": "tofucraft:miso"
-    },
-    "T": {
-      "item": "tofucraft:tofumomen"
-    }
+    "B": "#c:barrels/wooden",
+    "M": "tofucraft:miso",
+    "T": "tofucraft:tofumomen"
   },
   "pattern": [
     "MMM",

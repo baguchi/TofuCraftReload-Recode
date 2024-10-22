@@ -3,9 +3,7 @@
   "category": "food",
   "cookingtime": 100,
   "experience": 0.1,
-  "ingredient": {
-    "item": "tofucraft:edamame"
-  },
+  "ingredient": "tofucraft:edamame",
   "result": {
     "count": 1,
     "id": "tofucraft:edamame_boild"

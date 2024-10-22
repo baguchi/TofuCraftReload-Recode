@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": {
-      "item": "tofucraft:leek_green_planks"
-    }
+    "M": "tofucraft:leek_green_planks"
   },
   "pattern": [
     "M  ",

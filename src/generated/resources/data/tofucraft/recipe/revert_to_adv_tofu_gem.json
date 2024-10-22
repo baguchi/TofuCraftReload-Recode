@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:adv_tofu_gem_block"
-    }
+    "tofucraft:adv_tofu_gem_block"
   ],
   "result": {
     "count": 9,

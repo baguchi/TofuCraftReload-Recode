@@ -1,24 +1,7 @@
 package baguchan.tofucraft.registry;
 
-import baguchan.tofucraft.TofuCraftReload;
-import net.minecraft.Util;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.equipment.ArmorMaterial;
-import net.minecraft.world.item.equipment.ArmorType;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.EnumMap;
-import java.util.List;
-import java.util.function.Supplier;
-
-public class TofuArmorMaterial {
-	public static final ArmorMaterial KINU = new ArmorMaterial(
+public interface TofuArmorMaterial {
+	/*ArmorMaterial KINU = new ArmorMaterial(
 			1,
 			Util.make(new EnumMap<>(ArmorType.class), p_323384_ -> {
 				p_323384_.put(ArmorType.BOOTS, 0);
@@ -33,7 +16,7 @@ public class TofuArmorMaterial {
 			0.0F,
 			TofuTags.Items.TOFU_TOOL_MATERIAL,
 			ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "kinu"));
-	public static final ArmorMaterial MOMEN = new ArmorMaterial(
+	ArmorMaterial MOMEN = new ArmorMaterial(
 			1,
 			Util.make(new EnumMap<>(ArmorType.class), p_323384_ -> {
 				p_323384_.put(ArmorType.BOOTS, 0);
@@ -48,25 +31,26 @@ public class TofuArmorMaterial {
 			0.0F,
 			TofuTags.Items.TOFU_TOOL_MATERIAL,
 			ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "momen"));
-	public static final ArmorMaterial METAL = new ArmorMaterial(14, Util.make(new EnumMap<>(ArmorType.class), p_323378_ -> {
+	ArmorMaterial METAL = new ArmorMaterial(14, Util.make(new EnumMap<>(ArmorType.class), p_323378_ -> {
 		p_323378_.put(ArmorType.BOOTS, 2);
 		p_323378_.put(ArmorType.LEGGINGS, 5);
 		p_323378_.put(ArmorType.CHESTPLATE, 6);
 		p_323378_.put(ArmorType.HELMET, 2);
 		p_323378_.put(ArmorType.BODY, 6);
 	}), 11, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, TofuTags.Items.TOFU_METAL_TOOL_MATERIAL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "metal"));
-	public static final ArmorMaterial SOLID = new ArmorMaterial(10, Util.make(new EnumMap<>(ArmorType.class), p_323383_ -> {
+	ArmorMaterial SOLID = new ArmorMaterial(10, Util.make(new EnumMap<>(ArmorType.class), p_323383_ -> {
 		p_323383_.put(ArmorType.BOOTS, 1);
 		p_323383_.put(ArmorType.LEGGINGS, 3);
 		p_323383_.put(ArmorType.CHESTPLATE, 5);
 		p_323383_.put(ArmorType.HELMET, 2);
 		p_323383_.put(ArmorType.BODY, 5);
 	}), 9, SoundEvents.ARMOR_EQUIP_GOLD, 0.0F, 0.0F, TofuTags.Items.TOFU_SOLID_TOOL_MATERIAL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "solid"));
-	public static final ArmorMaterial DIAMOND = new ArmorMaterial(38, Util.make(new EnumMap<>(ArmorType.class), p_323379_ -> {
+	ArmorMaterial DIAMOND = new ArmorMaterial(38, Util.make(new EnumMap<>(ArmorType.class), p_323379_ -> {
 		p_323379_.put(ArmorType.BOOTS, 4);
 		p_323379_.put(ArmorType.LEGGINGS, 6);
 		p_323379_.put(ArmorType.CHESTPLATE, 8);
 		p_323379_.put(ArmorType.HELMET, 4);
 		p_323379_.put(ArmorType.BODY, 18);
 	}), 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.5F, 0.05F, TofuTags.Items.TOFU_DIAMOND_TOOL_MATERIAL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "diamond"));
+	*/
 }

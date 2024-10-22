@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "tofucraft:blocktofumetal"
-    },
-    "P": {
-      "tag": "minecraft:planks"
-    }
+    "#": "tofucraft:blocktofumetal",
+    "P": "#minecraft:planks"
   },
   "pattern": [
     "##",

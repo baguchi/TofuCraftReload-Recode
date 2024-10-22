@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "tofucraft:mincedpotato"
-    },
-    {
-      "item": "tofucraft:filtercloth"
-    }
+    "tofucraft:mincedpotato",
+    "tofucraft:filtercloth"
   ],
   "result": {
     "count": 1,
