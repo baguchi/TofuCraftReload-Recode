@@ -78,7 +78,7 @@ public class HardenRecipe implements Recipe<EmptyRecipeInput> {
 
 	@Override
 	public PlacementInfo placementInfo() {
-		return null;
+		return PlacementInfo.NOT_PLACEABLE;
 	}
 
 	@Override

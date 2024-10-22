@@ -7,7 +7,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.level.ItemLike;
@@ -298,7 +297,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.YUBA);
 
 		singleTex(TofuItems.ZUNDA);
-		emmisiveTex(TofuItems.ZUNDAMA);
+		singleTex(TofuItems.ZUNDAMA);
 		singleTex(TofuItems.ZUNDARUBY);
 
 		singleTex(TofuItems.TOFU_HAMBURG_RAW);
@@ -399,8 +398,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTexTool(TofuItems.NETHER_FUKUMAME);
 		singleTexTool(TofuItems.INFERNO_NETHER_FUKUMAME);
 		singleTexTool(TofuItems.SOUL_FUKUMAME);
-		glowBowItem(TofuItems.ZUNDA_BOW);
-		emmisiveTex(TofuItems.ZUNDA_ARROW);
+		bowItem(TofuItems.ZUNDA_BOW);
+		singleTex(TofuItems.ZUNDA_ARROW);
 		singleTexRodTool(TofuItems.ZUNDAMUSHROOM_ON_A_STICK);
 
 		singleTex(TofuItems.KINAKO_BREAD);
@@ -689,7 +688,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 	}
 
 	//Thanks Twilight Forest Team! https://github.com/TeamTwilight/twilightforest/blob/1.20.x/src/main/java/twilightforest/data/ItemModelGenerator.java#L827C23-L837
-	private void trimmedArmor(Supplier<ArmorItem> armor, ArmorType type) {
+	private void trimmedArmor(Supplier<Item> armor, ArmorType type) {
 		ItemModelBuilder base = this.singleTex(armor);
 		for (ItemModelGenerators.TrimModelData trim : ItemModelGenerators.GENERATED_TRIM_MODELS) {
 			String material = trim.name();

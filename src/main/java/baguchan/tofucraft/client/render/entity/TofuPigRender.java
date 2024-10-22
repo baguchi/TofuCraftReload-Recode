@@ -32,6 +32,7 @@ public class TofuPigRender extends MobRenderer<TofuPig, TofuPigRenderState, PigM
 	public void extractRenderState(TofuPig p_362733_, TofuPigRenderState p_360515_, float p_361157_) {
 		super.extractRenderState(p_362733_, p_360515_, p_361157_);
 		p_360515_.type = p_362733_.getTofuPigType();
+		p_360515_.isSaddled = p_362733_.isSaddled();
 	}
 
 	@Override

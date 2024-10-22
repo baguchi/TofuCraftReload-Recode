@@ -2,18 +2,18 @@ package baguchan.tofucraft.item.tool;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
 import baguchan.tofucraft.registry.TofuEnchantments;
+import baguchan.tofucraft.registry.TofuToolMaterials;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class TofuSwordItem extends SwordItem implements IEnergyInsertable {
-	public TofuSwordItem(ToolMaterial tofuItemTier, float p_362481_, float p_364182_, Properties properties) {
-		super(tofuItemTier, p_362481_, p_364182_, properties);
+	public TofuSwordItem(TofuToolMaterials.TofuToolMaterial tofuItemTier, float p_362481_, float p_364182_, Properties properties) {
+		super(tofuItemTier.applySwordProperties(properties, p_362481_, p_364182_));
 	}
 
 	@Override

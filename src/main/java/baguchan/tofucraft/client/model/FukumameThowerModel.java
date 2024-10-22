@@ -3,9 +3,8 @@ package baguchan.tofucraft.client.model;// Made with Blockbench 4.7.4
 // Paste this class into your mod and generate all required imports
 
 import baguchan.tofucraft.client.render.state.FukumameThowerRenderState;
-import baguchan.tofucraft.entity.FukumameThower;
-import net.minecraft.client.model.AbstractPiglinModel;
 import net.minecraft.client.model.AnimationUtils;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -18,9 +17,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.monster.piglin.PiglinArmPose;
 
-public class FukumameThowerModel extends AbstractPiglinModel<FukumameThowerRenderState> {
+public class FukumameThowerModel extends HumanoidModel<FukumameThowerRenderState> {
 
 	public final ModelPart fukumame;
+	public final ModelPart rightEar = this.head.getChild("right_ear");
+	public final ModelPart leftEar = this.head.getChild("left_ear");
 	public FukumameThowerModel(ModelPart root) {
 		super(root);
 		this.fukumame = root.getChild("body").getChild("bone2").getChild("fukumame");
@@ -33,7 +34,6 @@ public class FukumameThowerModel extends AbstractPiglinModel<FukumameThowerRende
 		partdefinition.addOrReplaceChild("cloak", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 
-		partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
 
 		PartDefinition right_arm = partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(52, 34).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-5.0F, 2.0F, 0.0F));
 
@@ -47,7 +47,9 @@ public class FukumameThowerModel extends AbstractPiglinModel<FukumameThowerRende
 				.texOffs(32, 22).addBox(-2.0F, -4.0F, -5.0F, 4.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
 				.texOffs(0, 3).addBox(2.0F, -2.0F, -5.0F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.0F))
 				.texOffs(0, 0).addBox(-3.0F, -2.0F, -5.0F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
-
+		head.addOrReplaceChild(
+				"hat", CubeListBuilder.create(), PartPose.ZERO
+		);
 		PartDefinition right_ear = head.addOrReplaceChild("right_ear", CubeListBuilder.create().texOffs(36, 0).addBox(-1.0F, 0.0F, -2.0F, 1.0F, 5.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.5F, -6.0F, 0.0F, 0.0F, 0.0F, 0.6109F));
 
 		PartDefinition left_ear = head.addOrReplaceChild("left_ear", CubeListBuilder.create().texOffs(28, 60).addBox(0.0F, 0.0F, -2.0F, 1.0F, 5.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.5F, -6.0F, 0.0F, 0.0F, 0.0F, -0.6109F));
@@ -75,21 +77,28 @@ public class FukumameThowerModel extends AbstractPiglinModel<FukumameThowerRende
 	@Override
 	public void setupAnim(FukumameThowerRenderState entity) {
 		super.setupAnim(entity);
-		float f = (float) (Math.PI / 6);
-		float f1 = entity.attackTime;
+		float f = entity.walkAnimationPos;
+		float f1 = entity.walkAnimationSpeed;
+		float f2 = (float) (Math.PI / 6);
+		float f3 = entity.ageInTicks * 0.1F + f * 0.5F;
+		float f4 = 0.08F + f1 * 0.4F;
+		this.leftEar.zRot = (float) (-Math.PI / 6) - Mth.cos(f3 * 1.2F) * f4;
+		this.rightEar.zRot = (float) (Math.PI / 6) + Mth.cos(f3) * f4;
+		float f5 = (float) (Math.PI / 6);
+		float f6 = entity.attackTime;
 		PiglinArmPose piglinarmpose = entity.armPose;
 		if (piglinarmpose == PiglinArmPose.DANCING) {
-			float f2 = entity.ageInTicks / 60.0F;
-			this.rightEar.zRot = (float) (Math.PI / 6) + (float) (Math.PI / 180.0) * Mth.sin(f2 * 30.0F) * 10.0F;
-			this.leftEar.zRot = (float) (-Math.PI / 6) - (float) (Math.PI / 180.0) * Mth.cos(f2 * 30.0F) * 10.0F;
-			this.head.x = this.head.x + Mth.sin(f2 * 10.0F);
-			this.head.y = this.head.y + Mth.sin(f2 * 40.0F) + 0.4F;
-			this.rightArm.zRot = (float) (Math.PI / 180.0) * (70.0F + Mth.cos(f2 * 40.0F) * 10.0F);
+			float f7 = entity.ageInTicks / 60.0F;
+			this.rightEar.zRot = (float) (Math.PI / 6) + (float) (Math.PI / 180.0) * Mth.sin(f7 * 30.0F) * 10.0F;
+			this.leftEar.zRot = (float) (-Math.PI / 6) - (float) (Math.PI / 180.0) * Mth.cos(f7 * 30.0F) * 10.0F;
+			this.head.x = this.head.x + Mth.sin(f7 * 10.0F);
+			this.head.y = this.head.y + Mth.sin(f7 * 40.0F) + 0.4F;
+			this.rightArm.zRot = (float) (Math.PI / 180.0) * (70.0F + Mth.cos(f7 * 40.0F) * 10.0F);
 			this.leftArm.zRot = this.rightArm.zRot * -1.0F;
-			this.rightArm.y = this.rightArm.y + (Mth.sin(f2 * 40.0F) * 0.5F - 0.5F);
-			this.leftArm.y = this.leftArm.y + Mth.sin(f2 * 40.0F) * 0.5F + 0.5F;
-			this.body.y = this.body.y + Mth.sin(f2 * 40.0F) * 0.35F;
-		} else if (piglinarmpose == PiglinArmPose.ATTACKING_WITH_MELEE_WEAPON && f1 == 0.0F) {
+			this.rightArm.y = this.rightArm.y + (Mth.sin(f7 * 40.0F) * 0.5F - 0.5F);
+			this.leftArm.y = this.leftArm.y + Mth.sin(f7 * 40.0F) * 0.5F + 0.5F;
+			this.body.y = this.body.y + Mth.sin(f7 * 40.0F) * 0.35F;
+		} else if (piglinarmpose == PiglinArmPose.ATTACKING_WITH_MELEE_WEAPON && f6 == 0.0F) {
 			this.holdWeaponHigh(entity);
 		} else if (piglinarmpose == PiglinArmPose.CROSSBOW_HOLD) {
 			AnimationUtils.animateCrossbowHold(this.rightArm, this.leftArm, this.head, entity.mainArm == HumanoidArm.RIGHT);
@@ -119,13 +128,6 @@ public class FukumameThowerModel extends AbstractPiglinModel<FukumameThowerRende
 			this.fukumame.y = 0F - ((entity.getFukumameCount - 64F) / 64F) * 5F;
 		}
 		this.fukumame.visible = entity.getFukumameCount > 0;
-
-
-		this.leftPants.copyFrom(this.leftLeg);
-		this.rightPants.copyFrom(this.rightLeg);
-		this.leftSleeve.copyFrom(this.leftArm);
-		this.rightSleeve.copyFrom(this.rightArm);
-		this.jacket.copyFrom(this.body);
 		this.hat.copyFrom(this.head);
 	}
 
@@ -145,15 +147,5 @@ public class FukumameThowerModel extends AbstractPiglinModel<FukumameThowerRende
 		} else {
 			this.rightArm.xRot = -1.8F;
 		}
-	}
-
-	@Override
-	public void setAllVisible(boolean p_361670_) {
-		super.setAllVisible(p_361670_);
-		this.leftSleeve.visible = p_361670_;
-		this.rightSleeve.visible = p_361670_;
-		this.leftPants.visible = p_361670_;
-		this.rightPants.visible = p_361670_;
-		this.jacket.visible = p_361670_;
 	}
 }

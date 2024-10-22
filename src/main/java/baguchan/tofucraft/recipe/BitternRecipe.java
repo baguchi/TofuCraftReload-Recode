@@ -84,7 +84,7 @@ public class BitternRecipe implements Recipe<RecipeInput> {
 
 	@Override
 	public PlacementInfo placementInfo() {
-		return null;
+		return PlacementInfo.NOT_PLACEABLE;
 	}
 
 	@Override

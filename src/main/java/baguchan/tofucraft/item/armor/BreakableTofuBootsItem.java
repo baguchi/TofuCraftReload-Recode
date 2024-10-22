@@ -1,8 +1,8 @@
 package baguchan.tofucraft.item.armor;
 
+import baguchan.tofucraft.registry.TofuArmorMaterials;
 import baguchan.tofucraft.registry.TofuDataComponents;
 import com.google.common.base.Suppliers;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 public class BreakableTofuBootsItem extends BreakableTofuArmorItem {
 	private final Supplier<ItemAttributeModifiers> defaultModifiers;
 
-	public BreakableTofuBootsItem(net.minecraft.world.item.equipment.ArmorMaterial tofuArmorMaterial, ArmorType type, float reduceFallDamage, Properties properties) {
+	public BreakableTofuBootsItem(TofuArmorMaterials.TofuArmorMaterial tofuArmorMaterial, ArmorType type, float reduceFallDamage, Properties properties) {
 		super(tofuArmorMaterial, type, properties);
 		this.defaultModifiers = Suppliers.memoize(
 				() -> {

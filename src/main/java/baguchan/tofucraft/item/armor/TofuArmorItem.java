@@ -1,18 +1,18 @@
 package baguchan.tofucraft.item.armor;
 
 import baguchan.tofucraft.api.tfenergy.IEnergyInsertable;
-import net.minecraft.core.Holder;
+import baguchan.tofucraft.registry.TofuArmorMaterials;
 import net.minecraft.util.Mth;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.ArmorType;
 
-public class TofuArmorItem extends ArmorItem implements IEnergyInsertable {
+public class TofuArmorItem extends Item implements IEnergyInsertable {
 	public static final String TAG_TF = "tf_energy";
 	public static final String TAG_TFMAX = "tf_energymax";
 
-	public TofuArmorItem(net.minecraft.world.item.equipment.ArmorMaterial tofuArmorMaterial, ArmorType type, Properties properties) {
-		super(tofuArmorMaterial, type, properties);
+	public TofuArmorItem(TofuArmorMaterials.TofuArmorMaterial tofuArmorMaterial, ArmorType type, Properties properties) {
+		super(tofuArmorMaterial.humanoidProperties(properties, type));
 	}
 
 	@Override
