@@ -1,22 +1,16 @@
 package baguchan.tofucraft.inventory;
 
-import baguchan.tofucraft.inventory.slot.TFOvenResultSlot;
 import baguchan.tofucraft.registry.TofuMenus;
 import net.minecraft.recipebook.ServerPlaceRecipe;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.entity.player.StackedItemContents;
-import baguchan.tofucraft.inventory.TFOvenMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.FurnaceFuelSlot;
 import net.minecraft.world.inventory.FurnaceResultSlot;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.SimpleContainerData;
@@ -65,8 +59,8 @@ public class TFOvenMenu extends RecipeBookMenu {
 		super(TofuMenus.TF_OVEN.get(), p_38963_);
 		this.recipeType = RecipeType.SMELTING;
 		this.recipeBookType = RecipeBookType.FURNACE;
-		checkContainerSize(p_379971_, 3);
-		checkContainerDataCount(p_379737_, 4);
+		checkContainerSize(p_379971_, 2);
+		checkContainerDataCount(p_379737_, 3);
 		this.container = p_379971_;
 		this.data = p_379737_;
 		this.level = p_38964_.player.level();

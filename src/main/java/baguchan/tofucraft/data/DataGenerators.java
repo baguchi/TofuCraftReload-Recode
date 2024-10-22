@@ -12,6 +12,7 @@ import baguchan.tofucraft.data.generator.ItemTagGenerator;
 import baguchan.tofucraft.data.generator.RegistryDataGenerator;
 import baguchan.tofucraft.data.generator.TofuAdvancementGenerator;
 import baguchan.tofucraft.data.generator.TofuDataMapsProvider;
+import baguchan.tofucraft.data.generator.TofuEquipmentModelProvider;
 import baguchan.tofucraft.data.generator.recipe.CraftingGenerator;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -40,6 +41,7 @@ public class DataGenerators {
 		generator.addProvider(event.includeServer(), datapackProvider);
 		generator.addProvider(event.includeClient(), new BlockstateGenerator(packOutput, existingFileHelper));
 		generator.addProvider(event.includeClient(), new ItemModelGenerator(packOutput, existingFileHelper));
+		generator.addProvider(event.includeClient(), new TofuEquipmentModelProvider(packOutput));
 		BlockTagsProvider blocktags = new BlockTagGenerator(packOutput, lookupProvider, existingFileHelper);
 		generator.addProvider(event.includeServer(), blocktags);
 		generator.addProvider(event.includeServer(), new ItemTagGenerator(packOutput, lookupProvider, blocktags.contentsGetter(), existingFileHelper));
