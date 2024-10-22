@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "tofucraft:momen"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "tofucraft:momen"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "tofucraft:metal"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "tofucraft:metal"
+      }
+    ]
+  }
+}
