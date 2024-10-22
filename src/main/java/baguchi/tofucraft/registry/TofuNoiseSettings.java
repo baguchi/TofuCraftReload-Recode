@@ -1,0 +1,12 @@
+package baguchi.tofucraft.registry;
+
+import baguchi.tofucraft.TofuCraftReload;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+
+public class TofuNoiseSettings {
+	public static final ResourceKey<NoiseGeneratorSettings> TOFU_WORLD = ResourceKey.create(Registries.NOISE_SETTINGS, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world_noise"));
+
+}

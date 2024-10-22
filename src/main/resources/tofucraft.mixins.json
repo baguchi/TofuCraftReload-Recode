@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "baguchan.tofucraft.mixin",
+  "package": "baguchi.tofucraft.mixin",
   "compatibilityLevel": "JAVA_21",
   "refmap": "tofucraft.refmap.json",
   "mixins": [
