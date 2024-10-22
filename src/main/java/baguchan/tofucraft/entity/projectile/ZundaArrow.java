@@ -30,7 +30,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 
 public class ZundaArrow extends AbstractArrow {
@@ -55,7 +54,7 @@ public class ZundaArrow extends AbstractArrow {
 
 	public void tick() {
 		super.tick();
-		if (this.level().isClientSide && !this.inGround) {
+		if (this.level().isClientSide && !this.isInGround()) {
 			this.level().addParticle(TofuParticleTypes.ZUNDA_CLOUD.get(), this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
 		}
 

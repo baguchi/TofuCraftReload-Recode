@@ -1,16 +1,9 @@
 package baguchan.tofucraft.registry;
 
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.ToolMaterial;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.common.SimpleTier;
 
-import java.util.function.Supplier;
-
-public class TofuItemTier {
+public class TofuToolMaterials {
 	public static final ToolMaterial KINU = new ToolMaterial(BlockTags.INCORRECT_FOR_WOODEN_TOOL, 1, 0.1F, 0.0F, 2, TofuTags.Items.TOFU_TOOL_MATERIAL);
 	public static final ToolMaterial MOMEN = new ToolMaterial(BlockTags.INCORRECT_FOR_WOODEN_TOOL, 1, 0.25F, 0.25F, 5, TofuTags.Items.TOFU_TOOL_MATERIAL);
 	public static final ToolMaterial SOLID = new ToolMaterial(BlockTags.INCORRECT_FOR_STONE_TOOL, 126, 5.0F, 1.0F, 12, TofuTags.Items.TOFU_SOLID_TOOL_MATERIAL);

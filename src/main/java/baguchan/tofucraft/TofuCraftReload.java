@@ -10,7 +10,6 @@ import baguchan.tofucraft.network.SoyMilkDrinkedPacket;
 import baguchan.tofucraft.network.TFStorageSoymilkPacket;
 import baguchan.tofucraft.registry.ModInteractionInformations;
 import baguchan.tofucraft.registry.TofuAdvancements;
-import baguchan.tofucraft.registry.TofuArmorMaterial;
 import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBiomeSources;
 import baguchan.tofucraft.registry.TofuBiomes;
@@ -74,6 +73,9 @@ public class TofuCraftReload {
 		modBus.addListener(this::setup);
 		modBus.addListener(this::setupPackets);
 
+
+		TofuFluidTypes.FLUID_TYPES.register(modBus);
+		TofuFluids.FLUIDS.register(modBus);
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuItems.ITEMS.register(modBus);
 		TofuItems.ITEMS.addAlias(prefix("sculk_bone_helmet"), prefix("tofu_diamond_helmet"));
@@ -86,8 +88,6 @@ public class TofuCraftReload {
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 		TofuMenus.MENU_TYPES.register(modBus);
 		TofuEffects.MOB_EFFECTS.register(modBus);
-		TofuFluidTypes.FLUID_TYPES.register(modBus);
-		TofuFluids.FLUIDS.register(modBus);
 		modBus.addListener(TofuFluids::registerFluids);
 		TofuCreativeModeTabs.CREATIVE_MODE_TABS.register(modBus);
 		TofuRecipes.RECIPE_TYPES.register(modBus);

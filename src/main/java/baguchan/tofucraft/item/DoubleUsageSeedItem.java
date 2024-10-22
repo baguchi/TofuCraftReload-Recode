@@ -13,24 +13,28 @@ import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 import javax.annotation.Nullable;
+import java.util.function.Supplier;
 
 public class DoubleUsageSeedItem extends BlockItem {
-	private final Block sprouts;
+	private final Supplier<Block> sprouts;
+	private final Supplier<Block> block;
 
-	public DoubleUsageSeedItem(Block p_220226_, Block sprouts, Properties p_220227_) {
-		super(p_220226_, p_220227_);
+	public DoubleUsageSeedItem(Supplier<Block> blockSupplier, Supplier<Block> sprouts, Properties p_220227_) {
+		super(Blocks.AIR, p_220227_);
 		this.sprouts = sprouts;
+		this.block = blockSupplier;
 	}
 
 	@Override
 	public InteractionResult place(BlockPlaceContext context) {
-		if (!this.getBlock().isEnabled(context.getLevel().enabledFeatures())) {
+		if (!this.block.get().isEnabled(context.getLevel().enabledFeatures())) {
 			return super.place(context);
 		} else if (!context.canPlace()) {
 			return super.place(context);
@@ -106,7 +110,12 @@ public class DoubleUsageSeedItem extends BlockItem {
 		}
 	}
 
+	@Override
+	public Block getBlock() {
+		return this.block.get();
+	}
+
 	public Block getSprouts() {
-		return sprouts;
+		return sprouts.get();
 	}
 }

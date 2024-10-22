@@ -75,7 +75,7 @@ public class TofuMusicManager {
 		if (music != null) {
 			if (currentMusic != null) {
 				if (fade == null) {
-					if (!music.getEvent().value().getLocation().equals(currentMusic.getLocation()) && music.replaceCurrentMusic()) {
+					if (!music.getEvent().value().location().equals(currentMusic.getLocation()) && music.replaceCurrentMusic()) {
 						minecraft.getSoundManager().stop(currentMusic); // Non-copy, cancels vanilla music if Tofu music starts
 						nextSongDelay = Mth.nextInt(random, 0, music.getMinDelay() / 2);
 					}
