@@ -55,7 +55,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BannerPatternItem;
 import net.minecraft.world.item.BoatItem;
@@ -92,14 +91,14 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFUMETAL = ITEMS.registerItem("tofumetal", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TOFUDIAMOND = ITEMS.registerItem("tofudiamond", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TOFUDIAMOND_NUGGET = ITEMS.registerItem("tofudiamondnugget", (properties) -> new Item((properties)));
-	public static final DeferredHolder<Item, Item> TOFUHELL = ITEMS.registerItem("tofuhell", (properties) -> new Item((properties).food(TofuFoods.TOFUHELL)));
-	public static final DeferredHolder<Item, Item> TOFUSOUL = ITEMS.registerItem("tofusoul", (properties) -> new Item((properties).food(TofuFoods.TOFUSOUL)));
+	public static final DeferredHolder<Item, Item> TOFUHELL = ITEMS.registerItem("tofuhell", (properties) -> new Item((properties).food(TofuFoods.TOFUHELL, TofuConsumables.HELL_FOOD)));
+	public static final DeferredHolder<Item, Item> TOFUSOUL = ITEMS.registerItem("tofusoul", (properties) -> new Item((properties).food(TofuFoods.TOFUSOUL, TofuConsumables.SOUL_FOOD)));
 	public static final DeferredHolder<Item, Item> TOFUGRILLED = ITEMS.registerItem("tofugrilled", (properties) -> new Item((properties).food(TofuFoods.TOFUGRILLED)));
 	public static final DeferredHolder<Item, Item> TOFUZUNDA = ITEMS.registerItem("tofuzunda", (properties) -> new Item((properties).food(TofuFoods.TOFUZUNDA)));
 	public static final DeferredHolder<Item, Item> TOFUMISO = ITEMS.registerItem("tofumiso", (properties) -> new Item((properties).food(TofuFoods.TOFUMISO)));
 	public static final DeferredHolder<Item, Item> TOFUDRIED = ITEMS.registerItem("tofudried", (properties) -> new Item((properties).food(TofuFoods.TOFUDRIED)));
 	public static final DeferredHolder<Item, Item> TOFUSMOKE = ITEMS.registerItem("smoketofu", (properties) -> new Item((properties).food(TofuFoods.TOFUSMOKE)));
-	public static final DeferredHolder<Item, Item> SHUDOFU = ITEMS.registerItem("shudofu", (properties) -> new Item((properties).food(TofuFoods.SHUDOFU)));
+	public static final DeferredHolder<Item, Item> SHUDOFU = ITEMS.registerItem("shudofu", (properties) -> new Item((properties).food(TofuFoods.SHUDOFU, TofuConsumables.COUGH)));
 
 	public static final DeferredHolder<Item, Item> TOFUSESAME = ITEMS.registerItem("tofusesame", (properties) -> new Item((properties).food(TofuFoods.TOFUSESAME)));
 	public static final DeferredHolder<Item, Item> TOFUFRIED = ITEMS.registerItem("tofufried", (properties) -> new Item((properties).food(TofuFoods.TOFUFRIED)));
@@ -129,9 +128,9 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> MINCEDPOTATO = ITEMS.registerItem("mincedpotato", (properties) -> new Item((properties)));
 
 	public static final DeferredHolder<Item, Item> SEEDS_CHILI = ITEMS.registerItem("seeds_chili", (properties) -> new DeferredBlockItem(TofuBlocks.CHILI_CROP, (properties)));
-	public static final DeferredHolder<Item, Item> CHILI = ITEMS.registerItem("chili", (properties) -> new ChiliItem((properties).food(TofuFoods.CHILI)));
+	public static final DeferredHolder<Item, Item> CHILI = ITEMS.registerItem("chili", (properties) -> new ChiliItem((properties).food(TofuFoods.CHILI, TofuConsumables.COUGH)));
 	public static final DeferredHolder<Item, Item> DOUBANJIANG = ITEMS.registerItem("doubanjiang", (properties) -> new Item((properties)));
-	public static final DeferredHolder<Item, Item> MABODOFU = ITEMS.registerItem("mabodofu", (properties) -> new DishItem((properties).food(TofuFoods.MABODOFU).stacksTo(16)));
+	public static final DeferredHolder<Item, Item> MABODOFU = ITEMS.registerItem("mabodofu", (properties) -> new DishItem((properties).food(TofuFoods.MABODOFU, TofuConsumables.CHILI_FOOD).stacksTo(16)));
 
 	public static final DeferredHolder<Item, Item> FUKUMENI = ITEMS.registerItem("fukumeni", (properties) -> new Item((properties).food(TofuFoods.FUKUMENI)));
 	public static final DeferredHolder<Item, Item> KOYADOFUSTEW = ITEMS.registerItem("koyadofustew", (properties) -> new DishItem((properties).food(TofuFoods.KOYADOFUSTEW).stacksTo(16)));
@@ -141,12 +140,12 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> MISO = ITEMS.registerItem("miso", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> BOTTLE_SOYSAUSE = ITEMS.registerItem("bottle_soysause", (properties) -> new Item((properties).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16)));
-	public static final DeferredHolder<Item, Item> NANBAN = ITEMS.registerItem("nanban", (properties) -> new DishItem((properties).food(TofuFoods.NANBAN).stacksTo(16)));
-	public static final DeferredHolder<Item, Item> NANBANTOFU = ITEMS.registerItem("nanbantofu", (properties) -> new DishItem((properties).food(TofuFoods.NANBANTOFU).stacksTo(16)));
+	public static final DeferredHolder<Item, Item> NANBAN = ITEMS.registerItem("nanban", (properties) -> new DishItem((properties).food(TofuFoods.NANBAN, TofuConsumables.CHILI_FOOD).stacksTo(16)));
+	public static final DeferredHolder<Item, Item> NANBANTOFU = ITEMS.registerItem("nanbantofu", (properties) -> new DishItem((properties).food(TofuFoods.NANBANTOFU, TofuConsumables.CHILI_FOOD).stacksTo(16)));
 
 	public static final DeferredHolder<Item, Item> SOY_CHEESE = ITEMS.registerItem("soy_cheese", (properties) -> new Item((properties).food(TofuFoods.SOY_CHEESE)));
-	public static final DeferredHolder<Item, Item> SOY_NETHER_CHEESE = ITEMS.registerItem("soy_nether_cheese", (properties) -> new Item((properties).food(TofuFoods.SOY_NETHER_CHEESE)));
-	public static final DeferredHolder<Item, Item> SOY_SOUL_CHEESE = ITEMS.registerItem("soy_soul_cheese", (properties) -> new Item((properties).food(TofuFoods.SOY_SOUL_CHEESE)));
+	public static final DeferredHolder<Item, Item> SOY_NETHER_CHEESE = ITEMS.registerItem("soy_nether_cheese", (properties) -> new Item((properties).food(TofuFoods.SOY_NETHER_CHEESE, TofuConsumables.HELL_FOOD)));
+	public static final DeferredHolder<Item, Item> SOY_SOUL_CHEESE = ITEMS.registerItem("soy_soul_cheese", (properties) -> new Item((properties).food(TofuFoods.SOY_SOUL_CHEESE, TofuConsumables.SOUL_FOOD)));
 
 	public static final DeferredHolder<Item, Item> YUDOFU = ITEMS.registerItem("yudofu", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.YUDOFU)));
 	public static final DeferredHolder<Item, Item> EDAMAME_RICE = ITEMS.registerItem("edamame_rice", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.EDAMAME_RICE)));
@@ -187,18 +186,18 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_HAMBURG = ITEMS.registerItem("tofuhamburg", (properties) -> new Item((properties).food(TofuFoods.TOFU_HAMBURG)));
 	public static final DeferredHolder<Item, Item> RAW_TOFU_FISH = ITEMS.registerItem("raw_tofufish", (properties) -> new Item((properties).food(TofuFoods.RAW_TOFUFISH)));
 	public static final DeferredHolder<Item, Item> COOKED_TOFU_FISH = ITEMS.registerItem("cooked_tofufish", (properties) -> new Item((properties).food(TofuFoods.COOKED_TOFUFISH)));
-	public static final DeferredHolder<Item, Item> MISODENGAKU = ITEMS.registerItem("misodengaku", (properties) -> new DishItem((properties).food(TofuFoods.MISODENGAKU)));
-	public static final DeferredHolder<Item, Item> MISO_CHEESE_DENGAKU = ITEMS.registerItem("miso_cheese_dengaku", (properties) -> new DishItem((properties).food(TofuFoods.MISO_CHEESE_DENGAKU)));
+	public static final DeferredHolder<Item, Item> MISODENGAKU = ITEMS.registerItem("misodengaku", (properties) -> new DishItem((properties).food(TofuFoods.MISODENGAKU, TofuConsumables.MISO_FOOD)));
+	public static final DeferredHolder<Item, Item> MISO_CHEESE_DENGAKU = ITEMS.registerItem("miso_cheese_dengaku", (properties) -> new DishItem((properties).food(TofuFoods.MISO_CHEESE_DENGAKU, TofuConsumables.MISO_FOOD)));
 	public static final DeferredHolder<Item, Item> TOFUCOOKIE = ITEMS.registerItem("tofucookie", (properties) -> new Item((properties).food(TofuFoods.TOFUCOOKIE)));
 	public static final DeferredHolder<Item, Item> TTTBURGER = ITEMS.registerItem("tttburger", (properties) -> new Item((properties).food(TofuFoods.TTTBURGER)));
 	public static final DeferredHolder<Item, Item> MEAT_WRAPPED_YUBA = ITEMS.registerItem("meatwrapped_yuba", (properties) -> new Item((properties).food(TofuFoods.MEAT_WRAPPED_YUBA)));
 	public static final DeferredHolder<Item, Item> SOYMEAT = ITEMS.registerItem("soymeat", (properties) -> new Item((properties).food(TofuFoods.SOYMEAT)));
 
 	public static final DeferredHolder<Item, Item> SOYSTICK = ITEMS.registerItem("soystick", (properties) -> new Item((properties).food(TofuFoods.SOYSTICK)));
-	public static final DeferredHolder<Item, Item> MISOSOUP = ITEMS.registerItem("misosoup", (properties) -> new DishItem((properties).food(TofuFoods.MISOSOUP).stacksTo(16)));
+	public static final DeferredHolder<Item, Item> MISOSOUP = ITEMS.registerItem("misosoup", (properties) -> new DishItem((properties).food(TofuFoods.MISOSOUP, TofuConsumables.MISO_FOOD).stacksTo(16)));
 	public static final DeferredHolder<Item, Item> MOYASHIITAME = ITEMS.registerItem("moyashiitame", (properties) -> new DishItem((properties).food(TofuFoods.MOYASHIITAME).stacksTo(16)));
 	public static final DeferredHolder<Item, Item> MOYASHIOHITASHI = ITEMS.registerItem("moyashiohitashi", (properties) -> new DishItem((properties).food(TofuFoods.MOYASHIOHITASHI).stacksTo(16)));
-	public static final DeferredHolder<Item, Item> SALTYMELON = ITEMS.registerItem("saltymelon", (properties) -> new SaltFoodItem((properties).food(TofuFoods.SALTYMELON)));
+	public static final DeferredHolder<Item, Item> SALTYMELON = ITEMS.registerItem("saltymelon", (properties) -> new SaltFoodItem((properties).food(TofuFoods.SALTYMELON, TofuConsumables.SMALL_SALT_FOOD)));
 
 	public static final DeferredHolder<Item, Item> SOYMILK = ITEMS.registerItem("soymilk", (properties) -> new SoymilkBottleItem(MobEffects.REGENERATION, MobEffects.HEALTH_BOOST, (properties).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final DeferredHolder<Item, Item> SOYMILK_ANNIN = ITEMS.registerItem("soymilk_annin", (properties) -> new SoymilkBottleItem(MobEffects.HEALTH_BOOST, MobEffects.ABSORPTION, (properties).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
@@ -218,12 +217,12 @@ public class TofuItems {
 
 
 	public static final DeferredHolder<Item, Item> KINAKO_MANJU = ITEMS.registerItem("kinakomanju", (properties) -> new Item((properties).food(TofuFoods.KINAKO_MANJU)));
-	public static final DeferredHolder<Item, Item> ZUNDA_MANJU = ITEMS.registerItem("zundamanju", (properties) -> new Item((properties).food(TofuFoods.ZUNDA_MANJU)));
-	public static final DeferredHolder<Item, Item> NETHER_MANJU = ITEMS.registerItem("nethermanju", (properties) -> new Item((properties).food(TofuFoods.NETHER_MANJU)));
-	public static final DeferredHolder<Item, Item> SOUL_MANJU = ITEMS.registerItem("soulmanju", (properties) -> new Item((properties).food(TofuFoods.SOUL_MANJU)));
-	public static final DeferredHolder<Item, Item> ZUNDA_MOCHI = ITEMS.registerItem("zunda_mochi", (properties) -> new Item((properties).food(TofuFoods.ZUNDA_MOCHI)));
+	public static final DeferredHolder<Item, Item> ZUNDA_MANJU = ITEMS.registerItem("zundamanju", (properties) -> new Item((properties).food(TofuFoods.ZUNDA_MANJU, TofuConsumables.SOY_FOOD)));
+	public static final DeferredHolder<Item, Item> NETHER_MANJU = ITEMS.registerItem("nethermanju", (properties) -> new Item((properties).food(TofuFoods.NETHER_MANJU, TofuConsumables.HELL_FOOD)));
+	public static final DeferredHolder<Item, Item> SOUL_MANJU = ITEMS.registerItem("soulmanju", (properties) -> new Item((properties).food(TofuFoods.SOUL_MANJU, TofuConsumables.SOUL_FOOD)));
+	public static final DeferredHolder<Item, Item> ZUNDA_MOCHI = ITEMS.registerItem("zunda_mochi", (properties) -> new Item((properties).food(TofuFoods.ZUNDA_MOCHI, TofuConsumables.SOY_FOOD)));
 	public static final DeferredHolder<Item, Item> KINAKO_MOCHI = ITEMS.registerItem("kinako_mochi", (properties) -> new Item((properties).food(TofuFoods.KINAKO_MOCHI)));
-	public static final DeferredHolder<Item, Item> CRIMSON_SOUP = ITEMS.registerItem("crimson_soup", (properties) -> new DishItem((properties).food(TofuFoods.CRIMSON_SOUP).stacksTo(16)));
+	public static final DeferredHolder<Item, Item> CRIMSON_SOUP = ITEMS.registerItem("crimson_soup", (properties) -> new DishItem((properties).food(TofuFoods.CRIMSON_SOUP, TofuConsumables.CRIMSON_SOUP).stacksTo(16)));
 
 
 	public static final DeferredHolder<Item, Item> ONIGIRI = ITEMS.registerItem("onigiri", (properties) -> new Item((properties).food(TofuFoods.ONIGIRI)));
@@ -237,17 +236,17 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> SOBOROTOFUSAUTE = ITEMS.registerItem("soborotofusaute", (properties) -> new DishItem((properties).stacksTo(16).food(TofuFoods.SOBOROTOFUSAUTE)));
 
-	public static final DeferredHolder<Item, Item> YAKIONIGIRI_MISO = ITEMS.registerItem("yakionigiri_miso", (properties) -> new Item((properties).food(TofuFoods.YAKIONIGIRI_MISO)));
+	public static final DeferredHolder<Item, Item> YAKIONIGIRI_MISO = ITEMS.registerItem("yakionigiri_miso", (properties) -> new Item((properties).food(TofuFoods.YAKIONIGIRI_MISO, TofuConsumables.MISO_FOOD)));
 	public static final DeferredHolder<Item, Item> YAKIONIGIRI_SHOYU = ITEMS.registerItem("yakionigiri_shoyu", (properties) -> new Item((properties).food(TofuFoods.YAKIONIGIRI_SHOYU)));
 	public static final DeferredHolder<Item, Item> RICE_BURGER = ITEMS.registerItem("riceburger", (properties) -> new Item((properties).food(TofuFoods.RICE_BURGER)));
 	public static final DeferredHolder<Item, Item> RICE_NATTO = ITEMS.registerItem("ricenatto", (properties) -> new NourishmentItem((properties).food(TofuFoods.RICE_NATTO)));
 	public static final DeferredHolder<Item, Item> RICE_NATTO_LEEK = ITEMS.registerItem("ricenattoleek", (properties) -> new NourishmentItem((properties).food(TofuFoods.RICE_NATTOLEEK)));
-	public static final DeferredHolder<Item, Item> RICE_NETHER_NATTO = ITEMS.registerItem("rice_nether_natto", (properties) -> new NourishmentItem((properties).food(TofuFoods.RICE_NETHER_NATTO)));
-	public static final DeferredHolder<Item, Item> RICE_NETHER_NATTO_LEEK = ITEMS.registerItem("rice_nether_natto_leek", (properties) -> new NourishmentItem((properties).food(TofuFoods.RICE_NETHER_NATTO_LEEK)));
+	public static final DeferredHolder<Item, Item> RICE_NETHER_NATTO = ITEMS.registerItem("rice_nether_natto", (properties) -> new NourishmentItem((properties).food(TofuFoods.RICE_NETHER_NATTO, TofuConsumables.HELL_FOOD)));
+	public static final DeferredHolder<Item, Item> RICE_NETHER_NATTO_LEEK = ITEMS.registerItem("rice_nether_natto_leek", (properties) -> new NourishmentItem((properties).food(TofuFoods.RICE_NETHER_NATTO_LEEK, TofuConsumables.HELL_FOOD)));
 
 	public static final DeferredHolder<Item, Item> RICE_TOFU = ITEMS.registerItem("ricetofu", (properties) -> new Item((properties).food(TofuFoods.RICE_TOFU)));
 	public static final DeferredHolder<Item, Item> RICE_SOBORO_TOFU = ITEMS.registerItem("ricesoborotofu", (properties) -> new Item((properties).food(TofuFoods.RICE_SOBORO_TOFU)));
-	public static final DeferredHolder<Item, Item> GOHEIMOCHI = ITEMS.registerItem("goheimochi", (properties) -> new DishItem((properties).food(TofuFoods.GOHEIMOCHI)));
+	public static final DeferredHolder<Item, Item> GOHEIMOCHI = ITEMS.registerItem("goheimochi", (properties) -> new DishItem((properties).food(TofuFoods.GOHEIMOCHI, TofuConsumables.MISO_FOOD)));
 
 
 	public static final DeferredHolder<Item, Item> SOY_CHOCOLATE = ITEMS.registerItem("soy_chocolate", (properties) -> new Item((properties).food(TofuFoods.SOY_CHOCOLATE)));
@@ -387,9 +386,9 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> BOTTLE_SOYOIL = ITEMS.registerItem("bottle_soyoil", (properties) -> new Item((properties).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final DeferredHolder<Item, Item> SOYSAUSE_RAMEN = ITEMS.registerItem("soysause_ramen", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SOYSAUSE_RAMEN)));
 
-	public static final DeferredHolder<Item, Item> HELL_MABOU = ITEMS.registerItem("hell_mabou", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.HELL_MABOU)));
-	public static final DeferredHolder<Item, Item> RED_SOUP = ITEMS.registerItem("red_soup", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.RED_SOUP)));
-	public static final DeferredHolder<Item, Item> HELL_RED_SOUP = ITEMS.registerItem("hell_red_soup", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.HELL_RED_SOUP)));
+	public static final DeferredHolder<Item, Item> HELL_MABOU = ITEMS.registerItem("hell_mabou", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.HELL_MABOU, TofuConsumables.HELL_CHILI_FOOD)));
+	public static final DeferredHolder<Item, Item> RED_SOUP = ITEMS.registerItem("red_soup", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.RED_SOUP, TofuConsumables.HELL_CHILI_FOOD)));
+	public static final DeferredHolder<Item, Item> HELL_RED_SOUP = ITEMS.registerItem("hell_red_soup", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.HELL_RED_SOUP, TofuConsumables.HELL_CHILI_FOOD)));
 
 	public static final DeferredHolder<Item, Item> SUKIYAKI = ITEMS.registerItem("sukiyaki", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.SUKIYAKI)));
 	public static final DeferredHolder<Item, Item> TOFU_BUNS_BURGER = ITEMS.registerItem("tofu_buns_burger", (properties) -> new Item((properties).food(TofuFoods.TOFU_BUNS_BURGER)));
@@ -406,13 +405,13 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFUNIAN_BANNER_PATTERN = ITEMS.registerItem("tofunian_banner_pattern", (properties) -> new BannerPatternItem(CustomTagGenerator.BannerPatternTagGenerator.TOFUNIAN_BANNER_PATTERN, properties.stacksTo(1).rarity(Rarity.RARE)));
 
-	public static final DeferredHolder<Item, Item> LEEK_BOAT = ITEMS.registerItem("leek_boat", (properties) -> new BoatItem(EntityType.ACACIA_BOAT, properties.stacksTo(1)));
-	public static final DeferredHolder<Item, Item> LEEK_GREEN_BOAT = ITEMS.registerItem("leek_green_boat", (properties) -> new BoatItem(EntityType.ACACIA_BOAT, properties.stacksTo(1)));
-	public static final DeferredHolder<Item, Item> TOFU_STEM_BOAT = ITEMS.registerItem("tofu_stem_boat", (properties) -> new BoatItem(EntityType.ACACIA_BOAT, properties.stacksTo(1)));
+	public static final DeferredHolder<Item, Item> LEEK_BOAT = ITEMS.registerItem("leek_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_BOAT.get(), properties.stacksTo(1)));
+	public static final DeferredHolder<Item, Item> LEEK_GREEN_BOAT = ITEMS.registerItem("leek_green_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_GREEN_BOAT.get(), properties.stacksTo(1)));
+	public static final DeferredHolder<Item, Item> TOFU_STEM_BOAT = ITEMS.registerItem("tofu_stem_boat", (properties) -> new BoatItem(TofuEntityTypes.TOFU_STEM_BOAT.get(), properties.stacksTo(1)));
 
-	public static final DeferredHolder<Item, Item> LEEK_CHEST_BOAT = ITEMS.registerItem("leek_chest_boat", (properties) -> new BoatItem(EntityType.ACACIA_CHEST_BOAT, properties.stacksTo(1)));
-	public static final DeferredHolder<Item, Item> LEEK_GREEN_CHEST_BOAT = ITEMS.registerItem("leek_green_chest_boat", (properties) -> new BoatItem(EntityType.ACACIA_CHEST_BOAT, properties.stacksTo(1)));
-	public static final DeferredHolder<Item, Item> TOFU_STEM_CHEST_BOAT = ITEMS.registerItem("tofu_stem_chest_boat", (properties) -> new BoatItem(EntityType.ACACIA_CHEST_BOAT, properties.stacksTo(1)));
+	public static final DeferredHolder<Item, Item> LEEK_CHEST_BOAT = ITEMS.registerItem("leek_chest_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_CHEST_BOAT.get(), properties.stacksTo(1)));
+	public static final DeferredHolder<Item, Item> LEEK_GREEN_CHEST_BOAT = ITEMS.registerItem("leek_green_chest_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_GREEN_BOAT.get(), properties.stacksTo(1)));
+	public static final DeferredHolder<Item, Item> TOFU_STEM_CHEST_BOAT = ITEMS.registerItem("tofu_stem_chest_boat", (properties) -> new BoatItem(TofuEntityTypes.TOFU_STEM_CHEST_BOAT.get(), properties.stacksTo(1)));
 	public static final DeferredHolder<Item, Item> TOFU_KEY = ITEMS.registerItem("tofu_key", (properties) -> new Item(properties));
 	public static final DeferredHolder<Item, Item> MUSIC_DISC_GREEN_BRANCH = ITEMS.registerItem("music_disc_green_branch", (properties) -> new Item(properties.jukeboxPlayable(TofuJukeboxSongs.GREEN_BRANCH)));
 

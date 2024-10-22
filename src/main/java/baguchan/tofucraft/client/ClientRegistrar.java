@@ -62,18 +62,17 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -372,7 +371,12 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.FALLING_TOFU.get(), FallingTofuRenderer::new);
 		event.registerEntityRenderer(TofuEntityTypes.FUKUMAME_THOWER.get(), FukumameThowerRenderer::new);
 		event.registerEntityRenderer(TofuEntityTypes.ZUNDAMITE.get(), ZundamiteRender::new);
-
+		event.registerEntityRenderer(TofuEntityTypes.LEEK_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.LEEK_BOAT));
+		event.registerEntityRenderer(TofuEntityTypes.LEEK_GREEN_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.LEEK_GREEN_BOAT));
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_STEM_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.TOFU_STEM_BOAT));
+		event.registerEntityRenderer(TofuEntityTypes.LEEK_CHEST_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.LEEK_CHEST_BOAT));
+		event.registerEntityRenderer(TofuEntityTypes.LEEK_GREEN_CHEST_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.LEEK_GREEN_CHEST_BOAT));
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_STEM_CHEST_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.TOFU_STEM_CHEST_BOAT));
 
 
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUBED.get(), TofuBedRenderer::new);
@@ -392,6 +396,12 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.FUKUMAME_THOWER, FukumameThowerModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.SOYBALL, SoyBallModel::createBodyLayer);
+		event.registerLayerDefinition(TofuModelLayers.TOFU_STEM_BOAT, BoatModel::createBoatModel);
+		event.registerLayerDefinition(TofuModelLayers.LEEK_BOAT, BoatModel::createBoatModel);
+		event.registerLayerDefinition(TofuModelLayers.LEEK_GREEN_BOAT, BoatModel::createBoatModel);
+		event.registerLayerDefinition(TofuModelLayers.TOFU_STEM_CHEST_BOAT, BoatModel::createChestBoatModel);
+		event.registerLayerDefinition(TofuModelLayers.LEEK_CHEST_BOAT, BoatModel::createChestBoatModel);
+		event.registerLayerDefinition(TofuModelLayers.LEEK_GREEN_CHEST_BOAT, BoatModel::createChestBoatModel);
 	}
 
 	@SubscribeEvent

@@ -35,6 +35,9 @@ import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.ChestBoat;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -112,6 +115,69 @@ public class TofuEntityTypes {
 			.sized(3.5F, 2.9F).eyeHeight(2.0F).clientTrackingRange(10).fireImmune().build(prefix("shudofuspider")));
 
 	public static final Supplier<EntityType<FukumameThower>> FUKUMAME_THOWER = ENTITIES.register("fukumame_thower", () -> EntityType.Builder.of(FukumameThower::new, MobCategory.MONSTER).sized(0.6F, 1.85F).clientTrackingRange(8).build(prefix("fukumame_thower")));
+
+	public static final Supplier<EntityType<Boat>> LEEK_BOAT = ENTITIES.register(
+			"leek_boat",
+			() ->
+					EntityType.Builder.of(boatFactory(TofuItems.LEEK_BOAT), MobCategory.MISC)
+							.noLootTable()
+							.sized(1.375F, 0.5625F)
+							.eyeHeight(0.5625F)
+							.clientTrackingRange(10).build(prefix("leek_boat"))
+	);
+	public static final Supplier<EntityType<ChestBoat>> LEEK_CHEST_BOAT = ENTITIES.register(
+			"leek_chest_boat",
+			() ->
+					EntityType.Builder.of(chestBoatFactory(TofuItems.LEEK_CHEST_BOAT), MobCategory.MISC)
+							.noLootTable()
+							.sized(1.375F, 0.5625F)
+							.eyeHeight(0.5625F)
+							.clientTrackingRange(10).build(prefix("leek_chest_boat"))
+	);
+	public static final Supplier<EntityType<Boat>> LEEK_GREEN_BOAT = ENTITIES.register(
+			"leek_green_boat",
+			() ->
+					EntityType.Builder.of(boatFactory(TofuItems.LEEK_GREEN_BOAT), MobCategory.MISC)
+							.noLootTable()
+							.sized(1.375F, 0.5625F)
+							.eyeHeight(0.5625F)
+							.clientTrackingRange(10).build(prefix("leek_green_boat"))
+	);
+	public static final Supplier<EntityType<ChestBoat>> LEEK_GREEN_CHEST_BOAT = ENTITIES.register(
+			"leek_green_chest_boat",
+			() ->
+					EntityType.Builder.of(chestBoatFactory(TofuItems.LEEK_GREEN_CHEST_BOAT), MobCategory.MISC)
+							.noLootTable()
+							.sized(1.375F, 0.5625F)
+							.eyeHeight(0.5625F)
+							.clientTrackingRange(10).build(prefix("leek_green_chest_boat"))
+	);
+	public static final Supplier<EntityType<Boat>> TOFU_STEM_BOAT = ENTITIES.register(
+			"tofu_stem_boat",
+			() ->
+					EntityType.Builder.of(boatFactory(TofuItems.TOFU_STEM_BOAT), MobCategory.MISC)
+							.noLootTable()
+							.sized(1.375F, 0.5625F)
+							.eyeHeight(0.5625F)
+							.clientTrackingRange(10).build(prefix("tofu_stem_boat"))
+	);
+	public static final Supplier<EntityType<ChestBoat>> TOFU_STEM_CHEST_BOAT = ENTITIES.register(
+			"tofu_stem_chest_boat",
+			() ->
+					EntityType.Builder.of(chestBoatFactory(TofuItems.TOFU_STEM_CHEST_BOAT), MobCategory.MISC)
+							.noLootTable()
+							.sized(1.375F, 0.5625F)
+							.eyeHeight(0.5625F)
+							.clientTrackingRange(10).build(prefix("tofu_stem_chest_boat"))
+	);
+
+	private static EntityType.EntityFactory<Boat> boatFactory(Supplier<Item> p_376580_) {
+		return (p_375558_, p_375559_) -> new Boat(p_375558_, p_375559_, p_376580_);
+	}
+
+	private static EntityType.EntityFactory<ChestBoat> chestBoatFactory(Supplier<Item> p_376578_) {
+		return (p_375555_, p_375556_) -> new ChestBoat(p_375555_, p_375556_, p_376578_);
+	}
 
 	public static final SpawnPlacementType IN_DOUBANJIANG = (p_325672_, p_325673_, p_325674_) -> {
 		if (p_325674_ != null && p_325672_.getWorldBorder().isWithinBounds(p_325673_)) {
