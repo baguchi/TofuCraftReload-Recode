@@ -112,6 +112,25 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		this.tag(ItemTags.SHOVELS).add(TofuItems.TOFU_DIAMOND_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get())
 				.add(TofuItems.TOFU_DIAMOND_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get());
 
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_HELMET.get()).add(TofuItems.TOFU_MOMEN_HELMET.get())
+				.add(TofuItems.TOFU_METAL_HELMET.get()).add(TofuItems.TOFU_DIAMOND_HELMET.get());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_CHESTPLATE.get()).add(TofuItems.TOFU_MOMEN_CHESTPLATE.get())
+				.add(TofuItems.TOFU_METAL_CHESTPLATE.get()).add(TofuItems.TOFU_DIAMOND_CHESTPLATE.get());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_LEGGINGS.get()).add(TofuItems.TOFU_MOMEN_LEGGINGS.get())
+				.add(TofuItems.TOFU_METAL_LEGGINGS.get()).add(TofuItems.TOFU_DIAMOND_LEGGINGS.get());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_BOOTS.get()).add(TofuItems.TOFU_MOMEN_BOOTS.get())
+				.add(TofuItems.TOFU_METAL_BOOTS.get()).add(TofuItems.TOFU_DIAMOND_BOOTS.get());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_SWORD.get()).add(TofuItems.TOFU_MOMEN_SWORD.get())
+				.add(TofuItems.TOFU_METAL_SWORD.get()).add(TofuItems.TOFU_DIAMOND_SWORD.get());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_AXE.get()).add(TofuItems.TOFU_MOMEN_AXE.get())
+				.add(TofuItems.TOFU_METAL_AXE.get()).add(TofuItems.TOFU_DIAMOND_AXE.get());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_DIAMOND_PICKAXE.get()).add(TofuItems.TOFU_DIAMOND_PICKAXE.get())
+				.add(TofuItems.TOFU_DIAMOND_PICKAXE.get()).add(TofuItems.TOFU_DIAMOND_PICKAXE.get());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_DIAMOND_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get())
+				.add(TofuItems.TOFU_DIAMOND_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.ZUNDA_BOW.get());
+
+
 		this.tag(ItemTags.MEAT).add(TofuItems.TOFUKINU.get()).add(TofuItems.TOFUMOMEN.get()).add(TofuItems.SOYMEAT.get());
 		this.tag(ItemTags.CHICKEN_FOOD).add(TofuItems.SEEDS_RICE.get(), TofuItems.SOYBEAN_PARCHED.get());
 		this.tag(ItemTags.COW_FOOD).add(TofuItems.RICE.get());

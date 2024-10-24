@@ -24,6 +24,7 @@ import baguchan.tofucraft.item.RollingPinItem;
 import baguchan.tofucraft.item.SaltFoodItem;
 import baguchan.tofucraft.item.SeedAndRootItem;
 import baguchan.tofucraft.item.SoulFukumameItem;
+import baguchan.tofucraft.item.SoyBallItem;
 import baguchan.tofucraft.item.SoymilkBottleItem;
 import baguchan.tofucraft.item.SpecialBitternItem;
 import baguchan.tofucraft.item.TFBatteryItem;
@@ -185,6 +186,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> KYONINSO = ITEMS.register("kyoninso", () -> new Item((new Item.Properties())));
 
 	public static final DeferredHolder<Item, Item> YUBA = ITEMS.register("yuba", () -> new Item((new Item.Properties()).food(TofuFoods.YUBA)));
+	public static final DeferredHolder<Item, Item> SOYBALL = ITEMS.register("soyball", () -> new SoyBallItem(((new Item.Properties()))));
 	public static final DeferredHolder<Item, Item> ZUNDA = ITEMS.register("zunda", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> ZUNDAMA = ITEMS.register("zundama", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> ZUNDARUBY = ITEMS.register("zundaruby", () -> new Item((new Item.Properties())));
@@ -334,10 +336,10 @@ public class TofuItems {
 	public static final DeferredHolder<Item, ArmorItem> TOFU_METAL_LEGGINGS = ITEMS.register("tofu_metal_leggings", () -> new TofuArmorItem(TofuArmorMaterial.METAL, ArmorItem.Type.LEGGINGS, (new Item.Properties().stacksTo(1).durability(ArmorItem.Type.LEGGINGS.getDurability(14)))));
 	public static final DeferredHolder<Item, ArmorItem> TOFU_METAL_BOOTS = ITEMS.register("tofu_metal_boots", () -> new TofuArmorItem(TofuArmorMaterial.METAL, ArmorItem.Type.BOOTS, (new Item.Properties().stacksTo(1).durability(ArmorItem.Type.BOOTS.getDurability(14)))));
 
-	public static final DeferredHolder<Item, ArmorItem> TOFU_DIAMOND_HELMET = ITEMS.register("tofu_diamond_helmet", () -> new TofuArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.HELMET, (new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(ArmorItem.Type.HELMET.getDurability(38)))));
-	public static final DeferredHolder<Item, ArmorItem> TOFU_DIAMOND_CHESTPLATE = ITEMS.register("tofu_diamond_chestplate", () -> new TofuArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.CHESTPLATE, (new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(ArmorItem.Type.CHESTPLATE.getDurability(38)))));
-	public static final DeferredHolder<Item, ArmorItem> TOFU_DIAMOND_LEGGINGS = ITEMS.register("tofu_diamond_leggings", () -> new TofuArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.LEGGINGS, (new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(ArmorItem.Type.LEGGINGS.getDurability(38)))));
-	public static final DeferredHolder<Item, ArmorItem> TOFU_DIAMOND_BOOTS = ITEMS.register("tofu_diamond_boots", () -> new TofuArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.BOOTS, (new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(ArmorItem.Type.BOOTS.getDurability(38)))));
+	public static final DeferredHolder<Item, ArmorItem> TOFU_DIAMOND_HELMET = ITEMS.register("tofu_diamond_helmet", () -> new TofuArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.HELMET, (new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(ArmorItem.Type.HELMET.getDurability(34)))));
+	public static final DeferredHolder<Item, ArmorItem> TOFU_DIAMOND_CHESTPLATE = ITEMS.register("tofu_diamond_chestplate", () -> new TofuArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.CHESTPLATE, (new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(ArmorItem.Type.CHESTPLATE.getDurability(34)))));
+	public static final DeferredHolder<Item, ArmorItem> TOFU_DIAMOND_LEGGINGS = ITEMS.register("tofu_diamond_leggings", () -> new TofuArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.LEGGINGS, (new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(ArmorItem.Type.LEGGINGS.getDurability(34)))));
+	public static final DeferredHolder<Item, ArmorItem> TOFU_DIAMOND_BOOTS = ITEMS.register("tofu_diamond_boots", () -> new TofuArmorItem(TofuArmorMaterial.DIAMOND, ArmorItem.Type.BOOTS, (new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(ArmorItem.Type.BOOTS.getDurability(34)))));
 
 	public static final DeferredHolder<Item, Item> TOFU_SHIELD = ITEMS.register("tofu_shield", () -> new TofuShieldItem((new Item.Properties()).stacksTo(1).durability(420)));
 	public static final DeferredHolder<Item, Item> REFLECT_TOFU_SHIELD = ITEMS.register("reflect_tofu_shield", () -> new ReflectTofuShieldItem((new Item.Properties()).stacksTo(1).durability(460)));
