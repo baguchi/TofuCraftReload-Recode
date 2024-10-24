@@ -179,6 +179,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> KYONINSO = ITEMS.registerItem("kyoninso", (properties) -> new Item((properties)));
 
 	public static final DeferredHolder<Item, Item> YUBA = ITEMS.registerItem("yuba", (properties) -> new Item((properties).food(TofuFoods.YUBA)));
+	public static final DeferredHolder<Item, Item> SOYBALL = ITEMS.registerItem("soyball", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> ZUNDA = ITEMS.registerItem("zunda", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> ZUNDAMA = ITEMS.registerItem("zundama", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> ZUNDARUBY = ITEMS.registerItem("zundaruby", (properties) -> new Item((properties)));

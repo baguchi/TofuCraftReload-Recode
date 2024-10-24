@@ -67,7 +67,7 @@ public interface TofuArmorMaterials {
 		p_323383_.put(ArmorType.HELMET, 2);
 		p_323383_.put(ArmorType.BODY, 5);
 	}), 9, SoundEvents.ARMOR_EQUIP_GOLD, 0.0F, 0.0F, TofuItems.TOFUISHI, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "solid"));
-	TofuArmorMaterial DIAMOND = new TofuArmorMaterial(38, Util.make(new EnumMap<>(ArmorType.class), p_323379_ -> {
+	TofuArmorMaterial DIAMOND = new TofuArmorMaterial(34, Util.make(new EnumMap<>(ArmorType.class), p_323379_ -> {
 		p_323379_.put(ArmorType.BOOTS, 4);
 		p_323379_.put(ArmorType.LEGGINGS, 6);
 		p_323379_.put(ArmorType.CHESTPLATE, 8);

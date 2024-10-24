@@ -23,7 +23,7 @@ public interface TofuToolMaterials {
 	TofuToolMaterial MOMEN = new TofuToolMaterial(BlockTags.INCORRECT_FOR_WOODEN_TOOL, 1, 0.25F, 0.25F, 5, TofuItems.TOFUMOMEN);
 	TofuToolMaterial SOLID = new TofuToolMaterial(BlockTags.INCORRECT_FOR_STONE_TOOL, 126, 5.0F, 1.0F, 12, TofuItems.TOFUISHI);
 	TofuToolMaterial METAL = new TofuToolMaterial(BlockTags.INCORRECT_FOR_IRON_TOOL, 245, 6.0F, 2.0F, 16, TofuItems.TOFUMETAL);
-	TofuToolMaterial TOFUDIAMOND = new TofuToolMaterial(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2224, 8.5F, 5.0F, 18, TofuItems.TOFUDIAMOND);
+	TofuToolMaterial TOFUDIAMOND = new TofuToolMaterial(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 1624, 8.5F, 5.0F, 18, TofuItems.TOFUDIAMOND);
 
 	public record TofuToolMaterial(
 			TagKey<Block> incorrectBlocksForDrops, int durability, float speed, float attackDamageBonus,

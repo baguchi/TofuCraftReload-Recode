@@ -53,11 +53,10 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 
 	@Override
 	public boolean hurtServer(ServerLevel serverLevel, DamageSource damageSource, float damage) {
-
 			if (this == parentMob.body) {
-				return this.parentMob.hurtServer(serverLevel, damageSource, damage * 1.2F);
+				return this.parentMob.hurt(this, damageSource, damage * 1.2F);
 			} else {
-				return this.parentMob.hurtServer(serverLevel, damageSource, damage * 0.8F);
+				return this.parentMob.hurt(this, damageSource, damage * 0.8F);
 			}
 
 	}
