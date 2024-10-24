@@ -1,6 +1,6 @@
 package baguchi.tofucraft.item;
 
-import baguchi.tofucraft.item.armor.TofuArmorItem;
+import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -24,7 +24,16 @@ public class SoyBallItem extends Item {
 
 	public static boolean repairTofuArmor(LivingEntity p_371788_, ItemStack stack) {
 		for (ItemStack itemstack : p_371788_.getArmorAndBodyArmorSlots()) {
-			if (itemstack.getItem() instanceof TofuArmorItem && itemstack.isDamaged()) {
+			if (itemstack.is(TofuTags.Items.REPAIRABLE_TOFU) && itemstack.isDamaged()) {
+				stack.shrink(1);
+				p_371788_.playSound(SoundEvents.HONEYCOMB_WAX_ON);
+				itemstack.setDamageValue(itemstack.getDamageValue() - 50);
+				return true;
+			}
+		}
+
+		for (ItemStack itemstack : p_371788_.getHandSlots()) {
+			if (itemstack.is(TofuTags.Items.REPAIRABLE_TOFU) && itemstack.isDamaged()) {
 				stack.shrink(1);
 				p_371788_.playSound(SoundEvents.HONEYCOMB_WAX_ON);
 				itemstack.setDamageValue(itemstack.getDamageValue() - 50);

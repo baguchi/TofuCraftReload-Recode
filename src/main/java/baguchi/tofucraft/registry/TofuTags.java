@@ -81,6 +81,7 @@ public class TofuTags {
 
 		public static final TagKey<Item> TOFU_METAL_TOOL_MATERIAL = tag("tofu_metal_tool_material");
 		public static final TagKey<Item> TOFU_DIAMOND_TOOL_MATERIAL = tag("tofu_diamond_tool_material");
+		public static final TagKey<Item> REPAIRABLE_TOFU = tag("repairable_tofu");
 
 
 		public static final TagKey<Item> TOFU_COW_FOOD = tag("tofu_cow_food");
