@@ -1,7 +1,11 @@
 package baguchi.tofucraft.client;
 
+import baguchi.bagus_lib.animation.BaguAnimationController;
+import baguchi.bagus_lib.client.event.BagusModelEvent;
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.client.animation.definitions.CoughAnimation;
 import baguchi.tofucraft.client.sound.TofuMusicManager;
+import baguchi.tofucraft.registry.TofuAnimations;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
@@ -21,14 +25,11 @@ public class TofuClientEvents {
 	}
 
 
-	/*@SubscribeEvent
+	@SubscribeEvent
 	public static void onAnimateModelEvent(BagusModelEvent.PostAnimate event) {
-		BaguAnimationController controller = AnimationUtil.getAnimationController(event.getEntity());
-		if (event.isSupportedAnimateModel() && controller != null) {
-			rootModel.animateBagu(controller.getAnimationState(TofuAnimations.COUGH), CoughAnimation.COUGH, event.getAgeInTick());
-			if (event.getModel() instanceof HumanoidModel<?> humanoidModel) {
-				humanoidModel.hat.copyFrom(humanoidModel.head);
-			}
+		BaguAnimationController controller = event.getBaguAnimationController();
+		if (controller != null) {
+			event.animate(controller.getAnimationState(TofuAnimations.COUGH), CoughAnimation.COUGH, event.getEntityRenderState().ageInTicks);
 		}
-	}*/
+	}
 }

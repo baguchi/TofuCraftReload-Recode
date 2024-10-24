@@ -47,6 +47,7 @@ public class ShuDofuSpiderRender extends MobRenderer<ShuDofuSpider, ShuDofuSpide
 	@Override
 	public void extractRenderState(ShuDofuSpider p_362733_, ShuDofuSpiderRenderState p_360515_, float p_361157_) {
 		super.extractRenderState(p_362733_, p_360515_, p_361157_);
+		p_360515_.angry = p_362733_.isAngry();
 		p_360515_.attackAnimationState.copyFrom(p_362733_.attackAnimationState);
 		p_360515_.deathAnimationState.copyFrom(p_362733_.deathAnimationState);
 		p_360515_.graspAnimationState.copyFrom(p_362733_.graspAnimationState);

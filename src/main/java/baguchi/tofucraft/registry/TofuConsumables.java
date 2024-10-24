@@ -20,7 +20,7 @@ public class TofuConsumables {
 
 	public static final Consumable COUGH = defaultFood()
 			.onConsume(new ApplyStatusEffectsConsumeEffect(
-					List.of(new MobEffectInstance(TofuEffects.COUGH, 100, 0))
+					List.of(new MobEffectInstance(TofuEffects.COUGH, 600, 0))
 			))
 			.build();
 

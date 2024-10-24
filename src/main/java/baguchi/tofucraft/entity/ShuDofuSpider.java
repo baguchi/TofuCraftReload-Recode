@@ -937,7 +937,8 @@ public class ShuDofuSpider extends Monster {
 		}
 	}
 
-	protected void customServerAiStep() {
+	@Override
+	protected void customServerAiStep(ServerLevel serverLevel) {
 		this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
 	}
 
