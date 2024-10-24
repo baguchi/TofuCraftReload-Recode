@@ -26,9 +26,4 @@ public class BreakableTofuArmorItem extends Item implements IEnergyInsertable {
 		}
 		return 0;
 	}
-
-	@Override
-	public int getMaxDamage(ItemStack stack) {
-		return 1;
-	}
 }
