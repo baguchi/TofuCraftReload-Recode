@@ -1,6 +1,7 @@
 package baguchi.tofucraft.item;
 
 import baguchi.tofucraft.registry.TofuTags;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -8,7 +9,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+
+import java.util.List;
 
 public class SoyBallItem extends Item {
 	public SoyBallItem(Properties properties) {
@@ -42,5 +46,12 @@ public class SoyBallItem extends Item {
 		}
 
 		return false;
+	}
+
+	@Override
+	public void appendHoverText(ItemStack p_43094_, TooltipContext p_339613_, List<Component> p_43096_, TooltipFlag p_43097_) {
+		super.appendHoverText(p_43094_, p_339613_, p_43096_, p_43097_);
+		p_43096_.add(Component.translatable("tooltip.tofucraft.soyball"));
+
 	}
 }
