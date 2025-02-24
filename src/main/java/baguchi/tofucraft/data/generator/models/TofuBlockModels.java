@@ -247,7 +247,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		//createSingleCarpetBlocks(TofuBlocks.YUBA.get());
 		createTrivialCube(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 
-		this.createAxisAlignedPillarBlockCustomModel(TofuBlocks.TOFU_METAL_CHAIN.get(), ModelLocationUtils.getModelLocation(TofuBlocks.TOFU_METAL_CHAIN.get().asItem()));
+		this.createAxisAlignedPillarBlockCustomModel(TofuBlocks.TOFU_METAL_CHAIN.get(), ModelLocationUtils.getModelLocation(TofuBlocks.TOFU_METAL_CHAIN.get()));
 		createLantern(TofuBlocks.TOFU_METAL_LANTERN.get());
 		createLantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
 		createTranslucentCube(TofuBlocks.ZUNDAMA_BLOCK.get());
