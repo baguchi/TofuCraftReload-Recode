@@ -4,16 +4,16 @@ import baguchi.tofucraft.client.render.state.TofuCowRenderState;
 import baguchi.tofucraft.entity.TofuCow;
 import net.minecraft.client.model.CowModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.AgeableMobRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class TofuCowRender extends MobRenderer<TofuCow, TofuCowRenderState, CowModel> {
+public class TofuCowRender extends AgeableMobRenderer<TofuCow, TofuCowRenderState, CowModel> {
 	public TofuCowRender(EntityRendererProvider.Context p_174304_) {
-		super(p_174304_, new CowModel(p_174304_.bakeLayer(ModelLayers.COW)), 0.5F);
+		super(p_174304_, new CowModel(p_174304_.bakeLayer(ModelLayers.COW)), new CowModel(p_174304_.bakeLayer(ModelLayers.COW_BABY)), 0.7F);
 	}
 
 	@Override

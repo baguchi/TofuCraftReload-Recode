@@ -156,79 +156,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createLadder(TofuBlocks.TOFULADDER_ZUNDA.get());
 		createLadder(TofuBlocks.TOFULADDER_HELL.get());
 		createLadder(TofuBlocks.TOFULADDER_SOUL.get());
-		/*this.registerSimpleFlatItemModel(TofuBlocks.TOFUTORCH_KINU.get());
-		this.registerSimpleFlatItemModel(TofuBlocks.TOFUTORCH_MOMEN.get());
-		this.registerSimpleFlatItemModel(TofuBlocks.TOFUTORCH_ISHI.get());
-		this.registerSimpleFlatItemModel(TofuBlocks.TOFUTORCH_METAL.get());
-		this.registerSimpleFlatItemModel(TofuBlocks.TOFUTORCH_GRILLED.get());
-		this.registerSimpleFlatItemModel(TofuBlocks.TOFUTORCH_ZUNDA.get());
-		this.registerSimpleFlatItemModel(TofuBlocks.TOFUTORCH_HELL.get());
-		this.registerSimpleFlatItemModel(TofuBlocks.TOFUTORCH_SOUL.get());
-*/
-		/*stairs(TofuBlocks.TOFUSTAIR_KINU, TofuBlocks.KINUTOFU);
-		stairs(TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.MOMENTOFU);
-		stairs(TofuBlocks.TOFUSTAIR_ISHI, TofuBlocks.ISHITOFU);
-		stairs(TofuBlocks.TOFUSTAIR_METAL, TofuBlocks.METALTOFU);
-		stairsBlock(TofuBlocks.TOFUSTAIR_GRILLED.get(), texture(name(TofuBlocks.MOMENTOFU)), texture(name(TofuBlocks.GRILLEDTOFU) + "_top"), texture(name(TofuBlocks.GRILLEDTOFU) + "_top"));
-		stairs(TofuBlocks.TOFUSTAIR_ZUNDA, TofuBlocks.ZUNDATOFU);
-		stairs(TofuBlocks.TOFUSTAIR_HELL, TofuBlocks.HELLTOFU);
-		stairs(TofuBlocks.TOFUSTAIR_SOUL, TofuBlocks.SOULTOFU);
-		stairs(TofuBlocks.TOFUSTAIR_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
-		stairs(TofuBlocks.TOFUSTAIR_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
-		stairs(TofuBlocks.TOFUSTAIR_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
-		stairs(TofuBlocks.TOFUSTAIR_MISO, TofuBlocks.MISOTOFU);
-		stairs(TofuBlocks.TOFUSTAIR_DRIED, TofuBlocks.DRIEDTOFU);
 
-		slab(TofuBlocks.TOFUSLAB_KINU, TofuBlocks.KINUTOFU);
-		slab(TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.MOMENTOFU);
-		slab(TofuBlocks.TOFUSLAB_ISHI, TofuBlocks.ISHITOFU);
-		slab(TofuBlocks.TOFUSLAB_METAL, TofuBlocks.METALTOFU);
-		slab(TofuBlocks.TOFUSLAB_GRILLED, texture(name(TofuBlocks.MOMENTOFU)), texture(name(TofuBlocks.GRILLEDTOFU) + "_top"), texture(name(TofuBlocks.GRILLEDTOFU) + "_top"));
-		slab(TofuBlocks.TOFUSLAB_ZUNDA, TofuBlocks.ZUNDATOFU);
-		slab(TofuBlocks.TOFUSLAB_HELL, TofuBlocks.HELLTOFU);
-		slab(TofuBlocks.TOFUSLAB_SOUL, TofuBlocks.SOULTOFU);
-		slab(TofuBlocks.TOFUSLAB_ISHIBRICK, TofuBlocks.ISHITOFU_BRICK);
-		slab(TofuBlocks.TOFUSLAB_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
-		slab(TofuBlocks.TOFUSLAB_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
-		slab(TofuBlocks.TOFUSLAB_MISO, TofuBlocks.MISOTOFU);
-		slab(TofuBlocks.TOFUSLAB_DRIED, TofuBlocks.DRIEDTOFU);
-
-		wall(TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
-		wall(TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
-		wall(TofuBlocks.TOFUFENCE_ISHI, TofuBlocks.ISHITOFU);
-		wall(TofuBlocks.TOFUFENCE_METAL, TofuBlocks.METALTOFU);
-		wall(TofuBlocks.TOFUFENCE_HELL, TofuBlocks.HELLTOFU);
-		wall(TofuBlocks.TOFUFENCE_SOUL, TofuBlocks.SOULTOFU);
-		wallBlock(TofuBlocks.TOFUFENCE_GRILLED.get(), texture(name(TofuBlocks.GRILLEDTOFU) + "_top"));
-		wall(TofuBlocks.TOFUFENCE_ZUNDA, TofuBlocks.ZUNDATOFU);
-
-		ancientFormatDoor(TofuBlocks.TOFUDOOR_KINU, "kinu");
-		ancientFormatDoor(TofuBlocks.TOFUDOOR_MOMEN, "momen");
-		ancientFormatDoor(TofuBlocks.TOFUDOOR_ISHI, "ishi");
-		ancientFormatDoor(TofuBlocks.TOFUDOOR_METAL, "metal");
-		ancientFormatDoor(TofuBlocks.TOFUDOOR_HELL, "hell");
-		ancientFormatDoor(TofuBlocks.TOFUDOOR_SOUL, "soul");
-		ancientFormatDoor(TofuBlocks.TOFUDOOR_GRILLED, "grilled");
-		ancientFormatDoor(TofuBlocks.TOFUDOOR_ZUNDA, "zunda");
-
-		trapdoor(TofuBlocks.TOFUTRAPDOOR_KINU);
-		trapdoor(TofuBlocks.TOFUTRAPDOOR_MOMEN);
-		trapdoor(TofuBlocks.TOFUTRAPDOOR_ISHI);
-		trapdoor(TofuBlocks.TOFUTRAPDOOR_METAL);
-		trapdoor(TofuBlocks.TOFUTRAPDOOR_HELL);
-		trapdoor(TofuBlocks.TOFUTRAPDOOR_SOUL);
-		trapdoor(TofuBlocks.TOFUTRAPDOOR_GRILLED);
-		trapdoor(TofuBlocks.TOFUTRAPDOOR_ZUNDA);
-
-		torchBlock(TofuBlocks.TOFUTORCH_KINU, TofuBlocks.WALLTOFUTORCH_KINU);
-		torchBlock(TofuBlocks.TOFUTORCH_MOMEN, TofuBlocks.WALLTOFUTORCH_MOMEN);
-		torchBlock(TofuBlocks.TOFUTORCH_ISHI, TofuBlocks.WALLTOFUTORCH_ISHI);
-		torchBlock(TofuBlocks.TOFUTORCH_METAL, TofuBlocks.WALLTOFUTORCH_METAL);
-		torchBlock(TofuBlocks.TOFUTORCH_GRILLED, TofuBlocks.WALLTOFUTORCH_GRILLED);
-		torchBlock(TofuBlocks.TOFUTORCH_ZUNDA, TofuBlocks.WALLTOFUTORCH_ZUNDA);
-		torchBlock(TofuBlocks.TOFUTORCH_HELL, TofuBlocks.WALLTOFUTORCH_HELL);
-		torchBlock(TofuBlocks.TOFUTORCH_SOUL, TofuBlocks.WALLTOFUTORCH_SOUL);
-*/
 		createTrivialCube(TofuBlocks.TOFU_TERRAIN.get());
 		createGlowCube(TofuBlocks.MABOU_TERRAIN.get());
 		createTrivialCube(TofuBlocks.TOFUSLATE.get());
@@ -319,8 +247,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		//createSingleCarpetBlocks(TofuBlocks.YUBA.get());
 		createTrivialCube(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 
-		this.registerSimpleFlatItemModel(TofuBlocks.TOFU_METAL_CHAIN.get());
-		this.createAxisAlignedPillarBlock(TofuBlocks.TOFU_METAL_CHAIN.get(), CHAIN);
+		this.createAxisAlignedPillarBlockCustomModel(TofuBlocks.TOFU_METAL_CHAIN.get(), ModelLocationUtils.getModelLocation(TofuBlocks.TOFU_METAL_CHAIN.get().asItem()));
 		createLantern(TofuBlocks.TOFU_METAL_LANTERN.get());
 		createLantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
 		createTranslucentCube(TofuBlocks.ZUNDAMA_BLOCK.get());
