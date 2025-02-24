@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "tofucraft:block/tofu_metal_chain"
+    "model": "tofucraft:item/tofu_metal_chain"
   }
 }
