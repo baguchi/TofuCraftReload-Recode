@@ -89,7 +89,7 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		renderState.attackTime = tofunian.attackAnim;
 		renderState.eatFoodAnimationState.copyFrom(tofunian.eatFoodAnimationState);
 		renderState.happyAnimationState.copyFrom(tofunian.happyAnimationState);
-		renderState.callAnimationState.copyFrom(tofunian.callAnimationState);
+		renderState.waveAnimationState.copyFrom(tofunian.waveAnimationState);
 		renderState.actions = tofunian.getAction();
 		renderState.roles = tofunian.getRole();
 		renderState.texture = tofunian.getTexture();

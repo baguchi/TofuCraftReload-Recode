@@ -172,7 +172,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public final AnimationState happyAnimationState = new AnimationState();
 	public final AnimationState eatFoodAnimationState = new AnimationState();
-	public final AnimationState callAnimationState = new AnimationState();
+	public final AnimationState waveAnimationState = new AnimationState();
 
 	public Tofunian(EntityType<? extends Tofunian> type, Level worldIn) {
 		super(type, worldIn);
@@ -236,14 +236,14 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			@Override
 			public void start() {
 				super.start();
-				setAction(Actions.CALL);
+				setAction(Actions.WAVE);
 			}
 		});
 		this.goalSelector.addGoal(18, new InteractGoal(this, Player.class, 3.0F, 1.0F) {
 			@Override
 			public void start() {
 				super.start();
-				setAction(Actions.CALL);
+				setAction(Actions.WAVE);
 			}
 		});
 
@@ -421,9 +421,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 					this.stopAnimations();
 					happyAnimationState.start(this.tickCount);
 					break;
-				case CALL:
+				case WAVE:
 					this.stopAnimations();
-					callAnimationState.start(this.tickCount);
+					waveAnimationState.start(this.tickCount);
 					break;
 				case EAT:
 					if (!loop && !actions.loop) {
@@ -1066,7 +1066,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		AVOID(true, -1),
 		SIT(true, -1),
 		HAPPY(false, 30),
-		CALL(false, 25),
+		WAVE(false, 25),
 		EAT(true, -1);
 
 		private final boolean loop;

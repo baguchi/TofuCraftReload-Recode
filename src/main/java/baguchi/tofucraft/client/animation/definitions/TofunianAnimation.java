@@ -125,7 +125,7 @@ public class TofunianAnimation {
 
 			.build();
 
-	public static final AnimationDefinition call = AnimationDefinition.Builder.withLength(1.25F)
+	public static final AnimationDefinition wave = AnimationDefinition.Builder.withLength(1.25F)
 			.addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.25F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 10.0F), AnimationChannel.Interpolations.CATMULLROM),
@@ -144,7 +144,7 @@ public class TofunianAnimation {
 			))
 			.build();
 
-	public static final AnimationDefinition call_child = AnimationDefinition.Builder.withLength(1.0F)
+	public static final AnimationDefinition wave_child = AnimationDefinition.Builder.withLength(1.0F)
 			.addAnimation("left_leg", new AnimationChannel(AnimationChannel.Targets.ROTATION,
 					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
 					new Keyframe(0.25F, KeyframeAnimations.degreeVec(0.0F, 0.0F, -45.0F), AnimationChannel.Interpolations.CATMULLROM),

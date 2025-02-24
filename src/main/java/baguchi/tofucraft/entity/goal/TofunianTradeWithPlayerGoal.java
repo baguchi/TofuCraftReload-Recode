@@ -39,7 +39,7 @@ public class TofunianTradeWithPlayerGoal extends Goal {
     public void start() {
         this.mob.getNavigation().stop();
 		if (this.mob instanceof Tofunian tofunian) {
-			tofunian.setAction(Tofunian.Actions.CALL);
+			tofunian.setAction(Tofunian.Actions.WAVE);
 		}
     }
 
