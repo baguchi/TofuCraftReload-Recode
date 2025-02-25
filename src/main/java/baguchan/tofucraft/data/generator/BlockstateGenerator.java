@@ -184,6 +184,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		this.button(TofuBlocks.LEEK_BUTTON, TofuBlocks.LEEK_PLANKS);
 
 		crossBlock(TofuBlocks.ZUNDATOFU_MUSHROOM);
+		simpleBlock(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get());
 
 		make2LayerLogSidesSame(TofuBlocks.TOFU_STEM.get(), ResourceLocation.withDefaultNamespace("cutout"), 0, 15, false);
 		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS);

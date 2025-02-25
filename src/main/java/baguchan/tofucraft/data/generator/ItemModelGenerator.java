@@ -181,6 +181,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		button(TofuBlocks.LEEK_BUTTON, TofuBlocks.LEEK_PLANKS);
 
 		itemBlockFlat(TofuBlocks.ZUNDATOFU_MUSHROOM);
+		toBlock(TofuBlocks.ZUNDA_MUSHROOM_BLOCK);
 
 
 		toBlock(TofuBlocks.TOFU_STEM);

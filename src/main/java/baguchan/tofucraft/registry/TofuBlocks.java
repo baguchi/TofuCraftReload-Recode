@@ -350,6 +350,7 @@ public class TofuBlocks {
 
 
 	public static final DeferredBlock<Block> ZUNDATOFU_MUSHROOM = register("zundatofu_mushroom", () -> new TofuMushroomBlock(TofuTreeGrowers.ZUNDA_MUSHROOM, BlockBehaviour.Properties.of().instabreak().noCollission().sound(SoundType.FUNGUS)));
+	public static final DeferredBlock<Block> ZUNDA_MUSHROOM_BLOCK = register("zunda_mushroom_block", () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.FUNGUS)));
 
 
 	public static final DeferredBlock<RotatedPillarBlock> TOFU_STEM = register("tofustem", () -> new BurnableRotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM)));
