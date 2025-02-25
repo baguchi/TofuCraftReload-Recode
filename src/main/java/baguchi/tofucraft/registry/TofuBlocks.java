@@ -1,6 +1,7 @@
 package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.api.tfenergy.TFEnergyData;
 import baguchi.tofucraft.block.BagBlock;
 import baguchi.tofucraft.block.BurnableRotatedPillarBlock;
 import baguchi.tofucraft.block.CandleTofuCakeBlock;
@@ -593,6 +594,10 @@ public class TofuBlocks {
 				return new HangingSignItem(LEEK_GREEN_HANGING_SIGN.get(), LEEK_GREEN_WALL_HANGING_SIGN.get(), properties.stacksTo(16));
 			} else if (block.get() == LEEK_HANGING_SIGN.get()) {
 				return new HangingSignItem(LEEK_HANGING_SIGN.get(), LEEK_WALL_HANGING_SIGN.get(), properties.stacksTo(16));
+			} else if (block.get() == TF_STORAGE.get() || block.get() == TF_CRAFTER.get() || block.get() == TF_OVEN.get()) {
+				return new BlockItem(block.get(), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 5000)));
+			} else if (block.get() == TF_COLLECTOR.get()) {
+				return new BlockItem(block.get(), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
 			} else {
 				return new BlockItem(block.get(), properties);
 			}
