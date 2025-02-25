@@ -1,6 +1,6 @@
 {
-  "parent" : "minecraft:block/carpet",
-  "textures" : {
-    "wool" : "tofucraft:block/yuba"
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "tofucraft:block/yuba"
   }
 }

@@ -1,6 +1,6 @@
 {
-  "parent" : "minecraft:block/cube_all",
-  "textures" : {
-    "all" : "tofucraft:block/suspicious_tofu_terrain"
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "tofucraft:block/suspicious_tofu_terrain"
   }
 }

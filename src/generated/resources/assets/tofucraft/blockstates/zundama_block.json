@@ -1,7 +1,7 @@
 {
-  "variants" : {
-    "" : {
-      "model" : "tofucraft:block/zundama_block"
+  "variants": {
+    "": {
+      "model": "tofucraft:block/zundama_block"
     }
   }
 }

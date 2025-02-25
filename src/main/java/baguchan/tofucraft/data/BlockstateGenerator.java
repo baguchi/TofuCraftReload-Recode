@@ -156,6 +156,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		this.fenceGateBlock(TofuBlocks.LEEK_FENCE_GATE.get(), texture(name(TofuBlocks.LEEK_PLANKS.get())));
 
 		crossBlock(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
+		simpleBlock(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get());
 
 		logGlowBlock(TofuBlocks.TOFU_STEM.get());
 		simpleBlock(TofuBlocks.TOFU_STEM_PLANKS.get());

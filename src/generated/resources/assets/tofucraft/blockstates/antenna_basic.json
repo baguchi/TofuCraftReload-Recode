@@ -1,7 +1,7 @@
 {
-  "variants" : {
-    "" : {
-      "model" : "tofucraft:block/antenna_basic"
+  "variants": {
+    "": {
+      "model": "tofucraft:block/antenna_basic"
     }
   }
 }

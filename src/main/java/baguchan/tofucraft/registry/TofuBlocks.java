@@ -322,7 +322,7 @@ public class TofuBlocks {
 
 
 	public static final RegistryObject<Block> ZUNDATOFU_MUSHROOM = register("zundatofu_mushroom", () -> new TofuMushroomBlock(new ZundaTofuTreeGrower(), BlockBehaviour.Properties.of().instabreak().noCollission().sound(SoundType.FUNGUS)));
-
+	public static final RegistryObject<Block> ZUNDA_MUSHROOM_BLOCK = register("zunda_mushroom_block", () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.FUNGUS)));
 
 	public static final RegistryObject<RotatedPillarBlock> TOFU_STEM = register("tofustem", () -> new BurnableRotatedPillarBlock(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM)));
 	public static final RegistryObject<Block> TOFU_STEM_PLANKS = register("tofustem_planks", () -> new Block(BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));

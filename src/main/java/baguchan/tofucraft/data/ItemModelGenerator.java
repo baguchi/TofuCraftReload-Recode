@@ -169,7 +169,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		sign(TofuBlocks.LEEK_HANGING_SIGN);
 
 		itemBlockFlat(TofuBlocks.ZUNDATOFU_MUSHROOM);
-
+		toBlock(TofuBlocks.ZUNDA_MUSHROOM_BLOCK);
 
 		toBlock(TofuBlocks.TOFU_STEM);
 		toBlock(TofuBlocks.TOFU_STEM_PLANKS);

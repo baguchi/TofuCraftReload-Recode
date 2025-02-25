@@ -1,13 +1,13 @@
 {
-  "variants" : {
-    "type=bottom" : {
-      "model" : "tofucraft:block/leek_green_planks_slab"
+  "variants": {
+    "type=bottom": {
+      "model": "tofucraft:block/leek_green_planks_slab"
     },
-    "type=double" : {
-      "model" : "tofucraft:block/leek_green_planks"
+    "type=double": {
+      "model": "tofucraft:block/leek_green_planks"
     },
-    "type=top" : {
-      "model" : "tofucraft:block/leek_green_planks_slab_top"
+    "type=top": {
+      "model": "tofucraft:block/leek_green_planks_slab_top"
     }
   }
 }

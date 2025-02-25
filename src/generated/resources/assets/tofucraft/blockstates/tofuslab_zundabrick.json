@@ -1,13 +1,13 @@
 {
-  "variants" : {
-    "type=bottom" : {
-      "model" : "tofucraft:block/tofuslab_zundabrick"
+  "variants": {
+    "type=bottom": {
+      "model": "tofucraft:block/tofuslab_zundabrick"
     },
-    "type=double" : {
-      "model" : "tofucraft:block/tofuzunda_brick"
+    "type=double": {
+      "model": "tofucraft:block/tofuzunda_brick"
     },
-    "type=top" : {
-      "model" : "tofucraft:block/tofuslab_zundabrick_top"
+    "type=top": {
+      "model": "tofucraft:block/tofuslab_zundabrick_top"
     }
   }
 }

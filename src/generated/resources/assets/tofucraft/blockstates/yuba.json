@@ -1,7 +1,7 @@
 {
-  "variants" : {
-    "" : {
-      "model" : "tofucraft:block/yuba"
+  "variants": {
+    "": {
+      "model": "tofucraft:block/yuba"
     }
   }
 }

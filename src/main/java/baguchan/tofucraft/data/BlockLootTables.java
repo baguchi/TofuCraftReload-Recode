@@ -240,6 +240,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 
 		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
+		this.add(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get(), createZundaMushroomDrop(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get(), TofuBlocks.ZUNDATOFU_MUSHROOM.get(), DEFAULT_SAPLING_DROP_RATES));
 
 		dropSelf(TofuBlocks.TOFU_STEM.get());
 		dropSelf(TofuBlocks.TOFU_STEM_PLANKS.get());
@@ -324,6 +325,10 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TF_STORAGE.get());
 		dropSelf(TofuBlocks.ANTENNA_BASIC.get());
 		dropSelf(TofuBlocks.TOFU_WORK_STATION.get());
+	}
+
+	protected LootTable.Builder createZundaMushroomDrop(Block p_124264_, Block p_124265_, float... p_124266_) {
+		return createTofuLeavesDrops(p_124264_, p_124265_, p_124266_).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(applyExplosionCondition(p_124264_, LootItem.lootTableItem(TofuItems.TOFUZUNDA.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))).add(applyExplosionCondition(p_124264_, LootItem.lootTableItem(TofuItems.ZUNDA.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.01F, 0.0025555555F, 0.00625F, 0.018333334F, 0.025F))));
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {

@@ -59,12 +59,12 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
 			switch (slotIndex) {
-				case 0:
+				case 0, 1, 2, 3, 4:
 					if (!moveItemStackTo(itemstack1, 5, 41, true))
 						return ItemStack.EMPTY;
 					break;
 				default:
-					if (!moveItemStackTo(itemstack1, 0, 0, false))
+					if (!moveItemStackTo(itemstack1, 0, 4, false))
 						return ItemStack.EMPTY;
 					break;
 			}

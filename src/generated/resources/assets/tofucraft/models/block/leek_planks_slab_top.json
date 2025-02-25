@@ -1,8 +1,8 @@
 {
-  "parent" : "minecraft:block/slab_top",
-  "textures" : {
-    "bottom" : "tofucraft:block/leek_planks",
-    "side" : "tofucraft:block/leek_planks",
-    "top" : "tofucraft:block/leek_planks"
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "tofucraft:block/leek_planks",
+    "side": "tofucraft:block/leek_planks",
+    "top": "tofucraft:block/leek_planks"
   }
 }

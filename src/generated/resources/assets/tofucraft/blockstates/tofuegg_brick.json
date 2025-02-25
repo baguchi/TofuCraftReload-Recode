@@ -1,7 +1,7 @@
 {
-  "variants" : {
-    "" : {
-      "model" : "tofucraft:block/tofuegg_brick"
+  "variants": {
+    "": {
+      "model": "tofucraft:block/tofuegg_brick"
     }
   }
 }
