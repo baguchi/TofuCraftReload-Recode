@@ -616,7 +616,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 	@Override
 	public boolean canAttack(LivingEntity p_20355_) {
 		if (p_20355_.getType() == TofuEntityTypes.TOFU_GANDLEM) {
-			return true;
+			return false;
 		}
 		return super.canAttack(p_20355_);
 	}

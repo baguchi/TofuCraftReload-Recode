@@ -267,7 +267,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 	@Override
 	public boolean canAttack(LivingEntity p_20355_) {
 		if (p_20355_ instanceof AbstractTofunian || p_20355_.getType() == TofuEntityTypes.TOFU_GOLEM) {
-			return true;
+			return false;
 		}
 		return super.canAttack(p_20355_);
 	}

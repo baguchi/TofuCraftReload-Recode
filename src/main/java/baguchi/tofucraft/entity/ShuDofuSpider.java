@@ -649,7 +649,7 @@ public class ShuDofuSpider extends Monster {
 	@Override
 	public boolean canAttack(LivingEntity p_20355_) {
 		if (p_20355_ instanceof ShuDofuSpider || p_20355_ instanceof TofuSpider) {
-			return this.getTeam() == null && p_20355_.getTeam() == null;
+			return !(this.getTeam() == null && p_20355_.getTeam() == null);
 		}
 
 		if (p_20355_ instanceof NattoCobWebEntity) {

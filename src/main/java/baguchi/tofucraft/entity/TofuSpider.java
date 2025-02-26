@@ -174,7 +174,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	@Override
 	public boolean canAttack(LivingEntity p_20355_) {
 		if (p_20355_ instanceof ShuDofuSpider) {
-			return this.getTeam() == null && p_20355_.getTeam() == null;
+			return !(this.getTeam() == null && p_20355_.getTeam() == null);
 		}
 
 		return super.canAttack(p_20355_);
