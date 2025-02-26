@@ -614,11 +614,15 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 	}
 
 	@Override
-	public boolean canAttack(LivingEntity p_20355_) {
-		if (p_20355_.getType() == TofuEntityTypes.TOFU_GANDLEM) {
+	protected boolean considersEntityAsAlly(Entity p_360600_) {
+		if (super.considersEntityAsAlly(p_360600_)) {
+			return true;
+		} else {
+			if (p_360600_.getType() == TofuEntityTypes.TOFU_GANDLEM) {
+				return this.getTeam() == null && p_360600_.getTeam() == null;
+			}
 			return false;
 		}
-		return super.canAttack(p_20355_);
 	}
 
 	@Override

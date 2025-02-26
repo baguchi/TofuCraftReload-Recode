@@ -19,6 +19,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ConversionParams;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
@@ -172,12 +173,15 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	}
 
 	@Override
-	public boolean canAttack(LivingEntity p_20355_) {
-		if (p_20355_ instanceof ShuDofuSpider) {
-			return !(this.getTeam() == null && p_20355_.getTeam() == null);
+	protected boolean considersEntityAsAlly(Entity p_360600_) {
+		if (super.considersEntityAsAlly(p_360600_)) {
+			return true;
+		} else {
+			if (p_360600_.getType() == TofuEntityTypes.SHUDOFUSPIDER) {
+				return this.getTeam() == null && p_360600_.getTeam() == null;
+			}
+			return false;
 		}
-
-		return super.canAttack(p_20355_);
 	}
 
 	@Override

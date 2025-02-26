@@ -11,6 +11,7 @@ import baguchi.tofucraft.entity.projectile.NattoStringEntity;
 import baguchi.tofucraft.network.BossInfoPacket;
 import baguchi.tofucraft.registry.TofuDamageTypes;
 import baguchi.tofucraft.registry.TofuEffects;
+import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
@@ -657,6 +658,22 @@ public class ShuDofuSpider extends Monster {
 		}
 
 		return super.canAttack(p_20355_);
+	}
+
+	@Override
+	protected boolean considersEntityAsAlly(Entity p_360600_) {
+		if (super.considersEntityAsAlly(p_360600_)) {
+			return true;
+		} else {
+			if (p_360600_.getType() == TofuEntityTypes.SHUDOFUSPIDER) {
+				return this.getTeam() == null && p_360600_.getTeam() == null;
+			}
+
+			if (p_360600_.getType() == TofuEntityTypes.TOFUSPIDER) {
+				return this.getTeam() == null && p_360600_.getTeam() == null;
+			}
+			return false;
+		}
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {

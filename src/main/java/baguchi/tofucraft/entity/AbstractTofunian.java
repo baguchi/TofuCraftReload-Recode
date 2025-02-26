@@ -19,10 +19,10 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.SpawnGroupData;
@@ -287,11 +287,16 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 	}
 
 	@Override
-	public boolean canAttack(LivingEntity p_20355_) {
-		if (p_20355_ instanceof AbstractTofunian || p_20355_.getType() == TofuEntityTypes.TOFU_GOLEM) {
-			return false;
+	protected boolean considersEntityAsAlly(Entity p_360600_) {
+		if (super.considersEntityAsAlly(p_360600_)) {
+			return true;
+		} else {
+			if (p_360600_.getType() == TofuEntityTypes.TOFU_GOLEM) {
+				return this.getTeam() == null && p_360600_.getTeam() == null;
+			}
+
+			return !(p_360600_ instanceof AbstractTofunian) ? false : this.getTeam() == null && p_360600_.getTeam() == null;
 		}
-		return super.canAttack(p_20355_);
 	}
 
 	@Override
