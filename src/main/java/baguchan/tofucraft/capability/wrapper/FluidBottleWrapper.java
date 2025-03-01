@@ -1,11 +1,12 @@
 package baguchan.tofucraft.capability.wrapper;
 
 import baguchan.tofucraft.api.IFluidBottle;
+import baguchan.tofucraft.registry.TofuFluids;
+import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
 public class FluidBottleWrapper implements IFluidHandlerItem {
@@ -36,9 +37,19 @@ public class FluidBottleWrapper implements IFluidHandlerItem {
 
 	protected void setFluid(FluidStack fluidStack) {
 		if (fluidStack.isEmpty())
-			container = new ItemStack(Items.BUCKET);
-		else
-			container = FluidUtil.getFilledBucket(fluidStack);
+			container = new ItemStack(Items.GLASS_BOTTLE);
+		else {
+			if (fluidStack.is(TofuFluids.BITTERN)) {
+				container = new ItemStack(TofuItems.BITTERN_BOTTLE);
+			}
+			if (fluidStack.is(TofuFluids.WARPED)) {
+				container = new ItemStack(TofuItems.WARPED_BOTTLE);
+			}
+
+			if (fluidStack.is(TofuFluids.CRIMSON)) {
+				container = new ItemStack(TofuItems.CRIMSON_BOTTLE);
+			}
+		}
 	}
 
 	@Override
