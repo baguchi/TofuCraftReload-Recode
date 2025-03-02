@@ -1,5 +1,9 @@
 package baguchi.tofucraft.entity;
 
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.List;
+
 import baguchi.bagus_lib.client.camera.CameraCore;
 import baguchi.bagus_lib.client.camera.holder.EntityCameraHolder;
 import baguchi.bagus_lib.util.GlobalVec3;
@@ -67,10 +71,6 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.entity.PartEntity;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.network.PacketDistributor;
-
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
 
 public class ShuDofuSpider extends Monster {
 	private static final EntityDataAccessor<Boolean> DATA_ID_JUMP = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -360,7 +360,7 @@ public class ShuDofuSpider extends Monster {
 					playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0f, 1.0f);
 					this.impactTime = 0;
 					this.jumpTime = 0;
-					CameraCore.addCameraHolderList(this.level(), new EntityCameraHolder<>(16, 60, 0.4F, GlobalVec3.of(this.level().dimension(), this.getEyePosition()), this));
+					CameraCore.addCameraHolderList(this.level(), new EntityCameraHolder<>(16, 60, 0.425F, GlobalVec3.of(this.level().dimension(), this.getEyePosition()), this));
 					this.setJumpAnimation(false);
 				}
 			}

@@ -1,5 +1,9 @@
 package baguchi.tofucraft.data.generator.models;
 
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.block.CandleTofuCakeBlock;
 import baguchi.tofucraft.data.provider.TofuBlockstateModelProvider;
@@ -15,10 +19,6 @@ import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class TofuBlockModels extends TofuBlockstateModelProvider {
 	private Supplier<CandleTofuCakeBlock> block;
@@ -263,7 +263,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 
 		this.createCropBlock(TofuBlocks.CHILI_CROP.get(), BlockStateProperties.AGE_7, 0, 1, 1, 2, 2, 3, 3, 4);
 		this.createCropBlock(TofuBlocks.RICE_CROP.get(), BlockStateProperties.AGE_7, 0, 1, 1, 2, 2, 3, 3, 4);
-		this.createCropBlock(TofuBlocks.LEEK_CROP.get(), BlockStateProperties.AGE_3, 0, 1, 2, 3);
+		this.createCropBlock(TofuBlocks.LEEK_CROP.get(), BlockStateProperties.AGE_3, 0, 1, 1, 2);
 		this.createCropBlock(TofuBlocks.SPROUTS.get(), BlockStateProperties.AGE_3, 0, 1, 2, 3);
 		this.createSingleCrop(TofuBlocks.RICE_ROOT.get());
 		this.createTofuFarmland();
