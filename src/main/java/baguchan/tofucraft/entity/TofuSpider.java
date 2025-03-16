@@ -42,6 +42,7 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
@@ -105,6 +106,10 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		ItemStack stack = p_21472_.getItemInHand(p_21473_);
 		if (stack.is(TofuItems.SOYMILK_OMINOUS_BOTTLE) && !this.isConverting() && this.hasEffect(MobEffects.DARKNESS)) {
 			this.startConverting(300);
+			stack.shrink(1);
+			if (!p_21472_.addItem(new ItemStack(Items.GLASS_BOTTLE))) {
+				p_21472_.drop(new ItemStack(Items.GLASS_BOTTLE), false);
+			}
 			return InteractionResult.SUCCESS;
 		}
 		return super.mobInteract(p_21472_, p_21473_);
