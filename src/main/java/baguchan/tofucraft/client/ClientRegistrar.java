@@ -8,7 +8,6 @@ import baguchan.tofucraft.client.model.SoyBallModel;
 import baguchan.tofucraft.client.model.TofuFishModel;
 import baguchan.tofucraft.client.model.TofuGandlemModel;
 import baguchan.tofucraft.client.model.TofuGolemModel;
-import baguchan.tofucraft.client.model.TofuPufferModel;
 import baguchan.tofucraft.client.model.TofuSpiderModel;
 import baguchan.tofucraft.client.model.TofunianModel;
 import baguchan.tofucraft.client.model.TravelerTofunianModel;
@@ -32,7 +31,6 @@ import baguchan.tofucraft.client.render.entity.TofuFishRender;
 import baguchan.tofucraft.client.render.entity.TofuGandlemRender;
 import baguchan.tofucraft.client.render.entity.TofuGolemRender;
 import baguchan.tofucraft.client.render.entity.TofuPigRender;
-import baguchan.tofucraft.client.render.entity.TofuPufferRender;
 import baguchan.tofucraft.client.render.entity.TofuSlimeRender;
 import baguchan.tofucraft.client.render.entity.TofuSpiderRender;
 import baguchan.tofucraft.client.render.entity.TofunianRender;
@@ -373,7 +371,6 @@ public class ClientRegistrar {
 			return new FukumameThowerRenderer<>(p_174064_, TofuModelLayers.FUKUMAME_THOWER, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR, false);
 		});
 		event.registerEntityRenderer(TofuEntityTypes.ZUNDAMITE.get(), ZundamiteRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFU_PUFFER.get(), TofuPufferRender::new);
 
 
 
@@ -393,7 +390,6 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.TOFU_GANDLEM, TofuGandlemModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.FUKUMAME_THOWER, FukumameThowerModel::createBodyLayer);
-		event.registerLayerDefinition(TofuModelLayers.TOFU_PUFFER, TofuPufferModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.SOYBALL, SoyBallModel::createBodyLayer);
 	}
 
