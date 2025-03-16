@@ -1,5 +1,7 @@
 package baguchi.tofucraft.data.generator.models;
 
+import java.util.function.BiConsumer;
+
 import baguchi.tofucraft.client.render.special.TofuShieldSpecialRenderer;
 import baguchi.tofucraft.data.generator.TofuEquipmentAssets;
 import baguchi.tofucraft.registry.TofuItems;
@@ -14,8 +16,6 @@ import net.minecraft.client.renderer.item.RangeSelectItemModel;
 import net.minecraft.client.renderer.item.properties.numeric.UseDuration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-
-import java.util.function.BiConsumer;
 
 public class TofuItemModels extends ItemModelGenerators {
 	public TofuItemModels(ItemModelOutput itemModelOutput, BiConsumer<ResourceLocation, ModelInstance> modelOutput) {
@@ -148,6 +148,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.SOYMILK_TEA.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOYMILK_HELL_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOYMILK_SOUL_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.SOYMILK_OMINOUS_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOYMILK_PALE_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOYMILK_PALE_GLOW_BOTTLE.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.KINAKO_MANJU.get(), ModelTemplates.FLAT_ITEM);
