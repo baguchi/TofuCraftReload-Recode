@@ -1,5 +1,8 @@
 package baguchi.tofucraft.registry;
 
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+
 import baguchi.tofucraft.TofuCraftReload;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -8,9 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 
 public class TofuCreativeModeTabs {
@@ -420,6 +420,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.SOYMILK_TEA,
 						TofuItems.SOYMILK_HELL_BOTTLE,
 						TofuItems.SOYMILK_SOUL_BOTTLE,
+						TofuItems.SOYMILK_OMINOUS_BOTTLE,
 						TofuItems.SOYMILK_PALE_BOTTLE,
 						TofuItems.SOYMILK_PALE_GLOW_BOTTLE,
 						TofuItems.HELL_MABOU,

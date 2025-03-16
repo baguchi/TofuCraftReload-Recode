@@ -1,5 +1,8 @@
 package baguchi.tofucraft.registry;
 
+import java.util.List;
+import java.util.function.Supplier;
+
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.data.generator.CustomTagGenerator;
 import baguchi.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
@@ -74,9 +77,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.List;
-import java.util.function.Supplier;
 
 public class TofuItems {
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TofuCraftReload.MODID);
@@ -215,6 +215,8 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> SOYMILK_TEA = ITEMS.registerItem("soymilk_tea", (properties) -> new SoymilkBottleItem(MobEffects.LUCK, MobEffects.WATER_BREATHING, drinkItemProperties(properties)));
 	public static final DeferredHolder<Item, Item> SOYMILK_HELL_BOTTLE = ITEMS.registerItem("soymilk_hell_bottle", (properties) -> new SoymilkBottleItem(MobEffects.FIRE_RESISTANCE, MobEffects.DAMAGE_RESISTANCE, drinkItemProperties(properties)));
 	public static final DeferredHolder<Item, Item> SOYMILK_SOUL_BOTTLE = ITEMS.registerItem("soymilk_soul_bottle", (properties) -> new SoymilkBottleItem(MobEffects.ABSORPTION, MobEffects.HEALTH_BOOST, drinkItemProperties(properties)));
+	public static final DeferredHolder<Item, Item> SOYMILK_OMINOUS_BOTTLE = ITEMS.registerItem("soymilk_ominous_bottle", (properties) -> new Item(properties.stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
+
 	public static final DeferredHolder<Item, Item> SOYMILK_PALE_BOTTLE = ITEMS.registerItem("soymilk_pale_bottle", (properties) -> new DescSoymilkBottleItem(MobEffects.DAMAGE_RESISTANCE, MobEffects.REGENERATION, properties.stacksTo(16).food(TofuFoods.DRINK, TofuConsumables.SOYMILK_PALE).craftRemainder(Items.GLASS_BOTTLE).usingConvertsTo(Items.GLASS_BOTTLE)));
 	public static final DeferredHolder<Item, Item> SOYMILK_PALE_GLOW_BOTTLE = ITEMS.registerItem("soymilk_pale_glow_bottle", (properties) -> new DescSoymilkBottleItem(MobEffects.REGENERATION, MobEffects.DAMAGE_RESISTANCE, properties.stacksTo(16).food(TofuFoods.DRINK, TofuConsumables.SOYMILK_PALE_GLOW).craftRemainder(Items.GLASS_BOTTLE).usingConvertsTo(Items.GLASS_BOTTLE)));
 
