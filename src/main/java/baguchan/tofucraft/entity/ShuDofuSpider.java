@@ -1,5 +1,10 @@
 package baguchan.tofucraft.entity;
 
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.UUID;
+
 import bagu_chan.bagus_lib.client.camera.CameraEvent;
 import bagu_chan.bagus_lib.client.camera.CameraHolder;
 import bagu_chan.bagus_lib.util.GlobalVec3;
@@ -32,6 +37,7 @@ import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -61,11 +67,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.entity.PartEntity;
 import net.minecraftforge.fluids.FluidType;
-
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.UUID;
 
 public class ShuDofuSpider extends Monster {
 	private static final EntityDataAccessor<Boolean> DATA_ID_JUMP = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -233,6 +234,11 @@ public class ShuDofuSpider extends Monster {
 
 	public double getPassengersRidingOffset() {
 		return this.isGraspAnim() ? (double) this.getDimensions(this.getPose()).height * 0.15D : super.getPassengersRidingOffset();
+	}
+
+	@Override
+	public MobType getMobType() {
+		return MobType.ARTHROPOD;
 	}
 
 	@Override
@@ -611,7 +617,7 @@ public class ShuDofuSpider extends Monster {
 				this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
 			}
 
-			if (entity instanceof FukumameEntity || !this.isAngry() && (p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC))) {
+			if (entity instanceof FukumameEntity || p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC)) {
 				return false;
 			} else if (entity instanceof Projectile) {
 				return super.hurt(p_31461_, p_31462_ * 0.35F);
