@@ -1,5 +1,8 @@
 package baguchan.tofucraft.entity;
 
+import java.util.EnumSet;
+import java.util.List;
+
 import baguchan.tofucraft.api.TofuBossMob;
 import baguchan.tofucraft.entity.control.StafeableFlyingMoveControl;
 import baguchan.tofucraft.entity.goal.ChargeGoal;
@@ -7,7 +10,6 @@ import baguchan.tofucraft.entity.goal.SpinAttackGoal;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.network.BossInfoPacket;
 import baguchan.tofucraft.registry.TofuEntityTypes;
-import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuSounds;
 import baguchan.tofucraft.registry.TofuStructures;
@@ -42,7 +44,6 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -52,11 +53,9 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
@@ -68,9 +67,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.EnumSet;
-import java.util.List;
 
 public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob {
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setPlayBossMusic(true);
@@ -577,10 +573,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 						data.addBeatenDungeons(structureStart.getBoundingBox());
 					}
 				}
-			}
-			List<Player> players = this.level().getNearbyPlayers(TargetingConditions.forNonCombat(), this, new AABB(this.blockPosition()).inflate(32F));
-			for (Player player : players) {
-				BehaviorUtils.throwItem(this, new ItemStack(TofuItems.TOFU_KEY.get()), player.position().add(0, 1, 0));
 			}
 		}
 	}

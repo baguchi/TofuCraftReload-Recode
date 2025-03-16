@@ -1,5 +1,8 @@
 package baguchan.tofucraft.registry;
 
+import java.util.List;
+import java.util.function.Supplier;
+
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.capability.wrapper.FluidBottleWrapper;
 import baguchan.tofucraft.data.generator.CustomTagGenerator;
@@ -85,9 +88,6 @@ import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.List;
-import java.util.function.Supplier;
 
 public class TofuItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, TofuCraftReload.MODID);
@@ -222,6 +222,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> SOYMILK_TEA = ITEMS.register("soymilk_tea", () -> new SoymilkBottleItem(MobEffects.LUCK, MobEffects.WATER_BREATHING, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final DeferredHolder<Item, Item> SOYMILK_HELL_BOTTLE = ITEMS.register("soymilk_hell_bottle", () -> new SoymilkBottleItem(MobEffects.FIRE_RESISTANCE, MobEffects.DAMAGE_RESISTANCE, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final DeferredHolder<Item, Item> SOYMILK_SOUL_BOTTLE = ITEMS.register("soymilk_soul_bottle", () -> new SoymilkBottleItem(MobEffects.ABSORPTION, MobEffects.HEALTH_BOOST, (new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
+	public static final DeferredHolder<Item, Item> SOYMILK_OMINOUS_BOTTLE = ITEMS.register("soymilk_ominous_bottle", () -> new Item((new Item.Properties()).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
 
 
 	public static final DeferredHolder<Item, Item> KINAKO_MANJU = ITEMS.register("kinakomanju", () -> new Item((new Item.Properties()).food(TofuFoods.KINAKO_MANJU)));
@@ -422,7 +423,6 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> LEEK_CHEST_BOAT = ITEMS.register("leek_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("TOFUCRAFT_LEEK"), new Item.Properties().stacksTo(1)));
 	public static final DeferredHolder<Item, Item> LEEK_GREEN_CHEST_BOAT = ITEMS.register("leek_green_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("TOFUCRAFT_LEEK_GREEN"), new Item.Properties().stacksTo(1)));
 	public static final DeferredHolder<Item, Item> TOFU_STEM_CHEST_BOAT = ITEMS.register("tofu_stem_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("TOFUCRAFT_TOFU_STEM"), new Item.Properties().stacksTo(1)));
-	public static final DeferredHolder<Item, Item> TOFU_KEY = ITEMS.register("tofu_key", () -> new Item(new Item.Properties()));
 	public static final DeferredHolder<Item, Item> MUSIC_DISC_GREEN_BRANCH = ITEMS.register("music_disc_green_branch", () -> new Item(new Item.Properties().jukeboxPlayable(TofuJukeboxSongs.GREEN_BRANCH)));
 
 

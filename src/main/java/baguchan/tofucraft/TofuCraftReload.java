@@ -1,5 +1,8 @@
 package baguchan.tofucraft;
 
+import java.util.Locale;
+import java.util.Map;
+
 import baguchan.tofucraft.api.TofunianTradeManager;
 import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.client.ClientRegistrar;
@@ -57,9 +60,6 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Locale;
-import java.util.Map;
 
 @Mod(TofuCraftReload.MODID)
 public class TofuCraftReload {
@@ -132,7 +132,6 @@ public class TofuCraftReload {
 				TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get());
 
 		event.modify(BlockEntityType.BRUSHABLE_BLOCK, TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
-		event.modify(BlockEntityType.VAULT, TofuBlocks.TOFU_VAULT.get());
 	}
 
 	private void setup(FMLCommonSetupEvent event) {

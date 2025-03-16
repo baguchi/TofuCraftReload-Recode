@@ -1,9 +1,12 @@
 package baguchan.tofucraft;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import baguchan.tofucraft.api.tfenergy.IEnergyContained;
 import baguchan.tofucraft.attachment.SoyHealthAttachment;
 import baguchan.tofucraft.attachment.TofuLivingAttachment;
-import baguchan.tofucraft.entity.TofuGandlem;
 import baguchan.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuAttachments;
@@ -12,7 +15,6 @@ import baguchan.tofucraft.registry.TofuDataComponents;
 import baguchan.tofucraft.registry.TofuDimensions;
 import baguchan.tofucraft.registry.TofuEffects;
 import baguchan.tofucraft.registry.TofuEnchantments;
-import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItemTier;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuPoiTypes;
@@ -35,10 +37,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
-import net.minecraft.util.SpawnUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -63,7 +63,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.phys.BlockHitResult;
@@ -88,10 +87,6 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.village.VillageSiegeEvent;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
 	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
@@ -103,31 +98,6 @@ public class CommonEvents {
 
 		if (!entity.level().isClientSide() && entity instanceof LivingEntity livingEntity) {
 			soyHealth.tick(livingEntity);
-			//bad omen
-			if (livingEntity.hasEffect(MobEffects.BAD_OMEN)) {
-				if (entity.level() instanceof ServerLevel serverLevel) {
-					Structure structure = serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(TofuStructures.TOFU_CASTLE);
-					if (structure != null) {
-						TofuData data = TofuData.get(serverLevel);
-						StructureStart structureStart = serverLevel.structureManager().getStructureAt(entity.blockPosition(), structure);
-						if (structureStart.isValid() && data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
-							BlockPos.MutableBlockPos blockPos = entity.blockPosition().mutable();
-
-							BoundingBox box = structureStart.getBoundingBox();
-							Optional<TofuGandlem> tofuGandlemOptional = SpawnUtil.trySpawnMob(TofuEntityTypes.TOFU_GANDLEM.get(), MobSpawnType.TRIGGERED, serverLevel, blockPos, 2, 8, 8, SpawnUtil.Strategy.ON_TOP_OF_COLLIDER);
-
-							if (tofuGandlemOptional.isPresent()) {
-								TofuGandlem tofuGandlem = tofuGandlemOptional.get();
-								tofuGandlem.setSleepSelf(true);
-								livingEntity.removeEffect(MobEffects.BAD_OMEN);
-								serverLevel.playSound(null, livingEntity.blockPosition(), SoundEvents.APPLY_EFFECT_BAD_OMEN, SoundSource.AMBIENT);
-								serverLevel.levelEvent(3020, BlockPos.containing(livingEntity.getEyePosition()), 0);
-								serverLevel.levelEvent(3020, BlockPos.containing(tofuGandlem.getEyePosition()), 0);
-							}
-						}
-					}
-				}
-			}
 		}
 		TofuLivingAttachment tofuLivingAttachment = entity.getData(TofuAttachments.TOFU_LIVING);
 		tofuLivingAttachment.tick(entity);

@@ -1,5 +1,9 @@
 package baguchan.tofucraft.data.generator.recipe;
 
+import java.util.concurrent.CompletableFuture;
+
+import static baguchan.tofucraft.TofuCraftReload.prefix;
+
 import baguchan.tofucraft.data.generator.recipe.builder.BitternRecipeBuilder;
 import baguchan.tofucraft.data.generator.recipe.builder.HardenRecipeBuilder;
 import baguchan.tofucraft.registry.TofuBlocks;
@@ -20,10 +24,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
-
-import java.util.concurrent.CompletableFuture;
-
-import static baguchan.tofucraft.TofuCraftReload.prefix;
 
 public class CraftingGenerator extends CraftingDataHelper {
 	public CraftingGenerator(PackOutput generator, CompletableFuture<HolderLookup.Provider> completableFuture) {
@@ -1577,6 +1577,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.BUCKET_SOYMILK_SOUL.get())
 				.requires(Items.GLASS_BOTTLE, 3)
 				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK_SOUL.get()))
+				.save(consumer);
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOYMILK_OMINOUS_BOTTLE.get(), 2)
+				.requires(TofuItems.SOYMILK_SOUL_BOTTLE.get())
+				.requires(Items.OMINOUS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE, 2)
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_SOUL_BOTTLE.get()))
 				.save(consumer);
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOYMILK_HELL_BOTTLE.get(), 3)
 				.requires(TofuItems.BUCKET_SOYMILK_NETHER.get())

@@ -1,8 +1,13 @@
 package baguchan.tofucraft.entity;
 
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.List;
+
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuEntityTypes;
+import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -15,6 +20,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -34,15 +41,12 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.event.EventHooks;
-
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
 
 public class TofuSpider extends Spider implements RangedAttackMob {
 	private static final EntityDataAccessor<Boolean> DATA_CONVERTING_ID = SynchedEntityData.defineId(TofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -96,6 +100,17 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		}
 	}
 
+	@Override
+	protected InteractionResult mobInteract(Player p_21472_, InteractionHand p_21473_) {
+		ItemStack stack = p_21472_.getItemInHand(p_21473_);
+		if (stack.is(TofuItems.SOYMILK_OMINOUS_BOTTLE) && !this.isConverting() && this.hasEffect(MobEffects.DARKNESS)) {
+			this.startConverting(300);
+			return InteractionResult.SUCCESS;
+		}
+		return super.mobInteract(p_21472_, p_21473_);
+	}
+
+	@Override
 	public void tick() {
 		if (!this.level().isClientSide && this.isAlive() && this.isConverting()) {
 			this.conversionTime -= 1;

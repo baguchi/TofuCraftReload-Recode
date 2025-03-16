@@ -1,5 +1,9 @@
 package baguchan.tofucraft.data.generator;
 
+import java.util.function.Supplier;
+
+import static baguchan.tofucraft.TofuCraftReload.prefix;
+
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
@@ -20,10 +24,6 @@ import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.loaders.ItemLayerModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-
-import java.util.function.Supplier;
-
-import static baguchan.tofucraft.TofuCraftReload.prefix;
 
 public class ItemModelGenerator extends ItemModelProvider {
 	public ItemModelGenerator(PackOutput generator, ExistingFileHelper existingFileHelper) {
@@ -218,8 +218,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		toBlock(TofuBlocks.ZUNDAMA_BLOCK);
 
-		toBlock(TofuBlocks.TOFU_VAULT);
-
 		//item
 		singleTex(TofuItems.TOFUKINU);
 		singleTex(TofuItems.TOFUMOMEN);
@@ -334,6 +332,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.SOYMILK_TEA);
 		singleTex(TofuItems.SOYMILK_HELL_BOTTLE);
 		singleTex(TofuItems.SOYMILK_SOUL_BOTTLE);
+		singleTex(TofuItems.SOYMILK_OMINOUS_BOTTLE);
 		singleTex(TofuItems.KINAKO_MANJU);
 		singleTex(TofuItems.ZUNDA_MANJU);
 		singleTex(TofuItems.NETHER_MANJU);

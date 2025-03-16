@@ -1,10 +1,15 @@
 package baguchan.tofucraft.item;
 
+import java.util.List;
+
 import baguchan.tofucraft.entity.TofuSpider;
 import baguchan.tofucraft.registry.TofuSounds;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -18,9 +23,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.Collections;
-import java.util.List;
 
 public class BugleItem extends Item {
 	private static final TargetingConditions TARGETING = TargetingConditions.forNonCombat().range(32.0D).ignoreInvisibilityTesting();
@@ -51,14 +53,13 @@ public class BugleItem extends Item {
 
 
 					if (!entities.isEmpty()) {
-						Collections.shuffle(entities);
+						for (TofuSpider spider : entities) {
+							if (hasLineOfSight(playerentity, spider)) {
+								playerentity.getCooldowns().addCooldown(this, 1200);
 
-						if (hasLineOfSight(playerentity, entities.get(0))) {
-							playerentity.getCooldowns().addCooldown(this, 600);
-							livingEntity.getOffhandItem().shrink(1);
-
-							entities.get(0).startConverting(300);
-							p_41413_.levelEvent(3007, entities.get(0).blockPosition(), 0);
+								spider.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 600));
+								spider.playSound(SoundEvents.SPIDER_HURT, 3.0F, 0.5F);
+							}
 						}
 					}
 				}

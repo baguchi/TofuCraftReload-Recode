@@ -1,5 +1,9 @@
 package baguchan.tofucraft.registry;
 
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.block.BagBlock;
 import baguchan.tofucraft.block.BurnableRotatedPillarBlock;
@@ -26,7 +30,6 @@ import baguchan.tofucraft.block.TofuPortalBlock;
 import baguchan.tofucraft.block.TofuSaplingBlock;
 import baguchan.tofucraft.block.TofuTerrainBlock;
 import baguchan.tofucraft.block.TofuTrapDoorBlock;
-import baguchan.tofucraft.block.TofuVaultBlock;
 import baguchan.tofucraft.block.TofunianStatueBlock;
 import baguchan.tofucraft.block.YubaBlock;
 import baguchan.tofucraft.block.ZundamaBlock;
@@ -92,7 +95,6 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.VaultBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
@@ -105,10 +107,6 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class TofuBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TofuCraftReload.MODID);
@@ -514,9 +512,6 @@ public class TofuBlocks {
 
 	public static final DeferredBlock<Block> ANTENNA_BASIC = register("antenna_basic", () -> new TFAntennaBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final DeferredBlock<Block> TOFU_WORK_STATION = register("tofu_work_station", () -> new TofuWorkStationBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-	public static final DeferredBlock<Block> TOFU_VAULT = register("tofu_vault", () -> new TofuVaultBlock(BlockBehaviour.Properties.of().lightLevel(p_323402_ -> p_323402_.getValue(VaultBlock.STATE).lightLevel())
-			.strength(50.0F).noOcclusion().isViewBlocking((state, blockGetter, blockPos) -> false).sound(SoundType.VAULT)));
-
 
 	private static boolean always(BlockState p_50775_, BlockGetter p_50776_, BlockPos p_50777_) {
 		return true;

@@ -1,5 +1,8 @@
 package baguchan.tofucraft.registry;
 
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+
 import baguchan.tofucraft.TofuCraftReload;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -8,9 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 
 public class TofuCreativeModeTabs {
@@ -257,8 +257,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.SALT_FURNACE,
 						TofuBlocks.SALT_BLOCK,
 						TofuBlocks.MORIJIO,
-						TofuBlocks.TOFU_FLOWER,
-						TofuBlocks.TOFU_VAULT).map(sup -> {
+						TofuBlocks.TOFU_FLOWER).map(sup -> {
 					return sup.get().asItem().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());
@@ -418,6 +417,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.SOYMILK_TEA,
 						TofuItems.SOYMILK_HELL_BOTTLE,
 						TofuItems.SOYMILK_SOUL_BOTTLE,
+						TofuItems.SOYMILK_OMINOUS_BOTTLE,
 						TofuItems.HELL_MABOU,
 						TofuItems.RED_SOUP,
 						TofuItems.HELL_RED_SOUP,
@@ -500,7 +500,6 @@ public class TofuCreativeModeTabs {
 						TofuItems.TOFUGEM,
 						TofuItems.ADVANCE_TOFUGEM,
 						TofuItems.NATTO_COBWEB,
-						TofuItems.TOFU_KEY,
 						TofuItems.MUSIC_DISC_GREEN_BRANCH).map(itemSupplier -> {
 					return itemSupplier.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
