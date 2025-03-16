@@ -538,7 +538,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK);
 		toBlock(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK);
 
-		singleTex(TofuItems.TOFU_KEY);
 		singleTex(TofuItems.MUSIC_DISC_GREEN_BRANCH);
 	}
 
