@@ -4,7 +4,6 @@ import java.util.List;
 
 import baguchan.tofucraft.entity.TofuSpider;
 import baguchan.tofucraft.registry.TofuSounds;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -55,12 +54,14 @@ public class BugleItem extends Item {
 					if (!entities.isEmpty()) {
 						for (TofuSpider spider : entities) {
 							if (hasLineOfSight(playerentity, spider)) {
-								playerentity.getCooldowns().addCooldown(this, 1200);
 
 								spider.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 600));
-								spider.playSound(SoundEvents.SPIDER_HURT, 3.0F, 0.5F);
+								p_41413_.levelEvent(3007, spider.blockPosition(), 0);
+
 							}
 						}
+						playerentity.getCooldowns().addCooldown(this, 1200);
+
 					}
 				}
 			} else {

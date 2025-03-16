@@ -106,10 +106,14 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		ItemStack stack = p_21472_.getItemInHand(p_21473_);
 		if (stack.is(TofuItems.SOYMILK_OMINOUS_BOTTLE) && !this.isConverting() && this.hasEffect(MobEffects.DARKNESS)) {
 			this.startConverting(300);
-			stack.shrink(1);
+			if (!p_21472_.getAbilities().instabuild) {
+				stack.shrink(1);
+			}
 			if (!p_21472_.addItem(new ItemStack(Items.GLASS_BOTTLE))) {
 				p_21472_.drop(new ItemStack(Items.GLASS_BOTTLE), false);
 			}
+			this.playSound(SoundEvents.ZOMBIE_VILLAGER_CURE, 3.0F, 1F);
+
 			return InteractionResult.SUCCESS;
 		}
 		return super.mobInteract(p_21472_, p_21473_);
