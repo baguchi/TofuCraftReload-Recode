@@ -49,7 +49,7 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 			this.head.zRot = 0.0F;
 		}
 
-		if (entity.riding) {
+		if (entity.isPassenger) {
 			this.rightArm.xRot = -0.62831855F;
 			this.leftArm.xRot = -0.62831855F;
 			this.rightLeg.xRot = -1.4137167F;

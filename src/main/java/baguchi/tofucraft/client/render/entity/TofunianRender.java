@@ -84,7 +84,8 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		HumanoidMobRenderer.extractHumanoidRenderState(tofunian, renderState, partialTick, this.itemModelResolver);
 
 		renderState.id = tofunian.getId();
-		renderState.riding = !tofunian.getPassengers().isEmpty();
+		renderState.isPassenger = tofunian.isPassenger() && (tofunian.getVehicle() != null && tofunian.getVehicle().shouldRiderSit());
+
 		renderState.unhappyCounter = tofunian.getUnhappyCounter();
 		renderState.attackTime = tofunian.attackAnim;
 		renderState.eatFoodAnimationState.copyFrom(tofunian.eatFoodAnimationState);

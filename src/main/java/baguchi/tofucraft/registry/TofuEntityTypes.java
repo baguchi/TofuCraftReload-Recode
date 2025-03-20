@@ -52,7 +52,7 @@ public class TofuEntityTypes {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, TofuCraftReload.MODID);
 
 	public static final Supplier<EntityType<Tofunian>> TOFUNIAN = ENTITIES.register("tofunian", () -> EntityType.Builder.of(Tofunian::new, MobCategory.CREATURE)
-			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).clientTrackingRange(10).build(prefix("tofunian")));
+			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).clientTrackingRange(10).passengerAttachments(1.2F).ridingOffset(-0.3F).build(prefix("tofunian")));
 
 	public static final Supplier<EntityType<TravelerTofunian>> TRAVELER_TOFUNIAN = ENTITIES.register("traveler_tofunian", () -> EntityType.Builder.of(TravelerTofunian::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).build(prefix("traveler_tofunian")));
@@ -114,7 +114,10 @@ public class TofuEntityTypes {
 	public static final Supplier<EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
 			.sized(3.5F, 2.9F).eyeHeight(2.0F).clientTrackingRange(10).requiredFeatures(TofuCraftReload.EXPERIMENTAL).fireImmune().build(prefix("shudofuspider")));
 
-	public static final Supplier<EntityType<FukumameThrower>> FUKUMAME_THROWER = ENTITIES.register("fukumame_thrower", () -> EntityType.Builder.of(FukumameThrower::new, MobCategory.MONSTER).sized(0.6F, 1.85F).clientTrackingRange(8).build(prefix("fukumame_thrower")));
+	public static final Supplier<EntityType<FukumameThrower>> FUKUMAME_THROWER = ENTITIES.register("fukumame_thrower", () -> EntityType.Builder.of(FukumameThrower::new, MobCategory.MONSTER).sized(0.6F, 1.95F)
+			.eyeHeight(1.79F)
+			.passengerAttachments(2.0125F)
+			.ridingOffset(-0.7F).clientTrackingRange(8).build(prefix("fukumame_thrower")));
 
 	public static final Supplier<EntityType<Boat>> LEEK_BOAT = ENTITIES.register(
 			"leek_boat",

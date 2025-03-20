@@ -42,7 +42,8 @@ public class TravelerTofunianRender extends MobRenderer<TravelerTofunian, Abstra
 		HumanoidMobRenderer.extractHumanoidRenderState(p_362733_, p_360515_, p_361157_, this.itemModelResolver);
 
 		p_360515_.id = p_362733_.getId();
-		p_360515_.riding = !p_362733_.getPassengers().isEmpty();
+		p_360515_.isPassenger = p_362733_.isPassenger() && (p_362733_.getVehicle() != null && p_362733_.getVehicle().shouldRiderSit());
+
 		p_360515_.unhappyCounter = p_362733_.getUnhappyCounter();
 		p_360515_.attackTime = p_362733_.attackAnim;
 	}
