@@ -103,6 +103,12 @@ public class TofuCraftReload {
 
 		TofuEntityTypes.ENTITIES.register(modBus);
 		TofuEntityTypes.ENTITIES.addAlias(prefix("fukumame_thower"), prefix("fukumame_thrower"));
+		TofuEntityTypes.ENTITIES.addAlias(prefix("tofucow"), prefix("tofu_cow"));
+		TofuEntityTypes.ENTITIES.addAlias(prefix("tofupig"), prefix("tofu_pig"));
+		TofuEntityTypes.ENTITIES.addAlias(prefix("tofufish"), prefix("tofu_fish"));
+		TofuEntityTypes.ENTITIES.addAlias(prefix("tofuslime"), prefix("tofu_slime"));
+		TofuEntityTypes.ENTITIES.addAlias(prefix("tofucreeper"), prefix("tofu_creeper"));
+		TofuEntityTypes.ENTITIES.addAlias(prefix("tofuspider"), prefix("tofu_spider"));
 		TofuEnchantmentEffects.ENTITY_EFFECTS.register(modBus);
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 		TofuMenus.MENU_TYPES.register(modBus);

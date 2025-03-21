@@ -18,7 +18,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuSlimeRender extends MobRenderer<TofuSlime, TofuSlimeRenderState, SlimeModel> {
-	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofuslime.png");
+	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_slime.png");
 
 	public TofuSlimeRender(EntityRendererProvider.Context p_174391_) {
 		super(p_174391_, new SlimeModel(p_174391_.bakeLayer(ModelLayers.SLIME)), 0.25F);

@@ -15,7 +15,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuPigRender extends AgeableMobRenderer<TofuPig, TofuPigRenderState, PigModel> {
-	private static final ResourceLocation PIG_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofupig/tofupig.png");
+	private static final ResourceLocation PIG_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_pig/tofu_pig.png");
 
 	public TofuPigRender(EntityRendererProvider.Context p_174304_) {
 		super(p_174304_, new PigModel(p_174304_.bakeLayer(ModelLayers.PIG)), new PigModel(p_174304_.bakeLayer(ModelLayers.PIG_BABY)), 0.5F);

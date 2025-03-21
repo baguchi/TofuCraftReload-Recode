@@ -14,7 +14,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TofuSpiderRender extends MobRenderer<TofuSpider, TofuSpiderRenderState, TofuSpiderModel<TofuSpiderRenderState>> {
-	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofuspider/tofuspider.png");
+	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_spider/tofu_spider.png");
 
 	public TofuSpiderRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_, new TofuSpiderModel<>(p_173956_.bakeLayer(TofuModelLayers.TOFUSPIDER)), 0.5F);

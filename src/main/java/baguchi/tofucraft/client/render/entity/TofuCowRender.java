@@ -27,7 +27,7 @@ public class TofuCowRender extends AgeableMobRenderer<TofuCow, TofuCowRenderStat
 
 		if (entity.type != TofuCow.TofuCowType.NORMAL)
 			type = "_" + entity.type.name().toLowerCase();
-		return ResourceLocation.parse("tofucraft:textures/entity/tofucow/tofucow" + type + ".png");
+		return ResourceLocation.parse("tofucraft:textures/entity/tofu_cow/tofu_cow" + type + ".png");
 	}
 
 	@Override

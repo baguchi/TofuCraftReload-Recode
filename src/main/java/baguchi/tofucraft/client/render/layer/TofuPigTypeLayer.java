@@ -30,7 +30,7 @@ public class TofuPigTypeLayer extends RenderLayer<TofuPigRenderState, PigModel> 
 
 		if (entity.type != TofuPig.TofuPigType.NORMAL)
 			type = entity.type.name().toLowerCase();
-		return ResourceLocation.parse("tofucraft:textures/entity/tofupig/tofupig_" + type + ".png");
+		return ResourceLocation.parse("tofucraft:textures/entity/tofu_pig/tofu_pig_" + type + ".png");
 	}
 
 }

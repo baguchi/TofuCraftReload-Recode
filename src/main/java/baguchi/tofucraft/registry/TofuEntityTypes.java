@@ -57,14 +57,14 @@ public class TofuEntityTypes {
 	public static final Supplier<EntityType<TravelerTofunian>> TRAVELER_TOFUNIAN = ENTITIES.register("traveler_tofunian", () -> EntityType.Builder.of(TravelerTofunian::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).build(prefix("traveler_tofunian")));
 
-	public static final Supplier<EntityType<TofuCow>> TOFUCOW = ENTITIES.register("tofucow", () -> EntityType.Builder.of(TofuCow::new, MobCategory.CREATURE)
-			.sized(0.9F, 1.4F).eyeHeight(1.4F * 0.8F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofucow")));
+	public static final Supplier<EntityType<TofuCow>> TOFUCOW = ENTITIES.register("tofu_cow", () -> EntityType.Builder.of(TofuCow::new, MobCategory.CREATURE)
+			.sized(0.9F, 1.4F).eyeHeight(1.4F * 0.8F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_cow")));
 
-	public static final Supplier<EntityType<TofuPig>> TOFUPIG = ENTITIES.register("tofupig", () -> EntityType.Builder.of(TofuPig::new, MobCategory.CREATURE)
-			.sized(0.9F, 0.9F).eyeHeight(0.9F * 0.8F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofupig")));
+	public static final Supplier<EntityType<TofuPig>> TOFUPIG = ENTITIES.register("tofu_pig", () -> EntityType.Builder.of(TofuPig::new, MobCategory.CREATURE)
+			.sized(0.9F, 0.9F).eyeHeight(0.9F * 0.8F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_pig")));
 
-	public static final Supplier<EntityType<TofuFish>> TOFUFISH = ENTITIES.register("tofufish", () -> EntityType.Builder.of(TofuFish::new, MobCategory.WATER_AMBIENT)
-			.sized(0.5F, 0.35F).eyeHeight(0.3F).setTrackingRange(4).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofufish")));
+	public static final Supplier<EntityType<TofuFish>> TOFUFISH = ENTITIES.register("tofu_fish", () -> EntityType.Builder.of(TofuFish::new, MobCategory.WATER_AMBIENT)
+			.sized(0.5F, 0.35F).eyeHeight(0.3F).setTrackingRange(4).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_fish")));
 	public static final Supplier<EntityType<TofuGolem>> TOFU_GOLEM = ENTITIES.register("tofu_golem", () -> EntityType.Builder.of(TofuGolem::new, MobCategory.MISC)
 			.sized(0.8F, 0.9F).eyeHeight(0.9F * 0.55F).clientTrackingRange(10).fireImmune().build(prefix("tofu_golem")));
 
@@ -72,13 +72,13 @@ public class TofuEntityTypes {
 			.sized(0.6F, 1.6F).eyeHeight(1.6F * 0.8F).clientTrackingRange(10).fireImmune().requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_gandlem")));
 
 
-	public static final Supplier<EntityType<TofuSlime>> TOFUSLIME = ENTITIES.register("tofuslime", () -> EntityType.Builder.of(TofuSlime::new, MobCategory.MONSTER)
-			.sized(0.52F, 0.52F).eyeHeight(0.325F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofuslime")));
-	public static final Supplier<EntityType<TofuCreeper>> TOFUCREEPER = ENTITIES.register("tofucreeper", () -> EntityType.Builder.of(TofuCreeper::new, MobCategory.MONSTER)
-			.sized(0.6F, 1.6F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofucreeper")));
+	public static final Supplier<EntityType<TofuSlime>> TOFUSLIME = ENTITIES.register("tofu_slime", () -> EntityType.Builder.of(TofuSlime::new, MobCategory.MONSTER)
+			.sized(0.52F, 0.52F).eyeHeight(0.325F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_slime")));
+	public static final Supplier<EntityType<TofuCreeper>> TOFUCREEPER = ENTITIES.register("tofu_creeper", () -> EntityType.Builder.of(TofuCreeper::new, MobCategory.MONSTER)
+			.sized(0.6F, 1.6F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_creeper")));
 
-	public static final Supplier<EntityType<TofuSpider>> TOFUSPIDER = ENTITIES.register("tofuspider", () -> EntityType.Builder.of(TofuSpider::new, MobCategory.MONSTER)
-			.sized(0.95F, 0.55F).eyeHeight(0.3F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofuspider")));
+	public static final Supplier<EntityType<TofuSpider>> TOFUSPIDER = ENTITIES.register("tofu_spider", () -> EntityType.Builder.of(TofuSpider::new, MobCategory.MONSTER)
+			.sized(0.95F, 0.55F).eyeHeight(0.3F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_spider")));
 	public static final Supplier<EntityType<Zundamite>> ZUNDAMITE = ENTITIES.register("zundamite", () -> EntityType.Builder.of(Zundamite::new, MobCategory.MONSTER)
 			.sized(0.4F, 0.3F).eyeHeight(0.13F).clientTrackingRange(8).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("zundamite")));
 
