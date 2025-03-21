@@ -38,7 +38,7 @@ public class NetherFukumameItem extends Item implements ProjectileItem {
 			}
 		}
 		playerIn.awardStat(Stats.ITEM_USED.get(this));
-		playerIn.getCooldowns().addCooldown(itemstack, 10);
+		playerIn.getCooldowns().addCooldown(itemstack, 5);
 		if (!playerIn.level().isClientSide)
 			itemstack.hurtAndBreak(1, (LivingEntity) playerIn, LivingEntity.getSlotForHand(handIn));
 		return InteractionResult.SUCCESS_SERVER;

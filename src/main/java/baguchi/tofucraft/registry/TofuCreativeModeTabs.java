@@ -1,8 +1,5 @@
 package baguchi.tofucraft.registry;
 
-import java.util.function.Supplier;
-import java.util.stream.Stream;
-
 import baguchi.tofucraft.TofuCraftReload;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -11,6 +8,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 
 public class TofuCreativeModeTabs {
@@ -328,6 +328,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.ZUNDAMUSHROOM_ON_A_STICK,
 						TofuItems.FUKUMAME,
 						TofuItems.NETHER_FUKUMAME,
+						TofuItems.INFERNO_NETHER_FUKUMAME,
 						TofuItems.SOUL_FUKUMAME).map(itemSupplier -> {
 					return itemSupplier.get().asItem().getDefaultInstance();
 				}).toList());

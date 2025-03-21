@@ -1,5 +1,6 @@
 package baguchi.tofucraft.entity.projectile;
 
+import baguchi.tofucraft.registry.TofuDamageTypes;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuSounds;
@@ -75,7 +76,7 @@ public class FukumameEntity extends ThrowableProjectile {
 	protected void onHitEntity(EntityHitResult p_37404_) {
 		super.onHitEntity(p_37404_);
 		Entity entity = p_37404_.getEntity();
-		DamageSource damagesource = this.damageSources().thrown(this, this.getOwner());
+		DamageSource damagesource = this.damageSources().source(TofuDamageTypes.FUKUMAME, this, this.getOwner());
 		double d0 = this.damage;
 		if (this.level() instanceof ServerLevel serverlevel) {
 			if (this.getWeaponItem() != null) {
@@ -85,8 +86,6 @@ public class FukumameEntity extends ThrowableProjectile {
 				EnchantmentHelper.doPostAttackEffects(serverlevel, entity, damagesource);
 			}
 		}
-
-		entity.invulnerableTime = 5;
 		if (!this.level().isClientSide) {
 			this.level().broadcastEntityEvent(this, (byte) 3);
 			this.discard();
