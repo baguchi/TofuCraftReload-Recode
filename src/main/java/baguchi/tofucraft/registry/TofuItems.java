@@ -1,8 +1,5 @@
 package baguchi.tofucraft.registry;
 
-import java.util.List;
-import java.util.function.Supplier;
-
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.data.generator.CustomTagGenerator;
 import baguchi.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
@@ -27,6 +24,7 @@ import baguchi.tofucraft.item.SoyBallItem;
 import baguchi.tofucraft.item.SoymilkBottleItem;
 import baguchi.tofucraft.item.SpecialBitternItem;
 import baguchi.tofucraft.item.TFBatteryItem;
+import baguchi.tofucraft.item.TofuCrafterBookItems;
 import baguchi.tofucraft.item.armor.BreakableTofuArmorItem;
 import baguchi.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchi.tofucraft.item.armor.TofuArmorItem;
@@ -77,6 +75,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.List;
+import java.util.function.Supplier;
 
 public class TofuItems {
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TofuCraftReload.MODID);
@@ -420,6 +421,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> LEEK_GREEN_CHEST_BOAT = ITEMS.registerItem("leek_green_chest_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_GREEN_CHEST_BOAT.get(), properties.stacksTo(1).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
 	public static final DeferredHolder<Item, Item> TOFU_STEM_CHEST_BOAT = ITEMS.registerItem("tofu_stem_chest_boat", (properties) -> new BoatItem(TofuEntityTypes.TOFU_STEM_CHEST_BOAT.get(), properties.stacksTo(1).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
 	public static final DeferredHolder<Item, Item> MUSIC_DISC_GREEN_BRANCH = ITEMS.registerItem("music_disc_green_branch", (properties) -> new Item(properties.jukeboxPlayable(TofuJukeboxSongs.GREEN_BRANCH).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
+	public static final DeferredHolder<Item, Item> TOFU_CRAFTERS_BOOK = ITEMS.registerItem("tofu_crafters_book", (properties) -> new TofuCrafterBookItems(properties.stacksTo(1)));
 
 
 	private static Supplier<Item> register(String name, Supplier<Item> item) {

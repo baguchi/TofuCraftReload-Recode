@@ -1,7 +1,5 @@
 package baguchi.tofucraft.data.generator.models;
 
-import java.util.function.BiConsumer;
-
 import baguchi.tofucraft.client.render.special.TofuShieldSpecialRenderer;
 import baguchi.tofucraft.data.generator.TofuEquipmentAssets;
 import baguchi.tofucraft.registry.TofuItems;
@@ -16,6 +14,8 @@ import net.minecraft.client.renderer.item.RangeSelectItemModel;
 import net.minecraft.client.renderer.item.properties.numeric.UseDuration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+
+import java.util.function.BiConsumer;
 
 public class TofuItemModels extends ItemModelGenerators {
 	public TofuItemModels(ItemModelOutput itemModelOutput, BiConsumer<ResourceLocation, ModelInstance> modelOutput) {
@@ -359,6 +359,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.LEEK_GREEN_CHEST_BOAT.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.MUSIC_DISC_GREEN_BRANCH.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_CRAFTERS_BOOK.get(), ModelTemplates.FLAT_ITEM);
 	}
 
 	public void generateTofuShield(ItemModelGenerators generators, Item p_386530_) {

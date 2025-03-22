@@ -53,13 +53,13 @@
     "axolotls": [],
     "creature": [
       {
-        "type": "tofucraft:tofucow",
+        "type": "tofucraft:tofu_cow",
         "maxCount": 4,
         "minCount": 4,
         "weight": 100
       },
       {
-        "type": "tofucraft:tofupig",
+        "type": "tofucraft:tofu_pig",
         "maxCount": 4,
         "minCount": 4,
         "weight": 200

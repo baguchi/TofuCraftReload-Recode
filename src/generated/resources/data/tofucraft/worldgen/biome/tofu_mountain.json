@@ -55,13 +55,13 @@
     "axolotls": [],
     "creature": [
       {
-        "type": "tofucraft:tofucow",
+        "type": "tofucraft:tofu_cow",
         "maxCount": 4,
         "minCount": 4,
         "weight": 100
       },
       {
-        "type": "tofucraft:tofupig",
+        "type": "tofucraft:tofu_pig",
         "maxCount": 4,
         "minCount": 4,
         "weight": 200
@@ -70,19 +70,19 @@
     "misc": [],
     "monster": [
       {
-        "type": "tofucraft:tofuslime",
+        "type": "tofucraft:tofu_slime",
         "maxCount": 4,
         "minCount": 4,
         "weight": 100
       },
       {
-        "type": "tofucraft:tofucreeper",
+        "type": "tofucraft:tofu_creeper",
         "maxCount": 3,
         "minCount": 2,
         "weight": 10
       },
       {
-        "type": "tofucraft:tofuspider",
+        "type": "tofucraft:tofu_spider",
         "maxCount": 3,
         "minCount": 2,
         "weight": 30
