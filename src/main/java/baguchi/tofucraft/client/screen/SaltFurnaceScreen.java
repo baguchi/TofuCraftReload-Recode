@@ -5,7 +5,6 @@ import baguchi.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchi.tofucraft.client.ClientProxy;
 import baguchi.tofucraft.inventory.SaltFurnaceMenu;
 import baguchi.tofucraft.mixin.client.GuiGraphicsAccessor;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
@@ -92,7 +91,6 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 		float vMax = sprite.getV1();
 		float uDif = uMax - uMin;
 		float vDif = vMax - vMin;
-		RenderSystem.enableBlend();
 		VertexConsumer vertexBuffer = ((GuiGraphicsAccessor) guiGraphics).bufferSource().getBuffer(RenderType.guiTextured(TextureAtlas.LOCATION_BLOCKS));
 		Matrix4f matrix4f = stack.last().pose();
 		for (int xTile = 0; xTile <= xTileCount; xTile++) {
@@ -120,6 +118,5 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 				vertexBuffer.addVertex(matrix4f, x, y + maskTop, 0).setUv(uMin + uLocalDif, vMin + vLocalDif).setColor(red, green, blue, alpha);
 			}
 		}
-		RenderSystem.disableBlend();
 	}
 }

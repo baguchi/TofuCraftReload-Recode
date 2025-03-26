@@ -19,7 +19,7 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 	@Override
 	public void loadAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
 		super.loadAdditional(compound, p_338445_);
-		inventory.deserializeNBT(p_338445_, compound.getCompound("Inventory"));
+		inventory.deserializeNBT(p_338445_, compound.getCompoundOrEmpty("Inventory"));
 	}
 
 	@Override

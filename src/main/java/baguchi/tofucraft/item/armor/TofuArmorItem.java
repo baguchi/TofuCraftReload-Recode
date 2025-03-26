@@ -12,7 +12,7 @@ public class TofuArmorItem extends Item implements IEnergyInsertable {
 	public static final String TAG_TFMAX = "tf_energymax";
 
 	public TofuArmorItem(ArmorMaterial tofuArmorMaterial, ArmorType type, Properties properties) {
-		super(tofuArmorMaterial.humanoidProperties(properties, type));
+		super(properties.humanoidArmor(tofuArmorMaterial, type));
 	}
 
 	@Override

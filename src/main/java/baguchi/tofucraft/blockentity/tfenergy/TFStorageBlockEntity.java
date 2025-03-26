@@ -12,6 +12,7 @@ import baguchi.tofucraft.registry.TofuFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
@@ -243,14 +244,14 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.inventory, provider);
 
-		this.workload = cmp.getInt("workload");
-		this.current_workload = cmp.getInt("current");
+		this.workload = cmp.getIntOr("workload", 0);
+		this.current_workload = cmp.getIntOr("current", 0);
 
-		this.tank = this.tank.readFromNBT(provider, cmp.getCompound("Tank"));
+		this.tank = this.tank.readFromNBT(provider, cmp.getCompoundOrEmpty("Tank"));
 	}
 
 	@Override
-	protected void applyImplicitComponents(BlockEntity.DataComponentInput p_338855_) {
+	protected void applyImplicitComponents(DataComponentGetter p_338855_) {
 		super.applyImplicitComponents(p_338855_);
 		p_338855_.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).copyInto(this.getInventory());
 	}

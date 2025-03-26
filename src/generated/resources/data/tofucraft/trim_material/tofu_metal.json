@@ -3,6 +3,5 @@
   "description": {
     "color": "#AAB9C2",
     "translate": "trim_material.tofucraft.tofu_metal"
-  },
-  "ingredient": "tofucraft:tofumetal"
+  }
 }

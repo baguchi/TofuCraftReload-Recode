@@ -14,6 +14,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 
 public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity> {
 	private final RandomSource random = RandomSource.create();
@@ -22,7 +23,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	}
 
 	@Override
-	public void render(FoodPlateBlockEntity plateBlockEntity, float p_112308_, PoseStack poseStack, MultiBufferSource p_112310_, int p_112311_, int p_112312_) {
+	public void render(FoodPlateBlockEntity plateBlockEntity, float p_112308_, PoseStack poseStack, MultiBufferSource p_112310_, int p_112311_, int p_112312_, Vec3 vec3) {
 		Direction direction = plateBlockEntity.getBlockState().getValue(FoodPlateBlock.FACING).getOpposite();
 		ItemStack boardStack = plateBlockEntity.getStoredItem();
 		int posLong = (int) plateBlockEntity.getBlockPos().asLong();

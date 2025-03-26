@@ -14,7 +14,6 @@ import baguchi.tofucraft.world.TofuData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -235,19 +234,17 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		compound.putBoolean("FullCharge", this.isFullCharge());
 		compound.putFloat("ChargeHealth", this.getChargeHealth());
 		if (this.homePos != null) {
-			compound.put("HomePos", NbtUtils.writeBlockPos(this.homePos));
-		} else if (this.isPersistenceRequired()) {
-			compound.put("HomePos", NbtUtils.writeBlockPos(this.blockPosition()));
+			compound.store("HomePos", BlockPos.CODEC, this.homePos);
 		}
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		this.setSleepSelf(compound.getBoolean("Sleep"));
-		this.setFullCharge(compound.getBoolean("FullCharge"));
-		this.setChargeHealth(compound.getFloat("ChargeHealth"));
+		this.setSleepSelf(compound.getBooleanOr("Sleep", false));
+		this.setFullCharge(compound.getBooleanOr("FullCharge", false));
+		this.setChargeHealth(compound.getFloatOr("ChargeHealth", 0));
 		if (compound.contains("HomePos")) {
-			this.homePos = NbtUtils.readBlockPos(compound, "HomePos").orElse(null);
+			this.homePos = compound.read("HomePos", BlockPos.CODEC).orElse(null);
 		}
 	}
 
@@ -321,7 +318,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		if (this.isCharging() && this.random.nextFloat() < 0.015F * amount) {
 			this.setCharging(false);
 			this.setChargeFailed(true);
-			this.playSound(SoundEvents.SHIELD_BREAK, 2.0F, 1.0F);
+			this.playSound(SoundEvents.SHIELD_BREAK.value(), 2.0F, 1.0F);
 		}
 
 		if (this.hasChargeHealth()) {
@@ -331,7 +328,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		if (this.isFullCharge() && !this.hasChargeHealth()) {
 			this.setFullCharge(false);
 			this.setChargeFailed(true);
-			this.playSound(SoundEvents.SHIELD_BREAK, 2.0F, 1.0F);
+			this.playSound(SoundEvents.SHIELD_BREAK.value(), 2.0F, 1.0F);
 		} else if (this.isFullCharge()) {
 			return super.hurtServer(serverLevel, p_21016_, amount * 0.45F);
 		}
@@ -376,7 +373,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 	public void rushAttack(Entity p_36347_) {
 		DamageSource source = this.damageSources().mobAttack(this);
-		if (p_36347_ instanceof LivingEntity living && living.isDamageSourceBlocked(source)) {
+		if (p_36347_ instanceof LivingEntity living && this.level() instanceof ServerLevel serverLevel && living.applyItemBlocking(serverLevel, source, 16.0F) <= 0F) {
 			this.setRush(false);
 			this.setChargeFailed(true);
 			this.playSound(SoundEvents.PLAYER_ATTACK_KNOCKBACK, 2.0F, 1.0F);
@@ -421,7 +418,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 	@Override
 	public void travel(Vec3 p_218382_) {
-		if (this.isControlledByLocalInstance()) {
+		if (this.isLocalInstanceAuthoritative()) {
 			if (this.isInWater()) {
 				this.moveRelative(0.02F, p_218382_);
 				this.move(MoverType.SELF, this.getDeltaMovement());
@@ -579,10 +576,10 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 	protected void tickDeath() {
 		++this.deathTime;
 		if (this.deathTime == 38) {
-			this.playSound(SoundEvents.ITEM_BREAK, 1.0F, 1.4F);
+			this.playSound(SoundEvents.ITEM_BREAK.value(), 1.0F, 1.4F);
 		}
 		if (this.deathTime == 40) {
-			this.playSound(SoundEvents.ITEM_BREAK, 1.0F, 1.35F);
+			this.playSound(SoundEvents.ITEM_BREAK.value(), 1.0F, 1.35F);
 		}
 
 		if (this.deathTime == 100 && !this.level().isClientSide()) {

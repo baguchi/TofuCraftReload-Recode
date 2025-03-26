@@ -22,15 +22,9 @@ import net.neoforged.neoforge.event.level.BlockGrowFeatureEvent;
 import java.util.Optional;
 
 public class LeekBlock extends BushBlock implements BonemealableBlock {
-
 	public static final MapCodec<LeekBlock> CODEC = simpleCodec(LeekBlock::new);
 	public LeekBlock(Properties p_51021_) {
 		super(p_51021_);
-	}
-
-	@Override
-	protected MapCodec<? extends BushBlock> codec() {
-		return CODEC;
 	}
 
 	@Override

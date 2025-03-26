@@ -1,9 +1,5 @@
 package baguchi.tofucraft.entity;
 
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
-
 import baguchi.bagus_lib.client.camera.CameraCore;
 import baguchi.bagus_lib.client.camera.holder.EntityCameraHolder;
 import baguchi.bagus_lib.util.GlobalVec3;
@@ -71,6 +67,10 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.entity.PartEntity;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.network.PacketDistributor;
+
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.List;
 
 public class ShuDofuSpider extends Monster {
 	private static final EntityDataAccessor<Boolean> DATA_ID_JUMP = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -171,7 +171,7 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	private boolean isMovingOnLand() {
-		return this.onGround() && this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D && !this.isInWaterOrBubble();
+		return this.onGround() && this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D && !this.isInWater();
 	}
 
 	@Override
@@ -467,8 +467,11 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	@Override
-	public boolean canDisableShield() {
-		return this.isGraspAnim();
+	public float getSecondsToDisableBlocking() {
+		if (this.isGraspAnim()) {
+			return 8.0F;
+		}
+		return super.getSecondsToDisableBlocking();
 	}
 
 	public void performRangedAttack(LivingEntity p_29912_) {
@@ -1001,7 +1004,7 @@ public class ShuDofuSpider extends Monster {
 
 	public void readAdditionalSaveData(CompoundTag p_31474_) {
 		super.readAdditionalSaveData(p_31474_);
-		this.setAngry(p_31474_.getBoolean("Angry"));
+		this.setAngry(p_31474_.getBooleanOr("Angry", false));
 		if (this.hasCustomName()) {
 			this.bossEvent.setName(this.getDisplayName());
 		}

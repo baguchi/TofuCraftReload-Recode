@@ -97,17 +97,11 @@ public class NattoCobWebEntity extends LivingEntity {
 		super.onSyncedDataUpdated(p_33434_);
 	}
 
-	@Override
-	public void lerpTo(double p_33411_, double p_33412_, double p_33413_, float p_33414_, float p_33415_, int p_33416_) {
-		this.lerpSteps = 0;
-		this.setPos(p_33411_, p_33412_, p_33413_);
-		this.setRot(p_33414_, p_33415_);
-	}
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag p_33432_) {
 		super.readAdditionalSaveData(p_33432_);
-		this.setAttachFace(Direction.from3DDataValue(p_33432_.getByte("AttachFace")));
+		this.setAttachFace(Direction.from3DDataValue(p_33432_.getByteOr("AttachFace", (byte) 0)));
 	}
 
 	@Override
@@ -215,7 +209,6 @@ public class NattoCobWebEntity extends LivingEntity {
 	}
 
 	public void setItemSlot(EquipmentSlot p_31584_, ItemStack p_31585_) {
-		this.verifyEquippedItem(p_31585_);
 		switch (p_31584_.getType()) {
 			case HAND:
 				this.onEquipItem(p_31584_, this.handItems.set(p_31584_.getIndex(), p_31585_), p_31585_);

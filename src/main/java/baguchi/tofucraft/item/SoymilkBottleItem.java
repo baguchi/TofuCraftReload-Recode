@@ -12,9 +12,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class SoymilkBottleItem extends Item {
 	private final Holder<MobEffect> effect;
@@ -46,9 +47,10 @@ public class SoymilkBottleItem extends Item {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, TooltipContext tooltipContext, List<Component> components, TooltipFlag flag) {
-		super.appendHoverText(stack, tooltipContext, components, flag);
-		components.add(this.getEffect().value().getDisplayName().copy().withStyle(ChatFormatting.BLUE));
+	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, TooltipDisplay p_399753_, Consumer<Component> p_399884_, TooltipFlag p_41424_) {
+		super.appendHoverText(p_41421_, p_339594_, p_399753_, p_399884_, p_41424_);
+		p_399884_.accept(this.getEffect().value().getDisplayName().copy().withStyle(ChatFormatting.BLUE));
+
 	}
 
 	public Holder<MobEffect> getEffect() {

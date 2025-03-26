@@ -8,6 +8,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
@@ -53,14 +54,14 @@ public class ZundamaBlock extends HalfTransparentBlock {
 
 	}
 
-	public void entityInside(BlockState p_54003_, Level p_54004_, BlockPos p_54005_, Entity p_54006_) {
+	public void entityInside(BlockState p_54003_, Level p_54004_, BlockPos p_54005_, Entity p_54006_, InsideBlockEffectApplier insideBlockEffectApplier) {
 		if (this.isSlidingDown(p_54005_, p_54006_)) {
 			this.maybeDoSlideAchievement(p_54006_, p_54005_);
 			this.doSlideMovement(p_54006_);
 			this.maybeDoSlideEffects(p_54004_, p_54006_);
 		}
 
-		super.entityInside(p_54003_, p_54004_, p_54005_, p_54006_);
+		super.entityInside(p_54003_, p_54004_, p_54005_, p_54006_, insideBlockEffectApplier);
 	}
 
 	private boolean isSlidingDown(BlockPos p_54008_, Entity p_54009_) {

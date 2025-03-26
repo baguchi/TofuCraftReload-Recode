@@ -3,7 +3,6 @@
   "addition": "tofucraft:blocktofudiamond",
   "base": "tofucraft:tofu_metal_helmet",
   "result": {
-    "count": 1,
     "id": "tofucraft:tofu_diamond_helmet"
   },
   "template": "tofucraft:tofu_upgrade_smithing_template"

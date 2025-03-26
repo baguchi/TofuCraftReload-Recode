@@ -206,7 +206,7 @@ public class TofuBedBlock extends BedBlock {
 		if (!p_49499_.isClientSide) {
 			BlockPos var6 = p_49500_.relative((Direction) p_49501_.getValue(FACING));
 			p_49499_.setBlock(var6, (BlockState) p_49501_.setValue(PART, BedPart.HEAD), 3);
-			p_49499_.blockUpdated(p_49500_, Blocks.AIR);
+			p_49499_.neighborChanged(p_49500_, Blocks.AIR, null);
 			p_49501_.updateNeighbourShapes(p_49499_, p_49500_, 3);
 		}
 

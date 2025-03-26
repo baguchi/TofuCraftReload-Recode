@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.TriState;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.LevelReader;
@@ -63,7 +64,7 @@ public class RiceCropsBlock extends CropBlock {
 			for (int j = -1; j <= 1; j++) {
 				float f1 = 0.0F;
 				BlockState blockstate = p_52274_.getBlockState(blockpos.offset(i, 0, j));
-				net.neoforged.neoforge.common.util.TriState soilDecision = blockstate.canSustainPlant(p_52274_, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, blockState);
+				TriState soilDecision = blockstate.canSustainPlant(p_52274_, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, blockState);
 				if (soilDecision.isDefault() ? blockstate.is(TofuBlocks.RICE_ROOT.get()) : soilDecision.isTrue()) {
 					f1 = 1.0F;
 					if (blockstate.isFertile(p_52274_, p_52275_.offset(i, 0, j))) {

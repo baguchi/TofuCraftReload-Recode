@@ -41,6 +41,10 @@ neoForge {
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
     runs {
+        clientAuth {
+            client()
+            devLogin = true
+        }
         client {
             client()
 

@@ -5,6 +5,7 @@ import baguchi.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -96,18 +97,14 @@ public class FoodPlateBlock extends BaseEntityBlock {
 		}
 		return InteractionResult.TRY_WITH_EMPTY_HAND;
 	}
-
 	@Override
-	public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-		if (state.getBlock() != newState.getBlock()) {
-			BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-			if (tileEntity instanceof FoodPlateBlockEntity) {
-				Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), ((FoodPlateBlockEntity) tileEntity).getStoredItem());
-				worldIn.updateNeighbourForOutputSignal(pos, this);
-			}
-
-			super.onRemove(state, worldIn, pos, newState, isMoving);
+	public void affectNeighborsAfterRemoval(BlockState state, ServerLevel worldIn, BlockPos pos, boolean isMoving) {
+		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
+		if (tileEntity instanceof FoodPlateBlockEntity) {
+			Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), ((FoodPlateBlockEntity) tileEntity).getStoredItem());
+			worldIn.updateNeighbourForOutputSignal(pos, this);
 		}
+		super.affectNeighborsAfterRemoval(state, worldIn, pos, isMoving);
 	}
 	@Override
 	public boolean hasAnalogOutputSignal(BlockState state) {

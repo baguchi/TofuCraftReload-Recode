@@ -64,7 +64,7 @@ public class FukumameThrower extends Piglin {
 	@Override
 	public void readAdditionalSaveData(CompoundTag p_34725_) {
 		super.readAdditionalSaveData(p_34725_);
-		this.setFukumameCount(p_34725_.getInt("FukumameCount"));
+		this.setFukumameCount(p_34725_.getIntOr("FukumameCount", 64));
 	}
 
 	@Override

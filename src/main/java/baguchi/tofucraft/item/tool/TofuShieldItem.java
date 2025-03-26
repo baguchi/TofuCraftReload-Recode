@@ -1,15 +1,9 @@
 package baguchi.tofucraft.item.tool;
 
 import baguchi.tofucraft.api.tfenergy.IEnergyInsertable;
-import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
-import net.minecraft.world.item.TooltipFlag;
-import net.neoforged.neoforge.common.ItemAbilities;
-import net.neoforged.neoforge.common.ItemAbility;
-
-import java.util.List;
 
 public class TofuShieldItem extends ShieldItem implements IEnergyInsertable {
 	public static final int EFFECTIVE_BLOCK_DELAY = 5;
@@ -20,14 +14,6 @@ public class TofuShieldItem extends ShieldItem implements IEnergyInsertable {
 		super(p_43089_);
 	}
 
-	@Override
-	public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
-		return itemAbility == ItemAbilities.SHIELD_BLOCK;
-	}
-
-	@Override
-	public void appendHoverText(ItemStack p_43094_, TooltipContext p_339613_, List<Component> p_43096_, TooltipFlag p_43097_) {
-	}
 
 	@Override
 	public int fill(ItemStack inst, int energy, boolean simulate) {

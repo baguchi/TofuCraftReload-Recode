@@ -38,11 +38,11 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 			this.canPlant = false;
 			this.wantsToHarvest = true;
 		}
-		return (this.tofunian.level().isDay() && this.tofunian.getRole() == Tofunian.Roles.TOFUCOOK && super.canUse());
+		return (this.tofunian.level().isBrightOutside() && this.tofunian.getRole() == Tofunian.Roles.TOFUCOOK && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (this.tofunian.level().isDay() && (this.canHarvest || this.canPlant || this.wantsToHarvest) && super.canContinueToUse());
+		return (this.tofunian.level().isBrightOutside() && (this.canHarvest || this.canPlant || this.wantsToHarvest) && super.canContinueToUse());
 	}
 
 	public void start() {

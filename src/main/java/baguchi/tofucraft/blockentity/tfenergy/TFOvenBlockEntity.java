@@ -4,6 +4,7 @@ import baguchi.tofucraft.blockentity.tfenergy.base.WorkerBaseBlockEntity;
 import baguchi.tofucraft.inventory.TFOvenMenu;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import com.google.common.collect.Lists;
+import com.mojang.serialization.Codec;
 import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
@@ -11,13 +12,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
@@ -42,18 +42,19 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT;
 
 public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyContainer, StackedContentsCompatible, RecipeCraftingHolder, MenuProvider {
 
+	private static final Codec<Map<ResourceKey<Recipe<?>>, Integer>> RECIPES_USED_CODEC = Codec.unboundedMap(Recipe.KEY_CODEC, Codec.INT);
 	protected NonNullList<ItemStack> inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 	private int progress = 0;
 
@@ -246,13 +247,12 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.inventory, p_338445_);
 
-		this.progress = cmp.getInt("progress");
-		this.refreshTime = cmp.getInt("RefreshTime");
-		CompoundTag compoundtag = cmp.getCompound("RecipesUsed");
+		this.progress = cmp.getIntOr("progress", 0);
+		this.refreshTime = cmp.getIntOr("RefreshTime", 0);
+		CompoundTag compoundtag = cmp.getCompoundOrEmpty("RecipesUsed");
 
-		for (String s : compoundtag.getAllKeys()) {
-			this.recipesUsed.put(ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(s)), compoundtag.getInt(s));
-		}
+		this.recipesUsed.clear();
+		this.recipesUsed.putAll(cmp.read("RecipesUsed", RECIPES_USED_CODEC).orElse(Map.of()));
 	}
 
 	@Override
@@ -350,7 +350,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 	}
 
 	@Override
-	protected void applyImplicitComponents(BlockEntity.DataComponentInput p_338855_) {
+	protected void applyImplicitComponents(DataComponentGetter p_338855_) {
 		super.applyImplicitComponents(p_338855_);
 		p_338855_.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).copyInto(this.getInventory());
 	}

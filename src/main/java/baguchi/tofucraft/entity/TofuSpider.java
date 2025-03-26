@@ -1,9 +1,5 @@
 package baguchi.tofucraft.entity;
 
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
-
 import baguchi.tofucraft.entity.projectile.FukumameEntity;
 import baguchi.tofucraft.registry.TofuAdvancements;
 import baguchi.tofucraft.registry.TofuEntityTypes;
@@ -49,6 +45,10 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.event.EventHooks;
+
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.List;
 
 public class TofuSpider extends Spider implements RangedAttackMob {
 	private static final EntityDataAccessor<Boolean> DATA_CONVERTING_ID = SynchedEntityData.defineId(TofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -115,8 +115,8 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 
 	public void readAdditionalSaveData(CompoundTag p_34387_) {
 		super.readAdditionalSaveData(p_34387_);
-		if (p_34387_.contains("ConversionTime", 99) && p_34387_.getInt("ConversionTime") > -1) {
-			this.startConverting(p_34387_.getInt("ConversionTime"));
+		if (p_34387_.contains("ConversionTime") && p_34387_.getIntOr("ConversionTime", -1) > -1) {
+			this.startConverting(p_34387_.getIntOr("ConversionTime", -1));
 		}
 	}
 
@@ -170,7 +170,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 			}
 		}
 
-		shudofuSpider.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0));
+		shudofuSpider.addEffect(new MobEffectInstance(MobEffects.NAUSEA, 200, 0));
 		if (!this.isSilent()) {
 			this.playSound(SoundEvents.WITHER_SPAWN, 4.0F, 1.0F);
 		}

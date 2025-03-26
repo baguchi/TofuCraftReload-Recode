@@ -2,15 +2,11 @@ package baguchi.tofucraft.client.render.state;
 
 import baguchi.tofucraft.entity.TofuPig;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
-import net.minecraft.client.renderer.entity.state.SaddleableRenderState;
+import net.minecraft.world.item.ItemStack;
 
-public class TofuPigRenderState extends LivingEntityRenderState implements SaddleableRenderState {
+public class TofuPigRenderState extends LivingEntityRenderState {
 	public TofuPig.TofuPigType type;
 
-	public boolean isSaddled;
+	public ItemStack saddle = ItemStack.EMPTY;
 
-	@Override
-	public boolean isSaddled() {
-		return this.isSaddled;
-	}
 }

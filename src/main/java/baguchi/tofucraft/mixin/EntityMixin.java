@@ -49,7 +49,7 @@ public abstract class EntityMixin implements net.neoforged.neoforge.common.exten
 	@Shadow
 	private EntityDimensions dimensions;
 	@Shadow
-	public float fallDistance;
+	public double fallDistance;
 
 	@Inject(method = "updateInWaterStateAndDoFluidPushing",
 			at = @At(value = "RETURN"))

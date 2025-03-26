@@ -19,11 +19,11 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isDay() && super.canUse());
+		return (this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isBrightOutside() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isDay() && this.mob != null);
+		return (super.canContinueToUse() && this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isBrightOutside() && this.mob != null);
 	}
 
 	public void start() {

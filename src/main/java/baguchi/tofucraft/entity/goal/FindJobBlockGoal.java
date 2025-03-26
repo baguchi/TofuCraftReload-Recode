@@ -24,11 +24,11 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isDay() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunianJobBlock() == null) && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isBrightOutside() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunianJobBlock() == null) && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return !this.findBlock && (super.canContinueToUse() && this.creature.level().isDay() && !this.creature.isBaby() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunianJobBlock() == null) && this.mob != null);
+		return !this.findBlock && (super.canContinueToUse() && this.creature.level().isBrightOutside() && !this.creature.isBaby() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunianJobBlock() == null) && this.mob != null);
 	}
 
 	public void tick() {

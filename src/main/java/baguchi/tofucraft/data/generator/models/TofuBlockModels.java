@@ -1,9 +1,5 @@
 package baguchi.tofucraft.data.generator.models;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.block.CandleTofuCakeBlock;
 import baguchi.tofucraft.data.provider.TofuBlockstateModelProvider;
@@ -11,7 +7,7 @@ import baguchi.tofucraft.data.resources.builder.TofuBlockFamilies;
 import baguchi.tofucraft.registry.TofuBlocks;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelOutput;
-import net.minecraft.client.data.models.blockstates.BlockStateGenerator;
+import net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator;
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
@@ -20,10 +16,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 public class TofuBlockModels extends TofuBlockstateModelProvider {
 	private Supplier<CandleTofuCakeBlock> block;
 
-	public TofuBlockModels(Consumer<BlockStateGenerator> blockStateOutput, ItemModelOutput itemModelOutput, BiConsumer<ResourceLocation, ModelInstance> modelOutput) {
+	public TofuBlockModels(Consumer<BlockModelDefinitionGenerator> blockStateOutput, ItemModelOutput itemModelOutput, BiConsumer<ResourceLocation, ModelInstance> modelOutput) {
 		super(blockStateOutput, itemModelOutput, modelOutput);
 	}
 	@Override
@@ -248,7 +248,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createTrivialCube(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 
 		this.registerSimpleFlatItemModel(TofuBlocks.TOFU_METAL_CHAIN.get().asItem());
-		this.createAxisAlignedPillarBlockCustomModel(TofuBlocks.TOFU_METAL_CHAIN.get(), ModelLocationUtils.getModelLocation(TofuBlocks.TOFU_METAL_CHAIN.get()));
+		this.createAxisAlignedPillarBlockCustomModel(TofuBlocks.TOFU_METAL_CHAIN.get(), plainVariant(ModelLocationUtils.getModelLocation(TofuBlocks.TOFU_METAL_CHAIN.get())));
 
 		createLantern(TofuBlocks.TOFU_METAL_LANTERN.get());
 		createLantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
@@ -275,4 +275,5 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		this.itemModelOutput.accept(TofuBlocks.SALTPAN.asItem(), ItemModelUtils.plainModel(TofuCraftReload.prefix("block/saltpan_inventory")));
 		this.itemModelOutput.accept(TofuBlocks.SPROUTSJAR.asItem(), ItemModelUtils.plainModel(TofuCraftReload.prefix("block/sprouts_jar_inventory")));
 	}
+
 }

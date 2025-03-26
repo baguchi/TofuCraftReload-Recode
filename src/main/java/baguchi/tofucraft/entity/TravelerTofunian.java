@@ -7,7 +7,6 @@ import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofunianTrades;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -64,10 +63,10 @@ public class TravelerTofunian extends AbstractTofunian {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionContents.createItemStack(Items.POTION, Potions.INVISIBILITY), TofuSounds.TOFUNIAN_YES.get(), (p_35882_) -> {
-			return this.level().isNight() && !p_35882_.isInvisible();
+			return this.level().isDarkOutside() && !p_35882_.isInvisible();
 		}));
 		this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), TofuSounds.TOFUNIAN_YES.get(), (p_35880_) -> {
-			return this.level().isDay() && p_35880_.isInvisible();
+			return this.level().isBrightOutside() && p_35880_.isInvisible();
 		}));
 		this.goalSelector.addGoal(1, new TofunianTradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.2D, 1.2D));
@@ -134,19 +133,19 @@ public class TravelerTofunian extends AbstractTofunian {
 		super.addAdditionalSaveData(p_35861_);
 		p_35861_.putInt("DespawnDelay", this.despawnDelay);
 		if (this.wanderTarget != null) {
-			p_35861_.put("WanderTarget", NbtUtils.writeBlockPos(this.wanderTarget));
+			p_35861_.store("WanderTarget", BlockPos.CODEC, this.wanderTarget);
 		}
 
 	}
 
 	public void readAdditionalSaveData(CompoundTag p_35852_) {
 		super.readAdditionalSaveData(p_35852_);
-		if (p_35852_.contains("DespawnDelay", 99)) {
-			this.despawnDelay = p_35852_.getInt("DespawnDelay");
+		if (p_35852_.contains("DespawnDelay")) {
+			this.despawnDelay = p_35852_.getIntOr("DespawnDelay", 0);
 		}
 
 		if (p_35852_.contains("WanderTarget")) {
-			this.wanderTarget = NbtUtils.readBlockPos(p_35852_, "WanderTarget").orElse(null);
+			this.wanderTarget = p_35852_.read("WanderTarget", BlockPos.CODEC).orElse(null);
 		}
 
 		this.setAge(Math.max(0, this.getAge()));

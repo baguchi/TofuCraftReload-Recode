@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.Vec3;
 
 public class TofunianStatueRender implements BlockEntityRenderer<TofunianStatueBlockEntity> {
 	public static final ResourceLocation TEXTURES = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian_statue.png");
@@ -36,7 +37,7 @@ public class TofunianStatueRender implements BlockEntityRenderer<TofunianStatueB
 	}
 
 	@Override
-	public void render(TofunianStatueBlockEntity plateBlockEntity, float p_112308_, PoseStack poseStack, MultiBufferSource p_112310_, int p_112311_, int p_112312_) {
+	public void render(TofunianStatueBlockEntity plateBlockEntity, float p_112308_, PoseStack poseStack, MultiBufferSource p_112310_, int p_112311_, int p_112312_, Vec3 vec3) {
 		float f = plateBlockEntity.getBlockState().getValue(TofunianStatueBlock.FACING).getOpposite().toYRot();
 		poseStack.pushPose();
 		poseStack.scale(-1.0F, -1.0F, 1.0F);

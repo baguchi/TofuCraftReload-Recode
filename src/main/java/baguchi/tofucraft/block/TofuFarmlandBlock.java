@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.piston.MovingPistonBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -25,7 +26,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.common.FarmlandWaterManager;
 
 public class TofuFarmlandBlock extends Block {
@@ -85,12 +85,13 @@ public class TofuFarmlandBlock extends Block {
 	}
 
 	@Override
-	public void fallOn(Level p_153227_, BlockState p_153228_, BlockPos p_153229_, Entity p_153230_, float p_153231_) {
-		if (!p_153227_.isClientSide && CommonHooks.onFarmlandTrample((ServerLevel) p_153227_, p_153229_, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), p_153231_, p_153230_)) { // Forge: Move logic to Entity#canTrample
+	public void fallOn(Level p_153227_, BlockState p_153228_, BlockPos p_153229_, Entity p_153230_, double p_397639_) {
+		if (p_153227_ instanceof ServerLevel serverlevel
+				&& net.neoforged.neoforge.common.CommonHooks.onFarmlandTrample(serverlevel, p_153229_, Blocks.DIRT.defaultBlockState(), p_397639_, p_153230_)) { // Forge: Move logic to Entity#canTrample
 			turnToDirt(p_153228_, p_153227_, p_153229_);
 		}
 
-		super.fallOn(p_153227_, p_153228_, p_153229_, p_153230_, p_153231_);
+		super.fallOn(p_153227_, p_153228_, p_153229_, p_153230_, p_397639_);
 	}
 
 	public static void turnToDirt(BlockState p_53297_, Level p_53298_, BlockPos p_53299_) {

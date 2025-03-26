@@ -13,11 +13,12 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public class NourishmentItem extends Item {
 	public NourishmentItem(Properties p_41383_) {
@@ -38,12 +39,13 @@ public class NourishmentItem extends Item {
 		return resultItem;
 	}
 
+
 	@Override
-	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
-		super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
+	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, TooltipDisplay p_399753_, Consumer<Component> p_399884_, TooltipFlag p_41424_) {
+		super.appendHoverText(p_41421_, p_339594_, p_399753_, p_399884_, p_41424_);
 		MobEffect effect = BuiltInRegistries.MOB_EFFECT.getValue(ResourceLocation.fromNamespaceAndPath("farmersdelight", "nourishment"));
 		if (effect != null) {
-			p_41423_.add(Component.translatable("tofucraft.has_nourishment").withStyle(ChatFormatting.GOLD));
+			p_399884_.accept(Component.translatable("tofucraft.has_nourishment").withStyle(ChatFormatting.GOLD));
 		}
 	}
 }

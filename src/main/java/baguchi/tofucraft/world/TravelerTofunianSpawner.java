@@ -95,9 +95,6 @@ public class TravelerTofunianSpawner {
 
 					TravelerTofunian tofunian = TofuEntityTypes.TRAVELER_TOFUNIAN.get().spawn(world, blockpos2, EntitySpawnReason.EVENT);
 					if (tofunian != null) {
-						if (worldinfo != null) {
-							worldinfo.setTravelerUUID(tofunian.getUUID());
-						}
 						tofunian.setDespawnDelay(48000);
 						tofunian.setWanderTarget(blockpos1);
 						tofunian.restrictTo(blockpos1, 22);

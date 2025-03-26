@@ -36,12 +36,12 @@ public class TofuConsumables {
 
 	public static final Consumable CHILI_FOOD = defaultFood()
 			.onConsume(new ApplyStatusEffectsConsumeEffect(
-					List.of(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 3600, 0))
+					List.of(new MobEffectInstance(MobEffects.STRENGTH, 3600, 0))
 			))
 			.build();
 	public static final Consumable HELL_CHILI_FOOD = defaultFood()
 			.onConsume(new ApplyStatusEffectsConsumeEffect(
-					List.of(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 3600 * 2, 0),
+					List.of(new MobEffectInstance(MobEffects.STRENGTH, 3600 * 2, 0),
 							new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 3600, 0))
 			))
 			.build();
@@ -60,7 +60,7 @@ public class TofuConsumables {
 	public static final Consumable CRIMSON_SOUP = defaultFood()
 			.onConsume(new ApplyStatusEffectsConsumeEffect(
 					List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600, 0),
-							new MobEffectInstance(MobEffects.CONFUSION, 300, 0))
+							new MobEffectInstance(MobEffects.NAUSEA, 300, 0))
 			))
 			.build();
 

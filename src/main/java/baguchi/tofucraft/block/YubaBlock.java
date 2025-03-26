@@ -10,6 +10,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -73,8 +74,8 @@ public class YubaBlock extends Block {
 	}
 
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos blockPos, Entity entity) {
-		super.entityInside(state, level, blockPos, entity);
+	public void entityInside(BlockState state, Level level, BlockPos blockPos, Entity entity, InsideBlockEffectApplier insideBlockEffectApplier) {
+		super.entityInside(state, level, blockPos, entity, insideBlockEffectApplier);
 
 		if (!level.isClientSide() && canEntityTilt(blockPos, entity)) {
 			level.scheduleTick(blockPos, this, 5);

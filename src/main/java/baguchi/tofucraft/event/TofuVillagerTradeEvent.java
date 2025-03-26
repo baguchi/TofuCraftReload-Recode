@@ -46,7 +46,7 @@ public class TofuVillagerTradeEvent {
 
 		}
 
-		if (event.getType() == TofuProfessions.TOFU_CRAFTSMAN.get()) {
+		if (TofuProfessions.TOFU_CRAFTSMAN.is(event.getType())) {
 			trades.add(new EmeraldForItems(TofuItems.SEEDS_SOYBEANS.get(), 16, 12, 1));
 			trades.add(new ItemsForEmeralds(TofuItems.TOFUGRILLED.get(), 1, 9, 8, 2));
 

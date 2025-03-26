@@ -1,18 +1,30 @@
 package baguchi.tofucraft.block;
 
 import baguchi.tofucraft.registry.TofuBlocks;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TofuLeavesBlock extends LeavesBlock {
+	public static final MapCodec<TofuLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(
+			p_399854_ -> p_399854_.group(
+							propertiesCodec()
+					)
+					.apply(p_399854_, TofuLeavesBlock::new)
+	);
 	public TofuLeavesBlock(Properties properties) {
-		super(properties);
+		super(0.01F, properties);
 	}
 
 	public BlockState updateShape(BlockState p_54440_, Direction p_54441_, BlockState p_54442_, LevelAccessor p_54443_, BlockPos p_54444_, BlockPos p_54445_) {
@@ -23,6 +35,11 @@ public class TofuLeavesBlock extends LeavesBlock {
 			}
 
 		return p_54440_;
+	}
+
+	@Override
+	public MapCodec<? extends LeavesBlock> codec() {
+		return CODEC;
 	}
 
 	public void tick(BlockState p_54426_, ServerLevel p_54427_, BlockPos p_54428_, RandomSource p_54429_) {
@@ -50,6 +67,11 @@ public class TofuLeavesBlock extends LeavesBlock {
 		} else {
 			return p_54464_.getBlock() instanceof LeavesBlock ? p_54464_.getValue(DISTANCE) : 7;
 		}
+	}
+
+	@Override
+	protected void spawnFallingLeavesParticle(Level level, BlockPos blockPos, RandomSource randomSource) {
+		ParticleUtils.spawnParticleBelow(level, blockPos, randomSource, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, 1F, 1F, 1F));
 	}
 
 	public BlockState getStateForPlacement(BlockPlaceContext p_54424_) {

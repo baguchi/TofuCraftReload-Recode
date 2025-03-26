@@ -74,10 +74,10 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 	@Override
 	public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
 		super.loadAdditional(compound, provider);
-		this.setProcessTick(compound.getInt("ProcessTick"));
-		this.setCooldown(compound.getLong("CooldownAt"));
-		this.setHappyScale(compound.getFloat("HappyScale"));
-		this.setHappyTime(compound.getLong("HappyTimeAt"));
+		this.setProcessTick(compound.getIntOr("ProcessTick", 0));
+		this.setCooldown(compound.getLongOr("CooldownAt", 0));
+		this.setHappyScale(compound.getFloatOr("HappyScale", 0));
+		this.setHappyTime(compound.getLongOr("HappyTimeAt", 0));
 	}
 
 	@Override

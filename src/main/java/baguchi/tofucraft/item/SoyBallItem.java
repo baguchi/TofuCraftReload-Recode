@@ -5,14 +5,17 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class SoyBallItem extends Item {
 	public SoyBallItem(Properties properties) {
@@ -27,7 +30,8 @@ public class SoyBallItem extends Item {
 	}
 
 	public static boolean repairTofuArmor(LivingEntity p_371788_, ItemStack stack) {
-		for (ItemStack itemstack : p_371788_.getArmorAndBodyArmorSlots()) {
+		for (EquipmentSlot equipmentSlot : EquipmentSlotGroup.ARMOR) {
+			ItemStack itemstack = p_371788_.getItemBySlot(equipmentSlot);
 			if (itemstack.is(TofuTags.Items.REPAIRABLE_TOFU) && itemstack.isDamaged()) {
 				stack.shrink(1);
 				p_371788_.playSound(SoundEvents.HONEYCOMB_WAX_ON);
@@ -36,7 +40,8 @@ public class SoyBallItem extends Item {
 			}
 		}
 
-		for (ItemStack itemstack : p_371788_.getHandSlots()) {
+		for (EquipmentSlot equipmentSlot : EquipmentSlotGroup.HAND) {
+			ItemStack itemstack = p_371788_.getItemBySlot(equipmentSlot);
 			if (itemstack.is(TofuTags.Items.REPAIRABLE_TOFU) && itemstack.isDamaged()) {
 				stack.shrink(1);
 				p_371788_.playSound(SoundEvents.HONEYCOMB_WAX_ON);
@@ -49,9 +54,9 @@ public class SoyBallItem extends Item {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack p_43094_, TooltipContext p_339613_, List<Component> p_43096_, TooltipFlag p_43097_) {
-		super.appendHoverText(p_43094_, p_339613_, p_43096_, p_43097_);
-		p_43096_.add(Component.translatable("tooltip.tofucraft.soyball"));
+	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, TooltipDisplay p_399753_, Consumer<Component> p_399884_, TooltipFlag p_41424_) {
+		super.appendHoverText(p_41421_, p_339594_, p_399753_, p_399884_, p_41424_);
+		p_399884_.accept(Component.translatable("tooltip.tofucraft.soyball"));
 
 	}
 }

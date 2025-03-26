@@ -55,7 +55,7 @@ public class TofuGemBlock extends Block {
 
 	private static void spawnGolemInWorld(Level p_249110_, BlockPattern.BlockPatternMatch p_251293_, Entity p_251251_, BlockPos p_251189_) {
 		clearPatternBlocks(p_249110_, p_251293_);
-		p_251251_.moveTo((double) p_251189_.getX() + 0.5D, (double) p_251189_.getY() + 0.05D, (double) p_251189_.getZ() + 0.5D, 0.0F, 0.0F);
+		p_251251_.snapTo((double) p_251189_.getX() + 0.5D, (double) p_251189_.getY() + 0.05D, (double) p_251189_.getZ() + 0.5D, 0.0F, 0.0F);
 		p_249110_.addFreshEntity(p_251251_);
 
 		for (ServerPlayer serverplayer : p_249110_.getEntitiesOfClass(ServerPlayer.class, p_251251_.getBoundingBox().inflate(5.0D))) {
@@ -80,7 +80,7 @@ public class TofuGemBlock extends Block {
 		for (int i = 0; i < p_251935_.getWidth(); ++i) {
 			for (int j = 0; j < p_251935_.getHeight(); ++j) {
 				BlockInWorld blockinworld = p_251935_.getBlock(i, j, 0);
-				p_248711_.blockUpdated(blockinworld.getPos(), Blocks.AIR);
+				p_248711_.neighborChanged(blockinworld.getPos(), Blocks.AIR, null);
 			}
 		}
 

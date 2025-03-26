@@ -1,6 +1,5 @@
 package baguchi.tofucraft.client.particle;
 
-import baguchi.tofucraft.client.render.TofuCraftRenderType;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -42,7 +41,7 @@ public class ParticleStink extends TextureSheetParticle {
 
 	@Override
 	public ParticleRenderType getRenderType() {
-		return TofuCraftRenderType.PARTICLE_SHEET_TRANSLUCENT;
+		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 
 	@Override

@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -59,7 +60,7 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity> 
 		return LayerDefinition.create(var0, 64, 64);
 	}
 
-	public void render(TofuBedBlockEntity p_112205_, float p_112206_, PoseStack p_112207_, MultiBufferSource p_112208_, int p_112209_, int p_112210_) {
+	public void render(TofuBedBlockEntity p_112205_, float p_112206_, PoseStack p_112207_, MultiBufferSource p_112208_, int p_112209_, int p_112210_, Vec3 vec3) {
 		Level var8 = p_112205_.getLevel();
 		if (var8 != null) {
 			BlockState var9 = p_112205_.getBlockState();

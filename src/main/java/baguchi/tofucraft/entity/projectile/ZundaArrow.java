@@ -75,7 +75,8 @@ public class ZundaArrow extends AbstractArrow {
 			Entity entity = p_36757_.getEntity();
 			Entity entity1 = this.getOwner();
 			float f = (float) this.getDeltaMovement().length();
-			double d0 = this.getBaseDamage();
+			//TODO BASE DAMAGE
+			double d0 = 2F;
 			DamageSource source = zundaAttack(this.getOwner());
 			if (this.level() instanceof ServerLevel serverlevel) {
 				if (this.getWeaponItem() != null) {
@@ -105,7 +106,7 @@ public class ZundaArrow extends AbstractArrow {
 
 							this.doPostHurtEffects(livingentity);
 							if (livingentity != entity1 && livingentity instanceof Player && entity1 instanceof ServerPlayer && !this.isSilent()) {
-								((ServerPlayer) entity1).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
+								((ServerPlayer) entity1).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.PLAY_ARROW_HIT_SOUND, 0.0F));
 							}
 
 							if (!this.level().isClientSide && entity1 instanceof ServerPlayer serverplayer) {
@@ -146,7 +147,7 @@ public class ZundaArrow extends AbstractArrow {
 	public void readAdditionalSaveData(CompoundTag p_37424_) {
 		super.readAdditionalSaveData(p_37424_);
 		if (p_37424_.contains("Duration")) {
-			this.duration = p_37424_.getInt("Duration");
+			this.duration = p_37424_.getIntOr("Duration", 0);
 		}
 
 	}

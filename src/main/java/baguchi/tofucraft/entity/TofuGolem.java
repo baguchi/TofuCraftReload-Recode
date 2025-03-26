@@ -16,7 +16,6 @@ import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -163,7 +162,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 
 	public void readAdditionalSaveData(CompoundTag p_28857_) {
 		super.readAdditionalSaveData(p_28857_);
-		this.setPlayerCreated(p_28857_.getBoolean("PlayerCreated"));
+		this.setPlayerCreated(p_28857_.getBooleanOr("PlayerCreated", false));
 		this.readPersistentAngerSaveData(this.level(), p_28857_);
 	}
 
@@ -191,7 +190,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 
 	@Override
 	public void travel(Vec3 p_218382_) {
-		if (this.isControlledByLocalInstance()) {
+		if (this.isLocalInstanceAuthoritative()) {
 			if (this.isInWater()) {
 				this.moveRelative(0.02F, p_218382_);
 				this.move(MoverType.SELF, this.getDeltaMovement());
@@ -208,12 +207,6 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 		}
 
 		this.calculateEntityAnimation(false);
-	}
-
-
-	@Override
-	public boolean causeFallDamage(float p_148989_, float p_148990_, DamageSource p_148991_) {
-		return false;
 	}
 
 	@Override

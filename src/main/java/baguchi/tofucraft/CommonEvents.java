@@ -37,7 +37,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -52,7 +52,6 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.ClipContext;
@@ -122,10 +121,10 @@ public class CommonEvents {
 		if (Minecraft.getInstance().level != null && Minecraft.getInstance().player != null) {
 			Holder<Biome> biome = Minecraft.getInstance().player.level().getBiome(Minecraft.getInstance().player.blockPosition());
 			if (Minecraft.getInstance().level.dimension() == TofuDimensions.tofu_world) {
-				Optional<SimpleWeightedRandomList<Music>> musicInfo = biome.value().getBackgroundMusic();
+				Optional<WeightedList<Music>> musicInfo = biome.value().getBackgroundMusic();
 
 				if (!musicInfo.isEmpty()) {
-					Optional<Music> musicInfo1 = musicInfo.get().getRandomValue(Minecraft.getInstance().level.random);
+					Optional<Music> musicInfo1 = musicInfo.get().getRandom(Minecraft.getInstance().level.random);
 					if (!musicInfo1.isEmpty()) {
 						event.setMusic(new MusicInfo(musicInfo1.get()));
 					}
@@ -494,7 +493,7 @@ public class CommonEvents {
 			}
 		}
 
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.MOVEMENT_SLOWDOWN) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.SLOWNESS.value()) {
 			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
@@ -513,7 +512,7 @@ public class CommonEvents {
 			}
 		}
 
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.CONFUSION) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.NAUSEA.value()) {
 			if (event.getEntity().hasEffect(TofuEffects.MISO_BOOST)) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
@@ -524,7 +523,7 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static boolean onBlockStartBreak(BlockEvent.BreakEvent event) {
 		ItemStack hand = event.getPlayer().getItemInHand(InteractionHand.MAIN_HAND);
-		if (hand.getItem() instanceof PickaxeItem pickaxeItem) {
+		if (hand.has(DataComponents.TOOL)) {
 			Block blockDestroyed = event.getLevel().getBlockState(event.getPos()).getBlock();
 			if (event.getLevel() instanceof ServerLevel level) {
 				TofuDiamondToolUtil.onBlockStartBreak(hand, level, blockDestroyed, event.getPos(), event.getPlayer());

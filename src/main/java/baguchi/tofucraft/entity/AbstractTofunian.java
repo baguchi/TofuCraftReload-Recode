@@ -203,7 +203,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 
 	public void readAdditionalSaveData(CompoundTag p_35290_) {
 		super.readAdditionalSaveData(p_35290_);
-		if (p_35290_.contains("Offers", 10)) {
+		if (p_35290_.contains("Offers")) {
 			MerchantOffers.CODEC
 					.parse(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), p_35290_.get("Offers"))
 					.resultOrPartial(Util.prefix("Failed to load offers: ", TofuCraftReload.LOGGER::warn))

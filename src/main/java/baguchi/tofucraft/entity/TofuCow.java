@@ -84,7 +84,7 @@ public class TofuCow extends Cow {
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		if (compound.contains("TofuCowType")) {
-			setTofuCowType(TofuCowType.get(compound.getString("TofuCowType")));
+			setTofuCowType(TofuCowType.get(compound.getStringOr("TofuCowType", "")));
 		}
 	}
 

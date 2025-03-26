@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.TriState;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.LevelReader;
@@ -52,7 +53,7 @@ public class SproutsCropBlock extends CropBlock {
 			for (int j = -1; j <= 1; j++) {
 				float f1 = 0.0F;
 				BlockState blockstate = p_52274_.getBlockState(blockpos.offset(i, 0, j));
-				net.neoforged.neoforge.common.util.TriState soilDecision = blockstate.canSustainPlant(p_52274_, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, plant);
+				TriState soilDecision = blockstate.canSustainPlant(p_52274_, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, plant);
 				if (soilDecision.isDefault() ? plant.canSurvive(p_52274_, blockpos.above().offset(i, 0, j)) : soilDecision.isTrue()) {
 					f1 = 4.0F;
 				}

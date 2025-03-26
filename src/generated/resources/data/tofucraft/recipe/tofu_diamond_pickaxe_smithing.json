@@ -3,7 +3,6 @@
   "addition": "tofucraft:blocktofudiamond",
   "base": "tofucraft:tofu_metal_pickaxe",
   "result": {
-    "count": 1,
     "id": "tofucraft:tofu_diamond_pickaxe"
   },
   "template": "tofucraft:tofu_upgrade_smithing_template"

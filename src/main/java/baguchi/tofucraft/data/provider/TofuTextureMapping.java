@@ -40,6 +40,12 @@ public class TofuTextureMapping {
 				.put(TextureSlot.CANDLE, getBlockTexture(candle, p_387959_ ? "_lit" : ""));
 	}
 
+	public static TextureMapping ladder(Block ladder) {
+		return new TextureMapping()
+				.put(TextureSlot.ALL, getBlockTexture(ladder));
+	}
+
+
 	public static TextureMapping grassBlock(Block block, Block dirt) {
 		ResourceLocation resourcelocation = getBlockTexture(block).withSuffix("_top");
 		ResourceLocation resourcelocation2 = getBlockTexture(block).withSuffix("_side");

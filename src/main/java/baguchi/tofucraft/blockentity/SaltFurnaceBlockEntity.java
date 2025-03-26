@@ -137,21 +137,21 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	@Override
 	public void loadAdditional(CompoundTag cmp, HolderLookup.Provider provider) {
 		super.loadAdditional(cmp, provider);
-		if (cmp.contains("WaterTank", 10)) {
-			CompoundTag nbt = cmp.getCompound("WaterTank");
+		if (cmp.contains("WaterTank")) {
+			CompoundTag nbt = cmp.getCompoundOrEmpty("WaterTank");
 			this.waterTank = this.waterTank.readFromNBT(provider, nbt);
 		}
-		if (cmp.contains("BitternTank", 10)) {
-			CompoundTag nbt = cmp.getCompound("BitternTank");
+		if (cmp.contains("BitternTank")) {
+			CompoundTag nbt = cmp.getCompoundOrEmpty("BitternTank");
 			this.bitternTank = this.bitternTank.readFromNBT(provider, nbt);
 		}
 		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.items, provider);
-		this.litTime = cmp.getInt("BurnTime");
-		this.cookingProgress = cmp.getInt("CookTime");
-		this.cookingTotalTime = cmp.getInt("CookTimeTotal");
+		this.litTime = cmp.getIntOr("BurnTime", 0);
+		this.cookingProgress = cmp.getIntOr("CookTime", 0);
+		this.cookingTotalTime = cmp.getIntOr("CookTimeTotal", 0);
 
-		this.litDuration = cmp.getInt("lit_total_time");
+		this.litDuration = cmp.getIntOr("lit_total_time", 0);
 	}
 
 	@Override

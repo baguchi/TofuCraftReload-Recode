@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
@@ -280,9 +281,9 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.inventory, p_338445_);
 
-		this.progress = cmp.getInt("progress");
-		this.refreshTime = cmp.getInt("RefreshTime");
-		int[] aint = cmp.getIntArray("disabled_slots");
+		this.progress = cmp.getIntOr("progress", 0);
+		this.refreshTime = cmp.getIntOr("RefreshTime", 0);
+		int[] aint = cmp.getIntArray("disabled_slots").orElse(new int[]{});
 
 		for (int i = 0; i < 9; ++i) {
 			this.containerData.set(i, 0);
@@ -294,11 +295,11 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 			}
 		}
 
-		this.containerData.set(9, cmp.getInt("triggered"));
+		this.containerData.set(9, cmp.getIntOr("triggered", 0));
 	}
 
 	@Override
-	protected void applyImplicitComponents(BlockEntity.DataComponentInput p_338855_) {
+	protected void applyImplicitComponents(DataComponentGetter p_338855_) {
 		super.applyImplicitComponents(p_338855_);
 		p_338855_.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).copyInto(this.getInventory());
 	}
@@ -368,7 +369,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 			}
 		}
 
-		p_307523_.putIntArray("disabled_slots", intlist);
+		p_307523_.putIntArray("disabled_slots", intlist.toIntArray());
 	}
 
 	public void setSlotState(int p_307571_, boolean p_307624_) {

@@ -28,7 +28,6 @@ import baguchi.tofucraft.registry.TofunianTrades;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -38,15 +37,11 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.NbtUtils;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.DebugPackets;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -73,7 +68,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ReputationEventHandler;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.VariantHolder;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -98,6 +92,7 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.variant.VariantUtils;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -125,7 +120,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class Tofunian extends AbstractTofunian implements ReputationEventHandler, VariantHolder<Holder<TofunianVariant>> {
+public class Tofunian extends AbstractTofunian implements ReputationEventHandler {
 
 	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
@@ -730,58 +725,56 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putByte("FoodLevel", this.foodLevel);
-		compound.put("Gossips", this.gossips.store(NbtOps.INSTANCE).copy());
+		compound.store("Gossips", GossipContainer.CODEC, this.gossips);
 		compound.putInt("Xp", this.xp);
 		compound.putInt("Level", this.tofunianLevel);
 		compound.putLong("LastRestock", this.lastRestock);
 		compound.putLong("LastGossipDecay", this.lastGossipDecay);
 		compound.putInt("RestocksToday", this.restocksToday);
 		if (this.tofunianHome != null) {
-			compound.put("TofunianHome", NbtUtils.writeBlockPos(this.tofunianHome));
+			compound.store("TofunianHome", BlockPos.CODEC, this.tofunianHome);
 		}
 		if (this.tofunianJobBlock != null) {
-			compound.put("TofunianJobBlock", NbtUtils.writeBlockPos(this.tofunianJobBlock));
+			compound.store("TofunianJobBlock", BlockPos.CODEC, this.tofunianJobBlock);
 		}
 		if (this.villageCenter != null) {
-			compound.put("VillageCenter", NbtUtils.writeBlockPos(this.villageCenter));
+			compound.store("VillageCenter", BlockPos.CODEC, this.villageCenter);
 		}
 		compound.putString("Roles", getRole().name());
-		this.getVariant().unwrapKey().ifPresent(p_344339_ -> compound.putString("variant", p_344339_.location().toString()));
-
+		VariantUtils.writeVariant(compound, this.getVariant());
 	}
 
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		if (compound.contains("FoodLevel", 1)) {
-			this.foodLevel = compound.getByte("FoodLevel");
+		if (compound.contains("FoodLevel")) {
+			this.foodLevel = compound.getByteOr("FoodLevel", (byte) 0);
 		}
-		ListTag listtag = compound.getList("Gossips", 10);
-		this.gossips.update(new Dynamic<>(NbtOps.INSTANCE, listtag));
-		if (compound.contains("Xp", 3)) {
-			this.xp = compound.getInt("Xp");
+		ListTag listtag = compound.getListOrEmpty("Gossips");
+		this.gossips.clear();
+		Optional<GossipContainer> var10000 = compound.read("Gossips", GossipContainer.CODEC);
+		var10000.ifPresent(this.gossips::putAll);
+		if (compound.contains("Xp")) {
+			this.xp = compound.getIntOr("Xp", 0);
 		}
 		if (compound.contains("Level")) {
-			this.tofunianLevel = compound.getInt("Level");
+			this.tofunianLevel = compound.getIntOr("Level", 0);
 		}
-		this.lastGossipDecay = compound.getLong("LastGossipDecay");
-		this.lastRestock = compound.getLong("LastRestock");
-		this.restocksToday = compound.getInt("RestocksToday");
+		this.lastGossipDecay = compound.getLongOr("LastGossipDecay", 0);
+		this.lastRestock = compound.getLongOr("LastRestock", 0);
+		this.restocksToday = compound.getIntOr("RestocksToday", 0);
 		if (compound.contains("TofunianHome")) {
-			this.tofunianHome = NbtUtils.readBlockPos(compound, "TofunianHome").orElse(null);
+			this.tofunianHome = compound.read("TofunianHome", BlockPos.CODEC).orElse(null);
 		}
 		if (compound.contains("TofunianJobBlock")) {
-			this.tofunianJobBlock = NbtUtils.readBlockPos(compound, "TofunianJobBlock").orElse(null);
+			this.tofunianJobBlock = compound.read("TofunianJobBlock", BlockPos.CODEC).orElse(null);
 		}
 		if (compound.contains("VillageCenter")) {
-			this.villageCenter = NbtUtils.readBlockPos(compound, "VillageCenter").orElse(null);
+			this.villageCenter = compound.read("VillageCenter", BlockPos.CODEC).orElse(null);
 		}
 		if (compound.contains("Roles")) {
-			setRole(Roles.get(compound.getString("Roles")));
+			setRole(Roles.get(compound.getStringOr("Roles", "")));
 		}
-		Optional.ofNullable(ResourceLocation.tryParse(compound.getString("variant")))
-				.map(p_332608_ -> ResourceKey.create(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, p_332608_))
-				.flatMap(p_352803_ -> this.registryAccess().lookupOrThrow(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY).get(p_352803_))
-				.ifPresent(this::setVariant);
+		VariantUtils.readVariant(compound, this.registryAccess(), TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY).ifPresent(this::setVariant);
 		setCanPickUpLoot(true);
 	}
 
@@ -1042,14 +1035,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 	}
 
-	public GossipContainer getGossips() {
-		return this.gossips;
-	}
-
-	public void setGossips(Tag p_35456_) {
-		this.gossips.update(new Dynamic<>(NbtOps.INSTANCE, p_35456_));
-	}
-
 	@Override
 	public float getWalkTargetValue(BlockPos p_27573_, LevelReader p_27574_) {
 		return p_27574_.getBlockState(p_27573_.below()).is(Blocks.GRASS_BLOCK) ? 10.0F : p_27574_.getPathfindingCostFromLightLevels(p_27573_);
@@ -1146,7 +1131,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		public boolean canUse() {
 			BlockPos blockpos = this.tofunian.getTofunianHome();
 
-			double distance = this.tofunian.level().isDay() ? this.stopDistance : this.stopDistance / 4.0F;
+			double distance = this.tofunian.level().isBrightOutside() ? this.stopDistance : this.stopDistance / 4.0F;
 
 			return blockpos != null && this.isTooFarAway(blockpos, distance);
 		}

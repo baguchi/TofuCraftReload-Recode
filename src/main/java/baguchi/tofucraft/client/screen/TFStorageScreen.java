@@ -90,7 +90,6 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		float vMax = sprite.getV1();
 		float uDif = uMax - uMin;
 		float vDif = vMax - vMin;
-		RenderSystem.enableBlend();
 		VertexConsumer vertexBuffer = ((GuiGraphicsAccessor) guiGraphics).bufferSource().getBuffer(RenderType.guiTextured(TextureAtlas.LOCATION_BLOCKS));
 		Matrix4f matrix4f = stack.last().pose();
 		for (int xTile = 0; xTile <= xTileCount; xTile++) {
@@ -118,7 +117,6 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 				vertexBuffer.addVertex(matrix4f, x, y + maskTop, 0).setUv(uMin + uLocalDif, vMin + vLocalDif).setColor(red, green, blue, alpha);
 			}
 		}
-		RenderSystem.disableBlend();
 	}
 
 	private void renderOnboardingTooltips(GuiGraphics p_281668_, int p_267192_, int p_266859_) {

@@ -3,7 +3,6 @@
   "addition": "tofucraft:zundama",
   "base": "minecraft:bow",
   "result": {
-    "count": 1,
     "id": "tofucraft:zunda_bow"
   },
   "template": "tofucraft:zunda_upgrade_smithing_template"

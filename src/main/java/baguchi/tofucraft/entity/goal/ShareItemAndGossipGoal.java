@@ -42,7 +42,7 @@ public class ShareItemAndGossipGoal extends Goal {
 			this.nextStartTick--;
 			return false;
 		}
-		if (this.tofunian.level().isDay() && !this.tofunian.isBaby()) {
+		if (this.tofunian.level().isBrightOutside() && !this.tofunian.isBaby()) {
 			this.nextStartTick = this.tofunian.getRandom().nextInt(200) + 200;
 			this.partner = getFreePartner();
 			return (this.partner != null);

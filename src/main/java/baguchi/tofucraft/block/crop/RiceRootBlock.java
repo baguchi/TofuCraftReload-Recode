@@ -1,7 +1,6 @@
 package baguchi.tofucraft.block.crop;
 
 import baguchi.tofucraft.registry.TofuBlocks;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -17,7 +16,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
 public class RiceRootBlock extends BushBlock implements BonemealableBlock {
-	public static final MapCodec<RiceRootBlock> CODEC = simpleCodec(RiceRootBlock::new);
 	public RiceRootBlock(BlockBehaviour.Properties properties) {
 		super(properties);
 	}
@@ -34,10 +32,6 @@ public class RiceRootBlock extends BushBlock implements BonemealableBlock {
 		}
 	}
 
-	@Override
-	protected MapCodec<? extends BushBlock> codec() {
-		return CODEC;
-	}
 
 	@Override
 	protected boolean mayPlaceOn(BlockState p_51042_, BlockGetter p_51043_, BlockPos p_51044_) {

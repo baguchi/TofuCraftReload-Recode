@@ -16,11 +16,11 @@ public class MoveToJobGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.getTofunianJobBlock() != null && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isBrightOutside() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.getTofunianJobBlock() != null && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level().isDay() && this.creature.getTofunianJobBlock() != null && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
+		return (super.canContinueToUse() && this.creature.level().isBrightOutside() && this.creature.getTofunianJobBlock() != null && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
 	}
 
 	@Override

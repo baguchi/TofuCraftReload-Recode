@@ -9,9 +9,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 
 import java.awt.*;
-import java.util.List;
+import java.util.function.Consumer;
 
 public class TFBatteryItem extends Item implements IEnergyInsertable, IEnergyContained, IEnergyExtractable {
 
@@ -69,9 +70,9 @@ public class TFBatteryItem extends Item implements IEnergyInsertable, IEnergyCon
 	}
 
 	@Override
-	public void appendHoverText(ItemStack p_43094_, TooltipContext p_339613_, List<Component> p_43096_, TooltipFlag p_43097_) {
-		super.appendHoverText(p_43094_, p_339613_, p_43096_, p_43097_);
-		p_43096_.add(Component.translatable("tooltip.tofucraft.energy", getEnergy(p_43094_), getEnergyMax(p_43094_)));
+	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, TooltipDisplay p_399753_, Consumer<Component> p_399884_, TooltipFlag p_41424_) {
+		super.appendHoverText(p_41421_, p_339594_, p_399753_, p_399884_, p_41424_);
+		p_399884_.accept(Component.translatable("tooltip.tofucraft.energy", getEnergy(p_41421_), getEnergyMax(p_41421_)));
 
 	}
 

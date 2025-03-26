@@ -116,9 +116,9 @@ public class TofuSlime extends Slime {
 
 	public void readAdditionalSaveData(CompoundTag p_34305_) {
 		super.readAdditionalSaveData(p_34305_);
-		this.onZundaTime = p_34305_.getInt("OnZundaTime");
-		if (p_34305_.contains("ZundaConversionTime", 99) && p_34305_.getInt("ZundaConversionTime") > -1) {
-			this.startZundaConversion(p_34305_.getInt("ZundaConversionTime"));
+		this.onZundaTime = p_34305_.getIntOr("OnZundaTime", 0);
+		if (p_34305_.contains("ZundaConversionTime") && p_34305_.getIntOr("ZundaConversionTime", -1) > -1) {
+			this.startZundaConversion(p_34305_.getIntOr("ZundaConversionTime", -1));
 		}
 
 	}

@@ -79,9 +79,9 @@ public class SoyHealthAttachment implements INBTSerializable<CompoundTag> {
 
 	@Override
 	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
-		this.lastTick = nbt.getLong("RemainTick");
-		this.lastChangedTick = nbt.getLong("RemainChangedTick");
-		this.soyHealthLevel = nbt.getInt("SoyHealthLevel");
-		this.soyHealthBaseLevel = nbt.getInt("SoyHealthBaseLevel");
+		this.lastTick = nbt.getLongOr("RemainTick", 0);
+		this.lastChangedTick = nbt.getLongOr("RemainChangedTick", 0);
+		this.soyHealthLevel = nbt.getIntOr("SoyHealthLevel", 0);
+		this.soyHealthBaseLevel = nbt.getIntOr("SoyHealthBaseLevel", 0);
 	}
 }

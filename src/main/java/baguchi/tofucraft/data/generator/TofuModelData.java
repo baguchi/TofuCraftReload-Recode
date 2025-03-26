@@ -3,13 +3,15 @@ package baguchi.tofucraft.data.generator;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.data.generator.models.TofuBlockModels;
 import baguchi.tofucraft.data.generator.models.TofuItemModels;
+import com.google.common.collect.Maps;
 import com.google.gson.JsonElement;
 import net.minecraft.client.data.models.ItemModelOutput;
 import net.minecraft.client.data.models.ModelProvider;
-import net.minecraft.client.data.models.blockstates.BlockStateGenerator;
+import net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator;
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
+import net.minecraft.client.renderer.block.model.BlockModelDefinition;
 import net.minecraft.client.renderer.item.ClientItem;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.core.Holder;
@@ -59,7 +61,7 @@ public class TofuModelData extends ModelProvider {
 				}
 			}
 		};
-		BlockStateGeneratorCollector blockModelOutput = new BlockStateGeneratorCollector(this::getKnownBlocks) {
+		BlockModelDefinitionGeneratorCollector blockModelOutput = new BlockModelDefinitionGeneratorCollector(this::getKnownBlocks) {
 			@Override
 			public void validate() { //todo temporary
 				try {
@@ -159,38 +161,38 @@ public class TofuModelData extends ModelProvider {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	static class BlockStateGeneratorCollector implements Consumer<BlockStateGenerator> {
-		private final Map<Block, BlockStateGenerator> generators;
+	static class BlockModelDefinitionGeneratorCollector implements Consumer<BlockModelDefinitionGenerator> {
+		private final Map<Block, BlockModelDefinitionGenerator> generators;
 		private final Supplier<Stream<? extends Holder<Block>>> knownBlocks;
 
-		public BlockStateGeneratorCollector(Supplier<Stream<? extends Holder<Block>>> knownBlocks) {
+		public BlockModelDefinitionGeneratorCollector(Supplier<Stream<? extends Holder<Block>>> knownBlocks) {
 			this.generators = new HashMap();
 			this.knownBlocks = knownBlocks;
 		}
 
 
-		public void accept(BlockStateGenerator p_388748_) {
-			Block block = p_388748_.getBlock();
-			BlockStateGenerator blockstategenerator = (BlockStateGenerator) this.generators.put(block, p_388748_);
-			if (blockstategenerator != null) {
-				throw new IllegalStateException("Duplicate blockstate definition for " + String.valueOf(block));
+		public void accept(BlockModelDefinitionGenerator p_405192_) {
+			Block block = p_405192_.block();
+			BlockModelDefinitionGenerator blockmodeldefinitiongenerator = this.generators.put(block, p_405192_);
+			if (blockmodeldefinitiongenerator != null) {
+				throw new IllegalStateException("Duplicate blockstate definition for " + block);
 			}
 		}
 
 		public void validate() {
-			Stream<? extends Holder<Block>> stream = this.knownBlocks.get();
-			List<ResourceLocation> list = stream.filter((p_386843_) -> !this.generators.containsKey(p_386843_.value())).map((p_386823_) -> ((ResourceKey) p_386823_.unwrapKey().orElseThrow()).location()).toList();
+			Stream<? extends Holder<Block>> stream = knownBlocks.get();
+			List<ResourceLocation> list = stream.filter(p_386843_ -> !this.generators.containsKey(p_386843_.value()))
+					.map(p_386823_ -> p_386823_.unwrapKey().orElseThrow().location())
+					.toList();
 			if (!list.isEmpty()) {
-				throw new IllegalStateException("Missing blockstate definitions for: " + String.valueOf(list));
+				throw new IllegalStateException("Missing blockstate definitions for: " + list);
 			}
 		}
 
 		public CompletableFuture<?> save(CachedOutput p_388014_, PackOutput.PathProvider p_388192_) {
-			return saveAll(p_388014_, (p_387598_) -> p_388192_.json(p_387598_.builtInRegistryHolder().key().location()), this.generators);
-		}
-
-		static <T> CompletableFuture<?> saveAll(CachedOutput p_387084_, Function<T, Path> p_386455_, Map<T, ? extends Supplier<JsonElement>> p_386585_) {
-			return DataProvider.saveAll(p_387084_, Supplier::get, p_386455_, p_386585_);
+			Map<Block, BlockModelDefinition> map = Maps.transformValues(this.generators, BlockModelDefinitionGenerator::create);
+			Function<Block, Path> function = p_387598_ -> p_388192_.json(p_387598_.builtInRegistryHolder().key().location());
+			return DataProvider.saveAll(p_388014_, BlockModelDefinition.CODEC, function, map);
 		}
 	}
 }

@@ -113,6 +113,6 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 
 	@Override
 	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
-		this.recoverHealth = nbt.getFloat("recover_health");
+		this.recoverHealth = nbt.getFloatOr("recover_health", 0);
 	}
 }

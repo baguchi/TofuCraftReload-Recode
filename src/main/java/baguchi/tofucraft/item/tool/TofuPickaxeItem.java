@@ -1,19 +1,14 @@
 package baguchi.tofucraft.item.tool;
 
 import baguchi.tofucraft.api.tfenergy.IEnergyInsertable;
-import baguchi.tofucraft.registry.TofuToolMaterials;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ToolMaterial;
 
-public class TofuPickaxeItem extends TofuDiggerItem implements IEnergyInsertable {
-	public TofuPickaxeItem(TofuToolMaterials.TofuToolMaterial tofuItemTier, float p_362481_, float p_364182_, Properties properties) {
-		super(tofuItemTier, BlockTags.MINEABLE_WITH_PICKAXE, p_362481_, p_364182_, properties);
-	}
-
-	@Override
-	public boolean canPerformAction(ItemStack stack, net.neoforged.neoforge.common.ItemAbility itemAbility) {
-		return net.neoforged.neoforge.common.ItemAbilities.DEFAULT_PICKAXE_ACTIONS.contains(itemAbility);
+public class TofuPickaxeItem extends Item implements IEnergyInsertable {
+	public TofuPickaxeItem(ToolMaterial tofuItemTier, float p_362481_, float p_364182_, Item.Properties properties) {
+		super(properties.pickaxe(tofuItemTier, p_362481_, p_364182_));
 	}
 
 	@Override

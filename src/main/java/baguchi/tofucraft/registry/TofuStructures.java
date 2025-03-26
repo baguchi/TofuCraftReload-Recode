@@ -10,9 +10,10 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.random.WeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -86,7 +87,7 @@ public class TofuStructures {
 												.collect(
 														Collectors.toMap(
 																p_236555_ -> (MobCategory) p_236555_,
-																p_236551_ -> new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.STRUCTURE, WeightedRandomList.create())
+																p_236551_ -> new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.STRUCTURE, WeightedList.<MobSpawnSettings.SpawnerData>builder().build())
 														)
 												)
 								)

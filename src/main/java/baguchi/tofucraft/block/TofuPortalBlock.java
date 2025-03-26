@@ -17,6 +17,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.GameRules;
@@ -96,9 +97,8 @@ public class TofuPortalBlock extends Block implements Portal {
 				: super.updateShape(p_54928_, p_374413_, p_374339_, p_54932_, p_54929_, p_54933_, p_54930_, p_374242_);
 	}
 
-
 	@Override
-	protected void entityInside(BlockState p_54915_, Level level, BlockPos p_54917_, Entity entity) {
+	protected void entityInside(BlockState p_54915_, Level level, BlockPos p_54917_, Entity entity, InsideBlockEffectApplier p_405359_) {
 		if (entity.canUsePortal(false)) {
 			entity.setAsInsidePortal(this, p_54917_);
 			if (entity instanceof Player player) {

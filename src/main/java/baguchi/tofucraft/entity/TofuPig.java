@@ -214,7 +214,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		if (compound.contains("TofuPigType")) {
-			setTofuPigType(TofuPig.TofuPigType.get(compound.getString("TofuPigType")));
+			setTofuPigType(TofuPig.TofuPigType.get(compound.getStringOr("TofuPigType", "")));
 		}
 	}
 

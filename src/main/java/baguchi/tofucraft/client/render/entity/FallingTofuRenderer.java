@@ -4,6 +4,7 @@ import baguchi.tofucraft.entity.projectile.FallingTofuEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.block.model.BlockModelPart;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -13,6 +14,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.List;
 
 /**
  * <p>Revamped Falling Block Renderer.</p>
@@ -42,24 +45,21 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity, Falli
 		if (blockstate.getRenderShape() == RenderShape.MODEL) {
 			p_114637_.pushPose();
 			p_114637_.translate(-0.5, 0.0, -0.5);
-			var model = this.dispatcher.getBlockModel(blockstate);
-			for (var renderType : model.getRenderTypes(blockstate, RandomSource.create(blockstate.getSeed(p_361300_.startBlockPos)), net.neoforged.neoforge.client.model.data.ModelData.EMPTY))
-				this.dispatcher
-						.getModelRenderer()
-						.tesselateBlock(
-								p_361300_,
-								this.dispatcher.getBlockModel(blockstate),
-								blockstate,
-								p_361300_.blockPos,
-								p_114637_,
-								p_114638_.getBuffer(net.neoforged.neoforge.client.RenderTypeHelper.getMovingBlockRenderType(renderType)),
-								false,
-								RandomSource.create(),
-								0L,
-								OverlayTexture.NO_OVERLAY,
-								net.neoforged.neoforge.client.model.data.ModelData.EMPTY,
-								renderType
-						);
+			List<BlockModelPart> list = this.dispatcher
+					.getBlockModel(blockstate)
+					.collectParts(p_361300_.level, p_361300_.blockPos, blockstate, RandomSource.create(blockstate.getSeed(p_361300_.startBlockPos)));
+			this.dispatcher
+					.getModelRenderer()
+					.tesselateBlock(
+							p_361300_,
+							list,
+							blockstate,
+							p_361300_.blockPos,
+							p_114637_,
+							renderType -> p_114638_.getBuffer(net.neoforged.neoforge.client.RenderTypeHelper.getMovingBlockRenderType(renderType)),
+							false,
+							OverlayTexture.NO_OVERLAY
+					);
 			p_114637_.popPose();
 			super.render(p_361300_, p_114637_, p_114638_, p_114639_);
 		}

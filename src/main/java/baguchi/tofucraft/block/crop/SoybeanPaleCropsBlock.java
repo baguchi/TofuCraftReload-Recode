@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.TriState;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -96,7 +97,7 @@ public class SoybeanPaleCropsBlock extends CropBlock {
 			return false;
 		} else if (!p_383091_.dimensionType().natural()) {
 			return false;
-		} else if (p_383091_.isDay() != flag) {
+		} else if (p_383091_.isBrightOutside() != flag) {
 			return false;
 		} else {
 			p_383091_.setBlock(p_383073_, p_383235_.setValue(BLOOM, !flag), 3);
@@ -137,7 +138,7 @@ public class SoybeanPaleCropsBlock extends CropBlock {
 			for (int j = -1; j <= 1; j++) {
 				float f1 = 0.0F;
 				BlockState blockstate = p_52274_.getBlockState(blockpos.offset(i, 0, j));
-				net.neoforged.neoforge.common.util.TriState soilDecision = blockstate.canSustainPlant(p_52274_, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, plant);
+				TriState soilDecision = blockstate.canSustainPlant(p_52274_, blockpos.offset(i, 0, j), net.minecraft.core.Direction.UP, plant);
 				if (soilDecision.isDefault() ? plant.canSurvive(p_52274_, blockpos.above().offset(i, 0, j)) : soilDecision.isTrue()) {
 					f1 = 1.0F;
 					if (blockstate.is(Blocks.PALE_MOSS_BLOCK)) {

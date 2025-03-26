@@ -10,11 +10,12 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
 
 import java.awt.*;
-import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class BreakableTofuBootsItem extends BreakableTofuArmorItem {
@@ -70,9 +71,9 @@ public class BreakableTofuBootsItem extends BreakableTofuArmorItem {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack p_43094_, TooltipContext p_339613_, List<net.minecraft.network.chat.Component> p_43096_, TooltipFlag p_43097_) {
-		super.appendHoverText(p_43094_, p_339613_, p_43096_, p_43097_);
-		p_43096_.add(Component.translatable("tooltip.tofucraft.tofu_boots", getUnstability(p_43094_), getFallDurability(p_43094_)));
+	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, TooltipDisplay p_399753_, Consumer<Component> p_399884_, TooltipFlag p_41424_) {
+		super.appendHoverText(p_41421_, p_339594_, p_399753_, p_399884_, p_41424_);
+		p_399884_.accept(Component.translatable("tooltip.tofucraft.tofu_boots", getUnstability(p_41421_), getFallDurability(p_41421_)));
 
 	}
 }

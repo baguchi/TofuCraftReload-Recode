@@ -44,7 +44,7 @@ public class TFOvenResultSlot extends Slot {
 
 	@Override
 	protected void checkTakeAchievements(ItemStack p_39558_) {
-		p_39558_.onCraftedBy(this.player.level(), this.player, this.removeCount);
+		p_39558_.onCraftedBy(this.player, this.removeCount);
 		Player playerx = this.player;
 		if (playerx instanceof ServerPlayer serverplayer) {
 			Container container = this.container;

@@ -8,8 +8,10 @@ import net.minecraft.client.model.PigModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.AgeableMobRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.layers.SaddleLayer;
+import net.minecraft.client.renderer.entity.layers.SimpleEquipmentLayer;
+import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -20,10 +22,16 @@ public class TofuPigRender extends AgeableMobRenderer<TofuPig, TofuPigRenderStat
 	public TofuPigRender(EntityRendererProvider.Context p_174304_) {
 		super(p_174304_, new PigModel(p_174304_.bakeLayer(ModelLayers.PIG)), new PigModel(p_174304_.bakeLayer(ModelLayers.PIG_BABY)), 0.5F);
 		this.addLayer(new TofuPigTypeLayer(this));
-		this.addLayer(new SaddleLayer(this,
-				new PigModel(p_174304_.bakeLayer(ModelLayers.PIG_SADDLE)),
-				new PigModel(p_174304_.bakeLayer(ModelLayers.PIG_BABY_SADDLE)),
-				ResourceLocation.parse("textures/entity/pig/pig_saddle.png")));
+		this.addLayer(
+				new SimpleEquipmentLayer<>(
+						this,
+						p_174304_.getEquipmentRenderer(),
+						EquipmentClientInfo.LayerType.PIG_SADDLE,
+						p_397421_ -> p_397421_.saddle,
+						new PigModel(p_174304_.bakeLayer(ModelLayers.PIG_SADDLE)),
+						new PigModel(p_174304_.bakeLayer(ModelLayers.PIG_BABY_SADDLE))
+				)
+		);
 	}
 
 	@Override
@@ -35,7 +43,7 @@ public class TofuPigRender extends AgeableMobRenderer<TofuPig, TofuPigRenderStat
 	public void extractRenderState(TofuPig p_362733_, TofuPigRenderState p_360515_, float p_361157_) {
 		super.extractRenderState(p_362733_, p_360515_, p_361157_);
 		p_360515_.type = p_362733_.getTofuPigType();
-		p_360515_.isSaddled = p_362733_.isSaddled();
+		p_360515_.saddle = p_362733_.getItemBySlot(EquipmentSlot.SADDLE).copy();
 	}
 
 	@Override

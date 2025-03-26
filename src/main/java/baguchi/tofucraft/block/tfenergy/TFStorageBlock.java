@@ -112,20 +112,20 @@ public class TFStorageBlock extends TFBaseEntityBlock {
 
 	}
 
-	public void onRemove(BlockState p_48713_, Level p_48714_, BlockPos p_48715_, BlockState p_48716_, boolean p_48717_) {
-		if (!p_48713_.is(p_48716_.getBlock())) {
-			BlockEntity blockentity = p_48714_.getBlockEntity(p_48715_);
-			if (blockentity instanceof TFStorageBlockEntity) {
-				if (p_48714_ instanceof ServerLevel) {
-					Containers.dropContents(p_48714_, p_48715_, (TFStorageBlockEntity) blockentity);
-					//((TFStorageBlockEntity) blockentity).getRecipesToAwardAndPopExperience((ServerLevel) p_48714_, Vec3.atCenterOf(p_48715_));
-				}
+	@Override
+	protected void affectNeighborsAfterRemoval(BlockState p_394424_, ServerLevel p_394241_, BlockPos p_393520_, boolean p_394545_) {
+		super.affectNeighborsAfterRemoval(p_394424_, p_394241_, p_393520_, p_394545_);
 
-				p_48714_.updateNeighbourForOutputSignal(p_48715_, this);
+		BlockEntity blockentity = p_394241_.getBlockEntity(p_393520_);
+		if (blockentity instanceof TFStorageBlockEntity) {
+			if (p_394241_ instanceof ServerLevel) {
+				Containers.dropContents(p_394241_, p_393520_, (TFStorageBlockEntity) blockentity);
+				//((TFStorageBlockEntity) blockentity).getRecipesToAwardAndPopExperience((ServerLevel) p_394241_, Vec3.atCenterOf(p_393520_));
 			}
 
-			super.onRemove(p_48713_, p_48714_, p_48715_, p_48716_, p_48717_);
+			p_394241_.updateNeighbourForOutputSignal(p_393520_, this);
 		}
+
 	}
 
 	public boolean hasAnalogOutputSignal(BlockState p_48700_) {

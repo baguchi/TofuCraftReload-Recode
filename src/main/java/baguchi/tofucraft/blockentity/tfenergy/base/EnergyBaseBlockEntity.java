@@ -6,6 +6,7 @@ import baguchi.tofucraft.api.tfenergy.TofuNetwork;
 import baguchi.tofucraft.registry.TofuDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
@@ -95,16 +96,15 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 	@Override
 	protected void loadAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
 		super.loadAdditional(compound, p_338445_);
-		this.energyMax = compound.getInt(TAG_ENERGY_MAX);
-		this.energy = compound.getInt(TAG_ENERGY);
-		this.uuid = compound.getString(TAG_UUID);
+		this.energyMax = compound.getIntOr(TAG_ENERGY_MAX, getMaxEnergyStored());
+		this.energy = compound.getIntOr(TAG_ENERGY, 0);
+		this.uuid = compound.getStringOr(TAG_UUID, "");
 	}
-
 	@Override
-	protected void applyImplicitComponents(BlockEntity.DataComponentInput p_338244_) {
-		super.applyImplicitComponents(p_338244_);
+	protected void applyImplicitComponents(DataComponentGetter p_397929_) {
+		super.applyImplicitComponents(p_397929_);
 
-		TFEnergyData tfEnergyData = p_338244_.getOrDefault(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(energy, energyMax));
+		TFEnergyData tfEnergyData = p_397929_.getOrDefault(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(energy, energyMax));
 
 		this.energy = tfEnergyData.storeTF();
 		this.energyMax = tfEnergyData.maxTF();

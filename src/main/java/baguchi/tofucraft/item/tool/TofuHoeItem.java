@@ -1,17 +1,17 @@
 package baguchi.tofucraft.item.tool;
 
 import baguchi.tofucraft.api.tfenergy.IEnergyInsertable;
-import baguchi.tofucraft.registry.TofuToolMaterials;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,11 +20,10 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class TofuHoeItem extends TofuDiggerItem implements IEnergyInsertable {
-	public TofuHoeItem(TofuToolMaterials.TofuToolMaterial tofuItemTier, float p_362481_, float p_364182_, Properties properties) {
-		super(tofuItemTier, BlockTags.MINEABLE_WITH_HOE, p_362481_, p_364182_, properties);
+public class TofuHoeItem extends Item implements IEnergyInsertable {
+	public TofuHoeItem(ToolMaterial tofuItemTier, float p_362481_, float p_364182_, Item.Properties properties) {
+		super(properties.hoe(tofuItemTier, p_362481_, p_364182_));
 	}
-
 	@Override
 	public int fill(ItemStack inst, int energy, boolean simulate) {
 		int calculated = Math.min(energy, inst.getDamageValue());
