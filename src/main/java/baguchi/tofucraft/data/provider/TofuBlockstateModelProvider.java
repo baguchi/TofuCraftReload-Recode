@@ -247,7 +247,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 
 
 	public void createLadder(Block p_388554_) {
-		this.registerSimpleFlatItemModel(p_388554_.asItem());
+		this.registerSimpleFlatItemModel(p_388554_);
 		MultiVariant multiVariant = plainVariant(TofuModelTemplate.LADDER.create(p_388554_, TofuTextureMapping.ladder(p_388554_), this.modelOutput));
 
 		this.blockStateOutput
