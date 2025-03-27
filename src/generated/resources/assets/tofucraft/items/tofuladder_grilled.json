@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "tofucraft:block/tofuladder_grilled"
+    "model": "tofucraft:item/tofuladder_grilled"
   }
 }
