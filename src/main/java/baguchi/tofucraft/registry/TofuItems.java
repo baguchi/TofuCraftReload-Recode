@@ -343,7 +343,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_LEGGINGS = ITEMS.registerItem("tofu_diamond_leggings", (properties) -> new TofuArmorItem(TofuArmorMaterials.DIAMOND, ArmorType.LEGGINGS, (properties.stacksTo(1).rarity(Rarity.UNCOMMON))));
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_BOOTS = ITEMS.registerItem("tofu_diamond_boots", (properties) -> new TofuArmorItem(TofuArmorMaterials.DIAMOND, ArmorType.BOOTS, (properties.stacksTo(1).rarity(Rarity.UNCOMMON))));
 
-	public static final DeferredHolder<Item, Item> TOFU_SHIELD = ITEMS.registerItem("tofu_shield", (properties) -> new TofuShieldItem((properties).stacksTo(1).durability(420).repairable(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL)
+	public static final DeferredHolder<Item, Item> TOFU_SHIELD = ITEMS.registerItem("tofu_shield", (properties) -> new TofuShieldItem((properties).stacksTo(1).durability(450).repairable(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL)
 			.equippableUnswappable(EquipmentSlot.OFFHAND)
 			.component(
 					DataComponents.BLOCKS_ATTACKS,

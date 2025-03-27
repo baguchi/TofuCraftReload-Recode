@@ -5,11 +5,13 @@ import baguchi.tofucraft.entity.control.StafeableFlyingMoveControl;
 import baguchi.tofucraft.entity.goal.ChargeGoal;
 import baguchi.tofucraft.entity.goal.SpinAttackGoal;
 import baguchi.tofucraft.entity.projectile.FukumameEntity;
+import baguchi.tofucraft.entity.projectile.SoyballEntity;
 import baguchi.tofucraft.network.BossInfoPacket;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofuStructures;
+import baguchi.tofucraft.utils.CombatUtils;
 import baguchi.tofucraft.world.TofuData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -373,24 +375,31 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 	public void rushAttack(Entity p_36347_) {
 		DamageSource source = this.damageSources().mobAttack(this);
-		if (p_36347_ instanceof LivingEntity living && this.level() instanceof ServerLevel serverLevel && living.applyItemBlocking(serverLevel, source, 16.0F) <= 0F) {
-			this.setRush(false);
-			this.setChargeFailed(true);
-			this.playSound(SoundEvents.PLAYER_ATTACK_KNOCKBACK, 2.0F, 1.0F);
-
-		} else
 		if (p_36347_.isAttackable()) {
-			if (p_36347_.hurtOrSimulate(source, 16.0F)) {
-				float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
-				i += 5.0F;
+			if (p_36347_ instanceof LivingEntity living && this.level() instanceof ServerLevel serverLevel) {
 
-				if (i > 0) {
-					if (p_36347_ instanceof LivingEntity) {
-						((LivingEntity) p_36347_).knockback((double) ((float) i * 0.5F), (double) Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), (double) (-Mth.cos(this.getYRot() * ((float) Math.PI / 180F))));
-					} else {
-						p_36347_.push((double) (-Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * (float) i * 0.5F), 0.1D, (double) (Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * (float) i * 0.5F));
+				if (p_36347_.hurtServer(serverLevel, source, 16.0F)) {
+					float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
+					i += 5.0F;
+
+					if (i > 0) {
+						if (p_36347_ instanceof LivingEntity) {
+							((LivingEntity) p_36347_).knockback((double) ((float) i * 0.5F), (double) Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), (double) (-Mth.cos(this.getYRot() * ((float) Math.PI / 180F))));
+						} else {
+							p_36347_.push((double) (-Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * (float) i * 0.5F), 0.1D, (double) (Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * (float) i * 0.5F));
+						}
+						this.playSound(SoundEvents.PLAYER_ATTACK_KNOCKBACK, 2.0F, 1.0F);
 					}
+				}
+				if (CombatUtils.isBlockingWithOutCheck(serverLevel, living, source, 16.0F) >= 15.0F) {
+					this.setRush(false);
+					this.setChargeFailed(true);
 					this.playSound(SoundEvents.PLAYER_ATTACK_KNOCKBACK, 2.0F, 1.0F);
+					if (living.isBlocking()) {
+						if (living.getItemBlockingWith() != null && living instanceof Player player) {
+							player.getCooldowns().addCooldown(living.getItemBlockingWith(), 100);
+						}
+					}
 				}
 			}
 		}
@@ -647,15 +656,28 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 	@Override
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
 		this.playSound(SoundEvents.SHULKER_SHOOT, 3.0F, 1.0F);
-		for (int i = 0; i < 4; i++) {
-			FukumameEntity fukumame = new FukumameEntity(this.level(), this);
-			double d1 = p_29912_.getX() - this.getX();
-			double d2 = p_29912_.getEyeY() - this.getEyeY();
-			double d3 = p_29912_.getZ() - this.getZ();
-			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
-			fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
-			fukumame.damage = 1.0F;
-			this.level().addFreshEntity(fukumame);
+		if (isFullCharge()) {
+			for (int i = 0; i < 4; i++) {
+				SoyballEntity fukumame = new SoyballEntity(this.level(), this);
+				double d1 = p_29912_.getX() - this.getX();
+				double d2 = p_29912_.getEyeY() - this.getEyeY();
+				double d3 = p_29912_.getZ() - this.getZ();
+				float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.25F;
+				fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
+				fukumame.damage = 3.0F;
+				this.level().addFreshEntity(fukumame);
+			}
+		} else {
+			for (int i = 0; i < 4; i++) {
+				FukumameEntity fukumame = new FukumameEntity(this.level(), this);
+				double d1 = p_29912_.getX() - this.getX();
+				double d2 = p_29912_.getEyeY() - this.getEyeY();
+				double d3 = p_29912_.getZ() - this.getZ();
+				float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
+				fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
+				fukumame.damage = 1.0F;
+				this.level().addFreshEntity(fukumame);
+			}
 		}
 	}
 
@@ -697,6 +719,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		public void tick() {
 			--this.attackTime;
 			LivingEntity livingentity = this.gandlem.getTarget();
+			int i = this.gandlem.isFullCharge() ? 5 : 0;
 			if (livingentity != null) {
 				boolean flag = this.gandlem.getSensing().hasLineOfSight(livingentity);
 				if (flag) {
@@ -732,11 +755,11 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 					if (this.attackTime <= 0) {
 						++this.attackStep;
 						if (this.attackStep == 1) {
-							this.attackTime = 30;
+							this.attackTime = 30 + i;
 						} else if (this.attackStep <= 4) {
 							this.attackTime = 8;
 						} else {
-							this.attackTime = 30;
+							this.attackTime = 30 + i;
 							this.attackStep = 0;
 						}
 
