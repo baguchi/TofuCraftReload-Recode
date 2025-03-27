@@ -675,7 +675,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			boolean flag = super.hurtServer(serverLevel, p_31461_, p_31462_);
 			if (flag && this.isGraspAnim()) {
 				this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
-				if (this.graspDamageReceived > 0.075F * this.getMaxHealth()) {
+				if (this.graspDamageReceived > 0.1F * this.getMaxHealth()) {
 					this.graspDamageReceived = 0.0F;
 					this.setGraspAnimation(false);
 					this.attackTime = -60;
@@ -744,9 +744,14 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		if (this.level() instanceof ServerLevel serverLevel) {
 			this.reallyHurt(serverLevel, damageSource, damage * 0.9F);
 		}
+		if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
+			setAngry(true);
+			this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
+		}
+
 		if (this.isGraspAnim()) {
 			this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
-			if (this.graspDamageReceived > 0.075F * this.getMaxHealth()) {
+			if (this.graspDamageReceived > 0.1F * this.getMaxHealth()) {
 				this.graspDamageReceived = 0.0F;
 				this.setGraspAnimation(false);
 				this.attackTime = -60;
