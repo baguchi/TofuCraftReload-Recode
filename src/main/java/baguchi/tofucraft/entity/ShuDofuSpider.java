@@ -2,6 +2,8 @@ package baguchi.tofucraft.entity;
 
 import baguchi.bagus_lib.client.camera.CameraCore;
 import baguchi.bagus_lib.client.camera.holder.EntityCameraHolder;
+import baguchi.bagus_lib.entity.ISmartJump;
+import baguchi.bagus_lib.entity.path.node.SmartNodeEvaluator;
 import baguchi.bagus_lib.util.GlobalVec3;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.entity.effect.NattoCobWebEntity;
@@ -51,6 +53,8 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -59,6 +63,7 @@ import net.minecraft.world.level.ServerExplosion;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -72,7 +77,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
 
-public class ShuDofuSpider extends Monster {
+public class ShuDofuSpider extends Monster implements ISmartJump {
 	private static final EntityDataAccessor<Boolean> DATA_ID_JUMP = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> ATTACK_ANIMATION = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> JUMP_ANIMATION = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -139,6 +144,19 @@ public class ShuDofuSpider extends Monster {
 	}
 
 	@Override
+	protected PathNavigation createNavigation(Level p_21480_) {
+		return new GroundPathNavigation(this, p_21480_) {
+			protected PathFinder createPathFinder(int p_219479_) {
+				this.nodeEvaluator = new SmartNodeEvaluator();
+				this.nodeEvaluator.setCanPassDoors(true);
+				this.nodeEvaluator.setCanOpenDoors(false);
+				this.nodeEvaluator.setCanFloat(true);
+				return new PathFinder(this.nodeEvaluator, p_219479_);
+			}
+		};
+	}
+
+	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
 		builder.define(ATTACK_ANIMATION, false);
@@ -172,6 +190,34 @@ public class ShuDofuSpider extends Monster {
 
 	private boolean isMovingOnLand() {
 		return this.onGround() && this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D && !this.isInWater();
+	}
+
+	@Override
+	protected float getJumpPower() {
+		float f = 0.42F;
+
+		Path path = this.navigation.getPath();
+		if (path != null && !path.isDone()) {
+			Vec3 vec3 = path.getNextEntityPos(this);
+			if (vec3.y > this.getY() + 0.5) {
+				f = 0.5F;
+			}
+			if (vec3.y > this.getY() + 1.5) {
+				f = 0.65F;
+			}
+
+            /*if (vec3.y > this.getY() + 2.5) {
+                f = 1.0F;
+            }*/
+		}
+
+		return super.getJumpPower((float) (f / this.getAttributeValue(Attributes.JUMP_STRENGTH)));
+	}
+
+
+	@Override
+	public float getSuppportJump() {
+		return 2.125F;
 	}
 
 	@Override
@@ -625,8 +671,18 @@ public class ShuDofuSpider extends Monster {
 			} else if (entity instanceof Projectile) {
 				return super.hurtServer(serverLevel, p_31461_, p_31462_ * 0.35F);
 			}
+			float f = this.getHealth();
+			boolean flag = super.hurtServer(serverLevel, p_31461_, p_31462_);
+			if (flag && this.isGraspAnim()) {
+				this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
+				if (this.graspDamageReceived > 0.075F * this.getMaxHealth()) {
+					this.graspDamageReceived = 0.0F;
+					this.setGraspAnimation(false);
+					this.attackTime = -60;
+				}
+			}
 
-			return super.hurtServer(serverLevel, p_31461_, p_31462_);
+			return flag;
 		} else {
 			return false;
 		}
@@ -693,7 +749,7 @@ public class ShuDofuSpider extends Monster {
 			if (this.graspDamageReceived > 0.075F * this.getMaxHealth()) {
 				this.graspDamageReceived = 0.0F;
 				this.setGraspAnimation(false);
-				this.attackTime = -40;
+				this.attackTime = -60;
 			}
 		}
 
