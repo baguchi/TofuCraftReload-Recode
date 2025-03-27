@@ -1,9 +1,5 @@
 package baguchan.tofucraft.entity;
 
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
-
 import bagu_chan.bagus_lib.client.camera.CameraCore;
 import bagu_chan.bagus_lib.client.camera.holder.EntityCameraHolder;
 import bagu_chan.bagus_lib.util.GlobalVec3;
@@ -68,6 +64,10 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.entity.PartEntity;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.network.PacketDistributor;
+
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.List;
 
 public class ShuDofuSpider extends Monster {
 	private static final EntityDataAccessor<Boolean> DATA_ID_JUMP = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -612,7 +612,17 @@ public class ShuDofuSpider extends Monster {
 				return super.hurt(p_31461_, p_31462_ * 0.35F);
 			}
 
-			return super.hurt(p_31461_, p_31462_);
+			float f = this.getHealth();
+			boolean flag = super.hurt(p_31461_, p_31462_);
+			if (flag && this.isGraspAnim()) {
+				this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
+				if (this.graspDamageReceived > 0.1F * this.getMaxHealth()) {
+					this.graspDamageReceived = 0.0F;
+					this.setGraspAnimation(false);
+					this.attackTime = -60;
+				}
+			}
+			return flag;
 		} else {
 			return false;
 		}
@@ -657,10 +667,14 @@ public class ShuDofuSpider extends Monster {
 		float f = this.getHealth();
 
 		this.reallyHurt(damageSource, damage * 0.9F);
+		if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
+			setAngry(true);
+			this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
+		}
 
 		if (this.isGraspAnim()) {
 			this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
-			if (this.graspDamageReceived > 0.075F * this.getMaxHealth()) {
+			if (this.graspDamageReceived > 0.1F * this.getMaxHealth()) {
 				this.graspDamageReceived = 0.0F;
 				this.setGraspAnimation(false);
 				this.attackTime = -40;

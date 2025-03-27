@@ -55,7 +55,7 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 		if (!this.isInvulnerableTo(damageSource)) {
 
 			if (this == parentMob.body) {
-				return this.parentMob.hurt(damageSource, damage * 1.2F);
+				return this.parentMob.hurt(damageSource, damage * 1.5F);
 			} else {
 				return this.parentMob.hurt(damageSource, damage * 0.8F);
 			}

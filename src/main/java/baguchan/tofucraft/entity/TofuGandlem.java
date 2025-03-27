@@ -1,13 +1,11 @@
 package baguchan.tofucraft.entity;
 
-import java.util.EnumSet;
-import java.util.List;
-
 import baguchan.tofucraft.api.TofuBossMob;
 import baguchan.tofucraft.entity.control.StafeableFlyingMoveControl;
 import baguchan.tofucraft.entity.goal.ChargeGoal;
 import baguchan.tofucraft.entity.goal.SpinAttackGoal;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
+import baguchan.tofucraft.entity.projectile.SoyballEntity;
 import baguchan.tofucraft.network.BossInfoPacket;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuParticleTypes;
@@ -67,6 +65,9 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.EnumSet;
+import java.util.List;
 
 public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob {
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setPlayBossMusic(true);
@@ -648,15 +649,28 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 	@Override
 	public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
 		this.playSound(SoundEvents.SHULKER_SHOOT, 3.0F, 1.0F);
-		for (int i = 0; i < 4; i++) {
-			FukumameEntity fukumame = new FukumameEntity(this.level(), this);
-			double d1 = p_29912_.getX() - this.getX();
-			double d2 = p_29912_.getEyeY() - this.getEyeY();
-			double d3 = p_29912_.getZ() - this.getZ();
-			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
-			fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
-			fukumame.damage = 1.0F;
-			this.level().addFreshEntity(fukumame);
+		if (isFullCharge()) {
+			for (int i = 0; i < 4; i++) {
+				SoyballEntity fukumame = new SoyballEntity(this.level(), this);
+				double d1 = p_29912_.getX() - this.getX();
+				double d2 = p_29912_.getEyeY() - this.getEyeY();
+				double d3 = p_29912_.getZ() - this.getZ();
+				float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.25F;
+				fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
+				fukumame.damage = 3.0F;
+				this.level().addFreshEntity(fukumame);
+			}
+		} else {
+			for (int i = 0; i < 4; i++) {
+				FukumameEntity fukumame = new FukumameEntity(this.level(), this);
+				double d1 = p_29912_.getX() - this.getX();
+				double d2 = p_29912_.getEyeY() - this.getEyeY();
+				double d3 = p_29912_.getZ() - this.getZ();
+				float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
+				fukumame.shoot(d1, d2 + f, d3, 1.0F, 2.0F + p_29913_);
+				fukumame.damage = 1.0F;
+				this.level().addFreshEntity(fukumame);
+			}
 		}
 	}
 
