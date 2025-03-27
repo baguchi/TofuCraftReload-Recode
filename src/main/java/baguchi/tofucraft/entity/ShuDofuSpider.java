@@ -315,7 +315,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 						List<LivingEntity> entitiesHit = this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 						for (LivingEntity entity : entitiesHit) {
 							if (entity != this) {
-								if (this.canAttack(entity) && !this.canAttack(entity) && this.isWithinMeleeAttackRange(entity)) {
+								if (this.canAttack(entity) && !this.isAlliedTo(entity) && this.isWithinMeleeAttackRange(entity)) {
 									doHurtTarget(serverLevel, entity);
 								}
 							}
