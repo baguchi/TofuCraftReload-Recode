@@ -67,7 +67,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 			Int2ObjectMap<ResourceLocation> int2objectmap = new Int2ObjectOpenHashMap();
 			this.blockStateOutput.accept(MultiVariantGenerator.dispatch(p_387553_).with(PropertyDispatch.initial(p_386757_).generate((p_408977_) -> {
 				int i = p_388514_[p_408977_];
-				return plainVariant((ResourceLocation) int2objectmap.computeIfAbsent(i, (p_387308_) -> this.createSuffixedVariant(p_387553_, "_stage" + p_387308_, ModelTemplates.CROP.extend().renderType("cutout").build(), TextureMapping::crop)));
+				return plainVariant((ResourceLocation) int2objectmap.computeIfAbsent(i, (p_387308_) -> this.createSuffixedVariant(p_387553_, "_" + p_387308_, ModelTemplates.CROP.extend().renderType("cutout").build(), TextureMapping::crop)));
 			})));
 		}
 	}
