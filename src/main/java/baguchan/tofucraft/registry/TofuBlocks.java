@@ -1,10 +1,7 @@
 package baguchan.tofucraft.registry;
 
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.api.tfenergy.TFEnergyData;
 import baguchan.tofucraft.block.BagBlock;
 import baguchan.tofucraft.block.BurnableRotatedPillarBlock;
 import baguchan.tofucraft.block.CandleTofuCakeBlock;
@@ -107,6 +104,10 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class TofuBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TofuCraftReload.MODID);
@@ -573,6 +574,10 @@ public class TofuBlocks {
 				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().stacksTo(1));
 			} else if (Objects.requireNonNull(block.get()) instanceof DoorBlock) {
 				return new DoubleHighBlockItem(Objects.requireNonNull(block.get()), new Item.Properties().stacksTo(16));
+			} else if (Objects.requireNonNull(block.get()) == TF_STORAGE.get() || block.get() == TF_CRAFTER.get() || block.get() == TF_OVEN.get()) {
+				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 5000)));
+			} else if (Objects.requireNonNull(block.get()) == TF_COLLECTOR.get()) {
+				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
 			} else {
 				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties());
 			}
