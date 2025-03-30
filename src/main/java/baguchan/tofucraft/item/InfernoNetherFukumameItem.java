@@ -39,7 +39,7 @@ public class InfernoNetherFukumameItem extends Item implements ProjectileItem {
 			}
 		}
 		playerIn.awardStat(Stats.ITEM_USED.get(this));
-		playerIn.getCooldowns().addCooldown(itemstack.getItem(), 10);
+		playerIn.getCooldowns().addCooldown(itemstack.getItem(), 5);
 		if (!playerIn.level().isClientSide)
 			itemstack.hurtAndBreak(1, (LivingEntity) playerIn, LivingEntity.getSlotForHand(handIn));
 		return InteractionResultHolder.sidedSuccess(itemstack, levelIn.isClientSide());

@@ -1,12 +1,15 @@
 package baguchan.tofucraft.network;
 
 import baguchan.tofucraft.TofuCraftReload;
+import baguchan.tofucraft.client.TofuClientEvents;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Mob;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.UUID;
@@ -44,6 +47,9 @@ public abstract class BossInfoPacket implements CustomPacketPayload {
 
 		public static void execute(BossInfoPacket.Display payload, IPayloadContext context) {
 			GuiHooks.BOSS_EVENTS.put(payload.bossEvent, payload.entityID);
+			if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.getEntity(payload.entityID) instanceof Mob mob) {
+				TofuClientEvents.addBossBar(payload.bossEvent, mob);
+			}
 		}
 	}
 
@@ -71,6 +77,9 @@ public abstract class BossInfoPacket implements CustomPacketPayload {
 
 		public static void execute(BossInfoPacket.Remove payload, IPayloadContext context) {
 			GuiHooks.BOSS_EVENTS.remove(payload.bossEvent);
+			if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.getEntity(payload.entityID) instanceof Mob mob) {
+				TofuClientEvents.removeBossBar(payload.bossEvent, mob);
+			}
 		}
 	}
 

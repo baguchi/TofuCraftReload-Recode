@@ -1,7 +1,5 @@
 package baguchan.tofucraft.registry;
 
-import java.util.function.Supplier;
-
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.FukumameThower;
 import baguchan.tofucraft.entity.ShuDofuSpider;
@@ -41,12 +39,14 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.function.Supplier;
+
 @EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class TofuEntityTypes {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, TofuCraftReload.MODID);
 
 	public static final Supplier<EntityType<Tofunian>> TOFUNIAN = ENTITIES.register("tofunian", () -> EntityType.Builder.of(Tofunian::new, MobCategory.CREATURE)
-			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).clientTrackingRange(10).build("tofucraft:tofunian"));
+			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).passengerAttachments(1.2F).ridingOffset(-0.3F).clientTrackingRange(10).build("tofucraft:tofunian"));
 
 	public static final Supplier<EntityType<TravelerTofunian>> TRAVELER_TOFUNIAN = ENTITIES.register("traveler_tofunian", () -> EntityType.Builder.of(TravelerTofunian::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).build("tofucraft:traveler_tofunian"));
@@ -109,7 +109,9 @@ public class TofuEntityTypes {
 	public static final Supplier<EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
 			.sized(3.5F, 2.9F).eyeHeight(2.0F).clientTrackingRange(10).fireImmune().build("tofucraft:shudofuspider"));
 
-	public static final Supplier<EntityType<FukumameThower>> FUKUMAME_THOWER = ENTITIES.register("fukumame_thower", () -> EntityType.Builder.of(FukumameThower::new, MobCategory.MONSTER).sized(0.6F, 1.85F).clientTrackingRange(8).build("tofucraft:fukumame_thower"));
+	public static final Supplier<EntityType<FukumameThower>> FUKUMAME_THOWER = ENTITIES.register("fukumame_thower", () -> EntityType.Builder.of(FukumameThower::new, MobCategory.MONSTER).sized(0.6F, 1.85F).eyeHeight(1.79F)
+			.passengerAttachments(2.0125F)
+			.ridingOffset(-0.7F).clientTrackingRange(8).build("tofucraft:fukumame_thower"));
 
 	public static final SpawnPlacementType IN_DOUBANJIANG = (p_325672_, p_325673_, p_325674_) -> {
 		if (p_325674_ != null && p_325672_.getWorldBorder().isWithinBounds(p_325673_)) {

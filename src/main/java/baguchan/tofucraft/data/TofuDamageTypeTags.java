@@ -25,6 +25,7 @@ public class TofuDamageTypeTags extends TagsProvider<DamageType> {
 		this.tag(DamageTypeTags.WITCH_RESISTANT_TO).add(TofuDamageSource.ZUNDA);
 		this.tag(DamageTypeTags.NO_IMPACT).add(TofuDamageSource.ZUNDA);
 		this.tag(DamageTypeTags.ALWAYS_HURTS_ENDER_DRAGONS).add(TofuDamageSource.ZUNDA);
+		this.tag(DamageTypeTags.NO_KNOCKBACK).add(TofuDamageSource.FUKUMAME);
 		this.tag(DamageTypeTags.DAMAGES_HELMET).add(TofuDamageSource.FALLING_TOFU);
 	}
 }
