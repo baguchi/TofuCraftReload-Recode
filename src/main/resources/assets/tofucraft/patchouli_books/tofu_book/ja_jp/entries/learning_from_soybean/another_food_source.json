@@ -1,6 +1,6 @@
 {
   "name" : "未知なる食べ物",
-  "advancement" : "tofucraft:tofucraft/roots",
+  "advancement": "tofucraft:root",
   "icon" : "tofucraft:seeds_rice",
   "category" : "tofucraft:learning_from_soybean",
   "priority" : true,

@@ -1,0 +1,29 @@
+{
+  "name": "Another Craftable Food",
+  "advancement": "tofucraft:root",
+  "icon": "tofucraft:koujibase",
+  "category": "tofucraft:learning_from_soybean",
+  "priority": true,
+  "pages": [
+    {
+      "type": "text",
+      "text": "Sometimes you should make complex than recipes.$(br2) like Natto and Miso Barrel"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tofucraft:koujibase",
+        "count": 1
+      },
+      "text": "This is Kouji Base.$(br2)after 2 minute you wait It turn to Kouji.$(br2) be careful Kouji Base is cannot stack."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tofucraft:barrel_miso",
+        "count": 1
+      },
+      "text": "This Barrel is Need to place stone above to barrel and wait$(br2) When the color changes, collect the soy sauce in the bottle,$(br2) then destroy it and collect the contents."
+    }
+  ]
+}

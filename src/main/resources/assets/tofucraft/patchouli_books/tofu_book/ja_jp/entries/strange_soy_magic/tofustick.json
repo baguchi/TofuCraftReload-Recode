@@ -1,6 +1,6 @@
 {
   "name" : "豆腐ステッキ",
-  "advancement" : "tofucraft:tofucraft/tofustick",
+  "advancement": "tofucraft:tofustick",
   "icon" : "tofucraft:tofustick",
   "category" : "tofucraft:strange_soy_magic",
   "priority" : true,

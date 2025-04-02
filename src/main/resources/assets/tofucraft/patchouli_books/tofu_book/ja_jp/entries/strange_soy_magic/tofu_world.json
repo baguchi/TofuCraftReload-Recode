@@ -1,0 +1,37 @@
+{
+  "name": "トーフワールド産の素材",
+  "advancement": "tofucraft:tofuworld",
+  "icon": "tofucraft:leek",
+  "category": "tofucraft:strange_soy_magic",
+  "priority": true,
+  "pages": [
+    {
+      "type": "text",
+      "text": "トーフワールドには珍しい植物や奇妙なブロックが時々ある"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tofucraft:leek",
+        "count": 1
+      },
+      "text": "これは自然の豆腐で入手できるアイテムだ。$(br2)このネギは豆腐地形で骨粉を使って栽培できる。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tofucraft:sapling_tofu",
+        "count": 1
+      },
+      "text": "このアイテムはトーフフォレストで見かける$(br2) 育つと幹が石豆腐でできた豆腐ができる"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tofucraft:zundatofu_mushroom",
+        "count": 1
+      },
+      "text": "謎のキノコ。$(br2) 唯一わかるのは、これ含むずんだのアイテムがエンダーマンにとって苦手なことだ..."
+    }
+  ]
+}
