@@ -1,6 +1,6 @@
 {
   "name" : "トーフニアン",
-  "advancement" : "tofucraft:tofucraft/tofuworld",
+  "advancement": "tofucraft:tofuworld",
   "icon" : "tofucraft:tofu_terrain",
   "category" : "tofucraft:strange_soy_magic",
   "priority" : true,

@@ -101,6 +101,8 @@ dependencies {
     compileOnly("mezz.jei:jei-1.21.1-neoforge-api:19.16.1.156")
     // at runtime, use the full JEI jar for NeoForge
     runtimeOnly("mezz.jei:jei-1.21.1-neoforge:19.16.1.156")
+    compileOnly "vazkii.patchouli:Patchouli:1.21-88-NEOFORGE:api"
+    runtimeOnly "vazkii.patchouli:Patchouli:1.21-88-NEOFORGE"
     // at runtime, use the full JEI jar for NeoForge
     //runtimeOnly("mezz.jei:jei-1.20.4-neoforge:17.0.0.30")
     // Example mod dependency using a mod jar from ./libs with a flat dir repository

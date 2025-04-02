@@ -1,6 +1,6 @@
 {
   "name": "硬豆腐",
-  "advancement" : "tofucraft:tofucraft/roots",
+  "advancement": "tofucraft:root",
   "icon": "tofucraft:blocktofumomen",
   "category": "tofucraft:first_step",
   "priority": true,

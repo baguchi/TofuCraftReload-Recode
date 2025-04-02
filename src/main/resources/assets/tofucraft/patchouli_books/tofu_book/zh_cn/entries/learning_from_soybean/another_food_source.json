@@ -1,6 +1,6 @@
 {
   "name" : "另一种食物来源",
-  "advancement" : "tofucraft:tofucraft/roots",
+  "advancement": "tofucraft:root",
   "icon" : "tofucraft:seeds_rice",
   "category" : "tofucraft:learning_from_soybean",
   "priority" : true,

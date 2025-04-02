@@ -1,6 +1,6 @@
 {
   "name" : "TofuStick",
-  "advancement" : "tofucraft:tofucraft/tofustick",
+  "advancement": "tofucraft:tofustick",
   "icon" : "tofucraft:tofustick",
   "category" : "tofucraft:strange_soy_magic",
   "priority" : true,

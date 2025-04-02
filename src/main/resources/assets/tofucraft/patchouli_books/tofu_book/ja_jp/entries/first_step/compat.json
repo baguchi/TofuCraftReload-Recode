@@ -1,6 +1,6 @@
 {
   "name" : "連携要素",
-  "advancement" : "tofucraft:tofucraft/roots",
+  "advancement": "tofucraft:root",
   "icon": "tofucraft:edamame_rice",
   "category": "tofucraft:first_step",
   "priority": true,
