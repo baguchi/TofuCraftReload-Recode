@@ -1,0 +1,58 @@
+{
+  "name": "豆腐を固める",
+  "advancement": "tofucraft:root",
+  "icon": "tofucraft:blocktofumomen",
+  "category": "tofucraft:first_step",
+  "priority": true,
+  "pages": [
+    {
+      "type": "text",
+      "text": "この世界の豆腐は特殊で、豆腐を固めると固い豆腐ができ、さまざまな装備に使えることだろう。$(br2)(絹豆腐を固めるのは柔らかすぎてあまりいい方法ではない)"
+    },
+    {
+      "type": "crafting",
+      "title": "豆腐木綿",
+      "recipe": "tofucraft:blocktofumomen",
+      "text": "豆腐 moment."
+    },
+    {
+      "type": "multiblock",
+      "text": "豆腐を固める方法",
+      "name": "Harden Structure",
+      "multiblock": {
+        "pattern": [
+          [
+            "S"
+          ],
+          [
+            "0"
+          ],
+          [
+            "S"
+          ]
+        ],
+        "mapping": {
+          "S": "minecraft:cobblestone",
+          "0": "tofucraft:blocktofumomen"
+        },
+        "symmetrical": true
+      }
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tofucraft:blocktofuishi",
+        "count": 1
+      },
+      "text": "この豆腐は主に建築に使われます"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "tofucraft:blocktofumetal",
+        "count": 1
+      },
+      "text": "鋼豆腐は豆腐を最後まで固めると出来上がる豆腐です。$(br2)鉄より少し弱いですが、序盤の良い装備になるでしょう。"
+    }
+  ]
+}

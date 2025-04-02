@@ -1,0 +1,17 @@
+{
+  "name": "Tofunian",
+  "advancement": "tofucraft:tofuworld",
+  "icon": "tofucraft:tofu_terrain",
+  "category": "tofucraft:strange_soy_magic",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "entity": "tofucraft:tofunian"
+    },
+    {
+      "type": "text",
+      "text": "The Tofunians are a highly skilled people today, but in the past they had little interaction with the Overworld, so their only skills were $(br2) tofu upgrade technology and tofu hoe making technology. $(br2)Tofnians can now create golems using Tofu Force. Making flying objects is a　their skill."
+    }
+  ]
+}
