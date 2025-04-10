@@ -1,5 +1,5 @@
 {
-  "parent": "tofucraft:tofuworld",
+  "parent": "tofucraft:yearn_for_tofu_diamond",
   "criteria": {
     "tofu_diamond_armor": {
       "conditions": {

@@ -283,8 +283,30 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuItems.ZUNDA_BOW.get()))
 					.save(consumer, "tofucraft:zunda_legends");
 
-			AdvancementHolder more_shiny_gear = Advancement.Builder.advancement()
+
+			AdvancementHolder yearn_for_tofu_diamond = Advancement.Builder.advancement()
 					.parent(tofu_world)
+					.display(
+							TofuItems.TOFUDIAMOND.get(),
+							Component.translatable("advancements.tofucraft.yearn_for_tofu_diamond.title"),
+							Component.translatable("advancements.tofucraft.yearn_for_tofu_diamond.desc"),
+							null,
+							AdvancementType.GOAL,
+							true,
+							true,
+							false
+					)
+					.addCriterion(
+							"tofu_diamond",
+							InventoryChangeTrigger.TriggerInstance.hasItems(
+									TofuItems.TOFUDIAMOND.get()
+							)
+					)
+					.save(consumer, "tofucraft:yearn_for_tofu_diamond");
+
+
+			AdvancementHolder more_shiny_gear = Advancement.Builder.advancement()
+					.parent(yearn_for_tofu_diamond)
 					.display(
 							TofuItems.TOFU_DIAMOND_CHESTPLATE.get(),
 							Component.translatable("advancements.tofucraft.more_shiny_gear.title"),
@@ -303,6 +325,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							)
 					)
 					.save(consumer, "tofucraft:tofu_diamond_armor");
+
 
 			AdvancementHolder nightmare_echo = Advancement.Builder.advancement()
 					.parent(tofu_world)

@@ -1,0 +1,34 @@
+{
+  "parent": "tofucraft:tofuworld",
+  "criteria": {
+    "tofu_diamond": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:tofudiamond"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.yearn_for_tofu_diamond.desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:tofudiamond"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.yearn_for_tofu_diamond.title"
+    }
+  },
+  "requirements": [
+    [
+      "tofu_diamond"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

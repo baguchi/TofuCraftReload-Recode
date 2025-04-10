@@ -79,34 +79,34 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("S S")
 				.pattern("SSS")
 				.define('S', TofuBlocks.TOFU_STEM_PLANKS.get())
-				.unlockedBy("has_item", has(TofuBlocks.TOFU_STEM_PLANKS.get()))
+				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TRANSPORTATION, TofuItems.LEEK_BOAT.get(), 1)
 				.pattern("S S")
 				.pattern("SSS")
 				.define('S', TofuBlocks.LEEK_PLANKS.get())
-				.unlockedBy("has_item", has(TofuBlocks.LEEK_PLANKS.get()))
+				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TRANSPORTATION, TofuItems.LEEK_GREEN_BOAT.get(), 1)
 				.pattern("S S")
 				.pattern("SSS")
 				.define('S', TofuBlocks.LEEK_GREEN_PLANKS.get())
-				.unlockedBy("has_item", has(TofuBlocks.LEEK_GREEN_PLANKS.get()))
+				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.TRANSPORTATION, TofuItems.TOFU_STEM_CHEST_BOAT.get(), 1)
 				.requires(TofuItems.TOFU_STEM_BOAT.get())
 				.requires(Tags.Items.CHESTS_WOODEN)
-				.unlockedBy("has_item", has(TofuItems.TOFU_STEM_BOAT.get()))
+				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.TRANSPORTATION, TofuItems.LEEK_CHEST_BOAT.get(), 1)
 				.requires(TofuItems.LEEK_BOAT.get())
 				.requires(Tags.Items.CHESTS_WOODEN)
-				.unlockedBy("has_item", has(TofuItems.LEEK_BOAT.get()))
+				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.TRANSPORTATION, TofuItems.LEEK_GREEN_CHEST_BOAT.get(), 1)
 				.requires(TofuItems.LEEK_GREEN_BOAT.get())
 				.requires(Tags.Items.CHESTS_WOODEN)
-				.unlockedBy("has_item", has(TofuItems.LEEK_GREEN_BOAT.get()))
+				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 
 
