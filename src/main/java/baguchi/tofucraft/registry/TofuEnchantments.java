@@ -70,7 +70,7 @@ public class TofuEnchantments {
 				Enchantment.enchantment(
 						Enchantment.definition(
 								holdergetter2.getOrThrow(TofuTags.Items.TOFU_DIAMOND_MINEABLE_ENCHANTABLE),
-								1,
+								2,
 								2,
 								Enchantment.dynamicCost(25, 25),
 								Enchantment.dynamicCost(75, 25),

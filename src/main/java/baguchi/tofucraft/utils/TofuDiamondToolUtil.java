@@ -151,7 +151,7 @@ public class TofuDiamondToolUtil {
 	public static void onBlockStartBreak(ItemStack stack, ServerLevel level, Block blockDestroyed, BlockPos pos, Player owner) {
 		int lvl = EnchantmentHelper.getEnchantmentLevel(level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.BATCH), owner);
 		if (lvl > 0) {
-			ImmutableList<BlockPos> poses = calcAOEBlocks(stack, level, owner, pos, 1 + lvl * 2, 1 + lvl * 2, lvl);
+			ImmutableList<BlockPos> poses = calcAOEBlocks(stack, level, owner, pos, 1 + 2, 1 + 2, lvl);
 			for (BlockPos extraPos : poses) {
 				breakExtraBlock(stack, level, owner, extraPos, pos);
 			}
