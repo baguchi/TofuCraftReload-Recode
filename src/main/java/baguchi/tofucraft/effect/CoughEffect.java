@@ -22,8 +22,8 @@ public class CoughEffect extends MobEffect {
 		if (!livingEntity.level().isClientSide()) {
 			AnimationUtil.sendAnimation(livingEntity, TofuAnimations.COUGH);
 		}
-		if (!(livingEntity instanceof Warden player)) {
-			livingEntity.playSound(SoundEvents.PLAYER_BREATH);
+		if (!(livingEntity instanceof Warden)) {
+			serverLevel.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), SoundEvents.PLAYER_BREATH, livingEntity.getSoundSource(), 1.0F, 1.0F);
 			livingEntity.gameEvent(GameEvent.ENTITY_ACTION);
 		} else {
 			livingEntity.playSound(SoundEvents.WARDEN_HURT, 4.0F, 1.0F);
