@@ -609,6 +609,7 @@
   "advancements.tofucraft.eat_tofu_block.desc": "Find Edible Tofu Blocks and Eat!",
   "tofucraft.radar.result.success" : "Success to Found TofuSlime Chunk",
   "tofucraft.radar.result.failed" : "Not Found TofuSlime Chunk",
+
   "itemGroup.tofucraft" : "TofuCraft",
   "itemGroup.tofu_delight" : "Tofu Delight",
   "effect.tofucraft.soy_healthy" : "Soy Healthy",
@@ -710,6 +711,8 @@
   "tofucraft.has_comfort" : "Has Comfort",
   "tofucraft.has_nourishment": "Has Nourishment",
   "tofucraft.tfminer.button.start_mining": "Start or Stop Mining",
+  "tofucraft.has_soy_wolf_food": "Can Feed to wolves (do not to feed too much)",
+  "tofucraft.soy_food.cannot_give_on_wolf": "You cannot repeat give food for %s. try later again",
   "enchantment.tofucraft.batch": "Batch",
   "enchantment.tofucraft.drain": "Drain",
   "enchantment.tofucraft.shaped_bean": "Shaped Bean",
