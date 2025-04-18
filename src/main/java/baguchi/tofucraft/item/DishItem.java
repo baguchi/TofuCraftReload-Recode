@@ -1,21 +1,34 @@
 package baguchi.tofucraft.item;
 
+import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuEffects;
+import baguchi.tofucraft.registry.TofuItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.wolf.Wolf;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -67,5 +80,52 @@ public class DishItem extends Item {
 		if (effect.isPresent()) {
 			p_399884_.accept(Component.translatable("tofucraft.has_comfort").withStyle(ChatFormatting.GOLD));
 		}
+		if (p_41421_.is(TofuItems.YUDOFU)) {
+			p_399884_.accept(Component.translatable("tofucraft.has_soy_wolf_food").withStyle(ChatFormatting.GRAY));
+		}
+	}
+
+	@EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.GAME)
+	public static class SoyFoodEvent {
+		@SubscribeEvent
+		@SuppressWarnings("unused")
+		public static void onSoyFoodForWolf(PlayerInteractEvent.EntityInteract event) {
+			Player player = event.getEntity();
+			Entity target = event.getTarget();
+			ItemStack itemStack = event.getItemStack();
+
+			if (target instanceof LivingEntity entity && target instanceof Wolf wolf) {
+				if (entity.isAlive() && wolf.isTame() && itemStack.is(TofuItems.YUDOFU)) {
+					if (!wolf.getData(TofuAttachments.TOFU_LIVING).isWolfEatCooldown()) {
+						entity.heal(1);
+						entity.addEffect(new MobEffectInstance(TofuEffects.SOY_HEALTHY, 3200, 1));
+						wolf.getData(TofuAttachments.TOFU_LIVING).setWolfEatCooldown(3200);
+						entity.level().playSound(null, target.blockPosition(), SoundEvents.GENERIC_EAT.value(), SoundSource.PLAYERS, 0.8F, 0.8F);
+
+						if (itemStack.has(DataComponents.USE_REMAINDER) && !player.isCreative()) {
+							player.addItem(itemStack.get(DataComponents.USE_REMAINDER).convertInto());
+							itemStack.shrink(1);
+						}
+
+						event.setCancellationResult(InteractionResult.SUCCESS);
+						event.setCanceled(true);
+					} else {
+						player.displayClientMessage(Component.translatable("tofucraft.soy_food.cannot_give_on_wolf", wolf.getName()), true);
+						event.setCancellationResult(InteractionResult.FAIL);
+						event.setCanceled(true);
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public InteractionResult interactLivingEntity(ItemStack stack, Player playerIn, LivingEntity target, InteractionHand hand) {
+		if (target instanceof Wolf wolf) {
+			if (wolf.isAlive() && wolf.isTame()) {
+				return InteractionResult.SUCCESS;
+			}
+		}
+		return InteractionResult.PASS;
 	}
 }

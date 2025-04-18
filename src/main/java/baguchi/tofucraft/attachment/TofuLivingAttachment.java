@@ -18,10 +18,23 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 	public float portalAnimTime = 0;
 	public float prevPortalAnimTime = 0;
 	public float recoverHealth = 0;
+	public int wolfEatCooldown;
+
 	public void tick(Entity entity) {
 		if (entity instanceof Player player) {
 			this.handlePortal(player);
 		}
+		this.handleFood(entity);
+	}
+
+	private void handleFood(Entity entity) {
+		if (wolfEatCooldown > 0) {
+			wolfEatCooldown--;
+		}
+	}
+
+	public boolean isWolfEatCooldown() {
+		return this.wolfEatCooldown > 0;
 	}
 
 	public void setRecoverHealth(float recoverHealth) {
@@ -102,17 +115,25 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 		}
 	}
 
-
+	public void setWolfEatCooldown(int wolfEatCooldown) {
+		this.wolfEatCooldown = wolfEatCooldown;
+	}
 
 	@Override
 	public @UnknownNullability CompoundTag serializeNBT(HolderLookup.Provider provider) {
 		CompoundTag nbt = new CompoundTag();
 		nbt.putFloat("recover_health", this.recoverHealth);
+		if (wolfEatCooldown > 0) {
+			nbt.putInt("wolf_eat_cooldown", this.wolfEatCooldown);
+		}
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
 		this.recoverHealth = nbt.getFloatOr("recover_health", 0);
+		if (nbt.contains("wolf_eat_cooldown")) {
+			this.wolfEatCooldown = nbt.getIntOr("wolf_eat_cooldown", 0);
+		}
 	}
 }

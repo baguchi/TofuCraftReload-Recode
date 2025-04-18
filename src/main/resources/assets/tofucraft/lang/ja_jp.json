@@ -722,6 +722,8 @@
   "tofucraft.tfminer.button.start_mining": "採掘 :　開始 / 停止",
   "tofucraft.tofu_book.tooltip": "Tofu Knowledge 2021",
   "tofucraft.tofu_book.tooltip2": "Patchouli modを入れると、より詳しい内容を知ることが出来ます",
+  "tofucraft.has_soy_wolf_food": "オオカミに与えられる(与えすぎに注意)",
+  "tofucraft.soy_food.cannot_give_on_wolf": "これを与え続けるのも%sに毒だ。しばらくしてから与えよう",
   "tooltip.tofucraft.energy": "トーフフォースエネルギー：%d/%d",
   "tooltip.tofucraft.tofu_boots": "崩れ具合 : %d/%d",
   "tooltip.tofucraft.tofuforce.broken": "破損",
