@@ -1,6 +1,5 @@
 package baguchan.tofucraft.entity.goal;
 
-import baguchan.tofucraft.block.utils.TofuDoorBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -81,13 +80,8 @@ public abstract class TofuDoorInteractGoal extends Goal {
 	}
 
 	public static boolean isWoodenDoorOrTofuDoor(Level p_52746_, BlockPos p_52747_) {
-		return DoorBlock.isWoodenDoor(p_52746_.getBlockState(p_52747_)) || isTofuDoor(p_52746_.getBlockState(p_52747_));
+		return DoorBlock.isWoodenDoor(p_52746_.getBlockState(p_52747_));
 	}
-
-	public static boolean isTofuDoor(BlockState p_52818_) {
-		return p_52818_.getBlock() instanceof TofuDoorBlock;
-	}
-
 	public boolean canContinueToUse() {
 		return !this.passed;
 	}
