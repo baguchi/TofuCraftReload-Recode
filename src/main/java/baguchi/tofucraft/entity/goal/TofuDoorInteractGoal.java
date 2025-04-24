@@ -80,7 +80,7 @@ public abstract class TofuDoorInteractGoal extends Goal {
 	}
 
 	public static boolean isWoodenDoorOrTofuDoor(Level p_52746_, BlockPos p_52747_) {
-		return DoorBlock.isWoodenDoor(p_52746_.getBlockState(p_52747_)) || isTofuDoor(p_52746_.getBlockState(p_52747_));
+		return DoorBlock.isWoodenDoor(p_52746_.getBlockState(p_52747_));
 	}
 
 	public static boolean isTofuDoor(BlockState p_52818_) {
