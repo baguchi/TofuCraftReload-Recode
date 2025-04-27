@@ -1,8 +1,5 @@
 package baguchan.tofucraft;
 
-import java.util.Locale;
-import java.util.Map;
-
 import baguchan.tofucraft.api.TofunianTradeManager;
 import baguchan.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchan.tofucraft.client.ClientRegistrar;
@@ -61,6 +58,9 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Locale;
+import java.util.Map;
+
 @Mod(TofuCraftReload.MODID)
 public class TofuCraftReload {
 	public static final String MODID = "tofucraft";
@@ -76,6 +76,13 @@ public class TofuCraftReload {
 		modBus.addListener(this::setupPackets);
 
 		TofuBlocks.BLOCKS.register(modBus);
+		TofuBlocks.BLOCKS.addAlias(prefix("leek_green_planks_stair"), prefix("leek_green_stair"));
+		TofuBlocks.BLOCKS.addAlias(prefix("leek_planks_stair"), prefix("leek_stair"));
+		TofuBlocks.BLOCKS.addAlias(prefix("tofustem_planks_stair"), prefix("tofustem_stair"));
+		TofuBlocks.BLOCKS.addAlias(prefix("leek_green_planks_slab"), prefix("leek_green_slab"));
+		TofuBlocks.BLOCKS.addAlias(prefix("leek_planks_slab"), prefix("leek_slab"));
+		TofuBlocks.BLOCKS.addAlias(prefix("tofustem_planks_slab"), prefix("tofustem_slab"));
+
 		TofuItems.ITEMS.register(modBus);
 		TofuItems.ITEMS.addAlias(prefix("sculk_bone_helmet"), prefix("tofu_diamond_helmet"));
 		TofuItems.ITEMS.addAlias(prefix("sculk_bone_chestplate"), prefix("tofu_diamond_chestplate"));
