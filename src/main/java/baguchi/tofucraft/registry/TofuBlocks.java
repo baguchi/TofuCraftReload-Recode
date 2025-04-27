@@ -331,8 +331,8 @@ public class TofuBlocks {
 	public static final DeferredBlock<RotatedPillarBlock> LEEK_GREEN_STEM = register("leek_green_stem", (properties) -> new BurnableRotatedPillarBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));
 
 	public static final DeferredBlock<Block> LEEK_GREEN_PLANKS = register("leek_green_planks", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
-	public static final DeferredBlock<StairBlock> LEEK_GREEN_PLANKS_STAIR = register("leek_green_planks_stair", (properties) -> new StairBlock(LEEK_GREEN_PLANKS.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get()));
-	public static final DeferredBlock<SlabBlock> LEEK_GREEN_PLANKS_SLAB = register("leek_green_planks_slab", (properties) -> new SlabBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get()));
+	public static final DeferredBlock<StairBlock> LEEK_GREEN_PLANKS_STAIR = register("leek_green_stair", (properties) -> new StairBlock(LEEK_GREEN_PLANKS.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get()));
+	public static final DeferredBlock<SlabBlock> LEEK_GREEN_PLANKS_SLAB = register("leek_green_slab", (properties) -> new SlabBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get()));
 	public static final DeferredBlock<FenceBlock> LEEK_GREEN_FENCE = register("leek_green_fence", (properties) -> new FenceBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
 	public static final DeferredBlock<FenceGateBlock> LEEK_GREEN_FENCE_GATE = register("leek_green_fence_gate", (properties) -> new FenceGateBlock(TofuWoodTypes.LEEK_GREEN, properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F));
 	public static final DeferredBlock<StandingSignBlock> LEEK_GREEN_SIGN = register("leek_green_sign", (properties) -> new StandingSignBlock(TofuWoodTypes.LEEK_GREEN, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SIGN));
@@ -348,8 +348,8 @@ public class TofuBlocks {
 	public static final DeferredBlock<RotatedPillarBlock> LEEK_STEM = register("leek_stem", (properties) -> new BurnableRotatedPillarBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));
 
 	public static final DeferredBlock<Block> LEEK_PLANKS = register("leek_planks", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
-	public static final DeferredBlock<StairBlock> LEEK_PLANKS_STAIR = register("leek_planks_stair", (properties) -> new StairBlock(LEEK_PLANKS.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(LEEK_PLANKS.get()));
-	public static final DeferredBlock<SlabBlock> LEEK_PLANKS_SLAB = register("leek_planks_slab", (properties) -> new SlabBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(LEEK_PLANKS.get()));
+	public static final DeferredBlock<StairBlock> LEEK_PLANKS_STAIR = register("leek_stair", (properties) -> new StairBlock(LEEK_PLANKS.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(LEEK_PLANKS.get()));
+	public static final DeferredBlock<SlabBlock> LEEK_PLANKS_SLAB = register("leek_slab", (properties) -> new SlabBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(LEEK_PLANKS.get()));
 	public static final DeferredBlock<FenceBlock> LEEK_FENCE = register("leek_fence", (properties) -> new FenceBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
 	public static final DeferredBlock<FenceGateBlock> LEEK_FENCE_GATE = register("leek_fence_gate", (properties) -> new FenceGateBlock(TofuWoodTypes.LEEK, properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F));
 	public static final DeferredBlock<StandingSignBlock> LEEK_SIGN = register("leek_sign", (properties) -> new StandingSignBlock(TofuWoodTypes.LEEK, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SIGN));
@@ -366,8 +366,8 @@ public class TofuBlocks {
 
 	public static final DeferredBlock<RotatedPillarBlock> TOFU_STEM = register("tofustem", (properties) -> new BurnableRotatedPillarBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));
 	public static final DeferredBlock<Block> TOFU_STEM_PLANKS = register("tofustem_planks", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
-	public static final DeferredBlock<StairBlock> TOFU_STEM_PLANKS_STAIR = register("tofustem_planks_stair", (properties) -> new StairBlock(TOFU_STEM_PLANKS.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(TOFU_STEM_PLANKS.get()));
-	public static final DeferredBlock<SlabBlock> TOFU_STEM_PLANKS_SLAB = register("tofustem_planks_slab", (properties) -> new SlabBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(TOFU_STEM_PLANKS.get()));
+	public static final DeferredBlock<StairBlock> TOFU_STEM_PLANKS_STAIR = register("tofustem_stair", (properties) -> new StairBlock(TOFU_STEM_PLANKS.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(TOFU_STEM_PLANKS.get()));
+	public static final DeferredBlock<SlabBlock> TOFU_STEM_PLANKS_SLAB = register("tofustem_slab", (properties) -> new SlabBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(TOFU_STEM_PLANKS.get()));
 	public static final DeferredBlock<FenceBlock> TOFU_STEM_FENCE = register("tofustem_fence", (properties) -> new FenceBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
 	public static final DeferredBlock<FenceGateBlock> TOFU_STEM_FENCE_GATE = register("tofustem_fence_gate", (properties) -> new FenceGateBlock(TofuWoodTypes.TOFU_STEM, properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F));
 

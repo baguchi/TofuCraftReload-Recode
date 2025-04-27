@@ -94,6 +94,12 @@ public class TofuCraftReload {
 		modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> event.dataPackRegistry(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, TofunianVariant.DIRECT_CODEC, TofunianVariant.DIRECT_CODEC));
 
 		TofuBlocks.BLOCKS.register(modBus);
+		TofuBlocks.BLOCKS.addAlias(prefix("leek_green_planks_stair"), prefix("leek_green_stair"));
+		TofuBlocks.BLOCKS.addAlias(prefix("leek_planks_stair"), prefix("leek_stair"));
+		TofuBlocks.BLOCKS.addAlias(prefix("tofustem_planks_stair"), prefix("tofustem_stair"));
+		TofuBlocks.BLOCKS.addAlias(prefix("leek_green_planks_slab"), prefix("leek_green_slab"));
+		TofuBlocks.BLOCKS.addAlias(prefix("leek_planks_slab"), prefix("leek_slab"));
+		TofuBlocks.BLOCKS.addAlias(prefix("tofustem_planks_slab"), prefix("tofustem_slab"));
 		TofuItems.ITEMS.register(modBus);
 		TofuItems.ITEMS.addAlias(prefix("sculk_bone_helmet"), prefix("tofu_diamond_helmet"));
 		TofuItems.ITEMS.addAlias(prefix("sculk_bone_chestplate"), prefix("tofu_diamond_chestplate"));
