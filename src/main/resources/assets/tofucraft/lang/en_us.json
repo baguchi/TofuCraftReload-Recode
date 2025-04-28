@@ -708,7 +708,7 @@
   "entity.tofucraft.slabfish.type.tofu" : "Tofu",
   "tofucraft.tofu_book.tooltip" : "Tofu Knowledge 2022",
   "tofucraft.tofu_book.tooltip2" : "If you want see this book. put the Patchouli mod!",
-  "item.tofucraft.tofu_book" : "TofuBook",
+  "item.tofucraft.tofu_crafters_book": "Tofunian's Tofu Crafters Book",
   "tofucraft.jei.bittern" : "Bittern",
   "tofucraft.jei.harden" : "Harden",
   "tofucraft.need_defeat_boss" : "Need To Defeat Boss first",
@@ -736,5 +736,9 @@
   "enchantment.tofucraft.shaped_bean": "Shaped Bean",
   "enchantment.tofucraft.crack_burst": "Crack Burst",
   "enchantment.tofucraft.effect_protection": "Effect Protection",
-  "multiplayer.tofucraft.travel_tofuworld": "Travel from Tofu Portal..."
+  "multiplayer.tofucraft.travel_tofuworld": "Travel from Tofu Portal...",
+  "tofucraft.tofu_crafters_book.author": "Author: Tofunian",
+  "tofucraft.tofu_crafters_book.introduction": "Howdy! I'm literary Tofunian(Kinda)! This time I'd like to tell you about the appeal of tofu. What? Did tofu even exist in the first place? ...Don't worry! I'm not going to tell you a lie like it's bad poisonous potatoes(He...got too carried away on April Fool's Day). If you keep destroying a lot of grass, something called soybeans should come out!",
+  "tofucraft.tofu_crafters_book.before_the_tofu": "But you can't do much with soybeans alone.\nYou need a container to put the soy milk in and an item to solidify the soy milk and turn it into tofu.\nSure, you can bottle it and drink it, but making tofu requires additional steps.",
+  "tofucraft.tofu_crafters_book.about_bittern": "This item can be obtained as a by-product of salt furnaces and salt fields. It would take a long time to explain how it works, but basically it's an item used to harden tofu."
 }

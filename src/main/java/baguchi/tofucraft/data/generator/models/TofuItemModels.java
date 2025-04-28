@@ -359,6 +359,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.LEEK_GREEN_CHEST_BOAT.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.MUSIC_DISC_GREEN_BRANCH.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_CRAFTERS_BOOK.get(), ModelTemplates.FLAT_ITEM);
 	}
 
 	public void generateTofuShield(ItemModelGenerators generators, Item p_386530_) {

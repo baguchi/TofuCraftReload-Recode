@@ -553,7 +553,7 @@
   "item.tofucraft.tf_coil": "TFコイル",
   "item.tofucraft.tf_oscillator": "TF発振器",
   "item.tofucraft.tofu_bomb": "トーフボム",
-  "item.tofucraft.tofu_book": "豆腐職人ガイド",
+  "item.tofucraft.tofu_crafters_book": "トーフニアンの豆腐職人ガイド",
   "item.tofucraft.tofu_buns_burger": "豆腐バンズバーガー",
   "item.tofucraft.tofu_chikuwa": "豆腐ちくわ",
   "item.tofucraft.tofu_core": "トーフコア",
@@ -733,5 +733,9 @@
   "trim_material.tofucraft.zunda_ruby": "ずんだルビー製装飾",
   "upgrade.tofucraft.tofu_upgrade": "金剛豆腐ブロックを置いてください",
   "upgrade.tofucraft.zunda_upgrade": "ずんだまを置いてください",
-  "multiplayer.tofucraft.travel_tofuworld": "トーフポータルによって転送中..."
+  "multiplayer.tofucraft.travel_tofuworld": "トーフポータルによって転送中...",
+  "tofucraft.tofu_crafters_book.author": "著者:トーフニアン",
+  "tofucraft.tofu_crafters_book.introduction": "こんにちは！僕はトーフニアン！今回は豆腐の魅力について教えようと思うよ。え？そもそも豆腐って存在したっけッて？・・・大丈夫！悪い毒じゃがみたいに嘘を教えるわけじゃないよ(彼は・・・エイプリルフールで調子乗りすぎた)。草をたくさん壊し続ければ大豆ってものが出てくるはずだよ！",
+  "tofucraft.tofu_crafters_book.before_the_tofu": "しかーし、大豆だけではなんもできない。豆乳を入れる器と豆乳を固めて豆腐にするアイテムが必要だよ。もちろん瓶に詰めて飲むことができるけど、豆腐を作るにはさらなる工程がいるんだ。",
+  "tofucraft.tofu_crafters_book.about_bittern": "このアイテムは塩かまどや塩田の副産物で取れるよ。仕組みを説明すると長くなるけど、要するに豆腐を固めるためのアイテムってコト"
 }

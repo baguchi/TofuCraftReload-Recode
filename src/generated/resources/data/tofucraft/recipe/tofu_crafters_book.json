@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "tofucraft:seeds_soybeans",
+    "minecraft:book"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tofu_crafters_book"
+  }
+}
