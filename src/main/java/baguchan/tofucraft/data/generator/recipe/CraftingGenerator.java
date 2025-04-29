@@ -1,9 +1,5 @@
 package baguchan.tofucraft.data.generator.recipe;
 
-import java.util.concurrent.CompletableFuture;
-
-import static baguchan.tofucraft.TofuCraftReload.prefix;
-
 import baguchan.tofucraft.data.generator.recipe.builder.BitternRecipeBuilder;
 import baguchan.tofucraft.data.generator.recipe.builder.HardenRecipeBuilder;
 import baguchan.tofucraft.registry.TofuBlocks;
@@ -24,6 +20,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
+
+import java.util.concurrent.CompletableFuture;
+
+import static baguchan.tofucraft.TofuCraftReload.prefix;
 
 public class CraftingGenerator extends CraftingDataHelper {
 	public CraftingGenerator(PackOutput generator, CompletableFuture<HolderLookup.Provider> completableFuture) {
@@ -1756,6 +1756,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SALT.get(), 9)
 				.requires(TofuBlocks.SALT_BLOCK.get())
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(consumer);
+
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.TOFU_CRAFTERS_BOOK.get(), 1)
+				.requires(TofuItems.SEEDS_SOYBEANS.get())
+				.requires(Items.BOOK)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()))
 				.save(consumer);
 
 		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), new FluidStack(TofuFluids.BITTERN.get(), 250)).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(consumer, prefix("bittern_to_kinu"));

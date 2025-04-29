@@ -1,9 +1,5 @@
 package baguchan.tofucraft.data.generator;
 
-import java.util.function.Supplier;
-
-import static baguchan.tofucraft.TofuCraftReload.prefix;
-
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
@@ -24,6 +20,10 @@ import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.loaders.ItemLayerModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import java.util.function.Supplier;
+
+import static baguchan.tofucraft.TofuCraftReload.prefix;
 
 public class ItemModelGenerator extends ItemModelProvider {
 	public ItemModelGenerator(PackOutput generator, ExistingFileHelper existingFileHelper) {
@@ -538,6 +538,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK);
 
 		singleTex(TofuItems.MUSIC_DISC_GREEN_BRANCH);
+		singleTex(TofuItems.TOFU_CRAFTERS_BOOK);
 	}
 
 	public ItemModelBuilder button(Supplier<? extends ButtonBlock> button, Supplier<? extends Block> fullBlock) {

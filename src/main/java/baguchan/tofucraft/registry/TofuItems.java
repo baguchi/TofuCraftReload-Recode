@@ -1,8 +1,5 @@
 package baguchan.tofucraft.registry;
 
-import java.util.List;
-import java.util.function.Supplier;
-
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.capability.wrapper.FluidBottleWrapper;
 import baguchan.tofucraft.data.generator.CustomTagGenerator;
@@ -31,6 +28,7 @@ import baguchan.tofucraft.item.SoyBallItem;
 import baguchan.tofucraft.item.SoymilkBottleItem;
 import baguchan.tofucraft.item.SpecialBitternItem;
 import baguchan.tofucraft.item.TFBatteryItem;
+import baguchan.tofucraft.item.TofuBookItem;
 import baguchan.tofucraft.item.armor.BreakableTofuArmorItem;
 import baguchan.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchan.tofucraft.item.armor.TofuArmorItem;
@@ -88,6 +86,9 @@ import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.List;
+import java.util.function.Supplier;
 
 public class TofuItems {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, TofuCraftReload.MODID);
@@ -422,6 +423,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> LEEK_GREEN_CHEST_BOAT = ITEMS.register("leek_green_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("TOFUCRAFT_LEEK_GREEN"), new Item.Properties().stacksTo(1)));
 	public static final DeferredHolder<Item, Item> TOFU_STEM_CHEST_BOAT = ITEMS.register("tofu_stem_chest_boat", () -> new BoatItem(true, Boat.Type.valueOf("TOFUCRAFT_TOFU_STEM"), new Item.Properties().stacksTo(1)));
 	public static final DeferredHolder<Item, Item> MUSIC_DISC_GREEN_BRANCH = ITEMS.register("music_disc_green_branch", () -> new Item(new Item.Properties().jukeboxPlayable(TofuJukeboxSongs.GREEN_BRANCH)));
+	public static final DeferredHolder<Item, Item> TOFU_CRAFTERS_BOOK = ITEMS.register("tofu_crafters_book", () -> new TofuBookItem(new Item.Properties()));
 
 
 	private static Supplier<Item> register(String name, Supplier<Item> item) {
