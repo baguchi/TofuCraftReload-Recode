@@ -4,6 +4,7 @@ import bagu_chan.bagus_lib.client.render.book.Book;
 import bagu_chan.bagus_lib.client.render.book.component.BookComponentDefinition;
 import bagu_chan.bagus_lib.client.render.book.component.DisplayBookComponent;
 import bagu_chan.bagus_lib.client.render.book.component.TextBookComponent;
+import bagu_chan.bagus_lib.client.render.screen.BookScreen;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
