@@ -26,6 +26,12 @@
         "class": "baguchan/tofucraft/TofuEnumExtensions",
         "method": "LEEK_GREEN_BOAT"
       }
+    },
+    {
+      "enum": "net/minecraft/world/inventory/RecipeBookType",
+      "name": "TOFUCRAFT_COOKING",
+      "constructor": "()V",
+      "parameters": []
     }
   ]
 }

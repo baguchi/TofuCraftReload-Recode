@@ -44,6 +44,7 @@ import baguchi.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchi.tofucraft.client.screen.TFCrafterScreen;
 import baguchi.tofucraft.client.screen.TFOvenScreen;
 import baguchi.tofucraft.client.screen.TFStorageScreen;
+import baguchi.tofucraft.client.screen.TofuPotScreen;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -51,6 +52,7 @@ import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuFluidTypes;
 import baguchi.tofucraft.registry.TofuMenus;
+import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuWoodTypes;
 import baguchi.tofucraft.utils.ClientUtils;
 import com.mojang.blaze3d.platform.Window;
@@ -80,6 +82,7 @@ import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterRecipeBookSearchCategoriesEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
@@ -98,6 +101,11 @@ public class ClientRegistrar {
 			Sheets.addWoodType(TofuWoodTypes.TOFU_STEM);
 		});
 
+	}
+
+	@SubscribeEvent
+	public static void registerRecipeBookSearchCategories(RegisterRecipeBookSearchCategoriesEvent event) {
+		event.register(TofuRecipeBookCategory.SEARCH, TofuRecipeBookCategory.COOKING_FAST_FOODS.get(), TofuRecipeBookCategory.COOKING_DRINKS.get(), TofuRecipeBookCategory.COOKING_MEALS.get(), TofuRecipeBookCategory.COOKING_MISC.get());
 	}
 
 	@SubscribeEvent
@@ -274,6 +282,7 @@ public class ClientRegistrar {
 		event.register(TofuMenus.TF_STORAGE.get(), TFStorageScreen::new);
 		event.register(TofuMenus.TF_CRAFTER.get(), TFCrafterScreen::new);
 		event.register(TofuMenus.TF_OVEN.get(), TFOvenScreen::new);
+		event.register(TofuMenus.TOFU_POT.get(), TofuPotScreen::new);
 	}
 	@SubscribeEvent
 	public static void specialModelRender(RegisterSpecialModelRendererEvent event) {

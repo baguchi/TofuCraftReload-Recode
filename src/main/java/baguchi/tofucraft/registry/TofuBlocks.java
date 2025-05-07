@@ -24,6 +24,7 @@ import baguchi.tofucraft.block.TofuLeavesBlock;
 import baguchi.tofucraft.block.TofuMagmaBlock;
 import baguchi.tofucraft.block.TofuMushroomBlock;
 import baguchi.tofucraft.block.TofuPortalBlock;
+import baguchi.tofucraft.block.TofuPotBlock;
 import baguchi.tofucraft.block.TofuSaplingBlock;
 import baguchi.tofucraft.block.TofuTerrainBlock;
 import baguchi.tofucraft.block.TofuTrapDoorBlock;
@@ -516,6 +517,10 @@ public class TofuBlocks {
 
 	public static final DeferredBlock<Block> ANTENNA_BASIC = register("antenna_basic", (properties) -> new TFAntennaBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> TOFU_WORK_STATION = register("tofu_work_station", (properties) -> new TofuWorkStationBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE));
+
+	public static final DeferredBlock<Block> TOFU_POT = register("tofu_pot",
+			(properties) -> new TofuPotBlock(properties), () -> Block.Properties.of().mapColor(MapColor.METAL).strength(0.6F, 6.0F).sound(SoundType.LANTERN));
+
 
 	private static boolean always(BlockState p_50775_, BlockGetter p_50776_, BlockPos p_50777_) {
 		return true;

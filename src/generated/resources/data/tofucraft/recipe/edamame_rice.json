@@ -1,6 +1,8 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 200,
+  "experience": 0.1,
   "ingredients": [
     "tofucraft:onigiri",
     "tofucraft:edamame",

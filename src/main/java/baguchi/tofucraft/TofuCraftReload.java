@@ -36,6 +36,7 @@ import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuPoiTypes;
 import baguchi.tofucraft.registry.TofuProfessions;
+import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuRecipes;
 import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofuTags;
@@ -123,6 +124,7 @@ public class TofuCraftReload {
 		TofuFluids.FLUIDS.register(modBus);
 		modBus.addListener(TofuFluids::registerFluids);
 		TofuCreativeModeTabs.CREATIVE_MODE_TABS.register(modBus);
+		TofuRecipeBookCategory.RECIPE_CATEGORY_REGISTER.register(modBus);
 		TofuRecipes.RECIPE_TYPES.register(modBus);
 		TofuEntityDatas.ENTITY_DATAS.register(modBus);
 		TofuDataComponents.DATA_COMPONENT_TYPES.register(modBus);

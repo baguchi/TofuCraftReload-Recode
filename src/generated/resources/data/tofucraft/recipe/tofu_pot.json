@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "tofucraft:blocktofumetal",
+    "S": "tofucraft:tofuishi"
+  },
+  "pattern": [
+    "S S",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tofu_pot"
+  }
+}

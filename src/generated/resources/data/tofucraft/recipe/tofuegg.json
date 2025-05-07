@@ -1,6 +1,8 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "tofucraft:tofu_pot_shapeless",
   "category": "misc",
+  "cook_time": 200,
+  "experience": 0.1,
   "ingredients": [
     "#c:eggs",
     "tofucraft:bottle_dashi"

@@ -1,6 +1,8 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 400,
+  "experience": 0.2,
   "ingredients": [
     [
       "tofucraft:tofukinu",
