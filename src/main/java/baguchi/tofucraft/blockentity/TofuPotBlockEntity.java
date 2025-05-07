@@ -39,7 +39,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.RecipeCraftingHolder;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -295,7 +294,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		for (Reference2IntMap.Entry<ResourceKey<Recipe<?>>> entry : this.recipesUsed.reference2IntEntrySet()) {
 			level.recipeAccess().byKey(entry.getKey()).ifPresent(p_379268_ -> {
 				list.add(p_379268_);
-				splitAndSpawnExperience(level, pos, entry.getIntValue(), ((AbstractCookingRecipe) p_379268_.value()).experience());
+				splitAndSpawnExperience(level, pos, entry.getIntValue(), ((TofuPotRecipe) p_379268_.value()).getExperience());
 			});
 		}
 
