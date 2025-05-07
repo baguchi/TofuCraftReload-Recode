@@ -2,7 +2,7 @@
   "type": "tofucraft:tofu_pot_shapeless",
   "category": "fast_food",
   "cook_time": 100,
-  "experience": 0.025,
+  "experience": 0.05,
   "fluid": {
     "amount": 200,
     "ingredient": "minecraft:water"

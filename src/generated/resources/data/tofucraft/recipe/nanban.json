@@ -2,7 +2,7 @@
   "type": "tofucraft:tofu_pot_shapeless",
   "category": "meal",
   "cook_time": 400,
-  "experience": 0.2,
+  "experience": 0.8,
   "ingredients": [
     "minecraft:cooked_chicken",
     "#c:eggs",

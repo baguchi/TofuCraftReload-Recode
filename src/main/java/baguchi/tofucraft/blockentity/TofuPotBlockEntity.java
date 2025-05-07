@@ -149,7 +149,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		if (isHeated && cookingPot.hasInput()) {
 			Optional<RecipeHolder<TofuPotRecipe>> recipe = cookingPot.getMatchingRecipe(CraftingInput.of(4, 3, cookingPot.inventory));
 
-			if (recipe.isPresent() && cookingPot.canCook(recipe.get().value()) && (recipe.get().value().fluidIngredient().isPresent() || recipe.get().value().fluidIngredient().get().test(cookingPot.fluidTank.getFluid()))) {
+			if (recipe.isPresent() && cookingPot.canCook(recipe.get().value()) && (recipe.get().value().fluidIngredient().isEmpty() || recipe.get().value().fluidIngredient().get().test(cookingPot.fluidTank.getFluid()))) {
 				didInventoryChange = cookingPot.processCooking(recipe.get(), cookingPot);
 			} else {
 				cookingPot.cookTime = 0;
