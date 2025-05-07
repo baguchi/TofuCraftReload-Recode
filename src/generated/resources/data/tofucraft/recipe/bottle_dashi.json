@@ -1,18 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "tofucraft:tofu_pot_shapeless",
   "category": "misc",
+  "cook_time": 100,
+  "experience": 0.05,
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
   "ingredients": [
     {
-      "type": "neoforge:components",
-      "components": {
-        "minecraft:potion_contents": {
-          "potion": "minecraft:water"
-        }
-      },
-      "items": "minecraft:potion"
+      "item": "minecraft:dried_kelp"
     },
     {
-      "item": "minecraft:dried_kelp"
+      "item": "minecraft:glass_bottle"
     }
   ],
   "result": {

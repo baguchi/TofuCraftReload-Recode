@@ -2,6 +2,8 @@ package baguchan.tofucraft.data.generator.recipe;
 
 import baguchan.tofucraft.data.generator.recipe.builder.BitternRecipeBuilder;
 import baguchan.tofucraft.data.generator.recipe.builder.HardenRecipeBuilder;
+import baguchan.tofucraft.data.generator.recipe.builder.TofuPotShapelessRecipeBuilder;
+import baguchan.tofucraft.recipe.TofuPotCategory;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuFluids;
 import baguchan.tofucraft.registry.TofuItems;
@@ -18,8 +20,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -294,7 +298,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuTags.Items.SOYBEAN))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.TOFUFRIED.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.FAST_FOOD, FluidIngredient.empty(), TofuItems.TOFUFRIED.get(), 100, 0.1F)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(TofuItems.BOTTLE_SOYOIL.get())
 				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYOIL.get()))
@@ -567,9 +571,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuTags.Items.SALT))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.BOTTLE_DASHI.get(), 1)
-				.requires(potion(Potions.WATER))
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MISC, FluidIngredient.single(new FluidStack(Fluids.WATER, 200)), TofuItems.BOTTLE_DASHI.get(), 100, 0.05F)
 				.requires(Items.DRIED_KELP)
+				.requires(Items.GLASS_BOTTLE)
 				.unlockedBy("has_item", has(Items.KELP))
 				.save(consumer);
 
@@ -782,7 +786,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuTags.Items.SALT)
 				.unlockedBy("has_item", has(TofuTags.Items.SALT))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.MISOSOUP.get())
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.single(new FluidStack(Fluids.WATER, 200)), TofuItems.MISOSOUP.get(), 400, 0.1F)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(TofuItems.MISO.get())
 				.requires(Items.BOWL)

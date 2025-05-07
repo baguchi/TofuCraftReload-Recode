@@ -1,8 +1,5 @@
 package baguchan.tofucraft.data;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import baguchan.tofucraft.block.crop.RiceCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SproutsCropBlock;
@@ -40,6 +37,9 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.fml.util.ObfuscationReflectionHelper;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class BlockLootTables extends BlockLootSubProvider {
 	private final Set<Block> knownBlocks = new HashSet<>();
@@ -354,6 +354,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.ANTENNA_BASIC.get());
 		dropSelf(TofuBlocks.TOFU_WORK_STATION.get());
 		this.add(TofuBlocks.TF_COLLECTOR.get(), this::createTFMechaTable);
+
+		dropSelf(TofuBlocks.TOFU_POT.get());
 	}
 
 	protected LootTable.Builder createZundaMushroomDrop(Block p_124264_, Block p_124265_, float... p_124266_) {

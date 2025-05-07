@@ -27,7 +27,11 @@ public class ModTofuCommonEvents {
 				(myBlockEntity, side) -> {
 					return myBlockEntity.getTank();
 				});
-
+		event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, // capability to register for
+				TofuBlockEntitys.TOFU_POT.get(), // block entity type to register for
+				(myBlockEntity, side) -> {
+					return myBlockEntity.fluidTank;
+				});
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, TofuBlockEntitys.SALT_FURNACE.get(), (blockEntity, side) -> {
 			// Return a wrapper that gets re-evaluated every time it is accessed
 			// Invalidation is taken care of by the patches to ComposterBlock

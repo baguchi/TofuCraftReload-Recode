@@ -257,7 +257,8 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.SALT_FURNACE,
 						TofuBlocks.SALT_BLOCK,
 						TofuBlocks.MORIJIO,
-						TofuBlocks.TOFU_FLOWER).map(sup -> {
+						TofuBlocks.TOFU_FLOWER,
+						TofuBlocks.TOFU_POT).map(sup -> {
 					return sup.get().asItem().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());
@@ -457,6 +458,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.BOTTLE_DASHI,
 						TofuItems.BOTTLE_SOYOIL,
 						TofuItems.BOTTLE_SOYSAUSE,
+						TofuItems.MISO,
 						TofuItems.APRICOT,
 						TofuItems.APRICOTSEED,
 						TofuItems.APRICOTJERRY_BOTTLE,

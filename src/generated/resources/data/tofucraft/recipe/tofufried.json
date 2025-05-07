@@ -1,6 +1,9 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "fast_food",
+  "cook_time": 100,
+  "experience": 0.1,
+  "fluid": [],
   "ingredients": [
     [
       {

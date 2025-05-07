@@ -46,6 +46,7 @@ import baguchan.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchan.tofucraft.client.screen.TFCrafterScreen;
 import baguchan.tofucraft.client.screen.TFOvenScreen;
 import baguchan.tofucraft.client.screen.TFStorageScreen;
+import baguchan.tofucraft.client.screen.TofuPotScreen;
 import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuBlocks;
@@ -54,6 +55,7 @@ import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuFluidTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuMenus;
+import baguchan.tofucraft.registry.TofuRecipeCategories;
 import baguchan.tofucraft.registry.TofuWoodTypes;
 import baguchan.tofucraft.utils.ClientUtils;
 import com.mojang.blaze3d.platform.Window;
@@ -83,6 +85,7 @@ import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
@@ -307,6 +310,12 @@ public class ClientRegistrar {
 		event.register(TofuMenus.TF_STORAGE.get(), TFStorageScreen::new);
 		event.register(TofuMenus.TF_CRAFTER.get(), TFCrafterScreen::new);
 		event.register(TofuMenus.TF_OVEN.get(), TFOvenScreen::new);
+		event.register(TofuMenus.TOFU_POT.get(), TofuPotScreen::new);
+	}
+
+	@SubscribeEvent
+	public static void registerRecipeBookCategories(RegisterRecipeBookCategoriesEvent event) {
+		TofuRecipeCategories.init(event);
 	}
 
 	@SubscribeEvent

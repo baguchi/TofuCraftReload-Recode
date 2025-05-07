@@ -1,12 +1,10 @@
 package baguchan.tofucraft;
 
-import bagu_chan.bagus_lib.util.client.AnimationUtil;
 import baguchan.tofucraft.api.tfenergy.IEnergyContained;
 import baguchan.tofucraft.attachment.SoyHealthAttachment;
 import baguchan.tofucraft.attachment.TofuLivingAttachment;
 import baguchan.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchan.tofucraft.registry.TofuAdvancements;
-import baguchan.tofucraft.registry.TofuAnimations;
 import baguchan.tofucraft.registry.TofuAttachments;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuDataComponents;
@@ -474,20 +472,6 @@ public class CommonEvents {
 					event.setCancellationResult(InteractionResult.SUCCESS);
 				}
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public static void onPotionEffectRemoved(MobEffectEvent.Remove event) {
-		if (event.getEffect() == TofuEffects.COUGH) {
-			AnimationUtil.sendStopAnimation(event.getEntity(), TofuAnimations.COUGH);
-		}
-	}
-
-	@SubscribeEvent
-	public static void onPotionEffectExpired(MobEffectEvent.Expired event) {
-		if (event.getEffectInstance().getEffect() == TofuEffects.COUGH) {
-			AnimationUtil.sendStopAnimation(event.getEntity(), TofuAnimations.COUGH);
 		}
 	}
 

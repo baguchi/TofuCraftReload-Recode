@@ -26,6 +26,57 @@
         "class": "baguchan/tofucraft/TofuEnumExtensions",
         "method": "LEEK_GREEN_BOAT"
       }
+    },
+    {
+      "enum": "net/minecraft/world/inventory/RecipeBookType",
+      "name": "TOFUCRAFT_COOKING",
+      "constructor": "()V",
+      "parameters": []
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "TOFUCRAFT_COOKING_SEARCH",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "field": "PROXY_COOKING_SEARCH"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "TOFUCRAFT_COOKING_FAST_FOODS",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "field": "PROXY_COOKING_FAST_FOODS"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "TOFUCRAFT_COOKING_MEALS",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "field": "PROXY_COOKING_MEALS"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "TOFUCRAFT_COOKING_DRINKS",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "field": "PROXY_COOKING_DRINKS"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "TOFUCRAFT_COOKING_MISC",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "field": "PROXY_COOKING_MISC"
+      }
     }
   ]
 }
