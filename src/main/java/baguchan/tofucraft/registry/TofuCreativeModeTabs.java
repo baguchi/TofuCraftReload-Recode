@@ -458,6 +458,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.BOTTLE_DASHI,
 						TofuItems.BOTTLE_SOYOIL,
 						TofuItems.BOTTLE_SOYSAUSE,
+						TofuItems.DOUBANJIANG,
 						TofuItems.MISO,
 						TofuItems.APRICOT,
 						TofuItems.APRICOTSEED,

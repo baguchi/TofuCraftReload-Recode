@@ -1,6 +1,11 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "fast_food",
+  "cook_time": 100,
+  "experience": 0.1,
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
   "ingredients": [
     [
       {
@@ -12,15 +17,6 @@
     ],
     {
       "item": "minecraft:bowl"
-    },
-    {
-      "type": "neoforge:components",
-      "components": {
-        "minecraft:potion_contents": {
-          "potion": "minecraft:water"
-        }
-      },
-      "items": "minecraft:potion"
     }
   ],
   "result": {

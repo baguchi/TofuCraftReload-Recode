@@ -16,8 +16,8 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
@@ -272,15 +272,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.MISOTOFU, TofuItems.TOFUMISO);
 		tofuBlockItem(consumer, TofuBlocks.DRIEDTOFU, TofuItems.TOFUDRIED);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.TOFUEGG.get(), 4)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.FAST_FOOD, FluidIngredient.empty(), new ItemStack(TofuItems.TOFUEGG.get(), 4))
 				.requires(Tags.Items.EGGS)
 				.requires(TofuItems.BOTTLE_DASHI.get())
 				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.YUDOFU.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.FAST_FOOD, FluidIngredient.of(new FluidStack(Fluids.WATER, 200)), TofuItems.YUDOFU.get(), 100, 0.1F)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(Items.BOWL)
-				.requires(potion(Potions.WATER))
 				.unlockedBy("has_item", has(TofuItems.TOFUKINU.get()))
 				.save(consumer);
 
