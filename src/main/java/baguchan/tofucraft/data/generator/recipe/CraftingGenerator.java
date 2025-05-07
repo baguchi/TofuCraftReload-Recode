@@ -1108,7 +1108,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.CHILI.get()))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.MABODOFU.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.MABODOFU.get(), 400, 0.6F)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(TofuItems.STARCH.get())
 				.requires(Items.PORKCHOP)
@@ -1117,7 +1117,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.DOUBANJIANG.get())
 				.unlockedBy("has_item", has(TofuItems.DOUBANJIANG.get()))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.NANBAN.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.NANBAN.get(), 400, 0.6F)
 				.requires(Items.COOKED_CHICKEN)
 				.requires(Tags.Items.EGGS)
 				.requires(Tags.Items.CROPS_WHEAT)
@@ -1127,7 +1127,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.CHILI.get())
 				.unlockedBy("has_item", has(TofuItems.BOTTLE_SOYSAUSE.get()))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.NANBANTOFU.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.NANBANTOFU.get(), 400, 0.6F)
 				.requires(Ingredient.of(TofuItems.TOFUKINU.get(), TofuItems.TOFUMOMEN.get()))
 				.requires(Tags.Items.EGGS)
 				.requires(Tags.Items.CROPS_WHEAT)
@@ -1145,7 +1145,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUDRIED.get()))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.KOYADOFUSTEW.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.KOYADOFUSTEW.get(), 400, 0.6F)
 				.requires(TofuItems.TOFUDRIED.get())
 				.requires(Items.BROWN_MUSHROOM)
 				.requires(TofuItems.BOTTLE_DASHI.get())
@@ -1176,7 +1176,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUSOMEN.get()))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.TASTYBEEFSTEW.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.TASTYBEEFSTEW.get(), 400, 0.6F)
 				.requires(Items.BROWN_MUSHROOM)
 				.requires(Items.RED_MUSHROOM)
 				.requires(Items.COOKED_BEEF)
@@ -1186,7 +1186,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.BOWL)
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.TASTYSTEW.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.TASTYSTEW.get(), 400, 0.6F)
 				.requires(Items.BROWN_MUSHROOM)
 				.requires(Items.RED_MUSHROOM)
 				.requires(Ingredient.of(Items.COOKED_CHICKEN, Items.COOKED_MUTTON, Items.COOKED_PORKCHOP, Items.COOKED_RABBIT))
@@ -1430,13 +1430,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
 				.unlockedBy("has_item", has(TofuItems.SOYMEAT.get()))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOY_KARAAGE.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.SOY_KARAAGE.get(), 300, 0.5F)
 				.requires(TofuItems.SOYMEAT.get())
 				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
 				.requires(TofuItems.BOTTLE_SOYOIL.get())
 				.unlockedBy("has_item", has(TofuItems.SOYMEAT.get()))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.SOYMEATDON.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.SOYMEATDON.get(), 300, 0.5F)
 				.requires(TofuItems.SOYMEAT.get())
 				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
 				.requires(TofuItems.LEEK.get())
@@ -1519,7 +1519,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Blocks.TINTED_GLASS))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.HELL_MABOU.get())
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.HELL_MABOU.get(), 400, 0.6F)
 				.requires(TofuItems.TOFUHELL.get())
 				.requires(TofuItems.DOUBANJIANG.get())
 				.requires(TofuItems.CHILI.get())
@@ -1527,7 +1527,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.DOUBANJIANG.get()))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.RED_SOUP.get())
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.RED_SOUP.get(), 400, 0.6F)
 				.requires(TofuItems.TOFUHELL.get())
 				.requires(Items.COOKED_COD)
 				.requires(Items.CARROT)
@@ -1535,7 +1535,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.BOWL)
 				.unlockedBy("has_item", has(TofuItems.TOFUHELL.get()))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.HELL_RED_SOUP.get())
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MEAL, FluidIngredient.empty(), TofuItems.HELL_RED_SOUP.get(), 400, 0.6F)
 				.requires(TofuItems.TOFUHELL.get())
 				.requires(Items.COOKED_COD)
 				.requires(Items.CARROT)
@@ -1561,7 +1561,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFU_HAMBURG.get()))
 				.save(consumer);
 
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.STEAMED_BREAD.get())
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MISC, FluidIngredient.empty(), TofuItems.STEAMED_BREAD.get(), 300, 0.5F)
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Tags.Items.EGGS)
 				.requires(Items.SUGAR)
@@ -1569,7 +1569,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.HONEY_BOTTLE)
 				.unlockedBy("has_item", has(TofuTags.Items.MILK_SOYMILK))
 				.save(consumer);
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, TofuItems.STEAMED_BREAD_COCOA.get())
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MISC, FluidIngredient.empty(), TofuItems.STEAMED_BREAD_COCOA.get(), 300, 0.5F)
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Tags.Items.EGGS)
 				.requires(Items.SUGAR)
@@ -1766,6 +1766,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.SEEDS_SOYBEANS.get())
 				.requires(Items.BOOK)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.TOFU_POT.get())
+				.pattern("S S")
+				.pattern("T T")
+				.pattern("TTT")
+				.define('T', TofuBlocks.METALTOFU)
+				.define('S', TofuItems.TOFUISHI.get())
+				.unlockedBy("has_item", has(TofuBlocks.METALTOFU))
 				.save(consumer);
 
 		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), new FluidStack(TofuFluids.BITTERN.get(), 250)).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(consumer, prefix("bittern_to_kinu"));

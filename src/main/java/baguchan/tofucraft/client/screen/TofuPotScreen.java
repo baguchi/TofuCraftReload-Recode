@@ -54,11 +54,11 @@ public class TofuPotScreen extends AbstractContainerScreen<TofuPotMenu> implemen
 		this.inventoryLabelY = this.imageHeight - 96 + 2;
 		this.recipeBookComponent.init(this.width, this.height, this.minecraft, this.widthTooNarrow, this.menu);
 		this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-		this.addRenderableWidget(new ImageButton(this.leftPos + 5, this.height / 2 - 49, 20, 18, RECIPE_BUTTON, (button) ->
+		this.addRenderableWidget(new ImageButton(this.leftPos + 5, this.height / 2 - 19, 20, 18, RECIPE_BUTTON, (button) ->
 		{
 			this.recipeBookComponent.toggleVisibility();
 			this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width, this.imageWidth);
-			button.setPosition(this.leftPos + 5, this.height / 2 - 49);
+			button.setPosition(this.leftPos + 5, this.height / 2 - 19);
 		}));
 
 		this.addWidget(this.recipeBookComponent);
