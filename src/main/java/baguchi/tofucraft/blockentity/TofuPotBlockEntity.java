@@ -76,7 +76,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 	private final Reference2IntOpenHashMap<ResourceKey<Recipe<?>>> recipesUsed = new Reference2IntOpenHashMap<>();
 
 	private final RecipeManager.CachedCheck<CraftingInput, TofuPotRecipe> quickCheck;
-	public FluidTank fluidTank = new FluidTank(2000) {
+	public FluidTank fluidTank = new FluidTank(3000) {
 
 		@Override
 		protected void onContentsChanged() {
