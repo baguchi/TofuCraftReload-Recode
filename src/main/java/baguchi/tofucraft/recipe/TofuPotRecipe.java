@@ -7,7 +7,7 @@ import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import java.util.Optional;
 
@@ -36,7 +36,7 @@ public interface TofuPotRecipe extends Recipe<CraftingInput> {
 
 	float getExperience();
 
-	Optional<FluidIngredient> fluidIngredient();
+	Optional<SizedFluidIngredient> fluidIngredient();
 
 	ItemStack getResult();
 }

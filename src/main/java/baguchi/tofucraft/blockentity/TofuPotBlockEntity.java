@@ -18,6 +18,7 @@ import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -59,6 +60,7 @@ import java.util.Optional;
 
 public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvider, Nameable, RecipeCraftingHolder, Container {
 	private static final Codec<Map<ResourceKey<Recipe<?>>, Integer>> RECIPES_USED_CODEC = Codec.unboundedMap(Recipe.KEY_CODEC, Codec.INT);
+	private static final Codec<ResourceKey<Recipe<?>>> RECIPE_CODEC = ResourceKey.codec(Registries.RECIPE);
 
 	public static final int CONTAINER_SLOT = 12;
 	public static final int OUTPUT_SLOT = 13;
@@ -74,7 +76,6 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 	private final Reference2IntOpenHashMap<ResourceKey<Recipe<?>>> recipesUsed = new Reference2IntOpenHashMap<>();
 
 	private final RecipeManager.CachedCheck<CraftingInput, TofuPotRecipe> quickCheck;
-
 	public FluidTank fluidTank = new FluidTank(2000) {
 
 		@Override
@@ -106,6 +107,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		}
 		this.recipesUsed.clear();
 		this.recipesUsed.putAll(compound.read("RecipesUsed", RECIPES_USED_CODEC).orElse(Map.of()));
+
 		this.fluidTank = this.fluidTank.readFromNBT(registries, compound.getCompoundOrEmpty("Tank"));
 	}
 
@@ -146,7 +148,8 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 
 		if (isHeated && cookingPot.hasInput()) {
 			Optional<RecipeHolder<TofuPotRecipe>> recipe = cookingPot.getMatchingRecipe(CraftingInput.of(4, 3, cookingPot.inventory));
-			if (recipe.isPresent() && cookingPot.canCook(recipe.get().value()) && (recipe.get().value().fluidIngredient().isEmpty() || recipe.get().value().fluidIngredient().get().test(cookingPot.fluidTank.getFluid()))) {
+
+			if (recipe.isPresent() && cookingPot.canCook(recipe.get().value()) && (recipe.get().value().fluidIngredient().isPresent() || recipe.get().value().fluidIngredient().get().test(cookingPot.fluidTank.getFluid()))) {
 				didInventoryChange = cookingPot.processCooking(recipe.get(), cookingPot);
 			} else {
 				cookingPot.cookTime = 0;
@@ -159,7 +162,6 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 			cookingPot.inventoryChanged();
 		}
 	}
-
 
 	public static void animationTick(Level level, BlockPos pos, BlockState state, TofuPotBlockEntity cookingPot) {
 		if (cookingPot.isHeated(level, pos)) {
@@ -229,7 +231,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 			storedMealStack.grow(resultStack.getCount());
 		}
 		if (recipe.value().fluidIngredient().isPresent()) {
-			cookingPot.fluidTank.drain(200, IFluidHandler.FluidAction.EXECUTE);
+			cookingPot.fluidTank.drain(recipe.value().fluidIngredient().get().amount(), IFluidHandler.FluidAction.EXECUTE);
 		}
 
 		cookingPot.setRecipeUsed(recipe);

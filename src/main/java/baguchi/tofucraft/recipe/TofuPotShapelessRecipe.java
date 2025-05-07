@@ -19,7 +19,7 @@ import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import net.minecraft.world.item.crafting.display.ShapelessCraftingRecipeDisplay;
 import net.minecraft.world.item.crafting.display.SlotDisplay;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -30,14 +30,14 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 	final TofuPotCategory category;
 	final ItemStack result;
 	final List<Ingredient> ingredients;
-	final Optional<FluidIngredient> ingredientFluid;
+	final Optional<SizedFluidIngredient> ingredientFluid;
 	private final int cookTime;
 	private final float experience;
 	private final boolean isSimple;
 	@Nullable
 	private PlacementInfo placementInfo;
 
-	public TofuPotShapelessRecipe(String p_249640_, TofuPotCategory category, ItemStack result, List<Ingredient> ingredients, Optional<FluidIngredient> ingredientFluid, int cookTime, float experience) {
+	public TofuPotShapelessRecipe(String p_249640_, TofuPotCategory category, ItemStack result, List<Ingredient> ingredients, Optional<SizedFluidIngredient> ingredientFluid, int cookTime, float experience) {
 		this.group = p_249640_;
 		this.category = category;
 		this.result = result;
@@ -78,7 +78,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 	}
 
 	@Override
-	public Optional<FluidIngredient> fluidIngredient() {
+	public Optional<SizedFluidIngredient> fluidIngredient() {
 		return this.ingredientFluid;
 	}
 
@@ -113,6 +113,9 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 	}
 
 	public static class Serializer implements RecipeSerializer<TofuPotShapelessRecipe> {
+		public static final StreamCodec<RegistryFriendlyByteBuf, Optional<SizedFluidIngredient>> OPTIONAL_STREAM_CODEC = ByteBufCodecs.optional(SizedFluidIngredient.STREAM_CODEC);
+
+
 		private static final MapCodec<TofuPotShapelessRecipe> CODEC = RecordCodecBuilder.mapCodec(
 				p_340779_ -> p_340779_.group(
 								Codec.STRING.optionalFieldOf("group", "").forGetter(p_301127_ -> p_301127_.group),
@@ -121,7 +124,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 								Codec.lazyInitialized(() -> Ingredient.CODEC
 												.listOf(1, 4 * 3)).fieldOf("ingredients")
 										.forGetter((p_360071_) -> p_360071_.ingredients),
-								FluidIngredient.CODEC.optionalFieldOf("fluid").forGetter(potShapelessRecipe -> potShapelessRecipe.ingredientFluid),
+								SizedFluidIngredient.CODEC.optionalFieldOf("fluid").forGetter(potShapelessRecipe -> potShapelessRecipe.ingredientFluid),
 								Codec.INT.fieldOf("cook_time").orElse(300).forGetter(potShapelessRecipe -> potShapelessRecipe.cookTime),
 								Codec.FLOAT.fieldOf("experience").orElse(0.1F).forGetter(potShapelessRecipe -> potShapelessRecipe.experience)
 						)
@@ -129,6 +132,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 		public static final StreamCodec<RegistryFriendlyByteBuf, TofuPotShapelessRecipe> STREAM_CODEC = StreamCodec.of(
 				Serializer::toNetwork, Serializer::fromNetwork
 		);
+
 
 		@Override
 		public MapCodec<TofuPotShapelessRecipe> codec() {
@@ -147,7 +151,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 			StreamCodec<RegistryFriendlyByteBuf, List<Ingredient>> nonnulllist = Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list());
 			List<Ingredient> list = nonnulllist.decode(buffer);
 			ItemStack itemstack = ItemStack.STREAM_CODEC.decode(buffer);
-			Optional<FluidIngredient> fluidIngredient = FluidIngredient.OPTIONAL_STREAM_CODEC.decode(buffer);
+			Optional<SizedFluidIngredient> fluidIngredient = OPTIONAL_STREAM_CODEC.decode(buffer);
 			return new TofuPotShapelessRecipe(s, craftingbookcategory, itemstack, list, fluidIngredient, buffer.readInt(), buffer.readFloat());
 		}
 
@@ -161,7 +165,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 			}
 
 			ItemStack.STREAM_CODEC.encode(buffer, recipe.result);
-			FluidIngredient.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.ingredientFluid);
+			OPTIONAL_STREAM_CODEC.encode(buffer, recipe.ingredientFluid);
 			buffer.writeInt(recipe.cookTime);
 			buffer.writeFloat(recipe.experience);
 		}

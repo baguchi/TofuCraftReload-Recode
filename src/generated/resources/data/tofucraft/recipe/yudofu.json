@@ -3,7 +3,10 @@
   "category": "meal",
   "cook_time": 100,
   "experience": 0.05,
-  "fluid": "minecraft:water",
+  "fluid": {
+    "amount": 200,
+    "ingredient": "minecraft:water"
+  },
   "ingredients": [
     [
       "tofucraft:tofukinu",

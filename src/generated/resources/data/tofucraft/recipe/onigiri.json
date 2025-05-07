@@ -3,7 +3,10 @@
   "category": "fast_food",
   "cook_time": 100,
   "experience": 0.025,
-  "fluid": "minecraft:water",
+  "fluid": {
+    "amount": 200,
+    "ingredient": "minecraft:water"
+  },
   "ingredients": [
     "#c:crops/rice"
   ],

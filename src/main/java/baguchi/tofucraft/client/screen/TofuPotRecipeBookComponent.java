@@ -12,7 +12,6 @@ import net.minecraft.recipebook.PlaceRecipeHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.context.ContextMap;
 import net.minecraft.world.entity.player.StackedItemContents;
-import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import net.minecraft.world.item.crafting.display.ShapedCraftingRecipeDisplay;
@@ -21,7 +20,7 @@ import net.minecraft.world.item.crafting.display.ShapelessCraftingRecipeDisplay;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class TofuPotRecipeBookComponent extends RecipeBookComponent {
+public class TofuPotRecipeBookComponent extends RecipeBookComponent<TofuPotMenu> {
 	private static final WidgetSprites FILTER_BUTTON_SPRITES = new WidgetSprites(
 			ResourceLocation.withDefaultNamespace("recipe_book/filter_enabled"),
 			ResourceLocation.withDefaultNamespace("recipe_book/filter_disabled"),
@@ -38,7 +37,7 @@ public class TofuPotRecipeBookComponent extends RecipeBookComponent {
 	);
 
 
-	public TofuPotRecipeBookComponent(RecipeBookMenu p_365070_) {
+	public TofuPotRecipeBookComponent(TofuPotMenu p_365070_) {
 		super(p_365070_, TABS);
 	}
 
@@ -80,14 +79,36 @@ public class TofuPotRecipeBookComponent extends RecipeBookComponent {
 
 	@Override
 	protected void fillGhostRecipe(GhostSlots p_379930_, RecipeDisplay p_379870_, ContextMap p_380956_) {
-		p_379930_.setResult(((TofuPotMenu) this.menu).getResultSlot(), p_380956_, p_379870_.result());
+		p_379930_.setResult(this.menu.getResultSlot(), p_380956_, p_379870_.result());
+		switch (p_379870_) {
+			case ShapedCraftingRecipeDisplay shapedcraftingrecipedisplay:
+				List<Slot> list1 = this.menu.getInputGridSlots();
+				PlaceRecipeHelper.placeRecipe(
+						3,
+						4,
+						shapedcraftingrecipedisplay.width(),
+						shapedcraftingrecipedisplay.height(),
+						shapedcraftingrecipedisplay.ingredients(),
+						(p_380786_, p_380787_, p_380788_, p_380789_) -> {
+							Slot slot = list1.get(p_380787_);
+							p_379930_.setInput(slot, p_380956_, p_380786_);
+						}
+				);
+				break;
+			case ShapelessCraftingRecipeDisplay shapelesscraftingrecipedisplay:
+				label15:
+				{
+					List<Slot> list = this.menu.getInputGridSlots();
+					int i = Math.min(shapelesscraftingrecipedisplay.ingredients().size(), list.size());
 
-		ShapedCraftingRecipeDisplay shapedcraftingrecipedisplay = (ShapedCraftingRecipeDisplay) p_379870_;
-		List<Slot> list1 = ((TofuPotMenu) this.menu).getInputGridSlots();
-		PlaceRecipeHelper.placeRecipe(4, 3, shapedcraftingrecipedisplay.width(), shapedcraftingrecipedisplay.height(), shapedcraftingrecipedisplay.ingredients(), (p_380786_, p_380787_, p_380788_, p_380789_) -> {
-			Slot slot = (Slot) list1.get(p_380787_);
-			p_379930_.setInput(slot, p_380956_, p_380786_);
-		});
+					for (int j = 0; j < i; j++) {
+						p_379930_.setInput(list.get(j), p_380956_, shapelesscraftingrecipedisplay.ingredients().get(j));
+					}
+					break label15;
+				}
+			default:
+		}
 	}
+
 
 }
