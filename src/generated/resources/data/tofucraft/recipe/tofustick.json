@@ -1,0 +1,18 @@
+{
+  "type": "tofucraft:tf_craft_shaped",
+  "category": "misc",
+  "key": {
+    "G": "tofucraft:tofugem",
+    "T": "tofucraft:tofumetal"
+  },
+  "pattern": [
+    "G",
+    "T",
+    "T"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tofustick"
+  },
+  "tf": 1000
+}
