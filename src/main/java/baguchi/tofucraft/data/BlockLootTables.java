@@ -362,6 +362,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFU_WORK_STATION.get());
 		dropSelf(TofuBlocks.TOFU_POT.get());
 		this.add(TofuBlocks.TF_COLLECTOR.get(), this::createTFMechaTable);
+		this.add(TofuBlocks.TF_CRAFTING_TABLE.get(), this::createTFMechaTable);
+
 	}
 
 	private LootTable.Builder createTFMechaTable(Block p_277929_) {

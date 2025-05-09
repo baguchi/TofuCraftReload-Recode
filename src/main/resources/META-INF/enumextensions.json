@@ -32,6 +32,12 @@
       "name": "TOFUCRAFT_COOKING",
       "constructor": "()V",
       "parameters": []
+    },
+    {
+      "enum": "net/minecraft/world/inventory/RecipeBookType",
+      "name": "TOFUCRAFT_TF_CRAFT",
+      "constructor": "()V",
+      "parameters": []
     }
   ]
 }

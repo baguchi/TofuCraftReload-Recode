@@ -61,6 +61,7 @@ public class TofuCreativeModeTabs {
 				output.acceptAll(Stream.of(
 						TofuBlocks.TF_STORAGE,
 						TofuBlocks.TF_CRAFTER,
+						TofuBlocks.TF_CRAFTING_TABLE,
 						TofuBlocks.TF_OVEN,
 						TofuBlocks.TF_COLLECTOR
 						, TofuBlocks.ANTENNA_BASIC
@@ -506,6 +507,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.SOYBALL,
 						TofuItems.ZUNDA,
 						TofuItems.ZUNDAMA,
+						TofuItems.ZUNDA_INGOT,
 						TofuItems.ZUNDARUBY,
 						TofuItems.TOFUGEM,
 						TofuItems.ADVANCE_TOFUGEM,

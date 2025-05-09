@@ -144,6 +144,9 @@ public class TofuFoods {
 	public static final FoodProperties SOY_KARAAGE = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6F).build();
 	public static final FoodProperties SOYMEATDON = (new FoodProperties.Builder()).nutrition(8).saturationModifier(0.8F).build();
 
+	public static final FoodProperties ZUNDA_INGOT = (new FoodProperties.Builder()).nutrition(8).saturationModifier(1F).build();
+
+
 	private static FoodProperties.Builder stew(int p_150384_) {
 		return (new FoodProperties.Builder()).nutrition(p_150384_).saturationModifier(0.6F);
 	}

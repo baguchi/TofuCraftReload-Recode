@@ -44,6 +44,7 @@ import baguchi.tofucraft.client.screen.SaltFurnaceScreen;
 import baguchi.tofucraft.client.screen.TFCrafterScreen;
 import baguchi.tofucraft.client.screen.TFOvenScreen;
 import baguchi.tofucraft.client.screen.TFStorageScreen;
+import baguchi.tofucraft.client.screen.TfCraftingTableScreen;
 import baguchi.tofucraft.client.screen.TofuPotScreen;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
@@ -106,6 +107,7 @@ public class ClientRegistrar {
 	@SubscribeEvent
 	public static void registerRecipeBookSearchCategories(RegisterRecipeBookSearchCategoriesEvent event) {
 		event.register(TofuRecipeBookCategory.SEARCH, TofuRecipeBookCategory.COOKING_FAST_FOODS.get(), TofuRecipeBookCategory.COOKING_DRINKS.get(), TofuRecipeBookCategory.COOKING_MEALS.get(), TofuRecipeBookCategory.COOKING_MISC.get());
+		event.register(TofuRecipeBookCategory.TF_SEARCH, TofuRecipeBookCategory.TF_MECHA.get(), TofuRecipeBookCategory.TF_MISC.get());
 	}
 
 	@SubscribeEvent
@@ -282,6 +284,7 @@ public class ClientRegistrar {
 		event.register(TofuMenus.TF_STORAGE.get(), TFStorageScreen::new);
 		event.register(TofuMenus.TF_CRAFTER.get(), TFCrafterScreen::new);
 		event.register(TofuMenus.TF_OVEN.get(), TFOvenScreen::new);
+		event.register(TofuMenus.TF_CRAFTING_TABLE.get(), TfCraftingTableScreen::new);
 		event.register(TofuMenus.TOFU_POT.get(), TofuPotScreen::new);
 	}
 	@SubscribeEvent

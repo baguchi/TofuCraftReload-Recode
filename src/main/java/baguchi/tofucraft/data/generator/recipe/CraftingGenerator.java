@@ -2,7 +2,10 @@ package baguchi.tofucraft.data.generator.recipe;
 
 import baguchi.tofucraft.data.generator.recipe.builder.BitternRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.HardenRecipeBuilder;
+import baguchi.tofucraft.data.generator.recipe.builder.TFShapedRecipeBuilder;
+import baguchi.tofucraft.data.generator.recipe.builder.TFShapelessRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.TofuPotShapelessRecipeBuilder;
+import baguchi.tofucraft.recipe.TFCraftingCategory;
 import baguchi.tofucraft.recipe.TofuPotCategory;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuFluids;
@@ -128,12 +131,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()))
 				.save(this.output, prefix("copy_tofu_template"));
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get(), 2)
-				.pattern("BZB")
-				.pattern("B#B")
-				.pattern("BDB")
+				.pattern("ZZZ")
+				.pattern("Z#Z")
+				.pattern("ZDZ")
 				.define('Z', TofuItems.ZUNDAMA.get())
-				.define('B', Items.DIAMOND)
-				.define('D', TofuItems.TOFUDIAMOND.get())
+				.define('D', TofuItems.ZUNDA_INGOT.get())
 				.define('#', TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get())
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()))
 				.save(this.output, prefix("copy_zunda_template"));
@@ -1788,6 +1790,39 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuBlocks.METALTOFU.get())
 				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
 				.save(this.output);
+
+
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.TF_CRAFTING_TABLE.get())
+				.pattern("TBT")
+				.pattern("TCT")
+				.pattern("TET")
+				.define('T', TofuBlocks.METALTOFU)
+				.define('C', TofuItems.TF_CIRCUIT.get())
+				.define('B', Blocks.CRAFTING_TABLE)
+				.define('E', TofuItems.TOFU_CORE.get())
+				.unlockedBy("has_item", has(TofuBlocks.TF_STORAGE))
+				.save(this.output);
+
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDAMA.get(), 1, 100)
+				.requires(TofuItems.ZUNDA.get(), 4)
+				.unlockedBy("has_item", has(TofuItems.ZUNDA.get()))
+				.save(this.output, prefix("zundama_with_tf"));
+
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDA_INGOT.get(), 1, 400)
+				.requires(TofuItems.ZUNDAMA.get(), 4)
+				.requires(TofuItems.TOFUISHI.get())
+				.unlockedBy("has_item", has(TofuItems.ZUNDAMA.get()))
+				.save(this.output);
+		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDA_BOW.get().getDefaultInstance(), 1000)
+				.define('S', TofuItems.ZUNDAMA.get())
+				.define('Z', TofuItems.ZUNDA_INGOT.get())
+				.define('G', TofuItems.TOFUGEM.get())
+				.pattern(" ZS")
+				.pattern("ZGS")
+				.pattern(" ZS")
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_INGOT.get()))
+				.save(this.output);
+
 
 		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), Ingredient.of(TofuItems.BITTERN_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(this.output, prefix("bittern_to_kinu"));
 		BitternRecipeBuilder.bittern(TofuBlocks.HELLTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_HELL.get(), 1000), Ingredient.of(TofuItems.WARPED_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(this.output, prefix("bittern_to_hell"));
