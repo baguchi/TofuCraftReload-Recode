@@ -247,7 +247,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 					.save(consumer, "tofucraft:tofu_industry");
 			AdvancementHolder tofu_of_creative = Advancement.Builder.advancement()
 					.parent(tofu_industry)
-					.display(TofuBlocks.TF_STORAGE.get(),
+					.display(TofuBlocks.TF_CRAFTING_TABLE.get(),
 							Component.translatable("advancements.tofucraft.tofu_of_creative.title"),
 							Component.translatable("advancements.tofucraft.tofu_of_creative.desc"),
 							null,
