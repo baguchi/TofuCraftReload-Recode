@@ -130,12 +130,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()))
 				.save(consumer, prefix("copy_tofu_template"));
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get(), 2)
-				.pattern("BZB")
-				.pattern("B#B")
-				.pattern("BDB")
+				.pattern("ZZZ")
+				.pattern("Z#Z")
+				.pattern("ZDZ")
 				.define('Z', TofuItems.ZUNDAMA.get())
-				.define('B', Items.DIAMOND)
-				.define('D', TofuItems.TOFUDIAMOND.get())
+				.define('D', TofuItems.ZUNDA_INGOT.get())
 				.define('#', TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get())
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()))
 				.save(consumer, prefix("copy_zunda_template"));
@@ -1800,7 +1799,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.TOFUISHI.get())
 				.unlockedBy("has_item", has(TofuItems.ZUNDAMA.get()))
 				.save(consumer);
-		TFShapedRecipeBuilder.shaped(TFCraftingCategory.MISC, TofuItems.ZUNDA_BOW.get().getDefaultInstance(), 1000)
+		TFShapedRecipeBuilder.shaped(TFCraftingCategory.MISC, TofuItems.ZUNDA_BOW.get().getDefaultInstance(), 4000)
 				.define('S', TofuItems.ZUNDAMA.get())
 				.define('Z', TofuItems.ZUNDA_INGOT.get())
 				.define('G', TofuItems.TOFUGEM.get())
@@ -1808,8 +1807,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("ZGS")
 				.pattern(" ZS")
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_INGOT.get()))
-				.save(consumer);
-
+				.save(consumer, prefix("zunda_bow_with_tf"));
+		TFShapedRecipeBuilder.shaped(TFCraftingCategory.MISC, TofuItems.TOFUSTICK.get().getDefaultInstance(), 4000)
+				.define('S', TofuItems.TOFUMETAL.get())
+				.define('G', TofuItems.TOFUGEM.get())
+				.pattern("G")
+				.pattern("S")
+				.pattern("S")
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(consumer, prefix("tofu_stick_with_tf"));
 		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), new FluidStack(TofuFluids.BITTERN.get(), 250)).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(consumer, prefix("bittern_to_kinu"));
 		BitternRecipeBuilder.bittern(TofuBlocks.HELLTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_HELL.get(), 1000), new FluidStack(TofuFluids.WARPED.get(), 250)).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(consumer, prefix("bittern_to_hell"));
 		BitternRecipeBuilder.bittern(TofuBlocks.SOULTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_SOUL.get(), 1000), new FluidStack(TofuFluids.CRIMSON.get(), 250)).unlockedBy("has_item", has(TofuItems.CRIMSON_BOTTLE.get())).save(consumer, prefix("bittern_to_soul"));

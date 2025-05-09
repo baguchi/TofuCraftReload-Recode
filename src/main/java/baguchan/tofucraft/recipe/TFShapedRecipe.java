@@ -53,7 +53,7 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 
 	@Override
 	public int getNeedTF() {
-		return 0;
+		return this.tf;
 	}
 
 	@Override

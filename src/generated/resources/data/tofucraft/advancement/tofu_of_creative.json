@@ -1,0 +1,34 @@
+{
+  "parent": "tofucraft:tofu_industry",
+  "criteria": {
+    "trigger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:tf_crafting_table"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.tofu_of_creative.desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:tf_storage"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.tofu_of_creative.title"
+    }
+  },
+  "requirements": [
+    [
+      "trigger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

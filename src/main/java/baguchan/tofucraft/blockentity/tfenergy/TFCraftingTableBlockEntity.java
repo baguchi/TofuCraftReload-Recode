@@ -6,7 +6,6 @@ import baguchan.tofucraft.inventory.TFCraftingTableMenu;
 import baguchan.tofucraft.recipe.TFCraftingRecipe;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import baguchan.tofucraft.registry.TofuRecipes;
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -16,7 +15,6 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.WorldlyContainer;
@@ -52,9 +50,6 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 	private int refreshTime = 0;
 	public static final int MAX_CRAFT_TIME = 200;
 	private final RecipeManager.CachedCheck<CraftingInput, ? extends TFCraftingRecipe> quickCheck;
-
-	private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
-
 
 	private static final int[] SLOTS_FOR_UP = new int[]{0};
 	private static final int[] SLOTS_FOR_DOWN = new int[]{1};
@@ -116,7 +111,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 				if (optional.isPresent()) {
 					tfoven.progressMax = optional.get().value().getNeedTF() / 10;
 					++tfoven.progress;
-					if (tfoven.progress == optional.get().value().getNeedTF() / 10) {
+					if (tfoven.progress >= tfoven.progressMax) {
 						tfoven.progress = 0;
 						if (tfoven.burn(level.registryAccess(), optional.get(), tfoven.inventory)) {
 							tfoven.setRecipeUsed(optional.get());
@@ -245,9 +240,6 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		cmp.putInt("progress", this.progress);
 		cmp.putInt("progress_max", this.progressMax);
 		cmp.putInt("RefreshTime", this.refreshTime);
-		CompoundTag compoundtag = new CompoundTag();
-		this.recipesUsed.forEach((p_187449_, p_187450_) -> compoundtag.putInt(p_187449_.toString(), p_187450_));
-		cmp.put("RecipesUsed", compoundtag);
 	}
 
 	@Override
@@ -259,11 +251,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		this.progress = cmp.getInt("progress");
 		this.progressMax = cmp.getInt("progress_max");
 		this.refreshTime = cmp.getInt("RefreshTime");
-		CompoundTag compoundtag = cmp.getCompound("RecipesUsed");
 
-		for (String s : compoundtag.getAllKeys()) {
-			this.recipesUsed.put(ResourceLocation.parse(s), compoundtag.getInt(s));
-		}
 	}
 
 	@Override
@@ -302,10 +290,6 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 	@Override
 	public void setRecipeUsed(@javax.annotation.Nullable RecipeHolder<?> p_301245_) {
-		if (p_301245_ != null) {
-			ResourceLocation resourcelocation = p_301245_.id();
-			this.recipesUsed.addTo(resourcelocation, 1);
-		}
 	}
 
 	@javax.annotation.Nullable

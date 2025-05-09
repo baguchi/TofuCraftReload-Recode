@@ -6,20 +6,17 @@
       "item": "tofucraft:tofugem"
     },
     "S": {
-      "item": "tofucraft:zundama"
-    },
-    "Z": {
-      "item": "tofucraft:zunda_ingot"
+      "item": "tofucraft:tofumetal"
     }
   },
   "pattern": [
-    " ZS",
-    "ZGS",
-    " ZS"
+    "G",
+    "S",
+    "S"
   ],
   "result": {
     "count": 1,
-    "id": "tofucraft:zunda_bow"
+    "id": "tofucraft:tofustick"
   },
-  "tf": 1000
+  "tf": 4000
 }

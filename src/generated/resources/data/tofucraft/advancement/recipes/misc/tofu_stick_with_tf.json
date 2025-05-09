@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tofucraft:zunda_ingot"
+            "items": "tofucraft:tofugem"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:zunda_bow"
+        "recipe": "tofucraft:tofu_stick_with_tf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:zunda_bow"
+      "tofucraft:tofu_stick_with_tf"
     ]
   }
 }

@@ -13,7 +13,7 @@ public class ZundaIngotItem extends Item {
 
 	@Override
 	public int getUseDuration(ItemStack stack, LivingEntity entity) {
-		return 600;
+		return 400;
 	}
 
 	@Override
