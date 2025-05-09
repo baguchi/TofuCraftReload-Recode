@@ -1822,7 +1822,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" ZS")
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_INGOT.get()))
 				.save(this.output);
-
+		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, TofuItems.TOFUSTICK.get().getDefaultInstance(), 1000)
+				.define('T', TofuItems.TOFUMETAL.get())
+				.define('G', TofuItems.TOFUGEM.get())
+				.pattern("G")
+				.pattern("T")
+				.pattern("T")
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(this.output);
 
 		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), Ingredient.of(TofuItems.BITTERN_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(this.output, prefix("bittern_to_kinu"));
 		BitternRecipeBuilder.bittern(TofuBlocks.HELLTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_HELL.get(), 1000), Ingredient.of(TofuItems.WARPED_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(this.output, prefix("bittern_to_hell"));

@@ -3,14 +3,13 @@
   "category": "misc",
   "key": {
     "#": "tofucraft:zunda_upgrade_smithing_template",
-    "B": "minecraft:diamond",
-    "D": "tofucraft:tofudiamond",
+    "D": "tofucraft:zunda_ingot",
     "Z": "tofucraft:zundama"
   },
   "pattern": [
-    "BZB",
-    "B#B",
-    "BDB"
+    "ZZZ",
+    "Z#Z",
+    "ZDZ"
   ],
   "result": {
     "count": 2,

@@ -249,6 +249,15 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							AdvancementType.GOAL, true, true, false)
 					.addCriterion("trigger", InventoryChangeTrigger.TriggerInstance.hasItems(TofuBlocks.TF_STORAGE.get()))
 					.save(consumer, "tofucraft:tofu_industry");
+			AdvancementHolder tofu_of_creative = Advancement.Builder.advancement()
+					.parent(tofu_industry)
+					.display(TofuBlocks.TF_CRAFTING_TABLE.get(),
+							Component.translatable("advancements.tofucraft.tofu_of_creative.title"),
+							Component.translatable("advancements.tofucraft.tofu_of_creative.desc"),
+							null,
+							AdvancementType.GOAL, true, true, false)
+					.addCriterion("trigger", InventoryChangeTrigger.TriggerInstance.hasItems(TofuBlocks.TF_CRAFTING_TABLE.get()))
+					.save(consumer, "tofucraft:tofu_of_creative");
 
 
 

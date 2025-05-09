@@ -1,5 +1,6 @@
 package baguchi.tofucraft.recipe;
 
+import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuRecipes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -8,7 +9,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.PlacementInfo;
@@ -99,7 +99,7 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 
 	@Override
 	public List<RecipeDisplay> display() {
-		return List.of(new ShapedCraftingRecipeDisplay(this.pattern.width(), this.pattern.height(), this.pattern.ingredients().stream().map((p_380107_) -> (SlotDisplay) p_380107_.map(Ingredient::display).orElse(SlotDisplay.Empty.INSTANCE)).toList(), new SlotDisplay.ItemStackSlotDisplay(this.result), new SlotDisplay.ItemSlotDisplay(Items.CRAFTING_TABLE)));
+		return List.of(new ShapedCraftingRecipeDisplay(this.pattern.width(), this.pattern.height(), this.pattern.ingredients().stream().map((p_380107_) -> (SlotDisplay) p_380107_.map(Ingredient::display).orElse(SlotDisplay.Empty.INSTANCE)).toList(), new SlotDisplay.ItemStackSlotDisplay(this.result), new SlotDisplay.ItemSlotDisplay(TofuBlocks.TF_CRAFTING_TABLE.asItem())));
 	}
 
 	public static class Serializer implements RecipeSerializer<TFShapedRecipe> {
