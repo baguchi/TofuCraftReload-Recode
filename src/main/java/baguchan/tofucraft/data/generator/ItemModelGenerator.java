@@ -539,6 +539,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		singleTex(TofuItems.MUSIC_DISC_GREEN_BRANCH);
 		singleTex(TofuItems.TOFU_CRAFTERS_BOOK);
+		singleTex(TofuItems.ZUNDA_INGOT);
 	}
 
 	public ItemModelBuilder button(Supplier<? extends ButtonBlock> button, Supplier<? extends Block> fullBlock) {

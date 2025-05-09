@@ -69,4 +69,15 @@ public class TofuEnumExtensions {
 	public static final EnumProxy<RecipeBookCategories> PROXY_COOKING_MISC = new EnumProxy<>(
 			RecipeBookCategories.class, (Supplier<List<ItemStack>>) () -> List.of(new ItemStack(TofuItems.SOY_CHEESE), new ItemStack(TofuItems.PUDDING_SOYMILK))
 	);
+
+	public static final EnumProxy<RecipeBookCategories> PROXY_TF_SEARCH = new EnumProxy<>(
+			RecipeBookCategories.class, (Supplier<List<ItemStack>>) () -> List.of(new ItemStack(Items.COMPASS))
+	);
+
+	public static final EnumProxy<RecipeBookCategories> PROXY_TF_MISC = new EnumProxy<>(
+			RecipeBookCategories.class, (Supplier<List<ItemStack>>) () -> List.of(new ItemStack(TofuItems.TF_CIRCUIT))
+	);
+	public static final EnumProxy<RecipeBookCategories> PROXY_TF_MECHA = new EnumProxy<>(
+			RecipeBookCategories.class, (Supplier<List<ItemStack>>) () -> List.of(new ItemStack(TofuItems.TF_BATTERY))
+	);
 }

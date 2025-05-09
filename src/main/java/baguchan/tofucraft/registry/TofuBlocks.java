@@ -41,6 +41,7 @@ import baguchan.tofucraft.block.crop.SproutsCropBlock;
 import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
 import baguchan.tofucraft.block.tfenergy.TFCollectorBlock;
 import baguchan.tofucraft.block.tfenergy.TFCrafterBlock;
+import baguchan.tofucraft.block.tfenergy.TFCraftingTableBlock;
 import baguchan.tofucraft.block.tfenergy.TFOvenBlock;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
 import baguchan.tofucraft.block.tfenergy.TofuWorkStationBlock;
@@ -517,6 +518,8 @@ public class TofuBlocks {
 
 	public static final Supplier<Block> TOFU_POT = register("tofu_pot",
 			() -> new TofuPotBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(0.6F, 6.0F).sound(SoundType.LANTERN)));
+	public static final Supplier<Block> TF_CRAFTING_TABLE = register("tf_crafting_table",
+			() -> new TFCraftingTableBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).sound(SoundType.METAL)));
 
 
 	private static boolean always(BlockState p_50775_, BlockGetter p_50776_, BlockPos p_50777_) {
@@ -582,6 +585,8 @@ public class TofuBlocks {
 			} else if (Objects.requireNonNull(block.get()) == TF_STORAGE.get() || block.get() == TF_CRAFTER.get() || block.get() == TF_OVEN.get()) {
 				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 5000)));
 			} else if (Objects.requireNonNull(block.get()) == TF_COLLECTOR.get()) {
+				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
+			} else if (Objects.requireNonNull(block.get()) == TF_CRAFTING_TABLE.get()) {
 				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
 			} else {
 				return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties());

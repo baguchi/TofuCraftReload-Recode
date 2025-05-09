@@ -29,6 +29,7 @@ import baguchan.tofucraft.item.SoymilkBottleItem;
 import baguchan.tofucraft.item.SpecialBitternItem;
 import baguchan.tofucraft.item.TFBatteryItem;
 import baguchan.tofucraft.item.TofuBookItem;
+import baguchan.tofucraft.item.ZundaIngotItem;
 import baguchan.tofucraft.item.armor.BreakableTofuArmorItem;
 import baguchan.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchan.tofucraft.item.armor.TofuArmorItem;
@@ -190,6 +191,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> SOYBALL = ITEMS.register("soyball", () -> new SoyBallItem(((new Item.Properties()))));
 	public static final DeferredHolder<Item, Item> ZUNDA = ITEMS.register("zunda", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> ZUNDAMA = ITEMS.register("zundama", () -> new Item((new Item.Properties())));
+	public static final DeferredHolder<Item, Item> ZUNDA_INGOT = ITEMS.register("zunda_ingot", () -> new ZundaIngotItem((new Item.Properties().food(TofuFoods.ZUNDA_INGOT))));
 	public static final DeferredHolder<Item, Item> ZUNDARUBY = ITEMS.register("zundaruby", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TOFU_HAMBURG_RAW = ITEMS.register("tofuhamburg_raw", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TOFU_HAMBURG = ITEMS.register("tofuhamburg", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU_HAMBURG)));

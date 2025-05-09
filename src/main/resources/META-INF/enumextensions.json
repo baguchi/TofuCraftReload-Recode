@@ -34,6 +34,39 @@
       "parameters": []
     },
     {
+      "enum": "net/minecraft/world/inventory/RecipeBookType",
+      "name": "TOFUCRAFT_TF_CRAFT",
+      "constructor": "()V",
+      "parameters": []
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "TOFUCRAFT_TF_SEARCH",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "field": "PROXY_TF_SEARCH"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "TOFUCRAFT_TF_MECHA",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "field": "PROXY_TF_MECHA"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "TOFUCRAFT_TF_MISC",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "field": "PROXY_TF_MISC"
+      }
+    },
+    {
       "enum": "net/minecraft/client/RecipeBookCategories",
       "name": "TOFUCRAFT_COOKING_SEARCH",
       "constructor": "(Ljava/util/function/Supplier;)V",

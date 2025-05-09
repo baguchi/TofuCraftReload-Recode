@@ -3,6 +3,7 @@ package baguchan.tofucraft.registry;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.inventory.SaltFurnaceMenu;
 import baguchan.tofucraft.inventory.TFCrafterMenu;
+import baguchan.tofucraft.inventory.TFCraftingTableMenu;
 import baguchan.tofucraft.inventory.TFOvenMenu;
 import baguchan.tofucraft.inventory.TFStorageMenu;
 import baguchan.tofucraft.inventory.TofuPotMenu;
@@ -25,4 +26,5 @@ public class TofuMenus {
 	public static final Supplier<MenuType<TFOvenMenu>> TF_OVEN = MENU_TYPES.register("tf_oven", () -> new MenuType<>(TFOvenMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
 	public static final Supplier<MenuType<TofuPotMenu>> TOFU_POT = MENU_TYPES.register("tofu_pot", () -> IMenuTypeExtension.create(TofuPotMenu::new));
+	public static final Supplier<MenuType<TFCraftingTableMenu>> TF_CRAFTING_TABLE = MENU_TYPES.register("tf_crafting_table", () -> IMenuTypeExtension.create(TFCraftingTableMenu::new));
 }

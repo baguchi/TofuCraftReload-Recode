@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:crafting_table"
+    },
+    "C": {
+      "item": "tofucraft:tf_circuit"
+    },
+    "E": {
+      "item": "tofucraft:tofu_core"
+    },
+    "T": {
+      "item": "tofucraft:blocktofumetal"
+    }
+  },
+  "pattern": [
+    "TBT",
+    "TCT",
+    "TET"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tf_crafting_table"
+  }
+}

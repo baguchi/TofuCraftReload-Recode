@@ -356,6 +356,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.TF_COLLECTOR.get(), this::createTFMechaTable);
 
 		dropSelf(TofuBlocks.TOFU_POT.get());
+		dropSelf(TofuBlocks.TF_CRAFTING_TABLE.get());
 	}
 
 	protected LootTable.Builder createZundaMushroomDrop(Block p_124264_, Block p_124265_, float... p_124266_) {

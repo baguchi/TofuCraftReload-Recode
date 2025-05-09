@@ -2,7 +2,10 @@ package baguchan.tofucraft.data.generator.recipe;
 
 import baguchan.tofucraft.data.generator.recipe.builder.BitternRecipeBuilder;
 import baguchan.tofucraft.data.generator.recipe.builder.HardenRecipeBuilder;
+import baguchan.tofucraft.data.generator.recipe.builder.TFShapedRecipeBuilder;
+import baguchan.tofucraft.data.generator.recipe.builder.TFShapelessRecipeBuilder;
 import baguchan.tofucraft.data.generator.recipe.builder.TofuPotShapelessRecipeBuilder;
+import baguchan.tofucraft.recipe.TFCraftingCategory;
 import baguchan.tofucraft.recipe.TofuPotCategory;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuFluids;
@@ -1774,6 +1777,37 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('T', TofuBlocks.METALTOFU)
 				.define('S', TofuItems.TOFUISHI.get())
 				.unlockedBy("has_item", has(TofuBlocks.METALTOFU))
+				.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.TF_CRAFTING_TABLE.get())
+				.pattern("TBT")
+				.pattern("TCT")
+				.pattern("TET")
+				.define('T', TofuBlocks.METALTOFU)
+				.define('C', TofuItems.TF_CIRCUIT.get())
+				.define('B', Blocks.CRAFTING_TABLE)
+				.define('E', TofuItems.TOFU_CORE.get())
+				.unlockedBy("has_item", has(TofuBlocks.TF_STORAGE))
+				.save(consumer);
+
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, TofuItems.ZUNDAMA.get(), 1, 100)
+				.requires(TofuItems.ZUNDA.get(), 4)
+				.unlockedBy("has_item", has(TofuItems.ZUNDA.get()))
+				.save(consumer, prefix("zundama_with_tf"));
+
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, TofuItems.ZUNDA_INGOT.get(), 1, 400)
+				.requires(TofuItems.ZUNDAMA.get(), 4)
+				.requires(TofuItems.TOFUISHI.get())
+				.unlockedBy("has_item", has(TofuItems.ZUNDAMA.get()))
+				.save(consumer);
+		TFShapedRecipeBuilder.shaped(TFCraftingCategory.MISC, TofuItems.ZUNDA_BOW.get().getDefaultInstance(), 1000)
+				.define('S', TofuItems.ZUNDAMA.get())
+				.define('Z', TofuItems.ZUNDA_INGOT.get())
+				.define('G', TofuItems.TOFUGEM.get())
+				.pattern(" ZS")
+				.pattern("ZGS")
+				.pattern(" ZS")
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_INGOT.get()))
 				.save(consumer);
 
 		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), new FluidStack(TofuFluids.BITTERN.get(), 250)).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(consumer, prefix("bittern_to_kinu"));

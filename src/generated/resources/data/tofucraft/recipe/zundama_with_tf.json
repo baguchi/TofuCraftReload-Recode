@@ -1,0 +1,23 @@
+{
+  "type": "tofucraft:tf_craft_shapeless",
+  "category": "misc",
+  "cook_time": 100,
+  "ingredients": [
+    {
+      "item": "tofucraft:zunda"
+    },
+    {
+      "item": "tofucraft:zunda"
+    },
+    {
+      "item": "tofucraft:zunda"
+    },
+    {
+      "item": "tofucraft:zunda"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:zundama"
+  }
+}
