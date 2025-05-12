@@ -18,6 +18,7 @@ public interface PlaceRecipeMixin {
 	private <T> void placeRecipe(int width, int height, int outputSlot, RecipeHolder<?> recipe, Iterator<T> ingredients, int maxAmount, CallbackInfo ci) {
 		if (recipe.value() instanceof TFShapedRecipe shapedrecipe) {
 			RecipeHelper.placeRecipe(width, height, outputSlot, recipe, ingredients, maxAmount, (PlaceRecipe<T>) this);
+			ci.cancel();
 		}
 	}
 }
