@@ -14,6 +14,7 @@ public class TofuSurfaceRuleData {
 	private static final SurfaceRules.RuleSource TOFUSLATE = makeStateRule(TofuBlocks.TOFUSLATE.get());
 	private static final SurfaceRules.RuleSource TOFU_TERRAIN = makeStateRule(TofuBlocks.TOFU_TERRAIN.get());
 	private static final SurfaceRules.RuleSource TOFU_TERRAIN_ZUNDA = makeStateRule(TofuBlocks.TOFU_TERRAIN_ZUNDA.get());
+	private static final SurfaceRules.RuleSource MINCED_TOFU = makeStateRule(TofuBlocks.MINCEDTOFU.get());
 
 	private static SurfaceRules.RuleSource makeStateRule(Block p_194811_) {
 		return SurfaceRules.state(p_194811_.defaultBlockState());
@@ -35,12 +36,19 @@ public class TofuSurfaceRuleData {
 
 		builder.add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("deepslate", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), TOFUSLATE));
 
-		SurfaceRules.RuleSource surface = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0), TOFU_TERRAIN_ZUNDA), TOFU_TERRAIN);
+		SurfaceRules.RuleSource zundaSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0), TOFU_TERRAIN_ZUNDA), TOFU_TERRAIN);
 
-		SurfaceRules.RuleSource overworldLike = SurfaceRules.ifTrue(SurfaceRules.isBiome(TofuBiomes.ZUNDA_FOREST), SurfaceRules.sequence(
-				SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, surface),
+		SurfaceRules.RuleSource zunda = SurfaceRules.ifTrue(SurfaceRules.isBiome(TofuBiomes.ZUNDA_FOREST), SurfaceRules.sequence(
+				SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, zundaSurface),
 				SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, TOFU_TERRAIN)
 		));
+		SurfaceRules.RuleSource ishi = SurfaceRules.ifTrue(SurfaceRules.isBiome(TofuBiomes.TOFU_BEACH), SurfaceRules.sequence(
+				SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, MINCED_TOFU),
+				SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, MINCED_TOFU)
+		));
+		SurfaceRules.RuleSource overworldLike = SurfaceRules.sequence(zunda, ishi);
+
+
 
 		SurfaceRules.RuleSource surfacerules$rulesource9 = SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(), overworldLike);
 

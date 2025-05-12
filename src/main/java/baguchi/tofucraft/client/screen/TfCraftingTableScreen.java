@@ -17,8 +17,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import org.joml.Matrix4f;
@@ -56,24 +54,6 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 		// Render progress arrow
 		int l = this.menu.getCookProgressionScaled();
 		gui.blit(RenderType::guiTextured, BACKGROUND_TEXTURE, this.leftPos + PROGRESS_ARROW.x, this.topPos + PROGRESS_ARROW.y, 176, 15, l + 1, PROGRESS_ARROW.height, 256, 256);
-	}
-
-
-	@Override
-	protected boolean hasClickedOutside(double mouseX, double mouseY, int x, int y, int buttonIdx) {
-		boolean flag = mouseX < (double) x || mouseY < (double) y || mouseX >= (double) (x + this.imageWidth) || mouseY >= (double) (y + this.imageHeight);
-		return flag && this.recipeBookComponent.hasClickedOutside(mouseX, mouseY, this.leftPos, this.topPos, this.imageWidth, this.imageHeight, buttonIdx);
-	}
-
-	@Override
-	protected void slotClicked(Slot slot, int mouseX, int mouseY, ClickType clickType) {
-		super.slotClicked(slot, mouseX, mouseY, clickType);
-		this.recipeBookComponent.slotClicked(slot);
-	}
-
-	@Override
-	public void recipesUpdated() {
-		this.recipeBookComponent.recipesUpdated();
 	}
 
 	//	@Override

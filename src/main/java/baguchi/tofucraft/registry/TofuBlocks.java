@@ -311,10 +311,13 @@ public class TofuBlocks {
 			.hasPostProcess(TofuBlocks::always)
 			.sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> TOFU_TERRAIN_ZUNDA = register("tofu_terrain_zunda", (properties) -> new TofuTerrainBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).randomTicks().sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> TOFU_TERRAIN_ISHI = register("tofu_terrain_ishi", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().strength(1.5F, 2.0F).mapColor(MapColor.TERRACOTTA_YELLOW).sound(SoundType.CALCITE));
 	public static final DeferredBlock<Block> SUSPICIOUS_TOFU_TERRAIN = register("suspicious_tofu_terrain", (properties) -> new SuspiciousTofuTerrainBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.SNOW));
 
 	public static final DeferredBlock<Block> TOFUSLATE = register("tofuslate", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.5F, 4.0F).sound(SoundType.DEEPSLATE));
 	public static final DeferredBlock<Block> TOFUSLATE_TOFU_DIAMOND_ORE = register("tofuslate_tofu_diamond_ore", (properties) -> new DropExperienceBlock(UniformInt.of(3, 5), properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.5F, 4.0F).sound(SoundType.DEEPSLATE));
+	public static final DeferredBlock<Block> ISHI_TOFUGEM_ORE = register("ishi_tofugem_ore", (properties) -> new DropExperienceBlock(UniformInt.of(2, 3), properties), () -> BlockBehaviour.Properties.of().strength(2F, 3.0F).sound(SoundType.CALCITE));
+
 	public static final DeferredBlock<Block> ORE_TOFU_DIAMOND = register("ore_tofu_diamond", (properties) -> new DropExperienceBlock(UniformInt.of(3, 5), properties), () -> BlockBehaviour.Properties.of().strength(0.5F, 1.0F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> ORE_TOFUGEM = register("ore_tofugem", (properties) -> new DropExperienceBlock(UniformInt.of(2, 3), properties), () -> BlockBehaviour.Properties.of().strength(0.5F, 1.0F).sound(SoundType.SNOW));
 

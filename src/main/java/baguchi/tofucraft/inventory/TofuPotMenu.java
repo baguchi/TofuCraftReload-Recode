@@ -18,7 +18,6 @@ import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -173,7 +172,7 @@ public class TofuPotMenu extends RecipeBookMenu {
 				}
 
 				public boolean recipeMatches(RecipeHolder<TofuPotRecipe> p_365206_) {
-					return p_365206_.value().matches(CraftingInput.of(4, 3, TofuPotMenu.this.blockEntity.inventory), TofuPotMenu.this.level);
+					return p_365206_.value().matches(CraftingInput.ofPositioned(4, 3, TofuPotMenu.this.blockEntity.getInventory()).input(), TofuPotMenu.this.level);
 				}
 			}, 4, 3, list, list, p_361078_, recipeholder, p_361638_, p_361841_);
 		} finally {
@@ -193,10 +192,7 @@ public class TofuPotMenu extends RecipeBookMenu {
 
 	@Override
 	public void fillCraftSlotsStackedContents(StackedItemContents p_363436_) {
-		if (this.inventory instanceof StackedContentsCompatible) {
-			((StackedContentsCompatible) this.inventory).fillStackedContents(p_363436_);
-		}
-
+		this.blockEntity.fillStackedContents(p_363436_);
 	}
 
 	@Override

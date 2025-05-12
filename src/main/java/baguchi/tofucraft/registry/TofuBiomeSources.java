@@ -1,7 +1,7 @@
 package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
-import baguchi.tofucraft.world.biome.TofuBiomeBuilder;
+import baguchi.tofucraft.world.biome.TofuWorldBiomeBuilder;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.HolderGetter;
@@ -26,7 +26,7 @@ public class TofuBiomeSources {
 
 	static <T> Climate.ParameterList<T> generateTofuBiomes(Function<ResourceKey<Biome>, T> p_275249_) {
 		ImmutableList.Builder<Pair<Climate.ParameterPoint, T>> builder = ImmutableList.builder();
-		(new TofuBiomeBuilder()).addBiomes((p_275579_) -> {
+		(new TofuWorldBiomeBuilder()).addBiomes((p_275579_) -> {
 			builder.add(p_275579_.mapSecond(p_275249_));
 		});
 		return new Climate.ParameterList<>(builder.build());

@@ -48,6 +48,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFU_BEDROCK.get()
 				, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get()
 				, TofuBlocks.TOFUSLATE.get()
+				, TofuBlocks.TOFU_TERRAIN_ISHI.get()
+				, TofuBlocks.ISHI_TOFUGEM_ORE.get()
 				, TofuBlocks.SALT_FURNACE.get()
 				, TofuBlocks.SOYMILK_CAULDRON.get(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get(), TofuBlocks.SOYMILK_SOUL_CAULDRON.get()
 				, TofuBlocks.TOFU_METAL_LANTERN.get(), TofuBlocks.TOFU_METAL_SOUL_LANTERN.get(), TofuBlocks.TOFU_METAL_CHAIN.get()
@@ -79,7 +81,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 
 		tag(TofuTags.Blocks.SOFT_TOFU).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
 				, TofuBlocks.GRILLEDTOFU.get(), TofuBlocks.ZUNDATOFU.get(), TofuBlocks.MINCEDTOFU.get());
-		tag(TofuTags.Blocks.TOFU_TERRAIN).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get());
+		tag(TofuTags.Blocks.TOFU_TERRAIN).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.TOFU_TERRAIN_ISHI.get());
 
 		tag(BlockTags.REPLACEABLE).add(TofuBlocks.LEEK.get());
 		tag(TofuTags.Blocks.TF_TRANSMITTER).addTag(BlockTags.REPLACEABLE).add(TofuBlocks.ANTENNA_BASIC.get());
@@ -119,7 +121,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.PORTALS).add(TofuBlocks.TOFU_PORTAL.get());
 
 
-		tag(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.SOYMILK.get())
+		tag(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.TOFU_TERRAIN_ISHI.get(), TofuBlocks.SOYMILK.get())
 				.add(TofuBlocks.TOFUSLATE.get());
 		tag(BlockTags.LEAVES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get());
 		this.tag(BlockTags.REPLACEABLE_BY_TREES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.LEEK.get());
@@ -142,6 +144,6 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.BEE_GROWABLES).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get()).add(TofuBlocks.SOYBEAN_PALE.get())
 				.add(TofuBlocks.RICE_CROP.get());
 		this.tag(BlockTags.MAINTAINS_FARMLAND).add(TofuBlocks.SOYBEAN.get());
-		this.tag(Tags.Blocks.ORES).add(TofuBlocks.ORE_TOFUGEM.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
+		this.tag(Tags.Blocks.ORES).add(TofuBlocks.ORE_TOFUGEM.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuBlocks.ISHI_TOFUGEM_ORE.get());
 	}
 }

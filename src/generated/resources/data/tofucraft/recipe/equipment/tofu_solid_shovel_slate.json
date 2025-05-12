@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "tofucraft:tofuslate",
+    "X": "#c:rods/wooden"
+  },
+  "pattern": [
+    "#",
+    "X",
+    "X"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tofu_solid_shovel"
+  }
+}

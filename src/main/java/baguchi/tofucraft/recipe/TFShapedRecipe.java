@@ -2,6 +2,7 @@ package baguchi.tofucraft.recipe;
 
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuRecipes;
+import com.google.common.annotations.VisibleForTesting;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Optional;
 
 public class TFShapedRecipe implements TFCraftingRecipe {
 	public final ShapedRecipePattern pattern;
@@ -49,6 +51,11 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 	@Override
 	public RecipeSerializer<? extends Recipe<CraftingInput>> getSerializer() {
 		return TofuRecipes.RECIPE_TF_CRAFT_SHAPED.get();
+	}
+
+	@VisibleForTesting
+	public List<Optional<Ingredient>> getIngredients() {
+		return this.pattern.ingredients();
 	}
 
 	@Override
@@ -99,7 +106,7 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 
 	@Override
 	public List<RecipeDisplay> display() {
-		return List.of(new ShapedCraftingRecipeDisplay(this.pattern.width(), this.pattern.height(), this.pattern.ingredients().stream().map((p_380107_) -> (SlotDisplay) p_380107_.map(Ingredient::display).orElse(SlotDisplay.Empty.INSTANCE)).toList(), new SlotDisplay.ItemStackSlotDisplay(this.result), new SlotDisplay.ItemSlotDisplay(TofuBlocks.TF_CRAFTING_TABLE.asItem())));
+		return List.of(new ShapedCraftingRecipeDisplay(this.pattern.width(), this.pattern.height(), this.pattern.ingredients().stream().map((p_380107_) -> p_380107_.map(Ingredient::display).orElse(SlotDisplay.Empty.INSTANCE)).toList(), new SlotDisplay.ItemStackSlotDisplay(this.result), new SlotDisplay.ItemSlotDisplay(TofuBlocks.TF_CRAFTING_TABLE.asItem())));
 	}
 
 	public static class Serializer implements RecipeSerializer<TFShapedRecipe> {

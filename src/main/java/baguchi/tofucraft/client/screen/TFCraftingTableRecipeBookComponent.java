@@ -49,11 +49,11 @@ public class TFCraftingTableRecipeBookComponent extends RecipeBookComponent<TFCr
 
 	@Override
 	protected boolean isCraftingSlot(Slot p_364400_) {
-		return this.menu.getSlot(12) == p_364400_ || this.menu.getItems().contains(p_364400_);
+		return this.menu.getSlot(9) == p_364400_ || this.menu.getItems().contains(p_364400_);
 	}
 
 	private boolean canDisplay(RecipeDisplay p_379470_) {
-		int i = 4;
+		int i = 3;
 		int j = 3;
 
 		return switch (p_379470_) {
@@ -85,7 +85,7 @@ public class TFCraftingTableRecipeBookComponent extends RecipeBookComponent<TFCr
 				List<Slot> list1 = this.menu.getInputGridSlots();
 				PlaceRecipeHelper.placeRecipe(
 						3,
-						4,
+						3,
 						shapedcraftingrecipedisplay.width(),
 						shapedcraftingrecipedisplay.height(),
 						shapedcraftingrecipedisplay.ingredients(),
@@ -109,6 +109,4 @@ public class TFCraftingTableRecipeBookComponent extends RecipeBookComponent<TFCr
 			default:
 		}
 	}
-
-
 }

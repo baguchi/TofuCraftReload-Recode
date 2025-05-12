@@ -122,7 +122,7 @@ public class TofuTerrainProvider {
 			f7 = calculateSlope(f2, f4, -1.0F, 1.0F);
 			if (p_236593_) {
 				builder.addPoint(-1.0F, Math.max(0.2F, f2));
-				builder.addPoint(0.0F, Mth.lerp(0.5F, f2, f4), f7);
+				builder.addPoint(0.0F, Mth.lerp(0.25F, f2, f4), f7);
 			} else {
 				builder.addPoint(-1.0F, f2, f7);
 			}
@@ -134,21 +134,21 @@ public class TofuTerrainProvider {
 	}
 
 	private static float mountainContinentalness(float p_236569_, float p_236570_, float p_236571_) {
-		float f = 1.17F;
-		float f1 = 0.46082947F;
+		float f = 1.3F;
+		float f1 = 0.6F;
 		float f2 = 1.0F - (1.0F - p_236570_) * 0.5F;
 		float f3 = 0.5F * (1.0F - p_236570_);
-		float f4 = (p_236569_ + 1.17F) * 0.46082947F;
+		float f4 = (p_236569_ + f) * f1;
 		float f5 = f4 * f2 - f3;
 		return p_236569_ < p_236571_ ? Math.max(f5, -0.2222F) : Math.max(f5, 0.0F);
 	}
 
 	private static float calculateMountainRidgeZeroContinentalnessPoint(float p_236567_) {
-		float f = 1.17F;
-		float f1 = 0.46082947F;
+		float f = 1.3F;
+		float f1 = 0.6F;
 		float f2 = 1.0F - (1.0F - p_236567_) * 0.5F;
 		float f3 = 0.5F * (1.0F - p_236567_);
-		return f3 / (0.46082947F * f2) - 1.17F;
+		return f3 / (f1 * f2) - f;
 	}
 
 	public static <C, I extends ToFloatFunction<C>> CubicSpline<C, I> buildErosionOffsetSpline(I p_236596_, I p_236597_, float p_236598_, float p_236599_, float p_236600_, float p_236601_, float p_236602_, float p_236603_, boolean p_236604_, boolean p_236605_, ToFloatFunction<Float> p_236606_) {

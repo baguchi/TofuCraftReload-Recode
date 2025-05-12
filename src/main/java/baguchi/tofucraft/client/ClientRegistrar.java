@@ -121,7 +121,7 @@ public class ClientRegistrar {
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk");
 			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_flow");
-			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/soymilk_overlay.png");
+			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_overlay");
 
 			@Override
 			public ResourceLocation getStillTexture() {
@@ -146,7 +146,7 @@ public class ClientRegistrar {
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell");
 			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell_flow");
-			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/soymilk_hell_overlay.png");
+			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell_overlay");
 
 			@Override
 			public ResourceLocation getStillTexture() {
@@ -171,7 +171,7 @@ public class ClientRegistrar {
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul");
 			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul_flow");
-			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/soymilk_soul_overlay.png");
+			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul_overlay");
 
 			@Override
 			public ResourceLocation getStillTexture() {
@@ -197,7 +197,7 @@ public class ClientRegistrar {
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
 			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
-			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/bittern_overlay.png");
+			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern_overlay");
 
 			@Override
 			public ResourceLocation getStillTexture() {
@@ -223,7 +223,7 @@ public class ClientRegistrar {
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang");
 			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang_flow");
-			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/block/doubanjiang_overlay.png");
+			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang_overlay");
 
 			@Override
 			public ResourceLocation getStillTexture() {

@@ -9,7 +9,7 @@ import net.minecraft.world.level.biome.Climate;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class TofuBiomeBuilder {
+public class TofuWorldBiomeBuilder {
 	private static final float VALLEY_SIZE = 0.05F;
 	private static final float LOW_START = 0.26666668F;
 	public static final float HIGH_START = 0.4F;

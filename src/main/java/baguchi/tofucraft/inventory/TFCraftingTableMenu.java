@@ -18,7 +18,6 @@ import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -175,7 +174,7 @@ public class TFCraftingTableMenu extends RecipeBookMenu {
 				}
 
 				public boolean recipeMatches(RecipeHolder<TFCraftingRecipe> p_365206_) {
-					return p_365206_.value().matches(CraftingInput.of(3, 3, TFCraftingTableMenu.this.blockEntity.getInventory()), TFCraftingTableMenu.this.level);
+					return p_365206_.value().matches(CraftingInput.ofPositioned(3, 3, TFCraftingTableMenu.this.blockEntity.getInventory()).input(), TFCraftingTableMenu.this.level);
 				}
 			}, 3, 3, list, list, p_361078_, recipeholder, p_361638_, p_361841_);
 		} finally {
@@ -193,10 +192,7 @@ public class TFCraftingTableMenu extends RecipeBookMenu {
 
 	@Override
 	public void fillCraftSlotsStackedContents(StackedItemContents p_363436_) {
-		if (this.inventory instanceof StackedContentsCompatible) {
-			((StackedContentsCompatible) this.inventory).fillStackedContents(p_363436_);
-		}
-
+		this.blockEntity.fillStackedContents(p_363436_);
 	}
 
 	public Slot getResultSlot() {

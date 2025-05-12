@@ -35,9 +35,11 @@ import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.RecipeCraftingHolder;
+import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Recipe;
@@ -57,7 +59,7 @@ import java.util.Map;
 import java.util.Optional;
 
 
-public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvider, Nameable, RecipeCraftingHolder, Container {
+public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvider, Nameable, RecipeCraftingHolder, Container, StackedContentsCompatible {
 	private static final Codec<Map<ResourceKey<Recipe<?>>, Integer>> RECIPES_USED_CODEC = Codec.unboundedMap(Recipe.KEY_CODEC, Codec.INT);
 	private static final Codec<ResourceKey<Recipe<?>>> RECIPE_CODEC = ResourceKey.codec(Registries.RECIPE);
 
@@ -453,5 +455,12 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 	@Override
 	public void clearContent() {
 		this.inventory.clear();
+	}
+
+	@Override
+	public void fillStackedContents(StackedItemContents stackedItemContents) {
+		for (ItemStack itemstack : this.inventory) {
+			stackedItemContents.accountSimpleStack(itemstack);
+		}
 	}
 }

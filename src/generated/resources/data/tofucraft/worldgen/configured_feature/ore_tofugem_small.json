@@ -12,6 +12,15 @@
           "block": "tofucraft:tofu_terrain",
           "predicate_type": "minecraft:block_match"
         }
+      },
+      {
+        "state": {
+          "Name": "tofucraft:ishi_tofugem_ore"
+        },
+        "target": {
+          "block": "tofucraft:tofu_terrain_ishi",
+          "predicate_type": "minecraft:block_match"
+        }
       }
     ]
   }
