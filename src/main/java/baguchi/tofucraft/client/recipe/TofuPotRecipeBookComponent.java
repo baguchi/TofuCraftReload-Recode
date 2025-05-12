@@ -1,6 +1,6 @@
-package baguchi.tofucraft.client.screen;
+package baguchi.tofucraft.client.recipe;
 
-import baguchi.tofucraft.inventory.TFCraftingTableMenu;
+import baguchi.tofucraft.inventory.TofuPotMenu;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import net.minecraft.client.gui.components.WidgetSprites;
@@ -20,9 +20,7 @@ import net.minecraft.world.item.crafting.display.ShapelessCraftingRecipeDisplay;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class TFCraftingTableRecipeBookComponent extends RecipeBookComponent<TFCraftingTableMenu> {
-	private static final Component ONLY_CRAFTABLES_TOOLTIP = Component.translatable("gui.recipebook.toggleRecipes.craftable");
-
+public class TofuPotRecipeBookComponent extends RecipeBookComponent<TofuPotMenu> {
 	private static final WidgetSprites FILTER_BUTTON_SPRITES = new WidgetSprites(
 			ResourceLocation.withDefaultNamespace("recipe_book/filter_enabled"),
 			ResourceLocation.withDefaultNamespace("recipe_book/filter_disabled"),
@@ -31,13 +29,15 @@ public class TFCraftingTableRecipeBookComponent extends RecipeBookComponent<TFCr
 	);
 
 	private static final List<RecipeBookComponent.TabInfo> TABS = List.of(
-			new RecipeBookComponent.TabInfo(TofuItems.TOFU_CRAFTERS_BOOK.get(), TofuRecipeBookCategory.TF_SEARCH),
-			new RecipeBookComponent.TabInfo(TofuItems.TF_CIRCUIT.get(), TofuRecipeBookCategory.TF_MECHA.get()),
-			new RecipeBookComponent.TabInfo(TofuItems.ZUNDA_INGOT.get(), TofuRecipeBookCategory.TF_MISC.get())
+			new RecipeBookComponent.TabInfo(TofuItems.TOFU_CRAFTERS_BOOK.get(), TofuRecipeBookCategory.SEARCH),
+			new RecipeBookComponent.TabInfo(TofuItems.SOYMILK.get(), TofuRecipeBookCategory.COOKING_DRINKS.get()),
+			new RecipeBookComponent.TabInfo(TofuItems.NIKUJAGA.get(), TofuRecipeBookCategory.COOKING_MEALS.get()),
+			new RecipeBookComponent.TabInfo(TofuItems.SOY_CHEESE.get(), TofuRecipeBookCategory.COOKING_FAST_FOODS.get()),
+			new RecipeBookComponent.TabInfo(TofuItems.PUDDING_SOYMILK.get(), TofuRecipeBookCategory.COOKING_MISC.get())
 	);
 
 
-	public TFCraftingTableRecipeBookComponent(TFCraftingTableMenu p_365070_) {
+	public TofuPotRecipeBookComponent(TofuPotMenu p_365070_) {
 		super(p_365070_, TABS);
 	}
 
@@ -49,11 +49,11 @@ public class TFCraftingTableRecipeBookComponent extends RecipeBookComponent<TFCr
 
 	@Override
 	protected boolean isCraftingSlot(Slot p_364400_) {
-		return this.menu.getSlot(9) == p_364400_ || this.menu.getItems().contains(p_364400_);
+		return this.menu.getSlot(12) == p_364400_ || this.menu.getInputGridSlots().contains(p_364400_);
 	}
 
 	private boolean canDisplay(RecipeDisplay p_379470_) {
-		int i = 3;
+		int i = 4;
 		int j = 3;
 
 		return switch (p_379470_) {
@@ -74,7 +74,7 @@ public class TFCraftingTableRecipeBookComponent extends RecipeBookComponent<TFCr
 	@Override
 	@Nonnull
 	protected Component getRecipeFilterName() {
-		return ONLY_CRAFTABLES_TOOLTIP;
+		return Component.translatable("container.tofucraft.recipe_book.cookable");
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class TFCraftingTableRecipeBookComponent extends RecipeBookComponent<TFCr
 				List<Slot> list1 = this.menu.getInputGridSlots();
 				PlaceRecipeHelper.placeRecipe(
 						3,
-						3,
+						4,
 						shapedcraftingrecipedisplay.width(),
 						shapedcraftingrecipedisplay.height(),
 						shapedcraftingrecipedisplay.ingredients(),
@@ -109,4 +109,6 @@ public class TFCraftingTableRecipeBookComponent extends RecipeBookComponent<TFCr
 			default:
 		}
 	}
+
+
 }

@@ -8,6 +8,7 @@
     "FishingHookMixin",
     "LightningBoltMixin",
     "LivingEntityAccessor",
+    "PlaceRecipeHelperMixin",
     "ServerGamePacketListenerImplMixin",
     "WardenAiMixin"
   ],

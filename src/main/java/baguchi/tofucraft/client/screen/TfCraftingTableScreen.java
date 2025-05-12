@@ -1,6 +1,7 @@
 package baguchi.tofucraft.client.screen;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.client.recipe.TFCraftingTableRecipeBookComponent;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
 import baguchi.tofucraft.mixin.client.GuiGraphicsAccessor;
 import baguchi.tofucraft.registry.TofuFluids;

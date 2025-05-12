@@ -1,6 +1,7 @@
 package baguchi.tofucraft.client.screen;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.client.recipe.TofuPotRecipeBookComponent;
 import baguchi.tofucraft.inventory.TofuPotMenu;
 import baguchi.tofucraft.mixin.client.GuiGraphicsAccessor;
 import com.mojang.blaze3d.systems.RenderSystem;
