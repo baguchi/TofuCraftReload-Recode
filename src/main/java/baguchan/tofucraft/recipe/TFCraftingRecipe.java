@@ -17,6 +17,9 @@ public interface TFCraftingRecipe extends Recipe<CraftingInput> {
 
 	int getNeedTF();
 
+	ItemStack getResult();
+
+
 	@Override
 	default ItemStack getToastSymbol() {
 		return TofuBlocks.TF_CRAFTING_TABLE.get().asItem().getDefaultInstance();

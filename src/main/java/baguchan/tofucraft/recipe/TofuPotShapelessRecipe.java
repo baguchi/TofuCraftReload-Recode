@@ -73,6 +73,11 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 	}
 
 	@Override
+	public ItemStack getResult() {
+		return result;
+	}
+
+	@Override
 	public NonNullList<Ingredient> getIngredients() {
 		return this.ingredients;
 	}

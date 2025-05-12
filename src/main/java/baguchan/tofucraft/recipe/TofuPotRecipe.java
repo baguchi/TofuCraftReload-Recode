@@ -22,6 +22,9 @@ public interface TofuPotRecipe extends Recipe<CraftingInput> {
 
 	FluidIngredient fluidIngredient();
 
+	ItemStack getResult();
+
+
 	@Override
 	default ItemStack getToastSymbol() {
 		return TofuBlocks.TOFU_POT.get().asItem().getDefaultInstance();

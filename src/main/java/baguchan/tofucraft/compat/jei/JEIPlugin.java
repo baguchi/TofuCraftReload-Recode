@@ -3,6 +3,8 @@ package baguchan.tofucraft.compat.jei;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.HardenRecipe;
+import baguchan.tofucraft.recipe.TFCraftingRecipe;
+import baguchan.tofucraft.recipe.TofuPotRecipe;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuRecipes;
@@ -43,12 +45,18 @@ public class JEIPlugin implements IModPlugin {
 
 	public static final mezz.jei.api.recipe.RecipeType<BitternRecipe> BITTERN_JEI_TYPE =
 			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "bittern", BitternRecipe.class);
+	public static final mezz.jei.api.recipe.RecipeType<TFCraftingRecipe> TF_RECIPE_JEI_TYPE =
+			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "tf_craft", TFCraftingRecipe.class);
 
+	public static final mezz.jei.api.recipe.RecipeType<TofuPotRecipe> TOFU_POT_RECIPE_JEI_TYPE =
+			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "tofu_pot", TofuPotRecipe.class);
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(new HardenCategory(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new BitternCategory(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategories(new TFRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategories(new TofuPotCategory(registry.getJeiHelpers().getGuiHelper()));
 	}
 
 	@Override
@@ -69,12 +77,16 @@ public class JEIPlugin implements IModPlugin {
 		addInfo(registration, TofuItems.SOYMILK_SAKURA.get(), TofuItems.SOYMILK.get());
 		registration.addRecipes(HARDEN_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_HARDER.get()));
 		registration.addRecipes(BITTERN_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_BITTERN.get()));
+		registration.addRecipes(TF_RECIPE_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_TF_CRAFT.get()));
+		registration.addRecipes(TOFU_POT_RECIPE_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_TOFU_POT.get()));
 	}
 
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
 		registration.addRecipeCatalyst(new ItemStack(Blocks.COBBLESTONE), HARDEN_JEI_TYPE);
 		registration.addRecipeCatalyst(new ItemStack(TofuItems.BITTERN_BOTTLE.get()), BITTERN_JEI_TYPE);
+		registration.addRecipeCatalyst(new ItemStack(TofuBlocks.TF_CRAFTING_TABLE.get()), TF_RECIPE_JEI_TYPE);
+		registration.addRecipeCatalyst(new ItemStack(TofuBlocks.TOFU_POT.get()), TOFU_POT_RECIPE_JEI_TYPE);
 	}
 
 	private static void addInfo(IRecipeRegistration registration, Item item) {
