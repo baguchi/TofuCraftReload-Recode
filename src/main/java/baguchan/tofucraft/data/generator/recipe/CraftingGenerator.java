@@ -702,8 +702,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.SOYBEAN_PARCHED.get()))
 				.save(consumer);
 
-		foodCooking(TofuItems.EDAMAME, TofuItems.BOILED_EDAMAME, 0.1F, consumer);
-
 		ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, TofuItems.CHIKUWA.get(), 4)
 				.pattern(" X ")
 				.pattern("YZI")
@@ -1828,6 +1826,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.SALT.get(), 4)
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
 				.save(consumer);
+		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.MISC, Optional.of(SizedFluidIngredient.of(Fluids.WATER, 200)), TofuItems.BOILED_EDAMAME.get(), 12, 200, 0.2F)
+				.requires(TofuItems.EDAMAME.get(), 12)
+				.unlockedBy("has_item", has(TofuItems.EDAMAME.get()))
+				.save(consumer);
+
 		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), new FluidStack(TofuFluids.BITTERN.get(), 250)).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(consumer, prefix("bittern_to_kinu"));
 		BitternRecipeBuilder.bittern(TofuBlocks.HELLTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_HELL.get(), 1000), new FluidStack(TofuFluids.WARPED.get(), 250)).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(consumer, prefix("bittern_to_hell"));
 		BitternRecipeBuilder.bittern(TofuBlocks.SOULTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_SOUL.get(), 1000), new FluidStack(TofuFluids.CRIMSON.get(), 250)).unlockedBy("has_item", has(TofuItems.CRIMSON_BOTTLE.get())).save(consumer, prefix("bittern_to_soul"));
