@@ -3,7 +3,6 @@
   "category": "meal",
   "cook_time": 300,
   "experience": 0.5,
-  "fluid": [],
   "ingredients": [
     {
       "item": "tofucraft:soymeat"

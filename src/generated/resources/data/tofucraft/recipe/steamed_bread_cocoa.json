@@ -3,7 +3,6 @@
   "category": "misc",
   "cook_time": 300,
   "experience": 0.5,
-  "fluid": [],
   "ingredients": [
     {
       "tag": "c:milk/soy_milk"

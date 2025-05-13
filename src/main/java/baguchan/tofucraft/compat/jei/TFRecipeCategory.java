@@ -2,6 +2,7 @@ package baguchan.tofucraft.compat.jei;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.TFCraftingRecipe;
+import baguchan.tofucraft.recipe.TFShapedRecipe;
 import baguchan.tofucraft.registry.TofuBlocks;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -19,6 +20,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+
+import java.util.Iterator;
 
 
 public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
@@ -70,16 +73,25 @@ public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
 		int inputStartX = 30 - 10;
 		int inputStartY = 17 - 12;
 		int borderSlotSize = 18;
-		for (int row = 0; row < 3; ++row) {
-			for (int column = 0; column < 3; ++column) {
-				if (recipeIngredients.size() > (row * 3) + column) {
-					builder.addSlot(RecipeIngredientRole.INPUT,
-							inputStartX + (column * borderSlotSize),
-							inputStartY + (row * borderSlotSize)).addIngredients(recipeIngredients.get((row * 3) + column));
+		int sizeWidth = 3;
+		int sizeHeight = 3;
+		if (recipe instanceof TFShapedRecipe shapedRecipe) {
+			sizeWidth = shapedRecipe.getWidth();
+			sizeHeight = shapedRecipe.getHeight();
+		}
+		Iterator<Ingredient> ingredients = recipeIngredients.iterator();
+
+		for (int row = 0; row < sizeHeight; ++row) {
+			for (int column = 0; column < sizeWidth; ++column) {
+				if (!ingredients.hasNext()) {
+					break;
 				}
+				builder.addSlot(RecipeIngredientRole.INPUT,
+							inputStartX + (column * borderSlotSize),
+						inputStartY + (row * borderSlotSize)).addIngredients(ingredients.next());
 			}
 		}
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 123 - 10, 34 - 12).addItemStack(recipe.getResult());
+		builder.addSlot(RecipeIngredientRole.OUTPUT, 123 - 10, 34 - 12).addItemStack(recipe.getResult().copy());
 
 	}
 

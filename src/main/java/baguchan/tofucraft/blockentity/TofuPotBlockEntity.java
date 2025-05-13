@@ -143,7 +143,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 
 		if (isHeated && cookingPot.hasInput()) {
 			Optional<RecipeHolder<TofuPotRecipe>> recipe = cookingPot.getMatchingRecipe(CraftingInput.of(4, 3, cookingPot.inventory));
-			if (recipe.isPresent() && cookingPot.canCook(recipe.get().value()) && recipe.get().value().fluidIngredient().test(cookingPot.fluidTank.getFluid())) {
+			if (recipe.isPresent() && cookingPot.canCook(recipe.get().value()) && recipe.get().value().fluidIngredient().isPresent() && recipe.get().value().fluidIngredient().get().test(cookingPot.fluidTank.getFluid())) {
 				didInventoryChange = cookingPot.processCooking(recipe.get(), cookingPot);
 			} else {
 				cookingPot.cookTime = 0;
@@ -223,7 +223,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 			storedMealStack.grow(resultStack.getCount());
 		}
 		if (!recipe.value().fluidIngredient().isEmpty()) {
-			cookingPot.fluidTank.drain(200, IFluidHandler.FluidAction.EXECUTE);
+			cookingPot.fluidTank.drain(recipe.value().fluidIngredient().get().amount(), IFluidHandler.FluidAction.EXECUTE);
 		}
 
 		cookingPot.setRecipeUsed(recipe);

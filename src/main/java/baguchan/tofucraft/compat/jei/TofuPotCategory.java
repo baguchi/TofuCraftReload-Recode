@@ -80,7 +80,9 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 			}
 		}
 		builder.addSlot(RecipeIngredientRole.OUTPUT, 130 - 37, 37 - 4).addItemStack(recipe.getResult());
-
+		if (!recipe.fluidIngredient().isPresent()) {
+			builder.addSlot(RecipeIngredientRole.CATALYST, 130 - 37, 37 - 22).addFluidStack(recipe.fluidIngredient().get().getFluids()[0].getFluid(), recipe.fluidIngredient().get().amount());
+		}
 	}
 
 

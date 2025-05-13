@@ -8,25 +8,28 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
+
+import java.util.Optional;
 
 public class TofuPotShapelessRecipe implements TofuPotRecipe {
 	final String group;
 	final TofuPotCategory category;
 	final ItemStack result;
 	final NonNullList<Ingredient> ingredients;
-	final FluidIngredient ingredientFluid;
+	final Optional<SizedFluidIngredient> ingredientFluid;
 	private final int cookTime;
 	private final float experience;
 	private final boolean isSimple;
 
-	public TofuPotShapelessRecipe(String group, TofuPotCategory category, ItemStack result, NonNullList<Ingredient> ingredients, FluidIngredient ingredientFluid, int cookTime, float experience) {
+	public TofuPotShapelessRecipe(String group, TofuPotCategory category, ItemStack result, NonNullList<Ingredient> ingredients, Optional<SizedFluidIngredient> ingredientFluid, int cookTime, float experience) {
 		this.group = group;
 		this.category = category;
 		this.result = result;
@@ -58,7 +61,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 	}
 
 	@Override
-	public FluidIngredient fluidIngredient() {
+	public Optional<SizedFluidIngredient> fluidIngredient() {
 		return this.ingredientFluid;
 	}
 
@@ -111,6 +114,10 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 	}
 
 	public static class Serializer implements RecipeSerializer<TofuPotShapelessRecipe> {
+		public static final StreamCodec<RegistryFriendlyByteBuf, Optional<SizedFluidIngredient>> OPTIONAL_STREAM_CODEC = ByteBufCodecs.optional(SizedFluidIngredient.STREAM_CODEC);
+
+
+
 		private static final MapCodec<TofuPotShapelessRecipe> CODEC = RecordCodecBuilder.mapCodec(
 				p_340779_ -> p_340779_.group(
 								Codec.STRING.optionalFieldOf("group", "").forGetter(p_301127_ -> p_301127_.group),
@@ -133,7 +140,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 												DataResult::success
 										)
 										.forGetter(p_300975_ -> p_300975_.ingredients),
-								FluidIngredient.CODEC.fieldOf("fluid").forGetter(potShapelessRecipe -> potShapelessRecipe.ingredientFluid),
+								SizedFluidIngredient.NESTED_CODEC.optionalFieldOf("fluid").forGetter(potShapelessRecipe -> potShapelessRecipe.ingredientFluid),
 								Codec.INT.fieldOf("cook_time").orElse(300).forGetter(potShapelessRecipe -> potShapelessRecipe.cookTime),
 								Codec.FLOAT.fieldOf("experience").orElse(0.1F).forGetter(potShapelessRecipe -> potShapelessRecipe.experience)
 						)
@@ -160,7 +167,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 			NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i, Ingredient.EMPTY);
 			nonnulllist.replaceAll(p_319735_ -> Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
 			ItemStack itemstack = ItemStack.STREAM_CODEC.decode(buffer);
-			FluidIngredient fluidIngredient = FluidIngredient.STREAM_CODEC.decode(buffer);
+			Optional<SizedFluidIngredient> fluidIngredient = OPTIONAL_STREAM_CODEC.decode(buffer);
 			return new TofuPotShapelessRecipe(s, craftingbookcategory, itemstack, nonnulllist, fluidIngredient, buffer.readInt(), buffer.readFloat());
 		}
 
@@ -174,7 +181,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 			}
 
 			ItemStack.STREAM_CODEC.encode(buffer, recipe.result);
-			FluidIngredient.STREAM_CODEC.encode(buffer, recipe.ingredientFluid);
+			OPTIONAL_STREAM_CODEC.encode(buffer, recipe.ingredientFluid);
 			buffer.writeInt(recipe.cookTime);
 			buffer.writeFloat(recipe.experience);
 		}

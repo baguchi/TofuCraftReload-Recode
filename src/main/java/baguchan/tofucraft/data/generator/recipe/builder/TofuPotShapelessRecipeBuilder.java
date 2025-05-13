@@ -16,12 +16,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 	private final TofuPotCategory category;
@@ -29,18 +30,18 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 	private final int count;
 	private final ItemStack resultStack; // Neo: add stack result support
 	private final NonNullList<Ingredient> ingredients = NonNullList.create();
-	private final FluidIngredient fluidIngredient;
+	private final Optional<SizedFluidIngredient> fluidIngredient;
 	private final int cookTime;
 	private final float experience;
 	private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 	@Nullable
 	private String group;
 
-	public TofuPotShapelessRecipeBuilder(TofuPotCategory category, ItemLike result, FluidIngredient fluidIngredient, int count, int cookTime, float experience) {
+	public TofuPotShapelessRecipeBuilder(TofuPotCategory category, ItemLike result, Optional<SizedFluidIngredient> fluidIngredient, int count, int cookTime, float experience) {
 		this(category, new ItemStack(result, count), fluidIngredient, cookTime, experience);
 	}
 
-	public TofuPotShapelessRecipeBuilder(TofuPotCategory p_250837_, ItemStack result, FluidIngredient fluidIngredient, int cookTime, float experience) {
+	public TofuPotShapelessRecipeBuilder(TofuPotCategory p_250837_, ItemStack result, Optional<SizedFluidIngredient> fluidIngredient, int cookTime, float experience) {
 		this.category = p_250837_;
 		this.result = result.getItem();
 		this.count = result.getCount();
@@ -53,27 +54,35 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 	/**
 	 * Creates a new builder for a shapeless recipe.
 	 */
-	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory category, FluidIngredient fluidIngredient, ItemLike result, int cookTime, float experience) {
+	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory category, Optional<SizedFluidIngredient> fluidIngredient, ItemLike result, int cookTime, float experience) {
 		return new TofuPotShapelessRecipeBuilder(category, result, fluidIngredient, 1, cookTime, experience);
 	}
 
 	/**
 	 * Creates a new builder for a shapeless recipe.
 	 */
-	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory category, FluidIngredient fluidIngredient, ItemLike result, int count, int cookTime, float experience) {
+	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory category, Optional<SizedFluidIngredient> fluidIngredient, ItemLike result, int count, int cookTime, float experience) {
 		return new TofuPotShapelessRecipeBuilder(category, result, fluidIngredient, count, cookTime, experience);
 	}
 
-	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory p_252339_, FluidIngredient fluidIngredient, ItemStack result, int cookTime, float experience) {
+	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory category, Optional<SizedFluidIngredient> fluidIngredient, ItemLike result) {
+		return new TofuPotShapelessRecipeBuilder(category, result, fluidIngredient, 1, 300, 0.1F);
+	}
+
+	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory p_252339_, Optional<SizedFluidIngredient> fluidIngredient, ItemStack result, int cookTime, float experience) {
 		return new TofuPotShapelessRecipeBuilder(p_252339_, result, fluidIngredient, cookTime, experience);
 	}
 
-	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory p_252339_, FluidIngredient fluidIngredient, ItemStack result, int cookTime) {
+	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory p_252339_, Optional<SizedFluidIngredient> fluidIngredient, ItemStack result, int cookTime) {
 		return new TofuPotShapelessRecipeBuilder(p_252339_, result, fluidIngredient, cookTime, 0.1F);
 	}
 
-	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory p_252339_, FluidIngredient fluidIngredient, ItemStack result) {
+	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory p_252339_, Optional<SizedFluidIngredient> fluidIngredient, ItemStack result) {
 		return new TofuPotShapelessRecipeBuilder(p_252339_, result, fluidIngredient, 300, 0.1F);
+	}
+
+	public static TofuPotShapelessRecipeBuilder shapeless(TofuPotCategory p_252339_, ItemStack result) {
+		return new TofuPotShapelessRecipeBuilder(p_252339_, result, Optional.empty(), 300, 0.1F);
 	}
 
 	/**

@@ -3,7 +3,6 @@
   "category": "meal",
   "cook_time": 400,
   "experience": 0.6,
-  "fluid": [],
   "ingredients": [
     {
       "item": "minecraft:brown_mushroom"

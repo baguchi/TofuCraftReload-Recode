@@ -4,7 +4,10 @@
   "cook_time": 100,
   "experience": 0.1,
   "fluid": {
-    "fluid": "minecraft:water"
+    "amount": 200,
+    "ingredient": {
+      "fluid": "minecraft:water"
+    }
   },
   "ingredients": [
     [
