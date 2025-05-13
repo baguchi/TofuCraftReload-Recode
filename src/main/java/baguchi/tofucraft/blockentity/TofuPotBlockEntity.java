@@ -313,6 +313,14 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		ExperienceOrb.award(level, pos, expTotal);
 	}
 
+	@Override
+	public void preRemoveSideEffects(BlockPos p_393693_, BlockState p_393780_) {
+		super.preRemoveSideEffects(p_393693_, p_393780_);
+		if (this.level instanceof ServerLevel serverlevel) {
+			this.getUsedRecipesAndPopExperience(serverlevel, Vec3.atCenterOf(p_393693_));
+		}
+	}
+
 	public boolean isHeated() {
 		if (level == null) return false;
 		return this.isHeated(level, worldPosition);
