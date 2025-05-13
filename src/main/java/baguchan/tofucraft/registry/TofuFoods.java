@@ -138,6 +138,14 @@ public class TofuFoods {
 	public static final FoodProperties SOY_NETHER_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.45F).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200), 1.0F).build();
 	public static final FoodProperties SOY_SOUL_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.45F).effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200), 1.0F).build();
 
+	public static final FoodProperties MONSTER_JERKY = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.2F).build();
+	public static final FoodProperties ROTTEN_PORK = new FoodProperties.Builder()
+			.nutrition(4)
+			.saturationModifier(0.2F)
+			.effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.8F)
+			.build();
+	public static final FoodProperties MONSTER_PORK_JERKY = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.4F).build();
+
 	public static final FoodProperties KINAKO_BREAD = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.7F).build();
 
 	public static final FoodProperties EDAMAME_TEMPLA = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.3F).fast().build();

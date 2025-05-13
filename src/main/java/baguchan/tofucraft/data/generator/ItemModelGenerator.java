@@ -514,6 +514,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.SOY_CHEESE);
 		singleTex(TofuItems.SOY_NETHER_CHEESE);
 		singleTex(TofuItems.SOY_SOUL_CHEESE);
+		singleTex(TofuItems.MONSTER_PORK_JERKY);
+		singleTex(TofuItems.MONSTER_JERKY);
+		singleTex(TofuItems.ROTTEN_PORK);
 
 		singleTex(TofuItems.NATTO_COBWEB);
 		toBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN);

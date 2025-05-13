@@ -177,7 +177,7 @@ public class TofuDiamondToolUtil {
 		}
 
 		if (player.isCreative()) {
-			block.playerWillDestroy(world, pos, state, player);
+			//block.playerWillDestroy(world, pos, state, player);
 			if (block.onDestroyedByPlayer(state, world, pos, player, false, fluidState)) {
 				block.destroy(world, pos, state);
 			}

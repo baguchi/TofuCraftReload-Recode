@@ -156,6 +156,10 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> SOY_NETHER_CHEESE = ITEMS.register("soy_nether_cheese", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_NETHER_CHEESE)));
 	public static final DeferredHolder<Item, Item> SOY_SOUL_CHEESE = ITEMS.register("soy_soul_cheese", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_SOUL_CHEESE)));
 
+	public static final DeferredHolder<Item, Item> MONSTER_JERKY = ITEMS.register("monster_jerky", () -> new Item((new Item.Properties()).food(TofuFoods.MONSTER_JERKY)));
+	public static final DeferredHolder<Item, Item> MONSTER_PORK_JERKY = ITEMS.register("monster_pork_jerky", () -> new Item((new Item.Properties()).food(TofuFoods.MONSTER_PORK_JERKY)));
+	public static final DeferredHolder<Item, Item> ROTTEN_PORK = ITEMS.register("rotten_pork", () -> new Item((new Item.Properties()).food(TofuFoods.ROTTEN_PORK)));
+
 	public static final DeferredHolder<Item, Item> YUDOFU = ITEMS.register("yudofu", () -> new DishItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.YUDOFU)));
 	public static final DeferredHolder<Item, Item> EDAMAME_RICE = ITEMS.register("edamame_rice", () -> new DishItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.EDAMAME_RICE)));
 	public static final DeferredHolder<Item, Item> AGEDASHI_TOFU = ITEMS.register("agedashi_tofu", () -> new DishItem((new Item.Properties()).stacksTo(16).craftRemainder(Items.BOWL).food(TofuFoods.AGEDASHI_TOFU)));

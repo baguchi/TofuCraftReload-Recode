@@ -20,6 +20,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import java.util.Iterator;
+
 
 public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 
@@ -70,17 +72,21 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 		int inputStartX = 44 - 37;
 		int inputStartY = 8 - 4;
 		int borderSlotSize = 18;
-		for (int row = 0; row < 4; ++row) {
-			for (int column = 0; column < 3; ++column) {
-				if (recipeIngredients.size() > (row * 3) + column) {
-					builder.addSlot(RecipeIngredientRole.INPUT,
-							inputStartX + (column * borderSlotSize),
-							inputStartY + (row * borderSlotSize)).addIngredients(recipeIngredients.get((row * 3) + column));
+		Iterator<Ingredient> ingredients = recipeIngredients.iterator();
+		int sizeWidth = 3;
+		int sizeHeight = 4;
+		for (int row = 0; row < sizeHeight; ++row) {
+			for (int column = 0; column < sizeWidth; ++column) {
+				if (!ingredients.hasNext()) {
+					break;
 				}
+				builder.addSlot(RecipeIngredientRole.INPUT,
+						inputStartX + (column * borderSlotSize),
+						inputStartY + (row * borderSlotSize)).addIngredients(ingredients.next());
 			}
 		}
 		builder.addSlot(RecipeIngredientRole.OUTPUT, 130 - 37, 37 - 4).addItemStack(recipe.getResult());
-		if (!recipe.fluidIngredient().isPresent()) {
+		if (recipe.fluidIngredient().isPresent()) {
 			builder.addSlot(RecipeIngredientRole.CATALYST, 130 - 37, 37 - 22).addFluidStack(recipe.fluidIngredient().get().getFluids()[0].getFluid(), recipe.fluidIngredient().get().amount());
 		}
 	}
