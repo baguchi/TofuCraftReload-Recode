@@ -22,8 +22,8 @@ public class TofuRecipeCategories {
 
 
 	public static void init(RegisterRecipeBookCategoriesEvent event) {
-		event.registerBookCategories(RecipeBookType.valueOf("TOFUCRAFT_COOKING"), ImmutableList.of(COOKING_SEARCH, COOKING_MEALS, COOKING_DRINKS, COOKING_MISC));
-		event.registerAggregateCategory(COOKING_SEARCH, ImmutableList.of(COOKING_MEALS, COOKING_DRINKS, COOKING_MISC));
+		event.registerBookCategories(RecipeBookType.valueOf("TOFUCRAFT_COOKING"), ImmutableList.of(COOKING_SEARCH, COOKING_MEALS, COOKING_FAST_FOOD, COOKING_DRINKS, COOKING_MISC));
+		event.registerAggregateCategory(COOKING_SEARCH, ImmutableList.of(COOKING_MEALS, COOKING_FAST_FOOD, COOKING_DRINKS, COOKING_MISC));
 		event.registerRecipeCategoryFinder(TofuRecipes.RECIPETYPE_TOFU_POT.get(), recipe ->
 		{
 			if (recipe.value() instanceof TofuPotRecipe cookingRecipe) {
