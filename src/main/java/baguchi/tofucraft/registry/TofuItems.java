@@ -69,6 +69,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SmithingTemplateItem;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.component.BlocksAttacks;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -151,6 +152,10 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> SOY_CHEESE = ITEMS.registerItem("soy_cheese", (properties) -> new Item((properties).food(TofuFoods.SOY_CHEESE)));
 	public static final DeferredHolder<Item, Item> SOY_NETHER_CHEESE = ITEMS.registerItem("soy_nether_cheese", (properties) -> new Item((properties).food(TofuFoods.SOY_NETHER_CHEESE, TofuConsumables.HELL_FOOD)));
 	public static final DeferredHolder<Item, Item> SOY_SOUL_CHEESE = ITEMS.registerItem("soy_soul_cheese", (properties) -> new Item((properties).food(TofuFoods.SOY_SOUL_CHEESE, TofuConsumables.SOUL_FOOD)));
+	public static final DeferredHolder<Item, Item> MONSTER_JERKY = ITEMS.registerItem("monster_jerky", (properties) -> new Item((properties).food(TofuFoods.MONSTER_JERKY)));
+	public static final DeferredHolder<Item, Item> MONSTER_PORK_JERKY = ITEMS.registerItem("monster_pork_jerky", (properties) -> new Item((properties).food(TofuFoods.MONSTER_PORK_JERKY)));
+	public static final DeferredHolder<Item, Item> ROTTEN_PORK = ITEMS.registerItem("rotten_pork", (properties) -> new Item((properties).food(TofuFoods.ROTTEN_PORK, Consumables.ROTTEN_FLESH)));
+
 
 	public static final DeferredHolder<Item, Item> YUDOFU = ITEMS.registerItem("yudofu", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).usingConvertsTo(Items.BOWL).food(TofuFoods.YUDOFU)));
 	public static final DeferredHolder<Item, Item> EDAMAME_RICE = ITEMS.registerItem("edamame_rice", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).usingConvertsTo(Items.BOWL).food(TofuFoods.EDAMAME_RICE)));

@@ -347,6 +347,10 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.SOY_CHEESE.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOY_NETHER_CHEESE.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOY_SOUL_CHEESE.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.MONSTER_PORK_JERKY.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.MONSTER_JERKY.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.ROTTEN_PORK.get(), ModelTemplates.FLAT_ITEM);
+
 
 		this.generateFlatItem(TofuItems.NATTO_COBWEB.get(), ModelTemplates.FLAT_ITEM);
 

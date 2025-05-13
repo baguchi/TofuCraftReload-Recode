@@ -1,0 +1,17 @@
+{
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "fast_food",
+  "cook_time": 340,
+  "experience": 0.1,
+  "ingredients": [
+    "tofucraft:rotten_pork",
+    "tofucraft:salt",
+    "tofucraft:salt",
+    "tofucraft:salt",
+    "tofucraft:salt"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:monster_pork_jerky"
+  }
+}

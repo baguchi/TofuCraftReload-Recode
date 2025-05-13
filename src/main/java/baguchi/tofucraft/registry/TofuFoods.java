@@ -146,6 +146,12 @@ public class TofuFoods {
 
 	public static final FoodProperties ZUNDA_INGOT = (new FoodProperties.Builder()).nutrition(8).saturationModifier(1F).build();
 
+	public static final FoodProperties MONSTER_JERKY = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.2F).build();
+	public static final FoodProperties ROTTEN_PORK = new FoodProperties.Builder()
+			.nutrition(4)
+			.saturationModifier(0.2F).build();
+	public static final FoodProperties MONSTER_PORK_JERKY = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.4F).build();
+
 
 	private static FoodProperties.Builder stew(int p_150384_) {
 		return (new FoodProperties.Builder()).nutrition(p_150384_).saturationModifier(0.6F);

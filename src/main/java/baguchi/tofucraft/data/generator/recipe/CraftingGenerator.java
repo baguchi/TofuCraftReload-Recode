@@ -1855,6 +1855,18 @@ public class CraftingGenerator extends CraftingDataHelper {
 		cuttingRecipe(this.output, () -> TofuBlocks.TOFUSLATE, () -> TofuBlocks.ISHITOFU_BRICK, 1);
 		cuttingRecipe(this.output, () -> TofuBlocks.TOFU_TERRAIN_ISHI, () -> TofuBlocks.ISHITOFU_BRICK, 1);
 
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, Optional.empty(), TofuItems.MONSTER_JERKY.get(), 340, 0.1F)
+				.requires(Items.ROTTEN_FLESH)
+				.requires(TofuItems.SALT.get(), 4)
+				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(this.output);
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, Optional.empty(), TofuItems.MONSTER_PORK_JERKY.get(), 340, 0.1F)
+				.requires(TofuItems.ROTTEN_PORK.get())
+				.requires(TofuItems.SALT.get(), 4)
+				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(this.output);
+
+
 		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), Ingredient.of(TofuItems.BITTERN_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(this.output, prefix("bittern_to_kinu"));
 		BitternRecipeBuilder.bittern(TofuBlocks.HELLTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_HELL.get(), 1000), Ingredient.of(TofuItems.WARPED_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(this.output, prefix("bittern_to_hell"));
 		BitternRecipeBuilder.bittern(TofuBlocks.SOULTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_SOUL.get(), 1000), Ingredient.of(TofuItems.CRIMSON_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.CRIMSON_BOTTLE.get())).save(this.output, prefix("bittern_to_soul"));
