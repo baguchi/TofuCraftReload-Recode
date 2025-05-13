@@ -1,0 +1,54 @@
+{
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "misc",
+  "cook_time": 200,
+  "experience": 0.2,
+  "fluid": {
+    "amount": 200,
+    "ingredient": {
+      "fluid": "minecraft:water"
+    }
+  },
+  "ingredients": [
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    },
+    {
+      "item": "tofucraft:edamame"
+    }
+  ],
+  "result": {
+    "count": 12,
+    "id": "tofucraft:edamame_boild"
+  }
+}
