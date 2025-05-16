@@ -22,7 +22,6 @@ import baguchi.tofucraft.item.SeedAndRootItem;
 import baguchi.tofucraft.item.SoulFukumameItem;
 import baguchi.tofucraft.item.SoyBallItem;
 import baguchi.tofucraft.item.SoymilkBottleItem;
-import baguchi.tofucraft.item.SpecialBitternItem;
 import baguchi.tofucraft.item.TFBatteryItem;
 import baguchi.tofucraft.item.TofuBookItem;
 import baguchi.tofucraft.item.ZundaIngotItem;
@@ -612,18 +611,36 @@ public class TofuItems {
 		});
 
 		DispenseItemBehavior dispenseitembehavior4 = new DefaultDispenseItemBehavior() {
+			private boolean success = false;
+
 			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
 				BlockPos blockpos = p_123561_.pos().relative(p_123561_.state().getValue(DispenserBlock.FACING));
 				FluidState fluidState = p_123561_.level().getFluidState(blockpos);
-				if (p_123562_.getItem() instanceof SpecialBitternItem specialBitternItem && specialBitternItem.fluidSupplier.get() == fluidState.getType()) {
-					p_123561_.level().setBlock(blockpos, specialBitternItem.blockSupplier.get().defaultBlockState(), 11);
+				ItemStack result = RecipeHelper.getBitternResult(p_123561_.level(), fluidState.getType(), p_123562_.copyWithCount(1));
+				if (result != null) {
+
+					p_123561_.level().setBlock(blockpos, Block.byItem(result.getItem()).defaultBlockState(), 11);
 					p_123561_.level().levelEvent(2001, blockpos, Block.getId(p_123561_.level().getBlockState(blockpos)));
 					p_123562_.shrink(1);
 					this.defaultDispenseItemBehavior.dispense(p_123561_, new ItemStack(Items.GLASS_BOTTLE));
+					setSuccess(true);
 				}
+
 				return p_123562_;
+			}
+
+			public boolean isSuccess() {
+				return this.success;
+			}
+
+			public void setSuccess(boolean p_123574_) {
+				this.success = p_123574_;
+			}
+
+			protected void playSound(BlockSource p_123572_) {
+				p_123572_.level().levelEvent(this.isSuccess() ? 1000 : 1001, p_123572_.pos(), 0);
 			}
 		};
 		DispenserBlock.registerBehavior(CRIMSON_BOTTLE.get(), dispenseitembehavior4);
