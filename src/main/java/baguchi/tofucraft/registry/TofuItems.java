@@ -446,6 +446,10 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> MUSIC_DISC_GREEN_BRANCH = ITEMS.registerItem("music_disc_green_branch", (properties) -> new Item(properties.jukeboxPlayable(TofuJukeboxSongs.GREEN_BRANCH).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
 	public static final DeferredHolder<Item, Item> TOFU_CRAFTERS_BOOK = ITEMS.registerItem("tofu_crafters_book", TofuBookItem::new);
 
+	public static final DeferredHolder<Item, Item> SOY_FORCE_SHARD = ITEMS.registerItem("soy_force_shard", Item::new);
+
+	public static final DeferredHolder<Item, Item> SOY_ORB = ITEMS.registerItem("soy_orb", Item::new);
+
 	private static Supplier<Item> register(String name, Supplier<Item> item) {
 		return ITEMS.register(name, item);
 	}

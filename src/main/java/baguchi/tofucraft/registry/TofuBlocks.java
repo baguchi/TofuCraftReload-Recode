@@ -316,6 +316,7 @@ public class TofuBlocks {
 
 	public static final DeferredBlock<Block> TOFUSLATE = register("tofuslate", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.5F, 4.0F).sound(SoundType.DEEPSLATE));
 	public static final DeferredBlock<Block> TOFUSLATE_TOFU_DIAMOND_ORE = register("tofuslate_tofu_diamond_ore", (properties) -> new DropExperienceBlock(UniformInt.of(3, 5), properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.5F, 4.0F).sound(SoundType.DEEPSLATE));
+	public static final DeferredBlock<Block> TOFUSLATE_SOY_FORCE_ORE = register("tofuslate_soy_force_ore", (properties) -> new DropExperienceBlock(UniformInt.of(4, 6), properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.5F, 4.0F).sound(SoundType.DEEPSLATE));
 	public static final DeferredBlock<Block> ISHI_TOFUGEM_ORE = register("ishi_tofugem_ore", (properties) -> new DropExperienceBlock(UniformInt.of(2, 3), properties), () -> BlockBehaviour.Properties.of().strength(2F, 3.0F).sound(SoundType.CALCITE));
 
 	public static final DeferredBlock<Block> ORE_TOFU_DIAMOND = register("ore_tofu_diamond", (properties) -> new DropExperienceBlock(UniformInt.of(3, 5), properties), () -> BlockBehaviour.Properties.of().strength(0.5F, 1.0F).sound(SoundType.SNOW));

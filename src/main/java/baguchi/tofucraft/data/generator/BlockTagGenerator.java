@@ -47,6 +47,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFUCHEST.get()
 				, TofuBlocks.TOFU_BEDROCK.get()
 				, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get()
+				, TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get()
 				, TofuBlocks.TOFUSLATE.get()
 				, TofuBlocks.TOFU_TERRAIN_ISHI.get()
 				, TofuBlocks.ISHI_TOFUGEM_ORE.get()
@@ -144,6 +145,6 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.BEE_GROWABLES).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get()).add(TofuBlocks.SOYBEAN_PALE.get())
 				.add(TofuBlocks.RICE_CROP.get());
 		this.tag(BlockTags.MAINTAINS_FARMLAND).add(TofuBlocks.SOYBEAN.get());
-		this.tag(Tags.Blocks.ORES).add(TofuBlocks.ORE_TOFUGEM.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuBlocks.ISHI_TOFUGEM_ORE.get());
+		this.tag(Tags.Blocks.ORES).add(TofuBlocks.ORE_TOFUGEM.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get(), TofuBlocks.ISHI_TOFUGEM_ORE.get());
 	}
 }

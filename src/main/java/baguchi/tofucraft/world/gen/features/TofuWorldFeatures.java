@@ -31,13 +31,17 @@ public class TofuWorldFeatures {
 
 	public static final ImmutableList<OreConfiguration.TargetBlockState> ORE_DIAMOND_TARGET_LIST = ImmutableList.of(OreConfiguration.target(TOFU_ORE_REPLACEABLES, TofuBlocks.ORE_TOFU_DIAMOND.get().defaultBlockState()), OreConfiguration.target(TOFUSLATE_ORE_REPLACEABLES, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get().defaultBlockState()));
 	public static final ImmutableList<OreConfiguration.TargetBlockState> ORE_TOFUGEM_TARGET_LIST = ImmutableList.of(OreConfiguration.target(TOFU_ORE_REPLACEABLES, TofuBlocks.ORE_TOFUGEM.get().defaultBlockState()), OreConfiguration.target(TOFUISHI_ORE_REPLACEABLES, TofuBlocks.ISHI_TOFUGEM_ORE.get().defaultBlockState()));
+	public static final ImmutableList<OreConfiguration.TargetBlockState> ORE_SOY_FORCE_TARGET_LIST = ImmutableList.of(OreConfiguration.target(TOFUSLATE_ORE_REPLACEABLES, TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get().defaultBlockState()));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_KINU_TOFU = registerKey("ore_kinu_tofu");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_MINCED_TOFU = registerKey("ore_minced_tofu");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_DIAMOND_SMALL = registerKey("ore_tofu_diamond_small");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_DIAMOND_MEDIUM = registerKey("ore_tofu_diamond_medium");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_DIAMOND_LARGE = registerKey("ore_tofu_diamond_large");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_DIAMOND_BURIED = registerKey("ore_tofu_diamond_buried");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_SOY_FORCE = registerKey("ore_soy_force");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_TOFUGEM_SMALL = registerKey("ore_tofugem_small");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_TOFUGEM_LARGE = registerKey("ore_tofugem_large");
@@ -65,9 +69,13 @@ public class TofuWorldFeatures {
 		FeatureUtils.register(context, ORE_KINU_TOFU, Feature.ORE, new OreConfiguration(ruletest, TofuBlocks.KINUTOFU.get().defaultBlockState(), 20));
 		FeatureUtils.register(context, ORE_MINCED_TOFU, Feature.ORE, new OreConfiguration(ruletest, TofuBlocks.MINCEDTOFU.get().defaultBlockState(), 28));
 
-		FeatureUtils.register(context, ORE_DIAMOND_SMALL, Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 5, 0.2F));
+		FeatureUtils.register(context, ORE_DIAMOND_SMALL, Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 4, 0.0F));
+		FeatureUtils.register(context, ORE_DIAMOND_MEDIUM, Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 8, 0.25F));
 		FeatureUtils.register(context, ORE_DIAMOND_LARGE, Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 12, 0.5F));
 		FeatureUtils.register(context, ORE_DIAMOND_BURIED, Feature.ORE, new OreConfiguration(ORE_DIAMOND_TARGET_LIST, 8, 1.0F));
+
+		FeatureUtils.register(context, ORE_SOY_FORCE, Feature.ORE, new OreConfiguration(ORE_SOY_FORCE_TARGET_LIST, 8, 0.0F));
+
 
 		FeatureUtils.register(context, ORE_TOFUGEM_SMALL, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 6));
 		FeatureUtils.register(context, ORE_TOFUGEM_LARGE, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 10));

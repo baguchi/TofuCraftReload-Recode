@@ -34,6 +34,7 @@ public class TofuBiomeDefaultFeatures {
 		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_TOFU_DIAMOND);
 		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_TOFU_DIAMOND_BURIED);
 		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_TOFU_DIAMOND_LARGE);
+		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_SOY_FORCE);
 		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_TOFUGEM);
 		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_TOFUGEM_LARGE);
 	}

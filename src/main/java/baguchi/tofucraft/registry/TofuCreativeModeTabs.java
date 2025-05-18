@@ -197,6 +197,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TOFU_FARMLAND,
 						TofuBlocks.ORE_TOFUGEM,
 						TofuBlocks.ORE_TOFU_DIAMOND,
+						TofuBlocks.TOFUSLATE_SOY_FORCE_ORE,
 						TofuBlocks.TOFUSLATE,
 						TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE,
 						TofuBlocks.ISHI_TOFUGEM_ORE,
@@ -513,13 +514,17 @@ public class TofuCreativeModeTabs {
 						TofuItems.SOYBALL,
 						TofuItems.ZUNDA,
 						TofuItems.ZUNDAMA,
+						TofuItems.KYONINSO,
+						TofuItems.GELATIN,
 						TofuItems.ZUNDA_INGOT,
 						TofuItems.ZUNDARUBY,
 						TofuItems.TOFUGEM,
 						TofuItems.ADVANCE_TOFUGEM,
 						TofuItems.NATTO_COBWEB,
 						TofuItems.MUSIC_DISC_GREEN_BRANCH,
-						TofuItems.TOFU_CRAFTERS_BOOK).map(itemSupplier -> {
+						TofuItems.TOFU_CRAFTERS_BOOK,
+						TofuItems.SOY_FORCE_SHARD,
+						TofuItems.SOY_ORB).map(itemSupplier -> {
 					return itemSupplier.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());

@@ -81,6 +81,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 		return p_27579_.getBlockState(p_27581_.below()).is(TofuTags.Blocks.TOFU_TERRAIN) && p_27579_.getRawBrightness(p_27581_, 0) > 8;
 	}
 
+	@Override
 	public InteractionResult mobInteract(Player p_28298_, InteractionHand p_28299_) {
 		ItemStack var3 = p_28298_.getItemInHand(p_28299_);
 		if (var3.is(TofuItems.TOFUMETAL.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
@@ -232,10 +233,6 @@ public class TofuPig extends Pig implements ItemInteractable {
 		super.defineSynchedData(builder);
 		builder.define(TOFUPIG_TYPE, "NORMAL");
 		builder.define(DATA_HEALING_TIME, 0);
-	}
-
-	public float getSteeringSpeed() {
-		return (float) this.getAttributeValue(Attributes.MOVEMENT_SPEED) * 0.35F;
 	}
 
 	public boolean isFood(ItemStack p_27600_) {
