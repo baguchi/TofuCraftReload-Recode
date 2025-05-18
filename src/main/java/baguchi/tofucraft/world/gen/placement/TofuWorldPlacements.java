@@ -74,12 +74,12 @@ public class TofuWorldPlacements {
 		PlacementUtils.register(context, ORE_KINU_TOFU, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_KINU_TOFU), commonOrePlacement(8, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top())));
 		PlacementUtils.register(context, ORE_MINCED_TOFU, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_MINCED_TOFU), commonOrePlacement(16, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.top())));
 
-		PlacementUtils.register(context, ORE_TOFU_DIAMOND, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_SMALL), commonOrePlacement(12, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
-		PlacementUtils.register(context, ORE_TOFU_DIAMOND_MEDIUM, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_MEDIUM), commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-4))));
+		PlacementUtils.register(context, ORE_TOFU_DIAMOND, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_SMALL), commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
+		PlacementUtils.register(context, ORE_TOFU_DIAMOND_MEDIUM, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_MEDIUM), commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-4))));
 		PlacementUtils.register(context, ORE_TOFU_DIAMOND_LARGE, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_LARGE), rareOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 		PlacementUtils.register(context, ORE_TOFU_DIAMOND_BURIED, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_DIAMOND_BURIED), commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 
-		PlacementUtils.register(context, ORE_SOY_FORCE, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_SOY_FORCE), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(64))));
+		PlacementUtils.register(context, ORE_SOY_FORCE, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_SOY_FORCE), commonOrePlacement(18, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(64))));
 
 
 		PlacementUtils.register(context, ORE_TOFUGEM, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_TOFUGEM_SMALL), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(136), VerticalAnchor.top())));
