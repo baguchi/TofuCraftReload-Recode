@@ -44,7 +44,7 @@
       "name": "TOFUCRAFT_TF_SEARCH",
       "constructor": "(Ljava/util/function/Supplier;)V",
       "parameters": {
-        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "class": "baguchan/tofucraft/TofuClientEnumExtensions",
         "field": "PROXY_TF_SEARCH"
       }
     },
@@ -53,7 +53,7 @@
       "name": "TOFUCRAFT_TF_MECHA",
       "constructor": "(Ljava/util/function/Supplier;)V",
       "parameters": {
-        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "class": "baguchan/tofucraft/TofuClientEnumExtensions",
         "field": "PROXY_TF_MECHA"
       }
     },
@@ -62,7 +62,7 @@
       "name": "TOFUCRAFT_TF_MISC",
       "constructor": "(Ljava/util/function/Supplier;)V",
       "parameters": {
-        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "class": "baguchan/tofucraft/TofuClientEnumExtensions",
         "field": "PROXY_TF_MISC"
       }
     },
@@ -71,7 +71,7 @@
       "name": "TOFUCRAFT_COOKING_SEARCH",
       "constructor": "(Ljava/util/function/Supplier;)V",
       "parameters": {
-        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "class": "baguchan/tofucraft/TofuClientEnumExtensions",
         "field": "PROXY_COOKING_SEARCH"
       }
     },
@@ -80,7 +80,7 @@
       "name": "TOFUCRAFT_COOKING_FAST_FOODS",
       "constructor": "(Ljava/util/function/Supplier;)V",
       "parameters": {
-        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "class": "baguchan/tofucraft/TofuClientEnumExtensions",
         "field": "PROXY_COOKING_FAST_FOODS"
       }
     },
@@ -89,7 +89,7 @@
       "name": "TOFUCRAFT_COOKING_MEALS",
       "constructor": "(Ljava/util/function/Supplier;)V",
       "parameters": {
-        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "class": "baguchan/tofucraft/TofuClientEnumExtensions",
         "field": "PROXY_COOKING_MEALS"
       }
     },
@@ -98,7 +98,7 @@
       "name": "TOFUCRAFT_COOKING_DRINKS",
       "constructor": "(Ljava/util/function/Supplier;)V",
       "parameters": {
-        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "class": "baguchan/tofucraft/TofuClientEnumExtensions",
         "field": "PROXY_COOKING_DRINKS"
       }
     },
@@ -107,7 +107,7 @@
       "name": "TOFUCRAFT_COOKING_MISC",
       "constructor": "(Ljava/util/function/Supplier;)V",
       "parameters": {
-        "class": "baguchan/tofucraft/TofuEnumExtensions",
+        "class": "baguchan/tofucraft/TofuClientEnumExtensions",
         "field": "PROXY_COOKING_MISC"
       }
     }
