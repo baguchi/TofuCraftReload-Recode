@@ -86,7 +86,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	private static final EntityDataAccessor<Boolean> ANGRY = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 
 
-	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "attack_boost"), 0.1D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "attack_boost"), 0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
 	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "armor_boost"), -0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
