@@ -312,7 +312,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 	}
 
 	private boolean isHeated(Level level, BlockPos worldPosition) {
-		return level.getBlockState(worldPosition.below()).is(BlockTags.FIRE);
+		return level.getBlockState(worldPosition.below()).is(BlockTags.FIRE) || level.getBlockState(worldPosition.below()).is(BlockTags.CAMPFIRES);
 	}
 
 	public NonNullList<ItemStack> getInventory() {
