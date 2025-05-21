@@ -96,7 +96,7 @@ public class CommonEvents {
 	public static void onDamage(LivingDamageEvent.Post event) {
 		TofuLivingAttachment attachment = event.getEntity().getData(TofuAttachments.TOFU_LIVING.get());
 
-		if (event.getEntity().hasEffect(TofuEffects.HEART_RECOVER)) {
+		if (event.getEntity().hasEffect(TofuEffects.HEART_RECOVER) && attachment.getRecoverHealth() > event.getNewDamage()) {
 			attachment.setRecoverHealth(event.getNewDamage());
 		}
 	}
