@@ -238,7 +238,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFU_TERRAIN_ISHI.get());
 		dropSelf(TofuBlocks.TOFUSLATE.get());
 		this.add(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), createTofuDiamondOreDrop(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuItems.TOFUDIAMOND_NUGGET.get()));
-		this.add(TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get(), createTofuDiamondOreDrop(TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get(), TofuItems.SOY_FORCE_SHARD.get()));
+		this.add(TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get(), createTofuForceOreDrop(TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get(), TofuItems.SOY_FORCE_SHARD.get()));
 		this.add(TofuBlocks.ORE_TOFU_DIAMOND.get(), createTofuDiamondOreDrop(TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuItems.TOFUDIAMOND_NUGGET.get()));
 		this.add(TofuBlocks.ORE_TOFUGEM.get(), createTofuGemOreDrop(TofuBlocks.ORE_TOFUGEM.get(), TofuItems.TOFUGEM.get()));
 		this.add(TofuBlocks.ISHI_TOFUGEM_ORE.get(), createTofuGemOreDrop(TofuBlocks.ISHI_TOFUGEM_ORE.get(), TofuItems.TOFUGEM.get()));
@@ -386,7 +386,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {
-		return createSilkTouchDispatchTable(p_124140_, applyExplosionDecay(p_124140_, LootItem.lootTableItem(p_124141_).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))).apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE)))));
+		return createSilkTouchDispatchTable(p_124140_, applyExplosionDecay(p_124140_, LootItem.lootTableItem(p_124141_).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))).apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE)))));
 	}
 
 	protected LootTable.Builder createTofuGemOreDrop(Block p_124140_, Item p_124141_) {
