@@ -46,6 +46,7 @@ import baguchi.tofucraft.client.screen.TFOvenScreen;
 import baguchi.tofucraft.client.screen.TFStorageScreen;
 import baguchi.tofucraft.client.screen.TfCraftingTableScreen;
 import baguchi.tofucraft.client.screen.TofuPotScreen;
+import baguchi.tofucraft.mixin.client.GuiAccessor;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -58,8 +59,10 @@ import baguchi.tofucraft.registry.TofuWoodTypes;
 import baguchi.tofucraft.utils.ClientUtils;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.Util;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.player.LocalPlayer;
@@ -72,6 +75,10 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -93,7 +100,8 @@ import org.jetbrains.annotations.Nullable;
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ClientRegistrar {
-	private static final ResourceLocation TEXTURE_SOYHEARTS = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/soy_hearts.png");
+	private static final ResourceLocation TEXTURE_RECOVER_HEART = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container");
+	private static final ResourceLocation TEXTURE_RECOVER_HEART_HALF = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container_half");
 
 	public static void setup(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
@@ -370,6 +378,105 @@ public class ClientRegistrar {
 				renderTofuPortalOverlay(guiGraphics, minecraft, window, player.getData(TofuAttachments.TOFU_LIVING.get()), partialTicks);
 			}
 		});
+		event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "recover_hearts"), (guiGraphics, partialTicks) -> {
+			Minecraft minecraft = Minecraft.getInstance();
+			Window window = minecraft.getWindow();
+			Gui gui = minecraft.gui;
+			LocalPlayer player = minecraft.player;
+			if (player != null) {
+				renderRecoverHearts(guiGraphics, minecraft, window, gui, player);
+			}
+		});
+	}
+
+	private static void renderRecoverHearts(GuiGraphics guiGraphics, Minecraft minecraft, Window window, Gui gui, LocalPlayer player) {
+		GuiAccessor guiAccessor = (GuiAccessor) gui;
+
+		if (minecraft.gameMode.canHurtPlayer()) {
+			var tofuLivingAttachment = player.getData(TofuAttachments.TOFU_LIVING);
+			if (tofuLivingAttachment.getRecoverHealth() > 0) {
+				AttributeInstance attributeInstance = player.getAttribute(Attributes.MAX_HEALTH);
+				if (attributeInstance != null) {
+					int lastRecoverHealth = 0;
+					int lastOverallHealth = 0;
+
+					double overallHealth = attributeInstance.getValue();
+					double maxRecoverHealth = tofuLivingAttachment.getRecoverHealth();
+
+					int maxDefaultHealth = Mth.ceil(overallHealth);
+
+					int currentOverallHealth = Mth.ceil(player.getHealth());
+					int currentRecoverHealth = Mth.ceil(maxRecoverHealth);
+
+					boolean highlight = guiAccessor.tofucraft$getHealthBlinkTime() > (long) gui.getGuiTicks() && (guiAccessor.tofucraft$getHealthBlinkTime() - (long) gui.getGuiTicks()) / 3L % 2L == 1L;
+					if (Util.getMillis() - guiAccessor.tofucraft$getLastHealthTime() > 1000L) {
+						lastOverallHealth = currentOverallHealth;
+						lastRecoverHealth = currentRecoverHealth;
+					}
+					//do NOT cast this to long. This is the only way the hearts will properly shake when health is low
+					//the only time the shaking will be off is if the player's max health attribute base is below 0. This probably can't be fixed.
+					guiAccessor.tofucraft$getRandom().setSeed(gui.getGuiTicks() * 312871L);
+
+					float displayOverallHealth = Math.max(lastOverallHealth, currentOverallHealth);
+					float displayRecoverHealth = Mth.clamp(Math.max(lastRecoverHealth, currentRecoverHealth), 0, maxDefaultHealth);
+					int absorption = Mth.ceil(player.getAbsorptionAmount());
+
+					int healthRows = Mth.ceil((displayOverallHealth + absorption) / 2.0F / 10.0F);
+					int rowHeight = Math.max(10 - (healthRows - 2), 3);
+
+					int left = window.getGuiScaledWidth() / 2 - 91;
+					int top = window.getGuiScaledHeight() - 39;
+
+					int regen = Integer.MIN_VALUE;
+					if (player.hasEffect(MobEffects.REGENERATION)) {
+						regen = gui.getGuiTicks() % Mth.ceil(displayOverallHealth + 5.0F);
+					}
+
+					renderHearts(guiGraphics, player, gui, left, top, regen, displayOverallHealth, displayRecoverHealth, maxDefaultHealth, currentRecoverHealth, rowHeight, absorption, highlight);
+
+				}
+			}
+		}
+	}
+
+	private static void renderHearts(GuiGraphics guiGraphics, Player player, Gui gui, int left, int top, int regen, float displayOverallHealth, float displayRecoverHealth, int maxDefaultHealth, int recoverHealth, int rowHeight, int absorption, boolean highlight) {
+		GuiAccessor guiAccessor = (GuiAccessor) gui;
+		int overallHearts = Mth.ceil((double) displayOverallHealth / 2.0);
+		int recoverHearts = Mth.ceil((double) displayRecoverHealth / 2.0);
+		int maxDefaultHearts = Mth.ceil((double) maxDefaultHealth / 2.0);
+		for (int currentHeart = maxDefaultHearts - 1; currentHeart >= overallHearts - 1; --currentHeart) {
+			int x = left + (currentHeart) % 10 * 8;
+			int y = top - (currentHeart) / 10 * rowHeight;
+
+			if (Mth.ceil(player.getHealth()) + absorption <= 4) {
+				y += guiAccessor.tofucraft$getRandom().nextInt(2);
+			}
+			if ((maxDefaultHearts >= 10 ? overallHearts - 10 : maxDefaultHearts) < overallHearts && Math.min(maxDefaultHearts, 10) - 0 == regen) {
+				y -= 2;
+			}
+
+			int i2 = currentHeart * 2;
+			boolean flag3 = i2 + 1 == displayOverallHealth;
+			boolean flag4 = recoverHearts * 2 == recoverHealth;
+
+			if (currentHeart < (flag4 ? overallHearts + recoverHearts : overallHearts + recoverHearts - 1)) {
+				if (currentHeart != overallHearts - 2) {
+					if (!flag3 && currentHeart != overallHearts - 1) {
+						renderHeart(guiGraphics, TEXTURE_RECOVER_HEART, x, y);
+					} else if (flag3) {
+						renderHeart(guiGraphics, TEXTURE_RECOVER_HEART_HALF, x, y);
+
+					}
+				}
+			}
+
+		}
+	}
+
+	private static void renderHeart(
+			GuiGraphics p_283024_, ResourceLocation p_281393_, int p_283636_, int p_283279_
+	) {
+		p_283024_.blitSprite(RenderType::guiTextured, p_281393_, p_283636_, p_283279_, 9, 9);
 	}
 
 	private static void renderTofuPortalOverlay(GuiGraphics guiGraphics, Minecraft minecraft, Window window, TofuLivingAttachment handler, DeltaTracker partialTicks) {

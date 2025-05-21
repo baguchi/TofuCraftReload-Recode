@@ -3,6 +3,7 @@ package baguchi.tofucraft;
 import baguchi.tofucraft.attachment.SoyHealthAttachment;
 import baguchi.tofucraft.attachment.TofuLivingAttachment;
 import baguchi.tofucraft.item.armor.BreakableTofuBootsItem;
+import baguchi.tofucraft.network.RecoverHealthPacket;
 import baguchi.tofucraft.registry.TofuAdvancements;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -70,6 +71,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.SelectMusicEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
@@ -83,6 +85,7 @@ import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.village.VillageSiegeEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -96,8 +99,8 @@ public class CommonEvents {
 	public static void onDamage(LivingDamageEvent.Post event) {
 		TofuLivingAttachment attachment = event.getEntity().getData(TofuAttachments.TOFU_LIVING.get());
 
-		if (event.getEntity().hasEffect(TofuEffects.HEART_RECOVER) && attachment.getRecoverHealth() > event.getNewDamage()) {
-			attachment.setRecoverHealth(event.getNewDamage());
+		if (event.getEntity().hasEffect(TofuEffects.HEART_RECOVER) && attachment.getRecoverHealth() <= event.getNewDamage()) {
+			attachment.setRecoverHealth(event.getEntity(), event.getNewDamage());
 		}
 	}
 
@@ -418,6 +421,30 @@ public class CommonEvents {
 				ResourceLocation.parse("tofucraft:village/tofu_craftsman_house_snowy_1"), 10);
 		JigsawHelper.registerJigsaw(event.getServer(), ResourceLocation.parse("minecraft:village/desert/houses"),
 				ResourceLocation.parse("tofucraft:village/tofu_craftsman_house_desert_1"), 10);
+	}
+
+	@SubscribeEvent
+	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+		Player playerEntity = event.getEntity();
+
+		if (playerEntity instanceof LivingEntity livingEntity) {
+			if (!playerEntity.level().isClientSide()) {
+				TofuLivingAttachment attachment = playerEntity.getData(TofuAttachments.TOFU_LIVING.get());
+				PacketDistributor.sendToPlayersTrackingEntityAndSelf(playerEntity, new RecoverHealthPacket(playerEntity, attachment.getRecoverHealth()));
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onEntitySpawn(EntityJoinLevelEvent event) {
+		Entity entity = event.getEntity();
+
+		if (entity instanceof LivingEntity livingEntity) {
+			if (!entity.level().isClientSide()) {
+				TofuLivingAttachment attachment = livingEntity.getData(TofuAttachments.TOFU_LIVING.get());
+				PacketDistributor.sendToPlayersTrackingEntityAndSelf(livingEntity, new RecoverHealthPacket(livingEntity, attachment.getRecoverHealth()));
+			}
+		}
 	}
 
 	@SubscribeEvent

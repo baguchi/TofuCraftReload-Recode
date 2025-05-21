@@ -1,5 +1,6 @@
 package baguchi.tofucraft.attachment;
 
+import baguchi.tofucraft.network.RecoverHealthPacket;
 import baguchi.tofucraft.utils.ClientUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -8,8 +9,10 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.UnknownNullability;
 
 public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
@@ -37,8 +40,11 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 		return this.wolfEatCooldown > 0;
 	}
 
-	public void setRecoverHealth(float recoverHealth) {
+	public void setRecoverHealth(Entity entity, float recoverHealth) {
 		this.recoverHealth = recoverHealth;
+		if (!entity.level().isClientSide() && entity instanceof LivingEntity living) {
+			PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, new RecoverHealthPacket(living, recoverHealth));
+		}
 	}
 
 	public float getRecoverHealth() {
