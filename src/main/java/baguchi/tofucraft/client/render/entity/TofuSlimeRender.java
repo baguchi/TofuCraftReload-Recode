@@ -2,6 +2,7 @@ package baguchi.tofucraft.client.render.entity;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.render.layer.TofuSlimeOuterLayer;
+import baguchi.tofucraft.client.render.layer.ZundaTofuSlimeOuterLayer;
 import baguchi.tofucraft.client.render.state.TofuSlimeRenderState;
 import baguchi.tofucraft.entity.TofuSlime;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -23,6 +24,7 @@ public class TofuSlimeRender extends MobRenderer<TofuSlime, TofuSlimeRenderState
 	public TofuSlimeRender(EntityRendererProvider.Context p_174391_) {
 		super(p_174391_, new SlimeModel(p_174391_.bakeLayer(ModelLayers.SLIME)), 0.25F);
 		this.addLayer(new TofuSlimeOuterLayer<>(this, p_174391_.getModelSet()));
+		this.addLayer(new ZundaTofuSlimeOuterLayer(this, p_174391_.getModelSet()));
 	}
 
 	public void render(TofuSlimeRenderState p_364733_, PoseStack p_115952_, MultiBufferSource p_115953_, int p_115954_) {

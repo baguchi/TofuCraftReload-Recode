@@ -514,6 +514,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.SOYBALL,
 						TofuItems.ZUNDA,
 						TofuItems.ZUNDAMA,
+						TofuItems.UNSTABLE_ZUNDAMA,
 						TofuItems.KYONINSO,
 						TofuItems.GELATIN,
 						TofuItems.ZUNDA_INGOT,

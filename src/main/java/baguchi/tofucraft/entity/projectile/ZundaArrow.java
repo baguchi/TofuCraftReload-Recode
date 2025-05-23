@@ -2,6 +2,7 @@ package baguchi.tofucraft.entity.projectile;
 
 import baguchi.tofucraft.entity.TofuSlime;
 import baguchi.tofucraft.registry.TofuDamageTypes;
+import baguchi.tofucraft.registry.TofuEffects;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuParticleTypes;
@@ -118,6 +119,11 @@ public class ZundaArrow extends AbstractArrow {
 							}
 						}
 
+						if (p_36757_.getEntity() instanceof LivingEntity) {
+							MobEffectInstance mobeffectinstance2 = new MobEffectInstance(TofuEffects.ZUNDAFIED, (int) (this.duration * j * 2), 0);
+							((LivingEntity) p_36757_.getEntity()).addEffect(mobeffectinstance2, this.getEffectSource());
+						}
+
 						this.playSound(SoundEvents.SLIME_ATTACK, 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
 						this.discard();
 					} else {
@@ -136,6 +142,8 @@ public class ZundaArrow extends AbstractArrow {
 					if (p_36757_.getEntity() instanceof LivingEntity) {
 						MobEffectInstance mobeffectinstance = new MobEffectInstance(MobEffects.REGENERATION, (int) (this.duration * j), 0);
 						((LivingEntity) p_36757_.getEntity()).addEffect(mobeffectinstance, this.getEffectSource());
+						MobEffectInstance mobeffectinstance2 = new MobEffectInstance(TofuEffects.ZUNDAFIED, (int) (this.duration * j * 2), 0);
+						((LivingEntity) p_36757_.getEntity()).addEffect(mobeffectinstance2, this.getEffectSource());
 						this.discard();
 					}
 				}

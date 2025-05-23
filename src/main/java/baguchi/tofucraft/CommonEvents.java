@@ -4,9 +4,11 @@ import baguchi.tofucraft.attachment.SoyHealthAttachment;
 import baguchi.tofucraft.attachment.TofuLivingAttachment;
 import baguchi.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchi.tofucraft.network.RecoverHealthPacket;
+import baguchi.tofucraft.network.ZundafiedPacket;
 import baguchi.tofucraft.registry.TofuAdvancements;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlocks;
+import baguchi.tofucraft.registry.TofuDamageTypes;
 import baguchi.tofucraft.registry.TofuDataComponents;
 import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuEffects;
@@ -56,6 +58,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -80,6 +83,7 @@ import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.level.ExplosionEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
@@ -90,6 +94,8 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+
+import static net.minecraft.world.level.ServerExplosion.getSeenPercent;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
@@ -427,12 +433,13 @@ public class CommonEvents {
 	public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		Player playerEntity = event.getEntity();
 
-		if (playerEntity instanceof LivingEntity livingEntity) {
 			if (!playerEntity.level().isClientSide()) {
 				TofuLivingAttachment attachment = playerEntity.getData(TofuAttachments.TOFU_LIVING.get());
 				PacketDistributor.sendToPlayersTrackingEntityAndSelf(playerEntity, new RecoverHealthPacket(playerEntity, attachment.getRecoverHealth()));
+				PacketDistributor.sendToPlayersTrackingEntityAndSelf(playerEntity, new ZundafiedPacket(playerEntity, attachment.isZundafied()));
+
 			}
-		}
+
 	}
 
 	@SubscribeEvent
@@ -443,6 +450,8 @@ public class CommonEvents {
 			if (!entity.level().isClientSide()) {
 				TofuLivingAttachment attachment = livingEntity.getData(TofuAttachments.TOFU_LIVING.get());
 				PacketDistributor.sendToPlayersTrackingEntityAndSelf(livingEntity, new RecoverHealthPacket(livingEntity, attachment.getRecoverHealth()));
+				PacketDistributor.sendToPlayersTrackingEntityAndSelf(livingEntity, new ZundafiedPacket(livingEntity, attachment.isZundafied()));
+
 			}
 		}
 	}
@@ -503,6 +512,49 @@ public class CommonEvents {
 					event.setCancellationResult(InteractionResult.SUCCESS);
 				}
 			}
+		}
+	}
+
+
+	@SubscribeEvent
+	public static void onExplosion(ExplosionEvent.Detonate event) {
+		if (event.getExplosion().getDamageSource().is(TofuDamageTypes.ZUNDA)) {
+			event.getAffectedEntities().forEach(entity -> {
+				Vec3 p = event.getExplosion().center();
+				float f = event.getExplosion().radius() * 2.0F;
+
+				double dist = entity.distanceToSqr(p) / f;
+				if (dist <= 1.0F) {
+					float f2 = getSeenPercent(p, entity);
+					if (entity instanceof LivingEntity livingEntity) {
+						livingEntity.addEffect(new MobEffectInstance(TofuEffects.ZUNDAFIED, (int) (getEntityDamageAmount(event.getExplosion(), entity, f2) * 40)));
+					}
+				}
+
+			});
+
+		}
+	}
+
+	public static float getEntityDamageAmount(Explosion p_311793_, Entity p_311929_, float p_364677_) {
+		float f = p_311793_.radius() * 2.0F;
+		Vec3 vec3 = p_311793_.center();
+		double d0 = Math.sqrt(p_311929_.distanceToSqr(vec3)) / (double) f;
+		double d1 = ((double) 1.0F - d0) * (double) p_364677_;
+		return (float) ((d1 * d1 + d1) / (double) 2.0F * (double) 7.0F * (double) f + (double) 1.0F);
+	}
+
+	@SubscribeEvent
+	public static void onPotionEffectAdd(MobEffectEvent.Added event) {
+		if (event.getEffectInstance().is(TofuEffects.ZUNDAFIED)) {
+			event.getEntity().getData(TofuAttachments.TOFU_LIVING.get()).setZundafied(event.getEntity(), true);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPotionEffectRemove(MobEffectEvent.Remove event) {
+		if (event.getEffect().is(TofuEffects.ZUNDAFIED)) {
+			event.getEntity().getData(TofuAttachments.TOFU_LIVING.get()).setZundafied(event.getEntity(), false);
 		}
 	}
 

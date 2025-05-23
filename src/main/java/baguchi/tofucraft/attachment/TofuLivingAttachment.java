@@ -1,6 +1,7 @@
 package baguchi.tofucraft.attachment;
 
 import baguchi.tofucraft.network.RecoverHealthPacket;
+import baguchi.tofucraft.network.ZundafiedPacket;
 import baguchi.tofucraft.utils.ClientUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -22,6 +23,7 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 	public float prevPortalAnimTime = 0;
 	public float recoverHealth = 0;
 	public int wolfEatCooldown;
+	public boolean zundafied = false;
 
 	public void tick(Entity entity) {
 		if (entity instanceof Player player) {
@@ -49,6 +51,17 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 
 	public float getRecoverHealth() {
 		return recoverHealth;
+	}
+
+	public void setZundafied(Entity entity, boolean zundafied) {
+		this.zundafied = zundafied;
+		if (!entity.level().isClientSide() && entity instanceof LivingEntity living) {
+			PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, new ZundafiedPacket(living, zundafied));
+		}
+	}
+
+	public boolean isZundafied() {
+		return zundafied;
 	}
 
 	public void setInPortal(boolean inPortal) {
@@ -129,6 +142,7 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 	public @UnknownNullability CompoundTag serializeNBT(HolderLookup.Provider provider) {
 		CompoundTag nbt = new CompoundTag();
 		nbt.putFloat("recover_health", this.recoverHealth);
+		nbt.putBoolean("zundafied", this.zundafied);
 		if (wolfEatCooldown > 0) {
 			nbt.putInt("wolf_eat_cooldown", this.wolfEatCooldown);
 		}
@@ -138,6 +152,7 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 	@Override
 	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
 		this.recoverHealth = nbt.getFloatOr("recover_health", 0);
+		this.zundafied = nbt.getBooleanOr("zundafied", false);
 		if (nbt.contains("wolf_eat_cooldown")) {
 			this.wolfEatCooldown = nbt.getIntOr("wolf_eat_cooldown", 0);
 		}

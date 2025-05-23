@@ -1,5 +1,6 @@
 package baguchi.tofucraft.entity;
 
+import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBiomes;
 import baguchi.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
@@ -78,7 +79,7 @@ public class TofuSlime extends Slime {
 					this.doZundaConversion();
 				}
 			} else if (this.convertsOnZunda()) {
-				if (this.level().getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST)) {
+				if (this.level().getBiome(this.blockPosition()).is(TofuBiomes.ZUNDA_FOREST) || this.hasData(TofuAttachments.TOFU_LIVING.get()) && this.getData(TofuAttachments.TOFU_LIVING.get()).isZundafied()) {
 					++this.onZundaTime;
 					if (this.onZundaTime >= 600) {
 						this.startZundaConversion(300);

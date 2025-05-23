@@ -7,6 +7,8 @@ import baguchi.tofucraft.client.particle.ParticleZundaCloud;
 import baguchi.tofucraft.client.particle.SoymilkDripParticle;
 import baguchi.tofucraft.client.particle.SoymilkSplashParticle;
 import baguchi.tofucraft.client.particle.TofuPortalParticle;
+import baguchi.tofucraft.client.particle.ZundaExplosionParticle;
+import baguchi.tofucraft.client.particle.ZundaExplosionSeedParticle;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -33,6 +35,9 @@ public class TofuParticleTypes {
 	public static final Supplier<SimpleParticleType> ZUNDA_CLOUD = PARTICLE_TYPES.register("zunda_cloud", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> SIMPLE_STINKE = PARTICLE_TYPES.register("simple_stink", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> STINK = PARTICLE_TYPES.register("stink", () -> new SimpleParticleType(false));
+	public static final Supplier<SimpleParticleType> ZUNDA_EXPLOSION = PARTICLE_TYPES.register("zunda_explosion", () -> new SimpleParticleType(true));
+	public static final Supplier<SimpleParticleType> ZUNDA_EMIT = PARTICLE_TYPES.register("zunda_emit", () -> new SimpleParticleType(true));
+
 	@SubscribeEvent
 	public static void registerFactories(RegisterParticleProvidersEvent event) {
 		event.registerSpriteSet(TofuParticleTypes.TOFU_PORTAL.get(), TofuPortalParticle.Provider::new);
@@ -45,6 +50,8 @@ public class TofuParticleTypes {
 		event.registerSpriteSet(TofuParticleTypes.SOYSAUCE_SPLASH.get(), SoymilkSplashParticle.SoysauceProvider::new);
 		event.registerSpriteSet(TofuParticleTypes.ZUNDA_CLOUD.get(), ParticleZundaCloud.CloudFactory::new);
 		event.registerSpriteSet(TofuParticleTypes.STINK.get(), ParticleStink.StinkFactory::new);
+		event.registerSpriteSet(TofuParticleTypes.ZUNDA_EXPLOSION.get(), ZundaExplosionParticle.Provider::new);
+		event.registerSpecial(TofuParticleTypes.ZUNDA_EMIT.get(), new ZundaExplosionSeedParticle.Provider<>());
 		event.registerSpriteSet(TofuParticleTypes.SIMPLE_STINKE.get(), ParticleSimpleStink.Provider::new);
 	}
 }

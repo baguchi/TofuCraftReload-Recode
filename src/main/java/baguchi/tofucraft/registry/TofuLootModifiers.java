@@ -2,6 +2,7 @@ package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.loot.SeedDropModifier;
+import baguchi.tofucraft.loot.ZundaModifier;
 import com.mojang.serialization.MapCodec;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -13,4 +14,5 @@ public class TofuLootModifiers {
 	public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> LOOT_MODIFIERS = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, TofuCraftReload.MODID);
 
 	public static final Supplier<MapCodec<SeedDropModifier>> ADD_ITEM = LOOT_MODIFIERS.register("seed_drops", SeedDropModifier.CODEC);
+	public static final Supplier<MapCodec<ZundaModifier>> ZUNDA = LOOT_MODIFIERS.register("zunda", ZundaModifier.CODEC);
 }

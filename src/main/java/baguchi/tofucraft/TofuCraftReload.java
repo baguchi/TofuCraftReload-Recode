@@ -12,6 +12,7 @@ import baguchi.tofucraft.network.SaltFurnaceBitternPacket;
 import baguchi.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchi.tofucraft.network.SoyMilkDrinkedPacket;
 import baguchi.tofucraft.network.TFStorageSoymilkPacket;
+import baguchi.tofucraft.network.ZundafiedPacket;
 import baguchi.tofucraft.registry.ModInteractionInformations;
 import baguchi.tofucraft.registry.TofuAdvancements;
 import baguchi.tofucraft.registry.TofuAttachments;
@@ -202,8 +203,8 @@ public class TofuCraftReload {
 		registrar.playToClient(BossInfoPacket.Display.TYPE, BossInfoPacket.Display.STREAM_CODEC, BossInfoPacket.Display::execute);
 		registrar.playToClient(BossInfoPacket.Remove.TYPE, BossInfoPacket.Remove.STREAM_CODEC, BossInfoPacket.Remove::execute);
 		registrar.playBidirectional(RecoverHealthPacket.TYPE, RecoverHealthPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playBidirectional(ZundafiedPacket.TYPE, ZundafiedPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 	}
-
 
 	public static ResourceLocation prefix(String name) {
 		return ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name.toLowerCase(Locale.ROOT));

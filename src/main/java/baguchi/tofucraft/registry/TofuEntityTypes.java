@@ -22,6 +22,7 @@ import baguchi.tofucraft.entity.projectile.NattoStringEntity;
 import baguchi.tofucraft.entity.projectile.NetherFukumameEntity;
 import baguchi.tofucraft.entity.projectile.SoulFukumameEntity;
 import baguchi.tofucraft.entity.projectile.SoyballEntity;
+import baguchi.tofucraft.entity.projectile.UnstableZundamaEntity;
 import baguchi.tofucraft.entity.projectile.ZundaArrow;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -92,6 +93,8 @@ public class TofuEntityTypes {
 			.sized(0.25F, 0.25F).updateInterval(30).build(prefix("soul_fukumame")));
 	public static final Supplier<EntityType<SoyballEntity>> SOYBALL = ENTITIES.register("soyball", () -> EntityType.Builder.<SoyballEntity>of(SoyballEntity::new, MobCategory.MISC)
 			.sized(0.3F, 0.3F).updateInterval(30).build(prefix("soyball")));
+	public static final Supplier<EntityType<UnstableZundamaEntity>> UNSTABLE_ZUNDAMA = ENTITIES.register("unstable_zundama", () -> EntityType.Builder.<UnstableZundamaEntity>of(UnstableZundamaEntity::new, MobCategory.MISC)
+			.sized(0.3F, 0.3F).updateInterval(30).build(prefix("unstable_zundama")));
 
 
 

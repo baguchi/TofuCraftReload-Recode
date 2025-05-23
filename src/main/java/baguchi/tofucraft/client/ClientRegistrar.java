@@ -37,6 +37,8 @@ import baguchi.tofucraft.client.render.entity.TofunianRender;
 import baguchi.tofucraft.client.render.entity.TravelerTofunianRender;
 import baguchi.tofucraft.client.render.entity.ZundamiteRender;
 import baguchi.tofucraft.client.render.entity.effect.NattoCobWebRender;
+import baguchi.tofucraft.client.render.layer.ZundaLayer;
+import baguchi.tofucraft.client.render.layer.ZundaSlimeOuterLayer;
 import baguchi.tofucraft.client.render.special.TofuShieldSpecialRenderer;
 import baguchi.tofucraft.client.render.special.TofunianStatueSpecialRenderer;
 import baguchi.tofucraft.client.screen.ReceivingTofuLevelScreen;
@@ -57,8 +59,14 @@ import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuWoodTypes;
 import baguchi.tofucraft.utils.ClientUtils;
+import com.google.common.reflect.TypeToken;
+import com.mojang.blaze3d.pipeline.BlendFunction;
+import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.shaders.UniformType;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.Util;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -68,14 +76,20 @@ import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.BoatRenderer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.SlimeRenderer;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -91,10 +105,12 @@ import net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEven
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterRecipeBookSearchCategoriesEvent;
+import net.neoforged.neoforge.client.event.RegisterRenderPipelinesEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+import net.neoforged.neoforge.client.renderstate.RegisterRenderStateModifiersEvent;
 import org.jetbrains.annotations.Nullable;
 
 @OnlyIn(Dist.CLIENT)
@@ -102,6 +118,23 @@ import org.jetbrains.annotations.Nullable;
 public class ClientRegistrar {
 	private static final ResourceLocation TEXTURE_RECOVER_HEART = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container");
 	private static final ResourceLocation TEXTURE_RECOVER_HEART_HALF = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container_half");
+
+	public static final RenderPipeline ZUNDA =
+			RenderPipeline.builder(RenderPipelines.FOG_NO_COLOR_SNIPPET)
+					.withLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "pipeline/zunda"))
+					.withVertexShader("core/entity")
+					.withFragmentShader("core/entity")
+					.withShaderDefine("ALPHA_CUTOUT", 0.1F)
+					.withShaderDefine("EMISSIVE")
+					.withShaderDefine("NO_OVERLAY")
+					.withShaderDefine("NO_CARDINAL_LIGHTING")
+					.withShaderDefine("APPLY_TEXTURE_MATRIX")
+					.withSampler("Sampler0")
+					.withUniform("TextureMat", UniformType.MATRIX4X4)
+					.withBlend(BlendFunction.ADDITIVE)
+					.withCull(true)
+					.withVertexFormat(DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS)
+					.build();
 
 	public static void setup(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
@@ -328,6 +361,7 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.SOUL_FUKUMAME.get(), SoulFukumameRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.ZUNDA_ARROW.get(), ZundaArrowRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.SOYBALL.get(), SoyballRenderer::new);
+		event.registerEntityRenderer(TofuEntityTypes.UNSTABLE_ZUNDAMA.get(), ThrownItemRenderer::new);
 
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_STRNIG.get(), (context) -> new NattoStringRender<>(context, 1.0F, true));
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_COBWEB.get(), NattoCobWebRender::new);
@@ -367,6 +401,45 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.LEEK_CHEST_BOAT, BoatModel::createChestBoatModel);
 		event.registerLayerDefinition(TofuModelLayers.LEEK_GREEN_CHEST_BOAT, BoatModel::createChestBoatModel);
 	}
+
+	@SubscribeEvent
+	public static void registerLayer(EntityRenderersEvent.AddLayers event) {
+		event.getContext().getEntityRenderDispatcher().getSkinMap().forEach((model, player) ->
+		{
+			if (event.getSkin(model) != null) {
+				if (player instanceof LivingEntityRenderer) {
+					((LivingEntityRenderer<?, ?, ?>) player).addLayer(new ZundaLayer(event.getSkin(model)));
+				}
+			}
+		});
+		event.getEntityTypes().forEach(entityType -> {
+			if (event.getRenderer(entityType) instanceof LivingEntityRenderer r) {
+				r.addLayer(new ZundaLayer(r));
+
+			}
+			if (event.getRenderer(entityType) instanceof SlimeRenderer r) {
+				r.addLayer(new ZundaSlimeOuterLayer(r, event.getEntityModels()));
+			}
+		});
+	}
+
+	@SubscribeEvent
+	public static void registerState(RegisterRenderStateModifiersEvent event) {
+		event.registerEntityModifier(new TypeToken<LivingEntityRenderer<LivingEntity, LivingEntityRenderState, ?>>(LivingEntityRenderer.class) {
+		}, (entity, state) -> {
+			if (entity.hasData(TofuAttachments.TOFU_LIVING)) {
+				if (entity.getData(TofuAttachments.TOFU_LIVING).isZundafied()) {
+					state.setRenderData(ZundaLayer.ZUNDA_KEY, true);
+				}
+			}
+		});
+	}
+
+	@SubscribeEvent
+	public static void registerPipelines(RegisterRenderPipelinesEvent event) {
+		event.registerPipeline(ZUNDA);
+	}
+
 
 	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiLayersEvent event) {
