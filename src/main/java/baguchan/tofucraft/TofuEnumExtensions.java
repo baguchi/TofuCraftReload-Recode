@@ -17,7 +17,7 @@ public class TofuEnumExtensions {
 		return type.cast(switch (idx) {
 			case 0 -> TofuBlocks.TOFU_STEM_PLANKS;
 			case 1 -> "tofucraft:tofu_stem";
-			case 2 -> TofuBlocks.TOFU_STEM_PLANKS;
+			case 2 -> TofuItems.TOFU_STEM_BOAT;
 			case 3 -> TofuItems.TOFU_STEM_CHEST_BOAT;
 			case 4 -> (Supplier<Item>) () -> Items.STICK;
 			default -> throw new IllegalArgumentException("Unexpected parameter index: " + idx);
