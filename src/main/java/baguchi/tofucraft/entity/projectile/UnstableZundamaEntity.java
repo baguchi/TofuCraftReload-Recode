@@ -1,10 +1,6 @@
 package baguchi.tofucraft.entity.projectile;
 
-import baguchi.tofucraft.registry.TofuDamageTypes;
-import baguchi.tofucraft.registry.TofuEntityTypes;
-import baguchi.tofucraft.registry.TofuItems;
-import baguchi.tofucraft.registry.TofuParticleTypes;
-import baguchi.tofucraft.registry.TofuTags;
+import baguchi.tofucraft.registry.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
@@ -15,11 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.ExplosionDamageCalculator;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.SimpleExplosionDamageCalculator;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -28,7 +20,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.Optional;
 
 public class UnstableZundamaEntity extends ThrowableItemProjectile {
-	private static final ExplosionDamageCalculator EXPLOSION_DAMAGE_CALCULATOR = new SimpleExplosionDamageCalculator(
+	public static final ExplosionDamageCalculator EXPLOSION_DAMAGE_CALCULATOR = new SimpleExplosionDamageCalculator(
 			true, true, Optional.of(1.06F), Optional.empty()
 	) {
 		@Override

@@ -55,6 +55,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -70,6 +71,9 @@ import net.minecraft.world.item.SmithingTemplateItem;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.component.Consumables;
+import net.minecraft.world.item.component.DeathProtection;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
+import net.minecraft.world.item.consume_effects.ClearAllStatusEffectsConsumeEffect;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -194,6 +198,13 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> ZUNDAMA = ITEMS.registerItem("zundama", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> UNSTABLE_ZUNDAMA = ITEMS.registerItem("unstable_zundama", (properties) -> new UnstableZundamaItem((properties)));
 	public static final DeferredHolder<Item, Item> ZUNDA_INGOT = ITEMS.registerItem("zunda_ingot", (properties) -> new ZundaIngotItem((properties.food(TofuFoods.ZUNDA_INGOT))));
+	public static final DeferredHolder<Item, Item> ZUNDA_TOTEM = ITEMS.registerItem("zunda_totem", (properties) -> new Item((properties.stacksTo(1).component(DataComponents.DEATH_PROTECTION, new DeathProtection(List.of(new ClearAllStatusEffectsConsumeEffect(),
+			new ApplyStatusEffectsConsumeEffect(
+					List.of(
+							new MobEffectInstance(TofuEffects.HEART_RECOVER, 60, 2),
+							new MobEffectInstance(MobEffects.ABSORPTION, 100, 0)
+					)
+			)))))));
 	public static final DeferredHolder<Item, Item> ZUNDARUBY = ITEMS.registerItem("zundaruby", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TOFU_HAMBURG_RAW = ITEMS.registerItem("tofuhamburg_raw", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TOFU_HAMBURG = ITEMS.registerItem("tofuhamburg", (properties) -> new Item((properties).food(TofuFoods.TOFU_HAMBURG)));

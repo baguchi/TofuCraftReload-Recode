@@ -2,21 +2,11 @@ package baguchi.tofucraft;
 
 import baguchi.tofucraft.attachment.SoyHealthAttachment;
 import baguchi.tofucraft.attachment.TofuLivingAttachment;
+import baguchi.tofucraft.entity.projectile.UnstableZundamaEntity;
 import baguchi.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchi.tofucraft.network.RecoverHealthPacket;
 import baguchi.tofucraft.network.ZundafiedPacket;
-import baguchi.tofucraft.registry.TofuAdvancements;
-import baguchi.tofucraft.registry.TofuAttachments;
-import baguchi.tofucraft.registry.TofuBlocks;
-import baguchi.tofucraft.registry.TofuDamageTypes;
-import baguchi.tofucraft.registry.TofuDataComponents;
-import baguchi.tofucraft.registry.TofuDimensions;
-import baguchi.tofucraft.registry.TofuEffects;
-import baguchi.tofucraft.registry.TofuEnchantments;
-import baguchi.tofucraft.registry.TofuItems;
-import baguchi.tofucraft.registry.TofuPoiTypes;
-import baguchi.tofucraft.registry.TofuStructures;
-import baguchi.tofucraft.registry.TofuTags;
+import baguchi.tofucraft.registry.*;
 import baguchi.tofucraft.utils.ContainerUtils;
 import baguchi.tofucraft.utils.JigsawHelper;
 import baguchi.tofucraft.utils.RecipeHelper;
@@ -76,10 +66,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.SelectMusicEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
-import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDestroyBlockEvent;
-import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -467,6 +454,28 @@ public class CommonEvents {
 		}
 	}
 
+	@SubscribeEvent
+	public static void onTotem(LivingUseTotemEvent event) {
+		if (event.getTotem().is(TofuItems.ZUNDA_TOTEM)) {
+			event.getEntity().setHealth(2);
+			event.getEntity().getData(TofuAttachments.TOFU_LIVING.get()).setRecoverHealth(event.getEntity(), 20);
+			event.getEntity().level().explode(
+					event.getEntity(),
+					event.getEntity().damageSources().source(TofuDamageTypes.ZUNDA_EXPLOSION, event.getEntity()),
+					UnstableZundamaEntity.EXPLOSION_DAMAGE_CALCULATOR,
+					event.getEntity().position().x(),
+					event.getEntity().position().y(),
+					event.getEntity().position().z(),
+					3F,
+					false,
+					Level.ExplosionInteraction.MOB,
+					TofuParticleTypes.ZUNDA_EXPLOSION.get(),
+					TofuParticleTypes.ZUNDA_EMIT.get(),
+					SoundEvents.GENERIC_EXPLODE
+			);
+		}
+	}
+
 	//on fall with tofu boots
 	@SubscribeEvent
 	public static void onFall(LivingDamageEvent.Post event) {
@@ -528,6 +537,9 @@ public class CommonEvents {
 					float f2 = getSeenPercent(p, entity);
 					if (entity instanceof LivingEntity livingEntity) {
 						livingEntity.addEffect(new MobEffectInstance(TofuEffects.ZUNDAFIED, (int) (getEntityDamageAmount(event.getExplosion(), entity, f2) * 40)));
+						if (!entity.getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
+							livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, (int) (getEntityDamageAmount(event.getExplosion(), entity, f2) * 40)));
+						}
 					}
 				}
 
@@ -556,6 +568,10 @@ public class CommonEvents {
 		if (event.getEffect().is(TofuEffects.ZUNDAFIED)) {
 			event.getEntity().getData(TofuAttachments.TOFU_LIVING.get()).setZundafied(event.getEntity(), false);
 		}
+		if (event.getEffect().is(TofuEffects.HEART_RECOVER)) {
+			event.getEntity().getData(TofuAttachments.TOFU_LIVING.get()).setRecoverHealth(event.getEntity(), 0);
+		}
+
 	}
 
 	@SubscribeEvent

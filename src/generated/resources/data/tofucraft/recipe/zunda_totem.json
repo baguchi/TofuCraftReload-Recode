@@ -1,0 +1,19 @@
+{
+  "type": "tofucraft:tf_craft_shaped",
+  "category": "misc",
+  "key": {
+    "D": "tofucraft:tofudiamondnugget",
+    "G": "tofucraft:soy_force_shard",
+    "Z": "tofucraft:zunda_ingot"
+  },
+  "pattern": [
+    "ZDZ",
+    "ZGZ",
+    " Z "
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:zunda_totem"
+  },
+  "tf": 1000
+}

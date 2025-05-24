@@ -1831,6 +1831,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" ZS")
 				.unlockedBy("has_item", has(TofuItems.ZUNDA_INGOT.get()))
 				.save(this.output);
+		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDA_TOTEM.get().getDefaultInstance(), 1000)
+				.define('D', TofuItems.TOFUDIAMOND_NUGGET.get())
+				.define('Z', TofuItems.ZUNDA_INGOT.get())
+				.define('G', TofuItems.SOY_FORCE_SHARD.get())
+				.pattern("ZDZ")
+				.pattern("ZGZ")
+				.pattern(" Z ")
+				.unlockedBy("has_item", has(TofuItems.SOY_FORCE_SHARD.get()))
+				.save(this.output);
 		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, TofuItems.TOFUSTICK.get().getDefaultInstance(), 1000)
 				.define('T', TofuItems.TOFUMETAL.get())
 				.define('G', TofuItems.TOFUGEM.get())
