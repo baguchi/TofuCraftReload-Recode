@@ -17,8 +17,8 @@
   ],
   "result": {
     "count": 1,
-    "item": "patchouli:guide_book",
-    "nbt": {
+    "id": "patchouli:guide_book",
+    "components": {
       "patchouli:book": "tofucraft:tofu_book"
     }
   }
