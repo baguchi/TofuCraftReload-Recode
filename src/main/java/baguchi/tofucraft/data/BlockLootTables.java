@@ -107,6 +107,9 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropOther(TofuBlocks.SOYMILK_NETHER_CAULDRON.get(), Blocks.CAULDRON);
 		dropOther(TofuBlocks.SOYMILK_SOUL_CAULDRON.get(), Blocks.CAULDRON);
 
+		dropSelf(TofuBlocks.WAXED_KINUTOFU.get());
+		dropSelf(TofuBlocks.WAXED_MOMENTOFU.get());
+		dropSelf(TofuBlocks.WAXED_ISHITOFU.get());
 		registerTofuDrop(TofuBlocks.KINUTOFU.get(), TofuItems.TOFUKINU.get());
 		registerTofuDrop(TofuBlocks.MOMENTOFU.get(), TofuItems.TOFUMOMEN.get());
 		registerTofuDrop(TofuBlocks.ISHITOFU.get(), TofuItems.TOFUISHI.get());

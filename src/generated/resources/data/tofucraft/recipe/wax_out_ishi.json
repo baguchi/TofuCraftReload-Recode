@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "tofucraft:waxed_tofu_ishi"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:blocktofuishi"
+  }
+}

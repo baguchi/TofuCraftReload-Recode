@@ -394,12 +394,12 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 					List<LivingEntity> entitiesHit = ShuDofuSpider.this.level().getEntitiesOfClass(LivingEntity.class, hitBox);
 					for (LivingEntity entity : entitiesHit) {
 						if (entity != this) {
-							if (!this.canAttack(entity)) {
-								double d12 = Math.sqrt(entity.distanceToSqr(entity)) / (double) radius * 2.0F;
+							if (this.canAttack(entity)) {
+								double d12 = Math.sqrt(entity.distanceToSqr(entity)) / ((double) radius * 2.0F);
 								double d14 = ServerExplosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
 								double d10 = (1.0D - d12) * d14;
 								entity.addEffect(new MobEffectInstance(TofuEffects.COUGH, (int) (400 * d10), 0));
-								entity.hurt(this.damageSources().source(TofuDamageTypes.SOY_SPORE, ShuDofuSpider.this), (float) (((d10 * d10 + d10) / 2.0D) * 26.0D));
+								entity.hurt(this.damageSources().source(TofuDamageTypes.SOY_SPORE, ShuDofuSpider.this), (float) (((d10 * d10) / 2.0D) * 30.0D));
 							}
 						}
 					}

@@ -72,6 +72,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.slab(TofuBlocks.TOFUSLAB_SOULBRICK.get());
 
 		family(TofuBlocks.KINUTOFU.get())
+				.donateModelTo(TofuBlocks.KINUTOFU.get(), TofuBlocks.WAXED_KINUTOFU.get())
 				.stairs(TofuBlocks.TOFUSTAIR_KINU.get())
 				.slab(TofuBlocks.TOFUSLAB_KINU.get())
 				.wall(TofuBlocks.TOFUFENCE_KINU.get())
@@ -79,6 +80,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.trapdoor(TofuBlocks.TOFUTRAPDOOR_KINU.get());
 
 		family(TofuBlocks.MOMENTOFU.get())
+				.donateModelTo(TofuBlocks.MOMENTOFU.get(), TofuBlocks.WAXED_MOMENTOFU.get())
 				.stairs(TofuBlocks.TOFUSTAIR_MOMEN.get())
 				.slab(TofuBlocks.TOFUSLAB_MOMEN.get())
 				.wall(TofuBlocks.TOFUFENCE_MOMEN.get())
@@ -86,6 +88,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.trapdoor(TofuBlocks.TOFUTRAPDOOR_MOMEN.get());
 
 		family(TofuBlocks.ISHITOFU.get())
+				.donateModelTo(TofuBlocks.ISHITOFU.get(), TofuBlocks.WAXED_ISHITOFU.get())
 				.stairs(TofuBlocks.TOFUSTAIR_ISHI.get())
 				.slab(TofuBlocks.TOFUSLAB_ISHI.get())
 				.wall(TofuBlocks.TOFUFENCE_ISHI.get())

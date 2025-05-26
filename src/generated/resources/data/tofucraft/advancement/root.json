@@ -12,7 +12,7 @@
     }
   },
   "display": {
-    "background": "tofucraft:textures/block/blocktofukinu.png",
+    "background": "tofucraft:gui/advancements/backgrounds/blocktofukinu",
     "description": {
       "translate": "advancements.tofucraft.root.desc"
     },

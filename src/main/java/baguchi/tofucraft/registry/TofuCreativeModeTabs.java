@@ -87,6 +87,7 @@ public class TofuCreativeModeTabs {
 			.displayItems((parameters, output) -> {
 				output.acceptAll(Stream.of(
 						TofuBlocks.KINUTOFU,
+						TofuBlocks.WAXED_KINUTOFU,
 						TofuBlocks.TOFUSLAB_KINU,
 						TofuBlocks.TOFUSTAIR_KINU,
 						TofuBlocks.TOFUFENCE_KINU,
@@ -95,6 +96,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TOFULADDER_KINU,
 						TofuBlocks.TOFUTORCH_KINU,
 						TofuBlocks.MOMENTOFU,
+						TofuBlocks.WAXED_MOMENTOFU,
 						TofuBlocks.TOFUSLAB_MOMEN,
 						TofuBlocks.TOFUSTAIR_MOMEN,
 						TofuBlocks.TOFUFENCE_MOMEN,
@@ -103,6 +105,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TOFULADDER_MOMEN,
 						TofuBlocks.TOFUTORCH_MOMEN,
 						TofuBlocks.ISHITOFU,
+						TofuBlocks.WAXED_ISHITOFU,
 						TofuBlocks.TOFUSLAB_ISHI,
 						TofuBlocks.TOFUSTAIR_ISHI,
 						TofuBlocks.TOFUFENCE_ISHI,
@@ -472,6 +475,9 @@ public class TofuCreativeModeTabs {
 						TofuItems.BOTTLE_SOYSAUSE,
 						TofuItems.MISO,
 						TofuItems.MINCEDPOTATO,
+						TofuItems.STARCH_RAW,
+						TofuItems.STARCH,
+						TofuItems.SPROUTS,
 						TofuItems.APRICOT,
 						TofuItems.APRICOTSEED,
 						TofuItems.APRICOTJERRY_BOTTLE,

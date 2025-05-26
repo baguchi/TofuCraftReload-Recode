@@ -62,6 +62,7 @@ import baguchi.tofucraft.utils.ClientUtils;
 import com.google.common.reflect.TypeToken;
 import com.mojang.blaze3d.pipeline.BlendFunction;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
+import com.mojang.blaze3d.platform.DepthTestFunction;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.shaders.UniformType;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -132,7 +133,10 @@ public class ClientRegistrar {
 					.withSampler("Sampler0")
 					.withUniform("TextureMat", UniformType.MATRIX4X4)
 					.withBlend(BlendFunction.ADDITIVE)
-					.withCull(true)
+					.withDepthWrite(false)
+					.withCull(false)
+					.withDepthTestFunction(DepthTestFunction.EQUAL_DEPTH_TEST)
+					.withBlend(BlendFunction.GLINT)
 					.withVertexFormat(DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS)
 					.build();
 
