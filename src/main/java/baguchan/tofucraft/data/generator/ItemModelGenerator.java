@@ -33,9 +33,13 @@ public class ItemModelGenerator extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		//block
+
 		toBlock(TofuBlocks.KINUTOFU);
 		toBlock(TofuBlocks.MOMENTOFU);
 		toBlock(TofuBlocks.ISHITOFU);
+		toBlockModel(TofuBlocks.WAXED_KINUTOFU, "blocktofukinu");
+		toBlockModel(TofuBlocks.WAXED_MOMENTOFU, "blocktofumomen");
+		toBlockModel(TofuBlocks.WAXED_ISHITOFU, "blocktofuishi");
 		toBlock(TofuBlocks.ISHITOFU_BRICK);
 		toBlock(TofuBlocks.ISHITOFU_SMOOTH_BRICK);
 		toBlock(TofuBlocks.ISHITOFU_CHISELED_BRICK);

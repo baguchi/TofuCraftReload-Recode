@@ -14,6 +14,7 @@ import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.neoforged.neoforge.registries.datamaps.builtin.RaidHeroGift;
+import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -54,5 +55,10 @@ public class TofuDataMapsProvider extends DataMapProvider {
 
 		final var raidHeroGifts = builder(NeoForgeDataMaps.RAID_HERO_GIFTS);
 		raidHeroGifts.add(BuiltInRegistries.VILLAGER_PROFESSION.wrapAsHolder(TofuProfessions.TOFU_CRAFTSMAN.get()), new RaidHeroGift(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "gameplay/hero_of_the_village/tofu_craftsman_gift"))), false);
+
+		final var waxableBlockBuilder = builder(NeoForgeDataMaps.WAXABLES);
+		waxableBlockBuilder.add(BuiltInRegistries.BLOCK.wrapAsHolder(TofuBlocks.KINUTOFU.get()), new Waxable(TofuBlocks.WAXED_KINUTOFU.get()), false);
+		waxableBlockBuilder.add(BuiltInRegistries.BLOCK.wrapAsHolder(TofuBlocks.MOMENTOFU.get()), new Waxable(TofuBlocks.WAXED_MOMENTOFU.get()), false);
+		waxableBlockBuilder.add(BuiltInRegistries.BLOCK.wrapAsHolder(TofuBlocks.ISHITOFU.get()), new Waxable(TofuBlocks.WAXED_ISHITOFU.get()), false);
 	}
 }
