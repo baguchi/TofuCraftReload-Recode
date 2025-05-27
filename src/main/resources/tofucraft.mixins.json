@@ -9,7 +9,6 @@
     "LightningBoltMixin",
     "LivingEntityAccessor",
     "PlaceRecipeHelperMixin",
-    "RecipeManagerAccessor",
     "ServerGamePacketListenerImplMixin",
     "WardenAiMixin"
   ],
