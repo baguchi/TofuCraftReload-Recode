@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "tofucraft:waxed_tofu_kinu"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:blocktofukinu"
+  }
+}
