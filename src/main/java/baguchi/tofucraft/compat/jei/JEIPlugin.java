@@ -1,55 +1,54 @@
 package baguchi.tofucraft.compat.jei;
-/*
 
-import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.recipe.BitternRecipe;
-import baguchan.tofucraft.recipe.HardenRecipe;
-import baguchan.tofucraft.registry.TofuBlocks;
-import baguchan.tofucraft.registry.TofuItems;
-import baguchan.tofucraft.registry.TofuRecipes;
+import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.inventory.TFCraftingTableMenu;
+import baguchi.tofucraft.inventory.TofuPotMenu;
+import baguchi.tofucraft.recipe.BitternRecipe;
+import baguchi.tofucraft.recipe.HardenRecipe;
+import baguchi.tofucraft.recipe.TFCraftingRecipe;
+import baguchi.tofucraft.recipe.TofuPotRecipe;
+import baguchi.tofucraft.registry.TofuBlocks;
+import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuMenus;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.recipe.types.IRecipeType;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
-import net.minecraft.client.Minecraft;
+import mezz.jei.api.registration.IRecipeTransferRegistration;
+import mezz.jei.common.Internal;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeInput;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Blocks;
-
-import java.util.List;
 
 
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
 	public static final ResourceLocation PLUGIN_ID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "jei_plugin");
 
-	private static final Minecraft MC = Minecraft.getInstance();
+	public static final IRecipeType<HardenRecipe> HARDEN_JEI_TYPE =
+			IRecipeType.create(TofuCraftReload.prefix("harden"), HardenRecipe.class);
 
-	private static <C extends RecipeInput, T extends Recipe<C>> List<T> findRecipesByType(RecipeType<T> type) {
-		return MC.level.getRecipeManager().getAllRecipesFor(type).stream().map(recipeholder -> {
-			return recipeholder.value();
-		}).toList();
-	}
+	public static final IRecipeType<BitternRecipe> BITTERN_JEI_TYPE =
+			IRecipeType.create(TofuCraftReload.prefix("bittern"), BitternRecipe.class);
+	public static final IRecipeType<TFCraftingRecipe> TF_RECIPE_JEI_TYPE =
+			IRecipeType.create(TofuCraftReload.prefix("tf_craft"), TFCraftingRecipe.class);
 
-	public static final mezz.jei.api.recipe.RecipeType<HardenRecipe> HARDEN_JEI_TYPE =
-			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "harden", HardenRecipe.class);
-
-	public static final mezz.jei.api.recipe.RecipeType<BitternRecipe> BITTERN_JEI_TYPE =
-			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "bittern", BitternRecipe.class);
-
+	public static final IRecipeType<TofuPotRecipe> TOFU_POT_RECIPE_JEI_TYPE =
+			IRecipeType.create(TofuCraftReload.prefix("tofu_pot"), TofuPotRecipe.class);
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(new HardenCategory(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new BitternCategory(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategories(new TFRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategories(new TofuPotCategory(registry.getJeiHelpers().getGuiHelper()));
 	}
 
 	@Override
@@ -68,14 +67,25 @@ public class JEIPlugin implements IModPlugin {
 		addInfo(registration, TofuItems.SOYMILK_HONEY.get(), TofuItems.SOYMILK.get());
 		addInfo(registration, TofuItems.SOYMILK_RAMUNE.get(), TofuItems.SOYMILK.get());
 		addInfo(registration, TofuItems.SOYMILK_SAKURA.get(), TofuItems.SOYMILK.get());
-		registration.addRecipes(HARDEN_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_HARDER.get()));
-		registration.addRecipes(BITTERN_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_BITTERN.get()));
+		registration.addRecipes(HARDEN_JEI_TYPE, JEIContents.getAllHardenRecipes(Internal.getClientSyncedRecipes()).stream().map(RecipeHolder::value).toList());
+		registration.addRecipes(BITTERN_JEI_TYPE, JEIContents.getAllBitternRecipes(Internal.getClientSyncedRecipes()).stream().map(RecipeHolder::value).toList());
+		registration.addRecipes(TF_RECIPE_JEI_TYPE, JEIContents.getAllTFCraftRecipes(Internal.getClientSyncedRecipes()).stream().map(RecipeHolder::value).toList());
+		registration.addRecipes(TOFU_POT_RECIPE_JEI_TYPE, JEIContents.getAllTofuPotRecipes(Internal.getClientSyncedRecipes()).stream().map(RecipeHolder::value).toList());
 	}
 
 	@Override
+	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+		registration.addRecipeTransferHandler(TFCraftingTableMenu.class, TofuMenus.TF_CRAFTING_TABLE.get(), TF_RECIPE_JEI_TYPE, 0, 9, 10, 36);
+		registration.addRecipeTransferHandler(TofuPotMenu.class, TofuMenus.TOFU_POT.get(), TOFU_POT_RECIPE_JEI_TYPE, 0, 12, 13, 36);
+	}
+
+
+	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-		registration.addRecipeCatalyst(new ItemStack(Blocks.COBBLESTONE), HARDEN_JEI_TYPE);
-		registration.addRecipeCatalyst(new ItemStack(TofuItems.BITTERN_BOTTLE.get()), BITTERN_JEI_TYPE);
+		registration.addCraftingStation(HARDEN_JEI_TYPE, new ItemStack(Blocks.COBBLESTONE));
+		registration.addCraftingStation(BITTERN_JEI_TYPE, new ItemStack(TofuItems.BITTERN_BOTTLE.get()));
+		registration.addCraftingStation(TF_RECIPE_JEI_TYPE, new ItemStack(TofuBlocks.TF_CRAFTING_TABLE.get()));
+		registration.addCraftingStation(TOFU_POT_RECIPE_JEI_TYPE, new ItemStack(TofuBlocks.TOFU_POT.get()));
 	}
 
 	private static void addInfo(IRecipeRegistration registration, Item item) {
@@ -97,4 +107,3 @@ public class JEIPlugin implements IModPlugin {
 		return PLUGIN_ID;
 	}
 }
-*/

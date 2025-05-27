@@ -39,6 +39,7 @@ import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuPoiTypes;
 import baguchi.tofucraft.registry.TofuProfessions;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
+import baguchi.tofucraft.registry.TofuRecipePropertySets;
 import baguchi.tofucraft.registry.TofuRecipes;
 import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofuTags;
@@ -173,6 +174,9 @@ public class TofuCraftReload {
 			map.putAll(Map.copyOf(MultiNoiseBiomeSourceParameterList.Preset.BY_NAME));
 			map.put(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world"), TofuBiomeSources.TOFU_WORLD_PRESET);
 			MultiNoiseBiomeSourceParameterList.Preset.BY_NAME = map;
+
+			TofuRecipePropertySets.addToMap();
+
 
 			TofuBlockSetTypes.init();
 			TofuAdvancements.init();

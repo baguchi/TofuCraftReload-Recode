@@ -4,11 +4,13 @@ import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuRecipes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TofuPotRecipe extends Recipe<CraftingInput> {
@@ -18,6 +20,9 @@ public interface TofuPotRecipe extends Recipe<CraftingInput> {
 	}
 
 	TofuPotCategory category();
+
+	List<Optional<Ingredient>> getIngredients();
+
 
 	default RecipeBookCategory recipeBookCategory() {
 		RecipeBookCategory var10000;

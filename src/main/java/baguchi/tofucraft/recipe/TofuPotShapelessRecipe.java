@@ -2,6 +2,7 @@ package baguchi.tofucraft.recipe;
 
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuRecipes;
+import com.google.common.annotations.VisibleForTesting;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -109,7 +110,12 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 	}
 
 	public ItemStack getResult() {
-		return result;
+		return result.copy();
+	}
+
+	@VisibleForTesting
+	public List<Optional<Ingredient>> getIngredients() {
+		return this.ingredients.stream().map(Optional::of).toList();
 	}
 
 	public static class Serializer implements RecipeSerializer<TofuPotShapelessRecipe> {

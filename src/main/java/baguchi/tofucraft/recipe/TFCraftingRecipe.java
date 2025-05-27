@@ -2,10 +2,15 @@ package baguchi.tofucraft.recipe;
 
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuRecipes;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeType;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface TFCraftingRecipe extends Recipe<CraftingInput> {
 	@Override
@@ -17,6 +22,9 @@ public interface TFCraftingRecipe extends Recipe<CraftingInput> {
 
 	int getNeedTF();
 
+	List<Optional<Ingredient>> getIngredients();
+
+
 	default RecipeBookCategory recipeBookCategory() {
 		RecipeBookCategory var10000;
 		switch (this.category()) {
@@ -27,4 +35,6 @@ public interface TFCraftingRecipe extends Recipe<CraftingInput> {
 
 		return var10000;
 	}
+
+	ItemStack getResult();
 }

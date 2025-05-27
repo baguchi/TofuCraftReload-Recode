@@ -1,8 +1,7 @@
 package baguchi.tofucraft.compat.jei;
-/*
 
-import baguchan.tofucraft.TofuCraftReload;
-import baguchan.tofucraft.recipe.HardenRecipe;
+import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.recipe.HardenRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -11,13 +10,13 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 
@@ -38,12 +37,22 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 	}
 
 	@Override
+	public int getWidth() {
+		return 144;
+	}
+
+	@Override
+	public int getHeight() {
+		return 54;
+	}
+
+	@Override
 	public ResourceLocation getRegistryName(HardenRecipe recipe) {
 		return UID;
 	}
 
 	@Override
-	public RecipeType<HardenRecipe> getRecipeType() {
+	public IRecipeType<HardenRecipe> getRecipeType() {
 		return JEIPlugin.HARDEN_JEI_TYPE;
 	}
 
@@ -52,10 +61,6 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 		return title;
 	}
 
-	@Override
-	public IDrawable getBackground() {
-		return background;
-	}
 
 	@Override
 	public IDrawable getIcon() {
@@ -69,19 +74,20 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 
 
 		builder.addSlot(RecipeIngredientRole.INPUT, 38, 18)
-				.addIngredients(recipeIngredients);
+				.add(recipeIngredients);
 		builder.addSlot(RecipeIngredientRole.INPUT, 38, 18 - borderSlotSize)
-				.addIngredients(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS));
+				.add(Items.COBBLESTONE);
 		builder.addSlot(RecipeIngredientRole.INPUT, 38, 18 + borderSlotSize)
-				.addIngredients(Ingredient.of(ItemTags.STONE_TOOL_MATERIALS));
+				.add(Items.COBBLESTONE);
 
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).addItemStack(recipe.getResult());
+		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).add(recipe.getResult());
 
 	}
 
 
 	@Override
 	public void draw(HardenRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics stack, double mouseX, double mouseY) {
+		background.draw(stack);
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
-}*/
+}

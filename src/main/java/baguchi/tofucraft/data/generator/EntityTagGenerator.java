@@ -32,7 +32,7 @@ public class EntityTagGenerator extends EntityTypeTagsProvider {
 		this.tag(EntityTypeTags.CAN_BREATHE_UNDER_WATER).add(TofuEntityTypes.SHUDOFUSPIDER.get(), TofuEntityTypes.TOFU_GANDLEM.get(), TofuEntityTypes.TOFU_GOLEM.get()).add(TofuEntityTypes.TOFUFISH.get());
 		this.tag(EntityTypeTags.ARTHROPOD).add(TofuEntityTypes.SHUDOFUSPIDER.get()).add(TofuEntityTypes.TOFUSPIDER.get());
 		this.tag(EntityTypeTags.AQUATIC).add(TofuEntityTypes.TOFUFISH.get());
-		this.tag(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA).addTag(EntityTypeTags.UNDEAD).add(EntityType.ENDER_DRAGON).add(EntityType.ENDERMAN).add(EntityType.ENDERMITE).add(EntityType.END_CRYSTAL);
+		this.tag(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA).addTag(EntityTypeTags.UNDEAD).add(EntityType.ENDER_DRAGON).add(EntityType.ENDERMAN).add(EntityType.ENDERMITE).add(EntityType.SHULKER).add(EntityType.END_CRYSTAL);
 		this.tag(TofuTags.EntityTypes.WALKABLE_WITHOUT_TRIGGER).addTag(EntityTypeTags.POWDER_SNOW_WALKABLE_MOBS);
 		this.tag(EntityTypeTags.CAN_EQUIP_SADDLE)
 				.add(

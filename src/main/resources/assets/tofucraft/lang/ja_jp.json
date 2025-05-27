@@ -737,6 +737,8 @@
   "tofucraft.has_nourishment": "栄養入り",
   "tofucraft.jei.bittern": "にがりで固める工程",
   "tofucraft.jei.harden": "重みで固める工程",
+  "tofucraft.jei.tf_craft": "TFクラフト",
+  "tofucraft.jei.tofu_pot": "豆腐鍋",
   "tofucraft.need_defeat_boss": "ボスを先に倒す必要があります",
   "tofucraft.radar.result.failed": "豆腐スライムチャンクが見つかりませんでした",
   "tofucraft.radar.result.success": "豆腐スライムチャンクが見つかりました",

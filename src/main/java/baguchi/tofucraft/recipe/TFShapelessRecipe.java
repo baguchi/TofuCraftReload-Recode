@@ -2,6 +2,7 @@ package baguchi.tofucraft.recipe;
 
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuRecipes;
+import com.google.common.annotations.VisibleForTesting;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Optional;
 
 public class TFShapelessRecipe implements TFCraftingRecipe {
 	final String group;
@@ -94,6 +96,17 @@ public class TFShapelessRecipe implements TFCraftingRecipe {
 	public ItemStack assemble(CraftingInput input, HolderLookup.Provider registries) {
 		return this.result.copy();
 	}
+
+	@Override
+	public ItemStack getResult() {
+		return result.copy();
+	}
+
+	@VisibleForTesting
+	public List<Optional<Ingredient>> getIngredients() {
+		return this.ingredients.stream().map(Optional::of).toList();
+	}
+
 
 	public static class Serializer implements RecipeSerializer<TFShapelessRecipe> {
 		private static final MapCodec<TFShapelessRecipe> CODEC = RecordCodecBuilder.mapCodec(

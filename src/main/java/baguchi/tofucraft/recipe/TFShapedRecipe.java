@@ -96,6 +96,11 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 		return this.result.copy();
 	}
 
+	@Override
+	public ItemStack getResult() {
+		return result.copy();
+	}
+
 	public int getWidth() {
 		return this.pattern.width();
 	}
