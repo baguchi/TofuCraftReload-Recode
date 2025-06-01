@@ -26,10 +26,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class TFShapelessRecipe implements TFCraftingRecipe {
-	final String group;
-	final TFCraftingCategory category;
-	final ItemStack result;
-	final List<Ingredient> ingredients;
+	private final String group;
+	private final TFCraftingCategory category;
+	private final ItemStack result;
+	private final List<Ingredient> ingredients;
 	private final int tfNeed;
 	private final boolean isSimple;
 	@Nullable
@@ -121,10 +121,20 @@ public class TFShapelessRecipe implements TFCraftingRecipe {
 						)
 						.apply(p_340779_, (group1, category1, result1, ingredients1, tfNeed) -> new TFShapelessRecipe(group1, category1, result1, ingredients1, tfNeed))
 		);
-		public static final StreamCodec<RegistryFriendlyByteBuf, TFShapelessRecipe> STREAM_CODEC = StreamCodec.of(
-				Serializer::toNetwork, Serializer::fromNetwork
-		);
 
+		public static final StreamCodec<RegistryFriendlyByteBuf, TFShapelessRecipe> STREAM_CODEC = StreamCodec.composite(
+				ByteBufCodecs.STRING_UTF8,
+				p_360074_ -> p_360074_.group,
+				TFCraftingCategory.STREAM_CODEC,
+				p_360073_ -> p_360073_.category,
+				ItemStack.STREAM_CODEC,
+				p_360070_ -> p_360070_.result,
+				Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()),
+				p_360069_ -> p_360069_.ingredients,
+				ByteBufCodecs.INT,
+				p_360069_ -> p_360069_.tfNeed,
+				TFShapelessRecipe::new
+		);
 		@Override
 		public MapCodec<TFShapelessRecipe> codec() {
 			return CODEC;
@@ -133,29 +143,6 @@ public class TFShapelessRecipe implements TFCraftingRecipe {
 		@Override
 		public StreamCodec<RegistryFriendlyByteBuf, TFShapelessRecipe> streamCodec() {
 			return STREAM_CODEC;
-		}
-
-		private static TFShapelessRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
-			String s = buffer.readUtf();
-			TFCraftingCategory craftingbookcategory = buffer.readEnum(TFCraftingCategory.class);
-			int i = buffer.readVarInt();
-			StreamCodec<RegistryFriendlyByteBuf, List<Ingredient>> nonnulllist = Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list());
-			List<Ingredient> list = nonnulllist.decode(buffer);
-			ItemStack itemstack = ItemStack.STREAM_CODEC.decode(buffer);
-			return new TFShapelessRecipe(s, craftingbookcategory, itemstack, list, buffer.readInt());
-		}
-
-		private static void toNetwork(RegistryFriendlyByteBuf buffer, TFShapelessRecipe recipe) {
-			buffer.writeUtf(recipe.group);
-			buffer.writeEnum(recipe.category);
-			buffer.writeVarInt(recipe.ingredients.size());
-
-			for (Ingredient ingredient : recipe.ingredients) {
-				Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient);
-			}
-
-			ItemStack.STREAM_CODEC.encode(buffer, recipe.result);
-			buffer.writeInt(recipe.tfNeed);
 		}
 	}
 }

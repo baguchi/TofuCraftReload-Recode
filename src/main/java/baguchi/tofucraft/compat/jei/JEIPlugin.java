@@ -67,6 +67,7 @@ public class JEIPlugin implements IModPlugin {
 		addInfo(registration, TofuItems.SOYMILK_HONEY.get(), TofuItems.SOYMILK.get());
 		addInfo(registration, TofuItems.SOYMILK_RAMUNE.get(), TofuItems.SOYMILK.get());
 		addInfo(registration, TofuItems.SOYMILK_SAKURA.get(), TofuItems.SOYMILK.get());
+
 		registration.addRecipes(HARDEN_JEI_TYPE, JEIContents.getAllHardenRecipes(Internal.getClientSyncedRecipes()).stream().map(RecipeHolder::value).toList());
 		registration.addRecipes(BITTERN_JEI_TYPE, JEIContents.getAllBitternRecipes(Internal.getClientSyncedRecipes()).stream().map(RecipeHolder::value).toList());
 		registration.addRecipes(TF_RECIPE_JEI_TYPE, JEIContents.getAllTFCraftRecipes(Internal.getClientSyncedRecipes()).stream().map(RecipeHolder::value).toList());

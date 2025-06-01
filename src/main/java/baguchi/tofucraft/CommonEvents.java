@@ -6,7 +6,20 @@ import baguchi.tofucraft.entity.projectile.UnstableZundamaEntity;
 import baguchi.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchi.tofucraft.network.RecoverHealthPacket;
 import baguchi.tofucraft.network.ZundafiedPacket;
-import baguchi.tofucraft.registry.*;
+import baguchi.tofucraft.registry.TofuAdvancements;
+import baguchi.tofucraft.registry.TofuAttachments;
+import baguchi.tofucraft.registry.TofuBlocks;
+import baguchi.tofucraft.registry.TofuDamageTypes;
+import baguchi.tofucraft.registry.TofuDataComponents;
+import baguchi.tofucraft.registry.TofuDimensions;
+import baguchi.tofucraft.registry.TofuEffects;
+import baguchi.tofucraft.registry.TofuEnchantments;
+import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuParticleTypes;
+import baguchi.tofucraft.registry.TofuPoiTypes;
+import baguchi.tofucraft.registry.TofuRecipes;
+import baguchi.tofucraft.registry.TofuStructures;
+import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.utils.ContainerUtils;
 import baguchi.tofucraft.utils.JigsawHelper;
 import baguchi.tofucraft.utils.RecipeHelper;
@@ -64,9 +77,14 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.SelectMusicEvent;
+import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
-import net.neoforged.neoforge.event.entity.living.*;
+import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDestroyBlockEvent;
+import net.neoforged.neoforge.event.entity.living.LivingUseTotemEvent;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -87,6 +105,14 @@ import static net.minecraft.world.level.ServerExplosion.getSeenPercent;
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
 	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
+
+	@SubscribeEvent
+	public static void handleQuestSyncing(OnDatapackSyncEvent event) {
+		event.sendRecipes(TofuRecipes.RECIPETYPE_TF_CRAFT.get());
+		event.sendRecipes(TofuRecipes.RECIPETYPE_TOFU_POT.get());
+		event.sendRecipes(TofuRecipes.RECIPETYPE_BITTERN.get());
+		event.sendRecipes(TofuRecipes.RECIPETYPE_HARDER.get());
+	}
 
 	@SubscribeEvent
 	public static void onDamage(LivingDamageEvent.Post event) {

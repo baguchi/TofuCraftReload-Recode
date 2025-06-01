@@ -84,7 +84,7 @@ public class TofuBlock extends Block {
 			int i = state.getValue(HARDNESS);
 			int hardenSpeed = dripStoneFlag ? 1 : 0;
 
-			int hardness = this == TofuBlocks.MOMENTOFU.get() ? 3 - hardenSpeed : 4 - hardenSpeed;
+			int hardness = this == TofuBlocks.MOMENTOFU.get() ? 2 - hardenSpeed : 3 - hardenSpeed;
 
 			/*if(dripStoneFlag){
 				BlockPos blockpos2 = pos.below(2);

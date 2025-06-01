@@ -135,10 +135,23 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 								Codec.FLOAT.fieldOf("experience").orElse(0.1F).forGetter(potShapelessRecipe -> potShapelessRecipe.experience)
 						)
 						.apply(p_340779_, (group1, category1, result1, ingredients1, fluidIngredient, cookTime, experience) -> new TofuPotShapelessRecipe(group1, category1, result1, ingredients1, fluidIngredient, cookTime, experience)));
-		public static final StreamCodec<RegistryFriendlyByteBuf, TofuPotShapelessRecipe> STREAM_CODEC = StreamCodec.of(
-				Serializer::toNetwork, Serializer::fromNetwork
+		public static final StreamCodec<RegistryFriendlyByteBuf, TofuPotShapelessRecipe> STREAM_CODEC = StreamCodec.composite(
+				ByteBufCodecs.STRING_UTF8,
+				p_360074_ -> p_360074_.group,
+				TofuPotCategory.STREAM_CODEC,
+				p_360073_ -> p_360073_.category,
+				ItemStack.STREAM_CODEC,
+				p_360070_ -> p_360070_.result,
+				Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()),
+				p_360069_ -> p_360069_.ingredients,
+				OPTIONAL_STREAM_CODEC,
+				p_360069_ -> p_360069_.ingredientFluid,
+				ByteBufCodecs.INT,
+				p_360069_ -> p_360069_.cookTime,
+				ByteBufCodecs.FLOAT,
+				p_360069_ -> p_360069_.experience,
+				TofuPotShapelessRecipe::new
 		);
-
 
 		@Override
 		public MapCodec<TofuPotShapelessRecipe> codec() {
@@ -148,32 +161,6 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 		@Override
 		public StreamCodec<RegistryFriendlyByteBuf, TofuPotShapelessRecipe> streamCodec() {
 			return STREAM_CODEC;
-		}
-
-		private static TofuPotShapelessRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
-			String s = buffer.readUtf();
-			TofuPotCategory craftingbookcategory = buffer.readEnum(TofuPotCategory.class);
-			int i = buffer.readVarInt();
-			StreamCodec<RegistryFriendlyByteBuf, List<Ingredient>> nonnulllist = Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list());
-			List<Ingredient> list = nonnulllist.decode(buffer);
-			ItemStack itemstack = ItemStack.STREAM_CODEC.decode(buffer);
-			Optional<SizedFluidIngredient> fluidIngredient = OPTIONAL_STREAM_CODEC.decode(buffer);
-			return new TofuPotShapelessRecipe(s, craftingbookcategory, itemstack, list, fluidIngredient, buffer.readInt(), buffer.readFloat());
-		}
-
-		private static void toNetwork(RegistryFriendlyByteBuf buffer, TofuPotShapelessRecipe recipe) {
-			buffer.writeUtf(recipe.group);
-			buffer.writeEnum(recipe.category);
-			buffer.writeVarInt(recipe.ingredients.size());
-
-			for (Ingredient ingredient : recipe.ingredients) {
-				Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient);
-			}
-
-			ItemStack.STREAM_CODEC.encode(buffer, recipe.result);
-			OPTIONAL_STREAM_CODEC.encode(buffer, recipe.ingredientFluid);
-			buffer.writeInt(recipe.cookTime);
-			buffer.writeFloat(recipe.experience);
 		}
 	}
 }

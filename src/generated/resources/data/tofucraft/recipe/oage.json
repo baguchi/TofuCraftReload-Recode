@@ -1,6 +1,8 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 200,
+  "experience": 0.4,
   "ingredients": [
     "tofucraft:tofuslab_momen",
     "tofucraft:bottle_soyoil"
