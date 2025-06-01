@@ -1,28 +1,14 @@
 package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
-import baguchi.tofucraft.client.particle.ParticleSimpleStink;
-import baguchi.tofucraft.client.particle.ParticleStink;
-import baguchi.tofucraft.client.particle.ParticleZundaCloud;
-import baguchi.tofucraft.client.particle.SoymilkDripParticle;
-import baguchi.tofucraft.client.particle.SoymilkSplashParticle;
-import baguchi.tofucraft.client.particle.TofuPortalParticle;
-import baguchi.tofucraft.client.particle.ZundaExplosionParticle;
-import baguchi.tofucraft.client.particle.ZundaExplosionSeedParticle;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-@EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class TofuParticleTypes {
-
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, TofuCraftReload.MODID);
 
 	public static final Supplier<SimpleParticleType> TOFU_PORTAL = PARTICLE_TYPES.register("tofu_portal", () -> new SimpleParticleType(false));
@@ -37,21 +23,4 @@ public class TofuParticleTypes {
 	public static final Supplier<SimpleParticleType> STINK = PARTICLE_TYPES.register("stink", () -> new SimpleParticleType(false));
 	public static final Supplier<SimpleParticleType> ZUNDA_EXPLOSION = PARTICLE_TYPES.register("zunda_explosion", () -> new SimpleParticleType(true));
 	public static final Supplier<SimpleParticleType> ZUNDA_EMIT = PARTICLE_TYPES.register("zunda_emit", () -> new SimpleParticleType(true));
-
-	@SubscribeEvent
-	public static void registerFactories(RegisterParticleProvidersEvent event) {
-		event.registerSpriteSet(TofuParticleTypes.TOFU_PORTAL.get(), TofuPortalParticle.Provider::new);
-		event.registerSpriteSet(TofuParticleTypes.TOFU_PORTAL.get(), TofuPortalParticle.Provider::new);
-		event.registerSpriteSet(TofuParticleTypes.DRIP_SOYMILK_HANG.get(), SoymilkDripParticle.SoymilkHangProvider::new);
-		event.registerSpriteSet(TofuParticleTypes.DRIP_SOYMILK_FALL.get(), SoymilkDripParticle.SoymilkFallProvider::new);
-		event.registerSpriteSet(TofuParticleTypes.SOYMILK_SPLASH.get(), SoymilkSplashParticle.Provider::new);
-		event.registerSpriteSet(TofuParticleTypes.DRIP_SOYSAUCE_HANG.get(), SoymilkDripParticle.SoysauceHangProvider::new);
-		event.registerSpriteSet(TofuParticleTypes.DRIP_SOYSAUCE_FALL.get(), SoymilkDripParticle.SoysauceFallProvider::new);
-		event.registerSpriteSet(TofuParticleTypes.SOYSAUCE_SPLASH.get(), SoymilkSplashParticle.SoysauceProvider::new);
-		event.registerSpriteSet(TofuParticleTypes.ZUNDA_CLOUD.get(), ParticleZundaCloud.CloudFactory::new);
-		event.registerSpriteSet(TofuParticleTypes.STINK.get(), ParticleStink.StinkFactory::new);
-		event.registerSpriteSet(TofuParticleTypes.ZUNDA_EXPLOSION.get(), ZundaExplosionParticle.Provider::new);
-		event.registerSpecial(TofuParticleTypes.ZUNDA_EMIT.get(), new ZundaExplosionSeedParticle.Provider<>());
-		event.registerSpriteSet(TofuParticleTypes.SIMPLE_STINKE.get(), ParticleSimpleStink.Provider::new);
-	}
 }

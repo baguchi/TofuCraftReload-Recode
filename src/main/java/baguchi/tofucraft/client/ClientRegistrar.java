@@ -11,6 +11,14 @@ import baguchi.tofucraft.client.model.TofuGolemModel;
 import baguchi.tofucraft.client.model.TofuSpiderModel;
 import baguchi.tofucraft.client.model.TofunianModel;
 import baguchi.tofucraft.client.model.TravelerTofunianModel;
+import baguchi.tofucraft.client.particle.ParticleSimpleStink;
+import baguchi.tofucraft.client.particle.ParticleStink;
+import baguchi.tofucraft.client.particle.ParticleZundaCloud;
+import baguchi.tofucraft.client.particle.SoymilkDripParticle;
+import baguchi.tofucraft.client.particle.SoymilkSplashParticle;
+import baguchi.tofucraft.client.particle.TofuPortalParticle;
+import baguchi.tofucraft.client.particle.ZundaExplosionParticle;
+import baguchi.tofucraft.client.particle.ZundaExplosionSeedParticle;
 import baguchi.tofucraft.client.render.FukumameRender;
 import baguchi.tofucraft.client.render.NattoBallRender;
 import baguchi.tofucraft.client.render.NattoStringRender;
@@ -56,6 +64,7 @@ import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuFluidTypes;
 import baguchi.tofucraft.registry.TofuMenus;
+import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuWoodTypes;
 import baguchi.tofucraft.utils.ClientUtils;
@@ -105,6 +114,7 @@ import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.event.RegisterRecipeBookSearchCategoriesEvent;
 import net.neoforged.neoforge.client.event.RegisterRenderPipelinesEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
@@ -577,5 +587,22 @@ public class ClientRegistrar {
 	public static void registerDimensionEffect(RegisterDimensionSpecialEffectsEvent event) {
 		TofuDimensionEffects renderInfo = new TofuDimensionEffects();
 		event.register(TofuCraftReload.prefix("renderer"), renderInfo);
+	}
+
+	@SubscribeEvent
+	public static void registerFactories(RegisterParticleProvidersEvent event) {
+		event.registerSpriteSet(TofuParticleTypes.TOFU_PORTAL.get(), TofuPortalParticle.Provider::new);
+		event.registerSpriteSet(TofuParticleTypes.TOFU_PORTAL.get(), TofuPortalParticle.Provider::new);
+		event.registerSpriteSet(TofuParticleTypes.DRIP_SOYMILK_HANG.get(), SoymilkDripParticle.SoymilkHangProvider::new);
+		event.registerSpriteSet(TofuParticleTypes.DRIP_SOYMILK_FALL.get(), SoymilkDripParticle.SoymilkFallProvider::new);
+		event.registerSpriteSet(TofuParticleTypes.SOYMILK_SPLASH.get(), SoymilkSplashParticle.Provider::new);
+		event.registerSpriteSet(TofuParticleTypes.DRIP_SOYSAUCE_HANG.get(), SoymilkDripParticle.SoysauceHangProvider::new);
+		event.registerSpriteSet(TofuParticleTypes.DRIP_SOYSAUCE_FALL.get(), SoymilkDripParticle.SoysauceFallProvider::new);
+		event.registerSpriteSet(TofuParticleTypes.SOYSAUCE_SPLASH.get(), SoymilkSplashParticle.SoysauceProvider::new);
+		event.registerSpriteSet(TofuParticleTypes.ZUNDA_CLOUD.get(), ParticleZundaCloud.CloudFactory::new);
+		event.registerSpriteSet(TofuParticleTypes.STINK.get(), ParticleStink.StinkFactory::new);
+		event.registerSpriteSet(TofuParticleTypes.ZUNDA_EXPLOSION.get(), ZundaExplosionParticle.Provider::new);
+		event.registerSpecial(TofuParticleTypes.ZUNDA_EMIT.get(), new ZundaExplosionSeedParticle.Provider<>());
+		event.registerSpriteSet(TofuParticleTypes.SIMPLE_STINKE.get(), ParticleSimpleStink.Provider::new);
 	}
 }
