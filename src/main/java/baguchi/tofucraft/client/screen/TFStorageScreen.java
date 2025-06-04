@@ -85,29 +85,9 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		float vMax = sprite.getV1();
 		float uDif = uMax - uMin;
 		float vDif = vMax - vMin;
-		for (int xTile = 0; xTile <= xTileCount; xTile++) {
-			int width = (xTile == xTileCount) ? xRemainder : 16;
-			if (width == 0) {
-				break;
-			}
-			int x = xPosition + (xTile * 16);
-			int maskRight = 16 - width;
-			int shiftedX = x + 16 - maskRight;
-			float uLocalDif = uDif * maskRight / 16;
+		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xPosition, yPosition - desiredHeight, desiredWidth, desiredHeight, color);
 
-			for (int yTile = 0; yTile <= yTileCount; yTile++) {
-				int height = (yTile == yTileCount) ? yRemainder : 16;
-				if (height == 0) {
-					break;
-				}
-				int y = yPosition - ((yTile + 1) * 16);
-				int maskTop = 16 - height;
-				float vLocalDif = vDif * maskTop / 16;
-				guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, IClientFluidTypeExtensions.of(fluid).getStillTexture(), shiftedX, y + maskTop, x, y + 16);
-			}
-		}
 	}
-
 	private void renderOnboardingTooltips(GuiGraphics p_281668_, int p_267192_, int p_266859_) {
 		Optional<Component> optional = Optional.empty();
 
