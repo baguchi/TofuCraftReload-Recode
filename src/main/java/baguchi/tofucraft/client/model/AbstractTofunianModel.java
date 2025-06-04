@@ -5,6 +5,7 @@ import baguchi.tofucraft.client.animation.definitions.TofunianAnimation;
 import baguchi.tofucraft.client.render.state.AbstractTofunianRenderState;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HeadedModel;
@@ -21,7 +22,7 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 	public final ModelPart rightArm;
 	public final ModelPart leftArm;
 	public final ModelPart roots;
-
+	private final KeyframeAnimation babyAnimation;
 	public AbstractTofunianModel(ModelPart p_170688_) {
 		super(p_170688_);
 		this.roots = p_170688_.getChild("roots");
@@ -32,6 +33,7 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 		this.rightLeg = this.roots.getChild("right_leg");
 		this.leftArm = this.roots.getChild("left_arm");
 		this.rightArm = this.roots.getChild("right_arm");
+		this.babyAnimation = TofunianAnimation.BABY.bake(p_170688_);
 	}
 
 	@Override
@@ -74,7 +76,7 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 		float f6 = 12.0F;
 
 		if (entity.isBaby) {
-			this.applyStatic(TofunianAnimation.BABY);
+			this.babyAnimation.applyStatic();
 			this.rightArm.visible = false;
 			this.leftArm.visible = false;
 			this.body.visible = false;

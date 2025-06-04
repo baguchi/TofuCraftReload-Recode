@@ -43,4 +43,9 @@ public class SoymilkPathNavigation extends PathNavigation {
 
 	public void setCanFloat(boolean p_26612_) {
 	}
+
+	@Override
+	public boolean canNavigateGround() {
+		return false;
+	}
 }

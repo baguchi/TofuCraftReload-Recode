@@ -9,7 +9,6 @@ import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponentGetter;
@@ -43,6 +42,8 @@ import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -231,26 +232,24 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag cmp, HolderLookup.Provider p_338445_) {
-		super.saveAdditional(cmp, p_338445_);
-		ContainerHelper.saveAllItems(cmp, this.inventory, p_338445_);
+	public void saveAdditional(ValueOutput cmp) {
+		super.saveAdditional(cmp);
+		ContainerHelper.saveAllItems(cmp, this.inventory);
 		cmp.putInt("progress", this.progress);
 		cmp.putInt("RefreshTime", this.refreshTime);
 		CompoundTag compoundtag = new CompoundTag();
 		this.recipesUsed.forEach((p_380898_, p_380899_) -> compoundtag.putInt(p_380898_.location().toString(), p_380899_));
-		cmp.put("RecipesUsed", compoundtag);
+		cmp.store("RecipesUsed", CompoundTag.CODEC, compoundtag);
 	}
 
 	@Override
-	public void loadAdditional(CompoundTag cmp, HolderLookup.Provider p_338445_) {
-		super.loadAdditional(cmp, p_338445_);
+	public void loadAdditional(ValueInput cmp) {
+		super.loadAdditional(cmp);
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(cmp, this.inventory, p_338445_);
+		ContainerHelper.loadAllItems(cmp, this.inventory);
 
 		this.progress = cmp.getIntOr("progress", 0);
 		this.refreshTime = cmp.getIntOr("RefreshTime", 0);
-		CompoundTag compoundtag = cmp.getCompoundOrEmpty("RecipesUsed");
-
 		this.recipesUsed.clear();
 		this.recipesUsed.putAll(cmp.read("RecipesUsed", RECIPES_USED_CODEC).orElse(Map.of()));
 	}
@@ -321,7 +320,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 
 
 	public void awardUsedRecipesAndPopExperience(ServerPlayer player) {
-		List<RecipeHolder<?>> list = this.getRecipesToAwardAndPopExperience(player.serverLevel(), player.position());
+		List<RecipeHolder<?>> list = this.getRecipesToAwardAndPopExperience(player.level(), player.position());
 		player.awardRecipes(list);
 
 		for (RecipeHolder<?> recipeholder : list) {
@@ -363,12 +362,12 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 
 
 	@Override
-	public void removeComponentsFromTag(CompoundTag p_331127_) {
+	public void removeComponentsFromTag(ValueOutput p_331127_) {
 		super.removeComponentsFromTag(p_331127_);
-		p_331127_.remove("Items");
-		p_331127_.remove("progress");
-		p_331127_.remove("RefreshTime");
-		p_331127_.remove("RecipesUsed");
+		p_331127_.discard("Items");
+		p_331127_.discard("progress");
+		p_331127_.discard("RefreshTime");
+		p_331127_.discard("RecipesUsed");
 	}
 
 	@Override

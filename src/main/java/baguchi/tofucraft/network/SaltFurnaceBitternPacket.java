@@ -39,7 +39,7 @@ public class SaltFurnaceBitternPacket implements CustomPacketPayload, IPayloadHa
 	}
 
 	public SaltFurnaceBitternPacket(FriendlyByteBuf buffer) {
-		this(buffer.readBlockPos(), buffer.readJsonWithCodec(FluidStack.OPTIONAL_CODEC));
+		this(buffer.readBlockPos(), buffer.readLenientJsonWithCodec(FluidStack.OPTIONAL_CODEC));
 	}
 
 	public void handle(SaltFurnaceBitternPacket message, IPayloadContext context) {

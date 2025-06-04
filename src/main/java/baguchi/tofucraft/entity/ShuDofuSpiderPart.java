@@ -1,6 +1,5 @@
 package baguchi.tofucraft.entity;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -11,6 +10,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 import javax.annotation.Nullable;
 
@@ -33,11 +34,11 @@ public class ShuDofuSpiderPart extends net.neoforged.neoforge.entity.PartEntity<
 	}
 
 	@Override
-	protected void readAdditionalSaveData(CompoundTag p_31025_) {
+	protected void readAdditionalSaveData(ValueInput p_31025_) {
 	}
 
 	@Override
-	protected void addAdditionalSaveData(CompoundTag p_31028_) {
+	protected void addAdditionalSaveData(ValueOutput p_31028_) {
 	}
 
 	@Override

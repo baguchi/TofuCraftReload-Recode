@@ -15,7 +15,6 @@ import baguchi.tofucraft.utils.CombatUtils;
 import baguchi.tofucraft.world.TofuData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -59,6 +58,8 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -230,7 +231,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		return this.getChargeFlag(8);
 	}
 
-	public void addAdditionalSaveData(CompoundTag compound) {
+	public void addAdditionalSaveData(ValueOutput compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("Sleep", this.isSleepSelf());
 		compound.putBoolean("FullCharge", this.isFullCharge());
@@ -240,12 +241,12 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		}
 	}
 
-	public void readAdditionalSaveData(CompoundTag compound) {
+	public void readAdditionalSaveData(ValueInput compound) {
 		super.readAdditionalSaveData(compound);
 		this.setSleepSelf(compound.getBooleanOr("Sleep", false));
 		this.setFullCharge(compound.getBooleanOr("FullCharge", false));
 		this.setChargeHealth(compound.getFloatOr("ChargeHealth", 0));
-		if (compound.contains("HomePos")) {
+		if (compound.child("HomePos").isPresent()) {
 			this.homePos = compound.read("HomePos", BlockPos.CODEC).orElse(null);
 		}
 	}

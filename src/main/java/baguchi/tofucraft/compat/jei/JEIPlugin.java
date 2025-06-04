@@ -1,33 +1,7 @@
 package baguchi.tofucraft.compat.jei;
 
-import baguchi.tofucraft.TofuCraftReload;
-import baguchi.tofucraft.inventory.TFCraftingTableMenu;
-import baguchi.tofucraft.inventory.TofuPotMenu;
-import baguchi.tofucraft.recipe.BitternRecipe;
-import baguchi.tofucraft.recipe.HardenRecipe;
-import baguchi.tofucraft.recipe.TFCraftingRecipe;
-import baguchi.tofucraft.recipe.TofuPotRecipe;
-import baguchi.tofucraft.registry.TofuBlocks;
-import baguchi.tofucraft.registry.TofuItems;
-import baguchi.tofucraft.registry.TofuMenus;
-import mezz.jei.api.IModPlugin;
-import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.recipe.types.IRecipeType;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
-import mezz.jei.api.registration.IRecipeTransferRegistration;
-import mezz.jei.common.Internal;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.block.Blocks;
 
-
+/*
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
 	public static final ResourceLocation PLUGIN_ID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "jei_plugin");
@@ -108,3 +82,4 @@ public class JEIPlugin implements IModPlugin {
 		return PLUGIN_ID;
 	}
 }
+*/

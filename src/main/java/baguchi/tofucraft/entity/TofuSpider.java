@@ -6,7 +6,6 @@ import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -43,6 +42,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.event.EventHooks;
 
@@ -108,14 +109,14 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		this.goalSelector.addGoal(2, new TofuSpiderAttackGoal(this));
 	}
 
-	public void addAdditionalSaveData(CompoundTag p_34397_) {
+	public void addAdditionalSaveData(ValueOutput p_34397_) {
 		super.addAdditionalSaveData(p_34397_);
 		p_34397_.putInt("ConversionTime", this.isConverting() ? this.conversionTime : -1);
 	}
 
-	public void readAdditionalSaveData(CompoundTag p_34387_) {
+	public void readAdditionalSaveData(ValueInput p_34387_) {
 		super.readAdditionalSaveData(p_34387_);
-		if (p_34387_.contains("ConversionTime") && p_34387_.getIntOr("ConversionTime", -1) > -1) {
+		if (p_34387_.child("ConversionTime").isPresent() && p_34387_.getIntOr("ConversionTime", -1) > -1) {
 			this.startConverting(p_34387_.getIntOr("ConversionTime", -1));
 		}
 	}

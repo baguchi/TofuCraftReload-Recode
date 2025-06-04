@@ -75,19 +75,19 @@ public class TofuMusicManager {
 		if (music != null) {
 			if (currentMusic != null) {
 				if (fade == null) {
-					if (!music.getEvent().value().location().equals(currentMusic.getLocation()) && music.replaceCurrentMusic()) {
+					if (!music.event().value().location().equals(currentMusic.getLocation()) && music.replaceCurrentMusic()) {
 						minecraft.getSoundManager().stop(currentMusic); // Non-copy, cancels vanilla music if Tofu music starts
-						nextSongDelay = Mth.nextInt(random, 0, music.getMinDelay() / 2);
+						nextSongDelay = Mth.nextInt(random, 0, music.minDelay() / 2);
 					}
 
 					if (!minecraft.getSoundManager().isActive(currentMusic)) {
 						currentMusic = null;
-						nextSongDelay = Math.min(nextSongDelay, Mth.nextInt(random, music.getMinDelay(), music.getMaxDelay()));
+						nextSongDelay = Math.min(nextSongDelay, Mth.nextInt(random, music.minDelay(), music.maxDelay()));
 					}
 				}
 			}
 
-			nextSongDelay = Math.min(nextSongDelay, music.getMaxDelay());
+			nextSongDelay = Math.min(nextSongDelay, music.maxDelay());
 			if (currentMusic == null && nextSongDelay-- <= 0) {
 				startPlaying(music);
 			}
@@ -107,9 +107,9 @@ public class TofuMusicManager {
 	public static void startPlaying(Music music) {
 		musicManager.stopPlaying(); // Non-copy, cancels vanilla music if Tofu music starts
 		if (isTofuBossMusic(music)) {
-			currentMusic = MusicSoundInstance.forBossMusic(music.getEvent().value());
+			currentMusic = MusicSoundInstance.forBossMusic(music.event().value());
 		} else {
-			currentMusic = MusicSoundInstance.forMusic(music.getEvent().value());
+			currentMusic = MusicSoundInstance.forMusic(music.event().value());
 		}
 		if (currentMusic.getSound() != SoundManager.EMPTY_SOUND) {
 			minecraft.getSoundManager().play(currentMusic);
@@ -157,7 +157,7 @@ public class TofuMusicManager {
 	}
 
 	public static boolean isTofuBossMusic(Music music) {
-		return music.getEvent().is(TofuTags.SoundEvents.BOSS_MUSIC);
+		return music.event().is(TofuTags.SoundEvents.BOSS_MUSIC);
 	}
 
 	public static boolean isTofuBossMusicActive() {

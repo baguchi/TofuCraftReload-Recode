@@ -39,7 +39,7 @@ public class SaltFurnaceWaterPacket implements CustomPacketPayload, IPayloadHand
 	}
 
 	public SaltFurnaceWaterPacket(FriendlyByteBuf buffer) {
-		this(buffer.readBlockPos(), buffer.readJsonWithCodec(FluidStack.OPTIONAL_CODEC));
+		this(buffer.readBlockPos(), buffer.readLenientJsonWithCodec(FluidStack.OPTIONAL_CODEC));
 	}
 
 	public void handle(SaltFurnaceWaterPacket message, IPayloadContext context) {

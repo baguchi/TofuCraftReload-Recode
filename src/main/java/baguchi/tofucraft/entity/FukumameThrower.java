@@ -2,7 +2,6 @@ package baguchi.tofucraft.entity;
 
 import com.mojang.serialization.Dynamic;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -21,6 +20,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.Nullable;
 
 public class FukumameThrower extends Piglin {
@@ -56,13 +57,13 @@ public class FukumameThrower extends Piglin {
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag p_34751_) {
+	public void addAdditionalSaveData(ValueOutput p_34751_) {
 		super.addAdditionalSaveData(p_34751_);
 		p_34751_.putInt("FukumameCount", this.getFukumameCount());
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundTag p_34725_) {
+	public void readAdditionalSaveData(ValueInput p_34725_) {
 		super.readAdditionalSaveData(p_34725_);
 		this.setFukumameCount(p_34725_.getIntOr("FukumameCount", 64));
 	}

@@ -5,6 +5,7 @@ package baguchi.tofucraft.client.model;// Made with Blockbench 4.3.0
 import baguchi.tofucraft.client.animation.definitions.TofuGandlemAnimation;
 import baguchi.tofucraft.client.render.state.TofuGandlemRenderState;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -25,6 +26,16 @@ public class TofuGandlemModel<T extends TofuGandlemRenderState> extends EntityMo
 
 	private final List<ModelPart> coreModelParts;
 
+	private final KeyframeAnimation attackAnimation;
+	private final KeyframeAnimation shootAnimation;
+	private final KeyframeAnimation shootingAnimation;
+	private final KeyframeAnimation deathAnimation;
+	private final KeyframeAnimation idleAnimation;
+	private final KeyframeAnimation rushAnimation;
+	private final KeyframeAnimation chargeAnimation;
+	private final KeyframeAnimation chargeStopAnimation;
+	private final KeyframeAnimation chargeFailAnimation;
+
 	public TofuGandlemModel(ModelPart root) {
 		super(root);
 		this.baseRoot = root;
@@ -33,6 +44,15 @@ public class TofuGandlemModel<T extends TofuGandlemRenderState> extends EntityMo
 		this.core = this.root.getChild("core");
 		this.core2 = this.root.getChild("core2");
 		this.coreModelParts = ImmutableList.of(this.core, this.core2);
+		this.attackAnimation = TofuGandlemAnimation.ATTACK.bake(root);
+		this.shootAnimation = TofuGandlemAnimation.SHOOT.bake(root);
+		this.shootingAnimation = TofuGandlemAnimation.SHOOTING.bake(root);
+		this.deathAnimation = TofuGandlemAnimation.DEATH.bake(root);
+		this.idleAnimation = TofuGandlemAnimation.IDLE.bake(root);
+		this.rushAnimation = TofuGandlemAnimation.RUSH.bake(root);
+		this.chargeAnimation = TofuGandlemAnimation.CHARGE.bake(root);
+		this.chargeStopAnimation = TofuGandlemAnimation.CHARGE_STOP.bake(root);
+		this.chargeFailAnimation = TofuGandlemAnimation.CHARGE_FAIL.bake(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -73,15 +93,15 @@ public class TofuGandlemModel<T extends TofuGandlemRenderState> extends EntityMo
 			this.head.yRot = entity.yRot * 0.017453292F;
 		}
 
-		this.animate(entity.attackAnimationState, TofuGandlemAnimation.ATTACK, entity.ageInTicks);
-		this.animate(entity.shootAnimationState, TofuGandlemAnimation.SHOOT, entity.ageInTicks);
-		this.animate(entity.shootingAnimationState, TofuGandlemAnimation.SHOOTING, entity.ageInTicks);
-		this.animate(entity.rushAnimationState, TofuGandlemAnimation.RUSH, entity.ageInTicks);
-		this.animate(entity.idleAnimationState, TofuGandlemAnimation.IDLE, entity.ageInTicks);
-		this.animate(entity.deathAnimationState, TofuGandlemAnimation.DEATH, entity.ageInTicks);
-		this.animate(entity.chargeAnimationState, TofuGandlemAnimation.CHARGE, entity.ageInTicks);
-		this.animate(entity.chargeStopAnimationState, TofuGandlemAnimation.CHARGE_STOP, entity.ageInTicks);
-		this.animate(entity.chargeFailAnimationState, TofuGandlemAnimation.CHARGE_FAIL, entity.ageInTicks);
+		attackAnimation.apply(entity.attackAnimationState, entity.ageInTicks);
+		shootAnimation.apply(entity.shootAnimationState, entity.ageInTicks);
+		shootingAnimation.apply(entity.shootingAnimationState, entity.ageInTicks);
+		rushAnimation.apply(entity.rushAnimationState, entity.ageInTicks);
+		idleAnimation.apply(entity.idleAnimationState, entity.ageInTicks);
+		deathAnimation.apply(entity.deathAnimationState, entity.ageInTicks);
+		chargeAnimation.apply(entity.chargeAnimationState, entity.ageInTicks);
+		chargeStopAnimation.apply(entity.chargeStopAnimationState, entity.ageInTicks);
+		chargeFailAnimation.apply(entity.chargeFailAnimationState, entity.ageInTicks);
 	}
 
 	public List<ModelPart> getCoreModelParts() {

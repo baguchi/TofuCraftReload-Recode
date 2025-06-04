@@ -7,10 +7,12 @@ import baguchi.tofucraft.client.animation.definitions.CoughAnimation;
 import baguchi.tofucraft.client.sound.TofuMusicManager;
 import baguchi.tofucraft.entity.TofuGandlem;
 import baguchi.tofucraft.registry.TofuAnimations;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.IllagerModel;
+import net.minecraft.client.model.WardenModel;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -50,7 +52,7 @@ public class TofuClientEvents {
 			if (!(boss instanceof TofuGandlem tofuGandlem)) return;
 			event.setCanceled(true);
 			int k = i / 2 - 91;
-			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+
 			drawBar(event.getGuiGraphics(), k, event.getY(), event.getBossEvent(), boss);
 			Component itextcomponent = boss.getDisplayName();
 			int l = minecraft.font.width(itextcomponent);
@@ -76,10 +78,7 @@ public class TofuClientEvents {
 	private static void drawBar(
 			GuiGraphics p_281657_, int p_283675_, int p_282498_, BossEvent p_281288_, int p_283619_, ResourceLocation p_296156_
 	) {
-		p_281657_.blitSprite(RenderType::guiTextured, p_296156_, 182, 9, 0, 0, p_283675_, p_282498_, p_283619_, 9);
-		/*if (p_281288_.getOverlay() != BossEvent.BossBarOverlay.PROGRESS) {
-			p_281657_.blitSprite(RenderType::guiTextured, p_296292_, 182, 5, 0, 0, p_283675_, p_282498_, p_283619_, 5);
-		}*/
+		p_281657_.blitSprite(RenderPipelines.GUI_TEXTURED, p_296156_, 182, 9, 0, 0, p_283675_, p_282498_, p_283619_, 9);
 	}
 
 	public static void addBossBar(UUID id, Mob mob) {
@@ -93,8 +92,8 @@ public class TofuClientEvents {
 	@SubscribeEvent
 	public static void onAnimateModelEvent(BagusModelEvent.PostAnimate event) {
 		BaguAnimationController controller = event.getBaguAnimationController();
-		if (controller != null) {
-			event.animate(controller.getAnimationState(TofuAnimations.COUGH), CoughAnimation.COUGH, event.getEntityRenderState().ageInTicks);
+		if (controller != null && (event.getModel() instanceof HumanoidModel<?> || event.getModel() instanceof IllagerModel<?> || event.getModel() instanceof WardenModel)) {
+			CoughAnimation.COUGH.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.COUGH), event.getEntityRenderState().ageInTicks);
 		}
 	}
 }

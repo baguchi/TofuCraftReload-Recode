@@ -1,13 +1,9 @@
 package baguchi.tofucraft.entity;
 
-import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuSounds;
 import com.google.common.collect.Sets;
-import net.minecraft.Util;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -37,6 +33,8 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -189,28 +187,26 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 
 	}
 
-	public void addAdditionalSaveData(CompoundTag p_35301_) {
+	@Override
+	public void addAdditionalSaveData(ValueOutput p_35301_) {
 		super.addAdditionalSaveData(p_35301_);
 		MerchantOffers merchantoffers = this.getOffers();
 		if (!merchantoffers.isEmpty()) {
-			p_35301_.put(
-					"Offers", MerchantOffers.CODEC.encodeStart(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), merchantoffers).getOrThrow()
-			);
+			p_35301_.store(
+					"Offers", MerchantOffers.CODEC, merchantoffers);
 		}
 
-		this.writeInventoryToTag(p_35301_, this.registryAccess());
+		this.writeInventoryToTag(p_35301_);
 	}
 
-	public void readAdditionalSaveData(CompoundTag p_35290_) {
+	@Override
+	public void readAdditionalSaveData(ValueInput p_35290_) {
 		super.readAdditionalSaveData(p_35290_);
-		if (p_35290_.contains("Offers")) {
-			MerchantOffers.CODEC
-					.parse(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), p_35290_.get("Offers"))
-					.resultOrPartial(Util.prefix("Failed to load offers: ", TofuCraftReload.LOGGER::warn))
-					.ifPresent(p_323775_ -> this.offers = p_323775_);
+		if (p_35290_.child("Offers").isPresent()) {
+			this.offers = p_35290_.read("Offers", MerchantOffers.CODEC).orElse(null);
 		}
 
-		this.readInventoryFromTag(p_35290_, this.registryAccess());
+		this.readInventoryFromTag(p_35290_);
 	}
 
 	@Override

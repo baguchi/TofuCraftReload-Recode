@@ -73,7 +73,6 @@ import com.mojang.blaze3d.pipeline.BlendFunction;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.platform.DepthTestFunction;
 import com.mojang.blaze3d.platform.Window;
-import com.mojang.blaze3d.shaders.UniformType;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexFormat;
@@ -87,7 +86,6 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -124,6 +122,10 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.client.renderstate.RegisterRenderStateModifiersEvent;
 import org.jetbrains.annotations.Nullable;
 
+import static net.minecraft.client.renderer.RenderPipelines.FOG_SNIPPET;
+import static net.minecraft.client.renderer.RenderPipelines.GLOBALS_SNIPPET;
+import static net.minecraft.client.renderer.RenderPipelines.MATRICES_PROJECTION_SNIPPET;
+
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ClientRegistrar {
@@ -131,24 +133,12 @@ public class ClientRegistrar {
 	private static final ResourceLocation TEXTURE_RECOVER_HEART_HALF = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container_half");
 
 	public static final RenderPipeline ZUNDA =
-			RenderPipeline.builder(RenderPipelines.FOG_NO_COLOR_SNIPPET)
+			RenderPipeline.builder(new RenderPipeline.Snippet[]{MATRICES_PROJECTION_SNIPPET, FOG_SNIPPET, GLOBALS_SNIPPET})
 					.withLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "pipeline/zunda"))
-					.withVertexShader("core/entity")
-					.withFragmentShader("core/entity")
-					.withShaderDefine("ALPHA_CUTOUT", 0.1F)
-					.withShaderDefine("EMISSIVE")
-					.withShaderDefine("NO_OVERLAY")
-					.withShaderDefine("NO_CARDINAL_LIGHTING")
-					.withShaderDefine("APPLY_TEXTURE_MATRIX")
+					.withVertexShader("core/glint").withFragmentShader("core/glint")
 					.withSampler("Sampler0")
-					.withUniform("TextureMat", UniformType.MATRIX4X4)
 					.withBlend(BlendFunction.ADDITIVE)
-					.withDepthWrite(false)
-					.withCull(false)
-					.withDepthTestFunction(DepthTestFunction.EQUAL_DEPTH_TEST)
-					.withBlend(BlendFunction.GLINT)
-					.withVertexFormat(DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS)
-					.build();
+					.withDepthWrite(false).withCull(false).withDepthTestFunction(DepthTestFunction.EQUAL_DEPTH_TEST).withVertexFormat(DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS).build();
 
 	public static void setup(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
@@ -563,7 +553,7 @@ public class ClientRegistrar {
 	private static void renderHeart(
 			GuiGraphics p_283024_, ResourceLocation p_281393_, int p_283636_, int p_283279_
 	) {
-		p_283024_.blitSprite(RenderType::guiTextured, p_281393_, p_283636_, p_283279_, 9, 9);
+		p_283024_.blitSprite(RenderPipelines.GUI_TEXTURED, p_281393_, p_283636_, p_283279_, 9, 9);
 	}
 
 	private static void renderTofuPortalOverlay(GuiGraphics guiGraphics, Minecraft minecraft, Window window, TofuLivingAttachment handler, DeltaTracker partialTicks) {
@@ -576,7 +566,7 @@ public class ClientRegistrar {
 			}
 			int i = ARGB.white(timeInPortal);
 			TextureAtlasSprite textureatlassprite = minecraft.getBlockRenderer().getBlockModelShaper().getParticleIcon(TofuBlocks.TOFU_PORTAL.get().defaultBlockState());
-			guiGraphics.blitSprite(RenderType::guiTexturedOverlay, textureatlassprite, 0, 0,
+			guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, textureatlassprite, 0, 0,
 					guiGraphics.guiWidth(),
 					guiGraphics.guiHeight(),
 					i);

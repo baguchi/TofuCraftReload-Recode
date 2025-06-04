@@ -2,7 +2,6 @@ package baguchi.tofucraft.entity;
 
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -25,6 +24,8 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 
 public class Zundamite extends Monster {
@@ -79,12 +80,12 @@ public class Zundamite extends Monster {
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundTag p_32595_) {
+	public void readAdditionalSaveData(ValueInput p_32595_) {
 		super.readAdditionalSaveData(p_32595_);
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag p_32610_) {
+	public void addAdditionalSaveData(ValueOutput p_32610_) {
 		super.addAdditionalSaveData(p_32610_);
 	}
 

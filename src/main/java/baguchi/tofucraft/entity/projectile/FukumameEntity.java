@@ -6,7 +6,6 @@ import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuSounds;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
@@ -17,6 +16,8 @@ import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -130,23 +131,23 @@ public class FukumameEntity extends ThrowableProjectile {
 		}
 	}
 
-	public void addAdditionalSaveData(CompoundTag p_37222_) {
+	public void addAdditionalSaveData(ValueOutput p_37222_) {
 		super.addAdditionalSaveData(p_37222_);
 		p_37222_.putFloat("Damage", (byte) this.damage);
 		p_37222_.putInt("TotalHits", this.totalHits);
 		if (this.firedFromWeapon != null) {
-			p_37222_.put("weapon", this.firedFromWeapon.save(this.registryAccess(), new CompoundTag()));
+			p_37222_.store("weapon", ItemStack.CODEC, this.firedFromWeapon);
 		}
 	}
 
-	public void readAdditionalSaveData(CompoundTag p_37220_) {
+	public void readAdditionalSaveData(ValueInput p_37220_) {
 		super.readAdditionalSaveData(p_37220_);
-		if (p_37220_.contains("Damage")) {
+		if (p_37220_.child("Damage").isPresent()) {
 			this.damage = p_37220_.getFloatOr("Damage", 1);
 		}
 		this.totalHits = p_37220_.getIntOr("TotalHits", 0);
-		if (p_37220_.contains("weapon")) {
-			this.firedFromWeapon = ItemStack.parse(this.registryAccess(), p_37220_.getCompoundOrEmpty("weapon")).orElse(null);
+		if (p_37220_.child("weapon").isPresent()) {
+			this.firedFromWeapon = p_37220_.read("weapon", ItemStack.CODEC).orElse(null);
 		} else {
 			this.firedFromWeapon = null;
 		}

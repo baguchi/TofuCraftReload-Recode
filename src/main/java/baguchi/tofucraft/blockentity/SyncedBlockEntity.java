@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
 
 import javax.annotation.Nullable;
 
@@ -29,9 +30,9 @@ public class SyncedBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider p_323910_) {
-		super.onDataPacket(net, pkt, p_323910_);
-		loadAdditional(pkt.getTag(), p_323910_);
+	public void onDataPacket(Connection net, ValueInput valueInput) {
+		super.onDataPacket(net, valueInput);
+		loadAdditional(valueInput);
 	}
 
 	protected void inventoryChanged() {

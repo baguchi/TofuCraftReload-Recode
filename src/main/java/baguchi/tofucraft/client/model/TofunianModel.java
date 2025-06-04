@@ -3,6 +3,7 @@ package baguchi.tofucraft.client.model;
 import baguchi.tofucraft.client.animation.definitions.TofunianAnimation;
 import baguchi.tofucraft.client.render.state.TofunianRenderState;
 import baguchi.tofucraft.entity.Tofunian;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -13,8 +14,24 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 
 public class TofunianModel<T extends TofunianRenderState> extends AbstractTofunianModel<T> {
 
-	public TofunianModel(ModelPart p_170688_) {
-		super(p_170688_);
+	private final KeyframeAnimation happyAnimation;
+	private final KeyframeAnimation eatAnimation;
+	private final KeyframeAnimation waveAnimation;
+	private final KeyframeAnimation waveChildAnimation;
+	private final KeyframeAnimation cryAnimation;
+	private final KeyframeAnimation avoidAnimation;
+	private final KeyframeAnimation sitAnimation;
+
+
+	public TofunianModel(ModelPart root) {
+		super(root);
+		this.happyAnimation = TofunianAnimation.HAPPY.bake(root);
+		this.eatAnimation = TofunianAnimation.EAT.bake(root);
+		this.waveAnimation = TofunianAnimation.wave.bake(root);
+		this.waveChildAnimation = TofunianAnimation.wave_child.bake(root);
+		this.cryAnimation = TofunianAnimation.CRY.bake(root);
+		this.avoidAnimation = TofunianAnimation.AVOIDING.bake(root);
+		this.sitAnimation = TofunianAnimation.SIT.bake(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -48,20 +65,20 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 			this.rightArm.xRot = 0.0F;
 			this.leftArm.xRot = 0.0F;
 		}
-		this.animate(entity.happyAnimationState, TofunianAnimation.HAPPY, entity.ageInTicks);
-		this.animate(entity.eatFoodAnimationState, TofunianAnimation.EAT, entity.ageInTicks);
+		this.happyAnimation.apply(entity.happyAnimationState, entity.ageInTicks);
+		this.eatAnimation.apply(entity.eatFoodAnimationState, entity.ageInTicks);
 		if (entity.isBaby) {
-			this.animate(entity.waveAnimationState, TofunianAnimation.wave_child, entity.ageInTicks);
+			this.waveAnimation.apply(entity.waveAnimationState, entity.ageInTicks);
 		} else {
-			this.animate(entity.waveAnimationState, TofunianAnimation.wave, entity.ageInTicks);
+			this.waveChildAnimation.apply(entity.waveAnimationState, entity.ageInTicks);
 		}
 
 		if (entity.actions == Tofunian.Actions.CRY) {
 			this.head.xRot = 0.0F;
 			this.head.yRot = 0.0F;
-			this.applyStatic(TofunianAnimation.CRY);
+			this.cryAnimation.applyStatic();
 		} else if (entity.actions == Tofunian.Actions.AVOID) {
-			this.applyStatic(TofunianAnimation.AVOIDING);
+			this.avoidAnimation.applyStatic();
 		} else if (entity.actions == Tofunian.Actions.SIT) {
 			this.rightArm.xRot = -0.62831855F;
 			this.rightArm.yRot = 0.0F;
@@ -75,7 +92,7 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 			this.leftLeg.xRot = (float) (-Math.PI / 2F);
 			this.leftLeg.yRot = -0.31415927F;
 			this.leftLeg.zRot = -0.07853982F;
-			this.applyStatic(TofunianAnimation.SIT);
+			this.sitAnimation.applyStatic();
 		}
 	}
 

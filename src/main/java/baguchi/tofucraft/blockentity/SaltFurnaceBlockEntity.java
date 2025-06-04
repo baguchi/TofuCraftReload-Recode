@@ -39,6 +39,8 @@ import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -135,18 +137,13 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	@Override
-	public void loadAdditional(CompoundTag cmp, HolderLookup.Provider provider) {
-		super.loadAdditional(cmp, provider);
-		if (cmp.contains("WaterTank")) {
-			CompoundTag nbt = cmp.getCompoundOrEmpty("WaterTank");
-			this.waterTank = this.waterTank.readFromNBT(provider, nbt);
-		}
-		if (cmp.contains("BitternTank")) {
-			CompoundTag nbt = cmp.getCompoundOrEmpty("BitternTank");
-			this.bitternTank = this.bitternTank.readFromNBT(provider, nbt);
-		}
+	public void loadAdditional(ValueInput cmp) {
+		super.loadAdditional(cmp);
+		this.waterTank = this.waterTank.readFromNBT(this.getLevel().registryAccess(), cmp.read("WaterTank", CompoundTag.CODEC).orElse(new CompoundTag()));
+		this.bitternTank = this.bitternTank.readFromNBT(this.getLevel().registryAccess(), cmp.read("BitternTank", CompoundTag.CODEC).orElse(new CompoundTag()));
+
 		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(cmp, this.items, provider);
+		ContainerHelper.loadAllItems(cmp, this.items);
 		this.litTime = cmp.getIntOr("BurnTime", 0);
 		this.cookingProgress = cmp.getIntOr("CookTime", 0);
 		this.cookingTotalTime = cmp.getIntOr("CookTimeTotal", 0);
@@ -155,19 +152,19 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag p_189515_1_, HolderLookup.Provider provider) {
-		super.saveAdditional(p_189515_1_, provider);
+	public void saveAdditional(ValueOutput p_189515_1_) {
+		super.saveAdditional(p_189515_1_);
 		CompoundTag nbt = new CompoundTag();
 		CompoundTag nbt2 = new CompoundTag();
-		this.waterTank.writeToNBT(provider, nbt);
-		this.bitternTank.writeToNBT(provider, nbt2);
-		p_189515_1_.put("WaterTank", nbt);
-		p_189515_1_.put("BitternTank", nbt2);
+		this.waterTank.writeToNBT(this.level.registryAccess(), nbt);
+		this.bitternTank.writeToNBT(this.level.registryAccess(), nbt2);
+		p_189515_1_.store("WaterTank", CompoundTag.CODEC, nbt);
+		p_189515_1_.store("BitternTank", CompoundTag.CODEC, nbt2);
 		p_189515_1_.putInt("BurnTime", this.litTime);
 		p_189515_1_.putInt("CookTime", this.cookingProgress);
 		p_189515_1_.putInt("CookTimeTotal", this.cookingTotalTime);
 		p_189515_1_.putInt("lit_total_time", this.litDuration);
-		ContainerHelper.saveAllItems(p_189515_1_, this.items, provider);
+		ContainerHelper.saveAllItems(p_189515_1_, this.items);
 	}
 
 	@Nullable
@@ -340,7 +337,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	public void popExperience(ServerPlayer p_155004_, ItemStack p_39558_) {
-		createExperience(p_155004_.serverLevel(), p_155004_.position(), 1, p_39558_.getCount());
+		createExperience(p_155004_.level(), p_155004_.position(), 1, p_39558_.getCount());
 	}
 
 

@@ -4,15 +4,11 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
 import baguchi.tofucraft.client.ClientProxy;
 import baguchi.tofucraft.inventory.TFStorageMenu;
-import baguchi.tofucraft.mixin.client.GuiGraphicsAccessor;
 import baguchi.tofucraft.registry.TofuFluids;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
@@ -25,7 +21,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import org.joml.Matrix4f;
+import org.joml.Matrix3x2fStack;
 
 import java.util.Optional;
 
@@ -53,7 +49,7 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	protected void renderBg(GuiGraphics p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
 		int i = this.leftPos;
 		int j = this.topPos;
-		p_230450_1_.blit(RenderType::guiTextured, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+		p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 
 		if (ClientProxy.PROXY.getRefrencedTE() instanceof TFStorageBlockEntity && ((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank().getFluid() != null) {
 			FluidTank fluidTank = ((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank();
@@ -61,17 +57,16 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 			if (heightInd > 0)
 				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 145, j + 69, 10, heightInd, fluidTank.getFluid().getFluid());
 		}
-		p_230450_1_.pose().pushPose();
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+		p_230450_1_.pose().pushMatrix();
 		FluidStack fluidTank2 = new FluidStack(TofuFluids.SOYMILK_FLOW.get(), 1000);
 		int heightInd2 = (int) (44.0F * menu.getTFEnergy() / menu.getTFMaxEnergy());
 		if (heightInd2 > 0)
 			renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 76, j + 69, 10, heightInd2, fluidTank2.getFluid());
-		p_230450_1_.pose().popPose();
+		p_230450_1_.pose().popMatrix();
 	}
 
 
-	public static void renderFluidStack(GuiGraphics guiGraphics, PoseStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
+	public static void renderFluidStack(GuiGraphics guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(IClientFluidTypeExtensions.of(fluid).getStillTexture());
 		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
 
@@ -90,8 +85,6 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		float vMax = sprite.getV1();
 		float uDif = uMax - uMin;
 		float vDif = vMax - vMin;
-		VertexConsumer vertexBuffer = ((GuiGraphicsAccessor) guiGraphics).bufferSource().getBuffer(RenderType.guiTextured(TextureAtlas.LOCATION_BLOCKS));
-		Matrix4f matrix4f = stack.last().pose();
 		for (int xTile = 0; xTile <= xTileCount; xTile++) {
 			int width = (xTile == xTileCount) ? xRemainder : 16;
 			if (width == 0) {
@@ -110,11 +103,7 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 				int y = yPosition - ((yTile + 1) * 16);
 				int maskTop = 16 - height;
 				float vLocalDif = vDif * maskTop / 16;
-
-				vertexBuffer.addVertex(matrix4f, x, y + 16, 0).setUv(uMin + uLocalDif, vMax).setColor(red, green, blue, alpha);
-				vertexBuffer.addVertex(matrix4f, shiftedX, y + 16, 0).setUv(uMax, vMax).setColor(red, green, blue, alpha);
-				vertexBuffer.addVertex(matrix4f, shiftedX, y + maskTop, 0).setUv(uMax, vMin + vLocalDif).setColor(red, green, blue, alpha);
-				vertexBuffer.addVertex(matrix4f, x, y + maskTop, 0).setUv(uMin + uLocalDif, vMin + vLocalDif).setColor(red, green, blue, alpha);
+				guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, IClientFluidTypeExtensions.of(fluid).getStillTexture(), shiftedX, y + maskTop, x, y + 16);
 			}
 		}
 	}
@@ -138,7 +127,7 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		}
 
 		optional.ifPresent((p_280863_) -> {
-			p_281668_.renderTooltip(this.font, this.font.split(p_280863_, 115), p_267192_, p_266859_);
+			p_281668_.setTooltipForNextFrame(this.font, this.font.split(p_280863_, 115), p_267192_, p_266859_);
 		});
 	}
 }

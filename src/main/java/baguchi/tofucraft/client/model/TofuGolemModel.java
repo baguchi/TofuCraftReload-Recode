@@ -5,6 +5,7 @@ package baguchi.tofucraft.client.model;// Made with Blockbench 4.5.2
 
 import baguchi.tofucraft.client.animation.definitions.TofuGolemAnimation;
 import baguchi.tofucraft.client.render.state.TofuGolemRenderState;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -16,9 +17,15 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 
 public class TofuGolemModel<T extends TofuGolemRenderState> extends EntityModel<T> {
 	private final ModelPart roots;
+
+	private final KeyframeAnimation spitAnimation;
+	private final KeyframeAnimation idleAnimation;
+
 	public TofuGolemModel(ModelPart root) {
 		super(root);
 		this.roots = root.getChild("roots");
+		spitAnimation = TofuGolemAnimation.spit.bake(root);
+		idleAnimation = TofuGolemAnimation.idle.bake(root);
 	}
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
@@ -42,7 +49,7 @@ public class TofuGolemModel<T extends TofuGolemRenderState> extends EntityModel<
 	@Override
 	public void setupAnim(T entity) {
 		super.setupAnim(entity);
-		this.animate(entity.spitAnimationState, TofuGolemAnimation.spit, entity.ageInTicks, 1);
-		this.animate(entity.idleAnimationState, TofuGolemAnimation.idle, entity.ageInTicks, 1);
+		spitAnimation.apply(entity.spitAnimationState, entity.ageInTicks);
+		idleAnimation.apply(entity.idleAnimationState, entity.ageInTicks);
 	}
 }

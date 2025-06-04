@@ -1,6 +1,6 @@
 package baguchi.tofucraft.effect;
 
-import baguchi.bagus_lib.util.client.AnimationUtil;
+import baguchi.bagus_lib.util.client.BagusAnimationUtil;
 import baguchi.tofucraft.registry.TofuAnimations;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -20,7 +20,7 @@ public class CoughEffect extends MobEffect {
 		super.applyEffectTick(serverLevel, livingEntity, p_301079_);
 
 		if (!livingEntity.level().isClientSide()) {
-			AnimationUtil.sendAnimation(livingEntity, TofuAnimations.COUGH);
+			BagusAnimationUtil.sendAnimation(livingEntity, TofuAnimations.COUGH);
 		}
 		if (!(livingEntity instanceof Warden)) {
 			serverLevel.playSound(null, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), SoundEvents.PLAYER_BREATH, livingEntity.getSoundSource(), 1.0F, 1.0F);

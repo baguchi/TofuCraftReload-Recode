@@ -6,7 +6,6 @@ import baguchi.tofucraft.entity.projectile.SoyballEntity;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -45,6 +44,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -154,13 +155,13 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 	}
 
 
-	public void addAdditionalSaveData(CompoundTag p_28867_) {
+	public void addAdditionalSaveData(ValueOutput p_28867_) {
 		super.addAdditionalSaveData(p_28867_);
 		p_28867_.putBoolean("PlayerCreated", this.isPlayerCreated());
 		this.addPersistentAngerSaveData(p_28867_);
 	}
 
-	public void readAdditionalSaveData(CompoundTag p_28857_) {
+	public void readAdditionalSaveData(ValueInput p_28857_) {
 		super.readAdditionalSaveData(p_28857_);
 		this.setPlayerCreated(p_28857_.getBooleanOr("PlayerCreated", false));
 		this.readPersistentAngerSaveData(this.level(), p_28857_);

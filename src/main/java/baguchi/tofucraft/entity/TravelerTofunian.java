@@ -6,7 +6,6 @@ import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofunianTrades;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -43,6 +42,8 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -125,7 +126,7 @@ public class TravelerTofunian extends AbstractTofunian {
 		}
 	}
 
-	public void addAdditionalSaveData(CompoundTag p_35861_) {
+	public void addAdditionalSaveData(ValueOutput p_35861_) {
 		super.addAdditionalSaveData(p_35861_);
 		p_35861_.putInt("DespawnDelay", this.despawnDelay);
 		if (this.wanderTarget != null) {
@@ -134,13 +135,13 @@ public class TravelerTofunian extends AbstractTofunian {
 
 	}
 
-	public void readAdditionalSaveData(CompoundTag p_35852_) {
+	public void readAdditionalSaveData(ValueInput p_35852_) {
 		super.readAdditionalSaveData(p_35852_);
-		if (p_35852_.contains("DespawnDelay")) {
+		if (p_35852_.child("DespawnDelay").isPresent()) {
 			this.despawnDelay = p_35852_.getIntOr("DespawnDelay", 0);
 		}
 
-		if (p_35852_.contains("WanderTarget")) {
+		if (p_35852_.child("WanderTarget").isPresent()) {
 			this.wanderTarget = p_35852_.read("WanderTarget", BlockPos.CODEC).orElse(null);
 		}
 

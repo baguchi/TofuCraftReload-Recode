@@ -15,6 +15,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -86,16 +88,16 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 
 
 	@Override
-	public void saveAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
-		super.saveAdditional(compound, p_338445_);
+	public void saveAdditional(ValueOutput compound) {
+		super.saveAdditional(compound);
 		compound.putInt(TAG_ENERGY, energy);
 		compound.putString(TAG_UUID, uuid);
 		compound.putInt(TAG_ENERGY_MAX, energyMax);
 	}
 
 	@Override
-	protected void loadAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
-		super.loadAdditional(compound, p_338445_);
+	protected void loadAdditional(ValueInput compound) {
+		super.loadAdditional(compound);
 		this.energyMax = compound.getIntOr(TAG_ENERGY_MAX, getMaxEnergyStored());
 		this.energy = compound.getIntOr(TAG_ENERGY, 0);
 		this.uuid = compound.getStringOr(TAG_UUID, "");
@@ -117,11 +119,11 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 	}
 
 	@Override
-	public void removeComponentsFromTag(CompoundTag p_331127_) {
+	public void removeComponentsFromTag(ValueOutput p_331127_) {
 		super.removeComponentsFromTag(p_331127_);
-		p_331127_.remove("tf_uuid");
-		p_331127_.remove("tf_energy");
-		p_331127_.remove("tf_energy_max");
+		p_331127_.discard("tf_uuid");
+		p_331127_.discard("tf_energy");
+		p_331127_.discard("tf_energy_max");
 	}
 
 
@@ -150,9 +152,9 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 	}
 
 	@Override
-	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
-		super.onDataPacket(net, pkt, lookupProvider);
-		loadAdditional(pkt.getTag(), lookupProvider);
+	public void onDataPacket(Connection net, ValueInput valueInput) {
+		super.onDataPacket(net, valueInput);
+		loadAdditional(valueInput);
 	}
 
 	@Override

@@ -2,10 +2,11 @@ package baguchi.tofucraft.blockentity;
 
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
@@ -17,15 +18,15 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 		inventory = createHandler();
 	}
 	@Override
-	public void loadAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
-		super.loadAdditional(compound, p_338445_);
-		inventory.deserializeNBT(p_338445_, compound.getCompoundOrEmpty("Inventory"));
+	public void loadAdditional(ValueInput compound) {
+		super.loadAdditional(compound);
+		inventory.deserializeNBT(this.level.registryAccess(), compound.read("Inventory", CompoundTag.CODEC).orElse(new CompoundTag()));
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
-		super.saveAdditional(compound, p_338445_);
-		compound.put("Inventory", inventory.serializeNBT(p_338445_));
+	public void saveAdditional(ValueOutput compound) {
+		super.saveAdditional(compound);
+		compound.store("Inventory", CompoundTag.CODEC, inventory.serializeNBT(this.level.registryAccess()));
 	}
 
 	public boolean addItem(ItemStack itemStack) {

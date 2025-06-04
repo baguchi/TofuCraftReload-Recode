@@ -18,7 +18,6 @@ import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -64,6 +63,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.pathfinder.PathFinder;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -1058,12 +1059,12 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag p_21484_) {
+	public void addAdditionalSaveData(ValueOutput p_21484_) {
 		super.addAdditionalSaveData(p_21484_);
 		p_21484_.putBoolean("Angry", this.isAngry());
 	}
 
-	public void readAdditionalSaveData(CompoundTag p_31474_) {
+	public void readAdditionalSaveData(ValueInput p_31474_) {
 		super.readAdditionalSaveData(p_31474_);
 		this.setAngry(p_31474_.getBooleanOr("Angry", false));
 		if (this.hasCustomName()) {
