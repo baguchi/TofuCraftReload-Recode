@@ -68,9 +68,9 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 		this.happyAnimation.apply(entity.happyAnimationState, entity.ageInTicks);
 		this.eatAnimation.apply(entity.eatFoodAnimationState, entity.ageInTicks);
 		if (entity.isBaby) {
-			this.waveAnimation.apply(entity.waveAnimationState, entity.ageInTicks);
-		} else {
 			this.waveChildAnimation.apply(entity.waveAnimationState, entity.ageInTicks);
+		} else {
+			this.waveAnimation.apply(entity.waveAnimationState, entity.ageInTicks);
 		}
 
 		if (entity.actions == Tofunian.Actions.CRY) {

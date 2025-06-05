@@ -116,7 +116,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 
 	public void readAdditionalSaveData(ValueInput p_34387_) {
 		super.readAdditionalSaveData(p_34387_);
-		if (p_34387_.child("ConversionTime").isPresent() && p_34387_.getIntOr("ConversionTime", -1) > -1) {
+		if (p_34387_.getIntOr("ConversionTime", -1) > -1) {
 			this.startConverting(p_34387_.getIntOr("ConversionTime", -1));
 		}
 	}

@@ -84,9 +84,8 @@ public class TofuCow extends Cow {
 	@Override
 	public void readAdditionalSaveData(ValueInput compound) {
 		super.readAdditionalSaveData(compound);
-		if (compound.child("TofuCowType").isPresent()) {
-			setTofuCowType(TofuCowType.get(compound.getStringOr("TofuCowType", "")));
-		}
+		setTofuCowType(TofuCowType.get(compound.getStringOr("TofuCowType", "")));
+
 	}
 
 	public void setTofuCowType(TofuCowType type) {

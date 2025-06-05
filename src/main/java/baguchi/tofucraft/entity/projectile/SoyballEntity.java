@@ -143,13 +143,9 @@ public class SoyballEntity extends ThrowableProjectile {
 	@Override
 	public void readAdditionalSaveData(ValueInput p_37220_) {
 		super.readAdditionalSaveData(p_37220_);
-		if (p_37220_.child("Damage").isPresent()) {
-			this.damage = p_37220_.getFloatOr("Damage", 1);
-		}
-		if (p_37220_.child("weapon").isPresent()) {
-			this.firedFromWeapon = p_37220_.read("weapon", ItemStack.CODEC).orElse(null);
-		} else {
-			this.firedFromWeapon = null;
-		}
+		this.damage = p_37220_.getFloatOr("Damage", 1);
+
+		this.firedFromWeapon = p_37220_.read("weapon", ItemStack.CODEC).orElse(null);
+
 	}
 }

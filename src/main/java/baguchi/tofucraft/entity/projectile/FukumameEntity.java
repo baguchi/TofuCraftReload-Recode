@@ -142,14 +142,10 @@ public class FukumameEntity extends ThrowableProjectile {
 
 	public void readAdditionalSaveData(ValueInput p_37220_) {
 		super.readAdditionalSaveData(p_37220_);
-		if (p_37220_.child("Damage").isPresent()) {
 			this.damage = p_37220_.getFloatOr("Damage", 1);
-		}
+
 		this.totalHits = p_37220_.getIntOr("TotalHits", 0);
-		if (p_37220_.child("weapon").isPresent()) {
-			this.firedFromWeapon = p_37220_.read("weapon", ItemStack.CODEC).orElse(null);
-		} else {
-			this.firedFromWeapon = null;
-		}
+		this.firedFromWeapon = p_37220_.read("weapon", ItemStack.CODEC).orElse(null);
+
 	}
 }

@@ -246,9 +246,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		this.setSleepSelf(compound.getBooleanOr("Sleep", false));
 		this.setFullCharge(compound.getBooleanOr("FullCharge", false));
 		this.setChargeHealth(compound.getFloatOr("ChargeHealth", 0));
-		if (compound.child("HomePos").isPresent()) {
-			this.homePos = compound.read("HomePos", BlockPos.CODEC).orElse(null);
-		}
+		this.homePos = compound.read("HomePos", BlockPos.CODEC).orElse(null);
+
 	}
 
 	@Nullable

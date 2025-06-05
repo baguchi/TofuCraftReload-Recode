@@ -155,10 +155,7 @@ public class ZundaArrow extends AbstractArrow {
 
 	public void readAdditionalSaveData(ValueInput p_37424_) {
 		super.readAdditionalSaveData(p_37424_);
-		if (p_37424_.child("Duration").isPresent()) {
-			this.duration = p_37424_.getIntOr("Duration", 0);
-		}
-
+		this.duration = p_37424_.getIntOr("Duration", 0);
 	}
 
 	public void addAdditionalSaveData(ValueOutput p_37426_) {

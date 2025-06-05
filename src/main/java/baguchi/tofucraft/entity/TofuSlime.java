@@ -119,10 +119,7 @@ public class TofuSlime extends Slime {
 	public void readAdditionalSaveData(ValueInput p_34305_) {
 		super.readAdditionalSaveData(p_34305_);
 		this.onZundaTime = p_34305_.getIntOr("OnZundaTime", 0);
-		if (p_34305_.child("ZundaConversionTime").isPresent() && p_34305_.getIntOr("ZundaConversionTime", -1) > -1) {
-			this.startZundaConversion(p_34305_.getIntOr("ZundaConversionTime", -1));
-		}
-
+		this.startZundaConversion(p_34305_.getIntOr("ZundaConversionTime", -1));
 	}
 
 	protected ParticleOptions getParticleType() {

@@ -746,33 +746,23 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public void readAdditionalSaveData(ValueInput compound) {
 		super.readAdditionalSaveData(compound);
-		if (compound.child("FoodLevel").isPresent()) {
-			this.foodLevel = compound.getByteOr("FoodLevel", (byte) 0);
-		}
+		this.foodLevel = compound.getByteOr("FoodLevel", (byte) 0);
+
 		this.gossips.clear();
 		Optional<GossipContainer> var10000 = compound.read("Gossips", GossipContainer.CODEC);
 		var10000.ifPresent(this.gossips::putAll);
-		if (compound.child("Xp").isPresent()) {
-			this.xp = compound.getIntOr("Xp", 0);
-		}
-		if (compound.child("Level").isPresent()) {
-			this.tofunianLevel = compound.getIntOr("Level", 0);
-		}
+		this.xp = compound.getIntOr("Xp", 0);
+
+		this.tofunianLevel = compound.getIntOr("Level", 0);
+
 		this.lastGossipDecay = compound.getLongOr("LastGossipDecay", 0);
 		this.lastRestock = compound.getLongOr("LastRestock", 0);
 		this.restocksToday = compound.getIntOr("RestocksToday", 0);
-		if (compound.child("TofunianHome").isPresent()) {
-			this.tofunianHome = compound.read("TofunianHome", BlockPos.CODEC).orElse(null);
-		}
-		if (compound.child("TofunianJobBlock").isPresent()) {
-			this.tofunianJobBlock = compound.read("TofunianJobBlock", BlockPos.CODEC).orElse(null);
-		}
-		if (compound.child("VillageCenter").isPresent()) {
-			this.villageCenter = compound.read("VillageCenter", BlockPos.CODEC).orElse(null);
-		}
-		if (compound.child("Roles").isPresent()) {
-			setRole(Roles.get(compound.getStringOr("Roles", "")));
-		}
+		this.tofunianHome = compound.read("TofunianHome", BlockPos.CODEC).orElse(null);
+		this.tofunianJobBlock = compound.read("TofunianJobBlock", BlockPos.CODEC).orElse(null);
+		this.villageCenter = compound.read("VillageCenter", BlockPos.CODEC).orElse(null);
+		setRole(Roles.get(compound.getStringOr("Roles", "")));
+
 		VariantUtils.readVariant(compound, TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY).ifPresent(this::setVariant);
 		setCanPickUpLoot(true);
 	}

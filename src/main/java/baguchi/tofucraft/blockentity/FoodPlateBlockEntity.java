@@ -20,7 +20,7 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 	@Override
 	public void loadAdditional(ValueInput compound) {
 		super.loadAdditional(compound);
-		inventory.deserializeNBT(this.level.registryAccess(), compound.read("Inventory", CompoundTag.CODEC).orElse(new CompoundTag()));
+		inventory.deserializeNBT(compound.lookup(), compound.read("Inventory", CompoundTag.CODEC).orElse(new CompoundTag()));
 	}
 
 	@Override

@@ -202,9 +202,8 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 	@Override
 	public void readAdditionalSaveData(ValueInput p_35290_) {
 		super.readAdditionalSaveData(p_35290_);
-		if (p_35290_.child("Offers").isPresent()) {
-			this.offers = p_35290_.read("Offers", MerchantOffers.CODEC).orElse(null);
-		}
+		this.offers = p_35290_.read("Offers", MerchantOffers.CODEC).orElse(null);
+
 
 		this.readInventoryFromTag(p_35290_);
 	}

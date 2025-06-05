@@ -248,7 +248,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		this.workload = cmp.getIntOr("workload", 0);
 		this.current_workload = cmp.getIntOr("current", 0);
 
-		this.tank = this.tank.readFromNBT(this.getLevel().registryAccess(), cmp.read("Tank", CompoundTag.CODEC).orElse(new CompoundTag()));
+		this.tank = this.tank.readFromNBT(cmp.lookup(), cmp.read("Tank", CompoundTag.CODEC).orElse(new CompoundTag()));
 	}
 
 	@Override

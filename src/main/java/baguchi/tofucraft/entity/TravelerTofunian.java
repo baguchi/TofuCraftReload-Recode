@@ -137,13 +137,9 @@ public class TravelerTofunian extends AbstractTofunian {
 
 	public void readAdditionalSaveData(ValueInput p_35852_) {
 		super.readAdditionalSaveData(p_35852_);
-		if (p_35852_.child("DespawnDelay").isPresent()) {
-			this.despawnDelay = p_35852_.getIntOr("DespawnDelay", 0);
-		}
+		this.despawnDelay = p_35852_.getIntOr("DespawnDelay", 0);
+		this.wanderTarget = p_35852_.read("WanderTarget", BlockPos.CODEC).orElse(null);
 
-		if (p_35852_.child("WanderTarget").isPresent()) {
-			this.wanderTarget = p_35852_.read("WanderTarget", BlockPos.CODEC).orElse(null);
-		}
 
 		this.setAge(Math.max(0, this.getAge()));
 	}

@@ -70,9 +70,8 @@ public class NattoStringEntity extends ThrowableProjectile {
 
 	public void readAdditionalSaveData(ValueInput p_37220_) {
 		super.readAdditionalSaveData(p_37220_);
-		if (p_37220_.child("Damage").isPresent()) {
-			this.damage = p_37220_.getFloatOr("Damage", 2);
-		}
+		this.damage = p_37220_.getFloatOr("Damage", 2);
+
 
 	}
 }

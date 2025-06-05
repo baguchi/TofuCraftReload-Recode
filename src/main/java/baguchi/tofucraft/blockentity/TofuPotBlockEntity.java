@@ -110,7 +110,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		this.recipesUsed.clear();
 		this.recipesUsed.putAll(compound.read("RecipesUsed", RECIPES_USED_CODEC).orElse(Map.of()));
 
-		this.fluidTank = this.fluidTank.readFromNBT(this.level.registryAccess(), compound.read("Tank", CompoundTag.CODEC).orElse(new CompoundTag()));
+		this.fluidTank = this.fluidTank.readFromNBT(compound.lookup(), compound.read("Tank", CompoundTag.CODEC).orElse(new CompoundTag()));
 	}
 
 	@Override

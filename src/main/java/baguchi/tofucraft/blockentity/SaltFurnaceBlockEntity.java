@@ -139,8 +139,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	@Override
 	public void loadAdditional(ValueInput cmp) {
 		super.loadAdditional(cmp);
-		this.waterTank = this.waterTank.readFromNBT(this.getLevel().registryAccess(), cmp.read("WaterTank", CompoundTag.CODEC).orElse(new CompoundTag()));
-		this.bitternTank = this.bitternTank.readFromNBT(this.getLevel().registryAccess(), cmp.read("BitternTank", CompoundTag.CODEC).orElse(new CompoundTag()));
+		this.waterTank = this.waterTank.readFromNBT(cmp.lookup(), cmp.read("WaterTank", CompoundTag.CODEC).orElse(new CompoundTag()));
+		this.bitternTank = this.bitternTank.readFromNBT(cmp.lookup(), cmp.read("BitternTank", CompoundTag.CODEC).orElse(new CompoundTag()));
 
 		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.items);
