@@ -10,11 +10,7 @@ import baguchi.tofucraft.entity.TofuGandlem;
 import baguchi.tofucraft.registry.TofuAnimations;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.IllagerModel;
-import net.minecraft.client.model.WardenModel;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -94,11 +90,11 @@ public class TofuClientEvents {
 	@SubscribeEvent
 	public static void onAnimateModelEvent(BagusModelEvent.PostAnimate event) {
 		BaguAnimationController controller = event.getBaguAnimationController();
-		if (controller != null && (event.getModel() instanceof HumanoidModel<?> || event.getModel() instanceof IllagerModel<?> || event.getModel() instanceof WardenModel)) {
+		if (controller != null && (event.getModel().root().hasChild("head"))) {
 			CoughAnimation.COUGH.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.COUGH), event.getEntityRenderState().ageInTicks);
 		}
 
-		if (controller != null && (event.getModel() instanceof HumanoidModel<?> && event.getEntityRenderState() instanceof HumanoidRenderState state)) {
+		if (controller != null && event.getModel().root().hasChild("right_arm") && event.getModel().root().hasChild("left_arm")) {
 			if (controller.getAnimationState(TofuAnimations.THROWN_RIGHT).isStarted() || controller.getAnimationState(TofuAnimations.THROWN_LEFT).isStarted()) {
 				event.getModel().root().getChild("right_arm").resetPose();
 				event.getModel().root().getChild("left_arm").resetPose();
