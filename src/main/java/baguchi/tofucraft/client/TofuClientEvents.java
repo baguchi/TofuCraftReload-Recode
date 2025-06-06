@@ -4,6 +4,7 @@ import baguchi.bagus_lib.animation.BaguAnimationController;
 import baguchi.bagus_lib.client.event.BagusModelEvent;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.animation.definitions.CoughAnimation;
+import baguchi.tofucraft.client.animation.definitions.HumanoidAnimations;
 import baguchi.tofucraft.client.sound.TofuMusicManager;
 import baguchi.tofucraft.entity.TofuGandlem;
 import baguchi.tofucraft.registry.TofuAnimations;
@@ -13,6 +14,7 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.IllagerModel;
 import net.minecraft.client.model.WardenModel;
 import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -94,6 +96,16 @@ public class TofuClientEvents {
 		BaguAnimationController controller = event.getBaguAnimationController();
 		if (controller != null && (event.getModel() instanceof HumanoidModel<?> || event.getModel() instanceof IllagerModel<?> || event.getModel() instanceof WardenModel)) {
 			CoughAnimation.COUGH.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.COUGH), event.getEntityRenderState().ageInTicks);
+		}
+
+		if (controller != null && (event.getModel() instanceof HumanoidModel<?> && event.getEntityRenderState() instanceof HumanoidRenderState state)) {
+			if (controller.getAnimationState(TofuAnimations.THROWN_RIGHT).isStarted() || controller.getAnimationState(TofuAnimations.THROWN_LEFT).isStarted()) {
+				event.getModel().root().getChild("right_arm").resetPose();
+				event.getModel().root().getChild("left_arm").resetPose();
+			}
+
+			HumanoidAnimations.thrown_right.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.THROWN_RIGHT), event.getEntityRenderState().ageInTicks);
+			HumanoidAnimations.thrown_left.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.THROWN_LEFT), event.getEntityRenderState().ageInTicks);
 		}
 	}
 }

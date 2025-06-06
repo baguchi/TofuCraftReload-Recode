@@ -2,6 +2,7 @@ package baguchi.tofucraft.attachment;
 
 import baguchi.tofucraft.network.RecoverHealthPacket;
 import baguchi.tofucraft.network.ZundafiedPacket;
+import baguchi.tofucraft.registry.TofuAnimations;
 import baguchi.tofucraft.utils.ClientUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -9,6 +10,7 @@ import net.minecraft.client.gui.screens.WinScreen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -24,12 +26,28 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 	public float recoverHealth = 0;
 	public int wolfEatCooldown;
 	public boolean zundafied = false;
+	private final TofuAnimationData thrownRightAnimationData = new TofuAnimationData(TofuAnimations.THROWN_RIGHT, 10);
+	private final TofuAnimationData thrownLeftAnimationData = new TofuAnimationData(TofuAnimations.THROWN_LEFT, 10);
+
 
 	public void tick(Entity entity) {
 		if (entity instanceof Player player) {
 			this.handlePortal(player);
 		}
 		this.handleFood(entity);
+		thrownRightAnimationData.tick(entity);
+		thrownLeftAnimationData.tick(entity);
+	}
+
+	public void thrownAnimation(Entity entity, InteractionHand interactionHand) {
+		thrownRightAnimationData.stop(entity);
+		thrownLeftAnimationData.stop(entity);
+
+		if (interactionHand == InteractionHand.MAIN_HAND) {
+			thrownLeftAnimationData.start(entity);
+		} else {
+			thrownRightAnimationData.start(entity);
+		}
 	}
 
 	private void handleFood(Entity entity) {

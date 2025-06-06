@@ -1,6 +1,7 @@
 package baguchi.tofucraft.item;
 
 import baguchi.tofucraft.entity.projectile.NetherFukumameEntity;
+import baguchi.tofucraft.registry.TofuAttachments;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.registries.Registries;
@@ -40,6 +41,7 @@ public class InfernoNetherFukumameItem extends Item implements ProjectileItem {
 		}
 		playerIn.awardStat(Stats.ITEM_USED.get(this));
 		playerIn.getCooldowns().addCooldown(itemstack, 5);
+		playerIn.getData(TofuAttachments.TOFU_LIVING.get()).thrownAnimation(playerIn, handIn);
 		if (!playerIn.level().isClientSide)
 			itemstack.hurtAndBreak(1, (LivingEntity) playerIn, LivingEntity.getSlotForHand(handIn));
 		return InteractionResult.SUCCESS_SERVER;
