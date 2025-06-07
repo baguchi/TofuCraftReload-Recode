@@ -33,6 +33,7 @@ public class TofuClientEvents {
 
 	public static final ResourceLocation GANDLEM_BOSS_BAR = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "boss_bar/tofu_gandlem_progress");
 	public static final ResourceLocation GANDLEM_BOSS_BAR_BACKGROUND = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "boss_bar/tofu_gandlem_background");
+
 	@SubscribeEvent
 	public static void onClientTickEvent(ClientTickEvent.Post event) {
 		Player player = Minecraft.getInstance().player;
@@ -98,10 +99,11 @@ public class TofuClientEvents {
 			if (controller.getAnimationState(TofuAnimations.THROWN_RIGHT).isStarted() || controller.getAnimationState(TofuAnimations.THROWN_LEFT).isStarted()) {
 				event.getModel().root().getChild("right_arm").resetPose();
 				event.getModel().root().getChild("left_arm").resetPose();
-			}
 
-			HumanoidAnimations.thrown_right.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.THROWN_RIGHT), event.getEntityRenderState().ageInTicks);
-			HumanoidAnimations.thrown_left.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.THROWN_LEFT), event.getEntityRenderState().ageInTicks);
+
+				HumanoidAnimations.thrown_right.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.THROWN_RIGHT), event.getEntityRenderState().ageInTicks);
+				HumanoidAnimations.thrown_left.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.THROWN_LEFT), event.getEntityRenderState().ageInTicks);
+			}
 		}
 	}
 }
