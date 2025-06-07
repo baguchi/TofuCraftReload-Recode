@@ -1,5 +1,6 @@
 package baguchi.tofucraft.attachment;
 
+import baguchi.bagus_lib.util.data.BagusAnimationData;
 import baguchi.tofucraft.network.RecoverHealthPacket;
 import baguchi.tofucraft.network.ZundafiedPacket;
 import baguchi.tofucraft.registry.TofuAnimations;
@@ -26,8 +27,8 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 	public float recoverHealth = 0;
 	public int wolfEatCooldown;
 	public boolean zundafied = false;
-	private final TofuAnimationData thrownRightAnimationData = new TofuAnimationData(TofuAnimations.THROWN_RIGHT, 10);
-	private final TofuAnimationData thrownLeftAnimationData = new TofuAnimationData(TofuAnimations.THROWN_LEFT, 10);
+	private final BagusAnimationData thrownRightAnimationData = new BagusAnimationData(TofuAnimations.THROWN_RIGHT, 10);
+	private final BagusAnimationData thrownLeftAnimationData = new BagusAnimationData(TofuAnimations.THROWN_LEFT, 10);
 
 
 	public void tick(Entity entity) {
