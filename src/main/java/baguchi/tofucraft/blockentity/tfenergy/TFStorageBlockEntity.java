@@ -14,7 +14,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
@@ -234,9 +233,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		cmp.putInt("workload", this.workload);
 		cmp.putInt("current", this.current_workload);
 
-		CompoundTag tankTag = this.tank.writeToNBT(this.level.registryAccess(), new CompoundTag());
-
-		cmp.store("Tank", CompoundTag.CODEC, tankTag);
+		this.tank.serialize(cmp);
 	}
 
 	@Override
@@ -247,8 +244,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 
 		this.workload = cmp.getIntOr("workload", 0);
 		this.current_workload = cmp.getIntOr("current", 0);
-
-		this.tank = this.tank.readFromNBT(cmp.lookup(), cmp.read("Tank", CompoundTag.CODEC).orElse(new CompoundTag()));
+		this.tank.deserialize(cmp);
 	}
 
 	@Override

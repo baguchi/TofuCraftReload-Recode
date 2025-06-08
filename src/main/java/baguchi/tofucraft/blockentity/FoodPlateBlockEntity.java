@@ -2,7 +2,6 @@ package baguchi.tofucraft.blockentity;
 
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -20,13 +19,13 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 	@Override
 	public void loadAdditional(ValueInput compound) {
 		super.loadAdditional(compound);
-		inventory.deserializeNBT(compound.lookup(), compound.read("Inventory", CompoundTag.CODEC).orElse(new CompoundTag()));
+		inventory.deserialize(compound);
 	}
 
 	@Override
 	public void saveAdditional(ValueOutput compound) {
 		super.saveAdditional(compound);
-		compound.store("Inventory", CompoundTag.CODEC, inventory.serializeNBT(this.level.registryAccess()));
+		inventory.serialize(compound);
 	}
 
 	public boolean addItem(ItemStack itemStack) {

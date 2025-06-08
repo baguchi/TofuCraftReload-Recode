@@ -110,7 +110,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		this.recipesUsed.clear();
 		this.recipesUsed.putAll(compound.read("RecipesUsed", RECIPES_USED_CODEC).orElse(Map.of()));
 
-		this.fluidTank = this.fluidTank.readFromNBT(compound.lookup(), compound.read("Tank", CompoundTag.CODEC).orElse(new CompoundTag()));
+		this.fluidTank.deserialize(compound);
 	}
 
 	@Override
@@ -122,16 +122,12 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		ContainerHelper.saveAllItems(compound, this.inventory);
 
 		compound.store("RecipesUsed", RECIPES_USED_CODEC, this.recipesUsed);
-		CompoundTag tankTag = this.fluidTank.writeToNBT(this.level.registryAccess(), new CompoundTag());
-
-		compound.store("Tank", CompoundTag.CODEC, tankTag);
+		this.fluidTank.serialize(compound);
 	}
 
 	private ValueOutput writeItems(ValueOutput compound) {
 		super.saveAdditional(compound);
-		CompoundTag tankTag = this.fluidTank.writeToNBT(this.level.registryAccess(), new CompoundTag());
-
-		compound.store("Tank", CompoundTag.CODEC, tankTag);
+		this.fluidTank.serialize(compound);
 		ContainerHelper.saveAllItems(compound, inventory);
 		return compound;
 	}

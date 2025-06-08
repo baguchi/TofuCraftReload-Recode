@@ -16,6 +16,8 @@ public class TofuFoods {
 	public static final FoodProperties TOFUSOUL = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3F).alwaysEdible().build();
 	public static final FoodProperties TOFUGRILLED = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.3F).build();
 	public static final FoodProperties TOFU_GRILLED_BLOCK = (new FoodProperties.Builder()).nutrition(9).saturationModifier(0.3F).build();
+	public static final FoodProperties GIANT_OKARA_DONUT = (new FoodProperties.Builder()).nutrition(9).saturationModifier(0.6F).build();
+
 
 
 	public static final FoodProperties TOFUZUNDA = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.3F).build();

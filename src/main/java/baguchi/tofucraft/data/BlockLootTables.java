@@ -304,6 +304,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get());
 		dropSelf(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get());
 		dropSelf(TofuBlocks.SALT_BLOCK.get());
+		dropSelf(TofuBlocks.OKARA_BLOCK.get());
+		dropSelf(TofuBlocks.GIANT_OKARA_DONUT.get());
 
 		LootItemCondition.Builder miso = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WeightBaseBlock.Stat.USED));
 

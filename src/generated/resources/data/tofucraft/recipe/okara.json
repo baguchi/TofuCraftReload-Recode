@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "tofucraft:okara_block"
+  ],
+  "result": {
+    "count": 4,
+    "id": "tofucraft:okara"
+  }
+}

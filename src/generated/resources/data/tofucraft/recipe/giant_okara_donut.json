@@ -1,0 +1,17 @@
+{
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 400,
+  "experience": 1.0,
+  "ingredients": [
+    "tofucraft:okara_block",
+    "tofucraft:okara_block",
+    "minecraft:hay_block",
+    "minecraft:egg",
+    "minecraft:egg"
+  ],
+  "result": {
+    "count": 2,
+    "id": "tofucraft:giant_okara_donut"
+  }
+}

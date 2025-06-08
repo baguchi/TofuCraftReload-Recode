@@ -1785,6 +1785,26 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
 				.save(this.output);
 
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.OKARA_BLOCK.get())
+				.pattern("SS")
+				.pattern("SS")
+				.define('S', TofuItems.OKARA.get())
+				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
+				.save(this.output);
+
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.OKARA.get(), 4)
+				.requires(TofuBlocks.OKARA_BLOCK.get())
+				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
+				.save(this.output);
+
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), new ItemStack(TofuBlocks.GIANT_OKARA_DONUT.get(), 2), 400, 1)
+				.requires(TofuBlocks.OKARA_BLOCK.get(), 2)
+				.requires(Blocks.HAY_BLOCK, 1)
+				.requires(Items.EGG, 2)
+				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
+				.save(this.output);
+
+
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.TOFU_CRAFTERS_BOOK.get(), 1)
 				.requires(TofuItems.SEEDS_SOYBEANS.get())
 				.requires(Items.BOOK)

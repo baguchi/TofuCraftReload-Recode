@@ -1,5 +1,6 @@
 package baguchi.tofucraft.world.gen.feature;
 
+import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -49,6 +50,6 @@ public class TofuBuildingFeature extends Feature<BlockStateConfiguration> {
 	}
 
 	public static boolean isTofu(BlockState p_159760_) {
-		return p_159760_.is(TofuTags.Blocks.TOFU_TERRAIN);
+		return p_159760_.is(TofuTags.Blocks.TOFU_TERRAIN) || p_159760_.is(TofuBlocks.OKARA_BLOCK);
 	}
 }

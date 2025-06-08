@@ -266,6 +266,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.SALTPAN,
 						TofuBlocks.SALT_FURNACE,
 						TofuBlocks.SALT_BLOCK,
+						TofuBlocks.OKARA_BLOCK,
 						TofuBlocks.MORIJIO,
 						TofuBlocks.TOFU_FLOWER,
 						TofuBlocks.TOFU_POT).map(sup -> {
@@ -350,6 +351,7 @@ public class TofuCreativeModeTabs {
 				output.accept(TofuBlocks.TOFUCAKE.get());
 				output.accept(TofuBlocks.ZUNDATOFUCAKE.get());
 				output.accept(TofuBlocks.SOYCHEESE_TART.get());
+				output.accept(TofuBlocks.GIANT_OKARA_DONUT.asItem());
 				output.acceptAll(Stream.of(
 						TofuItems.SOYSTICK,
 						TofuItems.TOFUCOOKIE,
@@ -447,9 +449,11 @@ public class TofuCreativeModeTabs {
 						TofuItems.EDAMAME_TEMPLA,
 						TofuItems.NEGIMA,
 						TofuItems.SOY_KARAAGE,
-						TofuItems.SOYMEATDON).map(itemSupplier -> {
+						TofuItems.SOYMEATDON
+				).map(itemSupplier -> {
 					return itemSupplier.get().getDefaultInstance();
-				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
+				}).toList());
+				// Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());
 
 	public static final Supplier<CreativeModeTab> TOFU_MISC = CREATIVE_MODE_TABS.register("tofu_misc", () -> CreativeModeTab.builder()
@@ -493,6 +497,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.SOYBEAN_PARCHED,
 						TofuItems.EDAMAME,
 						TofuItems.KINAKO,
+						TofuItems.OKARA,
 						TofuItems.SALT,
 						TofuItems.LEEK,
 						TofuItems.TOFU_COW_SPAWN_EGG,

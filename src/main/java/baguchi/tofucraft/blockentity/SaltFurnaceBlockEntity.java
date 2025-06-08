@@ -139,9 +139,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	@Override
 	public void loadAdditional(ValueInput cmp) {
 		super.loadAdditional(cmp);
-		this.waterTank = this.waterTank.readFromNBT(cmp.lookup(), cmp.read("WaterTank", CompoundTag.CODEC).orElse(new CompoundTag()));
-		this.bitternTank = this.bitternTank.readFromNBT(cmp.lookup(), cmp.read("BitternTank", CompoundTag.CODEC).orElse(new CompoundTag()));
-
+		this.waterTank.deserialize(cmp);
+		this.bitternTank.deserialize(cmp);
 		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.items);
 		this.litTime = cmp.getIntOr("BurnTime", 0);
@@ -154,12 +153,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	@Override
 	public void saveAdditional(ValueOutput p_189515_1_) {
 		super.saveAdditional(p_189515_1_);
-		CompoundTag nbt = new CompoundTag();
-		CompoundTag nbt2 = new CompoundTag();
-		this.waterTank.writeToNBT(this.level.registryAccess(), nbt);
-		this.bitternTank.writeToNBT(this.level.registryAccess(), nbt2);
-		p_189515_1_.store("WaterTank", CompoundTag.CODEC, nbt);
-		p_189515_1_.store("BitternTank", CompoundTag.CODEC, nbt2);
+		this.waterTank.serialize(p_189515_1_);
+		this.bitternTank.serialize(p_189515_1_);
 		p_189515_1_.putInt("BurnTime", this.litTime);
 		p_189515_1_.putInt("CookTime", this.cookingProgress);
 		p_189515_1_.putInt("CookTimeTotal", this.cookingTotalTime);
