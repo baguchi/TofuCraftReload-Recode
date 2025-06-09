@@ -1745,7 +1745,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("MTM")
 				.define('M', TofuItems.TOFUMETAL.get())
 				.define('T', TofuItems.TOFUGEM.get())
-				.define('R', Items.REDSTONE)
+				.define('R', TofuItems.TOFU_GEM_DUST.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.TF_OVEN.get())
