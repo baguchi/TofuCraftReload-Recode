@@ -19,13 +19,13 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 	@Override
 	public void loadAdditional(ValueInput compound) {
 		super.loadAdditional(compound);
-		inventory.deserialize(compound);
+		inventory.deserialize(compound.childOrEmpty("Item"));
 	}
 
 	@Override
 	public void saveAdditional(ValueOutput compound) {
 		super.saveAdditional(compound);
-		inventory.serialize(compound);
+		inventory.serialize(compound.child("Item"));
 	}
 
 	public boolean addItem(ItemStack itemStack) {

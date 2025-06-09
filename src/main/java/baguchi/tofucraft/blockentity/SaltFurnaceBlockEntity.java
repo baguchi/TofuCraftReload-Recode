@@ -139,8 +139,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	@Override
 	public void loadAdditional(ValueInput cmp) {
 		super.loadAdditional(cmp);
-		this.waterTank.deserialize(cmp);
-		this.bitternTank.deserialize(cmp);
+		this.waterTank.deserialize(cmp.childOrEmpty("WaterTank"));
+		this.bitternTank.deserialize(cmp.childOrEmpty("BitternTank"));
 		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(cmp, this.items);
 		this.litTime = cmp.getIntOr("BurnTime", 0);
@@ -153,8 +153,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	@Override
 	public void saveAdditional(ValueOutput p_189515_1_) {
 		super.saveAdditional(p_189515_1_);
-		this.waterTank.serialize(p_189515_1_);
-		this.bitternTank.serialize(p_189515_1_);
+		this.waterTank.serialize(p_189515_1_.child("WaterTank"));
+		this.bitternTank.serialize(p_189515_1_.child("BitternTank"));
 		p_189515_1_.putInt("BurnTime", this.litTime);
 		p_189515_1_.putInt("CookTime", this.cookingProgress);
 		p_189515_1_.putInt("CookTimeTotal", this.cookingTotalTime);

@@ -233,7 +233,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		cmp.putInt("workload", this.workload);
 		cmp.putInt("current", this.current_workload);
 
-		this.tank.serialize(cmp);
+		this.tank.serialize(cmp.child("Tank"));
 	}
 
 	@Override
@@ -244,7 +244,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 
 		this.workload = cmp.getIntOr("workload", 0);
 		this.current_workload = cmp.getIntOr("current", 0);
-		this.tank.deserialize(cmp);
+		this.tank.deserialize(cmp.childOrEmpty("Tank"));
 	}
 
 	@Override
