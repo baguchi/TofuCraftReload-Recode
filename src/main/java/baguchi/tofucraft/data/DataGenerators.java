@@ -10,6 +10,7 @@ import baguchi.tofucraft.data.generator.FluidTagGenerator;
 import baguchi.tofucraft.data.generator.ItemTagGenerator;
 import baguchi.tofucraft.data.generator.RegistryDataGenerator;
 import baguchi.tofucraft.data.generator.TofuAdvancementGenerator;
+import baguchi.tofucraft.data.generator.TofuDamageTypeTags;
 import baguchi.tofucraft.data.generator.TofuDataMapsProvider;
 import baguchi.tofucraft.data.generator.TofuEquipmentModelProvider;
 import baguchi.tofucraft.data.generator.TofuModelData;

@@ -24,6 +24,7 @@ import baguchi.tofucraft.entity.projectile.SoulFukumameEntity;
 import baguchi.tofucraft.entity.projectile.SoyballEntity;
 import baguchi.tofucraft.entity.projectile.UnstableZundamaEntity;
 import baguchi.tofucraft.entity.projectile.ZundaArrow;
+import baguchi.tofucraft.entity.projectile.ZundaBuster;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -95,6 +96,8 @@ public class TofuEntityTypes {
 			.sized(0.3F, 0.3F).updateInterval(30).build(prefix("soyball")));
 	public static final Supplier<EntityType<UnstableZundamaEntity>> UNSTABLE_ZUNDAMA = ENTITIES.register("unstable_zundama", () -> EntityType.Builder.<UnstableZundamaEntity>of(UnstableZundamaEntity::new, MobCategory.MISC)
 			.sized(0.3F, 0.3F).updateInterval(30).build(prefix("unstable_zundama")));
+	public static final Supplier<EntityType<ZundaBuster>> ZUNDA_BUSTER = ENTITIES.register("zunda_buster", () -> EntityType.Builder.<ZundaBuster>of(ZundaBuster::new, MobCategory.MISC)
+			.sized(0.8F, 0.8F).updateInterval(30).build(prefix("zunda_buster")));
 
 
 

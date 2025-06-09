@@ -25,6 +25,7 @@ import baguchi.tofucraft.client.render.NattoStringRender;
 import baguchi.tofucraft.client.render.NetherFukumameRender;
 import baguchi.tofucraft.client.render.SoulFukumameRender;
 import baguchi.tofucraft.client.render.ZundaArrowRender;
+import baguchi.tofucraft.client.render.ZundaBusterRenderer;
 import baguchi.tofucraft.client.render.blockentity.FoodPlateRender;
 import baguchi.tofucraft.client.render.blockentity.TofuBedRenderer;
 import baguchi.tofucraft.client.render.blockentity.TofuChestRenderer;
@@ -45,6 +46,7 @@ import baguchi.tofucraft.client.render.entity.TofunianRender;
 import baguchi.tofucraft.client.render.entity.TravelerTofunianRender;
 import baguchi.tofucraft.client.render.entity.ZundamiteRender;
 import baguchi.tofucraft.client.render.entity.effect.NattoCobWebRender;
+import baguchi.tofucraft.client.render.item.properties.TFProperty;
 import baguchi.tofucraft.client.render.layer.ZundaLayer;
 import baguchi.tofucraft.client.render.layer.ZundaSlimeOuterLayer;
 import baguchi.tofucraft.client.render.special.TofuShieldSpecialRenderer;
@@ -108,6 +110,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
@@ -366,6 +369,7 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.ZUNDA_ARROW.get(), ZundaArrowRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.SOYBALL.get(), SoyballRenderer::new);
 		event.registerEntityRenderer(TofuEntityTypes.UNSTABLE_ZUNDAMA.get(), ThrownItemRenderer::new);
+		event.registerEntityRenderer(TofuEntityTypes.ZUNDA_BUSTER.get(), ZundaBusterRenderer::new);
 
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_STRNIG.get(), (context) -> new NattoStringRender<>(context, 1.0F, true));
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_COBWEB.get(), NattoCobWebRender::new);
@@ -385,6 +389,11 @@ public class ClientRegistrar {
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUCHEST.get(), TofuChestRenderer::new);
 		event.registerBlockEntityRenderer(TofuBlockEntitys.FOODPLATE.get(), FoodPlateRender::new);
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUNIAN_STATUE.get(), TofunianStatueRender::new);
+	}
+
+	@SubscribeEvent
+	public static void registerItemModelProperty(RegisterConditionalItemModelPropertyEvent event) {
+		event.register(TofuCraftReload.prefix("has_tf"), TFProperty.MAP_CODEC);
 	}
 
 	@SubscribeEvent

@@ -1,6 +1,7 @@
 package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.api.tfenergy.TFEnergyData;
 import baguchi.tofucraft.data.generator.CustomTagGenerator;
 import baguchi.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
 import baguchi.tofucraft.item.ApricotItem;
@@ -39,6 +40,7 @@ import baguchi.tofucraft.item.tool.TofuShieldItem;
 import baguchi.tofucraft.item.tool.TofuShovelItem;
 import baguchi.tofucraft.item.tool.TofuStickItem;
 import baguchi.tofucraft.item.tool.TofuSwordItem;
+import baguchi.tofucraft.item.tool.ZundaAlloySwordItem;
 import baguchi.tofucraft.item.tool.ZundaArrowItem;
 import baguchi.tofucraft.item.tool.ZundaBowItem;
 import baguchi.tofucraft.item.tool.ZundaMushroomOnAStickItem;
@@ -198,6 +200,8 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> ZUNDAMA = ITEMS.registerItem("zundama", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> UNSTABLE_ZUNDAMA = ITEMS.registerItem("unstable_zundama", (properties) -> new UnstableZundamaItem((properties)));
 	public static final DeferredHolder<Item, Item> ZUNDA_INGOT = ITEMS.registerItem("zunda_ingot", (properties) -> new ZundaIngotItem((properties.food(TofuFoods.ZUNDA_INGOT))));
+	public static final DeferredHolder<Item, Item> ZUNDA_ALLOY_TOFU = ITEMS.registerItem("zunda_alloy_tofu", (properties) -> new Item((properties)));
+	public static final DeferredHolder<Item, Item> ZUNDA_ALLOY_TOFU_SWORD = ITEMS.registerItem("zunda_alloy_tofu_sword", (properties) -> new ZundaAlloySwordItem((properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(5000, 5000)))));
 	public static final DeferredHolder<Item, Item> ZUNDA_TOTEM = ITEMS.registerItem("zunda_totem", (properties) -> new Item((properties.stacksTo(1).component(DataComponents.DEATH_PROTECTION, new DeathProtection(List.of(new ClearAllStatusEffectsConsumeEffect(),
 			new ApplyStatusEffectsConsumeEffect(
 					List.of(

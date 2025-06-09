@@ -104,6 +104,20 @@ public class TofuClientEvents {
 				HumanoidAnimations.thrown_right.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.THROWN_RIGHT), event.getEntityRenderState().ageInTicks);
 				HumanoidAnimations.thrown_left.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.THROWN_LEFT), event.getEntityRenderState().ageInTicks);
 			}
+
+			if (controller.getAnimationState(TofuAnimations.BUSTER_RIGHT).isStarted() || controller.getAnimationState(TofuAnimations.BUSTER_LEFT).isStarted()) {
+				event.getModel().root().getChild("right_arm").resetPose();
+				event.getModel().root().getChild("left_arm").resetPose();
+				event.getModel().root().getChild("right_leg").resetPose();
+				event.getModel().root().getChild("left_leg").resetPose();
+				event.getModel().root().getChild("body").resetPose();
+				event.getModel().root().getChild("head").resetPose();
+
+				event.getModel().root().getChild("head").xRot = event.getEntityRenderState().xRot * (float) (Math.PI / 180.0);
+				event.getModel().root().getChild("head").yRot = event.getEntityRenderState().yRot * (float) (Math.PI / 180.0);
+				HumanoidAnimations.buster_right.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.BUSTER_RIGHT), event.getEntityRenderState().ageInTicks);
+				HumanoidAnimations.buster_left.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.BUSTER_LEFT), event.getEntityRenderState().ageInTicks);
+			}
 		}
 	}
 }

@@ -1,0 +1,15 @@
+{
+  "type": "tofucraft:tf_craft_shapeless",
+  "category": "misc",
+  "cook_time": 400,
+  "ingredients": [
+    "tofucraft:zunda_ingot",
+    "tofucraft:zunda_ingot",
+    "tofucraft:tofumetal",
+    "tofucraft:tofumetal"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:zunda_alloy_tofu"
+  }
+}

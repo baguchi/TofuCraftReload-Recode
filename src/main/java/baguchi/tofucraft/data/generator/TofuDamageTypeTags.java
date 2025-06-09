@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data;
+package baguchi.tofucraft.data.generator;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuDamageTypes;
@@ -21,7 +21,7 @@ public class TofuDamageTypeTags extends KeyTagProvider<DamageType> {
 	protected void addTags(HolderLookup.Provider provider) {
 		this.tag(DamageTypeTags.BYPASSES_ARMOR).add(TofuDamageTypes.ZUNDA);
 		this.tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(TofuDamageTypes.ZUNDA);
-		this.tag(DamageTypeTags.WITCH_RESISTANT_TO).add(TofuDamageTypes.ZUNDA);
+		this.tag(DamageTypeTags.WITCH_RESISTANT_TO).add(TofuDamageTypes.ZUNDA).add(TofuDamageTypes.ZUNDA_EXPLOSION);
 		this.tag(DamageTypeTags.NO_IMPACT).add(TofuDamageTypes.ZUNDA).add(TofuDamageTypes.FUKUMAME);
 		this.tag(DamageTypeTags.ALWAYS_HURTS_ENDER_DRAGONS).add(TofuDamageTypes.ZUNDA);
 		this.tag(DamageTypeTags.DAMAGES_HELMET).add(TofuDamageTypes.FALLING_TOFU);

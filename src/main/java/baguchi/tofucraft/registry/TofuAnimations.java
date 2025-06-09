@@ -11,6 +11,8 @@ public class TofuAnimations {
 	public static final ResourceLocation COUGH = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "cough");
 	public static final ResourceLocation THROWN_RIGHT = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "thrown_right");
 	public static final ResourceLocation THROWN_LEFT = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "thrown_left");
+	public static final ResourceLocation BUSTER_RIGHT = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "buster_right");
+	public static final ResourceLocation BUSTER_LEFT = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "buster_left");
 
 	@SubscribeEvent
 	public static void registerAnimation(baguchi.bagus_lib.event.RegisterBagusAnimationEvents events) {
@@ -20,6 +22,10 @@ public class TofuAnimations {
 			events.addAnimationState(THROWN_LEFT);
 			events.addFirstPersonPlayableAnimationState(THROWN_RIGHT);
 			events.addFirstPersonPlayableAnimationState(THROWN_LEFT);
+			events.addAnimationState(BUSTER_RIGHT);
+			events.addAnimationState(BUSTER_LEFT);
+			events.addFirstPersonPlayableAnimationState(BUSTER_RIGHT);
+			events.addFirstPersonPlayableAnimationState(BUSTER_LEFT);
 		}
 	}
 }

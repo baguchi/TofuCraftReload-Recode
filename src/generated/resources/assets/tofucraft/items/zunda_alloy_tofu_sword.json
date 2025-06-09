@@ -1,0 +1,14 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "tofucraft:item/zunda_alloy_tofu_sword"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "tofucraft:item/zunda_alloy_tofu_sword_tf"
+    },
+    "property": "tofucraft:has_tf"
+  }
+}

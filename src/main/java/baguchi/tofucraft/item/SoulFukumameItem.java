@@ -4,7 +4,6 @@ import baguchi.tofucraft.entity.projectile.SoulFukumameEntity;
 import baguchi.tofucraft.registry.TofuAttachments;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -16,8 +15,6 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 
 public class SoulFukumameItem extends Item implements ProjectileItem {
@@ -33,7 +30,7 @@ public class SoulFukumameItem extends Item implements ProjectileItem {
 			for (int i = 0; i < 5; i++) {
 				SoulFukumameEntity fukumamentity = new SoulFukumameEntity(levelIn, playerIn, itemstack);
 				fukumamentity.damage = 2.0F;
-				fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(levelIn.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.POWER), playerIn) * 0.5F;
+				//fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(levelIn.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.POWER), playerIn) * 0.5F;
 				float d0 = i * levelIn.random.nextFloat() * 10.0F - 5.0F * i;
 				fukumamentity.shootFromRotation(playerIn, playerIn.getXRot() + d0 * 0.325F, playerIn.getYRot() + d0, 0.0F, 1.5F, 0.8F);
 				levelIn.addFreshEntity(fukumamentity);

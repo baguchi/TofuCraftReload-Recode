@@ -1842,6 +1842,24 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.TOFUISHI.get())
 				.unlockedBy("has_item", has(TofuItems.ZUNDAMA.get()))
 				.save(this.output);
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDA_ALLOY_TOFU.get(), 1, 400)
+				.requires(TofuItems.ZUNDA_INGOT.get(), 2)
+				.requires(TofuItems.TOFUMETAL.get(), 2)
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_INGOT.get()))
+				.save(this.output);
+
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get())
+				.pattern("##")
+				.pattern("##")
+				.define('#', TofuItems.ZUNDA_ALLOY_TOFU.get())
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_ALLOY_TOFU.get()))
+				.save(this.output, "zunda_alloy_to_block");
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.ZUNDA_ALLOY_TOFU.get(), 9)
+				.requires(TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get())
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_ALLOY_TOFU.get()))
+				.save(this.output, prefix("revert_to_zunda_alloy"));
+
+
 		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDA_BOW.get().getDefaultInstance(), 1000)
 				.define('S', TofuItems.ZUNDAMA.get())
 				.define('Z', TofuItems.ZUNDA_INGOT.get())
@@ -1860,6 +1878,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" Z ")
 				.unlockedBy("has_item", has(TofuItems.SOY_FORCE_SHARD.get()))
 				.save(this.output);
+
+		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDA_ALLOY_TOFU_SWORD.get().getDefaultInstance(), 1000)
+				.define('Z', TofuItems.ZUNDA_ALLOY_TOFU.get())
+				.define('G', TofuItems.SOY_FORCE_SHARD.get())
+				.pattern("Z")
+				.pattern("Z")
+				.pattern("G")
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_ALLOY_TOFU.get()))
+				.save(this.output);
+
+
 		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, TofuItems.TOFUSTICK.get().getDefaultInstance(), 1000)
 				.define('T', TofuItems.TOFUMETAL.get())
 				.define('G', TofuItems.TOFUGEM.get())

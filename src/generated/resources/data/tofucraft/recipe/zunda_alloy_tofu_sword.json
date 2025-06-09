@@ -1,0 +1,18 @@
+{
+  "type": "tofucraft:tf_craft_shaped",
+  "category": "misc",
+  "key": {
+    "G": "tofucraft:soy_force_shard",
+    "Z": "tofucraft:zunda_alloy_tofu"
+  },
+  "pattern": [
+    "Z",
+    "Z",
+    "G"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:zunda_alloy_tofu_sword"
+  },
+  "tf": 1000
+}
