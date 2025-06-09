@@ -403,6 +403,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFUGEM = ITEMS.registerItem("tofugem", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> ADVANCE_TOFUGEM = ITEMS.registerItem("adv_tofugem", (properties) -> new Item((properties)));
+	public static final DeferredHolder<Item, Item> TOFU_GEM_DUST = ITEMS.registerItem("tofu_gem_dust", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TF_CAPACITOR = ITEMS.registerItem("tf_capacitor", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TF_COIL = ITEMS.registerItem("tf_coil", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TF_CIRCUIT = ITEMS.registerItem("tf_circuit", (properties) -> new Item((properties)));

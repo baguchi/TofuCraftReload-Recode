@@ -232,6 +232,7 @@ public class TofuItemModels extends ItemModelGenerators {
 
 		this.generateFlatItem(TofuItems.TOFUGEM.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.ADVANCE_TOFUGEM.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_GEM_DUST.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TF_COIL.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TF_CIRCUIT.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TF_CAPACITOR.get(), ModelTemplates.FLAT_ITEM);
