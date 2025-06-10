@@ -371,6 +371,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFUGEM = ITEMS.register("tofugem", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> ADVANCE_TOFUGEM = ITEMS.register("adv_tofugem", () -> new Item((new Item.Properties())));
+	public static final DeferredHolder<Item, Item> TOFU_GEM_DUST = ITEMS.register("tofu_gem_dust", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TF_CAPACITOR = ITEMS.register("tf_capacitor", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TF_COIL = ITEMS.register("tf_coil", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TF_CIRCUIT = ITEMS.register("tf_circuit", () -> new Item((new Item.Properties())));

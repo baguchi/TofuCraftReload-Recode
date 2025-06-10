@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tofucraft:tofugem"
+    },
+    {
+      "item": "tofucraft:tofuminced"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "tofucraft:tofu_gem_dust"
+  }
+}

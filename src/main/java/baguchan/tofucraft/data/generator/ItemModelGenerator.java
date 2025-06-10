@@ -415,6 +415,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		singleTex(TofuItems.TOFUGEM);
 		singleTex(TofuItems.ADVANCE_TOFUGEM);
+		singleTex(TofuItems.TOFU_GEM_DUST);
 		singleTex(TofuItems.TF_COIL);
 		singleTex(TofuItems.TF_CIRCUIT);
 		singleTex(TofuItems.TF_CAPACITOR);

@@ -515,6 +515,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.ZUNDARUBY,
 						TofuItems.TOFUGEM,
 						TofuItems.ADVANCE_TOFUGEM,
+						TofuItems.TOFU_GEM_DUST,
 						TofuItems.NATTO_COBWEB,
 						TofuItems.MUSIC_DISC_GREEN_BRANCH,
 						TofuItems.TOFU_CRAFTERS_BOOK).map(itemSupplier -> {
