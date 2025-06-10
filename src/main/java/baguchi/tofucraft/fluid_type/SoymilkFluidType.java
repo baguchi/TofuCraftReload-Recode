@@ -20,7 +20,7 @@ public class SoymilkFluidType extends FluidType {
 		double d8 = entity.getY();
 
 		float f = entity.isSprinting() ? 0.9F : 0.8F;
-		float f1 = 0.3F;
+		float f1 = 0.02F;
 		float f2 = (float) entity.getAttributeValue(Attributes.WATER_MOVEMENT_EFFICIENCY);
 		if (!entity.onGround()) {
 			f2 *= 0.5F;
