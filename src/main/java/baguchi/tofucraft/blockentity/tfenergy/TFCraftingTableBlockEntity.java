@@ -152,8 +152,8 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 			for (int i = 0; i < 9; ++i) {
 				ItemStack slotStack = inventory.get(i);
-				if (slotStack.has(DataComponents.USE_REMAINDER)) {
-					ejectIngredientRemainder(slotStack.get(DataComponents.USE_REMAINDER).convertInto());
+				if (!slotStack.getCraftingRemainder().isEmpty()) {
+					ejectIngredientRemainder(slotStack.getCraftingRemainder());
 				}
 				if (!slotStack.isEmpty())
 					slotStack.shrink(1);

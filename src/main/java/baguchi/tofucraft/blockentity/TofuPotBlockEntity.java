@@ -227,8 +227,8 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 
 		for (int i = 0; i < OUTPUT_SLOT; ++i) {
 			ItemStack slotStack = inventory.get(i);
-			if (slotStack.has(DataComponents.USE_REMAINDER)) {
-				ejectIngredientRemainder(slotStack.get(DataComponents.USE_REMAINDER).convertInto());
+			if (!slotStack.getCraftingRemainder().isEmpty()) {
+				ejectIngredientRemainder(slotStack.getCraftingRemainder().copy());
 			}
 			if (!slotStack.isEmpty())
 				slotStack.shrink(1);
