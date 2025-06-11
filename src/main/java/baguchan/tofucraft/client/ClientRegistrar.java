@@ -58,17 +58,19 @@ import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuMenus;
 import baguchan.tofucraft.registry.TofuRecipeCategories;
 import baguchan.tofucraft.registry.TofuWoodTypes;
-import baguchan.tofucraft.utils.ClientUtils;
 import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -90,7 +92,7 @@ import net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
-import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
@@ -130,14 +132,16 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-				return TEXTURE_OVERLAY;
+			public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick, float nearDistance, float farDistance, FogShape shape) {
+				RenderSystem.setShaderFogStart(0.0F);
+				RenderSystem.setShaderFogEnd(5.0F);
 			}
 
 			@Override
-			public void renderOverlay(Minecraft mc, PoseStack stack) {
-				ClientUtils.renderOverlay(mc, stack, this);
+			public Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
+				return new Vector3f(255 / 255F, 251 / 255F, 222 / 255F);
 			}
+
 		}, TofuFluidTypes.SOYMILK.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell");
@@ -155,14 +159,16 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-				return TEXTURE_OVERLAY;
+			public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick, float nearDistance, float farDistance, FogShape shape) {
+				RenderSystem.setShaderFogStart(0.0F);
+				RenderSystem.setShaderFogEnd(5.0F);
 			}
 
 			@Override
-			public void renderOverlay(Minecraft mc, PoseStack stack) {
-				ClientUtils.renderOverlay(mc, stack, this);
+			public Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
+				return new Vector3f(156 / 255F, 145 / 255F, 78 / 255F);
 			}
+
 		}, TofuFluidTypes.SOYMILK_HELL.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul");
@@ -180,15 +186,16 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-				return TEXTURE_OVERLAY;
+			public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick, float nearDistance, float farDistance, FogShape shape) {
+				RenderSystem.setShaderFogStart(0.0F);
+				RenderSystem.setShaderFogEnd(5.0F);
 			}
-
 
 			@Override
-			public void renderOverlay(Minecraft mc, PoseStack stack) {
-				ClientUtils.renderOverlay(mc, stack, this);
+			public Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
+				return new Vector3f(78 / 255F, 145 / 255F, 156 / 255F);
 			}
+
 		}, TofuFluidTypes.SOYMILK_SOUL.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
@@ -206,14 +213,16 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-				return TEXTURE_OVERLAY;
+			public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick, float nearDistance, float farDistance, FogShape shape) {
+				RenderSystem.setShaderFogStart(0.0F);
+				RenderSystem.setShaderFogEnd(6.0F);
 			}
 
 			@Override
-			public void renderOverlay(Minecraft mc, PoseStack stack) {
-				ClientUtils.renderOverlay(mc, stack, this);
+			public Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
+				return new Vector3f(104 / 255F, 157 / 255F, 170 / 255F);
 			}
+
 		}, TofuFluidTypes.BITTERN.get());
 
 		event.registerFluidType(new IClientFluidTypeExtensions() {
@@ -232,13 +241,14 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-				return TEXTURE_OVERLAY;
+			public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick, float nearDistance, float farDistance, FogShape shape) {
+				RenderSystem.setShaderFogStart(0.0F);
+				RenderSystem.setShaderFogEnd(3.0F);
 			}
 
 			@Override
-			public void renderOverlay(Minecraft mc, PoseStack stack) {
-				ClientUtils.renderOverlay(mc, stack, this);
+			public Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
+				return new Vector3f(155 / 255F, 25 / 255F, 0 / 255F);
 			}
 		}, TofuFluidTypes.DOUBANJIANG.get());
 
