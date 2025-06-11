@@ -69,24 +69,23 @@ import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuWoodTypes;
-import baguchi.tofucraft.utils.ClientUtils;
 import com.google.common.reflect.TypeToken;
 import com.mojang.blaze3d.pipeline.BlendFunction;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.platform.DepthTestFunction;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.Util;
+import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.BoatRenderer;
@@ -94,6 +93,8 @@ import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.SlimeRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.client.renderer.fog.FogData;
+import net.minecraft.client.renderer.fog.environment.FogEnvironment;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ARGB;
@@ -124,6 +125,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.client.renderstate.RegisterRenderStateModifiersEvent;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector4f;
 
 import static net.minecraft.client.renderer.RenderPipelines.FOG_SNIPPET;
 import static net.minecraft.client.renderer.RenderPipelines.GLOBALS_SNIPPET;
@@ -182,13 +184,14 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-				return TEXTURE_OVERLAY;
+			public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				return new Vector4f(255 / 255F, 251 / 255F, 222 / 255F, 1F);
 			}
 
 			@Override
-			public void renderOverlay(Minecraft mc, PoseStack stack, MultiBufferSource buffers) {
-				ClientUtils.renderOverlay(mc, stack, this);
+			public void modifyFogRender(Camera camera, @Nullable FogEnvironment environment, float renderDistance, float partialTick, FogData fogData) {
+				fogData.environmentalStart = 0.0F;
+				fogData.environmentalEnd = 5.0F;
 			}
 		}, TofuFluidTypes.SOYMILK.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
@@ -207,14 +210,16 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-				return TEXTURE_OVERLAY;
+			public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				return new Vector4f(156 / 255F, 145 / 255F, 78 / 255F, 1F);
 			}
 
 			@Override
-			public void renderOverlay(Minecraft mc, PoseStack stack, MultiBufferSource buffers) {
-				ClientUtils.renderOverlay(mc, stack, this);
+			public void modifyFogRender(Camera camera, @Nullable FogEnvironment environment, float renderDistance, float partialTick, FogData fogData) {
+				fogData.environmentalStart = 0.0F;
+				fogData.environmentalEnd = 5.0F;
 			}
+
 		}, TofuFluidTypes.SOYMILK_HELL.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul");
@@ -232,14 +237,14 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-				return TEXTURE_OVERLAY;
+			public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				return new Vector4f(78 / 255F, 145 / 255F, 156 / 255F, 1F);
 			}
 
-
 			@Override
-			public void renderOverlay(Minecraft mc, PoseStack stack, MultiBufferSource buffers) {
-				ClientUtils.renderOverlay(mc, stack, this);
+			public void modifyFogRender(Camera camera, @Nullable FogEnvironment environment, float renderDistance, float partialTick, FogData fogData) {
+				fogData.environmentalStart = 0.0F;
+				fogData.environmentalEnd = 5.0F;
 			}
 		}, TofuFluidTypes.SOYMILK_SOUL.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
@@ -258,20 +263,20 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-				return TEXTURE_OVERLAY;
+			public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				return new Vector4f(104 / 255F, 157 / 255F, 170 / 255F, 1F);
 			}
 
 			@Override
-			public void renderOverlay(Minecraft mc, PoseStack stack, MultiBufferSource buffers) {
-				ClientUtils.renderOverlay(mc, stack, this);
+			public void modifyFogRender(Camera camera, @Nullable FogEnvironment environment, float renderDistance, float partialTick, FogData fogData) {
+				fogData.environmentalStart = 0.0F;
+				fogData.environmentalEnd = 6.0F;
 			}
 		}, TofuFluidTypes.BITTERN.get());
 
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang");
 			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang_flow");
-			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang_overlay");
 
 			@Override
 			public ResourceLocation getStillTexture() {
@@ -284,13 +289,14 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public @Nullable ResourceLocation getRenderOverlayTexture(Minecraft mc) {
-				return TEXTURE_OVERLAY;
+			public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				return new Vector4f(155 / 255F, 25 / 255F, 0 / 255F, 1F);
 			}
 
 			@Override
-			public void renderOverlay(Minecraft mc, PoseStack stack, MultiBufferSource buffers) {
-				ClientUtils.renderOverlay(mc, stack, this);
+			public void modifyFogRender(Camera camera, @Nullable FogEnvironment environment, float renderDistance, float partialTick, FogData fogData) {
+				fogData.environmentalStart = 0.0F;
+				fogData.environmentalEnd = 3.0F;
 			}
 		}, TofuFluidTypes.DOUBANJIANG.get());
 
