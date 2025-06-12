@@ -130,7 +130,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		//Consume beans inside machine
 		if (tfStorageBlockEntity.workload == 0) {
 			FluidStack milk = tfStorageBlockEntity.getTank().getFluid();
-			if (from.getItem() instanceof IEnergyExtractable symbol && !(from.getItem() instanceof IEnergyInsertable)) {
+			if (from.getItem() instanceof IEnergyExtractable symbol) {
 				tfStorageBlockEntity.workload += symbol.drain(from, POWER * 20, false);
 				tfStorageBlockEntity.setChanged();
 			} else if (TofuEnergyMap.getFuel(from) != -1) {
