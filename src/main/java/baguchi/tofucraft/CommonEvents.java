@@ -470,17 +470,6 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onClone(PlayerEvent.Clone event) {
-		Player oldPlayer = event.getOriginal();
-		Player newPlayer = event.getEntity();
-		if (!event.isWasDeath()) {
-			SoyHealthAttachment soyHealth = oldPlayer.getData(TofuAttachments.SOY_HEALTH);
-			SoyHealthAttachment soyHealth2 = newPlayer.getData(TofuAttachments.SOY_HEALTH);
-			soyHealth2.deserializeNBT(newPlayer.level().registryAccess(), soyHealth.serializeNBT(newPlayer.level().registryAccess()));
-		}
-	}
-
-	@SubscribeEvent
 	public static void onTotem(LivingUseTotemEvent event) {
 		if (event.getTotem().is(TofuItems.ZUNDA_TOTEM)) {
 			event.getEntity().setHealth(2);

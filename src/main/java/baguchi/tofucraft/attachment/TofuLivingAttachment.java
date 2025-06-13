@@ -10,8 +10,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.client.gui.screens.WinScreen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -19,11 +17,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.common.util.ValueIOSerializable;
 import net.neoforged.neoforge.network.PacketDistributor;
-import org.jetbrains.annotations.UnknownNullability;
 
-public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
+public class TofuLivingAttachment implements ValueIOSerializable {
 	public boolean isInsidePortal = false;
 	public int portalTimer = 0;
 	public float portalAnimTime = 0;
@@ -200,22 +199,18 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 	}
 
 	@Override
-	public @UnknownNullability CompoundTag serializeNBT(HolderLookup.Provider provider) {
-		CompoundTag nbt = new CompoundTag();
-		nbt.putFloat("recover_health", this.recoverHealth);
-		nbt.putBoolean("zundafied", this.zundafied);
+	public void serialize(ValueOutput valueOutput) {
+		valueOutput.putFloat("recover_health", this.recoverHealth);
+		valueOutput.putBoolean("zundafied", this.zundafied);
 		if (wolfEatCooldown > 0) {
-			nbt.putInt("wolf_eat_cooldown", this.wolfEatCooldown);
+			valueOutput.putInt("wolf_eat_cooldown", this.wolfEatCooldown);
 		}
-		return nbt;
 	}
 
 	@Override
-	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
+	public void deserialize(ValueInput nbt) {
 		this.recoverHealth = nbt.getFloatOr("recover_health", 0);
 		this.zundafied = nbt.getBooleanOr("zundafied", false);
-		if (nbt.contains("wolf_eat_cooldown")) {
-			this.wolfEatCooldown = nbt.getIntOr("wolf_eat_cooldown", 0);
-		}
+		this.wolfEatCooldown = nbt.getIntOr("wolf_eat_cooldown", 0);
 	}
 }
