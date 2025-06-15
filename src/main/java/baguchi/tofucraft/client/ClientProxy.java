@@ -41,7 +41,7 @@ public class ClientProxy {
 		if (player.level().isClientSide() && player == Minecraft.getInstance().player) {
 			Quaternionf quaternionf = new Quaternionf().rotateZ((float) Math.PI);
 
-			DisplayBookComponent title = (new DisplayBookComponent(121, 158)).entityDisplay(TofuEntityTypes.TOFUNIAN.get(), 52, 75, 52 + 40, 75 + 60, 0, 180, 40, quaternionf).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.author"), 52, 20, 1.0F);
+			DisplayBookComponent title = (new DisplayBookComponent(121, 158)).entityDisplay(TofuEntityTypes.TOFUNIAN.get(), 32, 75, 32 + 40, 75 + 110, 0, 180, 40, quaternionf).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.author"), 52, 20, 1.0F);
 			TextBookComponent introduction = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.introduction"), false, 100, 158);
 			TextBookComponent beforeTheTofu = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.before_the_tofu"), true, 100, 158);
 			DisplayBookComponent bittern = (new DisplayBookComponent(121, 158)).textDisplay(TofuItems.BITTERN_BOTTLE.get().asItem().getName(), 52, 75, 1.0F).itemDisplay(TofuItems.BITTERN_BOTTLE.get().getDefaultInstance(), 46, 20);
