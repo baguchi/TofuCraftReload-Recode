@@ -100,7 +100,7 @@ public class TofuPotMenu extends RecipeBookMenu<CraftingInput, TofuPotRecipe> {
 	public ItemStack quickMoveStack(Player playerIn, int index) {
 		int indexMealDisplay = 6;
 		int indexContainerInput = 7;
-		int indexOutput = 12;
+		int indexOutput = 11;
 		int startPlayerInv = indexOutput + 1;
 		int endPlayerInv = startPlayerInv + 36;
 		ItemStack slotStackCopy = ItemStack.EMPTY;
@@ -108,8 +108,12 @@ public class TofuPotMenu extends RecipeBookMenu<CraftingInput, TofuPotRecipe> {
 		if (slot.hasItem()) {
 			ItemStack slotStack = slot.getItem();
 			slotStackCopy = slotStack.copy();
-			if (index == indexOutput) {
-				if (!this.moveItemStackTo(slotStack, startPlayerInv, endPlayerInv, true)) {
+			if (index != indexOutput) {
+				if (index >= startPlayerInv && index < endPlayerInv - 9) {
+					if (!this.moveItemStackTo(slotStack, endPlayerInv - 9, endPlayerInv, false)) {
+						return ItemStack.EMPTY;
+					}
+				} else if (index >= endPlayerInv - 9 && index < endPlayerInv && !this.moveItemStackTo(slotStack, startPlayerInv, endPlayerInv - 9, false)) {
 					return ItemStack.EMPTY;
 				}
 			} else if (!this.moveItemStackTo(slotStack, startPlayerInv, endPlayerInv, false)) {
