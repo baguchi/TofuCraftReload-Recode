@@ -2,7 +2,7 @@
   "name": "Another Material From Tofu World",
   "advancement": "tofucraft:tofuworld",
   "icon": "tofucraft:leek",
-  "category": "tofucraft:strange_soy_magic",
+  "category": "tofucraft:tofucraft/strange_soy_magic",
   "priority": true,
   "pages": [
     {

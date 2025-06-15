@@ -2,7 +2,7 @@
   "name": "Compat",
   "advancement": "tofucraft:root",
   "icon": "tofucraft:edamame_rice",
-  "category": "tofucraft:first_step",
+  "category": "tofucraft:tofucraft/first_step",
   "priority": true,
   "pages": [
     {

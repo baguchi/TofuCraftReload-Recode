@@ -2,7 +2,7 @@
   "name": "HardenTofu",
   "advancement": "tofucraft:root",
   "icon": "tofucraft:blocktofumomen",
-  "category": "tofucraft:first_step",
+  "category": "tofucraft:tofucraft/first_step",
   "priority": true,
   "pages": [
     {

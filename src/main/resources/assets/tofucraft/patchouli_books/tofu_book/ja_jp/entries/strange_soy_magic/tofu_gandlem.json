@@ -2,7 +2,7 @@
   "name": "豆腐ガンドレム",
   "advancement": "tofucraft:find_tofu_castle",
   "icon": "tofucraft:tofu_terrain",
-  "category": "tofucraft:strange_soy_magic",
+  "category": "tofucraft:tofucraft/strange_soy_magic",
   "priority": true,
   "pages": [
     {

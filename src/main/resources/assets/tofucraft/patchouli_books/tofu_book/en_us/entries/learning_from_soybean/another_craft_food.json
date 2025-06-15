@@ -2,7 +2,7 @@
   "name": "Another Craftable Food",
   "advancement": "tofucraft:root",
   "icon": "tofucraft:koujibase",
-  "category": "tofucraft:learning_from_soybean",
+  "category": "tofucraft:tofucraft/learning_from_soybean",
   "priority": true,
   "pages": [
     {

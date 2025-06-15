@@ -2,7 +2,7 @@
   "name": "Before The Making",
   "advancement": "tofucraft:root",
   "icon": "tofucraft:tofukinu",
-  "category": "tofucraft:first_step",
+  "category": "tofucraft:tofucraft/first_step",
   "priority": true,
   "pages": [
     {

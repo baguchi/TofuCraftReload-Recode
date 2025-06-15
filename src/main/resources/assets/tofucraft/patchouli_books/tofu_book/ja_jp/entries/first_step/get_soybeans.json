@@ -2,7 +2,7 @@
   "name" : "大豆について",
   "advancement": "tofucraft:root",
   "icon": "tofucraft:seeds_soybeans",
-  "category": "tofucraft:first_step",
+  "category": "tofucraft:tofucraft/first_step",
   "priority": true,
   "pages": [
     {
