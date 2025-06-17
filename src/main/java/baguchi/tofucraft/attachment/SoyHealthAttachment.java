@@ -1,16 +1,16 @@
 package baguchi.tofucraft.attachment;
 
 import baguchi.tofucraft.network.SoyMilkDrinkedPacket;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.common.util.ValueIOSerializable;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-public class SoyHealthAttachment implements INBTSerializable<CompoundTag> {
+public class SoyHealthAttachment implements ValueIOSerializable {
 	private int soyHealthLevel;
 	private int soyHealthBaseLevel;
 	private long lastTick = -12000L;
@@ -68,17 +68,15 @@ public class SoyHealthAttachment implements INBTSerializable<CompoundTag> {
 	}
 
 	@Override
-	public CompoundTag serializeNBT(HolderLookup.Provider provider) {
-		CompoundTag nbt = new CompoundTag();
-		nbt.putLong("RemainTick", this.lastTick);
-		nbt.putLong("RemainChangedTick", this.lastChangedTick);
-		nbt.putInt("SoyHealthLevel", this.soyHealthLevel);
-		nbt.putInt("SoyHealthBaseLevel", this.soyHealthBaseLevel);
-		return nbt;
+	public void serialize(ValueOutput output) {
+		output.putLong("RemainTick", this.lastTick);
+		output.putLong("RemainChangedTick", this.lastChangedTick);
+		output.putInt("SoyHealthLevel", this.soyHealthLevel);
+		output.putInt("SoyHealthBaseLevel", this.soyHealthBaseLevel);
 	}
 
 	@Override
-	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
+	public void deserialize(ValueInput nbt) {
 		this.lastTick = nbt.getLongOr("RemainTick", 0);
 		this.lastChangedTick = nbt.getLongOr("RemainChangedTick", 0);
 		this.soyHealthLevel = nbt.getIntOr("SoyHealthLevel", 0);

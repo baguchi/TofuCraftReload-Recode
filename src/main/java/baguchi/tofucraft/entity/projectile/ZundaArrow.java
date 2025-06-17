@@ -9,7 +9,6 @@ import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuTags;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -28,6 +27,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.EntityHitResult;
 
 import javax.annotation.Nullable;
@@ -152,15 +153,12 @@ public class ZundaArrow extends AbstractArrow {
 	}
 
 
-	public void readAdditionalSaveData(CompoundTag p_37424_) {
+	public void readAdditionalSaveData(ValueInput p_37424_) {
 		super.readAdditionalSaveData(p_37424_);
-		if (p_37424_.contains("Duration")) {
-			this.duration = p_37424_.getIntOr("Duration", 0);
-		}
-
+		this.duration = p_37424_.getIntOr("Duration", 0);
 	}
 
-	public void addAdditionalSaveData(CompoundTag p_37426_) {
+	public void addAdditionalSaveData(ValueOutput p_37426_) {
 		super.addAdditionalSaveData(p_37426_);
 		p_37426_.putInt("Duration", this.duration);
 	}

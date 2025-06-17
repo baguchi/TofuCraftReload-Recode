@@ -21,6 +21,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -47,6 +48,8 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -96,45 +99,30 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 	}
 
 	@Override
-	public void loadAdditional(CompoundTag compound, HolderLookup.Provider registries) {
-		super.loadAdditional(compound, registries);
+	public void loadAdditional(ValueInput compound) {
+		super.loadAdditional(compound);
 		this.inventory = NonNullList.withSize(14, ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(compound, this.inventory, registries);
+		ContainerHelper.loadAllItems(compound, this.inventory);
 
 		cookTime = compound.getIntOr("CookTime", 0);
 		cookTimeTotal = compound.getIntOr("CookTimeTotal", 0);
-		if (compound.contains("CustomName")) {
-			customName = Component.Serializer.fromJson(compound.getStringOr("CustomName", ""), registries);
-		}
+		this.customName = parseCustomNameSafe(compound, "CustomName");
 		this.recipesUsed.clear();
 		this.recipesUsed.putAll(compound.read("RecipesUsed", RECIPES_USED_CODEC).orElse(Map.of()));
 
-		this.fluidTank = this.fluidTank.readFromNBT(registries, compound.getCompoundOrEmpty("Tank"));
+		this.fluidTank.deserialize(compound.childOrEmpty("Tank"));
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag compound, HolderLookup.Provider registries) {
-		super.saveAdditional(compound, registries);
+	public void saveAdditional(ValueOutput compound) {
+		super.saveAdditional(compound);
 		compound.putInt("CookTime", cookTime);
 		compound.putInt("CookTimeTotal", cookTimeTotal);
-		if (customName != null) {
-			compound.putString("CustomName", Component.Serializer.toJson(customName, registries));
-		}
-		ContainerHelper.saveAllItems(compound, this.inventory, registries);
+		compound.storeNullable("CustomName", ComponentSerialization.CODEC, this.customName);
+		ContainerHelper.saveAllItems(compound, this.inventory);
 
 		compound.store("RecipesUsed", RECIPES_USED_CODEC, this.recipesUsed);
-		CompoundTag tankTag = this.fluidTank.writeToNBT(this.level.registryAccess(), new CompoundTag());
-
-		compound.put("Tank", tankTag);
-	}
-
-	private CompoundTag writeItems(CompoundTag compound, HolderLookup.Provider registries) {
-		super.saveAdditional(compound, registries);
-		CompoundTag tankTag = this.fluidTank.writeToNBT(registries, new CompoundTag());
-
-		compound.put("Tank", tankTag);
-		ContainerHelper.saveAllItems(compound, inventory, registries);
-		return compound;
+		this.fluidTank.serialize(compound.child("Tank"));
 	}
 
 	public ItemStack getAsItem() {
@@ -239,8 +227,8 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 
 		for (int i = 0; i < OUTPUT_SLOT; ++i) {
 			ItemStack slotStack = inventory.get(i);
-			if (slotStack.has(DataComponents.USE_REMAINDER)) {
-				ejectIngredientRemainder(slotStack.get(DataComponents.USE_REMAINDER).convertInto());
+			if (!slotStack.getCraftingRemainder().isEmpty()) {
+				ejectIngredientRemainder(slotStack.getCraftingRemainder().copy());
 			}
 			if (!slotStack.isEmpty())
 				slotStack.shrink(1);
@@ -278,7 +266,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 	}
 
 	public void awardUsedRecipesAndPopExperience(ServerPlayer p_155004_) {
-		List<RecipeHolder<?>> list = this.getUsedRecipesAndPopExperience(p_155004_.serverLevel(), p_155004_.position());
+		List<RecipeHolder<?>> list = this.getUsedRecipesAndPopExperience(p_155004_.level(), p_155004_.position());
 		p_155004_.awardRecipes(list);
 
 		for (RecipeHolder<?> recipeholder : list) {
@@ -368,10 +356,9 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 
 
 	@Override
-	public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-		return writeItems(new CompoundTag(), registries);
+	public CompoundTag getUpdateTag(HolderLookup.Provider p_324313_) {
+		return this.saveCustomOnly(p_324313_);
 	}
-
 	@Override
 	protected void applyImplicitComponents(DataComponentGetter p_397929_) {
 		super.applyImplicitComponents(p_397929_);
@@ -384,9 +371,11 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		components.set(DataComponents.CUSTOM_NAME, this.customName);
 	}
 
+
 	@Override
-	public void removeComponentsFromTag(CompoundTag tag) {
-		tag.remove("CustomName");
+	public void removeComponentsFromTag(ValueOutput p_422208_) {
+		super.removeComponentsFromTag(p_422208_);
+		p_422208_.discard("CustomName");
 	}
 
 	private ItemStackHandler createHandler() {

@@ -97,7 +97,7 @@ public class TravelerTofunianSpawner {
 					if (tofunian != null) {
 						tofunian.setDespawnDelay(48000);
 						tofunian.setWanderTarget(blockpos1);
-						tofunian.restrictTo(blockpos1, 22);
+						tofunian.setHomeTo(blockpos1, 22);
 						return true;
 					}
 				}

@@ -35,8 +35,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.DebugPackets;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -105,6 +103,8 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -722,7 +722,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return this.tofunianLevel;
 	}
 
-	public void addAdditionalSaveData(CompoundTag compound) {
+	public void addAdditionalSaveData(ValueOutput compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putByte("FoodLevel", this.foodLevel);
 		compound.store("Gossips", GossipContainer.CODEC, this.gossips);
@@ -744,37 +744,26 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		VariantUtils.writeVariant(compound, this.getVariant());
 	}
 
-	public void readAdditionalSaveData(CompoundTag compound) {
+	public void readAdditionalSaveData(ValueInput compound) {
 		super.readAdditionalSaveData(compound);
-		if (compound.contains("FoodLevel")) {
-			this.foodLevel = compound.getByteOr("FoodLevel", (byte) 0);
-		}
-		ListTag listtag = compound.getListOrEmpty("Gossips");
+		this.foodLevel = compound.getByteOr("FoodLevel", (byte) 0);
+
 		this.gossips.clear();
 		Optional<GossipContainer> var10000 = compound.read("Gossips", GossipContainer.CODEC);
 		var10000.ifPresent(this.gossips::putAll);
-		if (compound.contains("Xp")) {
-			this.xp = compound.getIntOr("Xp", 0);
-		}
-		if (compound.contains("Level")) {
-			this.tofunianLevel = compound.getIntOr("Level", 0);
-		}
+		this.xp = compound.getIntOr("Xp", 0);
+
+		this.tofunianLevel = compound.getIntOr("Level", 0);
+
 		this.lastGossipDecay = compound.getLongOr("LastGossipDecay", 0);
 		this.lastRestock = compound.getLongOr("LastRestock", 0);
 		this.restocksToday = compound.getIntOr("RestocksToday", 0);
-		if (compound.contains("TofunianHome")) {
-			this.tofunianHome = compound.read("TofunianHome", BlockPos.CODEC).orElse(null);
-		}
-		if (compound.contains("TofunianJobBlock")) {
-			this.tofunianJobBlock = compound.read("TofunianJobBlock", BlockPos.CODEC).orElse(null);
-		}
-		if (compound.contains("VillageCenter")) {
-			this.villageCenter = compound.read("VillageCenter", BlockPos.CODEC).orElse(null);
-		}
-		if (compound.contains("Roles")) {
-			setRole(Roles.get(compound.getStringOr("Roles", "")));
-		}
-		VariantUtils.readVariant(compound, this.registryAccess(), TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY).ifPresent(this::setVariant);
+		this.tofunianHome = compound.read("TofunianHome", BlockPos.CODEC).orElse(null);
+		this.tofunianJobBlock = compound.read("TofunianJobBlock", BlockPos.CODEC).orElse(null);
+		this.villageCenter = compound.read("VillageCenter", BlockPos.CODEC).orElse(null);
+		setRole(Roles.get(compound.getStringOr("Roles", "")));
+
+		VariantUtils.readVariant(compound, TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY).ifPresent(this::setVariant);
 		setCanPickUpLoot(true);
 	}
 

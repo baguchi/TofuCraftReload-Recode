@@ -2,7 +2,6 @@ package baguchi.tofucraft.entity.projectile;
 
 import baguchi.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchi.tofucraft.registry.TofuEntityTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
@@ -10,6 +9,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 
@@ -57,7 +58,7 @@ public class NattoStringEntity extends ThrowableProjectile {
 		}
 	}
 
-	public void addAdditionalSaveData(CompoundTag p_37222_) {
+	public void addAdditionalSaveData(ValueOutput p_37222_) {
 		super.addAdditionalSaveData(p_37222_);
 		p_37222_.putFloat("Damage", (byte) this.damage);
 	}
@@ -67,11 +68,10 @@ public class NattoStringEntity extends ThrowableProjectile {
 
 	}
 
-	public void readAdditionalSaveData(CompoundTag p_37220_) {
+	public void readAdditionalSaveData(ValueInput p_37220_) {
 		super.readAdditionalSaveData(p_37220_);
-		if (p_37220_.contains("Damage")) {
-			this.damage = p_37220_.getFloatOr("Damage", 2);
-		}
+		this.damage = p_37220_.getFloatOr("Damage", 2);
+
 
 	}
 }

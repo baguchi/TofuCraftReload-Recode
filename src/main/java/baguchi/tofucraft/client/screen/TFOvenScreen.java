@@ -9,7 +9,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
 import net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -58,13 +58,13 @@ public class TFOvenScreen extends AbstractRecipeBookScreen<TFOvenMenu> implement
 	protected void renderBg(GuiGraphics p_282928_, float p_281631_, int p_281252_, int p_281891_) {
 		int i = this.leftPos;
 		int j = this.topPos;
-		p_282928_.blit(RenderType::guiTextured, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+		p_282928_.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 		int k = 14;
 		int l = Mth.ceil(this.menu.getTFForce() * 16.0F);
-		p_282928_.blit(RenderType::guiTextured, texture, i + 72, j + 35, 176, 39, 24, l, 256, 256);
+		p_282928_.blit(RenderPipelines.GUI_TEXTURED, texture, i + 72, j + 35, 176, 39, 24, l, 256, 256);
 
 
 		int j1 = Mth.ceil(this.menu.getProgress() * 28.0F);
-		p_282928_.blit(RenderType::guiTextured, texture, i + 67, j + 15, 176, 14, j1, 17, 256, 256);
+		p_282928_.blit(RenderPipelines.GUI_TEXTURED, texture, i + 67, j + 15, 176, 14, j1, 17, 256, 256);
 	}
 }

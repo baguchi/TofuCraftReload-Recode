@@ -7,7 +7,6 @@ import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -21,6 +20,8 @@ import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.SimpleExplosionDamageCalculator;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -108,12 +109,12 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag p_37222_) {
+	public void addAdditionalSaveData(ValueOutput p_37222_) {
 		super.addAdditionalSaveData(p_37222_);
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundTag p_37220_) {
+	public void readAdditionalSaveData(ValueInput p_37220_) {
 		super.readAdditionalSaveData(p_37220_);
 	}
 }

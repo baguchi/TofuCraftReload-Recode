@@ -41,6 +41,8 @@ public class TofuGandlemRender extends MobRenderer<TofuGandlem, TofuGandlemRende
 		super.extractRenderState(p_362733_, p_360515_, p_361157_);
 		p_360515_.idleAnimationState.copyFrom(p_362733_.idleAnimationState);
 		p_360515_.attackAnimationState.copyFrom(p_362733_.attackAnimationState);
+		p_360515_.preShootAnimationState.copyFrom(p_362733_.preShootAnimationState);
+		p_360515_.stopShootAnimationState.copyFrom(p_362733_.stopShootAnimationState);
 		p_360515_.shootAnimationState.copyFrom(p_362733_.shootAnimationState);
 		p_360515_.shootingAnimationState.copyFrom(p_362733_.shootingAnimationState);
 		p_360515_.rushAnimationState.copyFrom(p_362733_.rushAnimationState);
@@ -50,7 +52,7 @@ public class TofuGandlemRender extends MobRenderer<TofuGandlem, TofuGandlemRende
 		p_360515_.chargeFailAnimationState.copyFrom(p_362733_.chargeFailAnimationState);
 		p_360515_.chargeHealth = p_362733_.getChargeHealth();
 		p_360515_.charge = p_362733_.isCharging();
-		p_360515_.shoot = p_362733_.isShoot();
+		p_360515_.shoot = p_362733_.getAction() == TofuGandlem.Actions.PRE_SHOOT || p_362733_.getAction() == TofuGandlem.Actions.SHOOT;
 		p_360515_.sleep = p_362733_.isSleepSelf();
 		p_360515_.health = p_362733_.getHealth();
 		p_360515_.maxHealth = p_362733_.getMaxHealth();

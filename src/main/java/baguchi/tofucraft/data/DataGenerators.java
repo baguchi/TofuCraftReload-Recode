@@ -10,6 +10,7 @@ import baguchi.tofucraft.data.generator.FluidTagGenerator;
 import baguchi.tofucraft.data.generator.ItemTagGenerator;
 import baguchi.tofucraft.data.generator.RegistryDataGenerator;
 import baguchi.tofucraft.data.generator.TofuAdvancementGenerator;
+import baguchi.tofucraft.data.generator.TofuDamageTypeTags;
 import baguchi.tofucraft.data.generator.TofuDataMapsProvider;
 import baguchi.tofucraft.data.generator.TofuEquipmentModelProvider;
 import baguchi.tofucraft.data.generator.TofuModelData;
@@ -42,7 +43,7 @@ public class DataGenerators {
 
 		BlockTagsProvider blocktags = new BlockTagGenerator(packOutput, lookupProvider);
 		generator.addProvider(true, blocktags);
-		generator.addProvider(true, new ItemTagGenerator(packOutput, lookupProvider, blocktags.contentsGetter()));
+		generator.addProvider(true, new ItemTagGenerator(packOutput, lookupProvider));
 		generator.addProvider(true, new EntityTagGenerator(packOutput, lookupProvider));
 		generator.addProvider(true, new TofuDamageTypeTags(packOutput, lookupProvider));
 		generator.addProvider(true, new EnchantTagGenerator(packOutput, lookupProvider));

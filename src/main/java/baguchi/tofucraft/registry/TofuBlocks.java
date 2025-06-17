@@ -161,6 +161,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> DIAMONDTOFU = register("blocktofudiamond", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> TOFU_GEM_BLOCK = register("tofu_gem_block", (properties) -> new TofuGemBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> ADVANCE_TOFU_GEM_BLOCK = register("adv_tofu_gem_block", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL));
+	public static final DeferredBlock<Block> ZUNDA_ALLOY_TOFU_BLOCK = register("zunda_alloy_tofu_block", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.NETHERITE_BLOCK));
 
 	public static final DeferredBlock<RotatedPillarBlock> GRILLEDTOFU = register("blocktofugrilled", (properties) -> new TofuGrilledBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> ZUNDATOFU = register("blocktofuzunda", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
@@ -400,6 +401,8 @@ public class TofuBlocks {
 	}));
 	public static final DeferredBlock<Block> SPROUTSJAR = register("blocksproutsjar", (properties) -> new SproutsJarBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().noCollission().sound(SoundType.GLASS));
 	public static final DeferredBlock<Block> SALT_BLOCK = register("salt_block", (properties) -> new FallFoodBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.SAND));
+	public static final DeferredBlock<Block> OKARA_BLOCK = register("okara_block", (properties) -> new FallFoodBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL));
+	public static final DeferredBlock<Block> GIANT_OKARA_DONUT = register("giant_okara_donut", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().strength(0.75F).sound(SoundType.NETHER_SPROUTS));
 
 	public static final DeferredBlock<Block> MORIJIO = register("morijio", (properties) -> new MorijioBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.5F, 3.0F).noOcclusion().sound(SoundType.WOOD));
 	//BARREL
@@ -615,6 +618,8 @@ public class TofuBlocks {
 				return new BlockItem(block.get(), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
 			} else if (Objects.requireNonNull(block.get()) == TF_CRAFTING_TABLE.get()) {
 				return new BlockItem(Objects.requireNonNull(block.get()), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
+			} else if (block.get() == GIANT_OKARA_DONUT.get()) {
+				return new EdiableBlockItem(GIANT_OKARA_DONUT.get(), properties.food(TofuFoods.GIANT_OKARA_DONUT));
 			} else {
 				return new BlockItem(block.get(), properties);
 			}

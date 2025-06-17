@@ -1,5 +1,6 @@
 package baguchi.tofucraft.data.generator.models;
 
+import baguchi.tofucraft.client.render.item.properties.TFProperty;
 import baguchi.tofucraft.client.render.special.TofuShieldSpecialRenderer;
 import baguchi.tofucraft.data.generator.TofuEquipmentAssets;
 import baguchi.tofucraft.registry.TofuItems;
@@ -231,6 +232,7 @@ public class TofuItemModels extends ItemModelGenerators {
 
 		this.generateFlatItem(TofuItems.TOFUGEM.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.ADVANCE_TOFUGEM.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_GEM_DUST.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TF_COIL.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TF_CIRCUIT.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TF_CAPACITOR.get(), ModelTemplates.FLAT_ITEM);
@@ -368,7 +370,10 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.MUSIC_DISC_GREEN_BRANCH.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_CRAFTERS_BOOK.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.ZUNDA_INGOT.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.ZUNDA_ALLOY_TOFU.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.ZUNDA_TOTEM.get(), ModelTemplates.FLAT_ITEM);
+		this.generateZundaSword(this, TofuItems.ZUNDA_ALLOY_TOFU_SWORD.get());
+
 	}
 
 	public void generateTofuShield(ItemModelGenerators generators, Item p_386530_) {
@@ -385,5 +390,11 @@ public class TofuItemModels extends ItemModelGenerators {
 		ItemModel.Unbaked itemmodel$unbaked2 = ItemModelUtils.plainModel(generators.createFlatItemModel(p_387215_, "_pulling_1", ModelTemplates.BOW));
 		ItemModel.Unbaked itemmodel$unbaked3 = ItemModelUtils.plainModel(generators.createFlatItemModel(p_387215_, "_pulling_2", ModelTemplates.BOW));
 		generators.itemModelOutput.accept(p_387215_, ItemModelUtils.conditional(ItemModelUtils.isUsingItem(), ItemModelUtils.rangeSelect(new UseDuration(false), 0.05F, itemmodel$unbaked1, new RangeSelectItemModel.Entry[]{ItemModelUtils.override(itemmodel$unbaked2, 0.65F), ItemModelUtils.override(itemmodel$unbaked3, 0.9F)}), itemmodel$unbaked));
+	}
+
+	public void generateZundaSword(ItemModelGenerators generators, Item p_387215_) {
+		ItemModel.Unbaked itemmodel$unbaked = ItemModelUtils.plainModel(generators.createFlatItemModel(p_387215_, ModelTemplates.FLAT_HANDHELD_ITEM));
+		ItemModel.Unbaked itemmodel$unbaked1 = ItemModelUtils.plainModel(generators.createFlatItemModel(p_387215_, "_tf", ModelTemplates.FLAT_HANDHELD_ITEM));
+		generators.itemModelOutput.accept(p_387215_, ItemModelUtils.conditional(new TFProperty(), itemmodel$unbaked1, itemmodel$unbaked));
 	}
 }

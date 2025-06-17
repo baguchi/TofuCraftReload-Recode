@@ -15,6 +15,7 @@ public class TofuSurfaceRuleData {
 	private static final SurfaceRules.RuleSource TOFU_TERRAIN = makeStateRule(TofuBlocks.TOFU_TERRAIN.get());
 	private static final SurfaceRules.RuleSource TOFU_TERRAIN_ZUNDA = makeStateRule(TofuBlocks.TOFU_TERRAIN_ZUNDA.get());
 	private static final SurfaceRules.RuleSource MINCED_TOFU = makeStateRule(TofuBlocks.MINCEDTOFU.get());
+	private static final SurfaceRules.RuleSource OKARA_BLOCK = makeStateRule(TofuBlocks.OKARA_BLOCK.get());
 
 	private static SurfaceRules.RuleSource makeStateRule(Block p_194811_) {
 		return SurfaceRules.state(p_194811_.defaultBlockState());

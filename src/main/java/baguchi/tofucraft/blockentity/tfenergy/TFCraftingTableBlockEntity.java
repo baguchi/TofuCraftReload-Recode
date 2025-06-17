@@ -8,13 +8,11 @@ import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.ContainerHelper;
@@ -35,6 +33,8 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -152,8 +152,8 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 			for (int i = 0; i < 9; ++i) {
 				ItemStack slotStack = inventory.get(i);
-				if (slotStack.has(DataComponents.USE_REMAINDER)) {
-					ejectIngredientRemainder(slotStack.get(DataComponents.USE_REMAINDER).convertInto());
+				if (!slotStack.getCraftingRemainder().isEmpty()) {
+					ejectIngredientRemainder(slotStack.getCraftingRemainder());
 				}
 				if (!slotStack.isEmpty())
 					slotStack.shrink(1);
@@ -235,19 +235,19 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag cmp, HolderLookup.Provider p_338445_) {
-		super.saveAdditional(cmp, p_338445_);
-		ContainerHelper.saveAllItems(cmp, this.inventory, p_338445_);
+	public void saveAdditional(ValueOutput cmp) {
+		super.saveAdditional(cmp);
+		ContainerHelper.saveAllItems(cmp, this.inventory);
 		cmp.putInt("progress", this.progress);
 		cmp.putInt("progress_max", this.progressMax);
 		cmp.putInt("RefreshTime", this.refreshTime);
 	}
 
 	@Override
-	public void loadAdditional(CompoundTag cmp, HolderLookup.Provider p_338445_) {
-		super.loadAdditional(cmp, p_338445_);
+	public void loadAdditional(ValueInput cmp) {
+		super.loadAdditional(cmp);
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(cmp, this.inventory, p_338445_);
+		ContainerHelper.loadAllItems(cmp, this.inventory);
 
 		this.progress = cmp.getIntOr("progress", 0);
 		this.progressMax = cmp.getIntOr("progress_max", 0);
@@ -319,13 +319,13 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 
 	@Override
-	public void removeComponentsFromTag(CompoundTag p_331127_) {
+	public void removeComponentsFromTag(ValueOutput p_331127_) {
 		super.removeComponentsFromTag(p_331127_);
-		p_331127_.remove("Items");
-		p_331127_.remove("progress");
-		p_331127_.remove("progress_max");
-		p_331127_.remove("RefreshTime");
-		p_331127_.remove("RecipesUsed");
+		p_331127_.discard("Items");
+		p_331127_.discard("progress");
+		p_331127_.discard("progress_max");
+		p_331127_.discard("RefreshTime");
+		p_331127_.discard("RecipesUsed");
 	}
 
 	@Override

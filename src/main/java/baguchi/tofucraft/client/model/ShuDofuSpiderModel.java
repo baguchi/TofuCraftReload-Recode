@@ -2,6 +2,7 @@ package baguchi.tofucraft.client.model;
 
 import baguchi.tofucraft.client.animation.definitions.ShuDofuSpiderAnimation;
 import baguchi.tofucraft.client.render.state.ShuDofuSpiderRenderState;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -29,7 +30,13 @@ public class ShuDofuSpiderModel extends EntityModel<ShuDofuSpiderRenderState> {
 	private final ModelPart bone8;
 	private final ModelPart bone18;
 	private final ModelPart bone28;
-
+	private final KeyframeAnimation walkAnimation;
+	private final KeyframeAnimation attackAnimation;
+	private final KeyframeAnimation deathAnimation;
+	private final KeyframeAnimation jumpAnimation;
+	private final KeyframeAnimation idleAnimation;
+	private final KeyframeAnimation graspAnimation;
+	private final KeyframeAnimation graspPreAnimation;
 
 	public ShuDofuSpiderModel(ModelPart root) {
 		super(root, RenderType::entityTranslucent);
@@ -48,6 +55,13 @@ public class ShuDofuSpiderModel extends EntityModel<ShuDofuSpiderRenderState> {
 		this.bone8 = this.leg2.getChild("bone8");
 		this.bone18 = this.leg4.getChild("bone18");
 		this.bone28 = this.leg6.getChild("bone28");
+		this.walkAnimation = ShuDofuSpiderAnimation.WALK.bake(root);
+		this.attackAnimation = ShuDofuSpiderAnimation.SWIPE.bake(root);
+		this.deathAnimation = ShuDofuSpiderAnimation.DEATH.bake(root);
+		this.jumpAnimation = ShuDofuSpiderAnimation.JUMP_ATTACK.bake(root);
+		this.idleAnimation = ShuDofuSpiderAnimation.IDLE.bake(root);
+		this.graspAnimation = ShuDofuSpiderAnimation.GRASP.bake(root);
+		this.graspPreAnimation = ShuDofuSpiderAnimation.GRASP_PRE.bake(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -210,12 +224,12 @@ public class ShuDofuSpiderModel extends EntityModel<ShuDofuSpiderRenderState> {
 		}
 
 
-		this.animate(entity.idleAnimationState, ShuDofuSpiderAnimation.IDLE, entity.ageInTicks);
-		this.animateWalk(ShuDofuSpiderAnimation.WALK, entity.walkAnimationPos, entity.walkAnimationSpeed, 1.0F, 2.5F);
-		this.animate(entity.attackAnimationState, ShuDofuSpiderAnimation.SWIPE, entity.ageInTicks);
-		this.animate(entity.deathAnimationState, ShuDofuSpiderAnimation.DEATH, entity.ageInTicks);
-		this.animate(entity.jumpAnimationState, ShuDofuSpiderAnimation.JUMP_ATTACK, entity.ageInTicks);
-		this.animate(entity.graspAnimationState, ShuDofuSpiderAnimation.GRASP, entity.ageInTicks);
-		this.animate(entity.graspPreAnimationState, ShuDofuSpiderAnimation.GRASP_PRE, entity.ageInTicks);
+		this.idleAnimation.apply(entity.idleAnimationState, entity.ageInTicks);
+		this.walkAnimation.applyWalk(entity.walkAnimationPos, entity.walkAnimationSpeed, 1.0F, 2.5F);
+		this.attackAnimation.apply(entity.attackAnimationState, entity.ageInTicks);
+		this.deathAnimation.apply(entity.deathAnimationState, entity.ageInTicks);
+		this.jumpAnimation.apply(entity.jumpAnimationState, entity.ageInTicks);
+		this.graspAnimation.apply(entity.graspAnimationState, entity.ageInTicks);
+		this.graspPreAnimation.apply(entity.graspPreAnimationState, entity.ageInTicks);
 	}
 }

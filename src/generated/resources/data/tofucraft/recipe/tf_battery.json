@@ -3,7 +3,7 @@
   "category": "redstone",
   "key": {
     "M": "tofucraft:tofumetal",
-    "R": "minecraft:redstone",
+    "R": "tofucraft:tofu_gem_dust",
     "T": "tofucraft:tofugem"
   },
   "pattern": [

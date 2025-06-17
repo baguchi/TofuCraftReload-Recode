@@ -4,7 +4,7 @@ import baguchi.tofucraft.inventory.TFCrafterMenu;
 import baguchi.tofucraft.inventory.slot.TFCrafterSlot;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -81,7 +81,7 @@ public class TFCrafterScreen extends AbstractContainerScreen<TFCrafterMenu> {
 	}
 
 	private void renderDisabledSlot(GuiGraphics guiGraphics, TFCrafterSlot slot) {
-		guiGraphics.blitSprite(RenderType::guiTextured, DISABLED_SLOT_LOCATION_SPRITE, slot.x - 1, slot.y - 1, 18, 18);
+		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, DISABLED_SLOT_LOCATION_SPRITE, slot.x - 1, slot.y - 1, 18, 18);
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class TFCrafterScreen extends AbstractContainerScreen<TFCrafterMenu> {
 				&& !this.menu.isSlotDisabled(this.hoveredSlot.index)
 				&& this.menu.getCarried().isEmpty()
 				&& !this.hoveredSlot.hasItem()) {
-			p_307196_.renderTooltip(this.font, DISABLED_SLOT_TOOLTIP, p_307586_, p_307288_);
+			p_307196_.setTooltipForNextFrame(this.font, DISABLED_SLOT_TOOLTIP, p_307586_, p_307288_);
 		}
 	}
 
@@ -101,8 +101,8 @@ public class TFCrafterScreen extends AbstractContainerScreen<TFCrafterMenu> {
 		int i = this.width / 2 + 9;
 		int j = this.height / 2 - 48;
 
-		p_307600_.blitSprite(RenderType::guiTextured, UNPOWERED_REDSTONE_LOCATION_SPRITE, i, j, 16, 16);
-		p_307600_.blitSprite(RenderType::guiTextured, POWERED_REDSTONE_LOCATION_SPRITE, 16, 16, 0, 0, i, j, this.menu.getProgress(), 16);
+		p_307600_.blitSprite(RenderPipelines.GUI_TEXTURED, UNPOWERED_REDSTONE_LOCATION_SPRITE, i, j, 16, 16);
+		p_307600_.blitSprite(RenderPipelines.GUI_TEXTURED, POWERED_REDSTONE_LOCATION_SPRITE, 16, 16, 0, 0, i, j, this.menu.getProgress(), 16);
 
 	}
 
@@ -110,6 +110,6 @@ public class TFCrafterScreen extends AbstractContainerScreen<TFCrafterMenu> {
 	protected void renderBg(GuiGraphics p_307513_, float p_307580_, int p_307561_, int p_307248_) {
 		int i = (this.width - this.imageWidth) / 2;
 		int j = (this.height - this.imageHeight) / 2;
-		p_307513_.blit(RenderType::guiTextured, CONTAINER_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+		p_307513_.blit(RenderPipelines.GUI_TEXTURED, CONTAINER_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 	}
 }

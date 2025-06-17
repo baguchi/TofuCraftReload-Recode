@@ -39,7 +39,7 @@ public class TFStorageSoymilkPacket implements CustomPacketPayload, IPayloadHand
 	}
 
 	public TFStorageSoymilkPacket(FriendlyByteBuf buffer) {
-		this(buffer.readBlockPos(), buffer.readJsonWithCodec(FluidStack.OPTIONAL_CODEC));
+		this(buffer.readBlockPos(), buffer.readLenientJsonWithCodec(FluidStack.OPTIONAL_CODEC));
 	}
 
 	public void handle(TFStorageSoymilkPacket message, IPayloadContext context) {

@@ -131,7 +131,7 @@ public class TFCrafterMenu extends AbstractContainerMenu implements ContainerLis
 
 	private void refreshRecipeResult() {
 		if (this.player instanceof ServerPlayer serverplayer) {
-			ServerLevel level = serverplayer.serverLevel();
+			ServerLevel level = serverplayer.level();
 			CraftingInput craftinginput = this.container.asCraftInput();
 			ItemStack itemstack = CrafterBlock.getPotentialResults(level, craftinginput)
 					.map(p_344359_ -> p_344359_.value().assemble(craftinginput, level.registryAccess()))

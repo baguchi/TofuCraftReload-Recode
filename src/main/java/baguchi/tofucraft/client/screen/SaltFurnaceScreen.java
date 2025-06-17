@@ -4,13 +4,10 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchi.tofucraft.client.ClientProxy;
 import baguchi.tofucraft.inventory.SaltFurnaceMenu;
-import baguchi.tofucraft.mixin.client.GuiGraphicsAccessor;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
@@ -21,7 +18,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import org.joml.Matrix4f;
+import org.joml.Matrix3x2fStack;
 
 @OnlyIn(Dist.CLIENT)
 public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> {
@@ -46,33 +43,33 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 	protected void renderBg(GuiGraphics p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
 		int i = this.leftPos;
 		int j = this.topPos;
-		p_230450_1_.blit(RenderType::guiTextured, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+		p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 		if (this.menu.isLit()) {
 			int k = this.menu.getLitProgress();
-			p_230450_1_.blit(RenderType::guiTextured, texture, i + 23, j + 36 + 12 - k, 176, 12 - k, 14, k + 1, 256, 256);
+			p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i + 23, j + 36 + 12 - k, 176, 12 - k, 14, k + 1, 256, 256);
 		}
 		int l = this.menu.getBurnProgress();
-		p_230450_1_.blit(RenderType::guiTextured, texture, i + 54, j + 54, 176, 14, l + 1, 16, 256, 256);
-		p_230450_1_.pose().pushPose();
+		p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i + 54, j + 54, 176, 14, l + 1, 16, 256, 256);
+		p_230450_1_.pose().pushMatrix();
 		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity && ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).bitternTank.getFluid() != null) {
 			FluidTank fluidTank = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).bitternTank;
 			int heightInd = (int) (44.0F * fluidTank.getFluidAmount() / fluidTank.getCapacity());
 			if (heightInd > 0)
 				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 145, j + 69, 10, heightInd, fluidTank.getFluid().getFluid());
 		}
-		p_230450_1_.pose().popPose();
-		p_230450_1_.pose().pushPose();
+		p_230450_1_.pose().popMatrix();
+		p_230450_1_.pose().pushMatrix();
 		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity && ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).waterTank.getFluid() != null) {
 			FluidTank fluidTank2 = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).waterTank;
 			int heightInd2 = (int) (44.0F * fluidTank2.getFluidAmount() / fluidTank2.getCapacity());
 			if (heightInd2 > 0)
 				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 158, j + 69, 10, heightInd2, fluidTank2.getFluid().getFluid());
 		}
-		p_230450_1_.pose().popPose();
+		p_230450_1_.pose().popMatrix();
 	}
 
 
-	public static void renderFluidStack(GuiGraphics guiGraphics, PoseStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
+	public static void renderFluidStack(GuiGraphics guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(IClientFluidTypeExtensions.of(fluid).getStillTexture());
 		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
 
@@ -91,32 +88,7 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 		float vMax = sprite.getV1();
 		float uDif = uMax - uMin;
 		float vDif = vMax - vMin;
-		VertexConsumer vertexBuffer = ((GuiGraphicsAccessor) guiGraphics).bufferSource().getBuffer(RenderType.guiTextured(TextureAtlas.LOCATION_BLOCKS));
-		Matrix4f matrix4f = stack.last().pose();
-		for (int xTile = 0; xTile <= xTileCount; xTile++) {
-			int width = (xTile == xTileCount) ? xRemainder : 16;
-			if (width == 0) {
-				break;
-			}
-			int x = xPosition + (xTile * 16);
-			int maskRight = 16 - width;
-			int shiftedX = x + 16 - maskRight;
-			float uLocalDif = uDif * maskRight / 16;
+		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xPosition, yPosition - desiredHeight, desiredWidth, desiredHeight, color);
 
-			for (int yTile = 0; yTile <= yTileCount; yTile++) {
-				int height = (yTile == yTileCount) ? yRemainder : 16;
-				if (height == 0) {
-					break;
-				}
-				int y = yPosition - ((yTile + 1) * 16);
-				int maskTop = 16 - height;
-				float vLocalDif = vDif * maskTop / 16;
-
-				vertexBuffer.addVertex(matrix4f, x, y + 16, 0).setUv(uMin + uLocalDif, vMax).setColor(red, green, blue, alpha);
-				vertexBuffer.addVertex(matrix4f, shiftedX, y + 16, 0).setUv(uMax, vMax).setColor(red, green, blue, alpha);
-				vertexBuffer.addVertex(matrix4f, shiftedX, y + maskTop, 0).setUv(uMax, vMin + vLocalDif).setColor(red, green, blue, alpha);
-				vertexBuffer.addVertex(matrix4f, x, y + maskTop, 0).setUv(uMin + uLocalDif, vMin + vLocalDif).setColor(red, green, blue, alpha);
-			}
-		}
 	}
 }

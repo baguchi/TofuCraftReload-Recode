@@ -16,8 +16,10 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
+import java.util.Set;
 
 public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataComponentMap> {
 	private final ShieldModel model;
@@ -48,6 +50,11 @@ public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataCompo
 
 
 		p_387961_.popPose();
+	}
+
+	@Override
+	public void getExtents(Set<Vector3f> set) {
+
 	}
 
 	@OnlyIn(Dist.CLIENT)

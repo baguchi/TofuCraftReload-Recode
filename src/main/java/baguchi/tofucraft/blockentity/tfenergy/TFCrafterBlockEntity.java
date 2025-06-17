@@ -8,13 +8,11 @@ import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
@@ -39,6 +37,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.CrafterBlockEntity;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -265,9 +265,9 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag cmp, HolderLookup.Provider p_338445_) {
-		super.saveAdditional(cmp, p_338445_);
-		ContainerHelper.saveAllItems(cmp, this.inventory, p_338445_);
+	public void saveAdditional(ValueOutput cmp) {
+		super.saveAdditional(cmp);
+		ContainerHelper.saveAllItems(cmp, this.inventory);
 		cmp.putInt("progress", this.progress);
 		cmp.putInt("RefreshTime", this.refreshTime);
 
@@ -276,10 +276,10 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 	}
 
 	@Override
-	public void loadAdditional(CompoundTag cmp, HolderLookup.Provider p_338445_) {
-		super.loadAdditional(cmp, p_338445_);
+	public void loadAdditional(ValueInput cmp) {
+		super.loadAdditional(cmp);
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(cmp, this.inventory, p_338445_);
+		ContainerHelper.loadAllItems(cmp, this.inventory);
 
 		this.progress = cmp.getIntOr("progress", 0);
 		this.refreshTime = cmp.getIntOr("RefreshTime", 0);
@@ -360,7 +360,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 	}
 
 
-	private void addDisabledSlots(CompoundTag p_307523_) {
+	private void addDisabledSlots(ValueOutput p_307523_) {
 		IntList intlist = new IntArrayList();
 
 		for (int i = 0; i < 9; ++i) {
@@ -444,7 +444,7 @@ public class TFCrafterBlockEntity extends WorkerBaseBlockEntity implements MenuP
 		return i;
 	}
 
-	private void addTriggered(CompoundTag p_307675_) {
+	private void addTriggered(ValueOutput p_307675_) {
 		p_307675_.putInt("triggered", this.containerData.get(9));
 	}
 

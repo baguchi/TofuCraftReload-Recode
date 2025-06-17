@@ -9,6 +9,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.dimension.DimensionType;
 
+import java.util.Optional;
 import java.util.OptionalLong;
 
 public class TofuDimensionTypes {
@@ -31,6 +32,7 @@ public class TofuDimensionTypes {
 				BlockTags.INFINIBURN_OVERWORLD, //infiburn
 				TofuCraftReload.prefix("renderer"), // DimensionRenderInfo
 				0f,
+				Optional.of(192),
 				new DimensionType.MonsterSettings(false, false, UniformInt.of(0, 7), 0)
 		);
 	}

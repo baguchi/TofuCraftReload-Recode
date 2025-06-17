@@ -7,9 +7,7 @@ import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuTags;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -20,6 +18,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -72,8 +72,8 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 	}
 
 	@Override
-	public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-		super.loadAdditional(compound, provider);
+	public void loadAdditional(ValueInput compound) {
+		super.loadAdditional(compound);
 		this.setProcessTick(compound.getIntOr("ProcessTick", 0));
 		this.setCooldown(compound.getLongOr("CooldownAt", 0));
 		this.setHappyScale(compound.getFloatOr("HappyScale", 0));
@@ -81,8 +81,8 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
-		super.saveAdditional(compound, provider);
+	public void saveAdditional(ValueOutput compound) {
+		super.saveAdditional(compound);
 		compound.putInt("ProcessTick", getProcessTick());
 		compound.putLong("CooldownAt", getCooldown());
 		compound.putFloat("HappyScale", getHappyScale());

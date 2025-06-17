@@ -10,12 +10,10 @@ import baguchi.tofucraft.network.TFStorageSoymilkPacket;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuFluids;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
@@ -33,6 +31,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -130,7 +130,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		//Consume beans inside machine
 		if (tfStorageBlockEntity.workload == 0) {
 			FluidStack milk = tfStorageBlockEntity.getTank().getFluid();
-			if (from.getItem() instanceof IEnergyExtractable symbol && !(from.getItem() instanceof IEnergyInsertable)) {
+			if (from.getItem() instanceof IEnergyExtractable symbol) {
 				tfStorageBlockEntity.workload += symbol.drain(from, POWER * 20, false);
 				tfStorageBlockEntity.setChanged();
 			} else if (TofuEnergyMap.getFuel(from) != -1) {
@@ -227,27 +227,24 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag cmp, HolderLookup.Provider provider) {
-		super.saveAdditional(cmp, provider);
-		ContainerHelper.saveAllItems(cmp, this.inventory, provider);
+	public void saveAdditional(ValueOutput cmp) {
+		super.saveAdditional(cmp);
+		ContainerHelper.saveAllItems(cmp, this.inventory);
 		cmp.putInt("workload", this.workload);
 		cmp.putInt("current", this.current_workload);
 
-		CompoundTag tankTag = this.tank.writeToNBT(this.level.registryAccess(), new CompoundTag());
-
-		cmp.put("Tank", tankTag);
+		this.tank.serialize(cmp.child("Tank"));
 	}
 
 	@Override
-	protected void loadAdditional(CompoundTag cmp, HolderLookup.Provider provider) {
-		super.loadAdditional(cmp, provider);
+	protected void loadAdditional(ValueInput cmp) {
+		super.loadAdditional(cmp);
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(cmp, this.inventory, provider);
+		ContainerHelper.loadAllItems(cmp, this.inventory);
 
 		this.workload = cmp.getIntOr("workload", 0);
 		this.current_workload = cmp.getIntOr("current", 0);
-
-		this.tank = this.tank.readFromNBT(provider, cmp.getCompoundOrEmpty("Tank"));
+		this.tank.deserialize(cmp.childOrEmpty("Tank"));
 	}
 
 	@Override
@@ -263,12 +260,12 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 	}
 
 	@Override
-	public void removeComponentsFromTag(CompoundTag p_331127_) {
+	public void removeComponentsFromTag(ValueOutput p_331127_) {
 		super.removeComponentsFromTag(p_331127_);
-		p_331127_.remove("Items");
-		p_331127_.remove("current");
-		p_331127_.remove("workload");
-		p_331127_.remove("Tank");
+		p_331127_.discard("Items");
+		p_331127_.discard("current");
+		p_331127_.discard("workload");
+		p_331127_.discard("Tank");
 	}
 
 	@Override

@@ -3,7 +3,6 @@ package baguchi.tofucraft.entity.projectile;
 import baguchi.tofucraft.registry.TofuDamageTypes;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -15,6 +14,8 @@ import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -130,23 +131,21 @@ public class SoyballEntity extends ThrowableProjectile {
 		}
 	}
 
-	public void addAdditionalSaveData(CompoundTag p_37222_) {
+	@Override
+	public void addAdditionalSaveData(ValueOutput p_37222_) {
 		super.addAdditionalSaveData(p_37222_);
 		p_37222_.putFloat("Damage", (byte) this.damage);
 		if (this.firedFromWeapon != null) {
-			p_37222_.put("weapon", this.firedFromWeapon.save(this.registryAccess(), new CompoundTag()));
+			p_37222_.store("weapon", ItemStack.CODEC, this.firedFromWeapon);
 		}
 	}
 
-	public void readAdditionalSaveData(CompoundTag p_37220_) {
+	@Override
+	public void readAdditionalSaveData(ValueInput p_37220_) {
 		super.readAdditionalSaveData(p_37220_);
-		if (p_37220_.contains("Damage")) {
-			this.damage = p_37220_.getFloatOr("Damage", 1);
-		}
-		if (p_37220_.contains("weapon")) {
-			this.firedFromWeapon = ItemStack.parse(this.registryAccess(), p_37220_.getCompoundOrEmpty("weapon")).orElse(null);
-		} else {
-			this.firedFromWeapon = null;
-		}
+		this.damage = p_37220_.getFloatOr("Damage", 1);
+
+		this.firedFromWeapon = p_37220_.read("weapon", ItemStack.CODEC).orElse(null);
+
 	}
 }

@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -24,6 +23,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
 
@@ -108,20 +109,19 @@ public class TofuSlime extends Slime {
 		this.discard();
 	}
 
-	public void addAdditionalSaveData(CompoundTag p_34319_) {
+	public void addAdditionalSaveData(ValueOutput p_34319_) {
 		super.addAdditionalSaveData(p_34319_);
 		p_34319_.putInt("OnZundaTime", this.convertsOnZunda() ? this.onZundaTime : -1);
 		p_34319_.putInt("ZundaConversionTime", this.isZundaConverting() ? this.conversionTime : -1);
 		p_34319_.putBoolean("ZundaConverting", this.isZundaConverting());
 	}
 
-	public void readAdditionalSaveData(CompoundTag p_34305_) {
+	public void readAdditionalSaveData(ValueInput p_34305_) {
 		super.readAdditionalSaveData(p_34305_);
-		this.onZundaTime = p_34305_.getIntOr("OnZundaTime", 0);
-		if (p_34305_.contains("ZundaConversionTime") && p_34305_.getIntOr("ZundaConversionTime", -1) > -1) {
+		this.onZundaTime = p_34305_.getIntOr("OnZundaTime", -1);
+		if (p_34305_.getIntOr("ZundaConversionTime", -1) > -1) {
 			this.startZundaConversion(p_34305_.getIntOr("ZundaConversionTime", -1));
 		}
-
 	}
 
 	protected ParticleOptions getParticleType() {

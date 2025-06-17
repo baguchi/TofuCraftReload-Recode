@@ -135,6 +135,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.DIAMONDTOFU,
 						TofuBlocks.TOFU_GEM_BLOCK,
 						TofuBlocks.ADVANCE_TOFU_GEM_BLOCK,
+						TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK,
 						TofuBlocks.EGGTOFU,
 						TofuBlocks.TOFUSLAB_EGG,
 						TofuBlocks.TOFUSTAIR_EGG,
@@ -266,6 +267,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.SALTPAN,
 						TofuBlocks.SALT_FURNACE,
 						TofuBlocks.SALT_BLOCK,
+						TofuBlocks.OKARA_BLOCK,
 						TofuBlocks.MORIJIO,
 						TofuBlocks.TOFU_FLOWER,
 						TofuBlocks.TOFU_POT).map(sup -> {
@@ -311,6 +313,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.TOFU_DIAMOND_PICKAXE,
 						TofuItems.TOFU_DIAMOND_SHOVEL,
 						TofuItems.TOFU_DIAMOND_HOE,
+						TofuItems.ZUNDA_ALLOY_TOFU_SWORD,
 						TofuItems.TOFU_KINU_HELMET,
 						TofuItems.TOFU_KINU_CHESTPLATE,
 						TofuItems.TOFU_KINU_LEGGINGS,
@@ -350,6 +353,7 @@ public class TofuCreativeModeTabs {
 				output.accept(TofuBlocks.TOFUCAKE.get());
 				output.accept(TofuBlocks.ZUNDATOFUCAKE.get());
 				output.accept(TofuBlocks.SOYCHEESE_TART.get());
+				output.accept(TofuBlocks.GIANT_OKARA_DONUT.asItem());
 				output.acceptAll(Stream.of(
 						TofuItems.SOYSTICK,
 						TofuItems.TOFUCOOKIE,
@@ -447,9 +451,11 @@ public class TofuCreativeModeTabs {
 						TofuItems.EDAMAME_TEMPLA,
 						TofuItems.NEGIMA,
 						TofuItems.SOY_KARAAGE,
-						TofuItems.SOYMEATDON).map(itemSupplier -> {
+						TofuItems.SOYMEATDON
+				).map(itemSupplier -> {
 					return itemSupplier.get().getDefaultInstance();
-				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
+				}).toList());
+				// Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());
 
 	public static final Supplier<CreativeModeTab> TOFU_MISC = CREATIVE_MODE_TABS.register("tofu_misc", () -> CreativeModeTab.builder()
@@ -493,6 +499,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.SOYBEAN_PARCHED,
 						TofuItems.EDAMAME,
 						TofuItems.KINAKO,
+						TofuItems.OKARA,
 						TofuItems.SALT,
 						TofuItems.LEEK,
 						TofuItems.TOFU_COW_SPAWN_EGG,
@@ -525,9 +532,12 @@ public class TofuCreativeModeTabs {
 						TofuItems.KYONINSO,
 						TofuItems.GELATIN,
 						TofuItems.ZUNDA_INGOT,
+						TofuItems.ZUNDA_ALLOY_TOFU,
 						TofuItems.ZUNDARUBY,
 						TofuItems.TOFUGEM,
 						TofuItems.ADVANCE_TOFUGEM,
+						TofuItems.TOFU_GEM_DUST,
+						TofuItems.TOFU_MINCED,
 						TofuItems.NATTO_COBWEB,
 						TofuItems.MUSIC_DISC_GREEN_BRANCH,
 						TofuItems.TOFU_CRAFTERS_BOOK,

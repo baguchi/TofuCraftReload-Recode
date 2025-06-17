@@ -1666,7 +1666,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("RGR")
 				.pattern(" M ")
 				.define('M', TofuItems.TOFUMETAL.get())
-				.define('R', Items.REDSTONE)
+				.define('R', TofuItems.TOFU_GEM_DUST.get())
 				.define('G', TofuItems.TOFUGEM.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(this.output);
@@ -1674,7 +1674,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("RIR")
 				.pattern("TTT")
 				.define('T', TofuBlocks.ISHITOFU.get())
-				.define('R', Items.REDSTONE)
+				.define('R', TofuItems.TOFU_GEM_DUST.get())
 				.define('I', TofuItems.TOFUISHI.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(this.output);
@@ -1683,7 +1683,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("TTT")
 				.pattern("RRR")
 				.define('T', TofuItems.TOFUISHI.get())
-				.define('R', Items.REDSTONE)
+				.define('R', TofuItems.TOFU_GEM_DUST.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuItems.TF_OSCILLATOR.get())
@@ -1695,6 +1695,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(this.output);
 
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.TOFU_GEM_DUST.get(), 2)
+				.requires(TofuItems.TOFUGEM.get())
+				.requires(TofuItems.TOFU_MINCED.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(this.output);
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.ANTENNA_BASIC.get())
 				.pattern(" P ")
@@ -1725,14 +1730,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.ADVANCE_TOFUGEM.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuItems.TOFU_CORE.get())
-				.pattern("MTM")
-				.pattern("RTC")
-				.pattern("MTM")
+				.pattern("MCM")
+				.pattern("TTT")
+				.pattern("MRM")
 				.define('M', TofuItems.TOFUMETAL.get())
 				.define('C', TofuItems.TF_CIRCUIT.get())
-				.define('T', TofuItems.TOFUGEM.get())
+				.define('T', TofuItems.TOFU_GEM_DUST.get())
 				.define('R', TofuItems.TF_CAPACITOR.get())
-				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.unlockedBy("has_item", has(TofuItems.TOFU_GEM_DUST.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuItems.TF_BATTERY.get())
 				.pattern("MRM")
@@ -1740,7 +1745,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("MTM")
 				.define('M', TofuItems.TOFUMETAL.get())
 				.define('T', TofuItems.TOFUGEM.get())
-				.define('R', Items.REDSTONE)
+				.define('R', TofuItems.TOFU_GEM_DUST.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.TF_OVEN.get())
@@ -1785,6 +1790,26 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
 				.save(this.output);
 
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.OKARA_BLOCK.get())
+				.pattern("SS")
+				.pattern("SS")
+				.define('S', TofuItems.OKARA.get())
+				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
+				.save(this.output);
+
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.OKARA.get(), 4)
+				.requires(TofuBlocks.OKARA_BLOCK.get())
+				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
+				.save(this.output);
+
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), new ItemStack(TofuBlocks.GIANT_OKARA_DONUT.get(), 2), 400, 1)
+				.requires(TofuBlocks.OKARA_BLOCK.get(), 2)
+				.requires(Blocks.HAY_BLOCK, 1)
+				.requires(Items.EGG, 2)
+				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
+				.save(this.output);
+
+
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.TOFU_CRAFTERS_BOOK.get(), 1)
 				.requires(TofuItems.SEEDS_SOYBEANS.get())
 				.requires(Items.BOOK)
@@ -1822,6 +1847,24 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.TOFUISHI.get())
 				.unlockedBy("has_item", has(TofuItems.ZUNDAMA.get()))
 				.save(this.output);
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDA_ALLOY_TOFU.get(), 1, 400)
+				.requires(TofuItems.ZUNDA_INGOT.get(), 2)
+				.requires(TofuItems.TOFUMETAL.get(), 2)
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_INGOT.get()))
+				.save(this.output);
+
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get())
+				.pattern("##")
+				.pattern("##")
+				.define('#', TofuItems.ZUNDA_ALLOY_TOFU.get())
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_ALLOY_TOFU.get()))
+				.save(this.output, "zunda_alloy_to_block");
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.ZUNDA_ALLOY_TOFU.get(), 9)
+				.requires(TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get())
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_ALLOY_TOFU.get()))
+				.save(this.output, prefix("revert_to_zunda_alloy"));
+
+
 		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDA_BOW.get().getDefaultInstance(), 1000)
 				.define('S', TofuItems.ZUNDAMA.get())
 				.define('Z', TofuItems.ZUNDA_INGOT.get())
@@ -1840,6 +1883,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" Z ")
 				.unlockedBy("has_item", has(TofuItems.SOY_FORCE_SHARD.get()))
 				.save(this.output);
+
+		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDA_ALLOY_TOFU_SWORD.get().getDefaultInstance(), 1000)
+				.define('Z', TofuItems.ZUNDA_ALLOY_TOFU.get())
+				.define('G', TofuItems.SOY_FORCE_SHARD.get())
+				.pattern("Z")
+				.pattern("Z")
+				.pattern("G")
+				.unlockedBy("has_item", has(TofuItems.ZUNDA_ALLOY_TOFU.get()))
+				.save(this.output);
+
+
 		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, TofuItems.TOFUSTICK.get().getDefaultInstance(), 1000)
 				.define('T', TofuItems.TOFUMETAL.get())
 				.define('G', TofuItems.TOFUGEM.get())

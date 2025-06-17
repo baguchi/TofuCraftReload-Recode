@@ -43,7 +43,7 @@ public class NattoBallEntity extends ThrowableProjectile {
 					areaeffectcloud.setOwner((LivingEntity) entity);
 				}
 
-				areaeffectcloud.setParticle(TofuParticleTypes.SIMPLE_STINKE.get());
+				areaeffectcloud.setCustomParticle(TofuParticleTypes.SIMPLE_STINKE.get());
 				areaeffectcloud.setRadius(3.0F);
 				areaeffectcloud.setDuration(200);
 				areaeffectcloud.addEffect(new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 1, 1));

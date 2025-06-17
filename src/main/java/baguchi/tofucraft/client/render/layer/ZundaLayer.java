@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.TriState;
 import net.minecraft.util.context.ContextKey;
 import org.joml.Matrix4f;
 
@@ -48,7 +47,7 @@ public class ZundaLayer<T extends LivingEntityRenderState, M extends EntityModel
 	}
 
 	public static RenderType enchantSwirl(ResourceLocation resourceLocation) {
-		return RenderType.create("zunda_effect", 256, false, true, ClientRegistrar.ZUNDA, RenderType.CompositeState.builder().setTextureState(new RenderStateShard.TextureStateShard(resourceLocation, TriState.FALSE, false)).setTexturingState(ENTITY_GLINT_TEXTURING).createCompositeState(false));
+		return RenderType.create("zunda_effect", 256, false, true, ClientRegistrar.ZUNDA, RenderType.CompositeState.builder().setTextureState(new RenderStateShard.TextureStateShard(resourceLocation, false)).setTexturingState(ENTITY_GLINT_TEXTURING).createCompositeState(false));
 	}
 
 	private static void setupGlintTexturing(float p_110187_) {

@@ -38,6 +38,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createTrivialCube(TofuBlocks.DIAMONDTOFU.get());
 		createTrivialCube(TofuBlocks.TOFU_GEM_BLOCK.get());
 		createTrivialCube(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());
+		createTrivialCube(TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get());
 
 		logWithHorizontal(TofuBlocks.GRILLEDTOFU.get());
 
@@ -262,6 +263,8 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		this.createCrossBlockWithDefaultItem(TofuBlocks.ANTENNA_BASIC.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		createTrivialCube(TofuBlocks.TF_COLLECTOR.get());
 		createTrivialCube(TofuBlocks.SALT_BLOCK.get());
+		createTrivialCube(TofuBlocks.OKARA_BLOCK.get());
+		createTrivialCube(TofuBlocks.GIANT_OKARA_DONUT.get());
 
 		this.createCropBlock(TofuBlocks.SOYBEAN.get(), BlockStateProperties.AGE_7, 0, 1, 1, 2, 2, 3, 3, 4);
 		this.createCropBlock(TofuBlocks.SOYBEAN_NETHER.get(), BlockStateProperties.AGE_7, 0, 1, 1, 1, 2, 2, 2, 3);

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "tofucraft:zunda_alloy_tofu_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "tofucraft:zunda_alloy_tofu"
+  }
+}

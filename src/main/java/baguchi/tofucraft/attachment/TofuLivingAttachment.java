@@ -1,22 +1,28 @@
 package baguchi.tofucraft.attachment;
 
+import baguchi.bagus_lib.util.data.BagusAnimationData;
+import baguchi.tofucraft.entity.projectile.ZundaBuster;
 import baguchi.tofucraft.network.RecoverHealthPacket;
 import baguchi.tofucraft.network.ZundafiedPacket;
+import baguchi.tofucraft.registry.TofuAnimations;
 import baguchi.tofucraft.utils.ClientUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.client.gui.screens.WinScreen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.common.util.ValueIOSerializable;
 import net.neoforged.neoforge.network.PacketDistributor;
-import org.jetbrains.annotations.UnknownNullability;
 
-public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
+public class TofuLivingAttachment implements ValueIOSerializable {
 	public boolean isInsidePortal = false;
 	public int portalTimer = 0;
 	public float portalAnimTime = 0;
@@ -24,12 +30,66 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 	public float recoverHealth = 0;
 	public int wolfEatCooldown;
 	public boolean zundafied = false;
+	private final BagusAnimationData thrownRightAnimationData = new BagusAnimationData(TofuAnimations.THROWN_RIGHT, 10);
+	private final BagusAnimationData thrownLeftAnimationData = new BagusAnimationData(TofuAnimations.THROWN_LEFT, 10);
+	private final BagusAnimationData busterRightAnimationData = new BagusAnimationData(TofuAnimations.BUSTER_RIGHT, 20);
+	private final BagusAnimationData busterLeftAnimationData = new BagusAnimationData(TofuAnimations.BUSTER_LEFT, 20);
+
+
 
 	public void tick(Entity entity) {
 		if (entity instanceof Player player) {
 			this.handlePortal(player);
 		}
 		this.handleFood(entity);
+		thrownRightAnimationData.tick(entity);
+		thrownLeftAnimationData.tick(entity);
+		busterRightAnimationData.tick(entity);
+		busterLeftAnimationData.tick(entity);
+		if (!entity.level().isClientSide()) {
+			if (busterRightAnimationData.started && busterRightAnimationData.animationTick == 8) {
+				if (entity instanceof LivingEntity living) {
+					ItemStack stack = living.getMainHandItem();
+					ZundaBuster zundaBuster = new ZundaBuster(living.level(), living, stack);
+					zundaBuster.shootFromRotation(living, living.getXRot(), living.getYRot(), 0.0F, 3.0F, 1F);
+					living.level().addFreshEntity(zundaBuster);
+					entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.25F, 1.25F + entity.getRandom().nextFloat() * 0.4F);
+
+				}
+			}
+			if (busterLeftAnimationData.started && busterLeftAnimationData.animationTick == 8) {
+				if (entity instanceof LivingEntity living) {
+					ItemStack stack = living.getOffhandItem();
+					ZundaBuster zundaBuster = new ZundaBuster(living.level(), living, stack);
+					zundaBuster.shootFromRotation(living, living.getXRot(), living.getYRot(), 0.0F, 3.0F, 1F);
+					living.level().addFreshEntity(zundaBuster);
+					entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.25F, 1.25F + entity.getRandom().nextFloat() * 0.4F);
+
+				}
+			}
+		}
+	}
+
+	public void thrownAnimation(Entity entity, InteractionHand interactionHand) {
+		thrownRightAnimationData.stop(entity);
+		thrownLeftAnimationData.stop(entity);
+
+		if (interactionHand == InteractionHand.MAIN_HAND) {
+			thrownLeftAnimationData.start(entity);
+		} else {
+			thrownRightAnimationData.start(entity);
+		}
+	}
+
+	public void busterAnimation(Entity entity, InteractionHand interactionHand) {
+		busterRightAnimationData.stop(entity);
+		busterLeftAnimationData.stop(entity);
+
+		if (interactionHand == InteractionHand.MAIN_HAND) {
+			busterRightAnimationData.start(entity);
+		} else {
+			busterLeftAnimationData.start(entity);
+		}
 	}
 
 	private void handleFood(Entity entity) {
@@ -139,22 +199,18 @@ public class TofuLivingAttachment implements INBTSerializable<CompoundTag> {
 	}
 
 	@Override
-	public @UnknownNullability CompoundTag serializeNBT(HolderLookup.Provider provider) {
-		CompoundTag nbt = new CompoundTag();
-		nbt.putFloat("recover_health", this.recoverHealth);
-		nbt.putBoolean("zundafied", this.zundafied);
+	public void serialize(ValueOutput valueOutput) {
+		valueOutput.putFloat("recover_health", this.recoverHealth);
+		valueOutput.putBoolean("zundafied", this.zundafied);
 		if (wolfEatCooldown > 0) {
-			nbt.putInt("wolf_eat_cooldown", this.wolfEatCooldown);
+			valueOutput.putInt("wolf_eat_cooldown", this.wolfEatCooldown);
 		}
-		return nbt;
 	}
 
 	@Override
-	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
+	public void deserialize(ValueInput nbt) {
 		this.recoverHealth = nbt.getFloatOr("recover_health", 0);
 		this.zundafied = nbt.getBooleanOr("zundafied", false);
-		if (nbt.contains("wolf_eat_cooldown")) {
-			this.wolfEatCooldown = nbt.getIntOr("wolf_eat_cooldown", 0);
-		}
+		this.wolfEatCooldown = nbt.getIntOr("wolf_eat_cooldown", 0);
 	}
 }
