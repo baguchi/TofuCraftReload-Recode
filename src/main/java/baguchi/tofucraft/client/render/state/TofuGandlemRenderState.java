@@ -11,6 +11,8 @@ public class TofuGandlemRenderState extends LivingEntityRenderState {
 	public AnimationState shootingAnimationState = new AnimationState();
 	public AnimationState rushAnimationState = new AnimationState();
 	public AnimationState deathAnimationState = new AnimationState();
+	public AnimationState preShootAnimationState = new AnimationState();
+	public AnimationState stopShootAnimationState = new AnimationState();
 
 	public AnimationState chargeAnimationState = new AnimationState();
 	public AnimationState chargeStopAnimationState = new AnimationState();
