@@ -21,7 +21,8 @@ public class TofuData extends SavedData {
 			p_400930_ -> p_400930_.group(
 							Codec.INT.fieldOf("traveler_spawn_delay").forGetter(p_400933_ -> p_400933_.travelerSpawnDelay),
 							Codec.FLOAT.fieldOf("traveler_spawn_chance").forGetter(p_400933_ -> p_400933_.travelerSpawnChance),
-							BoundingBox.CODEC.listOf().fieldOf("beated_bounding_box").xmap(ArrayList::new, Function.identity()).forGetter(p_400933_ -> p_400933_.beatenDungeons)
+						BoundingBox.CODEC.listOf().fieldOf("beated_bounding_box").xmap(ArrayList::new, Function.identity()).forGetter(p_400933_ -> p_400933_.beatenDungeons)
+
 					)
 					.apply(p_400930_, TofuData::new)
 	);
