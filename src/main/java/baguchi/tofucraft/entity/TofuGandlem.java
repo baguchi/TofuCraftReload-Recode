@@ -606,12 +606,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 	@Override
 	protected void tickDeath() {
 		++this.deathTime;
-		if (this.deathTime == 38) {
-			this.playSound(SoundEvents.ITEM_BREAK.value(), 1.0F, 1.4F);
-		}
-		if (this.deathTime == 40) {
-			this.playSound(SoundEvents.ITEM_BREAK.value(), 1.0F, 1.35F);
-		}
 
 		if (this.deathTime == 100 && !this.level().isClientSide()) {
 			this.level().broadcastEntityEvent(this, (byte) 60);

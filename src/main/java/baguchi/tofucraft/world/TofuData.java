@@ -14,13 +14,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 public class TofuData extends SavedData {
 	public static final Codec<TofuData> CODEC = RecordCodecBuilder.create(
 			p_400930_ -> p_400930_.group(
 							Codec.INT.fieldOf("traveler_spawn_delay").forGetter(p_400933_ -> p_400933_.travelerSpawnDelay),
 							Codec.FLOAT.fieldOf("traveler_spawn_chance").forGetter(p_400933_ -> p_400933_.travelerSpawnChance),
-							BoundingBox.CODEC.listOf().fieldOf("beated_bounding_box").forGetter(p_400933_ -> p_400933_.beatenDungeons)
+							BoundingBox.CODEC.listOf().fieldOf("beated_bounding_box").xmap(ArrayList::new, Function.identity()).forGetter(p_400933_ -> p_400933_.beatenDungeons)
 					)
 					.apply(p_400930_, TofuData::new)
 	);
@@ -34,13 +35,13 @@ public class TofuData extends SavedData {
 	private float travelerSpawnChance;
 	private static Map<Level, TofuData> dataMap = new HashMap<>();
 
-	public List<BoundingBox> beatenDungeons = new ArrayList<>();
+	public ArrayList<BoundingBox> beatenDungeons = new ArrayList<>();
 
 	public TofuData() {
 		this(6000, 0.1F, Lists.newArrayList());
 	}
 
-	public TofuData(int travelerSpawnDelay, float travelerSpawnChance, List<BoundingBox> beatenDungeons) {
+	public TofuData(int travelerSpawnDelay, float travelerSpawnChance, ArrayList<BoundingBox> beatenDungeons) {
 		this.travelerSpawnDelay = travelerSpawnDelay;
 		this.travelerSpawnChance = travelerSpawnChance;
 		this.beatenDungeons = beatenDungeons;
