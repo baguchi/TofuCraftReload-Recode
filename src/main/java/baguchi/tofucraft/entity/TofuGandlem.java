@@ -412,6 +412,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		} else if (p_70103_1_ == 5) {
 			this.shootingAnimationState.start(this.tickCount);
 		} else if (p_70103_1_ == 7) {
+			this.stopAnimations();
 			this.deathAnimationState.start(this.tickCount);
 		} else {
 			super.handleEntityEvent(p_70103_1_);
@@ -470,15 +471,12 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 			this.heal(4.0F);
 		}
 		this.actionTicks();
-		if (this.level().isClientSide) {
-			this.actionAnimations(this.getAction(), true);
-		}
 	}
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> p_146754_) {
 		if (ACTION.equals(p_146754_)) {
-			this.actionAnimations(this.getAction(), false);
+			this.actionAnimations(this.getAction());
 		}
 		if (DATA_ID_RUSH.equals(p_146754_)) {
 			this.refreshDimensions();
@@ -514,49 +512,42 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		}
 	}
 
-	public void actionAnimations(Actions actions, boolean loop) {
-		if (loop && actions.loop || !loop && !actions.loop) {
+	public void actionAnimations(Actions actions) {
+
 			switch (actions) {
 				case START_RUSH:
 					attackAnimationState.stop();
-					shootingAnimationState.stop();
 					this.stopAnimations();
 					rushAnimationState.start(this.tickCount);
 					break;
 				case CHARGE:
 					attackAnimationState.stop();
-					shootingAnimationState.stop();
 					this.stopAnimations();
 					chargeAnimationState.start(this.tickCount);
 					break;
 				case CHARGE_STOP:
 					attackAnimationState.stop();
-					shootingAnimationState.stop();
 					this.stopAnimations();
 					chargeStopAnimationState.start(this.tickCount);
 					break;
 				case CHARGE_FAILED:
 					attackAnimationState.stop();
-					shootingAnimationState.stop();
 					this.stopAnimations();
 					chargeFailAnimationState.start(this.tickCount);
 				case PRE_SHOOT:
 					attackAnimationState.stop();
-					shootingAnimationState.stop();
 					this.stopAnimations();
 					preShootAnimationState.start(this.tickCount);
 
 					break;
 				case SHOOT:
 					attackAnimationState.stop();
-					shootingAnimationState.stop();
 					this.stopAnimations();
 					shootAnimationState.start(this.tickCount);
 
 					break;
 				case STOP_SHOOT:
 					attackAnimationState.stop();
-					shootingAnimationState.stop();
 					this.stopAnimations();
 					stopShootAnimationState.start(this.tickCount);
 
@@ -565,7 +556,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 					this.stopAnimations();
 					break;
 			}
-		}
 	}
 
 	public void stopAnimations() {
@@ -621,7 +611,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 1.2F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 10.0F).add(Attributes.ARMOR_TOUGHNESS, 2.0F).add(Attributes.ATTACK_DAMAGE, 6.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 28F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 1.5F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 10.0F).add(Attributes.ARMOR_TOUGHNESS, 2.0F).add(Attributes.ATTACK_DAMAGE, 6.0D);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
