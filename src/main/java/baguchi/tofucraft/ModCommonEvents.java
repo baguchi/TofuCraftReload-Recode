@@ -16,7 +16,7 @@ import net.neoforged.neoforge.event.AddPackFindersEvent;
 
 import java.util.Optional;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber()
 public class ModCommonEvents {
 
 	public static final KnownPack CORE_PACK_INFO = new KnownPack(TofuCraftReload.MODID, "builtin/tofucraft_legacy", "1.0");

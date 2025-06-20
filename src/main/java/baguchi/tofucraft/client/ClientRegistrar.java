@@ -132,7 +132,7 @@ import static net.minecraft.client.renderer.RenderPipelines.GLOBALS_SNIPPET;
 import static net.minecraft.client.renderer.RenderPipelines.MATRICES_PROJECTION_SNIPPET;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT)
 public class ClientRegistrar {
 	private static final ResourceLocation TEXTURE_RECOVER_HEART = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container");
 	private static final ResourceLocation TEXTURE_RECOVER_HEART_HALF = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container_half");
