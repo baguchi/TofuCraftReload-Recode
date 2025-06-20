@@ -85,7 +85,7 @@ public class DishItem extends Item {
 		}
 	}
 
-	@EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.GAME)
+	@EventBusSubscriber(modid = TofuCraftReload.MODID)
 	public static class SoyFoodEvent {
 		@SubscribeEvent
 		@SuppressWarnings("unused")
