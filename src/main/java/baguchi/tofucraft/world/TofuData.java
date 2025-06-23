@@ -72,6 +72,7 @@ public class TofuData extends SavedData {
 
 	public void setTravelerSpawnDelay(int delay) {
 		this.travelerSpawnDelay = delay;
+		this.setDirty();
 	}
 
 	public float getTravelerSpawnChance() {
@@ -80,6 +81,7 @@ public class TofuData extends SavedData {
 
 	public void setTravelerSpawnChance(float chance) {
 		this.travelerSpawnChance = chance;
+		this.setDirty();
 	}
 
 
