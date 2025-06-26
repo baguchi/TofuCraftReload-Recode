@@ -26,7 +26,7 @@ public class SyncedBlockEntity extends BlockEntity {
 
 	@Override
 	public CompoundTag getUpdateTag(HolderLookup.Provider p_323910_) {
-		return saveWithoutMetadata(p_323910_);
+		return saveCustomOnly(p_323910_);
 	}
 
 	@Override

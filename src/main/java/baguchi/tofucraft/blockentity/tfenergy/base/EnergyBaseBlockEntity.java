@@ -159,7 +159,7 @@ public class EnergyBaseBlockEntity extends BlockEntity implements ITofuEnergy {
 
 	@Override
 	public CompoundTag getUpdateTag(HolderLookup.Provider p_323910_) {
-		return saveWithoutMetadata(p_323910_);
+		return saveCustomOnly(p_323910_);
 	}
 
 	protected void inventoryChanged() {
