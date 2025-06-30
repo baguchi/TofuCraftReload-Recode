@@ -17,7 +17,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.common.util.ValueIOSerializable;
@@ -206,7 +205,6 @@ public class TofuLivingAttachment implements ValueIOSerializable {
 		if (eatCooldown > 0) {
 			valueOutput.putInt("eat_cooldown", this.eatCooldown);
 		}
-		Blocks.DRIED_GHAST
 	}
 
 	@Override
