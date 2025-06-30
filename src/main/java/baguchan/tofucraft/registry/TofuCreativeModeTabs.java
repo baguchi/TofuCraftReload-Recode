@@ -378,6 +378,8 @@ public class TofuCreativeModeTabs {
 						TofuItems.TOFU_HAMBURG,
 						TofuItems.TOFUSOMEN,
 						TofuItems.TOFUSOMENBOWL_GLASS,
+						TofuItems.HIYAYAKKO_GLASS,
+						TofuItems.NATTOHIYAYAKKO_GLASS,
 						TofuItems.PUDDING,
 						TofuItems.PUDDING_SOYMILK,
 						TofuItems.SOYMILK,
@@ -471,6 +473,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.LEEK_GREEN_CHEST_BOAT,
 						TofuItems.ZUNDAMA,
 						TofuItems.ZUNDARUBY,
+						TofuItems.TOFU_MINCED,
 						TofuItems.TOFUGEM,
 						TofuItems.ADVANCE_TOFUGEM).map(itemRegistryObject -> {
 					return itemRegistryObject.get().getDefaultInstance();

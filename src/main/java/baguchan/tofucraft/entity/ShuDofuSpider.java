@@ -1,12 +1,8 @@
 package baguchan.tofucraft.entity;
 
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.UUID;
-
 import bagu_chan.bagus_lib.client.camera.CameraEvent;
 import bagu_chan.bagus_lib.client.camera.CameraHolder;
+import bagu_chan.bagus_lib.entity.ISmartJump;
 import bagu_chan.bagus_lib.util.GlobalVec3;
 import baguchan.tofucraft.client.particle.ParticleStink;
 import baguchan.tofucraft.entity.projectile.FukumameEntity;
@@ -68,7 +64,12 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.entity.PartEntity;
 import net.minecraftforge.fluids.FluidType;
 
-public class ShuDofuSpider extends Monster {
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.UUID;
+
+public class ShuDofuSpider extends Monster implements ISmartJump {
 	private static final EntityDataAccessor<Boolean> DATA_ID_JUMP = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> ATTACK_ANIMATION = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> JUMP_ANIMATION = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -654,6 +655,34 @@ public class ShuDofuSpider extends Monster {
 		}
 
 		return super.isAlliedTo(p_20355_);
+	}
+
+	@Override
+	protected float getJumpPower() {
+		float f = 0.42F;
+
+		Path path = this.navigation.getPath();
+		if (path != null && !path.isDone()) {
+			Vec3 vec3 = path.getNextEntityPos(this);
+			if (vec3.y > this.getY() + 0.5) {
+				f = 0.5F;
+			}
+			if (vec3.y > this.getY() + 1.5) {
+				f = 0.65F;
+			}
+
+            /*if (vec3.y > this.getY() + 2.5) {
+                f = 1.0F;
+            }*/
+		}
+
+		return f / 0.42F;
+	}
+
+
+	@Override
+	public float getSuppportJump() {
+		return 2.125F;
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {
