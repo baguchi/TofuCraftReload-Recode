@@ -200,14 +200,14 @@ public class TofuCraftReload {
 
 	public void setupPackets(RegisterPayloadHandlersEvent event) {
 		PayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
-		registrar.playBidirectional(SoyMilkDrinkedPacket.TYPE, SoyMilkDrinkedPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
-		registrar.playBidirectional(SaltFurnaceWaterPacket.TYPE, SaltFurnaceWaterPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
-		registrar.playBidirectional(SaltFurnaceBitternPacket.TYPE, SaltFurnaceBitternPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
-		registrar.playBidirectional(TFStorageSoymilkPacket.TYPE, TFStorageSoymilkPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playToClient(SoyMilkDrinkedPacket.TYPE, SoyMilkDrinkedPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playToClient(SaltFurnaceWaterPacket.TYPE, SaltFurnaceWaterPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playToClient(SaltFurnaceBitternPacket.TYPE, SaltFurnaceBitternPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playToClient(TFStorageSoymilkPacket.TYPE, TFStorageSoymilkPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playToClient(BossInfoPacket.Display.TYPE, BossInfoPacket.Display.STREAM_CODEC, BossInfoPacket.Display::execute);
 		registrar.playToClient(BossInfoPacket.Remove.TYPE, BossInfoPacket.Remove.STREAM_CODEC, BossInfoPacket.Remove::execute);
-		registrar.playBidirectional(RecoverHealthPacket.TYPE, RecoverHealthPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
-		registrar.playBidirectional(ZundafiedPacket.TYPE, ZundafiedPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playToClient(RecoverHealthPacket.TYPE, RecoverHealthPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playToClient(ZundafiedPacket.TYPE, ZundafiedPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 	}
 
 	public static ResourceLocation prefix(String name) {
