@@ -45,19 +45,19 @@ public enum TofuArmorMaterial implements ArmorMaterial {
 		return Ingredient.of(TofuItems.TOFUMETAL.get());
 	}),
 	DIAMOND("tofucraft:diamond", 36, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266655_) -> {
-		p_266655_.put(ArmorItem.Type.BOOTS, 3);
+		p_266655_.put(ArmorItem.Type.BOOTS, 4);
 		p_266655_.put(ArmorItem.Type.LEGGINGS, 6);
 		p_266655_.put(ArmorItem.Type.CHESTPLATE, 8);
-		p_266655_.put(ArmorItem.Type.HELMET, 3);
-	}), 12, SoundEvents.ARMOR_EQUIP_NETHERITE, 2.5F, 0.05F, () -> {
+		p_266655_.put(ArmorItem.Type.HELMET, 4);
+	}), 12, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.5F, 0.05F, () -> {
 		return Ingredient.of(TofuItems.TOFUDIAMOND.get());
 	}),
 	SCULK_BONE("tofucraft:sculk_bone", 40, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266655_) -> {
-		p_266655_.put(ArmorItem.Type.BOOTS, 3);
+		p_266655_.put(ArmorItem.Type.BOOTS, 4);
 		p_266655_.put(ArmorItem.Type.LEGGINGS, 6);
 		p_266655_.put(ArmorItem.Type.CHESTPLATE, 8);
-		p_266655_.put(ArmorItem.Type.HELMET, 3);
-	}), 16, SoundEvents.ARMOR_EQUIP_NETHERITE, 3F, 0.1F, () -> {
+		p_266655_.put(ArmorItem.Type.HELMET, 4);
+	}), 16, SoundEvents.ARMOR_EQUIP_NETHERITE, 4F, 0.1F, () -> {
 		return Ingredient.of(TofuItems.SOY_SCULK_BONE.get());
 	});
 
