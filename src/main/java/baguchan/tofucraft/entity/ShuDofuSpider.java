@@ -676,7 +676,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
             }*/
 		}
 
-		return f / 0.42F;
+		return (f / 0.42F) * this.getBlockJumpFactor() + this.getJumpBoostPower();
 	}
 
 
