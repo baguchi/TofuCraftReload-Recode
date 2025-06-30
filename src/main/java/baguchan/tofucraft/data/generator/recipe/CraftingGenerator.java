@@ -167,6 +167,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 		shovelItem(consumer, "tofu_solid_shovel", TofuItems.TOFU_SOLID_SHOVEL, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 		hoeItem(consumer, "tofu_solid_hoe", TofuItems.TOFU_SOLID_HOE, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 
+		swordItem(consumer, "tofu_solid_sword_slate", TofuItems.TOFU_SOLID_SWORD, TofuBlocks.TOFUSLATE, Tags.Items.RODS_WOODEN);
+		pickaxeItem(consumer, "tofu_solid_pickaxe_slate", TofuItems.TOFU_SOLID_PICKAXE, TofuBlocks.TOFUSLATE, Tags.Items.RODS_WOODEN);
+		axeItem(consumer, "tofu_solid_axe_slate", TofuItems.TOFU_SOLID_AXE, TofuBlocks.TOFUSLATE, Tags.Items.RODS_WOODEN);
+		shovelItem(consumer, "tofu_solid_shovel_slate", TofuItems.TOFU_SOLID_SHOVEL, TofuBlocks.TOFUSLATE, Tags.Items.RODS_WOODEN);
+		hoeItem(consumer, "tofu_solid_hoe_slate", TofuItems.TOFU_SOLID_HOE, TofuBlocks.TOFUSLATE, Tags.Items.RODS_WOODEN);
+
 
 		helmetItem(consumer, "tofu_momen_helmet", TofuItems.TOFU_MOMEN_HELMET, TofuBlocks.MOMENTOFU);
 		chestplateItem(consumer, "tofu_momen_chestplate", TofuItems.TOFU_MOMEN_CHESTPLATE, TofuBlocks.MOMENTOFU);

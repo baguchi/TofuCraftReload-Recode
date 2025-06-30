@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "tofucraft:tofuslate"
+    },
+    "X": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "#",
+    "#",
+    "X"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tofu_solid_sword"
+  }
+}
