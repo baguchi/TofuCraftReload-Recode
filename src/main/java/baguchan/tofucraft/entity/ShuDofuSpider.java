@@ -2,6 +2,7 @@ package baguchan.tofucraft.entity;
 
 import bagu_chan.bagus_lib.client.camera.CameraCore;
 import bagu_chan.bagus_lib.client.camera.holder.EntityCameraHolder;
+import bagu_chan.bagus_lib.entity.ISmartJump;
 import bagu_chan.bagus_lib.util.GlobalVec3;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
@@ -69,7 +70,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
 
-public class ShuDofuSpider extends Monster {
+public class ShuDofuSpider extends Monster implements ISmartJump {
 	private static final EntityDataAccessor<Boolean> DATA_ID_JUMP = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> ATTACK_ANIMATION = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Boolean> JUMP_ANIMATION = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
@@ -689,7 +690,34 @@ public class ShuDofuSpider extends Monster {
 		return super.hurt(damageSource, damage);
 	}
 
-	
+	@Override
+	protected float getJumpPower() {
+		float f = 0.42F;
+
+		Path path = this.navigation.getPath();
+		if (path != null && !path.isDone()) {
+			Vec3 vec3 = path.getNextEntityPos(this);
+			if (vec3.y > this.getY() + 0.5) {
+				f = 0.5F;
+			}
+			if (vec3.y > this.getY() + 1.5) {
+				f = 0.65F;
+			}
+
+            /*if (vec3.y > this.getY() + 2.5) {
+                f = 1.0F;
+            }*/
+		}
+
+		return super.getJumpPower((float) (f / this.getAttributeValue(Attributes.JUMP_STRENGTH)));
+	}
+
+
+	@Override
+	public float getSuppportJump() {
+		return 2.125F;
+	}
+
 
 	static class AttackGoal extends Goal {
 		private final ShuDofuSpider spider;
