@@ -61,9 +61,9 @@ public class ShuDofuSpiderPart extends PartEntity<ShuDofuSpider> {
 	public boolean hurt(DamageSource damageSource, float damage) {
 		if (!this.isInvulnerableTo(damageSource)) {
 			if (this == parentMob.body) {
-				return this.parentMob.hurt(damageSource, damage * 1.2F);
+				return this.parentMob.hurt(this, damageSource, damage * 1.5F);
 			} else {
-				return this.parentMob.hurt(damageSource, damage * 0.8F);
+				return this.parentMob.hurt(this, damageSource, damage * 0.8F);
 			}
 		} else {
 			return false;

@@ -116,6 +116,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	public final AnimationState graspPreAnimationState = new AnimationState();
 
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
+	private float graspDamageReceived;
 
 	public ShuDofuSpider(EntityType<? extends ShuDofuSpider> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
@@ -608,6 +609,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 	@Override
 	public boolean hurt(DamageSource p_31461_, float p_31462_) {
+		float f = this.getHealth();
 		if (this.isInvulnerableTo(p_31461_)) {
 			return false;
 		} else if (!p_31461_.is(DamageTypes.SWEET_BERRY_BUSH) && !p_31461_.is(DamageTypes.CACTUS) && !p_31461_.is(DamageTypes.CRAMMING) && !p_31461_.is(DamageTypes.IN_WALL) && !p_31461_.is(DamageTypes.STALAGMITE)) {
@@ -624,11 +626,48 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 				return super.hurt(p_31461_, p_31462_ * 0.35F);
 			}
 
+			if (this.isGraspAnim()) {
+				this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
+				if (this.graspDamageReceived > 0.1F * this.getMaxHealth()) {
+					this.graspDamageReceived = 0.0F;
+					this.setGraspAnimation(false);
+					this.attackTime = -60;
+				}
+			}
+
 			return super.hurt(p_31461_, p_31462_);
 		} else {
 			return false;
 		}
 	}
+
+	public boolean hurt(ShuDofuSpiderPart shuDofuSpiderPart, DamageSource damageSource, float damage) {
+		float f = this.getHealth();
+		this.reallyHurt(damageSource, damage * 0.9F);
+
+		if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
+			setAngry(true);
+			this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
+		}
+
+		if (this.isGraspAnim()) {
+			this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
+			if (this.graspDamageReceived > 0.1F * this.getMaxHealth()) {
+				this.graspDamageReceived = 0.0F;
+				this.setGraspAnimation(false);
+				this.attackTime = -60;
+			}
+		}
+
+		return true;
+
+	}
+
+	private boolean reallyHurt(DamageSource damageSource, float damage) {
+		return super.hurt(damageSource, damage);
+	}
+
+
 
 	public boolean isPushable() {
 		return false;
