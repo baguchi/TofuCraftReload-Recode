@@ -161,6 +161,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	public final AnimationState happyAnimationState = new AnimationState();
 	public final AnimationState eatFoodAnimationState = new AnimationState();
+	public final AnimationState waveAnimationState = new AnimationState();
 
 	public Tofunian(EntityType<? extends Tofunian> type, Level worldIn) {
 		super(type, worldIn);
@@ -218,7 +219,20 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(14, new FindStatueBlockGoal(this, 0.85F, 6));
 
 		this.goalSelector.addGoal(15, new RandomStrollGoal(this, 0.9D));
-		this.goalSelector.addGoal(16, new InteractGoal(this, Player.class, 3.0F, 1.0F));
+		this.goalSelector.addGoal(16, new InteractGoal(this, AbstractTofunian.class, 4.0F, 0.25F) {
+			@Override
+			public void start() {
+				super.start();
+				setAction(Actions.WAVE);
+			}
+		});
+		this.goalSelector.addGoal(16, new InteractGoal(this, Player.class, 3.0F, 1.0F) {
+			@Override
+			public void start() {
+				super.start();
+				setAction(Actions.WAVE);
+			}
+		});
 		this.goalSelector.addGoal(17, new ShareItemAndGossipGoal(this, 0.9F));
 		this.goalSelector.addGoal(18, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 		this.goalSelector.addGoal(19, new RandomLookAroundGoal(this));
@@ -392,6 +406,12 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 					}
 					eatFoodAnimationState.startIfStopped(this.tickCount);
 					break;
+				case WAVE:
+					this.stopAnimations();
+
+					waveAnimationState.startIfStopped(this.tickCount);
+					break;
+
 				case NORMAL:
 					this.stopAnimations();
 					break;
@@ -1046,6 +1066,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		AVOID(true, -1),
 		SIT(true, -1),
 		HAPPY(false, 30),
+		WAVE(false, 25),
 		EAT(true, -1);
 
 		private final boolean loop;
