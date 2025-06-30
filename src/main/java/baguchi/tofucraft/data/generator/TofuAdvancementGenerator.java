@@ -6,6 +6,7 @@ import baguchi.tofucraft.advancements.MyTofuChildTrigger;
 import baguchi.tofucraft.advancements.NarrowEscapeTrigger;
 import baguchi.tofucraft.advancements.NightmaresEchoTrigger;
 import baguchi.tofucraft.advancements.TofuPigPopTrigger;
+import baguchi.tofucraft.advancements.TooColdTrigger;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuItems;
@@ -177,6 +178,18 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							AdvancementType.TASK, true, true, false)
 					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuItems.SEEDS_SOYBEANS_SOUL.get()))
 					.save(consumer, "tofucraft:very_strange_soybeans");
+
+			AdvancementHolder too_cold = Advancement.Builder.advancement()
+					.parent(very_strange_soybeans)
+					.display(TofuItems.SOUL_HIYAYAKKO_GLASS.get(),
+							Component.translatable("advancements.tofucraft.too_cold.title"),
+							Component.translatable("advancements.tofucraft.too_cold.desc"),
+							null,
+							AdvancementType.CHALLENGE, true, true, false)
+					.addCriterion("has_cold", TooColdTrigger.get())
+					.rewards(AdvancementRewards.Builder.experience(200))
+					.save(consumer, "tofucraft:too_cold");
+
 
 			AdvancementHolder harder_tofu = Advancement.Builder.advancement()
 					.parent(make_tofu)

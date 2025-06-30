@@ -1,0 +1,30 @@
+{
+  "parent": "tofucraft:very_strange_soybeans",
+  "criteria": {
+    "has_cold": {
+      "trigger": "tofucraft:too_cold"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.too_cold.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "tofucraft:soul_hiyayakko"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.too_cold.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_cold"
+    ]
+  ],
+  "rewards": {
+    "experience": 200
+  },
+  "sends_telemetry_event": true
+}

@@ -11,6 +11,7 @@ import baguchi.tofucraft.item.DescSoymilkBottleItem;
 import baguchi.tofucraft.item.DishItem;
 import baguchi.tofucraft.item.DoubleUsageSeedItem;
 import baguchi.tofucraft.item.FukumameItem;
+import baguchi.tofucraft.item.GhastFoodItem;
 import baguchi.tofucraft.item.InfernoNetherFukumameItem;
 import baguchi.tofucraft.item.KoujiBaseItem;
 import baguchi.tofucraft.item.NattoCobWebItem;
@@ -304,6 +305,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TASTYBEEFSTEW = ITEMS.registerItem("tastybeefstew", (properties) -> new DishItem((properties).stacksTo(16).food(TofuFoods.TASTYSTEW).usingConvertsTo(Items.BOWL), true, true));
 	public static final DeferredHolder<Item, Item> TASTYSTEW = ITEMS.registerItem("tastystew", (properties) -> new DishItem((properties).stacksTo(16).food(TofuFoods.TASTYSTEW).usingConvertsTo(Items.BOWL), true, true));
 
+	public static final DeferredHolder<Item, Item> SOUL_HIYAYAKKO_GLASS = ITEMS.registerItem("soul_hiyayakko", (properties) -> new GhastFoodItem((properties).stacksTo(16).usingConvertsTo(TofuItems.GLASSBOWL.get())));
 	public static final DeferredHolder<Item, Item> HIYAYAKKO_GLASS = ITEMS.registerItem("hiyayakko", (properties) -> new DishItem((properties).stacksTo(16).food(TofuFoods.HIYAYAKKO).usingConvertsTo(TofuItems.GLASSBOWL.get()), false));
 	public static final DeferredHolder<Item, Item> NATTOHIYAYAKKO_GLASS = ITEMS.registerItem("nattohiyayakko", (properties) -> new DishItem((properties).stacksTo(16).food(TofuFoods.NATTOHIYAYAKKO).usingConvertsTo(TofuItems.GLASSBOWL.get())));
 

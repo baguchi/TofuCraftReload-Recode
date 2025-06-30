@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "tofucraft:tofusoul",
+    "tofucraft:leek",
+    "tofucraft:glassbowl",
+    "tofucraft:bottle_soysause"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:soul_hiyayakko"
+  }
+}

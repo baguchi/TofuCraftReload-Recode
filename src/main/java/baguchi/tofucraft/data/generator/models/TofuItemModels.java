@@ -209,6 +209,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TASTYBEEFSTEW.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TASTYSTEW.get(), ModelTemplates.FLAT_ITEM);
 
+		this.generateFlatItem(TofuItems.SOUL_HIYAYAKKO_GLASS.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.HIYAYAKKO_GLASS.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.NATTOHIYAYAKKO_GLASS.get(), ModelTemplates.FLAT_ITEM);
 

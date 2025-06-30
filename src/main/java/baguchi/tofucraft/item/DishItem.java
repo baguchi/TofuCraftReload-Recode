@@ -96,10 +96,10 @@ public class DishItem extends Item {
 
 			if (target instanceof LivingEntity entity && target instanceof Wolf wolf) {
 				if (entity.isAlive() && wolf.isTame() && itemStack.is(TofuItems.YUDOFU)) {
-					if (!wolf.getData(TofuAttachments.TOFU_LIVING).isWolfEatCooldown()) {
+					if (!wolf.getData(TofuAttachments.TOFU_LIVING).isEatCooldown()) {
 						entity.heal(1);
 						entity.addEffect(new MobEffectInstance(TofuEffects.SOY_HEALTHY, 3200, 1));
-						wolf.getData(TofuAttachments.TOFU_LIVING).setWolfEatCooldown(3200);
+						wolf.getData(TofuAttachments.TOFU_LIVING).setEatCooldown(3200);
 						entity.level().playSound(null, target.blockPosition(), SoundEvents.GENERIC_EAT.value(), SoundSource.PLAYERS, 0.8F, 0.8F);
 
 						if (itemStack.has(DataComponents.USE_REMAINDER) && !player.isCreative()) {

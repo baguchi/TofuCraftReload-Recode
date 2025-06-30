@@ -17,6 +17,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.common.util.ValueIOSerializable;
@@ -28,7 +29,7 @@ public class TofuLivingAttachment implements ValueIOSerializable {
 	public float portalAnimTime = 0;
 	public float prevPortalAnimTime = 0;
 	public float recoverHealth = 0;
-	public int wolfEatCooldown;
+	public int eatCooldown;
 	public boolean zundafied = false;
 	private final BagusAnimationData thrownRightAnimationData = new BagusAnimationData(TofuAnimations.THROWN_RIGHT, 10);
 	private final BagusAnimationData thrownLeftAnimationData = new BagusAnimationData(TofuAnimations.THROWN_LEFT, 10);
@@ -93,13 +94,13 @@ public class TofuLivingAttachment implements ValueIOSerializable {
 	}
 
 	private void handleFood(Entity entity) {
-		if (wolfEatCooldown > 0) {
-			wolfEatCooldown--;
+		if (eatCooldown > 0) {
+			eatCooldown--;
 		}
 	}
 
-	public boolean isWolfEatCooldown() {
-		return this.wolfEatCooldown > 0;
+	public boolean isEatCooldown() {
+		return this.eatCooldown > 0;
 	}
 
 	public void setRecoverHealth(Entity entity, float recoverHealth) {
@@ -194,23 +195,24 @@ public class TofuLivingAttachment implements ValueIOSerializable {
 		}
 	}
 
-	public void setWolfEatCooldown(int wolfEatCooldown) {
-		this.wolfEatCooldown = wolfEatCooldown;
+	public void setEatCooldown(int eatCooldown) {
+		this.eatCooldown = eatCooldown;
 	}
 
 	@Override
 	public void serialize(ValueOutput valueOutput) {
 		valueOutput.putFloat("recover_health", this.recoverHealth);
 		valueOutput.putBoolean("zundafied", this.zundafied);
-		if (wolfEatCooldown > 0) {
-			valueOutput.putInt("wolf_eat_cooldown", this.wolfEatCooldown);
+		if (eatCooldown > 0) {
+			valueOutput.putInt("eat_cooldown", this.eatCooldown);
 		}
+		Blocks.DRIED_GHAST
 	}
 
 	@Override
 	public void deserialize(ValueInput nbt) {
 		this.recoverHealth = nbt.getFloatOr("recover_health", 0);
 		this.zundafied = nbt.getBooleanOr("zundafied", false);
-		this.wolfEatCooldown = nbt.getIntOr("wolf_eat_cooldown", 0);
+		this.eatCooldown = nbt.getIntOr("eat_cooldown", 0);
 	}
 }
