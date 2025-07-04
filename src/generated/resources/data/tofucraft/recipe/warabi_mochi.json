@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:sugar",
+    "tofucraft:kinako",
+    "tofucraft:starch",
+    "tofucraft:glass_bowl"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:warabi_mochi"
+  }
+}

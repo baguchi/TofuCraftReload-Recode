@@ -1,0 +1,18 @@
+{
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 300,
+  "experience": 0.8,
+  "ingredients": [
+    "tofucraft:bottle_mirin",
+    "tofucraft:bottle_soysause",
+    "tofucraft:salt",
+    "tofucraft:starch",
+    "tofucraft:tofukinu",
+    "minecraft:bowl"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tofu_ankake"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 300,
+  "experience": 0.6,
+  "ingredients": [
+    "tofucraft:soy_cheese",
+    "tofucraft:tofukinu",
+    "minecraft:potato",
+    "minecraft:chicken",
+    "tofucraft:tofu_metal_bowl"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:gratin"
+  }
+}
