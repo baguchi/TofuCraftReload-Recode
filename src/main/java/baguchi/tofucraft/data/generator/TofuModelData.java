@@ -78,7 +78,7 @@ public class TofuModelData extends ModelProvider {
 		return CompletableFuture.allOf(blockModelOutput.save(output, this.blockStatePathProvider), modelOutput.save(output, this.modelPathProvider), itemModelOutput.save(output, this.itemInfoPathProvider));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	static class ItemInfoCollector implements ItemModelOutput {
 		private final Map<Item, ClientItem> itemInfos;
 		private final Map<Item, Item> copies;
@@ -136,7 +136,7 @@ public class TofuModelData extends ModelProvider {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	static class SimpleModelCollector implements BiConsumer<ResourceLocation, ModelInstance> {
 		private final Map<ResourceLocation, ModelInstance> models = new HashMap();
 
@@ -160,7 +160,7 @@ public class TofuModelData extends ModelProvider {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	static class BlockModelDefinitionGeneratorCollector implements Consumer<BlockModelDefinitionGenerator> {
 		private final Map<Block, BlockModelDefinitionGenerator> generators;
 		private final Supplier<Stream<? extends Holder<Block>>> knownBlocks;

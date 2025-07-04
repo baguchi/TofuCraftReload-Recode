@@ -82,14 +82,14 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 		return itemstack;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public int getBurnProgress() {
 		int i = this.data.get(2);
 		int j = this.data.get(3);
 		return (j != 0 && i != 0) ? (i * 24 / j) : 0;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public int getLitProgress() {
 		int i = this.data.get(1);
 		if (i == 0)
@@ -97,7 +97,7 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 		return this.data.get(0) * 13 / i;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public boolean isLit() {
 		return (this.data.get(0) > 0);
 	}

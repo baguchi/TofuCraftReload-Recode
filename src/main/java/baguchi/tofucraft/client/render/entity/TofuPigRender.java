@@ -15,7 +15,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofuPigRender extends AgeableMobRenderer<TofuPig, TofuPigRenderState, PigModel> {
 	private static final ResourceLocation PIG_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_pig/tofu_pig.png");
 

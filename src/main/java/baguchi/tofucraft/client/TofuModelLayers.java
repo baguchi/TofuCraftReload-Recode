@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofuModelLayers {
 	public static final ModelLayerLocation TOFUNIAN = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian"), "main");
 	public static final ModelLayerLocation TRAVELER_TOFUNIAN = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "traveler_tofunian"), "main");

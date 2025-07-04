@@ -21,7 +21,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TFOvenScreen extends AbstractRecipeBookScreen<TFOvenMenu> implements RecipeUpdateListener {
 	private static final Component FILTER_NAME = Component.translatable("gui.recipebook.toggleRecipes.smeltable");
 	private static final List<RecipeBookComponent.TabInfo> TABS = List.of(

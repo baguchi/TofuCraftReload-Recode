@@ -30,7 +30,7 @@ public class ZundaExplosionSeedParticle extends NoRenderParticle {
 
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static class Provider<T extends SimpleParticleType> implements ParticleProvider<T> {
 		public Particle createParticle(T p_106969_, ClientLevel p_106970_, double p_106971_, double p_106972_, double p_106973_, double p_106974_, double p_106975_, double p_106976_) {
 			return new ZundaExplosionSeedParticle(p_106970_, p_106971_, p_106972_, p_106973_);

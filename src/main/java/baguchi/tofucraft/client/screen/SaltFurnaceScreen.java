@@ -20,7 +20,7 @@ import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtension
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.joml.Matrix3x2fStack;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> {
 	private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/salt_furnace.png");
 

@@ -36,7 +36,7 @@ public class MisoBarrelBlock extends WeightBaseBlock {
 		registerDefaultState(this.stateDefinition.any().setValue(STAT, Stat.USING).setValue(TIME, 0).setValue(FLUIDS, 0));
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	@Override
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);

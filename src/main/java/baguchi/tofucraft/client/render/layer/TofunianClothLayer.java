@@ -15,7 +15,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofunianClothLayer extends RenderLayer<TofunianRenderState, TofunianModel<TofunianRenderState>> {
 	public static final ResourceLocation BAGU_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagu_chan.png");
 

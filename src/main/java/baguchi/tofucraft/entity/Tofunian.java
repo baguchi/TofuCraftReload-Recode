@@ -9,6 +9,7 @@ import baguchi.tofucraft.entity.goal.FindJobBlockGoal;
 import baguchi.tofucraft.entity.goal.FindStatueBlockGoal;
 import baguchi.tofucraft.entity.goal.LookAtTofunianTradingPlayerGoal;
 import baguchi.tofucraft.entity.goal.MakeFoodGoal;
+import baguchi.tofucraft.entity.goal.MakeSoymilkGoal;
 import baguchi.tofucraft.entity.goal.MoveToJobGoal;
 import baguchi.tofucraft.entity.goal.MoveToStatueGoal;
 import baguchi.tofucraft.entity.goal.OpenTofuDoorGoal;
@@ -19,6 +20,7 @@ import baguchi.tofucraft.entity.goal.TofunianSleepOnBedGoal;
 import baguchi.tofucraft.entity.goal.TofunianTradeWithPlayerGoal;
 import baguchi.tofucraft.entity.goal.WakeUpGoal;
 import baguchi.tofucraft.registry.TofuAdvancements;
+import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuEntityDatas;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
@@ -102,6 +104,8 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -215,8 +219,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}));
 		this.goalSelector.addGoal(4, new TofunianLoveGoal(this, 0.8F));
 		this.goalSelector.addGoal(5, new GetItemGoal<>(this));
-		this.goalSelector.addGoal(6, new MoveToStatueGoal(this, 0.8F, 5));
+		this.goalSelector.addGoal(7, new MoveToStatueGoal(this, 0.8F, 5));
 		this.goalSelector.addGoal(8, new CropHarvestGoal(this, 0.9F));
+		this.goalSelector.addGoal(9, new MakeSoymilkGoal(this, 0.9F));
 		this.goalSelector.addGoal(9, new MakeFoodGoal(this, 0.9F, 1));
 		this.goalSelector.addGoal(10, new RestockGoal(this, 0.9F, 1));
 		this.goalSelector.addGoal(11, new MoveToJobGoal(this, 0.9F, 1));
@@ -270,6 +275,11 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		long time = level().getDayTime();
 		long day = time / 24000;
 		return day % 5 == 0;
+	}
+
+	public boolean isStoreFood() {
+		int i = (int) (this.level().getDayTime() % 24000L);
+		return i >= 10000 && i <= 12800;
 	}
 
 	@Override
@@ -376,6 +386,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		profilerfiller.push("tofunianCheck");
 		this.tofunianJobCheck();
 		this.tofunianHomeCheck();
+		this.eatUntilFull();
 		profilerfiller.pop();
 
 		super.customServerAiStep(serverLevel);
@@ -791,11 +802,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public boolean canMate() {
-		return (this.foodLevel + countFoodPointsInInventory() >= 42 && getAge() == 0);
+		return (this.foodLevel >= 42 && getAge() == 0);
+	}
+
+	public boolean noNeedEatFood() {
+		return (this.foodLevel >= 42);
 	}
 
 	private boolean hungry() {
-		return (this.foodLevel < 12);
+		return (this.foodLevel < 42);
 	}
 
 	@Override
@@ -809,7 +824,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public boolean wantsMoreFood() {
-		return (countFoodPointsInInventory() < 42);
+		return (foodLevel < 42);
 	}
 
 	public boolean hasFarmSeeds() {
@@ -846,13 +861,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 	}
 
-	private void digestFood(int p_35549_) {
+	public void digestFood(int p_35549_) {
 		this.foodLevel -= p_35549_;
-	}
-
-	public void eatAndDigestFood() {
-		this.eatUntilFull();
-		this.digestFood(12);
 	}
 
 
@@ -928,7 +938,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		super.setLastHurtByMob(p_70604_1_);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 12) {
 			this.addParticlesAroundSelf(ParticleTypes.HEART);

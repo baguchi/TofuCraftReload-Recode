@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.event.EventHooks;
 
+import java.util.EnumSet;
+
 public class CropHarvestGoal extends MoveToBlockGoal {
 	private final Tofunian tofunian;
 
@@ -28,6 +30,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 	public CropHarvestGoal(Tofunian tofunianIn, double speed) {
 		super(tofunianIn, speed, 8);
 		this.tofunian = tofunianIn;
+		this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
 	}
 
 	public boolean canUse() {

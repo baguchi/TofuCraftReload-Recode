@@ -13,7 +13,7 @@ import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ParticleStink extends TextureSheetParticle {
 
 	private final float scale;
@@ -52,7 +52,7 @@ public class ParticleStink extends TextureSheetParticle {
 		zd *= shake;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static final class StinkFactory implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet sprite;
 

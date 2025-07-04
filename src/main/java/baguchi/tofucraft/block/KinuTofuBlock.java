@@ -22,7 +22,7 @@ public class KinuTofuBlock extends Block {
 		super(properties);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);
 		if (isUnderWeight(worldIn, pos) &&

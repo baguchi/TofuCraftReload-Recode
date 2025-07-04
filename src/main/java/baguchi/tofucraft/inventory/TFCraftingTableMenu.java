@@ -146,13 +146,13 @@ public class TFCraftingTableMenu extends RecipeBookMenu {
 		return j != 0 && i != 0 ? i * 24 / j : 0;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public int getTFEnergy() {
 		int i = this.data.get(2);
 		return i;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public int getTFMaxEnergy() {
 		int i = this.data.get(3);
 		return i;

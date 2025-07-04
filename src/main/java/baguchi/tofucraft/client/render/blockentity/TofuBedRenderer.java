@@ -31,7 +31,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity> {
 	public static final ResourceLocation BED_TEXTURES = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/bed/tofubed.png");
 	private final ModelPart headRoot;

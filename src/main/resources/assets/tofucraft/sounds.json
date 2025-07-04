@@ -123,5 +123,31 @@
       "tofucraft:mob/tofuspider/tofuspider_spit"
     ],
     "subtitle": "subtitles.entity.tofuspider.spit"
+  },
+  "block.tofu_chest.open": {
+    "sounds": [
+      {
+        "name": "block/grindstone/grindstone1",
+        "volume": 0.8
+      },
+      {
+        "name": "block/grindstone/grindstone2",
+        "volume": 0.8
+      },
+      {
+        "name": "block/grindstone/grindstone3",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.tofu_chest.open"
+  },
+  "block.tofu_chest.close": {
+    "sounds": [
+      {
+        "name": "tofucraft:block/tofu_chest_close",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.block.tofu_chest.close"
   }
 }

@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public abstract class AbstractSoybeanRender<T extends FukumameEntity, S extends ProjectileRenderState> extends EntityRenderer<T, S> {
 	public AbstractSoybeanRender(EntityRendererProvider.Context p_173917_) {
 		super(p_173917_);

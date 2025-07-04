@@ -17,7 +17,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
-@OnlyIn(Dist.CLIENT)
+
 public class NattoBallRender extends EntityRenderer<NattoBallEntity, ProjectileRenderState> {
 	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.parse("textures/entity/enderdragon/dragon_fireball.png");
 	private static final RenderType RENDER_TYPE = RenderType.entityCutoutNoCull(TEXTURE_LOCATION);

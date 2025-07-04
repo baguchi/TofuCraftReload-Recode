@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofuGolemRender extends MobRenderer<TofuGolem, TofuGolemRenderState, TofuGolemModel<TofuGolemRenderState>> {
 	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_golem/tofu_golem.png");
 	private static final ResourceLocation GLOW_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_golem/tofu_golem_glow.png");

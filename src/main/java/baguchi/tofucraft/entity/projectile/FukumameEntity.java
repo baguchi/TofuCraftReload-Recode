@@ -65,7 +65,7 @@ public class FukumameEntity extends ThrowableProjectile {
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public void handleEntityEvent(byte id) {
 		if (id == 3) {
 			double d0 = 0.08D;

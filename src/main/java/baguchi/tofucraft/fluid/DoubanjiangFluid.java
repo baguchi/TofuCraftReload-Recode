@@ -42,7 +42,6 @@ public abstract class DoubanjiangFluid extends WaterFluid {
 	}
 
 
-	@OnlyIn(Dist.CLIENT)
 	public void animateTick(Level level, BlockPos blockPos, FluidState p_204522_3_, RandomSource randomSource) {
 		if (!p_204522_3_.getValue(FALLING)) {
 			if (randomSource.nextInt(64) == 0) {

@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofuCowRender extends AgeableMobRenderer<TofuCow, TofuCowRenderState, CowModel> {
 	public TofuCowRender(EntityRendererProvider.Context p_174304_) {
 		super(p_174304_, new CowModel(p_174304_.bakeLayer(ModelLayers.MOOSHROOM)), new CowModel(p_174304_.bakeLayer(ModelLayers.MOOSHROOM_BABY)), 0.7F);

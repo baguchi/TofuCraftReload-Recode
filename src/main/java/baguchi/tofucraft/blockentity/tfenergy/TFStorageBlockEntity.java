@@ -217,7 +217,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public int getProgressScaled(int par1) {
 		return this.current_workload == 0 ? 0 : ((this.current_workload - this.workload) * par1 / this.current_workload);
 	}

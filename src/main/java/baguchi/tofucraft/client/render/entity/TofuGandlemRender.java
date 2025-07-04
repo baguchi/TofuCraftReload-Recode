@@ -14,7 +14,7 @@ import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofuGandlemRender extends MobRenderer<TofuGandlem, TofuGandlemRenderState, TofuGandlemModel<TofuGandlemRenderState>> {
 	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem.png");
 	private static final ResourceLocation SHOOTING_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_shooting.png");

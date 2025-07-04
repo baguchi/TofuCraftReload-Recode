@@ -15,7 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TravelerTofunianRender extends MobRenderer<TravelerTofunian, AbstractTofunianRenderState, TravelerTofunianModel<AbstractTofunianRenderState>> {
 	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/traveler_tofunian.png");
 

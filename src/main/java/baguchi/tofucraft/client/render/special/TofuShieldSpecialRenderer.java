@@ -57,7 +57,7 @@ public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataCompo
 
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static record Unbaked() implements SpecialModelRenderer.Unbaked {
 		public static final TofuShieldSpecialRenderer.Unbaked INSTANCE = new TofuShieldSpecialRenderer.Unbaked();
 		public static final MapCodec<TofuShieldSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(INSTANCE);

@@ -17,7 +17,7 @@ import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T, ProjectileRenderState> {
 	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/zunda_buster.png");
 

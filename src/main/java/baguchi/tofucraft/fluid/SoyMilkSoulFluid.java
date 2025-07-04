@@ -42,7 +42,7 @@ public abstract class SoyMilkSoulFluid extends WaterFluid {
 		return TofuItems.BUCKET_SOYMILK_SOUL.get();
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	@Override
 	public void animateTick(Level level, BlockPos blockPos, FluidState fluidState, RandomSource randomSource) {
 		if (!fluidState.isSource() && !fluidState.getValue(FALLING)) {

@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofuPigTypeLayer extends RenderLayer<TofuPigRenderState, PigModel> {
 
 	public TofuPigTypeLayer(RenderLayerParent<TofuPigRenderState, PigModel> tofupigRender) {

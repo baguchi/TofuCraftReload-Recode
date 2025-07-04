@@ -50,10 +50,10 @@ public class TofunianLoveGoal extends Goal {
 
 	public void start() {
 		this.loveTime = 0;
+		this.tofunian.digestFood(12);
 	}
 
 	public void tick() {
-		this.tofunian.eatAndDigestFood();
 		this.tofunian.getLookControl().setLookAt(this.partner, 10.0F, this.tofunian.getMaxHeadXRot());
 		this.tofunian.getNavigation().moveTo(this.partner, this.speedModifier);
 		this.loveTime++;

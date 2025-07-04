@@ -37,7 +37,7 @@ public class TofuBlock extends Block {
 		super(properties);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	@Override
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		super.animateTick(stateIn, worldIn, pos, rand);

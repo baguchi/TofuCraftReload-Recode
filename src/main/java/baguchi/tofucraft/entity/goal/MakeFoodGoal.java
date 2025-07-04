@@ -8,6 +8,8 @@ import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.EnumSet;
+
 public class MakeFoodGoal extends MoveToBlockGoal {
 	private final Tofunian creature;
 
@@ -16,6 +18,7 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 	public MakeFoodGoal(Tofunian creature, double speedIn, int length) {
 		super(creature, speedIn, length);
 		this.creature = creature;
+		this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
 	}
 
 	public boolean canUse() {
@@ -33,7 +36,7 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 
 	public void tick() {
 		super.tick();
-		this.creature.getLookControl().setLookAt(this.mob.getX(), this.mob.getY(), this.mob.getZ());
+		this.creature.getLookControl().setLookAt(this.blockPos.getX(), this.blockPos.getY(), this.blockPos.getZ(), 30.0F, 30.0F);
 		if (this.cookTick > 0)
 			this.cookTick--;
 		if (isReachedTarget() && this.cookTick <= 0) {

@@ -14,7 +14,7 @@ import org.joml.Vector3f;
 
 import java.util.Set;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer {
 	private final TofunianStatueRender bedRenderer;
 
@@ -32,7 +32,7 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static record Unbaked() implements SpecialModelRenderer.Unbaked {
 		public static final MapCodec<TofunianStatueSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(TofunianStatueSpecialRenderer.Unbaked::new);
 

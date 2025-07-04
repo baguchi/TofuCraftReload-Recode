@@ -23,7 +23,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, TofunianModel<TofunianRenderState>> {
 	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian.png");
 	public static final ResourceLocation BAGU_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagunian.png");

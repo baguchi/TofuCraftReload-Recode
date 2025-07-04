@@ -62,12 +62,12 @@ public class TofuGandlemChargedLayer<T extends TofuGandlemRenderState, M extends
 		});
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public interface AlphaFunction<T extends TofuGandlemRenderState> {
 		float apply(T p_234920_, float p_234921_, float p_234922_);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public interface DrawSelector<T extends TofuGandlemRenderState, M extends EntityModel<T>> {
 		List<ModelPart> getPartsToDraw(M p_234924_);
 	}

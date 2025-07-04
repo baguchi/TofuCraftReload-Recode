@@ -39,7 +39,7 @@ public abstract class NigariFluid extends WaterFluid {
 		return TofuItems.BUCKET_BITTERN.get();
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public void animateTick(Level p_204522_1_, BlockPos p_204522_2_, FluidState p_204522_3_, RandomSource p_204522_4_) {
 		if (!p_204522_3_.isSource() && !p_204522_3_.getValue(FALLING)) {
 			if (p_204522_4_.nextInt(64) == 0) {

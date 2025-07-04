@@ -35,6 +35,8 @@ public class TofuSounds {
 
 	public static final Supplier<SoundEvent> SOUL_BREATH = createEvent("block.soybean_soul.soul_breath");
 	public static final Supplier<SoundEvent> SOYBEAN_CRACK = createEvent("item.soybean.crack");
+	public static final Supplier<SoundEvent> TOFU_CHEST_OPEN = createEvent("block.tofu_chest.open");
+	public static final Supplier<SoundEvent> TOFU_CHEST_CLOSE = createEvent("block.tofu_chest.close");
 
 	private static Supplier<SoundEvent> createEvent(String sound) {
 		ResourceLocation name = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, sound);

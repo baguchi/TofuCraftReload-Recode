@@ -134,7 +134,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 		p_48725_.add(LIT);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public void animateTick(BlockState p_180655_1_, Level p_180655_2_, BlockPos p_180655_3_, RandomSource p_180655_4_) {
 		if ((Boolean) p_180655_1_.getValue(LIT)) {
 			double d0 = p_180655_3_.getX() + 0.5D;

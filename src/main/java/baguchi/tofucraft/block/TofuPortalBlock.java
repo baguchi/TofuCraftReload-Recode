@@ -110,7 +110,7 @@ public class TofuPortalBlock extends Block implements Portal {
 
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		int random = rand.nextInt(100);
 		if (random == 0) {

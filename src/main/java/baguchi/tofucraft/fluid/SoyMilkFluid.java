@@ -50,7 +50,7 @@ public abstract class SoyMilkFluid extends WaterFluid {
 		return TofuParticleTypes.DRIP_SOYMILK_HANG.get();
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	@Override
 	public void animateTick(Level level, BlockPos blockPos, FluidState fluidState, RandomSource randomSource) {
 		if (!fluidState.isSource() && !fluidState.getValue(FALLING)) {

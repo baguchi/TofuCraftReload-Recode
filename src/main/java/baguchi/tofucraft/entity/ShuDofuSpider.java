@@ -503,12 +503,12 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		return rBlock;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public float getRightLegAnimationScale(float p_29570_) {
 		return Mth.lerp(p_29570_, this.rightLegAnimationOld, this.rightLegAnimation);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public float getLeftLegAnimationScale(float p_29570_) {
 		return Mth.lerp(p_29570_, this.leftLegAnimationOld, this.leftLegAnimation);
 	}
@@ -545,7 +545,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		this.level().addFreshEntity(ball);
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 100) {
 			this.attackAnimationState.start(this.tickCount);

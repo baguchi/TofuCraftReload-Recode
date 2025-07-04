@@ -25,7 +25,7 @@ import org.joml.Matrix3x2fStack;
 
 import java.util.Optional;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tf_storage.png");
 	private static final Component MISSING_ITEM_TOOLTIP = Component.translatable("container.tofucraft.tf_storage.missing_item_tooltip_consume");

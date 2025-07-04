@@ -13,7 +13,7 @@ import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ParticleZundaCloud extends TextureSheetParticle {
 
 	private final float scale;
@@ -54,7 +54,7 @@ public class ParticleZundaCloud extends TextureSheetParticle {
 		zd *= shake;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static final class CloudFactory implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet sprite;
 

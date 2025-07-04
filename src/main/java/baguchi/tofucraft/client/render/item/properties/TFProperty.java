@@ -12,7 +12,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-@OnlyIn(Dist.CLIENT)
+
 public record TFProperty() implements ConditionalItemModelProperty {
 	public static final MapCodec<TFProperty> MAP_CODEC = MapCodec.unit(new TFProperty());
 

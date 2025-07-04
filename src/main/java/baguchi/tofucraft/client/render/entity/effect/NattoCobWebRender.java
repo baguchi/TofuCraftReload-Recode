@@ -17,7 +17,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 
-@OnlyIn(Dist.CLIENT)
 public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity, NattoCobWebRenderState> {
 	private final ItemRenderer itemRenderer;
 

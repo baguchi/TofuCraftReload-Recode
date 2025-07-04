@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class SoymilkDripParticle extends TextureSheetParticle {
 	private final Fluid type;
 	protected boolean isGlowing;
@@ -74,7 +74,7 @@ public class SoymilkDripParticle extends TextureSheetParticle {
 	protected void postMoveUpdate() {
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	static class CoolingDripHangParticle extends SoymilkDripParticle.DripHangParticle {
 		CoolingDripHangParticle(ClientLevel p_106068_, double p_106069_, double p_106070_, double p_106071_, Fluid p_106072_, ParticleOptions p_106073_) {
 			super(p_106068_, p_106069_, p_106070_, p_106071_, p_106072_, p_106073_);
@@ -88,7 +88,7 @@ public class SoymilkDripParticle extends TextureSheetParticle {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	static class DripHangParticle extends SoymilkDripParticle {
 		private final ParticleOptions fallingParticle;
 
@@ -114,7 +114,7 @@ public class SoymilkDripParticle extends TextureSheetParticle {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	static class DripLandParticle extends SoymilkDripParticle {
 		DripLandParticle(ClientLevel p_106102_, double p_106103_, double p_106104_, double p_106105_, Fluid p_106106_) {
 			super(p_106102_, p_106103_, p_106104_, p_106105_, p_106106_);
@@ -123,7 +123,6 @@ public class SoymilkDripParticle extends TextureSheetParticle {
 	}
 
 
-	@OnlyIn(Dist.CLIENT)
 	static class FallAndLandParticle extends SoymilkDripParticle.FallingParticle {
 		protected final ParticleOptions landParticle;
 
@@ -142,7 +141,6 @@ public class SoymilkDripParticle extends TextureSheetParticle {
 	}
 
 
-	@OnlyIn(Dist.CLIENT)
 	static class FallingParticle extends SoymilkDripParticle {
 		FallingParticle(ClientLevel p_106132_, double p_106133_, double p_106134_, double p_106135_, Fluid p_106136_) {
 			this(p_106132_, p_106133_, p_106134_, p_106135_, p_106136_, (int) (64.0D / (Math.random() * 0.8D + 0.2D)));
@@ -161,7 +159,7 @@ public class SoymilkDripParticle extends TextureSheetParticle {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static class SoymilkFallProvider implements ParticleProvider<SimpleParticleType> {
 		protected final SpriteSet sprite;
 
@@ -177,7 +175,7 @@ public class SoymilkDripParticle extends TextureSheetParticle {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static class SoymilkHangProvider implements ParticleProvider<SimpleParticleType> {
 		protected final SpriteSet sprite;
 
@@ -193,7 +191,7 @@ public class SoymilkDripParticle extends TextureSheetParticle {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static class SoysauceFallProvider implements ParticleProvider<SimpleParticleType> {
 		protected final SpriteSet sprite;
 
@@ -209,7 +207,7 @@ public class SoymilkDripParticle extends TextureSheetParticle {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static class SoysauceHangProvider implements ParticleProvider<SimpleParticleType> {
 		protected final SpriteSet sprite;
 

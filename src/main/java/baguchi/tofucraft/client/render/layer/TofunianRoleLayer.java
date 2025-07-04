@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofunianRoleLayer extends RenderLayer<TofunianRenderState, TofunianModel<TofunianRenderState>> {
 	public TofunianRoleLayer(RenderLayerParent<TofunianRenderState, TofunianModel<TofunianRenderState>> tofunianRender) {
 		super(tofunianRender);

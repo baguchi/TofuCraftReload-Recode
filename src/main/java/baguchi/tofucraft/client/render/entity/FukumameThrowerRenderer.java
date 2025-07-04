@@ -16,7 +16,7 @@ import net.minecraft.world.item.CrossbowItem;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class FukumameThrowerRenderer extends HumanoidMobRenderer<FukumameThrower, FukumameThrowerRenderState, FukumameThrowerModel> {
 	private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/piglin_fukumame_thrower.png");
 

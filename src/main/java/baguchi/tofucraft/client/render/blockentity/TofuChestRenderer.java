@@ -49,4 +49,12 @@ public class TofuChestRenderer<T extends BlockEntity & LidBlockEntity> extends C
 
 		return map;
 	}
+
+	private static EnumMap<ChestType, Material> singleMaterial(String type) {
+		EnumMap<ChestType, Material> map = new EnumMap<>(ChestType.class);
+
+		map.put(ChestType.SINGLE, new Material(Sheets.CHEST_SHEET, TofuCraftReload.prefix("entity/chest/" + type)));
+
+		return map;
+	}
 }

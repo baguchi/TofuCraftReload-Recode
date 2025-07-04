@@ -405,7 +405,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 4) {
 			this.attackAnimationState.start(this.tickCount);

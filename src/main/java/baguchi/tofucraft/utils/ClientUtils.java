@@ -11,7 +11,7 @@ import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtension
 
 public class ClientUtils {
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static void playPortalSound(Player localPlayer) {
 		Minecraft.getInstance()
 				.getSoundManager()

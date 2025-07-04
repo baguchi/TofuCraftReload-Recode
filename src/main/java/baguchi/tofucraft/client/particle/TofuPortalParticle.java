@@ -10,7 +10,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class TofuPortalParticle extends TextureSheetParticle {
 	private final double xStart;
 	private final double yStart;
@@ -84,7 +84,7 @@ public class TofuPortalParticle extends TextureSheetParticle {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public static class Provider implements ParticleProvider<SimpleParticleType> {
 		private final SpriteSet sprite;
 

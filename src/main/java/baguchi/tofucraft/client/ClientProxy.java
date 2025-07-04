@@ -27,12 +27,12 @@ public class ClientProxy {
 	public static final ClientProxy PROXY = new ClientProxy();
 	public static BlockEntity refrencedTileEntity;
 
-	@OnlyIn(Dist.CLIENT)
+
 	public BlockEntity getRefrencedTE() {
 		return refrencedTileEntity;
 	}
 
-	@OnlyIn(Dist.CLIENT)
+
 	public void setRefrencedTE(BlockEntity te) {
 		refrencedTileEntity = te;
 	}

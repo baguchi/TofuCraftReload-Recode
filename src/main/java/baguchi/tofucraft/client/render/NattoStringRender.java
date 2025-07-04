@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public class NattoStringRender<E extends NattoStringEntity, T extends ProjectileRenderState> extends EntityRenderer<E, T> {
 	private final float scale;
 	private final boolean fullBright;
