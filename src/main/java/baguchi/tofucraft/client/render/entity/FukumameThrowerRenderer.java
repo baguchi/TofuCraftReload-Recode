@@ -13,8 +13,6 @@ import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CrossbowItem;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 
 public class FukumameThrowerRenderer extends HumanoidMobRenderer<FukumameThrower, FukumameThrowerRenderState, FukumameThrowerModel> {

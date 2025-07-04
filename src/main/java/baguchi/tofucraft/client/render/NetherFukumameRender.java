@@ -5,8 +5,6 @@ import baguchi.tofucraft.client.render.state.ProjectileRenderState;
 import baguchi.tofucraft.entity.projectile.NetherFukumameEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 
 public class NetherFukumameRender extends AbstractSoybeanRender<NetherFukumameEntity, ProjectileRenderState> {

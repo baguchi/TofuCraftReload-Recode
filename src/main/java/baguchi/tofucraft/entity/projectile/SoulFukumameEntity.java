@@ -8,8 +8,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 public class SoulFukumameEntity extends FukumameEntity {
 	public SoulFukumameEntity(EntityType<? extends SoulFukumameEntity> p_i50154_1_, Level p_i50154_2_) {

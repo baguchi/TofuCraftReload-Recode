@@ -3,14 +3,10 @@ package baguchi.tofucraft.entity.goal;
 import baguchi.tofucraft.entity.TofuCow;
 import baguchi.tofucraft.entity.Tofunian;
 import baguchi.tofucraft.registry.TofuItems;
-import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.phys.AABB;
 

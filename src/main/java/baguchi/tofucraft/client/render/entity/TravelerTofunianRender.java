@@ -12,8 +12,6 @@ import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 
 public class TravelerTofunianRender extends MobRenderer<TravelerTofunian, AbstractTofunianRenderState, TravelerTofunianModel<AbstractTofunianRenderState>> {

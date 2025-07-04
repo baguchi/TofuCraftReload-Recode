@@ -9,8 +9,6 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Pose;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 
 public class TofunianEyeLayer<T extends AbstractTofunianRenderState, M extends AbstractTofunianModel<T>> extends RenderLayer<T, M> {

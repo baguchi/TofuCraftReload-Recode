@@ -9,8 +9,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 public class NetherFukumameEntity extends FukumameEntity {
 	public NetherFukumameEntity(EntityType<? extends NetherFukumameEntity> p_i50154_1_, Level p_i50154_2_) {

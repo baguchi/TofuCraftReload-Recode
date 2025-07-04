@@ -3,8 +3,6 @@ package baguchi.tofucraft.client;
 import baguchi.tofucraft.TofuCraftReload;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 
 public class TofuModelLayers {

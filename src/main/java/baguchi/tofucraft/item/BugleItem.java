@@ -1,7 +1,5 @@
 package baguchi.tofucraft.item;
 
-import java.util.List;
-
 import baguchi.tofucraft.entity.TofuSpider;
 import baguchi.tofucraft.registry.TofuSounds;
 import net.minecraft.stats.Stats;
@@ -22,6 +20,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.List;
 
 public class BugleItem extends Item {
 	private static final TargetingConditions TARGETING = TargetingConditions.forNonCombat().range(32.0D).ignoreInvisibilityTesting();
