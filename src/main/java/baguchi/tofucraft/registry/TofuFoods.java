@@ -123,6 +123,13 @@ public class TofuFoods {
 
 	public static final FoodProperties HIYAYAKKO = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.3F).build();
 	public static final FoodProperties NATTOHIYAYAKKO = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.35F).build();
+	public static final FoodProperties WARABI_MOCHI = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.3F).build();
+
+	public static final FoodProperties GRATIN = (new FoodProperties.Builder()).nutrition(8).saturationModifier(0.8F).build();
+	public static final FoodProperties CAPRESE = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.8F).build();
+	public static final FoodProperties MUSHROOM_ANKAKE = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.8F).build();
+	public static final FoodProperties TOFU_ANKAKE = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.8F).build();
+
 
 	//Tofu delight
 	public static final FoodProperties TOFU_EGG = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.32F).build();

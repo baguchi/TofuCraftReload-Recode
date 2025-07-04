@@ -201,7 +201,8 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFUFISH_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUFISH_SOYMILK_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 
-		this.generateFlatItem(TofuItems.GLASSBOWL.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.GLASS_BOWL.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_METAL_BOWL.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.TOFUSOMEN.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUSOMENBOWL_GLASS.get(), ModelTemplates.FLAT_ITEM);
@@ -212,6 +213,12 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.SOUL_HIYAYAKKO_GLASS.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.HIYAYAKKO_GLASS.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.NATTOHIYAYAKKO_GLASS.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.WARABI_MOCHI.get(), ModelTemplates.FLAT_ITEM);
+
+		this.generateFlatItem(TofuItems.GRATIN.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.CAPRESE.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.MUSHROOM_ANKAKE.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_ANKAKE.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.TOFUSCOOP.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFUSTICK.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -337,6 +344,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.EDAMAME_RICE.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.BOTTLE_DASHI.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.BOTTLE_MIRIN.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.BOTTLE_SOYOIL.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUEGG.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOYSAUSE_RAMEN.get(), ModelTemplates.FLAT_ITEM);

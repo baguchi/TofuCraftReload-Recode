@@ -381,6 +381,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.SOUL_HIYAYAKKO_GLASS,
 						TofuItems.HIYAYAKKO_GLASS,
 						TofuItems.NATTOHIYAYAKKO_GLASS,
+						TofuItems.WARABI_MOCHI,
 						TofuItems.CRIMSON_SOUP,
 						TofuItems.MISODENGAKU,
 						TofuItems.MISOSOUP,
@@ -442,6 +443,10 @@ public class TofuCreativeModeTabs {
 						TofuItems.SOYMILK_OMINOUS_BOTTLE,
 						TofuItems.SOYMILK_PALE_BOTTLE,
 						TofuItems.SOYMILK_PALE_GLOW_BOTTLE,
+						TofuItems.GRATIN,
+						TofuItems.CAPRESE,
+						TofuItems.MUSHROOM_ANKAKE,
+						TofuItems.TOFU_ANKAKE,
 						TofuItems.HELL_MABOU,
 						TofuItems.RED_SOUP,
 						TofuItems.HELL_RED_SOUP,
@@ -467,7 +472,8 @@ public class TofuCreativeModeTabs {
 			.icon(() -> TofuItems.ZUNDARUBY.get().getDefaultInstance())
 			.displayItems((parameters, output) -> {
 				output.acceptAll(Stream.of(
-						TofuItems.GLASSBOWL,
+						TofuItems.GLASS_BOWL,
+						TofuItems.TOFU_METAL_BOWL,
 						TofuItems.BUCKET_SOYMILK,
 						TofuItems.BUCKET_SOYMILK_NETHER,
 						TofuItems.BUCKET_SOYMILK_SOUL,
@@ -480,6 +486,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.WARPED_BOTTLE,
 						TofuItems.SHROOM_BOTTLE,
 						TofuItems.BOTTLE_DASHI,
+						TofuItems.BOTTLE_MIRIN,
 						TofuItems.BOTTLE_SOYOIL,
 						TofuItems.BOTTLE_SOYSAUSE,
 						TofuItems.MISO,

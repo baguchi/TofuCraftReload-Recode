@@ -43,7 +43,8 @@ public class TofuVillagerTradeEvent {
 		List<VillagerTrades.ItemListing> trades5 = event.getTrades().get(5);
 		if (event.getType() == VillagerProfession.FARMER) {
 			trades2.add(new ItemsForEmeralds(TofuItems.BOILED_EDAMAME.get(), 1, 12, 8, 6));
-
+			trades2.add(new ItemsForEmeralds(TofuItems.BOTTLE_MIRIN.get(), 1, 4, 8, 6));
+			trades5.add(new ItemsForEmeralds(TofuItems.CAPRESE.get(), 1, 4, 8, 30));
 		}
 
 		if (TofuProfessions.TOFU_CRAFTSMAN.is(event.getType())) {
