@@ -493,6 +493,8 @@ public class TofuCreativeModeTabs {
 						TofuItems.MINCEDPOTATO,
 						TofuItems.STARCH_RAW,
 						TofuItems.STARCH,
+						TofuItems.KOUJI_BASE,
+						TofuItems.KOUJI,
 						TofuItems.SPROUTS,
 						TofuItems.APRICOT,
 						TofuItems.APRICOTSEED,

@@ -2,8 +2,10 @@ package baguchi.tofucraft;
 
 import baguchi.tofucraft.attachment.SoyHealthAttachment;
 import baguchi.tofucraft.attachment.TofuLivingAttachment;
+import baguchi.tofucraft.attachment.TofuPlayerAttachment;
 import baguchi.tofucraft.entity.projectile.UnstableZundamaEntity;
 import baguchi.tofucraft.item.armor.BreakableTofuBootsItem;
+import baguchi.tofucraft.network.AddLearningPacket;
 import baguchi.tofucraft.network.RecoverHealthPacket;
 import baguchi.tofucraft.network.ZundafiedPacket;
 import baguchi.tofucraft.registry.TofuAdvancements;
@@ -85,6 +87,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDestroyBlockEvent;
 import net.neoforged.neoforge.event.entity.living.LivingUseTotemEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -112,6 +115,47 @@ public class CommonEvents {
 		event.sendRecipes(TofuRecipes.RECIPETYPE_TOFU_POT.get());
 		event.sendRecipes(TofuRecipes.RECIPETYPE_BITTERN.get());
 		event.sendRecipes(TofuRecipes.RECIPETYPE_HARDER.get());
+	}
+
+	@SubscribeEvent
+	public static void progressAdvancement(AdvancementEvent.AdvancementProgressEvent event) {
+		Player player = event.getEntity();
+		TofuPlayerAttachment attachment2 = player.getData(TofuAttachments.TOFU_PLAYER);
+
+		attachment2.trackDiscoveries(player, event.getAdvancement());
+	}
+
+	@SubscribeEvent
+	public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
+		Player player = event.getEntity();
+		TofuPlayerAttachment attachment = player.getData(TofuAttachments.TOFU_PLAYER);
+		if (player instanceof ServerPlayer serverPlayer) {
+			attachment.getLearning().forEach(learning -> {
+				PacketDistributor.sendToPlayer(serverPlayer, new AddLearningPacket(serverPlayer.getId(), learning.unwrap().left().get().location(), false));
+			});
+		}
+	}
+
+	@SubscribeEvent
+	public static void onChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+		Player player = event.getEntity();
+		TofuPlayerAttachment attachment = player.getData(TofuAttachments.TOFU_PLAYER);
+		if (player instanceof ServerPlayer serverPlayer) {
+			attachment.getLearning().forEach(learning -> {
+				PacketDistributor.sendToPlayer(serverPlayer, new AddLearningPacket(serverPlayer.getId(), learning.unwrap().left().get().location(), false));
+			});
+		}
+	}
+
+	@SubscribeEvent
+	public static void onRespawnDimension(PlayerEvent.PlayerRespawnEvent event) {
+		Player player = event.getEntity();
+		TofuPlayerAttachment attachment = player.getData(TofuAttachments.TOFU_PLAYER);
+		if (player instanceof ServerPlayer serverPlayer) {
+			attachment.getLearning().forEach(learning -> {
+				PacketDistributor.sendToPlayer(serverPlayer, new AddLearningPacket(serverPlayer.getId(), learning.unwrap().left().get().location(), false));
+			});
+		}
 	}
 
 	@SubscribeEvent

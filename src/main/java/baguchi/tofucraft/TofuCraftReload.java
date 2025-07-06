@@ -1,11 +1,13 @@
 package baguchi.tofucraft;
 
+import baguchi.tofucraft.api.TofuLearning;
 import baguchi.tofucraft.api.TofunianTradeManager;
 import baguchi.tofucraft.api.entity.TofunianVariant;
 import baguchi.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchi.tofucraft.client.ClientRegistrar;
 import baguchi.tofucraft.data.resources.registries.TofunianVariants;
 import baguchi.tofucraft.event.CraftingEvents;
+import baguchi.tofucraft.network.AddLearningPacket;
 import baguchi.tofucraft.network.BossInfoPacket;
 import baguchi.tofucraft.network.RecoverHealthPacket;
 import baguchi.tofucraft.network.SaltFurnaceBitternPacket;
@@ -33,6 +35,7 @@ import baguchi.tofucraft.registry.TofuFluidTypes;
 import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuFoliagePlacerType;
 import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuLearnings;
 import baguchi.tofucraft.registry.TofuLootModifiers;
 import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuParticleTypes;
@@ -45,6 +48,8 @@ import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofuTags;
 import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlag;
@@ -60,6 +65,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.fml.util.thread.EffectiveSide;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
@@ -67,6 +73,7 @@ import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -94,6 +101,8 @@ public class TofuCraftReload {
 
 		Reflection.initialize(TofuTags.Items.class);
 
+
+		modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> event.dataPackRegistry(TofuLearning.REGISTRY_KEY, TofuLearning.CODEC, TofuLearning.CODEC));
 
 		modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> event.dataPackRegistry(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, TofunianVariant.DIRECT_CODEC, TofunianVariant.DIRECT_CODEC));
 
@@ -143,7 +152,7 @@ public class TofuCraftReload {
 		TofuParticleTypes.PARTICLE_TYPES.register(modBus);
 		TofuAdvancements.CRITERIONS_REGISTER.register(modBus);
 		TofuCarvers.WORLD_CARVER.register(modBus);
-
+		TofuLearnings.LEARNING.register(modBus);
 
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			modBus.addListener(ClientRegistrar::setup);
@@ -208,9 +217,17 @@ public class TofuCraftReload {
 		registrar.playToClient(BossInfoPacket.Remove.TYPE, BossInfoPacket.Remove.STREAM_CODEC, BossInfoPacket.Remove::execute);
 		registrar.playToClient(RecoverHealthPacket.TYPE, RecoverHealthPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playToClient(ZundafiedPacket.TYPE, ZundafiedPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playToClient(AddLearningPacket.TYPE, AddLearningPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 	}
 
 	public static ResourceLocation prefix(String name) {
 		return ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name.toLowerCase(Locale.ROOT));
+	}
+
+	public static RegistryAccess registryAccess() {
+		if (EffectiveSide.get().isServer()) {
+			return ServerLifecycleHooks.getCurrentServer().registryAccess();
+		}
+		return Minecraft.getInstance().getConnection().registryAccess();
 	}
 }

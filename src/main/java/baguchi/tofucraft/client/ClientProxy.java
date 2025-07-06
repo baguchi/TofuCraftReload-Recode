@@ -6,6 +6,8 @@ import baguchi.bagus_lib.client.render.book.component.DisplayBookComponent;
 import baguchi.bagus_lib.client.render.book.component.TextBookComponent;
 import baguchi.bagus_lib.client.render.screen.BookScreen;
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.attachment.TofuPlayerAttachment;
+import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
 import com.google.common.collect.Lists;
@@ -17,6 +19,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.joml.Quaternionf;
+
+import java.util.List;
 
 public class ClientProxy {
 	private static final ResourceLocation ALT_FONT = ResourceLocation.withDefaultNamespace("alt");
@@ -54,8 +58,12 @@ public class ClientProxy {
 			DisplayBookComponent tofu_stick = (new DisplayBookComponent(121, 158)).textDisplay(Component.literal("TofuStick").setStyle(ALT_STYLE).withStyle(ChatFormatting.GRAY), 52, 22, 1.0F).textDisplay(TofuItems.TOFUSTICK.get().asItem().getName(), 52, 26, 1.0F).itemDisplay(TofuItems.TOFUSTICK.get().getDefaultInstance(), 46, 30);
 			TextBookComponent tofu_stick_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tofu_stick.desc"), true, 100, 158);
 
+			DisplayBookComponent soysauce = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.soysauce"), 52, 26, 1.0F).itemDisplay(TofuItems.BOTTLE_SOYSAUSE.get().getDefaultInstance(), 46, 30);
+			TextBookComponent soysauce_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soysauce.desc"), true, 100, 158);
+			TextBookComponent soysauce_desc2 = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soysauce.desc2"), true, 100, 158);
 
-			Book book = new Book(Lists.newArrayList(new BookComponentDefinition(title, TofuCraftReload.prefix("title"), 15, 10, 10, 10)
+
+			List<BookComponentDefinition> list = Lists.newArrayList(new BookComponentDefinition(title, TofuCraftReload.prefix("title"), 15, 10, 10, 10)
 					, new BookComponentDefinition(introduction, TofuCraftReload.prefix("introduction"), 15, 10, 10, 10)
 					, new BookComponentDefinition(beforeTheTofu, TofuCraftReload.prefix("before_the_tofu"), 15, 10, 10, 10)
 					, new BookComponentDefinition(bittern, TofuCraftReload.prefix("bittern"), 15, 10, 10, 10)
@@ -66,7 +74,18 @@ public class ClientProxy {
 					, new BookComponentDefinition(soymilk, TofuCraftReload.prefix("soymilk"), 15, 10, 10, 10)
 					, new BookComponentDefinition(soymilk_desc, TofuCraftReload.prefix("soymilk_desc"), 15, 10, 10, 10)
 					, new BookComponentDefinition(tofu_stick, TofuCraftReload.prefix("tofu_stick"), 15, 10, 10, 10)
-					, new BookComponentDefinition(tofu_stick_desc, TofuCraftReload.prefix("tofu_stick_desc"), 15, 10, 10, 10)), 256, 182, 23, 13, 12, 27, TofuCraftReload.prefix("textures/gui/screen/book/book.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), ResourceLocation.withDefaultNamespace("textures/gui/sprites/widget/page_backward.png"), ResourceLocation.withDefaultNamespace("textures/gui/sprites/widget/page_forward.png"));
+					, new BookComponentDefinition(tofu_stick_desc, TofuCraftReload.prefix("tofu_stick_desc"), 15, 10, 10, 10));
+
+			TofuPlayerAttachment attachment = player.getData(TofuAttachments.TOFU_PLAYER);
+			if (attachment.getLearning().stream().anyMatch(tofuLearningHolder -> {
+				return tofuLearningHolder.is(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "miso"));
+			})) {
+				list.add(new BookComponentDefinition(soysauce, TofuCraftReload.prefix("soysauce"), 15, 10, 10, 10));
+				list.add(new BookComponentDefinition(soysauce_desc, TofuCraftReload.prefix("soysauce_desc"), 15, 10, 10, 10));
+				list.add(new BookComponentDefinition(soysauce_desc2, TofuCraftReload.prefix("soysauce_desc2"), 15, 10, 10, 10));
+			}
+
+			Book book = new Book(list, 256, 182, 23, 13, 12, 27, TofuCraftReload.prefix("textures/gui/screen/book/book.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), ResourceLocation.withDefaultNamespace("textures/gui/sprites/widget/page_backward.png"), ResourceLocation.withDefaultNamespace("textures/gui/sprites/widget/page_forward.png"));
 			Minecraft.getInstance().setScreen(new BookScreen(book));
 		}
 
