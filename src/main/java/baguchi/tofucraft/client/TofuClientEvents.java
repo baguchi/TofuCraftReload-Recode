@@ -8,6 +8,7 @@ import baguchi.tofucraft.client.animation.definitions.HumanoidAnimations;
 import baguchi.tofucraft.client.sound.TofuMusicManager;
 import baguchi.tofucraft.entity.TofuGandlem;
 import baguchi.tofucraft.registry.TofuAnimations;
+import baguchi.tofucraft.registry.TofuItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -21,6 +22,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
 import net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent;
 
 import java.util.HashMap;
@@ -117,6 +119,18 @@ public class TofuClientEvents {
 				event.getModel().root().getChild("head").yRot = event.getEntityRenderState().yRot * (float) (Math.PI / 180.0);
 				HumanoidAnimations.buster_right.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.BUSTER_RIGHT), event.getEntityRenderState().ageInTicks);
 				HumanoidAnimations.buster_left.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.BUSTER_LEFT), event.getEntityRenderState().ageInTicks);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void fov(ComputeFovModifierEvent event) {
+		float f = 1.0F;
+		if (event.getPlayer().isUsingItem()) {
+			if (event.getPlayer().getUseItem().is(TofuItems.ZUNDA_BOW)) {
+				float f3 = Math.min((float) event.getPlayer().getTicksUsingItem() / 20.0F, 1.0F);
+				f *= 1.0F - Mth.square(f3) * 0.15F;
+				event.setNewFovModifier(f);
 			}
 		}
 	}
