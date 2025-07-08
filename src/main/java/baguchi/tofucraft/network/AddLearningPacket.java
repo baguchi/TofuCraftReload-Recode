@@ -3,13 +3,11 @@ package baguchi.tofucraft.network;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.api.TofuLearning;
 import baguchi.tofucraft.attachment.TofuPlayerAttachment;
-import baguchi.tofucraft.client.toast.LearningToast;
 import baguchi.tofucraft.registry.TofuAttachments;
-import net.minecraft.ChatFormatting;
+import baguchi.tofucraft.utils.ClientUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
@@ -69,7 +67,7 @@ public class AddLearningPacket implements CustomPacketPayload, IPayloadHandler<A
 				Optional<Holder.Reference<TofuLearning>> optional = Minecraft.getInstance().player.level().registryAccess().lookupOrThrow(TofuLearning.REGISTRY_KEY).get(learning);
 				optional.ifPresent(tofuLearningHolder -> attachment.addLearning(tofuLearningHolder, player));
 				if (player == Minecraft.getInstance().player && makeToast) {
-					Minecraft.getInstance().getToastManager().addToast(new LearningToast(Component.translatable("toast.tofucraft.learning").withStyle(ChatFormatting.BLACK)));
+					ClientUtils.openToast();
 				}
 			}
 		});
