@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class RecipeHelper {
+
 	/*
 	 * This method use in not condition type tofu recipe(like ishi tofu and metal tofu)
 	 */

@@ -4,7 +4,8 @@ package baguchan.tofucraft.compat.jei;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.HardenRecipe;
-import baguchan.tofucraft.recipe.TofuWorkStationRecipe;
+import baguchan.tofucraft.recipe.TFCraftingRecipe;
+import baguchan.tofucraft.recipe.TofuPotRecipe;
 import baguchan.tofucraft.registry.TofuBlocks;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuRecipes;
@@ -15,6 +16,7 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
@@ -23,7 +25,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
@@ -38,20 +39,24 @@ public class JEIPlugin implements IModPlugin {
 		return MC.level.getRecipeManager().getAllRecipesFor(type);
 	}
 
+
 	public static final mezz.jei.api.recipe.RecipeType<HardenRecipe> HARDEN_JEI_TYPE =
 			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "harden", HardenRecipe.class);
 
 	public static final mezz.jei.api.recipe.RecipeType<BitternRecipe> BITTERN_JEI_TYPE =
 			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "bittern", BitternRecipe.class);
-	public static final mezz.jei.api.recipe.RecipeType<TofuWorkStationRecipe> TOFU_WORK_STATION_JEI_TYPE =
-			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "tofu_work_station", TofuWorkStationRecipe.class);
+	public static final mezz.jei.api.recipe.RecipeType<TFCraftingRecipe> TF_RECIPE_JEI_TYPE =
+			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "tf_craft", TFCraftingRecipe.class);
 
+	public static final mezz.jei.api.recipe.RecipeType<TofuPotRecipe> TOFU_POT_RECIPE_JEI_TYPE =
+			mezz.jei.api.recipe.RecipeType.create(TofuCraftReload.MODID, "tofu_pot", TofuPotRecipe.class);
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(new HardenCategory(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new BitternCategory(registry.getJeiHelpers().getGuiHelper()));
-		registry.addRecipeCategories(new TofuWorkStationCategory(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategories(new TFRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategories(new TofuPotCategory(registry.getJeiHelpers().getGuiHelper()));
 	}
 
 	@Override
@@ -72,28 +77,30 @@ public class JEIPlugin implements IModPlugin {
 		addInfo(registration, TofuItems.SOYMILK_SAKURA.get(), TofuItems.SOYMILK.get());
 		registration.addRecipes(HARDEN_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_HARDER.get()));
 		registration.addRecipes(BITTERN_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_BITTERN.get()));
-		registration.addRecipes(TOFU_WORK_STATION_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_TOFU_WORK_STATION.get()));
+		registration.addRecipes(TF_RECIPE_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_TF_CRAFT.get()));
+		registration.addRecipes(TOFU_POT_RECIPE_JEI_TYPE, findRecipesByType(TofuRecipes.RECIPETYPE_TOFU_POT.get()));
 	}
 
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
 		registration.addRecipeCatalyst(new ItemStack(Blocks.COBBLESTONE), HARDEN_JEI_TYPE);
 		registration.addRecipeCatalyst(new ItemStack(TofuItems.BITTERN_BOTTLE.get()), BITTERN_JEI_TYPE);
-		registration.addRecipeCatalyst(new ItemStack(TofuBlocks.TOFU_WORK_STATION.get()), TOFU_WORK_STATION_JEI_TYPE);
+		registration.addRecipeCatalyst(new ItemStack(TofuBlocks.TF_CRAFTING_TABLE.get()), TF_RECIPE_JEI_TYPE);
+		registration.addRecipeCatalyst(new ItemStack(TofuBlocks.TOFU_POT.get()), TOFU_POT_RECIPE_JEI_TYPE);
 	}
 
 	private static void addInfo(IRecipeRegistration registration, Item item) {
 		registration.addIngredientInfo(
 				new ItemStack(item),
 				VanillaTypes.ITEM_STACK,
-				Component.translatable(TofuCraftReload.MODID + "." + ForgeRegistries.ITEMS.getKey(item).getPath() + ".jei_desc"));
+				Component.translatable(TofuCraftReload.MODID + "." + BuiltInRegistries.ITEM.getKey(item).getPath() + ".jei_desc"));
 	}
 
 	private static void addInfo(IRecipeRegistration registration, Item item, Item originalDescItem) {
 		registration.addIngredientInfo(
 				new ItemStack(item),
 				VanillaTypes.ITEM_STACK,
-				Component.translatable(TofuCraftReload.MODID + "." + ForgeRegistries.ITEMS.getKey(originalDescItem).getPath() + ".jei_desc"));
+				Component.translatable(TofuCraftReload.MODID + "." + BuiltInRegistries.ITEM.getKey(originalDescItem).getPath() + ".jei_desc"));
 	}
 
 	@Override
