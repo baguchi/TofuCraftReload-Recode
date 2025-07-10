@@ -7,8 +7,10 @@ import baguchan.tofucraft.blockentity.SuspiciousTofuBlockEntity;
 import baguchan.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchan.tofucraft.blockentity.TofuChestBlockEntity;
 import baguchan.tofucraft.blockentity.TofuHangingSignBlockEntity;
+import baguchan.tofucraft.blockentity.TofuPotBlockEntity;
 import baguchan.tofucraft.blockentity.TofuSignBlockEntity;
 import baguchan.tofucraft.blockentity.TofunianStatueBlockEntity;
+import baguchan.tofucraft.blockentity.tfenergy.TFCraftingTableBlockEntity;
 import baguchan.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
 import com.mojang.datafixers.types.Type;
 import net.minecraft.Util;
@@ -18,6 +20,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 public class TofuBlockEntitys {
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, TofuCraftReload.MODID);
@@ -43,6 +47,11 @@ public class TofuBlockEntitys {
 			TofuBlocks.LEEK_HANGING_SIGN.get(),
 			TofuBlocks.LEEK_WALL_HANGING_SIGN.get())));
 	public static final RegistryObject<BlockEntityType<TFStorageBlockEntity>> TF_STORAGE = BLOCK_ENTITIES.register("tf_storage", () -> register("tofucraft:tf_storage", BlockEntityType.Builder.of(TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE.get())));
+
+	public static final Supplier<BlockEntityType<TFCraftingTableBlockEntity>> TF_CRAFTING_TABLE = BLOCK_ENTITIES.register("tf_crafting_table", () -> register("tofucraft:tf_crafting_table", BlockEntityType.Builder.of(TFCraftingTableBlockEntity::new, TofuBlocks.TF_CRAFTING_TABLE.get())));
+	public static final Supplier<BlockEntityType<TofuPotBlockEntity>> TOFU_POT = BLOCK_ENTITIES.register("tofu_pot", () -> register("tofucraft:tofu_pot", BlockEntityType.Builder.of(TofuPotBlockEntity::new, TofuBlocks.TOFU_POT.get())));
+
+
 
 	private static <T extends BlockEntity> BlockEntityType<T> register(String p_200966_0_, BlockEntityType.Builder<T> p_200966_1_) {
 		Type<?> type = Util.fetchChoiceType(References.BLOCK_ENTITY, p_200966_0_);

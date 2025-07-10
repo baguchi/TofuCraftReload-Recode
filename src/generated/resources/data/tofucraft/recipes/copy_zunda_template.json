@@ -5,20 +5,17 @@
     "#": {
       "item": "tofucraft:zunda_upgrade_smithing_template"
     },
-    "B": {
-      "item": "minecraft:diamond"
-    },
     "D": {
-      "item": "tofucraft:tofudiamond"
+      "item": "tofucraft:zunda_ingot"
     },
     "Z": {
       "item": "tofucraft:zundama"
     }
   },
   "pattern": [
-    "BZB",
-    "B#B",
-    "BDB"
+    "ZZZ",
+    "Z#Z",
+    "ZDZ"
   ],
   "result": {
     "count": 2,

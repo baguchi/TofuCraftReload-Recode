@@ -12,13 +12,13 @@
       "item": "tofucraft:tf_capacitor"
     },
     "T": {
-      "item": "tofucraft:tofugem"
+      "item": "tofucraft:tofu_gem_dust"
     }
   },
   "pattern": [
-    "MTM",
-    "RTC",
-    "MTM"
+    "MRM",
+    "TTT",
+    "MCM"
   ],
   "result": {
     "item": "tofucraft:tofu_core"

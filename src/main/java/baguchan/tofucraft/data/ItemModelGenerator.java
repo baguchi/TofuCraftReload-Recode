@@ -280,6 +280,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		singleTex(TofuItems.ZUNDA);
 		emmisiveTex(TofuItems.ZUNDAMA);
+		emmisiveTex(TofuItems.ZUNDA_INGOT);
 		singleTex(TofuItems.ZUNDARUBY);
 
 		singleTex(TofuItems.TOFU_HAMBURG_RAW);
@@ -287,6 +288,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.RAW_TOFU_FISH);
 		singleTex(TofuItems.COOKED_TOFU_FISH);
 		singleTex(TofuItems.MISODENGAKU);
+		singleTex(TofuItems.MISO_CHEESE_DENGAKU);
 		singleTex(TofuItems.SOYMEAT);
 
 		singleTex(TofuItems.TOFUCOOKIE);
@@ -389,6 +391,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.SOYMEATDON);
 
 		singleTex(TofuItems.TOFUGEM);
+		singleTex(TofuItems.TOFU_GEM_DUST);
 		singleTex(TofuItems.ADVANCE_TOFUGEM);
 		singleTex(TofuItems.TF_COIL);
 		singleTex(TofuItems.TF_CIRCUIT);
@@ -494,6 +497,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.SOY_CHEESE);
 		singleTex(TofuItems.SOY_NETHER_CHEESE);
 		singleTex(TofuItems.SOY_SOUL_CHEESE);
+		singleTex(TofuItems.MONSTER_JERKY);
 
 		singleTex(TofuItems.NATTO_COBWEB);
 		toBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN);

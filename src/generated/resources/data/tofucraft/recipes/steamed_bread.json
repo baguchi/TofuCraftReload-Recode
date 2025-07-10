@@ -1,6 +1,9 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "tofucraft:tofu_pot_shapeless",
   "category": "misc",
+  "cook_time": 300,
+  "exp": 0.5,
+  "fluid": [],
   "ingredients": [
     {
       "tag": "forge:milk/soy_milk"
@@ -12,7 +15,7 @@
       "item": "minecraft:sugar"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     },
     {
       "item": "minecraft:honey_bottle"

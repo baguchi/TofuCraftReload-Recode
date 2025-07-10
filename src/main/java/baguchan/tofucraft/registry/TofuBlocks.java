@@ -38,6 +38,7 @@ import baguchan.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchan.tofucraft.block.crop.SoybeanSoulCropsBlock;
 import baguchan.tofucraft.block.tfenergy.TFAntennaBlock;
+import baguchan.tofucraft.block.tfenergy.TFCraftingTableBlock;
 import baguchan.tofucraft.block.tfenergy.TFStorageBlock;
 import baguchan.tofucraft.block.tfenergy.TofuWorkStationBlock;
 import baguchan.tofucraft.block.tree.ApricotLeavesBlock;
@@ -51,6 +52,7 @@ import baguchan.tofucraft.block.utils.SproutsJarBlock;
 import baguchan.tofucraft.block.utils.TofuBedBlock;
 import baguchan.tofucraft.block.utils.TofuChestBlock;
 import baguchan.tofucraft.block.utils.TofuDoorBlock;
+import baguchan.tofucraft.block.utils.TofuPotBlock;
 import baguchan.tofucraft.block.utils.WeightBaseBlock;
 import baguchan.tofucraft.client.render.item.TofuBedBWLR;
 import baguchan.tofucraft.client.render.item.TofuChestBWLR;
@@ -467,6 +469,11 @@ public class TofuBlocks {
 	})));
 	public static final RegistryObject<Block> ANTENNA_BASIC = register("antenna_basic", () -> new TFAntennaBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> TOFU_WORK_STATION = register("tofu_work_station", () -> new TofuWorkStationBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+
+	public static final Supplier<Block> TOFU_POT = register("tofu_pot",
+			() -> new TofuPotBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(0.6F, 6.0F).sound(SoundType.LANTERN)));
+	public static final Supplier<Block> TF_CRAFTING_TABLE = register("tf_crafting_table",
+			() -> new TFCraftingTableBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).sound(SoundType.METAL)));
 
 
 	private static boolean always(BlockState p_50775_, BlockGetter p_50776_, BlockPos p_50777_) {

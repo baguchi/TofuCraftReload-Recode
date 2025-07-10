@@ -48,6 +48,8 @@ public class TofuFoods {
 	public static final FoodProperties COOKED_TOFUFISH = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.6F).build();
 
 	public static final FoodProperties MISODENGAKU = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.6F).fast().build();
+	public static final FoodProperties MISO_CHEESE_DENGAKU = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).fast().build();
+
 	public static final FoodProperties TOFUCOOKIE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
 	public static final FoodProperties TTTBURGER = (new FoodProperties.Builder()).nutrition(9).saturationMod(0.85F).build();
 	public static final FoodProperties MEAT_WRAPPED_YUBA = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.825F).build();
@@ -133,12 +135,18 @@ public class TofuFoods {
 	public static final FoodProperties SOY_NETHER_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200), 1.0F).build();
 	public static final FoodProperties SOY_SOUL_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.45F).effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200), 1.0F).build();
 
+	public static final FoodProperties MONSTER_JERKY = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.2F).build();
+
+
 	public static final FoodProperties KINAKO_BREAD = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.7F).build();
 
 	public static final FoodProperties EDAMAME_TEMPLA = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.2F).fast().build();
 	public static final FoodProperties NEGIMA = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.65F).build();
 	public static final FoodProperties SOY_KARAAGE = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.6F).fast().build();
 	public static final FoodProperties SOYMEATDON = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.8F).build();
+
+	public static final FoodProperties ZUNDA_INGOT = (new FoodProperties.Builder()).nutrition(8).saturationMod(1F).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 1200, 1), 1.0F).build();
+
 
 	private static FoodProperties.Builder stew(int p_150384_) {
 		return (new FoodProperties.Builder()).nutrition(p_150384_).saturationMod(0.6F);

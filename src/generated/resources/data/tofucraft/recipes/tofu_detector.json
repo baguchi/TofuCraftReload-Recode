@@ -3,7 +3,7 @@
   "category": "redstone",
   "key": {
     "B": {
-      "tag": "forge:stone"
+      "tag": "forge:cobblestone"
     },
     "G": {
       "item": "tofucraft:tofugem"

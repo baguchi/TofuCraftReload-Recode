@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "tofucraft:soy_cheese"
+    },
+    "X": {
+      "item": "tofucraft:miso"
+    },
+    "Y": {
+      "item": "tofucraft:tofumomen"
+    },
+    "Z": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " X ",
+    "CYC",
+    " Z "
+  ],
+  "result": {
+    "item": "tofucraft:miso_cheese_dengaku"
+  },
+  "show_notification": true
+}

@@ -52,6 +52,8 @@
     "tofucraft:tf_storage",
     "tofucraft:antenna_basic",
     "tofucraft:tofu_work_station",
-    "tofucraft:tofunian_statue"
+    "tofucraft:tofunian_statue",
+    "tofucraft:tofu_pot",
+    "tofucraft:tf_crafting_table"
   ]
 }

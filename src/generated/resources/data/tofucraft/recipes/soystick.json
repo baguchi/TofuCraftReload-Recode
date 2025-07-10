@@ -6,7 +6,7 @@
       "tag": "forge:crops/soybean"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     },
     {
       "tag": "forge:salt"

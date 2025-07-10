@@ -2,7 +2,9 @@ package baguchan.tofucraft.registry;
 
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.inventory.SaltFurnaceMenu;
+import baguchan.tofucraft.inventory.TFCraftingTableMenu;
 import baguchan.tofucraft.inventory.TFStorageMenu;
+import baguchan.tofucraft.inventory.TofuPotMenu;
 import baguchan.tofucraft.inventory.TofuWorkStationMenu;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
@@ -20,5 +22,8 @@ public class TofuMenus {
 
 	public static final RegistryObject<MenuType<TFStorageMenu>> TF_STORAGE = MENU_TYPES.register("tf_storage", () -> new MenuType<>(TFStorageMenu::new, FeatureFlags.DEFAULT_FLAGS));
 	public static final RegistryObject<MenuType<TofuWorkStationMenu>> TOFU_WORK_STATION = MENU_TYPES.register("tofu_work_station", () -> new MenuType<>(TofuWorkStationMenu::new, FeatureFlags.DEFAULT_FLAGS));
+
+	public static final RegistryObject<MenuType<TofuPotMenu>> TOFU_POT = MENU_TYPES.register("tofu_pot", () -> new MenuType<>(TofuPotMenu::new, FeatureFlags.DEFAULT_FLAGS));
+	public static final RegistryObject<MenuType<TFCraftingTableMenu>> TF_CRAFTING_TABLE = MENU_TYPES.register("tf_crafting_table", () -> new MenuType<>(TFCraftingTableMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
 }

@@ -1,0 +1,25 @@
+{
+  "type": "tofucraft:tf_craft_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tofucraft:zundama"
+    },
+    {
+      "item": "tofucraft:zundama"
+    },
+    {
+      "item": "tofucraft:zundama"
+    },
+    {
+      "item": "tofucraft:zundama"
+    },
+    {
+      "item": "tofucraft:tofuishi"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:zunda_ingot"
+  },
+  "tf": 400
+}

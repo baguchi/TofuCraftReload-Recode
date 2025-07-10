@@ -50,7 +50,8 @@ public class TofuCreativeModeTabs {
 			.icon(() -> TofuBlocks.TF_STORAGE.get().asItem().getDefaultInstance())
 			.displayItems((parameters, output) -> {
 				output.acceptAll(Stream.of(
-						TofuBlocks.TF_STORAGE
+						TofuBlocks.TF_STORAGE,
+						TofuBlocks.TF_CRAFTING_TABLE
 						, TofuBlocks.ANTENNA_BASIC
 						, TofuBlocks.TOFU_DETECTOR
 						, TofuBlocks.TOFU_WORK_STATION).map(sup -> {
@@ -224,6 +225,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.ZUNDAMA_BLOCK,
 						TofuBlocks.SALTPAN,
 						TofuBlocks.SALT_FURNACE,
+						TofuBlocks.TOFU_POT,
 						TofuBlocks.MORIJIO,
 						TofuBlocks.SALT_BLOCK,
 						TofuBlocks.SOYBEANS_SEEDS_BLOCK,
@@ -354,6 +356,8 @@ public class TofuCreativeModeTabs {
 						TofuItems.YAKIONIGIRI_SHOYU,
 						TofuItems.RAW_TOFU_FISH,
 						TofuItems.COOKED_TOFU_FISH,
+						TofuItems.MISODENGAKU,
+						TofuItems.MISO_CHEESE_DENGAKU,
 						TofuItems.RICE_BURGER,
 						TofuItems.RICE_TOFU,
 						TofuItems.RICE_SOBORO_TOFU,
@@ -369,8 +373,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.SOY_CHEESE,
 						TofuItems.SOY_NETHER_CHEESE,
 						TofuItems.SOY_SOUL_CHEESE,
-						TofuItems.SOY_NETHER_CHEESE,
-						TofuItems.SOY_SOUL_CHEESE,
+						TofuItems.MONSTER_JERKY,
 						TofuItems.SOY_CHOCOLATE,
 						TofuItems.TOFUNIAN_SOY_CHOCOLATE,
 						TofuItems.TOFU_STEAK,
@@ -434,6 +437,8 @@ public class TofuCreativeModeTabs {
 						TofuItems.BOTTLE_DASHI,
 						TofuItems.BOTTLE_SOYOIL,
 						TofuItems.BOTTLE_SOYSAUSE,
+						TofuItems.STARCH_RAW,
+						TofuItems.STARCH,
 						TofuItems.APRICOT,
 						TofuItems.APRICOTSEED,
 						TofuItems.APRICOTJERRY_BOTTLE,
@@ -472,9 +477,11 @@ public class TofuCreativeModeTabs {
 						TofuItems.LEEK_GREEN_BOAT,
 						TofuItems.LEEK_GREEN_CHEST_BOAT,
 						TofuItems.ZUNDAMA,
+						TofuItems.ZUNDA_INGOT,
 						TofuItems.ZUNDARUBY,
 						TofuItems.TOFU_MINCED,
 						TofuItems.TOFUGEM,
+						TofuItems.TOFU_GEM_DUST,
 						TofuItems.ADVANCE_TOFUGEM).map(itemRegistryObject -> {
 					return itemRegistryObject.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event

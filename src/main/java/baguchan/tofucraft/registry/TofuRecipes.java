@@ -5,6 +5,11 @@ import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.BitternSerializer;
 import baguchan.tofucraft.recipe.HardenRecipe;
 import baguchan.tofucraft.recipe.HardenSerializer;
+import baguchan.tofucraft.recipe.TFCraftingRecipe;
+import baguchan.tofucraft.recipe.TFShapedRecipe;
+import baguchan.tofucraft.recipe.TFShapelessRecipe;
+import baguchan.tofucraft.recipe.TofuPotRecipe;
+import baguchan.tofucraft.recipe.TofuPotShapelessRecipe;
 import baguchan.tofucraft.recipe.TofuWorkStationRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
@@ -26,6 +31,14 @@ public class TofuRecipes {
 	public static final RegistryObject<BitternSerializer> RECIPE_BITTERN = RECIPE_SERIALIZERS.register("bittern", BitternSerializer::new);
 	public static final RegistryObject<RecipeType<TofuWorkStationRecipe>> RECIPETYPE_TOFU_WORK_STATION = RECIPE_TYPES.register("tofu_work_station", () -> register(TofuCraftReload.prefix("tofu_work_station")));
 	public static final RegistryObject<TofuWorkStationRecipe.Serializer> RECIPE_TOFU_WORK_STATION = RECIPE_SERIALIZERS.register("tofu_work_station", TofuWorkStationRecipe.Serializer::new);
+
+	public static final RegistryObject<RecipeType<TofuPotRecipe>> RECIPETYPE_TOFU_POT = RECIPE_TYPES.register("tofu_pot", () -> register(TofuCraftReload.prefix("tofu_pot")));
+	public static final RegistryObject<TofuPotShapelessRecipe.Serializer> RECIPE_TOFU_POT_SHAPELESS = RECIPE_SERIALIZERS.register("tofu_pot_shapeless", TofuPotShapelessRecipe.Serializer::new);
+
+	public static final RegistryObject<RecipeType<TFCraftingRecipe>> RECIPETYPE_TF_CRAFT = RECIPE_TYPES.register("tf_craft", () -> register(TofuCraftReload.prefix("tf_craft")));
+	public static final RegistryObject<TFShapelessRecipe.Serializer> RECIPE_TF_CRAFT_SHAPELESS = RECIPE_SERIALIZERS.register("tf_craft_shapeless", TFShapelessRecipe.Serializer::new);
+	public static final RegistryObject<TFShapedRecipe.Serializer> RECIPE_TF_CRAFT_SHAPED = RECIPE_SERIALIZERS.register("tf_craft_shaped", TFShapedRecipe.Serializer::new);
+
 
 	static <T extends Recipe<?>> RecipeType<T> register(final ResourceLocation p_44120_) {
 		return new RecipeType<T>() {

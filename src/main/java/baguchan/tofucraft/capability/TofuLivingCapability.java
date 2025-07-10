@@ -34,6 +34,7 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 
 	public int saltBoostCooldown = 0;
 	public int saltBoost = 0;
+	public int wolfEatCooldown;
 
 	public void tick(Entity entity) {
 		if (entity.level().isClientSide) {
@@ -83,7 +84,23 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 				this.tofuPortalTimer -= 4;
 			}
 		}
+		this.handleFood(entity);
 	}
+
+	private void handleFood(Entity entity) {
+		if (wolfEatCooldown > 0) {
+			wolfEatCooldown--;
+		}
+	}
+
+	public boolean isWolfEatCooldown() {
+		return this.wolfEatCooldown > 0;
+	}
+
+	public void setWolfEatCooldown(int wolfEatCooldown) {
+		this.wolfEatCooldown = wolfEatCooldown;
+	}
+
 
 	private void handleSaltBoost(Entity entity) {
 		if (entity instanceof LivingEntity livingEntity) {
@@ -182,11 +199,17 @@ public class TofuLivingCapability implements ICapabilityProvider, ICapabilitySer
 		CompoundTag nbt = new CompoundTag();
 		nbt.putInt("SaltBoost", this.saltBoost);
 		nbt.putInt("SaltBoostCooldown", this.saltBoostCooldown);
+		if (wolfEatCooldown > 0) {
+			nbt.putInt("wolf_eat_cooldown", this.wolfEatCooldown);
+		}
 		return nbt;
 	}
 
 	public void deserializeNBT(CompoundTag nbt) {
 		this.saltBoost = nbt.getInt("SaltBoost");
 		this.saltBoostCooldown = nbt.getInt("SaltBoostCooldown");
+		if (nbt.contains("wolf_eat_cooldown")) {
+			this.wolfEatCooldown = nbt.getInt("wolf_eat_cooldown");
+		}
 	}
 }

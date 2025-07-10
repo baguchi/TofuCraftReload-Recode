@@ -9,7 +9,7 @@
       "tag": "forge:eggs"
     },
     "W": {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     }
   },
   "pattern": [

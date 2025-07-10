@@ -1,6 +1,9 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 400,
+  "exp": 0.6,
+  "fluid": [],
   "ingredients": [
     {
       "item": "minecraft:brown_mushroom"
@@ -29,7 +32,7 @@
       "item": "minecraft:milk_bucket"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "forge:crops/wheat"
     },
     {
       "item": "minecraft:bowl"

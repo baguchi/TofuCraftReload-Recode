@@ -1,0 +1,27 @@
+{
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "fast_food",
+  "cook_time": 340,
+  "exp": 0.1,
+  "fluid": [],
+  "ingredients": [
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "tofucraft:salt"
+    },
+    {
+      "item": "tofucraft:salt"
+    },
+    {
+      "item": "tofucraft:salt"
+    },
+    {
+      "item": "tofucraft:salt"
+    }
+  ],
+  "result": {
+    "item": "tofucraft:monster_jerky"
+  }
+}
