@@ -3,6 +3,7 @@ package baguchan.tofucraft.inventory;
 import baguchan.tofucraft.blockentity.tfenergy.TFCraftingTableBlockEntity;
 import baguchan.tofucraft.inventory.slot.TofuPotResultSlot;
 import baguchan.tofucraft.registry.TofuMenus;
+import baguchan.tofucraft.registry.TofuRecipeBookTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -185,7 +186,7 @@ public class TFCraftingTableMenu extends RecipeBookMenu<Container> {
 
 	@Override
 	public RecipeBookType getRecipeBookType() {
-		return RecipeBookType.valueOf("TOFUCRAFT_TF_CRAFT");
+		return TofuRecipeBookTypes.TF_CRAFT;
 	}
 
 	@Override

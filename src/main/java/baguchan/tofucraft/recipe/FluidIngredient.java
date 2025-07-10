@@ -71,7 +71,7 @@ public class FluidIngredient implements Predicate<FluidStack> {
 				return p_43914_.isEmpty();
 			} else {
 				for (FluidStack fluidstack : this.fluidStacks) {
-					if (fluidstack.containsFluid(p_43914_)) {
+					if (p_43914_.containsFluid(fluidstack)) {
 						return true;
 					}
 				}

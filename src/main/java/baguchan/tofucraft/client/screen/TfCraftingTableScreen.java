@@ -67,8 +67,9 @@ public class TfCraftingTableScreen extends AbstractContainerScreen<TFCraftingTab
 
 	@Override
 	public void render(GuiGraphics gui, final int mouseX, final int mouseY, float partialTicks) {
+		this.renderBackground(gui);
+
 		if (this.recipeBookComponent.isVisible() && this.widthTooNarrow) {
-			this.renderBackground(gui);
 			this.recipeBookComponent.render(gui, mouseX, mouseY, partialTicks);
 		} else {
 			super.render(gui, mouseX, mouseY, partialTicks);

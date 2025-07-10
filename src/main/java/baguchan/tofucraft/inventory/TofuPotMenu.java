@@ -3,6 +3,7 @@ package baguchan.tofucraft.inventory;
 import baguchan.tofucraft.blockentity.TofuPotBlockEntity;
 import baguchan.tofucraft.inventory.slot.TofuPotResultSlot;
 import baguchan.tofucraft.registry.TofuMenus;
+import baguchan.tofucraft.registry.TofuRecipeBookTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -27,7 +28,7 @@ public class TofuPotMenu extends RecipeBookMenu<Container> {
 	protected final Level level;
 
 	public TofuPotMenu(int windowId, Inventory playerInventory) {
-		this(windowId, playerInventory, new SimpleContainer(13), new SimpleContainerData(2));
+		this(windowId, playerInventory, new SimpleContainer(14), new SimpleContainerData(2));
 	}
 
 	public TofuPotMenu(int windowId, Inventory playerInventory, Container furnaceInventoryIn, ContainerData cookingPotDataIn) {
@@ -176,7 +177,7 @@ public class TofuPotMenu extends RecipeBookMenu<Container> {
 
 	@Override
 	public RecipeBookType getRecipeBookType() {
-		return RecipeBookType.valueOf("TOFUCRAFT_COOKING");
+		return TofuRecipeBookTypes.COOKING;
 	}
 
 	@Override
