@@ -103,7 +103,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		if (tfoven.getEnergyStored() > 0) {
 			if (tfoven.refreshTime <= 0) {
 
-				Optional<TFCraftingRecipe> optional = tfoven.quickCheck.getRecipeFor(new SimpleContainer(tfoven.inventory.toArray(ItemStack[]::new)), level);
+				Optional<TFCraftingRecipe> optional = tfoven.quickCheck.getRecipeFor(new SimpleContainer(tfoven.inventory.stream().limit(9).toArray(ItemStack[]::new)), level);
 
 				if (optional.isPresent()) {
 					tfoven.progressMax = optional.get().getNeedTF() / 10;
@@ -138,7 +138,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 	private boolean burn(RegistryAccess p_266740_, TFCraftingRecipe p_300910_, NonNullList<ItemStack> p_267073_) {
 		if (p_300910_ != null) {
-			ItemStack itemstack1 = (p_300910_).assemble(new SimpleContainer(this.inventory.toArray(ItemStack[]::new)), this.level.registryAccess());
+			ItemStack itemstack1 = (p_300910_).assemble(new SimpleContainer(this.inventory.stream().limit(9).toArray(ItemStack[]::new)), this.level.registryAccess());
 			ItemStack itemstack2 = p_267073_.get(9);
 			if (itemstack2.isEmpty()) {
 				p_267073_.set(9, itemstack1.copy());
