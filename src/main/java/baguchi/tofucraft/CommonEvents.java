@@ -634,6 +634,18 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
+	public static void onPotionEffectRemove(MobEffectEvent.Expired event) {
+		if (event.getEffectInstance() != null) {
+			if (event.getEffectInstance().is(TofuEffects.ZUNDAFIED)) {
+				event.getEntity().getData(TofuAttachments.TOFU_LIVING.get()).setZundafied(event.getEntity(), false);
+			}
+			if (event.getEffectInstance().is(TofuEffects.HEART_RECOVER)) {
+				event.getEntity().getData(TofuAttachments.TOFU_LIVING.get()).setRecoverHealth(event.getEntity(), 0);
+			}
+		}
+	}
+
+	@SubscribeEvent
 	public static void onPotionEffectApplied(MobEffectEvent.Applicable event) {
 		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.BLINDNESS) {
 			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
