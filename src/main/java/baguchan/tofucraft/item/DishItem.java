@@ -63,7 +63,10 @@ public class DishItem extends Item {
 		}
 
 		if (this.salt) {
-			livingEntity.addEffect(new MobEffectInstance(TofuEffects.SALT_BOOST, itemStack.getFoodProperties(livingEntity).nutrition() * 20 * 60));
+			FoodProperties foodProperties = this.getFoodProperties(itemStack, livingEntity);
+			if (foodProperties != null) {
+				livingEntity.addEffect(new MobEffectInstance(TofuEffects.SALT_BOOST, foodProperties.nutrition() * 20 * 60));
+			}
 		}
 		return resultItem;
 	}
