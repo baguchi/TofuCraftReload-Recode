@@ -42,7 +42,7 @@ public class TofuScoopItem extends Item {
 		Level worldIn = context.getLevel();
 		BlockPos pos = context.getClickedPos();
 		ItemStack stack = context.getItemInHand();
-		if (context.getLevel().getBlockState(context.getClickedPos()).is(TofuTags.Blocks.SOFT_TOFU)) {
+		if (context.getLevel().getBlockState(context.getClickedPos()).is(TofuTags.Blocks.PICKABLE_TOFU)) {
 			ItemStack stack2 = new ItemStack(Item.BY_BLOCK.get(context.getLevel().getBlockState(context.getClickedPos()).getBlock()));
 			worldIn.levelEvent(2001, context.getClickedPos(), Block.getId(worldIn.getBlockState(context.getClickedPos())));
 			worldIn.removeBlock(context.getClickedPos(), false);

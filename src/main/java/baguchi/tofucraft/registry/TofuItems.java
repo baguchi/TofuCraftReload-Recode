@@ -3,6 +3,7 @@ package baguchi.tofucraft.registry;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.api.tfenergy.TFEnergyData;
 import baguchi.tofucraft.data.generator.CustomTagGenerator;
+import baguchi.tofucraft.datamap.TofuHarden;
 import baguchi.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
 import baguchi.tofucraft.item.ApricotItem;
 import baguchi.tofucraft.item.BugleItem;
@@ -81,6 +82,7 @@ import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -397,7 +399,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> ROLLINGPIN = ITEMS.registerItem("rollingpin", (properties) -> new RollingPinItem((properties)));
 
 	public static final DeferredHolder<Item, Item> BUGLE = ITEMS.registerItem("bugle", (properties) -> new BugleItem((properties).stacksTo(1)));
-	public static final DeferredHolder<Item, Item> TOFUSCOOP = ITEMS.registerItem("tofuscoop", (properties) -> new TofuScoopItem((properties).stacksTo(1).durability(264)));
+	public static final DeferredHolder<Item, Item> TOFUSCOOP = ITEMS.registerItem("tofuscoop", (properties) -> new TofuScoopItem((properties).stacksTo(1).durability(364)));
 	public static final DeferredHolder<Item, Item> TOFUSTICK = ITEMS.registerItem("tofustick", (properties) -> new TofuStickItem((properties).stacksTo(1).rarity(Rarity.UNCOMMON).durability(264).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
 	public static final DeferredHolder<Item, Item> FUKUMAME = ITEMS.registerItem("fukumame", (properties) -> new FukumameItem((properties).stacksTo(1).enchantable(3).durability(64)));
 	public static final DeferredHolder<Item, Item> NETHER_FUKUMAME = ITEMS.registerItem("nether_fukumame", (properties) -> new NetherFukumameItem((properties).stacksTo(1).enchantable(3).durability(64)));
@@ -589,12 +591,15 @@ public class TofuItems {
 
 			public ItemStack execute(BlockSource p_123561_, ItemStack p_123562_) {
 				BlockPos blockpos = p_123561_.pos().relative(p_123561_.state().getValue(DispenserBlock.FACING));
-				if (p_123561_.level().getBlockState(blockpos).is(TofuTags.Blocks.SOFT_TOFU)) {
-					ItemStack stack = new ItemStack(Item.BY_BLOCK.get(p_123561_.level().getBlockState(blockpos).getBlock()));
-					p_123561_.level().levelEvent(2001, blockpos, Block.getId(p_123561_.level().getBlockState(blockpos)));
+				BlockState state = p_123561_.level().getBlockState(blockpos);
+				if (state.is(TofuTags.Blocks.PICKABLE_TOFU)) {
+					ItemStack stack = new ItemStack(Item.BY_BLOCK.get(state.getBlock()));
+					p_123561_.level().levelEvent(2001, blockpos, Block.getId(state));
 					p_123561_.level().removeBlock(blockpos, false);
 					this.defaultDispenseItemBehavior.dispense(p_123561_, stack);
-					p_123562_.hurtAndBreak(1, p_123561_.level(), null, p_348118_ -> {
+					TofuHarden harden = TofuDataMaps.HARDEN_DATA.get(state.getBlock());
+					int i = harden != null ? harden.level() : 0;
+					p_123562_.hurtAndBreak(1 + i, p_123561_.level(), null, p_348118_ -> {
 					});
 
 					setSuccess(true);

@@ -1295,6 +1295,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', Blocks.IRON_BARS)
 				.unlockedBy("has_item", has(Blocks.IRON_BARS))
 				.save(this.output);
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.TOFUSCOOP.get())
+				.pattern("#")
+				.pattern("X")
+				.pattern("X")
+				.define('X', Tags.Items.RODS_WOODEN)
+				.define('#', TofuBlocks.METAL_TOFU_GRATE)
+				.unlockedBy("has_item", has(TofuBlocks.METAL_TOFU_GRATE))
+				.save(this.output, prefix("metal_tofu_scoop"));
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.FUKUMAME.get())
 				.pattern("###")
