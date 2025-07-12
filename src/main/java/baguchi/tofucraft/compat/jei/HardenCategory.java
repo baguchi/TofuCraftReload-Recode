@@ -1,6 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
-/*
+
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.HardenRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -91,4 +91,4 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 		background.draw(stack);
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
-}*/
+}

@@ -1,7 +1,38 @@
 package baguchi.tofucraft.compat.jei;
 
 
-/*
+import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.client.screen.TFOvenScreen;
+import baguchi.tofucraft.client.screen.TfCraftingTableScreen;
+import baguchi.tofucraft.client.screen.TofuPotScreen;
+import baguchi.tofucraft.inventory.TFCraftingTableMenu;
+import baguchi.tofucraft.inventory.TofuPotMenu;
+import baguchi.tofucraft.recipe.BitternRecipe;
+import baguchi.tofucraft.recipe.HardenRecipe;
+import baguchi.tofucraft.recipe.TFCraftingRecipe;
+import baguchi.tofucraft.recipe.TofuPotRecipe;
+import baguchi.tofucraft.registry.TofuBlocks;
+import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuMenus;
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.recipe.types.IRecipeType;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.IRecipeTransferRegistration;
+import mezz.jei.common.Internal;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.block.Blocks;
+
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
 	public static final ResourceLocation PLUGIN_ID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "jei_plugin");
@@ -54,6 +85,12 @@ public class JEIPlugin implements IModPlugin {
 		registration.addRecipeTransferHandler(TofuPotMenu.class, TofuMenus.TOFU_POT.get(), TOFU_POT_RECIPE_JEI_TYPE, 0, 12, 13, 36);
 	}
 
+	@Override
+	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+		registration.addRecipeClickArea(TofuPotScreen.class, 103, 36, 28, 23, TOFU_POT_RECIPE_JEI_TYPE);
+		registration.addRecipeClickArea(TfCraftingTableScreen.class, 88, 32, 28, 23, TF_RECIPE_JEI_TYPE);
+		registration.addRecipeClickArea(TFOvenScreen.class, 70, 14, 28, 23, RecipeTypes.SMELTING);
+	}
 
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
@@ -82,4 +119,3 @@ public class JEIPlugin implements IModPlugin {
 		return PLUGIN_ID;
 	}
 }
-*/
