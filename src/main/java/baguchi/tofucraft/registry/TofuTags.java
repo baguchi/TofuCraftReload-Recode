@@ -29,7 +29,7 @@ public class TofuTags {
 	}
 
 	public static class Blocks {
-		public static final TagKey<Block> TOFU_METAL = tag("tofu_metal");
+		public static final TagKey<Block> PISTON_BREAKABLE_TOFU = tag("piston_breakable_tofu");
 		public static final TagKey<Block> SOFT_TOFU = tag("soft_tofu");
 
 		public static final TagKey<Block> TOFU_TERRAIN = tag("tofu_terrain");

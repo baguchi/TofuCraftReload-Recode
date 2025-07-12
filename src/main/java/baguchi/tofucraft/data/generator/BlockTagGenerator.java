@@ -84,6 +84,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 
 		tag(TofuTags.Blocks.SOFT_TOFU).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
 				, TofuBlocks.GRILLEDTOFU.get(), TofuBlocks.ZUNDATOFU.get(), TofuBlocks.MINCEDTOFU.get());
+		tag(TofuTags.Blocks.PISTON_BREAKABLE_TOFU).addTag(TofuTags.Blocks.SOFT_TOFU).add(TofuBlocks.METALTOFU.get());
 		tag(TofuTags.Blocks.TOFU_TERRAIN).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.TOFU_TERRAIN_ISHI.get());
 
 		tag(BlockTags.REPLACEABLE).add(TofuBlocks.LEEK.get());

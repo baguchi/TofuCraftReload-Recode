@@ -79,7 +79,7 @@ public class TFOvenMenu extends RecipeBookMenu {
 	}
 
 	public Slot getResultSlot() {
-		return this.slots.get(2);
+		return this.slots.get(1);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class TFOvenMenu extends RecipeBookMenu {
 	public RecipeBookMenu.PostPlaceAction handlePlacement(
 			boolean p_361547_, boolean p_363944_, RecipeHolder<?> p_360938_, final ServerLevel p_379475_, Inventory p_361954_
 	) {
-		final List<Slot> list = List.of(this.getSlot(0), this.getSlot(2));
+		final List<Slot> list = List.of(this.getSlot(0));
 		return ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<AbstractCookingRecipe>() {
 			@Override
 			public void fillCraftSlotsStackedContents(StackedItemContents p_361824_) {

@@ -47,10 +47,6 @@ public class OvenRecipeBookComponent extends RecipeBookComponent<TFOvenMenu> {
 		p_379383_.setResult(this.menu.getResultSlot(), p_380984_, p_380318_.result());
 		if (p_380318_ instanceof FurnaceRecipeDisplay furnacerecipedisplay) {
 			p_379383_.setInput(this.menu.slots.get(0), p_380984_, furnacerecipedisplay.ingredient());
-			Slot slot = this.menu.slots.get(1);
-			if (slot.getItem().isEmpty()) {
-				p_379383_.setInput(slot, p_380984_, furnacerecipedisplay.fuel());
-			}
 		}
 	}
 
