@@ -183,8 +183,6 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 			buffer.writeEnum(recipe.category);
 			buffer.writeVarInt(recipe.ingredients.size());
 
-			buffer.writeVarInt(recipe.ingredients.size());
-
 			for (Ingredient ingredient : recipe.ingredients) {
 				ingredient.toNetwork(buffer);
 			}
