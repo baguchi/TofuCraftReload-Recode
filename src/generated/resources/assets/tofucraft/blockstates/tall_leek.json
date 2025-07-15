@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "tofucraft:block/tall_leek_bottom"
+    },
+    "half=upper": {
+      "model": "tofucraft:block/tall_leek_top"
+    }
+  }
+}

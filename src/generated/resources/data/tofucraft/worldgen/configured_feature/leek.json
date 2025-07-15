@@ -6,10 +6,24 @@
         "type": "minecraft:simple_block",
         "config": {
           "to_place": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "tofucraft:blockleek"
-            }
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+                  "Name": "tofucraft:blockleek"
+                },
+                "weight": 10
+              },
+              {
+                "data": {
+                  "Name": "tofucraft:tall_leek",
+                  "Properties": {
+                    "half": "lower"
+                  }
+                },
+                "weight": 1
+              }
+            ]
           }
         }
       },

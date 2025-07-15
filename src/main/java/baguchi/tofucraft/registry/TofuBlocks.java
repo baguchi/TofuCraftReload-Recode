@@ -12,6 +12,7 @@ import baguchi.tofucraft.block.LeekBlock;
 import baguchi.tofucraft.block.MorijioBlock;
 import baguchi.tofucraft.block.RiceBlock;
 import baguchi.tofucraft.block.SuspiciousTofuTerrainBlock;
+import baguchi.tofucraft.block.TallLeekBlock;
 import baguchi.tofucraft.block.TofuBlock;
 import baguchi.tofucraft.block.TofuCakeBlock;
 import baguchi.tofucraft.block.TofuDetectorBlock;
@@ -334,6 +335,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> TOFU_FLOWER = register("tofu_flower", (properties) -> new TofuFlowerBlock(TofuEffects.SOY_HEALTHY, 20.0F, properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.GRASS));
 
 	public static final DeferredBlock<Block> LEEK = register("blockleek", (properties) -> new LeekBlock(properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.GRASS));
+	public static final DeferredBlock<Block> TALL_LEEK = register("tall_leek", (properties) -> new TallLeekBlock(properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.GRASS));
 
 	public static final DeferredBlock<Block> SAPLING_APRICOT = register("sapling_apricot", (properties) -> new ApricotSaplingBlock(TofuTreeGrowers.APRICOT_TREE, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING));
 	public static final DeferredBlock<Block> LEAVES_APRICOT = register("leaves_apricot", (properties) -> new ApricotLeavesBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.2F).noOcclusion().isSuffocating((state, getter, pos) -> false).randomTicks().sound(SoundType.GRASS));

@@ -207,6 +207,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.ISHI_TOFUGEM_ORE,
 						TofuBlocks.TOFU_BEDROCK,
 						TofuBlocks.LEEK,
+						TofuBlocks.TALL_LEEK,
 						TofuBlocks.LEEK_GREEN_STEM,
 						TofuBlocks.LEEK_GREEN_PLANKS,
 						TofuBlocks.LEEK_GREEN_PLANKS_SLAB,

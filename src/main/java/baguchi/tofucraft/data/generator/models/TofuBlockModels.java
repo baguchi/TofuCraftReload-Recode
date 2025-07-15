@@ -192,6 +192,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 
 		this.createCrossBlockWithDefaultItem(TofuBlocks.TOFU_FLOWER.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		this.createCrossBlockWithDefaultItem(TofuBlocks.LEEK.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+		this.createDoublePlantWithDefaultItem(TofuBlocks.TALL_LEEK.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 
 		createTofuCakeBlock(TofuBlocks.TOFUCAKE.get());
 		createTofuCakeBlock(TofuBlocks.ZUNDATOFUCAKE.get());

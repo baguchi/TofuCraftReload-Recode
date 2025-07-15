@@ -84,6 +84,12 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 			}
 
 			BlockState blockstate1 = p_221270_.getBlockState(blockpos1);
+			if (blockstate1.is(blockstate.getBlock()) && p_221271_.nextInt(10) == 0) {
+				BonemealableBlock bonemealableblock = (BonemealableBlock) blockstate.getBlock();
+				if (bonemealableblock.isValidBonemealTarget(p_221270_, blockpos1, blockstate1)) {
+					bonemealableblock.performBonemeal(p_221270_, p_221271_, blockpos1, blockstate1);
+				}
+			}
 
 			if (blockstate1.isAir()) {
 				Holder<PlacedFeature> holder;
