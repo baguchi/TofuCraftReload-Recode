@@ -39,6 +39,7 @@ public class TallLeekBlock extends DoublePlantBlock implements BonemealableBlock
 
 	public void growLeek(ServerLevel p_54860_, BlockPos p_54861_, BlockState p_54862_, RandomSource p_54863_) {
 		p_54860_.removeBlock(p_54861_, true);
+		p_54860_.removeBlock(p_54861_.above(), true);
 		this.getFeature(p_54860_).ifPresent((p_256352_) -> {
 			BlockGrowFeatureEvent event = EventHooks.fireBlockGrowFeature(p_54860_, p_54863_, p_54861_, p_256352_);
 			if (event.isCanceled()) return;
