@@ -45,6 +45,7 @@ public class TallLeekBlock extends DoublePlantBlock implements BonemealableBlock
 			if (event.isCanceled()) return;
 			p_256352_.value().place(p_54860_, p_54860_.getChunkSource().getGenerator(), p_54863_, p_54861_);
 		});
+
 	}
 
 	@Override
