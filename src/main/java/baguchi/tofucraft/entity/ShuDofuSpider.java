@@ -595,7 +595,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		List<Entity> list = this.level().getEntities(this, aabb);
 		if (!list.isEmpty()) {
 			for (Entity entity : list) {
-				if (entity != this && !(entity instanceof PartEntity<?>) && entity.isAttackable() && (!(entity instanceof LivingEntity livingEntity) || !this.canAttack(livingEntity)) && !(entity instanceof NattoCobWebEntity)) {
+				if (entity != this && !(entity instanceof PartEntity<?>) && entity.isAttackable() && (!(entity instanceof LivingEntity livingEntity) || this.canAttack(livingEntity)) && !(entity instanceof NattoCobWebEntity)) {
 					this.graspAttack(entity);
 					break;
 				}
