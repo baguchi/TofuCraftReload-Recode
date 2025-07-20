@@ -78,7 +78,7 @@ public class ZundaArrow extends AbstractArrow {
 			Entity entity1 = this.getOwner();
 			float f = (float) this.getDeltaMovement().length();
 			//TODO BASE DAMAGE
-			double d0 = 2F;
+			double d0 = 2.0F;
 			DamageSource source = zundaAttack(this.getOwner());
 			if (this.level() instanceof ServerLevel serverlevel) {
 				if (this.getWeaponItem() != null) {
@@ -86,6 +86,11 @@ public class ZundaArrow extends AbstractArrow {
 				}
 				int i = entity.getRemainingFireTicks();
 				int j = Mth.ceil(Mth.clamp((double) f * d0, 0.0, 2.147483647E9));
+
+				if (this.isCritArrow()) {
+					long k = this.random.nextInt(j / 2 + 2);
+					j = (int) Math.min(k + j, 2147483647L);
+				}
 
 				if (p_36757_.getEntity() instanceof TofuSlime slime) {
 					this.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 1.0F);
