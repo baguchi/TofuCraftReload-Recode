@@ -2,9 +2,8 @@ package baguchi.tofucraft.attachment;
 
 import baguchi.bagus_lib.util.data.BagusAnimationData;
 import baguchi.tofucraft.entity.projectile.ZundaBuster;
-import baguchi.tofucraft.network.RecoverHealthPacket;
-import baguchi.tofucraft.network.ZundafiedPacket;
 import baguchi.tofucraft.registry.TofuAnimations;
+import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.utils.ClientUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -20,7 +19,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.common.util.ValueIOSerializable;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 public class TofuLivingAttachment implements ValueIOSerializable {
 	public boolean isInsidePortal = false;
@@ -105,7 +103,7 @@ public class TofuLivingAttachment implements ValueIOSerializable {
 	public void setRecoverHealth(Entity entity, float recoverHealth) {
 		this.recoverHealth = recoverHealth;
 		if (!entity.level().isClientSide() && entity instanceof LivingEntity living) {
-			PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, new RecoverHealthPacket(living, recoverHealth));
+			entity.syncData(TofuAttachments.TOFU_LIVING);
 		}
 	}
 
@@ -116,7 +114,7 @@ public class TofuLivingAttachment implements ValueIOSerializable {
 	public void setZundafied(Entity entity, boolean zundafied) {
 		this.zundafied = zundafied;
 		if (!entity.level().isClientSide() && entity instanceof LivingEntity living) {
-			PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, new ZundafiedPacket(living, zundafied));
+			entity.syncData(TofuAttachments.TOFU_LIVING);
 		}
 	}
 

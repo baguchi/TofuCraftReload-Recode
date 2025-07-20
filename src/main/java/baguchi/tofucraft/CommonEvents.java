@@ -6,8 +6,6 @@ import baguchi.tofucraft.attachment.TofuPlayerAttachment;
 import baguchi.tofucraft.entity.projectile.UnstableZundamaEntity;
 import baguchi.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchi.tofucraft.network.AddLearningPacket;
-import baguchi.tofucraft.network.RecoverHealthPacket;
-import baguchi.tofucraft.network.ZundafiedPacket;
 import baguchi.tofucraft.registry.TofuAdvancements;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -491,10 +489,7 @@ public class CommonEvents {
 		Player playerEntity = event.getEntity();
 
 			if (!playerEntity.level().isClientSide()) {
-				TofuLivingAttachment attachment = playerEntity.getData(TofuAttachments.TOFU_LIVING.get());
-				PacketDistributor.sendToPlayersTrackingEntityAndSelf(playerEntity, new RecoverHealthPacket(playerEntity, attachment.getRecoverHealth()));
-				PacketDistributor.sendToPlayersTrackingEntityAndSelf(playerEntity, new ZundafiedPacket(playerEntity, attachment.isZundafied()));
-
+				playerEntity.syncData(TofuAttachments.TOFU_LIVING);
 			}
 
 	}
@@ -505,10 +500,7 @@ public class CommonEvents {
 
 		if (entity instanceof LivingEntity livingEntity) {
 			if (!entity.level().isClientSide()) {
-				TofuLivingAttachment attachment = livingEntity.getData(TofuAttachments.TOFU_LIVING.get());
-				PacketDistributor.sendToPlayersTrackingEntityAndSelf(livingEntity, new RecoverHealthPacket(livingEntity, attachment.getRecoverHealth()));
-				PacketDistributor.sendToPlayersTrackingEntityAndSelf(livingEntity, new ZundafiedPacket(livingEntity, attachment.isZundafied()));
-
+				livingEntity.syncData(TofuAttachments.TOFU_LIVING);
 			}
 		}
 	}

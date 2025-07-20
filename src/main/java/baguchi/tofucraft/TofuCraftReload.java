@@ -9,12 +9,10 @@ import baguchi.tofucraft.data.resources.registries.TofunianVariants;
 import baguchi.tofucraft.event.CraftingEvents;
 import baguchi.tofucraft.network.AddLearningPacket;
 import baguchi.tofucraft.network.BossInfoPacket;
-import baguchi.tofucraft.network.RecoverHealthPacket;
 import baguchi.tofucraft.network.SaltFurnaceBitternPacket;
 import baguchi.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchi.tofucraft.network.SoyMilkDrinkedPacket;
 import baguchi.tofucraft.network.TFStorageSoymilkPacket;
-import baguchi.tofucraft.network.ZundafiedPacket;
 import baguchi.tofucraft.registry.ModInteractionInformations;
 import baguchi.tofucraft.registry.TofuAdvancements;
 import baguchi.tofucraft.registry.TofuAttachments;
@@ -215,8 +213,6 @@ public class TofuCraftReload {
 		registrar.playToClient(TFStorageSoymilkPacket.TYPE, TFStorageSoymilkPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playToClient(BossInfoPacket.Display.TYPE, BossInfoPacket.Display.STREAM_CODEC, BossInfoPacket.Display::execute);
 		registrar.playToClient(BossInfoPacket.Remove.TYPE, BossInfoPacket.Remove.STREAM_CODEC, BossInfoPacket.Remove::execute);
-		registrar.playToClient(RecoverHealthPacket.TYPE, RecoverHealthPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
-		registrar.playToClient(ZundafiedPacket.TYPE, ZundafiedPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playToClient(AddLearningPacket.TYPE, AddLearningPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 	}
 
