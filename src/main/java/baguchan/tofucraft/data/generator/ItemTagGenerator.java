@@ -131,5 +131,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
 
 		this.tag(TofuTags.Items.TOFU_COW_FOOD).add(TofuItems.LEEK.get());
 		this.tag(TofuTags.Items.TOFU_PIG_FOOD).add(TofuItems.LEEK.get(), TofuItems.NATTO.get());
+		this.tag(Tags.Items.MUSIC_DISCS).add(TofuItems.MUSIC_DISC_GREEN_BRANCH.get());
 	}
 }
