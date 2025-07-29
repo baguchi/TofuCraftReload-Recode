@@ -4,6 +4,7 @@ import baguchi.tofucraft.attachment.SoyHealthAttachment;
 import baguchi.tofucraft.attachment.TofuLivingAttachment;
 import baguchi.tofucraft.attachment.TofuPlayerAttachment;
 import baguchi.tofucraft.entity.projectile.UnstableZundamaEntity;
+import baguchi.tofucraft.item.TofuBookItem;
 import baguchi.tofucraft.item.armor.BreakableTofuBootsItem;
 import baguchi.tofucraft.network.AddLearningPacket;
 import baguchi.tofucraft.registry.TofuAdvancements;
@@ -311,6 +312,7 @@ public class CommonEvents {
 			event.setCancellationResult(InteractionResult.SUCCESS);
 			event.setCanceled(true);
 		}
+		TofuBookItem.interactWithBlock(event);
 	}
 
 
