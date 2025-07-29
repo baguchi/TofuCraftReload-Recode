@@ -8,7 +8,7 @@
       "translate": "advancements.tofucraft.tofupig_pop.title"
     },
     "description": {
-      "translate": "advancements.tofucraft.tofupig_pop.description"
+      "translate": "advancements.tofucraft.tofupig_pop.desc"
     },
     "frame": "challenge",
     "show_toast": true,

@@ -8,7 +8,7 @@
       "translate": "advancements.tofucraft.very_strange_soybeans.title"
     },
     "description": {
-      "translate": "advancements.tofucraft.very_strange_soybeans.description"
+      "translate": "advancements.tofucraft.very_strange_soybeans.desc"
     },
     "frame": "challenge",
     "show_toast": true,

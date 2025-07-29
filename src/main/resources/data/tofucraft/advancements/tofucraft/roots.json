@@ -7,7 +7,7 @@
       "translate": "advancements.tofucraft.root.title"
     },
     "description": {
-      "translate": "advancements.tofucraft.root.description"
+      "translate": "advancements.tofucraft.root.desc"
     },
     "frame": "task",
     "show_toast": true,

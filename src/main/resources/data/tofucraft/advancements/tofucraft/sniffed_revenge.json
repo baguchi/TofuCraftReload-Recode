@@ -8,7 +8,7 @@
       "translate": "advancements.tofucraft.sniffed_revenge.title"
     },
     "description": {
-      "translate": "advancements.tofucraft.sniffed_revenge.description"
+      "translate": "advancements.tofucraft.sniffed_revenge.desc"
     },
     "frame": "task",
     "show_toast": true,

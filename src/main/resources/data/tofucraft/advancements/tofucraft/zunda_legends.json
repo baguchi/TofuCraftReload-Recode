@@ -8,7 +8,7 @@
       "translate": "advancements.tofucraft.zunda_legends.title"
     },
     "description": {
-      "translate": "advancements.tofucraft.zunda_legends.description"
+      "translate": "advancements.tofucraft.zunda_legends.desc"
     },
     "frame": "challenge",
     "show_toast": true,

@@ -8,7 +8,7 @@
       "translate": "advancements.tofucraft.tofustick.title"
     },
     "description": {
-      "translate": "advancements.tofucraft.tofustick.description"
+      "translate": "advancements.tofucraft.tofustick.desc"
     },
     "frame": "goal",
     "show_toast": true,

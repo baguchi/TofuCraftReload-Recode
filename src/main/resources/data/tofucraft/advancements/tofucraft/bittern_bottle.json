@@ -8,7 +8,7 @@
       "translate": "advancements.tofucraft.bittern_bottle.title"
     },
     "description": {
-      "translate": "advancements.tofucraft.bittern_bottle.description"
+      "translate": "advancements.tofucraft.bittern_bottle.desc"
     },
     "frame": "task",
     "show_toast": true,

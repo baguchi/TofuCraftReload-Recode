@@ -32,7 +32,7 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.tofucraft.more_shiny_gear.description"
+      "translate": "advancements.tofucraft.more_shiny_gear.desc"
     },
     "frame": "challenge",
     "hidden": false,

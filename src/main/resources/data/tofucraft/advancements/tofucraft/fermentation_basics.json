@@ -8,7 +8,7 @@
       "translate": "advancements.tofucraft.fermentation_basics.title"
     },
     "description": {
-      "translate": "advancements.tofucraft.fermentation_basics.description"
+      "translate": "advancements.tofucraft.fermentation_basics.desc"
     },
     "frame": "task",
     "show_toast": true,

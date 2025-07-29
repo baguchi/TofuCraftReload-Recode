@@ -8,7 +8,7 @@
       "translate": "advancements.tofucraft.nether_tofu.title"
     },
     "description": {
-      "translate": "advancements.tofucraft.nether_tofu.description"
+      "translate": "advancements.tofucraft.nether_tofu.desc"
     },
     "frame": "goal",
     "show_toast": true,

@@ -8,7 +8,7 @@
       "translate" : "advancements.tofucraft.my_tofu_child.title"
     },
     "description" : {
-      "translate" : "advancements.tofucraft.my_tofu_child.description"
+      "translate": "advancements.tofucraft.my_tofu_child.desc"
     },
     "frame" : "task",
     "show_toast" : true,
