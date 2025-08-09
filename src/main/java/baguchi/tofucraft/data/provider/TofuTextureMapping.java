@@ -14,6 +14,15 @@ public class TofuTextureMapping {
 
 	public static final TextureSlot OVERLAY = TextureSlot.create("overlay");
 
+	public static TextureMapping cubeWithTop(Block p_387253_) {
+		ResourceLocation resourcelocation = getBlockTexture(p_387253_);
+		return cubeWithTop(resourcelocation);
+	}
+
+	public static TextureMapping cubeWithTop(ResourceLocation p_386993_) {
+		return (new TextureMapping()).put(TextureSlot.ALL, p_386993_.withSuffix("_top"));
+	}
+
 	public static TextureMapping doorTop(Block block) {
 		return new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(block)).put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_top")).copySlot(TextureSlot.TOP, TextureSlot.PARTICLE);
 	}

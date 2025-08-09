@@ -115,7 +115,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.wall(TofuBlocks.TOFUFENCE_SOUL.get())
 				.door(TofuBlocks.TOFUDOOR_SOUL.get())
 				.trapdoor(TofuBlocks.TOFUTRAPDOOR_SOUL.get());
-		familyWithExistingFullBlock(TofuBlocks.GRILLEDTOFU.get())
+		familyWithExistingFullBlockWithTop(TofuBlocks.GRILLEDTOFU.get())
 				.stairs(TofuBlocks.TOFUSTAIR_GRILLED.get())
 				.slab(TofuBlocks.TOFUSLAB_GRILLED.get())
 				.wall(TofuBlocks.TOFUFENCE_GRILLED.get())

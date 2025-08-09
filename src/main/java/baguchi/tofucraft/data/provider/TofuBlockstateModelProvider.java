@@ -186,6 +186,12 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 				);
 	}
 
+	public BlockFamilyProvider familyWithExistingFullBlockWithTop(Block fullBlock) {
+		BlockFamilyProvider provider = new BlockFamilyProvider(TofuTextureMapping.cubeWithTop(fullBlock));
+		provider.fullBlock = plainModel(ModelLocationUtils.getModelLocation(fullBlock));
+		return provider;
+	}
+
 	public static String getBlockName(Block p_387523_) {
 		ResourceLocation resourcelocation = BuiltInRegistries.BLOCK.getKey(p_387523_);
 		return resourcelocation.getPath();
