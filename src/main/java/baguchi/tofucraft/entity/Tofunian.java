@@ -1,6 +1,8 @@
 package baguchi.tofucraft.entity;
 
+import baguchi.tofucraft.api.entity.TofunianClothVariant;
 import baguchi.tofucraft.api.entity.TofunianVariant;
+import baguchi.tofucraft.data.resources.registries.TofunianClothVariants;
 import baguchi.tofucraft.data.resources.registries.TofunianVariants;
 import baguchi.tofucraft.entity.goal.CropHarvestGoal;
 import baguchi.tofucraft.entity.goal.DoSleepingGoal;
@@ -123,7 +125,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
-	private static final EntityDataAccessor<Holder<TofunianVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(Tofunian.class, TofuEntityDatas.TOFUNIAN_VARIANT.get());
+	private static final EntityDataAccessor<Holder<TofunianClothVariant>> DATA_CLOTH_VARIANT = SynchedEntityData.defineId(Tofunian.class, TofuEntityDatas.TOFUNIAN_CLOTH_VARIANT.get());
+	private static final EntityDataAccessor<Holder<TofunianVariant>> DATA_VARIANT = SynchedEntityData.defineId(Tofunian.class, TofuEntityDatas.TOFUNIAN_VARIANT.get());
 
 	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK.get(), 3, TofuItems.TOFUCOOKIE.get(), 3, TofuItems.TOFUGRILLED.get(), 1);
 
@@ -262,6 +265,12 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			} else {
 				tofunian.setVariant(tofunian1.getVariant());
 			}
+
+			if (this.random.nextBoolean()) {
+				tofunian.setTofunianVariant(this.getTofunianVariant());
+			} else {
+				tofunian.setTofunianVariant(tofunian1.getTofunianVariant());
+			}
 		}
 		return tofunian;
 	}
@@ -283,25 +292,42 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		builder.define(ROLE, "NORMAL");
 		builder.define(ACTION, "NORMAL");
 		RegistryAccess registryaccess = this.registryAccess();
-		Registry<TofunianVariant> registry = registryaccess.lookupOrThrow(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY);
-		builder.define(DATA_VARIANT_ID, registry.get(TofunianVariants.DEFAULT).or(registry::getAny).orElseThrow());
+		Registry<TofunianClothVariant> registry = registryaccess.lookupOrThrow(TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY);
+		builder.define(DATA_CLOTH_VARIANT, registry.get(TofunianClothVariants.DEFAULT).or(registry::getAny).orElseThrow());
+		Registry<TofunianVariant> registry2 = registryaccess.lookupOrThrow(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY);
+		builder.define(DATA_VARIANT, registry2.get(TofunianVariants.DEFAULT).or(registry2::getAny).orElseThrow());
 
 	}
 
-	public Holder<TofunianVariant> getVariant() {
-		return this.entityData.get(DATA_VARIANT_ID);
+	public Holder<TofunianClothVariant> getVariant() {
+		return this.entityData.get(DATA_CLOTH_VARIANT);
 	}
 
-	public void setVariant(Holder<TofunianVariant> p_332777_) {
-		this.entityData.set(DATA_VARIANT_ID, p_332777_);
+	public void setVariant(Holder<TofunianClothVariant> p_332777_) {
+		this.entityData.set(DATA_CLOTH_VARIANT, p_332777_);
+	}
+
+	public Holder<TofunianVariant> getTofunianVariant() {
+		return this.entityData.get(DATA_VARIANT);
+	}
+
+	public void setTofunianVariant(Holder<TofunianVariant> p_332777_) {
+		this.entityData.set(DATA_VARIANT, p_332777_);
+	}
+
+
+	@Nullable
+	public ResourceLocation getClothTexture() {
+		TofunianClothVariant tofunianClothVariant = this.getVariant().value();
+		if (this.getVariant().is(TofunianClothVariants.NORMAL)) {
+			return null;
+		}
+		return tofunianClothVariant.texture();
 	}
 
 	@Nullable
 	public ResourceLocation getTexture() {
-		TofunianVariant tofunianVariant = this.getVariant().value();
-		if (this.getVariant().is(TofunianVariants.NORMAL)) {
-			return null;
-		}
+		TofunianVariant tofunianVariant = this.getTofunianVariant().value();
 		return tofunianVariant.texture();
 	}
 
@@ -538,7 +564,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, EntitySpawnReason p_35284_, @org.jetbrains.annotations.Nullable SpawnGroupData p_35285_) {
 		Holder<Biome> holder = p_35282_.getBiome(this.blockPosition());
-		this.setVariant(TofunianVariants.getSpawnVariant(this.registryAccess(), holder));
+		this.setVariant(TofunianClothVariants.getSpawnVariant(this.registryAccess(), holder));
+		this.setTofunianVariant(TofunianVariants.getRandomVariant(this.registryAccess(), p_35282_.getRandom()));
 		return super.finalizeSpawn(p_35282_, p_35283_, p_35284_, p_35285_);
 	}
 
@@ -748,6 +775,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 		compound.putString("Roles", getRole().name());
 		VariantUtils.writeVariant(compound, this.getVariant());
+		compound.store("tofunian_variant", TofunianVariant.CODEC, this.getTofunianVariant());
 	}
 
 	public void readAdditionalSaveData(ValueInput compound) {
@@ -769,7 +797,12 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.villageCenter = compound.read("VillageCenter", BlockPos.CODEC).orElse(null);
 		setRole(Roles.get(compound.getStringOr("Roles", "")));
 
-		VariantUtils.readVariant(compound, TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY).ifPresent(this::setVariant);
+		VariantUtils.readVariant(compound, TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY).ifPresent(this::setVariant);
+
+		Optional<Holder<TofunianVariant>> optional = compound.read("tofunian_variant", TofunianVariant.CODEC);
+		if (optional.isPresent()) {
+			this.setTofunianVariant(optional.get());
+		}
 		setCanPickUpLoot(true);
 	}
 

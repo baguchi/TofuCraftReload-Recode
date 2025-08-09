@@ -2,9 +2,11 @@ package baguchi.tofucraft;
 
 import baguchi.tofucraft.api.TofuLearning;
 import baguchi.tofucraft.api.TofunianTradeManager;
+import baguchi.tofucraft.api.entity.TofunianClothVariant;
 import baguchi.tofucraft.api.entity.TofunianVariant;
 import baguchi.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchi.tofucraft.client.ClientRegistrar;
+import baguchi.tofucraft.data.resources.registries.TofunianClothVariants;
 import baguchi.tofucraft.data.resources.registries.TofunianVariants;
 import baguchi.tofucraft.event.CraftingEvents;
 import baguchi.tofucraft.network.AddLearningPacket;
@@ -103,6 +105,7 @@ public class TofuCraftReload {
 
 		modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> event.dataPackRegistry(TofuLearning.REGISTRY_KEY, TofuLearning.CODEC, TofuLearning.CODEC));
 
+		modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> event.dataPackRegistry(TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY, TofunianClothVariant.DIRECT_CODEC, TofunianClothVariant.DIRECT_CODEC));
 		modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> event.dataPackRegistry(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, TofunianVariant.DIRECT_CODEC, TofunianVariant.DIRECT_CODEC));
 
 		TofuBlocks.BLOCKS.register(modBus);

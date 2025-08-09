@@ -68,6 +68,9 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 				}
 			}
 		}
+		if (entity.texture != null) {
+			return entity.texture;
+		}
 		return LOCATION;
 	}
 
@@ -91,6 +94,7 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		renderState.waveAnimationState.copyFrom(tofunian.waveAnimationState);
 		renderState.actions = tofunian.getAction();
 		renderState.roles = tofunian.getRole();
+		renderState.clothTexture = tofunian.getClothTexture();
 		renderState.texture = tofunian.getTexture();
 	}
 }

@@ -14,5 +14,7 @@ public class TofunianRenderState extends AbstractTofunianRenderState {
 	public Tofunian.Actions actions;
 	public Tofunian.Roles roles;
 	@Nullable
+	public ResourceLocation clothTexture;
+	@Nullable
 	public ResourceLocation texture;
 }

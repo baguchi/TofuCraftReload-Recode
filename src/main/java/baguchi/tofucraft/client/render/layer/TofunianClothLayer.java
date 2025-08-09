@@ -30,7 +30,7 @@ public class TofunianClothLayer extends RenderLayer<TofunianRenderState, Tofunia
 			float p_117156_,
 			float p_117157_
 	) {
-		if (!p_117151_.isInvisible && p_117151_.texture != null) {
+		if (!p_117151_.isInvisible && p_117151_.clothTexture != null) {
 			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117151_), p_117148_, p_117149_, p_117150_, p_117151_, -1);
 		}
 	}
@@ -48,6 +48,6 @@ public class TofunianClothLayer extends RenderLayer<TofunianRenderState, Tofunia
 			}
 		}
 
-		return entity.texture;
+		return entity.clothTexture;
 	}
 }
