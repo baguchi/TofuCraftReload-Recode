@@ -2,6 +2,7 @@ package baguchi.tofucraft.data.resources.builder;
 
 import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.world.biome.TofuBiomeDefaultFeatures;
+import baguchi.tofucraft.world.gen.placement.TofuWorldPlacements;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.sounds.Music;
@@ -10,6 +11,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
@@ -118,7 +120,8 @@ public class TofuBiomeBuilders {
 	public static Biome mabouMountainBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
 		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
 		MobSpawnSettings.Builder builder1 = new MobSpawnSettings.Builder();
-		TofuBiomeDefaultFeatures.addMountainFeatures(builder);
+		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_MINCED_TOFU);
+
 		TofuBiomeDefaultFeatures.addMabouMountainFeatures(builder);
 		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
 		return makeDefaultBiome(builder, builder1, TofuSounds.ROUGH_GROUND_BGM);
