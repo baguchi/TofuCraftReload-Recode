@@ -10,6 +10,13 @@
           "name" : "tofucraft:tofukinu",
           "conditions" : [
             {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "nbt": "{Size:0}"
+              }
+            },
+            {
               "condition" : "minecraft:damage_source_properties",
               "predicate" : {
                 "source_entity" : {
@@ -23,7 +30,7 @@
                 "condition" : "minecraft:entity_properties",
                 "entity" : "this",
                 "predicate" : {
-                  "nbt" : "{ZundaConverting:1b}"
+                  "nbt": "{ZundaConverting:1}"
                 }
               }
             }
@@ -33,6 +40,13 @@
           "type" : "item",
           "name" : "tofucraft:tofukinu",
           "conditions" : [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "nbt": "{Size:0}"
+              }
+            },
             {
               "condition" : "minecraft:inverted",
               "term" : {
@@ -92,7 +106,7 @@
               "condition" : "minecraft:entity_properties",
               "entity" : "this",
               "predicate" : {
-                "nbt" : "{ZundaConverting:1b}"
+                "nbt": "{ZundaConverting:1}"
               }
             },
             {
@@ -111,7 +125,7 @@
           "condition" : "minecraft:entity_properties",
           "entity" : "this",
           "predicate" : {
-            "nbt" : "{Size:1}"
+            "nbt": "{Size:0}"
           }
         }
       ]

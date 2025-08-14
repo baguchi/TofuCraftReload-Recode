@@ -521,6 +521,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.TOFUNIAN_SPAWN_EGG,
 						TofuItems.TRAVELER_TOFUNIAN_SPAWN_EGG,
 						TofuItems.TOFU_SLIME_SPAWN_EGG,
+						TofuItems.OAGE_CUBE_SPAWN_EGG,
 						TofuItems.TOFU_CREEPER_SPAWN_EGG,
 						TofuItems.TOFUSPIDER_SPAWN_EGG,
 						TofuItems.TOFU_GANDLEM_SPAWN_EGG,

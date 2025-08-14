@@ -1,5 +1,6 @@
 package baguchi.tofucraft.data.resources.builder;
 
+import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.world.biome.TofuBiomeDefaultFeatures;
 import baguchi.tofucraft.world.gen.placement.TofuWorldPlacements;
@@ -7,6 +8,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
@@ -123,6 +125,8 @@ public class TofuBiomeBuilders {
 		builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_MINCED_TOFU);
 
 		TofuBiomeDefaultFeatures.addMabouMountainFeatures(builder);
+		builder1.addSpawn(MobCategory.MONSTER, 50, new MobSpawnSettings.SpawnerData(TofuEntityTypes.OAGE_CUBE.get(), 3, 4));
+		//builder1.addMobCharge(TofuEntityTypes.OAGE_CUBE.get(), 0.8, 0.1F);
 		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
 		return makeDefaultBiome(builder, builder1, TofuSounds.ROUGH_GROUND_BGM);
 	}

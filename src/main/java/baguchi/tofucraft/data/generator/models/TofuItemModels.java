@@ -333,6 +333,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFU_COW_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_PIG_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_SLIME_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.OAGE_CUBE_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_CREEPER_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUSPIDER_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUFISH_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);

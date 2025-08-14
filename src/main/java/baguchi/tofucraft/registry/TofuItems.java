@@ -427,6 +427,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_COW_SPAWN_EGG = ITEMS.registerItem("tofu_cow_spawn_egg", (properties) -> new SpawnEggItem(TofuEntityTypes.TOFUCOW.get(), (properties.requiredFeatures(TofuCraftReload.EXPERIMENTAL))));
 	public static final DeferredHolder<Item, Item> TOFU_PIG_SPAWN_EGG = ITEMS.registerItem("tofu_pig_spawn_egg", (properties) -> new SpawnEggItem(TofuEntityTypes.TOFUPIG.get(), (properties.requiredFeatures(TofuCraftReload.EXPERIMENTAL))));
 	public static final DeferredHolder<Item, Item> TOFU_SLIME_SPAWN_EGG = ITEMS.registerItem("tofu_slime_spawn_egg", (properties) -> new SpawnEggItem(TofuEntityTypes.TOFUSLIME.get(), (properties.requiredFeatures(TofuCraftReload.EXPERIMENTAL))));
+	public static final DeferredHolder<Item, Item> OAGE_CUBE_SPAWN_EGG = ITEMS.registerItem("oage_cube_spawn_egg", (properties) -> new SpawnEggItem(TofuEntityTypes.OAGE_CUBE.get(), (properties.requiredFeatures(TofuCraftReload.EXPERIMENTAL))));
 	public static final DeferredHolder<Item, Item> TOFU_CREEPER_SPAWN_EGG = ITEMS.registerItem("tofu_creeper_spawn_egg", (properties) -> new SpawnEggItem(TofuEntityTypes.TOFUCREEPER.get(), (properties.requiredFeatures(TofuCraftReload.EXPERIMENTAL))));
 
 	public static final DeferredHolder<Item, Item> TOFUSPIDER_SPAWN_EGG = ITEMS.registerItem("tofu_spider_spawn_egg", (properties) -> new SpawnEggItem(TofuEntityTypes.TOFUSPIDER.get(), (properties.requiredFeatures(TofuCraftReload.EXPERIMENTAL))));
