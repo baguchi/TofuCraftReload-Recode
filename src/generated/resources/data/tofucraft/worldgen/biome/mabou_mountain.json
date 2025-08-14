@@ -70,6 +70,12 @@
     "misc": [],
     "monster": [
       {
+        "type": "tofucraft:oage_cube",
+        "maxCount": 4,
+        "minCount": 3,
+        "weight": 50
+      },
+      {
         "type": "tofucraft:tofu_slime",
         "maxCount": 4,
         "minCount": 4,

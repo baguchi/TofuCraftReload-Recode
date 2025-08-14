@@ -26,8 +26,8 @@ public class EntityTagGenerator extends EntityTypeTagsProvider {
 
 		this.tag(TofuTags.EntityTypes.FUKUMAME).add(TofuEntityTypes.FUKUMAME.get()).add(TofuEntityTypes.SOUL_FUKUMAME.get()).add(TofuEntityTypes.NETHER_FUKUMAME.get());
 
-		this.tag(EntityTypeTags.FROG_FOOD).add(TofuEntityTypes.TOFUSLIME.get());
-		this.tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(TofuEntityTypes.SHUDOFUSPIDER.get(), TofuEntityTypes.TOFU_GANDLEM.get(), TofuEntityTypes.TOFU_GOLEM.get());
+		this.tag(EntityTypeTags.FROG_FOOD).add(TofuEntityTypes.TOFUSLIME.get(), TofuEntityTypes.OAGE_CUBE.get());
+		this.tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(TofuEntityTypes.SHUDOFUSPIDER.get(), TofuEntityTypes.TOFU_GANDLEM.get(), TofuEntityTypes.TOFU_GOLEM.get(), TofuEntityTypes.OAGE_CUBE.get());
 		this.tag(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES).add(TofuEntityTypes.SHUDOFUSPIDER.get(), TofuEntityTypes.TOFU_GANDLEM.get());
 		this.tag(EntityTypeTags.CAN_BREATHE_UNDER_WATER).add(TofuEntityTypes.SHUDOFUSPIDER.get(), TofuEntityTypes.TOFU_GANDLEM.get(), TofuEntityTypes.TOFU_GOLEM.get()).add(TofuEntityTypes.TOFUFISH.get());
 		this.tag(EntityTypeTags.ARTHROPOD).add(TofuEntityTypes.SHUDOFUSPIDER.get()).add(TofuEntityTypes.TOFUSPIDER.get());
@@ -38,5 +38,8 @@ public class EntityTagGenerator extends EntityTypeTagsProvider {
 				.add(
 						TofuEntityTypes.TOFUPIG.get()
 				);
+
+		this.tag(EntityTypeTags.NON_CONTROLLING_RIDER).add(TofuEntityTypes.TOFUSLIME.get(), TofuEntityTypes.OAGE_CUBE.get());
+
 	}
 }

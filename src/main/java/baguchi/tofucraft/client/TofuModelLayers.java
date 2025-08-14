@@ -9,6 +9,8 @@ public class TofuModelLayers {
 	public static final ModelLayerLocation TOFUNIAN = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian"), "main");
 	public static final ModelLayerLocation TRAVELER_TOFUNIAN = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "traveler_tofunian"), "main");
 	public static final ModelLayerLocation TOFUSPIDER = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofuspider"), "main");
+	public static final ModelLayerLocation OAGE_CUBE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "oage_cube"), "main");
+
 	public static final ModelLayerLocation TOFUFISH = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofufish"), "main");
 	public static final ModelLayerLocation TOFU_GOLEM = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_golem"), "main");
 

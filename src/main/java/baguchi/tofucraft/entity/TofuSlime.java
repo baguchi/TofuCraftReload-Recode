@@ -18,6 +18,8 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -27,6 +29,8 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
+
+import java.util.EnumSet;
 
 public class TofuSlime extends Slime {
 	private static final EntityDataAccessor<Boolean> DATA_CONVERSION_ID = SynchedEntityData.defineId(TofuSlime.class, EntityDataSerializers.BOOLEAN);
@@ -39,9 +43,16 @@ public class TofuSlime extends Slime {
 		super(p_33588_, p_33589_);
 	}
 
+	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
 		builder.define(DATA_CONVERSION_ID, false);
+	}
+
+	@Override
+	protected void registerGoals() {
+		super.registerGoals();
+		this.goalSelector.addGoal(0, new TofuSlimeFloatGoal(this));
 	}
 
 	public void shoot(double p_37266_, double p_37267_, double p_37268_, float p_37269_, float p_37270_) {
@@ -72,6 +83,7 @@ public class TofuSlime extends Slime {
 		return this.getEntityData().get(DATA_CONVERSION_ID);
 	}
 
+	@Override
 	public void tick() {
 		if (!this.level().isClientSide && this.isAlive() && !this.isNoAi()) {
 			if (this.isZundaConverting()) {
@@ -109,6 +121,7 @@ public class TofuSlime extends Slime {
 		this.discard();
 	}
 
+	@Override
 	public void addAdditionalSaveData(ValueOutput p_34319_) {
 		super.addAdditionalSaveData(p_34319_);
 		p_34319_.putInt("OnZundaTime", this.convertsOnZunda() ? this.onZundaTime : -1);
@@ -116,6 +129,7 @@ public class TofuSlime extends Slime {
 		p_34319_.putBoolean("ZundaConverting", this.isZundaConverting());
 	}
 
+	@Override
 	public void readAdditionalSaveData(ValueInput p_34305_) {
 		super.readAdditionalSaveData(p_34305_);
 		this.onZundaTime = p_34305_.getIntOr("OnZundaTime", -1);
@@ -124,6 +138,7 @@ public class TofuSlime extends Slime {
 		}
 	}
 
+	@Override
 	protected ParticleOptions getParticleType() {
 		return new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(TofuItems.TOFUKINU.get()));
 	}
@@ -139,5 +154,35 @@ public class TofuSlime extends Slime {
 
 	public static boolean checkMonsterSpawnRules(EntityType<? extends TofuSlime> p_33018_, ServerLevelAccessor p_33019_, EntitySpawnReason p_33020_, BlockPos p_33021_, RandomSource p_33022_) {
 		return p_33019_.getDifficulty() != Difficulty.PEACEFUL && isDarkEnoughToSpawn(p_33019_, p_33021_, p_33022_) && checkMobSpawnRules(p_33018_, p_33019_, p_33020_, p_33021_, p_33022_);
+	}
+
+	public static class TofuSlimeFloatGoal extends Goal {
+		private final Slime slime;
+
+		public TofuSlimeFloatGoal(Slime p_33655_) {
+			this.slime = p_33655_;
+			this.setFlags(EnumSet.of(Flag.JUMP, Flag.MOVE));
+			p_33655_.getNavigation().setCanFloat(true);
+		}
+
+		public boolean canUse() {
+			return (this.slime.isInFluidType()) && this.slime.getMoveControl() instanceof SlimeMoveControl;
+		}
+
+		public boolean requiresUpdateEveryTick() {
+			return true;
+		}
+
+		public void tick() {
+			if (this.slime.getRandom().nextFloat() < 0.8F) {
+				this.slime.getJumpControl().jump();
+			}
+
+			MoveControl var2 = this.slime.getMoveControl();
+			if (var2 instanceof SlimeMoveControl slime$slimemovecontrol) {
+				slime$slimemovecontrol.setWantedMovement(1.2);
+			}
+
+		}
 	}
 }

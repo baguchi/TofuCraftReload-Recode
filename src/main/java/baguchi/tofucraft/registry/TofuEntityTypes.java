@@ -2,6 +2,7 @@ package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.entity.FukumameThrower;
+import baguchi.tofucraft.entity.OageCube;
 import baguchi.tofucraft.entity.ShuDofuSpider;
 import baguchi.tofucraft.entity.TofuCow;
 import baguchi.tofucraft.entity.TofuCreeper;
@@ -76,6 +77,8 @@ public class TofuEntityTypes {
 
 	public static final Supplier<EntityType<TofuSlime>> TOFUSLIME = ENTITIES.register("tofu_slime", () -> EntityType.Builder.of(TofuSlime::new, MobCategory.MONSTER)
 			.sized(0.52F, 0.52F).eyeHeight(0.325F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_slime")));
+	public static final Supplier<EntityType<OageCube>> OAGE_CUBE = ENTITIES.register("oage_cube", () -> EntityType.Builder.of(OageCube::new, MobCategory.MONSTER)
+			.fireImmune().sized(0.52F, 0.52F).eyeHeight(0.325F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("oage_cube")));
 	public static final Supplier<EntityType<TofuCreeper>> TOFUCREEPER = ENTITIES.register("tofu_creeper", () -> EntityType.Builder.of(TofuCreeper::new, MobCategory.MONSTER)
 			.sized(0.6F, 1.6F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_creeper")));
 
@@ -219,6 +222,7 @@ public class TofuEntityTypes {
 		event.put(TOFUFISH.get(), AbstractFish.createAttributes().build());
 		event.put(TOFU_GOLEM.get(), TofuGolem.createAttributes().build());
 		event.put(TOFUSLIME.get(), Monster.createMonsterAttributes().build());
+		event.put(OAGE_CUBE.get(), Monster.createMonsterAttributes().build());
 		event.put(TOFUCREEPER.get(), TofuCreeper.createAttributes().build());
 		event.put(TOFUSPIDER.get(), TofuSpider.createAttributes().build());
 		event.put(ZUNDAMITE.get(), Zundamite.createAttributes().build());
@@ -230,20 +234,21 @@ public class TofuEntityTypes {
 
 	@SubscribeEvent
 	public static void registerEntityAttribute(RegisterSpawnPlacementsEvent event) {
-		event.register(TOFUCOW.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCow::checkTofuAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TOFUPIG.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuPig::checkTofuAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TOFUNIAN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TRAVELER_TOFUNIAN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TOFU_GOLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		event.register(TOFUCOW.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCow::checkTofuAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(TOFUPIG.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuPig::checkTofuAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(TOFUNIAN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(TRAVELER_TOFUNIAN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(TOFU_GOLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
 
-		event.register(TOFUSLIME.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSlime::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TOFUCREEPER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCreeper::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TOFUSPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSpider::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TOFUFISH.get(), IN_SOYMILK, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuFish::checkTofuFishSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TOFU_GANDLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		event.register(TOFUSLIME.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSlime::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(OAGE_CUBE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, OageCube::checkOageSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(TOFUCREEPER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCreeper::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(TOFUSPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSpider::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(TOFUFISH.get(), IN_SOYMILK, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuFish::checkTofuFishSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(TOFU_GANDLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
 
-		event.register(FUKUMAME_THROWER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FukumameThrower::checkFukumameSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(ZUNDAMITE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		event.register(FUKUMAME_THROWER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FukumameThrower::checkFukumameSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(ZUNDAMITE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
 	}
 
 	private static ResourceKey<EntityType<?>> prefix(String path) {
