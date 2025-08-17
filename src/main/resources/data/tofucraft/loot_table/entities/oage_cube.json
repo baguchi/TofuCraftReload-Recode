@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "item",
-          "name": "tofucraft:tofufried",
+          "name": "tofucraft:oage",
           "conditions": [
             {
               "condition": "minecraft:entity_properties",

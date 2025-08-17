@@ -3,6 +3,7 @@ package baguchi.tofucraft;
 import baguchi.tofucraft.attachment.SoyHealthAttachment;
 import baguchi.tofucraft.attachment.TofuLivingAttachment;
 import baguchi.tofucraft.attachment.TofuPlayerAttachment;
+import baguchi.tofucraft.entity.OageCube;
 import baguchi.tofucraft.entity.projectile.UnstableZundamaEntity;
 import baguchi.tofucraft.item.TofuBookItem;
 import baguchi.tofucraft.item.armor.BreakableTofuBootsItem;
@@ -53,7 +54,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
@@ -505,8 +508,13 @@ public class CommonEvents {
 				livingEntity.syncData(TofuAttachments.TOFU_LIVING);
 			}
 		}
-	}
 
+		if (entity instanceof Fox fox) {
+			if (!entity.level().isClientSide()) {
+				fox.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(fox, OageCube.class, 10, false, false, (p_393134_, p_393135_) -> true));
+			}
+		}
+	}
 	@SubscribeEvent
 	public static void onTotem(LivingUseTotemEvent event) {
 		if (event.getTotem().is(TofuItems.ZUNDA_TOTEM)) {
