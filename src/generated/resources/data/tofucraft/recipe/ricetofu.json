@@ -3,10 +3,7 @@
   "category": "misc",
   "ingredients": [
     "tofucraft:onigiri",
-    [
-      "tofucraft:tofukinu",
-      "tofucraft:tofumomen"
-    ]
+    "#c:tofu"
   ],
   "result": {
     "count": 1,

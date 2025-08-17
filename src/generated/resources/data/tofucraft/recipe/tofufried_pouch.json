@@ -4,10 +4,7 @@
   "ingredients": [
     "tofucraft:starch",
     "tofucraft:bottle_soyoil",
-    [
-      "tofucraft:tofukinu",
-      "tofucraft:tofumomen"
-    ]
+    "#c:tofu"
   ],
   "result": {
     "count": 1,

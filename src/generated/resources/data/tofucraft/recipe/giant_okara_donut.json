@@ -7,8 +7,8 @@
     "tofucraft:okara_block",
     "tofucraft:okara_block",
     "minecraft:hay_block",
-    "minecraft:egg",
-    "minecraft:egg"
+    "#c:eggs",
+    "#c:eggs"
   ],
   "result": {
     "count": 2,

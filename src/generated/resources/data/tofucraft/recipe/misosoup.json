@@ -8,10 +8,7 @@
     "ingredient": "minecraft:water"
   },
   "ingredients": [
-    [
-      "tofucraft:tofukinu",
-      "tofucraft:tofumomen"
-    ],
+    "#c:tofu",
     "tofucraft:miso",
     "minecraft:bowl",
     "tofucraft:bottle_dashi"

@@ -4,10 +4,7 @@
   "cook_time": 400,
   "experience": 0.8,
   "ingredients": [
-    [
-      "tofucraft:tofukinu",
-      "tofucraft:tofumomen"
-    ],
+    "#c:tofu",
     "tofucraft:starch",
     "minecraft:porkchop",
     "minecraft:bowl",
