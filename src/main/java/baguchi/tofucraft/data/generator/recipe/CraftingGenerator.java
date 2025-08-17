@@ -533,6 +533,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSlab(this.output, TofuBlocks.LEEK_PLANKS_SLAB, TofuBlocks.LEEK_PLANKS);
 		makeWoodFence(this.output, TofuBlocks.LEEK_FENCE.get(), TofuBlocks.LEEK_PLANKS.get());
 		makeFenceGate(this.output, TofuBlocks.LEEK_FENCE_GATE.get(), TofuBlocks.LEEK_PLANKS.get());
+		makeDoor(this.output, TofuBlocks.LEEK_DOOR, TofuBlocks.LEEK_PLANKS);
+		makeTrapdoor(this.output, TofuBlocks.LEEK_TRAPDOOR, TofuBlocks.LEEK_PLANKS);
+
+
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.LEEK_GREEN_PLANKS.get(), 4)
 				.requires(TofuBlocks.LEEK_GREEN_STEM.get())

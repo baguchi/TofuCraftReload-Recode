@@ -226,6 +226,8 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.LEEK_PLANKS_STAIR,
 						TofuBlocks.LEEK_FENCE,
 						TofuBlocks.LEEK_FENCE_GATE,
+						TofuBlocks.LEEK_DOOR,
+						TofuBlocks.LEEK_TRAPDOOR,
 						TofuBlocks.LEEK_SIGN,
 						TofuBlocks.LEEK_HANGING_SIGN,
 						TofuBlocks.LEEK_PRESSURE_PLATE,

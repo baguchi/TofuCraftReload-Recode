@@ -504,6 +504,8 @@
   "block.tofucraft.leek_slab": "Leek Planks Slab",
   "block.tofucraft.leek_fence" : "Leek Fence",
   "block.tofucraft.leek_fence_gate" : "Leek Fence Gate",
+  "block.tofucraft.leek_door": "Leek Door",
+  "block.tofucraft.leek_trapdoor": "Leek TrapDoor",
   "block.tofucraft.leek_pressure_plate": "Leek Pressure Plate",
   "block.tofucraft.leek_button": "Leek Button",
   "block.tofucraft.leek_green_stem" : "Leek Green Stem",

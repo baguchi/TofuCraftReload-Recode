@@ -69,7 +69,7 @@ public class OageCube extends MagmaCube {
 
 	@Override
 	protected int getJumpDelay() {
-		return this.random.nextInt(30) + 30;
+		return this.random.nextInt(20) + 30;
 	}
 
 	@Override

@@ -31,6 +31,8 @@ public class TofuBlockFamilies {
 			.sign(TofuBlocks.LEEK_SIGN.get(), TofuBlocks.LEEK_WALL_SIGN.get())
 			.slab(TofuBlocks.LEEK_PLANKS_SLAB.get())
 			.stairs(TofuBlocks.LEEK_PLANKS_STAIR.get())
+			.door(TofuBlocks.LEEK_DOOR.get())
+			.trapdoor(TofuBlocks.LEEK_TRAPDOOR.get())
 			.getFamily();
 
 	public static final BlockFamily LEEK_GREEN_PLANKS = familyBuilder(TofuBlocks.LEEK_GREEN_PLANKS.get())
