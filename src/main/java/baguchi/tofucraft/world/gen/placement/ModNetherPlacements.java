@@ -36,6 +36,6 @@ public class ModNetherPlacements {
 
 		PlacementUtils.register(context, PATCH_NETHER_SOYBEAN_CRIMSON, configuredFeature.getOrThrow(ModNetherFeatures.NETHER_SOYBEAN), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), NETHER_SOYBEAN_HEIGHT, BiomeFilter.biome()));
 
-		PlacementUtils.register(context, PATCH_SOUL_SOYBEAN, configuredFeature.getOrThrow(ModNetherFeatures.SOUL_SOYBEAN), List.of(RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), NETHER_SOYBEAN_HEIGHT, BiomeFilter.biome()));
+		PlacementUtils.register(context, PATCH_SOUL_SOYBEAN, configuredFeature.getOrThrow(ModNetherFeatures.SOUL_SOYBEAN), List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), NETHER_SOYBEAN_HEIGHT, BiomeFilter.biome()));
 	}
 }
