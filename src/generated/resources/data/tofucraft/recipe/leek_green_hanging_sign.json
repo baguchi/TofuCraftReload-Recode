@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "#": "tofucraft:leek_green_stem",
-    "|": "minecraft:chain"
+    "|": "tofucraft:tofu_metal_chain"
   },
   "pattern": [
     "| |",

@@ -37,6 +37,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFUMOMEN.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUISHI.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUMETAL.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_METAL_NUGGET.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUDIAMOND.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUDIAMOND_NUGGET.get(), ModelTemplates.FLAT_ITEM);
 

@@ -62,26 +62,27 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_LANTERN.get(), 1)
-				.pattern(" M ")
+				.pattern("MMM")
 				.pattern("MTM")
-				.pattern(" M ")
-				.define('M', TofuItems.TOFUMETAL.get())
+				.pattern("MMM")
+				.define('M', TofuItems.TOFU_METAL_NUGGET.get())
 				.define('T', Items.TORCH)
 				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_SOUL_LANTERN.get(), 1)
-				.pattern(" M ")
+				.pattern("MMM")
 				.pattern("MSM")
-				.pattern(" M ")
-				.define('M', TofuItems.TOFUMETAL.get())
+				.pattern("MMM")
+				.define('M', TofuItems.TOFU_METAL_NUGGET.get())
 				.define('S', Items.SOUL_TORCH)
-				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.unlockedBy("has_item", has(TofuItems.TOFU_METAL_NUGGET.get()))
 				.save(this.output);
-		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_CHAIN.get(), 4)
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_CHAIN.get(), 1)
+				.pattern("N")
 				.pattern("M")
-				.pattern("M")
-				.pattern("M")
+				.pattern("N")
 				.define('M', TofuItems.TOFUMETAL.get())
+				.define('N', TofuItems.TOFU_METAL_NUGGET.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
 				.save(this.output);
 
@@ -549,6 +550,19 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeFenceGate(this.output, TofuBlocks.LEEK_GREEN_FENCE_GATE.get(), TofuBlocks.LEEK_GREEN_PLANKS.get());
 		makeDoor(this.output, TofuBlocks.LEEK_GREEN_DOOR, TofuBlocks.LEEK_GREEN_PLANKS);
 		makeTrapdoor(this.output, TofuBlocks.LEEK_GREEN_TRAPDOOR, TofuBlocks.LEEK_GREEN_PLANKS);
+
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.TOFU_METAL_NUGGET.get(), 9)
+				.requires(TofuItems.TOFUMETAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.save(this.output);
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.BUILDING_BLOCKS, TofuItems.TOFUMETAL.get(), 1)
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.TOFU_METAL_NUGGET.get())
+				.unlockedBy("has_item", has(TofuItems.TOFU_METAL_NUGGET.get()))
+				.save(this.output);
+
 
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.METAL_TOFU_GRATE.get(), 8)

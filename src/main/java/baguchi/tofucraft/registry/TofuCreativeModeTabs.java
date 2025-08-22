@@ -34,6 +34,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.TOFUMOMEN,
 						TofuItems.TOFUISHI,
 						TofuItems.TOFUMETAL,
+						TofuItems.TOFU_METAL_NUGGET,
 						TofuItems.TOFUDIAMOND,
 						TofuItems.TOFUDIAMOND_NUGGET,
 						TofuItems.TOFUHELL,

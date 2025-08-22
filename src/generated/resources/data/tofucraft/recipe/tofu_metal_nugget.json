@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "tofucraft:tofumetal"
+  ],
+  "result": {
+    "count": 9,
+    "id": "tofucraft:tofu_metal_nugget"
+  }
+}

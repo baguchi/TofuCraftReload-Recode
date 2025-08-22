@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tofucraft:tofu_metal_nugget"
+            "items": "tofucraft:tofumetal"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_metal_soul_lantern"
+        "recipe": "tofucraft:tofu_metal_nugget"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:tofu_metal_soul_lantern"
+      "tofucraft:tofu_metal_nugget"
     ]
   }
 }
