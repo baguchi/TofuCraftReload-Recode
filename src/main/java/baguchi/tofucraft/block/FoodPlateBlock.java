@@ -73,7 +73,7 @@ public class FoodPlateBlock extends BaseEntityBlock {
 		BlockEntity tileEntity = level.getBlockEntity(blockPos);
 		if (tileEntity instanceof FoodPlateBlockEntity foodPlate) {
 			if (foodPlate.isFire()) {
-				addParticlesAndSound(level, new Vec3(0.8F, 0.8F, 0.8F).add((double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ()), p_220700_);
+				addParticlesAndSound(level, new Vec3(0.5F, 0.5F, 0.5F).add((double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ()), p_220700_);
 			}
 		}
 

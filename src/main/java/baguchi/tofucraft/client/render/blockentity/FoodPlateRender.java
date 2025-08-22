@@ -16,7 +16,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.CandleBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity> {
@@ -35,16 +37,23 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 
 		this.random.setSeed((long) i);
 		if (!boardStack.isEmpty()) {
+			Block block = Block.byItem(boardStack.getItem());
 			for (int k = 0; k < j; ++k) {
 				ItemRenderer itemRenderer = Minecraft.getInstance()
 						.getItemRenderer();
-				if (boardStack.is(ItemTags.CANDLES)) {
+				if (boardStack.is(ItemTags.CANDLES) || block instanceof CakeBlock) {
 					poseStack.pushPose();
 
 					renderBlock(poseStack, direction);
 
-					Minecraft.getInstance().getBlockRenderer().renderSingleBlock(Block.byItem(boardStack.getItem()).defaultBlockState().setValue(CandleBlock.LIT, plateBlockEntity.isFire()), poseStack, p_112310_, p_112311_, p_112312_);
+					BlockState state = block.defaultBlockState();
+					if (boardStack.is(ItemTags.CANDLES)) {
+						state = state.setValue(CandleBlock.LIT, plateBlockEntity.isFire());
+					}
+
+					Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, poseStack, p_112310_, p_112311_, p_112312_);
 					poseStack.popPose();
+					return;
 				} else {
 					poseStack.pushPose();
 
@@ -86,9 +95,9 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	}
 
 	public void renderBlock(PoseStack matrixStackIn, Direction direction) {
-		matrixStackIn.translate(0.5D, 0.25D, 0.5D);
+		matrixStackIn.translate(0.0D, 0.05D, 0.0D);
 		float f = -direction.toYRot();
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
-		matrixStackIn.scale(0.8F, 0.8F, 0.8F);
+		//matrixStackIn.scale(0.8F, 0.8F, 0.8F);
 	}
 }
