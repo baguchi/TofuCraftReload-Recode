@@ -50,6 +50,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 					if (boardStack.is(ItemTags.CANDLES)) {
 						state = state.setValue(CandleBlock.LIT, plateBlockEntity.isFire());
 					}
+					poseStack.scale(0.8F, 0.8F, 0.8F);
 
 					Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, poseStack, p_112310_, p_112311_, p_112312_);
 					poseStack.popPose();
