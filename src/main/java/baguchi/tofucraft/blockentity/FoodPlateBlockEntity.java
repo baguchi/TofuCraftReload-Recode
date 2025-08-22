@@ -76,8 +76,15 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity implements Container
 		return 1;
 	}
 
+	@Override
 	public boolean isEmpty() {
-		return this.items.isEmpty();
+		for (ItemStack itemstack : this.items) {
+			if (!itemstack.isEmpty()) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	@Override
