@@ -44,13 +44,12 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 				if (boardStack.is(ItemTags.CANDLES) || block instanceof CakeBlock) {
 					poseStack.pushPose();
 
-					renderBlock(poseStack, direction);
+					renderBlock(poseStack, direction, boardStack.is(ItemTags.CANDLES));
 
 					BlockState state = block.defaultBlockState();
 					if (boardStack.is(ItemTags.CANDLES)) {
 						state = state.setValue(CandleBlock.LIT, plateBlockEntity.isFire());
 					}
-					poseStack.scale(0.8F, 0.8F, 0.8F);
 
 					Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, poseStack, p_112310_, p_112311_, p_112312_);
 					poseStack.popPose();
@@ -95,9 +94,15 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 	}
 
-	public void renderBlock(PoseStack matrixStackIn, Direction direction) {
+	public void renderBlock(PoseStack matrixStackIn, Direction direction, boolean candle) {
 		matrixStackIn.translate(0.0D, 0.05D, 0.0D);
 		float f = -direction.toYRot();
+		if (!candle) {
+			matrixStackIn.translate(0.5D, 0.0D, 0.5D);
+
+			matrixStackIn.scale(0.6F, 0.6F, 0.6F);
+			matrixStackIn.translate(-0.5D, 0.0D, -0.5D);
+		}
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
 		//matrixStackIn.scale(0.8F, 0.8F, 0.8F);
 	}
