@@ -6,7 +6,6 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -87,7 +86,6 @@ public class TFOvenBlock extends TFBaseEntityBlock {
 		BlockEntity blockentity = p_394241_.getBlockEntity(p_393520_);
 		if (blockentity instanceof TFOvenBlockEntity) {
 			if (p_394241_ instanceof ServerLevel) {
-				Containers.dropContents(p_394241_, p_393520_, (TFOvenBlockEntity) blockentity);
 				((TFOvenBlockEntity) blockentity).getRecipesToAwardAndPopExperience((ServerLevel) p_394241_, Vec3.atCenterOf(p_393520_));
 			}
 

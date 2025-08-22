@@ -2,39 +2,41 @@ package baguchi.tofucraft.blockentity;
 
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.ItemStackHandler;
 
-public class FoodPlateBlockEntity extends SyncedBlockEntity {
-	private final ItemStackHandler inventory;
+public class FoodPlateBlockEntity extends SyncedBlockEntity implements Container {
+	protected NonNullList<ItemStack> items = NonNullList.withSize(1, ItemStack.EMPTY);
 
 	private boolean fire;
 
 	public FoodPlateBlockEntity(BlockPos pos, BlockState state) {
 		super(TofuBlockEntitys.FOODPLATE.get(), pos, state);
-		inventory = createHandler();
 	}
 	@Override
 	public void loadAdditional(ValueInput compound) {
 		super.loadAdditional(compound);
-		inventory.deserialize(compound.childOrEmpty("Item"));
+		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+		ContainerHelper.loadAllItems(compound, this.items);
 		fire = compound.getBooleanOr("Fire", false);
 	}
 
 	@Override
 	public void saveAdditional(ValueOutput compound) {
 		super.saveAdditional(compound);
-		inventory.serialize(compound.child("Item"));
+		ContainerHelper.saveAllItems(compound, this.items);
 		compound.putBoolean("Fire", fire);
 	}
 
 	public boolean addItem(ItemStack itemStack) {
 		if (isEmpty() && !itemStack.isEmpty()) {
-			inventory.setStackInSlot(0, itemStack.split(1));
+			this.items.set(0, itemStack.split(1));
 			inventoryChanged();
 			return true;
 		}
@@ -43,7 +45,7 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 
 	public boolean addAllItem(ItemStack itemStack) {
 		if (isEmpty() && !itemStack.isEmpty()) {
-			inventory.setStackInSlot(0, itemStack.split(64));
+			this.items.set(0, itemStack.split(64));
 			inventoryChanged();
 			return true;
 		}
@@ -62,17 +64,55 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 		return ItemStack.EMPTY;
 	}
 
-	public IItemHandler getInventory() {
-		return inventory;
+	public ItemStack getStoredItem() {
+		if (isEmpty()) {
+			return ItemStack.EMPTY;
+		}
+		return this.items.get(0);
 	}
 
-	public ItemStack getStoredItem() {
-		return inventory.getStackInSlot(0);
+	@Override
+	public int getContainerSize() {
+		return 1;
 	}
 
 	public boolean isEmpty() {
-		return inventory.getStackInSlot(0).isEmpty();
+		return this.items.isEmpty();
 	}
+
+	@Override
+	public ItemStack getItem(int i) {
+		return this.items.get(i);
+	}
+
+	@Override
+	public ItemStack removeItem(int p_332707_, int p_332672_) {
+		ItemStack itemstack = ContainerHelper.removeItem(this.items, p_332707_, p_332672_);
+		if (!itemstack.isEmpty()) {
+			this.setChanged();
+		}
+
+		return itemstack;
+	}
+
+	@Override
+	public ItemStack removeItemNoUpdate(int p_332812_) {
+		return ContainerHelper.takeItem(this.items, p_332812_);
+	}
+
+
+	@Override
+	public void setItem(int i, ItemStack itemStack) {
+
+		this.items.set(i, itemStack);
+		this.setChanged();
+	}
+
+	@Override
+	public boolean stillValid(Player p_332791_) {
+		return Container.stillValidBlockEntity(this, p_332791_);
+	}
+
 
 	public void setFire(boolean fire) {
 		this.fire = fire;
@@ -83,17 +123,9 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 		return fire;
 	}
 
-	private ItemStackHandler createHandler() {
-		return new ItemStackHandler() {
-			@Override
-			public int getSlotLimit(int slot) {
-				return 64;
-			}
-
-			@Override
-			protected void onContentsChanged(int slot) {
-				inventoryChanged();
-			}
-		};
+	@Override
+	public void clearContent() {
+		this.items.clear();
 	}
+
 }

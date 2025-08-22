@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.FrontAndTop;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -73,7 +72,6 @@ public class TFCrafterBlock extends BaseEntityBlock {
 		BlockEntity blockentity = p_394241_.getBlockEntity(p_393520_);
 			if (blockentity instanceof TFCrafterBlockEntity) {
 				if (p_394241_ instanceof ServerLevel) {
-					Containers.dropContents(p_394241_, p_393520_, (TFCrafterBlockEntity) blockentity);
 					//((TFCrafterBlockEntity) blockentity).getRecipesToAwardAndPopExperience((ServerLevel) p_394241_, Vec3.atCenterOf(p_393520_));
 				}
 

@@ -10,7 +10,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -144,9 +143,7 @@ public class TofuPotBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 		BlockEntity blockentity = p_394241_.getBlockEntity(p_393520_);
 		if (blockentity instanceof TofuPotBlockEntity tofuPotBlockEntity) {
 			if (p_394241_ instanceof ServerLevel) {
-				Containers.dropContents(p_394241_, p_393520_, (TofuPotBlockEntity) blockentity);
 				tofuPotBlockEntity.getUsedRecipesAndPopExperience(p_394241_, Vec3.atCenterOf(p_393520_));
-
 			}
 
 			p_394241_.updateNeighbourForOutputSignal(p_393520_, this);

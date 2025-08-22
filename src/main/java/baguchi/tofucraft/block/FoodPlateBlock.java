@@ -146,7 +146,6 @@ public class FoodPlateBlock extends BaseEntityBlock {
 	public void affectNeighborsAfterRemoval(BlockState state, ServerLevel worldIn, BlockPos pos, boolean isMoving) {
 		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
 		if (tileEntity instanceof FoodPlateBlockEntity) {
-			Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), ((FoodPlateBlockEntity) tileEntity).getStoredItem());
 			worldIn.updateNeighbourForOutputSignal(pos, this);
 		}
 		super.affectNeighborsAfterRemoval(state, worldIn, pos, isMoving);

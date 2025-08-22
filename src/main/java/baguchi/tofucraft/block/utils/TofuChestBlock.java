@@ -14,7 +14,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.CompoundContainer;
 import net.minecraft.world.Container;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.animal.Cat;
@@ -225,7 +224,6 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		super.affectNeighborsAfterRemoval(p_394424_, p_394241_, p_393520_, p_394545_);
 		BlockEntity blockentity = p_394241_.getBlockEntity(p_393520_);
 		if (blockentity instanceof Container) {
-			Containers.dropContents(p_394241_, p_393520_, (Container) blockentity);
 			p_394241_.updateNeighbourForOutputSignal(p_393520_, this);
 		}
 

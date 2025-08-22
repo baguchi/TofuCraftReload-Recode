@@ -7,7 +7,6 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -119,7 +118,6 @@ public class TFStorageBlock extends TFBaseEntityBlock {
 		BlockEntity blockentity = p_394241_.getBlockEntity(p_393520_);
 		if (blockentity instanceof TFStorageBlockEntity) {
 			if (p_394241_ instanceof ServerLevel) {
-				Containers.dropContents(p_394241_, p_393520_, (TFStorageBlockEntity) blockentity);
 				//((TFStorageBlockEntity) blockentity).getRecipesToAwardAndPopExperience((ServerLevel) p_394241_, Vec3.atCenterOf(p_393520_));
 			}
 

@@ -11,7 +11,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -103,7 +102,6 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 		BlockEntity blockentity = p_394241_.getBlockEntity(p_393520_);
 		if (blockentity instanceof SaltFurnaceBlockEntity) {
 			if (p_394241_ instanceof ServerLevel) {
-				Containers.dropContents(p_394241_, p_393520_, (SaltFurnaceBlockEntity) blockentity);
 				//((SaltFurnaceBlockEntity) blockentity).getRecipesToAwardAndPopExperience((ServerLevel) p_394241_, Vec3.atCenterOf(p_393520_));
 			}
 
