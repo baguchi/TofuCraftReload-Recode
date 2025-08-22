@@ -5,16 +5,20 @@ import baguchi.tofucraft.registry.TofuBlockEntitys;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -32,8 +36,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.ItemAbility;
 
 import javax.annotation.Nullable;
 
@@ -63,6 +69,29 @@ public class FoodPlateBlock extends BaseEntityBlock {
 	}
 
 	@Override
+	public void animateTick(BlockState p_220697_, Level level, BlockPos blockPos, RandomSource p_220700_) {
+		BlockEntity tileEntity = level.getBlockEntity(blockPos);
+		if (tileEntity instanceof FoodPlateBlockEntity foodPlate) {
+			if (foodPlate.isFire()) {
+				addParticlesAndSound(level, new Vec3(0.8F, 0.8F, 0.8F).add((double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ()), p_220700_);
+			}
+		}
+
+	}
+
+	private static void addParticlesAndSound(Level p_220688_, Vec3 p_220689_, RandomSource p_220690_) {
+		float f = p_220690_.nextFloat();
+		if (f < 0.3F) {
+			p_220688_.addParticle(ParticleTypes.SMOKE, p_220689_.x, p_220689_.y, p_220689_.z, (double) 0.0F, (double) 0.0F, (double) 0.0F);
+			if (f < 0.17F) {
+				p_220688_.playLocalSound(p_220689_.x + (double) 0.5F, p_220689_.y + (double) 0.5F, p_220689_.z + (double) 0.5F, SoundEvents.CANDLE_AMBIENT, SoundSource.BLOCKS, 1.0F + p_220690_.nextFloat(), p_220690_.nextFloat() * 0.7F + 0.3F, false);
+			}
+		}
+
+		p_220688_.addParticle(ParticleTypes.SMALL_FLAME, p_220689_.x, p_220689_.y, p_220689_.z, (double) 0.0F, (double) 0.0F, (double) 0.0F);
+	}
+
+	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
 		return SHAPE;
 	}
@@ -82,6 +111,16 @@ public class FoodPlateBlock extends BaseEntityBlock {
 					return InteractionResult.SUCCESS;
 				}
 			} else if (!heldStack.isEmpty()) {
+				if (heldStack.is(Items.FLINT_AND_STEEL) || heldStack.is(Items.FIRE_CHARGE)) {
+					if (plateBlockEntity.getStoredItem().is(ItemTags.CANDLES)) {
+						if (!plateBlockEntity.isFire()) {
+							level.playSound(player, blockPos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS);
+							plateBlockEntity.setFire(true);
+							return InteractionResult.SUCCESS;
+						}
+					}
+				}
+
 				return InteractionResult.CONSUME;
 			} else if (hand.equals(InteractionHand.MAIN_HAND)) {
 				if (!player.isCreative()) {
@@ -97,6 +136,12 @@ public class FoodPlateBlock extends BaseEntityBlock {
 		}
 		return InteractionResult.TRY_WITH_EMPTY_HAND;
 	}
+
+	@Override
+	public @org.jetbrains.annotations.Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
+		return super.getToolModifiedState(state, context, itemAbility, simulate);
+	}
+
 	@Override
 	public void affectNeighborsAfterRemoval(BlockState state, ServerLevel worldIn, BlockPos pos, boolean isMoving) {
 		BlockEntity tileEntity = worldIn.getBlockEntity(pos);

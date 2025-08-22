@@ -178,9 +178,9 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 
 		logWithHorizontal(TofuBlocks.LEEK_GREEN_STEM.get());
 
-		this.createHangingSign(TofuBlocks.LEEK_HANGING_SIGN.get(), TofuBlocks.LEEK_HANGING_SIGN.get(), TofuBlocks.LEEK_WALL_HANGING_SIGN.get());
-		this.createHangingSign(TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get());
-		this.createHangingSign(TofuBlocks.TOFU_STEM_HANGING_SIGN.get(), TofuBlocks.TOFU_STEM_HANGING_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get());
+		this.createHangingSign(TofuBlocks.LEEK_STEM.get(), TofuBlocks.LEEK_HANGING_SIGN.get(), TofuBlocks.LEEK_WALL_HANGING_SIGN.get());
+		this.createHangingSign(TofuBlocks.LEEK_GREEN_STEM.get(), TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get());
+		this.createHangingSign(TofuBlocks.TOFU_STEM.get(), TofuBlocks.TOFU_STEM_HANGING_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get());
 
 		this.createCrossBlockWithDefaultItem(TofuBlocks.ZUNDATOFU_MUSHROOM.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		this.createTrivialCube(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get());
