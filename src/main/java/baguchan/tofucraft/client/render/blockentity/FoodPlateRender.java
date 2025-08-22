@@ -42,7 +42,6 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 						.getItemRenderer();
 				if (boardStack.is(ItemTags.CANDLES) || block instanceof CakeBlock) {
 					poseStack.pushPose();
-
 					renderBlock(poseStack, direction, boardStack.is(ItemTags.CANDLES));
 
 					BlockState state = block.defaultBlockState();
@@ -102,6 +101,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 			matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 			matrixStackIn.translate(-0.5D, 0.0D, -0.5D);
 		}
+		matrixStackIn.translate(0.0D, 0.0D, 1.0D);
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
 		//matrixStackIn.scale(0.8F, 0.8F, 0.8F);
 	}
