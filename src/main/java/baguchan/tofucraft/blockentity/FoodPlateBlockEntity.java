@@ -11,6 +11,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class FoodPlateBlockEntity extends SyncedBlockEntity {
 	private final ItemStackHandler inventory;
+	private boolean fire;
 
 	public FoodPlateBlockEntity(BlockPos pos, BlockState state) {
 		super(TofuBlockEntitys.FOODPLATE.get(), pos, state);
@@ -20,12 +21,14 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 	public void loadAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
 		super.loadAdditional(compound, p_338445_);
 		inventory.deserializeNBT(p_338445_, compound.getCompound("Inventory"));
+		fire = compound.getBoolean("Fire");
 	}
 
 	@Override
 	public void saveAdditional(CompoundTag compound, HolderLookup.Provider p_338445_) {
 		super.saveAdditional(compound, p_338445_);
 		compound.put("Inventory", inventory.serializeNBT(p_338445_));
+		compound.putBoolean("Fire", fire);
 	}
 
 	public boolean addItem(ItemStack itemStack) {
@@ -50,9 +53,21 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 		if (!isEmpty()) {
 			ItemStack item = getStoredItem().split(1);
 			inventoryChanged();
+			if (isFire()) {
+				this.setFire(false);
+			}
 			return item;
 		}
 		return ItemStack.EMPTY;
+	}
+
+	public void setFire(boolean fire) {
+		this.fire = fire;
+		inventoryChanged();
+	}
+
+	public boolean isFire() {
+		return fire;
 	}
 
 	public IItemHandler getInventory() {
