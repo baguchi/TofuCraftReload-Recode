@@ -3,9 +3,13 @@ package baguchi.tofucraft.client.render.blockentity;
 import baguchi.tofucraft.block.FoodPlateBlock;
 import baguchi.tofucraft.blockentity.FoodPlateBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.client.renderer.block.model.BlockStateModel;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -50,8 +54,11 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 					if (boardStack.is(ItemTags.CANDLES)) {
 						state = state.setValue(CandleBlock.LIT, plateBlockEntity.isFire());
 					}
-
-					Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, poseStack, p_112310_, p_112311_, p_112312_);
+					BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
+					//poseStack.translate(-0.5F, 0F, -0.5F);
+					VertexConsumer vertexconsumer = p_112310_.getBuffer(ItemBlockRenderTypes.getRenderType(state));
+					ModelBlockRenderer.renderModel(poseStack.last(), vertexconsumer, blockstatemodel, 0.0F, 0.0F, 0.0F, p_112311_,
+							p_112312_);
 					poseStack.popPose();
 					return;
 				} else {
