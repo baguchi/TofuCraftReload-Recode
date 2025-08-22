@@ -1,21 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "building",
   "key": {
-    "M": {
+    "#": {
       "item": "tofucraft:tofu_metal_nugget"
-    },
-    "T": {
-      "item": "minecraft:torch"
     }
   },
   "pattern": [
-    "MMM",
-    "MTM",
-    "MMM"
+    "###",
+    "###",
+    "###"
   ],
   "result": {
     "count": 1,
-    "id": "tofucraft:tofu_metal_lantern"
+    "id": "tofucraft:tofumetal"
   }
 }

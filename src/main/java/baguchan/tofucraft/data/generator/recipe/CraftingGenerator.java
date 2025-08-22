@@ -550,6 +550,18 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeDoor(consumer, TofuBlocks.LEEK_GREEN_DOOR, TofuBlocks.LEEK_GREEN_PLANKS);
 		makeTrapdoor(consumer, TofuBlocks.LEEK_GREEN_TRAPDOOR, TofuBlocks.LEEK_GREEN_PLANKS);
 
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.TOFU_METAL_NUGGET.get(), 9)
+				.requires(TofuItems.TOFUMETAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, TofuItems.TOFUMETAL.get(), 1)
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.TOFU_METAL_NUGGET.get())
+				.unlockedBy("has_item", has(TofuItems.TOFU_METAL_NUGGET.get()))
+				.save(consumer);
+
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, TofuBlocks.METAL_TOFU_GRATE.get(), 8)
 				.pattern(" # ")

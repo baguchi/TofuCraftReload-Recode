@@ -4,15 +4,18 @@
   "key": {
     "M": {
       "item": "tofucraft:tofumetal"
+    },
+    "N": {
+      "item": "tofucraft:tofu_metal_nugget"
     }
   },
   "pattern": [
+    "N",
     "M",
-    "M",
-    "M"
+    "N"
   ],
   "result": {
-    "count": 4,
+    "count": 1,
     "id": "tofucraft:tofu_metal_chain"
   }
 }
