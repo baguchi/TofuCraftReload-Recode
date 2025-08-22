@@ -62,28 +62,30 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_LANTERN.get(), 1)
-				.pattern(" M ")
+				.pattern("MMM")
 				.pattern("MTM")
-				.pattern(" M ")
-				.define('M', TofuItems.TOFUMETAL.get())
+				.pattern("MMM")
+				.define('M', TofuItems.TOFU_METAL_NUGGET.get())
 				.define('T', Items.TORCH)
 				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
 				.save(consumer);
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_SOUL_LANTERN.get(), 1)
-				.pattern(" M ")
+				.pattern("MMM")
 				.pattern("MSM")
-				.pattern(" M ")
-				.define('M', TofuItems.TOFUMETAL.get())
+				.pattern("MMM")
+				.define('M', TofuItems.TOFU_METAL_NUGGET.get())
 				.define('S', Items.SOUL_TORCH)
-				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.unlockedBy("has_item", has(TofuItems.TOFU_METAL_NUGGET.get()))
 				.save(consumer);
-		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_CHAIN.get(), 4)
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_CHAIN.get(), 1)
+				.pattern("N")
 				.pattern("M")
-				.pattern("M")
-				.pattern("M")
+				.pattern("N")
 				.define('M', TofuItems.TOFUMETAL.get())
+				.define('N', TofuItems.TOFU_METAL_NUGGET.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
 				.save(consumer);
+
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, TofuItems.TOFU_STEM_BOAT.get(), 1)
 				.pattern("S S")

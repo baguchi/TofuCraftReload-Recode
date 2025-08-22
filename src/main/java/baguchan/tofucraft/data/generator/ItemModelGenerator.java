@@ -227,6 +227,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TOFUMOMEN);
 		singleTex(TofuItems.TOFUISHI);
 		singleTex(TofuItems.TOFUMETAL);
+		singleTex(TofuItems.TOFU_METAL_NUGGET);
+
 		singleTex(TofuItems.TOFUDIAMOND);
 		singleTex(TofuItems.TOFUDIAMOND_NUGGET);
 

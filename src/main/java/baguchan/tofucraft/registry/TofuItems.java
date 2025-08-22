@@ -98,6 +98,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFUMOMEN = ITEMS.register("tofumomen", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU)));
 	public static final DeferredHolder<Item, Item> TOFUISHI = ITEMS.register("tofuishi", () -> new Item((new Item.Properties()).food(TofuFoods.ISHITOFU)));
 	public static final DeferredHolder<Item, Item> TOFUMETAL = ITEMS.register("tofumetal", () -> new Item((new Item.Properties())));
+	public static final DeferredHolder<Item, Item> TOFU_METAL_NUGGET = ITEMS.register("tofu_metal_nugget", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TOFUDIAMOND = ITEMS.register("tofudiamond", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TOFUDIAMOND_NUGGET = ITEMS.register("tofudiamondnugget", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TOFUHELL = ITEMS.register("tofuhell", () -> new Item((new Item.Properties()).food(TofuFoods.TOFUHELL)));

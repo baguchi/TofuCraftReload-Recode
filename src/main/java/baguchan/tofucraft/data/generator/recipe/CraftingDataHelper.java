@@ -55,7 +55,7 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.pattern("###")
 				.pattern("###")
 				.define('#', log.get())
-				.define('|', Items.CHAIN)
+				.define('|', TofuBlocks.TOFU_METAL_CHAIN)
 				.unlockedBy("has_" + BuiltInRegistries.BLOCK.getKey(log.get()).getPath(), has(log.get()));
 	}
 
