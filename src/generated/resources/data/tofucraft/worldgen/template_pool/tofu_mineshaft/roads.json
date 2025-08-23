@@ -25,7 +25,7 @@
         "processors": "tofucraft:tofu_mineshaft",
         "projection": "rigid"
       },
-      "weight": 1
+      "weight": 2
     },
     {
       "element": {

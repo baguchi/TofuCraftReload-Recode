@@ -237,7 +237,7 @@ public class TofuStructures {
 		context.register(TOFU_MINESHAFT_ROADS, new StructureTemplatePool(emptyPool, ImmutableList.of(
 				Pair.of(StructurePoolElement.single(name("tofu_mineshaft/roads/road_1"), processors.getOrThrow(TOFU_MINESHAFT_PROCESSOR)), 3),
 				Pair.of(StructurePoolElement.single(name("tofu_mineshaft/roads/road_2"), processors.getOrThrow(TOFU_MINESHAFT_PROCESSOR)), 1),
-				Pair.of(StructurePoolElement.single(name("tofu_mineshaft/roads/road_3"), processors.getOrThrow(TOFU_MINESHAFT_PROCESSOR)), 1),
+				Pair.of(StructurePoolElement.single(name("tofu_mineshaft/roads/road_3"), processors.getOrThrow(TOFU_MINESHAFT_PROCESSOR)), 2),
 				Pair.of(StructurePoolElement.single(name("tofu_mineshaft/roads/road_chest"), processors.getOrThrow(TOFU_MINESHAFT_PROCESSOR)), 1)
 		), StructureTemplatePool.Projection.RIGID));
 

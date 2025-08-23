@@ -6,12 +6,12 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tofucraft:zundama",
-          "weight": 20
+          "name": "tofucraft:tofu_metal_pickaxe",
+          "weight": 5
         },
         {
           "type": "minecraft:item",
-          "name": "tofucraft:tofu_metal_pickaxe",
+          "name": "tofucraft:tofu_metal_shovel",
           "weight": 5
         },
         {
@@ -39,6 +39,22 @@
           ],
           "name": "tofucraft:tofumetal",
           "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 9.0,
+                "min": 4.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "tofucraft:tofu_metal_nugget",
+          "weight": 15
         },
         {
           "type": "minecraft:item",
@@ -102,22 +118,6 @@
             }
           ],
           "name": "tofucraft:tofucookie",
-          "weight": 15
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 6.0,
-                "min": 3.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "tofucraft:zundama",
           "weight": 15
         }
       ],
