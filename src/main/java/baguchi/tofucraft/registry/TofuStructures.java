@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.Pools;
@@ -26,6 +27,7 @@ import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
@@ -175,7 +177,9 @@ public class TofuStructures {
 		context.register(TOFU_VILLAGE_SET, new StructureSet(List.of(StructureSet.entry(structures.getOrThrow(TOFU_VILLAGE), 1), StructureSet.entry(structures.getOrThrow(ZUNDA_TOFU_VILLAGE), 1))
 				, new RandomSpreadStructurePlacement(32, 8, RandomSpreadType.LINEAR, 16324620)));
 		context.register(TOFU_RUINS_SET, new StructureSet(structures.getOrThrow(TOFU_RUINS), new RandomSpreadStructurePlacement(28, 8, RandomSpreadType.LINEAR, 83469867)));
-		context.register(TOFU_MINESHAFT_SET, new StructureSet(structures.getOrThrow(TOFU_MINESHAFT), new RandomSpreadStructurePlacement(32, 6, RandomSpreadType.LINEAR, 58629867)));
+		context.register(TOFU_MINESHAFT_SET, new StructureSet(structures.getOrThrow(TOFU_MINESHAFT), new RandomSpreadStructurePlacement(
+				Vec3i.ZERO, StructurePlacement.FrequencyReductionMethod.LEGACY_TYPE_3, 0.004F, 0, Optional.empty(), 1, 0, RandomSpreadType.LINEAR
+		)));
 	}
 
 	public static void bootstrapPools(BootstrapContext<StructureTemplatePool> context) {
