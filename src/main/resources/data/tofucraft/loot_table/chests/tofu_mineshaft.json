@@ -140,6 +140,22 @@
           ],
           "name": "tofucraft:tofucookie",
           "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "tofucraft:soymilk_strawberry",
+          "weight": 5
         }
       ],
       "rolls": {
