@@ -11,7 +11,7 @@
         {
           "type" : "minecraft:item",
           "weight" : 15,
-          "name" : "tofucraft:tofudiamondnugget",
+          "name": "tofucraft:tofu_diamond_nugget",
           "functions" : [
             {
               "function" : "minecraft:set_count",

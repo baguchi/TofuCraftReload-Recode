@@ -19,6 +19,7 @@ public class TofuTags {
 	public static class Biomes {
 		public static final TagKey<Biome> TOFU_CASTLE = tag("has_structure/tofu_castle");
 		public static final TagKey<Biome> TOFU_RUINS = tag("has_structure/tofu_ruins");
+		public static final TagKey<Biome> TOFU_MINESHAFT = tag("has_structure/tofu_mineshaft");
 		public static final TagKey<Biome> TOFU_VILLAGE = tag("has_structure/tofu_village");
 		public static final TagKey<Biome> ZUNDA_TOFU_VILLAGE = tag("has_structure/zunda_tofu_village");
 		public static final TagKey<Biome> HOT_VARIANT_TOFUNIAN = tag("hot_variant_tofunian");

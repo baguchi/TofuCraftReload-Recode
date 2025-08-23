@@ -121,6 +121,7 @@ public class TofuCraftReload {
 		TofuItems.ITEMS.addAlias(prefix("sculk_bone_leggings"), prefix("tofu_diamond_leggings"));
 		TofuItems.ITEMS.addAlias(prefix("sculk_bone_boots"), prefix("tofu_diamond_boots"));
 		TofuItems.ITEMS.addAlias(prefix("glassbowl"), prefix("glass_bowl"));
+		TofuItems.ITEMS.addAlias(prefix("tofudiamondnugget"), prefix("tofu_diamond_nugget"));
 
 		TofuEntityTypes.ENTITIES.register(modBus);
 		TofuEntityTypes.ENTITIES.addAlias(prefix("fukumame_thower"), prefix("fukumame_thrower"));

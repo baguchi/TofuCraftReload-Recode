@@ -1,5 +1,6 @@
 package baguchi.tofucraft.registry;
 
+import baguchi.bagus_lib.world.processor.BaseProcessor;
 import baguchi.tofucraft.TofuCraftReload;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.heightproviders.ConstantHeight;
+import net.minecraft.world.level.levelgen.heightproviders.UniformHeight;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
@@ -44,10 +46,12 @@ public class TofuStructures {
 	public static final ResourceKey<Structure> TOFU_VILLAGE = ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village"));
 	public static final ResourceKey<Structure> ZUNDA_TOFU_VILLAGE = ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "zunda_tofu_village"));
 	public static final ResourceKey<Structure> TOFU_RUINS = ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_ruins"));
+	public static final ResourceKey<Structure> TOFU_MINESHAFT = ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft"));
 
 	public static final ResourceKey<StructureSet> TOFU_CASTLE_SET = ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle"));
 	public static final ResourceKey<StructureSet> TOFU_VILLAGE_SET = ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village"));
 	public static final ResourceKey<StructureSet> TOFU_RUINS_SET = ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_ruins"));
+	public static final ResourceKey<StructureSet> TOFU_MINESHAFT_SET = ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft"));
 
 	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_MAIN = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/main"));
 	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_MAIN_2 = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/main2"));
@@ -67,11 +71,16 @@ public class TofuStructures {
 	public static final ResourceKey<StructureTemplatePool> TOFUNIAN = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/tofunian"));
 
 
+	public static final ResourceKey<StructureTemplatePool> TOFU_MINESHAFT_ROADS = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft/roads"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_MINESHAFT_CENTERS = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft/centers"));
+
+
 	public static final ResourceKey<StructureTemplatePool> TOFU_RUINS_START = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_ruins"));
 
 
 	public static final ResourceKey<StructureProcessorList> TOFU_PLAIN_VILLAGE_ROAD = ResourceKey.create(Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_plain_village_road"));
 	public static final ResourceKey<StructureProcessorList> ZUNDA_FOREST_VILLAGE_ROAD = ResourceKey.create(Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "zunda_forest_village_road"));
+	public static final ResourceKey<StructureProcessorList> TOFU_MINESHAFT_PROCESSOR = ResourceKey.create(Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft"));
 
 
 	public static void bootstrapStructures(BootstrapContext<Structure> context) {
@@ -145,6 +154,19 @@ public class TofuStructures {
 						Heightmap.Types.WORLD_SURFACE_WG
 				)
 		);
+		context.register(
+				TOFU_MINESHAFT,
+				new JigsawStructure(
+						new Structure.StructureSettings.Builder(biomes.getOrThrow(TofuTags.Biomes.TOFU_MINESHAFT))
+								.terrainAdapation(TerrainAdjustment.NONE)
+								.generationStep(GenerationStep.Decoration.UNDERGROUND_STRUCTURES)
+								.build(),
+						pools.getOrThrow(TofuStructures.TOFU_MINESHAFT_CENTERS),
+						12,
+						UniformHeight.of(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(42)),
+						false
+				)
+		);
 	}
 
 	public static void bootstrapSets(BootstrapContext<StructureSet> context) {
@@ -153,6 +175,7 @@ public class TofuStructures {
 		context.register(TOFU_VILLAGE_SET, new StructureSet(List.of(StructureSet.entry(structures.getOrThrow(TOFU_VILLAGE), 1), StructureSet.entry(structures.getOrThrow(ZUNDA_TOFU_VILLAGE), 1))
 				, new RandomSpreadStructurePlacement(32, 8, RandomSpreadType.LINEAR, 16324620)));
 		context.register(TOFU_RUINS_SET, new StructureSet(structures.getOrThrow(TOFU_RUINS), new RandomSpreadStructurePlacement(28, 8, RandomSpreadType.LINEAR, 83469867)));
+		context.register(TOFU_MINESHAFT_SET, new StructureSet(structures.getOrThrow(TOFU_MINESHAFT), new RandomSpreadStructurePlacement(32, 6, RandomSpreadType.LINEAR, 58629867)));
 	}
 
 	public static void bootstrapPools(BootstrapContext<StructureTemplatePool> context) {
@@ -208,6 +231,17 @@ public class TofuStructures {
 				Pair.of(StructurePoolElement.single(name("tofu_village/tofunian")), 1)
 		), StructureTemplatePool.Projection.RIGID));
 
+		context.register(TOFU_MINESHAFT_CENTERS, new StructureTemplatePool(emptyPool, ImmutableList.of(
+				Pair.of(StructurePoolElement.single(name("tofu_mineshaft/center")), 1)
+		), StructureTemplatePool.Projection.RIGID));
+		context.register(TOFU_MINESHAFT_ROADS, new StructureTemplatePool(emptyPool, ImmutableList.of(
+				Pair.of(StructurePoolElement.single(name("tofu_mineshaft/roads/road_1"), processors.getOrThrow(TOFU_MINESHAFT_PROCESSOR)), 3),
+				Pair.of(StructurePoolElement.single(name("tofu_mineshaft/roads/road_2"), processors.getOrThrow(TOFU_MINESHAFT_PROCESSOR)), 1),
+				Pair.of(StructurePoolElement.single(name("tofu_mineshaft/roads/road_3"), processors.getOrThrow(TOFU_MINESHAFT_PROCESSOR)), 1),
+				Pair.of(StructurePoolElement.single(name("tofu_mineshaft/roads/road_chest"), processors.getOrThrow(TOFU_MINESHAFT_PROCESSOR)), 1)
+		), StructureTemplatePool.Projection.RIGID));
+
+
 		context.register(TOFU_RUINS_START, new StructureTemplatePool(emptyPool, ImmutableList.of(
 				Pair.of(StructurePoolElement.single(name("tofu_ruins/tofu_world/portal_01")), 3),
 				Pair.of(StructurePoolElement.single(name("tofu_ruins/tofu_world/portal_02")), 1)
@@ -243,6 +277,9 @@ public class TofuStructures {
 								new ProcessorRule(new BlockMatchTest(TofuBlocks.ZUNDATOFU_BRICK.get()), new BlockMatchTest(TofuBlocks.SOYMILK.get()), TofuBlocks.TOFU_STEM_PLANKS.get().defaultBlockState()),
 								new ProcessorRule(new RandomBlockMatchTest(TofuBlocks.ZUNDATOFU_BRICK.get(), 0.2F), AlwaysTrueTest.INSTANCE, TofuBlocks.TOFU_TERRAIN.get().defaultBlockState()),
 								new ProcessorRule(new BlockMatchTest(TofuBlocks.TOFU_TERRAIN.get()), new BlockMatchTest(TofuBlocks.SOYMILK.get()), TofuBlocks.SOYMILK.get().defaultBlockState()))))));
+		context.register(TOFU_MINESHAFT_PROCESSOR, new StructureProcessorList(ImmutableList.of(
+				new BaseProcessor(TofuBlocks.TOFU_STEM.get(), TofuBlocks.LEEK_STEM.get())
+		)));
 	}
 
 	private static String name(String name) {

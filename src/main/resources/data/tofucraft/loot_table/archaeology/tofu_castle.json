@@ -30,7 +30,7 @@
         },
         {
           "type" : "minecraft:item",
-          "name" : "tofucraft:tofudiamondnugget"
+          "name": "tofucraft:tofu_diamond_nugget"
         },
         {
           "type" : "minecraft:item",

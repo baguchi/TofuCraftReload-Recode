@@ -1,0 +1,41 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "tofucraft:tofu_mineshaft/roads/road_1",
+        "processors": "tofucraft:tofu_mineshaft",
+        "projection": "rigid"
+      },
+      "weight": 3
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "tofucraft:tofu_mineshaft/roads/road_2",
+        "processors": "tofucraft:tofu_mineshaft",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "tofucraft:tofu_mineshaft/roads/road_3",
+        "processors": "tofucraft:tofu_mineshaft",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "tofucraft:tofu_mineshaft/roads/road_chest",
+        "processors": "tofucraft:tofu_mineshaft",
+        "projection": "rigid"
+      },
+      "weight": 1
+    }
+  ],
+  "fallback": "minecraft:empty"
+}
