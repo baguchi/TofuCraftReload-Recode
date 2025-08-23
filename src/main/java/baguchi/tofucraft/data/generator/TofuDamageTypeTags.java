@@ -27,5 +27,6 @@ public class TofuDamageTypeTags extends KeyTagProvider<DamageType> {
 		this.tag(DamageTypeTags.DAMAGES_HELMET).add(TofuDamageTypes.FALLING_TOFU);
 		this.tag(DamageTypeTags.NO_KNOCKBACK).add(TofuDamageTypes.FUKUMAME);
 		this.tag(DamageTypeTags.BYPASSES_COOLDOWN).add(TofuDamageTypes.FUKUMAME);
+		this.tag(DamageTypeTags.PANIC_CAUSES).add(TofuDamageTypes.FUKUMAME, TofuDamageTypes.ZUNDA, TofuDamageTypes.FALLING_TOFU, TofuDamageTypes.SOY_SPORE, TofuDamageTypes.SOY_SPLASH);
 	}
 }
