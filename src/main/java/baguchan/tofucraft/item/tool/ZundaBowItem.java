@@ -43,7 +43,7 @@ public class ZundaBowItem extends BowItem implements IEnergyInsertable {
 		Projectile projectile = super.createProjectile(p_331008_, p_330781_, p_330846_, p_331497_, p_331305_);
 
 		if (projectile instanceof ZundaArrow zundaArrow) {
-			zundaArrow.setBaseDamage(zundaArrow.getBaseDamage() + 3);
+			zundaArrow.setBaseDamage(zundaArrow.getBaseDamage() + 2);
 		}
 
 		return projectile;
