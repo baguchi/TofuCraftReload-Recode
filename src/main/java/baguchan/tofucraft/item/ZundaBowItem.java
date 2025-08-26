@@ -49,7 +49,7 @@ public class ZundaBowItem extends BowItem implements IEnergyInsertable {
 						}
 
 						if (itemstack.is(TofuItems.ZUNDA_ARROW.get())) {
-							abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + 4);
+							abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + 2);
 						}
 
 						int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, p_40667_);
