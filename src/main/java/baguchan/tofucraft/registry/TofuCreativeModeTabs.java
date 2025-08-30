@@ -482,7 +482,8 @@ public class TofuCreativeModeTabs {
 						TofuItems.TOFU_MINCED,
 						TofuItems.TOFUGEM,
 						TofuItems.TOFU_GEM_DUST,
-						TofuItems.ADVANCE_TOFUGEM).map(itemRegistryObject -> {
+						TofuItems.ADVANCE_TOFUGEM,
+						TofuItems.TOFU_CRAFTERS_BOOK).map(itemRegistryObject -> {
 					return itemRegistryObject.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());

@@ -1829,5 +1829,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.EDAMAME.get()))
 				.save(consumer);
 
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TofuItems.TOFU_CRAFTERS_BOOK.get(), 1)
+				.requires(TofuItems.SEEDS_SOYBEANS.get())
+				.requires(Items.BOOK)
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS.get()))
+				.save(consumer);
+
 	}
 }
