@@ -94,6 +94,6 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 
 	@Override
 	public void draw(TofuPotRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics stack, double mouseX, double mouseY) {
-		arrow.draw(stack, 103 - 37, 38 - 4);
+		arrow.draw(stack, 103 - 37, 37 - 4);
 	}
 }
