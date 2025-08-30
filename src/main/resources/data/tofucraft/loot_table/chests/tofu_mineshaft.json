@@ -106,7 +106,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "tofucraft:tofu_diamond",
+          "name": "tofucraft:tofudiamond",
           "weight": 2
         },
         {
