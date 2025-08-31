@@ -1,9 +1,10 @@
 {
   "type": "tofucraft:tofu_pot_shapeless",
-  "category": "misc",
-  "cook_time": 300,
-  "exp": 0.5,
-  "fluid": [],
+  "cookTime": 300,
+  "experience": 0.5,
+  "fluid": {
+    "null_fluid": true
+  },
   "ingredients": [
     {
       "tag": "forge:milk/soy_milk"

@@ -1,9 +1,10 @@
 {
   "type": "tofucraft:tofu_pot_shapeless",
-  "category": "fast_food",
-  "cook_time": 100,
-  "exp": 0.1,
-  "fluid": [],
+  "cookTime": 100,
+  "experience": 0.1,
+  "fluid": {
+    "null_fluid": true
+  },
   "ingredients": [
     [
       {

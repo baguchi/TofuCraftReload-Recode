@@ -1,10 +1,11 @@
 {
   "type": "tofucraft:tofu_pot_shapeless",
-  "category": "misc",
-  "cook_time": 200,
-  "exp": 0.2,
+  "cookTime": 200,
+  "experience": 0.2,
   "fluid": {
-    "fluid": "minecraft:water"
+    "amount": 200,
+    "fluid": "minecraft:water",
+    "nbt": {}
   },
   "ingredients": [
     {

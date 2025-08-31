@@ -1,6 +1,8 @@
 package baguchan.tofucraft.recipe;
 
 import baguchan.tofucraft.registry.TofuRecipes;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -13,27 +15,31 @@ import net.minecraft.world.level.Level;
 
 public class BitternRecipe implements Recipe<Inventory> {
 
-	protected final ResourceLocation id;
+	public ResourceLocation id;
 	/**
 	 * The ingredient used for the Before it hardens tofu.
 	 */
+	@Expose
+	@SerializedName("process")
 	private FluidIngredient fluid;
+	@Expose
+	@SerializedName("ingredients")
 	protected Ingredient ingredient;
 	/**
 	 * This ingredient used for the harden tofu.
 	 */
-	final ItemStack result;
+	@Expose
+	@SerializedName("result")
+	public ItemStack result;
 
-	public BitternRecipe(ResourceLocation id, FluidIngredient fluid, Ingredient ingredient, ItemStack results) {
-
-		this.id = id;
-		this.fluid = fluid;
-		this.ingredient = ingredient;
-		this.result = results;
-	}
 
 	public Ingredient getIngredient() {
 		return ingredient;
+	}
+
+
+	public void setId(ResourceLocation recipeID) {
+		this.id = recipeID;
 	}
 
 	/**

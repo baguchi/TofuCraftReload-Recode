@@ -48,7 +48,6 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -147,7 +146,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		if (isHeated && cookingPot.hasInput()) {
 			Optional<TofuPotRecipe> recipe = cookingPot.getMatchingRecipe();
 			if (recipe.isPresent() && cookingPot.canCook(recipe.get()) &&
-					(recipe.get().fluidIngredient().isEmpty() || Arrays.stream(recipe.get().fluidIngredient().getFluids()).anyMatch(fluidStack -> fluidStack.getFluid() == cookingPot.fluidTank.getFluid().getFluid() && cookingPot.fluidTank.getFluidAmount() >= 250))) {
+					(recipe.get().matchesWithFluid(cookingPot.fluidTank.getFluid(), cookingPot, level))) {
 				didInventoryChange = cookingPot.processCooking(recipe.get(), cookingPot);
 			} else {
 				cookingPot.cookTime = 0;
@@ -226,7 +225,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		} else if (ItemStack.isSameItem(storedMealStack, resultStack)) {
 			storedMealStack.grow(resultStack.getCount());
 		}
-		if (!recipe.fluidIngredient().isEmpty()) {
+		if (!recipe.matchesWithFluid(fluidTank.getFluid(), this, level)) {
 			cookingPot.fluidTank.drain(250, IFluidHandler.FluidAction.EXECUTE);
 		}
 

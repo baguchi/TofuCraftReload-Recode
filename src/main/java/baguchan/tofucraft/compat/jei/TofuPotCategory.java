@@ -4,6 +4,7 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.TofuPotRecipe;
 import baguchan.tofucraft.registry.TofuBlocks;
 import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
@@ -86,9 +87,8 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 			}
 		}
 		builder.addSlot(RecipeIngredientRole.OUTPUT, 130 - 37, 37 - 4).addItemStack(recipe.getResult());
-		if (!recipe.fluidIngredient().isEmpty()) {
-			builder.addSlot(RecipeIngredientRole.CATALYST, 130 - 37, 37 - 22).addFluidStack(recipe.fluidIngredient().getFluids()[0].getFluid(), recipe.fluidIngredient().getFluids()[0].getAmount());
-		}
+		builder.addSlot(RecipeIngredientRole.CATALYST, 130 - 37, 37 - 22).addIngredients(ForgeTypes.FLUID_STACK, recipe.fluidIngredient().getMatchingFluidStacks());
+
 	}
 
 

@@ -1,7 +1,8 @@
 {
   "type": "tofucraft:bittern",
   "process": {
-    "fluid": "tofucraft:soymilk"
+    "fluid": "tofucraft:soymilk",
+    "amount": 1000
   },
   "ingredient" : {
     "item" : "tofucraft:bittern_bottle"

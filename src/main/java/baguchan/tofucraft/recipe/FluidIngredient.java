@@ -1,259 +1,242 @@
 package baguchan.tofucraft.recipe;
 
-import com.google.common.collect.Lists;
-import com.google.gson.JsonArray;
+import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-import it.unimi.dsi.fastutil.ints.IntList;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
+import java.util.stream.Collectors;
 
-public class FluidIngredient implements Predicate<FluidStack> {
-	//Because Mojang caches things... we need to invalidate them.. so... here we go..
-	private static final java.util.Set<FluidIngredient> INSTANCES = java.util.Collections.newSetFromMap(new java.util.WeakHashMap<FluidIngredient, Boolean>());
+public abstract class FluidIngredient implements Predicate<FluidStack> {
 
-	public static void invalidateAll() {
-		INSTANCES.stream().filter(e -> e != null).forEach(i -> i.invalidate());
+	public static final FluidIngredient EMPTY = NullFluidIngredient.EMPTY;
+
+	public List<FluidStack> matchingFluidStacks;
+
+	public static FluidIngredient fromTag(TagKey<Fluid> tag, int amount) {
+		FluidTagIngredient ingredient = new FluidTagIngredient();
+		ingredient.tag = tag;
+		ingredient.amountRequired = amount;
+		return ingredient;
 	}
 
-	public static final FluidIngredient EMPTY = new FluidIngredient(Stream.empty());
-	private final FluidIngredient.Value[] values;
-	private FluidStack[] fluidStacks;
-	private IntList stackingIds;
-
-	protected FluidIngredient(Stream<? extends FluidIngredient.Value> p_43907_) {
-		this.values = p_43907_.toArray((p_43933_) -> {
-			return new FluidIngredient.Value[p_43933_];
-		});
-		FluidIngredient.INSTANCES.add(this);
+	public static FluidIngredient fromFluid(Fluid fluid, int amount) {
+		FluidStackIngredient ingredient = new FluidStackIngredient();
+		ingredient.fluid = fluid;
+		ingredient.amountRequired = amount;
+		ingredient.fixFlowing();
+		return ingredient;
 	}
 
-	public FluidStack[] getFluids() {
-		this.dissolve();
-		return this.fluidStacks;
+	public static FluidIngredient fromFluidStack(FluidStack fluidStack) {
+		FluidStackIngredient ingredient = new FluidStackIngredient();
+		ingredient.fluid = fluidStack.getFluid();
+		ingredient.amountRequired = fluidStack.getAmount();
+		ingredient.fixFlowing();
+		if (fluidStack.hasTag())
+			ingredient.tagToMatch = fluidStack.getTag();
+		return ingredient;
 	}
 
-	private void dissolve() {
-		if (this.fluidStacks == null) {
-			this.fluidStacks = Arrays.stream(this.values).flatMap((p_43916_) -> {
-				return p_43916_.getFluids().stream();
-			}).distinct().toArray(FluidStack[]::new);
-		}
+	protected int amountRequired;
 
+	protected abstract boolean testInternal(FluidStack t);
+
+	protected abstract void readInternal(JsonObject json);
+
+	protected abstract void writeInternal(JsonObject json);
+
+	protected abstract List<FluidStack> determineMatchingFluidStacks();
+
+	public int getRequiredAmount() {
+		return amountRequired;
 	}
 
-	public boolean test(@Nullable FluidStack p_43914_) {
-		if (p_43914_ == null) {
+	public List<FluidStack> getMatchingFluidStacks() {
+		if (matchingFluidStacks != null)
+			return matchingFluidStacks;
+		return matchingFluidStacks = determineMatchingFluidStacks();
+	}
+
+	@Override
+	public boolean test(FluidStack t) {
+		if (t == null)
+			throw new IllegalArgumentException("FluidStack cannot be null");
+		return testInternal(t);
+	}
+
+	public JsonObject serialize() {
+		JsonObject json = new JsonObject();
+		writeInternal(json);
+		if (amountRequired != 0)
+			json.addProperty("amount", amountRequired);
+		return json;
+	}
+
+	public static boolean isFluidIngredient(@Nullable JsonElement je) {
+		if (je == null || je.isJsonNull())
 			return false;
-		} else {
-			this.dissolve();
-			if (this.fluidStacks.length == 0) {
-				return p_43914_.isEmpty();
-			} else {
-				for (FluidStack fluidstack : this.fluidStacks) {
-					if (p_43914_.containsFluid(fluidstack)) {
-						return true;
-					}
-				}
+		if (!je.isJsonObject())
+			return false;
+		JsonObject json = je.getAsJsonObject();
+		if (json.has("null_fluid"))
+			return true;
+		else if (json.has("fluidTag"))
+			return true;
+		else if (json.has("fluid"))
+			return true;
+		return false;
+	}
 
+	public static FluidIngredient deserialize(@Nullable JsonElement je) {
+		if (!isFluidIngredient(je))
+			throw new JsonSyntaxException("Invalid fluid ingredient: " + Objects.toString(je));
+
+		JsonObject json = je.getAsJsonObject();
+		if (json.has("null_fluid")) {
+			if (!json.get("null_fluid").getAsBoolean())
+				throw new JsonSyntaxException("'null_fluid' can NOT be false, delete it: " + Objects.toString(je));
+			return FluidIngredient.EMPTY;
+		}
+		FluidIngredient ingredient = json.has("fluidTag") ? new FluidTagIngredient() : new FluidStackIngredient();
+		ingredient.readInternal(json);
+
+		if (!json.has("amount"))
+			throw new JsonSyntaxException("Fluid ingredient has to define an amount");
+		ingredient.amountRequired = GsonHelper.getAsInt(json, "amount");
+		return ingredient;
+	}
+
+	private static class NullFluidIngredient extends FluidIngredient {
+		private static final NullFluidIngredient EMPTY = new NullFluidIngredient();
+
+		private NullFluidIngredient() {
+		}
+
+		@Override
+		protected boolean testInternal(FluidStack t) {
+			return true;
+		}
+
+		@Override
+		protected void readInternal(JsonObject json) {
+		}
+
+		@Override
+		protected void writeInternal(JsonObject json) {
+			json.addProperty("null_fluid", true);
+		}
+
+		@Override
+		protected List<FluidStack> determineMatchingFluidStacks() {
+			return ImmutableList.of(new FluidStack(Fluids.EMPTY, 0));
+		}
+
+	}
+
+	public static class FluidStackIngredient extends FluidIngredient {
+
+		protected Fluid fluid;
+		protected CompoundTag tagToMatch;
+
+		public FluidStackIngredient() {
+			tagToMatch = new CompoundTag();
+		}
+
+		void fixFlowing() {
+			if (fluid instanceof FlowingFluid)
+				fluid = ((FlowingFluid) fluid).getSource();
+		}
+
+		@Override
+		protected boolean testInternal(FluidStack t) {
+			if (!t.getFluid()
+					.isSame(fluid))
 				return false;
-			}
-		}
-	}
-
-
-	public final void toNetwork(FriendlyByteBuf p_43924_) {
-		this.dissolve();
-
-		p_43924_.writeCollection(Arrays.asList(this.fluidStacks), FriendlyByteBuf::writeFluidStack);
-	}
-
-	public JsonElement toJson() {
-		if (this.values.length == 1) {
-			return this.values[0].serialize();
-		} else {
-			JsonArray jsonarray = new JsonArray();
-
-			for (FluidIngredient.Value Fluidingredient$value : this.values) {
-				jsonarray.add(Fluidingredient$value.serialize());
-			}
-
-			return jsonarray;
-		}
-	}
-
-	public boolean isEmpty() {
-		return this.values.length == 0 && (this.fluidStacks == null || this.fluidStacks.length == 0) && (this.stackingIds == null || this.stackingIds.isEmpty());
-	}
-
-	protected void invalidate() {
-		this.fluidStacks = null;
-		this.stackingIds = null;
-	}
-
-	public boolean isSimple() {
-		return this == EMPTY;
-	}
-
-	public static FluidIngredient fromValues(Stream<? extends FluidIngredient.Value> p_43939_) {
-		FluidIngredient Fluidingredient = new FluidIngredient(p_43939_);
-		return Fluidingredient.values.length == 0 ? EMPTY : Fluidingredient;
-	}
-
-	public static FluidIngredient of() {
-		return EMPTY;
-	}
-
-	public static FluidIngredient of(FluidStack... p_43928_) {
-		return of(Arrays.stream(p_43928_));
-	}
-
-	public static FluidIngredient of(Stream<FluidStack> p_43922_) {
-		return fromValues(p_43922_.filter((p_43944_) -> {
-			return !p_43944_.isEmpty();
-		}).map(FluidIngredient.FluidValue::new));
-	}
-
-	public static FluidIngredient of(TagKey<Fluid> p_43912_) {
-		return fromValues(Stream.of(new FluidIngredient.TagValue(p_43912_)));
-	}
-
-	public static FluidIngredient fromNetwork(FriendlyByteBuf p_43941_) {
-		var size = p_43941_.readVarInt();
-		return fromValues(Stream.generate(() -> new FluidIngredient.FluidValue(p_43941_.readFluidStack())).limit(size));
-	}
-
-	public static FluidIngredient fromJson(@Nullable JsonElement p_43918_) {
-		if (p_43918_ != null && !p_43918_.isJsonNull()) {
-			if (p_43918_.isJsonObject()) {
-				return fromValues(Stream.of(valueFromJson(p_43918_.getAsJsonObject())));
-			} else if (p_43918_.isJsonArray()) {
-				JsonArray jsonarray = p_43918_.getAsJsonArray();
-				if (jsonarray.size() == 0) {
-					throw new JsonSyntaxException("Fluid array cannot be empty, at least one fluid must be defined");
-				} else {
-					return fromValues(StreamSupport.stream(jsonarray.spliterator(), false).map((p_151264_) -> {
-						return valueFromJson(GsonHelper.convertToJsonObject(p_151264_, "fluid"));
-					}));
-				}
-			} else {
-				throw new JsonSyntaxException("Expected fluid to be object or array of objects");
-			}
-		} else {
-			throw new JsonSyntaxException("Fluid cannot be null");
-		}
-	}
-
-	public static FluidStack getFluidStack(JsonObject json, boolean readNBT) {
-		String fluidName = GsonHelper.getAsString(json, "fluid");
-
-		Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluidName));
-
-		if (fluid == null)
-			throw new JsonSyntaxException("Unknown fluid '" + fluidName + "'");
-
-		return new FluidStack(fluid, 1000);
-	}
-
-	public static FluidIngredient.Value valueFromJson(JsonObject p_43920_) {
-		if (p_43920_.has("fluid") && p_43920_.has("tag")) {
-			throw new JsonParseException("An Fluidingredient entry is either a tag or an fluid, not both");
-		} else if (p_43920_.has("fluid")) {
-			Fluid fluid = fluidFromJson(p_43920_);
-			return new FluidIngredient.FluidValue(new FluidStack(fluid, 1000));
-		} else if (p_43920_.has("tag")) {
-			ResourceLocation resourcelocation = new ResourceLocation(GsonHelper.getAsString(p_43920_, "tag"));
-			TagKey<Fluid> tagkey = TagKey.create(Registries.FLUID, resourcelocation);
-			return new FluidIngredient.TagValue(tagkey);
-		} else {
-			throw new JsonParseException("An Fluidingredient entry needs either a tag or an fluid");
-		}
-	}
-
-	public static Fluid fluidFromJson(JsonObject p_151279_) {
-		String s = GsonHelper.getAsString(p_151279_, "fluid");
-		Fluid fluid = BuiltInRegistries.FLUID.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
-			return new JsonSyntaxException("Unknown fluid '" + s + "'");
-		});
-		if (fluid == Fluids.EMPTY) {
-			throw new JsonSyntaxException("Invalid fluid: " + s);
-		} else {
-			return fluid;
-		}
-	}
-
-	//Merges several vanilla FluidIngredients together. As a quirk of how the json is structured, we can't tell if its a single FluidIngredient type or multiple so we split per fluid and re-merge here.
-	//Only public for internal use, so we can access a private field in here.
-	public static FluidIngredient merge(Collection<FluidIngredient> parts) {
-		return fromValues(parts.stream().flatMap(i -> Arrays.stream(i.values)));
-	}
-
-	public static class FluidValue implements FluidIngredient.Value {
-		private final FluidStack fluid;
-
-		public FluidValue(FluidStack p_43953_) {
-			this.fluid = p_43953_;
+			if (tagToMatch.isEmpty())
+				return true;
+			CompoundTag tag = t.getOrCreateTag();
+			return tag.copy()
+					.merge(tagToMatch)
+					.equals(tag);
 		}
 
-
-		public Collection<FluidStack> getFluids() {
-			return Collections.singleton(this.fluid);
+		@Override
+		protected void readInternal(JsonObject json) {
+			FluidStack stack = FluidHelper.deserializeFluidStack(json);
+			fluid = stack.getFluid();
+			tagToMatch = stack.getOrCreateTag();
 		}
 
-		public JsonObject serialize() {
-			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("fluid", BuiltInRegistries.FLUID.getKey(this.fluid.getFluid()).toString());
-			return jsonobject;
+		@Override
+		protected void writeInternal(JsonObject json) {
+			json.addProperty("fluid", ForgeRegistries.FLUIDS.getKey(fluid)
+					.toString());
+			json.add("nbt", JsonParser.parseString(tagToMatch.toString()));
 		}
+
+		@Override
+		protected List<FluidStack> determineMatchingFluidStacks() {
+			return ImmutableList.of(tagToMatch.isEmpty() ? new FluidStack(fluid, amountRequired)
+					: new FluidStack(fluid, amountRequired, tagToMatch));
+		}
+
 	}
 
-	public static class TagValue implements FluidIngredient.Value {
-		private final TagKey<Fluid> tag;
+	public static class FluidTagIngredient extends FluidIngredient {
 
-		public TagValue(TagKey<Fluid> p_43961_) {
-			this.tag = p_43961_;
+		protected TagKey<Fluid> tag;
+
+		@Override
+		protected boolean testInternal(FluidStack t) {
+			if (tag == null)
+				for (FluidStack accepted : getMatchingFluidStacks())
+					if (accepted.getFluid().isSame(t.getFluid()))
+						return true;
+			return ForgeRegistries.FLUIDS.tags().getReverseTag(t.getFluid()).get().containsTag(tag);
 		}
 
-		public Collection<FluidStack> getFluids() {
-			List<FluidStack> list = Lists.newArrayList();
-
-			for (Holder<Fluid> holder : BuiltInRegistries.FLUID.getTagOrEmpty(this.tag)) {
-				list.add(new FluidStack(holder.value(), 1000));
-			}
-
-			return list;
+		@Override
+		protected void readInternal(JsonObject json) {
+			ResourceLocation name = new ResourceLocation(GsonHelper.getAsString(json, "fluidTag"));
+			tag = FluidTags.create(name);
 		}
 
-		public JsonObject serialize() {
-			JsonObject jsonobject = new JsonObject();
-			jsonobject.addProperty("tag", this.tag.location().toString());
-			return jsonobject;
+		@Override
+		protected void writeInternal(JsonObject json) {
+			json.addProperty("fluidTag", tag.location().toString());
 		}
+
+		@Override
+		protected List<FluidStack> determineMatchingFluidStacks() {
+			return ForgeRegistries.FLUIDS.tags()
+					.getTag(tag)
+					.stream()
+					.map(f -> {
+						if (f instanceof FlowingFluid)
+							return ((FlowingFluid) f).getSource();
+						return f;
+					})
+					.distinct()
+					.map(f -> new FluidStack(f, amountRequired))
+					.collect(Collectors.toList());
+		}
+
 	}
 
-	public interface Value {
-		Collection<FluidStack> getFluids();
-
-		JsonObject serialize();
-	}
 }

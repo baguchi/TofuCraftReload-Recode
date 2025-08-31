@@ -4,7 +4,6 @@ import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.recipe.BitternRecipe;
 import baguchan.tofucraft.recipe.FluidIngredient;
 import baguchan.tofucraft.registry.TofuItems;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -20,8 +19,6 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-
-import java.util.Arrays;
 
 public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 
@@ -70,7 +67,7 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 		int borderSlotSize = 18;
 		builder.addSlot(RecipeIngredientRole.INPUT, 38, 18)
 				.setFluidRenderer(1000, false, 16, 16)
-				.addIngredients(ForgeTypes.FLUID_STACK, Arrays.asList(recipeIngredients.getFluids()));
+				.addIngredients(ForgeTypes.FLUID_STACK, recipeIngredients.getMatchingFluidStacks());
 
 		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).addItemStack(recipe.getResult());
 

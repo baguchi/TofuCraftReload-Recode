@@ -15,6 +15,16 @@ public enum TofuPotCategory implements StringRepresentable {
 		this.name = name;
 	}
 
+
+	public static TofuPotCategory get(String nameIn) {
+		for (TofuPotCategory role : values()) {
+			if (role.getSerializedName().equals(nameIn))
+				return role;
+		}
+		return MISC;
+	}
+
+
 	@Override
 	public String getSerializedName() {
 		return this.name;
