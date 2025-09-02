@@ -23,7 +23,7 @@ public class BitternRecipe implements Recipe<Inventory> {
 	@SerializedName("process")
 	private FluidIngredient fluid;
 	@Expose
-	@SerializedName("ingredients")
+	@SerializedName("ingredient")
 	protected Ingredient ingredient;
 	/**
 	 * This ingredient used for the harden tofu.
