@@ -10,10 +10,15 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CakeBlock;
+import net.minecraft.world.level.block.CandleBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity> {
 	private final RandomSource random = RandomSource.create();
@@ -31,30 +36,35 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 
 		this.random.setSeed((long) i);
 		if (!boardStack.isEmpty()) {
+			Block block = Block.byItem(boardStack.getItem());
 			for (int k = 0; k < j; ++k) {
-				poseStack.pushPose();
 				ItemRenderer itemRenderer = Minecraft.getInstance()
 						.getItemRenderer();
-				boolean isBlockItem = itemRenderer.getModel(boardStack, plateBlockEntity.getLevel(), null, 0)
-						.isGui3d();
-				if (isBlockItem) {
-					if (k > 0) {
-						float f11 = (this.random.nextFloat()) * 0.15F;
-						float f13 = (this.random.nextFloat()) * 0.15F;
-						float f10 = (this.random.nextFloat()) * 0.15F;
-						poseStack.translate(f11, f13, f10);
+				if (boardStack.is(ItemTags.CANDLES) || block instanceof CakeBlock) {
+					poseStack.pushPose();
+					renderBlock(poseStack, direction, boardStack.is(ItemTags.CANDLES));
+
+					BlockState state = block.defaultBlockState();
+					if (boardStack.is(ItemTags.CANDLES)) {
+						state = state.setValue(CandleBlock.LIT, plateBlockEntity.isFire());
 					}
-					renderBlock(poseStack, direction);
+
+					Minecraft.getInstance().getBlockRenderer().renderSingleBlock(state, poseStack, p_112310_, p_112311_, p_112312_);
+					poseStack.popPose();
+					return;
 				} else {
+					poseStack.pushPose();
+
 					if (k > 0) {
 						float f12 = (this.random.nextFloat()) * 0.15F * 0.5F;
 						float f14 = (this.random.nextFloat()) * 0.15F * 0.5F;
 						poseStack.translate(f12, k * 0.1F * 0.5F, f14);
 					}
 					renderItemLayingDown(poseStack, direction);
+
+					Minecraft.getInstance().getItemRenderer().renderStatic(boardStack, ItemDisplayContext.FIXED, p_112311_, p_112312_, poseStack, p_112310_, plateBlockEntity.getLevel(), posLong);
+					poseStack.popPose();
 				}
-				Minecraft.getInstance().getItemRenderer().renderStatic(boardStack, ItemDisplayContext.FIXED, p_112311_, p_112312_, poseStack, p_112310_, plateBlockEntity.getLevel(), posLong);
-				poseStack.popPose();
 			}
 		}
 	}
@@ -82,10 +92,14 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 	}
 
-	public void renderBlock(PoseStack matrixStackIn, Direction direction) {
-		matrixStackIn.translate(0.5D, 0.25D, 0.5D);
+	public void renderBlock(PoseStack matrixStackIn, Direction direction, boolean candle) {
 		float f = -direction.toYRot();
+		matrixStackIn.translate(0.5D, 0.0D, 0.5D);
+		if (!candle) {
+			matrixStackIn.scale(0.6F, 0.6F, 0.6F);
+		}
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
-		matrixStackIn.scale(0.8F, 0.8F, 0.8F);
+		matrixStackIn.translate(-0.5D, 0.0D, -0.5D);
+		//matrixStackIn.scale(0.8F, 0.8F, 0.8F);
 	}
 }

@@ -18,6 +18,7 @@ import javax.annotation.Nullable;
 public class FoodPlateBlockEntity extends SyncedBlockEntity {
 	private final ItemStackHandler inventory;
 	private final LazyOptional<IItemHandler> inputHandler;
+	private boolean fire;
 
 	public FoodPlateBlockEntity(BlockPos pos, BlockState state) {
 		super(TofuBlockEntitys.FOODPLATE.get(), pos, state);
@@ -29,12 +30,14 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 	public void load(CompoundTag compound) {
 		super.load(compound);
 		inventory.deserializeNBT(compound.getCompound("Inventory"));
+		fire = compound.getBoolean("Fire");
 	}
 
 	@Override
 	public void saveAdditional(CompoundTag compound) {
 		super.saveAdditional(compound);
 		compound.put("Inventory", inventory.serializeNBT());
+		compound.putBoolean("Fire", fire);
 	}
 
 	public boolean addItem(ItemStack itemStack) {
@@ -59,9 +62,21 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 		if (!isEmpty()) {
 			ItemStack item = getStoredItem().split(1);
 			inventoryChanged();
+			if (isFire()) {
+				this.setFire(false);
+			}
 			return item;
 		}
 		return ItemStack.EMPTY;
+	}
+
+	public void setFire(boolean fire) {
+		this.fire = fire;
+		inventoryChanged();
+	}
+
+	public boolean isFire() {
+		return fire;
 	}
 
 	public IItemHandler getInventory() {
@@ -75,7 +90,6 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity {
 	public boolean isEmpty() {
 		return inventory.getStackInSlot(0).isEmpty();
 	}
-
 
 	@Override
 	@Nonnull

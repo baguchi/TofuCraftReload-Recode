@@ -4,13 +4,17 @@ import baguchan.tofucraft.blockentity.FoodPlateBlockEntity;
 import baguchan.tofucraft.registry.TofuBlockEntitys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -28,6 +32,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -58,8 +63,32 @@ public class FoodPlateBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
+	public void animateTick(BlockState p_220697_, Level level, BlockPos blockPos, RandomSource p_220700_) {
+		BlockEntity tileEntity = level.getBlockEntity(blockPos);
+		if (tileEntity instanceof FoodPlateBlockEntity foodPlate) {
+			if (foodPlate.isFire()) {
+				addParticlesAndSound(level, new Vec3(0.5F, 0.5F, 0.5F).add((double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ()), p_220700_);
+			}
+		}
+
+	}
+
+
+	private static void addParticlesAndSound(Level p_220688_, Vec3 p_220689_, RandomSource p_220690_) {
+		float f = p_220690_.nextFloat();
+		if (f < 0.3F) {
+			p_220688_.addParticle(ParticleTypes.SMOKE, p_220689_.x, p_220689_.y, p_220689_.z, (double) 0.0F, (double) 0.0F, (double) 0.0F);
+			if (f < 0.17F) {
+				p_220688_.playLocalSound(p_220689_.x + (double) 0.5F, p_220689_.y + (double) 0.5F, p_220689_.z + (double) 0.5F, SoundEvents.CANDLE_AMBIENT, SoundSource.BLOCKS, 1.0F + p_220690_.nextFloat(), p_220690_.nextFloat() * 0.7F + 0.3F, false);
+			}
+		}
+
+		p_220688_.addParticle(ParticleTypes.SMALL_FLAME, p_220689_.x, p_220689_.y, p_220689_.z, (double) 0.0F, (double) 0.0F, (double) 0.0F);
+	}
+
+	@Override
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+		BlockEntity tileEntity = level.getBlockEntity(pos);
 		if (tileEntity instanceof FoodPlateBlockEntity) {
 			FoodPlateBlockEntity plateBlockEntity = (FoodPlateBlockEntity) tileEntity;
 			ItemStack heldStack = player.getItemInHand(handIn);
@@ -68,20 +97,30 @@ public class FoodPlateBlock extends BaseEntityBlock {
 				if (heldStack.isEmpty()) {
 					return InteractionResult.PASS;
 				} else if (plateBlockEntity.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack)) {
-					worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 0.8F);
+					level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 0.8F);
 					return InteractionResult.SUCCESS;
 				}
 			} else if (!heldStack.isEmpty()) {
+				if (heldStack.is(Items.FLINT_AND_STEEL) || heldStack.is(Items.FIRE_CHARGE)) {
+					if (plateBlockEntity.getStoredItem().is(ItemTags.CANDLES)) {
+						if (!plateBlockEntity.isFire()) {
+							level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS);
+							plateBlockEntity.setFire(true);
+							return InteractionResult.SUCCESS;
+						}
+					}
+				}
+
 				return InteractionResult.CONSUME;
 			} else if (handIn.equals(InteractionHand.MAIN_HAND)) {
 				if (!player.isCreative()) {
 					if (!player.getInventory().add(plateBlockEntity.removeItem())) {
-						Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), plateBlockEntity.removeItem());
+						Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), plateBlockEntity.removeItem());
 					}
 				} else {
 					plateBlockEntity.removeItem();
 				}
-				worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 0.25F, 0.5F);
+				level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 0.25F, 0.5F);
 				return InteractionResult.SUCCESS;
 			}
 		}
