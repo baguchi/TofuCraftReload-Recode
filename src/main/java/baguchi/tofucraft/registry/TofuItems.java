@@ -459,6 +459,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> STEAMED_BREAD = ITEMS.registerItem("steamed_bread", (properties) -> new Item((properties).food(TofuFoods.STEAMED_BREAD)));
 	public static final DeferredHolder<Item, Item> STEAMED_BREAD_COCOA = ITEMS.registerItem("steamed_bread_cocoa", (properties) -> new Item((properties).food(TofuFoods.STEAMED_BREAD)));
+	public static final DeferredHolder<Item, Item> SANBUZHAN = ITEMS.registerItem("sanbuzhan", (properties) -> new Item((properties).food(TofuFoods.SANBUZHAN)));
 
 	public static final DeferredHolder<Item, Item> KINAKO_BREAD = ITEMS.registerItem("kinako_bread", (properties) -> new Item((properties).food(TofuFoods.KINAKO_BREAD)));
 

@@ -86,6 +86,10 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 		return new TofuPotShapelessRecipeBuilder(holderGetter, p_252339_, result, Optional.empty(), 300, 0.1F);
 	}
 
+	public static TofuPotShapelessRecipeBuilder shapeless(HolderGetter<Item> holderGetter, TofuPotCategory p_252339_, Item result) {
+		return new TofuPotShapelessRecipeBuilder(holderGetter, p_252339_, new ItemStack(result), Optional.empty(), 300, 0.1F);
+	}
+
 	/**
 	 * Adds an ingredient that can be any item in the given tag.
 	 */

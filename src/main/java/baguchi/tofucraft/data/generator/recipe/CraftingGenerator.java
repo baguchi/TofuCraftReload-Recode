@@ -1212,7 +1212,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUSOMEN.get()))
 				.save(this.output);
 
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.TASTYBEEFSTEW.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), TofuItems.TASTYBEEFSTEW.get(), 300, 0.6F)
 				.requires(Items.BROWN_MUSHROOM)
 				.requires(Items.RED_MUSHROOM)
 				.requires(Items.COOKED_BEEF)
@@ -1222,7 +1222,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.BOWL)
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
 				.save(this.output);
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.TASTYSTEW.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), TofuItems.TASTYSTEW.get(), 300, 0.6F)
 				.requires(Items.BROWN_MUSHROOM)
 				.requires(Items.RED_MUSHROOM)
 				.requires(Ingredient.of(Items.COOKED_CHICKEN, Items.COOKED_MUTTON, Items.COOKED_PORKCHOP, Items.COOKED_RABBIT))
@@ -1620,7 +1620,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFU_HAMBURG.get()))
 				.save(this.output);
 
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.STEAMED_BREAD.get())
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, TofuItems.STEAMED_BREAD.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Tags.Items.EGGS)
 				.requires(Items.SUGAR)
@@ -1628,7 +1628,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.HONEY_BOTTLE)
 				.unlockedBy("has_item", has(TofuTags.Items.MILK_SOYMILK))
 				.save(this.output);
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.STEAMED_BREAD_COCOA.get())
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, TofuItems.STEAMED_BREAD_COCOA.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Tags.Items.EGGS)
 				.requires(Items.SUGAR)
@@ -1636,6 +1636,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.COCOA_BEANS)
 				.unlockedBy("has_item", has(TofuTags.Items.MILK_SOYMILK))
 				.save(this.output);
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, TofuItems.SANBUZHAN.get())
+				.requires(Tags.Items.EGGS)
+				.requires(TofuItems.STARCH.get())
+				.requires(Items.SUGAR)
+				.requires(TofuItems.BOTTLE_SOYOIL.get())
+				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
+				.save(this.output);
+
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_SOUL_BOTTLE.get(), 3)
 				.requires(TofuItems.BUCKET_SOYMILK_SOUL.get())
 				.requires(Items.GLASS_BOTTLE, 3)

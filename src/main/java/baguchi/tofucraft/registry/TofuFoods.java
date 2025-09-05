@@ -141,6 +141,7 @@ public class TofuFoods {
 	public static final FoodProperties SUKIYAKI = (new FoodProperties.Builder()).nutrition(10).saturationModifier(1.0F).build();
 	public static final FoodProperties TOFU_BUNS_BURGER = (new FoodProperties.Builder()).nutrition(10).saturationModifier(0.8F).build();
 	public static final FoodProperties STEAMED_BREAD = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.45F).build();
+	public static final FoodProperties SANBUZHAN = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.5F).build();
 
 	public static final FoodProperties SOY_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.45F).build();
 	public static final FoodProperties SOY_NETHER_CHEESE = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.45F).build();

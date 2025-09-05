@@ -1,6 +1,8 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "fast_food",
+  "cook_time": 300,
+  "experience": 0.1,
   "ingredients": [
     "#c:milk/soy_milk",
     "#c:eggs",

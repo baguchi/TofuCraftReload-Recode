@@ -4,14 +4,13 @@
   "cook_time": 300,
   "experience": 0.1,
   "ingredients": [
-    "#c:milk/soy_milk",
     "#c:eggs",
+    "tofucraft:starch",
     "minecraft:sugar",
-    "#c:crops/wheat",
-    "minecraft:cocoa_beans"
+    "tofucraft:bottle_soyoil"
   ],
   "result": {
     "count": 1,
-    "id": "tofucraft:steamed_bread_cocoa"
+    "id": "tofucraft:sanbuzhan"
   }
 }

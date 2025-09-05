@@ -459,6 +459,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.TTTBURGER,
 						TofuItems.STEAMED_BREAD,
 						TofuItems.STEAMED_BREAD_COCOA,
+						TofuItems.SANBUZHAN,
 						TofuItems.KINAKO_BREAD,
 						TofuItems.EDAMAME_TEMPLA,
 						TofuItems.NEGIMA,

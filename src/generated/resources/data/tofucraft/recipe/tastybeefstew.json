@@ -1,6 +1,8 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 300,
+  "experience": 0.6,
   "ingredients": [
     "minecraft:brown_mushroom",
     "minecraft:red_mushroom",

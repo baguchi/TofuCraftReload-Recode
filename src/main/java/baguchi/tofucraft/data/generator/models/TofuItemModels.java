@@ -358,6 +358,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFU_BUNS_BURGER.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.STEAMED_BREAD.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.STEAMED_BREAD_COCOA.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.SANBUZHAN.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.SOY_PIZZA.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOY_CHEESE.get(), ModelTemplates.FLAT_ITEM);
