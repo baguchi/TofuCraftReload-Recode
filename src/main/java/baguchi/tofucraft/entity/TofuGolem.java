@@ -71,6 +71,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 30.0D).add(Attributes.FOLLOW_RANGE, 20F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 0.6F).add(Attributes.KNOCKBACK_RESISTANCE, 0.85D).add(Attributes.ARMOR, 8.0F).add(Attributes.ATTACK_DAMAGE, 10.0D);
 	}
 
+	@Override
 	protected int decreaseAirSupply(int p_28882_) {
 		return p_28882_;
 	}
@@ -154,13 +155,14 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 		}
 	}
 
-
+	@Override
 	public void addAdditionalSaveData(ValueOutput p_28867_) {
 		super.addAdditionalSaveData(p_28867_);
 		p_28867_.putBoolean("PlayerCreated", this.isPlayerCreated());
 		this.addPersistentAngerSaveData(p_28867_);
 	}
 
+	@Override
 	public void readAdditionalSaveData(ValueInput p_28857_) {
 		super.readAdditionalSaveData(p_28857_);
 		this.setPlayerCreated(p_28857_.getBooleanOr("PlayerCreated", false));

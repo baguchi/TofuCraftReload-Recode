@@ -109,11 +109,13 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		this.goalSelector.addGoal(2, new TofuSpiderAttackGoal(this));
 	}
 
+	@Override
 	public void addAdditionalSaveData(ValueOutput p_34397_) {
 		super.addAdditionalSaveData(p_34397_);
 		p_34397_.putInt("ConversionTime", this.isConverting() ? this.conversionTime : -1);
 	}
 
+	@Override
 	public void readAdditionalSaveData(ValueInput p_34387_) {
 		super.readAdditionalSaveData(p_34387_);
 		if (p_34387_.getIntOr("ConversionTime", -1) > -1) {
@@ -121,6 +123,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		}
 	}
 
+	@Override
 	public void tick() {
 		if (!this.level().isClientSide && this.isAlive() && this.isConverting()) {
 			this.conversionTime -= 1;

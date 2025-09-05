@@ -236,6 +236,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		return this.getChargeFlag(8);
 	}
 
+	@Override
 	public void addAdditionalSaveData(ValueOutput compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putBoolean("Sleep", this.isSleepSelf());
@@ -246,6 +247,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		}
 	}
 
+	@Override
 	public void readAdditionalSaveData(ValueInput compound) {
 		super.readAdditionalSaveData(compound);
 		this.setSleepSelf(compound.getBooleanOr("Sleep", false));

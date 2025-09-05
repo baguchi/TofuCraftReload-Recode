@@ -544,6 +544,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	}
 
 
+	@Override
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 100) {
 			this.attackAnimationState.start(this.tickCount);

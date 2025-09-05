@@ -2,6 +2,7 @@ package baguchi.tofucraft.entity.goal;
 
 import baguchi.tofucraft.entity.AbstractTofunian;
 import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.entity.TravelerTofunian;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 
@@ -41,6 +42,9 @@ public class TofunianTradeWithPlayerGoal extends Goal {
 		if (this.mob instanceof Tofunian tofunian) {
 			tofunian.setAction(Tofunian.Actions.WAVE);
 		}
+        if (this.mob instanceof TravelerTofunian tofunian) {
+            this.mob.level().broadcastEntityEvent(this.mob, (byte) 100);
+        }
     }
 
     public void stop() {

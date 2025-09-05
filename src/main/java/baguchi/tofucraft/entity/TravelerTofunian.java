@@ -12,6 +12,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -55,6 +56,9 @@ public class TravelerTofunian extends AbstractTofunian {
 	private BlockPos wanderTarget;
 	private int despawnDelay;
 
+	public final AnimationState waveAnimationState = new AnimationState();
+
+
 	public TravelerTofunian(EntityType<? extends TravelerTofunian> p_35843_, Level p_35844_) {
 		super(p_35843_, p_35844_);
 	}
@@ -80,7 +84,20 @@ public class TravelerTofunian extends AbstractTofunian {
 		this.goalSelector.addGoal(2, new TravelerTofunian.WanderToPositionGoal(this, 2.0D, 1.2D));
 		this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 1.1D));
 		this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-		this.goalSelector.addGoal(9, new InteractGoal(this, Player.class, 3.0F, 1.0F));
+		this.goalSelector.addGoal(9, new InteractGoal(this, AbstractTofunian.class, 4.0F, 0.25F) {
+			@Override
+			public void start() {
+				super.start();
+				level().broadcastEntityEvent(this.mob, (byte) 100);
+			}
+		});
+		this.goalSelector.addGoal(9, new InteractGoal(this, Player.class, 3.0F, 1.0F) {
+			@Override
+			public void start() {
+				super.start();
+				level().broadcastEntityEvent(this.mob, (byte) 100);
+			}
+		});
 		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
 	}
 
@@ -161,12 +178,22 @@ public class TravelerTofunian extends AbstractTofunian {
 			this.setItemSlot(EquipmentSlot.FEET, new ItemStack(TofuItems.TOFU_MOMEN_BOOTS));
 			this.setDropChance(EquipmentSlot.FEET, 0.0F);
 		}
+
+		this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(TofuItems.TOFU_MOMEN_HELMET));
+		this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(TofuItems.TOFU_MOMEN_CHESTPLATE));
+
+		this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(TofuItems.TOFU_MOMEN_LEGGINGS));
+
+		this.setItemSlot(EquipmentSlot.FEET, new ItemStack(TofuItems.TOFU_MOMEN_BOOTS));
+
 	}
 
+	@Override
 	public boolean removeWhenFarAway(double p_35886_) {
 		return false;
 	}
 
+	@Override
 	protected void rewardTradeXp(MerchantOffer p_35859_) {
 		if (p_35859_.shouldRewardExp()) {
 			int i = 3 + this.random.nextInt(4);
@@ -183,6 +210,7 @@ public class TravelerTofunian extends AbstractTofunian {
 		return this.despawnDelay;
 	}
 
+	@Override
 	public void aiStep() {
 		super.aiStep();
 		if (!this.level().isClientSide) {
