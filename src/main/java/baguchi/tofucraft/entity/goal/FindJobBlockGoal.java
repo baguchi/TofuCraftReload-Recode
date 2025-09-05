@@ -41,7 +41,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 							this.creature.setTofunianJobBlock(this.blockPos);
 							if (this.creature.getRole() == Tofunian.Roles.TOFUNIAN) {
 								this.creature.setRole(role);
-								this.creature.updateTrades();
+								//this.creature.updateTrades();
 
 
 								this.findBlock = true;
