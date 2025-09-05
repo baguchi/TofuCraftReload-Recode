@@ -106,10 +106,12 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		return TofuSounds.TOFUNIAN_YES.get();
 	}
 
+	@Override
 	public boolean removeWhenFarAway(double distanceToClosestPlayer) {
 		return false;
 	}
 
+	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_35282_, DifficultyInstance p_35283_, EntitySpawnReason p_35284_, @Nullable SpawnGroupData p_35285_) {
 		if (p_35285_ == null) {
 			p_35285_ = new AgeableMob.AgeableMobGroupData(false);
@@ -179,6 +181,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		return true;
 	}
 
+	@Override
 	public void notifyTradeUpdated(ItemStack p_35316_) {
 		if (!this.level().isClientSide && this.ambientSoundTime > -this.getAmbientSoundInterval() + 20) {
 			this.ambientSoundTime = -this.getAmbientSoundInterval();
@@ -190,10 +193,11 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 	@Override
 	public void addAdditionalSaveData(ValueOutput p_35301_) {
 		super.addAdditionalSaveData(p_35301_);
-		MerchantOffers merchantoffers = this.getOffers();
-		if (!merchantoffers.isEmpty()) {
-			p_35301_.store(
-					"Offers", MerchantOffers.CODEC, merchantoffers);
+		if (!this.level().isClientSide) {
+			MerchantOffers merchantoffers = this.getOffers();
+			if (!merchantoffers.isEmpty()) {
+				p_35301_.store("Offers", MerchantOffers.CODEC, merchantoffers);
+			}
 		}
 
 		this.writeInventoryToTag(p_35301_);
@@ -212,6 +216,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 	protected EntityDimensions getDefaultDimensions(Pose p_316700_) {
 		return super.getDefaultDimensions(p_316700_);
 	}
+
 
 
 	protected void stopTrading() {
@@ -234,7 +239,8 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 
 	}
 
-	public boolean canBeLeashed(Player p_35272_) {
+	@Override
+	public boolean canBeLeashed() {
 		return false;
 	}
 

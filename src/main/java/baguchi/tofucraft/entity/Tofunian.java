@@ -174,6 +174,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public Tofunian(EntityType<? extends Tofunian> type, Level worldIn) {
 		super(type, worldIn);
 		((GroundPathNavigation) getNavigation()).setCanOpenDoors(true);
+		this.getNavigation().setRequiredPathLength(48.0F);
 		setCanPickUpLoot(true);
 	}
 
