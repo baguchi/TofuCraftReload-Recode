@@ -178,6 +178,7 @@ public class TravelerTofunian extends AbstractTofunian {
 			this.setItemSlot(EquipmentSlot.FEET, new ItemStack(TofuItems.TOFU_MOMEN_BOOTS));
 			this.setDropChance(EquipmentSlot.FEET, 0.0F);
 		}
+/*
 
 		this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(TofuItems.TOFU_MOMEN_HELMET));
 		this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(TofuItems.TOFU_MOMEN_CHESTPLATE));
@@ -185,6 +186,7 @@ public class TravelerTofunian extends AbstractTofunian {
 		this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(TofuItems.TOFU_MOMEN_LEGGINGS));
 
 		this.setItemSlot(EquipmentSlot.FEET, new ItemStack(TofuItems.TOFU_MOMEN_BOOTS));
+*/
 
 	}
 

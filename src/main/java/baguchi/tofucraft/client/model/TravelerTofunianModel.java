@@ -1,7 +1,9 @@
 package baguchi.tofucraft.client.model;
 
+import baguchi.tofucraft.client.animation.definitions.TofunianAnimation;
 import baguchi.tofucraft.client.render.state.TravelerTofunianRenderState;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -14,8 +16,13 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 
 public class TravelerTofunianModel<T extends TravelerTofunianRenderState> extends AbstractTofunianModel<T> implements ArmedModel, HeadedModel {
 
+	private final KeyframeAnimation waveAnimation;
+
+
 	public TravelerTofunianModel(ModelPart p_170688_) {
 		super(p_170688_);
+		this.waveAnimation = TofunianAnimation.wave.bake(p_170688_);
+
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -49,6 +56,7 @@ public class TravelerTofunianModel<T extends TravelerTofunianRenderState> extend
 	@Override
 	public void setupAnim(T entity) {
 		super.setupAnim(entity);
+		this.waveAnimation.apply(entity.waveAnimationState, entity.ageInTicks);
 	}
 
 	@Override

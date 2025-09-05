@@ -58,7 +58,7 @@ public class TofuEntityTypes {
 			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).clientTrackingRange(10).passengerAttachments(1.2F).ridingOffset(-0.3F).build(prefix("tofunian")));
 
 	public static final Supplier<EntityType<TravelerTofunian>> TRAVELER_TOFUNIAN = ENTITIES.register("traveler_tofunian", () -> EntityType.Builder.of(TravelerTofunian::new, MobCategory.CREATURE)
-			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).clientTrackingRange(10).passengerAttachments(1.2F).ridingOffset(-0.3F).build(prefix("traveler_tofunian")));
+			.sized(0.6F, 1.5F).eyeHeight(1.5F * 0.85F).clientTrackingRange(10).passengerAttachments(1.2F).ridingOffset(-0.3F).build(prefix("traveler_tofunian")));
 
 	public static final Supplier<EntityType<TofuCow>> TOFUCOW = ENTITIES.register("tofu_cow", () -> EntityType.Builder.of(TofuCow::new, MobCategory.CREATURE)
 			.sized(0.9F, 1.4F).eyeHeight(1.4F * 0.8F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_cow")));
