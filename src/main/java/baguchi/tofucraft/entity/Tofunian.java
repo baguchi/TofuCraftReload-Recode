@@ -968,6 +968,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 
+	@Override
 	public void handleEntityEvent(byte p_70103_1_) {
 		if (p_70103_1_ == 12) {
 			this.addParticlesAroundSelf(ParticleTypes.HEART);
@@ -977,8 +978,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			this.addParticlesAroundSelf(ParticleTypes.HAPPY_VILLAGER);
 		} else if (p_70103_1_ == 42) {
 			this.addParticlesAroundSelf(ParticleTypes.SPLASH);
-		} else if (p_70103_1_ == 100) {
-			this.waveAnimationState.start(this.tickCount);
 		} else {
 			super.handleEntityEvent(p_70103_1_);
 		}

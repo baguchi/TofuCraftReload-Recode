@@ -106,8 +106,19 @@ public class TravelerTofunian extends AbstractTofunian {
 		return null;
 	}
 
+	@Override
 	public boolean showProgressBar() {
 		return false;
+	}
+
+	@Override
+	public void handleEntityEvent(byte p_70103_1_) {
+		if (p_70103_1_ == 100) {
+			this.waveAnimationState.start(this.tickCount);
+		} else {
+			super.handleEntityEvent(p_70103_1_);
+		}
+
 	}
 
 	public InteractionResult mobInteract(Player p_35856_, InteractionHand p_35857_) {
