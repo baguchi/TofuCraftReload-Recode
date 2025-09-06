@@ -1641,6 +1641,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.STARCH.get())
 				.requires(Items.SUGAR)
 				.requires(TofuItems.BOTTLE_SOYOIL.get())
+				.requires(Items.BOWL)
 				.unlockedBy("has_item", has(TofuItems.STARCH.get()))
 				.save(this.output);
 
