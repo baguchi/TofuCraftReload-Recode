@@ -1,6 +1,9 @@
 package baguchi.tofucraft.event;
 
+import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuItems;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
@@ -8,9 +11,15 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
+import java.util.Optional;
 import java.util.Set;
 
 public class CraftingEvents {
@@ -23,15 +32,19 @@ public class CraftingEvents {
 		if (item.is(TofuItems.BUCKET_SOYMILK.get())) {
 			if (craftMatrix.hasAnyOf(Set.of(TofuItems.FILTERCLOTH.get()))) {
 				CraftingContainer craftingcontainer = makeCraftContainer(craftMatrix);
-				if (player.level() instanceof ServerLevel) {
-				/*Optional<RecipeHolder<CraftingRecipe>> recipe = player.level().recipeAccess().getRecipeFor(RecipeType.CRAFTING, CraftingInput.of(3, 3, craftingcontainer.getItems()), player.level(), ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "bucket_soymilk_okara"));
+				if (player.level() instanceof ServerLevel serverLevel) {
+					Optional<RecipeHolder<CraftingRecipe>> recipe = serverLevel.recipeAccess().getRecipeFor(RecipeType.CRAFTING, CraftingInput.of(3, 3, craftingcontainer.getItems()), player.level(), prefix("bucket_soymilk_okara"));
 				if (recipe.isPresent()) {
 					player.getInventory().add(new ItemStack(TofuItems.OKARA.get(), 1));
-				}*/
+				}
 
 				}
 			}
 		}
+	}
+
+	protected ResourceKey<Recipe<?>> prefix(String name) {
+		return ResourceKey.create(Registries.RECIPE, TofuCraftReload.prefix(name));
 	}
 
 	private CraftingContainer makeCraftContainer(Container craftMatrix) {
