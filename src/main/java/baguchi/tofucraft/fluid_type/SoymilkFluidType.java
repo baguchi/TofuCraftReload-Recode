@@ -1,11 +1,15 @@
 package baguchi.tofucraft.fluid_type;
 
+import baguchi.tofucraft.registry.TofuFluidTypes;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 
 public class SoymilkFluidType extends FluidType {
@@ -48,5 +52,14 @@ public class SoymilkFluidType extends FluidType {
 		return true;
 	}
 
+
+	@Override
+	public boolean isVaporizedOnPlacement(Level level, BlockPos pos, FluidStack stack) {
+		if (!level.dimensionType().ultraWarm()) {
+			return false;
+		} else {
+			return this == TofuFluidTypes.SOYMILK.get();
+		}
+	}
 }
 
