@@ -183,7 +183,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 	protected boolean canCook(TofuPotRecipe recipe) {
 		int i = this.getMaxStackSize();
 		if (hasInput()) {
-			ItemStack resultStack = recipe.getResultItem(this.level.registryAccess());
+			ItemStack resultStack = recipe.getResult();
 			if (resultStack.isEmpty()) {
 				return false;
 			} else {
