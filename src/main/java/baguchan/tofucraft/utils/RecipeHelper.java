@@ -5,6 +5,7 @@ import baguchan.tofucraft.recipe.HardenRecipe;
 import baguchan.tofucraft.registry.TofuRecipes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -50,8 +51,9 @@ public class RecipeHelper {
 			Stream<Recipe<?>> tofuRecipe = manager.getRecipes().stream().filter(recipe -> {
 				return recipe instanceof BitternRecipe bittern && bittern.getType() == TofuRecipes.RECIPETYPE_BITTERN.get();
 			});
+
 			for (Recipe<?> recipe : tofuRecipe.collect(Collectors.toList())) {
-				if (recipe instanceof BitternRecipe bitternRecipe && bitternRecipe.getFluid().test(new FluidStack(fluid, 1000))) {
+				if (recipe instanceof BitternRecipe bitternRecipe && bitternRecipe.matchesWithFluid(new FluidStack(fluid, 1000), new SimpleContainer(itemStack), serverLevel)) {
 					if (bitternRecipe.getIngredient().test(itemStack)) {
 						return bitternRecipe.getResultItem(serverLevel.registryAccess());
 					}

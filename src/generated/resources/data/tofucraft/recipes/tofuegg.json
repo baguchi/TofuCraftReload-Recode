@@ -1,10 +1,9 @@
 {
   "type": "tofucraft:tofu_pot_shapeless",
-  "cookTime": 300,
-  "experience": 0.1,
-  "fluid": {
-    "null_fluid": true
-  },
+  "category": "fast_food",
+  "cook_time": 300,
+  "exp": 0.1,
+  "fluid": [],
   "ingredients": [
     {
       "tag": "forge:eggs"

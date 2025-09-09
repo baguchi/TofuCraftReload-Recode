@@ -1,45 +1,40 @@
 package baguchan.tofucraft.recipe;
 
 import baguchan.tofucraft.registry.TofuRecipes;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fluids.FluidStack;
 
-public class BitternRecipe implements Recipe<Inventory> {
+public class BitternRecipe implements Recipe<Container> {
 
-	public ResourceLocation id;
+	protected final ResourceLocation id;
 	/**
 	 * The ingredient used for the Before it hardens tofu.
 	 */
-	@Expose
-	@SerializedName("process")
 	private FluidIngredient fluid;
-	@Expose
-	@SerializedName("ingredient")
 	protected Ingredient ingredient;
 	/**
 	 * This ingredient used for the harden tofu.
 	 */
-	@Expose
-	@SerializedName("result")
-	public ItemStack result;
+	final ItemStack result;
 
+	public BitternRecipe(ResourceLocation id, FluidIngredient fluid, Ingredient ingredient, ItemStack results) {
+
+		this.id = id;
+		this.fluid = fluid;
+		this.ingredient = ingredient;
+		this.result = results;
+	}
 
 	public Ingredient getIngredient() {
 		return ingredient;
-	}
-
-
-	public void setId(ResourceLocation recipeID) {
-		this.id = recipeID;
 	}
 
 	/**
@@ -57,13 +52,20 @@ public class BitternRecipe implements Recipe<Inventory> {
 		this.fluid = tofu;
 	}
 
+	public boolean matchesWithFluid(FluidStack fluid, Container inv, Level worldIn) {
+		if (this.getFluid() == FluidIngredient.EMPTY)
+			return fluid.isEmpty() && matches(inv, worldIn);
+		return this.getFluid().test(fluid) && matches(inv, worldIn);
+	}
+
+
 	@Override
-	public boolean matches(Inventory p_44002_, Level p_44003_) {
+	public boolean matches(Container p_44002_, Level p_44003_) {
 		return false;
 	}
 
 	@Override
-	public ItemStack assemble(Inventory p_44001_, RegistryAccess p_267165_) {
+	public ItemStack assemble(Container p_44001_, RegistryAccess p_267165_) {
 		return null;
 	}
 

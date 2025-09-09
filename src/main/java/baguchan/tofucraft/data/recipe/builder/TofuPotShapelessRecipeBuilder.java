@@ -2,33 +2,34 @@ package baguchan.tofucraft.data.recipe.builder;
 
 import baguchan.tofucraft.recipe.FluidIngredient;
 import baguchan.tofucraft.recipe.TofuPotCategory;
-import baguchan.tofucraft.recipe.TofuPotShapelessRecipe;
 import baguchan.tofucraft.registry.TofuRecipes;
+import com.google.common.collect.Lists;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
-import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 	private final TofuPotCategory category;
 	private final Item result;
 	private final int count;
-	private final NonNullList<Ingredient> ingredients = NonNullList.create();
+	private final List<Ingredient> ingredients = Lists.newArrayList();
 	private final Advancement.Builder advancement = Advancement.Builder.recipeAdvancement();
 	@Nullable
 	private String group;
@@ -114,7 +115,7 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 	public void save(Consumer<FinishedRecipe> p_126205_, ResourceLocation p_126206_) {
 		this.ensureValid(p_126206_);
 		this.advancement.parent(ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_126206_)).rewards(AdvancementRewards.Builder.recipe(p_126206_)).requirements(RequirementsStrategy.OR);
-		p_126205_.accept(new TofuPotShapelessRecipeBuilder.Result(p_126206_, this.result, this.count, this.group == null ? "" : this.group, this.category, this.ingredients, this.advancement, p_126206_.withPrefix("recipes/" + this.category.getSerializedName() + "/"), this.ingredientFluid, this.cookTime, this.experience));
+		p_126205_.accept(new Result(p_126206_, this.result, this.count, this.group == null ? "" : this.group, this.category, this.ingredients, this.advancement, p_126206_.withPrefix("recipes/" + this.category.getSerializedName() + "/"), this.ingredientFluid, this.cookTime, this.experience));
 	}
 
 	private void ensureValid(ResourceLocation p_126208_) {
@@ -124,38 +125,55 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 	}
 
 	public static class Result implements FinishedRecipe {
-		private final TofuPotShapelessRecipe recipe = new TofuPotShapelessRecipe();
-
-		private final ResourceLocation id;
-
 		private final TofuPotCategory category;
+		private final ResourceLocation id;
+		private final Item result;
+		private final int count;
+		private final String group;
+		private final List<Ingredient> ingredients;
 		private final Advancement.Builder advancement;
 		private final ResourceLocation advancementId;
+		final FluidIngredient ingredientFluid;
+		private final int cookTime;
+		private final float experience;
 
-		public Result(ResourceLocation p_249007_, Item p_248667_, int p_249014_, String p_248592_, TofuPotCategory p_249485_, NonNullList<Ingredient> p_252312_, Advancement.Builder p_249909_, ResourceLocation p_249109_, FluidIngredient ingredientFluid, int cookTime, float experience) {
+		public Result(ResourceLocation p_249007_, Item p_248667_, int p_249014_, String p_248592_, TofuPotCategory p_249485_, List<Ingredient> p_252312_, Advancement.Builder p_249909_, ResourceLocation p_249109_, FluidIngredient ingredientFluid, int cookTime, float experience) {
 			this.category = p_249485_;
 			this.id = p_249007_;
-			recipe.setId(p_249007_);
-			ItemStack stack = p_248667_.getDefaultInstance();
-			stack.setCount(p_249014_);
-			recipe.result = stack;
-			recipe.group = p_248592_;
-			recipe.ingredients = p_252312_;
+			this.result = p_248667_;
+			this.count = p_249014_;
+			this.group = p_248592_;
+			this.ingredients = p_252312_;
 			this.advancement = p_249909_;
 			this.advancementId = p_249109_;
-			recipe.ingredientFluid = ingredientFluid;
-			recipe.cookTime = cookTime;
-			recipe.experience = experience;
+			this.ingredientFluid = ingredientFluid;
+			this.cookTime = cookTime;
+			this.experience = experience;
 		}
 
-		@Override
-		public void serializeRecipeData(JsonObject json) {
-			JsonObject recipeJson = TofuRecipes.RECIPE_TOFU_POT_SHAPELESS.get().toJson(recipe);
-			json.add("ingredients", recipeJson.get("ingredients"));
-			json.add("fluid", recipeJson.get("fluid"));
-			json.add("result", recipeJson.get("result"));
-			json.add("cookTime", recipeJson.get("cookTime"));
-			json.add("experience", recipeJson.get("experience"));
+		public void serializeRecipeData(JsonObject p_126230_) {
+			p_126230_.addProperty("category", this.category.getSerializedName());
+			if (!this.group.isEmpty()) {
+				p_126230_.addProperty("group", this.group);
+			}
+
+			JsonArray jsonarray = new JsonArray();
+
+			for (Ingredient ingredient : this.ingredients) {
+				jsonarray.add(ingredient.toJson());
+			}
+
+			p_126230_.add("ingredients", jsonarray);
+			JsonObject jsonobject = new JsonObject();
+			jsonobject.addProperty("item", BuiltInRegistries.ITEM.getKey(this.result).toString());
+			if (this.count > 1) {
+				jsonobject.addProperty("count", this.count);
+			}
+
+			p_126230_.add("result", jsonobject);
+			p_126230_.add("fluid", this.ingredientFluid.toJson());
+			p_126230_.addProperty("cook_time", this.cookTime);
+			p_126230_.addProperty("exp", this.experience);
 		}
 
 		public RecipeSerializer<?> getType() {

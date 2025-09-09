@@ -1,10 +1,9 @@
 {
   "type": "tofucraft:tofu_pot_shapeless",
-  "cookTime": 340,
-  "experience": 0.1,
-  "fluid": {
-    "null_fluid": true
-  },
+  "category": "fast_food",
+  "cook_time": 340,
+  "exp": 0.1,
+  "fluid": [],
   "ingredients": [
     {
       "item": "minecraft:rotten_flesh"

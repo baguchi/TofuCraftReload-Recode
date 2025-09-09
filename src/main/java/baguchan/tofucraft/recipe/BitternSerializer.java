@@ -1,32 +1,53 @@
 package baguchan.tofucraft.recipe;
 
-import baguchan.tofucraft.utils.DataGenUtil;
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
+import javax.annotation.Nullable;
+
 public class BitternSerializer implements RecipeSerializer<BitternRecipe> {
+
+	public static final BitternSerializer INSTANCE = new BitternSerializer();
+
 	@Override
-	public BitternRecipe fromJson(ResourceLocation recipeID, JsonObject recipeJson) {
-		BitternRecipe result = DataGenUtil.NETWORK_GSON.fromJson(recipeJson, BitternRecipe.class);
-		result.setId(recipeID);
-		return result;
+	public BitternRecipe fromJson(ResourceLocation id, JsonObject json) {
+
+		final FluidIngredient fluid = FluidIngredient.fromJson(GsonHelper.getAsJsonObject(json, "process"));
+		final Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
+		final ItemStack results = itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
+
+		return new BitternRecipe(id, fluid, ingredient, results);
+	}
+
+	public static ItemStack itemStackFromJson(JsonObject p_151275_) {
+		return net.minecraftforge.common.crafting.CraftingHelper.getItemStack(p_151275_, false, true);
+	}
+
+	@Nullable
+	@Override
+	public BitternRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+		try {
+
+			final FluidIngredient fluid = FluidIngredient.fromNetwork(buf);
+			final Ingredient ingredient = Ingredient.fromNetwork(buf);
+			final ItemStack results = buf.readItem();
+
+			return new BitternRecipe(id, fluid, ingredient, results);
+		} catch (final Exception e) {
+
+			throw new IllegalStateException("Failed to read bittern info from packet buffer. This is not good.");
+		}
 	}
 
 	@Override
-	public BitternRecipe fromNetwork(ResourceLocation recipeID, FriendlyByteBuf buffer) {
-		BitternRecipe result = DataGenUtil.NETWORK_GSON.fromJson(buffer.readUtf(), BitternRecipe.class);
-		result.setId(recipeID);
-		return result;
-	}
-
-	@Override
-	public void toNetwork(FriendlyByteBuf buffer, BitternRecipe recipe) {
-		buffer.writeUtf(DataGenUtil.NETWORK_GSON.toJson(recipe));
-	}
-
-	public JsonObject toJson(BitternRecipe recipe) {
-		return DataGenUtil.NETWORK_GSON.toJsonTree(recipe).getAsJsonObject();
+	public void toNetwork(FriendlyByteBuf p_44101_, BitternRecipe p_44102_) {
+		p_44102_.getFluid().toNetwork(p_44101_);
+		p_44102_.getIngredient().toNetwork(p_44101_);
+		p_44101_.writeItem(p_44102_.result);
 	}
 }

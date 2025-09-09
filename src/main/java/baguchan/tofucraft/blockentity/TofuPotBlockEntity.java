@@ -180,13 +180,14 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 	}
 
 	private boolean hasInput() {
-		for (int i = 0; i < OUTPUT_SLOT; ++i) {
+		for (int i = 0; i < OUTPUT_SLOT - 1; ++i) {
 			if (!inventory.get(i).isEmpty()) return true;
 		}
 		return false;
 	}
 
 	protected boolean canCook(TofuPotRecipe recipe) {
+		int i = this.getMaxStackSize();
 		if (hasInput()) {
 			ItemStack resultStack = recipe.getResultItem(this.level.registryAccess());
 			if (resultStack.isEmpty()) {
@@ -197,10 +198,10 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 					return true;
 				} else if (!ItemStack.isSameItem(storedMealStack, resultStack)) {
 					return false;
-				} else if (storedMealStack.getCount() + resultStack.getCount() <= inventory.get(OUTPUT_SLOT).getMaxStackSize()) {
+				} else if (storedMealStack.getCount() + resultStack.getCount() <= i && storedMealStack.getCount() + resultStack.getCount() <= storedMealStack.getMaxStackSize()) { // Forge fix: make furnace respect stack sizes in furnace recipes
 					return true;
 				} else {
-					return storedMealStack.getCount() + resultStack.getCount() <= resultStack.getMaxStackSize();
+					return storedMealStack.getCount() + resultStack.getCount() <= resultStack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
 				}
 			}
 		} else {

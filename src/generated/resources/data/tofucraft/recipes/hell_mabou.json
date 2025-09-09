@@ -1,10 +1,9 @@
 {
   "type": "tofucraft:tofu_pot_shapeless",
-  "cookTime": 400,
-  "experience": 0.6,
-  "fluid": {
-    "null_fluid": true
-  },
+  "category": "meal",
+  "cook_time": 400,
+  "exp": 0.6,
+  "fluid": [],
   "ingredients": [
     {
       "item": "tofucraft:tofuhell"

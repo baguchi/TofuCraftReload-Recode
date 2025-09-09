@@ -38,6 +38,7 @@ public interface TofuPotRecipe extends Recipe<Container> {
 		return this.fluidIngredient().test(fluid) && matches(inv, worldIn);
 	}
 
+
 	@Override
 	default ItemStack getToastSymbol() {
 		return TofuBlocks.TOFU_POT.get().asItem().getDefaultInstance();

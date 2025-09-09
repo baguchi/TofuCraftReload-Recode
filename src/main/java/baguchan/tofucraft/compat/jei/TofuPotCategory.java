@@ -21,6 +21,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 
@@ -87,7 +88,7 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 			}
 		}
 		builder.addSlot(RecipeIngredientRole.OUTPUT, 130 - 37, 37 - 4).addItemStack(recipe.getResult());
-		builder.addSlot(RecipeIngredientRole.CATALYST, 130 - 37, 37 - 22).addIngredients(ForgeTypes.FLUID_STACK, recipe.fluidIngredient().getMatchingFluidStacks());
+		builder.addSlot(RecipeIngredientRole.CATALYST, 130 - 37, 37 - 22).addIngredients(ForgeTypes.FLUID_STACK, Arrays.stream(recipe.fluidIngredient().getFluids()).toList());
 
 	}
 

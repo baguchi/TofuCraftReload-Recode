@@ -1,10 +1,9 @@
 {
   "type": "tofucraft:tofu_pot_shapeless",
-  "cookTime": 300,
-  "experience": 0.5,
-  "fluid": {
-    "null_fluid": true
-  },
+  "category": "meal",
+  "cook_time": 300,
+  "exp": 0.5,
+  "fluid": [],
   "ingredients": [
     {
       "item": "tofucraft:soymeat"
