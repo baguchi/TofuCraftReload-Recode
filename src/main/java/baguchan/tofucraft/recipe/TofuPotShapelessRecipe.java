@@ -98,7 +98,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 		java.util.List<ItemStack> inputs = new java.util.ArrayList<>();
 		int i = 0;
 
-		for (int j = 0; j < p_44002_.getContainerSize(); ++j) {
+		for (int j = 0; j < p_44002_.getContainerSize() - 1; ++j) {
 			ItemStack itemstack = p_44002_.getItem(j);
 			if (!itemstack.isEmpty()) {
 				++i;

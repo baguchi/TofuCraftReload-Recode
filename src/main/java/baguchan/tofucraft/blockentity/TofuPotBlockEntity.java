@@ -176,7 +176,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 
 	private Optional<TofuPotRecipe> getMatchingRecipe() {
 		if (level == null) return Optional.empty();
-		return hasInput() ? quickCheck.getRecipeFor(new SimpleContainer(this.inventory.stream().limit(12).toArray(ItemStack[]::new)), this.level) : Optional.empty();
+		return hasInput() ? quickCheck.getRecipeFor(new SimpleContainer(this.inventory.stream().limit(13).toArray(ItemStack[]::new)), this.level) : Optional.empty();
 	}
 
 	private boolean hasInput() {
