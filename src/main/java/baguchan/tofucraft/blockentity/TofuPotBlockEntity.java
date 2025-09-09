@@ -176,11 +176,11 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 
 	private Optional<TofuPotRecipe> getMatchingRecipe() {
 		if (level == null) return Optional.empty();
-		return hasInput() ? quickCheck.getRecipeFor(new SimpleContainer(this.inventory.stream().limit(13).toArray(ItemStack[]::new)), this.level) : Optional.empty();
+		return hasInput() ? quickCheck.getRecipeFor(new SimpleContainer(this.inventory.stream().limit(12).toArray(ItemStack[]::new)), this.level) : Optional.empty();
 	}
 
 	private boolean hasInput() {
-		for (int i = 0; i < OUTPUT_SLOT - 1; ++i) {
+		for (int i = 0; i < OUTPUT_SLOT; ++i) {
 			if (!inventory.get(i).isEmpty()) return true;
 		}
 		return false;
