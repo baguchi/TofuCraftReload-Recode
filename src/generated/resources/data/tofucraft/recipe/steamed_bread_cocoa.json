@@ -3,6 +3,10 @@
   "category": "fast_food",
   "cook_time": 300,
   "experience": 0.1,
+  "fluid": {
+    "amount": 50,
+    "ingredient": "minecraft:water"
+  },
   "ingredients": [
     "#c:milk/soy_milk",
     "#c:eggs",

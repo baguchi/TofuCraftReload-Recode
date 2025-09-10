@@ -8,15 +8,7 @@
     "ingredient": "minecraft:water"
   },
   "ingredients": [
-    {
-      "neoforge:ingredient_type": "neoforge:components",
-      "components": {
-        "minecraft:potion_contents": {
-          "potion": "minecraft:water"
-        }
-      },
-      "items": "minecraft:potion"
-    },
+    "minecraft:glass_bottle",
     "minecraft:dried_kelp"
   ],
   "result": {

@@ -22,7 +22,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
@@ -603,7 +602,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(this.output);
 
 		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MISC, Optional.of(SizedFluidIngredient.of(Fluids.WATER, 250)), TofuItems.BOTTLE_DASHI.get(), 200, 0.1F)
-				.requires(potion(Potions.WATER))
+				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.DRIED_KELP)
 				.unlockedBy("has_item", has(Items.KELP))
 				.save(this.output);
@@ -1620,7 +1619,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFU_HAMBURG.get()))
 				.save(this.output);
 
-		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, TofuItems.STEAMED_BREAD.get())
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, Optional.of(SizedFluidIngredient.of(Fluids.WATER, 50)), TofuItems.STEAMED_BREAD.get().getDefaultInstance())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Tags.Items.EGGS)
 				.requires(Items.SUGAR)
@@ -1628,7 +1627,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.HONEY_BOTTLE)
 				.unlockedBy("has_item", has(TofuTags.Items.MILK_SOYMILK))
 				.save(this.output);
-		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, TofuItems.STEAMED_BREAD_COCOA.get())
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, Optional.of(SizedFluidIngredient.of(Fluids.WATER, 50)), TofuItems.STEAMED_BREAD_COCOA.get().getDefaultInstance())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Tags.Items.EGGS)
 				.requires(Items.SUGAR)
