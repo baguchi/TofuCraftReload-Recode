@@ -16,6 +16,7 @@ public class TofuConfig {
 	public static class Common {
 
 		public final ModConfigSpec.BooleanValue travelerTofunianSpawn;
+		public final ModConfigSpec.BooleanValue travelerTofunianPlayBugle;
 		public final ModConfigSpec.BooleanValue enableExtra;
 
 		public Common(ModConfigSpec.Builder builder) {
@@ -23,6 +24,10 @@ public class TofuConfig {
 					.translation(TofuCraftReload.MODID + ".config.travelerTofunianSpawn")
 					.comment("Spawn Traveler Tofunian.")
 					.define("Traveler Tofunian Spawn", true);
+			travelerTofunianPlayBugle = builder
+					.translation(TofuCraftReload.MODID + ".config.travelerTofunianPlayBugle")
+					.comment("Play Bugle Sound when spawn Traveler Tofunian.")
+					.define("Traveler Tofunian With Bugle", true);
 			enableExtra = builder
 					.translation(TofuCraftReload.MODID + ".config.enable_extra")
 					.comment("Force Enable The Extra Feature(Such as enable Enter the Tofu World).")

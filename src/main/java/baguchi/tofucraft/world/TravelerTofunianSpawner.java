@@ -3,6 +3,7 @@ package baguchi.tofucraft.world;
 import baguchi.tofucraft.TofuConfig;
 import baguchi.tofucraft.entity.TravelerTofunian;
 import baguchi.tofucraft.registry.TofuEntityTypes;
+import baguchi.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BiomeTags;
@@ -98,6 +99,9 @@ public class TravelerTofunianSpawner {
 						tofunian.setDespawnDelay(48000);
 						tofunian.setWanderTarget(blockpos1);
 						tofunian.setHomeTo(blockpos1, 22);
+						if (TofuConfig.COMMON.travelerTofunianPlayBugle.get()) {
+							tofunian.playSound(TofuSounds.TOFUBUGLE.get(), 6.5F, 1.0F);
+						}
 						return true;
 					}
 				}
