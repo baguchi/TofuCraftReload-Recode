@@ -171,7 +171,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> EDAMAME_RICE = ITEMS.registerItem("edamame_rice", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).usingConvertsTo(Items.BOWL).food(TofuFoods.EDAMAME_RICE)));
 	public static final DeferredHolder<Item, Item> AGEDASHI_TOFU = ITEMS.registerItem("agedashi_tofu", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).usingConvertsTo(Items.BOWL).food(TofuFoods.AGEDASHI_TOFU)));
 	public static final DeferredHolder<Item, Item> TOFU_STEAK = ITEMS.registerItem("tofusteak", (properties) -> new Item((properties).food(TofuFoods.TOFUSTEAK)));
-	public static final DeferredHolder<Item, Item> OAGE = ITEMS.registerItem("oage", (properties) -> new Item((properties).food(TofuFoods.OAGE)));
+	public static final DeferredHolder<Item, Item> OAGE = ITEMS.registerItem("oage", (properties) -> new Item((properties).food(TofuFoods.OAGE, TofuConsumables.FAST_FOOD)));
 
 
 	public static final DeferredHolder<Item, Item> NATTO = ITEMS.registerItem("natto", (properties) -> new Item((properties).food(TofuFoods.NATTO)));
