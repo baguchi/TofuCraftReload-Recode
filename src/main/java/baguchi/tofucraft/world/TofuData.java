@@ -39,7 +39,7 @@ public class TofuData extends SavedData {
 	public ArrayList<BoundingBox> beatenDungeons = new ArrayList<>();
 
 	public TofuData() {
-		this(400, 1F, Lists.newArrayList());
+		this(6000, 0.1F, Lists.newArrayList());
 	}
 
 	public TofuData(int travelerSpawnDelay, float travelerSpawnChance, ArrayList<BoundingBox> beatenDungeons) {
