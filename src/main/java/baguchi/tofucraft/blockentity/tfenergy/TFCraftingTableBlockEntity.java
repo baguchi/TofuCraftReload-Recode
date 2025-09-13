@@ -4,6 +4,7 @@ import baguchi.tofucraft.block.tfenergy.TFCraftingTableBlock;
 import baguchi.tofucraft.blockentity.tfenergy.base.WorkerBaseBlockEntity;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
 import baguchi.tofucraft.recipe.TFCraftingRecipe;
+import baguchi.tofucraft.recipe.TFShapedRecipe;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuRecipes;
 import net.minecraft.core.BlockPos;
@@ -36,6 +37,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import net.minecraft.world.item.crafting.display.SlotDisplayContext;
 import net.minecraft.world.level.Level;
@@ -374,17 +376,49 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 	}
 
 	private boolean resolveWithRecipePlace(int slot, ItemStack stack) {
-		if (level == null || recipeDisplay == null) {
+		if (level == null || recipe == null) {
 			return false;
 		}
-		List<Ingredient> list1 = recipe.placementInfo().ingredients();
-
-		if (slot >= list1.size()) {
+		if (recipe instanceof TFShapedRecipe tfShapedRecipe) {
+			if (tfShapedRecipe.pattern.ingredients().get(slot).isEmpty()) {
+				return false;
+			} else {
+				if (tfShapedRecipe.pattern.ingredients().get(slot).get().test(stack)) {
+					ItemStack itemstack = this.inventory.get(slot);
+					int i = itemstack.getCount();
+					if (i >= itemstack.getMaxStackSize()) {
+						return false;
+					} else {
+						return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
+					}
+				}
+			}
 			return false;
-		}
+		} else if (recipe instanceof ShapedRecipe tfShapedRecipe) {
+			if (tfShapedRecipe.pattern.ingredients().get(slot).isEmpty()) {
+				return false;
+			} else {
+				if (tfShapedRecipe.pattern.ingredients().get(slot).get().test(stack)) {
+					ItemStack itemstack = this.inventory.get(slot);
+					int i = itemstack.getCount();
+					if (i >= itemstack.getMaxStackSize()) {
+						return false;
+					} else {
+						return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
+					}
+				}
+			}
+			return false;
+		} else {
 
-		if (list1.get(slot).test(stack)) {
-			if (ItemStack.isSameItem(stack, stack)) {
+
+			List<Ingredient> list1 = recipe.placementInfo().ingredients();
+
+			if (slot >= list1.size()) {
+				return false;
+			}
+
+			if (list1.get(slot).test(stack)) {
 				ItemStack itemstack = this.inventory.get(slot);
 				int i = itemstack.getCount();
 				if (i >= itemstack.getMaxStackSize()) {
@@ -394,7 +428,6 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 				}
 			}
 		}
-
 		return false;
 	}
 
