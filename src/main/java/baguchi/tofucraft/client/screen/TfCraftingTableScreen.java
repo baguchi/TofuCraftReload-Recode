@@ -3,6 +3,7 @@ package baguchi.tofucraft.client.screen;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.recipe.TFCraftingTableRecipeBookComponent;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
+import baguchi.tofucraft.network.TFCraftingTableResetFakeSlotPacket;
 import baguchi.tofucraft.registry.TofuFluids;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -14,8 +15,11 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import org.joml.Matrix3x2fStack;
 
 import java.awt.*;
@@ -78,5 +82,13 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 		float vDif = vMax - vMin;
 		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xPosition, yPosition - desiredHeight, desiredWidth, desiredHeight, color);
 
+	}
+
+	@Override
+	protected void slotClicked(Slot p_376636_, int p_376122_, int p_376346_, ClickType p_376809_) {
+		super.slotClicked(p_376636_, p_376122_, p_376346_, p_376809_);
+		if (!this.menu.blockEntity.getFakeInventory().isEmpty()) {
+			ClientPacketDistributor.sendToServer(new TFCraftingTableResetFakeSlotPacket(this.menu.blockEntity.getBlockPos()));
+		}
 	}
 }

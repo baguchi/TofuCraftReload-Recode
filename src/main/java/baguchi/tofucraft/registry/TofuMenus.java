@@ -2,7 +2,6 @@ package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.inventory.SaltFurnaceMenu;
-import baguchi.tofucraft.inventory.TFCrafterMenu;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
 import baguchi.tofucraft.inventory.TFOvenMenu;
 import baguchi.tofucraft.inventory.TFStorageMenu;
@@ -22,7 +21,6 @@ public class TofuMenus {
 	public static final Supplier<MenuType<SaltFurnaceMenu>> SALT_FURNACE = MENU_TYPES.register("salt_furnace", () -> new MenuType<>(SaltFurnaceMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
 	public static final Supplier<MenuType<TFStorageMenu>> TF_STORAGE = MENU_TYPES.register("tf_storage", () -> new MenuType<>(TFStorageMenu::new, FeatureFlags.DEFAULT_FLAGS));
-	public static final Supplier<MenuType<TFCrafterMenu>> TF_CRAFTER = MENU_TYPES.register("tf_crafter", () -> new MenuType<>(TFCrafterMenu::new, FeatureFlags.DEFAULT_FLAGS));
 	public static final Supplier<MenuType<TFOvenMenu>> TF_OVEN = MENU_TYPES.register("tf_oven", () -> new MenuType<>(TFOvenMenu::new, FeatureFlags.DEFAULT_FLAGS));
 	public static final Supplier<MenuType<TofuPotMenu>> TOFU_POT = MENU_TYPES.register("tofu_pot", () -> IMenuTypeExtension.create(TofuPotMenu::new));
 	public static final Supplier<MenuType<TFCraftingTableMenu>> TF_CRAFTING_TABLE = MENU_TYPES.register("tf_crafting_table", () -> IMenuTypeExtension.create(TFCraftingTableMenu::new));

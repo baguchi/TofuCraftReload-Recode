@@ -3,14 +3,13 @@
   "category": "misc",
   "key": {
     "B": "minecraft:crafting_table",
-    "C": "tofucraft:tf_circuit",
     "E": "tofucraft:tofu_core",
     "T": "tofucraft:blocktofumetal"
   },
   "pattern": [
-    "TBT",
-    "TCT",
-    "TET"
+    " B ",
+    "TET",
+    " T "
   ],
   "result": {
     "count": 1,

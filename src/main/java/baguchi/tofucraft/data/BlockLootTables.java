@@ -372,7 +372,6 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropPottedContents(TofuBlocks.POTTED_TOFU_FLOWER.get());
 		dropSelf(TofuBlocks.TOFU_DETECTOR.get());
 		this.add(TofuBlocks.TF_STORAGE.get(), this::createTFMechaTable);
-		this.add(TofuBlocks.TF_CRAFTER.get(), this::createTFMechaTable);
 		this.add(TofuBlocks.TF_OVEN.get(), this::createTFMechaTable);
 		dropSelf(TofuBlocks.ANTENNA_BASIC.get());
 		dropSelf(TofuBlocks.TOFU_WORK_STATION.get());

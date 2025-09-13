@@ -55,7 +55,6 @@ import baguchi.tofucraft.client.render.special.TofuShieldSpecialRenderer;
 import baguchi.tofucraft.client.render.special.TofunianStatueSpecialRenderer;
 import baguchi.tofucraft.client.screen.ReceivingTofuLevelScreen;
 import baguchi.tofucraft.client.screen.SaltFurnaceScreen;
-import baguchi.tofucraft.client.screen.TFCrafterScreen;
 import baguchi.tofucraft.client.screen.TFOvenScreen;
 import baguchi.tofucraft.client.screen.TFStorageScreen;
 import baguchi.tofucraft.client.screen.TfCraftingTableScreen;
@@ -337,7 +336,6 @@ public class ClientRegistrar {
 
 		event.register(TofuMenus.SALT_FURNACE.get(), SaltFurnaceScreen::new);
 		event.register(TofuMenus.TF_STORAGE.get(), TFStorageScreen::new);
-		event.register(TofuMenus.TF_CRAFTER.get(), TFCrafterScreen::new);
 		event.register(TofuMenus.TF_OVEN.get(), TFOvenScreen::new);
 		event.register(TofuMenus.TF_CRAFTING_TABLE.get(), TfCraftingTableScreen::new);
 		event.register(TofuMenus.TOFU_POT.get(), TofuPotScreen::new);

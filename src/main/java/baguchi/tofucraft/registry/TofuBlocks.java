@@ -43,7 +43,6 @@ import baguchi.tofucraft.block.crop.SoybeanSoulCropsBlock;
 import baguchi.tofucraft.block.crop.SproutsCropBlock;
 import baguchi.tofucraft.block.tfenergy.TFAntennaBlock;
 import baguchi.tofucraft.block.tfenergy.TFCollectorBlock;
-import baguchi.tofucraft.block.tfenergy.TFCrafterBlock;
 import baguchi.tofucraft.block.tfenergy.TFCraftingTableBlock;
 import baguchi.tofucraft.block.tfenergy.TFOvenBlock;
 import baguchi.tofucraft.block.tfenergy.TFStorageBlock;
@@ -520,9 +519,6 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> TF_STORAGE = register("tf_storage", (properties) -> new TFStorageBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
 		return p_50872_.getValue(TFStorageBlock.LIT) ? 13 : 0;
 	}));
-	public static final DeferredBlock<Block> TF_CRAFTER = register("tf_crafter", (properties) -> new TFCrafterBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
-		return p_50872_.getValue(TFCrafterBlock.CRAFTING) ? 10 : 0;
-	}));
 	public static final DeferredBlock<Block> TF_OVEN = register("tf_oven", (properties) -> new TFOvenBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion().lightLevel((p_50872_) -> {
 		return p_50872_.getValue(TFOvenBlock.LIT) ? 13 : 0;
 	}));
@@ -536,7 +532,9 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> TOFU_POT = register("tofu_pot",
 			(properties) -> new TofuPotBlock(properties), () -> Block.Properties.of().mapColor(MapColor.METAL).strength(0.6F, 6.0F).sound(SoundType.LANTERN));
 	public static final DeferredBlock<Block> TF_CRAFTING_TABLE = register("tf_crafting_table",
-			(properties) -> new TFCraftingTableBlock(properties), () -> Block.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).sound(SoundType.METAL));
+			(properties) -> new TFCraftingTableBlock(properties), () -> Block.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).sound(SoundType.METAL).lightLevel((p_50872_) -> {
+				return p_50872_.getValue(TFCraftingTableBlock.LIT) ? 13 : 0;
+			}));
 
 
 	private static boolean always(BlockState p_50775_, BlockGetter p_50776_, BlockPos p_50777_) {
@@ -616,7 +614,7 @@ public class TofuBlocks {
 				return new HangingSignItem(LEEK_GREEN_HANGING_SIGN.get(), LEEK_GREEN_WALL_HANGING_SIGN.get(), properties.stacksTo(16));
 			} else if (block.get() == LEEK_HANGING_SIGN.get()) {
 				return new HangingSignItem(LEEK_HANGING_SIGN.get(), LEEK_WALL_HANGING_SIGN.get(), properties.stacksTo(16));
-			} else if (block.get() == TF_STORAGE.get() || block.get() == TF_CRAFTER.get() || block.get() == TF_OVEN.get()) {
+			} else if (block.get() == TF_STORAGE.get() || block.get() == TF_OVEN.get()) {
 				return new BlockItem(block.get(), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 5000)));
 			} else if (block.get() == TF_COLLECTOR.get()) {
 				return new BlockItem(block.get(), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));

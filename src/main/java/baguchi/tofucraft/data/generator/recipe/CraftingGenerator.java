@@ -1805,17 +1805,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('T', TofuBlocks.HELLTOFU_BRICK.get())
 				.define('C', TofuItems.TOFU_CORE.get())
 				.define('L', TofuItems.TF_COIL.get())
-				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
-				.save(this.output);
-		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.TF_CRAFTER.get())
-				.pattern("MFM")
-				.pattern("RCR")
-				.pattern("MRM")
-				.define('M', TofuItems.TOFUMETAL.get())
-				.define('F', TofuItems.TOFU_CORE.get())
-				.define('C', Blocks.CRAFTER)
-				.define('R', Items.REDSTONE)
-				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.unlockedBy("has_item", has(TofuItems.TOFU_CORE.get()))
 				.save(this.output);
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.TOFU_WORK_STATION.get())
@@ -1876,14 +1866,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.TF_CRAFTING_TABLE.get())
-				.pattern("TBT")
-				.pattern("TCT")
+				.pattern(" B ")
 				.pattern("TET")
+				.pattern(" T ")
 				.define('T', TofuBlocks.METALTOFU)
-				.define('C', TofuItems.TF_CIRCUIT.get())
 				.define('B', Blocks.CRAFTING_TABLE)
 				.define('E', TofuItems.TOFU_CORE.get())
-				.unlockedBy("has_item", has(TofuBlocks.TF_STORAGE))
+				.unlockedBy("has_item", has(TofuItems.TOFU_CORE.get()))
 				.save(this.output);
 
 		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, TofuItems.ZUNDAMA.get(), 1, 100)

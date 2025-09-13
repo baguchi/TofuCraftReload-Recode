@@ -172,6 +172,7 @@ public class TFCraftingTableMenu extends RecipeBookMenu {
 				public void clearCraftingContent() {
 					for (int i = 0; i < 9; ++i) {
 						inventory.setItem(i, ItemStack.EMPTY);
+						blockEntity.getFakeInventory().set(i, ItemStack.EMPTY);
 					}
 				}
 

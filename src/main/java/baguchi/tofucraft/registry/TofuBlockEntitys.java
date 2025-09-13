@@ -8,7 +8,6 @@ import baguchi.tofucraft.blockentity.TofuChestBlockEntity;
 import baguchi.tofucraft.blockentity.TofuPotBlockEntity;
 import baguchi.tofucraft.blockentity.TofunianStatueBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFCollectorBlockEntity;
-import baguchi.tofucraft.blockentity.tfenergy.TFCrafterBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFCraftingTableBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFOvenBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
@@ -37,7 +36,6 @@ public class TofuBlockEntitys {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TofunianStatueBlockEntity>> TOFUNIAN_STATUE = register("tofunian_statue", TofunianStatueBlockEntity::new, TofuBlocks.TOFUNIAN_STATUE);
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFStorageBlockEntity>> TF_STORAGE = register("tf_storage", TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE);
-	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFCrafterBlockEntity>> TF_CRAFTER = register("tf_crafter", TFCrafterBlockEntity::new, TofuBlocks.TF_CRAFTER);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFCraftingTableBlockEntity>> TF_CRAFTING_TABLE = register("tf_crafting_table", TFCraftingTableBlockEntity::new, TofuBlocks.TF_CRAFTING_TABLE);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFOvenBlockEntity>> TF_OVEN = register("tf_oven", TFOvenBlockEntity::new, TofuBlocks.TF_OVEN);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFCollectorBlockEntity>> TF_COLLECTOR = register("tf_collector", TFCollectorBlockEntity::new, TofuBlocks.TF_COLLECTOR);
