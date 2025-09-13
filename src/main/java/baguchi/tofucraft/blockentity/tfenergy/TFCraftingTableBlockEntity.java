@@ -380,6 +380,11 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 			return false;
 		}
 		if (recipe instanceof TFShapedRecipe tfShapedRecipe) {
+
+			if (slot >= tfShapedRecipe.pattern.ingredients().size()) {
+				return false;
+			}
+
 			if (tfShapedRecipe.pattern.ingredients().get(slot).isEmpty()) {
 				return false;
 			} else {
@@ -394,11 +399,16 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 				}
 			}
 			return false;
-		} else if (recipe instanceof ShapedRecipe tfShapedRecipe) {
-			if (tfShapedRecipe.pattern.ingredients().get(slot).isEmpty()) {
+		} else if (recipe instanceof ShapedRecipe shapedRecipe) {
+
+			if (slot >= shapedRecipe.pattern.ingredients().size()) {
+				return false;
+			}
+
+			if (shapedRecipe.pattern.ingredients().get(slot).isEmpty()) {
 				return false;
 			} else {
-				if (tfShapedRecipe.pattern.ingredients().get(slot).get().test(stack)) {
+				if (shapedRecipe.pattern.ingredients().get(slot).get().test(stack)) {
 					ItemStack itemstack = this.inventory.get(slot);
 					int i = itemstack.getCount();
 					if (i >= itemstack.getMaxStackSize()) {
