@@ -15,6 +15,7 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.context.ContextMap;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.WorldlyContainer;
@@ -33,6 +34,8 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.display.RecipeDisplay;
+import net.minecraft.world.item.crafting.display.SlotDisplayContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -47,8 +50,9 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements WorldlyContainer, StackedContentsCompatible, RecipeCraftingHolder, MenuProvider {
 
 	protected NonNullList<ItemStack> inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-	//using to automatically place recipes in the same slot. (Useful with automation)
-	protected NonNullList<ItemStack> fakeInventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+
+	@Nullable
+	protected RecipeDisplay recipeDisplay;
 	private int progress = 0;
 	private int progressMax = 0;
 
@@ -104,6 +108,14 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		super(TofuBlockEntitys.TF_CRAFTING_TABLE.get(), p_155229_, p_155230_, 10000);
 		this.quickCheck = RecipeManager.createCheck(TofuRecipes.RECIPETYPE_TF_CRAFT.get());
 		this.quickNormalCheck = RecipeManager.createCheck(RecipeType.CRAFTING);
+	}
+
+	public void setRecipeDisplay(@Nullable RecipeDisplay recipeDisplay) {
+		this.recipeDisplay = recipeDisplay;
+	}
+
+	public @Nullable RecipeDisplay getRecipeDisplay() {
+		return recipeDisplay;
 	}
 
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFCraftingTableBlockEntity tfoven) {
@@ -279,35 +291,49 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 	}
 
 
-	/*
-	 * Using this to automatically place recipes in the same slot.
-	 */
-	public NonNullList<ItemStack> getFakeInventory() {
-		return fakeInventory;
-	}
-
 	@Override
 	public void saveAdditional(ValueOutput cmp) {
 		super.saveAdditional(cmp);
 		ContainerHelper.saveAllItems(cmp, this.inventory);
-		ContainerHelper.saveAllItems(cmp.child("RecipeInventory"), this.fakeInventory);
 		cmp.putInt("progress", this.progress);
 		cmp.putInt("progress_max", this.progressMax);
 		cmp.putInt("RefreshTime", this.refreshTime);
+		if (this.recipeDisplay != null) {
+			cmp.store("saved_recipe", RecipeDisplay.CODEC, this.recipeDisplay);
+		}
 	}
 
 	@Override
 	public void loadAdditional(ValueInput cmp) {
 		super.loadAdditional(cmp);
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(cmp.childOrEmpty("RecipeInventory"), this.fakeInventory);
 
 		this.progress = cmp.getIntOr("progress", 0);
 		this.progressMax = cmp.getIntOr("progress_max", 0);
 		this.refreshTime = cmp.getIntOr("RefreshTime", 0);
+		this.recipeDisplay = cmp.read("saved_recipe", RecipeDisplay.CODEC).orElse(null);
 
 	}
 
+	public static void saveItemList(ValueOutput p_421921_, NonNullList<List<ItemStack>> p_18978_) {
+		ValueOutput.TypedOutputList<ItemStackListWithSlot> typedoutputlist = p_421921_.list("Items", ItemStackListWithSlot.CODEC);
+
+		for (int i = 0; i < p_18978_.size(); ++i) {
+			List<ItemStack> itemstack = p_18978_.get(i);
+			if (!itemstack.isEmpty()) {
+				typedoutputlist.add(new ItemStackListWithSlot(i, itemstack));
+			}
+		}
+	}
+
+	public static void loadItemList(ValueInput p_422226_, NonNullList<List<ItemStack>> p_18982_) {
+		for (ItemStackListWithSlot itemstackwithslot : p_422226_.listOrEmpty("Items", ItemStackListWithSlot.CODEC)) {
+			if (itemstackwithslot.isValidInContainer(p_18982_.size())) {
+				p_18982_.set(itemstackwithslot.slot(), itemstackwithslot.stack());
+			}
+		}
+
+	}
 
 	@Override
 	public int[] getSlotsForFace(Direction p_58363_) {
@@ -333,8 +359,20 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		if (p_58389_ == 1) {
 			return false;
 		} else {
-			return this.fakeInventory.isEmpty() || ItemStack.isSameItem(this.fakeInventory.get(p_58389_), p_58390_);
+			return recipeDisplay == null || resolveWithRecipePlace(p_58390_);
 		}
+	}
+
+	private boolean resolveWithRecipePlace(ItemStack p_58390_) {
+		if (level == null) {
+			return false;
+		}
+		ContextMap contextMap = SlotDisplayContext.fromLevel(this.level);
+		for (ItemStack stack : recipeDisplay.result().resolveForStacks(contextMap)) {
+			return ItemStack.isSameItem(stack, p_58390_);
+		}
+
+		return false;
 	}
 
 	@Override

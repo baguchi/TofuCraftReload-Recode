@@ -3,7 +3,6 @@ package baguchi.tofucraft.client.screen;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.recipe.TFCraftingTableRecipeBookComponent;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
-import baguchi.tofucraft.network.TFCraftingTableResetFakeSlotPacket;
 import baguchi.tofucraft.registry.TofuFluids;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -19,7 +18,6 @@ import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import org.joml.Matrix3x2fStack;
 
 import java.awt.*;
@@ -37,6 +35,13 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 		return new ScreenPosition(this.leftPos + 5, this.height / 2 - 49);
 	}
 
+	@Override
+	protected void init() {
+		super.init();
+		if (this.menu.blockEntity.getRecipeDisplay() != null) {
+			this.fillGhostRecipe(this.menu.blockEntity.getRecipeDisplay());
+		}
+	}
 
 	@Override
 	protected void renderBg(GuiGraphics gui, float partialTicks, int mouseX, int mouseY) {
@@ -56,11 +61,7 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 		gui.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURE, this.leftPos + PROGRESS_ARROW.x, this.topPos + PROGRESS_ARROW.y, 176, 15, l + 1, PROGRESS_ARROW.height, 256, 256);
 	}
 
-	//	@Override
-//	public void removed() {
-//		this.recipeBookComponent.removed();
-//		super.removed();
-//	}
+
 	public static void renderFluidStack(GuiGraphics guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(IClientFluidTypeExtensions.of(fluid).getStillTexture());
 		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
@@ -87,8 +88,5 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 	@Override
 	protected void slotClicked(Slot p_376636_, int p_376122_, int p_376346_, ClickType p_376809_) {
 		super.slotClicked(p_376636_, p_376122_, p_376346_, p_376809_);
-		if (!this.menu.blockEntity.getFakeInventory().isEmpty()) {
-			ClientPacketDistributor.sendToServer(new TFCraftingTableResetFakeSlotPacket(this.menu.blockEntity.getBlockPos()));
-		}
 	}
 }

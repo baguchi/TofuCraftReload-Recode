@@ -10,16 +10,16 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.neoforge.network.handling.IPayloadHandler;
 
-public class TFCraftingTableResetFakeSlotPacket implements CustomPacketPayload, IPayloadHandler<TFCraftingTableResetFakeSlotPacket> {
+public class TFCraftingTableResetSavedRecipePacket implements CustomPacketPayload, IPayloadHandler<TFCraftingTableResetSavedRecipePacket> {
 
-	public static final StreamCodec<FriendlyByteBuf, TFCraftingTableResetFakeSlotPacket> STREAM_CODEC = CustomPacketPayload.codec(
-			TFCraftingTableResetFakeSlotPacket::write, TFCraftingTableResetFakeSlotPacket::new
+	public static final StreamCodec<FriendlyByteBuf, TFCraftingTableResetSavedRecipePacket> STREAM_CODEC = CustomPacketPayload.codec(
+			TFCraftingTableResetSavedRecipePacket::write, TFCraftingTableResetSavedRecipePacket::new
 	);
-	public static final Type<TFCraftingTableResetFakeSlotPacket> TYPE = new Type<>(TofuCraftReload.prefix("reset_fake_slot"));
+	public static final Type<TFCraftingTableResetSavedRecipePacket> TYPE = new Type<>(TofuCraftReload.prefix("reset_saved_recipe"));
 
 	public BlockPos blockPos;
 
-	public TFCraftingTableResetFakeSlotPacket(BlockPos blockPos) {
+	public TFCraftingTableResetSavedRecipePacket(BlockPos blockPos) {
 		this.blockPos = blockPos;
 	}
 
@@ -32,15 +32,15 @@ public class TFCraftingTableResetFakeSlotPacket implements CustomPacketPayload, 
 		buffer.writeBlockPos(this.blockPos);
 	}
 
-	public TFCraftingTableResetFakeSlotPacket(FriendlyByteBuf buffer) {
+	public TFCraftingTableResetSavedRecipePacket(FriendlyByteBuf buffer) {
 		this(buffer.readBlockPos());
 	}
 
-	public void handle(TFCraftingTableResetFakeSlotPacket message, IPayloadContext context) {
+	public void handle(TFCraftingTableResetSavedRecipePacket message, IPayloadContext context) {
 		context.enqueueWork(() -> {
 			BlockEntity tileentity = context.player().level().getBlockEntity(message.blockPos);
 			if (tileentity instanceof TFCraftingTableBlockEntity blockEntity) {
-				blockEntity.getFakeInventory().clear();
+				blockEntity.setRecipeDisplay(null);
 			}
 		});
 	}
