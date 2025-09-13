@@ -270,7 +270,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 
 	@Override
 	public boolean canTakeItemThroughFace(int p_58392_, ItemStack p_58393_, Direction p_58394_) {
-		return p_58392_ == 1;
+		return true;
 	}
 
 	@Override

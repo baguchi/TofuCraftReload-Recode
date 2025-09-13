@@ -35,6 +35,9 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
+import net.minecraft.world.item.crafting.display.ShapedCraftingRecipeDisplay;
+import net.minecraft.world.item.crafting.display.ShapelessCraftingRecipeDisplay;
+import net.minecraft.world.item.crafting.display.SlotDisplay;
 import net.minecraft.world.item.crafting.display.SlotDisplayContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -61,8 +64,8 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 	private final RecipeManager.CachedCheck<CraftingInput, ? extends TFCraftingRecipe> quickCheck;
 	private final RecipeManager.CachedCheck<CraftingInput, ? extends CraftingRecipe> quickNormalCheck;
 
-	private static final int[] SLOTS_FOR_UP = new int[]{0};
-	private static final int[] SLOTS_FOR_DOWN = new int[]{1};
+	private static final int[] SLOTS_FOR_UP = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
+	private static final int[] SLOTS_FOR_DOWN = new int[]{9};
 
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
@@ -155,6 +158,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 					tfoven.drain(10, false);
 
 				} else {
+					tfoven.progress = 0;
 					tfoven.refreshTime = 10 + tfoven.level.random.nextInt(20);
 				}
 			} else {
@@ -351,25 +355,51 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 	@Override
 	public boolean canTakeItemThroughFace(int p_58392_, ItemStack p_58393_, Direction p_58394_) {
-		return p_58392_ == 1;
+		return true;
 	}
 
 	@Override
 	public boolean canPlaceItem(int p_58389_, ItemStack p_58390_) {
-		if (p_58389_ == 1) {
+		if (p_58389_ == 9) {
 			return false;
 		} else {
-			return recipeDisplay == null || resolveWithRecipePlace(p_58390_);
+			return recipeDisplay == null || resolveWithRecipePlace(p_58389_, p_58390_);
 		}
 	}
 
-	private boolean resolveWithRecipePlace(ItemStack p_58390_) {
-		if (level == null) {
+	private boolean resolveWithRecipePlace(int p_58389_, ItemStack p_58390_) {
+		if (level == null || recipeDisplay == null) {
 			return false;
 		}
 		ContextMap contextMap = SlotDisplayContext.fromLevel(this.level);
-		for (ItemStack stack : recipeDisplay.result().resolveForStacks(contextMap)) {
-			return ItemStack.isSameItem(stack, p_58390_);
+
+		switch (recipeDisplay) {
+			case ShapedCraftingRecipeDisplay shapedCraftingRecipeDisplay:
+				List<SlotDisplay> list1 = shapedCraftingRecipeDisplay.ingredients();
+
+				List<ItemStack> list2 = list1.get(p_58389_).resolveForStacks(contextMap);
+				if (!list2.isEmpty()) {
+					for (ItemStack stack : list2) {
+						if (ItemStack.isSameItem(stack, p_58390_)) {
+							return true;
+						}
+					}
+				}
+
+				break;
+			case ShapelessCraftingRecipeDisplay shapelessCraftingRecipeDisplay:
+				List<SlotDisplay> list3 = shapelessCraftingRecipeDisplay.ingredients();
+
+				List<ItemStack> list4 = list3.get(p_58389_).resolveForStacks(contextMap);
+				if (!list4.isEmpty()) {
+					for (ItemStack stack : list4) {
+						if (ItemStack.isSameItem(stack, p_58390_)) {
+							return true;
+						}
+					}
+				}
+				break;
+			default:
 		}
 
 		return false;
