@@ -179,6 +179,7 @@ public class TFCraftingTableMenu extends RecipeBookMenu {
 						for (int i = 0; i < 9; ++i) {
 							inventory.setItem(i, ItemStack.EMPTY);
 							blockEntity.setRecipeDisplay(null);
+							blockEntity.setRecipe(null);
 						}
 					}
 
@@ -213,6 +214,7 @@ public class TFCraftingTableMenu extends RecipeBookMenu {
 					for (int i = 0; i < 9; ++i) {
 						inventory.setItem(i, ItemStack.EMPTY);
 						blockEntity.setRecipeDisplay(null);
+						blockEntity.setRecipe(null);
 					}
 				}
 

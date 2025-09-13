@@ -41,6 +41,7 @@ public class TFCraftingTableResetSavedRecipePacket implements CustomPacketPayloa
 			BlockEntity tileentity = context.player().level().getBlockEntity(message.blockPos);
 			if (tileentity instanceof TFCraftingTableBlockEntity blockEntity) {
 				blockEntity.setRecipeDisplay(null);
+				blockEntity.setRecipe(null);
 			}
 		});
 	}

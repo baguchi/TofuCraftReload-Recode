@@ -34,6 +34,7 @@ public abstract class ServerGamePacketListenerImplMixin extends ServerCommonPack
 			if (abstractcontainermenu instanceof TFCraftingTableMenu craftermenu) {
 				if (craftermenu.blockEntity instanceof TFCraftingTableBlockEntity tfCraftingTableBlockEntity) {
 					tfCraftingTableBlockEntity.setRecipeDisplay(recipemanager$serverdisplayinfo.display().display());
+					tfCraftingTableBlockEntity.setRecipe(recipemanager$serverdisplayinfo.parent().value());
 					tfCraftingTableBlockEntity.setChanged();
 				}
 			}

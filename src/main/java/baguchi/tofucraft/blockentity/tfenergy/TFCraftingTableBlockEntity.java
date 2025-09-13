@@ -31,6 +31,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -56,6 +57,8 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 	@Nullable
 	protected RecipeDisplay recipeDisplay;
+	@Nullable
+	protected Recipe<?> recipe;
 	private int progress = 0;
 	private int progressMax = 0;
 
@@ -121,6 +124,14 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		return recipeDisplay;
 	}
 
+	public void setRecipe(@Nullable Recipe<?> recipe) {
+		this.recipe = recipe;
+	}
+
+	public @Nullable Recipe<?> getRecipe() {
+		return recipe;
+	}
+
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFCraftingTableBlockEntity tfoven) {
 		if (level.isClientSide()) return;
 
@@ -134,7 +145,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 				ContextMap contextmap = SlotDisplayContext.fromLevel(level);
 
 
-				if (optional.isPresent() && (tfoven.recipeDisplay == null || optional.get().value().display().contains(tfoven.recipeDisplay))) {
+				if (optional.isPresent() && (tfoven.recipeDisplay == null || !optional.get().value().display().isEmpty() && optional.get().value().display().contains(tfoven.recipeDisplay))) {
 					tfoven.progressMax = optional.get().value().getNeedTF() / 10;
 					++tfoven.progress;
 					if (tfoven.progress >= tfoven.progressMax) {
@@ -147,7 +158,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 					tfoven.drain(10, false);
 
-				} else if (optional2.isPresent() && (tfoven.recipeDisplay == null || optional2.get().value().display().contains(tfoven.recipeDisplay))) {
+				} else if (optional2.isPresent() && (tfoven.recipeDisplay == null || !optional2.get().value().display().isEmpty() && optional2.get().value().display().contains(tfoven.recipeDisplay))) {
 					tfoven.progressMax = 100 / 10;
 					++tfoven.progress;
 					if (tfoven.progress >= tfoven.progressMax) {
@@ -306,7 +317,10 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		cmp.putInt("progress_max", this.progressMax);
 		cmp.putInt("RefreshTime", this.refreshTime);
 		if (this.recipeDisplay != null) {
-			cmp.store("saved_recipe", RecipeDisplay.CODEC, this.recipeDisplay);
+			cmp.store("saved_recipe_display", RecipeDisplay.CODEC, this.recipeDisplay);
+		}
+		if (this.recipe != null) {
+			cmp.store("saved_recipe", Recipe.CODEC, this.recipe);
 		}
 	}
 
@@ -318,28 +332,8 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		this.progress = cmp.getIntOr("progress", 0);
 		this.progressMax = cmp.getIntOr("progress_max", 0);
 		this.refreshTime = cmp.getIntOr("RefreshTime", 0);
-		this.recipeDisplay = cmp.read("saved_recipe", RecipeDisplay.CODEC).orElse(null);
-
-	}
-
-	public static void saveItemList(ValueOutput p_421921_, NonNullList<List<ItemStack>> p_18978_) {
-		ValueOutput.TypedOutputList<ItemStackListWithSlot> typedoutputlist = p_421921_.list("Items", ItemStackListWithSlot.CODEC);
-
-		for (int i = 0; i < p_18978_.size(); ++i) {
-			List<ItemStack> itemstack = p_18978_.get(i);
-			if (!itemstack.isEmpty()) {
-				typedoutputlist.add(new ItemStackListWithSlot(i, itemstack));
-			}
-		}
-	}
-
-	public static void loadItemList(ValueInput p_422226_, NonNullList<List<ItemStack>> p_18982_) {
-		for (ItemStackListWithSlot itemstackwithslot : p_422226_.listOrEmpty("Items", ItemStackListWithSlot.CODEC)) {
-			if (itemstackwithslot.isValidInContainer(p_18982_.size())) {
-				p_18982_.set(itemstackwithslot.slot(), itemstackwithslot.stack());
-			}
-		}
-
+		this.recipeDisplay = cmp.read("saved_recipe_display", RecipeDisplay.CODEC).orElse(null);
+		this.recipe = cmp.read("saved_recipe", Recipe.CODEC).orElse(null);
 	}
 
 	@Override
@@ -389,7 +383,12 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 		switch (recipeDisplay) {
 			case ShapedCraftingRecipeDisplay shapedCraftingRecipeDisplay:
+
 				List<SlotDisplay> list1 = shapedCraftingRecipeDisplay.ingredients();
+
+				if (slot >= list1.size()) {
+					return false;
+				}
 
 				List<ItemStack> list2 = list1.get(slot).resolveForStacks(contextMap);
 				if (!list2.isEmpty()) {
@@ -409,6 +408,10 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 				break;
 			case ShapelessCraftingRecipeDisplay shapelessCraftingRecipeDisplay:
 				List<SlotDisplay> list3 = shapelessCraftingRecipeDisplay.ingredients();
+
+				if (slot >= list3.size()) {
+					return false;
+				}
 
 				List<ItemStack> list4 = list3.get(slot).resolveForStacks(contextMap);
 				if (!list4.isEmpty()) {
@@ -474,6 +477,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		p_331127_.discard("progress_max");
 		p_331127_.discard("RefreshTime");
 		p_331127_.discard("RecipesUsed");
+		p_331127_.discard("saved_recipe");
 	}
 
 	@Override
