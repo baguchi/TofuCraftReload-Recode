@@ -17,7 +17,8 @@
   },
   "minVersion": "0.8",
   "client": [
+    "client.AbstractRecipeBookScreenAccessor",
     "client.GuiAccessor",
-    "client.RecipeBookComponentInvoker"
+    "client.RecipeBookComponentAccessor"
   ]
 }

@@ -131,7 +131,10 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 				Optional<? extends RecipeHolder<? extends TFCraftingRecipe>> optional = tfoven.quickCheck.getRecipeFor(CraftingInput.of(3, 3, tfoven.inventory), serverLevel);
 				Optional<? extends RecipeHolder<? extends CraftingRecipe>> optional2 = tfoven.quickNormalCheck.getRecipeFor(CraftingInput.of(3, 3, tfoven.inventory), serverLevel);
 
-				if (optional.isPresent()) {
+				ContextMap contextmap = SlotDisplayContext.fromLevel(level);
+
+
+				if (optional.isPresent() && (tfoven.recipeDisplay == null || optional.get().value().display().contains(tfoven.recipeDisplay))) {
 					tfoven.progressMax = optional.get().value().getNeedTF() / 10;
 					++tfoven.progress;
 					if (tfoven.progress >= tfoven.progressMax) {
@@ -144,7 +147,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 					tfoven.drain(10, false);
 
-				} else if (optional2.isPresent()) {
+				} else if (optional2.isPresent() && (tfoven.recipeDisplay == null || optional2.get().value().display().contains(tfoven.recipeDisplay))) {
 					tfoven.progressMax = 100 / 10;
 					++tfoven.progress;
 					if (tfoven.progress >= tfoven.progressMax) {
@@ -367,7 +370,18 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		}
 	}
 
-	private boolean resolveWithRecipePlace(int p_58389_, ItemStack p_58390_) {
+	private boolean smallerStackExist(int p_307396_, ItemStack p_307520_, int p_307348_) {
+		for (int i = p_307348_ + 1; i < 9; ++i) {
+			ItemStack itemstack = this.getItem(i);
+			if (itemstack.isEmpty() || itemstack.getCount() < p_307396_ && ItemStack.isSameItemSameComponents(itemstack, p_307520_)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private boolean resolveWithRecipePlace(int slot, ItemStack p_58390_) {
 		if (level == null || recipeDisplay == null) {
 			return false;
 		}
@@ -377,11 +391,17 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 			case ShapedCraftingRecipeDisplay shapedCraftingRecipeDisplay:
 				List<SlotDisplay> list1 = shapedCraftingRecipeDisplay.ingredients();
 
-				List<ItemStack> list2 = list1.get(p_58389_).resolveForStacks(contextMap);
+				List<ItemStack> list2 = list1.get(slot).resolveForStacks(contextMap);
 				if (!list2.isEmpty()) {
 					for (ItemStack stack : list2) {
 						if (ItemStack.isSameItem(stack, p_58390_)) {
-							return true;
+							ItemStack itemstack = this.inventory.get(slot);
+							int i = itemstack.getCount();
+							if (i >= itemstack.getMaxStackSize()) {
+								return false;
+							} else {
+								return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
+							}
 						}
 					}
 				}
@@ -390,11 +410,17 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 			case ShapelessCraftingRecipeDisplay shapelessCraftingRecipeDisplay:
 				List<SlotDisplay> list3 = shapelessCraftingRecipeDisplay.ingredients();
 
-				List<ItemStack> list4 = list3.get(p_58389_).resolveForStacks(contextMap);
+				List<ItemStack> list4 = list3.get(slot).resolveForStacks(contextMap);
 				if (!list4.isEmpty()) {
 					for (ItemStack stack : list4) {
 						if (ItemStack.isSameItem(stack, p_58390_)) {
-							return true;
+							ItemStack itemstack = this.inventory.get(slot);
+							int i = itemstack.getCount();
+							if (i >= itemstack.getMaxStackSize()) {
+								return false;
+							} else {
+								return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
+							}
 						}
 					}
 				}

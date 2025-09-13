@@ -3,6 +3,7 @@ package baguchi.tofucraft.client.screen;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.recipe.TFCraftingTableRecipeBookComponent;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
+import baguchi.tofucraft.mixin.client.AbstractRecipeBookScreenAccessor;
 import baguchi.tofucraft.registry.TofuFluids;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -14,7 +15,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
@@ -86,7 +86,14 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 	}
 
 	@Override
-	protected void slotClicked(Slot p_376636_, int p_376122_, int p_376346_, ClickType p_376809_) {
-		super.slotClicked(p_376636_, p_376122_, p_376346_, p_376809_);
+	protected void renderSlots(GuiGraphics p_376313_) {
+		((AbstractRecipeBookScreenAccessor) this).getRecipeBookComponent().renderGhostRecipe(p_376313_, this.isBiggerResultSlot());
+
+		for (Slot slot : this.menu.slots) {
+			if (slot.isActive()) {
+				this.renderSlot(p_376313_, slot);
+			}
+		}
+
 	}
 }
