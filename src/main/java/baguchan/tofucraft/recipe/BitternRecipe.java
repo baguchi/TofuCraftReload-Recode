@@ -10,7 +10,6 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fluids.FluidStack;
 
 public class BitternRecipe implements Recipe<Container> {
 
@@ -50,12 +49,6 @@ public class BitternRecipe implements Recipe<Container> {
 	public void setFluid(FluidIngredient tofu) {
 
 		this.fluid = tofu;
-	}
-
-	public boolean matchesWithFluid(FluidStack fluid, Container inv, Level worldIn) {
-		if (this.getFluid() == FluidIngredient.EMPTY)
-			return fluid.isEmpty() && matches(inv, worldIn);
-		return this.getFluid().test(fluid) && matches(inv, worldIn);
 	}
 
 
