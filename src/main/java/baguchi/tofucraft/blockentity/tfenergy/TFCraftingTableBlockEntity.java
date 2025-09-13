@@ -31,14 +31,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
-import net.minecraft.world.item.crafting.display.ShapedCraftingRecipeDisplay;
-import net.minecraft.world.item.crafting.display.ShapelessCraftingRecipeDisplay;
-import net.minecraft.world.item.crafting.display.SlotDisplay;
 import net.minecraft.world.item.crafting.display.SlotDisplayContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -375,60 +373,26 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		return false;
 	}
 
-	private boolean resolveWithRecipePlace(int slot, ItemStack p_58390_) {
+	private boolean resolveWithRecipePlace(int slot, ItemStack stack) {
 		if (level == null || recipeDisplay == null) {
 			return false;
 		}
-		ContextMap contextMap = SlotDisplayContext.fromLevel(this.level);
+		List<Ingredient> list1 = recipe.placementInfo().ingredients();
 
-		switch (recipeDisplay) {
-			case ShapedCraftingRecipeDisplay shapedCraftingRecipeDisplay:
+		if (slot >= list1.size()) {
+			return false;
+		}
 
-				List<SlotDisplay> list1 = shapedCraftingRecipeDisplay.ingredients();
-
-				if (slot >= list1.size()) {
+		if (list1.get(slot).test(stack)) {
+			if (ItemStack.isSameItem(stack, stack)) {
+				ItemStack itemstack = this.inventory.get(slot);
+				int i = itemstack.getCount();
+				if (i >= itemstack.getMaxStackSize()) {
 					return false;
+				} else {
+					return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
 				}
-
-				List<ItemStack> list2 = list1.get(slot).resolveForStacks(contextMap);
-				if (!list2.isEmpty()) {
-					for (ItemStack stack : list2) {
-						if (ItemStack.isSameItem(stack, p_58390_)) {
-							ItemStack itemstack = this.inventory.get(slot);
-							int i = itemstack.getCount();
-							if (i >= itemstack.getMaxStackSize()) {
-								return false;
-							} else {
-								return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
-							}
-						}
-					}
-				}
-
-				break;
-			case ShapelessCraftingRecipeDisplay shapelessCraftingRecipeDisplay:
-				List<SlotDisplay> list3 = shapelessCraftingRecipeDisplay.ingredients();
-
-				if (slot >= list3.size()) {
-					return false;
-				}
-
-				List<ItemStack> list4 = list3.get(slot).resolveForStacks(contextMap);
-				if (!list4.isEmpty()) {
-					for (ItemStack stack : list4) {
-						if (ItemStack.isSameItem(stack, p_58390_)) {
-							ItemStack itemstack = this.inventory.get(slot);
-							int i = itemstack.getCount();
-							if (i >= itemstack.getMaxStackSize()) {
-								return false;
-							} else {
-								return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
-							}
-						}
-					}
-				}
-				break;
-			default:
+			}
 		}
 
 		return false;
