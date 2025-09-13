@@ -1866,9 +1866,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.TF_CRAFTING_TABLE.get())
-				.pattern(" B ")
-				.pattern("TET")
-				.pattern(" T ")
+				.pattern("B")
+				.pattern("T")
+				.pattern("E")
 				.define('T', TofuBlocks.METALTOFU)
 				.define('B', Blocks.CRAFTING_TABLE)
 				.define('E', TofuItems.TOFU_CORE.get())

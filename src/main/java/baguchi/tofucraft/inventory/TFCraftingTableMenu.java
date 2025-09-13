@@ -20,6 +20,7 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -158,17 +159,56 @@ public class TFCraftingTableMenu extends RecipeBookMenu {
 
 	@Override
 	public RecipeBookMenu.PostPlaceAction handlePlacement(boolean p_361638_, boolean p_361841_, RecipeHolder<?> p_364981_, ServerLevel p_379885_, Inventory p_361078_) {
-		RecipeHolder<TFCraftingRecipe> recipeholder = (RecipeHolder<TFCraftingRecipe>) p_364981_;
+		if (p_364981_.value() instanceof CraftingRecipe) {
+			return this.handlePlacementDefaultCraft(p_361638_, p_361841_, p_364981_, p_379885_, p_361078_);
+		} else {
+			RecipeHolder<TFCraftingRecipe> recipeholder = (RecipeHolder<TFCraftingRecipe>) p_364981_;
+			this.beginPlacingRecipe();
+
+			RecipeBookMenu.PostPlaceAction recipebookmenu$postplaceaction;
+			try {
+				List<Slot> list = this.getInputGridSlots();
+				recipebookmenu$postplaceaction = ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<TFCraftingRecipe>() {
+					@Override
+					public void fillCraftSlotsStackedContents(StackedItemContents p_363395_) {
+						TFCraftingTableMenu.this.fillCraftSlotsStackedContents(p_363395_);
+					}
+
+					@Override
+					public void clearCraftingContent() {
+						for (int i = 0; i < 9; ++i) {
+							inventory.setItem(i, ItemStack.EMPTY);
+							blockEntity.getFakeInventory().set(i, ItemStack.EMPTY);
+						}
+					}
+
+					@Override
+					public boolean recipeMatches(RecipeHolder<TFCraftingRecipe> p_365206_) {
+						return p_365206_.value().matches(CraftingInput.ofPositioned(3, 3, TFCraftingTableMenu.this.blockEntity.getInventory()).input(), TFCraftingTableMenu.this.level);
+					}
+				}, 3, 3, list, list, p_361078_, recipeholder, p_361638_, p_361841_);
+			} finally {
+				this.finishPlacingRecipe(p_379885_, (RecipeHolder<TFCraftingRecipe>) p_364981_);
+			}
+
+			return recipebookmenu$postplaceaction;
+		}
+	}
+
+	public RecipeBookMenu.PostPlaceAction handlePlacementDefaultCraft(boolean p_361638_, boolean p_361841_, RecipeHolder<?> p_364981_, ServerLevel p_379885_, Inventory p_361078_) {
+		RecipeHolder<CraftingRecipe> recipeholder = (RecipeHolder<CraftingRecipe>) p_364981_;
 		this.beginPlacingRecipe();
 
 		RecipeBookMenu.PostPlaceAction recipebookmenu$postplaceaction;
 		try {
 			List<Slot> list = this.getInputGridSlots();
-			recipebookmenu$postplaceaction = ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<TFCraftingRecipe>() {
+			recipebookmenu$postplaceaction = ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<CraftingRecipe>() {
+				@Override
 				public void fillCraftSlotsStackedContents(StackedItemContents p_363395_) {
 					TFCraftingTableMenu.this.fillCraftSlotsStackedContents(p_363395_);
 				}
 
+				@Override
 				public void clearCraftingContent() {
 					for (int i = 0; i < 9; ++i) {
 						inventory.setItem(i, ItemStack.EMPTY);
@@ -176,12 +216,13 @@ public class TFCraftingTableMenu extends RecipeBookMenu {
 					}
 				}
 
-				public boolean recipeMatches(RecipeHolder<TFCraftingRecipe> p_365206_) {
+				@Override
+				public boolean recipeMatches(RecipeHolder<CraftingRecipe> p_365206_) {
 					return p_365206_.value().matches(CraftingInput.ofPositioned(3, 3, TFCraftingTableMenu.this.blockEntity.getInventory()).input(), TFCraftingTableMenu.this.level);
 				}
 			}, 3, 3, list, list, p_361078_, recipeholder, p_361638_, p_361841_);
 		} finally {
-			this.finishPlacingRecipe(p_379885_, (RecipeHolder<TFCraftingRecipe>) p_364981_);
+			//this.finishPlacingRecipe(p_379885_, p_364981_);
 		}
 
 		return recipebookmenu$postplaceaction;

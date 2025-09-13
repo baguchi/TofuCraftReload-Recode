@@ -35,8 +35,8 @@ public class TFCraftingTableRecipeBookComponent extends RecipeBookComponent<TFCr
 
 	private static final List<RecipeBookComponent.TabInfo> TABS = List.of(
 			new RecipeBookComponent.TabInfo(TofuItems.TOFU_CRAFTERS_BOOK.get(), TofuRecipeBookCategory.TF_SEARCH),
-			new RecipeBookComponent.TabInfo(TofuItems.TF_CIRCUIT.get(), TofuRecipeBookCategory.TF_MECHA.get()),
-			new RecipeBookComponent.TabInfo(TofuItems.ZUNDA_INGOT.get(), TofuRecipeBookCategory.TF_MISC.get()),
+			//new RecipeBookComponent.TabInfo(TofuItems.TF_CIRCUIT.get(), TofuRecipeBookCategory.TF_MECHA.get()),
+			//new RecipeBookComponent.TabInfo(TofuItems.ZUNDA_INGOT.get(), TofuRecipeBookCategory.TF_MISC.get()),
 			new RecipeBookComponent.TabInfo(SearchRecipeBookCategory.CRAFTING),
 			new RecipeBookComponent.TabInfo(Items.IRON_AXE, Items.GOLDEN_SWORD, RecipeBookCategories.CRAFTING_EQUIPMENT),
 			new RecipeBookComponent.TabInfo(Items.BRICKS, RecipeBookCategories.CRAFTING_BUILDING_BLOCKS),
