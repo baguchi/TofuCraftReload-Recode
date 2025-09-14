@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
@@ -30,11 +31,12 @@ import javax.annotation.Nullable;
 public class TFCraftingTableBlock extends TFBaseEntityBlock {
 	public static final MapCodec<TFCraftingTableBlock> CODEC = simpleCodec(TFCraftingTableBlock::new);
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
+	public static final BooleanProperty ENABLED = BlockStateProperties.ENABLED;
 	public static final EnumProperty<Direction> HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 	public TFCraftingTableBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(LIT, false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(HORIZONTAL_FACING, Direction.NORTH).setValue(LIT, false).setValue(ENABLED, true));
 	}
 
 	@Override
@@ -42,10 +44,12 @@ public class TFCraftingTableBlock extends TFBaseEntityBlock {
 		return CODEC;
 	}
 
+	@Override
 	public BlockState rotate(BlockState p_307240_, Rotation p_307431_) {
 		return p_307240_.setValue(HORIZONTAL_FACING, p_307431_.rotation().rotate(p_307240_.getValue(HORIZONTAL_FACING)));
 	}
 
+	@Override
 	public BlockState mirror(BlockState p_307514_, Mirror p_307198_) {
 		return p_307514_.setValue(HORIZONTAL_FACING, p_307198_.rotation().rotate(p_307514_.getValue(HORIZONTAL_FACING)));
 	}
@@ -78,9 +82,25 @@ public class TFCraftingTableBlock extends TFBaseEntityBlock {
 
 	}
 
-	public void onRemove(BlockState p_48713_, Level p_48714_, BlockPos p_48715_, BlockState p_48716_, boolean p_48717_) {
-
+	@Override
+	protected void onPlace(BlockState p_54110_, Level p_54111_, BlockPos p_54112_, BlockState p_54113_, boolean p_54114_) {
+		if (!p_54113_.is(p_54110_.getBlock())) {
+			this.checkPoweredState(p_54111_, p_54112_, p_54110_);
+		}
 	}
+
+	@Override
+	protected void neighborChanged(BlockState p_54078_, Level p_54079_, BlockPos p_54080_, Block p_54081_, @Nullable Orientation p_361307_, boolean p_54083_) {
+		this.checkPoweredState(p_54079_, p_54080_, p_54078_);
+	}
+
+	private void checkPoweredState(Level p_275499_, BlockPos p_275298_, BlockState p_275611_) {
+		boolean flag = !p_275499_.hasNeighborSignal(p_275298_);
+		if (flag != (Boolean) p_275611_.getValue(ENABLED)) {
+			p_275499_.setBlock(p_275298_, (BlockState) p_275611_.setValue(ENABLED, flag), 2);
+		}
+	}
+
 
 	@Override
 	public boolean hasAnalogOutputSignal(BlockState p_307445_) {
@@ -99,7 +119,7 @@ public class TFCraftingTableBlock extends TFBaseEntityBlock {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_307200_) {
-		p_307200_.add(HORIZONTAL_FACING, LIT);
+		p_307200_.add(HORIZONTAL_FACING, LIT, ENABLED);
 	}
 
 	@Override

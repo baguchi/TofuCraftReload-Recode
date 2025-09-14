@@ -4,17 +4,20 @@ import baguchi.tofucraft.block.tfenergy.TFCraftingTableBlock;
 import baguchi.tofucraft.blockentity.tfenergy.base.WorkerBaseBlockEntity;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
 import baguchi.tofucraft.recipe.TFCraftingRecipe;
-import baguchi.tofucraft.recipe.TFShapedRecipe;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.recipebook.PlaceRecipeHelper;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.context.ContextMap;
 import net.minecraft.world.ContainerHelper;
@@ -32,15 +35,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
+import net.minecraft.world.item.crafting.display.ShapedCraftingRecipeDisplay;
+import net.minecraft.world.item.crafting.display.ShapelessCraftingRecipeDisplay;
 import net.minecraft.world.item.crafting.display.SlotDisplayContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -57,8 +60,6 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 	@Nullable
 	protected RecipeDisplay recipeDisplay;
-	@Nullable
-	protected Recipe<?> recipe;
 	private int progress = 0;
 	private int progressMax = 0;
 
@@ -118,22 +119,15 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 	public void setRecipeDisplay(@Nullable RecipeDisplay recipeDisplay) {
 		this.recipeDisplay = recipeDisplay;
+		this.setChanged();
 	}
 
 	public @Nullable RecipeDisplay getRecipeDisplay() {
 		return recipeDisplay;
 	}
 
-	public void setRecipe(@Nullable Recipe<?> recipe) {
-		this.recipe = recipe;
-	}
-
-	public @Nullable Recipe<?> getRecipe() {
-		return recipe;
-	}
-
 	public static void tick(Level level, BlockPos blockPos, BlockState blockState, TFCraftingTableBlockEntity tfoven) {
-		if (level.isClientSide()) return;
+		if (level.isClientSide() || !blockState.getValue(TFCraftingTableBlock.ENABLED)) return;
 
 		boolean worked = false;
 		if (tfoven.getEnergyStored() > 0 && level instanceof ServerLevel serverLevel) {
@@ -142,42 +136,45 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 				Optional<? extends RecipeHolder<? extends TFCraftingRecipe>> optional = tfoven.quickCheck.getRecipeFor(CraftingInput.of(3, 3, tfoven.inventory), serverLevel);
 				Optional<? extends RecipeHolder<? extends CraftingRecipe>> optional2 = tfoven.quickNormalCheck.getRecipeFor(CraftingInput.of(3, 3, tfoven.inventory), serverLevel);
 
-				ContextMap contextmap = SlotDisplayContext.fromLevel(level);
 
+				ItemStack tfStack = optional.isEmpty() ? ItemStack.EMPTY : optional.get().value().assemble(CraftingInput.of(3, 3, tfoven.inventory), serverLevel.registryAccess());
+				ItemStack craftStack = optional2.isEmpty() ? ItemStack.EMPTY : optional2.get().value().assemble(CraftingInput.of(3, 3, tfoven.inventory), serverLevel.registryAccess());
 
-				if (optional.isPresent() && (tfoven.recipeDisplay == null || !optional.get().value().display().isEmpty() && optional.get().value().display().contains(tfoven.recipeDisplay))) {
+				if (optional.isPresent() && tfoven.canProcess(tfStack) && (tfoven.recipeDisplay == null || !optional.get().value().display().isEmpty() && optional.get().value().display().contains(tfoven.recipeDisplay))) {
 					tfoven.progressMax = optional.get().value().getNeedTF() / 10;
 					++tfoven.progress;
 					if (tfoven.progress >= tfoven.progressMax) {
 						tfoven.progress = 0;
-						if (tfoven.craftTF(level.registryAccess(), optional.get(), tfoven.inventory)) {
+						if (tfoven.craftTF(tfStack, tfoven.inventory)) {
 							tfoven.setRecipeUsed(optional.get());
 						}
 					}
 					worked = true;
 
 					tfoven.drain(10, false);
-
-				} else if (optional2.isPresent() && (tfoven.recipeDisplay == null || !optional2.get().value().display().isEmpty() && optional2.get().value().display().contains(tfoven.recipeDisplay))) {
+					tfoven.setChanged();
+				} else if (optional2.isPresent() && tfoven.canProcess(craftStack) && (tfoven.recipeDisplay == null || !optional2.get().value().display().isEmpty() && optional2.get().value().display().contains(tfoven.recipeDisplay))) {
 					tfoven.progressMax = 100 / 10;
 					++tfoven.progress;
 					if (tfoven.progress >= tfoven.progressMax) {
 						tfoven.progress = 0;
-						if (tfoven.craft(level.registryAccess(), optional2.get(), tfoven.inventory)) {
+						if (tfoven.craft(craftStack, tfoven.inventory)) {
 							tfoven.setRecipeUsed(optional2.get());
 						}
 					}
 					worked = true;
 
 					tfoven.drain(10, false);
-
+					tfoven.setChanged();
 				} else {
 					tfoven.progress = 0;
 					tfoven.refreshTime = 10 + tfoven.level.random.nextInt(20);
+					tfoven.setChanged();
 				}
 			} else {
 				tfoven.progress = 0;
 				tfoven.refreshTime--;
+				tfoven.setChanged();
 			}
 		}
 
@@ -185,14 +182,11 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 			level.setBlock(blockPos, blockState.setValue(LIT, worked), 2);
 
 		}
-		if (worked) {
-			tfoven.setChanged();
-		}
 	}
 
-	private boolean craft(RegistryAccess p_266740_, @javax.annotation.Nullable RecipeHolder<? extends CraftingRecipe> p_300910_, NonNullList<ItemStack> p_267073_) {
-		if (p_300910_ != null) {
-			ItemStack itemstack1 = (p_300910_).value().assemble(CraftingInput.of(3, 3, p_267073_), p_266740_);
+	private boolean craft(ItemStack result, NonNullList<ItemStack> p_267073_) {
+		if (!result.isEmpty()) {
+			ItemStack itemstack1 = result.copy();
 			ItemStack itemstack2 = p_267073_.get(9);
 			if (itemstack2.isEmpty()) {
 				p_267073_.set(9, itemstack1.copy());
@@ -214,9 +208,29 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		}
 	}
 
-	private boolean craftTF(RegistryAccess p_266740_, @javax.annotation.Nullable RecipeHolder<? extends TFCraftingRecipe> p_300910_, NonNullList<ItemStack> p_267073_) {
-		if (p_300910_ != null) {
-			ItemStack itemstack1 = (p_300910_).value().assemble(CraftingInput.of(3, 3, p_267073_), p_266740_);
+	protected boolean canProcess(ItemStack result) {
+		int i = this.getMaxStackSize();
+
+		ItemStack resultStack = result.copy();
+		if (resultStack.isEmpty()) {
+			return false;
+		} else {
+			ItemStack storedMealStack = inventory.get(9);
+			if (storedMealStack.isEmpty()) {
+				return true;
+			} else if (!ItemStack.isSameItem(storedMealStack, resultStack)) {
+				return false;
+			} else if (storedMealStack.getCount() + resultStack.getCount() <= i && storedMealStack.getCount() + resultStack.getCount() <= storedMealStack.getMaxStackSize()) { // Forge fix: make furnace respect stack sizes in furnace recipes
+				return true;
+			} else {
+				return storedMealStack.getCount() + resultStack.getCount() <= resultStack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
+			}
+		}
+	}
+
+	private boolean craftTF(ItemStack result, NonNullList<ItemStack> p_267073_) {
+		if (!result.isEmpty()) {
+			ItemStack itemstack1 = result.copy();
 			ItemStack itemstack2 = p_267073_.get(9);
 			if (itemstack2.isEmpty()) {
 				p_267073_.set(9, itemstack1.copy());
@@ -319,9 +333,6 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		if (this.recipeDisplay != null) {
 			cmp.store("saved_recipe_display", RecipeDisplay.CODEC, this.recipeDisplay);
 		}
-		if (this.recipe != null) {
-			cmp.store("saved_recipe", Recipe.CODEC, this.recipe);
-		}
 	}
 
 	@Override
@@ -333,7 +344,6 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		this.progressMax = cmp.getIntOr("progress_max", 0);
 		this.refreshTime = cmp.getIntOr("RefreshTime", 0);
 		this.recipeDisplay = cmp.read("saved_recipe_display", RecipeDisplay.CODEC).orElse(null);
-		this.recipe = cmp.read("saved_recipe", Recipe.CODEC).orElse(null);
 	}
 
 	@Override
@@ -364,8 +374,10 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		}
 	}
 
-	private boolean smallerStackExist(int p_307396_, ItemStack p_307520_, int p_307348_) {
-		for (int i = p_307348_ + 1; i < 9; ++i) {
+	private boolean smallerStackExistWithGrid(int p_307396_, ItemStack p_307520_, int slot, int width, int height) {
+		for (int i = slot + 1; i < 9; ++i) {
+			//check if Slot is outbound than recipe grid
+
 			ItemStack itemstack = this.getItem(i);
 			if (itemstack.isEmpty() || itemstack.getCount() < p_307396_ && ItemStack.isSameItemSameComponents(itemstack, p_307520_)) {
 				return true;
@@ -375,67 +387,76 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		return false;
 	}
 
+	private boolean smallerStackExist(int p_307396_, ItemStack p_307520_, int slot) {
+		for (int i = slot + 1; i < 9; ++i) {
+			ItemStack itemstack = this.getItem(i);
+			if (itemstack.isEmpty() || itemstack.getCount() < p_307396_ && ItemStack.isSameItemSameComponents(itemstack, p_307520_)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	protected boolean fillRecipe(int slotIndex, ItemStack slotItem, RecipeDisplay recipeDisplay, ContextMap contextMap) {
+		final boolean[] flag = {false};
+
+		switch (recipeDisplay) {
+			case ShapedCraftingRecipeDisplay shapedcraftingrecipedisplay:
+				PlaceRecipeHelper.placeRecipe(
+						3,
+						3,
+						shapedcraftingrecipedisplay.width(),
+						shapedcraftingrecipedisplay.height(),
+						shapedcraftingrecipedisplay.ingredients(),
+						(p_380786_, p_380787_, p_380788_, p_380789_) -> {
+							List<ItemStack> list = p_380786_.resolveForStacks(contextMap);
+							if (!list.isEmpty() && list.stream().anyMatch(stack -> {
+								return ItemStack.isSameItemSameComponents(stack, slotItem);
+							})) {
+								if (p_380787_ == slotIndex) {
+									flag[0] = true;
+								}
+							}
+						}
+				);
+				break;
+			case ShapelessCraftingRecipeDisplay shapelesscraftingrecipedisplay:
+				label15:
+				{
+					int i = Math.min(shapelesscraftingrecipedisplay.ingredients().size(), 9);
+
+					for (int j = 0; j < i; j++) {
+						List<ItemStack> list = shapelesscraftingrecipedisplay.ingredients().get(j).resolveForStacks(contextMap);
+						if (!list.isEmpty() && list.stream().anyMatch(stack -> {
+							return ItemStack.isSameItemSameComponents(stack, slotItem);
+						})) {
+							if (j == slotIndex) {
+								flag[0] = true;
+							}
+						}
+					}
+					break label15;
+				}
+			default:
+		}
+		return flag[0];
+	}
+
 	private boolean resolveWithRecipePlace(int slot, ItemStack stack) {
-		if (level == null || recipe == null) {
+		if (level == null || this.recipeDisplay == null) {
 			return false;
 		}
-		if (recipe instanceof TFShapedRecipe tfShapedRecipe) {
 
-			if (slot >= tfShapedRecipe.pattern.ingredients().size()) {
-				return false;
-			}
+		ContextMap contextMap = SlotDisplayContext.fromLevel(this.level);
 
-			if (tfShapedRecipe.pattern.ingredients().get(slot).isEmpty()) {
-				return false;
-			} else {
-				if (tfShapedRecipe.pattern.ingredients().get(slot).get().test(stack)) {
-					ItemStack itemstack = this.inventory.get(slot);
-					int i = itemstack.getCount();
-					if (i >= itemstack.getMaxStackSize()) {
-						return false;
-					} else {
-						return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
-					}
-				}
-			}
-			return false;
-		} else if (recipe instanceof ShapedRecipe shapedRecipe) {
-
-			if (slot >= shapedRecipe.pattern.ingredients().size()) {
-				return false;
-			}
-
-			if (shapedRecipe.pattern.ingredients().get(slot).isEmpty()) {
+		if (fillRecipe(slot, stack, this.recipeDisplay, contextMap)) {
+			ItemStack itemstack = this.inventory.get(slot);
+			int i = itemstack.getCount();
+			if (i >= itemstack.getMaxStackSize()) {
 				return false;
 			} else {
-				if (shapedRecipe.pattern.ingredients().get(slot).get().test(stack)) {
-					ItemStack itemstack = this.inventory.get(slot);
-					int i = itemstack.getCount();
-					if (i >= itemstack.getMaxStackSize()) {
-						return false;
-					} else {
-						return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
-					}
-				}
-			}
-			return false;
-		} else {
-
-
-			List<Ingredient> list1 = recipe.placementInfo().ingredients();
-
-			if (slot >= list1.size()) {
-				return false;
-			}
-
-			if (list1.get(slot).test(stack)) {
-				ItemStack itemstack = this.inventory.get(slot);
-				int i = itemstack.getCount();
-				if (i >= itemstack.getMaxStackSize()) {
-					return false;
-				} else {
-					return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
-				}
+				return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
 			}
 		}
 		return false;
@@ -485,6 +506,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		p_331127_.discard("RefreshTime");
 		p_331127_.discard("RecipesUsed");
 		p_331127_.discard("saved_recipe");
+		p_331127_.discard("saved_recipe_display");
 	}
 
 	@Override
@@ -503,5 +525,28 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		for (ItemStack itemstack : this.inventory) {
 			stackedItemContents.accountSimpleStack(itemstack);
 		}
+	}
+
+	@Override
+	@javax.annotation.Nullable
+	public ClientboundBlockEntityDataPacket getUpdatePacket() {
+		return ClientboundBlockEntityDataPacket.create(this);
+	}
+
+	@Override
+	public CompoundTag getUpdateTag(HolderLookup.Provider p_323910_) {
+		return saveCustomOnly(p_323910_);
+	}
+
+	@Override
+	public void onDataPacket(Connection net, ValueInput valueInput) {
+		super.onDataPacket(net, valueInput);
+		loadAdditional(valueInput);
+	}
+
+	public void inventoryChanged() {
+		super.setChanged();
+		if (level != null)
+			level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
 	}
 }

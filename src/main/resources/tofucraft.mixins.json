@@ -9,7 +9,6 @@
     "LightningBoltMixin",
     "LivingEntityAccessor",
     "PlaceRecipeHelperMixin",
-    "ServerGamePacketListenerImplMixin",
     "WardenAiMixin"
   ],
   "injectors": {
@@ -19,6 +18,7 @@
   "client": [
     "client.AbstractRecipeBookScreenAccessor",
     "client.GuiAccessor",
-    "client.RecipeBookComponentAccessor"
+    "client.RecipeBookComponentAccessor",
+    "client.RecipeBookComponentMixin"
   ]
 }

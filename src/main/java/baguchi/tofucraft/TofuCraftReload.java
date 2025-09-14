@@ -15,7 +15,7 @@ import baguchi.tofucraft.network.OpenTofuBookPacket;
 import baguchi.tofucraft.network.SaltFurnaceBitternPacket;
 import baguchi.tofucraft.network.SaltFurnaceWaterPacket;
 import baguchi.tofucraft.network.SoyMilkDrinkedPacket;
-import baguchi.tofucraft.network.TFCraftingTableResetSavedRecipePacket;
+import baguchi.tofucraft.network.TFCraftingTableSavedRecipePacket;
 import baguchi.tofucraft.network.TFStorageSoymilkPacket;
 import baguchi.tofucraft.registry.ModInteractionInformations;
 import baguchi.tofucraft.registry.TofuAdvancements;
@@ -221,7 +221,7 @@ public class TofuCraftReload {
 		registrar.playToClient(BossInfoPacket.Remove.TYPE, BossInfoPacket.Remove.STREAM_CODEC, BossInfoPacket.Remove::execute);
 		registrar.playToClient(AddLearningPacket.TYPE, AddLearningPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playToClient(OpenTofuBookPacket.TYPE, OpenTofuBookPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
-		registrar.playToServer(TFCraftingTableResetSavedRecipePacket.TYPE, TFCraftingTableResetSavedRecipePacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
+		registrar.playToServer(TFCraftingTableSavedRecipePacket.TYPE, TFCraftingTableSavedRecipePacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 	}
 
 	public static ResourceLocation prefix(String name) {

@@ -25,7 +25,8 @@ import java.awt.*;
 public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTableMenu> {
 	private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tf_crafting_table.png");
 	private static final Rectangle PROGRESS_ARROW = new Rectangle(89, 34, 24, 17);
-
+	private boolean needRefresh;
+	private int needRefreshTimer;
 	public TfCraftingTableScreen(TFCraftingTableMenu screenContainer, Inventory inv, Component titleIn) {
 		super(screenContainer, new TFCraftingTableRecipeBookComponent(screenContainer), inv, titleIn);
 	}
@@ -35,11 +36,30 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 		return new ScreenPosition(this.leftPos + 5, this.height / 2 - 49);
 	}
 
+	public void setNeedRefresh() {
+		this.needRefreshTimer = 5;
+		this.needRefresh = true;
+	}
+
 	@Override
 	protected void init() {
 		super.init();
 		if (this.menu.blockEntity.getRecipeDisplay() != null) {
 			this.fillGhostRecipe(this.menu.blockEntity.getRecipeDisplay());
+		}
+	}
+
+	@Override
+	public void containerTick() {
+		super.containerTick();
+
+		if (this.needRefresh) {
+			if (--this.needRefreshTimer <= 0) {
+				this.needRefresh = false;
+				if (this.menu.blockEntity.getRecipeDisplay() != null) {
+					this.fillGhostRecipe(this.menu.blockEntity.getRecipeDisplay());
+				}
+			}
 		}
 	}
 
