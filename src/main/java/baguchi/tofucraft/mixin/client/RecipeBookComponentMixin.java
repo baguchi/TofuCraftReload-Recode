@@ -29,9 +29,7 @@ public class RecipeBookComponentMixin {
 			if (craftermenu.blockEntity instanceof TFCraftingTableBlockEntity tfCraftingTableBlockEntity) {
 				ClientPacketDistributor.sendToServer(new TFCraftingTableSavedRecipePacket(craftermenu.blockEntity.getBlockPos(), p_380106_));
 				if (this.minecraft.screen instanceof TfCraftingTableScreen screen) {
-					if (craftermenu.blockEntity.getRecipeDisplay() != null) {
-						screen.setNeedRefresh();
-					}
+					screen.setNeedRefresh();
 				}
 			}
 		}

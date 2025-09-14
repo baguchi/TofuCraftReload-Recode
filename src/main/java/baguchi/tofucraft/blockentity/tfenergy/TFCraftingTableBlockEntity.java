@@ -452,12 +452,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 		if (fillRecipe(slot, stack, this.recipeDisplay, contextMap)) {
 			ItemStack itemstack = this.inventory.get(slot);
-			int i = itemstack.getCount();
-			if (i >= itemstack.getMaxStackSize()) {
-				return false;
-			} else {
-				return itemstack.isEmpty() || !this.smallerStackExist(i, itemstack, slot);
-			}
+			return itemstack.isEmpty();
 		}
 		return false;
 	}

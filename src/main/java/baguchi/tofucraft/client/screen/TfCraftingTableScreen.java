@@ -37,7 +37,7 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 	}
 
 	public void setNeedRefresh() {
-		this.needRefreshTimer = 5;
+		this.needRefreshTimer = 30;
 		this.needRefresh = true;
 	}
 
