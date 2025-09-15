@@ -145,7 +145,9 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 			String s = GsonHelper.getAsString(p_44291_, "group", "");
 			TofuPotCategory craftingbookcategory = TofuPotCategory.CODEC.byName(GsonHelper.getAsString(p_44291_, "category", (String) null), TofuPotCategory.MISC);
 			NonNullList<Ingredient> nonnulllist = itemsFromJson(GsonHelper.getAsJsonArray(p_44291_, "ingredients"));
-			FluidIngredient fluid = FluidIngredient.fromJson(GsonHelper.getAsJsonArray(p_44291_, "fluid"));
+
+
+			FluidIngredient fluid = FluidIngredient.fromJson(p_44291_.get("fluid"));
 			int cookTime = GsonHelper.getAsInt(p_44291_, "cook_time", 300);
 
 			float experience = GsonHelper.getAsFloat(p_44291_, "exp", 0);
