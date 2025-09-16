@@ -6,6 +6,7 @@ import baguchi.tofucraft.client.screen.TFOvenScreen;
 import baguchi.tofucraft.client.screen.TfCraftingTableScreen;
 import baguchi.tofucraft.client.screen.TofuPotScreen;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
+import baguchi.tofucraft.inventory.TFOvenMenu;
 import baguchi.tofucraft.inventory.TofuPotMenu;
 import baguchi.tofucraft.recipe.BitternRecipe;
 import baguchi.tofucraft.recipe.HardenRecipe;
@@ -84,6 +85,7 @@ public class JEIPlugin implements IModPlugin {
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
 		registration.addRecipeTransferHandler(TFCraftingTableMenu.class, TofuMenus.TF_CRAFTING_TABLE.get(), TF_RECIPE_JEI_TYPE, 0, 9, 10, 36);
 		registration.addRecipeTransferHandler(TofuPotMenu.class, TofuMenus.TOFU_POT.get(), TOFU_POT_RECIPE_JEI_TYPE, 0, 12, 13, 36);
+		registration.addRecipeTransferHandler(TFOvenMenu.class, TofuMenus.TF_OVEN.get(), RecipeTypes.SMELTING, 0, 1, 2, 36);
 	}
 
 	@Override
