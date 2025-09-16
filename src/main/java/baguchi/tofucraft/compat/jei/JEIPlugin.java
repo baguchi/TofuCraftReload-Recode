@@ -25,6 +25,7 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import mezz.jei.common.Internal;
+import mezz.jei.library.plugins.vanilla.gui.RecipeBookGuiHandler;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -90,6 +91,10 @@ public class JEIPlugin implements IModPlugin {
 		registration.addRecipeClickArea(TofuPotScreen.class, 103, 36, 28, 23, TOFU_POT_RECIPE_JEI_TYPE);
 		registration.addRecipeClickArea(TfCraftingTableScreen.class, 88, 32, 28, 23, TF_RECIPE_JEI_TYPE);
 		registration.addRecipeClickArea(TFOvenScreen.class, 70, 14, 28, 23, RecipeTypes.SMELTING);
+		registration.addGuiContainerHandler(TofuPotScreen.class, new RecipeBookGuiHandler<>());
+		registration.addGuiContainerHandler(TfCraftingTableScreen.class, new RecipeBookGuiHandler<>());
+		registration.addGuiContainerHandler(TFOvenScreen.class, new RecipeBookGuiHandler<>());
+
 	}
 
 	@Override
