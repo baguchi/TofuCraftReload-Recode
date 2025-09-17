@@ -14,6 +14,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -199,4 +200,20 @@ public class FoodPlateBlock extends BaseEntityBlock {
 		return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
 	}
 
+
+	@Override
+	public BlockState playerWillDestroy(Level p_56212_, BlockPos p_56213_, BlockState p_56214_, Player p_56215_) {
+		BlockEntity blockentity = p_56212_.getBlockEntity(p_56213_);
+		if (blockentity instanceof FoodPlateBlockEntity foodPlateBlockEntity) {
+			if (!p_56212_.isClientSide && p_56215_.preventsBlockDrops() && !foodPlateBlockEntity.isEmpty()) {
+				ItemStack itemstack = this.asItem().getDefaultInstance();
+				itemstack.applyComponents(blockentity.collectComponents());
+				ItemEntity itementity = new ItemEntity(p_56212_, p_56213_.getX() + 0.5, p_56213_.getY() + 0.5, p_56213_.getZ() + 0.5, itemstack);
+				itementity.setDefaultPickUpDelay();
+				p_56212_.addFreshEntity(itementity);
+			}
+		}
+
+		return super.playerWillDestroy(p_56212_, p_56213_, p_56214_, p_56215_);
+	}
 }

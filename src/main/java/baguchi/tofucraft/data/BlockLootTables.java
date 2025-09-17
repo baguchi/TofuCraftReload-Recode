@@ -12,6 +12,7 @@ import baguchi.tofucraft.registry.TofuItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -304,7 +305,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.SALT_FURNACE.get());
 		dropSelf(TofuBlocks.SPROUTSJAR.get());
 		dropSelf(TofuBlocks.MORIJIO.get());
-		dropSelf(TofuBlocks.FOODPLATE.get());
+		createFoodPlateDrop(TofuBlocks.FOODPLATE.get());
 		dropSelf(TofuBlocks.ZUNDAMA_BLOCK.get());
 
 		dropSelf(TofuBlocks.RICE_BLOCK.get());
@@ -379,6 +380,10 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.TF_COLLECTOR.get(), this::createTFMechaTable);
 		this.add(TofuBlocks.TF_CRAFTING_TABLE.get(), this::createTFMechaTable);
 
+	}
+
+	protected LootTable.Builder createFoodPlateDrop(Block p_252164_) {
+		return LootTable.lootTable().withPool((LootPool.Builder) this.applyExplosionCondition(p_252164_, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(p_252164_).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(DataComponents.CUSTOM_NAME).include(DataComponents.CONTAINER)))));
 	}
 
 	private LootTable.Builder createTFMechaTable(Block p_277929_) {

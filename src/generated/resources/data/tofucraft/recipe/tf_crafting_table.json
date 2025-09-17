@@ -7,9 +7,9 @@
     "T": "tofucraft:blocktofumetal"
   },
   "pattern": [
-    " B ",
-    "TET",
-    " T "
+    "B",
+    "T",
+    "E"
   ],
   "result": {
     "count": 1,

@@ -14,15 +14,15 @@ import java.util.Set;
 
 
 public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer {
-	private final TofunianStatueRender bedRenderer;
+	private final TofunianStatueRender tofunianStatueRender;
 
 	public TofunianStatueSpecialRenderer(TofunianStatueRender p_386864_) {
-		this.bedRenderer = p_386864_;
+		this.tofunianStatueRender = p_386864_;
 	}
 
 	@Override
 	public void render(ItemDisplayContext p_387275_, PoseStack p_387960_, MultiBufferSource p_386542_, int p_386921_, int p_387639_, boolean p_387936_) {
-		this.bedRenderer.renderInHand(p_387960_, p_386542_, p_386921_, p_387639_);
+		this.tofunianStatueRender.renderInHand(p_387960_, p_386542_, p_386921_, p_387639_);
 	}
 
 	@Override

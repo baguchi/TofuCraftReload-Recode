@@ -6,6 +6,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.ModelBlockRenderer;
@@ -19,20 +20,54 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.CandleBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity> {
 	private final RandomSource random = RandomSource.create();
 
+
 	public FoodPlateRender(BlockEntityRendererProvider.Context context) {
 	}
 
+	public FoodPlateRender(EntityModelSet context) {
+	}
+
+
+	public void renderInHand(Optional<Block> foodplate, @org.jetbrains.annotations.Nullable ItemContainerContents itemContainerContents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int p_112311_, int p_112312_) {
+		float f = 90.0F;
+		poseStack.pushPose();
+		poseStack.scale(-1.5F, -1.5F, 1.5F);
+		poseStack.translate(-0.4, -1F, 0);
+
+		if (foodplate.isPresent()) {
+			poseStack.pushPose();
+			BlockState state = foodplate.get().defaultBlockState();
+			BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
+			//poseStack.translate(-0.5F, 0F, -0.5F);
+			VertexConsumer vertexconsumer = multiBufferSource.getBuffer(ItemBlockRenderTypes.getRenderType(state));
+			ModelBlockRenderer.renderModel(poseStack.last(), vertexconsumer, blockstatemodel, 0.0F, 0.0F, 0.0F, p_112311_,
+					p_112312_);
+			poseStack.popPose();
+		}
+		int j = this.getRenderAmount(itemContainerContents.getStackInSlot(0));
+
+		renderPlacedItem(itemContainerContents.getStackInSlot(0), j, Direction.NORTH, null, 0, false, poseStack, multiBufferSource, p_112311_,
+				p_112312_);
+
+		poseStack.popPose();
+	}
+
 	@Override
-	public void render(FoodPlateBlockEntity plateBlockEntity, float p_112308_, PoseStack poseStack, MultiBufferSource p_112310_, int p_112311_, int p_112312_, Vec3 vec3) {
+	public void render(FoodPlateBlockEntity plateBlockEntity, float p_112308_, PoseStack poseStack, MultiBufferSource multiBufferSource, int p_112311_, int p_112312_, Vec3 vec3) {
 		Direction direction = plateBlockEntity.getBlockState().getValue(FoodPlateBlock.FACING).getOpposite();
 		ItemStack boardStack = plateBlockEntity.getStoredItem();
 		int posLong = (int) plateBlockEntity.getBlockPos().asLong();
@@ -40,6 +75,14 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		int i = boardStack.isEmpty() ? 187 : Item.getId(boardStack.getItem()) + boardStack.getDamageValue();
 
 		this.random.setSeed((long) i);
+
+
+		renderPlacedItem(boardStack, j, direction, plateBlockEntity.getLevel(), posLong, plateBlockEntity.isFire(), poseStack, multiBufferSource, p_112311_,
+				p_112312_);
+
+	}
+
+	private void renderPlacedItem(ItemStack boardStack, int j, Direction direction, @Nullable Level level, int posLong, boolean fire, PoseStack poseStack, MultiBufferSource multiBufferSource, int p112311, int p112312) {
 		if (!boardStack.isEmpty()) {
 			Block block = Block.byItem(boardStack.getItem());
 			for (int k = 0; k < j; ++k) {
@@ -52,13 +95,13 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 
 					BlockState state = block.defaultBlockState();
 					if (boardStack.is(ItemTags.CANDLES)) {
-						state = state.setValue(CandleBlock.LIT, plateBlockEntity.isFire());
+						state = state.setValue(CandleBlock.LIT, fire);
 					}
 					BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
 					//poseStack.translate(-0.5F, 0F, -0.5F);
-					VertexConsumer vertexconsumer = p_112310_.getBuffer(ItemBlockRenderTypes.getRenderType(state));
-					ModelBlockRenderer.renderModel(poseStack.last(), vertexconsumer, blockstatemodel, 0.0F, 0.0F, 0.0F, p_112311_,
-							p_112312_);
+					VertexConsumer vertexconsumer = multiBufferSource.getBuffer(ItemBlockRenderTypes.getRenderType(state));
+					ModelBlockRenderer.renderModel(poseStack.last(), vertexconsumer, blockstatemodel, 0.0F, 0.0F, 0.0F, p112311,
+							p112312);
 					poseStack.popPose();
 					return;
 				} else {
@@ -71,7 +114,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 					}
 					renderItemLayingDown(poseStack, direction);
 
-					Minecraft.getInstance().getItemRenderer().renderStatic(boardStack, ItemDisplayContext.FIXED, p_112311_, p_112312_, poseStack, p_112310_, plateBlockEntity.getLevel(), posLong);
+					Minecraft.getInstance().getItemRenderer().renderStatic(boardStack, ItemDisplayContext.FIXED, p112311, p112312, poseStack, multiBufferSource, level, posLong);
 					poseStack.popPose();
 				}
 			}
