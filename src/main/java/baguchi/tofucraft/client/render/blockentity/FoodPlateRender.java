@@ -58,11 +58,13 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 					p_112312_);
 			poseStack.popPose();
 		}
-		int j = this.getRenderAmount(itemContainerContents.getStackInSlot(0));
 
-		renderPlacedItem(itemContainerContents.getStackInSlot(0), j, Direction.NORTH, null, 0, false, poseStack, multiBufferSource, p_112311_,
-				p_112312_);
+		if (itemContainerContents != null) {
+			int j = this.getRenderAmount(itemContainerContents.getStackInSlot(0));
 
+			renderPlacedItem(itemContainerContents.getStackInSlot(0), j, Direction.NORTH, null, 0, false, poseStack, multiBufferSource, p_112311_,
+					p_112312_);
+		}
 		poseStack.popPose();
 	}
 
