@@ -45,8 +45,8 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	public void renderInHand(Optional<Block> foodplate, @org.jetbrains.annotations.Nullable ItemContainerContents itemContainerContents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int p_112311_, int p_112312_) {
 		float f = 90.0F;
 		poseStack.pushPose();
-		poseStack.scale(-1.5F, -1.5F, 1.5F);
-		poseStack.translate(-0.4, -1F, 0);
+		//poseStack.scale(-1.0F, -1.0F, 1.0F);
+		poseStack.translate(0F, 0.1F, 0F);
 
 		if (foodplate.isPresent()) {
 			poseStack.pushPose();
