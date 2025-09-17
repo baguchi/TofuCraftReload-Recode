@@ -584,7 +584,9 @@ public class TofuBlocks {
 			DeferredBlock<T> block = Objects.requireNonNull(deferredBlock);
 			Item.Properties properties = new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name))).useBlockDescriptionPrefix();
 
-			if (block.get() == GRILLEDTOFU.get()) {
+			if (block.get() == TOFUCAKE.get() || block.get() == ZUNDATOFUCAKE.get() || block.get() == SOYCHEESE_TART.get()) {
+				return new BlockItem(block.get(), properties.stacksTo(1));
+			} else if (block.get() == GRILLEDTOFU.get()) {
 				return new EdiableBlockItem(GRILLEDTOFU.get(), properties.food(TofuFoods.TOFU_GRILLED_BLOCK));
 			} else if (block.get() == TOFUTORCH_KINU.get()) {
 				return new StandingAndWallBlockItem(TOFUTORCH_KINU.get(), WALLTOFUTORCH_KINU.get(), Direction.DOWN, properties);

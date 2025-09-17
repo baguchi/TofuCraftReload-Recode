@@ -30,14 +30,31 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 
 	}
 
+	@Override
+	public void getExtents(Set<Vector3f> p_428562_) {
+		PoseStack posestack = new PoseStack();
+		posestack.translate(0F, 1F, 0F);
+
+		float minModel = 3 / 16F;
+		float maxY = 1 / 16F;
+		float maxModel = 13 / 16F;
+
+		float f = minModel / 16.0F;
+		float f1 = 0 / 16.0F;
+		float f2 = minModel / 16.0F;
+		Vector3f vector3f = new Vector3f();
+		vector3f.add(-1F, 0, -1);
+		vector3f.add(1F, 0, 1);
+		vector3f.add(1F, 1 / 16.0F, 1);
+		vector3f.add(-1F, 1 / 16.0F, -1);
+		p_428562_.add(vector3f);
+
+		//this.modelBase.root().getExtentsForGui(posestack, p_428562_);
+	}
+
 	@Nullable
 	public ItemContainerContents extractArgument(ItemStack p_386678_) {
 		return p_386678_.get(DataComponents.CONTAINER);
-	}
-
-	@Override
-	public void getExtents(Set<Vector3f> set) {
-
 	}
 
 

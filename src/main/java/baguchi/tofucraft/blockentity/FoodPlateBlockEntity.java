@@ -151,6 +151,9 @@ public class FoodPlateBlockEntity extends SyncedBlockEntity implements Container
 		this.items.clear();
 	}
 
+	@Override
+	public void preRemoveSideEffects(BlockPos p_397016_, BlockState p_397217_) {
+	}
 
 	@Override
 	protected void applyImplicitComponents(DataComponentGetter p_397486_) {
