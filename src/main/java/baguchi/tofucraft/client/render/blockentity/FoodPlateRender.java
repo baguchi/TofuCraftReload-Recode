@@ -50,10 +50,8 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 			//poseStack.translate(-0.5F, 0F, -0.5F);
 			submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 			poseStack.popPose();
-			return;
-		}
-
-		if (!foodPlateRenderState.itemState.isEmpty()) {
+			//return;
+		} else if (!foodPlateRenderState.itemState.isEmpty()) {
 			int j = foodPlateRenderState.renderAmount;
 
 			renderPlacedItem(foodPlateRenderState, poseStack, submitNodeCollector);
@@ -133,7 +131,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 					}
 					BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
 					//poseStack.translate(-0.5F, 0F, -0.5F);
-					submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+					submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, 15728880, OverlayTexture.NO_OVERLAY, 0);
 					poseStack.popPose();
 					return;
 				} else {

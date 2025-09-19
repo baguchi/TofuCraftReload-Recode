@@ -22,25 +22,15 @@ import org.jetbrains.annotations.Nullable;
 
 public class TofunianStatueRender implements BlockEntityRenderer<TofunianStatueBlockEntity, TofunianStateRenderState> {
 	public static final ResourceLocation TEXTURES = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian_statue.png");
-	private final TofunianStatueModel<TofunianStateRenderState> tofunianModel;
+	private final TofunianStatueModel tofunianModel;
 
 	public TofunianStatueRender(BlockEntityRendererProvider.Context context) {
-		this.tofunianModel = new TofunianStatueModel<>(context.bakeLayer(TofuModelLayers.TOFUNIAN));
+		this.tofunianModel = new TofunianStatueModel(context.bakeLayer(TofuModelLayers.TOFUNIAN));
 	}
 
 	public TofunianStatueRender(EntityModelSet context) {
-		this.tofunianModel = new TofunianStatueModel<>(context.bakeLayer(TofuModelLayers.TOFUNIAN));
+		this.tofunianModel = new TofunianStatueModel(context.bakeLayer(TofuModelLayers.TOFUNIAN));
 	}
-
-	public void renderInHand(TofunianStateRenderState tofunianStateRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
-		float f = 90.0F;
-		poseStack.pushPose();
-		poseStack.scale(-1.5F, -1.5F, 1.5F);
-		poseStack.translate(-0.4, -1F, 0);
-		submitNodeCollector.submitModel(this.tofunianModel, tofunianStateRenderState, poseStack, RenderType.entityCutoutNoCull(TEXTURES), tofunianStateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0, null);
-		poseStack.popPose();
-	}
-
 	@Override
 	public void extractRenderState(TofunianStatueBlockEntity p_445916_, TofunianStateRenderState p_447093_, float p_446851_, Vec3 p_445788_, @Nullable ModelFeatureRenderer.CrumblingOverlay p_446944_) {
 		BlockEntityRenderer.super.extractRenderState(p_445916_, p_447093_, p_446851_, p_445788_, p_446944_);
@@ -60,7 +50,7 @@ public class TofunianStatueRender implements BlockEntityRenderer<TofunianStatueB
 		poseStack.translate(0.0F, -1.501F, 0.0F);
 		poseStack.translate(-0.5F, 0.0F, 0.5F);
 		poseStack.mulPose(Axis.YP.rotationDegrees(f));
-		submitNodeCollector.submitModel(this.tofunianModel, tofunianStateRenderState, poseStack, RenderType.entityCutoutNoCull(TEXTURES), tofunianStateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0, null);
+		submitNodeCollector.submitModel(this.tofunianModel, tofunianStateRenderState.direction, poseStack, RenderType.entityCutoutNoCull(TEXTURES), tofunianStateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0, null);
 		poseStack.popPose();
 	}
 }

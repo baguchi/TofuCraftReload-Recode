@@ -52,15 +52,11 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 		float minModel = 3 / 16F;
 		float maxY = 1 / 16F;
 		float maxModel = 13 / 16F;
-
-		float f = minModel / 16.0F;
-		float f1 = 0 / 16.0F;
-		float f2 = minModel / 16.0F;
 		Vector3f vector3f = new Vector3f();
-		vector3f.add(-1F, 0, -1);
-		vector3f.add(1F, 0, 1);
-		vector3f.add(1F, 1 / 16.0F, 1);
-		vector3f.add(-1F, 1 / 16.0F, -1);
+		vector3f.add(minModel, 0, minModel);
+		vector3f.add(maxModel, 0, maxModel);
+		vector3f.add(maxModel, 1 / 16.0F, maxModel);
+		vector3f.add(minModel, 1 / 16.0F, minModel);
 		p_428562_.add(vector3f);
 
 		//this.modelBase.root().getExtentsForGui(posestack, p_428562_);
