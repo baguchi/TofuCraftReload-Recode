@@ -49,7 +49,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		//poseStack.translate(-0.5F, 0F, -0.5F);
 		submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, 15728880, OverlayTexture.NO_OVERLAY, 0);
 		poseStack.popPose();
-		if (!foodPlateRenderState.itemState.isEmpty()) {
+		if (!foodPlateRenderState.plateItem.isEmpty()) {
 			renderPlacedItem(foodPlateRenderState, poseStack, submitNodeCollector);
 		}
 		poseStack.popPose();
@@ -97,7 +97,8 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	@Override
 	public void extractRenderState(FoodPlateBlockEntity foodPlateBlockEntity, FoodPlateRenderState foodPlateRenderState, float p_446851_, Vec3 p_445788_, @Nullable ModelFeatureRenderer.CrumblingOverlay p_446944_) {
 		BlockEntityRenderer.super.extractRenderState(foodPlateBlockEntity, foodPlateRenderState, p_446851_, p_445788_, p_446944_);
-		this.itemModelResolver.updateForTopItem(foodPlateRenderState.itemState, foodPlateBlockEntity.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
+		this.itemModelResolver.updateForTopItem(foodPlateRenderState.plateItem, foodPlateBlockEntity.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
+		foodPlateRenderState.plateState = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()).defaultBlockState();
 		foodPlateRenderState.candle = foodPlateBlockEntity.getStoredItem().is(ItemTags.CANDLES);
 		foodPlateRenderState.cake = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()) instanceof CakeBlock;
 		foodPlateRenderState.fire = foodPlateBlockEntity.isFire();
@@ -112,15 +113,13 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	}
 
 	private void renderPlacedItem(FoodPlateRenderState foodPlateRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
-
-		if (!foodPlateRenderState.itemState.isEmpty()) {
-			for (int k = 0; k < foodPlateRenderState.renderAmount; ++k) {
-				if ((foodPlateRenderState.candle || foodPlateRenderState.cake) && foodPlateRenderState.blockState != null) {
+		for (int k = 0; k < foodPlateRenderState.renderAmount; ++k) {
+			if ((foodPlateRenderState.candle || foodPlateRenderState.cake) && foodPlateRenderState.plateState != null) {
 					poseStack.pushPose();
 
 					renderBlock(poseStack, foodPlateRenderState.direction, foodPlateRenderState.candle);
 
-					BlockState state = foodPlateRenderState.blockState;
+				BlockState state = foodPlateRenderState.plateState;
 					if (foodPlateRenderState.candle) {
 						state = state.setValue(CandleBlock.LIT, foodPlateRenderState.fire);
 					}
@@ -129,7 +128,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 					submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, !foodPlateRenderState.hasLevel ? 15728880 : foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 					poseStack.popPose();
 					return;
-				} else {
+			} else if (!foodPlateRenderState.plateItem.isEmpty()) {
 					poseStack.pushPose();
 
 					if (k > 0) {
@@ -139,10 +138,9 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 					}
 					renderItemLayingDown(poseStack, foodPlateRenderState.direction);
 
-					foodPlateRenderState.itemState.submit(poseStack, submitNodeCollector, !foodPlateRenderState.hasLevel ? 15728880 : foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+				foodPlateRenderState.plateItem.submit(poseStack, submitNodeCollector, !foodPlateRenderState.hasLevel ? 15728880 : foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 					poseStack.popPose();
 				}
 			}
-		}
 	}
 }

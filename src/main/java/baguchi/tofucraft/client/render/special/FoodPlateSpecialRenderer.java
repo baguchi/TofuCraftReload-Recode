@@ -33,8 +33,8 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 	public void submit(@org.jetbrains.annotations.Nullable ItemContainerContents itemContainerContents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b) {
 
 		if (itemContainerContents != null) {
-			this.renderState.blockState = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()).defaultBlockState();
-			//this.itemModelResolver.updateForTopItem(this.renderState.itemState, foodPlateRender.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
+			this.renderState.plateState = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()).defaultBlockState();
+
 			this.renderState.candle = itemContainerContents.getStackInSlot(0).is(ItemTags.CANDLES);
 			this.renderState.cake = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()) instanceof CakeBlock;
 			this.renderState.fire = false;
