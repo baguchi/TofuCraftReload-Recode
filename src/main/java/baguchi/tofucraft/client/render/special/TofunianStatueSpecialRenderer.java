@@ -26,7 +26,8 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 
 	@Override
 	public void getExtents(Set<Vector3f> set) {
-
+		PoseStack posestack = new PoseStack();
+		this.model.root().getExtentsForGui(posestack, set);
 	}
 
 	@Override

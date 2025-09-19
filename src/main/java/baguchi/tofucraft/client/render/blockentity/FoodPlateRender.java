@@ -2,6 +2,7 @@ package baguchi.tofucraft.client.render.blockentity;
 
 import baguchi.tofucraft.blockentity.FoodPlateBlockEntity;
 import baguchi.tofucraft.client.render.blockentity.state.FoodPlateRenderState;
+import baguchi.tofucraft.registry.TofuBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
@@ -42,18 +43,13 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		poseStack.pushPose();
 		//poseStack.scale(-1.0F, -1.0F, 1.0F);
 		poseStack.translate(0F, 0.1F, 0F);
-
-		if (foodPlateRenderState.blockState != null) {
-			poseStack.pushPose();
-			BlockState state = foodPlateRenderState.blockState;
-			BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
-			//poseStack.translate(-0.5F, 0F, -0.5F);
-			submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
-			poseStack.popPose();
-			//return;
-		} else if (!foodPlateRenderState.itemState.isEmpty()) {
-			int j = foodPlateRenderState.renderAmount;
-
+		poseStack.pushPose();
+		BlockState state = TofuBlocks.FOODPLATE.get().defaultBlockState();
+		BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
+		//poseStack.translate(-0.5F, 0F, -0.5F);
+		submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, 15728880, OverlayTexture.NO_OVERLAY, 0);
+		poseStack.popPose();
+		if (!foodPlateRenderState.itemState.isEmpty()) {
 			renderPlacedItem(foodPlateRenderState, poseStack, submitNodeCollector);
 		}
 		poseStack.popPose();
@@ -101,13 +97,12 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	@Override
 	public void extractRenderState(FoodPlateBlockEntity foodPlateBlockEntity, FoodPlateRenderState foodPlateRenderState, float p_446851_, Vec3 p_445788_, @Nullable ModelFeatureRenderer.CrumblingOverlay p_446944_) {
 		BlockEntityRenderer.super.extractRenderState(foodPlateBlockEntity, foodPlateRenderState, p_446851_, p_445788_, p_446944_);
-
-		foodPlateRenderState.blockState = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()).defaultBlockState();
 		this.itemModelResolver.updateForTopItem(foodPlateRenderState.itemState, foodPlateBlockEntity.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
 		foodPlateRenderState.candle = foodPlateBlockEntity.getStoredItem().is(ItemTags.CANDLES);
 		foodPlateRenderState.cake = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()) instanceof CakeBlock;
 		foodPlateRenderState.fire = foodPlateBlockEntity.isFire();
 		foodPlateRenderState.renderAmount = getRenderAmount(foodPlateBlockEntity.getStoredItem());
+		foodPlateRenderState.hasLevel = true;
 	}
 
 	@Override
@@ -131,7 +126,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 					}
 					BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
 					//poseStack.translate(-0.5F, 0F, -0.5F);
-					submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, 15728880, OverlayTexture.NO_OVERLAY, 0);
+					submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, !foodPlateRenderState.hasLevel ? 15728880 : foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 					poseStack.popPose();
 					return;
 				} else {
@@ -144,7 +139,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 					}
 					renderItemLayingDown(poseStack, foodPlateRenderState.direction);
 
-					foodPlateRenderState.itemState.submit(poseStack, submitNodeCollector, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+					foodPlateRenderState.itemState.submit(poseStack, submitNodeCollector, !foodPlateRenderState.hasLevel ? 15728880 : foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 					poseStack.popPose();
 				}
 			}
