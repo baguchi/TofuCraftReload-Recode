@@ -32,14 +32,14 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 	@Override
 	public void submit(@org.jetbrains.annotations.Nullable ItemContainerContents itemContainerContents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b) {
 
-
-		this.renderState.blockState = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()).defaultBlockState();
-		//this.itemModelResolver.updateForTopItem(this.renderState.itemState, foodPlateRender.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
-		this.renderState.candle = itemContainerContents.getStackInSlot(0).is(ItemTags.CANDLES);
-		this.renderState.cake = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()) instanceof CakeBlock;
-		this.renderState.fire = false;
-		this.renderState.renderAmount = foodPlateRender.getRenderAmount(itemContainerContents.getStackInSlot(0));
-
+		if (itemContainerContents != null) {
+			this.renderState.blockState = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()).defaultBlockState();
+			//this.itemModelResolver.updateForTopItem(this.renderState.itemState, foodPlateRender.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
+			this.renderState.candle = itemContainerContents.getStackInSlot(0).is(ItemTags.CANDLES);
+			this.renderState.cake = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()) instanceof CakeBlock;
+			this.renderState.fire = false;
+			this.renderState.renderAmount = foodPlateRender.getRenderAmount(itemContainerContents.getStackInSlot(0));
+		}
 		this.foodPlateRender.renderInHand(renderState, poseStack, submitNodeCollector);
 
 	}
