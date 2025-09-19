@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_inventory",
+  "textures": {
+    "all": "tofucraft:block/leek_green_shelf",
+    "particle": "tofucraft:block/leek_green_stem"
+  }
+}

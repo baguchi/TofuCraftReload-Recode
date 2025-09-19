@@ -111,7 +111,7 @@ public class TofuStructures {
 						ConstantHeight.of(VerticalAnchor.absolute(0)),
 						false,
 						Optional.of(Heightmap.Types.WORLD_SURFACE_WG),
-						80,
+						new JigsawStructure.MaxDistance(80),
 						List.of(),
 						JigsawStructure.DEFAULT_DIMENSION_PADDING,
 						JigsawStructure.DEFAULT_LIQUID_SETTINGS

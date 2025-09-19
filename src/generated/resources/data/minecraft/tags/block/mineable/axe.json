@@ -48,6 +48,9 @@
     "tofucraft:leek_pressure_plate",
     "tofucraft:leek_button",
     "tofucraft:leek_green_pressure_plate",
-    "tofucraft:leek_green_button"
+    "tofucraft:leek_green_button",
+    "tofucraft:leek_green_shelf",
+    "tofucraft:leek_shelf",
+    "tofucraft:tofustem_shelf"
   ]
 }

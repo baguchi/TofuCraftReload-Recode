@@ -142,7 +142,7 @@ dependencies {
     implementation "baguchi.bagus_lib:BagusLib:${bagus_lib_version}"
     //implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
 
-    implementation "mezz.jei:jei-1.21.8-neoforge:24.0.0.2"
+    //implementation "mezz.jei:jei-1.21.8-neoforge:24.0.0.2"
     // at runtime, use the full JEI jar for NeoForge
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

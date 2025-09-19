@@ -22,6 +22,7 @@ import baguchi.tofucraft.registry.TofuPoiTypes;
 import baguchi.tofucraft.registry.TofuRecipes;
 import baguchi.tofucraft.registry.TofuStructures;
 import baguchi.tofucraft.registry.TofuTags;
+import baguchi.tofucraft.utils.ClientUtils;
 import baguchi.tofucraft.utils.ContainerUtils;
 import baguchi.tofucraft.utils.JigsawHelper;
 import baguchi.tofucraft.utils.RecipeHelper;
@@ -35,7 +36,6 @@ import net.minecraft.client.sounds.MusicInfo;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.particles.ExplosionParticleInfo;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -112,9 +112,6 @@ import static net.minecraft.world.level.ServerExplosion.getSeenPercent;
 public class CommonEvents {
 	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
 
-	public static final WeightedList<ExplosionParticleInfo> ZUNDA_EXPLOSION_BLOCK_PARTICLES = WeightedList.<ExplosionParticleInfo>builder()
-			.add(new ExplosionParticleInfo(TofuParticleTypes.ZUNDA_CLOUD.get(), 1.0F, 1.0F))
-			.build();
 
 	@SubscribeEvent
 	public static void handleQuestSyncing(OnDatapackSyncEvent event) {
@@ -537,7 +534,7 @@ public class CommonEvents {
 					Level.ExplosionInteraction.MOB,
 					TofuParticleTypes.ZUNDA_EXPLOSION.get(),
 					TofuParticleTypes.ZUNDA_EMIT.get(),
-					ZUNDA_EXPLOSION_BLOCK_PARTICLES,
+					ClientUtils.ZUNDA_EXPLOSION_BLOCK_PARTICLES,
 					SoundEvents.GENERIC_EXPLODE
 			);
 		}
