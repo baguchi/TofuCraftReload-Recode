@@ -8,10 +8,10 @@ import baguchi.tofucraft.entity.TofuSlime;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.SlimeModel;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.state.SlimeRenderState;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
@@ -25,19 +25,11 @@ public class TofuSlimeRender extends MobRenderer<TofuSlime, TofuSlimeRenderState
 		this.addLayer(new ZundaTofuSlimeOuterLayer(this, p_174391_.getModelSet()));
 	}
 
-	public void render(TofuSlimeRenderState p_364733_, PoseStack p_115952_, MultiBufferSource p_115953_, int p_115954_) {
-		this.shadowRadius = 0.25F * (float) p_364733_.size;
-		super.render(p_364733_, p_115952_, p_115953_, p_115954_);
-	}
+	@Override
+	public void submit(TofuSlimeRenderState p_433493_, PoseStack p_434615_, SubmitNodeCollector p_433768_, CameraRenderState p_450931_) {
+		this.shadowRadius = 0.25F * (float) p_433493_.size;
 
-	protected void scale(SlimeRenderState p_364158_, PoseStack p_115964_) {
-		float f = 0.999F;
-		p_115964_.scale(0.999F, 0.999F, 0.999F);
-		p_115964_.translate(0.0F, 0.001F, 0.0F);
-		float f1 = (float) p_364158_.size;
-		float f2 = p_364158_.squish / (f1 * 0.5F + 1.0F);
-		float f3 = 1.0F / (f2 + 1.0F);
-		p_115964_.scale(f3 * f1, 1.0F / f3 * f1, f3 * f1);
+		super.submit(p_433493_, p_434615_, p_433768_, p_450931_);
 	}
 
 	@Override

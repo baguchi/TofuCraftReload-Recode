@@ -4,12 +4,11 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.ClientRegistrar;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
@@ -35,14 +34,11 @@ public class ZundaLayer<T extends LivingEntityRenderState, M extends EntityModel
 	}
 
 	@Override
-	public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, T entitylivingbaseIn, float v, float v1) {
-		if (entitylivingbaseIn.getRenderDataOrDefault(ZUNDA_KEY, false)) {
-			float tick = (float) entitylivingbaseIn.ageInTicks;
-			float f = (float) entitylivingbaseIn.ageInTicks;
+	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, T t, float v, float v1) {
+		if (t.getRenderDataOrDefault(ZUNDA_KEY, false)) {
 			EntityModel<T> entitymodel = this.getParentModel();
-			VertexConsumer ivertexbuilder = multiBufferSource.getBuffer(enchantSwirl(TEXTURE));
-			entitymodel.setupAnim(entitylivingbaseIn);
-			entitymodel.renderToBuffer(poseStack, ivertexbuilder, i, OverlayTexture.NO_OVERLAY);
+			entitymodel.setupAnim(t);
+			submitNodeCollector.submitModel(entitymodel, t, poseStack, enchantSwirl(TEXTURE), t.lightCoords, OverlayTexture.NO_OVERLAY, t.outlineColor, null);
 		}
 	}
 

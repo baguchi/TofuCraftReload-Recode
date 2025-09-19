@@ -5,7 +5,7 @@ import baguchi.tofucraft.client.model.TofunianModel;
 import baguchi.tofucraft.client.render.state.TofunianRenderState;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
@@ -14,28 +14,22 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
 
-public class TofunianClothLayer extends RenderLayer<TofunianRenderState, TofunianModel<TofunianRenderState>> {
+public class TofunianClothLayer<S extends TofunianRenderState> extends RenderLayer<S, TofunianModel<S>> {
 	public static final ResourceLocation BAGU_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagu_chan.png");
 
-	public TofunianClothLayer(RenderLayerParent<TofunianRenderState, TofunianModel<TofunianRenderState>> tofunianRender) {
+	public TofunianClothLayer(RenderLayerParent<S, TofunianModel<S>> tofunianRender) {
 		super(tofunianRender);
 	}
 
 	@Override
-	public void render(
-			PoseStack p_117148_,
-			MultiBufferSource p_117149_,
-			int p_117150_,
-			TofunianRenderState p_117151_,
-			float p_117156_,
-			float p_117157_
-	) {
-		if (!p_117151_.isInvisible && p_117151_.clothTexture != null) {
-			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117151_), p_117148_, p_117149_, p_117150_, p_117151_, -1);
+	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, S tofunianRenderState, float v, float v1) {
+		if (!tofunianRenderState.isInvisible && tofunianRenderState.clothTexture != null) {
+			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(tofunianRenderState), poseStack, submitNodeCollector, i, tofunianRenderState, -1, 1);
+
 		}
 	}
 
-	public ResourceLocation getTextureLocation(TofunianRenderState entity) {
+	public ResourceLocation getTextureLocation(S entity) {
 		if (entity.nameTag != null) {
 			String s = ChatFormatting.stripFormatting(entity.nameTag.getString());
 			if (s != null && "bagu_chan".equals(s)) {

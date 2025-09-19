@@ -38,7 +38,7 @@ public class SoulFukumameItem extends Item implements ProjectileItem {
 		playerIn.awardStat(Stats.ITEM_USED.get(this));
 		playerIn.getCooldowns().addCooldown(itemstack, 5);
 		playerIn.getData(TofuAttachments.TOFU_LIVING.get()).thrownAnimation(playerIn, handIn);
-		if (!playerIn.level().isClientSide)
+		if (!playerIn.level().isClientSide())
 			itemstack.hurtAndBreak(1, playerIn, handIn);
 		return InteractionResult.SUCCESS_SERVER;
 	}

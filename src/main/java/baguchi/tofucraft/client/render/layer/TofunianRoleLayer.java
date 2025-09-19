@@ -4,7 +4,7 @@ import baguchi.tofucraft.client.model.TofunianModel;
 import baguchi.tofucraft.client.render.state.TofunianRenderState;
 import baguchi.tofucraft.entity.Tofunian;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
@@ -15,9 +15,12 @@ public class TofunianRoleLayer extends RenderLayer<TofunianRenderState, Tofunian
 		super(tofunianRender);
 	}
 
-	public void render(PoseStack p_117720_, MultiBufferSource p_117721_, int p_117722_, TofunianRenderState p_117723_, float p_117724_, float p_117725_) {
-		if (!p_117723_.isInvisible && p_117723_.roles != Tofunian.Roles.TOFUNIAN) {
-			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(p_117723_), p_117720_, p_117721_, p_117722_, p_117723_, -1);
+
+	@Override
+	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, TofunianRenderState tofunianRenderState, float v, float v1) {
+		if (!tofunianRenderState.isInvisible && tofunianRenderState.roles != Tofunian.Roles.TOFUNIAN) {
+			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(tofunianRenderState), poseStack, submitNodeCollector, i, tofunianRenderState, -1, 1);
+
 		}
 	}
 

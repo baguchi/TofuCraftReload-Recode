@@ -272,6 +272,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.LEEK_GREEN_DOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		dropSelf(TofuBlocks.LEEK_GREEN_TRAPDOOR.get());
 		dropSelf(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.get());
+		dropSelf(TofuBlocks.LEEK_GREEN_SHELF.get());
 		dropSelf(TofuBlocks.LEEK_GREEN_BUTTON.get());
 
 		dropSelf(TofuBlocks.LEEK_STEM.get());
@@ -283,6 +284,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.LEEK_DOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		dropSelf(TofuBlocks.LEEK_TRAPDOOR.get());
 		dropSelf(TofuBlocks.LEEK_PRESSURE_PLATE.get());
+		dropSelf(TofuBlocks.LEEK_SHELF.get());
 		dropSelf(TofuBlocks.LEEK_BUTTON.get());
 
 		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
@@ -297,6 +299,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.TOFU_STEM_DOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		dropSelf(TofuBlocks.TOFU_STEM_TRAPDOOR.get());
 		dropSelf(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.get());
+		dropSelf(TofuBlocks.TOFU_STEM_SHELF.get());
 		dropSelf(TofuBlocks.TOFU_STEM_BUTTON.get());
 
 		this.registerLeek(TofuBlocks.LEEK.get(), TofuItems.LEEK.get());

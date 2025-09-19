@@ -11,7 +11,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ItemSteerable;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -32,7 +31,7 @@ public class ZundaMushroomOnAStickItem<T extends Entity & ItemSteerable> extends
 
 	public InteractionResult use(Level p_41314_, Player p_41315_, InteractionHand p_41316_) {
 		ItemStack itemstack = p_41315_.getItemInHand(p_41316_);
-		if (p_41314_.isClientSide) {
+		if (p_41314_.isClientSide()) {
 			return InteractionResult.PASS;
 		} else {
 			Entity entity = p_41315_.getVehicle();
@@ -40,14 +39,15 @@ public class ZundaMushroomOnAStickItem<T extends Entity & ItemSteerable> extends
 				ItemInteractable itemInteractable = (ItemInteractable) entity;
 				if (pig.getTofuPigType() == TofuPig.TofuPigType.ZUNDA && itemInteractable.canHeal()) {
 					p_41315_.getCooldowns().addCooldown(itemstack, 200);
-					itemstack.hurtAndBreak(this.consumeItemDamage, p_41315_, LivingEntity.getSlotForHand(p_41316_));
+					itemstack.hurtAndBreak(this.consumeItemDamage, p_41315_, p_41316_);
 
 					if (p_41315_ instanceof ServerPlayer) {
 						TofuAdvancements.TOFUPIG_POP.get().trigger((ServerPlayer) p_41315_);
 					}
 
 					if (itemstack.isEmpty()) {
-						EquipmentSlot equipmentslot = LivingEntity.getSlotForHand(p_41316_);
+						EquipmentSlot equipmentslot = p_41316_.asEquipmentSlot();
+
 						ItemStack itemstack1 = itemstack.hurtAndConvertOnBreak(this.consumeItemDamage, Items.FISHING_ROD, p_41315_, equipmentslot);
 						return InteractionResult.SUCCESS;
 					}

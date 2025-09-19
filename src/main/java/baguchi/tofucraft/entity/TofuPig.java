@@ -179,11 +179,11 @@ public class TofuPig extends Pig implements ItemInteractable {
 		AABB box = new AABB(this.getX() - radius, this.getY() - 1, this.getZ() - radius, this.getX() + radius, this.getY() + 3, this.getZ() + radius);
 		List<LivingEntity> hitEntities = this.level().getEntitiesOfClass(LivingEntity.class, box);
 		for (LivingEntity hitEntity : hitEntities) {
-			if (!hitEntity.level().isClientSide) {
+			if (!hitEntity.level().isClientSide()) {
 				hitEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200));
 			}
 		}
-		if (this.level().isClientSide) {
+		if (this.level().isClientSide()) {
 			int count = 20;
 			for (int i = 1; i <= count; i++) {
 				double yaw = i * 365f / count;
@@ -221,7 +221,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 
 	@Override
 	public void onSyncedDataUpdated(EntityDataAccessor<?> p_29480_) {
-		if (DATA_HEALING_TIME.equals(p_29480_) && this.level().isClientSide) {
+		if (DATA_HEALING_TIME.equals(p_29480_) && this.level().isClientSide()) {
 			this.healilng.onSynced();
 		}
 

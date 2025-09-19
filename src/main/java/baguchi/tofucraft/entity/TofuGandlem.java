@@ -443,7 +443,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 	public void aiStep() {
 		if (this.isFullCharge()) {
-			if (this.level().isClientSide) {
+			if (this.level().isClientSide()) {
 				for (int i = 0; i < 2; ++i) {
 					this.level().addParticle(TofuParticleTypes.TOFU_PORTAL.get(), this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D);
 				}
@@ -461,7 +461,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 			this.playSound(SoundEvents.BEACON_ACTIVATE, 3.0F, 1.0F);
 		}
 
-		if (!this.level().isClientSide && this.isAlive() && this.tickCount % 10 == 0 && this.isCharging()) {
+		if (!this.level().isClientSide() && this.isAlive() && this.tickCount % 10 == 0 && this.isCharging()) {
 			this.heal(4.0F);
 		}
 		this.actionTicks();

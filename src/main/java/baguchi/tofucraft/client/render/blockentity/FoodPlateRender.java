@@ -1,27 +1,24 @@
 package baguchi.tofucraft.client.render.blockentity;
 
-import baguchi.tofucraft.block.FoodPlateBlock;
 import baguchi.tofucraft.blockentity.FoodPlateBlockEntity;
+import baguchi.tofucraft.client.render.blockentity.state.FoodPlateRenderState;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.ModelBlockRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.block.model.BlockStateModel;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.item.ItemModelResolver;
+import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.ItemContainerContents;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.CandleBlock;
@@ -29,101 +26,42 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
-
-public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity> {
+public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity, FoodPlateRenderState> {
 	private final RandomSource random = RandomSource.create();
+	private ItemModelResolver itemModelResolver;
 
-
-	public FoodPlateRender(BlockEntityRendererProvider.Context context) {
+	public FoodPlateRender(BlockEntityRendererProvider.Context p_174114_) {
+		this.itemModelResolver = p_174114_.itemModelResolver();
 	}
 
-	public FoodPlateRender(EntityModelSet context) {
+	public FoodPlateRender() {
 	}
 
-
-	public void renderInHand(Optional<Block> foodplate, @org.jetbrains.annotations.Nullable ItemContainerContents itemContainerContents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int p_112311_, int p_112312_) {
+	public void renderInHand(FoodPlateRenderState foodPlateRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
 		float f = 90.0F;
 		poseStack.pushPose();
 		//poseStack.scale(-1.0F, -1.0F, 1.0F);
 		poseStack.translate(0F, 0.1F, 0F);
 
-		if (foodplate.isPresent()) {
+		if (foodPlateRenderState.blockState != null) {
 			poseStack.pushPose();
-			BlockState state = foodplate.get().defaultBlockState();
+			BlockState state = foodPlateRenderState.blockState;
 			BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
 			//poseStack.translate(-0.5F, 0F, -0.5F);
-			VertexConsumer vertexconsumer = multiBufferSource.getBuffer(ItemBlockRenderTypes.getRenderType(state));
-			ModelBlockRenderer.renderModel(poseStack.last(), vertexconsumer, blockstatemodel, 0.0F, 0.0F, 0.0F, p_112311_,
-					p_112312_);
+			submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 			poseStack.popPose();
+			return;
 		}
 
-		if (itemContainerContents != null) {
-			int j = this.getRenderAmount(itemContainerContents.getStackInSlot(0));
+		if (!foodPlateRenderState.itemState.isEmpty()) {
+			int j = foodPlateRenderState.renderAmount;
 
-			renderPlacedItem(itemContainerContents.getStackInSlot(0), j, Direction.NORTH, null, 0, false, poseStack, multiBufferSource, p_112311_,
-					p_112312_);
+			renderPlacedItem(foodPlateRenderState, poseStack, submitNodeCollector);
 		}
 		poseStack.popPose();
 	}
 
-	@Override
-	public void render(FoodPlateBlockEntity plateBlockEntity, float p_112308_, PoseStack poseStack, MultiBufferSource multiBufferSource, int p_112311_, int p_112312_, Vec3 vec3) {
-		Direction direction = plateBlockEntity.getBlockState().getValue(FoodPlateBlock.FACING).getOpposite();
-		ItemStack boardStack = plateBlockEntity.getStoredItem();
-		int posLong = (int) plateBlockEntity.getBlockPos().asLong();
-		int j = this.getRenderAmount(boardStack);
-		int i = boardStack.isEmpty() ? 187 : Item.getId(boardStack.getItem()) + boardStack.getDamageValue();
-
-		this.random.setSeed((long) i);
-
-
-		renderPlacedItem(boardStack, j, direction, plateBlockEntity.getLevel(), posLong, plateBlockEntity.isFire(), poseStack, multiBufferSource, p_112311_,
-				p_112312_);
-
-	}
-
-	private void renderPlacedItem(ItemStack boardStack, int j, Direction direction, @Nullable Level level, int posLong, boolean fire, PoseStack poseStack, MultiBufferSource multiBufferSource, int p112311, int p112312) {
-		if (!boardStack.isEmpty()) {
-			Block block = Block.byItem(boardStack.getItem());
-			for (int k = 0; k < j; ++k) {
-				ItemRenderer itemRenderer = Minecraft.getInstance()
-						.getItemRenderer();
-				if (boardStack.is(ItemTags.CANDLES) || block instanceof CakeBlock) {
-					poseStack.pushPose();
-
-					renderBlock(poseStack, direction, boardStack.is(ItemTags.CANDLES));
-
-					BlockState state = block.defaultBlockState();
-					if (boardStack.is(ItemTags.CANDLES)) {
-						state = state.setValue(CandleBlock.LIT, fire);
-					}
-					BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
-					//poseStack.translate(-0.5F, 0F, -0.5F);
-					VertexConsumer vertexconsumer = multiBufferSource.getBuffer(ItemBlockRenderTypes.getRenderType(state));
-					ModelBlockRenderer.renderModel(poseStack.last(), vertexconsumer, blockstatemodel, 0.0F, 0.0F, 0.0F, p112311,
-							p112312);
-					poseStack.popPose();
-					return;
-				} else {
-					poseStack.pushPose();
-
-					if (k > 0) {
-						float f12 = (this.random.nextFloat()) * 0.15F * 0.5F;
-						float f14 = (this.random.nextFloat()) * 0.15F * 0.5F;
-						poseStack.translate(f12, k * 0.1F * 0.5F, f14);
-					}
-					renderItemLayingDown(poseStack, direction);
-
-					Minecraft.getInstance().getItemRenderer().renderStatic(boardStack, ItemDisplayContext.FIXED, p112311, p112312, poseStack, multiBufferSource, level, posLong);
-					poseStack.popPose();
-				}
-			}
-		}
-	}
-
-	protected int getRenderAmount(ItemStack p_115043_) {
+	public int getRenderAmount(ItemStack p_115043_) {
 		int i = 1;
 		if (p_115043_.getCount() > 48) {
 			i = 5;
@@ -155,5 +93,63 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
 		matrixStackIn.translate(-0.5D, 0.0D, -0.5D);
 		//matrixStackIn.scale(0.8F, 0.8F, 0.8F);
+	}
+
+	@Override
+	public FoodPlateRenderState createRenderState() {
+		return new FoodPlateRenderState();
+	}
+
+	@Override
+	public void extractRenderState(FoodPlateBlockEntity foodPlateBlockEntity, FoodPlateRenderState foodPlateRenderState, float p_446851_, Vec3 p_445788_, @Nullable ModelFeatureRenderer.CrumblingOverlay p_446944_) {
+		BlockEntityRenderer.super.extractRenderState(foodPlateBlockEntity, foodPlateRenderState, p_446851_, p_445788_, p_446944_);
+
+		foodPlateRenderState.blockState = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()).defaultBlockState();
+		this.itemModelResolver.updateForTopItem(foodPlateRenderState.itemState, foodPlateBlockEntity.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
+		foodPlateRenderState.candle = foodPlateBlockEntity.getStoredItem().is(ItemTags.CANDLES);
+		foodPlateRenderState.cake = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()) instanceof CakeBlock;
+		foodPlateRenderState.fire = foodPlateBlockEntity.isFire();
+		foodPlateRenderState.renderAmount = getRenderAmount(foodPlateBlockEntity.getStoredItem());
+	}
+
+	@Override
+	public void submit(FoodPlateRenderState foodPlateRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+		this.random.setSeed(187);
+		renderPlacedItem(foodPlateRenderState, poseStack, submitNodeCollector);
+	}
+
+	private void renderPlacedItem(FoodPlateRenderState foodPlateRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
+
+		if (!foodPlateRenderState.itemState.isEmpty()) {
+			for (int k = 0; k < foodPlateRenderState.renderAmount; ++k) {
+				if ((foodPlateRenderState.candle || foodPlateRenderState.cake) && foodPlateRenderState.blockState != null) {
+					poseStack.pushPose();
+
+					renderBlock(poseStack, foodPlateRenderState.direction, foodPlateRenderState.candle);
+
+					BlockState state = foodPlateRenderState.blockState;
+					if (foodPlateRenderState.candle) {
+						state = state.setValue(CandleBlock.LIT, foodPlateRenderState.fire);
+					}
+					BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
+					//poseStack.translate(-0.5F, 0F, -0.5F);
+					submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+					poseStack.popPose();
+					return;
+				} else {
+					poseStack.pushPose();
+
+					if (k > 0) {
+						float f12 = (this.random.nextFloat()) * 0.15F * 0.5F;
+						float f14 = (this.random.nextFloat()) * 0.15F * 0.5F;
+						poseStack.translate(f12, k * 0.1F * 0.5F, f14);
+					}
+					renderItemLayingDown(poseStack, foodPlateRenderState.direction);
+
+					foodPlateRenderState.itemState.submit(poseStack, submitNodeCollector, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+					poseStack.popPose();
+				}
+			}
+		}
 	}
 }

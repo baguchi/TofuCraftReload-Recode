@@ -125,7 +125,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 
 	@Override
 	public void tick() {
-		if (!this.level().isClientSide && this.isAlive() && this.isConverting()) {
+		if (!this.level().isClientSide() && this.isAlive() && this.isConverting()) {
 			this.conversionTime -= 1;
 			if (this.conversionTime <= 0 && EventHooks.canLivingConvert(this, TofuEntityTypes.SHUDOFUSPIDER.get(), (timer) -> this.conversionTime = timer)) {
 				this.finishConversion((ServerLevel) this.level());

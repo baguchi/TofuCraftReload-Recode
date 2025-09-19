@@ -131,7 +131,7 @@ public class TravelerTofunian extends AbstractTofunian {
 			if (this.getOffers().isEmpty()) {
 				return InteractionResult.CONSUME;
 			} else {
-				if (!this.level().isClientSide) {
+				if (!this.level().isClientSide()) {
 					this.setTradingPlayer(p_35856_);
 					this.openTradingScreen(p_35856_, this.getDisplayName(), 1);
 				}
@@ -226,7 +226,7 @@ public class TravelerTofunian extends AbstractTofunian {
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			this.maybeDespawn();
 		}
 

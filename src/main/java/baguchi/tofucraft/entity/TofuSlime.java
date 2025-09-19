@@ -74,7 +74,7 @@ public class TofuSlime extends Slime {
 
 	@Override
 	public void thunderHit(ServerLevel p_19927_, LightningBolt p_19928_) {
-		if (!this.level().isClientSide && this.isAlive()) {
+		if (!this.level().isClientSide() && this.isAlive()) {
 			this.doZundaConversion();
 		}
 	}
@@ -85,7 +85,7 @@ public class TofuSlime extends Slime {
 
 	@Override
 	public void tick() {
-		if (!this.level().isClientSide && this.isAlive() && !this.isNoAi()) {
+		if (!this.level().isClientSide() && this.isAlive() && !this.isNoAi()) {
 			if (this.isZundaConverting()) {
 				--this.conversionTime;
 				if (this.conversionTime < 0 && EventHooks.canLivingConvert(this, EntityType.DROWNED, (timer) -> this.conversionTime = timer)) {

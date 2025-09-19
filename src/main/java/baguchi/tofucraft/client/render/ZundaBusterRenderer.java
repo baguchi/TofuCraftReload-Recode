@@ -6,10 +6,11 @@ import baguchi.tofucraft.entity.projectile.ZundaBuster;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -23,28 +24,29 @@ public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T
 		super(p_173917_);
 	}
 
+
 	@Override
-	public void render(ProjectileRenderState p_113839_, PoseStack p_113842_, MultiBufferSource p_113843_, int p_113844_) {
-		p_113842_.pushPose();
+	public void submit(ProjectileRenderState projectileRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+		poseStack.pushPose();
 
-		p_113842_.translate(0.0F, 0.5F, 0.0F);
-		p_113842_.scale(0.1F, 0.1F, 0.1F);
-		p_113842_.mulPose(Axis.YP.rotationDegrees(p_113839_.yRot - 90.0F));
-		p_113842_.mulPose(Axis.ZP.rotationDegrees(p_113839_.xRot));
+		poseStack.translate(0.0F, 0.5F, 0.0F);
+		poseStack.scale(0.1F, 0.1F, 0.1F);
+		poseStack.mulPose(Axis.YP.rotationDegrees(projectileRenderState.yRot - 90.0F));
+		poseStack.mulPose(Axis.ZP.rotationDegrees(projectileRenderState.xRot));
 
-		p_113842_.mulPose(Axis.XP.rotationDegrees(45.0F));
-		VertexConsumer vertexconsumer = p_113843_.getBuffer(RenderType.entityTranslucentEmissive(this.getTextureLocation(p_113839_)));
-		PoseStack.Pose posestack$pose = p_113842_.last();
-		for (int j = 0; j < 4; j++) {
-			p_113842_.mulPose(Axis.XP.rotationDegrees(90.0F));
-			this.vertex(posestack$pose, vertexconsumer, -8, -8, 0, 0.0F, 0.0F, 0, 1, 0, p_113844_);
-			this.vertex(posestack$pose, vertexconsumer, 8, -8, 0, 1F, 0.0F, 0, 1, 0, p_113844_);
-			this.vertex(posestack$pose, vertexconsumer, 8, 8, 0, 1F, 1F, 0, 1, 0, p_113844_);
-			this.vertex(posestack$pose, vertexconsumer, -8, 8, 0, 0.0F, 1F, 0, 1, 0, p_113844_);
-		}
+		poseStack.mulPose(Axis.XP.rotationDegrees(45.0F));
 
-		p_113842_.popPose();
-		super.render(p_113839_, p_113842_, p_113843_, p_113844_);
+		submitNodeCollector.submitCustomGeometry(poseStack, RenderType.entityTranslucentEmissive(this.getTextureLocation(projectileRenderState)), (pose, vertexConsumer) -> {
+			for (int j = 0; j < 4; j++) {
+				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+				this.vertex(pose, vertexConsumer, -8, -8, 0, 0.0F, 0.0F, 0, 1, 0, projectileRenderState.lightCoords);
+				this.vertex(pose, vertexConsumer, 8, -8, 0, 1F, 0.0F, 0, 1, 0, projectileRenderState.lightCoords);
+				this.vertex(pose, vertexConsumer, 8, 8, 0, 1F, 1F, 0, 1, 0, projectileRenderState.lightCoords);
+				this.vertex(pose, vertexConsumer, -8, 8, 0, 0.0F, 1F, 0, 1, 0, projectileRenderState.lightCoords);
+			}
+		});
+		poseStack.popPose();
+		super.submit(projectileRenderState, poseStack, submitNodeCollector, cameraRenderState);
 	}
 
 	@Override

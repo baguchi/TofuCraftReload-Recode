@@ -1,16 +1,18 @@
 package baguchi.tofucraft.client.render.special;
 
 import baguchi.tofucraft.client.render.blockentity.FoodPlateRender;
-import baguchi.tofucraft.registry.TofuBlocks;
+import baguchi.tofucraft.client.render.blockentity.state.FoodPlateRenderState;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CakeBlock;
 import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
@@ -19,14 +21,26 @@ import java.util.Set;
 
 public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContainerContents> {
 	private final FoodPlateRender foodPlateRender;
+	private final FoodPlateRenderState renderState;
 
-	public FoodPlateSpecialRenderer(FoodPlateRender p_386864_) {
+	public FoodPlateSpecialRenderer(FoodPlateRender p_386864_, FoodPlateRenderState renderState) {
 		this.foodPlateRender = p_386864_;
+		this.renderState = renderState;
 	}
 
+
 	@Override
-	public void render(@org.jetbrains.annotations.Nullable ItemContainerContents itemContainerContents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int i1, boolean b) {
-		this.foodPlateRender.renderInHand(TofuBlocks.FOODPLATE.asOptional(), itemContainerContents, itemDisplayContext, poseStack, multiBufferSource, i, i1);
+	public void submit(@org.jetbrains.annotations.Nullable ItemContainerContents itemContainerContents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b) {
+
+
+		this.renderState.blockState = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()).defaultBlockState();
+		//this.itemModelResolver.updateForTopItem(this.renderState.itemState, foodPlateRender.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
+		this.renderState.candle = itemContainerContents.getStackInSlot(0).is(ItemTags.CANDLES);
+		this.renderState.cake = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()) instanceof CakeBlock;
+		this.renderState.fire = false;
+		this.renderState.renderAmount = foodPlateRender.getRenderAmount(itemContainerContents.getStackInSlot(0));
+
+		this.foodPlateRender.renderInHand(renderState, poseStack, submitNodeCollector);
 
 	}
 
@@ -62,13 +76,20 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 		public static final MapCodec<FoodPlateSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(FoodPlateSpecialRenderer.Unbaked::new);
 
 		@Override
+		public @org.jetbrains.annotations.Nullable SpecialModelRenderer<?> bake(BakingContext bakingContext) {
+
+
+			FoodPlateRender foodPlateRender1 = new FoodPlateRender();
+
+			FoodPlateRenderState foodPlateRenderState = foodPlateRender1.createRenderState();
+
+			return new FoodPlateSpecialRenderer(foodPlateRender1, foodPlateRenderState);
+		}
+
+		@Override
 		public MapCodec<FoodPlateSpecialRenderer.Unbaked> type() {
 			return MAP_CODEC;
 		}
 
-		@Override
-		public SpecialModelRenderer<?> bake(EntityModelSet p_386741_) {
-			return new FoodPlateSpecialRenderer(new FoodPlateRender(p_386741_));
-		}
 	}
 }

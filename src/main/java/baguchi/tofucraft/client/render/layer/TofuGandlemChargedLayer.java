@@ -3,11 +3,10 @@ package baguchi.tofucraft.client.render.layer;
 import baguchi.tofucraft.client.model.TofuGandlemModel;
 import baguchi.tofucraft.client.render.state.TofuGandlemRenderState;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
@@ -28,18 +27,6 @@ public class TofuGandlemChargedLayer<T extends TofuGandlemRenderState, M extends
 		this.drawSelector = p_234888_;
 	}
 
-	@Override
-	public void render(PoseStack p_117349_, MultiBufferSource p_117350_, int p_117351_, T p_361554_, float p_117353_, float p_117354_) {
-		if (p_361554_.fullCharge) {
-			float f = (float) p_361554_.ageInTicks;
-			this.onlyDrawSelectedParts();
-			VertexConsumer vertexconsumer = p_117350_.getBuffer(RenderType.energySwirl(this.texture, this.xOffset(f) % 1.0F, f * 0.01F % 1.0F));
-			this.getParentModel().renderToBuffer(p_117349_, vertexconsumer, p_117351_, LivingEntityRenderer.getOverlayCoords(p_361554_, 0.0F));
-			this.resetDrawForAllParts();
-		}
-	}
-
-
 	protected float xOffset(float p_117702_) {
 		return Mth.cos(p_117702_ * 0.02F) * 3.0F;
 	}
@@ -58,6 +45,16 @@ public class TofuGandlemChargedLayer<T extends TofuGandlemRenderState, M extends
 		this.getParentModel().root().getAllParts().forEach((p_234913_) -> {
 			p_234913_.skipDraw = false;
 		});
+	}
+
+	@Override
+	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, T state, float v, float v1) {
+		if (state.fullCharge) {
+			float f = (float) state.ageInTicks;
+			this.onlyDrawSelectedParts();
+			submitNodeCollector.submitModel(this.getParentModel(), state, poseStack, RenderType.energySwirl(this.texture, this.xOffset(f) % 1.0F, f * 0.01F % 1.0F), state.lightCoords, LivingEntityRenderer.getOverlayCoords(state, 0.0F), state.outlineColor, null);
+			this.resetDrawForAllParts();
+		}
 	}
 
 

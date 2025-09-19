@@ -81,7 +81,7 @@ public abstract class FishingHookMixin extends Projectile {
 	private void tofucraftreload$dimensionFishingLoot(ItemStack p_37157_, CallbackInfoReturnable<Integer> cir) {
 		Player player = this.getPlayerOwner();
 		FishingHook fishingHook = (FishingHook) ((Object) this);
-		if (!this.level().isClientSide && player != null && !this.shouldStopFishing(player)) {
+		if (!this.level().isClientSide() && player != null && !this.shouldStopFishing(player)) {
 			net.neoforged.neoforge.event.entity.player.ItemFishedEvent event = null;
 			if (this.level() != null && this.level().dimension().equals(TofuDimensions.tofu_world) && this.nibble > 0) {
 				LootParams lootparams = new LootParams.Builder((ServerLevel) this.level())

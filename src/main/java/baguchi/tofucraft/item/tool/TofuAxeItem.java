@@ -9,7 +9,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -60,7 +59,7 @@ public class TofuAxeItem extends Item implements IEnergyInsertable {
 				level.setBlock(blockpos, optional.get(), 11);
 				level.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(player, optional.get()));
 				if (player != null) {
-					itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
+					itemstack.hurtAndBreak(1, player, context.getHand());
 				}
 
 				return InteractionResult.SUCCESS;

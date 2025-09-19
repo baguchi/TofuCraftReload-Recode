@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.display.RecipeDisplayId;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -44,12 +45,14 @@ public class TFCraftingTableSavedRecipePacket implements CustomPacketPayload, IP
 
 	public void handle(TFCraftingTableSavedRecipePacket message, IPayloadContext context) {
 		context.enqueueWork(() -> {
-			BlockEntity tileentity = context.player().level().getBlockEntity(message.blockPos);
+			if (context.player().level() instanceof ServerLevel serverLevel) {
+				BlockEntity tileentity = serverLevel.getBlockEntity(message.blockPos);
 
-			RecipeManager.ServerDisplayInfo recipemanager$serverdisplayinfo = context.player().getServer().getRecipeManager().getRecipeFromDisplay(message.recipe);
+				RecipeManager.ServerDisplayInfo recipemanager$serverdisplayinfo = serverLevel.getServer().getRecipeManager().getRecipeFromDisplay(message.recipe);
 
-			if (tileentity instanceof TFCraftingTableBlockEntity blockEntity) {
-				blockEntity.setRecipeDisplay(recipemanager$serverdisplayinfo.display().display());
+				if (tileentity instanceof TFCraftingTableBlockEntity blockEntity) {
+					blockEntity.setRecipeDisplay(recipemanager$serverdisplayinfo.display().display());
+				}
 			}
 		});
 	}

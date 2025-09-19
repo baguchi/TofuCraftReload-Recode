@@ -609,7 +609,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		if (entity instanceof LivingEntity && !entity.getType().is(Tags.EntityTypes.BOSSES)) {
 				if (this.getPassengers().isEmpty()) {
 					entity.stopRiding();
-					entity.startRiding(this, true);
+					entity.startRiding(this, true, false);
 				}
 			}
 			this.setSprinting(false);
@@ -1113,7 +1113,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 	public void setAngry(boolean angry) {
 		this.entityData.set(ANGRY, angry);
-		if (this.level() != null && !this.level().isClientSide) {
+		if (this.level() != null && !this.level().isClientSide()) {
 			AttributeInstance attributeinstance = this.getAttribute(Attributes.ATTACK_DAMAGE);
 			attributeinstance.removeModifier(ATTACK_MODIFIER.id());
 			AttributeInstance attributeinstance2 = this.getAttribute(Attributes.ARMOR);

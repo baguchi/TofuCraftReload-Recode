@@ -395,7 +395,7 @@ public class ClientRegistrar {
 
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUBED.get(), TofuBedRenderer::new);
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUCHEST.get(), TofuChestRenderer::new);
-		event.registerBlockEntityRenderer(TofuBlockEntitys.FOODPLATE.get(), FoodPlateRender::new);
+		event.registerBlockEntityRenderer(TofuBlockEntitys.FOODPLATE.get(), context -> new FoodPlateRender(context));
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUNIAN_STATUE.get(), TofunianStatueRender::new);
 	}
 

@@ -1,14 +1,14 @@
 package baguchi.tofucraft.client.render.special;
 
 import baguchi.tofucraft.client.render.blockentity.TofunianStatueRender;
+import baguchi.tofucraft.client.render.blockentity.state.TofunianStateRenderState;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.world.item.ItemDisplayContext;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 import java.util.Set;
@@ -22,18 +22,13 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 	}
 
 	@Override
-	public void render(ItemDisplayContext p_387275_, PoseStack p_387960_, MultiBufferSource p_386542_, int p_386921_, int p_387639_, boolean p_387936_) {
-	}
-
-	@Override
 	public void getExtents(Set<Vector3f> set) {
 
 	}
 
 	@Override
 	public void submit(ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b) {
-		this.tofunianStatueRender.renderInHand(p_387960_, p_386542_, p_386921_, p_387639_);
-
+		this.tofunianStatueRender.renderInHand(new TofunianStateRenderState(), poseStack, submitNodeCollector);
 	}
 
 
@@ -41,13 +36,13 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 		public static final MapCodec<TofunianStatueSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(TofunianStatueSpecialRenderer.Unbaked::new);
 
 		@Override
-		public MapCodec<TofunianStatueSpecialRenderer.Unbaked> type() {
-			return MAP_CODEC;
+		public @Nullable SpecialModelRenderer<?> bake(BakingContext bakingContext) {
+			return new TofunianStatueSpecialRenderer(new TofunianStatueRender(bakingContext.entityModelSet()));
 		}
 
 		@Override
-		public SpecialModelRenderer<?> bake(EntityModelSet p_386741_) {
-			return new TofunianStatueSpecialRenderer(new TofunianStatueRender(p_386741_));
+		public MapCodec<TofunianStatueSpecialRenderer.Unbaked> type() {
+			return MAP_CODEC;
 		}
 	}
 }
