@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
 
@@ -26,12 +27,14 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian.png");
 	public static final ResourceLocation BAGU_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagunian.png");
 
-	public TofunianRender(EntityRendererProvider.Context p_173956_) {
-		super(p_173956_, new TofunianModel<>(p_173956_.bakeLayer(TofuModelLayers.TOFUNIAN)), 0.5F);
+	public TofunianRender(EntityRendererProvider.Context context) {
+		super(context, new TofunianModel<>(context.bakeLayer(TofuModelLayers.TOFUNIAN)), 0.5F);
 		this.addLayer(new TofunianEyeLayer<>(this));
-		this.addLayer(new TofunianClothLayer(this));
+		this.addLayer(new TofunianClothLayer<>(this));
 		this.addLayer(new TofunianRoleLayer(this));
-		this.addLayer(new CustomArmorLayer<>(this, p_173956_));
+		this.addLayer(new CustomArmorLayer<>(this, context));
+		this.addLayer(new CustomHeadLayer<>(this, context.getModelSet(), context.getPlayerSkinRenderCache()));
+
 		this.addLayer(new ItemInHandLayer<>(this) {
 
 			@Override

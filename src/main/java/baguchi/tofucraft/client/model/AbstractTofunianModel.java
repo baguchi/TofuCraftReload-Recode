@@ -97,6 +97,12 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 	}
 
 	@Override
+	public void translateToHead(PoseStack poseStack) {
+		this.roots.translateAndRotate(poseStack);
+		this.head.translateAndRotate(poseStack);
+	}
+
+	@Override
 	public void translateToHead(ModelPart modelPart, PoseStack poseStack) {
 		this.roots.translateAndRotate(poseStack);
 		modelPart.translateAndRotate(poseStack);
