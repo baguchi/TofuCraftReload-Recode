@@ -327,7 +327,7 @@
   "container.tofucraft.tofunian_chest": "トーフニアンチェスト",
   "death.attack.fallingTofu": "%1$sは%2$sからの%3$sの角にぶつかった",
   "death.attack.soy_spore": "%1$sは%2$sからの豆乳の胞子の影響を受けてしまった",
-  "death.attack.zunda": "%1$sは%2$sの%3$sで自然エネルギーにやられた",
+  "death.attack.zunda": "%1$sは%2$sの自然エネルギーにやられた",
   "death.attack.zunda_explosion": "%1$sは%2$sの自然エネルギーにやられた",
   "death.attack.soy_splash": "%1$sは、%2$sの豆乳鉄砲にやられた",
   "death.attack.fukumame": "%1$sは、%2$sの福豆にやられた",
