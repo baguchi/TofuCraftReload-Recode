@@ -140,7 +140,7 @@ public class CandleTofuCakeBlock extends AbstractCandleBlock {
 	}
 
 	@Override
-	public int getAnalogOutputSignal(BlockState p_152880_, Level p_152881_, BlockPos p_152882_) {
+	protected int getAnalogOutputSignal(BlockState p_60487_, Level p_60488_, BlockPos p_60489_, Direction p_435855_) {
 		return CakeBlock.FULL_CAKE_SIGNAL;
 	}
 

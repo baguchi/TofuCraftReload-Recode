@@ -56,7 +56,7 @@ public class TFCraftingTableBlock extends TFBaseEntityBlock {
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState p_307454_, Level p_307255_, BlockPos p_307303_, Player p_307670_, BlockHitResult p_307546_) {
-		if (p_307255_.isClientSide) {
+		if (p_307255_.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		} else {
 			BlockEntity blockentity = p_307255_.getBlockEntity(p_307303_);

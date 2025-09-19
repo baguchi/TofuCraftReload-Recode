@@ -2,21 +2,21 @@ package baguchi.tofucraft.client.screen;
 
 import baguchi.tofucraft.registry.TofuBlocks;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.ReceivingLevelScreen;
+import net.minecraft.client.gui.screens.LevelLoadingScreen;
+import net.minecraft.client.multiplayer.LevelLoadTracker;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nullable;
-import java.util.function.BooleanSupplier;
 
-public class ReceivingTofuLevelScreen extends ReceivingLevelScreen {
+public class ReceivingTofuLevelScreen extends LevelLoadingScreen {
 	private static final Component TRAVELING_IN_TOFU_PORTAL = Component.translatable("multiplayer.tofucraft.travel_tofuworld");
 
 	@Nullable
 	private TextureAtlasSprite cachedTofuPortalSprite;
 
-	public ReceivingTofuLevelScreen(BooleanSupplier levelReceived) {
+	public ReceivingTofuLevelScreen(LevelLoadTracker levelReceived) {
 		super(levelReceived, Reason.OTHER);
 	}
 

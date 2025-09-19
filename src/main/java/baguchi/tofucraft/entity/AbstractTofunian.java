@@ -183,7 +183,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 
 	@Override
 	public void notifyTradeUpdated(ItemStack p_35316_) {
-		if (!this.level().isClientSide && this.ambientSoundTime > -this.getAmbientSoundInterval() + 20) {
+		if (!this.level().isClientSide() && this.ambientSoundTime > -this.getAmbientSoundInterval() + 20) {
 			this.ambientSoundTime = -this.getAmbientSoundInterval();
 			this.playSound(this.getTradeUpdatedSound(!p_35316_.isEmpty()), this.getSoundVolume(), this.getVoicePitch());
 		}
@@ -193,7 +193,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 	@Override
 	public void addAdditionalSaveData(ValueOutput p_35301_) {
 		super.addAdditionalSaveData(p_35301_);
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			MerchantOffers merchantoffers = this.getOffers();
 			if (!merchantoffers.isEmpty()) {
 				p_35301_.store("Offers", MerchantOffers.CODEC, merchantoffers);
@@ -284,7 +284,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 	}
 
 	public boolean isClientSide() {
-		return this.level().isClientSide;
+		return this.level().isClientSide();
 	}
 
 	@Override

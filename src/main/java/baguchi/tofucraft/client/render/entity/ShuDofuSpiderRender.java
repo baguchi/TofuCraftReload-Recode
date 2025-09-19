@@ -7,9 +7,8 @@ import baguchi.tofucraft.client.render.state.ShuDofuSpiderRenderState;
 import baguchi.tofucraft.entity.ShuDofuSpider;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
@@ -29,11 +28,9 @@ public class ShuDofuSpiderRender extends MobRenderer<ShuDofuSpider, ShuDofuSpide
 		super(p_173956_, new ShuDofuSpiderModel(p_173956_.bakeLayer(TofuModelLayers.SHUDOFUSPIDER)), 0.5F);
 		this.addLayer(new EyesLayer<>(this) {
 			@Override
-			public void render(PoseStack p_116983_, MultiBufferSource p_116984_, int p_116985_, ShuDofuSpiderRenderState p_363277_, float p_116987_, float p_116988_) {
-
-				if (p_363277_.angry) {
-					VertexConsumer vertexconsumer = p_116984_.getBuffer(this.renderType());
-					this.getParentModel().renderToBuffer(p_116983_, vertexconsumer, 1728640, OverlayTexture.NO_OVERLAY);
+			public void submit(PoseStack p_433452_, SubmitNodeCollector p_433171_, int p_434650_, ShuDofuSpiderRenderState p_435883_, float p_433542_, float p_435619_) {
+				if (p_435883_.angry) {
+					p_433171_.submitModel(this.getParentModel(), p_435883_, p_433452_, this.renderType(), 1728640, OverlayTexture.NO_OVERLAY, p_435883_.outlineColor, null);
 				}
 			}
 

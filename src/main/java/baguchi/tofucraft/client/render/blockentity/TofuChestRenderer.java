@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.ChestRenderer;
+import net.minecraft.client.renderer.blockentity.state.ChestRenderState;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -30,14 +31,14 @@ public class TofuChestRenderer<T extends BlockEntity & LidBlockEntity> extends C
 	}
 
 	@Override
-	protected Material getMaterial(T blockEntity, ChestType chestType) {
-		EnumMap<ChestType, Material> b = MATERIALS.get(blockEntity.getBlockState().getBlock());
+	protected Material getMaterial(ChestRenderState.ChestMaterialType materialType, ChestType chestType) {
+		EnumMap<ChestType, Material> b = MATERIALS.get(TofuBlocks.TOFUCHEST.get());
 
-		if (b == null) return super.getMaterial(blockEntity, chestType);
+		if (b == null) return super.getMaterial(materialType, chestType);
 
 		Material material = b.get(chestType);
 
-		return material != null ? material : super.getMaterial(blockEntity, chestType);
+		return material != null ? material : super.getMaterial(materialType, chestType);
 	}
 
 	private static EnumMap<ChestType, Material> chestMaterial(String type) {

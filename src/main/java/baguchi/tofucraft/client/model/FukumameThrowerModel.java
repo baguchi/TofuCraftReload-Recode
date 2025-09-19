@@ -127,7 +127,6 @@ public class FukumameThrowerModel extends HumanoidModel<FukumameThrowerRenderSta
 			this.fukumame.y = 0F - ((entity.getFukumameCount - 64F) / 64F) * 5F;
 		}
 		this.fukumame.visible = entity.getFukumameCount > 0;
-		this.hat.copyFrom(this.head);
 	}
 
 

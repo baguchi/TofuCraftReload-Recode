@@ -14,6 +14,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FontDescription;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +24,7 @@ import org.joml.Quaternionf;
 import java.util.List;
 
 public class ClientProxy {
-	private static final ResourceLocation ALT_FONT = ResourceLocation.withDefaultNamespace("alt");
+	private static final FontDescription ALT_FONT = new FontDescription.Resource(ResourceLocation.withDefaultNamespace("alt"));
 	private static final Style ALT_STYLE = Style.EMPTY.withFont(ALT_FONT);
 
 	public static final ClientProxy PROXY = new ClientProxy();

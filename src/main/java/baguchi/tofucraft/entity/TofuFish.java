@@ -67,7 +67,7 @@ public class TofuFish extends AbstractTofuFish {
 			ItemStack itemstack2 = ItemUtils.createFilledResult(itemstack, p_148829_, itemstack1, false);
 			p_148829_.setItemInHand(p_148830_, itemstack2);
 			Level level = p_148831_.level();
-			if (!level.isClientSide) {
+			if (!level.isClientSide()) {
 				CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) p_148829_, itemstack1);
 			}
 
@@ -80,7 +80,7 @@ public class TofuFish extends AbstractTofuFish {
 			ItemStack itemstack2 = ItemUtils.createFilledResult(itemstack, p_148829_, itemstack1, false);
 			p_148829_.setItemInHand(p_148830_, itemstack2);
 			Level level = p_148831_.level();
-			if (!level.isClientSide) {
+			if (!level.isClientSide()) {
 				CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) p_148829_, itemstack1);
 			}
 

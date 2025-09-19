@@ -72,7 +72,7 @@ public class TofuCakeBlock extends CakeBlock {
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState p_316481_, Level p_316406_, BlockPos p_316218_, Player p_316212_, BlockHitResult p_316525_) {
-		if (p_316406_.isClientSide) {
+		if (p_316406_.isClientSide()) {
 			if (eat(p_316406_, p_316218_, p_316481_, p_316212_).consumesAction()) {
 				return InteractionResult.SUCCESS;
 			}

@@ -2,20 +2,16 @@ package baguchi.tofucraft.client.render.entity;
 
 import baguchi.tofucraft.entity.projectile.FallingTofuEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
-import net.minecraft.client.renderer.block.model.BlockModelPart;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.FallingBlockRenderState;
-import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.List;
 
 /**
  * <p>Revamped Falling Block Renderer.</p>
@@ -40,28 +36,15 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity, Falli
 				: p_362415_.getBlockState() != p_362415_.level().getBlockState(p_362415_.blockPosition());
 	}
 
-	public void render(FallingBlockRenderState p_361300_, PoseStack p_114637_, MultiBufferSource p_114638_, int p_114639_) {
-		BlockState blockstate = p_361300_.blockState;
+	public void submit(FallingBlockRenderState p_361300_, PoseStack p_114637_, SubmitNodeCollector p_114638_, CameraRenderState cameraRenderState) {
+		BlockState blockstate = p_361300_.movingBlockRenderState.blockState;
 		if (blockstate.getRenderShape() == RenderShape.MODEL) {
 			p_114637_.pushPose();
 			p_114637_.translate(-0.5, 0.0, -0.5);
-			List<BlockModelPart> list = this.dispatcher
-					.getBlockModel(blockstate)
-					.collectParts(p_361300_.level, p_361300_.blockPos, blockstate, RandomSource.create(blockstate.getSeed(p_361300_.startBlockPos)));
-			this.dispatcher
-					.getModelRenderer()
-					.tesselateBlock(
-							p_361300_,
-							list,
-							blockstate,
-							p_361300_.blockPos,
-							p_114637_,
-							renderType -> p_114638_.getBuffer(net.neoforged.neoforge.client.RenderTypeHelper.getMovingBlockRenderType(renderType)),
-							false,
-							OverlayTexture.NO_OVERLAY
-					);
+			p_114638_.submitMovingBlock(p_114637_, p_361300_.movingBlockRenderState);
+
 			p_114637_.popPose();
-			super.render(p_361300_, p_114637_, p_114638_, p_114639_);
+			super.submit(p_361300_, p_114637_, p_114638_, cameraRenderState);
 		}
 	}
 
@@ -73,10 +56,11 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity, Falli
 	public void extractRenderState(FallingTofuEntity p_364559_, FallingBlockRenderState p_360509_, float p_361019_) {
 		super.extractRenderState(p_364559_, p_360509_, p_361019_);
 		BlockPos blockpos = BlockPos.containing(p_364559_.getX(), p_364559_.getBoundingBox().maxY, p_364559_.getZ());
-		//p_360509_.startBlockPos = p_364559_.getStartPos();
-		p_360509_.blockPos = blockpos;
-		p_360509_.blockState = p_364559_.getBlockState();
-		p_360509_.biome = p_364559_.level().getBiome(blockpos);
-		p_360509_.level = p_364559_.level();
+
+		//p_360509_.movingBlockRenderState.randomSeedPos = p_364559_.getStartPos();
+		p_360509_.movingBlockRenderState.blockPos = blockpos;
+		p_360509_.movingBlockRenderState.blockState = p_364559_.getBlockState();
+		p_360509_.movingBlockRenderState.biome = p_364559_.level().getBiome(blockpos);
+		p_360509_.movingBlockRenderState.level = p_364559_.level();
 	}
 }

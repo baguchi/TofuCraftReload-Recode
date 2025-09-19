@@ -426,11 +426,11 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerLayer(EntityRenderersEvent.AddLayers event) {
-		event.getContext().getEntityRenderDispatcher().getSkinMap().forEach((model, player) ->
+		event.getContext().getEntityRenderDispatcher().getPlayerRenderers().forEach((model, player) ->
 		{
-			if (event.getSkin(model) != null) {
+			if (event.getPlayerRenderer(model) != null) {
 				if (player instanceof LivingEntityRenderer) {
-					((LivingEntityRenderer<?, ?, ?>) player).addLayer(new ZundaLayer(event.getSkin(model)));
+					((LivingEntityRenderer<?, ?, ?>) player).addLayer(new ZundaLayer(event.getPlayerRenderer(model)));
 				}
 			}
 		});

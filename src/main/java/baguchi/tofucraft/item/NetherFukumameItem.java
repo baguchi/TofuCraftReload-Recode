@@ -26,7 +26,7 @@ public class NetherFukumameItem extends Item implements ProjectileItem {
 	public InteractionResult use(Level levelIn, Player playerIn, InteractionHand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (playerIn.getRandom().nextFloat() * 0.4F + 0.8F));
-		if (!levelIn.isClientSide) {
+		if (!levelIn.isClientSide()) {
 			for (int i = 0; i < 5; i++) {
 				NetherFukumameEntity fukumamentity = new NetherFukumameEntity(levelIn, playerIn, itemstack);
 				float d0 = i * levelIn.random.nextFloat() * 10.0F - 5.0F * i;
@@ -38,8 +38,8 @@ public class NetherFukumameItem extends Item implements ProjectileItem {
 		playerIn.awardStat(Stats.ITEM_USED.get(this));
 		playerIn.getCooldowns().addCooldown(itemstack, 5);
 		playerIn.getData(TofuAttachments.TOFU_LIVING.get()).thrownAnimation(playerIn, handIn);
-		if (!playerIn.level().isClientSide)
-			itemstack.hurtAndBreak(1, (LivingEntity) playerIn, LivingEntity.getSlotForHand(handIn));
+		if (!playerIn.level().isClientSide())
+			itemstack.hurtAndBreak(1, (LivingEntity) playerIn, handIn);
 		return InteractionResult.SUCCESS_SERVER;
 	}
 

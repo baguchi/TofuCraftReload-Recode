@@ -18,6 +18,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -56,7 +57,7 @@ public class ZundaArrow extends AbstractArrow {
 
 	public void tick() {
 		super.tick();
-		if (this.level().isClientSide && !this.isInGround()) {
+		if (this.level().isClientSide() && !this.isInGround()) {
 			this.level().addParticle(TofuParticleTypes.ZUNDA_CLOUD.get(), this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
 		}
 
@@ -102,7 +103,7 @@ public class ZundaArrow extends AbstractArrow {
 					if (p_36757_.getEntity().hurtServer(serverlevel, source, j)) {
 
 						if (entity instanceof LivingEntity livingentity) {
-							if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
+							if (!this.level().isClientSide() && this.getPierceLevel() <= 0) {
 								livingentity.setArrowCount(livingentity.getArrowCount() + 1);
 							}
 
@@ -116,7 +117,7 @@ public class ZundaArrow extends AbstractArrow {
 								((ServerPlayer) entity1).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.PLAY_ARROW_HIT_SOUND, 0.0F));
 							}
 
-							if (!this.level().isClientSide && entity1 instanceof ServerPlayer serverplayer) {
+							if (!this.level().isClientSide() && entity1 instanceof ServerPlayer serverplayer) {
 								if (this.piercedAndKilledEntities != null) {
 									CriteriaTriggers.KILLED_BY_ARROW.trigger(serverplayer, this.piercedAndKilledEntities, this.getWeaponItem());
 								} else if (!entity.isAlive()) {
@@ -134,9 +135,9 @@ public class ZundaArrow extends AbstractArrow {
 						this.discard();
 					} else {
 						entity.setRemainingFireTicks(i);
-						this.deflect(ProjectileDeflection.REVERSE, entity, this.getOwner(), false);
+						this.deflect(ProjectileDeflection.REVERSE, entity, EntityReference.of(this.getOwner()), false);
 						this.setDeltaMovement(this.getDeltaMovement().scale(0.2));
-						if (!this.level().isClientSide && this.getDeltaMovement().lengthSqr() < 1.0E-7) {
+						if (!this.level().isClientSide() && this.getDeltaMovement().lengthSqr() < 1.0E-7) {
 							if (this.pickup == AbstractArrow.Pickup.ALLOWED) {
 								this.spawnAtLocation(serverlevel, this.getPickupItem(), 0.1F);
 							}

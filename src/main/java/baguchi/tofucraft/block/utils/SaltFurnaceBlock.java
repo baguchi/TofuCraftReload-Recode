@@ -79,7 +79,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState p_60503_, Level p_60504_, BlockPos p_60505_, Player p_60506_, BlockHitResult p_60508_) {
-		if (p_60504_.isClientSide) {
+		if (p_60504_.isClientSide()) {
 			ClientProxy.PROXY.setRefrencedTE(p_60504_.getBlockEntity(p_60505_));
 			return InteractionResult.SUCCESS;
 		} else {
@@ -115,8 +115,8 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public int getAnalogOutputSignal(BlockState p_48702_, Level p_48703_, BlockPos p_48704_) {
-		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(p_48703_.getBlockEntity(p_48704_));
+	protected int getAnalogOutputSignal(BlockState p_60487_, Level p_60488_, BlockPos p_60489_, Direction p_435855_) {
+		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(p_60488_.getBlockEntity(p_60489_));
 	}
 
 	@Override

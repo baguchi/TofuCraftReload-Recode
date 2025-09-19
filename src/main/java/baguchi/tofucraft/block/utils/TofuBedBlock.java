@@ -77,7 +77,7 @@ public class TofuBedBlock extends BedBlock {
 
 	@Override
 	public BlockState playerWillDestroy(Level p_49505_, BlockPos p_49506_, BlockState p_49507_, Player p_49508_) {
-		if (!p_49505_.isClientSide && p_49508_.isCreative()) {
+		if (!p_49505_.isClientSide() && p_49508_.isCreative()) {
 			BedPart var5 = (BedPart) p_49507_.getValue(PART);
 			if (var5 == BedPart.FOOT) {
 				BlockPos var6 = p_49506_.relative(getNeighbourDirection(var5, (Direction) p_49507_.getValue(FACING)));
@@ -203,7 +203,7 @@ public class TofuBedBlock extends BedBlock {
 
 	public void setPlacedBy(Level p_49499_, BlockPos p_49500_, BlockState p_49501_, @Nullable LivingEntity p_49502_, ItemStack p_49503_) {
 		super.setPlacedBy(p_49499_, p_49500_, p_49501_, p_49502_, p_49503_);
-		if (!p_49499_.isClientSide) {
+		if (!p_49499_.isClientSide()) {
 			BlockPos var6 = p_49500_.relative((Direction) p_49501_.getValue(FACING));
 			p_49499_.setBlock(var6, (BlockState) p_49501_.setValue(PART, BedPart.HEAD), 3);
 			p_49499_.neighborChanged(p_49500_, Blocks.AIR, null);

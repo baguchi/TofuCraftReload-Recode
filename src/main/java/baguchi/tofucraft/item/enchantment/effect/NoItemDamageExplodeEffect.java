@@ -6,11 +6,13 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistryCodecs;
+import net.minecraft.core.particles.ExplosionParticleInfo;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
@@ -36,6 +38,7 @@ public record NoItemDamageExplodeEffect(
 		Level.ExplosionInteraction blockInteraction,
 		ParticleOptions smallParticle,
 		ParticleOptions largeParticle,
+		WeightedList<ExplosionParticleInfo> blockParticles,
 		Holder<SoundEvent> sound
 ) implements EnchantmentEntityEffect {
 	public static final MapCodec<NoItemDamageExplodeEffect> CODEC = RecordCodecBuilder.mapCodec(
@@ -50,6 +53,7 @@ public record NoItemDamageExplodeEffect(
 							Level.ExplosionInteraction.CODEC.fieldOf("block_interaction").forGetter(NoItemDamageExplodeEffect::blockInteraction),
 							ParticleTypes.CODEC.fieldOf("small_particle").forGetter(NoItemDamageExplodeEffect::smallParticle),
 							ParticleTypes.CODEC.fieldOf("large_particle").forGetter(NoItemDamageExplodeEffect::largeParticle),
+							WeightedList.codec(ExplosionParticleInfo.CODEC).optionalFieldOf("block_particles", WeightedList.of()).forGetter(NoItemDamageExplodeEffect::blockParticles),
 							SoundEvent.CODEC.fieldOf("sound").forGetter(NoItemDamageExplodeEffect::sound)
 					)
 					.apply(p_344933_, NoItemDamageExplodeEffect::new)
@@ -75,6 +79,7 @@ public record NoItemDamageExplodeEffect(
 				this.blockInteraction,
 				this.smallParticle,
 				this.largeParticle,
+				this.blockParticles,
 				this.sound
 		);
 	}

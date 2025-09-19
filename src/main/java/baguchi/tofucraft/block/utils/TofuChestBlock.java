@@ -231,7 +231,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState p_51531_, Level p_51532_, BlockPos p_51533_, Player p_51534_, BlockHitResult p_51536_) {
-		if (p_51532_.isClientSide) {
+		if (p_51532_.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		} else {
 			MenuProvider menuprovider = this.getMenuProvider(p_51531_, p_51532_, p_51533_);
@@ -303,7 +303,7 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153055_, BlockState p_153056_, BlockEntityType<T> p_153057_) {
-		return p_153055_.isClientSide ? createTickerHelper(p_153057_, this.blockEntityType(), TofuChestBlockEntity::lidAnimateTick) : null;
+		return p_153055_.isClientSide() ? createTickerHelper(p_153057_, this.blockEntityType(), TofuChestBlockEntity::lidAnimateTick) : null;
 	}
 
 	public static boolean isTofuChestBlockedAt(LevelAccessor p_51509_, BlockPos p_51510_) {
@@ -333,9 +333,10 @@ public class TofuChestBlock extends AbstractChestBlock<TofuChestBlockEntity> imp
 		return true;
 	}
 
+
 	@Override
-	public int getAnalogOutputSignal(BlockState p_51527_, Level p_51528_, BlockPos p_51529_) {
-		return AbstractContainerMenu.getRedstoneSignalFromContainer(getContainer(this, p_51527_, p_51528_, p_51529_, false));
+	protected int getAnalogOutputSignal(BlockState p_60487_, Level p_60488_, BlockPos p_60489_, Direction p_435855_) {
+		return AbstractContainerMenu.getRedstoneSignalFromContainer(getContainer(this, p_60487_, p_60488_, p_60489_, false));
 	}
 
 	@Override

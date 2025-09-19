@@ -10,6 +10,7 @@ import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +28,7 @@ public class TofunianStatueRender implements BlockEntityRenderer<TofunianStatueB
 		this.tofunianModel = new TofunianModel<>(context.bakeLayer(TofuModelLayers.TOFUNIAN));
 	}
 
-	public void renderInHand(PoseStack poseStack, MultiBufferSource p_112310_, int p_112311_, int p_112312_) {
+	public void renderInHand(PoseStack poseStack, SubmitNodeCollector p_112310_, int p_112311_, int p_112312_) {
 		float f = 90.0F;
 		poseStack.pushPose();
 		poseStack.scale(-1.5F, -1.5F, 1.5F);

@@ -6,11 +6,11 @@ import baguchi.tofucraft.client.model.SoyBallModel;
 import baguchi.tofucraft.client.render.state.ProjectileRenderState;
 import baguchi.tofucraft.entity.projectile.SoyballEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
@@ -29,17 +29,17 @@ public class SoyballRenderer extends EntityRenderer<SoyballEntity, ProjectileRen
 	}
 
 	@Override
-	public void render(ProjectileRenderState llamaSpit, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
+	public void submit(ProjectileRenderState llamaSpit, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
 		poseStack.pushPose();
 		poseStack.translate(0.0F, 4F / 16F, 0.0F);
 		poseStack.mulPose(Axis.YP.rotationDegrees(llamaSpit.yRot - 180F));
 		poseStack.mulPose(Axis.XP.rotationDegrees(llamaSpit.xRot));
 		poseStack.translate(0.0F, -1.501F + 3F / 16F, -2.5F / 16F);
 		this.model.setupAnim(llamaSpit);
-		VertexConsumer vertexConsumer = multiBufferSource.getBuffer(this.model.renderType(LLAMA_SPIT_LOCATION));
-		this.model.renderToBuffer(poseStack, vertexConsumer, i, OverlayTexture.NO_OVERLAY);
+
+		submitNodeCollector.submitModel(this.model, llamaSpit, poseStack, this.model.renderType(LLAMA_SPIT_LOCATION), llamaSpit.lightCoords, OverlayTexture.NO_OVERLAY, llamaSpit.outlineColor, null);
 		poseStack.popPose();
-		super.render(llamaSpit, poseStack, multiBufferSource, i);
+		super.submit(llamaSpit, poseStack, submitNodeCollector, cameraRenderState);
 	}
 
 

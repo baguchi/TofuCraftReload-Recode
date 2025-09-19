@@ -31,7 +31,7 @@ public class SoymilkBottleItem extends Item {
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
 		SoyHealthAttachment cap = livingEntity.getData(TofuAttachments.SOY_HEALTH);
-		if (!level.isClientSide) {
+		if (!level.isClientSide()) {
 			if (level.getGameTime() > cap.getRemainTick() + 12000L) {
 				cap.setSoyHealthLevel(livingEntity, cap.getSoyHealthLevel() + 1, true);
 

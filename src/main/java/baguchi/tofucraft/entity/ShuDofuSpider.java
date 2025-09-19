@@ -220,11 +220,6 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	}
 
 	@Override
-	protected boolean shouldDespawnInPeaceful() {
-		return false;
-	}
-
-	@Override
 	public boolean removeWhenFarAway(double p_21542_) {
 		return false;
 	}

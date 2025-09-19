@@ -1,5 +1,6 @@
 package baguchi.tofucraft.entity.projectile;
 
+import baguchi.tofucraft.CommonEvents;
 import baguchi.tofucraft.registry.TofuDamageTypes;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
@@ -62,7 +63,7 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 
 	protected void onHitEntity(EntityHitResult p_37404_) {
 		super.onHitEntity(p_37404_);
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			Vec3 vec31 = this.position();
 			this.level()
 					.explode(
@@ -77,6 +78,7 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 							Level.ExplosionInteraction.MOB,
 							TofuParticleTypes.ZUNDA_EXPLOSION.get(),
 							TofuParticleTypes.ZUNDA_EMIT.get(),
+							CommonEvents.ZUNDA_EXPLOSION_BLOCK_PARTICLES,
 							SoundEvents.GENERIC_EXPLODE
 					);
 			this.discard();
@@ -85,7 +87,7 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 
 	protected void onHitBlock(BlockHitResult p_37406_) {
 		super.onHitBlock(p_37406_);
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			Vec3i vec3i = p_37406_.getDirection().getUnitVec3i();
 			Vec3 vec3 = Vec3.atLowerCornerOf(vec3i).multiply((double) 0.25F, (double) 0.25F, (double) 0.25F);
 			Vec3 vec31 = p_37406_.getLocation().add(vec3);
@@ -102,6 +104,7 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 							Level.ExplosionInteraction.MOB,
 							TofuParticleTypes.ZUNDA_EXPLOSION.get(),
 							TofuParticleTypes.ZUNDA_EMIT.get(),
+							CommonEvents.ZUNDA_EXPLOSION_BLOCK_PARTICLES,
 							SoundEvents.GENERIC_EXPLODE
 					);
 			this.discard();

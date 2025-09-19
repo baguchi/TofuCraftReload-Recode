@@ -5,8 +5,9 @@ import baguchi.tofucraft.client.TofuModelLayers;
 import baguchi.tofucraft.client.model.FukumameThrowerModel;
 import baguchi.tofucraft.client.render.state.FukumameThrowerRenderState;
 import baguchi.tofucraft.entity.FukumameThrower;
-import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.PiglinModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.ArmorModelSet;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
@@ -18,16 +19,14 @@ import net.minecraft.world.item.CrossbowItem;
 public class FukumameThrowerRenderer extends HumanoidMobRenderer<FukumameThrower, FukumameThrowerRenderState, FukumameThrowerModel> {
 	private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/piglin_fukumame_thrower.png");
 
-	public FukumameThrowerRenderer(EntityRendererProvider.Context p_174344_) {
-		super(p_174344_, new FukumameThrowerModel(p_174344_.bakeLayer(TofuModelLayers.FUKUMAME_THROWER)), 0.5F);
+	public FukumameThrowerRenderer(EntityRendererProvider.Context context) {
+		super(context, new FukumameThrowerModel(context.bakeLayer(TofuModelLayers.FUKUMAME_THROWER)), 0.5F);
 		this.addLayer(
 				new HumanoidArmorLayer(
 						this,
-						new HumanoidArmorModel(p_174344_.bakeLayer(ModelLayers.PIGLIN_INNER_ARMOR)),
-						new HumanoidArmorModel(p_174344_.bakeLayer(ModelLayers.PIGLIN_OUTER_ARMOR)),
-						new HumanoidArmorModel(p_174344_.bakeLayer(ModelLayers.PIGLIN_BABY_INNER_ARMOR)),
-						new HumanoidArmorModel(p_174344_.bakeLayer(ModelLayers.PIGLIN_BABY_OUTER_ARMOR)),
-						p_174344_.getEquipmentRenderer()
+						ArmorModelSet.bake(ModelLayers.PIGLIN_ARMOR, context.getModelSet(), PiglinModel::new),
+						ArmorModelSet.bake(ModelLayers.PIGLIN_ARMOR, context.getModelSet(), PiglinModel::new),
+						context.getEquipmentRenderer()
 				)
 		);
 	}

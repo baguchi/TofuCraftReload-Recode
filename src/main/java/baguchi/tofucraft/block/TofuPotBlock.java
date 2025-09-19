@@ -79,7 +79,7 @@ public class TofuPotBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 			}
 		}
 
-		if (!level.isClientSide) {
+		if (!level.isClientSide()) {
 			if (tileEntity instanceof TofuPotBlockEntity cookingPotEntity) {
 
 				player.openMenu(cookingPotEntity, pos);
@@ -201,7 +201,7 @@ public class TofuPotBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntity) {
-		if (level.isClientSide) {
+		if (level.isClientSide()) {
 			return createTickerHelper(blockEntity, TofuBlockEntitys.TOFU_POT.get(), TofuPotBlockEntity::animationTick);
 		}
 		return createTickerHelper(blockEntity, TofuBlockEntitys.TOFU_POT.get(), TofuPotBlockEntity::cookingTick);

@@ -35,6 +35,7 @@ import net.minecraft.client.sounds.MusicInfo;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ExplosionParticleInfo;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -110,6 +111,10 @@ import static net.minecraft.world.level.ServerExplosion.getSeenPercent;
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class CommonEvents {
 	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
+
+	public static final WeightedList<ExplosionParticleInfo> ZUNDA_EXPLOSION_BLOCK_PARTICLES = WeightedList.<ExplosionParticleInfo>builder()
+			.add(new ExplosionParticleInfo(TofuParticleTypes.ZUNDA_CLOUD.get(), 1.0F, 1.0F))
+			.build();
 
 	@SubscribeEvent
 	public static void handleQuestSyncing(OnDatapackSyncEvent event) {
@@ -466,7 +471,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onServerTick(LevelTickEvent.Post tick) {
-		if (!tick.getLevel().isClientSide && tick.getLevel() instanceof ServerLevel serverWorld) {
+		if (!tick.getLevel().isClientSide() && tick.getLevel() instanceof ServerLevel serverWorld) {
 			TRAVELER_TOFUNIAN_SPAWNER_MAP.computeIfAbsent(serverWorld,
 					k -> new TravelerTofunianSpawner(serverWorld));
 			TravelerTofunianSpawner spawner = TRAVELER_TOFUNIAN_SPAWNER_MAP.get(serverWorld);
@@ -532,6 +537,7 @@ public class CommonEvents {
 					Level.ExplosionInteraction.MOB,
 					TofuParticleTypes.ZUNDA_EXPLOSION.get(),
 					TofuParticleTypes.ZUNDA_EMIT.get(),
+					ZUNDA_EXPLOSION_BLOCK_PARTICLES,
 					SoundEvents.GENERIC_EXPLODE
 			);
 		}
@@ -573,7 +579,7 @@ public class CommonEvents {
 
 				boolean shroomlight = level.getBlockState(pos).is(Blocks.SHROOMLIGHT);
 				if (shroomlight) {
-					if (!level.isClientSide) {
+					if (!level.isClientSide()) {
 						level.levelEvent(2001, pos, Block.getId(Blocks.SHROOMLIGHT.defaultBlockState()));
 					}
 					player.playSound(SoundEvents.BOTTLE_FILL);

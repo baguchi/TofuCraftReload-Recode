@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -22,11 +23,16 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 
 	@Override
 	public void render(ItemDisplayContext p_387275_, PoseStack p_387960_, MultiBufferSource p_386542_, int p_386921_, int p_387639_, boolean p_387936_) {
-		this.tofunianStatueRender.renderInHand(p_387960_, p_386542_, p_386921_, p_387639_);
 	}
 
 	@Override
 	public void getExtents(Set<Vector3f> set) {
+
+	}
+
+	@Override
+	public void submit(ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b) {
+		this.tofunianStatueRender.renderInHand(p_387960_, p_386542_, p_386921_, p_387639_);
 
 	}
 

@@ -9,7 +9,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
@@ -26,7 +25,7 @@ public class SoulFukumameItem extends Item implements ProjectileItem {
 	public InteractionResult use(Level levelIn, Player playerIn, InteractionHand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (playerIn.getRandom().nextFloat() * 0.4F + 0.8F));
-		if (!levelIn.isClientSide) {
+		if (!levelIn.isClientSide()) {
 			for (int i = 0; i < 5; i++) {
 				SoulFukumameEntity fukumamentity = new SoulFukumameEntity(levelIn, playerIn, itemstack);
 				fukumamentity.damage = 2.0F;
@@ -40,7 +39,7 @@ public class SoulFukumameItem extends Item implements ProjectileItem {
 		playerIn.getCooldowns().addCooldown(itemstack, 5);
 		playerIn.getData(TofuAttachments.TOFU_LIVING.get()).thrownAnimation(playerIn, handIn);
 		if (!playerIn.level().isClientSide)
-			itemstack.hurtAndBreak(1, (LivingEntity) playerIn, LivingEntity.getSlotForHand(handIn));
+			itemstack.hurtAndBreak(1, playerIn, handIn);
 		return InteractionResult.SUCCESS_SERVER;
 	}
 

@@ -6,7 +6,6 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.protocol.game.DebugPackets;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -47,14 +46,14 @@ public class FindStatueBlockGoal extends MoveToBlockGoal {
 		if (isReachedTarget()) {
 			if (this.poiTypeResourceKey != null) {
 				if (!this.findBlock) {
-					if (this.creature.level() instanceof ServerLevel) {
+					if (this.creature.level() instanceof ServerLevel serverLevel) {
 						((ServerLevel) this.creature.level()).getPoiManager().getType(this.blockPos).ifPresent((p_217105_) -> {
 							((ServerLevel) this.creature.level()).getPoiManager().take(poiTypeHolder -> {
 								return poiTypeHolder == BuiltInRegistries.POINT_OF_INTEREST_TYPE.get(this.poiTypeResourceKey).get();
 							}, (p_217108_, p_217109_) -> {
 								return p_217109_.equals(this.blockPos);
 							}, this.blockPos, 1);
-							DebugPackets.sendPoiTicketCountPacket(((ServerLevel) this.creature.level()), this.blockPos);
+							serverLevel.debugSynchronizers().updatePoi(this.blockPos);
 							this.creature.setVillageCenter(this.blockPos);
 							this.findBlock = true;
 							this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);

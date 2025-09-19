@@ -265,12 +265,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		}
 		return super.finalizeSpawn(p_21434_, p_21435_, p_21436_, p_21437_);
 	}
-
-	@Override
-	protected boolean shouldDespawnInPeaceful() {
-		return false;
-	}
-
 	@Override
 	public boolean removeWhenFarAway(double p_21542_) {
 		return false;
