@@ -49,9 +49,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		//poseStack.translate(-0.5F, 0F, -0.5F);
 		submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, 15728880, OverlayTexture.NO_OVERLAY, 0);
 		poseStack.popPose();
-		if (!foodPlateRenderState.plateItem.isEmpty()) {
-			renderPlacedItem(foodPlateRenderState, poseStack, submitNodeCollector);
-		}
+		renderPlacedItem(foodPlateRenderState, poseStack, submitNodeCollector);
 		poseStack.popPose();
 	}
 
@@ -115,19 +113,18 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	private void renderPlacedItem(FoodPlateRenderState foodPlateRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
 		for (int k = 0; k < foodPlateRenderState.renderAmount; ++k) {
 			if ((foodPlateRenderState.candle || foodPlateRenderState.cake) && foodPlateRenderState.plateState != null) {
-					poseStack.pushPose();
-
-					renderBlock(poseStack, foodPlateRenderState.direction, foodPlateRenderState.candle);
+				poseStack.pushPose();
+				renderBlock(poseStack, foodPlateRenderState.direction, foodPlateRenderState.candle);
 
 				BlockState state = foodPlateRenderState.plateState;
-					if (foodPlateRenderState.candle) {
-						state = state.setValue(CandleBlock.LIT, foodPlateRenderState.fire);
-					}
-					BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
-					//poseStack.translate(-0.5F, 0F, -0.5F);
-					submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, !foodPlateRenderState.hasLevel ? 15728880 : foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
-					poseStack.popPose();
-					return;
+				if (foodPlateRenderState.candle) {
+					state = state.setValue(CandleBlock.LIT, foodPlateRenderState.fire);
+				}
+				BlockStateModel blockstatemodel = Minecraft.getInstance().getBlockRenderer().getBlockModel(state);
+				//poseStack.translate(-0.5F, 0F, -0.5F);
+				submitNodeCollector.submitBlockModel(poseStack, ItemBlockRenderTypes.getRenderType(state), blockstatemodel, 0.0F, 0.0F, 0.0F, !foodPlateRenderState.hasLevel ? 15728880 : foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+				poseStack.popPose();
+				return;
 			} else if (!foodPlateRenderState.plateItem.isEmpty()) {
 					poseStack.pushPose();
 
