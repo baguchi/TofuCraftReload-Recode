@@ -177,6 +177,10 @@ public class TofuCraftReload {
 				TofuBlocks.TOFU_STEM_HANGING_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get(),
 				TofuBlocks.LEEK_HANGING_SIGN.get(), TofuBlocks.LEEK_WALL_HANGING_SIGN.get(),
 				TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get());
+		event.modify(BlockEntityType.SHELF,
+				TofuBlocks.TOFU_STEM_SHELF.get(),
+				TofuBlocks.LEEK_SHELF.get(),
+				TofuBlocks.LEEK_GREEN_SHELF.get());
 
 		event.modify(BlockEntityType.BRUSHABLE_BLOCK, TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 	}
