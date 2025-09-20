@@ -165,7 +165,7 @@ public class TofuStructures {
 								.build(),
 						pools.getOrThrow(TofuStructures.TOFU_MINESHAFT_CENTERS),
 						12,
-						UniformHeight.of(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(42)),
+						UniformHeight.of(VerticalAnchor.absolute(-32), VerticalAnchor.absolute(16)),
 						false
 				)
 		);
@@ -178,7 +178,7 @@ public class TofuStructures {
 				, new RandomSpreadStructurePlacement(32, 8, RandomSpreadType.LINEAR, 16324620)));
 		context.register(TOFU_RUINS_SET, new StructureSet(structures.getOrThrow(TOFU_RUINS), new RandomSpreadStructurePlacement(28, 8, RandomSpreadType.LINEAR, 83469867)));
 		context.register(TOFU_MINESHAFT_SET, new StructureSet(structures.getOrThrow(TOFU_MINESHAFT), new RandomSpreadStructurePlacement(
-				Vec3i.ZERO, StructurePlacement.FrequencyReductionMethod.LEGACY_TYPE_3, 0.004F, 0, Optional.empty(), 1, 0, RandomSpreadType.LINEAR
+				Vec3i.ZERO, StructurePlacement.FrequencyReductionMethod.LEGACY_TYPE_3, 0.001F, 0, Optional.empty(), 1, 0, RandomSpreadType.LINEAR
 		)));
 	}
 
