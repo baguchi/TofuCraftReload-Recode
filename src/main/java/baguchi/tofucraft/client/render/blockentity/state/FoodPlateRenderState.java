@@ -16,5 +16,4 @@ public class FoodPlateRenderState extends BlockEntityRenderState {
 	public boolean candle;
 	public boolean cake;
 	public int renderAmount;
-	public boolean hasLevel;
 }

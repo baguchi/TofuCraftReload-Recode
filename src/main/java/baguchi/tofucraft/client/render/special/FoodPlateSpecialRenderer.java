@@ -6,6 +6,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -35,11 +36,16 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 		if (itemContainerContents != null) {
 			this.renderState.plateState = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()).defaultBlockState();
 
+			//Minecraft.getInstance().getItemModelResolver().updateForTopItem(this.renderState.plateItem, itemContainerContents.getStackInSlot(0), ItemDisplayContext.GROUND, null, null, 0);
+
 			this.renderState.candle = itemContainerContents.getStackInSlot(0).is(ItemTags.CANDLES);
 			this.renderState.cake = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()) instanceof CakeBlock;
 			this.renderState.fire = false;
 			this.renderState.renderAmount = foodPlateRender.getRenderAmount(itemContainerContents.getStackInSlot(0));
 		}
+		this.renderState.lightCoords = i;
+		this.renderState.direction = Direction.NORTH;
+
 		this.foodPlateRender.renderInHand(renderState, poseStack, submitNodeCollector);
 
 	}
