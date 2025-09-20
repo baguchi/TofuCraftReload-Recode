@@ -1,22 +1,29 @@
 package baguchi.tofucraft.client.render;
 
-import baguchi.tofucraft.client.render.state.ProjectileRenderState;
 import baguchi.tofucraft.entity.projectile.FukumameEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
+import net.minecraft.client.model.ArrowModel;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.state.ArrowRenderState;
+import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 
-public abstract class AbstractSoybeanRender<T extends FukumameEntity, S extends ProjectileRenderState> extends EntityRenderer<T, S> {
+public abstract class AbstractSoybeanRender<T extends FukumameEntity, S extends ArrowRenderState> extends EntityRenderer<T, S> {
+	private final ArrowModel model;
+
+
 	public AbstractSoybeanRender(EntityRendererProvider.Context p_173917_) {
 		super(p_173917_);
+		this.model = new ArrowModel(p_173917_.bakeLayer(ModelLayers.ARROW));
 	}
 
 	@Override
@@ -24,30 +31,8 @@ public abstract class AbstractSoybeanRender<T extends FukumameEntity, S extends 
 		p_113842_.pushPose();
 		p_113842_.mulPose(Axis.YP.rotationDegrees(p_113839_.yRot - 90.0F));
 		p_113842_.mulPose(Axis.ZP.rotationDegrees(p_113839_.xRot));
+		p_113843_.submitModel(this.model, p_113839_, p_113842_, RenderType.entityCutout(this.getTextureLocation(p_113839_)), p_113839_.lightCoords, OverlayTexture.NO_OVERLAY, p_113839_.outlineColor, (ModelFeatureRenderer.CrumblingOverlay) null);
 
-		p_113842_.mulPose(Axis.XP.rotationDegrees(45.0F));
-		p_113842_.scale(0.05625F, 0.05625F, 0.05625F);
-		p_113842_.translate(-4.0F, 0.0F, 0.0F);
-		p_113843_.submitCustomGeometry(p_113842_, RenderType.entityCutout(this.getTextureLocation(p_113839_)), (pose, vertexConsumer) -> {
-
-			this.vertex(pose, vertexConsumer, -7, -2, -2, 0.0F, 0.15625F, -1, 0, 0, p_113839_.lightCoords);
-			this.vertex(pose, vertexConsumer, -7, -2, 2, 0.15625F, 0.15625F, -1, 0, 0, p_113839_.lightCoords);
-			this.vertex(pose, vertexConsumer, -7, 2, 2, 0.15625F, 0.3125F, -1, 0, 0, p_113839_.lightCoords);
-			this.vertex(pose, vertexConsumer, -7, 2, -2, 0.0F, 0.3125F, -1, 0, 0, p_113839_.lightCoords);
-			this.vertex(pose, vertexConsumer, -7, 2, -2, 0.0F, 0.15625F, 1, 0, 0, p_113839_.lightCoords);
-			this.vertex(pose, vertexConsumer, -7, 2, 2, 0.15625F, 0.15625F, 1, 0, 0, p_113839_.lightCoords);
-			this.vertex(pose, vertexConsumer, -7, -2, 2, 0.15625F, 0.3125F, 1, 0, 0, p_113839_.lightCoords);
-			this.vertex(pose, vertexConsumer, -7, -2, -2, 0.0F, 0.3125F, 1, 0, 0, p_113839_.lightCoords);
-
-			for (int j = 0; j < 4; j++) {
-				p_113842_.mulPose(Axis.XP.rotationDegrees(90.0F));
-				this.vertex(pose, vertexConsumer, -8, -2, 0, 0.0F, 0.0F, 0, 1, 0, p_113839_.lightCoords);
-				this.vertex(pose, vertexConsumer, 8, -2, 0, 0.5F, 0.0F, 0, 1, 0, p_113839_.lightCoords);
-				this.vertex(pose, vertexConsumer, 8, 2, 0, 0.5F, 0.15625F, 0, 1, 0, p_113839_.lightCoords);
-				this.vertex(pose, vertexConsumer, -8, 2, 0, 0.0F, 0.15625F, 0, 1, 0, p_113839_.lightCoords);
-			}
-
-		});
 
 		p_113842_.popPose();
 		super.submit(p_113839_, p_113842_, p_113843_, p_451076_);

@@ -12,6 +12,7 @@ import baguchi.tofucraft.client.model.TofuGolemModel;
 import baguchi.tofucraft.client.model.TofuSpiderModel;
 import baguchi.tofucraft.client.model.TofunianModel;
 import baguchi.tofucraft.client.model.TravelerTofunianModel;
+import baguchi.tofucraft.client.model.ZundaBusterModel;
 import baguchi.tofucraft.client.particle.ParticleSimpleStink;
 import baguchi.tofucraft.client.particle.ParticleStink;
 import baguchi.tofucraft.client.particle.ParticleZundaCloud;
@@ -416,6 +417,7 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.SHUDOFUSPIDER, ShuDofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.FUKUMAME_THROWER, FukumameThrowerModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.SOYBALL, SoyBallModel::createBodyLayer);
+		event.registerLayerDefinition(TofuModelLayers.ZUNDA_BUSTER, ZundaBusterModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFU_STEM_BOAT, BoatModel::createBoatModel);
 		event.registerLayerDefinition(TofuModelLayers.LEEK_BOAT, BoatModel::createBoatModel);
 		event.registerLayerDefinition(TofuModelLayers.LEEK_GREEN_BOAT, BoatModel::createBoatModel);

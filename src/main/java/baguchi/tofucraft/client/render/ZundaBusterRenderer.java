@@ -1,6 +1,8 @@
 package baguchi.tofucraft.client.render;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.client.TofuModelLayers;
+import baguchi.tofucraft.client.model.ZundaBusterModel;
 import baguchi.tofucraft.client.render.state.ProjectileRenderState;
 import baguchi.tofucraft.entity.projectile.ZundaBuster;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -20,8 +22,11 @@ import net.minecraft.util.Mth;
 public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T, ProjectileRenderState> {
 	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/zunda_buster.png");
 
-	public ZundaBusterRenderer(EntityRendererProvider.Context p_173917_) {
-		super(p_173917_);
+	private final ZundaBusterModel model;
+
+	public ZundaBusterRenderer(EntityRendererProvider.Context context) {
+		super(context);
+		this.model = new ZundaBusterModel<>(context.bakeLayer(TofuModelLayers.ZUNDA_BUSTER));
 	}
 
 
@@ -29,22 +34,13 @@ public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T
 	public void submit(ProjectileRenderState projectileRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
 		poseStack.pushPose();
 
-		poseStack.translate(0.0F, 0.5F, 0.0F);
-		poseStack.scale(0.1F, 0.1F, 0.1F);
+		//poseStack.translate(0.0F, 0.5F, 0.0F);
 		poseStack.mulPose(Axis.YP.rotationDegrees(projectileRenderState.yRot - 90.0F));
 		poseStack.mulPose(Axis.ZP.rotationDegrees(projectileRenderState.xRot));
+		poseStack.translate(0.0F, -1.501F, 0F);
 
-		poseStack.mulPose(Axis.XP.rotationDegrees(45.0F));
+		submitNodeCollector.submitModel(this.model, projectileRenderState, poseStack, RenderType.entityCutout(this.getTextureLocation(projectileRenderState)), projectileRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 654311423, null);
 
-		submitNodeCollector.submitCustomGeometry(poseStack, RenderType.entityTranslucentEmissive(this.getTextureLocation(projectileRenderState)), (pose, vertexConsumer) -> {
-			for (int j = 0; j < 4; j++) {
-				poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
-				this.vertex(pose, vertexConsumer, -8, -8, 0, 0.0F, 0.0F, 0, 1, 0, projectileRenderState.lightCoords);
-				this.vertex(pose, vertexConsumer, 8, -8, 0, 1F, 0.0F, 0, 1, 0, projectileRenderState.lightCoords);
-				this.vertex(pose, vertexConsumer, 8, 8, 0, 1F, 1F, 0, 1, 0, projectileRenderState.lightCoords);
-				this.vertex(pose, vertexConsumer, -8, 8, 0, 0.0F, 1F, 0, 1, 0, projectileRenderState.lightCoords);
-			}
-		});
 		poseStack.popPose();
 		super.submit(projectileRenderState, poseStack, submitNodeCollector, cameraRenderState);
 	}
