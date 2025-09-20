@@ -22,7 +22,6 @@ import baguchi.tofucraft.registry.TofuPoiTypes;
 import baguchi.tofucraft.registry.TofuRecipes;
 import baguchi.tofucraft.registry.TofuStructures;
 import baguchi.tofucraft.registry.TofuTags;
-import baguchi.tofucraft.utils.ClientUtils;
 import baguchi.tofucraft.utils.ContainerUtils;
 import baguchi.tofucraft.utils.JigsawHelper;
 import baguchi.tofucraft.utils.RecipeHelper;
@@ -36,6 +35,7 @@ import net.minecraft.client.sounds.MusicInfo;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ExplosionParticleInfo;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -534,7 +534,9 @@ public class CommonEvents {
 					Level.ExplosionInteraction.MOB,
 					TofuParticleTypes.ZUNDA_EXPLOSION.get(),
 					TofuParticleTypes.ZUNDA_EMIT.get(),
-					ClientUtils.ZUNDA_EXPLOSION_BLOCK_PARTICLES,
+					WeightedList.<ExplosionParticleInfo>builder()
+							.add(new ExplosionParticleInfo(TofuParticleTypes.ZUNDA_CLOUD.get(), 4.0F, 1.0F))
+							.build(),
 					SoundEvents.GENERIC_EXPLODE
 			);
 		}

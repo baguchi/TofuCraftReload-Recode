@@ -5,10 +5,11 @@ import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuTags;
-import baguchi.tofucraft.utils.ClientUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
+import net.minecraft.core.particles.ExplosionParticleInfo;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -78,7 +79,9 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 							Level.ExplosionInteraction.MOB,
 							TofuParticleTypes.ZUNDA_EXPLOSION.get(),
 							TofuParticleTypes.ZUNDA_EMIT.get(),
-							ClientUtils.ZUNDA_EXPLOSION_BLOCK_PARTICLES,
+							WeightedList.<ExplosionParticleInfo>builder()
+									.add(new ExplosionParticleInfo(TofuParticleTypes.ZUNDA_CLOUD.get(), 4.0F, 1.0F))
+									.build(),
 							SoundEvents.GENERIC_EXPLODE
 					);
 			this.discard();
@@ -104,7 +107,9 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 							Level.ExplosionInteraction.MOB,
 							TofuParticleTypes.ZUNDA_EXPLOSION.get(),
 							TofuParticleTypes.ZUNDA_EMIT.get(),
-							ClientUtils.ZUNDA_EXPLOSION_BLOCK_PARTICLES,
+							WeightedList.<ExplosionParticleInfo>builder()
+									.add(new ExplosionParticleInfo(TofuParticleTypes.ZUNDA_CLOUD.get(), 4.0F, 1.0F))
+									.build(),
 							SoundEvents.GENERIC_EXPLODE
 					);
 			this.discard();
