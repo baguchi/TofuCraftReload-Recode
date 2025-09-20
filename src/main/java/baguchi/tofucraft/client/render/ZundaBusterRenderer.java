@@ -22,7 +22,7 @@ import net.minecraft.util.Mth;
 public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T, ProjectileRenderState> {
 	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/zunda_buster.png");
 
-	private final ZundaBusterModel model;
+	private final ZundaBusterModel<ProjectileRenderState> model;
 
 	public ZundaBusterRenderer(EntityRendererProvider.Context context) {
 		super(context);
@@ -35,11 +35,11 @@ public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T
 		poseStack.pushPose();
 
 		//poseStack.translate(0.0F, 0.5F, 0.0F);
-		poseStack.mulPose(Axis.YP.rotationDegrees(projectileRenderState.yRot - 90.0F));
+		poseStack.mulPose(Axis.YP.rotationDegrees(projectileRenderState.yRot - 90F));
 		poseStack.mulPose(Axis.ZP.rotationDegrees(projectileRenderState.xRot));
 		poseStack.translate(0.0F, -1.501F, 0F);
 
-		submitNodeCollector.submitModel(this.model, projectileRenderState, poseStack, RenderType.entityCutout(this.getTextureLocation(projectileRenderState)), projectileRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 654311423, null);
+		submitNodeCollector.submitModel(this.model, projectileRenderState, poseStack, RenderType.eyes(this.getTextureLocation(projectileRenderState)), projectileRenderState.lightCoords, OverlayTexture.NO_OVERLAY, projectileRenderState.outlineColor, null);
 
 		poseStack.popPose();
 		super.submit(projectileRenderState, poseStack, submitNodeCollector, cameraRenderState);
