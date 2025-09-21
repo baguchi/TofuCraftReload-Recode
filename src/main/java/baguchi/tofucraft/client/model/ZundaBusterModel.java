@@ -29,7 +29,7 @@ public class ZundaBusterModel<T extends ProjectileRenderState> extends EntityMod
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition core = partdefinition.addOrReplaceChild("core", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 24.0F, 0.0F, 0.0F, 1.5708F, 0.0F));
+		PartDefinition core = partdefinition.addOrReplaceChild("core", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 14.0F, 0.0F, 0.0F, 1.5708F, 0.0F));
 
 		PartDefinition bone = core.addOrReplaceChild("bone", CubeListBuilder.create().texOffs(0, -29).addBox(0.0F, -13.5F, -16.0F, 0.0F, 27.0F, 32.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.7854F));
 
