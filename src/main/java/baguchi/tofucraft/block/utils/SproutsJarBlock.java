@@ -30,7 +30,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -56,7 +55,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 
 	public SproutsJarBlock(BlockBehaviour.Properties properties) {
 		super(properties);
-		registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false)).setValue(WEST, Boolean.valueOf(false)).setValue(WATERLOGGED, Boolean.valueOf(false)));
+		registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.FALSE).setValue(EAST, Boolean.FALSE).setValue(SOUTH, Boolean.FALSE).setValue(WEST, Boolean.FALSE).setValue(WATERLOGGED, Boolean.FALSE));
 	}
 
 	@Override
@@ -170,7 +169,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 
 	public SproutsJarBlock.Stat getStat(BlockState meta) {
 		if (meta.getBlock() == this)
-			return (SproutsJarBlock.Stat) meta.getValue((Property) STAT);
+			return meta.getValue(STAT);
 		return SproutsJarBlock.Stat.NA;
 	}
 
@@ -200,7 +199,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 
 	@Override
 	public FluidState getFluidState(BlockState p_204507_1_) {
-		return ((Boolean) p_204507_1_.getValue((Property) WATERLOGGED)).booleanValue() ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
+		return p_204507_1_.getValue(WATERLOGGED).booleanValue() ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
 	}
 
 	public enum Stat implements StringRepresentable {
