@@ -146,7 +146,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> ISHITOFU_BRICK = register("tofuishi_brick", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
 	public static final DeferredBlock<Block> ISHITOFU_SMOOTH_BRICK = register("tofuishi_smooth_brick", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
 	public static final DeferredBlock<Block> ISHITOFU_CHISELED_BRICK = register("tofuishi_chiseled_brick", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
-	public static final DeferredBlock<Block> METALTOFU = register("blocktofumetal", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
+	public static final DeferredBlock<Block> METALTOFU = register("blocktofumetal", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.IRON));
 	public static final DeferredBlock<Block> METAL_TOFU_GRATE = register("tofu_metal_grate", (properties) -> new TofuGrateBlock(properties), () -> BlockBehaviour.Properties.of().strength(3.0F, 6.0F)
 			.sound(SoundType.COPPER_GRATE)
 			.mapColor(MapColor.COLOR_LIGHT_GRAY)
@@ -158,7 +158,7 @@ public class TofuBlocks {
 			.isViewBlocking(TofuBlocks::never));
 	public static final DeferredBlock<Block> METAL_TOFU_LUMP = register("tofu_metal_lump", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).lightLevel(state -> {
 		return 15;
-	}).sound(SoundType.METAL));
+	}).sound(SoundType.IRON));
 	public static final DeferredBlock<Block> DIAMONDTOFU = register("blocktofudiamond", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> TOFU_GEM_BLOCK = register("tofu_gem_block", (properties) -> new TofuGemBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> ADVANCE_TOFU_GEM_BLOCK = register("adv_tofu_gem_block", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL));

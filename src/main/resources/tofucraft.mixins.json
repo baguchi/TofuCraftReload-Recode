@@ -6,9 +6,11 @@
   "mixins": [
     "EntityMixin",
     "FishingHookMixin",
+    "IceBlockMixin",
     "LightningBoltMixin",
     "LivingEntityAccessor",
     "PlaceRecipeHelperMixin",
+    "ServerLevelMixin",
     "WardenAiMixin"
   ],
   "injectors": {
