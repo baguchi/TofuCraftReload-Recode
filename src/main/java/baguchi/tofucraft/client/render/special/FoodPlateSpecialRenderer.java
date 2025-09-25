@@ -33,7 +33,7 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 	@Override
 	public void submit(@org.jetbrains.annotations.Nullable ItemContainerContents itemContainerContents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b) {
 
-		if (itemContainerContents != null) {
+		if (itemContainerContents != null && itemContainerContents.getSlots() > 0) {
 			this.renderState.plateState = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()).defaultBlockState();
 
 			//Minecraft.getInstance().getItemModelResolver().updateForTopItem(this.renderState.plateItem, itemContainerContents.getStackInSlot(0), ItemDisplayContext.GROUND, null, null, 0);
