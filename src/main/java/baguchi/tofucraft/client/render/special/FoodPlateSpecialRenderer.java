@@ -61,8 +61,8 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 		Vector3f vector3f = new Vector3f();
 		vector3f.add(minModel, 0, minModel);
 		vector3f.add(maxModel, 0, maxModel);
-		vector3f.add(maxModel, 1 / 16.0F, maxModel);
-		vector3f.add(minModel, 1 / 16.0F, minModel);
+		vector3f.add(maxModel, 6 / 16.0F, maxModel);
+		vector3f.add(minModel, 6 / 16.0F, minModel);
 		p_428562_.add(vector3f);
 
 		//this.modelBase.root().getExtentsForGui(posestack, p_428562_);

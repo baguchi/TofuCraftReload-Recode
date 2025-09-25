@@ -387,8 +387,21 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 	}
 
-	protected LootTable.Builder createFoodPlateDrop(Block p_252164_) {
-		return LootTable.lootTable().withPool((LootPool.Builder) this.applyExplosionCondition(p_252164_, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(p_252164_).apply(copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY).include(DataComponents.CUSTOM_NAME).include(DataComponents.CONTAINER)))));
+	protected LootTable.Builder createFoodPlateDrop(Block block) {
+		return LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+								.setRolls(ConstantValue.exactly(1.0F))
+								.add(
+										LootItem.lootTableItem(block)
+												.apply(
+														copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
+																.include(DataComponents.CUSTOM_NAME)
+																.include(DataComponents.CONTAINER)
+												)
+								)
+
+				);
 	}
 
 	private LootTable.Builder createTFMechaTable(Block p_277929_) {

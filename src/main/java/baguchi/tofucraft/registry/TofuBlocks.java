@@ -484,7 +484,8 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> TOFUBED = register("tofubed", (properties) -> new TofuBedBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.2F).noOcclusion().sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> TOFUCHEST = register("tofuchest", (properties) -> new TofuChestBlock(properties, TofuBlockEntitys.TOFUCHEST::get), () -> BlockBehaviour.Properties.of().strength(2.5F, 6.0F).noOcclusion().sound(SoundType.STONE));
 
-	public static final DeferredBlock<Block> FOODPLATE = register("foodplate", (properties) -> new FoodPlateBlock(properties), () -> BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.METAL));
+	public static final DeferredBlock<Block> FOODPLATE = register("foodplate", (properties) -> new FoodPlateBlock(properties), () -> BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.METAL)
+			.pushReaction(PushReaction.DESTROY));
 	public static final DeferredBlock<Block> TOFUNIAN_STATUE = register("tofunian_statue", (properties) -> new TofunianStatueBlock(properties), () -> BlockBehaviour.Properties.of().strength(100F, 3600000.0F).requiresCorrectToolForDrops().pushReaction(PushReaction.BLOCK).sound(SoundType.LODESTONE));
 
 	public static final DeferredBlock<Block> RICE_BLOCK = register("rice_block",

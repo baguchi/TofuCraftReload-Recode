@@ -72,7 +72,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		float f = -direction.toYRot();
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
 		matrixStackIn.mulPose(Axis.XP.rotationDegrees(90.0F));
-		matrixStackIn.scale(0.6F, 0.6F, 0.6F);
+		//matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 	}
 
 	public void renderBlock(PoseStack matrixStackIn, Direction direction, boolean candle) {
