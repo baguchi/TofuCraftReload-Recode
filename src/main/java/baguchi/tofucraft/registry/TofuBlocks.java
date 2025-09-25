@@ -64,6 +64,7 @@ import baguchi.tofucraft.item.block.EdiableBlockItem;
 import baguchi.tofucraft.world.gen.grower.TofuTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -74,6 +75,7 @@ import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -622,6 +624,8 @@ public class TofuBlocks {
 				return new BlockItem(Objects.requireNonNull(block.get()), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
 			} else if (block.get() == GIANT_OKARA_DONUT.get()) {
 				return new EdiableBlockItem(GIANT_OKARA_DONUT.get(), properties.food(TofuFoods.GIANT_OKARA_DONUT));
+			} else if (block.get() == FOODPLATE.get()) {
+				return new BlockItem(FOODPLATE.get(), properties.component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 			} else {
 				return new BlockItem(block.get(), properties);
 			}

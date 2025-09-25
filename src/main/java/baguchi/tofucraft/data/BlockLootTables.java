@@ -33,6 +33,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
@@ -310,7 +311,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.SALT_FURNACE.get());
 		dropSelf(TofuBlocks.SPROUTSJAR.get());
 		dropSelf(TofuBlocks.MORIJIO.get());
-		createFoodPlateDrop(TofuBlocks.FOODPLATE.get());
+		add(TofuBlocks.FOODPLATE.get(), this::createFoodPlateDrop);
+		;
 		dropSelf(TofuBlocks.ZUNDAMA_BLOCK.get());
 
 		dropSelf(TofuBlocks.RICE_BLOCK.get());
@@ -390,17 +392,19 @@ public class BlockLootTables extends BlockLootSubProvider {
 	protected LootTable.Builder createFoodPlateDrop(Block block) {
 		return LootTable.lootTable()
 				.withPool(
-						LootPool.lootPool()
-								.setRolls(ConstantValue.exactly(1.0F))
-								.add(
-										LootItem.lootTableItem(block)
-												.apply(
-														copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
-																.include(DataComponents.CUSTOM_NAME)
-																.include(DataComponents.CONTAINER)
-												)
-								)
-
+						this.applyExplosionCondition(
+								block,
+								LootPool.lootPool()
+										.setRolls(ConstantValue.exactly(1.0F))
+										.add(
+												LootItem.lootTableItem(block)
+														.apply(
+																CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
+																		.include(DataComponents.CUSTOM_NAME)
+																		.include(DataComponents.CONTAINER)
+														)
+										)
+						)
 				);
 	}
 

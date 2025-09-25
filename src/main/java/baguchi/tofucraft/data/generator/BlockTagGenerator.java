@@ -59,7 +59,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFU_DETECTOR.get(), TofuBlocks.TF_STORAGE.get(), TofuBlocks.TF_OVEN.get(), TofuBlocks.ANTENNA_BASIC.get(), TofuBlocks.TOFU_WORK_STATION.get(), TofuBlocks.TF_COLLECTOR.get()
 				, TofuBlocks.TOFUNIAN_STATUE.get()
 				, TofuBlocks.TOFU_POT.get()
-				, TofuBlocks.TF_CRAFTING_TABLE.get(), TofuBlocks.WAXED_ISHITOFU.get(), TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get());
+						, TofuBlocks.TF_CRAFTING_TABLE.get(), TofuBlocks.WAXED_ISHITOFU.get(), TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get())
+				.add(TofuBlocks.FOODPLATE.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(TofuBlocks.SALTPAN.get()
 				, TofuBlocks.LEEK_GREEN_STEM.get(), TofuBlocks.LEEK_STEM.get()
 				, TofuBlocks.TOFU_STEM.get(), TofuBlocks.TOFU_STEM_PLANKS.get(), TofuBlocks.TOFU_STEM_PLANKS_STAIR.get(), TofuBlocks.TOFU_STEM_PLANKS_SLAB.get(), TofuBlocks.TOFU_STEM_FENCE.get(), TofuBlocks.TOFU_STEM_FENCE_GATE.get(), TofuBlocks.TOFU_STEM_DOOR.get(), TofuBlocks.TOFU_STEM_TRAPDOOR.get()
