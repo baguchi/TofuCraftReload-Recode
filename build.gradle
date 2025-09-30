@@ -120,14 +120,6 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
-    maven {
-        name = "Maven for PR #2639" // https://github.com/neoforged/NeoForge/pull/2639
-        url = uri("https://prmaven.neoforged.net/NeoForge/pr2639")
-        content {
-            includeModule("net.neoforged", "neoforge")
-            includeModule("net.neoforged", "testframework")
-        }
-    }
 }
 
 dependencies {
@@ -139,8 +131,8 @@ dependencies {
     //implementation "net.neoforged:neoforge:${neo_version}"
 
 
-    implementation "baguchi.bagus_lib:BagusLib:${bagus_lib_version}"
-    //implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
+    //implementation "baguchi.bagus_lib:BagusLib:${bagus_lib_version}"
+    implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
 
     //implementation "mezz.jei:jei-1.21.8-neoforge:24.0.0.2"
     // at runtime, use the full JEI jar for NeoForge
