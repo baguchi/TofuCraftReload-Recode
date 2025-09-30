@@ -10,6 +10,7 @@ import baguchi.tofucraft.entity.TravelerTofunian;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
 
@@ -17,11 +18,13 @@ import net.minecraft.resources.ResourceLocation;
 public class TravelerTofunianRender extends MobRenderer<TravelerTofunian, TravelerTofunianRenderState, TravelerTofunianModel<TravelerTofunianRenderState>> {
 	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/traveler_tofunian.png");
 
-	public TravelerTofunianRender(EntityRendererProvider.Context p_173956_) {
-		super(p_173956_, new TravelerTofunianModel<>(p_173956_.bakeLayer(TofuModelLayers.TRAVELER_TOFUNIAN)), 0.5F);
+	public TravelerTofunianRender(EntityRendererProvider.Context context) {
+		super(context, new TravelerTofunianModel<>(context.bakeLayer(TofuModelLayers.TRAVELER_TOFUNIAN)), 0.5F);
 		this.addLayer(new TofunianEyeLayer<>(this));
-		this.addLayer(new CustomArmorLayer<>(this, p_173956_));
+		this.addLayer(new CustomArmorLayer<>(this, context));
 		this.addLayer(new ItemInHandLayer<>(this));
+		this.addLayer(new CustomHeadLayer<>(this, context.getModelSet(), context.getPlayerSkinRenderCache()));
+
 	}
 
 	@Override

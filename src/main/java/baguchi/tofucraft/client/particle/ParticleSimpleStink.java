@@ -3,19 +3,20 @@ package baguchi.tofucraft.client.particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
+import net.minecraft.client.particle.SingleQuadParticle;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 
-public class ParticleSimpleStink extends TextureSheetParticle {
+public class ParticleSimpleStink extends SingleQuadParticle {
 	private final double xStart;
 	private final double yStart;
 	private final double zStart;
 
-	protected ParticleSimpleStink(ClientLevel p_107551_, double p_107552_, double p_107553_, double p_107554_, double p_107555_, double p_107556_, double p_107557_) {
-		super(p_107551_, p_107552_, p_107553_, p_107554_);
+	protected ParticleSimpleStink(ClientLevel p_107551_, double p_107552_, double p_107553_, double p_107554_, double p_107555_, double p_107556_, double p_107557_, TextureAtlasSprite p_445602_) {
+		super(p_107551_, p_107552_, p_107553_, p_107554_, p_445602_);
 		this.xd = p_107555_;
 		this.yd = p_107556_;
 		this.zd = p_107557_;
@@ -34,9 +35,11 @@ public class ParticleSimpleStink extends TextureSheetParticle {
 		this.lifetime = (int) (Math.random() * 10.0D) + 40;
 	}
 
-	public ParticleRenderType getRenderType() {
-		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+	@Override
+	public SingleQuadParticle.Layer getLayer() {
+		return Layer.OPAQUE;
 	}
+
 
 	public void move(double p_107560_, double p_107561_, double p_107562_) {
 		this.setBoundingBox(this.getBoundingBox().move(p_107560_, p_107561_, p_107562_));
@@ -86,10 +89,9 @@ public class ParticleSimpleStink extends TextureSheetParticle {
 			this.sprite = p_107570_;
 		}
 
-		public Particle createParticle(SimpleParticleType p_107581_, ClientLevel p_107582_, double p_107583_, double p_107584_, double p_107585_, double p_107586_, double p_107587_, double p_107588_) {
-			TofuPortalParticle portalparticle = new TofuPortalParticle(p_107582_, p_107583_, p_107584_, p_107585_, p_107586_, p_107587_, p_107588_);
-			portalparticle.pickSprite(this.sprite);
-			return portalparticle;
+		@Override
+		public Particle createParticle(SimpleParticleType p_446632_, ClientLevel p_107095_, double x, double y, double z, double motionX, double motionY, double motionZ, RandomSource random) {
+			return new ParticleSimpleStink(p_107095_, x, y, z, motionX, motionY, motionZ, this.sprite.get(random));
 		}
 	}
 }

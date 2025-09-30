@@ -234,7 +234,7 @@ public class TofuDiamondToolUtil {
 			assert netHandlerPlayClient != null;
 			//send player action update
 			netHandlerPlayClient.send(new ServerboundPlayerActionPacket(ServerboundPlayerActionPacket.Action.STOP_DESTROY_BLOCK, pos, Minecraft
-					.getInstance().cameraEntity.getDirection()));
+					.getInstance().player.getDirection()));
 		}
 	}
 }

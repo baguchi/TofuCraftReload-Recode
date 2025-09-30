@@ -35,6 +35,7 @@ import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
@@ -46,6 +47,8 @@ import net.neoforged.fml.util.ObfuscationReflectionHelper;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction.copyComponentsFromBlockEntity;
 
 public class BlockLootTables extends BlockLootSubProvider {
 	private final Set<Block> knownBlocks = new HashSet<>();
@@ -270,6 +273,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.LEEK_GREEN_DOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		dropSelf(TofuBlocks.LEEK_GREEN_TRAPDOOR.get());
 		dropSelf(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.get());
+		dropSelf(TofuBlocks.LEEK_GREEN_SHELF.get());
 		dropSelf(TofuBlocks.LEEK_GREEN_BUTTON.get());
 
 		dropSelf(TofuBlocks.LEEK_STEM.get());
@@ -281,6 +285,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.LEEK_DOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		dropSelf(TofuBlocks.LEEK_TRAPDOOR.get());
 		dropSelf(TofuBlocks.LEEK_PRESSURE_PLATE.get());
+		dropSelf(TofuBlocks.LEEK_SHELF.get());
 		dropSelf(TofuBlocks.LEEK_BUTTON.get());
 
 		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
@@ -295,6 +300,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.TOFU_STEM_DOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		dropSelf(TofuBlocks.TOFU_STEM_TRAPDOOR.get());
 		dropSelf(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.get());
+		dropSelf(TofuBlocks.TOFU_STEM_SHELF.get());
 		dropSelf(TofuBlocks.TOFU_STEM_BUTTON.get());
 
 		this.registerLeek(TofuBlocks.LEEK.get(), TofuItems.LEEK.get());
@@ -305,7 +311,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.SALT_FURNACE.get());
 		dropSelf(TofuBlocks.SPROUTSJAR.get());
 		dropSelf(TofuBlocks.MORIJIO.get());
-		createFoodPlateDrop(TofuBlocks.FOODPLATE.get());
+		add(TofuBlocks.FOODPLATE.get(), this::createFoodPlateDrop);
+		;
 		dropSelf(TofuBlocks.ZUNDAMA_BLOCK.get());
 
 		dropSelf(TofuBlocks.RICE_BLOCK.get());
@@ -382,8 +389,23 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 	}
 
-	protected LootTable.Builder createFoodPlateDrop(Block p_252164_) {
-		return LootTable.lootTable().withPool((LootPool.Builder) this.applyExplosionCondition(p_252164_, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(p_252164_).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(DataComponents.CUSTOM_NAME).include(DataComponents.CONTAINER)))));
+	protected LootTable.Builder createFoodPlateDrop(Block block) {
+		return LootTable.lootTable()
+				.withPool(
+						this.applyExplosionCondition(
+								block,
+								LootPool.lootPool()
+										.setRolls(ConstantValue.exactly(1.0F))
+										.add(
+												LootItem.lootTableItem(block)
+														.apply(
+																CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
+																		.include(DataComponents.CUSTOM_NAME)
+																		.include(DataComponents.CONTAINER)
+														)
+										)
+						)
+				);
 	}
 
 	private LootTable.Builder createTFMechaTable(Block p_277929_) {
@@ -394,7 +416,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 								.add(
 										LootItem.lootTableItem(p_277929_)
 												.apply(
-														CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+														copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
 																.include(TofuDataComponents.TF_ENERGY_DATA.get())
 												)
 								)

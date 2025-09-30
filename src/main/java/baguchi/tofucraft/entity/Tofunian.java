@@ -39,7 +39,6 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.DebugPackets;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -419,7 +418,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.updateSwingTime();
 		super.aiStep();
 		this.actionTicks();
-		if (this.level().isClientSide) {
+		if (this.level().isClientSide()) {
 			this.actionAnimations(this.getAction(), true);
 			if (this.getAction() == Actions.CRY) {
 				this.level().addParticle(TofuParticleTypes.SOYMILK_SPLASH.get(), this.getX(), this.getEyeY(), this.getZ(), Mth.nextFloat(this.random, -1, 1) * 0.15D, 0.05D, Mth.nextFloat(this.random, -1, 1) * 0.15D);
@@ -498,7 +497,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 					return true;
 				}) && (this.getVillageCenter().distManhattan(this.blockPosition()) > 16 * 8)) {
 					poimanager.release(this.getVillageCenter());
-					DebugPackets.sendPoiTicketCountPacket(serverLevel, this.getVillageCenter());
+					serverLevel.debugSynchronizers().updatePoi(this.getVillageCenter());
 					this.setVillageCenter(null);
 				} else if (!poimanager.exists(this.getVillageCenter(), (p_217230_) -> {
 					return true;
@@ -587,7 +586,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 				}
 				if (p_35473_ == InteractionHand.MAIN_HAND) {
-					if (flag && !this.level().isClientSide) {
+					if (flag && !this.level().isClientSide()) {
 						this.setUnhappy();
 					}
 
@@ -597,7 +596,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				if (flag) {
 					return InteractionResult.SUCCESS;
 				} else {
-					if (!this.level().isClientSide && !this.offers.isEmpty()) {
+					if (!this.level().isClientSide() && !this.offers.isEmpty()) {
 						this.startTrading(p_35472_);
 					}
 
@@ -989,13 +988,14 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		Entity entity = p_35419_.getEntity();
 
 		if (this.getVillageCenter() != null) {
-			if (this.level() instanceof ServerLevel) {
+			if (this.level() instanceof ServerLevel serverLevel) {
 				//don't forget release poi
 				PoiManager poimanager = ((ServerLevel) this.level()).getPoiManager();
 				if (poimanager.exists(this.getVillageCenter(), (p_217230_) -> {
 					return true;
 				})) {
 					poimanager.release(this.getVillageCenter());
+					serverLevel.debugSynchronizers().updatePoi(this.getVillageCenter());
 				}
 			}
 		}

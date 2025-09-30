@@ -81,7 +81,7 @@ public class ZundaBuster extends ThrowableProjectile {
 				EnchantmentHelper.doPostAttackEffects(serverlevel, entity, damagesource);
 			}
 		}
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			this.level().broadcastEntityEvent(this, (byte) 3);
 			this.discard();
 		}
@@ -119,7 +119,7 @@ public class ZundaBuster extends ThrowableProjectile {
 		if (this.level() instanceof ServerLevel serverlevel && itemstack != null) {
 			this.hitBlockEnchantmentEffects(serverlevel, result, itemstack);
 		}
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			this.level().broadcastEntityEvent(this, (byte) 3);
 			this.discard();
 		}

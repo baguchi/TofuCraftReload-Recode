@@ -10,6 +10,7 @@ import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 
@@ -95,13 +96,11 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 		return this.head;
 	}
 
-	public void translateToHand(HumanoidArm p_102925_, PoseStack p_102926_) {
-		this.roots.translateAndRotate(p_102926_);
-		this.getArm(p_102925_).translateAndRotate(p_102926_);
-		p_102926_.translate(0, -(2 / 16F), 0);
-		p_102926_.scale(0.85F, 0.85F, 0.85F);
+	@Override
+	public void translateToHead(PoseStack poseStack) {
+		this.roots.translateAndRotate(poseStack);
+		this.head.translateAndRotate(poseStack);
 	}
-
 
 	@Override
 	public void translateToHead(ModelPart modelPart, PoseStack poseStack) {
@@ -160,5 +159,13 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 	@Override
 	public Iterable<ModelPart> headPartArmors() {
 		return ImmutableList.of(this.head);
+	}
+
+	@Override
+	public void translateToHand(EntityRenderState entityRenderState, HumanoidArm humanoidArm, PoseStack poseStack) {
+		this.roots.translateAndRotate(poseStack);
+		this.getArm(humanoidArm).translateAndRotate(poseStack);
+		poseStack.translate(0, -(2 / 16F), 0);
+		poseStack.scale(0.85F, 0.85F, 0.85F);
 	}
 }

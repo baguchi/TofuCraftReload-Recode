@@ -7,10 +7,10 @@
   "start_height": {
     "type": "minecraft:uniform",
     "max_inclusive": {
-      "absolute": 42
+      "absolute": 16
     },
     "min_inclusive": {
-      "absolute": -16
+      "absolute": -32
     }
   },
   "start_pool": "tofucraft:tofu_mineshaft/centers",

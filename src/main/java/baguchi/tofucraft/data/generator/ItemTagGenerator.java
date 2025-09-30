@@ -69,6 +69,12 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(ItemTags.WOODEN_BUTTONS).add(TofuBlocks.TOFU_STEM_BUTTON.get().asItem()).add(TofuBlocks.LEEK_GREEN_BUTTON.get().asItem()).add(TofuBlocks.LEEK_BUTTON.get().asItem());
 
 
+		this.tag(ItemTags.WOODEN_SHELVES)
+				.add(
+						TofuBlocks.LEEK_GREEN_SHELF.get().asItem(),
+						TofuBlocks.LEEK_SHELF.get().asItem(),
+						TofuBlocks.TOFU_STEM_SHELF.get().asItem()
+				);
 		this.tag(ItemTags.SIGNS)
 				.add(
 						TofuBlocks.LEEK_SIGN.get().asItem(),

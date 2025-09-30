@@ -92,7 +92,7 @@ public class TFStorageBlock extends TFBaseEntityBlock {
 
 
 		if (!flag) {
-			if (p_48707_.isClientSide) {
+			if (p_48707_.isClientSide()) {
 				ClientProxy.PROXY.setRefrencedTE(p_48707_.getBlockEntity(p_48708_));
 				return InteractionResult.SUCCESS;
 			} else {

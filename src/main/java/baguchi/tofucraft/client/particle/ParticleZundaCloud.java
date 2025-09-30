@@ -1,25 +1,24 @@
 package baguchi.tofucraft.client.particle;
 
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
+import net.minecraft.client.particle.SingleQuadParticle;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 
 
-public class ParticleZundaCloud extends TextureSheetParticle {
+public class ParticleZundaCloud extends SingleQuadParticle {
 
 	private final float scale;
 	private final float shake;
 
 
-	public ParticleZundaCloud(ClientLevel level, double x, double y, double z, double vx, double vy, double vz, double scale, int duration, double shake) {
-		super(level, x, y, z);
+	public ParticleZundaCloud(ClientLevel level, double x, double y, double z, double vx, double vy, double vz, double scale, int duration, double shake, TextureAtlasSprite textureAtlasSprite) {
+		super(level, x, y, z, textureAtlasSprite);
 		this.scale = (float) scale * 0.4f * 0.1f;
 		lifetime = duration;
 		xd = vx * 0.8;
@@ -30,26 +29,27 @@ public class ParticleZundaCloud extends TextureSheetParticle {
 	}
 
 	@Override
-	public void render(VertexConsumer consumer, Camera camera, float tick) {
-		var time = (age + tick) / (float) lifetime;
-		alpha = Mth.clamp(1.0F - time, 0.1F, 1F);
-
-		this.quadSize = scale * ((0.7f * time) + 0.3f);
-
-		super.render(consumer, camera, tick);
-	}
-
-	@Override
-	public ParticleRenderType getRenderType() {
-		return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
-	}
-
-	@Override
 	public void tick() {
 		super.tick();
 		xd *= shake;
 		yd *= shake;
 		zd *= shake;
+		var time = (age) / (float) lifetime;
+
+		alpha = Mth.clamp(1.0F - time, 0.1F, 1F);
+	}
+
+	@Override
+	public SingleQuadParticle.Layer getLayer() {
+		return Layer.OPAQUE;
+	}
+
+
+	@Override
+	public float getQuadSize(float tick) {
+		var time = (age + tick) / (float) lifetime;
+
+		return scale * ((1.25f * time) + 0.3f);
 	}
 
 
@@ -61,9 +61,8 @@ public class ParticleZundaCloud extends TextureSheetParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			ParticleZundaCloud particleCloud = new ParticleZundaCloud(level, x, y, z, xSpeed, ySpeed, zSpeed, 3F, 20, 1.1F);
-			particleCloud.setSpriteFromAge(sprite);
+		public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, RandomSource randomSource) {
+			ParticleZundaCloud particleCloud = new ParticleZundaCloud(level, x, y, z, xSpeed, ySpeed, zSpeed, 3F, 20, 1.1F, this.sprite.get(randomSource));
 			return particleCloud;
 		}
 	}

@@ -98,7 +98,7 @@ public class Zundamite extends Monster {
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		if (this.level().isClientSide) {
+		if (this.level().isClientSide()) {
 			double xSpeed = (this.random.nextDouble() - 0.5) * 0.15F;
 			double ySpeed = (this.random.nextDouble() - 0.5) * 0.15F;
 			double zSpeed = (this.random.nextDouble() - 0.5) * 0.15F;

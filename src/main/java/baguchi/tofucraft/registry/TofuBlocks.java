@@ -64,6 +64,7 @@ import baguchi.tofucraft.item.block.EdiableBlockItem;
 import baguchi.tofucraft.world.gen.grower.TofuTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -74,6 +75,7 @@ import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -91,6 +93,7 @@ import net.minecraft.world.level.block.LanternBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.ShelfBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
@@ -117,22 +120,22 @@ import java.util.function.Supplier;
 public class TofuBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TofuCraftReload.MODID);
 
-	public static final DeferredBlock<Block> SOYMILK = registerWithoutItem("soymilk", (properties) -> new LiquidBlock(TofuFluids.SOYMILK.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
-	public static final DeferredBlock<Block> SOYMILK_HELL = registerWithoutItem("soymilk_hell", (properties) -> new LiquidBlock(TofuFluids.SOYMILK_HELL.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
-	public static final DeferredBlock<Block> SOYMILK_SOUL = registerWithoutItem("soymilk_soul", (properties) -> new LiquidBlock(TofuFluids.SOYMILK_SOUL.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
-	public static final DeferredBlock<Block> BITTERN = registerWithoutItem("bittern", (properties) -> new LiquidBlock(TofuFluids.BITTERN.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
-	public static final DeferredBlock<Block> DOUBANJIANG = registerWithoutItem("doubanjiang", (properties) -> new LiquidBlock(TofuFluids.DOUBANJIANG.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().lightLevel((blockstate) -> 10).sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> SOYMILK = registerWithoutItem("soymilk", (properties) -> new LiquidBlock(TofuFluids.SOYMILK.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> SOYMILK_HELL = registerWithoutItem("soymilk_hell", (properties) -> new LiquidBlock(TofuFluids.SOYMILK_HELL.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> SOYMILK_SOUL = registerWithoutItem("soymilk_soul", (properties) -> new LiquidBlock(TofuFluids.SOYMILK_SOUL.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> BITTERN = registerWithoutItem("bittern", (properties) -> new LiquidBlock(TofuFluids.BITTERN.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> DOUBANJIANG = registerWithoutItem("doubanjiang", (properties) -> new LiquidBlock(TofuFluids.DOUBANJIANG.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().lightLevel((blockstate) -> 10).sound(SoundType.EMPTY));
 
 	public static final DeferredBlock<Block> YUBA = registerWithoutItem("yuba", (properties) -> new YubaBlock(properties), () -> BlockBehaviour.Properties.of().noOcclusion().randomTicks().strength(0.25F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.WOOL));
 
 
-	public static final DeferredBlock<Block> SOYBEAN = registerWithoutItem("soybean", (properties) -> new SoybeanCropsBlock(properties), () -> BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.CROP));
+	public static final DeferredBlock<Block> SOYBEAN = registerWithoutItem("soybean", (properties) -> new SoybeanCropsBlock(properties), () -> BlockBehaviour.Properties.of().noCollision().randomTicks().instabreak().sound(SoundType.CROP));
 	public static final DeferredBlock<Block> SOYBEAN_NETHER = registerWithoutItem("soybean_nether", (properties) -> new SoybeanNetherCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> SOYBEAN_SOUL = registerWithoutItem("soybean_soul", (properties) -> new SoybeanSoulCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> SOYBEAN_PALE = registerWithoutItem("soybean_pale", (properties) -> new SoybeanPaleCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> LEEK_CROP = registerWithoutItem("leek_crop", (properties) -> new LeekCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> RICE_CROP = registerWithoutItem("rice", (properties) -> new RiceCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
-	public static final DeferredBlock<Block> RICE_ROOT = registerWithoutItem("rice_root", (properties) -> new RiceRootBlock(properties), () -> BlockBehaviour.Properties.of().noCollission().randomTicks().strength(0.1F).sound(SoundType.CROP));
+	public static final DeferredBlock<Block> RICE_ROOT = registerWithoutItem("rice_root", (properties) -> new RiceRootBlock(properties), () -> BlockBehaviour.Properties.of().noCollision().randomTicks().strength(0.1F).sound(SoundType.CROP));
 	public static final DeferredBlock<Block> CHILI_CROP = registerWithoutItem("chili_crop", (properties) -> new ChiliCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> SPROUTS = registerWithoutItem("sprouts_crop", (properties) -> new SproutsCropBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 
@@ -145,7 +148,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> ISHITOFU_BRICK = register("tofuishi_brick", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
 	public static final DeferredBlock<Block> ISHITOFU_SMOOTH_BRICK = register("tofuishi_smooth_brick", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
 	public static final DeferredBlock<Block> ISHITOFU_CHISELED_BRICK = register("tofuishi_chiseled_brick", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE));
-	public static final DeferredBlock<Block> METALTOFU = register("blocktofumetal", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
+	public static final DeferredBlock<Block> METALTOFU = register("blocktofumetal", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.IRON));
 	public static final DeferredBlock<Block> METAL_TOFU_GRATE = register("tofu_metal_grate", (properties) -> new TofuGrateBlock(properties), () -> BlockBehaviour.Properties.of().strength(3.0F, 6.0F)
 			.sound(SoundType.COPPER_GRATE)
 			.mapColor(MapColor.COLOR_LIGHT_GRAY)
@@ -157,7 +160,7 @@ public class TofuBlocks {
 			.isViewBlocking(TofuBlocks::never));
 	public static final DeferredBlock<Block> METAL_TOFU_LUMP = register("tofu_metal_lump", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).lightLevel(state -> {
 		return 15;
-	}).sound(SoundType.METAL));
+	}).sound(SoundType.IRON));
 	public static final DeferredBlock<Block> DIAMONDTOFU = register("blocktofudiamond", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> TOFU_GEM_BLOCK = register("tofu_gem_block", (properties) -> new TofuGemBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> ADVANCE_TOFU_GEM_BLOCK = register("adv_tofu_gem_block", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL));
@@ -226,41 +229,29 @@ public class TofuBlocks {
 	public static final DeferredBlock<SlabBlock> TOFUSLAB_SESAME = register("tofuslab_sesame", (properties) -> new SlabBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get()));
 
 
-	public static final DeferredBlock<Block> TOFUTORCH_KINU = register("tofutorch_kinu", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> TOFUTORCH_MOMEN = register("tofutorch_momen", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> TOFUTORCH_ISHI = register("tofutorch_ishi", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 6.0F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.STONE));
-	public static final DeferredBlock<Block> TOFUTORCH_METAL = register("tofutorch_metal", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 7.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.METAL));
-	public static final DeferredBlock<Block> TOFUTORCH_GRILLED = register("tofutorch_grilled", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
+	public static final DeferredBlock<Block> TOFUTORCH_KINU = register("tofutorch_kinu", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> TOFUTORCH_MOMEN = register("tofutorch_momen", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> TOFUTORCH_ISHI = register("tofutorch_ishi", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 6.0F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.STONE));
+	public static final DeferredBlock<Block> TOFUTORCH_METAL = register("tofutorch_metal", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 7.5F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.METAL));
+	public static final DeferredBlock<Block> TOFUTORCH_GRILLED = register("tofutorch_grilled", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14)
 			.noOcclusion().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> TOFUTORCH_ZUNDA = register("tofutorch_zunda", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
+	public static final DeferredBlock<Block> TOFUTORCH_ZUNDA = register("tofutorch_zunda", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14)
 			.noOcclusion().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> TOFUTORCH_HELL = register("tofutorch_hell", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
+	public static final DeferredBlock<Block> TOFUTORCH_HELL = register("tofutorch_hell", (properties) -> new TorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14)
 			.noOcclusion().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> TOFUTORCH_SOUL = register("tofutorch_soul", (properties) -> new TorchBlock(ParticleTypes.SOUL_FIRE_FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 10)
+	public static final DeferredBlock<Block> TOFUTORCH_SOUL = register("tofutorch_soul", (properties) -> new TorchBlock(ParticleTypes.SOUL_FIRE_FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 10)
 			.noOcclusion().sound(SoundType.SNOW));
 
-	public static final DeferredBlock<Block> WALLTOFUTORCH_KINU = registerWithoutItem("walltofutorch_kinu", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> WALLTOFUTORCH_MOMEN = registerWithoutItem("walltofutorch_momen", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> WALLTOFUTORCH_ISHI = registerWithoutItem("walltofutorch_ishi", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 6.0F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.STONE));
-	public static final DeferredBlock<Block> WALLTOFUTORCH_METAL = registerWithoutItem("walltofutorch_metal", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 7.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.METAL));
-	public static final DeferredBlock<Block> WALLTOFUTORCH_GRILLED = registerWithoutItem("walltofutorch_grilled", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> WALLTOFUTORCH_ZUNDA = registerWithoutItem("walltofutorch_zunda", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> WALLTOFUTORCH_HELL = registerWithoutItem("walltofutorch_hell", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> WALLTOFUTORCH_SOUL = registerWithoutItem("walltofutorch_soul", (properties) -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollission().lightLevel(state -> 14)
-			.noCollission().sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> WALLTOFUTORCH_KINU = registerWithoutItem("walltofutorch_kinu", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> WALLTOFUTORCH_MOMEN = registerWithoutItem("walltofutorch_momen", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> WALLTOFUTORCH_ISHI = registerWithoutItem("walltofutorch_ishi", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 6.0F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.STONE));
+	public static final DeferredBlock<Block> WALLTOFUTORCH_METAL = registerWithoutItem("walltofutorch_metal", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 7.5F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.METAL));
+	public static final DeferredBlock<Block> WALLTOFUTORCH_GRILLED = registerWithoutItem("walltofutorch_grilled", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> WALLTOFUTORCH_ZUNDA = registerWithoutItem("walltofutorch_zunda", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> WALLTOFUTORCH_HELL = registerWithoutItem("walltofutorch_hell", (properties) -> new WallTorchBlock(ParticleTypes.FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> WALLTOFUTORCH_SOUL = registerWithoutItem("walltofutorch_soul", (properties) -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, properties), () -> BlockBehaviour.Properties.of().strength(0.0F, 0.5F).noCollision().lightLevel(state -> 14).noCollision().sound(SoundType.SNOW));
 
-	public static final DeferredBlock<Block> TOFU_METAL_CHAIN = register("tofu_metal_chain", (properties) -> new ChainBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CHAIN)
+	public static final DeferredBlock<Block> TOFU_METAL_CHAIN = register("tofu_metal_chain", (properties) -> new ChainBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_CHAIN)
 			.sound(SoundType.CHAIN));
 	public static final DeferredBlock<Block> TOFU_METAL_LANTERN = register("tofu_metal_lantern", (properties) -> new LanternBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)
 			.sound(SoundType.LANTERN));
@@ -279,14 +270,14 @@ public class TofuBlocks {
 
 	public static final DeferredBlock<Block> TOFULADDER_ISHIBRICK = register("tofuladder_ishibrick", (properties) -> new LadderBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(ISHITOFU_BRICK.get()).noOcclusion());
 
-	public static final DeferredBlock<WallBlock> TOFUFENCE_KINU = register("tofufence_kinu", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.1F, 0.2F).sound(SoundType.SNOW).noOcclusion());
-	public static final DeferredBlock<WallBlock> TOFUFENCE_MOMEN = register("tofufence_momen", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW).noOcclusion());
-	public static final DeferredBlock<WallBlock> TOFUFENCE_ISHI = register("tofufence_ishi", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE).noOcclusion());
-	public static final DeferredBlock<WallBlock> TOFUFENCE_METAL = register("tofufence_metal", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(METALTOFU.get()).noOcclusion());
-	public static final DeferredBlock<WallBlock> TOFUFENCE_HELL = register("tofufence_hell", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get()).noOcclusion());
-	public static final DeferredBlock<WallBlock> TOFUFENCE_SOUL = register("tofufence_soul", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get()).noOcclusion());
-	public static final DeferredBlock<WallBlock> TOFUFENCE_GRILLED = register("tofufence_grilled", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(GRILLEDTOFU.get()).noOcclusion());
-	public static final DeferredBlock<WallBlock> TOFUFENCE_ZUNDA = register("tofufence_zunda", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion());
+	public static final DeferredBlock<WallBlock> TOFUFENCE_KINU = register("tofufence_kinu", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.1F, 0.2F).forceSolidOn().sound(SoundType.SNOW).noOcclusion());
+	public static final DeferredBlock<WallBlock> TOFUFENCE_MOMEN = register("tofufence_momen", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).forceSolidOn().sound(SoundType.SNOW).noOcclusion());
+	public static final DeferredBlock<WallBlock> TOFUFENCE_ISHI = register("tofufence_ishi", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).forceSolidOn().sound(SoundType.STONE).noOcclusion());
+	public static final DeferredBlock<WallBlock> TOFUFENCE_METAL = register("tofufence_metal", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(METALTOFU.get()).noOcclusion().forceSolidOn());
+	public static final DeferredBlock<WallBlock> TOFUFENCE_HELL = register("tofufence_hell", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get()).noOcclusion().forceSolidOn());
+	public static final DeferredBlock<WallBlock> TOFUFENCE_SOUL = register("tofufence_soul", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get()).noOcclusion().forceSolidOn());
+	public static final DeferredBlock<WallBlock> TOFUFENCE_GRILLED = register("tofufence_grilled", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(GRILLEDTOFU.get()).noOcclusion().forceSolidOn());
+	public static final DeferredBlock<WallBlock> TOFUFENCE_ZUNDA = register("tofufence_zunda", (properties) -> new WallBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion().forceSolidOn());
 
 
 	public static final DeferredBlock<DoorBlock> TOFUDOOR_KINU = register("tofudoor_kinu", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.of().strength(0.2F, 0.4F).sound(SoundType.SNOW).noOcclusion());
@@ -328,13 +319,13 @@ public class TofuBlocks {
 
 	public static final DeferredBlock<Block> TOFU_BEDROCK = register("tofu_bedrock", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().strength(-1.0F, 3600000.0F).sound(SoundType.STONE).isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
 
-	public static final DeferredBlock<Block> SAPLING_TOFU = register("sapling_tofu", (properties) -> new TofuSaplingBlock(TofuTreeGrowers.TOFU_TREE, properties), () -> BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.GRASS));
+	public static final DeferredBlock<Block> SAPLING_TOFU = register("sapling_tofu", (properties) -> new TofuSaplingBlock(TofuTreeGrowers.TOFU_TREE, properties), () -> BlockBehaviour.Properties.of().noCollision().randomTicks().instabreak().sound(SoundType.GRASS));
 	public static final DeferredBlock<Block> LEAVES_TOFU = register("leaves_tofu", (properties) -> new TofuLeavesBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.2F).noOcclusion().randomTicks().isSuffocating((state, getter, pos) -> false).sound(SoundType.GRASS));
 
-	public static final DeferredBlock<Block> TOFU_FLOWER = register("tofu_flower", (properties) -> new TofuFlowerBlock(TofuEffects.SOY_HEALTHY, 20.0F, properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.GRASS));
+	public static final DeferredBlock<Block> TOFU_FLOWER = register("tofu_flower", (properties) -> new TofuFlowerBlock(TofuEffects.SOY_HEALTHY, 20.0F, properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollision().sound(SoundType.GRASS));
 
-	public static final DeferredBlock<Block> LEEK = register("blockleek", (properties) -> new LeekBlock(properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.GRASS));
-	public static final DeferredBlock<Block> TALL_LEEK = register("tall_leek", (properties) -> new TallLeekBlock(properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollission().sound(SoundType.GRASS));
+	public static final DeferredBlock<Block> LEEK = register("blockleek", (properties) -> new LeekBlock(properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollision().sound(SoundType.GRASS));
+	public static final DeferredBlock<Block> TALL_LEEK = register("tall_leek", (properties) -> new TallLeekBlock(properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollision().sound(SoundType.GRASS));
 
 	public static final DeferredBlock<Block> SAPLING_APRICOT = register("sapling_apricot", (properties) -> new ApricotSaplingBlock(TofuTreeGrowers.APRICOT_TREE, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING));
 	public static final DeferredBlock<Block> LEAVES_APRICOT = register("leaves_apricot", (properties) -> new ApricotLeavesBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.2F).noOcclusion().isSuffocating((state, getter, pos) -> false).randomTicks().sound(SoundType.GRASS));
@@ -354,7 +345,8 @@ public class TofuBlocks {
 	public static final DeferredBlock<TrapDoorBlock> LEEK_GREEN_TRAPDOOR = register("leek_green_trapdoor", (properties) -> new TrapDoorBlock(TofuBlockSetTypes.LEEK_GREEN, properties), () -> BlockBehaviour.Properties.ofFullCopy(LEEK_GREEN_PLANKS.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
 	public static final DeferredBlock<ButtonBlock> LEEK_GREEN_BUTTON = register("leek_green_button", (properties) -> new ButtonBlock(TofuBlockSetTypes.LEEK_GREEN, 30, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_BUTTON));
 	public static final DeferredBlock<PressurePlateBlock> LEEK_GREEN_PRESSURE_PLATE = register("leek_green_pressure_plate", (properties) -> new PressurePlateBlock(TofuBlockSetTypes.LEEK_GREEN, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PRESSURE_PLATE));
-
+	public static final DeferredBlock<ShelfBlock> LEEK_GREEN_SHELF = register(
+			"leek_green_shelf", ShelfBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SHELF));
 
 	public static final DeferredBlock<RotatedPillarBlock> LEEK_STEM = register("leek_stem", (properties) -> new BurnableRotatedPillarBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));
 
@@ -371,9 +363,11 @@ public class TofuBlocks {
 	public static final DeferredBlock<TrapDoorBlock> LEEK_TRAPDOOR = register("leek_trapdoor", (properties) -> new TrapDoorBlock(TofuBlockSetTypes.LEEK, properties), () -> BlockBehaviour.Properties.ofFullCopy(LEEK_PLANKS.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
 	public static final DeferredBlock<ButtonBlock> LEEK_BUTTON = register("leek_button", (properties) -> new ButtonBlock(TofuBlockSetTypes.LEEK, 30, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_BUTTON));
 	public static final DeferredBlock<PressurePlateBlock> LEEK_PRESSURE_PLATE = register("leek_pressure_plate", (properties) -> new PressurePlateBlock(TofuBlockSetTypes.LEEK_GREEN, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PRESSURE_PLATE));
+	public static final DeferredBlock<ShelfBlock> LEEK_SHELF = register(
+			"leek_shelf", ShelfBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SHELF));
 
 
-	public static final DeferredBlock<Block> ZUNDATOFU_MUSHROOM = register("zundatofu_mushroom", (properties) -> new TofuMushroomBlock(TofuTreeGrowers.ZUNDA_MUSHROOM, properties), () -> BlockBehaviour.Properties.of().instabreak().noCollission().sound(SoundType.FUNGUS));
+	public static final DeferredBlock<Block> ZUNDATOFU_MUSHROOM = register("zundatofu_mushroom", (properties) -> new TofuMushroomBlock(TofuTreeGrowers.ZUNDA_MUSHROOM, properties), () -> BlockBehaviour.Properties.of().instabreak().noCollision().sound(SoundType.FUNGUS));
 	public static final DeferredBlock<Block> ZUNDA_MUSHROOM_BLOCK = register("zunda_mushroom_block", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.FUNGUS));
 
 
@@ -393,8 +387,10 @@ public class TofuBlocks {
 	public static final DeferredBlock<TrapDoorBlock> TOFU_STEM_TRAPDOOR = register("tofustem_trapdoor", (properties) -> new TrapDoorBlock(TofuBlockSetTypes.TOFU_STEM, properties), () -> BlockBehaviour.Properties.ofFullCopy(TOFU_STEM_PLANKS.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
 	public static final DeferredBlock<ButtonBlock> TOFU_STEM_BUTTON = register("tofustem_button", (properties) -> new ButtonBlock(TofuBlockSetTypes.TOFU_STEM, 30, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_BUTTON));
 	public static final DeferredBlock<PressurePlateBlock> TOFU_STEM_PRESSURE_PLATE = register("tofustem_pressure_plate", (properties) -> new PressurePlateBlock(TofuBlockSetTypes.TOFU_STEM, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PRESSURE_PLATE));
+	public static final DeferredBlock<ShelfBlock> TOFU_STEM_SHELF = register(
+			"tofustem_shelf", ShelfBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SHELF));
 
-	public static final DeferredBlock<TofuPortalBlock> TOFU_PORTAL = registerWithoutItem("tofuportal", (properties) -> new TofuPortalBlock(properties), () -> BlockBehaviour.Properties.of().strength(-1.0F).noCollission().noLootTable().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
+	public static final DeferredBlock<TofuPortalBlock> TOFU_PORTAL = registerWithoutItem("tofuportal", (properties) -> new TofuPortalBlock(properties), () -> BlockBehaviour.Properties.of().strength(-1.0F).noCollision().noLootTable().sound(SoundType.GLASS).lightLevel((p_50872_) -> {
 		return 11;
 	}));
 	public static final DeferredBlock<Block> TOFU_FARMLAND = register("tofu_farmland", (properties) -> new TofuFarmlandBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.5F, 1.0F).noOcclusion().randomTicks().sound(SoundType.SNOW));
@@ -402,7 +398,10 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> SALT_FURNACE = register("salt_furnace", (properties) -> new SaltFurnaceBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.STONE).lightLevel((p_50872_) -> {
 		return p_50872_.getValue(SaltFurnaceBlock.LIT) ? 13 : 0;
 	}));
-	public static final DeferredBlock<Block> SPROUTSJAR = register("blocksproutsjar", (properties) -> new SproutsJarBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().noCollission().sound(SoundType.GLASS));
+	public static final DeferredBlock<Block> SPROUTSJAR = register("blocksproutsjar", (properties) -> new SproutsJarBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().noOcclusion().isValidSpawn(Blocks::never)
+			.isRedstoneConductor(TofuBlocks::never)
+			.isSuffocating(TofuBlocks::never)
+			.isViewBlocking(TofuBlocks::never).sound(SoundType.GLASS));
 	public static final DeferredBlock<Block> SALT_BLOCK = register("salt_block", (properties) -> new FallFoodBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.SAND));
 	public static final DeferredBlock<Block> OKARA_BLOCK = register("okara_block", (properties) -> new FallFoodBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL));
 	public static final DeferredBlock<Block> GIANT_OKARA_DONUT = register("giant_okara_donut", (properties) -> new Block(properties), () -> BlockBehaviour.Properties.of().strength(0.75F).sound(SoundType.NETHER_SPROUTS));
@@ -487,7 +486,8 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> TOFUBED = register("tofubed", (properties) -> new TofuBedBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.2F).noOcclusion().sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> TOFUCHEST = register("tofuchest", (properties) -> new TofuChestBlock(properties, TofuBlockEntitys.TOFUCHEST::get), () -> BlockBehaviour.Properties.of().strength(2.5F, 6.0F).noOcclusion().sound(SoundType.STONE));
 
-	public static final DeferredBlock<Block> FOODPLATE = register("foodplate", (properties) -> new FoodPlateBlock(properties), () -> BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.METAL));
+	public static final DeferredBlock<Block> FOODPLATE = register("foodplate", (properties) -> new FoodPlateBlock(properties), () -> BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.METAL)
+			.pushReaction(PushReaction.DESTROY));
 	public static final DeferredBlock<Block> TOFUNIAN_STATUE = register("tofunian_statue", (properties) -> new TofunianStatueBlock(properties), () -> BlockBehaviour.Properties.of().strength(100F, 3600000.0F).requiresCorrectToolForDrops().pushReaction(PushReaction.BLOCK).sound(SoundType.LODESTONE));
 
 	public static final DeferredBlock<Block> RICE_BLOCK = register("rice_block",
@@ -526,7 +526,7 @@ public class TofuBlocks {
 		return p_50872_.getValue(TFCollectorBlock.LIT) ? 13 : 0;
 	}));
 
-	public static final DeferredBlock<Block> ANTENNA_BASIC = register("antenna_basic", (properties) -> new TFAntennaBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollission().strength(5.0F, 6.0F).sound(SoundType.METAL));
+	public static final DeferredBlock<Block> ANTENNA_BASIC = register("antenna_basic", (properties) -> new TFAntennaBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollision().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> TOFU_WORK_STATION = register("tofu_work_station", (properties) -> new TofuWorkStationBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE));
 
 	public static final DeferredBlock<Block> TOFU_POT = register("tofu_pot",
@@ -624,6 +624,8 @@ public class TofuBlocks {
 				return new BlockItem(Objects.requireNonNull(block.get()), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
 			} else if (block.get() == GIANT_OKARA_DONUT.get()) {
 				return new EdiableBlockItem(GIANT_OKARA_DONUT.get(), properties.food(TofuFoods.GIANT_OKARA_DONUT));
+			} else if (block.get() == FOODPLATE.get()) {
+				return new BlockItem(FOODPLATE.get(), properties.component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
 			} else {
 				return new BlockItem(block.get(), properties);
 			}

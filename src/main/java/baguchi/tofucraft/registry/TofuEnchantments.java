@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
@@ -145,6 +146,7 @@ public class TofuEnchantments {
 										Level.ExplosionInteraction.NONE,
 										ParticleTypes.GUST_EMITTER_SMALL,
 										ParticleTypes.GUST_EMITTER_SMALL,
+										WeightedList.of(),
 										SoundEvents.WIND_CHARGE_BURST
 								)
 						).withEffect(EnchantmentEffectComponents.HIT_BLOCK,
@@ -160,6 +162,7 @@ public class TofuEnchantments {
 												Level.ExplosionInteraction.NONE,
 												ParticleTypes.GUST_EMITTER_SMALL,
 												ParticleTypes.GUST_EMITTER_SMALL,
+												WeightedList.of(),
 												SoundEvents.WIND_CHARGE_BURST
 										)
 								))

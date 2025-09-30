@@ -7,7 +7,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -56,11 +55,11 @@ public class TofuShovelItem extends Item implements IEnergyInsertable {
 			}
 
 			if (blockstate2 != null) {
-				if (!level.isClientSide) {
+				if (!level.isClientSide()) {
 					level.setBlock(blockpos, blockstate2, 11);
 					level.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(player, blockstate2));
 					if (player != null) {
-						context.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
+						context.getItemInHand().hurtAndBreak(1, player, context.getHand());
 					}
 				}
 

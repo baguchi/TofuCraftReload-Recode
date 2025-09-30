@@ -115,7 +115,7 @@ public class NattoCobWebEntity extends LivingEntity {
 	public void tick() {
 		stepSlow();
 
-		if (this.tickCount > 40 && !this.level().isClientSide && !this.isPassenger() && this.level().noBlockCollision(this, this.getBoundingBox().inflate(0.1F))) {
+		if (this.tickCount > 40 && !this.level().isClientSide() && !this.isPassenger() && this.level().noBlockCollision(this, this.getBoundingBox().inflate(0.1F))) {
 			this.discard();
 		}
 		if (lifeTime >= discardTime) {

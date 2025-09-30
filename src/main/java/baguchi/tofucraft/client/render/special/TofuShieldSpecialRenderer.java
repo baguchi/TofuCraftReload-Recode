@@ -2,13 +2,10 @@ package baguchi.tofucraft.client.render.special;
 
 import baguchi.tofucraft.TofuCraftReload;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.model.ShieldModel;
-import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.resources.ResourceLocation;
@@ -31,23 +28,15 @@ public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataCompo
 		return p_387204_.immutableComponents();
 	}
 
-	public void render(
-			@Nullable DataComponentMap p_386991_,
-			ItemDisplayContext p_388730_,
-			PoseStack p_387961_,
-			MultiBufferSource p_388686_,
-			int p_387382_,
-			int p_387013_,
-			boolean p_387902_
-	) {
-		p_387961_.pushPose();
-		p_387961_.scale(1.0F, -1.0F, -1.0F);
-		VertexConsumer vertexconsumer = ItemRenderer.getFoilBuffer(p_388686_, this.model.renderType(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofumetal_shield.png")), p_388730_ == ItemDisplayContext.GUI, p_387902_);
-		this.model.handle().render(p_387961_, vertexconsumer, p_387382_, p_387013_);
-		this.model.plate().render(p_387961_, vertexconsumer, p_387382_, p_387013_);
+	@Override
+	public void submit(@org.jetbrains.annotations.Nullable DataComponentMap typedDataComponents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b) {
+		poseStack.pushPose();
+		poseStack.scale(1.0F, -1.0F, -1.0F);
 
+		submitNodeCollector.submitModelPart(this.model.handle(), poseStack, this.model.renderType(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofumetal_shield.png")), i, i1, null);
+		submitNodeCollector.submitModelPart(this.model.plate(), poseStack, this.model.renderType(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofumetal_shield.png")), i, i1, null);
 
-		p_387961_.popPose();
+		poseStack.popPose();
 	}
 
 	@Override
@@ -61,13 +50,13 @@ public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataCompo
 		public static final MapCodec<TofuShieldSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(INSTANCE);
 
 		@Override
-		public MapCodec<TofuShieldSpecialRenderer.Unbaked> type() {
-			return MAP_CODEC;
+		public @org.jetbrains.annotations.Nullable SpecialModelRenderer<?> bake(BakingContext bakingContext) {
+			return new TofuShieldSpecialRenderer(new ShieldModel(bakingContext.entityModelSet().bakeLayer(ModelLayers.SHIELD)));
 		}
 
 		@Override
-		public SpecialModelRenderer<?> bake(EntityModelSet p_387269_) {
-			return new TofuShieldSpecialRenderer(new ShieldModel(p_387269_.bakeLayer(ModelLayers.SHIELD)));
+		public MapCodec<TofuShieldSpecialRenderer.Unbaked> type() {
+			return MAP_CODEC;
 		}
 	}
 }

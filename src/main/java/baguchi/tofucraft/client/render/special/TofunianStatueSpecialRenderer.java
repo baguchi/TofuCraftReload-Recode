@@ -1,47 +1,58 @@
 package baguchi.tofucraft.client.render.special;
 
+import baguchi.tofucraft.client.TofuModelLayers;
+import baguchi.tofucraft.client.model.TofunianStatueModel;
 import baguchi.tofucraft.client.render.blockentity.TofunianStatueRender;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 import java.util.Set;
 
 
 public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer {
-	private final TofunianStatueRender tofunianStatueRender;
+	private final TofunianStatueModel model;
 
-	public TofunianStatueSpecialRenderer(TofunianStatueRender p_386864_) {
-		this.tofunianStatueRender = p_386864_;
-	}
-
-	@Override
-	public void render(ItemDisplayContext p_387275_, PoseStack p_387960_, MultiBufferSource p_386542_, int p_386921_, int p_387639_, boolean p_387936_) {
-		this.tofunianStatueRender.renderInHand(p_387960_, p_386542_, p_386921_, p_387639_);
+	public TofunianStatueSpecialRenderer(TofunianStatueModel p_386864_) {
+		this.model = p_386864_;
 	}
 
 	@Override
 	public void getExtents(Set<Vector3f> set) {
+		PoseStack posestack = new PoseStack();
+		this.model.root().getExtentsForGui(posestack, set);
+	}
 
+	@Override
+	public void submit(ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b) {
+		poseStack.pushPose();
+		poseStack.scale(-1.5F, -1.5F, 1.5F);
+		poseStack.translate(-0.4, -1F, 0);
+		submitNodeCollector.submitModel(this.model, Direction.SOUTH, poseStack, RenderType.entityCutoutNoCull(TofunianStatueRender.TEXTURES), i, i1, -1, null, 0, null);
+		poseStack.popPose();
 	}
 
 
-	public static record Unbaked() implements SpecialModelRenderer.Unbaked {
+	public record Unbaked() implements SpecialModelRenderer.Unbaked {
 		public static final MapCodec<TofunianStatueSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(TofunianStatueSpecialRenderer.Unbaked::new);
+
+		@Override
+		public @Nullable SpecialModelRenderer<?> bake(BakingContext bakingContext) {
+
+			TofunianStatueModel tofunianStatue = new TofunianStatueModel(bakingContext.entityModelSet().bakeLayer(TofuModelLayers.TOFUNIAN));
+			return new TofunianStatueSpecialRenderer(tofunianStatue);
+		}
 
 		@Override
 		public MapCodec<TofunianStatueSpecialRenderer.Unbaked> type() {
 			return MAP_CODEC;
-		}
-
-		@Override
-		public SpecialModelRenderer<?> bake(EntityModelSet p_386741_) {
-			return new TofunianStatueSpecialRenderer(new TofunianStatueRender(p_386741_));
 		}
 	}
 }

@@ -11,10 +11,11 @@ import baguchi.tofucraft.client.render.state.TofunianRenderState;
 import baguchi.tofucraft.entity.Tofunian;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
 
@@ -26,17 +27,20 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian.png");
 	public static final ResourceLocation BAGU_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagunian.png");
 
-	public TofunianRender(EntityRendererProvider.Context p_173956_) {
-		super(p_173956_, new TofunianModel<>(p_173956_.bakeLayer(TofuModelLayers.TOFUNIAN)), 0.5F);
+	public TofunianRender(EntityRendererProvider.Context context) {
+		super(context, new TofunianModel<>(context.bakeLayer(TofuModelLayers.TOFUNIAN)), 0.5F);
 		this.addLayer(new TofunianEyeLayer<>(this));
-		this.addLayer(new TofunianClothLayer(this));
+		this.addLayer(new TofunianClothLayer<>(this));
 		this.addLayer(new TofunianRoleLayer(this));
-		this.addLayer(new CustomArmorLayer<>(this, p_173956_));
+		this.addLayer(new CustomArmorLayer<>(this, context));
+		this.addLayer(new CustomHeadLayer<>(this, context.getModelSet(), context.getPlayerSkinRenderCache()));
+
 		this.addLayer(new ItemInHandLayer<>(this) {
+
 			@Override
-			public void render(PoseStack p_117193_, MultiBufferSource p_117194_, int p_117195_, TofunianRenderState p_386634_, float p_117197_, float p_117198_) {
-				if (!p_386634_.isBaby) {
-					super.render(p_117193_, p_117194_, p_117195_, p_386634_, p_117197_, p_117198_);
+			public void submit(PoseStack p_433803_, SubmitNodeCollector p_434482_, int p_433450_, TofunianRenderState p_434546_, float p_433047_, float p_433527_) {
+				if (!p_434546_.isBaby) {
+					super.submit(p_433803_, p_434482_, p_433450_, p_434546_, p_433047_, p_433527_);
 				}
 			}
 		});

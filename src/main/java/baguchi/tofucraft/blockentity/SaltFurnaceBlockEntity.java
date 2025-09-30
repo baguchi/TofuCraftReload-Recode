@@ -23,6 +23,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.ContainerUser;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -219,7 +220,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		saltFurnaceBlock.putWater();
 
 
-		if (!level.isClientSide) {
+		if (!level.isClientSide()) {
 			if (saltFurnaceBlock.prevFluid != saltFurnaceBlock.waterTank.getFluidAmount()) {
 				LevelChunk chunk = level.getChunkAt(blockPos);
 				if (level instanceof ServerLevel serverLevel) {
@@ -242,8 +243,8 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	@Override
-	public void startOpen(Player p_18955_) {
-		super.startOpen(p_18955_);
+	public void startOpen(ContainerUser p_435573_) {
+		super.startOpen(p_435573_);
 		if (!this.level.isClientSide() && this.level instanceof ServerLevel serverLevel) {
 			LevelChunk chunk = this.level.getChunkAt(this.getBlockPos());
 			PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceBitternPacket(this.getBlockPos(), this.bitternTank.getFluid()));

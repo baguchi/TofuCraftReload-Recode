@@ -1,5 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
+/*
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.screen.TFOvenScreen;
@@ -126,3 +127,4 @@ public class JEIPlugin implements IModPlugin {
 		return PLUGIN_ID;
 	}
 }
+*/

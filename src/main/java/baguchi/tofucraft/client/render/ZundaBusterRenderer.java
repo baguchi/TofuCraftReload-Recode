@@ -1,15 +1,18 @@
 package baguchi.tofucraft.client.render;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.client.TofuModelLayers;
+import baguchi.tofucraft.client.model.ZundaBusterModel;
 import baguchi.tofucraft.client.render.state.ProjectileRenderState;
 import baguchi.tofucraft.entity.projectile.ZundaBuster;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -19,32 +22,30 @@ import net.minecraft.util.Mth;
 public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T, ProjectileRenderState> {
 	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/zunda_buster.png");
 
-	public ZundaBusterRenderer(EntityRendererProvider.Context p_173917_) {
-		super(p_173917_);
+	private final ZundaBusterModel<ProjectileRenderState> model;
+
+	public ZundaBusterRenderer(EntityRendererProvider.Context context) {
+		super(context);
+		this.model = new ZundaBusterModel<>(context.bakeLayer(TofuModelLayers.ZUNDA_BUSTER));
 	}
 
+
 	@Override
-	public void render(ProjectileRenderState p_113839_, PoseStack p_113842_, MultiBufferSource p_113843_, int p_113844_) {
-		p_113842_.pushPose();
+	public void submit(ProjectileRenderState projectileRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+		poseStack.pushPose();
 
-		p_113842_.translate(0.0F, 0.5F, 0.0F);
-		p_113842_.scale(0.1F, 0.1F, 0.1F);
-		p_113842_.mulPose(Axis.YP.rotationDegrees(p_113839_.yRot - 90.0F));
-		p_113842_.mulPose(Axis.ZP.rotationDegrees(p_113839_.xRot));
+		//poseStack.translate(0.0F, 0.5F, 0.0F);
+		poseStack.mulPose(Axis.YP.rotationDegrees(projectileRenderState.yRot - 90));
+		poseStack.mulPose(Axis.ZP.rotationDegrees(projectileRenderState.xRot));
+		poseStack.scale(-1, -1, 1);
+		poseStack.translate(0.0F, (13.5F / 16F) / 2F, 0F);
 
-		p_113842_.mulPose(Axis.XP.rotationDegrees(45.0F));
-		VertexConsumer vertexconsumer = p_113843_.getBuffer(RenderType.entityTranslucentEmissive(this.getTextureLocation(p_113839_)));
-		PoseStack.Pose posestack$pose = p_113842_.last();
-		for (int j = 0; j < 4; j++) {
-			p_113842_.mulPose(Axis.XP.rotationDegrees(90.0F));
-			this.vertex(posestack$pose, vertexconsumer, -8, -8, 0, 0.0F, 0.0F, 0, 1, 0, p_113844_);
-			this.vertex(posestack$pose, vertexconsumer, 8, -8, 0, 1F, 0.0F, 0, 1, 0, p_113844_);
-			this.vertex(posestack$pose, vertexconsumer, 8, 8, 0, 1F, 1F, 0, 1, 0, p_113844_);
-			this.vertex(posestack$pose, vertexconsumer, -8, 8, 0, 0.0F, 1F, 0, 1, 0, p_113844_);
-		}
+		poseStack.translate(0.0F, -1.501F, 0F);
 
-		p_113842_.popPose();
-		super.render(p_113839_, p_113842_, p_113843_, p_113844_);
+		submitNodeCollector.submitModel(this.model, projectileRenderState, poseStack, RenderType.eyes(this.getTextureLocation(projectileRenderState)), projectileRenderState.lightCoords, OverlayTexture.NO_OVERLAY, projectileRenderState.outlineColor, null);
+
+		poseStack.popPose();
+		super.submit(projectileRenderState, poseStack, submitNodeCollector, cameraRenderState);
 	}
 
 	@Override

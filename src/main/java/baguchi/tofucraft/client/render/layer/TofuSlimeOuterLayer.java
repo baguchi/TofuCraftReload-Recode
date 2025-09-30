@@ -8,6 +8,7 @@ import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
@@ -22,7 +23,7 @@ public class TofuSlimeOuterLayer<T extends SlimeRenderState> extends RenderLayer
     }
 
     public void render(PoseStack p_117470_, MultiBufferSource p_117471_, int p_117472_, T p_360800_, float p_117474_, float p_117475_) {
-        boolean flag = p_360800_.appearsGlowing && p_360800_.isInvisible;
+		boolean flag = p_360800_.appearsGlowing() && p_360800_.isInvisible;
         if (!p_360800_.isInvisible || flag) {
             VertexConsumer vertexconsumer;
             if (flag) {
@@ -35,4 +36,20 @@ public class TofuSlimeOuterLayer<T extends SlimeRenderState> extends RenderLayer
             this.model.renderToBuffer(p_117470_, vertexconsumer, p_117472_, LivingEntityRenderer.getOverlayCoords(p_360800_, 0.0F));
         }
     }
+
+	@Override
+	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, T t, float v, float v1) {
+		boolean flag = t.appearsGlowing() && t.isInvisible;
+		if (!t.isInvisible || flag) {
+			RenderType renderType;
+			if (flag) {
+				renderType = RenderType.outline(TofuSlimeRender.LOCATION);
+			} else {
+				renderType = RenderType.entityTranslucent(TofuSlimeRender.LOCATION);
+			}
+
+			this.model.setupAnim(t);
+			submitNodeCollector.submitModel(this.model, t, poseStack, renderType, t.lightCoords, LivingEntityRenderer.getOverlayCoords(t, 0.0F), t.outlineColor, null);
+		}
+	}
 }

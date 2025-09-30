@@ -6,6 +6,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -36,6 +37,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -43,12 +46,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.ItemAbility;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class FoodPlateBlock extends BaseEntityBlock {
 	public static final MapCodec<FoodPlateBlock> CODEC = simpleCodec(FoodPlateBlock::new);
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 1.0D, 14.0D);
+	public static final ResourceLocation CONTENTS = ResourceLocation.withDefaultNamespace("contents");
 
 	public FoodPlateBlock(Properties p_49224_) {
 		super(p_49224_);
@@ -157,7 +162,7 @@ public class FoodPlateBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public int getAnalogOutputSignal(BlockState blockState, Level worldIn, BlockPos pos) {
+	protected int getAnalogOutputSignal(BlockState blockState, Level worldIn, BlockPos pos, Direction p_435855_) {
 		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
 		if (tileEntity instanceof FoodPlateBlockEntity) {
 			return !((FoodPlateBlockEntity) tileEntity).isEmpty() ? 15 : 0;
@@ -205,7 +210,7 @@ public class FoodPlateBlock extends BaseEntityBlock {
 	public BlockState playerWillDestroy(Level p_56212_, BlockPos p_56213_, BlockState p_56214_, Player p_56215_) {
 		BlockEntity blockentity = p_56212_.getBlockEntity(p_56213_);
 		if (blockentity instanceof FoodPlateBlockEntity foodPlateBlockEntity) {
-			if (!p_56212_.isClientSide && p_56215_.preventsBlockDrops() && !foodPlateBlockEntity.isEmpty()) {
+			if (!p_56212_.isClientSide() && p_56215_.preventsBlockDrops() && !foodPlateBlockEntity.isEmpty()) {
 				ItemStack itemstack = this.asItem().getDefaultInstance();
 				itemstack.applyComponents(blockentity.collectComponents());
 				ItemEntity itementity = new ItemEntity(p_56212_, p_56213_.getX() + 0.5, p_56213_.getY() + 0.5, p_56213_.getZ() + 0.5, itemstack);
@@ -215,5 +220,19 @@ public class FoodPlateBlock extends BaseEntityBlock {
 		}
 
 		return super.playerWillDestroy(p_56212_, p_56213_, p_56214_, p_56215_);
+	}
+
+	@Override
+	protected List<ItemStack> getDrops(BlockState p_287632_, LootParams.Builder p_287691_) {
+		BlockEntity blockentity = p_287691_.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+		if (blockentity instanceof FoodPlateBlockEntity foodPlateBlockEntity) {
+			p_287691_ = p_287691_.withDynamicDrop(CONTENTS, p_56219_ -> {
+				for (int i = 0; i < foodPlateBlockEntity.getContainerSize(); i++) {
+					p_56219_.accept(foodPlateBlockEntity.getItem(i));
+				}
+			});
+		}
+
+		return super.getDrops(p_287632_, p_287691_);
 	}
 }

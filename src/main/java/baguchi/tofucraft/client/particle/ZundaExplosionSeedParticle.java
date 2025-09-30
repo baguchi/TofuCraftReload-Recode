@@ -6,6 +6,7 @@ import net.minecraft.client.particle.NoRenderParticle;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.RandomSource;
 
 public class ZundaExplosionSeedParticle extends NoRenderParticle {
 	public ZundaExplosionSeedParticle(ClientLevel p_106947_, double p_106948_, double p_106949_, double p_106950_) {
@@ -30,7 +31,7 @@ public class ZundaExplosionSeedParticle extends NoRenderParticle {
 
 
 	public static class Provider<T extends SimpleParticleType> implements ParticleProvider<T> {
-		public Particle createParticle(T p_106969_, ClientLevel p_106970_, double p_106971_, double p_106972_, double p_106973_, double p_106974_, double p_106975_, double p_106976_) {
+		public Particle createParticle(T p_106969_, ClientLevel p_106970_, double p_106971_, double p_106972_, double p_106973_, double p_106974_, double p_106975_, double p_106976_, RandomSource randomSource) {
 			return new ZundaExplosionSeedParticle(p_106970_, p_106971_, p_106972_, p_106973_);
 		}
 	}

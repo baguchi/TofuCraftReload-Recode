@@ -3,7 +3,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.96'
+    id 'net.neoforged.moddev' version '2.0.107'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -129,10 +129,12 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     //implementation "net.neoforged:neoforge:${neo_version}"
-    implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
+
 
     //implementation "baguchi.bagus_lib:BagusLib:${bagus_lib_version}"
-    implementation "mezz.jei:jei-1.21.8-neoforge:24.0.0.2"
+    implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
+
+    //implementation "mezz.jei:jei-1.21.8-neoforge:24.0.0.2"
     // at runtime, use the full JEI jar for NeoForge
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

@@ -9,7 +9,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -34,7 +33,7 @@ public class TofuStickItem extends Item implements IEnergyInsertable {
 			if (optional.isPresent()) {
 				optional.get().createPortalBlocks();
 				if (!player.isCreative()) {
-					context.getItemInHand().hurtAndBreak(1, (LivingEntity) player, LivingEntity.getSlotForHand(context.getHand()));
+					context.getItemInHand().hurtAndBreak(1, player, context.getHand());
 				}
 				level.playSound(player, pos, SoundEvents.ZOMBIE_VILLAGER_CONVERTED, SoundSource.BLOCKS, 2.0F, 1.0F);
 

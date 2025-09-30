@@ -5,27 +5,26 @@ import baguchi.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchi.tofucraft.registry.TofuItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.item.ItemModelResolver;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.item.ItemStack;
 
 
 public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity, NattoCobWebRenderState> {
-	private final ItemRenderer itemRenderer;
+	private final ItemModelResolver itemModelResolver;
 
 	public NattoCobWebRender(EntityRendererProvider.Context context) {
 		super(context);
 
-		this.itemRenderer = Minecraft.getInstance().getItemRenderer();
+		this.itemModelResolver = context.getItemModelResolver();
 	}
 
 	@Override
-	public void render(NattoCobWebRenderState entity, PoseStack stack, MultiBufferSource buffer, int packedLightIn) {
+	public void submit(NattoCobWebRenderState entity, PoseStack stack, SubmitNodeCollector buffer, CameraRenderState cameraRenderState) {
 		boolean isSpawing = entity.isSpawning;
 		if (isSpawing) {
 			stack.pushPose();
@@ -34,9 +33,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity, NattoCo
 			stack.translate(0.0F, 0.0F, -0.125F);
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
 
-			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
-
-			this.itemRenderer.renderStatic(itemStack, ItemDisplayContext.GROUND, packedLightIn, OverlayTexture.NO_OVERLAY, stack, buffer, null, 0);
+			entity.item.submit(stack, buffer, entity.lightCoords, OverlayTexture.NO_OVERLAY, entity.outlineColor);
 			stack.popPose();
 		} else {
 			stack.pushPose();
@@ -45,13 +42,10 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity, NattoCo
 			stack.translate(0.0F, 0.0F, -0.125F);
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
 
-
-			ItemStack itemStack = new ItemStack(TofuItems.NATTO_COBWEB.get());
-
-			this.itemRenderer.renderStatic(itemStack, ItemDisplayContext.GROUND, packedLightIn, OverlayTexture.NO_OVERLAY, stack, buffer, null, 0);
+			entity.item.submit(stack, buffer, entity.lightCoords, OverlayTexture.NO_OVERLAY, entity.outlineColor);
 			stack.popPose();
 		}
-		super.render(entity, stack, buffer, packedLightIn);
+		super.submit(entity, stack, buffer, cameraRenderState);
 	}
 
 	@Override
@@ -64,5 +58,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity, NattoCo
 		super.extractRenderState(p_362104_, p_361028_, p_362204_);
 		p_361028_.direction = p_362104_.getAttachFace();
 		p_361028_.isSpawning = p_362104_.isSpawing();
+		this.itemModelResolver.updateForNonLiving(p_361028_.item, TofuItems.NATTO_COBWEB.get().getDefaultInstance(), ItemDisplayContext.GROUND, p_362104_);
+
 	}
 }

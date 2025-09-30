@@ -23,7 +23,7 @@ public class RecipeBookComponentMixin {
 	protected Minecraft minecraft;
 
 	@Inject(method = "tryPlaceRecipe", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;handlePlaceRecipe(ILnet/minecraft/world/item/crafting/display/RecipeDisplayId;Z)V", shift = At.Shift.BEFORE))
-	public void handlePlaceRecipeWithFakeSlot(RecipeCollection p_366703_, RecipeDisplayId p_380106_, CallbackInfoReturnable<Boolean> cir) {
+	public void handlePlaceRecipeWithFakeSlot(RecipeCollection p_366703_, RecipeDisplayId p_380106_, boolean p_446681_, CallbackInfoReturnable<Boolean> cir) {
 		AbstractContainerMenu abstractcontainermenu = this.minecraft.player.containerMenu;
 		if (abstractcontainermenu instanceof TFCraftingTableMenu craftermenu) {
 			if (craftermenu.blockEntity instanceof TFCraftingTableBlockEntity tfCraftingTableBlockEntity) {

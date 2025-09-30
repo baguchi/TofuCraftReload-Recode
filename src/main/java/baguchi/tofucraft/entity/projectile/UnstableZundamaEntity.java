@@ -7,7 +7,9 @@ import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
+import net.minecraft.core.particles.ExplosionParticleInfo;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -62,7 +64,7 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 
 	protected void onHitEntity(EntityHitResult p_37404_) {
 		super.onHitEntity(p_37404_);
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			Vec3 vec31 = this.position();
 			this.level()
 					.explode(
@@ -77,6 +79,9 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 							Level.ExplosionInteraction.MOB,
 							TofuParticleTypes.ZUNDA_EXPLOSION.get(),
 							TofuParticleTypes.ZUNDA_EMIT.get(),
+							WeightedList.<ExplosionParticleInfo>builder()
+									.add(new ExplosionParticleInfo(TofuParticleTypes.ZUNDA_CLOUD.get(), 4.0F, 1.0F))
+									.build(),
 							SoundEvents.GENERIC_EXPLODE
 					);
 			this.discard();
@@ -85,7 +90,7 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 
 	protected void onHitBlock(BlockHitResult p_37406_) {
 		super.onHitBlock(p_37406_);
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			Vec3i vec3i = p_37406_.getDirection().getUnitVec3i();
 			Vec3 vec3 = Vec3.atLowerCornerOf(vec3i).multiply((double) 0.25F, (double) 0.25F, (double) 0.25F);
 			Vec3 vec31 = p_37406_.getLocation().add(vec3);
@@ -102,6 +107,9 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 							Level.ExplosionInteraction.MOB,
 							TofuParticleTypes.ZUNDA_EXPLOSION.get(),
 							TofuParticleTypes.ZUNDA_EMIT.get(),
+							WeightedList.<ExplosionParticleInfo>builder()
+									.add(new ExplosionParticleInfo(TofuParticleTypes.ZUNDA_CLOUD.get(), 4.0F, 1.0F))
+									.build(),
 							SoundEvents.GENERIC_EXPLODE
 					);
 			this.discard();

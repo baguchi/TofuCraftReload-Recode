@@ -21,6 +21,7 @@ public class TofuModelLayers {
 	public static final ModelLayerLocation FUKUMAME_THROWER = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "fukumame_thrower"), "main");
 
 	public static final ModelLayerLocation SOYBALL = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "soyball"), "main");
+	public static final ModelLayerLocation ZUNDA_BUSTER = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "zunda_buster"), "main");
 
 	public static final ModelLayerLocation LEEK_BOAT = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "leek_boat"), "main");
 	public static final ModelLayerLocation LEEK_GREEN_BOAT = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "leek_green_boat"), "main");

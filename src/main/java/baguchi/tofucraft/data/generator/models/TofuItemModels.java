@@ -224,14 +224,14 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFUSCOOP.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFUSTICK.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.ROLLINGPIN.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-		this.generateFlatItem(TofuItems.BUGLE.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.BUGLE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.FUKUMAME.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.NETHER_FUKUMAME.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.INFERNO_NETHER_FUKUMAME.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOUL_FUKUMAME.get(), ModelTemplates.FLAT_ITEM);
 		generateZundaBow(this, TofuItems.ZUNDA_BOW.get());
 		this.generateFlatItem(TofuItems.ZUNDA_ARROW.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.ZUNDAMUSHROOM_ON_A_STICK.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
 		this.generateFlatItem(TofuItems.KINAKO_BREAD.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.EDAMAME_TEMPLA.get(), ModelTemplates.FLAT_ITEM);

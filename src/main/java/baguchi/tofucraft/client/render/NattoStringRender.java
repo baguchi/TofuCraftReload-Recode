@@ -1,31 +1,30 @@
 package baguchi.tofucraft.client.render;
 
-import baguchi.tofucraft.client.render.state.ProjectileRenderState;
+import baguchi.tofucraft.client.render.state.NattoStringRenderState;
 import baguchi.tofucraft.entity.projectile.NattoStringEntity;
 import baguchi.tofucraft.registry.TofuItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.item.ItemModelResolver;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.item.ItemStack;
 
 
-public class NattoStringRender<E extends NattoStringEntity, T extends ProjectileRenderState> extends EntityRenderer<E, T> {
+public class NattoStringRender<E extends NattoStringEntity, T extends NattoStringRenderState> extends EntityRenderer<E, T> {
 	private final float scale;
 	private final boolean fullBright;
-	private final ItemRenderer itemRenderer;
+	private final ItemModelResolver itemModelResolver;
 
 	public NattoStringRender(EntityRendererProvider.Context context, float scale, boolean bright) {
 		super(context);
 		this.scale = scale;
 		this.fullBright = bright;
-		this.itemRenderer = Minecraft.getInstance().getItemRenderer();
+		this.itemModelResolver = context.getItemModelResolver();
 	}
 
 	protected int getBlockLightLevel(E p_116092_, BlockPos p_116093_) {
@@ -34,16 +33,25 @@ public class NattoStringRender<E extends NattoStringEntity, T extends Projectile
 
 	@Override
 	public T createRenderState() {
-		return (T) new ProjectileRenderState();
+		return (T) new NattoStringRenderState();
 	}
 
-	public void render(T p_116085_, PoseStack p_116088_, MultiBufferSource p_116089_, int p_116090_) {
-		p_116088_.pushPose();
-		p_116088_.scale(this.scale, this.scale, this.scale);
-		p_116088_.mulPose(this.entityRenderDispatcher.cameraOrientation());
-		p_116088_.mulPose(Axis.YP.rotationDegrees(180.0F));
-		this.itemRenderer.renderStatic(new ItemStack(TofuItems.NATTO_COBWEB.get()), ItemDisplayContext.GROUND, p_116090_, OverlayTexture.NO_OVERLAY, p_116088_, p_116089_, null, 0);
-		p_116088_.popPose();
-		super.render(p_116085_, p_116088_, p_116089_, p_116090_);
+	@Override
+	public void extractRenderState(E p_362104_, T p_361028_, float p_362204_) {
+		super.extractRenderState(p_362104_, p_361028_, p_362204_);
+		this.itemModelResolver.updateForNonLiving(p_361028_.itemStackRenderState, TofuItems.NATTO_COBWEB.get().getDefaultInstance(), ItemDisplayContext.GROUND, p_362104_);
+
+	}
+
+	@Override
+	public void submit(T renderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+		poseStack.pushPose();
+		poseStack.scale(this.scale, this.scale, this.scale);
+		poseStack.mulPose(cameraRenderState.orientation);
+		poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
+		renderState.itemStackRenderState.submit(poseStack, submitNodeCollector, renderState.lightCoords, OverlayTexture.NO_OVERLAY, renderState.outlineColor);
+		poseStack.popPose();
+
+		super.submit(renderState, poseStack, submitNodeCollector, cameraRenderState);
 	}
 }

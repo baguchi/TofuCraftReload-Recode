@@ -48,7 +48,7 @@ public class TofuScoopItem extends Item {
 			worldIn.removeBlock(context.getClickedPos(), false);
 			if (!worldIn.isClientSide()) {
 				if (context.getPlayer() != null)
-					stack.hurtAndBreak(1, (LivingEntity) context.getPlayer(), LivingEntity.getSlotForHand(context.getHand()));
+					stack.hurtAndBreak(1, (LivingEntity) context.getPlayer(), context.getHand());
 				double d0 = (worldIn.random.nextFloat() * 0.5F) + 0.25D;
 				double d1 = (worldIn.random.nextFloat() * 0.5F);
 				double d2 = (worldIn.random.nextFloat() * 0.5F) + 0.25D;

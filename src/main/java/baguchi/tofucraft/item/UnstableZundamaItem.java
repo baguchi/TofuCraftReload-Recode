@@ -24,7 +24,7 @@ public class UnstableZundamaItem extends Item implements ProjectileItem {
 	public InteractionResult use(Level levelIn, Player playerIn, InteractionHand handIn) {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (playerIn.getRandom().nextFloat() * 0.4F + 0.8F));
-		if (!levelIn.isClientSide) {
+		if (!levelIn.isClientSide()) {
 			UnstableZundamaEntity fukumamentity = new UnstableZundamaEntity(levelIn, playerIn, itemstack);
 			fukumamentity.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 1.5F, 0.8F);
 			levelIn.addFreshEntity(fukumamentity);

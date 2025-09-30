@@ -37,7 +37,7 @@ public class TofuWorkStationBlock extends Block {
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState p_60503_, Level p_60504_, BlockPos p_60505_, Player p_60506_, BlockHitResult p_60508_) {
-		if (p_60504_.isClientSide) {
+		if (p_60504_.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		} else {
 			p_60506_.openMenu(p_60503_.getMenuProvider(p_60504_, p_60505_));
