@@ -71,7 +71,7 @@ public class TofuPotBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 		BlockEntity tileEntity = level.getBlockEntity(pos);
 		if (tileEntity instanceof TofuPotBlockEntity) {
 
-			IFluidHandlerItem handler = FluidUtil.getFluidHandler(heldStack.copyWithCount(1)).orElse(null);
+			IFluidHandlerItem handler = FluidUtil.getFluidHandler(heldStack).orElse(null);
 			if (handler instanceof FluidBucketWrapper) {
 				FluidUtil.interactWithFluidHandler(player, hand, level, pos, null);
 

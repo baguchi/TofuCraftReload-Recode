@@ -158,7 +158,7 @@ public class TofuCraftReload {
 		TofuCarvers.WORLD_CARVER.register(modBus);
 		TofuLearnings.LEARNING.register(modBus);
 
-		if (FMLEnvironment.dist == Dist.CLIENT) {
+		if (FMLEnvironment.getDist() == Dist.CLIENT) {
 			modBus.addListener(ClientRegistrar::setup);
 		}
 		NeoForge.EVENT_BUS.addListener(TofunianTradeManager::loadTrades);

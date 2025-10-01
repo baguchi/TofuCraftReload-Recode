@@ -29,7 +29,7 @@ public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataCompo
 	}
 
 	@Override
-	public void submit(@org.jetbrains.annotations.Nullable DataComponentMap typedDataComponents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b) {
+	public void submit(@org.jetbrains.annotations.Nullable DataComponentMap typedDataComponents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b, int i2) {
 		poseStack.pushPose();
 		poseStack.scale(1.0F, -1.0F, -1.0F);
 

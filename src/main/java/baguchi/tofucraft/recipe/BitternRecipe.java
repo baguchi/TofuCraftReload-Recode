@@ -11,10 +11,9 @@ import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
-import org.jetbrains.annotations.Nullable;
 
 public class BitternRecipe implements Recipe<RecipeInput> {
 
@@ -52,10 +51,9 @@ public class BitternRecipe implements Recipe<RecipeInput> {
 	public boolean matches(RecipeInput recipeInput, Level level) {
 		ItemStack stack = recipeInput.getItem(0);
 		ItemStack stack2 = recipeInput.getItem(1);
-		@Nullable IFluidHandlerItem fluidHandler = stack.getCapability(Capabilities.FluidHandler.ITEM);
-
-		if (fluidHandler != null && !stack2.isEmpty()) {
-			return fluidHandler.isFluidValid(1000, fluid) && this.ingredient.test(stack2);
+		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack).orElse(null);
+		if (handler != null && !stack2.isEmpty()) {
+			return handler.isFluidValid(1000, fluid) && this.ingredient.test(stack2);
 		}
 
 		return false;

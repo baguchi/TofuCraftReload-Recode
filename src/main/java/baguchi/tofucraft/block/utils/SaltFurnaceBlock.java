@@ -56,7 +56,7 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 		ItemStack stack = p_48709_.getItemInHand(p_48710_);
 		BlockEntity blockentity = p_48707_.getBlockEntity(p_48708_);
 		if (blockentity instanceof SaltFurnaceBlockEntity) {
-			IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack.copyWithCount(1)).orElse(null);
+			IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack).orElse(null);
 			if (handler instanceof FluidBucketWrapper) {
 				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, p_48707_, p_48708_, null);
 				flag = true;

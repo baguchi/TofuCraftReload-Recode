@@ -114,7 +114,7 @@ public class TofuCow extends Cow {
 	public InteractionResult mobInteract(Player p_28298_, InteractionHand p_28299_) {
 		ItemStack itemstack = p_28298_.getItemInHand(p_28299_);
 		if (!this.isBaby()) {
-			IFluidHandlerItem handler = FluidUtil.getFluidHandler(itemstack.copyWithCount(1)).orElse(null);
+			IFluidHandlerItem handler = FluidUtil.getFluidHandler(itemstack).orElse(null);
 			if (handler != null && handler instanceof FluidBucketWrapper && ((FluidBucketWrapper) handler).getFluid().isEmpty()) {
 				p_28298_.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
 				AtomicReference<ItemStack> resultItemStack = new AtomicReference<>(itemstack.copy());

@@ -1,16 +1,13 @@
 package baguchi.tofucraft;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackLocationInfo;
 import net.minecraft.server.packs.PackSelectionConfig;
 import net.minecraft.server.packs.PackType;
-import net.minecraft.server.packs.PathPackResources;
 import net.minecraft.server.packs.repository.KnownPack;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 
@@ -27,7 +24,7 @@ public class ModCommonEvents {
 
 	@SubscribeEvent
 	public static void addPackFinders(AddPackFindersEvent event) {
-		if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+		/*if (event.getPackType() == PackType.CLIENT_RESOURCES) {
 			var resourcePath = ModList.get().getModFileById(TofuCraftReload.MODID).getFile().findResource("tofucraft_legacy");
 			var supplier = new PathPackResources.PathResourcesSupplier(resourcePath);
 
@@ -49,7 +46,7 @@ public class ModCommonEvents {
 				PackSource.FEATURE,
 				TofuConfig.COMMON.enableExtra.get(),
 				Pack.Position.TOP
-		);
+		);*/
 	}
 
 	protected static Pack createBuiltinResourcePack(Pack.ResourcesSupplier p_249625_) {

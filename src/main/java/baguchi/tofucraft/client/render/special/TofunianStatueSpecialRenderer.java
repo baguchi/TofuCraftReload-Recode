@@ -31,7 +31,7 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 	}
 
 	@Override
-	public void submit(ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b) {
+	public void submit(ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b, int i2) {
 		poseStack.pushPose();
 		poseStack.scale(-1.5F, -1.5F, 1.5F);
 		poseStack.translate(-0.4, -1F, 0);
