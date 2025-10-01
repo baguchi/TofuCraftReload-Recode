@@ -29,9 +29,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.fluids.FluidUtil;
-import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
-import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
+import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 
 import javax.annotation.Nullable;
 
@@ -56,11 +54,10 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 		ItemStack stack = p_48709_.getItemInHand(p_48710_);
 		BlockEntity blockentity = p_48707_.getBlockEntity(p_48708_);
 		if (blockentity instanceof SaltFurnaceBlockEntity) {
-			IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack).orElse(null);
-			if (handler instanceof FluidBucketWrapper) {
-				FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, p_48707_, p_48708_, null);
+			if (FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, p_48707_, p_48708_, null)) {
 				flag = true;
 			}
+
 
 			/*if (flag) {
 				if (!p_48707_.isClientSide) {

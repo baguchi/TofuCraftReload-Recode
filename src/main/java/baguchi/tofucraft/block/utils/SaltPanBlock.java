@@ -39,10 +39,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.fluids.FluidUtil;
-import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
-import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
 
 import javax.annotation.Nullable;
 
@@ -115,12 +111,10 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 		Stat stat = getStat(state);
 		if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
 			if (stat == Stat.EMPTY && itemHeld != null) {
-				IFluidHandlerItem handler = FluidUtil.getFluidHandler(itemHeld.copyWithCount(1)).orElse(null);
-				if (handler != null && handler instanceof FluidBucketWrapper && ((FluidBucketWrapper) handler).getFluid().getFluid() == Fluids.WATER) {
+				if (itemHeld.is(Items.WATER_BUCKET)) {
 
 					if (!player.isCreative()) {
-						handler.drain(1000, IFluidHandler.FluidAction.EXECUTE);
-						player.setItemInHand(handIn, new ItemStack(handler.getContainer().getItem()));
+						player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
 					}
 					level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 					TileScanner tileScanner = new TileScanner(level, pos);

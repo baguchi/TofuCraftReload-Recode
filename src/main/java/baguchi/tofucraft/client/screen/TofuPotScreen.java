@@ -9,8 +9,8 @@ import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.data.AtlasIds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -84,7 +84,7 @@ public class TofuPotScreen extends AbstractRecipeBookScreen<TofuPotMenu> {
 
 
 	public static void renderFluidStack(GuiGraphics guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
-		TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(TextureAtlas.LOCATION_BLOCKS).getSprite(IClientFluidTypeExtensions.of(fluid).getStillTexture());
+		TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.BLOCKS).getSprite(IClientFluidTypeExtensions.of(fluid).getStillTexture());
 		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
 
 		float alpha = (float) (color >> 24 & 255) / 255.0F;

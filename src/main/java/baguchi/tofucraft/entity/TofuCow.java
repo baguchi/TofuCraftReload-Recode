@@ -2,7 +2,7 @@ package baguchi.tofucraft.entity;
 
 import baguchi.tofucraft.registry.TofuBiomes;
 import baguchi.tofucraft.registry.TofuEntityTypes;
-import baguchi.tofucraft.registry.TofuFluids;
+import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -32,17 +32,12 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.FluidType;
-import net.neoforged.neoforge.fluids.FluidUtil;
-import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
-import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -114,14 +109,10 @@ public class TofuCow extends Cow {
 	public InteractionResult mobInteract(Player p_28298_, InteractionHand p_28299_) {
 		ItemStack itemstack = p_28298_.getItemInHand(p_28299_);
 		if (!this.isBaby()) {
-			IFluidHandlerItem handler = FluidUtil.getFluidHandler(itemstack).orElse(null);
-			if (handler != null && handler instanceof FluidBucketWrapper && ((FluidBucketWrapper) handler).getFluid().isEmpty()) {
+			if (itemstack.is(Items.BUCKET)) {
 				p_28298_.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
 				AtomicReference<ItemStack> resultItemStack = new AtomicReference<>(itemstack.copy());
-				FluidUtil.getFluidHandler(resultItemStack.get()).ifPresent(fluidHandler -> {
-					fluidHandler.fill(new FluidStack(TofuFluids.SOYMILK.get(), FluidType.BUCKET_VOLUME), IFluidHandler.FluidAction.EXECUTE);
-					resultItemStack.set(fluidHandler.getContainer());
-				});
+				resultItemStack.set(TofuItems.BUCKET_SOYMILK.get().getDefaultInstance());
 				p_28298_.setItemInHand(p_28299_, resultItemStack.get());
 				return InteractionResult.SUCCESS;
 			}

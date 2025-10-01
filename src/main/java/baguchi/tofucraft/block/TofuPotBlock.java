@@ -38,9 +38,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.fluids.FluidUtil;
-import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
-import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
+import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 
 import javax.annotation.Nullable;
 
@@ -71,10 +69,7 @@ public class TofuPotBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 		BlockEntity tileEntity = level.getBlockEntity(pos);
 		if (tileEntity instanceof TofuPotBlockEntity) {
 
-			IFluidHandlerItem handler = FluidUtil.getFluidHandler(heldStack).orElse(null);
-			if (handler instanceof FluidBucketWrapper) {
-				FluidUtil.interactWithFluidHandler(player, hand, level, pos, null);
-
+			if (FluidUtil.interactWithFluidHandler(player, hand, level, pos, null)) {
 				return InteractionResult.SUCCESS;
 			}
 		}
