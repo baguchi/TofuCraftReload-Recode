@@ -1,6 +1,7 @@
 package baguchi.tofucraft;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackLocationInfo;
 import net.minecraft.server.packs.PackSelectionConfig;
 import net.minecraft.server.packs.PackType;
@@ -31,7 +32,7 @@ public class ModCommonEvents {
 			var pack = createBuiltinResourcePack(supplier);
 
 			event.addRepositorySource(packConsumer -> packConsumer.accept(pack));
-		}
+		}*/
 
 		event.addPackFinders(
 				ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofucraft_extra"),
@@ -46,7 +47,7 @@ public class ModCommonEvents {
 				PackSource.FEATURE,
 				TofuConfig.COMMON.enableExtra.get(),
 				Pack.Position.TOP
-		);*/
+		);
 	}
 
 	protected static Pack createBuiltinResourcePack(Pack.ResourcesSupplier p_249625_) {
