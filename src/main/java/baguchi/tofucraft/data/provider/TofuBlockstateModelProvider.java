@@ -54,7 +54,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	@Override
 	public void createBarsAndItem(Block p_436790_) {
 		TextureMapping texturemapping = TextureMapping.bars(p_436790_);
-		this.createBars(p_436790_, ModelTemplates.BARS_POST_ENDS.extend().renderType("cutout").build().create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_POST.create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_CAP.create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_CAP_ALT.create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_POST_SIDE.create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_POST_SIDE_ALT.create(p_436790_, texturemapping, this.modelOutput));
+		this.createBars(p_436790_, ModelTemplates.BARS_POST_ENDS.extend().renderType("cutout").build().create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_POST.extend().renderType("cutout").build().create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_CAP.extend().renderType("cutout").build().create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_CAP_ALT.extend().renderType("cutout").build().create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_POST_SIDE.extend().renderType("cutout").build().create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_POST_SIDE_ALT.extend().renderType("cutout").build().create(p_436790_, texturemapping, this.modelOutput));
 		this.registerSimpleFlatItemModel(p_436790_);
 	}
 
