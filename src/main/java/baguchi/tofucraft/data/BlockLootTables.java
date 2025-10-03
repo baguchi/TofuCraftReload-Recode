@@ -127,6 +127,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerTofuDrop(TofuBlocks.METALTOFU.get(), TofuItems.TOFUMETAL.get());
 		dropSelf(TofuBlocks.METAL_TOFU_GRATE.get());
 		dropSelf(TofuBlocks.METAL_TOFU_LUMP.get());
+		dropSelf(TofuBlocks.METAL_TOFU_BARS.get());
 		registerTofuDrop(TofuBlocks.DIAMONDTOFU.get(), TofuItems.TOFUDIAMOND.get());
 		dropSelf(TofuBlocks.TOFU_GEM_BLOCK.get());
 		dropSelf(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());

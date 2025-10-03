@@ -122,6 +122,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.METALTOFU,
 						TofuBlocks.METAL_TOFU_GRATE,
 						TofuBlocks.METAL_TOFU_LUMP,
+						TofuBlocks.METAL_TOFU_BARS,
 						TofuBlocks.TOFUSLAB_METAL,
 						TofuBlocks.TOFUSTAIR_METAL,
 						TofuBlocks.TOFUFENCE_METAL,

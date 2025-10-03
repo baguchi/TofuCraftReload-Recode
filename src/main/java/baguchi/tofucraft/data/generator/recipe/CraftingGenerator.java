@@ -440,14 +440,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeDoor(this.output, TofuBlocks.TOFUDOOR_GRILLED, TofuBlocks.GRILLEDTOFU);
 		makeDoor(this.output, TofuBlocks.TOFUDOOR_ZUNDA, TofuBlocks.ZUNDATOFU);
 
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_KINU, TofuItems.TOFUKINU);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_MOMEN, TofuItems.TOFUMOMEN);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_ISHI, TofuItems.TOFUISHI);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_METAL, TofuItems.TOFUMETAL);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_HELL, TofuItems.TOFUHELL);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_SOUL, TofuItems.TOFUSOUL);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_GRILLED, TofuItems.TOFUGRILLED);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_ZUNDA, TofuItems.TOFUZUNDA);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_KINU, TofuBlocks.KINUTOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_MOMEN, TofuBlocks.MOMENTOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_ISHI, TofuBlocks.ISHITOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_METAL, TofuBlocks.METALTOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_HELL, TofuBlocks.HELLTOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_SOUL, TofuBlocks.SOULTOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_GRILLED, TofuBlocks.GRILLEDTOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_ZUNDA, TofuBlocks.ZUNDATOFU);
 
 		cuttingRecipe(this.output, TofuBlocks.ISHITOFU, TofuBlocks.TOFUTRAPDOOR_ISHI, 1);
 		cuttingRecipe(this.output, TofuBlocks.ISHITOFU, TofuBlocks.TOFUFENCE_ISHI, 1);
@@ -580,6 +580,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('Z', TofuItems.ZUNDAMA.get())
 				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
 				.save(this.output);
+
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.METAL_TOFU_BARS.get(), 4)
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.TOFUMETAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.save(this.output);
+
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.SALT_FURNACE.get())
 				.pattern("###")
@@ -1317,8 +1325,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("X")
 				.pattern("X")
 				.define('X', Tags.Items.RODS_WOODEN)
-				.define('#', TofuBlocks.METAL_TOFU_GRATE)
-				.unlockedBy("has_item", has(TofuBlocks.METAL_TOFU_GRATE))
+				.define('#', TofuBlocks.METAL_TOFU_BARS)
+				.unlockedBy("has_item", has(TofuBlocks.METAL_TOFU_BARS))
 				.save(this.output, prefix("metal_tofu_scoop"));
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.FUKUMAME.get())

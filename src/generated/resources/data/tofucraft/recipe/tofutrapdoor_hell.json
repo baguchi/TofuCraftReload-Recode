@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "P": "tofucraft:tofuhell"
+    "P": "tofucraft:blocktofuhell"
   },
   "pattern": [
-    "PPP",
-    "PPP"
+    "PP",
+    "PP"
   ],
   "result": {
     "count": 2,

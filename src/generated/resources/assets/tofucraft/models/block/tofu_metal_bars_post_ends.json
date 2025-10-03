@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_bars_post_ends",
+  "textures": {
+    "bars": "tofucraft:block/tofu_metal_bars",
+    "edge": "tofucraft:block/tofu_metal_bars"
+  }
+}

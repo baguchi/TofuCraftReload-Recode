@@ -35,6 +35,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createTrivialCube(TofuBlocks.ISHITOFU_CHISELED_BRICK.get());
 		createCutoutCube(TofuBlocks.METAL_TOFU_GRATE.get());
 		createTrivialCube(TofuBlocks.METAL_TOFU_LUMP.get());
+		this.createBarsAndItem(TofuBlocks.METAL_TOFU_BARS.get());
 		createTrivialCube(TofuBlocks.DIAMONDTOFU.get());
 		createTrivialCube(TofuBlocks.TOFU_GEM_BLOCK.get());
 		createTrivialCube(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());
