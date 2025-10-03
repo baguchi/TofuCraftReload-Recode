@@ -52,6 +52,28 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	}
 
 	@Override
+	public void createBarsAndItem(Block p_436790_) {
+		TextureMapping texturemapping = TextureMapping.bars(p_436790_);
+		this.createBars(p_436790_, ModelTemplates.BARS_POST_ENDS.extend().renderType("cutout").build().create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_POST.create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_CAP.create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_CAP_ALT.create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_POST_SIDE.create(p_436790_, texturemapping, this.modelOutput), ModelTemplates.BARS_POST_SIDE_ALT.create(p_436790_, texturemapping, this.modelOutput));
+		this.registerSimpleFlatItemModel(p_436790_);
+	}
+
+	@Override
+	public void createBarsAndItem(Block p_436811_, Block p_436809_) {
+		TextureMapping texturemapping = TextureMapping.bars(p_436811_);
+		ResourceLocation resourcelocation = ModelTemplates.BARS_POST_ENDS.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		ResourceLocation resourcelocation1 = ModelTemplates.BARS_POST.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		ResourceLocation resourcelocation2 = ModelTemplates.BARS_CAP.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		ResourceLocation resourcelocation3 = ModelTemplates.BARS_CAP_ALT.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		ResourceLocation resourcelocation4 = ModelTemplates.BARS_POST_SIDE.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		ResourceLocation resourcelocation5 = ModelTemplates.BARS_POST_SIDE_ALT.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		this.createBars(p_436811_, resourcelocation, resourcelocation1, resourcelocation2, resourcelocation3, resourcelocation4, resourcelocation5);
+		this.createBars(p_436809_, resourcelocation, resourcelocation1, resourcelocation2, resourcelocation3, resourcelocation4, resourcelocation5);
+		this.registerSimpleFlatItemModel(p_436811_);
+		this.itemModelOutput.copy(p_436811_.asItem(), p_436809_.asItem());
+	}
+
+	@Override
 	public void createTrapdoor(Block p_387551_) {
 		TextureMapping texturemapping = TextureMapping.defaultTexture(p_387551_);
 		MultiVariant multivariant = plainVariant(ModelTemplates.TRAPDOOR_TOP.extend().renderType("cutout").build().create(p_387551_, texturemapping, this.modelOutput));
