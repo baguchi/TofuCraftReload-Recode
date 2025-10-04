@@ -581,7 +581,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuBlocks.METALTOFU.get()))
 				.save(this.output);
 
-		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.METAL_TOFU_BARS.get(), 4)
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.METAL_TOFU_BARS.get(), 16)
 				.pattern("###")
 				.pattern("###")
 				.define('#', TofuItems.TOFUMETAL.get())
