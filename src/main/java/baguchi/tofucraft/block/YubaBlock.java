@@ -73,9 +73,10 @@ public class YubaBlock extends Block {
 		return p_60541_;
 	}
 
+
 	@Override
-	public void entityInside(BlockState state, Level level, BlockPos blockPos, Entity entity, InsideBlockEffectApplier insideBlockEffectApplier) {
-		super.entityInside(state, level, blockPos, entity, insideBlockEffectApplier);
+	protected void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity, InsideBlockEffectApplier p_405359_, boolean p_451772_) {
+		super.entityInside(blockState, level, blockPos, entity, p_405359_, p_451772_);
 
 		if (!level.isClientSide() && canEntityTilt(blockPos, entity)) {
 			level.scheduleTick(blockPos, this, 5);

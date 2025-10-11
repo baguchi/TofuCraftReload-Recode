@@ -96,9 +96,10 @@ public class TofuPortalBlock extends Block implements Portal {
 	}
 
 	@Override
-	protected void entityInside(BlockState p_54915_, Level level, BlockPos p_54917_, Entity entity, InsideBlockEffectApplier p_405359_) {
+	protected void entityInside(BlockState p_60495_, Level p_60496_, BlockPos p_60497_, Entity entity, InsideBlockEffectApplier p_405359_, boolean p_451772_) {
+		super.entityInside(p_60495_, p_60496_, p_60497_, entity, p_405359_, p_451772_);
 		if (entity.canUsePortal(false)) {
-			entity.setAsInsidePortal(this, p_54917_);
+			entity.setAsInsidePortal(this, p_60497_);
 			if (entity instanceof Player player) {
 				TofuLivingAttachment portal = player.getData(TofuAttachments.TOFU_LIVING);
 				portal.setInPortal(true);
@@ -107,7 +108,6 @@ public class TofuPortalBlock extends Block implements Portal {
 		}
 
 	}
-
 
 	public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
 		int random = rand.nextInt(100);

@@ -1,6 +1,7 @@
 package baguchi.tofucraft.client.render.blockentity;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.blockentity.TofuChestBlockEntity;
 import baguchi.tofucraft.registry.TofuBlocks;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.renderer.Sheets;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.properties.ChestType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -31,14 +33,12 @@ public class TofuChestRenderer<T extends BlockEntity & LidBlockEntity> extends C
 	}
 
 	@Override
-	protected Material getMaterial(ChestRenderState.ChestMaterialType materialType, ChestType chestType) {
+	protected @Nullable Material getCustomMaterial(T blockEntity, ChestRenderState renderState) {
 		EnumMap<ChestType, Material> b = MATERIALS.get(TofuBlocks.TOFUCHEST.get());
-
-		if (b == null) return super.getMaterial(materialType, chestType);
-
-		Material material = b.get(chestType);
-
-		return material != null ? material : super.getMaterial(materialType, chestType);
+		if (blockEntity instanceof TofuChestBlockEntity) {
+			return chestMaterial("tofuchest").get(renderState.type);
+		}
+		return null;
 	}
 
 	private static EnumMap<ChestType, Material> chestMaterial(String type) {

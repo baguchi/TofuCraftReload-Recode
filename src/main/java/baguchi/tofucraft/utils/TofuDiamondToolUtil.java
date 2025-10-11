@@ -179,7 +179,7 @@ public class TofuDiamondToolUtil {
 
 		if (player.isCreative()) {
 			block.playerWillDestroy(world, pos, state, player);
-			if (block.onDestroyedByPlayer(state, world, pos, player, false, fluidState)) {
+			if (block.onDestroyedByPlayer(state, world, pos, player, stack, false, fluidState)) {
 				block.destroy(world, pos, state);
 			}
 			// send update to client
@@ -209,7 +209,7 @@ public class TofuDiamondToolUtil {
 		if (!level.isClientSide()) {
 
 			BlockEntity tileEntity = level.getBlockEntity(pos);
-			if (block.onDestroyedByPlayer(state, level, pos, player, true, fluidState)) {
+			if (block.onDestroyedByPlayer(state, level, pos, player, stack, true, fluidState)) {
 				block.destroy(level, pos, state);
 				block.playerDestroy(level, player, pos, state, tileEntity, stack);
 			}
@@ -220,7 +220,7 @@ public class TofuDiamondToolUtil {
 			}
 		} else {
 			level.levelEvent(2001, pos, Block.getId(state));
-			if (block.onDestroyedByPlayer(state, level, pos, player, true, fluidState)) {
+			if (block.onDestroyedByPlayer(state, level, pos, player, stack, true, fluidState)) {
 				block.destroy(level, pos, state);
 			}
 			stack.mineBlock(level, state, pos, player);

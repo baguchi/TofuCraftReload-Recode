@@ -42,26 +42,28 @@ public class ZundamaBlock extends HalfTransparentBlock {
 		return SHAPE;
 	}
 
-	public void fallOn(Level p_153372_, BlockState p_153373_, BlockPos p_153374_, Entity p_153375_, float p_153376_) {
-		p_153375_.playSound(SoundEvents.HONEY_BLOCK_SLIDE, 1.0F, 1.0F);
-		if (p_153372_.isClientSide()) {
-			showParticles(p_153375_, 12);
+	@Override
+	public void fallOn(Level p_152426_, BlockState p_152427_, BlockPos p_152428_, Entity p_152429_, double p_397222_) {
+		p_152429_.playSound(SoundEvents.HONEY_BLOCK_SLIDE, 1.0F, 1.0F);
+		if (p_152426_.isClientSide()) {
+			showParticles(p_152429_, 12);
 		}
 
-		if (p_153375_.causeFallDamage(p_153376_, 0.15F, p_153372_.damageSources().fall())) {
-			p_153375_.playSound(this.soundType.getFallSound(), this.soundType.getVolume() * 0.5F, this.soundType.getPitch() * 0.75F);
+		if (p_152429_.causeFallDamage(p_397222_, 0.15F, p_152426_.damageSources().fall())) {
+			p_152429_.playSound(this.soundType.getFallSound(), this.soundType.getVolume() * 0.5F, this.soundType.getPitch() * 0.75F);
 		}
 
 	}
 
-	public void entityInside(BlockState p_54003_, Level p_54004_, BlockPos p_54005_, Entity p_54006_, InsideBlockEffectApplier insideBlockEffectApplier) {
-		if (this.isSlidingDown(p_54005_, p_54006_)) {
-			this.maybeDoSlideAchievement(p_54006_, p_54005_);
-			this.doSlideMovement(p_54006_);
-			this.maybeDoSlideEffects(p_54004_, p_54006_);
+	@Override
+	protected void entityInside(BlockState p_60495_, Level p_60496_, BlockPos p_60497_, Entity p_60498_, InsideBlockEffectApplier p_405359_, boolean p_451772_) {
+		if (this.isSlidingDown(p_60497_, p_60498_)) {
+			this.maybeDoSlideAchievement(p_60498_, p_60497_);
+			this.doSlideMovement(p_60498_);
+			this.maybeDoSlideEffects(p_60496_, p_60498_);
 		}
 
-		super.entityInside(p_54003_, p_54004_, p_54005_, p_54006_, insideBlockEffectApplier);
+		super.entityInside(p_60495_, p_60496_, p_60497_, p_60498_, p_405359_, p_451772_);
 	}
 
 	private boolean isSlidingDown(BlockPos p_54008_, Entity p_54009_) {
