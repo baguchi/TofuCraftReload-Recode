@@ -482,7 +482,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				this.setTofunianJobBlock(null);
 
 				//if xp is none. set role normal
-				if (this.getTofunianLevel() == 1 && this.getVillagerXp() == 0) {
+				if (this.getTofunianLevel() <= 1 && this.getVillagerXp() == 0) {
 					this.setOffers(null);
 					this.setRole(Roles.TOFUNIAN);
 				}
@@ -730,6 +730,22 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		for (MerchantOffer merchantoffer : this.getOffers()) {
 			merchantoffer.updateDemand();
 		}
+		this.resendOffersToTradingPlayer();
+	}
+
+	private void resendOffersToTradingPlayer() {
+		MerchantOffers merchantoffers = this.getOffers();
+		Player player = this.getTradingPlayer();
+		if (player != null && !merchantoffers.isEmpty()) {
+			player.sendMerchantOffers(
+					player.containerMenu.containerId,
+					merchantoffers,
+					this.tofunianLevel,
+					this.getVillagerXp(),
+					this.showProgressBar(),
+					this.canRestock()
+			);
+		}
 	}
 
 	public void setOffers(MerchantOffers offersIn) {
@@ -787,7 +803,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		var10000.ifPresent(this.gossips::putAll);
 		this.xp = compound.getIntOr("Xp", 0);
 
-		this.tofunianLevel = compound.getIntOr("Level", 0);
+		this.tofunianLevel = Math.max(compound.getIntOr("Level", 1), 1);
+
+
 
 		this.lastGossipDecay = compound.getLongOr("LastGossipDecay", 0);
 		this.lastRestock = compound.getLongOr("LastRestock", 0);
