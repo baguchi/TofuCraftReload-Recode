@@ -40,7 +40,7 @@ public class TFCollectorBlockEntity extends SenderBaseBlockEntity {
 			}
 		}
 		if (level.dimension() == TofuDimensions.tofu_world) {
-			j *= 2;
+			j *= 3;
 		}
 
 		boolean worked = false;
