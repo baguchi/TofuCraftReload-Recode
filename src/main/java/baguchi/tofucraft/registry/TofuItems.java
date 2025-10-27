@@ -320,17 +320,17 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_ANKAKE = ITEMS.registerItem("tofu_ankake", (properties) -> new DishItem((properties).stacksTo(16).food(TofuFoods.TOFU_ANKAKE).usingConvertsTo(Items.BOWL)));
 
 
-	public static final DeferredHolder<Item, Item> TOFU_KINU_SWORD = ITEMS.registerItem("tofu_kinu_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.KINU, 0, -0.5F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_KINU_AXE = ITEMS.registerItem("tofu_kinu_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.KINU, 0, -0.5F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_KINU_PICKAXE = ITEMS.registerItem("tofu_kinu_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.KINU, 0, -0.5F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_KINU_SHOVEL = ITEMS.registerItem("tofu_kinu_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.KINU, 0, -0.5F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_KINU_HOE = ITEMS.registerItem("tofu_kinu_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.KINU, 0, -0.5F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_SWORD = ITEMS.registerItem("tofu_kinu_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.KINU, -0.9F, -0.5F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_AXE = ITEMS.registerItem("tofu_kinu_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.KINU, -0.9F, -0.5F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_PICKAXE = ITEMS.registerItem("tofu_kinu_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.KINU, -0.9F, -0.5F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_SHOVEL = ITEMS.registerItem("tofu_kinu_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.KINU, -0.9F, -0.5F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_HOE = ITEMS.registerItem("tofu_kinu_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.KINU, -0.9F, -0.5F, (properties.stacksTo(1))));
 
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SWORD = ITEMS.registerItem("tofu_momen_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.MOMEN, 0, -1.4F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN_AXE = ITEMS.registerItem("tofu_momen_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.MOMEN, 0, -1.4F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN_PICKAXE = ITEMS.registerItem("tofu_momen_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.MOMEN, 0, -1.4F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SHOVEL = ITEMS.registerItem("tofu_momen_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.MOMEN, 0, -1.4F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN_HOE = ITEMS.registerItem("tofu_momen_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.MOMEN, 0, -1.4F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SWORD = ITEMS.registerItem("tofu_momen_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.MOMEN, -0.85F, -1.4F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_AXE = ITEMS.registerItem("tofu_momen_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.MOMEN, -0.85F, -1.4F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_PICKAXE = ITEMS.registerItem("tofu_momen_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.MOMEN, -0.85F, -1.4F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SHOVEL = ITEMS.registerItem("tofu_momen_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.MOMEN, -0.85F, -1.4F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_HOE = ITEMS.registerItem("tofu_momen_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.MOMEN, -0.85F, -1.4F, (properties.stacksTo(1))));
 
 	public static final DeferredHolder<Item, Item> TOFU_SOLID_SWORD = ITEMS.registerItem("tofu_solid_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.SOLID, 3, -2.3F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_SOLID_AXE = ITEMS.registerItem("tofu_solid_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.SOLID, 6.0F, -2.9F, (properties.stacksTo(1))));

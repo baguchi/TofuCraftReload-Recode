@@ -49,16 +49,19 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -93,6 +96,7 @@ import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.entity.player.SweepAttackEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.ExplosionEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
@@ -159,6 +163,51 @@ public class CommonEvents {
 			attachment.getLearning().forEach(learning -> {
 				PacketDistributor.sendToPlayer(serverPlayer, new AddLearningPacket(serverPlayer.getId(), learning.unwrap().left().get().location(), false));
 			});
+		}
+	}
+
+	@SubscribeEvent
+	public static void onSweep(SweepAttackEvent event) {
+		Player player = event.getEntity();
+		if (player.getWeaponItem().is(TofuItems.TOFU_KINU_SWORD) || player.getWeaponItem().is(TofuItems.TOFU_MOMEN_SWORD)) {
+			DamageSource damagesource = Optional.ofNullable(player.getWeaponItem().getItem().getDamageSource(player)).orElse(player.damageSources().playerAttack(player));
+
+			float f = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
+			float f2 = player.getAttackStrengthScale(0.5F);
+			f += player.getWeaponItem().getItem().getAttackDamageBonus(event.getTarget(), f, damagesource);
+			//enchant
+			boolean flag3 = f2 > 0.9F;
+			if (flag3) {
+
+
+				float f6 = 0.1F + (float) player.getAttributeValue(Attributes.SWEEPING_DAMAGE_RATIO) * f;
+
+				for (LivingEntity livingentity2 : player.level()
+						.getEntitiesOfClass(LivingEntity.class, player.getWeaponItem().getSweepHitBox(player, event.getTarget()))) { // Neo: Patch in item extension for custom sweep hit box
+					float f1 = (player.level() instanceof ServerLevel serverLevel) ? EnchantmentHelper.modifyDamage(serverLevel, player.getWeaponItem(), livingentity2, damagesource, f) : f;
+					f += f1;
+					f *= 0.2F + f2 * f2 * 0.8F;
+					double entityReachSq = Mth.square(player.entityInteractionRange()); // Use entity reach instead of constant 9.0. Vanilla uses bottom center-to-center checks here, so don't update player to use canReach, since it uses closest-corner checks.
+					if (livingentity2 != player
+							&& livingentity2 != event.getTarget()
+							&& !player.isAlliedTo(livingentity2)
+							&& !(livingentity2 instanceof ArmorStand armorstand && armorstand.isMarker())
+							&& player.distanceToSqr(livingentity2) < entityReachSq) {
+						//float f8 = player.getEnchantedDamage(livingentity2, f6, damagesource) * f2;
+						if (player.level() instanceof ServerLevel serverlevel && livingentity2.hurtServer(serverlevel, damagesource, f6)) {
+							livingentity2.knockback(
+									0.4F, Mth.sin(player.getYRot() * (float) (Math.PI / 180.0)), -Mth.cos(player.getYRot() * (float) (Math.PI / 180.0))
+							);
+							EnchantmentHelper.doPostAttackEffects(serverlevel, livingentity2, damagesource);
+						}
+					}
+				}
+
+				player.level()
+						.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, player.getSoundSource(), 1.0F, 1.0F);
+				player.sweepAttack();
+			}
+			event.setSweeping(false);
 		}
 	}
 

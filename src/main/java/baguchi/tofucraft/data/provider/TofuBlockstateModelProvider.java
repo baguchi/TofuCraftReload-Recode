@@ -42,7 +42,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	public static final ModelTemplate TRANSLUCENT_CUBE = ModelTemplates.CUBE_ALL.extend().renderType("translucent").build();
 	public static final ModelTemplate CUTOUT_CUBE = ModelTemplates.CUBE_ALL.extend().renderType("cutout").build();
 	public static final ModelTemplate CROP = ModelTemplates.CROP.extend().renderType("cutout").build();
-	public static final TexturedModel.Provider LEAVES_PROVIDER = createDefault(TextureMapping::cube, ModelTemplates.LEAVES.extend().renderType("cutout").build());
+	public static final TexturedModel.Provider LEAVES_PROVIDER = createDefault(TextureMapping::cube, ModelTemplates.LEAVES.extend().renderType("cutout_mipped").build());
 	public static final TexturedModel.Provider CHAIN = createDefault(TextureMapping::cube, TofuModelTemplate.CHAIN.extend().renderType("cutout").build());
 	public static final TexturedModel.Provider LANTERN = createDefault(TextureMapping::lantern, ModelTemplates.LANTERN.extend().renderType("cutout").build());
 	public static final TexturedModel.Provider HANGING_LANTERN = createDefault(TextureMapping::lantern, ModelTemplates.HANGING_LANTERN.extend().renderType("cutout").build());
