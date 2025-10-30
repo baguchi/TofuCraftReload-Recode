@@ -4,6 +4,7 @@ import baguchi.tofucraft.attachment.SoyHealthAttachment;
 import baguchi.tofucraft.attachment.TofuLivingAttachment;
 import baguchi.tofucraft.attachment.TofuPlayerAttachment;
 import baguchi.tofucraft.entity.OageCube;
+import baguchi.tofucraft.entity.ShuDofuSpiderPart;
 import baguchi.tofucraft.entity.projectile.UnstableZundamaEntity;
 import baguchi.tofucraft.item.TofuBookItem;
 import baguchi.tofucraft.item.armor.BreakableTofuBootsItem;
@@ -94,6 +95,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDestroyBlockEvent;
 import net.neoforged.neoforge.event.entity.living.LivingUseTotemEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
+import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.entity.player.SweepAttackEvent;
@@ -168,28 +170,38 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onSweep(SweepAttackEvent event) {
+		Entity target = event.getTarget();
 		Player player = event.getEntity();
 		if (player.getWeaponItem().is(TofuItems.TOFU_KINU_SWORD) || player.getWeaponItem().is(TofuItems.TOFU_MOMEN_SWORD)) {
 			DamageSource damagesource = Optional.ofNullable(player.getWeaponItem().getItem().getDamageSource(player)).orElse(player.damageSources().playerAttack(player));
 
 			float f = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			float f2 = player.getAttackStrengthScale(0.5F);
-			f += player.getWeaponItem().getItem().getAttackDamageBonus(event.getTarget(), f, damagesource);
+			f += player.getWeaponItem().getItem().getAttackDamageBonus(target, f, damagesource);
 			//enchant
 			boolean flag3 = f2 > 0.9F;
-			if (flag3) {
+			boolean flag1 = flag3
+					&& player.fallDistance > 0.0
+					&& !player.onGround()
+					&& !player.onClimbable()
+					&& !player.isInWater()
+					&& !player.isMobilityRestricted()
+					&& !player.isPassenger()
+					&& target instanceof LivingEntity
+					&& !player.isSprinting();
+			if (flag1) {
 
 
 				float f6 = 0.1F + (float) player.getAttributeValue(Attributes.SWEEPING_DAMAGE_RATIO) * f;
 
 				for (LivingEntity livingentity2 : player.level()
-						.getEntitiesOfClass(LivingEntity.class, player.getWeaponItem().getSweepHitBox(player, event.getTarget()))) { // Neo: Patch in item extension for custom sweep hit box
+						.getEntitiesOfClass(LivingEntity.class, player.getWeaponItem().getSweepHitBox(player, target))) { // Neo: Patch in item extension for custom sweep hit box
 					float f1 = (player.level() instanceof ServerLevel serverLevel) ? EnchantmentHelper.modifyDamage(serverLevel, player.getWeaponItem(), livingentity2, damagesource, f) : f;
 					f += f1;
 					f *= 0.2F + f2 * f2 * 0.8F;
 					double entityReachSq = Mth.square(player.entityInteractionRange()); // Use entity reach instead of constant 9.0. Vanilla uses bottom center-to-center checks here, so don't update player to use canReach, since it uses closest-corner checks.
 					if (livingentity2 != player
-							&& livingentity2 != event.getTarget()
+							&& livingentity2 != target
 							&& !player.isAlliedTo(livingentity2)
 							&& !(livingentity2 instanceof ArmorStand armorstand && armorstand.isMarker())
 							&& player.distanceToSqr(livingentity2) < entityReachSq) {
@@ -752,5 +764,28 @@ public class CommonEvents {
 			}
 		}
 		return false;
+	}
+
+	@SubscribeEvent
+	public static void onCrit(CriticalHitEvent event) {
+		Player player = event.getEntity();
+		Entity target = event.getTarget();
+		if (target instanceof ShuDofuSpiderPart part) {
+			float f2 = player.getAttackStrengthScale(0.5F);
+			boolean flag3 = f2 > 0.9F;
+			boolean flag1 = flag3
+					&& player.fallDistance > 0.0
+					&& !player.onGround()
+					&& !player.onClimbable()
+					&& !player.isInWater()
+					&& !player.isMobilityRestricted()
+					&& !player.isPassenger()
+					&& target.isAttackable()
+					&& !player.isSprinting();
+			if (flag1) {
+				event.setCriticalHit(true);
+				player.crit(part.getParent());
+			}
+		}
 	}
 }
