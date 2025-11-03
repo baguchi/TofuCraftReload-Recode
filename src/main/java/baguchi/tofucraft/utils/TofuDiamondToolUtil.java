@@ -159,7 +159,7 @@ public class TofuDiamondToolUtil {
 
 	}
 
-	private static boolean canBreakExtraBlock(ItemStack stack, ServerLevel world, Player player, BlockPos pos, BlockPos refPos) {
+	public static boolean canBreakExtraBlock(ItemStack stack, ServerLevel world, Player player, BlockPos pos, BlockPos refPos) {
 		if (world.isEmptyBlock(pos)) {
 			return false;
 		}
