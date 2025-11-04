@@ -1468,6 +1468,44 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get()))
 				.save(this.output);
 
+		//soy cheese block
+
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.SOY_CHEESE_BLOCK.get())
+				.pattern("##")
+				.pattern("##")
+				.define('#', TofuItems.SOY_CHEESE.get())
+				.unlockedBy("has_item", has(TofuItems.SOY_CHEESE.get()))
+				.save(this.output);
+
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.SOY_CHEESE.get(), 4)
+				.requires(TofuBlocks.SOY_CHEESE_BLOCK.get())
+				.unlockedBy("has_item", has(TofuBlocks.SOY_CHEESE_BLOCK.get()))
+				.save(this.output);
+
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.SOY_NETHER_CHEESE_BLOCK.get())
+				.pattern("##")
+				.pattern("##")
+				.define('#', TofuItems.SOY_NETHER_CHEESE.get())
+				.unlockedBy("has_item", has(TofuItems.SOY_NETHER_CHEESE.get()))
+				.save(this.output);
+
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.SOY_NETHER_CHEESE.get(), 4)
+				.requires(TofuBlocks.SOY_NETHER_CHEESE_BLOCK.get())
+				.unlockedBy("has_item", has(TofuBlocks.SOY_NETHER_CHEESE_BLOCK.get()))
+				.save(this.output);
+
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.SOY_SOUL_CHEESE_BLOCK.get())
+				.pattern("##")
+				.pattern("##")
+				.define('#', TofuItems.SOY_SOUL_CHEESE.get())
+				.unlockedBy("has_item", has(TofuItems.SOY_SOUL_CHEESE.get()))
+				.save(this.output);
+
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.SOY_SOUL_CHEESE.get(), 4)
+				.requires(TofuBlocks.SOY_SOUL_CHEESE_BLOCK.get())
+				.unlockedBy("has_item", has(TofuBlocks.SOY_SOUL_CHEESE_BLOCK.get()))
+				.save(this.output);
+
 		// kinako_bread
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.KINAKO_BREAD.get(), 3)
 				.requires(TofuItems.KINAKO.get())

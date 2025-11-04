@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "tofucraft:block/soy_nether_cheese_block"
+  }
+}

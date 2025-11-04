@@ -47,7 +47,7 @@ public class SoymilkCauldronBlock extends Block {
 	@Override
 	protected InteractionResult useItemOn(ItemStack itemHeld, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_316140_) {
 		if (state.getValue(SOYCHEESE)) {
-			ItemStack cheese = new ItemStack(this.cheeseSupplier.get(), 4);
+			ItemStack cheese = new ItemStack(this.cheeseSupplier.get(), 1);
 			float f = 0.7F;
 			double d0 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.5D;
 			double d1 = (worldIn.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;

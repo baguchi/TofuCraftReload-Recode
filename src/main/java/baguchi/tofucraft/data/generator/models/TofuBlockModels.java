@@ -204,6 +204,10 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createTofuCakeBlock(TofuBlocks.ZUNDATOFUCAKE.get());
 		createTofuCakeBlock(TofuBlocks.SOYCHEESE_TART.get());
 
+		this.createTrivialCube(TofuBlocks.SOY_CHEESE_BLOCK.get());
+		this.createTrivialCube(TofuBlocks.SOY_NETHER_CHEESE_BLOCK.get());
+		this.createTrivialCube(TofuBlocks.SOY_SOUL_CHEESE_BLOCK.get());
+
 		this.createTofuCandleCake(Blocks.WHITE_CANDLE, TofuBlocks.WHITE_TOFU_CANDLE_CAKE.get(), TofuBlocks.TOFUCAKE.get());
 		this.createTofuCandleCake(Blocks.ORANGE_CANDLE, TofuBlocks.ORANGE_TOFU_CANDLE_CAKE.get(), TofuBlocks.TOFUCAKE.get());
 		this.createTofuCandleCake(Blocks.MAGENTA_CANDLE, TofuBlocks.MAGENTA_TOFU_CANDLE_CAKE.get(), TofuBlocks.TOFUCAKE.get());
