@@ -8,6 +8,9 @@
     "tofucraft:rice_block",
     "tofucraft:seeds_soybeans_block",
     "tofucraft:seeds_soybeans_nether_block",
-    "tofucraft:seeds_soybeans_soul_block"
+    "tofucraft:seeds_soybeans_soul_block",
+    "tofucraft:soy_cheese_block",
+    "tofucraft:soy_nether_cheese_block",
+    "tofucraft:soy_soul_cheese_block"
   ]
 }
