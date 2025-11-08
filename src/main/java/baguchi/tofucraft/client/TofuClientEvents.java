@@ -1,15 +1,15 @@
 package baguchi.tofucraft.client;
 
 import baguchi.bagus_lib.animation.BaguAnimationController;
+import baguchi.bagus_lib.animation.client.BaguKeyFrameController;
 import baguchi.bagus_lib.client.event.BagusModelEvent;
 import baguchi.tofucraft.TofuCraftReload;
-import baguchi.tofucraft.client.animation.definitions.CoughAnimation;
-import baguchi.tofucraft.client.animation.definitions.HumanoidAnimations;
 import baguchi.tofucraft.client.sound.TofuMusicManager;
 import baguchi.tofucraft.entity.TofuGandlem;
 import baguchi.tofucraft.registry.TofuAnimations;
 import baguchi.tofucraft.registry.TofuItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
@@ -24,6 +24,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
 import net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -92,33 +93,44 @@ public class TofuClientEvents {
 
 	@SubscribeEvent
 	public static void onAnimateModelEvent(BagusModelEvent.PostAnimate event) {
-		BaguAnimationController controller = event.getBaguAnimationController();
-		if (controller != null && (event.getModel().root().hasChild("head"))) {
-			CoughAnimation.COUGH.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.COUGH), event.getEntityRenderState().ageInTicks);
-		}
-
-		if (controller != null && event.getModel().root().hasChild("right_arm") && event.getModel().root().hasChild("left_arm")) {
-			if (controller.getAnimationState(TofuAnimations.THROWN_RIGHT).isStarted() || controller.getAnimationState(TofuAnimations.THROWN_LEFT).isStarted()) {
-				event.getModel().root().getChild("right_arm").resetPose();
-				event.getModel().root().getChild("left_arm").resetPose();
-
-
-				HumanoidAnimations.thrown_right.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.THROWN_RIGHT), event.getEntityRenderState().ageInTicks);
-				HumanoidAnimations.thrown_left.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.THROWN_LEFT), event.getEntityRenderState().ageInTicks);
+		BaguAnimationController animations = event.getBaguAnimationController();
+		@Nullable BaguKeyFrameController keyFrames = event.getBaguKeyframeController();
+		if (keyFrames != null) {
+			KeyframeAnimation cough = keyFrames.getKeyframe(TofuAnimations.COUGH);
+			KeyframeAnimation thrownRight = keyFrames.getKeyframe(TofuAnimations.THROWN_RIGHT);
+			KeyframeAnimation thrownLeft = keyFrames.getKeyframe(TofuAnimations.THROWN_LEFT);
+			KeyframeAnimation busterRight = keyFrames.getKeyframe(TofuAnimations.BUSTER_RIGHT);
+			KeyframeAnimation busterLeft = keyFrames.getKeyframe(TofuAnimations.BUSTER_LEFT);
+			if (animations != null && cough != null) {
+				cough.apply(animations.getAnimationState(TofuAnimations.COUGH), event.getEntityRenderState().ageInTicks);
 			}
 
-			if (controller.getAnimationState(TofuAnimations.BUSTER_RIGHT).isStarted() || controller.getAnimationState(TofuAnimations.BUSTER_LEFT).isStarted()) {
-				event.getModel().root().getChild("right_arm").resetPose();
-				event.getModel().root().getChild("left_arm").resetPose();
-				event.getModel().root().getChild("right_leg").resetPose();
-				event.getModel().root().getChild("left_leg").resetPose();
-				event.getModel().root().getChild("body").resetPose();
-				event.getModel().root().getChild("head").resetPose();
+			if (animations != null) {
+				if (thrownRight != null && thrownLeft != null) {
+					if (animations.getAnimationState(TofuAnimations.THROWN_RIGHT).isStarted() || animations.getAnimationState(TofuAnimations.THROWN_LEFT).isStarted()) {
+						event.getModel().root().getChild("right_arm").resetPose();
+						event.getModel().root().getChild("left_arm").resetPose();
 
-				event.getModel().root().getChild("head").xRot = event.getEntityRenderState().xRot * (float) (Math.PI / 180.0);
-				event.getModel().root().getChild("head").yRot = event.getEntityRenderState().yRot * (float) (Math.PI / 180.0);
-				HumanoidAnimations.buster_right.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.BUSTER_RIGHT), event.getEntityRenderState().ageInTicks);
-				HumanoidAnimations.buster_left.bake(event.getModel().root()).apply(controller.getAnimationState(TofuAnimations.BUSTER_LEFT), event.getEntityRenderState().ageInTicks);
+
+						thrownRight.apply(animations.getAnimationState(TofuAnimations.THROWN_RIGHT), event.getEntityRenderState().ageInTicks);
+						thrownLeft.apply(animations.getAnimationState(TofuAnimations.THROWN_LEFT), event.getEntityRenderState().ageInTicks);
+					}
+				}
+				if (busterRight != null && busterLeft != null) {
+					if (animations.getAnimationState(TofuAnimations.BUSTER_RIGHT).isStarted() || animations.getAnimationState(TofuAnimations.BUSTER_LEFT).isStarted()) {
+						event.getModel().root().getChild("right_arm").resetPose();
+						event.getModel().root().getChild("left_arm").resetPose();
+						event.getModel().root().getChild("right_leg").resetPose();
+						event.getModel().root().getChild("left_leg").resetPose();
+						event.getModel().root().getChild("body").resetPose();
+						event.getModel().root().getChild("head").resetPose();
+
+						event.getModel().root().getChild("head").xRot = event.getEntityRenderState().xRot * (float) (Math.PI / 180.0);
+						event.getModel().root().getChild("head").yRot = event.getEntityRenderState().yRot * (float) (Math.PI / 180.0);
+						busterRight.apply(animations.getAnimationState(TofuAnimations.BUSTER_RIGHT), event.getEntityRenderState().ageInTicks);
+						busterLeft.apply(animations.getAnimationState(TofuAnimations.BUSTER_LEFT), event.getEntityRenderState().ageInTicks);
+					}
+				}
 			}
 		}
 	}

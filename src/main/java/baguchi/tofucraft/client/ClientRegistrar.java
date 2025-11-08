@@ -1,7 +1,10 @@
 package baguchi.tofucraft.client;
 
+import baguchi.bagus_lib.client.event.RegisterBagusKeyframeEvents;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.attachment.TofuLivingAttachment;
+import baguchi.tofucraft.client.animation.definitions.CoughAnimation;
+import baguchi.tofucraft.client.animation.definitions.HumanoidAnimations;
 import baguchi.tofucraft.client.model.FukumameThrowerModel;
 import baguchi.tofucraft.client.model.OageCubeModel;
 import baguchi.tofucraft.client.model.ShuDofuSpiderModel;
@@ -62,6 +65,7 @@ import baguchi.tofucraft.client.screen.TFStorageScreen;
 import baguchi.tofucraft.client.screen.TfCraftingTableScreen;
 import baguchi.tofucraft.client.screen.TofuPotScreen;
 import baguchi.tofucraft.mixin.client.GuiAccessor;
+import baguchi.tofucraft.registry.TofuAnimations;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -92,6 +96,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
@@ -742,5 +747,21 @@ public class ClientRegistrar {
 		event.registerSpriteSet(TofuParticleTypes.ZUNDA_EXPLOSION.get(), ZundaExplosionParticle.Provider::new);
 		event.registerSpecial(TofuParticleTypes.ZUNDA_EMIT.get(), new ZundaExplosionSeedParticle.Provider<>());
 		event.registerSpriteSet(TofuParticleTypes.SIMPLE_STINKE.get(), ParticleSimpleStink.Provider::new);
+	}
+
+	@SubscribeEvent
+	public static void registerAnimation(RegisterBagusKeyframeEvents event) {
+		if (event.getModel().root().hasChild("head")) {
+			event.addAnimationKeyframe(TofuAnimations.COUGH, CoughAnimation.COUGH.bake(event.getModelPart()));
+		}
+		if (event.getModel().root().hasChild("right_arm") && event.getModel().root().hasChild("left_arm")) {
+			event.addAnimationKeyframe(TofuAnimations.THROWN_RIGHT, HumanoidAnimations.thrown_right.bake(event.getModelPart()));
+			event.addAnimationKeyframe(TofuAnimations.THROWN_LEFT, HumanoidAnimations.thrown_left.bake(event.getModelPart()));
+		}
+
+		if (event.getModel() instanceof HumanoidModel<?>) {
+			event.addAnimationKeyframe(TofuAnimations.BUSTER_RIGHT, HumanoidAnimations.buster_right.bake(event.getModelPart()));
+			event.addAnimationKeyframe(TofuAnimations.BUSTER_LEFT, HumanoidAnimations.buster_left.bake(event.getModelPart()));
+		}
 	}
 }

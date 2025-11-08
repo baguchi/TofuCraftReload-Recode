@@ -1,5 +1,6 @@
 package baguchi.tofucraft.registry;
 
+import baguchi.bagus_lib.event.RegisterBagusAnimationStateEvents;
 import baguchi.tofucraft.TofuCraftReload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,7 +16,7 @@ public class TofuAnimations {
 	public static final ResourceLocation BUSTER_LEFT = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "buster_left");
 
 	@SubscribeEvent
-	public static void registerAnimation(baguchi.bagus_lib.event.RegisterBagusAnimationEvents events) {
+	public static void registerAnimation(RegisterBagusAnimationStateEvents events) {
 		if (events.getEntity() instanceof LivingEntity) {
 			events.addAnimationState(COUGH);
 			events.addAnimationState(THROWN_RIGHT);
