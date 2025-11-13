@@ -3,18 +3,13 @@ package baguchi.tofucraft.mixin;
 import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuLootTables;
-import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -36,7 +31,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
@@ -132,72 +126,6 @@ public abstract class FishingHookMixin extends Projectile {
 		return null;
 	}
 
-
-	@Inject(method = ("catchingFish"), at = @At("HEAD"), cancellable = true)
-	private void tofucraftreload$showSplash(BlockPos blockPos, CallbackInfo callbackInfo) {
-		ServerLevel serverlevel = (ServerLevel) this.level();
-		int i = 1;
-		BlockPos blockpos = blockPos.above();
-		if (this.random.nextFloat() < 0.25F && this.level().isRainingAt(blockpos)) {
-			++i;
-		}
-
-		if (this.random.nextFloat() < 0.5F && !this.level().canSeeSky(blockpos)) {
-			--i;
-		}
-
-		if (this.nibble <= 0) {
-			if (this.timeUntilHooked > 0) {
-				this.timeUntilHooked -= i;
-				if (this.timeUntilHooked > 0) {
-					this.fishAngle += (float) this.random.triangle(0.0D, 9.188D);
-					float f = this.fishAngle * ((float) Math.PI / 180F);
-					float f1 = Mth.sin(f);
-					float f2 = Mth.cos(f);
-					double d0 = this.getX() + (double) (f1 * (float) this.timeUntilHooked * 0.1F);
-					double d1 = (double) ((float) Mth.floor(this.getY()) + 1.0F);
-					double d2 = this.getZ() + (double) (f2 * (float) this.timeUntilHooked * 0.1F);
-					FluidState fluidstate = serverlevel.getFluidState(BlockPos.containing(d0, d1 - 1.0D, d2));
-					if (fluidstate.is(TofuTags.Fluids.SOYMILK)) {
-						if (this.random.nextFloat() < 0.15F) {
-							serverlevel.sendParticles(ParticleTypes.BUBBLE, d0, d1 - (double) 0.1F, d2, 1, (double) f1, 0.1D, (double) f2, 0.0D);
-						}
-
-						float f3 = f1 * 0.04F;
-						float f4 = f2 * 0.04F;
-						serverlevel.sendParticles(TofuParticleTypes.SOYMILK_SPLASH.get(), d0, d1, d2, 0, (double) f4, 0.01D, (double) (-f3), 1.0D);
-						serverlevel.sendParticles(TofuParticleTypes.SOYMILK_SPLASH.get(), d0, d1, d2, 0, (double) (-f4), 0.01D, (double) f3, 1.0D);
-					}
-				} else {
-					this.playSound(SoundEvents.FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
-					double d3 = this.getY() + 0.5D;
-					serverlevel.sendParticles(ParticleTypes.BUBBLE, this.getX(), d3, this.getZ(), (int) (1.0F + this.getBbWidth() * 20.0F), (double) this.getBbWidth(), 0.0D, (double) this.getBbWidth(), (double) 0.2F);
-					serverlevel.sendParticles(TofuParticleTypes.SOYMILK_SPLASH.get(), this.getX(), d3, this.getZ(), (int) (1.0F + this.getBbWidth() * 20.0F), (double) this.getBbWidth(), 0.0D, (double) this.getBbWidth(), (double) 0.2F);
-					this.nibble = Mth.nextInt(this.random, 20, 40);
-				}
-			} else if (this.timeUntilLured > 0) {
-				float f5 = 0.15F;
-				if (this.timeUntilLured < 20) {
-					f5 += (float) (20 - this.timeUntilLured) * 0.05F;
-				} else if (this.timeUntilLured < 40) {
-					f5 += (float) (40 - this.timeUntilLured) * 0.02F;
-				} else if (this.timeUntilLured < 60) {
-					f5 += (float) (60 - this.timeUntilLured) * 0.01F;
-				}
-				if (this.random.nextFloat() < f5) {
-					float f6 = Mth.nextFloat(this.random, 0.0F, 360.0F) * ((float) Math.PI / 180F);
-					float f7 = Mth.nextFloat(this.random, 25.0F, 60.0F);
-					double d4 = this.getX() + (double) (Mth.sin(f6) * f7) * 0.1D;
-					double d5 = (double) ((float) Mth.floor(this.getY()) + 1.0F);
-					double d6 = this.getZ() + (double) (Mth.cos(f6) * f7) * 0.1D;
-					FluidState fluidstate = serverlevel.getFluidState(BlockPos.containing(d4, d5 - 1.0D, d6));
-					if (fluidstate.is(TofuTags.Fluids.SOYMILK)) {
-						serverlevel.sendParticles(TofuParticleTypes.SOYMILK_SPLASH.get(), d4, d5, d6, 2 + this.random.nextInt(2), (double) 0.1F, 0.0D, (double) 0.1F, 0.0D);
-					}
-				}
-			}
-		}
-	}
 
 	@Redirect(method = ("getOpenWaterTypeForBlock"), at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/material/FluidState;is(Lnet/minecraft/tags/TagKey;)Z", ordinal = 0))
 	private boolean getOpenWaterTypeForBlock(FluidState instance, TagKey<Fluid> p_205071_) {
