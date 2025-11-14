@@ -214,6 +214,12 @@ public class TofuItems {
 					)
 			)))))));
 	public static final DeferredHolder<Item, Item> ZUNDARUBY = ITEMS.registerItem("zundaruby", (properties) -> new Item((properties)));
+
+	public static final DeferredHolder<Item, Item> GLASS_BOWL = ITEMS.registerItem("glass_bowl", (properties) -> new Item((properties)));
+	public static final DeferredHolder<Item, Item> TOFU_METAL_BOWL = ITEMS.registerItem("tofu_metal_bowl", (properties) -> new Item((properties)));
+	public static final DeferredHolder<Item, Item> CERAMIC_BOWL = ITEMS.registerItem("ceramic_bowl", (properties) -> new Item((properties)));
+
+
 	public static final DeferredHolder<Item, Item> TOFU_HAMBURG_RAW = ITEMS.registerItem("tofuhamburg_raw", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TOFU_HAMBURG = ITEMS.registerItem("tofuhamburg", (properties) -> new Item((properties).food(TofuFoods.TOFU_HAMBURG)));
 	public static final DeferredHolder<Item, Item> RAW_TOFU_FISH = ITEMS.registerItem("raw_tofufish", (properties) -> new Item((properties).food(TofuFoods.RAW_TOFUFISH)));
@@ -272,11 +278,6 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> OKARA_DONUT = ITEMS.registerItem("okara_donut", (properties) -> new Item((properties).food(TofuFoods.OKARA_DONUT)));
 
 	public static final DeferredHolder<Item, Item> SOBOROTOFUSAUTE = ITEMS.registerItem("soborotofusaute", (properties) -> new DishItem((properties).stacksTo(16).usingConvertsTo(Items.BOWL).food(TofuFoods.SOBOROTOFUSAUTE)));
-
-
-	public static final DeferredHolder<Item, Item> GLASS_BOWL = ITEMS.registerItem("glass_bowl", (properties) -> new Item((properties)));
-	public static final DeferredHolder<Item, Item> TOFU_METAL_BOWL = ITEMS.registerItem("tofu_metal_bowl", (properties) -> new Item((properties)));
-	public static final DeferredHolder<Item, Item> CERAMIC_BOWL = ITEMS.registerItem("ceramic_bowl", (properties) -> new Item((properties)));
 
 
 	public static final DeferredHolder<Item, Item> YAKIONIGIRI_MISO = ITEMS.registerItem("yakionigiri_miso", (properties) -> new Item((properties).food(TofuFoods.YAKIONIGIRI_MISO, TofuConsumables.MISO_FOOD)));

@@ -1,6 +1,7 @@
 package baguchi.tofucraft.blockentity;
 
 import baguchi.tofucraft.block.TofuPotBlock;
+import baguchi.tofucraft.blockentity.fluid.FluidContainer;
 import baguchi.tofucraft.inventory.TofuPotMenu;
 import baguchi.tofucraft.recipe.TofuPotRecipe;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
@@ -52,9 +53,7 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
-import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -80,15 +79,11 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 	private final Reference2IntOpenHashMap<ResourceKey<Recipe<?>>> recipesUsed = new Reference2IntOpenHashMap<>();
 
 	private final RecipeManager.CachedCheck<CraftingInput, TofuPotRecipe> quickCheck;
-	public FluidTank fluidTank = new FluidTank(3000) {
+	public FluidContainer fluidTank = new FluidContainer(3000) {
 
 		@Override
 		protected void onContentsChanged() {
 			inventoryChanged();
-		}
-
-		public boolean isFluidValid(FluidStack stack) {
-			return true;
 		}
 	};
 
@@ -138,7 +133,7 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 		if (isHeated && cookingPot.hasInput()) {
 			Optional<RecipeHolder<TofuPotRecipe>> recipe = cookingPot.getMatchingRecipe(CraftingInput.of(4, 3, cookingPot.inventory));
 
-			if (recipe.isPresent() && cookingPot.canCook(recipe.get().value()) && (recipe.get().value().fluidIngredient().isEmpty() || recipe.get().value().fluidIngredient().get().test(cookingPot.fluidTank.getFluid()))) {
+			if (recipe.isPresent() && cookingPot.canCook(recipe.get().value()) && (recipe.get().value().fluidIngredient().isEmpty() || recipe.get().value().fluidIngredient().get().test(new FluidStack(cookingPot.fluidTank.getResource(0).getFluid(), cookingPot.fluidTank.getAmountAsInt(0))))) {
 				didInventoryChange = cookingPot.processCooking(recipe.get(), cookingPot);
 			} else {
 				cookingPot.cookTime = 0;
@@ -221,7 +216,10 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 			storedMealStack.grow(resultStack.getCount());
 		}
 		if (recipe.value().fluidIngredient().isPresent()) {
-			cookingPot.fluidTank.drain(recipe.value().fluidIngredient().get().amount(), IFluidHandler.FluidAction.EXECUTE);
+			try (Transaction tx = Transaction.openRoot()) {
+				cookingPot.fluidTank.extract(this.fluidTank.getResource(0), recipe.value().fluidIngredient().get().amount(), tx);
+				tx.commit();
+			}
 		}
 
 		cookingPot.setRecipeUsed(recipe);
@@ -377,15 +375,6 @@ public class TofuPotBlockEntity extends SyncedBlockEntity implements MenuProvide
 	public void removeComponentsFromTag(ValueOutput p_422208_) {
 		super.removeComponentsFromTag(p_422208_);
 		p_422208_.discard("CustomName");
-	}
-
-	private ItemStackHandler createHandler() {
-		return new ItemStackHandler(INVENTORY_SIZE) {
-			@Override
-			protected void onContentsChanged(int slot) {
-				inventoryChanged();
-			}
-		};
 	}
 
 	private ContainerData createIntArray() {

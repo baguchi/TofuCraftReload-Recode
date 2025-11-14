@@ -1,6 +1,7 @@
 package baguchi.tofucraft.client.screen;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.blockentity.fluid.FluidContainer;
 import baguchi.tofucraft.client.recipe.TofuPotRecipeBookComponent;
 import baguchi.tofucraft.inventory.TofuPotMenu;
 import net.minecraft.client.Minecraft;
@@ -16,7 +17,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.joml.Matrix3x2fStack;
 
 import java.awt.*;
@@ -72,10 +72,10 @@ public class TofuPotScreen extends AbstractRecipeBookScreen<TofuPotMenu> {
 			gui.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURE, this.leftPos + HEAT_ICON.x, this.topPos + HEAT_ICON.y, 176, 0, HEAT_ICON.width, HEAT_ICON.height, 256, 256);
 		}
 
-		FluidTank fluidTank = this.menu.blockEntity.fluidTank;
-		int heightInd = (int) (44.0F * fluidTank.getFluidAmount() / fluidTank.getCapacity());
+		FluidContainer fluidTank = this.menu.blockEntity.fluidTank;
+		int heightInd = (int) (44.0F * fluidTank.getAmountAsInt(0) / fluidTank.getCapacityAsInt(0, fluidTank.getResource(0)));
 		if (heightInd > 0)
-			renderFluidStack(gui, gui.pose(), this.leftPos + 158, this.topPos + 69, 10, heightInd, fluidTank.getFluid().getFluid());
+			renderFluidStack(gui, gui.pose(), this.leftPos + 158, this.topPos + 69, 10, heightInd, fluidTank.getResource(0).getFluid());
 
 		// Render progress arrow
 		int l = this.menu.getCookProgressionScaled();

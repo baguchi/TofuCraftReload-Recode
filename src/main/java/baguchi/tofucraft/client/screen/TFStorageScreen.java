@@ -1,6 +1,7 @@
 package baguchi.tofucraft.client.screen;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.blockentity.fluid.FluidContainer;
 import baguchi.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
 import baguchi.tofucraft.client.ClientProxy;
 import baguchi.tofucraft.inventory.TFStorageMenu;
@@ -18,7 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import org.joml.Matrix3x2fStack;
 
 import java.util.Optional;
@@ -49,11 +50,11 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		int j = this.topPos;
 		p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 
-		if (ClientProxy.PROXY.getRefrencedTE() instanceof TFStorageBlockEntity && ((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank().getFluid() != null) {
-			FluidTank fluidTank = ((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank();
-			int heightInd = (int) (44.0F * fluidTank.getFluidAmount() / fluidTank.getCapacity());
+		if (ClientProxy.PROXY.getRefrencedTE() instanceof TFStorageBlockEntity && !((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank().getResource(0).isEmpty()) {
+			FluidContainer fluidTank = ((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank();
+			int heightInd = (int) (44.0F * fluidTank.getAmountAsInt(0) / fluidTank.getCapacityAsInt(0, FluidResource.of(TofuFluids.SOYMILK)));
 			if (heightInd > 0)
-				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 145, j + 69, 10, heightInd, fluidTank.getFluid().getFluid());
+				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 145, j + 69, 10, heightInd, fluidTank.getResource(0).getFluid());
 		}
 		p_230450_1_.pose().pushMatrix();
 		FluidStack fluidTank2 = new FluidStack(TofuFluids.SOYMILK_FLOW.get(), 1000);

@@ -2,8 +2,10 @@ package baguchi.tofucraft.client.screen;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.blockentity.SaltFurnaceBlockEntity;
+import baguchi.tofucraft.blockentity.fluid.FluidContainer;
 import baguchi.tofucraft.client.ClientProxy;
 import baguchi.tofucraft.inventory.SaltFurnaceMenu;
+import baguchi.tofucraft.registry.TofuFluids;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -14,8 +16,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import org.joml.Matrix3x2fStack;
 
 
@@ -49,19 +52,19 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 		int l = this.menu.getBurnProgress();
 		p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i + 54, j + 54, 176, 14, l + 1, 16, 256, 256);
 		p_230450_1_.pose().pushMatrix();
-		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity && ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).bitternTank.getFluid() != null) {
-			FluidTank fluidTank = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).bitternTank;
-			int heightInd = (int) (44.0F * fluidTank.getFluidAmount() / fluidTank.getCapacity());
+		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity) {
+			FluidContainer fluidTank = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).bitternTank;
+			int heightInd = (int) (44.0F * fluidTank.getAmountAsInt(0) / fluidTank.getCapacityAsInt(0, FluidResource.of(TofuFluids.BITTERN)));
 			if (heightInd > 0)
-				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 145, j + 69, 10, heightInd, fluidTank.getFluid().getFluid());
+				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 145, j + 69, 10, heightInd, fluidTank.getResource(0).value());
 		}
 		p_230450_1_.pose().popMatrix();
 		p_230450_1_.pose().pushMatrix();
-		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity && ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).waterTank.getFluid() != null) {
-			FluidTank fluidTank2 = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).waterTank;
-			int heightInd2 = (int) (44.0F * fluidTank2.getFluidAmount() / fluidTank2.getCapacity());
+		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity) {
+			FluidContainer fluidTank2 = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).waterTank;
+			int heightInd2 = (int) (44.0F * fluidTank2.getAmountAsInt(0) / fluidTank2.getCapacityAsInt(0, FluidResource.of(Fluids.WATER)));
 			if (heightInd2 > 0)
-				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 158, j + 69, 10, heightInd2, fluidTank2.getFluid().getFluid());
+				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 158, j + 69, 10, heightInd2, fluidTank2.getResource(0).getFluid());
 		}
 		p_230450_1_.pose().popMatrix();
 	}

@@ -4,11 +4,11 @@ import baguchi.tofucraft.api.tfenergy.IEnergyExtractable;
 import baguchi.tofucraft.api.tfenergy.IEnergyInsertable;
 import baguchi.tofucraft.api.tfenergy.TofuEnergyMap;
 import baguchi.tofucraft.block.tfenergy.TFStorageBlock;
+import baguchi.tofucraft.blockentity.fluid.FluidContainer;
 import baguchi.tofucraft.blockentity.tfenergy.base.SenderBaseBlockEntity;
 import baguchi.tofucraft.inventory.TFStorageMenu;
 import baguchi.tofucraft.network.TFStorageSoymilkPacket;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
-import baguchi.tofucraft.registry.TofuFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentGetter;
@@ -35,16 +35,16 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 import java.util.Map;
 
 public class TFStorageBlockEntity extends SenderBaseBlockEntity implements StackedContentsCompatible, Container, MenuProvider {
 
 	private static final int POWER = 20;
-	private FluidTank tank = new TFStorageTank(2000);
+	private FluidContainer tank = new TFStorageTank(2000);
 	protected NonNullList<ItemStack> inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 	private int workload = 0;
 	private int current_workload = 0;
@@ -128,7 +128,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 
 		//Consume beans inside machine
 		if (tfStorageBlockEntity.workload == 0) {
-			FluidStack milk = tfStorageBlockEntity.getTank().getFluid();
+			FluidResource milk = tfStorageBlockEntity.getTank().getResource(0);
 			if (from.getItem() instanceof IEnergyExtractable symbol) {
 				tfStorageBlockEntity.workload += symbol.drain(from, POWER * 20, false);
 				tfStorageBlockEntity.setChanged();
@@ -138,9 +138,12 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 			}
 
 			if (!milk.isEmpty()) {
-				Map.Entry<FluidStack, Integer> recipe = TofuEnergyMap.getLiquidFuel(milk);
+				Map.Entry<FluidStack, Integer> recipe = TofuEnergyMap.getLiquidFuel(milk.toStack(1));
 				if (recipe != null) {
-					tfStorageBlockEntity.tank.drain(recipe.getValue(), IFluidHandler.FluidAction.EXECUTE);
+					try (Transaction tx = Transaction.openRoot()) {
+						tfStorageBlockEntity.tank.extract(FluidResource.of(recipe.getKey()), recipe.getValue(), tx);
+						tx.commit();
+					}
 					tfStorageBlockEntity.workload += recipe.getValue();
 					tfStorageBlockEntity.setChanged();
 				}
@@ -148,11 +151,11 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 			tfStorageBlockEntity.current_workload = tfStorageBlockEntity.workload;
 		}
 
-		if (tfStorageBlockEntity.prevFluid != tfStorageBlockEntity.tank.getFluidAmount()) {
+		if (tfStorageBlockEntity.prevFluid != tfStorageBlockEntity.tank.getAmountAsInt(0)) {
 			LevelChunk chunk = level.getChunkAt(blockPos);
 			if (level instanceof ServerLevel serverLevel) {
-				PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new TFStorageSoymilkPacket(blockPos, tfStorageBlockEntity.tank.getFluid()));
-				tfStorageBlockEntity.prevFluid = tfStorageBlockEntity.tank.getFluidAmount();
+				PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new TFStorageSoymilkPacket(blockPos, tfStorageBlockEntity.tank.getResource(0).value(), tfStorageBlockEntity.tank.getAmountAsInt(0)));
+				tfStorageBlockEntity.prevFluid = tfStorageBlockEntity.tank.getAmountAsInt(0);
 			}
 		}
 	}
@@ -161,12 +164,12 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 	public void startOpen(ContainerUser p_435573_) {
 		if (!this.level.isClientSide() && this.level instanceof ServerLevel serverLevel) {
 			LevelChunk chunk = this.level.getChunkAt(this.getBlockPos());
-			PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new TFStorageSoymilkPacket(this.getBlockPos(), this.tank.getFluid()));
-			this.prevFluid = this.tank.getFluidAmount();
+			PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new TFStorageSoymilkPacket(this.getBlockPos(), this.tank.getResource(0).value(), this.tank.getAmountAsInt(0)));
+			this.prevFluid = this.tank.getAmountAsInt(0);
 		}
 	}
 
-	public FluidTank getTank() {
+	public FluidContainer getTank() {
 		return this.tank;
 	}
 
@@ -292,7 +295,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 	}
 
 
-	private class TFStorageTank extends FluidTank {
+	private class TFStorageTank extends FluidContainer {
 		TFStorageTank(int capacity) {
 			super(capacity);
 		}
@@ -301,11 +304,6 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 		protected void onContentsChanged() {
 			setChanged();
 		}
-
-		public boolean isFluidValid(FluidStack stack) {
-			return (stack.getFluid() == TofuFluids.SOYMILK.get());
-		}
-
 	}
 
 }

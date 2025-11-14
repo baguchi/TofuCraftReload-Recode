@@ -1,6 +1,7 @@
 package baguchi.tofucraft.blockentity;
 
 import baguchi.tofucraft.block.utils.SaltFurnaceBlock;
+import baguchi.tofucraft.blockentity.fluid.FluidContainer;
 import baguchi.tofucraft.inventory.SaltFurnaceMenu;
 import baguchi.tofucraft.network.SaltFurnaceBitternPacket;
 import baguchi.tofucraft.network.SaltFurnaceWaterPacket;
@@ -43,10 +44,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 import javax.annotation.Nullable;
 
@@ -58,25 +58,18 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
 
-	public FluidTank waterTank = new FluidTank(3000) {
-
+	public FluidContainer waterTank = new FluidContainer(3000) {
 		@Override
 		protected void onContentsChanged() {
 			setChanged();
-		}
-		public boolean isFluidValid(FluidStack stack) {
-			return (stack.getFluid() == Fluids.WATER);
 		}
 	};
 
-	public FluidTank bitternTank = new FluidTank(2000) {
+	public FluidContainer bitternTank = new FluidContainer(2000) {
 
 		@Override
 		protected void onContentsChanged() {
 			setChanged();
-		}
-		public boolean isFluidValid(FluidStack stack) {
-			return (stack.getFluid() == TofuFluids.BITTERN.get());
 		}
 	};
 
@@ -221,19 +214,19 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 
 		if (!level.isClientSide()) {
-			if (saltFurnaceBlock.prevFluid != saltFurnaceBlock.waterTank.getFluidAmount()) {
+			if (saltFurnaceBlock.prevFluid != saltFurnaceBlock.waterTank.getAmountAsInt(0)) {
 				LevelChunk chunk = level.getChunkAt(blockPos);
 				if (level instanceof ServerLevel serverLevel) {
-					PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceWaterPacket(blockPos, saltFurnaceBlock.waterTank.getFluid()));
-					saltFurnaceBlock.prevFluid = saltFurnaceBlock.waterTank.getFluidAmount();
+					PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceWaterPacket(blockPos, saltFurnaceBlock.waterTank.getResource(0).value(), saltFurnaceBlock.waterTank.getAmountAsInt(0)));
+					saltFurnaceBlock.prevFluid = saltFurnaceBlock.waterTank.getAmountAsInt(0);
 				}
 			}
 
-			if (saltFurnaceBlock.prevBitternFluid != saltFurnaceBlock.bitternTank.getFluidAmount()) {
+			if (saltFurnaceBlock.prevBitternFluid != saltFurnaceBlock.bitternTank.getAmountAsInt(0)) {
 				LevelChunk chunk = level.getChunkAt(blockPos);
 				if (level instanceof ServerLevel serverLevel) {
-					PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceBitternPacket(blockPos, saltFurnaceBlock.bitternTank.getFluid()));
-					saltFurnaceBlock.prevBitternFluid = saltFurnaceBlock.bitternTank.getFluidAmount();
+					PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceBitternPacket(blockPos, saltFurnaceBlock.bitternTank.getResource(0).value(), saltFurnaceBlock.bitternTank.getAmountAsInt(0)));
+					saltFurnaceBlock.prevBitternFluid = saltFurnaceBlock.bitternTank.getAmountAsInt(0);
 				}
 			}
 		}
@@ -247,15 +240,15 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		super.startOpen(p_435573_);
 		if (!this.level.isClientSide() && this.level instanceof ServerLevel serverLevel) {
 			LevelChunk chunk = this.level.getChunkAt(this.getBlockPos());
-			PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceBitternPacket(this.getBlockPos(), this.bitternTank.getFluid()));
-			this.prevBitternFluid = this.bitternTank.getFluidAmount();
-			PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceWaterPacket(this.getBlockPos(), this.waterTank.getFluid()));
-			this.prevFluid = this.waterTank.getFluidAmount();
+			PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceBitternPacket(this.getBlockPos(), this.bitternTank.getResource(0).value(), this.bitternTank.getAmountAsInt(0)));
+			this.prevBitternFluid = this.bitternTank.getAmountAsInt(0);
+			PacketDistributor.sendToPlayersTrackingChunk(serverLevel, chunk.getPos(), new SaltFurnaceWaterPacket(this.getBlockPos(), this.waterTank.getResource(0).value(), this.waterTank.getAmountAsInt(0)));
+			this.prevFluid = this.waterTank.getAmountAsInt(0);
 		}
 	}
 
 	protected boolean hasWater() {
-		boolean flag = (this.waterTank.getFluid().getFluid() == Fluids.WATER && this.waterTank.getFluid().getAmount() >= 200);
+		boolean flag = (this.waterTank.getResource(0).is(Fluids.WATER) && this.waterTank.getAmountAsInt(0) >= 200);
 		ItemStack itemstack1 = this.items.get(1);
 		if (itemstack1.isEmpty())
 			return flag;
@@ -265,7 +258,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	protected boolean hasBittern() {
-		boolean flag = (this.bitternTank.getFluid().getFluid() == TofuFluids.BITTERN.get() && this.bitternTank.getFluid().getAmount() >= 200);
+		boolean flag = (this.bitternTank.getResource(0).is(TofuFluids.BITTERN.get()) && this.bitternTank.getAmountAsInt(0) >= 200);
 		ItemStack itemstack1 = this.items.get(3);
 		ItemStack itemstack2 = this.items.get(2);
 		if (itemstack2.getItem() == Items.GLASS_BOTTLE) {
@@ -279,7 +272,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	protected boolean canPutWater() {
-		boolean flag = (this.waterTank.getFluid().getAmount() <= 1000);
+		boolean flag = (this.waterTank.getAmountAsInt(0) <= 1000);
 		ItemStack itemstack1 = this.items.get(4);
 		if (itemstack1.getItem() == Items.WATER_BUCKET) {
 			return flag;
@@ -297,7 +290,11 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			} else if (itemstack2.getItem() == itemstack1.getItem()) {
 				itemstack2.grow(itemstack1.getCount());
 			}
-			this.waterTank.fill(new FluidStack(Fluids.WATER, 1000), IFluidHandler.FluidAction.EXECUTE);
+			try (Transaction tx = Transaction.openRoot()) {
+
+				this.waterTank.insert(FluidResource.of(Fluids.WATER), 1000, tx);
+				tx.commit();
+			}
 		}
 	}
 
@@ -312,7 +309,11 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			} else if (itemstack2.getItem() == itemstack1.getItem()) {
 				itemstack2.grow(itemstack1.getCount());
 			}
-			this.bitternTank.drain(200, IFluidHandler.FluidAction.EXECUTE);
+
+			try (Transaction tx = Transaction.openRoot()) {
+				this.bitternTank.extract(this.bitternTank.getResource(0), 200, tx);
+				tx.commit();
+			}
 			this.setChanged();
 		}
 	}
@@ -326,8 +327,14 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			} else if (itemstack2.getItem() == itemstack1.getItem()) {
 				itemstack2.grow(itemstack1.getCount());
 			}
-			this.waterTank.drain(200, IFluidHandler.FluidAction.EXECUTE);
-			this.bitternTank.fill(new FluidStack(TofuFluids.BITTERN.get(), 200), IFluidHandler.FluidAction.EXECUTE);
+			try (Transaction tx = Transaction.openRoot()) {
+				this.waterTank.extract(this.waterTank.getResource(0), 200, tx);
+				tx.commit();
+			}
+			try (Transaction tx = Transaction.openRoot()) {
+				this.bitternTank.insert(FluidResource.of(TofuFluids.BITTERN.get()), 200, tx);
+				tx.commit();
+			}
 			this.setChanged();
 		}
 	}
