@@ -173,24 +173,15 @@ public class CommonEvents {
 		Entity target = event.getTarget();
 		Player player = event.getEntity();
 		if (player.getWeaponItem().is(TofuItems.TOFU_KINU_SWORD) || player.getWeaponItem().is(TofuItems.TOFU_MOMEN_SWORD)) {
-			DamageSource damagesource = Optional.ofNullable(player.getWeaponItem().getItem().getDamageSource(player)).orElse(player.damageSources().playerAttack(player));
+			if (event.isSweeping()) {
+
+
+				DamageSource damagesource = Optional.ofNullable(player.getWeaponItem().getItem().getDamageSource(player)).orElse(player.damageSources().playerAttack(player));
 
 			float f = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			float f2 = player.getAttackStrengthScale(0.5F);
 			f += player.getWeaponItem().getItem().getAttackDamageBonus(target, f, damagesource);
 			//enchant
-			boolean flag3 = f2 > 0.9F;
-			boolean flag1 = flag3
-					&& player.fallDistance > 0.0
-					&& !player.onGround()
-					&& !player.onClimbable()
-					&& !player.isInWater()
-					&& !player.isMobilityRestricted()
-					&& !player.isPassenger()
-					&& target instanceof LivingEntity
-					&& !player.isSprinting();
-			if (flag1) {
-
 
 				float f6 = 0.1F + (float) player.getAttributeValue(Attributes.SWEEPING_DAMAGE_RATIO) * f;
 
@@ -218,8 +209,9 @@ public class CommonEvents {
 				player.level()
 						.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, player.getSoundSource(), 1.0F, 1.0F);
 				player.sweepAttack();
-			}
+
 			event.setSweeping(false);
+			}
 		}
 	}
 
