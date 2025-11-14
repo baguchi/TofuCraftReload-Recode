@@ -204,6 +204,7 @@ public class TofuItemModels extends ItemModelGenerators {
 
 		this.generateFlatItem(TofuItems.GLASS_BOWL.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_METAL_BOWL.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.CERAMIC_BOWL.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.TOFUSOMEN.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUSOMENBOWL_GLASS.get(), ModelTemplates.FLAT_ITEM);

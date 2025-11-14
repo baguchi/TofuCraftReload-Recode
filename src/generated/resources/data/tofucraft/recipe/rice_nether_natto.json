@@ -3,7 +3,8 @@
   "category": "misc",
   "ingredients": [
     "tofucraft:onigiri",
-    "tofucraft:nether_natto"
+    "tofucraft:nether_natto",
+    "tofucraft:ceramic_bowl"
   ],
   "result": {
     "count": 1,

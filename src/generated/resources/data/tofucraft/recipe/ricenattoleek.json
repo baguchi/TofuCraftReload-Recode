@@ -4,7 +4,8 @@
   "ingredients": [
     "tofucraft:onigiri",
     "tofucraft:natto",
-    "tofucraft:leek"
+    "tofucraft:leek",
+    "tofucraft:ceramic_bowl"
   ],
   "result": {
     "count": 1,

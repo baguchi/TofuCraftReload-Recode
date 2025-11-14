@@ -485,6 +485,7 @@ public class TofuCreativeModeTabs {
 				output.acceptAll(Stream.of(
 						TofuItems.GLASS_BOWL,
 						TofuItems.TOFU_METAL_BOWL,
+						TofuItems.CERAMIC_BOWL,
 						TofuItems.BUCKET_SOYMILK,
 						TofuItems.BUCKET_SOYMILK_NETHER,
 						TofuItems.BUCKET_SOYMILK_SOUL,
