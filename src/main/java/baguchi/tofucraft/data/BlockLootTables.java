@@ -19,7 +19,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.BedBlock;
@@ -342,7 +341,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		LootItemCondition.Builder tofugemAdvBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_ADV_TOFUGEM.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
 
-		add(TofuBlocks.BARREL_ADV_TOFUGEM.get(), applyExplosionDecay(TofuBlocks.BARREL_ADV_TOFUGEM.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.ADVANCE_TOFUGEM.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F)).when(tofugemAdvBuilder)))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))).when(tofugemAdvBuilder).when(ExplosionCondition.survivesExplosion())).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Items.BARREL).when(ExplosionCondition.survivesExplosion())))));
+		add(TofuBlocks.BARREL_ADV_TOFUGEM.get(), applyExplosionDecay(TofuBlocks.BARREL_ADV_TOFUGEM.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.ADVANCE_TOFUGEM.get())).when(tofugemAdvBuilder).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))).add(LootItem.lootTableItem(Blocks.BARREL)).when(tofugemAdvBuilder).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).add(LootItem.lootTableItem(TofuBlocks.BARREL_ADV_TOFUGEM)).when(InvertedLootItemCondition.invert(tofugemAdvBuilder)).when(ExplosionCondition.survivesExplosion()))));
 
 		dropSelf(TofuBlocks.TOFU_CHIKUWA_BLOCK.get());
 		dropSelf(TofuBlocks.CHIKUWA_BLOCK.get());

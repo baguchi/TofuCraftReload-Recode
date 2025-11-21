@@ -326,7 +326,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFU_KINU_SWORD = ITEMS.registerItem("tofu_kinu_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_KINU_SPEAR = ITEMS.registerItem(
-			"tofu_kinu_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.KINU, 0.1F, 0.1F, 0.75F, 5.0F, 20.0F, 8.0F, 5.1F, 15.0F, 4.6F)
+			"tofu_kinu_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.KINU, 0.3F, 0.1F, 0.75F, 5.0F, 20.0F, 8.0F, 5.1F, 15.0F, 4.6F)
 			));
 	public static final DeferredHolder<Item, Item> TOFU_KINU_AXE = ITEMS.registerItem("tofu_kinu_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_KINU_PICKAXE = ITEMS.registerItem("tofu_kinu_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
@@ -335,7 +335,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SWORD = ITEMS.registerItem("tofu_momen_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SPEAR = ITEMS.registerItem(
-			"tofu_momen_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.MOMEN, 0.1F, 0.1F, 0.75F, 5.0F, 20.0F, 8.0F, 5.1F, 15.0F, 4.6F)
+			"tofu_momen_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.MOMEN, 0.3F, 0.1F, 0.75F, 5.0F, 20.0F, 8.0F, 5.1F, 15.0F, 4.6F)
 			));
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN_AXE = ITEMS.registerItem("tofu_momen_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN_PICKAXE = ITEMS.registerItem("tofu_momen_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
