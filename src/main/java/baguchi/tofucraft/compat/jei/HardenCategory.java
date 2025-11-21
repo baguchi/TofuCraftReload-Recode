@@ -1,5 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
+/*
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.HardenRecipe;
@@ -15,7 +16,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -23,7 +24,7 @@ import net.minecraft.world.level.block.Blocks;
 
 public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 
-	public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "harden");
+	public static final Identifier UID = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "harden");
 	protected final IDrawableAnimated arrow;
 	private final Component title;
 	private final IDrawable background;
@@ -31,7 +32,7 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 
 	public HardenCategory(IGuiHelper helper) {
 		title = Component.translatable("tofucraft.jei.harden");
-		ResourceLocation backgroundImage = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/general_jei_recipe.png");
+		Identifier backgroundImage = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/general_jei_recipe.png");
 		background = helper.createDrawable(backgroundImage, 16, 16, 144, 54);
 		icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Blocks.COBBLESTONE));
 		arrow = helper.drawableBuilder(backgroundImage, 176, 14, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
@@ -48,7 +49,7 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 	}
 
 	@Override
-	public ResourceLocation getRegistryName(HardenRecipe recipe) {
+	public Identifier getRegistryName(HardenRecipe recipe) {
 		return UID;
 	}
 
@@ -92,3 +93,4 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
 }
+*/

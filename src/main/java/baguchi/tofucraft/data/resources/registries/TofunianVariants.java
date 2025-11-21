@@ -6,12 +6,12 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 
 public class TofunianVariants {
-	public static final ResourceKey<Registry<TofunianVariant>> TOFUNIAN_VARIANT_REGISTRY_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian_variant"));
+	public static final ResourceKey<Registry<TofunianVariant>> TOFUNIAN_VARIANT_REGISTRY_KEY = ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian_variant"));
 
 	public static final ResourceKey<TofunianVariant> PLAIN = createKey("plain");
 	public static final ResourceKey<TofunianVariant> ZUNDA = createKey("zunda");
@@ -21,11 +21,11 @@ public class TofunianVariants {
 	public static final ResourceKey<TofunianVariant> DEFAULT = PLAIN;
 
 	private static ResourceKey<TofunianVariant> createKey(String name) {
-		return ResourceKey.create(TOFUNIAN_VARIANT_REGISTRY_KEY, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+		return ResourceKey.create(TOFUNIAN_VARIANT_REGISTRY_KEY, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 	}
 
 	static void register(BootstrapContext<TofunianVariant> context, ResourceKey<TofunianVariant> key, String name) {
-		ResourceLocation resourcelocation = TofuCraftReload.prefix("entity/tofunian/variant/" + name);
+		Identifier resourcelocation = TofuCraftReload.prefix("entity/tofunian/variant/" + name);
 		context.register(key, new TofunianVariant(resourcelocation));
 	}
 

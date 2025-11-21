@@ -5,21 +5,21 @@ import baguchi.tofucraft.client.render.state.TofuGandlemRenderState;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.resources.Identifier;
 
 import java.util.List;
 
 public class TofuGandlemEmissiveLayer<T extends TofuGandlemRenderState, M extends TofuGandlemModel<T>> extends RenderLayer<T, M> {
-	private final ResourceLocation texture;
+	private final Identifier texture;
 	private final TofuGandlemEmissiveLayer.AlphaFunction<T> alphaFunction;
 	private final TofuGandlemEmissiveLayer.DrawSelector<T, M> drawSelector;
 
-	public TofuGandlemEmissiveLayer(RenderLayerParent<T, M> p_234885_, ResourceLocation p_234886_, TofuGandlemEmissiveLayer.AlphaFunction<T> p_234887_, TofuGandlemEmissiveLayer.DrawSelector<T, M> p_234888_) {
+	public TofuGandlemEmissiveLayer(RenderLayerParent<T, M> p_234885_, Identifier p_234886_, TofuGandlemEmissiveLayer.AlphaFunction<T> p_234887_, TofuGandlemEmissiveLayer.DrawSelector<T, M> p_234888_) {
 		super(p_234885_);
 		this.texture = p_234886_;
 		this.alphaFunction = p_234887_;
@@ -46,7 +46,7 @@ public class TofuGandlemEmissiveLayer<T extends TofuGandlemRenderState, M extend
 		if (!state.isInvisible) {
 			float f = (float) state.ageInTicks;
 			this.onlyDrawSelectedParts();
-			submitNodeCollector.submitModel(this.getParentModel(), state, poseStack, RenderType.entityTranslucentEmissive(this.texture), state.lightCoords, LivingEntityRenderer.getOverlayCoords(state, 0.0F), state.outlineColor, null);
+			submitNodeCollector.submitModel(this.getParentModel(), state, poseStack, RenderTypes.entityTranslucentEmissive(this.texture), state.lightCoords, LivingEntityRenderer.getOverlayCoords(state, 0.0F), state.outlineColor, null);
 			this.resetDrawForAllParts();
 		}
 	}

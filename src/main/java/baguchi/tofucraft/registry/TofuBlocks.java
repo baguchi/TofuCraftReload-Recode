@@ -67,8 +67,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.HangingSignItem;
@@ -578,7 +578,7 @@ public class TofuBlocks {
 	}
 
 	private static ResourceKey<Block> createKey(String name) {
-		return ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+		return ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 	}
 
 	private static <T extends Block> DeferredBlock<T> baseRegister(String name, ResourceKey<Block> key, Function<Block.Properties, T> builder, Supplier<Block.Properties> properties, Function<DeferredBlock<T>, Supplier<? extends Item>> item) {
@@ -590,7 +590,7 @@ public class TofuBlocks {
 	private static <T extends Block> Supplier<BlockItem> registerBlockItem(final DeferredBlock<T> deferredBlock, String name) {
 		return () -> {
 			DeferredBlock<T> block = Objects.requireNonNull(deferredBlock);
-			Item.Properties properties = new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name))).useBlockDescriptionPrefix();
+			Item.Properties properties = new Item.Properties().setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name))).useBlockDescriptionPrefix();
 
 			if (block.get() == TOFUCAKE.get() || block.get() == ZUNDATOFUCAKE.get() || block.get() == SOYCHEESE_TART.get()) {
 				return new BlockItem(block.get(), properties.stacksTo(1));

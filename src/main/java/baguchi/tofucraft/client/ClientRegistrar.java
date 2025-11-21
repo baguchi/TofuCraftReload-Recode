@@ -70,39 +70,30 @@ import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuDimensions;
-import baguchi.tofucraft.registry.TofuEnchantments;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuFluidTypes;
 import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
-import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.registry.TofuWoodTypes;
-import com.google.common.collect.ImmutableList;
 import com.google.common.reflect.TypeToken;
 import com.mojang.blaze3d.pipeline.BlendFunction;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.platform.DepthTestFunction;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.minecraft.SharedConstants;
-import net.minecraft.Util;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.object.boat.BoatModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.ShapeRenderer;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -111,33 +102,21 @@ import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.fog.FogData;
 import net.minecraft.client.renderer.fog.environment.FogEnvironment;
-import net.minecraft.client.renderer.state.BlockOutlineRenderState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
+import net.minecraft.util.Util;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
@@ -155,7 +134,6 @@ import net.neoforged.neoforge.client.renderstate.RegisterRenderStateModifiersEve
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector4f;
 
-import static baguchi.tofucraft.utils.TofuDiamondToolUtil.calcAOEBlocks;
 import static net.minecraft.client.renderer.RenderPipelines.FOG_SNIPPET;
 import static net.minecraft.client.renderer.RenderPipelines.GLOBALS_SNIPPET;
 import static net.minecraft.client.renderer.RenderPipelines.MATRICES_PROJECTION_SNIPPET;
@@ -163,12 +141,12 @@ import static net.minecraft.client.renderer.RenderPipelines.MATRICES_PROJECTION_
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT)
 public class ClientRegistrar {
-	private static final ResourceLocation TEXTURE_RECOVER_HEART = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container");
-	private static final ResourceLocation TEXTURE_RECOVER_HEART_HALF = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container_half");
+	private static final Identifier TEXTURE_RECOVER_HEART = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container");
+	private static final Identifier TEXTURE_RECOVER_HEART_HALF = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container_half");
 
 	public static final RenderPipeline ZUNDA =
 			RenderPipeline.builder(new RenderPipeline.Snippet[]{MATRICES_PROJECTION_SNIPPET, FOG_SNIPPET, GLOBALS_SNIPPET})
-					.withLocation(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "pipeline/zunda"))
+					.withLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "pipeline/zunda"))
 					.withVertexShader("core/glint").withFragmentShader("core/glint")
 					.withSampler("Sampler0")
 					.withBlend(BlendFunction.ADDITIVE)
@@ -198,17 +176,17 @@ public class ClientRegistrar {
 	@SubscribeEvent
 	public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
 		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk");
-			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_flow");
-			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_overlay");
+			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk");
+			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_flow");
+			private static final Identifier TEXTURE_OVERLAY = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_overlay");
 
 			@Override
-			public ResourceLocation getStillTexture() {
+			public Identifier getStillTexture() {
 				return TEXTURE_STILL;
 			}
 
 			@Override
-			public ResourceLocation getFlowingTexture() {
+			public Identifier getFlowingTexture() {
 				return TEXTURE_FLOW;
 			}
 
@@ -224,17 +202,17 @@ public class ClientRegistrar {
 			}
 		}, TofuFluidTypes.SOYMILK.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell");
-			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell_flow");
-			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell_overlay");
+			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell");
+			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell_flow");
+			private static final Identifier TEXTURE_OVERLAY = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell_overlay");
 
 			@Override
-			public ResourceLocation getStillTexture() {
+			public Identifier getStillTexture() {
 				return TEXTURE_STILL;
 			}
 
 			@Override
-			public ResourceLocation getFlowingTexture() {
+			public Identifier getFlowingTexture() {
 				return TEXTURE_FLOW;
 			}
 
@@ -251,17 +229,17 @@ public class ClientRegistrar {
 
 		}, TofuFluidTypes.SOYMILK_HELL.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul");
-			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul_flow");
-			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul_overlay");
+			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul");
+			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul_flow");
+			private static final Identifier TEXTURE_OVERLAY = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul_overlay");
 
 			@Override
-			public ResourceLocation getStillTexture() {
+			public Identifier getStillTexture() {
 				return TEXTURE_STILL;
 			}
 
 			@Override
-			public ResourceLocation getFlowingTexture() {
+			public Identifier getFlowingTexture() {
 				return TEXTURE_FLOW;
 			}
 
@@ -277,17 +255,17 @@ public class ClientRegistrar {
 			}
 		}, TofuFluidTypes.SOYMILK_SOUL.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
-			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
-			private static final ResourceLocation TEXTURE_OVERLAY = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern_overlay");
+			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
+			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
+			private static final Identifier TEXTURE_OVERLAY = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern_overlay");
 
 			@Override
-			public ResourceLocation getStillTexture() {
+			public Identifier getStillTexture() {
 				return TEXTURE_STILL;
 			}
 
 			@Override
-			public ResourceLocation getFlowingTexture() {
+			public Identifier getFlowingTexture() {
 				return TEXTURE_FLOW;
 			}
 
@@ -304,16 +282,16 @@ public class ClientRegistrar {
 		}, TofuFluidTypes.BITTERN.get());
 
 		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final ResourceLocation TEXTURE_STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang");
-			private static final ResourceLocation TEXTURE_FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang_flow");
+			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang");
+			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang_flow");
 
 			@Override
-			public ResourceLocation getStillTexture() {
+			public Identifier getStillTexture() {
 				return TEXTURE_STILL;
 			}
 
 			@Override
-			public ResourceLocation getFlowingTexture() {
+			public Identifier getFlowingTexture() {
 				return TEXTURE_FLOW;
 			}
 
@@ -331,30 +309,30 @@ public class ClientRegistrar {
 
 
 		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson"),
-					FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson");
+			private static final Identifier STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson"),
+					FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson");
 
 			@Override
-			public ResourceLocation getStillTexture() {
+			public Identifier getStillTexture() {
 				return STILL;
 			}
 
 			@Override
-			public ResourceLocation getFlowingTexture() {
+			public Identifier getFlowingTexture() {
 				return FLOW;
 			}
 		}, TofuFluidTypes.CRIMSON.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped"),
-					FLOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped");
+			private static final Identifier STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped"),
+					FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped");
 
 			@Override
-			public ResourceLocation getStillTexture() {
+			public Identifier getStillTexture() {
 				return STILL;
 			}
 
 			@Override
-			public ResourceLocation getFlowingTexture() {
+			public Identifier getFlowingTexture() {
 				return FLOW;
 			}
 		}, TofuFluidTypes.WARPED.get());
@@ -371,9 +349,9 @@ public class ClientRegistrar {
 	}
 	@SubscribeEvent
 	public static void specialModelRender(RegisterSpecialModelRendererEvent event) {
-		event.register(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_shield"), TofuShieldSpecialRenderer.Unbaked.MAP_CODEC);
-		event.register(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian_statue"), TofunianStatueSpecialRenderer.Unbaked.MAP_CODEC);
-		event.register(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "foodplate"), FoodPlateSpecialRenderer.Unbaked.MAP_CODEC);
+		event.register(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_shield"), TofuShieldSpecialRenderer.Unbaked.MAP_CODEC);
+		event.register(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian_statue"), TofunianStatueSpecialRenderer.Unbaked.MAP_CODEC);
+		event.register(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "foodplate"), FoodPlateSpecialRenderer.Unbaked.MAP_CODEC);
 	}
 
 
@@ -494,7 +472,7 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerOverlay(RegisterGuiLayersEvent event) {
-		event.registerBelow(VanillaGuiLayers.CAMERA_OVERLAYS, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_portal_overlay"), (guiGraphics, partialTicks) -> {
+		event.registerBelow(VanillaGuiLayers.CAMERA_OVERLAYS, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_portal_overlay"), (guiGraphics, partialTicks) -> {
 			Minecraft minecraft = Minecraft.getInstance();
 			Window window = minecraft.getWindow();
 			LocalPlayer player = minecraft.player;
@@ -502,7 +480,7 @@ public class ClientRegistrar {
 				renderTofuPortalOverlay(guiGraphics, minecraft, window, player.getData(TofuAttachments.TOFU_LIVING.get()), partialTicks);
 			}
 		});
-		event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "recover_hearts"), (guiGraphics, partialTicks) -> {
+		event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "recover_hearts"), (guiGraphics, partialTicks) -> {
 			Minecraft minecraft = Minecraft.getInstance();
 			Window window = minecraft.getWindow();
 			Gui gui = minecraft.gui;
@@ -598,7 +576,7 @@ public class ClientRegistrar {
 	}
 
 	private static void renderHeart(
-			GuiGraphics p_283024_, ResourceLocation p_281393_, int p_283636_, int p_283279_
+			GuiGraphics p_283024_, Identifier p_281393_, int p_283636_, int p_283279_
 	) {
 		p_283024_.blitSprite(RenderPipelines.GUI_TEXTURED, p_281393_, p_283636_, p_283279_, 9, 9);
 	}
@@ -620,116 +598,9 @@ public class ClientRegistrar {
 		}
 	}
 
-	@SubscribeEvent
-	public static void renderMiningOverlay(ExtractBlockOutlineRenderStateEvent event) {
-		event.addCustomRenderer((blockOutlineRenderState, bufferSource, poseStack, b, levelRenderState) -> {
-			Player player = Minecraft.getInstance().player;
-			Level level = player.level();
-			ItemStack stack = player.getMainHandItem();
-
-			if (player != null && stack.is(TofuTags.Items.TOFU_DIAMOND_MINEABLE_ENCHANTABLE)) {
-				if (Minecraft.getInstance().hitResult instanceof BlockHitResult blockhitresult) {
-					boolean cancelOverride = false;
-					if (blockhitresult.getType() != HitResult.Type.MISS) {
-						int lvl = EnchantmentHelper.getEnchantmentLevel(player.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.BATCH), player);
-						if (lvl > 0) {
-							boolean flagRender = false;
-							BlockPos originPos = blockhitresult.getBlockPos();
-
-							ImmutableList<BlockPos> poses = calcAOEBlocks(stack, level, player, originPos, 1 + 2, 1 + 2, lvl);
-							ImmutableList<BlockPos> posesWithOrigin = ImmutableList.<BlockPos>builder().addAll(poses).add(originPos).build();
-							for (BlockPos extraPos : posesWithOrigin) {
-								BlockPos blockpos = extraPos.immutable();
-								BlockState blockstate = Minecraft.getInstance().level.getBlockState(blockpos);
-
-								if (stack.getDestroySpeed(blockstate) > 1.0F) {
-									flagRender = true;
-									if (!blockstate.isAir() && Minecraft.getInstance().level.getWorldBorder().isWithinBounds(blockpos)) {
-										CollisionContext collisioncontext = CollisionContext.of(player);
-										VoxelShape voxelshape = blockstate.getShape(Minecraft.getInstance().level, blockpos, collisioncontext);
-										if (SharedConstants.DEBUG_SHAPES) {
-											return false;
-										} else {
-
-											boolean flag = net.neoforged.neoforge.client.ClientHooks.isInTranslucentBlockOutlinePass(Minecraft.getInstance().level, originPos, blockstate);
-											boolean flag1 = Minecraft.getInstance().options.highContrastBlockOutline().get();
-
-											Vec3 vec3 = levelRenderState.cameraRenderState.pos;
-											ClientRegistrar.renderHitOutline(poseStack, bufferSource.getBuffer(RenderType.LINES), vec3.x, vec3.y, vec3.z, new BlockOutlineRenderState(blockpos, flag, flag1, voxelshape, event.getCustomRenderers()), -16777216);
-
-										}
-									}
-								}
-							}
-							return flagRender;
-						}
-					}
-				}
-			}
-			return false;
-		});
-	}
-
-	private static void renderHitOutline(
-			PoseStack p_109638_, VertexConsumer p_109639_, double p_109641_, double p_109642_, double p_109643_, BlockOutlineRenderState p_451494_, int p_380403_
-	) {
-		BlockPos blockpos = p_451494_.pos();
-		if (SharedConstants.DEBUG_SHAPES) {
-			ShapeRenderer.renderShape(
-					p_109638_,
-					p_109639_,
-					p_451494_.shape(),
-					blockpos.getX() - p_109641_,
-					blockpos.getY() - p_109642_,
-					blockpos.getZ() - p_109643_,
-					ARGB.colorFromFloat(1.0F, 1.0F, 1.0F, 1.0F)
-			);
-			if (p_451494_.collisionShape() != null) {
-				ShapeRenderer.renderShape(
-						p_109638_,
-						p_109639_,
-						p_451494_.collisionShape(),
-						blockpos.getX() - p_109641_,
-						blockpos.getY() - p_109642_,
-						blockpos.getZ() - p_109643_,
-						ARGB.colorFromFloat(0.4F, 0.0F, 0.0F, 0.0F)
-				);
-			}
-
-			if (p_451494_.occlusionShape() != null) {
-				ShapeRenderer.renderShape(
-						p_109638_,
-						p_109639_,
-						p_451494_.occlusionShape(),
-						blockpos.getX() - p_109641_,
-						blockpos.getY() - p_109642_,
-						blockpos.getZ() - p_109643_,
-						ARGB.colorFromFloat(0.4F, 0.0F, 1.0F, 0.0F)
-				);
-			}
-
-			if (p_451494_.interactionShape() != null) {
-				ShapeRenderer.renderShape(
-						p_109638_,
-						p_109639_,
-						p_451494_.interactionShape(),
-						blockpos.getX() - p_109641_,
-						blockpos.getY() - p_109642_,
-						blockpos.getZ() - p_109643_,
-						ARGB.colorFromFloat(0.4F, 0.0F, 0.0F, 1.0F)
-				);
-			}
-		} else {
-			ShapeRenderer.renderShape(
-					p_109638_, p_109639_, p_451494_.shape(), blockpos.getX() - p_109641_, blockpos.getY() - p_109642_, blockpos.getZ() - p_109643_, p_380403_
-			);
-		}
-	}
 
 	@SubscribeEvent
 	public static void registerDimensionEffect(RegisterDimensionSpecialEffectsEvent event) {
-		TofuDimensionEffects renderInfo = new TofuDimensionEffects();
-		event.register(TofuCraftReload.prefix("renderer"), renderInfo);
 	}
 
 	@SubscribeEvent

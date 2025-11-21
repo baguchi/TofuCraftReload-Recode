@@ -12,7 +12,6 @@ import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -21,31 +20,30 @@ import net.minecraft.client.renderer.blockentity.BrightnessCombiner;
 import net.minecraft.client.renderer.blockentity.state.BedRenderState;
 import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Unit;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
 import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
-import java.util.Set;
 
 
 public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity, BedRenderState> {
-	public static final ResourceLocation BED_TEXTURES = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/bed/tofubed.png");
+	public static final Identifier BED_TEXTURES = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/bed/tofubed.png");
 	private final Model.Simple headModel;
 	private final Model.Simple footModel;
 
 	public TofuBedRenderer(BlockEntityRendererProvider.Context context) {
-		this.headModel = new Model.Simple(context.bakeLayer(ModelLayers.BED_HEAD), RenderType::entitySolid);
-		this.footModel = new Model.Simple(context.bakeLayer(ModelLayers.BED_FOOT), RenderType::entitySolid);
+		this.headModel = new Model.Simple(context.bakeLayer(ModelLayers.BED_HEAD), RenderTypes::entitySolid);
+		this.footModel = new Model.Simple(context.bakeLayer(ModelLayers.BED_FOOT), RenderTypes::entitySolid);
 
 	}
 
@@ -56,7 +54,7 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity, 
 		p_173542_.translate(0.5D, 0.5D, 0.5D);
 		p_173542_.mulPose(Axis.ZP.rotationDegrees(180.0F + p_173545_.toYRot()));
 		p_173542_.translate(-0.5D, -0.5D, -0.5D);
-		VertexConsumer var9 = p_173543_.getBuffer(RenderType.entitySolid(BED_TEXTURES));
+		VertexConsumer var9 = p_173543_.getBuffer(RenderTypes.entitySolid(BED_TEXTURES));
 		p_173544_.render(p_173542_, var9, p_173547_, p_173548_);
 		p_173542_.popPose();
 	}
@@ -92,7 +90,7 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity, 
 	private void submitPiece(PoseStack p_440523_, SubmitNodeCollector p_440584_, Model.Simple p_440701_, Direction p_439931_, Material p_439303_, int p_438920_, int p_439582_, boolean p_440123_, @Nullable ModelFeatureRenderer.CrumblingOverlay p_439398_) {
 		p_440523_.pushPose();
 		preparePose(p_440523_, p_440123_, p_439931_);
-		p_440584_.submitModel(p_440701_, Unit.INSTANCE, p_440523_, RenderType.entityCutoutNoCull(BED_TEXTURES), p_438920_, p_439582_, -1, null, 0, p_439398_);
+		p_440584_.submitModel(p_440701_, Unit.INSTANCE, p_440523_, RenderTypes.entityCutoutNoCull(BED_TEXTURES), p_438920_, p_439582_, -1, null, 0, p_439398_);
 		p_440523_.popPose();
 	}
 
@@ -104,12 +102,12 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity, 
 		p_428361_.translate(-0.5F, -0.5F, -0.5F);
 	}
 
-	public void getExtents(Set<Vector3f> p_428359_) {
+	/*public void getExtents(Set<Vector3f> p_428359_) {
 		PoseStack posestack = new PoseStack();
 		preparePose(posestack, false, Direction.SOUTH);
 		this.headModel.root().getExtentsForGui(posestack, p_428359_);
 		posestack.setIdentity();
 		preparePose(posestack, true, Direction.SOUTH);
 		this.footModel.root().getExtentsForGui(posestack, p_428359_);
-	}
+	}*/
 }

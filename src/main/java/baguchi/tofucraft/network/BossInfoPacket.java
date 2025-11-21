@@ -8,7 +8,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Mob;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
@@ -27,7 +27,7 @@ public abstract class BossInfoPacket implements CustomPacketPayload {
 	 * Adds a boss bar for the client.
 	 */
 	public static class Display extends BossInfoPacket {
-		public static final Type<BossInfoPacket.Display> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "add_custom_bossbar"));
+		public static final Type<BossInfoPacket.Display> TYPE = new Type<>(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "add_custom_bossbar"));
 
 		public static final StreamCodec<RegistryFriendlyByteBuf, Display> STREAM_CODEC = StreamCodec.composite(
 				UUIDUtil.STREAM_CODEC,
@@ -57,7 +57,7 @@ public abstract class BossInfoPacket implements CustomPacketPayload {
 	 * Removes a boss bar for the client.
 	 */
 	public static class Remove extends BossInfoPacket {
-		public static final Type<BossInfoPacket.Remove> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "remove_custom_bossbar"));
+		public static final Type<BossInfoPacket.Remove> TYPE = new Type<>(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "remove_custom_bossbar"));
 
 		public static final StreamCodec<RegistryFriendlyByteBuf, BossInfoPacket.Remove> STREAM_CODEC = StreamCodec.composite(
 				UUIDUtil.STREAM_CODEC,

@@ -15,9 +15,10 @@ import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CakeBlock;
 import org.joml.Vector3f;
+import org.joml.Vector3fc;
 
 import javax.annotation.Nullable;
-import java.util.Set;
+import java.util.function.Consumer;
 
 
 public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContainerContents> {
@@ -50,7 +51,7 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 	}
 
 	@Override
-	public void getExtents(Set<Vector3f> p_428562_) {
+	public void getExtents(Consumer<Vector3fc> p_470829_) {
 		PoseStack posestack = new PoseStack();
 		posestack.translate(0F, 1F, 0F);
 
@@ -62,9 +63,7 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 		vector3f.add(maxModel, 0, maxModel);
 		vector3f.add(maxModel, 1 / 16.0F, maxModel);
 		vector3f.add(minModel, 1 / 16.0F, minModel);
-		p_428562_.add(vector3f);
-
-		//this.modelBase.root().getExtentsForGui(posestack, p_428562_);
+		p_470829_.accept(vector3f);
 	}
 
 	@Nullable

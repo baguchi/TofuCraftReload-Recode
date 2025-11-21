@@ -6,13 +6,13 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.NonNullList;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -151,7 +151,7 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 
 	@Override
 	public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> resourceKey) {
-		this.ensureValid(resourceKey.location());
+		this.ensureValid(resourceKey.identifier());
 		Advancement.Builder advancement$builder = recipeOutput.advancement()
 				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceKey))
 				.rewards(AdvancementRewards.Builder.recipe(resourceKey))
@@ -166,14 +166,14 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 				this.cookTime,
 				this.experience
 		);
-		recipeOutput.accept(resourceKey, shapelessrecipe, advancement$builder.build(resourceKey.location().withPrefix("recipes/" + this.category.getSerializedName() + "/")));
+		recipeOutput.accept(resourceKey, shapelessrecipe, advancement$builder.build(resourceKey.identifier().withPrefix("recipes/" + this.category.getSerializedName() + "/")));
 
 	}
 
 	/**
 	 * Makes sure that this recipe is valid and obtainable.
 	 */
-	private void ensureValid(ResourceLocation id) {
+	private void ensureValid(Identifier id) {
 		if (this.criteria.isEmpty()) {
 			throw new IllegalStateException("No way of obtaining recipe " + id);
 		}

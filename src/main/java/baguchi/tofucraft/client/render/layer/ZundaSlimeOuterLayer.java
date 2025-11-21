@@ -2,15 +2,15 @@ package baguchi.tofucraft.client.render.layer;
 
 import baguchi.tofucraft.TofuCraftReload;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.SlimeModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.monster.slime.SlimeModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.SlimeRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import static baguchi.tofucraft.client.render.layer.ZundaLayer.ZUNDA_KEY;
 import static baguchi.tofucraft.client.render.layer.ZundaLayer.enchantSwirl;
@@ -23,7 +23,7 @@ public class ZundaSlimeOuterLayer extends RenderLayer<SlimeRenderState, SlimeMod
 		this.model = new SlimeModel(p_174537_.bakeLayer(ModelLayers.SLIME_OUTER));
 	}
 
-	public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/misc/zunda.png");
+	public static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/misc/zunda.png");
 
 
 	@Override

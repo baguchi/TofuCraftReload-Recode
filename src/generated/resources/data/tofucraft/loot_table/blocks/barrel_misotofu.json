@@ -8,62 +8,73 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "tofucraft:barrel_misotofu",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "stat": "used"
+          }
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "tofucraft:barrel_misotofu",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "stat": "used"
-              }
-            }
-          ],
-          "functions": [
-            {
-              "add": false,
-              "count": 3.0,
-              "function": "minecraft:set_count"
-            }
-          ],
           "name": "tofucraft:tofumiso"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": 3.0,
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0
     },
     {
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "tofucraft:barrel_misotofu",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "stat": "used"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "block": "tofucraft:barrel_misotofu",
-                  "condition": "minecraft:block_state_property",
-                  "properties": {
-                    "stat": "used"
-                  }
-                },
-                {
-                  "condition": "minecraft:survives_explosion"
-                }
-              ],
-              "name": "minecraft:barrel"
-            },
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:survives_explosion"
-                }
-              ],
-              "name": "tofucraft:barrel_misotofu"
+          "type": "minecraft:item",
+          "name": "minecraft:barrel"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "block": "tofucraft:barrel_misotofu",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "stat": "used"
             }
-          ]
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:barrel_misotofu"
         }
       ],
       "rolls": 1.0

@@ -1,11 +1,30 @@
 {
   "ambient_light": 0.0,
-  "bed_works": true,
-  "cloud_height": 192,
+  "attributes": {
+    "minecraft:audio/background_music": {
+      "default": {
+        "max_delay": 24000,
+        "min_delay": 6000,
+        "replace_current_music": true,
+        "sound": "tofucraft:music.soft"
+      }
+    },
+    "minecraft:gameplay/bed_rule": {
+      "can_set_spawn": "always",
+      "can_sleep": "when_dark",
+      "error_message": {
+        "translate": "block.minecraft.bed.no_sleep"
+      }
+    },
+    "minecraft:gameplay/nether_portal_spawns_piglin": true,
+    "minecraft:gameplay/respawn_anchor_works": false,
+    "minecraft:visual/cloud_color": "#ccffffff",
+    "minecraft:visual/cloud_height": 192.33,
+    "minecraft:visual/fog_color": "#2a1427",
+    "minecraft:visual/sky_color": "#2a1427"
+  },
   "coordinate_scale": 1.0,
-  "effects": "tofucraft:renderer",
-  "has_ceiling": false,
-  "has_raids": false,
+  "has_ceiling": true,
   "has_skylight": true,
   "height": 384,
   "infiniburn": "#minecraft:infiniburn_overworld",
@@ -17,8 +36,5 @@
     "max_inclusive": 7,
     "min_inclusive": 0
   },
-  "natural": true,
-  "piglin_safe": false,
-  "respawn_anchor_works": false,
-  "ultrawarm": false
+  "timelines": "#minecraft:in_overworld"
 }

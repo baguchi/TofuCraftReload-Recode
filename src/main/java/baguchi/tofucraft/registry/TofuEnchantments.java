@@ -2,13 +2,13 @@ package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.item.enchantment.effect.NoItemDamageExplodeEffect;
-import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.WeightedList;
@@ -41,7 +41,7 @@ public class TofuEnchantments {
 	public static final ResourceKey<Enchantment> CRACK_BURST = key("crack_burst");
 
 	private static ResourceKey<Enchantment> key(String p_345314_) {
-		return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, p_345314_));
+		return ResourceKey.create(Registries.ENCHANTMENT, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, p_345314_));
 	}
 
 	public static void bootstrap(BootstrapContext<Enchantment> p_345935_) {
@@ -170,6 +170,6 @@ public class TofuEnchantments {
 	}
 
 	private static void register(BootstrapContext<Enchantment> p_346019_, ResourceKey<Enchantment> p_345703_, Enchantment.Builder p_345607_) {
-		p_346019_.register(p_345703_, p_345607_.build(p_345703_.location()));
+		p_346019_.register(p_345703_, p_345607_.build(p_345703_.identifier()));
 	}
 }

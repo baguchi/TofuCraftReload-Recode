@@ -82,7 +82,7 @@ public class OageCube extends MagmaCube {
 		if (isLava.getAsBoolean()) {
 			Vec3 vec3 = this.getDeltaMovement();
 			this.setDeltaMovement(vec3.x, (double) (0.22F + (float) this.getSize() * 0.05F), vec3.z);
-			this.hasImpulse = true;
+			this.needsSync = true;
 		} else {
 			onSuper.run();
 		}

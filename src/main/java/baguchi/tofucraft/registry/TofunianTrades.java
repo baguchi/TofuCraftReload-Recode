@@ -5,14 +5,15 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import net.minecraft.Util;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.Util;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -23,8 +24,6 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Optional;
@@ -87,7 +86,8 @@ public class TofunianTrades {
 			this.priceMultiplier = priceMultiplierIn;
 		}
 
-		public MerchantOffer getOffer(Entity trader, RandomSource rand) {
+		@Override
+		public MerchantOffer getOffer(ServerLevel serverLevel, Entity trader, RandomSource rand) {
 			ItemCost itemstack = new ItemCost(this.tradeItem, this.count);
 			return new MerchantOffer(itemstack, new ItemStack(TofuItems.ZUNDARUBY.get()), this.maxUses, this.xpValue, this.priceMultiplier);
 		}
@@ -131,7 +131,8 @@ public class TofunianTrades {
 			this.priceMultiplier = priceMultiplier;
 		}
 
-		public MerchantOffer getOffer(Entity trader, RandomSource rand) {
+		@Override
+		public MerchantOffer getOffer(ServerLevel serverLevel, Entity trader, RandomSource rand) {
 			int i = 2 + rand.nextInt(5);
 			int j = Math.min(this.rubyCount + i, 64);
 			ItemStack stack = new ItemStack(this.sellingItem.getItem(), 1);
@@ -182,7 +183,8 @@ public class TofunianTrades {
 			this.priceMultiplier = priceMultiplier;
 		}
 
-		public MerchantOffer getOffer(Entity trader, RandomSource rand) {
+		@Override
+		public MerchantOffer getOffer(ServerLevel serverLevel, Entity trader, RandomSource rand) {
 			return new MerchantOffer(new ItemCost(TofuItems.ZUNDARUBY.get(), this.rubyCount), new ItemStack(this.sellingItem.getItem(), this.sellingItemCount), this.maxUses, this.xpValue, this.priceMultiplier);
 		}
 	}
@@ -200,9 +202,8 @@ public class TofunianTrades {
 			this.xpValue = xpValue;
 		}
 
-		@Nullable
 		@Override
-		public MerchantOffer getOffer(@NotNull Entity entity, @NotNull RandomSource randomSource) {
+		public MerchantOffer getOffer(ServerLevel serverLevel, Entity trader, RandomSource rand) {
 			return new MerchantOffer(new ItemCost(targetItem), new ItemStack(sellingItem), maxUses, xpValue, 0.05f);
 		}
 	}

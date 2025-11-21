@@ -7,32 +7,32 @@ import net.minecraft.core.Holder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.RegistryFileCodec;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.Objects;
 
 public class TofunianVariant {
 	public static final Codec<TofunianVariant> DIRECT_CODEC = RecordCodecBuilder.create(
 			p_332779_ -> p_332779_.group(
-							ResourceLocation.CODEC.fieldOf("texture").forGetter(p_335261_ -> p_335261_.texture))
+							Identifier.CODEC.fieldOf("texture").forGetter(p_335261_ -> p_335261_.texture))
 					.apply(p_332779_, TofunianVariant::new)
 	);
 	public static final Codec<Holder<TofunianVariant>> CODEC = RegistryFileCodec.create(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, DIRECT_CODEC);
 	public static final StreamCodec<RegistryFriendlyByteBuf, Holder<TofunianVariant>> STREAM_CODEC = ByteBufCodecs.holderRegistry(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY);
-	private final ResourceLocation texture;
-	private final ResourceLocation textureFull;
+	private final Identifier texture;
+	private final Identifier textureFull;
 
-	public TofunianVariant(ResourceLocation p_332712_) {
+	public TofunianVariant(Identifier p_332712_) {
 		this.texture = p_332712_;
 		this.textureFull = fullTextureId(p_332712_);
 	}
 
-	private static ResourceLocation fullTextureId(ResourceLocation p_336042_) {
+	private static Identifier fullTextureId(Identifier p_336042_) {
 		return p_336042_.withPath(p_335262_ -> "textures/" + p_335262_ + ".png");
 	}
 
-	public ResourceLocation texture() {
+	public Identifier texture() {
 		return this.textureFull;
 	}
 

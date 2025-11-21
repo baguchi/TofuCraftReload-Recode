@@ -5,16 +5,16 @@ import baguchi.tofucraft.client.model.TofunianStatueModel;
 import baguchi.tofucraft.client.render.blockentity.TofunianStatueRender;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
+import org.joml.Vector3fc;
 
-import java.util.Set;
+import java.util.function.Consumer;
 
 
 public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer {
@@ -25,9 +25,9 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 	}
 
 	@Override
-	public void getExtents(Set<Vector3f> set) {
+	public void getExtents(Consumer<Vector3fc> consumer) {
 		PoseStack posestack = new PoseStack();
-		this.model.root().getExtentsForGui(posestack, set);
+		this.model.root().getExtentsForGui(posestack, consumer);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 		poseStack.pushPose();
 		poseStack.scale(-1.5F, -1.5F, 1.5F);
 		poseStack.translate(-0.4, -1F, 0);
-		submitNodeCollector.submitModel(this.model, Direction.SOUTH, poseStack, RenderType.entityCutoutNoCull(TofunianStatueRender.TEXTURES), i, i1, -1, null, 0, null);
+		submitNodeCollector.submitModel(this.model, Direction.SOUTH, poseStack, RenderTypes.entityCutoutNoCull(TofunianStatueRender.TEXTURES), i, i1, -1, null, 0, null);
 		poseStack.popPose();
 	}
 

@@ -2,6 +2,7 @@ package baguchi.tofucraft.fluid_type;
 
 import baguchi.tofucraft.registry.TofuFluidTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
@@ -55,7 +56,7 @@ public class SoymilkFluidType extends FluidType {
 
 	@Override
 	public boolean isVaporizedOnPlacement(Level level, BlockPos pos, FluidStack stack) {
-		if (!level.dimensionType().ultraWarm()) {
+		if (!level.environmentAttributes().getValue(EnvironmentAttributes.WATER_EVAPORATES, pos)) {
 			return false;
 		} else {
 			return this == TofuFluidTypes.SOYMILK.get();

@@ -1,7 +1,7 @@
 package baguchi.tofucraft.api.event;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
 import net.neoforged.bus.api.Event;
 import org.jetbrains.annotations.ApiStatus;
 

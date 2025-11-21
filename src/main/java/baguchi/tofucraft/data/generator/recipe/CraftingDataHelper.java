@@ -191,6 +191,17 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.save(consumer, locEquip(name));
 	}
 
+	protected final void spearItem(RecipeOutput consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material, TagKey<Item> handle) {
+		ShapedRecipeBuilder.shaped(this.registries.lookupOrThrow(Registries.ITEM), RecipeCategory.TOOLS, result.get())
+				.pattern("  #")
+				.pattern(" X ")
+				.pattern("X  ")
+				.define('#', material.get())
+				.define('X', handle)
+				.unlockedBy("has_item", has(material.get()))
+				.save(consumer, locEquip(name));
+	}
+
 	protected final void tofuBlockItem(RecipeOutput consumer, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
 		ShapedRecipeBuilder.shaped(this.registries.lookupOrThrow(Registries.ITEM), RecipeCategory.BUILDING_BLOCKS, result.get())
 				.pattern("##")

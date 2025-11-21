@@ -1,5 +1,10 @@
 {
   "type": "minecraft:block",
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
   "pools": [
     {
       "bonus_rolls": 0.0,
@@ -46,9 +51,6 @@
                   "add": false,
                   "count": 4.0,
                   "function": "minecraft:set_count"
-                },
-                {
-                  "function": "minecraft:explosion_decay"
                 }
               ],
               "name": "tofucraft:tofuzunda"

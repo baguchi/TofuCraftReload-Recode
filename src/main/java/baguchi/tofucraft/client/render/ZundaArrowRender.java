@@ -5,11 +5,11 @@ import baguchi.tofucraft.entity.projectile.ZundaArrow;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.ArrowRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 
 public class ZundaArrowRender extends ArrowRenderer<ZundaArrow, ArrowRenderState> {
-	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/zunda_arrow.png");
+	public static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/zunda_arrow.png");
 
 	public ZundaArrowRender(EntityRendererProvider.Context p_174399_) {
 		super(p_174399_);
@@ -20,7 +20,7 @@ public class ZundaArrowRender extends ArrowRenderer<ZundaArrow, ArrowRenderState
 		return new ArrowRenderState();
 	}
 
-	public ResourceLocation getTextureLocation(ArrowRenderState p_116001_) {
+	public Identifier getTextureLocation(ArrowRenderState p_116001_) {
 		return LOCATION;
 	}
 }

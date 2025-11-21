@@ -37,6 +37,8 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(ItemTags.AXES).add(TofuItems.TOFU_KINU_AXE.get()).add(TofuItems.TOFU_MOMEN_AXE.get()).add(TofuItems.TOFU_SOLID_AXE.get()).add(TofuItems.TOFU_METAL_AXE.get()).add(TofuItems.TOFU_DIAMOND_AXE.get());
 		tag(ItemTags.SHOVELS).add(TofuItems.TOFU_KINU_SHOVEL.get()).add(TofuItems.TOFU_MOMEN_SHOVEL.get()).add(TofuItems.TOFU_SOLID_SHOVEL.get()).add(TofuItems.TOFU_METAL_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get());
 		tag(ItemTags.HOES).add(TofuItems.TOFU_KINU_HOE.get()).add(TofuItems.TOFU_MOMEN_HOE.get()).add(TofuItems.TOFU_SOLID_HOE.get()).add(TofuItems.TOFU_METAL_HOE.get()).add(TofuItems.TOFU_DIAMOND_HOE.get());
+		this.tag(ItemTags.SPEARS)
+				.add(TofuItems.TOFU_KINU_SPEAR.get()).add(TofuItems.TOFU_MOMEN_SPEAR.get()).add(TofuItems.TOFU_SOLID_SPEAR.get()).add(TofuItems.TOFU_METAL_SPEAR.get()).add(TofuItems.TOFU_DIAMOND_SPEAR.get());
 
 		this.tag(ItemTags.DURABILITY_ENCHANTABLE).add(TofuItems.ZUNDA_BOW.get());
 		this.tag(ItemTags.BOW_ENCHANTABLE).add(TofuItems.ZUNDA_BOW.get());

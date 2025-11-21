@@ -5,20 +5,21 @@ import baguchi.tofucraft.entity.projectile.NattoBallEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.joml.Matrix4f;
 
 
 public class NattoBallRender extends EntityRenderer<NattoBallEntity, ProjectileRenderState> {
-	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.parse("textures/entity/enderdragon/dragon_fireball.png");
-	private static final RenderType RENDER_TYPE = RenderType.entityCutoutNoCull(TEXTURE_LOCATION);
+	private static final Identifier TEXTURE_LOCATION = Identifier.parse("textures/entity/enderdragon/dragon_fireball.png");
+	private static final RenderType RENDER_TYPE = RenderTypes.entityCutoutNoCull(TEXTURE_LOCATION);
 
 	public NattoBallRender(EntityRendererProvider.Context p_173962_) {
 		super(p_173962_);
@@ -56,7 +57,7 @@ public class NattoBallRender extends EntityRenderer<NattoBallEntity, ProjectileR
 		p_114090_.addVertex(p_114091_, p_114094_ - 0.5F, (float) p_114095_ - 0.25F, 0.0F).setColor(255, 255, 255, 255).setUv((float) p_114096_, (float) p_114097_).setOverlay(OverlayTexture.NO_OVERLAY).setLight(p_114093_).setNormal(p_114092_, 0.0F, 1.0F, 0.0F);
 	}
 
-	public ResourceLocation getTextureLocation(NattoBallEntity p_114078_) {
+	public Identifier getTextureLocation(NattoBallEntity p_114078_) {
 		return TEXTURE_LOCATION;
 	}
 }

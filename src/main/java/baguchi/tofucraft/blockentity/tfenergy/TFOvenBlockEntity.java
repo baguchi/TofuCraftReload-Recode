@@ -238,7 +238,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 		cmp.putInt("progress", this.progress);
 		cmp.putInt("RefreshTime", this.refreshTime);
 		CompoundTag compoundtag = new CompoundTag();
-		this.recipesUsed.forEach((p_380898_, p_380899_) -> compoundtag.putInt(p_380898_.location().toString(), p_380899_));
+		this.recipesUsed.forEach((p_380898_, p_380899_) -> compoundtag.putInt(p_380898_.identifier().toString(), p_380899_));
 		cmp.store("RecipesUsed", CompoundTag.CODEC, compoundtag);
 	}
 

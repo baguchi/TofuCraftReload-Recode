@@ -4,11 +4,11 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.entity.projectile.FukumameEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.ArrowRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 
 public class FukumameRender extends AbstractSoybeanRender<FukumameEntity, ArrowRenderState> {
-	public static final ResourceLocation FUKUMAME_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/fukumame.png");
+	public static final Identifier FUKUMAME_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/fukumame.png");
 
 	public FukumameRender(EntityRendererProvider.Context p_174399_) {
 		super(p_174399_);
@@ -27,11 +27,11 @@ public class FukumameRender extends AbstractSoybeanRender<FukumameEntity, ArrowR
 	}
 
 	@Override
-	protected ResourceLocation getTextureLocation(ArrowRenderState p113839) {
+	protected Identifier getTextureLocation(ArrowRenderState p113839) {
 		return FUKUMAME_LOCATION;
 	}
 
-	public ResourceLocation getTextureLocation(FukumameEntity p_116001_) {
+	public Identifier getTextureLocation(FukumameEntity p_116001_) {
 		return FUKUMAME_LOCATION;
 	}
 }

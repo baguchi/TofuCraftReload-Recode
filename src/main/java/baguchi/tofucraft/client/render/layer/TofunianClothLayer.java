@@ -8,14 +8,14 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
 
 public class TofunianClothLayer<S extends TofunianRenderState> extends RenderLayer<S, TofunianModel<S>> {
-	public static final ResourceLocation BAGU_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagu_chan.png");
+	public static final Identifier BAGU_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagu_chan.png");
 
 	public TofunianClothLayer(RenderLayerParent<S, TofunianModel<S>> tofunianRender) {
 		super(tofunianRender);
@@ -29,7 +29,7 @@ public class TofunianClothLayer<S extends TofunianRenderState> extends RenderLay
 		}
 	}
 
-	public ResourceLocation getTextureLocation(S entity) {
+	public Identifier getTextureLocation(S entity) {
 		if (entity.nameTag != null) {
 			String s = ChatFormatting.stripFormatting(entity.nameTag.getString());
 			if (s != null && "bagu_chan".equals(s)) {

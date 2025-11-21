@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.data.AtlasIds;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.material.Fluid;
@@ -23,7 +23,7 @@ import org.joml.Matrix3x2fStack;
 import java.awt.*;
 
 public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTableMenu> {
-	private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tf_crafting_table.png");
+	private static final Identifier BACKGROUND_TEXTURE = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tf_crafting_table.png");
 	private static final Rectangle PROGRESS_ARROW = new Rectangle(89, 34, 24, 17);
 	private boolean needRefresh;
 	private int needRefreshTimer;
@@ -106,12 +106,13 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 	}
 
 	@Override
-	protected void renderSlots(GuiGraphics p_376313_) {
-		((AbstractRecipeBookScreenAccessor) this).getRecipeBookComponent().renderGhostRecipe(p_376313_, this.isBiggerResultSlot());
+	protected void renderSlots(GuiGraphics p_376566_, int p_470798_, int p_470821_) {
+		super.renderSlots(p_376566_, p_470798_, p_470821_);
+		((AbstractRecipeBookScreenAccessor) this).getRecipeBookComponent().renderGhostRecipe(p_376566_, this.isBiggerResultSlot());
 
 		for (Slot slot : this.menu.slots) {
 			if (slot.isActive()) {
-				this.renderSlot(p_376313_, slot);
+				this.renderSlot(p_376566_, slot, p_470798_, p_470821_);
 			}
 		}
 

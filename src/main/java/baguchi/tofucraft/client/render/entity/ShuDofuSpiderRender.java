@@ -5,23 +5,19 @@ import baguchi.tofucraft.client.TofuModelLayers;
 import baguchi.tofucraft.client.model.ShuDofuSpiderModel;
 import baguchi.tofucraft.client.render.state.ShuDofuSpiderRenderState;
 import baguchi.tofucraft.entity.ShuDofuSpider;
-import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
-import net.minecraft.client.renderer.entity.state.HitboxRenderState;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraft.world.phys.AABB;
-import net.neoforged.neoforge.entity.PartEntity;
+import net.minecraft.resources.Identifier;
 
 public class ShuDofuSpiderRender extends MobRenderer<ShuDofuSpider, ShuDofuSpiderRenderState, ShuDofuSpiderModel> {
-	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/shudofuspider/shudofuspider.png");
-	private static final ResourceLocation CRACK_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/shudofuspider/shudofuspider_angry_layer.png");
+	private static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/shudofuspider/shudofuspider.png");
+	private static final Identifier CRACK_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/shudofuspider/shudofuspider_angry_layer.png");
 
 
 	public ShuDofuSpiderRender(EntityRendererProvider.Context p_173956_) {
@@ -36,37 +32,11 @@ public class ShuDofuSpiderRender extends MobRenderer<ShuDofuSpider, ShuDofuSpide
 
 			@Override
 			public RenderType renderType() {
-				return RenderType.eyes(CRACK_LOCATION);
+				return RenderTypes.eyes(CRACK_LOCATION);
 			}
 		});
 	}
 
-	@Override
-	protected void extractAdditionalHitboxes(ShuDofuSpider p_412673_, ImmutableList.Builder<HitboxRenderState> p_412323_, float p_412176_) {
-		super.extractAdditionalHitboxes(p_412673_, p_412323_, p_412176_);
-		double d0 = -Mth.lerp((double) p_412176_, p_412673_.xOld, p_412673_.getX());
-		double d1 = -Mth.lerp((double) p_412176_, p_412673_.yOld, p_412673_.getY());
-		double d2 = -Mth.lerp((double) p_412176_, p_412673_.zOld, p_412673_.getZ());
-
-		for (PartEntity<?> enderdragonpart : p_412673_.getParts()) {
-			AABB aabb = enderdragonpart.getBoundingBox();
-			HitboxRenderState hitboxrenderstate = new HitboxRenderState(
-					aabb.minX - enderdragonpart.getX(),
-					aabb.minY - enderdragonpart.getY(),
-					aabb.minZ - enderdragonpart.getZ(),
-					aabb.maxX - enderdragonpart.getX(),
-					aabb.maxY - enderdragonpart.getY(),
-					aabb.maxZ - enderdragonpart.getZ(),
-					(float) (d0 + Mth.lerp((double) p_412176_, enderdragonpart.xOld, enderdragonpart.getX())),
-					(float) (d1 + Mth.lerp((double) p_412176_, enderdragonpart.yOld, enderdragonpart.getY())),
-					(float) (d2 + Mth.lerp((double) p_412176_, enderdragonpart.zOld, enderdragonpart.getZ())),
-					0.25F,
-					1.0F,
-					0.0F
-			);
-			p_412323_.add(hitboxrenderstate);
-		}
-	}
 
 	@Override
 	public ShuDofuSpiderRenderState createRenderState() {
@@ -102,7 +72,7 @@ public class ShuDofuSpiderRender extends MobRenderer<ShuDofuSpider, ShuDofuSpide
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(ShuDofuSpiderRenderState p_114029_) {
+	public Identifier getTextureLocation(ShuDofuSpiderRenderState p_114029_) {
 		return LOCATION;
 	}
 }

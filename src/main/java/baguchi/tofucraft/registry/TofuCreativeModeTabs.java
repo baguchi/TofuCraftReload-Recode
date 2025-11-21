@@ -3,8 +3,8 @@ package baguchi.tofucraft.registry;
 import baguchi.tofucraft.TofuCraftReload;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -21,7 +21,7 @@ public class TofuCreativeModeTabs {
 	public static final ResourceKey<CreativeModeTab> TOFU_BUILDING_BLOCKS_KEY = createKey("tofu_building_blocks");
 
 	private static ResourceKey<CreativeModeTab> createKey(String p_281544_) {
-		return ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, p_281544_));
+		return ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, p_281544_));
 	}
 
 	public static final Supplier<CreativeModeTab> TOFUS = CREATIVE_MODE_TABS.register("tofus", () -> CreativeModeTab.builder()
@@ -297,21 +297,25 @@ public class TofuCreativeModeTabs {
 						TofuItems.FILTERCLOTH,
 						TofuItems.TOFUSTICK,
 						TofuItems.TOFU_KINU_SWORD,
+						TofuItems.TOFU_KINU_SPEAR,
 						TofuItems.TOFU_KINU_AXE,
 						TofuItems.TOFU_KINU_PICKAXE,
 						TofuItems.TOFU_KINU_SHOVEL,
 						TofuItems.TOFU_KINU_HOE,
 						TofuItems.TOFU_MOMEN_SWORD,
+						TofuItems.TOFU_MOMEN_SPEAR,
 						TofuItems.TOFU_MOMEN_AXE,
 						TofuItems.TOFU_MOMEN_PICKAXE,
 						TofuItems.TOFU_MOMEN_SHOVEL,
 						TofuItems.TOFU_MOMEN_HOE,
 						TofuItems.TOFU_SOLID_SWORD,
+						TofuItems.TOFU_SOLID_SPEAR,
 						TofuItems.TOFU_SOLID_AXE,
 						TofuItems.TOFU_SOLID_PICKAXE,
 						TofuItems.TOFU_SOLID_SHOVEL,
 						TofuItems.TOFU_SOLID_HOE,
 						TofuItems.TOFU_METAL_SWORD,
+						TofuItems.TOFU_METAL_SPEAR,
 						TofuItems.TOFU_METAL_AXE,
 						TofuItems.TOFU_METAL_PICKAXE,
 						TofuItems.TOFU_METAL_SHOVEL,
@@ -319,6 +323,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.TOFU_SHIELD,
 						TofuItems.TOFU_METAL_SHEARS,
 						TofuItems.TOFU_DIAMOND_SWORD,
+						TofuItems.TOFU_DIAMOND_SPEAR,
 						TofuItems.TOFU_DIAMOND_AXE,
 						TofuItems.TOFU_DIAMOND_PICKAXE,
 						TofuItems.TOFU_DIAMOND_SHOVEL,

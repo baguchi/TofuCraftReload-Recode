@@ -8,26 +8,26 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "tofucraft:nattobed",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "stat": "used"
+          }
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "tofucraft:nattobed",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "stat": "used"
-              }
-            }
-          ],
-          "functions": [
-            {
-              "add": false,
-              "count": 6.0,
-              "function": "minecraft:set_count"
-            }
-          ],
           "name": "tofucraft:natto"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": 6.0,
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0

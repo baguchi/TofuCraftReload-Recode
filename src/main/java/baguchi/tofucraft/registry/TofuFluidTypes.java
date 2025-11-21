@@ -3,7 +3,7 @@ package baguchi.tofucraft.registry;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.fluid_type.DoubanjiangFluidType;
 import baguchi.tofucraft.fluid_type.SoymilkFluidType;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.neoforged.neoforge.common.SoundActions;
@@ -32,7 +32,7 @@ public class TofuFluidTypes {
 	public static final Supplier<FluidType> DOUBANJIANG = FLUID_TYPES.register("doubanjiang", () -> new DoubanjiangFluidType(FluidType.Properties.create().pathType(PathType.LAVA).adjacentPathType(PathType.DANGER_FIRE).canExtinguish(true).fallDistanceModifier(0.25F).lightLevel(10).motionScale(0.005F).canHydrate(false).supportsBoating(true).sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
 			.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
 			.sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)));
-	public static final DeferredHolder<FluidType, FluidType> CRIMSON = DeferredHolder.create(NeoForgeRegistries.Keys.FLUID_TYPES, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "crimson"));
-	public static final DeferredHolder<FluidType, FluidType> WARPED = DeferredHolder.create(NeoForgeRegistries.Keys.FLUID_TYPES, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "warped"));
+	public static final DeferredHolder<FluidType, FluidType> CRIMSON = DeferredHolder.create(NeoForgeRegistries.Keys.FLUID_TYPES, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "crimson"));
+	public static final DeferredHolder<FluidType, FluidType> WARPED = DeferredHolder.create(NeoForgeRegistries.Keys.FLUID_TYPES, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "warped"));
 
 }

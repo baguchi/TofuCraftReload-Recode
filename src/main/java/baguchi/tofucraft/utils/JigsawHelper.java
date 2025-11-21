@@ -6,8 +6,8 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.levelgen.structure.pools.SinglePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
@@ -20,9 +20,9 @@ import java.util.Optional;
 
 public class JigsawHelper {
 	private static final ResourceKey<StructureProcessorList> EMPTY_PROCESSOR_LIST_KEY = ResourceKey.create(
-			Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath("minecraft", "empty"));
+			Registries.PROCESSOR_LIST, Identifier.fromNamespaceAndPath("minecraft", "empty"));
 
-	public static void registerJigsaw(MinecraftServer server, ResourceLocation poolLocation, ResourceLocation nbtLocation, int weight) {
+	public static void registerJigsaw(MinecraftServer server, Identifier poolLocation, Identifier nbtLocation, int weight) {
 		RegistryAccess manager = server.registryAccess();
 		Registry<StructureTemplatePool> templatePoolRegistry = manager.lookupOrThrow(Registries.TEMPLATE_POOL);
 		Registry<StructureProcessorList> processorListRegistry = manager.lookupOrThrow(Registries.PROCESSOR_LIST);

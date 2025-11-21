@@ -9,19 +9,19 @@ import baguchi.tofucraft.client.render.blockentity.state.TofunianStateRenderStat
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class TofunianStatueRender implements BlockEntityRenderer<TofunianStatueBlockEntity, TofunianStateRenderState> {
-	public static final ResourceLocation TEXTURES = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian_statue.png");
+	public static final Identifier TEXTURES = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian_statue.png");
 	private final TofunianStatueModel tofunianModel;
 
 	public TofunianStatueRender(BlockEntityRendererProvider.Context context) {
@@ -50,7 +50,7 @@ public class TofunianStatueRender implements BlockEntityRenderer<TofunianStatueB
 		poseStack.translate(0.0F, -1.501F, 0.0F);
 		poseStack.translate(-0.5F, 0.0F, 0.5F);
 		poseStack.mulPose(Axis.YP.rotationDegrees(f));
-		submitNodeCollector.submitModel(this.tofunianModel, tofunianStateRenderState.direction, poseStack, RenderType.entityCutoutNoCull(TEXTURES), tofunianStateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0, null);
+		submitNodeCollector.submitModel(this.tofunianModel, tofunianStateRenderState.direction, poseStack, RenderTypes.entityCutoutNoCull(TEXTURES), tofunianStateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0, null);
 		poseStack.popPose();
 	}
 }

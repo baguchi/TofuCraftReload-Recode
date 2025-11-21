@@ -17,15 +17,15 @@ import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
 
 public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, TofunianModel<TofunianRenderState>> {
-	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian.png");
-	public static final ResourceLocation BAGU_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagunian.png");
+	private static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian.png");
+	public static final Identifier BAGU_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagunian.png");
 
 	public TofunianRender(EntityRendererProvider.Context context) {
 		super(context, new TofunianModel<>(context.bakeLayer(TofuModelLayers.TOFUNIAN)), 0.5F);
@@ -60,7 +60,7 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		p_115315_.scale(var4, var4, var4);
 	}
 
-	public ResourceLocation getTextureLocation(TofunianRenderState entity) {
+	public Identifier getTextureLocation(TofunianRenderState entity) {
 		if (entity.nameTag != null) {
 			String s = ChatFormatting.stripFormatting(entity.nameTag.getString());
 			if (s != null && "bagu_chan".equals(s)) {

@@ -7,20 +7,19 @@ import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.world.TofuPortalForcer;
 import baguchi.tofucraft.world.TofuPortalShape;
-import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.BlockUtil;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -34,6 +33,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.Vec3;
@@ -134,10 +134,10 @@ public class TofuPortalBlock extends Block implements Portal {
 				? Math.max(
 				0,
 				level.getGameRules()
-						.getInt(
+						.get(
 								player.getAbilities().invulnerable
-										? GameRules.RULE_PLAYERS_NETHER_PORTAL_CREATIVE_DELAY
-										: GameRules.RULE_PLAYERS_NETHER_PORTAL_DEFAULT_DELAY
+										? GameRules.PLAYERS_NETHER_PORTAL_CREATIVE_DELAY
+										: GameRules.PLAYERS_NETHER_PORTAL_DEFAULT_DELAY
 						)
 		)
 				: 0;

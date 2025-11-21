@@ -25,7 +25,7 @@ import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.special.BedSpecialRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -47,7 +47,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	public static final TexturedModel.Provider LANTERN = createDefault(TextureMapping::lantern, ModelTemplates.LANTERN.extend().renderType("cutout").build());
 	public static final TexturedModel.Provider HANGING_LANTERN = createDefault(TextureMapping::lantern, ModelTemplates.HANGING_LANTERN.extend().renderType("cutout").build());
 
-	public TofuBlockstateModelProvider(Consumer<BlockModelDefinitionGenerator> blockStateOutput, ItemModelOutput itemModelOutput, BiConsumer<ResourceLocation, ModelInstance> modelOutput) {
+	public TofuBlockstateModelProvider(Consumer<BlockModelDefinitionGenerator> blockStateOutput, ItemModelOutput itemModelOutput, BiConsumer<Identifier, ModelInstance> modelOutput) {
 		super(blockStateOutput, itemModelOutput, modelOutput);
 	}
 
@@ -61,12 +61,12 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	@Override
 	public void createBarsAndItem(Block p_436811_, Block p_436809_) {
 		TextureMapping texturemapping = TextureMapping.bars(p_436811_);
-		ResourceLocation resourcelocation = ModelTemplates.BARS_POST_ENDS.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
-		ResourceLocation resourcelocation1 = ModelTemplates.BARS_POST.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
-		ResourceLocation resourcelocation2 = ModelTemplates.BARS_CAP.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
-		ResourceLocation resourcelocation3 = ModelTemplates.BARS_CAP_ALT.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
-		ResourceLocation resourcelocation4 = ModelTemplates.BARS_POST_SIDE.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
-		ResourceLocation resourcelocation5 = ModelTemplates.BARS_POST_SIDE_ALT.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		Identifier resourcelocation = ModelTemplates.BARS_POST_ENDS.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		Identifier resourcelocation1 = ModelTemplates.BARS_POST.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		Identifier resourcelocation2 = ModelTemplates.BARS_CAP.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		Identifier resourcelocation3 = ModelTemplates.BARS_CAP_ALT.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		Identifier resourcelocation4 = ModelTemplates.BARS_POST_SIDE.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
+		Identifier resourcelocation5 = ModelTemplates.BARS_POST_SIDE_ALT.extend().renderType("cutout").build().create(p_436811_, texturemapping, this.modelOutput);
 		this.createBars(p_436811_, resourcelocation, resourcelocation1, resourcelocation2, resourcelocation3, resourcelocation4, resourcelocation5);
 		this.createBars(p_436809_, resourcelocation, resourcelocation1, resourcelocation2, resourcelocation3, resourcelocation4, resourcelocation5);
 		this.registerSimpleFlatItemModel(p_436811_);
@@ -77,7 +77,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	public void createTrapdoor(Block p_387551_) {
 		TextureMapping texturemapping = TextureMapping.defaultTexture(p_387551_);
 		MultiVariant multivariant = plainVariant(ModelTemplates.TRAPDOOR_TOP.extend().renderType("cutout").build().create(p_387551_, texturemapping, this.modelOutput));
-		ResourceLocation resourcelocation = ModelTemplates.TRAPDOOR_BOTTOM.extend().renderType("cutout").build().create(p_387551_, texturemapping, this.modelOutput);
+		Identifier resourcelocation = ModelTemplates.TRAPDOOR_BOTTOM.extend().renderType("cutout").build().create(p_387551_, texturemapping, this.modelOutput);
 		MultiVariant multivariant1 = plainVariant(ModelTemplates.TRAPDOOR_OPEN.extend().renderType("cutout").build().create(p_387551_, texturemapping, this.modelOutput));
 		this.blockStateOutput.accept(createTrapdoor(p_387551_, multivariant, plainVariant(resourcelocation), multivariant1));
 		this.registerSimpleItemModel(p_387551_, resourcelocation);
@@ -89,10 +89,10 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 		if (p_386757_.getPossibleValues().size() != p_388514_.length) {
 			throw new IllegalArgumentException();
 		} else {
-			Int2ObjectMap<ResourceLocation> int2objectmap = new Int2ObjectOpenHashMap();
+			Int2ObjectMap<Identifier> int2objectmap = new Int2ObjectOpenHashMap();
 			this.blockStateOutput.accept(MultiVariantGenerator.dispatch(p_387553_).with(PropertyDispatch.initial(p_386757_).generate((p_408977_) -> {
 				int i = p_388514_[p_408977_];
-				return plainVariant((ResourceLocation) int2objectmap.computeIfAbsent(i, (p_387308_) -> this.createSuffixedVariant(p_387553_, "_" + p_387308_, ModelTemplates.CROP.extend().renderType("cutout").build(), TextureMapping::crop)));
+				return plainVariant((Identifier) int2objectmap.computeIfAbsent(i, (p_387308_) -> this.createSuffixedVariant(p_387553_, "_" + p_387308_, ModelTemplates.CROP.extend().renderType("cutout").build(), TextureMapping::crop)));
 			})));
 		}
 	}
@@ -101,7 +101,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	public void createOrientableTrapdoor(Block p_388937_) {
 		TextureMapping texturemapping = TextureMapping.defaultTexture(p_388937_);
 		MultiVariant multivariant = plainVariant(ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.extend().renderType("cutout").build().create(p_388937_, texturemapping, this.modelOutput));
-		ResourceLocation resourcelocation = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.extend().renderType("cutout").build().create(p_388937_, texturemapping, this.modelOutput);
+		Identifier resourcelocation = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.extend().renderType("cutout").build().create(p_388937_, texturemapping, this.modelOutput);
 		MultiVariant multivariant1 = plainVariant(ModelTemplates.ORIENTABLE_TRAPDOOR_OPEN.extend().renderType("cutout").build().create(p_388937_, texturemapping, this.modelOutput));
 		this.blockStateOutput.accept(createOrientableTrapdoor(p_388937_, multivariant, plainVariant(resourcelocation), multivariant1));
 		this.registerSimpleItemModel(p_388937_, resourcelocation);
@@ -179,7 +179,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	}
 
 	public void createCrossBlock(Block p_388360_, BlockModelGenerators.PlantType p_386631_, TextureMapping p_388352_) {
-		ResourceLocation resourcelocation = p_386631_.getCross().extend().renderType("cutout").build().create(p_388360_, p_388352_, this.modelOutput);
+		Identifier resourcelocation = p_386631_.getCross().extend().renderType("cutout").build().create(p_388360_, p_388352_, this.modelOutput);
 		this.blockStateOutput.accept(createSimpleBlock(p_388360_, resourcelocation));
 	}
 
@@ -218,7 +218,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	}
 
 	public static String getBlockName(Block p_387523_) {
-		ResourceLocation resourcelocation = BuiltInRegistries.BLOCK.getKey(p_387523_);
+		Identifier resourcelocation = BuiltInRegistries.BLOCK.getKey(p_387523_);
 		return resourcelocation.getPath();
 	}
 
@@ -230,7 +230,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 		this.blockStateOutput.accept(MultiVariantGenerator.dispatch(TofuBlocks.TOFU_FARMLAND.get()).with(BlockModelGenerators.createEmptyOrFullDispatch(BlockStateProperties.MOISTURE, 7, resourcelocation1, resourcelocation)));
 	}
 
-	public static MultiVariantGenerator createSimpleBlock(Block p_387997_, ResourceLocation p_388814_) {
+	public static MultiVariantGenerator createSimpleBlock(Block p_387997_, Identifier p_388814_) {
 		return MultiVariantGenerator.dispatch(p_387997_, plainVariant(p_388814_));
 	}
 
@@ -259,11 +259,11 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 				);
 	}
 
-	public void createTofuBed(Block p_387718_, Block p_386452_, ResourceLocation p_387181_) {
-		ResourceLocation resourcelocation = ModelLocationUtils.decorateBlockModelLocation("bed");
+	public void createTofuBed(Block p_387718_, Block p_386452_, Identifier p_387181_) {
+		Identifier resourcelocation = ModelLocationUtils.decorateBlockModelLocation("bed");
 		this.blockStateOutput.accept(createSimpleBlock(p_387718_, resourcelocation));
 		Item item = p_387718_.asItem();
-		ResourceLocation resourcelocation1 = ModelTemplates.BED_INVENTORY
+		Identifier resourcelocation1 = ModelTemplates.BED_INVENTORY
 				.create(ModelLocationUtils.getModelLocation(item), TextureMapping.particle(p_386452_), this.modelOutput);
 		this.itemModelOutput.accept(item, ItemModelUtils.specialModel(resourcelocation1, new BedSpecialRenderer.Unbaked(p_387181_)));
 	}
@@ -271,7 +271,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	public void createTofunianState(Block p_387718_, Block p_386452_) {
 		this.createParticleOnlyBlock(p_387718_, p_386452_);
 		Item item = p_387718_.asItem();
-		ResourceLocation resourcelocation1 = ModelTemplates.BED_INVENTORY
+		Identifier resourcelocation1 = ModelTemplates.BED_INVENTORY
 				.create(ModelLocationUtils.getModelLocation(item), TextureMapping.particle(p_386452_), this.modelOutput);
 		this.itemModelOutput.accept(item, ItemModelUtils.specialModel(resourcelocation1, new TofunianStatueSpecialRenderer.Unbaked()));
 	}
@@ -288,7 +288,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	public void createFoodPlate(Block block) {
 		//this.createParticleOnlyBlock(p_387020_, p_388374_);
 		Item item = block.asItem();
-		ResourceLocation resourcelocation = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "item/template_foodplate");
+		Identifier resourcelocation = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "item/template_foodplate");
 		ItemModel.Unbaked itemmodel$unbaked = ItemModelUtils.specialModel(resourcelocation, new FoodPlateSpecialRenderer.Unbaked());
 		this.itemModelOutput.accept(item, itemmodel$unbaked);
 	}

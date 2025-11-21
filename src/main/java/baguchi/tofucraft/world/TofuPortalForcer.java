@@ -2,11 +2,11 @@ package baguchi.tofucraft.world;
 
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuPoiTypes;
-import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.BlockUtil;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;

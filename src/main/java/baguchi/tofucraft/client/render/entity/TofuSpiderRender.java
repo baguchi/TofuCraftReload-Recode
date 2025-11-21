@@ -8,11 +8,11 @@ import baguchi.tofucraft.entity.TofuSpider;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 
 public class TofuSpiderRender extends MobRenderer<TofuSpider, TofuSpiderRenderState, TofuSpiderModel<TofuSpiderRenderState>> {
-	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_spider/tofu_spider.png");
+	private static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_spider/tofu_spider.png");
 
 	public TofuSpiderRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_, new TofuSpiderModel<>(p_173956_.bakeLayer(TofuModelLayers.TOFUSPIDER)), 0.5F);
@@ -40,7 +40,7 @@ public class TofuSpiderRender extends MobRenderer<TofuSpider, TofuSpiderRenderSt
 		return super.isShaking(p_115304_) || p_115304_.converting;
 	}
 
-	public ResourceLocation getTextureLocation(TofuSpiderRenderState p_114029_) {
+	public Identifier getTextureLocation(TofuSpiderRenderState p_114029_) {
 		return LOCATION;
 	}
 }

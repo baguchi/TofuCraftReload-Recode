@@ -11,7 +11,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 
 public class ShuDofuSpiderModel extends EntityModel<ShuDofuSpiderRenderState> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
@@ -39,7 +39,7 @@ public class ShuDofuSpiderModel extends EntityModel<ShuDofuSpiderRenderState> {
 	private final KeyframeAnimation graspPreAnimation;
 
 	public ShuDofuSpiderModel(ModelPart root) {
-		super(root, RenderType::entityTranslucent);
+		super(root, RenderTypes::entityTranslucent);
 		this.root = root.getChild("root");
 		this.neck = this.root.getChild("neck");
 		this.head = this.neck.getChild("head");

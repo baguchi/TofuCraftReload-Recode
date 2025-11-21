@@ -4,17 +4,17 @@ import baguchi.tofucraft.entity.projectile.FukumameEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.minecraft.client.model.ArrowModel;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.model.object.projectile.ArrowModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.ArrowRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 
 public abstract class AbstractSoybeanRender<T extends FukumameEntity, S extends ArrowRenderState> extends EntityRenderer<T, S> {
@@ -31,14 +31,14 @@ public abstract class AbstractSoybeanRender<T extends FukumameEntity, S extends 
 		p_113842_.pushPose();
 		p_113842_.mulPose(Axis.YP.rotationDegrees(p_113839_.yRot - 90.0F));
 		p_113842_.mulPose(Axis.ZP.rotationDegrees(p_113839_.xRot));
-		p_113843_.submitModel(this.model, p_113839_, p_113842_, RenderType.entityCutout(this.getTextureLocation(p_113839_)), p_113839_.lightCoords, OverlayTexture.NO_OVERLAY, p_113839_.outlineColor, (ModelFeatureRenderer.CrumblingOverlay) null);
+		p_113843_.submitModel(this.model, p_113839_, p_113842_, RenderTypes.entityCutout(this.getTextureLocation(p_113839_)), p_113839_.lightCoords, OverlayTexture.NO_OVERLAY, p_113839_.outlineColor, (ModelFeatureRenderer.CrumblingOverlay) null);
 
 
 		p_113842_.popPose();
 		super.submit(p_113839_, p_113842_, p_113843_, p_451076_);
 	}
 
-	protected abstract ResourceLocation getTextureLocation(S p113839);
+	protected abstract Identifier getTextureLocation(S p113839);
 
 	public void vertex(
 			PoseStack.Pose p_324380_,

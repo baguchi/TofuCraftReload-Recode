@@ -17,6 +17,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -35,7 +36,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.animal.AbstractGolem;
+import net.minecraft.world.entity.animal.golem.AbstractGolem;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
@@ -48,15 +49,13 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 
-import javax.annotation.Nullable;
-import java.util.UUID;
-
 public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttackMob {
 	protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(TofuGolem.class, EntityDataSerializers.BYTE);
+	private static final EntityDataAccessor<Long> DATA_ANGER_END_TIME = SynchedEntityData.defineId(TofuGolem.class, EntityDataSerializers.LONG);
+
 	private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
-	private int remainingPersistentAngerTime;
-	@javax.annotation.Nullable
-	private UUID persistentAngerTarget;
+	private int remainingPersistentAngerEndTime;
+	private @org.jspecify.annotations.Nullable EntityReference<LivingEntity> persistentAngerTarget;
 	public AnimationState spitAnimationState = new AnimationState();
 	public AnimationState idleAnimationState = new AnimationState();
 
@@ -100,6 +99,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
 		builder.define(DATA_FLAGS_ID, (byte) 0);
+		builder.define(DATA_ANGER_END_TIME, 0L);
 	}
 
 	@Override
@@ -218,28 +218,28 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 
 	@Override
 	public void startPersistentAngerTimer() {
-		this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
+		this.setTimeToRemainAngry(PERSISTENT_ANGER_TIME.sample(this.random));
+	}
+
+
+	@Override
+	public long getPersistentAngerEndTime() {
+		return this.entityData.get(DATA_ANGER_END_TIME);
 	}
 
 	@Override
-	public void setRemainingPersistentAngerTime(int p_28859_) {
-		this.remainingPersistentAngerTime = p_28859_;
+	public void setPersistentAngerEndTime(long p_482176_) {
+		this.entityData.set(DATA_ANGER_END_TIME, p_482176_);
 	}
 
 	@Override
-	public int getRemainingPersistentAngerTime() {
-		return this.remainingPersistentAngerTime;
-	}
-
-	@Override
-	public void setPersistentAngerTarget(@javax.annotation.Nullable UUID p_28855_) {
-		this.persistentAngerTarget = p_28855_;
-	}
-
-	@Nullable
-	@Override
-	public UUID getPersistentAngerTarget() {
+	public @org.jspecify.annotations.Nullable EntityReference<LivingEntity> getPersistentAngerTarget() {
 		return this.persistentAngerTarget;
+	}
+
+	@Override
+	public void setPersistentAngerTarget(@org.jspecify.annotations.Nullable EntityReference<LivingEntity> p_480419_) {
+		this.persistentAngerTarget = p_480419_;
 	}
 
 	@Override

@@ -5,16 +5,17 @@ import baguchi.tofucraft.client.TofuModelLayers;
 import baguchi.tofucraft.client.model.TofuGolemModel;
 import baguchi.tofucraft.client.render.state.TofuGolemRenderState;
 import baguchi.tofucraft.entity.TofuGolem;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.resources.Identifier;
 
 
 public class TofuGolemRender extends MobRenderer<TofuGolem, TofuGolemRenderState, TofuGolemModel<TofuGolemRenderState>> {
-	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_golem/tofu_golem.png");
-	private static final ResourceLocation GLOW_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_golem/tofu_golem_glow.png");
+	private static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_golem/tofu_golem.png");
+	private static final Identifier GLOW_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_golem/tofu_golem_glow.png");
 
 	public TofuGolemRender(EntityRendererProvider.Context p_173954_) {
 		super(p_173954_, new TofuGolemModel<>(p_173954_.bakeLayer(TofuModelLayers.TOFU_GOLEM)), 0.3F);
@@ -22,7 +23,7 @@ public class TofuGolemRender extends MobRenderer<TofuGolem, TofuGolemRenderState
 
 			@Override
 			public RenderType renderType() {
-				return RenderType.eyes(GLOW_LOCATION);
+				return RenderTypes.eyes(GLOW_LOCATION);
 			}
 		});
 	}
@@ -39,7 +40,7 @@ public class TofuGolemRender extends MobRenderer<TofuGolem, TofuGolemRenderState
 		p_360515_.spitAnimationState.copyFrom(p_362733_.spitAnimationState);
 	}
 
-	public ResourceLocation getTextureLocation(TofuGolemRenderState p_114015_) {
+	public Identifier getTextureLocation(TofuGolemRenderState p_114015_) {
 		return LOCATION;
 	}
 }

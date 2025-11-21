@@ -2,7 +2,7 @@ package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -25,7 +25,7 @@ public class TofuTags {
 		public static final TagKey<Biome> HOT_VARIANT_TOFUNIAN = tag("hot_variant_tofunian");
 
 		private static TagKey<Biome> tag(String name) {
-			return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+			return TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 
@@ -38,7 +38,7 @@ public class TofuTags {
 		public static final TagKey<Block> TOFU_WORLD_CARVER_REPLACEABLE = tag("tofu_world_replaceable");
 
 		private static TagKey<Block> tag(String name) {
-			return BlockTags.create(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+			return BlockTags.create(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 
@@ -48,7 +48,7 @@ public class TofuTags {
 		public static final TagKey<EntityType<?>> WALKABLE_WITHOUT_TRIGGER = tag("walkable_without_trigger");
 
 		private static TagKey<EntityType<?>> tag(String name) {
-			return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+			return TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 
@@ -91,11 +91,11 @@ public class TofuTags {
 
 
 		private static TagKey<Item> tag(String name) {
-			return ItemTags.create(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+			return ItemTags.create(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 
 		private static TagKey<Item> universalTag(String name) {
-			return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
+			return ItemTags.create(Identifier.fromNamespaceAndPath("c", name));
 		}
 	}
 
@@ -103,7 +103,7 @@ public class TofuTags {
 		public static final TagKey<Fluid> SOYMILK = tag("soymilk");
 
 		private static TagKey<Fluid> tag(String name) {
-			return FluidTags.create(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+			return FluidTags.create(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 
@@ -111,7 +111,7 @@ public class TofuTags {
 		public static final TagKey<PoiType> TOFU_VILLAGE = tag("tofu_village");
 
 		private static TagKey<PoiType> tag(String name) {
-			return TagKey.create(Registries.POINT_OF_INTEREST_TYPE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+			return TagKey.create(Registries.POINT_OF_INTEREST_TYPE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 
@@ -119,7 +119,7 @@ public class TofuTags {
 		public static final TagKey<SoundEvent> BOSS_MUSIC = tag("boss_music");
 
 		private static TagKey<SoundEvent> tag(String name) {
-			return TagKey.create(Registries.SOUND_EVENT, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+			return TagKey.create(Registries.SOUND_EVENT, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 		}
 	}
 }

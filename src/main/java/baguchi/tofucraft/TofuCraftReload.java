@@ -53,7 +53,7 @@ import com.google.common.reflect.Reflection;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
@@ -90,7 +90,7 @@ public class TofuCraftReload {
 
 	public static final Logger LOGGER = LogManager.getLogger(TofuCraftReload.MODID);
 
-	public static final FeatureFlag EXPERIMENTAL = FeatureFlags.REGISTRY.getFlag(ResourceLocation.fromNamespaceAndPath(MODID, "experimental_extra"));
+	public static final FeatureFlag EXPERIMENTAL = FeatureFlags.REGISTRY.getFlag(Identifier.fromNamespaceAndPath(MODID, "experimental_extra"));
 
 	public TofuCraftReload(ModContainer modContainer, Dist dist, IEventBus modBus) {
 		IEventBus forgeBus = NeoForge.EVENT_BUS;
@@ -187,9 +187,9 @@ public class TofuCraftReload {
 
 	private void setup(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-			Map<ResourceLocation, MultiNoiseBiomeSourceParameterList.Preset> map = Maps.newHashMap();
+			Map<Identifier, MultiNoiseBiomeSourceParameterList.Preset> map = Maps.newHashMap();
 			map.putAll(Map.copyOf(MultiNoiseBiomeSourceParameterList.Preset.BY_NAME));
-			map.put(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world"), TofuBiomeSources.TOFU_WORLD_PRESET);
+			map.put(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world"), TofuBiomeSources.TOFU_WORLD_PRESET);
 			MultiNoiseBiomeSourceParameterList.Preset.BY_NAME = map;
 
 			TofuRecipePropertySets.addToMap();
@@ -228,8 +228,8 @@ public class TofuCraftReload {
 		registrar.playToServer(TFCraftingTableSavedRecipePacket.TYPE, TFCraftingTableSavedRecipePacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 	}
 
-	public static ResourceLocation prefix(String name) {
-		return ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name.toLowerCase(Locale.ROOT));
+	public static Identifier prefix(String name) {
+		return Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name.toLowerCase(Locale.ROOT));
 	}
 
 	public static RegistryAccess registryAccess() {

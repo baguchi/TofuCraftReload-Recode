@@ -39,12 +39,12 @@ public class SaltFurnaceBitternPacket implements CustomPacketPayload, IPayloadHa
 
 	public void write(FriendlyByteBuf buffer) {
 		buffer.writeBlockPos(this.blockPos);
-		buffer.writeResourceLocation(BuiltInRegistries.FLUID.getKey(fluid));
+		buffer.writeIdentifier(BuiltInRegistries.FLUID.getKey(fluid));
 		buffer.writeInt(this.amount);
 	}
 
 	public SaltFurnaceBitternPacket(FriendlyByteBuf buffer) {
-		this(buffer.readBlockPos(), BuiltInRegistries.FLUID.getValue(buffer.readResourceLocation()), buffer.readInt());
+		this(buffer.readBlockPos(), BuiltInRegistries.FLUID.getValue(buffer.readIdentifier()), buffer.readInt());
 	}
 
 	public void handle(SaltFurnaceBitternPacket message, IPayloadContext context) {

@@ -1,5 +1,20 @@
 {
   "type": "minecraft:block",
+  "functions": [
+    {
+      "add": false,
+      "count": 1.0,
+      "function": "minecraft:set_count"
+    },
+    {
+      "function": "minecraft:explosion_decay"
+    },
+    {
+      "enchantment": "minecraft:fortune",
+      "formula": "minecraft:ore_drops",
+      "function": "minecraft:apply_bonus"
+    }
+  ],
   "pools": [
     {
       "bonus_rolls": 0.0,
@@ -30,21 +45,6 @@
             },
             {
               "type": "minecraft:item",
-              "functions": [
-                {
-                  "add": false,
-                  "count": 1.0,
-                  "function": "minecraft:set_count"
-                },
-                {
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops",
-                  "function": "minecraft:apply_bonus"
-                },
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ],
               "name": "tofucraft:soy_force_shard"
             }
           ]

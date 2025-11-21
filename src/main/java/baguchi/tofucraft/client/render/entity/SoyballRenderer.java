@@ -12,10 +12,10 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public class SoyballRenderer extends EntityRenderer<SoyballEntity, ProjectileRenderState> {
-	private static final ResourceLocation LLAMA_SPIT_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/soyball.png");
+	private static final Identifier LLAMA_SPIT_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/soyball.png");
 	private final SoyBallModel model;
 
 	public SoyballRenderer(EntityRendererProvider.Context context) {

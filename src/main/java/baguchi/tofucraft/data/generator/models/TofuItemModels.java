@@ -13,13 +13,13 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.item.RangeSelectItemModel;
 import net.minecraft.client.renderer.item.properties.numeric.UseDuration;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 
 import java.util.function.BiConsumer;
 
 public class TofuItemModels extends ItemModelGenerators {
-	public TofuItemModels(ItemModelOutput itemModelOutput, BiConsumer<ResourceLocation, ModelInstance> modelOutput) {
+	public TofuItemModels(ItemModelOutput itemModelOutput, BiConsumer<Identifier, ModelInstance> modelOutput) {
 		super(itemModelOutput, modelOutput);
 	}
 
@@ -257,18 +257,21 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFU_KINU_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_KINU_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_KINU_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+		this.generateSpear(TofuItems.TOFU_KINU_SPEAR.get());
 
 		this.generateFlatItem(TofuItems.TOFU_MOMEN_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_MOMEN_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_MOMEN_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_MOMEN_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_MOMEN_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+		this.generateSpear(TofuItems.TOFU_MOMEN_SPEAR.get());
 
 		this.generateFlatItem(TofuItems.TOFU_SOLID_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_SOLID_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_SOLID_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_SOLID_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_SOLID_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+		this.generateSpear(TofuItems.TOFU_SOLID_SPEAR.get());
 
 		this.generateFlatItem(TofuItems.TOFU_METAL_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_METAL_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -276,12 +279,15 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFU_METAL_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_METAL_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_METAL_SHEARS.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+		this.generateSpear(TofuItems.TOFU_METAL_SPEAR.get());
 
 		this.generateFlatItem(TofuItems.TOFU_DIAMOND_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_DIAMOND_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_DIAMOND_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_DIAMOND_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_DIAMOND_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+		this.generateSpear(TofuItems.TOFU_DIAMOND_SPEAR.get());
+
 		generateTofuShield(this, TofuItems.TOFU_SHIELD.get());
 
 

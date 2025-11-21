@@ -5,17 +5,17 @@ import baguchi.tofucraft.registry.TofuAdvancements;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.ContextAwarePredicate;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.advancements.criterion.ContextAwarePredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.SimpleCriterionTrigger;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.util.Optional;
 
 public class TooColdTrigger extends SimpleCriterionTrigger<TooColdTrigger.Instance> {
 
-	public static final ResourceLocation ID = TofuCraftReload.prefix("too_cold");
+	public static final Identifier ID = TofuCraftReload.prefix("too_cold");
 
 	public void trigger(ServerPlayer player) {
 		this.trigger(player, (instance) -> true);

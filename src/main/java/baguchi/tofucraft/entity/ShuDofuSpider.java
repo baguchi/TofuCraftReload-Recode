@@ -22,7 +22,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -85,9 +85,9 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	private static final EntityDataAccessor<Boolean> ANGRY = SynchedEntityData.defineId(ShuDofuSpider.class, EntityDataSerializers.BOOLEAN);
 
 
-	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "attack_boost"), 0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "attack_boost"), 0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
-	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "armor_boost"), -0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "armor_boost"), -0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
 	private final ShuDofuSpiderPart[] subEntities;
 	public final ShuDofuSpiderPart body;

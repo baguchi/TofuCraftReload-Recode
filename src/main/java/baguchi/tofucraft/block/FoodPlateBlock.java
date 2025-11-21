@@ -6,7 +6,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -53,7 +53,7 @@ public class FoodPlateBlock extends BaseEntityBlock {
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 1.0D, 14.0D);
-	public static final ResourceLocation CONTENTS = ResourceLocation.withDefaultNamespace("contents");
+	public static final Identifier CONTENTS = Identifier.withDefaultNamespace("contents");
 
 	public FoodPlateBlock(Properties p_49224_) {
 		super(p_49224_);
