@@ -23,6 +23,16 @@ public class TofuLevelData extends DerivedLevelData {
 	}
 
 	@Override
+	public long getGameTime() {
+		return this.wrapped.getGameTime();
+	}
+
+	@Override
+	public void setGameTime(long pTime) {
+		this.wrapped.setGameTime(pTime);
+	}
+
+	@Override
 	public void setClearWeatherTime(int pTime) {
 		this.wrapped.setClearWeatherTime(pTime);
 	}
