@@ -494,7 +494,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onWorldLoad(LevelEvent.Load event) {
-		if (event.getLevel() instanceof ServerLevel level && level.dimension().identifier().equals(TofuDimensions.tofu_world.identifier())) {
+		if (event.getLevel() instanceof ServerLevel level && level.dimensionTypeRegistration().is(TofuDimensions.tofu_world.identifier())) {
 			TofuLevelData levelData = new TofuLevelData(level.getServer().getWorldData(), level.getServer().getWorldData().overworldData());
 			level.serverLevelData = levelData;
 			level.levelData = levelData;
