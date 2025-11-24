@@ -1,4 +1,4 @@
-package baguchi.tofucraft.client;
+package baguchi.tofucraft.client.render.dimension;
 
 import baguchi.tofucraft.TofuCraftReload;
 import com.mojang.blaze3d.buffers.GpuBuffer;
@@ -15,39 +15,29 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.state.LevelRenderState;
-import net.minecraft.client.renderer.state.SkyRenderState;
-import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.AtlasManager;
 import net.minecraft.data.AtlasIds;
 import net.minecraft.resources.Identifier;
-import net.minecraft.util.ARGB;
 import net.minecraft.world.level.MoonPhase;
-import net.neoforged.neoforge.client.extensions.IDimensionSpecialEffectsExtension;
 import org.joml.Matrix4f;
 import org.joml.Matrix4fStack;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
-import javax.annotation.Nullable;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
 
-public class TofuDimensionEffects implements IDimensionSpecialEffectsExtension {
+public class TofuWorldRenderer {
 	private static final Identifier SUN_SPRITE = TofuCraftReload.prefix("mabou_sun");
 
-	@Nullable
-	private AbstractTexture sunTexture;
-	@Nullable
-	private AbstractTexture moonTexture;
 	private final GpuBuffer sunBuffer;
 	private final GpuBuffer moonBuffer;
 	private final RenderSystem.AutoStorageIndexBuffer quadIndices;
 	private final TextureAtlas celestialsAtlas;
 
-	public TofuDimensionEffects(AtlasManager p_455011_) {
+	public TofuWorldRenderer(AtlasManager p_455011_) {
 		this.quadIndices = RenderSystem.getSequentialBuffer(VertexFormat.Mode.QUADS);
 		this.celestialsAtlas = p_455011_.getAtlasOrThrow(AtlasIds.CELESTIALS);
 		this.sunBuffer = buildSunQuad(this.celestialsAtlas);
@@ -101,22 +91,7 @@ public class TofuDimensionEffects implements IDimensionSpecialEffectsExtension {
 		return gpubuffer;
 	}
 
-	@Override
-	public boolean renderSky(LevelRenderState levelRenderState, SkyRenderState skyRenderState, Matrix4f modelViewMatrix, Runnable setupFog) {
-		PoseStack poseStack = new PoseStack();
-		setupFog.run();
 
-		float f = ARGB.redFloat(skyRenderState.skyColor);
-		float f1 = ARGB.greenFloat(skyRenderState.skyColor);
-		float f2 = ARGB.blueFloat(skyRenderState.skyColor);
-
-
-		renderTofuSunMoonAndStars(
-				poseStack, skyRenderState.starAngle, skyRenderState.moonPhase, skyRenderState.rainBrightness, skyRenderState.starBrightness
-		);
-
-		return true;
-	}
 
 	public void renderTofuSunMoonAndStars(PoseStack p_363513_, float sunAngle, MoonPhase moonPhase, float p_362569_, float p_363542_) {
 		p_363513_.pushPose();
@@ -129,7 +104,6 @@ public class TofuDimensionEffects implements IDimensionSpecialEffectsExtension {
 	}
 
 	private void renderSun(float p_362331_, PoseStack p_361665_) {
-		if (this.sunTexture != null) {
 			Matrix4fStack matrix4fstack = RenderSystem.getModelViewStack();
 			matrix4fstack.pushMatrix();
 			matrix4fstack.mul(p_361665_.last().pose());
@@ -151,12 +125,10 @@ public class TofuDimensionEffects implements IDimensionSpecialEffectsExtension {
 			}
 
 			matrix4fstack.popMatrix();
-		}
 
 	}
 
 	private void renderMoon(MoonPhase moonPhase, float p_362497_, PoseStack p_362676_) {
-		if (this.moonTexture != null) {
 			int i = moonPhase.index() * 4;
 			Matrix4fStack matrix4fstack = RenderSystem.getModelViewStack();
 			matrix4fstack.pushMatrix();
@@ -179,7 +151,5 @@ public class TofuDimensionEffects implements IDimensionSpecialEffectsExtension {
 			}
 
 			matrix4fstack.popMatrix();
-		}
-
 	}
 }

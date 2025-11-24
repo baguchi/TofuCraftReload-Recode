@@ -35,6 +35,7 @@ import baguchi.tofucraft.client.render.blockentity.FoodPlateRender;
 import baguchi.tofucraft.client.render.blockentity.TofuBedRenderer;
 import baguchi.tofucraft.client.render.blockentity.TofuChestRenderer;
 import baguchi.tofucraft.client.render.blockentity.TofunianStatueRender;
+import baguchi.tofucraft.client.render.dimension.TofuWorldSpecialEffect;
 import baguchi.tofucraft.client.render.entity.FallingTofuRenderer;
 import baguchi.tofucraft.client.render.entity.FukumameThrowerRenderer;
 import baguchi.tofucraft.client.render.entity.OageCubeRenderer;
@@ -118,6 +119,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.DimensionSpecialEffectsManager;
+import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ExtractLevelRenderStateEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
@@ -620,7 +622,12 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerDimensionEffect(RegisterDimensionSpecialEffectsEvent event) {
-		event.register(TofuCraftReload.prefix("tofu_world"), new TofuDimensionEffects(Minecraft.getInstance().getAtlasManager()));
+		event.register(TofuCraftReload.prefix("tofu_world"), new TofuWorldSpecialEffect());
+	}
+
+	@SubscribeEvent
+	public static void registerClientReloadListeners(AddClientReloadListenersEvent event) {
+		event.addListener(TofuCraftReload.prefix("tofu_world_render"), TofuWorldTextureManager.INSTANCE);
 	}
 
 	@SubscribeEvent
