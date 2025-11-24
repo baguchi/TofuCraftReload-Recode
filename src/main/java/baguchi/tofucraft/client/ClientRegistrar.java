@@ -69,6 +69,7 @@ import baguchi.tofucraft.registry.TofuAnimations;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuBlocks;
+import baguchi.tofucraft.registry.TofuDimensionTypes;
 import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuFluidTypes;
@@ -116,7 +117,9 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.DimensionSpecialEffectsManager;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.ExtractLevelRenderStateEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
@@ -598,11 +601,6 @@ public class ClientRegistrar {
 		}
 	}
 
-
-	@SubscribeEvent
-	public static void registerDimensionEffect(RegisterDimensionSpecialEffectsEvent event) {
-	}
-
 	@SubscribeEvent
 	public static void registerFactories(RegisterParticleProvidersEvent event) {
 		event.registerSpriteSet(TofuParticleTypes.TOFU_PORTAL.get(), TofuPortalParticle.Provider::new);
@@ -618,6 +616,18 @@ public class ClientRegistrar {
 		event.registerSpriteSet(TofuParticleTypes.ZUNDA_EXPLOSION.get(), ZundaExplosionParticle.Provider::new);
 		event.registerSpecial(TofuParticleTypes.ZUNDA_EMIT.get(), new ZundaExplosionSeedParticle.Provider<>());
 		event.registerSpriteSet(TofuParticleTypes.SIMPLE_STINKE.get(), ParticleSimpleStink.Provider::new);
+	}
+
+	@SubscribeEvent
+	public static void registerDimensionEffect(RegisterDimensionSpecialEffectsEvent event) {
+		event.register(TofuCraftReload.prefix("tofu_world"), new TofuDimensionEffects(Minecraft.getInstance().getAtlasManager()));
+	}
+
+	@SubscribeEvent
+	public static void extractDimensionEffect(ExtractLevelRenderStateEvent event) {
+		if (event.getLevel().dimensionTypeRegistration().is(TofuDimensionTypes.TOFU_WORLD_TYPE)) {
+			event.getRenderState().dimensionSpecialEffects = DimensionSpecialEffectsManager.getForType(TofuCraftReload.prefix("tofu_world"));
+		}
 	}
 
 	@SubscribeEvent
