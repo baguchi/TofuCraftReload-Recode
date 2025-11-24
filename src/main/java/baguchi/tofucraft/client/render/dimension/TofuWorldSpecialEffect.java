@@ -17,7 +17,12 @@ public class TofuWorldSpecialEffect implements IDimensionSpecialEffectsExtension
 			setupFog.run();
 
 			tofuWorldRenderer.renderTofuSunMoonAndStars(
-					poseStack, skyRenderState.starAngle, skyRenderState.moonPhase, skyRenderState.rainBrightness, skyRenderState.starBrightness
+					poseStack, skyRenderState.sunAngle,
+					skyRenderState.moonAngle,
+					skyRenderState.starAngle,
+					skyRenderState.moonPhase,
+					skyRenderState.rainBrightness,
+					skyRenderState.starBrightness
 			);
 		}
 

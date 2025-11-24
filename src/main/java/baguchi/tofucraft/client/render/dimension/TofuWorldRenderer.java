@@ -92,14 +92,19 @@ public class TofuWorldRenderer {
 	}
 
 
-
-	public void renderTofuSunMoonAndStars(PoseStack p_363513_, float sunAngle, MoonPhase moonPhase, float p_362569_, float p_363542_) {
+	public void renderTofuSunMoonAndStars(
+			PoseStack p_363513_, float p_362201_, float p_362569_, float p_363542_, MoonPhase p_455415_, float p_468909_, float p_467714_
+	) {
 		p_363513_.pushPose();
 		p_363513_.mulPose(Axis.YP.rotationDegrees(-90.0F));
-		p_363513_.mulPose(Axis.XP.rotationDegrees(sunAngle));
-		this.renderSun(p_362569_, p_363513_);
-		this.renderMoon(moonPhase, p_362569_, p_363513_);
-
+		p_363513_.pushPose();
+		p_363513_.mulPose(Axis.XP.rotation(p_362201_));
+		this.renderSun(p_468909_, p_363513_);
+		p_363513_.popPose();
+		p_363513_.pushPose();
+		p_363513_.mulPose(Axis.XP.rotation(p_362569_));
+		this.renderMoon(p_455415_, p_468909_, p_363513_);
+		p_363513_.popPose();
 		p_363513_.popPose();
 	}
 
@@ -133,7 +138,7 @@ public class TofuWorldRenderer {
 			Matrix4fStack matrix4fstack = RenderSystem.getModelViewStack();
 			matrix4fstack.pushMatrix();
 			matrix4fstack.mul(p_362676_.last().pose());
-			matrix4fstack.translate(0.0F, -100.0F, 0.0F);
+		matrix4fstack.translate(0.0F, 100.0F, 0.0F);
 			matrix4fstack.scale(20.0F, 1.0F, 20.0F);
 			GpuBufferSlice gpubufferslice = RenderSystem.getDynamicUniforms().writeTransform(matrix4fstack, new Vector4f(1.0F, 1.0F, 1.0F, p_362497_), new Vector3f(), new Matrix4f());
 			GpuTextureView gputextureview = Minecraft.getInstance().getMainRenderTarget().getColorTextureView();
