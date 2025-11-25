@@ -81,7 +81,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 	private static final AttributeModifier ATTACK_MODIFIER = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "attack_boost"), 0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
-	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "armor_boost"), -0.15D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+	private static final AttributeModifier ARMOR_MODIFIER = new AttributeModifier(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "armor_boost"), -0.2D, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
 	private final ShuDofuSpiderPart[] subEntities;
 	public final ShuDofuSpiderPart body;
@@ -99,6 +99,9 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	private int rangedTime;
 	private int graspTime;
 
+	private int angerTime;
+
+
 	private float leftLegAnimation;
 	private float leftLegAnimationOld;
 	private float rightLegAnimation;
@@ -114,6 +117,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
 	private float graspDamageReceived;
+	private float rangedDamageReceived;
 
 	public ShuDofuSpider(EntityType<? extends ShuDofuSpider> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
@@ -267,12 +271,32 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 							}
 						}
 					}
+					this.rangedDamageReceived = 0.0F;
 					this.attackTime = 0;
 					this.setAttackAnimation(false);
 				}
 			}
 
-			if (this.isAlive() && this.isRanged() && this.getTarget() != null) {
+
+			if (this.isAlive() && this.angerTime > 0 && this.getTarget() != null) {
+				--this.angerTime;
+				if (this.angerTime == 248) {
+					this.playSound(TofuSounds.TOFUSPIDER_AMBIENT.get(), 2.0F, (float) (0.45F + this.random.nextDouble() * 0.2F));
+				}
+				if (this.angerTime <= 200 && this.angerTime % 10 == 0) {
+					if (this.random.nextInt(3) == 0) {
+						this.performBreathAttack(this.getTarget());
+						this.playSound(SoundEvents.ENDER_DRAGON_SHOOT, 2.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+					} else {
+						this.performRangedAttack(this.getTarget());
+						this.playSound(TofuSounds.TOFUSPIDER_SPIT.get(), 2.0F, (float) (0.6F + this.random.nextDouble() * 0.2F));
+					}
+				}
+				if (this.angerTime == 50) {
+					this.angerTime = 0;
+					this.setRanged(false);
+				}
+			} else if (this.isAlive() && this.isRanged() && this.getTarget() != null) {
 				++this.rangedTime;
 				if (this.rangedTime == 1) {
 					this.level().broadcastEntityEvent(this, (byte) 103);
@@ -283,7 +307,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 						this.playSound(TofuSounds.TOFUSPIDER_SPIT.get(), 2.0F, (float) (0.6F + this.random.nextDouble() * 0.2F));
 					} else {
 						this.performBreathAttack(this.getTarget());
-						this.playSound(SoundEvents.ENDER_DRAGON_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+						this.playSound(SoundEvents.ENDER_DRAGON_SHOOT, 2.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
 					}
 				}
 				if (this.rangedTime == 50) {
@@ -308,6 +332,10 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 				if (this.graspTime == 100) {
 					this.graspTime = 0;
 					this.setGraspAnimation(false);
+					this.graspDamageReceived = 0.0F;
+					this.rangedDamageReceived = 0.0F;
+					this.rangedTime = -80;
+					this.attackTime = -120;
 					this.ejectPassengers();
 				}
 			} else if (this.isGraspAnim()) {
@@ -464,27 +492,49 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	}
 
 	public void performRangedAttack(LivingEntity p_29912_) {
-		this.playSound(TofuSounds.TOFUSPIDER_SPIT.get(), 2.0F, (float) (0.6F + this.random.nextDouble() * 0.2F));
-		for (int i = 0; i < 3; i++) {
+		if (this.angerTime > 0) {
 			NattoStringEntity natto = new NattoStringEntity(this.level(), this);
 			double d1 = p_29912_.getX() - this.getX();
 			double d2 = p_29912_.getY() - this.getEyeY();
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
-			natto.shoot(d1, d2 + f, d3, 1.0F, 2.0F + this.random.nextInt(20) + 10);
+			natto.shoot(d1, d2 + f + 0.5F, d3, 0.6F + f, 2.0F + this.random.nextInt(20) + 10);
 
 			this.level().addFreshEntity(natto);
+		} else {
+			for (int i = 0; i < 3; i++) {
+				NattoStringEntity natto = new NattoStringEntity(this.level(), this);
+				double d1 = p_29912_.getX() - this.getX();
+				double d2 = p_29912_.getY() - this.getEyeY();
+				double d3 = p_29912_.getZ() - this.getZ();
+				float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
+				natto.shoot(d1, d2 + f, d3, 1.0F, 2.0F + this.random.nextInt(20) + 10);
+
+				this.level().addFreshEntity(natto);
+			}
 		}
 	}
 
 	public void performBreathAttack(LivingEntity p_29912_) {
-		NattoBallEntity ball = new NattoBallEntity(this.level(), this);
-		double d1 = p_29912_.getX() - this.getX();
-		double d2 = p_29912_.getEyeY() - this.getY();
-		double d3 = p_29912_.getZ() - this.getZ();
-		ball.shoot(d1, d2 + 0.5F, d3, 1.0F, 0F);
+		if (this.angerTime > 0) {
+			NattoBallEntity ball = new NattoBallEntity(this.level(), this);
+			double d1 = p_29912_.getX() - this.getX();
+			double d2 = p_29912_.getEyeY() - this.getY();
+			double d3 = p_29912_.getZ() - this.getZ();
+			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 
-		this.level().addFreshEntity(ball);
+			ball.shoot(d1, d2 + f + 0.5F, d3, 0.6F + f, 2.0F + this.random.nextInt(10) + 10);
+
+			this.level().addFreshEntity(ball);
+		} else {
+			NattoBallEntity ball = new NattoBallEntity(this.level(), this);
+			double d1 = p_29912_.getX() - this.getX();
+			double d2 = p_29912_.getEyeY() - this.getY();
+			double d3 = p_29912_.getZ() - this.getZ();
+			ball.shoot(d1, d2 + 0.5F, d3, 1.0F, 0F);
+
+			this.level().addFreshEntity(ball);
+		}
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -601,31 +651,62 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			return false;
 		} else if (!p_31461_.is(DamageTypes.SWEET_BERRY_BUSH) && !p_31461_.is(DamageTypes.CACTUS) && !p_31461_.is(DamageTypes.CRAMMING) && !p_31461_.is(DamageTypes.IN_WALL) && !p_31461_.is(DamageTypes.STALAGMITE)) {
 			Entity entity = p_31461_.getDirectEntity();
-
-			if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
-				setAngry(true);
-				this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
-			}
+			float f = this.getHealth();
 
 			if (entity instanceof FukumameEntity || p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC)) {
 				return false;
 			} else if (entity instanceof Projectile) {
-				return super.hurt(p_31461_, p_31462_ * 0.35F);
-			}
-
-			float f = this.getHealth();
-			boolean flag = super.hurt(p_31461_, p_31462_);
-			if (flag && this.isGraspAnim()) {
-				this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
-				if (this.graspDamageReceived > 0.1F * this.getMaxHealth()) {
-					this.graspDamageReceived = 0.0F;
-					this.setGraspAnimation(false);
-					this.attackTime = -60;
+				boolean flag = super.hurt(p_31461_, p_31462_ * 0.3F);
+				if (flag) {
+					this.hurtCounter(f);
 				}
 			}
+
+
+			boolean flag = super.hurt(p_31461_, p_31462_);
+			if (flag) {
+				this.hurtCounter(f);
+			}
+
 			return flag;
 		} else {
 			return false;
+		}
+	}
+
+
+	public boolean hurt(ShuDofuSpiderPart shuDofuSpiderPart, DamageSource damageSource, float damage) {
+		float f = this.getHealth();
+
+		this.reallyHurt(damageSource, damage * 0.9F);
+
+		this.hurtCounter(f);
+
+		return true;
+	}
+
+	private void hurtCounter(float pastHealth) {
+
+		if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
+			setAngry(true);
+			this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
+		}
+
+		if (this.isGraspAnim()) {
+			this.graspDamageReceived = this.graspDamageReceived + pastHealth - this.getHealth();
+			if (this.graspDamageReceived > 0.1F * this.getMaxHealth()) {
+				this.graspDamageReceived = 0.0F;
+				this.setGraspAnimation(false);
+				this.attackTime = -60;
+			}
+		} else {
+			this.rangedDamageReceived = this.rangedDamageReceived + pastHealth - this.getHealth();
+			if (this.rangedDamageReceived > 30) {
+				this.rangedDamageReceived = 0.0F;
+				this.attackTime = -80;
+				this.rangedTime = -120;
+				this.angerTime = 250;
+			}
 		}
 	}
 
@@ -644,7 +725,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 32F).add(Attributes.MOVEMENT_SPEED, 0.4D).add(Attributes.ATTACK_KNOCKBACK, 1.00F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 12.0D).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 16.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 32F).add(Attributes.MOVEMENT_SPEED, 0.4D).add(Attributes.ATTACK_KNOCKBACK, 1.15F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 16.0D).add(Attributes.ARMOR_TOUGHNESS, 2.0F).add(Attributes.ATTACK_DAMAGE, 16.0D);
 	}
 
 	@Override
@@ -664,27 +745,6 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		return p_28882_;
 	}
 
-	public boolean hurt(ShuDofuSpiderPart shuDofuSpiderPart, DamageSource damageSource, float damage) {
-		float f = this.getHealth();
-
-		this.reallyHurt(damageSource, damage * 0.9F);
-		if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
-			setAngry(true);
-			this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
-		}
-
-		if (this.isGraspAnim()) {
-			this.graspDamageReceived = this.graspDamageReceived + f - this.getHealth();
-			if (this.graspDamageReceived > 0.1F * this.getMaxHealth()) {
-				this.graspDamageReceived = 0.0F;
-				this.setGraspAnimation(false);
-				this.attackTime = -40;
-			}
-		}
-
-		return true;
-
-	}
 
 	private boolean reallyHurt(DamageSource damageSource, float damage) {
 		return super.hurt(damageSource, damage);
@@ -773,7 +833,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 				boolean flag = this.spider.getSensing().hasLineOfSight(entityTarget);
 
 				double d0 = this.spider.distanceToSqr(entityTarget);
-				if (!this.spider.isRanged()) {
+				if (!this.spider.isRanged() && this.spider.angerTime <= 0) {
 					this.spider.getNavigation().moveTo(this.path, 0.8);
 				}
 				if (!flag) {
@@ -894,7 +954,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 		public boolean canUse() {
 			if (attackTime == 0) {
-				if (ShuDofuSpider.this.getHealth() <= ShuDofuSpider.this.getMaxHealth() / 1.5F && !ShuDofuSpider.this.isGraspAnim()) {
+				if (ShuDofuSpider.this.getHealth() <= ShuDofuSpider.this.getMaxHealth() / 1.5F && !ShuDofuSpider.this.isGraspAnim() && ShuDofuSpider.this.angerTime <= 0) {
 					LivingEntity livingentity = ShuDofuSpider.this.getTarget();
 					if (livingentity != null && livingentity.isAlive() && 10 >= ShuDofuSpider.this.distanceTo(livingentity)) {
 						if (ShuDofuSpider.this.random.nextInt(2) == 0) {
