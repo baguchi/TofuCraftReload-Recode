@@ -806,7 +806,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			}
 		} else {
 			this.rangedDamageReceived = this.rangedDamageReceived + pastHealth - this.getHealth();
-			if (this.rangedDamageReceived > 30) {
+			if (this.rangedDamageReceived > 40) {
 				this.rangedDamageReceived = 0.0F;
 				this.attackTime = -80;
 				this.rangedTime = -120;
