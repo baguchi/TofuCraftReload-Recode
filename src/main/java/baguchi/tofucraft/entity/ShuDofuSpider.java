@@ -742,7 +742,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 32F).add(Attributes.MOVEMENT_SPEED, 0.4D).add(Attributes.ATTACK_KNOCKBACK, 1.00F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 12.0D).add(Attributes.ARMOR_TOUGHNESS, 1.0F).add(Attributes.ATTACK_DAMAGE, 16.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 500.0D).add(Attributes.FOLLOW_RANGE, 32F).add(Attributes.MOVEMENT_SPEED, 0.4D).add(Attributes.ATTACK_KNOCKBACK, 1.15F).add(Attributes.KNOCKBACK_RESISTANCE, 5.0D).add(Attributes.ARMOR, 16.0D).add(Attributes.ARMOR_TOUGHNESS, 2.0F).add(Attributes.ATTACK_DAMAGE, 16.0D);
 	}
 
 	@Override
