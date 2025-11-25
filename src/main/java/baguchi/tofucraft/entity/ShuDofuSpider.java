@@ -324,7 +324,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 			if (this.isAlive() && this.angerTime > 0 && this.getTarget() != null) {
 				--this.angerTime;
-				if (this.angerTime == 248) {
+				if (this.angerTime == 218) {
 					this.playSound(TofuSounds.TOFUSPIDER_AMBIENT.get(), 2.0F, (float) (0.45F + this.random.nextDouble() * 0.2F));
 				}
 				if (this.angerTime <= 200 && this.angerTime % 10 == 0) {
@@ -810,7 +810,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 				this.rangedDamageReceived = 0.0F;
 				this.attackTime = -80;
 				this.rangedTime = -120;
-				this.angerTime = 250;
+				this.angerTime = 220;
 			}
 		}
 	}
