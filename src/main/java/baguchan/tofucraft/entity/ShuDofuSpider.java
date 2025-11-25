@@ -498,7 +498,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			double d2 = p_29912_.getY() - this.getEyeY();
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
-			natto.shoot(d1, d2 + f + 0.5F, d3, 0.6F + f * 0.05F, 2.0F + this.random.nextInt(20) + 10);
+			natto.shoot(d1, d2 + f + 0.5F, d3, 0.6F + f * 0.1F, 2.0F + this.random.nextInt(20) + 10);
 
 			this.level().addFreshEntity(natto);
 		} else {
@@ -523,7 +523,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 
-			ball.shoot(d1, d2 + f + 0.5F, d3, 0.6F + f * 0.05F, 2.0F + this.random.nextInt(10) + 10);
+			ball.shoot(d1, d2 + f + 0.5F, d3, 0.6F + f * 0.1F, 2.0F + this.random.nextInt(10) + 10);
 
 			this.level().addFreshEntity(ball);
 		} else {
