@@ -33,6 +33,7 @@ import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
@@ -421,6 +422,16 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 							}
 						}
 					}
+
+					if (this.level() instanceof ServerLevel serverLevel) {
+						for (int i = 0; i < 20; i++) {
+							double d3 = this.random.nextGaussian() * 0.1;
+							double d1 = this.random.nextGaussian() * 0.1;
+							double d2 = this.random.nextGaussian() * 0.1;
+							serverLevel
+									.sendParticles(TofuParticleTypes.SIMPLE_STINKE.get(), this.position().x, this.position().y, this.position().z, 1, d3, d1, d2, 0.15F);
+						}
+					}
 					playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0f, 1.0f);
 					this.impactTime = 0;
 					this.jumpTime = 0;
@@ -546,7 +557,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 			natto.shoot(d1, d2 + f + 0.5F, d3, 0.6F + f * 0.1F, 2.0F + this.random.nextInt(20) + 10);
-
+			natto.setSmall(true);
 			this.level().addFreshEntity(natto);
 		} else {
 			for (int i = 0; i < 3; i++) {
@@ -571,7 +582,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 
 			ball.shoot(d1, d2 + f + 0.5F, d3, 0.6F + f * 0.1F, 2.0F + this.random.nextInt(10) + 10);
-
+			ball.setSmall(true);
 			this.level().addFreshEntity(ball);
 		} else {
 			NattoBallEntity ball = new NattoBallEntity(this.level(), this);
@@ -772,6 +783,11 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			}
 			return false;
 		}
+	}
+
+	@Override
+	public boolean canBeAffected(MobEffectInstance p_479991_) {
+		return p_479991_.is(MobEffects.POISON) || p_479991_.is(MobEffects.SLOWNESS) || p_479991_.is(MobEffects.INSTANT_DAMAGE) || p_479991_.is(TofuEffects.COUGH) ? false : super.canBeAffected(p_479991_);
 	}
 
 	protected int decreaseAirSupply(int p_28882_) {

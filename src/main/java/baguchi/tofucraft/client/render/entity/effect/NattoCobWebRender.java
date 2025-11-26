@@ -26,9 +26,10 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity, NattoCo
 	@Override
 	public void submit(NattoCobWebRenderState entity, PoseStack stack, SubmitNodeCollector buffer, CameraRenderState cameraRenderState) {
 		boolean isSpawing = entity.isSpawning;
+		float scale = entity.isSmall ? 0.5F : 1.0F;
 		if (isSpawing) {
 			stack.pushPose();
-			stack.scale(5.5F, 6.0F, 5.5F);
+			stack.scale(5.5F * scale, 6.0F * scale, 5.5F * scale);
 			stack.mulPose(entity.direction.getOpposite().getRotation());
 			stack.translate(0.0F, 0.0F, -0.125F);
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
@@ -37,7 +38,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity, NattoCo
 			stack.popPose();
 		} else {
 			stack.pushPose();
-			stack.scale(6.0F, 6.0F, 6.0F);
+			stack.scale(6.0F * scale, 6.0F * scale, 6.0F * scale);
 			stack.mulPose(entity.direction.getRotation());
 			stack.translate(0.0F, 0.0F, -0.125F);
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
@@ -58,6 +59,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity, NattoCo
 		super.extractRenderState(p_362104_, p_361028_, p_362204_);
 		p_361028_.direction = p_362104_.getAttachFace();
 		p_361028_.isSpawning = p_362104_.isSpawing();
+		p_361028_.isSmall = p_362104_.isSmall();
 		this.itemModelResolver.updateForNonLiving(p_361028_.item, TofuItems.NATTO_COBWEB.get().getDefaultInstance(), ItemDisplayContext.GROUND, p_362104_);
 
 	}
