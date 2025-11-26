@@ -659,7 +659,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			Entity entity = p_31461_.getDirectEntity();
 			float f = this.getHealth();
 
-			if (entity instanceof FukumameEntity || p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC)) {
+			if (entity instanceof FukumameEntity) {
 				return false;
 			} else if (entity instanceof Projectile) {
 				boolean flag = super.hurt(p_31461_, p_31462_ * 0.3F);
