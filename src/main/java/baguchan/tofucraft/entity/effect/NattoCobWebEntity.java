@@ -31,6 +31,7 @@ import java.util.List;
 
 public class NattoCobWebEntity extends LivingEntity {
 	protected static final EntityDataAccessor<Direction> DATA_ATTACH_FACE_ID = SynchedEntityData.defineId(NattoCobWebEntity.class, EntityDataSerializers.DIRECTION);
+	protected static final EntityDataAccessor<Boolean> DATA_SMALL = SynchedEntityData.defineId(NattoCobWebEntity.class, EntityDataSerializers.BOOLEAN);
 
 	private final NonNullList<ItemStack> handItems = NonNullList.withSize(2, ItemStack.EMPTY);
 	private final NonNullList<ItemStack> armorItems = NonNullList.withSize(4, ItemStack.EMPTY);
@@ -51,6 +52,7 @@ public class NattoCobWebEntity extends LivingEntity {
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
 		builder.define(DATA_ATTACH_FACE_ID, Direction.DOWN);
+		builder.define(DATA_SMALL, false);
 	}
 
 	public Direction getAttachFace() {
@@ -61,24 +63,34 @@ public class NattoCobWebEntity extends LivingEntity {
 		this.entityData.set(DATA_ATTACH_FACE_ID, p_149789_);
 	}
 
+	public boolean isSmall() {
+		return this.entityData.get(DATA_SMALL);
+	}
+
+	public void setSmall(boolean p_149789_) {
+		this.entityData.set(DATA_SMALL, p_149789_);
+	}
+
 	@Override
 	protected AABB makeBoundingBox() {
 		Direction direction = this.getAttachFace().getOpposite();
 		double d0 = (double) this.getX();
 		double d1 = (double) this.getY();
 		double d2 = (double) this.getZ();
-		double d6 = (double) this.getType().getWidth() / 2;
-		double d7 = (double) this.getType().getHeight() / 2;
-		double d8 = (double) this.getType().getWidth() / 2;
+		float scale = this.isSmall() ? 0.5F : 1.0F;
+
+		double d6 = (double) this.getType().getWidth() / 2 * scale;
+		double d7 = (double) this.getType().getHeight() / 2 * scale;
+		double d8 = (double) this.getType().getWidth() / 2 * scale;
 		if (direction.getAxis() == Direction.Axis.Z) {
-			d8 = this.getType().getHeight() / 2;
-			d7 = this.getType().getWidth() / 2;
+			d8 = this.getType().getHeight() / 2 * scale;
+			d7 = this.getType().getWidth() / 2 * scale;
 		} else if (direction.getAxis() == Direction.Axis.X) {
-			d6 = this.getType().getHeight() / 2;
-			d7 = this.getType().getWidth() / 2;
+			d6 = this.getType().getHeight() / 2 * scale;
+			d7 = this.getType().getWidth() / 2 * scale;
 		} else if (direction == Direction.UP) {
-			d7 = (double) this.getType().getHeight() / 2;
-			d1 += (double) this.getType().getHeight() / 2;
+			d7 = (double) this.getType().getHeight() / 2 * scale;
+			d1 += (double) this.getType().getHeight() / 2 * scale;
 		}
 
 		return new AABB(d0 - d6, d1 - d7, d2 - d8, d0 + d6, d1 + d7, d2 + d8);
@@ -108,12 +120,14 @@ public class NattoCobWebEntity extends LivingEntity {
 	public void readAdditionalSaveData(CompoundTag p_33432_) {
 		super.readAdditionalSaveData(p_33432_);
 		this.setAttachFace(Direction.from3DDataValue(p_33432_.getByte("AttachFace")));
+		this.setSmall(p_33432_.getBoolean("Small"));
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag p_33443_) {
 		super.addAdditionalSaveData(p_33443_);
 		p_33443_.putByte("AttachFace", (byte) this.getAttachFace().get3DDataValue());
+		p_33443_.putBoolean("Small", this.isSmall());
 	}
 
 	@Override

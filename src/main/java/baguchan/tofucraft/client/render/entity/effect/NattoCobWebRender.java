@@ -32,9 +32,10 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 	@Override
 	public void render(NattoCobWebEntity entity, float yaw, float delta, PoseStack stack, MultiBufferSource buffer, int packedLightIn) {
 		boolean isSpawing = entity.isSpawing();
+		float scale = entity.isSmall() ? 0.5F : 1.0F;
 		if (isSpawing) {
 			stack.pushPose();
-			stack.scale(5.5F, 6.0F, 5.5F);
+			stack.scale(5.5F * scale, 5.5F * scale, 5.5F * scale);
 			stack.mulPose(entity.getAttachFace().getOpposite().getRotation());
 			stack.translate(0.0F, 0.0F, -0.125F);
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
@@ -46,7 +47,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity> {
 			stack.popPose();
 		} else {
 			stack.pushPose();
-			stack.scale(6.0F, 6.0F, 6.0F);
+			stack.scale(6.0F * scale, 6.0F * scale, 6.0F * scale);
 			stack.mulPose(entity.getAttachFace().getRotation());
 			stack.translate(0.0F, 0.0F, -0.125F);
 			stack.mulPose(Axis.XP.rotationDegrees(90.0F));
