@@ -2,7 +2,9 @@ package baguchan.tofucraft.entity.projectile;
 
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuParticleTypes;
-import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -18,13 +20,14 @@ import net.minecraft.world.phys.HitResult;
 import java.util.List;
 
 public class NattoBallEntity extends ThrowableProjectile {
+	protected static final EntityDataAccessor<Boolean> DATA_SMALL = SynchedEntityData.defineId(NattoBallEntity.class, EntityDataSerializers.BOOLEAN);
 
 	public NattoBallEntity(EntityType<? extends NattoBallEntity> p_36892_, Level p_36893_) {
 		super(p_36892_, p_36893_);
 	}
 
 	public NattoBallEntity(Level worldIn, LivingEntity throwerIn) {
-		super(TofuEntityTypes.NATTO_STRNIG.get(), throwerIn, worldIn);
+		super(TofuEntityTypes.NATTO_BALL.get(), throwerIn, worldIn);
 	}
 
 	protected boolean canHitEntity(Entity p_37250_) {
@@ -43,8 +46,8 @@ public class NattoBallEntity extends ThrowableProjectile {
 				}
 
 				areaeffectcloud.setParticle(TofuParticleTypes.SIMPLE_STINKE.get());
-				areaeffectcloud.setRadius(3.0F);
-				areaeffectcloud.setDuration(200);
+				areaeffectcloud.setRadius(this.isSmall() ? 1.25F : 3.0F);
+				areaeffectcloud.setDuration(this.isSmall() ? 80 : 200);
 				areaeffectcloud.addEffect(new MobEffectInstance(MobEffects.HARM, 1, 1));
 				if (!list.isEmpty()) {
 					for (LivingEntity livingentity : list) {
@@ -64,22 +67,32 @@ public class NattoBallEntity extends ThrowableProjectile {
 	}
 
 	@Override
-	protected void defineSynchedData(SynchedEntityData.Builder p_326003_) {
-
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		builder.define(DATA_SMALL, false);
 	}
 
+	public boolean isSmall() {
+		return this.entityData.get(DATA_SMALL);
+	}
+
+	public void setSmall(boolean p_149789_) {
+		this.entityData.set(DATA_SMALL, p_149789_);
+	}
+
+	@Override
+	public void readAdditionalSaveData(CompoundTag p_33432_) {
+		super.readAdditionalSaveData(p_33432_);
+		this.setSmall(p_33432_.getBoolean("Small"));
+	}
+
+	@Override
+	public void addAdditionalSaveData(CompoundTag p_33443_) {
+		super.addAdditionalSaveData(p_33443_);
+		p_33443_.putBoolean("Small", this.isSmall());
+	}
+
+	@Override
 	public boolean isPickable() {
-		return false;
-	}
-
-	protected void defineSynchedData() {
-	}
-
-	protected ParticleOptions getTrailParticle() {
-		return TofuParticleTypes.SIMPLE_STINKE.get();
-	}
-
-	protected boolean shouldBurn() {
 		return false;
 	}
 }

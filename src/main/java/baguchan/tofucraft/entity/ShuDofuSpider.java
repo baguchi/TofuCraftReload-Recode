@@ -32,6 +32,7 @@ import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -499,7 +500,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
 			natto.shoot(d1, d2 + f + 0.5F, d3, 0.6F + f * 0.1F, 2.0F + this.random.nextInt(20) + 10);
-
+			natto.setSmall(true);
 			this.level().addFreshEntity(natto);
 		} else {
 			for (int i = 0; i < 3; i++) {
@@ -522,7 +523,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			double d2 = p_29912_.getEyeY() - this.getY();
 			double d3 = p_29912_.getZ() - this.getZ();
 			float f = Mth.sqrt((float) (d1 * d1 + d3 * d3)) * 0.2F;
-
+			ball.setSmall(true);
 			ball.shoot(d1, d2 + f + 0.5F, d3, 0.6F + f * 0.1F, 2.0F + this.random.nextInt(10) + 10);
 
 			this.level().addFreshEntity(ball);
@@ -624,6 +625,11 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		if (!this.level().isClientSide()) {
 			this.level().broadcastEntityEvent(this, (byte) 101);
 		}
+	}
+
+	@Override
+	public boolean canBeAffected(MobEffectInstance p_479991_) {
+		return p_479991_.is(MobEffects.POISON) || p_479991_.is(MobEffects.MOVEMENT_SLOWDOWN) || p_479991_.is(MobEffects.HARM) || p_479991_.is(TofuEffects.COUGH) ? false : super.canBeAffected(p_479991_);
 	}
 
 	@Override
