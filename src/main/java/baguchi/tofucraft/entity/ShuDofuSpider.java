@@ -719,7 +719,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 				this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
 			}
 
-			if (entity instanceof FukumameEntity || p_31461_.is(DamageTypes.MAGIC) || p_31461_.is(DamageTypes.INDIRECT_MAGIC)) {
+			if (entity instanceof FukumameEntity) {
 				return false;
 			} else if (entity instanceof Projectile) {
 				boolean flag = super.hurtServer(serverLevel, p_31461_, p_31462_ * 0.35F);
