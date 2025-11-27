@@ -38,7 +38,7 @@ public class NattoBallRender extends EntityRenderer<NattoBallEntity, ProjectileR
 	@Override
 	public void submit(ProjectileRenderState p_433712_, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState p_451076_) {
 		poseStack.pushPose();
-		poseStack.scale(2.0F, 2.0F, 2.0F);
+		poseStack.scale(0.5F, 0.5F, 0.5F);
 		poseStack.mulPose(p_451076_.orientation);
 		poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
 		submitNodeCollector.submitCustomGeometry(poseStack, RENDER_TYPE, (pose, vertexConsumer) -> {

@@ -390,7 +390,7 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.UNSTABLE_ZUNDAMA.get(), ThrownItemRenderer::new);
 		event.registerEntityRenderer(TofuEntityTypes.ZUNDA_BUSTER.get(), ZundaBusterRenderer::new);
 
-		event.registerEntityRenderer(TofuEntityTypes.NATTO_STRNIG.get(), (context) -> new NattoStringRender<>(context, 1.0F, true));
+		event.registerEntityRenderer(TofuEntityTypes.NATTO_STRNIG.get(), (context) -> new NattoStringRender<>(context, 0.5F, true));
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_COBWEB.get(), NattoCobWebRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.NATTO_BALL.get(), NattoBallRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.FALLING_TOFU.get(), FallingTofuRenderer::new);
