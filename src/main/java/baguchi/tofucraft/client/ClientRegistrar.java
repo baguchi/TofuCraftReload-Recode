@@ -118,13 +118,13 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.DimensionSpecialEffectsManager;
+import net.neoforged.neoforge.client.CustomEnvironmentEffectsRendererManager;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ExtractLevelRenderStateEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
-import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
+import net.neoforged.neoforge.client.event.RegisterCustomEnvironmentEffectRendererEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
@@ -150,7 +150,7 @@ public class ClientRegistrar {
 	private static final Identifier TEXTURE_RECOVER_HEART_HALF = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container_half");
 
 	public static final RenderPipeline ZUNDA =
-			RenderPipeline.builder(new RenderPipeline.Snippet[]{MATRICES_PROJECTION_SNIPPET, FOG_SNIPPET, GLOBALS_SNIPPET})
+			RenderPipeline.builder(MATRICES_PROJECTION_SNIPPET, FOG_SNIPPET, GLOBALS_SNIPPET)
 					.withLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "pipeline/zunda"))
 					.withVertexShader("core/glint").withFragmentShader("core/glint")
 					.withSampler("Sampler0")
@@ -558,7 +558,7 @@ public class ClientRegistrar {
 			if (Mth.ceil(player.getHealth()) + absorption <= 4) {
 				y += guiAccessor.tofucraft$getRandom().nextInt(2);
 			}
-			if ((maxDefaultHearts >= 10 ? overallHearts - 10 : maxDefaultHearts) < overallHearts && Math.min(maxDefaultHearts, 10) - 0 == regen) {
+			if ((maxDefaultHearts >= 10 ? overallHearts - 10 : maxDefaultHearts) < overallHearts && Math.min(maxDefaultHearts, 10) == regen) {
 				y -= 2;
 			}
 
@@ -621,8 +621,8 @@ public class ClientRegistrar {
 	}
 
 	@SubscribeEvent
-	public static void registerDimensionEffect(RegisterDimensionSpecialEffectsEvent event) {
-		event.register(TofuCraftReload.prefix("tofu_world"), new TofuWorldSpecialEffect());
+	public static void registerDimensionEffect(RegisterCustomEnvironmentEffectRendererEvent event) {
+		event.registerSkyboxRenderer(TofuCraftReload.prefix("tofu_world"), new TofuWorldSpecialEffect());
 	}
 
 	@SubscribeEvent
@@ -633,7 +633,7 @@ public class ClientRegistrar {
 	@SubscribeEvent
 	public static void extractDimensionEffect(ExtractLevelRenderStateEvent event) {
 		if (event.getLevel().dimensionTypeRegistration().is(TofuDimensionTypes.TOFU_WORLD_TYPE)) {
-			event.getRenderState().dimensionSpecialEffects = DimensionSpecialEffectsManager.getForType(TofuCraftReload.prefix("tofu_world"));
+			event.getRenderState().customSkyboxRenderer = CustomEnvironmentEffectsRendererManager.getCustomSkyboxRenderer(TofuCraftReload.prefix("tofu_world"));
 		}
 	}
 

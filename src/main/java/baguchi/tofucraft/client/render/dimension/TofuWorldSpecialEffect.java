@@ -4,11 +4,10 @@ import baguchi.tofucraft.client.TofuWorldTextureManager;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.state.LevelRenderState;
 import net.minecraft.client.renderer.state.SkyRenderState;
-import net.neoforged.neoforge.client.extensions.IDimensionSpecialEffectsExtension;
+import net.neoforged.neoforge.client.CustomSkyboxRenderer;
 import org.joml.Matrix4f;
 
-public class TofuWorldSpecialEffect implements IDimensionSpecialEffectsExtension {
-
+public class TofuWorldSpecialEffect implements CustomSkyboxRenderer {
 	@Override
 	public boolean renderSky(LevelRenderState levelRenderState, SkyRenderState skyRenderState, Matrix4f modelViewMatrix, Runnable setupFog) {
 		TofuWorldRenderer tofuWorldRenderer = TofuWorldTextureManager.INSTANCE.getTofuWorldRenderer();

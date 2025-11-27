@@ -478,14 +478,15 @@ public class BlockLootTables extends BlockLootSubProvider {
 	protected LootTable.Builder createDoublePlantWithLeekDrops(Block p_248590_, Block p_248735_) {
 		HolderLookup.RegistryLookup<Block> registrylookup = this.registries.lookupOrThrow(Registries.BLOCK);
 		LootPoolEntryContainer.Builder<?> builder = (LootPoolEntryContainer.Builder<?>) LootItem.lootTableItem(p_248735_)
-				.apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
+				.apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))
 				.when(this.hasShears());
+		LootPoolEntryContainer.Builder<?> builder2 = builder.otherwise(
+				LootItem.lootTableItem(TofuItems.LEEK.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
+		);
 		return LootTable.lootTable()
 				.withPool(
 						LootPool.lootPool()
-								.add(builder.otherwise(
-										this.applyExplosionCondition(p_248590_, LootItem.lootTableItem(TofuItems.LEEK.get()))
-								))
+								.add(this.applyExplosionCondition(p_248590_, builder2))
 								.when(
 										LootItemBlockStatePropertyCondition.hasBlockStateProperties(p_248590_)
 												.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))
@@ -504,7 +505,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 				)
 				.withPool(
 						LootPool.lootPool()
-								.add(builder)
+								.add(this.applyExplosionCondition(p_248590_, builder2))
 								.when(
 										LootItemBlockStatePropertyCondition.hasBlockStateProperties(p_248590_)
 												.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))
