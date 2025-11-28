@@ -1,5 +1,6 @@
 package baguchan.tofucraft.client.render;
 
+import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.projectile.NattoBallEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -18,7 +19,7 @@ import org.joml.Matrix4f;
 
 @OnlyIn(Dist.CLIENT)
 public class NattoBallRender extends EntityRenderer<NattoBallEntity> {
-	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.parse("textures/entity/enderdragon/dragon_fireball.png");
+	private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/item/natto_cobweb.png");
 	private static final RenderType RENDER_TYPE = RenderType.entityCutoutNoCull(TEXTURE_LOCATION);
 
 	public NattoBallRender(EntityRendererProvider.Context p_173962_) {
