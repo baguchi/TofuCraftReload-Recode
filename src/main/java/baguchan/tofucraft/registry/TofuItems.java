@@ -7,6 +7,7 @@ import baguchan.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
 import baguchan.tofucraft.item.ApricotItem;
 import baguchan.tofucraft.item.BitternItem;
 import baguchan.tofucraft.item.BugleItem;
+import baguchan.tofucraft.item.CeramicBowlItem;
 import baguchan.tofucraft.item.ChiliItem;
 import baguchan.tofucraft.item.DishItem;
 import baguchan.tofucraft.item.DoubleUsageSeedItem;
@@ -17,7 +18,6 @@ import baguchan.tofucraft.item.InfernoNetherFukumameItem;
 import baguchan.tofucraft.item.KoujiBaseItem;
 import baguchan.tofucraft.item.NattoCobWebItem;
 import baguchan.tofucraft.item.NetherFukumameItem;
-import baguchan.tofucraft.item.NourishmentItem;
 import baguchan.tofucraft.item.RamuneSoymilkBottleItem;
 import baguchan.tofucraft.item.ReflectTofuShieldItem;
 import baguchan.tofucraft.item.RollingPinItem;
@@ -253,16 +253,20 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> SOBOROTOFUSAUTE = ITEMS.register("soborotofusaute", () -> new DishItem((new Item.Properties()).stacksTo(16).food(TofuFoods.SOBOROTOFUSAUTE)));
 
+	public static final DeferredHolder<Item, Item> GLASS_BOWL = ITEMS.register("glass_bowl", () -> new Item((new Item.Properties())));
+	public static final DeferredHolder<Item, Item> CERAMIC_BOWL = ITEMS.register("ceramic_bowl", () -> new Item((new Item.Properties())));
+
+
 	public static final DeferredHolder<Item, Item> YAKIONIGIRI_MISO = ITEMS.register("yakionigiri_miso", () -> new Item((new Item.Properties()).food(TofuFoods.YAKIONIGIRI_MISO)));
 	public static final DeferredHolder<Item, Item> YAKIONIGIRI_SHOYU = ITEMS.register("yakionigiri_shoyu", () -> new Item((new Item.Properties()).food(TofuFoods.YAKIONIGIRI_SHOYU)));
 	public static final DeferredHolder<Item, Item> RICE_BURGER = ITEMS.register("riceburger", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_BURGER)));
-	public static final DeferredHolder<Item, Item> RICE_NATTO = ITEMS.register("ricenatto", () -> new NourishmentItem((new Item.Properties()).food(TofuFoods.RICE_NATTO)));
-	public static final DeferredHolder<Item, Item> RICE_NATTO_LEEK = ITEMS.register("ricenattoleek", () -> new NourishmentItem((new Item.Properties()).food(TofuFoods.RICE_NATTOLEEK)));
-	public static final DeferredHolder<Item, Item> RICE_NETHER_NATTO = ITEMS.register("rice_nether_natto", () -> new NourishmentItem((new Item.Properties()).food(TofuFoods.RICE_NETHER_NATTO)));
-	public static final DeferredHolder<Item, Item> RICE_NETHER_NATTO_LEEK = ITEMS.register("rice_nether_natto_leek", () -> new NourishmentItem((new Item.Properties()).food(TofuFoods.RICE_NETHER_NATTO_LEEK)));
+	public static final DeferredHolder<Item, Item> RICE_NATTO = ITEMS.register("ricenatto", () -> new CeramicBowlItem((new Item.Properties()).food(TofuFoods.RICE_NATTO)));
+	public static final DeferredHolder<Item, Item> RICE_NATTO_LEEK = ITEMS.register("ricenattoleek", () -> new CeramicBowlItem((new Item.Properties()).food(TofuFoods.RICE_NATTOLEEK)));
+	public static final DeferredHolder<Item, Item> RICE_NETHER_NATTO = ITEMS.register("rice_nether_natto", () -> new CeramicBowlItem((new Item.Properties()).food(TofuFoods.RICE_NETHER_NATTO)));
+	public static final DeferredHolder<Item, Item> RICE_NETHER_NATTO_LEEK = ITEMS.register("rice_nether_natto_leek", () -> new CeramicBowlItem((new Item.Properties()).food(TofuFoods.RICE_NETHER_NATTO_LEEK)));
 
-	public static final DeferredHolder<Item, Item> RICE_TOFU = ITEMS.register("ricetofu", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_TOFU)));
-	public static final DeferredHolder<Item, Item> RICE_SOBORO_TOFU = ITEMS.register("ricesoborotofu", () -> new Item((new Item.Properties()).food(TofuFoods.RICE_SOBORO_TOFU)));
+	public static final DeferredHolder<Item, Item> RICE_TOFU = ITEMS.register("ricetofu", () -> new CeramicBowlItem((new Item.Properties()).food(TofuFoods.RICE_TOFU)));
+	public static final DeferredHolder<Item, Item> RICE_SOBORO_TOFU = ITEMS.register("ricesoborotofu", () -> new CeramicBowlItem((new Item.Properties()).food(TofuFoods.RICE_SOBORO_TOFU)));
 	public static final DeferredHolder<Item, Item> GOHEIMOCHI = ITEMS.register("goheimochi", () -> new DishItem((new Item.Properties()).food(TofuFoods.GOHEIMOCHI)));
 
 
@@ -277,7 +281,6 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> BUCKET_BITTERN = ITEMS.register("bucket_bittern", () -> new BucketItem(TofuFluids.BITTERN.value(), (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final DeferredHolder<Item, Item> BUCKET_DOUBANJIANG = ITEMS.register("bucket_doubanjiang", () -> new BucketItem(TofuFluids.DOUBANJIANG.value(), (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)));
 
-	public static final DeferredHolder<Item, Item> GLASSBOWL = ITEMS.register("glassbowl", () -> new Item((new Item.Properties())));
 
 	public static final DeferredHolder<Item, Item> PUDDING = ITEMS.register("pudding", () -> new GlassBowlItem((new Item.Properties()).stacksTo(16).food(TofuFoods.PUDDING)));
 	public static final DeferredHolder<Item, Item> PUDDING_SOYMILK = ITEMS.register("pudding_soymilk", () -> new GlassBowlItem((new Item.Properties()).stacksTo(16).food(TofuFoods.PUDDING_SOYMILK)));
@@ -419,7 +422,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> EDAMAME_TEMPLA = ITEMS.register("edamame_templa", () -> new SaltFoodItem((new Item.Properties()).food(TofuFoods.EDAMAME_TEMPLA)));
 	public static final DeferredHolder<Item, Item> NEGIMA = ITEMS.register("negima", () -> new DishItem((new Item.Properties()).food(TofuFoods.NEGIMA)));
 	public static final DeferredHolder<Item, Item> SOY_KARAAGE = ITEMS.register("soy_karaage", () -> new Item((new Item.Properties()).food(TofuFoods.SOY_KARAAGE)));
-	public static final DeferredHolder<Item, Item> SOYMEATDON = ITEMS.register("soymeatdon", () -> new Item((new Item.Properties()).food(TofuFoods.SOYMEATDON)));
+	public static final DeferredHolder<Item, Item> SOYMEATDON = ITEMS.register("soymeatdon", () -> new CeramicBowlItem((new Item.Properties()).food(TofuFoods.SOYMEATDON)));
 
 	public static final DeferredHolder<Item, Item> TOFUNIAN_BANNER_PATTERN = ITEMS.register("tofunian_banner_pattern", () -> new BannerPatternItem(CustomTagGenerator.BannerPatternTagGenerator.TOFUNIAN_BANNER_PATTERN, new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
 

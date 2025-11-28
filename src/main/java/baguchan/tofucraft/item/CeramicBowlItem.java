@@ -3,13 +3,12 @@ package baguchan.tofucraft.item;
 import baguchan.tofucraft.registry.TofuItems;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public class GlassBowlItem extends Item {
-	public GlassBowlItem(Item.Properties food) {
+public class CeramicBowlItem extends NourishmentItem {
+	public CeramicBowlItem(Properties food) {
 		super(food);
 	}
 
@@ -19,9 +18,9 @@ public class GlassBowlItem extends Item {
 
 		if (livingEntity instanceof Player player && !player.getAbilities().instabuild) {
 			if (itemStack.isEmpty()) {
-				resultItem = new ItemStack(TofuItems.GLASS_BOWL.get());
+				resultItem = new ItemStack(TofuItems.CERAMIC_BOWL.get());
 			} else {
-				ItemStack itemstack = new ItemStack(TofuItems.GLASS_BOWL.get());
+				ItemStack itemstack = new ItemStack(TofuItems.CERAMIC_BOWL.get());
 				if (!player.getInventory().add(itemstack)) {
 					player.drop(itemstack, false);
 				}

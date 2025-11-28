@@ -12,7 +12,10 @@
       {
         "item": "tofucraft:tofumomen"
       }
-    ]
+    ],
+    {
+      "item": "tofucraft:ceramic_bowl"
+    }
   ],
   "result": {
     "count": 1,

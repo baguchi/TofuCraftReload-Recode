@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:glassbowl"
+        "recipe": "tofucraft:glass_bowl"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:glassbowl"
+      "tofucraft:glass_bowl"
     ]
   }
 }
