@@ -254,6 +254,10 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		}
 
 		if (!this.level().isClientSide()) {
+			if (this.isAlive() && this.rangedDamageReceived > 0.0F && this.tickCount % 80 == 0) {
+				this.rangedDamageReceived = Mth.clamp(this.rangedDamageReceived - 4.0F, 0, 60);
+			}
+
 			if (this.isAlive() && !this.isGraspAnim() && this.isAttackAnim() && this.getTarget() != null) {
 				++this.attackTime;
 				if (this.attackTime == 10) {
@@ -281,10 +285,15 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 			if (this.isAlive() && this.angerTime > 0 && this.getTarget() != null) {
 				--this.angerTime;
-				if (this.angerTime == 248) {
+				if (this.angerTime == 218) {
 					this.playSound(TofuSounds.TOFUSPIDER_AMBIENT.get(), 2.0F, (float) (0.45F + this.random.nextDouble() * 0.2F));
 				}
-				if (this.angerTime <= 200 && this.angerTime % 10 == 0) {
+				if (this.angerTime == 180 && this.distanceTo(this.getTarget()) < 16) {
+					ShuDofuSpider.this.setJump(true);
+					this.angerTime = 0;
+				}
+
+				if (this.angerTime <= 180 && this.angerTime % 10 == 0) {
 					if (this.random.nextInt(3) == 0) {
 						this.performBreathAttack(this.getTarget());
 						this.playSound(SoundEvents.ENDER_DRAGON_SHOOT, 2.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
@@ -711,7 +720,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 				this.rangedDamageReceived = 0.0F;
 				this.attackTime = -80;
 				this.rangedTime = -120;
-				this.angerTime = 250;
+				this.angerTime = 220;
 			}
 		}
 	}
