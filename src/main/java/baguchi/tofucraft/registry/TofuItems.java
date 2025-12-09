@@ -326,7 +326,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFU_KINU_SWORD = ITEMS.registerItem("tofu_kinu_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_KINU_SPEAR = ITEMS.registerItem(
-			"tofu_kinu_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.KINU, 0.3F, 0.1F, 0.75F, 20.0F, 20.0F, 8.0F, 5.1F, 15.0F, 4.6F)
+			"tofu_kinu_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.KINU, 0.3F, 0.1F, 0.75F, 20.0F, 14.0F, 10.0F, 5.1F, 15.0F, 4.6F)
 			));
 	public static final DeferredHolder<Item, Item> TOFU_KINU_AXE = ITEMS.registerItem("tofu_kinu_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_KINU_PICKAXE = ITEMS.registerItem("tofu_kinu_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
@@ -335,7 +335,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SWORD = ITEMS.registerItem("tofu_momen_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SPEAR = ITEMS.registerItem(
-			"tofu_momen_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.MOMEN, 0.3F, 0.1F, 0.75F, 10.0F, 20.0F, 8.0F, 5.1F, 15.0F, 4.6F)
+			"tofu_momen_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.MOMEN, 0.3F, 0.1F, 0.75F, 20.0F, 14.0F, 10.0F, 5.1F, 15.0F, 4.6F)
 			));
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN_AXE = ITEMS.registerItem("tofu_momen_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN_PICKAXE = ITEMS.registerItem("tofu_momen_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
@@ -353,7 +353,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFU_METAL_SWORD = ITEMS.registerItem("tofu_metal_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.METAL, 3, -2.3F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_METAL_SPEAR = ITEMS.registerItem(
-			"tofu_metal_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.METAL, 0.85F, 0.95F, 0.7F, 5.5F, 8.0F, 5.5F, 5.1F, 11.25F, 4.6F)
+			"tofu_metal_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.METAL, 0.85F, 0.82F, 0.65F, 4.0F, 9.0F, 8.25F, 5.1F, 12.5F, 4.6F)
 			));
 	public static final DeferredHolder<Item, Item> TOFU_METAL_AXE = ITEMS.registerItem("tofu_metal_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.METAL, 6.0F, -2.9F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_METAL_PICKAXE = ITEMS.registerItem("tofu_metal_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.METAL, 1.0F, -2.8F, (properties.stacksTo(1))));
@@ -364,7 +364,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SWORD = ITEMS.registerItem("tofu_diamond_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.TOFUDIAMOND, 3, -2.3F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SPEAR = ITEMS.registerItem(
-			"tofu_diamond_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.TOFUDIAMOND, 1.05F, 1.2F, 0.6F, 4.5F, 7.0F, 5F, 5.1F, 10.75F, 4.6F)
+			"tofu_diamond_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.TOFUDIAMOND, 1.05F, 1.075F, 0.5F, 3.0F, 7.5F, 6.5F, 5.1F, 10.0F, 4.6F)
 			));
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_AXE = ITEMS.registerItem("tofu_diamond_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.TOFUDIAMOND, 6.0F, -2.9F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_PICKAXE = ITEMS.registerItem("tofu_diamond_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.TOFUDIAMOND, 1.0F, -2.7F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
