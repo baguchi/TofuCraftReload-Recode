@@ -95,7 +95,7 @@ public class SoybeanPaleCropsBlock extends CropBlock {
 		int age = p_383235_.getValue(AGE);
 		if (age < 3) {
 			return false;
-		} else if (!p_383091_.dimensionType().natural()) {
+		} else if (!p_383091_.dimensionType().hasSkyLight()) {
 			return false;
 		} else if (p_383091_.isBrightOutside() != flag) {
 			return false;

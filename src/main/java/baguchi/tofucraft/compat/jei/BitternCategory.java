@@ -1,6 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
-
+/*
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.BitternRecipe;
 import baguchi.tofucraft.registry.TofuItems;
@@ -17,7 +17,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
 
@@ -26,7 +26,7 @@ import java.util.Arrays;
 
 public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 
-	public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "bittern");
+	public static final Identifier UID = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "bittern");
 	protected final IDrawableAnimated arrow;
 	private final Component title;
 	private final IDrawable background;
@@ -34,7 +34,7 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 
 	public BitternCategory(IGuiHelper helper) {
 		title = Component.translatable("tofucraft.jei.bittern");
-		ResourceLocation backgroundImage = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/general_jei_recipe.png");
+		Identifier backgroundImage = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/general_jei_recipe.png");
 		background = helper.createDrawable(backgroundImage, 16, 16, 144, 54);
 		icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(TofuItems.BITTERN_BOTTLE.get()));
 		arrow = helper.drawableBuilder(backgroundImage, 176, 14, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
@@ -51,7 +51,7 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 	}
 
 	@Override
-	public ResourceLocation getRegistryName(BitternRecipe recipe) {
+	public net.minecraft.resources.ResourceLocation getRegistryName(BitternRecipe recipe) {
 		return UID;
 	}
 
@@ -94,5 +94,5 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 		background.draw(guiGraphics);
 		arrow.draw(guiGraphics, 72 - 17, 35 - 17);
 	}
-}
+}*/
 

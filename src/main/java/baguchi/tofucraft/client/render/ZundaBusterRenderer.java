@@ -8,19 +8,19 @@ import baguchi.tofucraft.entity.projectile.ZundaBuster;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
 
 public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T, ProjectileRenderState> {
-	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/zunda_buster.png");
+	public static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/projectiles/zunda_buster.png");
 
 	private final ZundaBusterModel<ProjectileRenderState> model;
 
@@ -42,7 +42,7 @@ public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T
 
 		poseStack.translate(0.0F, -1.501F, 0F);
 
-		submitNodeCollector.submitModel(this.model, projectileRenderState, poseStack, RenderType.eyes(this.getTextureLocation(projectileRenderState)), projectileRenderState.lightCoords, OverlayTexture.NO_OVERLAY, projectileRenderState.outlineColor, null);
+		submitNodeCollector.submitModel(this.model, projectileRenderState, poseStack, RenderTypes.eyes(this.getTextureLocation(projectileRenderState)), projectileRenderState.lightCoords, OverlayTexture.NO_OVERLAY, projectileRenderState.outlineColor, null);
 
 		poseStack.popPose();
 		super.submit(projectileRenderState, poseStack, submitNodeCollector, cameraRenderState);
@@ -60,7 +60,7 @@ public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T
 		p_361028_.yRot = p_362104_.getYRot(p_362204_);
 	}
 
-	protected ResourceLocation getTextureLocation(ProjectileRenderState entity) {
+	protected Identifier getTextureLocation(ProjectileRenderState entity) {
 		return LOCATION;
 	}
 

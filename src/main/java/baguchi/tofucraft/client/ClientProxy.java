@@ -16,7 +16,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FontDescription;
 import net.minecraft.network.chat.Style;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.joml.Quaternionf;
@@ -24,7 +24,7 @@ import org.joml.Quaternionf;
 import java.util.List;
 
 public class ClientProxy {
-	private static final FontDescription ALT_FONT = new FontDescription.Resource(ResourceLocation.withDefaultNamespace("alt"));
+	private static final FontDescription ALT_FONT = new FontDescription.Resource(Identifier.withDefaultNamespace("alt"));
 	private static final Style ALT_STYLE = Style.EMPTY.withFont(ALT_FONT);
 
 	public static final ClientProxy PROXY = new ClientProxy();
@@ -79,14 +79,14 @@ public class ClientProxy {
 
 			TofuPlayerAttachment attachment = player.getData(TofuAttachments.TOFU_PLAYER);
 			if (attachment.getLearning().stream().anyMatch(tofuLearningHolder -> {
-				return tofuLearningHolder.is(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "miso"));
+				return tofuLearningHolder.is(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "miso"));
 			})) {
 				list.add(new BookComponentDefinition(soysauce, TofuCraftReload.prefix("soysauce"), 15, 10, 10, 10));
 				list.add(new BookComponentDefinition(soysauce_desc, TofuCraftReload.prefix("soysauce_desc"), 15, 10, 10, 10));
 				list.add(new BookComponentDefinition(soysauce_desc2, TofuCraftReload.prefix("soysauce_desc2"), 15, 10, 10, 10));
 			}
 
-			Book book = new Book(list, 256, 182, 23, 13, 12, 27, TofuCraftReload.prefix("textures/gui/screen/book/book.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), ResourceLocation.withDefaultNamespace("textures/gui/sprites/widget/page_backward.png"), ResourceLocation.withDefaultNamespace("textures/gui/sprites/widget/page_forward.png"));
+			Book book = new Book(list, 256, 182, 23, 13, 12, 27, TofuCraftReload.prefix("textures/gui/screen/book/book.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), Identifier.withDefaultNamespace("textures/gui/sprites/widget/page_backward.png"), Identifier.withDefaultNamespace("textures/gui/sprites/widget/page_forward.png"));
 			Minecraft.getInstance().setScreen(new BookScreen(book));
 		}
 

@@ -8,14 +8,14 @@ import net.minecraft.client.gui.components.toasts.ToastManager;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.FormattedCharSequence;
 
 import java.util.List;
 
 public class LearningToast implements Toast {
-	private static final ResourceLocation BACKGROUND_SPRITE = ResourceLocation.withDefaultNamespace("toast/recipe");
+	private static final Identifier BACKGROUND_SPRITE = Identifier.withDefaultNamespace("toast/recipe");
 	private final Component description;
 	private long lastChanged;
 	private boolean changed;

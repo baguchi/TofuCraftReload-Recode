@@ -5,19 +5,19 @@ import baguchi.tofucraft.client.TofuModelLayers;
 import baguchi.tofucraft.client.model.FukumameThrowerModel;
 import baguchi.tofucraft.client.render.state.FukumameThrowerRenderState;
 import baguchi.tofucraft.entity.FukumameThrower;
-import net.minecraft.client.model.PiglinModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.monster.piglin.PiglinModel;
 import net.minecraft.client.renderer.entity.ArmorModelSet;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CrossbowItem;
 
 
 public class FukumameThrowerRenderer extends HumanoidMobRenderer<FukumameThrower, FukumameThrowerRenderState, FukumameThrowerModel> {
-	private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/piglin_fukumame_thrower.png");
+	private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/piglin_fukumame_thrower.png");
 
 	public FukumameThrowerRenderer(EntityRendererProvider.Context context) {
 		super(context, new FukumameThrowerModel(context.bakeLayer(TofuModelLayers.FUKUMAME_THROWER)), 0.5F);
@@ -47,7 +47,7 @@ public class FukumameThrowerRenderer extends HumanoidMobRenderer<FukumameThrower
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(FukumameThrowerRenderState p_110775_1_) {
+	public Identifier getTextureLocation(FukumameThrowerRenderState p_110775_1_) {
 		return TEXTURE;
 	}
 

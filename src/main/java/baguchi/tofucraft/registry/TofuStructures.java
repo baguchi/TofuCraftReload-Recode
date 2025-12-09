@@ -10,8 +10,8 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.Pools;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
@@ -44,45 +44,45 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class TofuStructures {
-	public static final ResourceKey<Structure> TOFU_CASTLE = ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle"));
-	public static final ResourceKey<Structure> TOFU_VILLAGE = ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village"));
-	public static final ResourceKey<Structure> ZUNDA_TOFU_VILLAGE = ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "zunda_tofu_village"));
-	public static final ResourceKey<Structure> TOFU_RUINS = ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_ruins"));
-	public static final ResourceKey<Structure> TOFU_MINESHAFT = ResourceKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft"));
+	public static final ResourceKey<Structure> TOFU_CASTLE = ResourceKey.create(Registries.STRUCTURE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle"));
+	public static final ResourceKey<Structure> TOFU_VILLAGE = ResourceKey.create(Registries.STRUCTURE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village"));
+	public static final ResourceKey<Structure> ZUNDA_TOFU_VILLAGE = ResourceKey.create(Registries.STRUCTURE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "zunda_tofu_village"));
+	public static final ResourceKey<Structure> TOFU_RUINS = ResourceKey.create(Registries.STRUCTURE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_ruins"));
+	public static final ResourceKey<Structure> TOFU_MINESHAFT = ResourceKey.create(Registries.STRUCTURE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft"));
 
-	public static final ResourceKey<StructureSet> TOFU_CASTLE_SET = ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle"));
-	public static final ResourceKey<StructureSet> TOFU_VILLAGE_SET = ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village"));
-	public static final ResourceKey<StructureSet> TOFU_RUINS_SET = ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_ruins"));
-	public static final ResourceKey<StructureSet> TOFU_MINESHAFT_SET = ResourceKey.create(Registries.STRUCTURE_SET, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft"));
+	public static final ResourceKey<StructureSet> TOFU_CASTLE_SET = ResourceKey.create(Registries.STRUCTURE_SET, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle"));
+	public static final ResourceKey<StructureSet> TOFU_VILLAGE_SET = ResourceKey.create(Registries.STRUCTURE_SET, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village"));
+	public static final ResourceKey<StructureSet> TOFU_RUINS_SET = ResourceKey.create(Registries.STRUCTURE_SET, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_ruins"));
+	public static final ResourceKey<StructureSet> TOFU_MINESHAFT_SET = ResourceKey.create(Registries.STRUCTURE_SET, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft"));
 
-	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_MAIN = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/main"));
-	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_MAIN_2 = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/main2"));
-	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_BRIDGE = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/bridge"));
-	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_REWARD_BRIDGE = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/reward_bridge"));
-	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_TOFU_GANDLEM = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/mob/tofu_gandlem"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_MAIN = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/main"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_MAIN_2 = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/main2"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_BRIDGE = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/bridge"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_REWARD_BRIDGE = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/reward_bridge"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_CASTLE_TOFU_GANDLEM = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_castle/mob/tofu_gandlem"));
 
-	public static final ResourceKey<StructureTemplatePool> TOFU_VILLAGE_STREETS = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/plains/streets"));
-	public static final ResourceKey<StructureTemplatePool> TOFU_VILLAGE_HOUSE = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/plains/house"));
-	public static final ResourceKey<StructureTemplatePool> TOFU_VILLAGE_TOWN_CENTERS = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/plains/town_centers"));
-
-
-	public static final ResourceKey<StructureTemplatePool> ZUNDA_TOFU_VILLAGE_STREETS = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/zunda/streets"));
-	public static final ResourceKey<StructureTemplatePool> ZUNDA_TOFU_VILLAGE_HOUSE = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/zunda/house"));
-	public static final ResourceKey<StructureTemplatePool> ZUNDA_TOFU_VILLAGE_TOWN_CENTERS = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/zunda/town_centers"));
-
-	public static final ResourceKey<StructureTemplatePool> TOFUNIAN = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/tofunian"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_VILLAGE_STREETS = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/plains/streets"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_VILLAGE_HOUSE = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/plains/house"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_VILLAGE_TOWN_CENTERS = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/plains/town_centers"));
 
 
-	public static final ResourceKey<StructureTemplatePool> TOFU_MINESHAFT_ROADS = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft/roads"));
-	public static final ResourceKey<StructureTemplatePool> TOFU_MINESHAFT_CENTERS = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft/centers"));
+	public static final ResourceKey<StructureTemplatePool> ZUNDA_TOFU_VILLAGE_STREETS = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/zunda/streets"));
+	public static final ResourceKey<StructureTemplatePool> ZUNDA_TOFU_VILLAGE_HOUSE = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/zunda/house"));
+	public static final ResourceKey<StructureTemplatePool> ZUNDA_TOFU_VILLAGE_TOWN_CENTERS = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/zunda/town_centers"));
+
+	public static final ResourceKey<StructureTemplatePool> TOFUNIAN = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_village/tofunian"));
 
 
-	public static final ResourceKey<StructureTemplatePool> TOFU_RUINS_START = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_ruins"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_MINESHAFT_ROADS = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft/roads"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_MINESHAFT_CENTERS = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft/centers"));
 
 
-	public static final ResourceKey<StructureProcessorList> TOFU_PLAIN_VILLAGE_ROAD = ResourceKey.create(Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_plain_village_road"));
-	public static final ResourceKey<StructureProcessorList> ZUNDA_FOREST_VILLAGE_ROAD = ResourceKey.create(Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "zunda_forest_village_road"));
-	public static final ResourceKey<StructureProcessorList> TOFU_MINESHAFT_PROCESSOR = ResourceKey.create(Registries.PROCESSOR_LIST, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft"));
+	public static final ResourceKey<StructureTemplatePool> TOFU_RUINS_START = ResourceKey.create(Registries.TEMPLATE_POOL, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_ruins"));
+
+
+	public static final ResourceKey<StructureProcessorList> TOFU_PLAIN_VILLAGE_ROAD = ResourceKey.create(Registries.PROCESSOR_LIST, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_plain_village_road"));
+	public static final ResourceKey<StructureProcessorList> ZUNDA_FOREST_VILLAGE_ROAD = ResourceKey.create(Registries.PROCESSOR_LIST, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "zunda_forest_village_road"));
+	public static final ResourceKey<StructureProcessorList> TOFU_MINESHAFT_PROCESSOR = ResourceKey.create(Registries.PROCESSOR_LIST, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_mineshaft"));
 
 
 	public static void bootstrapStructures(BootstrapContext<Structure> context) {
@@ -287,6 +287,6 @@ public class TofuStructures {
 	}
 
 	private static String name(String name) {
-		return ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name).toString();
+		return Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name).toString();
 	}
 }

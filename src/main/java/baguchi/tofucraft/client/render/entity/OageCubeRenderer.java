@@ -8,18 +8,18 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.state.SlimeRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
 public class OageCubeRenderer extends MobRenderer<OageCube, SlimeRenderState, OageCubeModel<SlimeRenderState>> {
-	private static final ResourceLocation MAGMACUBE_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/oage_cube.png");
+	private static final Identifier MAGMACUBE_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/oage_cube.png");
 
 	public OageCubeRenderer(EntityRendererProvider.Context p_174298_) {
 		super(p_174298_, new OageCubeModel<>(p_174298_.bakeLayer(TofuModelLayers.OAGE_CUBE)), 0.25F);
 	}
 
 
-	public ResourceLocation getTextureLocation(SlimeRenderState p_361835_) {
+	public Identifier getTextureLocation(SlimeRenderState p_361835_) {
 		return MAGMACUBE_LOCATION;
 	}
 

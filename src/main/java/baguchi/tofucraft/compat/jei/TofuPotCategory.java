@@ -1,4 +1,5 @@
 package baguchi.tofucraft.compat.jei;
+/*
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.TofuPotRecipe;
@@ -15,7 +16,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -26,7 +27,7 @@ import java.util.Optional;
 
 public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 
-	public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_pot");
+	public static final Identifier UID = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_pot");
 	protected final IDrawableAnimated arrow;
 	private final Component title;
 	private final IDrawable background;
@@ -34,7 +35,7 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 
 	public TofuPotCategory(IGuiHelper helper) {
 		title = Component.translatable("tofucraft.jei.tofu_pot");
-		ResourceLocation backgroundImage = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tofu_pot.png");
+		Identifier backgroundImage = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tofu_pot.png");
 		background = helper.createDrawable(backgroundImage, 37, 4, 112, 79);
 		icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(TofuBlocks.TOFU_POT.get()));
 		arrow = helper.drawableBuilder(backgroundImage, 176, 14, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
@@ -51,7 +52,7 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 	}
 
 	@Override
-	public ResourceLocation getRegistryName(TofuPotRecipe recipe) {
+	public Identifier getRegistryName(TofuPotRecipe recipe) {
 		return UID;
 	}
 
@@ -107,3 +108,4 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 		arrow.draw(stack, 103 - 37, 38 - 4);
 	}
 }
+*/

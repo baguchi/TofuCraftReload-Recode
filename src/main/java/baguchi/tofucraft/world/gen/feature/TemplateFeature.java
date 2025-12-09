@@ -3,7 +3,7 @@ package baguchi.tofucraft.world.gen.feature;
 import baguchi.tofucraft.registry.TofuTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
@@ -22,10 +22,10 @@ public class TemplateFeature extends Feature<NoneFeatureConfiguration> {
 
 	protected final int offsetZ;
 
-	private final ResourceLocation[] TEMPLATE;
+	private final Identifier[] TEMPLATE;
 
 
-	public TemplateFeature(Codec<NoneFeatureConfiguration> codec, int offsetX, int offsetZ, ResourceLocation[] template) {
+	public TemplateFeature(Codec<NoneFeatureConfiguration> codec, int offsetX, int offsetZ, Identifier[] template) {
 		super(codec);
 		this.offsetX = offsetX;
 		this.offsetZ = offsetZ;

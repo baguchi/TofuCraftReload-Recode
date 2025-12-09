@@ -7,10 +7,11 @@ import baguchi.tofucraft.registry.TofuProfessions;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.npc.villager.VillagerProfession;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -47,7 +48,7 @@ public class TofuVillagerTradeEvent {
 			trades5.add(new ItemsForEmeralds(TofuItems.CAPRESE.get(), 1, 4, 8, 30));
 		}
 
-		if (TofuProfessions.TOFU_CRAFTSMAN.is(event.getType())) {
+		if (TofuProfessions.TOFU_CRAFTSMAN.is(event.getType().identifier())) {
 			trades.add(new EmeraldForItems(TofuItems.SEEDS_SOYBEANS.get(), 16, 12, 1));
 			trades.add(new ItemsForEmeralds(TofuItems.TOFUGRILLED.get(), 1, 9, 8, 2));
 
@@ -105,7 +106,7 @@ public class TofuVillagerTradeEvent {
 			this.priceMultiplier = priceMultiplier;
 		}
 
-		public MerchantOffer getOffer(Entity p_35662_, RandomSource p_35663_) {
+		public MerchantOffer getOffer(ServerLevel serverLevel, Entity p_35662_, RandomSource p_35663_) {
 			ItemCost itemstack = new ItemCost(this.item, this.cost);
 			return new MerchantOffer(itemstack, new ItemStack(Items.EMERALD), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
@@ -144,7 +145,7 @@ public class TofuVillagerTradeEvent {
 			this.priceMultiplier = p_35763_;
 		}
 
-		public MerchantOffer getOffer(Entity p_35771_, RandomSource p_35772_) {
+		public MerchantOffer getOffer(ServerLevel serverLevel, Entity p_35771_, RandomSource p_35772_) {
 			return new MerchantOffer(new ItemCost(Items.EMERALD, this.emeraldCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
 	}

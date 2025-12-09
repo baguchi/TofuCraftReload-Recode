@@ -9,7 +9,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -57,7 +57,7 @@ public class DishItem extends Item {
 		var resultItem = super.finishUsingItem(itemStack, level, livingEntity);
 
 		if (this.comfortable) {
-			Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.fromNamespaceAndPath("farmersdelight", "comfort"));
+			Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.get(Identifier.fromNamespaceAndPath("farmersdelight", "comfort"));
 			FoodProperties foodProperties = itemStack.get(DataComponents.FOOD);
 			if (foodProperties != null && effect.isPresent()) {
 				livingEntity.addEffect(new MobEffectInstance(effect.get(), 600 * foodProperties.nutrition()));
@@ -76,7 +76,7 @@ public class DishItem extends Item {
 	@Override
 	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, TooltipDisplay p_399753_, Consumer<Component> p_399884_, TooltipFlag p_41424_) {
 		super.appendHoverText(p_41421_, p_339594_, p_399753_, p_399884_, p_41424_);
-		Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.fromNamespaceAndPath("farmersdelight", "comfort"));
+		Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.get(Identifier.fromNamespaceAndPath("farmersdelight", "comfort"));
 		if (effect.isPresent()) {
 			p_399884_.accept(Component.translatable("tofucraft.has_comfort").withStyle(ChatFormatting.GOLD));
 		}

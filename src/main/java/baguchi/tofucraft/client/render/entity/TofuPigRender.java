@@ -4,18 +4,18 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.render.layer.TofuPigTypeLayer;
 import baguchi.tofucraft.client.render.state.TofuPigRenderState;
 import baguchi.tofucraft.entity.TofuPig;
-import net.minecraft.client.model.PigModel;
+import net.minecraft.client.model.animal.pig.PigModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.AgeableMobRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.layers.SimpleEquipmentLayer;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
 
 
 public class TofuPigRender extends AgeableMobRenderer<TofuPig, TofuPigRenderState, PigModel> {
-	private static final ResourceLocation PIG_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_pig/tofu_pig.png");
+	private static final Identifier PIG_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_pig/tofu_pig.png");
 
 	public TofuPigRender(EntityRendererProvider.Context p_174304_) {
 		super(p_174304_, new PigModel(p_174304_.bakeLayer(ModelLayers.PIG)), new PigModel(p_174304_.bakeLayer(ModelLayers.PIG_BABY)), 0.5F);
@@ -45,7 +45,7 @@ public class TofuPigRender extends AgeableMobRenderer<TofuPig, TofuPigRenderStat
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(TofuPigRenderState p_114482_) {
+	public Identifier getTextureLocation(TofuPigRenderState p_114482_) {
 		return PIG_LOCATION;
 	}
 

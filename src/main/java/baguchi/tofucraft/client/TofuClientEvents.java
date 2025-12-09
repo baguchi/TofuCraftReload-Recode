@@ -13,7 +13,7 @@ import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.Mob;
@@ -34,8 +34,8 @@ import java.util.UUID;
 public class TofuClientEvents {
 	public static Map<UUID, Mob> BOSS_BARS = new HashMap<>();
 
-	public static final ResourceLocation GANDLEM_BOSS_BAR = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "boss_bar/tofu_gandlem_progress");
-	public static final ResourceLocation GANDLEM_BOSS_BAR_BACKGROUND = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "boss_bar/tofu_gandlem_background");
+	public static final Identifier GANDLEM_BOSS_BAR = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "boss_bar/tofu_gandlem_progress");
+	public static final Identifier GANDLEM_BOSS_BAR_BACKGROUND = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "boss_bar/tofu_gandlem_background");
 
 	@SubscribeEvent
 	public static void onClientTickEvent(ClientTickEvent.Post event) {
@@ -78,7 +78,7 @@ public class TofuClientEvents {
 	}
 
 	private static void drawBar(
-			GuiGraphics p_281657_, int p_283675_, int p_282498_, BossEvent p_281288_, int p_283619_, ResourceLocation p_296156_
+			GuiGraphics p_281657_, int p_283675_, int p_282498_, BossEvent p_281288_, int p_283619_, Identifier p_296156_
 	) {
 		p_281657_.blitSprite(RenderPipelines.GUI_TEXTURED, p_296156_, 182, 9, 0, 0, p_283675_, p_282498_, p_283619_, 9);
 	}

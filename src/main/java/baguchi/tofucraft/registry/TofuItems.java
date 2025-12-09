@@ -48,7 +48,6 @@ import baguchi.tofucraft.item.tool.ZundaBowItem;
 import baguchi.tofucraft.item.tool.ZundaMushroomOnAStickItem;
 import baguchi.tofucraft.utils.RecipeHelper;
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.BlockSource;
@@ -56,9 +55,10 @@ import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.Util;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -324,25 +324,37 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_ANKAKE = ITEMS.registerItem("tofu_ankake", (properties) -> new DishItem((properties).stacksTo(16).food(TofuFoods.TOFU_ANKAKE).usingConvertsTo(Items.BOWL)));
 
 
-	public static final DeferredHolder<Item, Item> TOFU_KINU_SWORD = ITEMS.registerItem("tofu_kinu_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.KINU, -0.9F, -0.5F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_KINU_AXE = ITEMS.registerItem("tofu_kinu_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.KINU, -0.9F, -0.5F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_KINU_PICKAXE = ITEMS.registerItem("tofu_kinu_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.KINU, -0.9F, -0.5F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_KINU_SHOVEL = ITEMS.registerItem("tofu_kinu_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.KINU, -0.9F, -0.5F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_KINU_HOE = ITEMS.registerItem("tofu_kinu_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.KINU, -0.9F, -0.5F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_SWORD = ITEMS.registerItem("tofu_kinu_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_SPEAR = ITEMS.registerItem(
+			"tofu_kinu_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.KINU, 0.3F, 0.1F, 0.75F, 20.0F, 20.0F, 8.0F, 5.1F, 15.0F, 4.6F)
+			));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_AXE = ITEMS.registerItem("tofu_kinu_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_PICKAXE = ITEMS.registerItem("tofu_kinu_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_SHOVEL = ITEMS.registerItem("tofu_kinu_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_KINU_HOE = ITEMS.registerItem("tofu_kinu_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.KINU, 0F, -0.5F, (properties.stacksTo(1))));
 
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SWORD = ITEMS.registerItem("tofu_momen_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.MOMEN, -0.85F, -1.4F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN_AXE = ITEMS.registerItem("tofu_momen_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.MOMEN, -0.85F, -1.4F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN_PICKAXE = ITEMS.registerItem("tofu_momen_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.MOMEN, -0.85F, -1.4F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SHOVEL = ITEMS.registerItem("tofu_momen_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.MOMEN, -0.85F, -1.4F, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN_HOE = ITEMS.registerItem("tofu_momen_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.MOMEN, -0.85F, -1.4F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SWORD = ITEMS.registerItem("tofu_momen_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SPEAR = ITEMS.registerItem(
+			"tofu_momen_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.MOMEN, 0.3F, 0.1F, 0.75F, 10.0F, 20.0F, 8.0F, 5.1F, 15.0F, 4.6F)
+			));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_AXE = ITEMS.registerItem("tofu_momen_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_PICKAXE = ITEMS.registerItem("tofu_momen_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_SHOVEL = ITEMS.registerItem("tofu_momen_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN_HOE = ITEMS.registerItem("tofu_momen_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.MOMEN, 0F, -1.4F, (properties.stacksTo(1))));
 
 	public static final DeferredHolder<Item, Item> TOFU_SOLID_SWORD = ITEMS.registerItem("tofu_solid_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.SOLID, 3, -2.3F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_SOLID_SPEAR = ITEMS.registerItem(
+			"tofu_solid_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.SOLID, 0.65F, 0.82F, 0.85F, 6.5F, 10.0F, 6F, 5.1F, 15F, 4.6F)
+			));
 	public static final DeferredHolder<Item, Item> TOFU_SOLID_AXE = ITEMS.registerItem("tofu_solid_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.SOLID, 6.0F, -2.9F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_SOLID_PICKAXE = ITEMS.registerItem("tofu_solid_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.SOLID, 1.0F, -2.8F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_SOLID_SHOVEL = ITEMS.registerItem("tofu_solid_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.SOLID, 1.5F, -2.7F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_SOLID_HOE = ITEMS.registerItem("tofu_solid_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.SOLID, -1.0F, 0.0F, (properties.stacksTo(1))));
 
 	public static final DeferredHolder<Item, Item> TOFU_METAL_SWORD = ITEMS.registerItem("tofu_metal_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.METAL, 3, -2.3F, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_METAL_SPEAR = ITEMS.registerItem(
+			"tofu_metal_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.METAL, 0.85F, 0.95F, 0.7F, 5.5F, 8.0F, 5.5F, 5.1F, 11.25F, 4.6F)
+			));
 	public static final DeferredHolder<Item, Item> TOFU_METAL_AXE = ITEMS.registerItem("tofu_metal_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.METAL, 6.0F, -2.9F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_METAL_PICKAXE = ITEMS.registerItem("tofu_metal_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.METAL, 1.0F, -2.8F, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_METAL_SHOVEL = ITEMS.registerItem("tofu_metal_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.METAL, 1.5F, -2.7F, (properties.stacksTo(1))));
@@ -351,6 +363,9 @@ public class TofuItems {
 
 
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SWORD = ITEMS.registerItem("tofu_diamond_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.TOFUDIAMOND, 3, -2.3F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SPEAR = ITEMS.registerItem(
+			"tofu_diamond_spear", (properties) -> new Item(properties.spear(TofuToolMaterials.TOFUDIAMOND, 1.05F, 1.2F, 0.6F, 4.5F, 7.0F, 5F, 5.1F, 10.75F, 4.6F)
+			));
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_AXE = ITEMS.registerItem("tofu_diamond_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.TOFUDIAMOND, 6.0F, -2.9F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_PICKAXE = ITEMS.registerItem("tofu_diamond_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.TOFUDIAMOND, 1.0F, -2.7F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SHOVEL = ITEMS.registerItem("tofu_diamond_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.TOFUDIAMOND, 1.5F, -2.9F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
@@ -496,37 +511,37 @@ public class TofuItems {
 	private static final ChatFormatting TITLE_FORMAT = ChatFormatting.GRAY;
 	private static final ChatFormatting DESCRIPTION_FORMAT = ChatFormatting.BLUE;
 
-	private static final Component TOFU_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_upgrade"))).withStyle(TITLE_FORMAT);
-	private static final Component TOFU_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMAT);
-	private static final Component TOFU_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
-	private static final Component TOFU_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.base_slot_description")));
+	private static final Component TOFU_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_upgrade"))).withStyle(TITLE_FORMAT);
+	private static final Component TOFU_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId("item", Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMAT);
+	private static final Component TOFU_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
+	private static final Component TOFU_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.tofu_upgrade.base_slot_description")));
 
-	private static final Component ZUNDA_BOW_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "zunda_upgrade"))).withStyle(TITLE_FORMAT);
+	private static final Component ZUNDA_BOW_UPGRADE = Component.translatable(Util.makeDescriptionId("upgrade", Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "zunda_upgrade"))).withStyle(TITLE_FORMAT);
 
-	private static final Component ZUNDA_BOW_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.zunda_bow_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMAT);
-	private static final Component ZUNDA_BOW_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.zunda_bow_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
-	private static final Component ZUNDA_BOW_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.zunda_bow_upgrade.base_slot_description")));
-
-
-	private static final ResourceLocation EMPTY_SLOT_HELMET = ResourceLocation.withDefaultNamespace("container/slot/helmet");
-	private static final ResourceLocation EMPTY_SLOT_CHESTPLATE = ResourceLocation.withDefaultNamespace("container/slot/chestplate");
-	private static final ResourceLocation EMPTY_SLOT_LEGGINGS = ResourceLocation.withDefaultNamespace("container/slot/leggings");
-	private static final ResourceLocation EMPTY_SLOT_BOOTS = ResourceLocation.withDefaultNamespace("container/slot/boots");
-	private static final ResourceLocation EMPTY_SLOT_HOE = ResourceLocation.withDefaultNamespace("container/slot/hoe");
-	private static final ResourceLocation EMPTY_SLOT_AXE = ResourceLocation.withDefaultNamespace("container/slot/axe");
-	private static final ResourceLocation EMPTY_SLOT_SWORD = ResourceLocation.withDefaultNamespace("container/slot/sword");
-	private static final ResourceLocation EMPTY_SLOT_SHOVEL = ResourceLocation.withDefaultNamespace("container/slot/shovel");
-	private static final ResourceLocation EMPTY_SLOT_PICKAXE = ResourceLocation.withDefaultNamespace("container/slot/pickaxe");
-	private static final ResourceLocation EMPTY_SLOT_INGOT = ResourceLocation.withDefaultNamespace("container/slot/ingot");
-	private static final ResourceLocation EMPTY_SLOT_BOW = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "container/slot/empty_slot_bow");
-	private static final ResourceLocation EMPTY_SLOT_ZUNDAMA = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "container/slot/empty_slot_zundama");
+	private static final Component ZUNDA_BOW_UPGRADE_APPLIES_TO = Component.translatable(Util.makeDescriptionId("item", Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.zunda_bow_upgrade.applies_to"))).withStyle(DESCRIPTION_FORMAT);
+	private static final Component ZUNDA_BOW_UPGRADE_INGREDIENTS = Component.translatable(Util.makeDescriptionId("item", Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.zunda_bow_upgrade.ingredients"))).withStyle(DESCRIPTION_FORMAT);
+	private static final Component ZUNDA_BOW_UPGRADE_BASE_SLOT_DESCRIPTION = Component.translatable(Util.makeDescriptionId("item", Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "smithing_template.zunda_bow_upgrade.base_slot_description")));
 
 
-	private static List<ResourceLocation> createTofuUpgradeIconList() {
+	private static final Identifier EMPTY_SLOT_HELMET = Identifier.withDefaultNamespace("container/slot/helmet");
+	private static final Identifier EMPTY_SLOT_CHESTPLATE = Identifier.withDefaultNamespace("container/slot/chestplate");
+	private static final Identifier EMPTY_SLOT_LEGGINGS = Identifier.withDefaultNamespace("container/slot/leggings");
+	private static final Identifier EMPTY_SLOT_BOOTS = Identifier.withDefaultNamespace("container/slot/boots");
+	private static final Identifier EMPTY_SLOT_HOE = Identifier.withDefaultNamespace("container/slot/hoe");
+	private static final Identifier EMPTY_SLOT_AXE = Identifier.withDefaultNamespace("container/slot/axe");
+	private static final Identifier EMPTY_SLOT_SWORD = Identifier.withDefaultNamespace("container/slot/sword");
+	private static final Identifier EMPTY_SLOT_SHOVEL = Identifier.withDefaultNamespace("container/slot/shovel");
+	private static final Identifier EMPTY_SLOT_PICKAXE = Identifier.withDefaultNamespace("container/slot/pickaxe");
+	private static final Identifier EMPTY_SLOT_INGOT = Identifier.withDefaultNamespace("container/slot/ingot");
+	private static final Identifier EMPTY_SLOT_BOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "container/slot/empty_slot_bow");
+	private static final Identifier EMPTY_SLOT_ZUNDAMA = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "container/slot/empty_slot_zundama");
+
+
+	private static List<Identifier> createTofuUpgradeIconList() {
 		return List.of(EMPTY_SLOT_HELMET, EMPTY_SLOT_SWORD, EMPTY_SLOT_CHESTPLATE, EMPTY_SLOT_PICKAXE, EMPTY_SLOT_LEGGINGS, EMPTY_SLOT_AXE, EMPTY_SLOT_BOOTS, EMPTY_SLOT_HOE, EMPTY_SLOT_SHOVEL);
 	}
 
-	private static List<ResourceLocation> createTofuUpgradeMaterialList() {
+	private static List<Identifier> createTofuUpgradeMaterialList() {
 		return List.of(EMPTY_SLOT_INGOT);
 	}
 
@@ -535,11 +550,11 @@ public class TofuItems {
 		return new SmithingTemplateItem(TOFU_UPGRADE_APPLIES_TO, TOFU_UPGRADE_INGREDIENTS, TOFU_UPGRADE_BASE_SLOT_DESCRIPTION, TOFU_UPGRADE, createTofuUpgradeMaterialList(), createTofuUpgradeIconList(), p_363106_.requiredFeatures(TofuCraftReload.EXPERIMENTAL));
 	}
 
-	private static List<ResourceLocation> createZundaBowUpgradeIconList() {
+	private static List<Identifier> createZundaBowUpgradeIconList() {
 		return List.of(EMPTY_SLOT_BOW);
 	}
 
-	private static List<ResourceLocation> createZundaBowUpgradeMaterialList() {
+	private static List<Identifier> createZundaBowUpgradeMaterialList() {
 		return List.of(EMPTY_SLOT_ZUNDAMA);
 	}
 

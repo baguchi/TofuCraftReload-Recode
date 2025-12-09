@@ -5,7 +5,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
@@ -63,7 +63,7 @@ public class BitternRecipeBuilder implements RecipeBuilder {
 				.requirements(AdvancementRequirements.Strategy.OR);
 		this.criteria.forEach(advancement$builder::addCriterion);
 		BitternRecipe recipe = new BitternRecipe(this.ingredient, this.extraIngredient, this.stackResult);
-		recipeOutput.accept(p_379998_, recipe, advancement$builder.build(p_379998_.location().withPrefix("recipes/bittern/")));
+		recipeOutput.accept(p_379998_, recipe, advancement$builder.build(p_379998_.identifier().withPrefix("recipes/bittern/")));
 
 	}
 

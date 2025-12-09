@@ -3,7 +3,7 @@ package baguchi.tofucraft.registry;
 import baguchi.tofucraft.TofuCraftReload;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -39,13 +39,13 @@ public class TofuSounds {
 	public static final Supplier<SoundEvent> TOFU_CHEST_CLOSE = createEvent("block.tofu_chest.close");
 
 	private static Supplier<SoundEvent> createEvent(String sound) {
-		ResourceLocation name = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, sound);
+		Identifier name = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, sound);
 		return SOUND_EVENTS.register(sound, () -> SoundEvent.createVariableRangeEvent(name));
 	}
 
 
 	private static Holder<SoundEvent> createHolderEvent(String sound) {
-		ResourceLocation name = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, sound);
+		Identifier name = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, sound);
 		return SOUND_EVENTS.register(sound, () -> SoundEvent.createVariableRangeEvent(name));
 	}
 }

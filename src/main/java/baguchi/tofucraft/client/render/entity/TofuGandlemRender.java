@@ -9,15 +9,15 @@ import baguchi.tofucraft.client.render.state.TofuGandlemRenderState;
 import baguchi.tofucraft.entity.TofuGandlem;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
 
 public class TofuGandlemRender extends MobRenderer<TofuGandlem, TofuGandlemRenderState, TofuGandlemModel<TofuGandlemRenderState>> {
-	private static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem.png");
-	private static final ResourceLocation SHOOTING_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_shooting.png");
+	private static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem.png");
+	private static final Identifier SHOOTING_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_shooting.png");
 
-	private static final ResourceLocation CHARGE_LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_charge.png");
+	private static final Identifier CHARGE_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_charge.png");
 
 	public TofuGandlemRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_, new TofuGandlemModel(p_173956_.bakeLayer(TofuModelLayers.TOFU_GANDLEM)), 0.5F);
@@ -62,7 +62,7 @@ public class TofuGandlemRender extends MobRenderer<TofuGandlem, TofuGandlemRende
 	}
 
 
-	public ResourceLocation getTextureLocation(TofuGandlemRenderState p_114029_) {
+	public Identifier getTextureLocation(TofuGandlemRenderState p_114029_) {
 		return p_114029_.charge || p_114029_.shoot ? SHOOTING_LOCATION : LOCATION;
 	}
 }

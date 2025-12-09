@@ -39,12 +39,12 @@ public class SaltFurnaceWaterPacket implements CustomPacketPayload, IPayloadHand
 
 	public void write(FriendlyByteBuf buffer) {
 		buffer.writeBlockPos(this.blockPos);
-		buffer.writeResourceLocation(BuiltInRegistries.FLUID.getKey(fluid));
+		buffer.writeIdentifier(BuiltInRegistries.FLUID.getKey(fluid));
 		buffer.writeInt(this.amount);
 	}
 
 	public SaltFurnaceWaterPacket(FriendlyByteBuf buffer) {
-		this(buffer.readBlockPos(), BuiltInRegistries.FLUID.getValue(buffer.readResourceLocation()), buffer.readInt());
+		this(buffer.readBlockPos(), BuiltInRegistries.FLUID.getValue(buffer.readIdentifier()), buffer.readInt());
 	}
 
 	public void handle(SaltFurnaceWaterPacket message, IPayloadContext context) {

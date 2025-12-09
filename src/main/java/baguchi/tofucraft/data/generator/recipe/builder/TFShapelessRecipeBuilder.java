@@ -6,13 +6,13 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.NonNullList;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -128,7 +128,7 @@ public class TFShapelessRecipeBuilder implements RecipeBuilder {
 
 	@Override
 	public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> id) {
-		this.ensureValid(id.location());
+		this.ensureValid(id.identifier());
 		Advancement.Builder advancement$builder = recipeOutput.advancement()
 				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
 				.rewards(AdvancementRewards.Builder.recipe(id))
@@ -141,13 +141,13 @@ public class TFShapelessRecipeBuilder implements RecipeBuilder {
 				this.ingredients,
 				this.tf
 		);
-		recipeOutput.accept(id, shapelessrecipe, advancement$builder.build(id.location().withPrefix("recipes/" + this.category.getSerializedName() + "/")));
+		recipeOutput.accept(id, shapelessrecipe, advancement$builder.build(id.identifier().withPrefix("recipes/" + this.category.getSerializedName() + "/")));
 	}
 
 	/**
 	 * Makes sure that this recipe is valid and obtainable.
 	 */
-	private void ensureValid(ResourceLocation id) {
+	private void ensureValid(Identifier id) {
 		if (this.criteria.isEmpty()) {
 			throw new IllegalStateException("No way of obtaining recipe " + id);
 		}

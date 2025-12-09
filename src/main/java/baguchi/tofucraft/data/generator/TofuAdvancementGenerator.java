@@ -15,21 +15,21 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.AdvancementType;
-import net.minecraft.advancements.critereon.BlockPredicate;
-import net.minecraft.advancements.critereon.ChangeDimensionTrigger;
-import net.minecraft.advancements.critereon.ConsumeItemTrigger;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.ItemUsedOnLocationTrigger;
-import net.minecraft.advancements.critereon.LocationPredicate;
-import net.minecraft.advancements.critereon.PlayerTrigger;
+import net.minecraft.advancements.criterion.BlockPredicate;
+import net.minecraft.advancements.criterion.ChangeDimensionTrigger;
+import net.minecraft.advancements.criterion.ConsumeItemTrigger;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.criterion.ItemUsedOnLocationTrigger;
+import net.minecraft.advancements.criterion.LocationPredicate;
+import net.minecraft.advancements.criterion.PlayerTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -46,7 +46,6 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 	 *
 	 * @param output             the target directory of the data generator
 	 * @param registries         a future of a lookup for registries and their objects
-	 * @param subProviders       the generators used to create the advancements
 	 */
 	public TofuAdvancementGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
 		super(output, registries, List.of(new TofuAdvancements()));
@@ -67,7 +66,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 					.display(TofuItems.SEEDS_SOYBEANS.get(),
 							Component.translatable("advancements.tofucraft.root.title"),
 							Component.translatable("advancements.tofucraft.root.desc"),
-							ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "gui/advancements/backgrounds/blocktofukinu"),
+							Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "gui/advancements/backgrounds/blocktofukinu"),
 							AdvancementType.TASK, true, true, false)
 					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuItems.SEEDS_SOYBEANS.get()))
 					.save(consumer, "tofucraft:root");

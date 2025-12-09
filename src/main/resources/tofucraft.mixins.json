@@ -19,6 +19,7 @@
   "minVersion": "0.8",
   "client": [
     "client.AbstractRecipeBookScreenAccessor",
+    "client.EntityHitboxDebugRendererMixin",
     "client.GuiAccessor",
     "client.RecipeBookComponentAccessor",
     "client.RecipeBookComponentMixin"

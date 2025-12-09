@@ -7,12 +7,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Pose;
 
 
 public class TofunianEyeLayer<T extends AbstractTofunianRenderState, M extends AbstractTofunianModel<T>> extends RenderLayer<T, M> {
-	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian_eye.png");
+	public static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian_eye.png");
 
 	public TofunianEyeLayer(RenderLayerParent<T, M> tofunianRender) {
 		super(tofunianRender);

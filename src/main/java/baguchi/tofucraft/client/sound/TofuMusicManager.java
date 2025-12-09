@@ -75,7 +75,7 @@ public class TofuMusicManager {
 		if (music != null) {
 			if (currentMusic != null) {
 				if (fade == null) {
-					if (!music.event().value().location().equals(currentMusic.getLocation()) && music.replaceCurrentMusic()) {
+					if (!music.sound().value().location().equals(currentMusic.getIdentifier()) && music.replaceCurrentMusic()) {
 						minecraft.getSoundManager().stop(currentMusic); // Non-copy, cancels vanilla music if Tofu music starts
 						nextSongDelay = Mth.nextInt(random, 0, music.minDelay() / 2);
 					}
@@ -107,9 +107,9 @@ public class TofuMusicManager {
 	public static void startPlaying(Music music) {
 		musicManager.stopPlaying(); // Non-copy, cancels vanilla music if Tofu music starts
 		if (isTofuBossMusic(music)) {
-			currentMusic = MusicSoundInstance.forBossMusic(music.event().value());
+			currentMusic = MusicSoundInstance.forBossMusic(music.sound().value());
 		} else {
-			currentMusic = MusicSoundInstance.forMusic(music.event().value());
+			currentMusic = MusicSoundInstance.forMusic(music.sound().value());
 		}
 		if (currentMusic.getSound() != SoundManager.EMPTY_SOUND) {
 			minecraft.getSoundManager().play(currentMusic);
@@ -157,7 +157,7 @@ public class TofuMusicManager {
 	}
 
 	public static boolean isTofuBossMusic(Music music) {
-		return music.event().is(TofuTags.SoundEvents.BOSS_MUSIC);
+		return music.sound().is(TofuTags.SoundEvents.BOSS_MUSIC);
 	}
 
 	public static boolean isTofuBossMusicActive() {

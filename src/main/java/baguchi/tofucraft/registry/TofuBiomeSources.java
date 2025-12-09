@@ -7,8 +7,8 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
@@ -18,7 +18,7 @@ import java.util.function.Function;
 public class TofuBiomeSources {
 	public static final ResourceKey<MultiNoiseBiomeSourceParameterList> TOFU_WORLD = registerPreset("tofu_world");
 
-	public static final MultiNoiseBiomeSourceParameterList.Preset TOFU_WORLD_PRESET = new MultiNoiseBiomeSourceParameterList.Preset(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world"), new MultiNoiseBiomeSourceParameterList.Preset.SourceProvider() {
+	public static final MultiNoiseBiomeSourceParameterList.Preset TOFU_WORLD_PRESET = new MultiNoiseBiomeSourceParameterList.Preset(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world"), new MultiNoiseBiomeSourceParameterList.Preset.SourceProvider() {
 		public <T> Climate.ParameterList<T> apply(Function<ResourceKey<Biome>, T> p_275530_) {
 			return generateTofuBiomes(p_275530_);
 		}
@@ -33,7 +33,7 @@ public class TofuBiomeSources {
 	}
 
 	private static ResourceKey<MultiNoiseBiomeSourceParameterList> registerPreset(String p_275281_) {
-		return ResourceKey.create(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, p_275281_));
+		return ResourceKey.create(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, p_275281_));
 	}
 
 	public static void bootstrapPreset(BootstrapContext<MultiNoiseBiomeSourceParameterList> p_275387_) {

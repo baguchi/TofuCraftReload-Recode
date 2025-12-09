@@ -1,5 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
+/*
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.TFCraftingRecipe;
@@ -17,7 +18,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -28,7 +29,7 @@ import java.util.Optional;
 
 public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
 
-	public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tf_craft");
+	public static final Identifier UID = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tf_craft");
 	protected final IDrawableAnimated arrow;
 	private final Component title;
 	private final IDrawable background;
@@ -36,7 +37,7 @@ public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
 
 	public TFRecipeCategory(IGuiHelper helper) {
 		title = Component.translatable("tofucraft.jei.tf_craft");
-		ResourceLocation backgroundImage = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tf_crafting_table.png");
+		Identifier backgroundImage = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tf_crafting_table.png");
 		background = helper.createDrawable(backgroundImage, 10, 12, 141, 63);
 		icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(TofuBlocks.TF_CRAFTING_TABLE.get()));
 		arrow = helper.drawableBuilder(backgroundImage, 176, 14, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
@@ -53,7 +54,7 @@ public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
 	}
 
 	@Override
-	public ResourceLocation getRegistryName(TFCraftingRecipe recipe) {
+	public Identifier getRegistryName(TFCraftingRecipe recipe) {
 		return UID;
 	}
 
@@ -115,3 +116,4 @@ public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
 
 
 }
+*/

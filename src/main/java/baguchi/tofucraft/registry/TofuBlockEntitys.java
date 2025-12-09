@@ -11,10 +11,10 @@ import baguchi.tofucraft.blockentity.tfenergy.TFCollectorBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFCraftingTableBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFOvenBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
-import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.Util;
 import net.minecraft.util.datafix.fixes.References;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -46,7 +46,7 @@ public class TofuBlockEntitys {
 			String p_58957_, BlockEntityType.BlockEntitySupplier<? extends T> p_362578_, Holder<Block>... p_364748_
 	) {
 
-		Util.fetchChoiceType(References.BLOCK_ENTITY, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, p_58957_).toString());
+		Util.fetchChoiceType(References.BLOCK_ENTITY, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, p_58957_).toString());
 		return BLOCK_ENTITIES.register(p_58957_, () -> new BlockEntityType<>(p_362578_, Set.copyOf(Arrays.stream(Objects.requireNonNull(p_364748_)).map(Holder::value).toList())));
 	}
 }

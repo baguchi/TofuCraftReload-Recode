@@ -1,5 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
+/*
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.screen.TFOvenScreen;
@@ -29,7 +30,7 @@ import mezz.jei.common.Internal;
 import mezz.jei.library.plugins.vanilla.gui.RecipeBookGuiHandler;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -37,7 +38,7 @@ import net.minecraft.world.level.block.Blocks;
 
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
-	public static final ResourceLocation PLUGIN_ID = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "jei_plugin");
+	public static final Identifier PLUGIN_ID = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "jei_plugin");
 
 	public static final IRecipeType<HardenRecipe> HARDEN_JEI_TYPE =
 			IRecipeType.create(TofuCraftReload.prefix("harden"), HardenRecipe.class);
@@ -122,8 +123,9 @@ public class JEIPlugin implements IModPlugin {
 	}
 
 	@Override
-	public ResourceLocation getPluginUid() {
+	public Identifier getPluginUid() {
 		return PLUGIN_ID;
 	}
 }
 
+*/

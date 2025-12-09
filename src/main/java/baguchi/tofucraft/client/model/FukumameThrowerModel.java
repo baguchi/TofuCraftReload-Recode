@@ -129,13 +129,13 @@ public class FukumameThrowerModel extends HumanoidModel<FukumameThrowerRenderSta
 		this.fukumame.visible = entity.getFukumameCount > 0;
 	}
 
-
-	protected void setupAttackAnimation(FukumameThrowerRenderState p_362671_, float p_103352_) {
+	@Override
+	protected void setupAttackAnimation(FukumameThrowerRenderState p_362671_) {
 		float f = p_362671_.attackTime;
 		if (f > 0.0F && p_362671_.armPose == PiglinArmPose.ATTACKING_WITH_MELEE_WEAPON) {
 			AnimationUtils.swingWeaponDown(this.rightArm, this.leftArm, p_362671_.mainArm, f, p_362671_.ageInTicks);
 		} else {
-			super.setupAttackAnimation(p_362671_, p_103352_);
+			super.setupAttackAnimation(p_362671_);
 		}
 	}
 

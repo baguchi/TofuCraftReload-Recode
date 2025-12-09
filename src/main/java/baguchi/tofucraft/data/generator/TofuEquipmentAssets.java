@@ -2,8 +2,8 @@ package baguchi.tofucraft.data.generator;
 
 import baguchi.tofucraft.TofuCraftReload;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 
@@ -25,7 +25,7 @@ public interface TofuEquipmentAssets {
 	}
 
 	static ResourceKey<EquipmentAsset> createId(String p_386630_) {
-		return ResourceKey.create(EquipmentAssets.ROOT_ID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, p_386630_));
+		return ResourceKey.create(EquipmentAssets.ROOT_ID, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, p_386630_));
 	}
 
 

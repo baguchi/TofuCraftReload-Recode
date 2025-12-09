@@ -1,7 +1,7 @@
 package baguchi.tofucraft;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackLocationInfo;
 import net.minecraft.server.packs.PackSelectionConfig;
 import net.minecraft.server.packs.PackType;
@@ -35,7 +35,7 @@ public class ModCommonEvents {
 		}*/
 
 		event.addPackFinders(
-				ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofucraft_extra"),
+				Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofucraft_extra"),
 
 				// What kind of resources are contained within this pack
 				// 'CLIENT_RESOURCES' for packs with client assets (resource packs)

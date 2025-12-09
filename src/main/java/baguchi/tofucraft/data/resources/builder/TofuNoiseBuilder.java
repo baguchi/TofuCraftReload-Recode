@@ -7,8 +7,8 @@ import baguchi.tofucraft.world.gen.TofuSurfaceRuleData;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.DensityFunctions;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
@@ -28,11 +28,11 @@ public class TofuNoiseBuilder {
 	}
 
 	private static ResourceKey<DensityFunction> createKey(String p_209537_) {
-		return ResourceKey.create(Registries.DENSITY_FUNCTION, ResourceLocation.parse(p_209537_));
+		return ResourceKey.create(Registries.DENSITY_FUNCTION, Identifier.parse(p_209537_));
 	}
 
 	private static ResourceKey<DensityFunction> createModKey(String p_209537_) {
-		return ResourceKey.create(Registries.DENSITY_FUNCTION, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, p_209537_));
+		return ResourceKey.create(Registries.DENSITY_FUNCTION, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, p_209537_));
 	}
 
 

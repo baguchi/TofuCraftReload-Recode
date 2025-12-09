@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "tofucraft:blocktofumomen",
+    "X": "#c:rods/wooden"
+  },
+  "pattern": [
+    "  #",
+    " X ",
+    "X  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:tofu_momen_spear"
+  }
+}

@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 
 public class NattoCobWebRenderState extends EntityRenderState {
 	public boolean isSpawning;
+	public boolean isSmall;
 	public Direction direction;
 	public final ItemStackRenderState item = new ItemStackRenderState();
 }

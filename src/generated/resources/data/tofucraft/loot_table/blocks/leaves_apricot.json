@@ -133,23 +133,25 @@
     },
     {
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chances": [
+            0.005,
+            0.0055555557,
+            0.00625,
+            0.008333334,
+            0.025
+          ],
+          "condition": "minecraft:table_bonus",
+          "enchantment": "minecraft:fortune"
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
           "conditions": [
             {
               "condition": "minecraft:survives_explosion"
-            },
-            {
-              "chances": [
-                0.005,
-                0.0055555557,
-                0.00625,
-                0.008333334,
-                0.025
-              ],
-              "condition": "minecraft:table_bonus",
-              "enchantment": "minecraft:fortune"
             }
           ],
           "name": "tofucraft:apricot"

@@ -1,7 +1,7 @@
 package baguchi.tofucraft.item.armor;
 
 import baguchi.tofucraft.api.tfenergy.IEnergyInsertable;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -24,7 +24,7 @@ public class TofuArmorItem extends Item implements IEnergyInsertable {
 		int i = (Integer) armorMaterial.defense().getOrDefault(p_371239_, 0);
 		ItemAttributeModifiers.Builder itemattributemodifiers$builder = ItemAttributeModifiers.builder();
 		EquipmentSlotGroup equipmentslotgroup = EquipmentSlotGroup.bySlot(p_371239_.getSlot());
-		ResourceLocation resourcelocation = ResourceLocation.withDefaultNamespace("armor." + p_371239_.getName());
+		Identifier resourcelocation = Identifier.withDefaultNamespace("armor." + p_371239_.getName());
 		itemattributemodifiers$builder.add(Attributes.ARMOR, new AttributeModifier(resourcelocation, (double) i, AttributeModifier.Operation.ADD_VALUE), equipmentslotgroup);
 		itemattributemodifiers$builder.add(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(resourcelocation, (double) armorMaterial.toughness(), AttributeModifier.Operation.ADD_VALUE), equipmentslotgroup);
 		if (armorMaterial.knockbackResistance() > 0.0F) {

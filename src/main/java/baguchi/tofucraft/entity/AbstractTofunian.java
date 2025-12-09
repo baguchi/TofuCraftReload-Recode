@@ -7,6 +7,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -24,7 +25,7 @@ import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.entity.npc.Npc;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.Merchant;
@@ -250,7 +251,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 
 	public SlotAccess getSlot(int p_149995_) {
 		int i = p_149995_ - 300;
-		return i >= 0 && i < this.inventory.getContainerSize() ? SlotAccess.forContainer(this.inventory, i) : super.getSlot(p_149995_);
+		return i >= 0 && i < this.inventory.getContainerSize() ? SlotAccess.forListElement(this.inventory.getItems(), i) : super.getSlot(p_149995_);
 	}
 
 	protected abstract void updateTrades();
@@ -267,14 +268,15 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 			}
 		}
 
-		for (Integer integer : set) {
-			VillagerTrades.ItemListing villagertrades$itemlisting = p_35279_[integer];
-			MerchantOffer merchantoffer = villagertrades$itemlisting.getOffer(this, this.random);
-			if (merchantoffer != null) {
-				p_35278_.add(merchantoffer);
+		if (this.level() instanceof ServerLevel serverLevel) {
+			for (Integer integer : set) {
+				VillagerTrades.ItemListing villagertrades$itemlisting = p_35279_[integer];
+				MerchantOffer merchantoffer = villagertrades$itemlisting.getOffer(serverLevel, this, this.random);
+				if (merchantoffer != null) {
+					p_35278_.add(merchantoffer);
+				}
 			}
 		}
-
 	}
 
 	public Vec3 getRopeHoldPosition(float p_35318_) {
@@ -302,6 +304,6 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 
 	@Override
 	public boolean stillValid(Player p_383034_) {
-		return this.getTradingPlayer() == p_383034_ && this.isAlive() && p_383034_.canInteractWithEntity(this, 4.0);
+		return this.getTradingPlayer() == p_383034_ && this.isAlive() && p_383034_.isWithinEntityInteractionRange(this, 4.0);
 	}
 }

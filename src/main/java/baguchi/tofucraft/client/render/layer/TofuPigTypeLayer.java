@@ -3,11 +3,11 @@ package baguchi.tofucraft.client.render.layer;
 import baguchi.tofucraft.client.render.state.TofuPigRenderState;
 import baguchi.tofucraft.entity.TofuPig;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.PigModel;
+import net.minecraft.client.model.animal.pig.PigModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 
 public class TofuPigTypeLayer extends RenderLayer<TofuPigRenderState, PigModel> {
@@ -23,12 +23,12 @@ public class TofuPigTypeLayer extends RenderLayer<TofuPigRenderState, PigModel> 
 		}
 	}
 
-	public ResourceLocation getTextureLocation(TofuPigRenderState entity) {
+	public Identifier getTextureLocation(TofuPigRenderState entity) {
 		String type = "";
 
 		if (entity.type != TofuPig.TofuPigType.NORMAL)
 			type = entity.type.name().toLowerCase();
-		return ResourceLocation.parse("tofucraft:textures/entity/tofu_pig/tofu_pig_" + type + ".png");
+		return Identifier.parse("tofucraft:textures/entity/tofu_pig/tofu_pig_" + type + ".png");
 	}
 
 }

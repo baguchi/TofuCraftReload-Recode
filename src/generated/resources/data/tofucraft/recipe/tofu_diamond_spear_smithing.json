@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "tofucraft:blocktofudiamond",
+  "base": "tofucraft:tofu_metal_spear",
+  "result": {
+    "id": "tofucraft:tofu_diamond_spear"
+  },
+  "template": "tofucraft:tofu_upgrade_smithing_template"
+}

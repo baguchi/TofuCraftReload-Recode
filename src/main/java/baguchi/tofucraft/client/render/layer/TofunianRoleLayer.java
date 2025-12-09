@@ -7,7 +7,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 
 public class TofunianRoleLayer extends RenderLayer<TofunianRenderState, TofunianModel<TofunianRenderState>> {
@@ -24,10 +24,10 @@ public class TofunianRoleLayer extends RenderLayer<TofunianRenderState, Tofunian
 		}
 	}
 
-	public ResourceLocation getTextureLocation(TofunianRenderState entity) {
+	public Identifier getTextureLocation(TofunianRenderState entity) {
 		String role = "";
 		if (entity.roles != Tofunian.Roles.TOFUNIAN)
 			role = entity.roles.name().toLowerCase();
-		return ResourceLocation.parse("tofucraft:textures/entity/tofunian/" + role + ".png");
+		return Identifier.parse("tofucraft:textures/entity/tofunian/" + role + ".png");
 	}
 }

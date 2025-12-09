@@ -3,16 +3,17 @@ package baguchi.tofucraft.client.render.layer;
 import baguchi.tofucraft.client.render.entity.TofuSlimeRender;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.SlimeModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.monster.slime.SlimeModel;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.SlimeRenderState;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 
 public class TofuSlimeOuterLayer<T extends SlimeRenderState> extends RenderLayer<T, SlimeModel> {
     private final SlimeModel model;
@@ -27,9 +28,9 @@ public class TofuSlimeOuterLayer<T extends SlimeRenderState> extends RenderLayer
         if (!p_360800_.isInvisible || flag) {
             VertexConsumer vertexconsumer;
             if (flag) {
-                vertexconsumer = p_117471_.getBuffer(RenderType.outline(TofuSlimeRender.LOCATION));
+				vertexconsumer = p_117471_.getBuffer(RenderTypes.outline(TofuSlimeRender.LOCATION));
             } else {
-                vertexconsumer = p_117471_.getBuffer(RenderType.entityTranslucent(TofuSlimeRender.LOCATION));
+				vertexconsumer = p_117471_.getBuffer(RenderTypes.entityTranslucent(TofuSlimeRender.LOCATION));
             }
 
             this.model.setupAnim(p_360800_);
@@ -43,9 +44,9 @@ public class TofuSlimeOuterLayer<T extends SlimeRenderState> extends RenderLayer
 		if (!t.isInvisible || flag) {
 			RenderType renderType;
 			if (flag) {
-				renderType = RenderType.outline(TofuSlimeRender.LOCATION);
+				renderType = RenderTypes.outline(TofuSlimeRender.LOCATION);
 			} else {
-				renderType = RenderType.entityTranslucent(TofuSlimeRender.LOCATION);
+				renderType = RenderTypes.entityTranslucent(TofuSlimeRender.LOCATION);
 			}
 
 			this.model.setupAnim(t);

@@ -5,7 +5,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
@@ -59,7 +59,7 @@ public class HardenRecipeBuilder implements RecipeBuilder {
 				.requirements(AdvancementRequirements.Strategy.OR);
 		this.criteria.forEach(advancement$builder::addCriterion);
 		HardenRecipe recipe = new HardenRecipe(this.ingredient, this.stackResult);
-		p_301266_.accept(p_126264_, recipe, advancement$builder.build(p_126264_.location().withPrefix("recipes/harden/")));
+		p_301266_.accept(p_126264_, recipe, advancement$builder.build(p_126264_.identifier().withPrefix("recipes/harden/")));
 	}
 
 	private void ensureValid(ResourceKey<Recipe<?>> p_126266_) {

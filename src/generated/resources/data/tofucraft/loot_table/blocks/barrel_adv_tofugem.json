@@ -8,62 +8,59 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "tofucraft:barrel_adv_tofugem",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "stat": "used"
+          }
+        },
+        {
+          "block": "tofucraft:barrel_adv_tofugem",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "stat": "used"
+          }
+        },
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "block": "tofucraft:barrel_adv_tofugem",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "stat": "used"
+            }
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "tofucraft:barrel_adv_tofugem",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "stat": "used"
-              }
-            }
-          ],
-          "functions": [
-            {
-              "add": false,
-              "count": 3.0,
-              "function": "minecraft:set_count"
-            }
-          ],
           "name": "tofucraft:adv_tofugem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:barrel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:barrel_adv_tofugem"
         }
       ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
+      "functions": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "block": "tofucraft:barrel_adv_tofugem",
-                  "condition": "minecraft:block_state_property",
-                  "properties": {
-                    "stat": "used"
-                  }
-                },
-                {
-                  "condition": "minecraft:survives_explosion"
-                }
-              ],
-              "name": "minecraft:barrel"
-            },
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:survives_explosion"
-                }
-              ],
-              "name": "tofucraft:barrel_adv_tofugem"
-            }
-          ]
+          "add": false,
+          "count": 3.0,
+          "function": "minecraft:set_count"
+        },
+        {
+          "add": false,
+          "count": 1.0,
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0

@@ -35,7 +35,7 @@ import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
-import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.monster.spider.Spider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -212,8 +212,8 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 	}
 
 	@Override
-	protected AABB getAttackBoundingBox() {
-		return super.getAttackBoundingBox().deflate(0.025F, 0, 0.025F);
+	protected AABB getAttackBoundingBox(double p_478648_) {
+		return super.getAttackBoundingBox(p_478648_).deflate(0.025F, 0, 0.025F);
 	}
 
 	static class TofuSpiderAttackGoal extends Goal {

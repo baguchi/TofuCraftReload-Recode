@@ -31,18 +31,15 @@ import baguchi.tofucraft.world.TofuData;
 import baguchi.tofucraft.world.TofuLevelData;
 import baguchi.tofucraft.world.TravelerTofunianSpawner;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.sounds.MusicInfo;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ExplosionParticleInfo;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
@@ -60,8 +57,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
-import net.minecraft.world.entity.animal.Fox;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.animal.equine.AbstractHorse;
+import net.minecraft.world.entity.animal.fox.Fox;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
@@ -72,7 +69,6 @@ import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TorchBlock;
@@ -85,7 +81,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.SelectMusicEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
@@ -141,7 +136,7 @@ public class CommonEvents {
 		TofuPlayerAttachment attachment = player.getData(TofuAttachments.TOFU_PLAYER);
 		if (player instanceof ServerPlayer serverPlayer) {
 			attachment.getLearning().forEach(learning -> {
-				PacketDistributor.sendToPlayer(serverPlayer, new AddLearningPacket(serverPlayer.getId(), learning.unwrap().left().get().location(), false));
+				PacketDistributor.sendToPlayer(serverPlayer, new AddLearningPacket(serverPlayer.getId(), learning.unwrap().left().get().identifier(), false));
 			});
 		}
 	}
@@ -152,7 +147,7 @@ public class CommonEvents {
 		TofuPlayerAttachment attachment = player.getData(TofuAttachments.TOFU_PLAYER);
 		if (player instanceof ServerPlayer serverPlayer) {
 			attachment.getLearning().forEach(learning -> {
-				PacketDistributor.sendToPlayer(serverPlayer, new AddLearningPacket(serverPlayer.getId(), learning.unwrap().left().get().location(), false));
+				PacketDistributor.sendToPlayer(serverPlayer, new AddLearningPacket(serverPlayer.getId(), learning.unwrap().left().get().identifier(), false));
 			});
 		}
 	}
@@ -163,7 +158,7 @@ public class CommonEvents {
 		TofuPlayerAttachment attachment = player.getData(TofuAttachments.TOFU_PLAYER);
 		if (player instanceof ServerPlayer serverPlayer) {
 			attachment.getLearning().forEach(learning -> {
-				PacketDistributor.sendToPlayer(serverPlayer, new AddLearningPacket(serverPlayer.getId(), learning.unwrap().left().get().location(), false));
+				PacketDistributor.sendToPlayer(serverPlayer, new AddLearningPacket(serverPlayer.getId(), learning.unwrap().left().get().identifier(), false));
 			});
 		}
 	}
@@ -176,7 +171,7 @@ public class CommonEvents {
 			if (event.isSweeping()) {
 
 
-				DamageSource damagesource = Optional.ofNullable(player.getWeaponItem().getItem().getDamageSource(player)).orElse(player.damageSources().playerAttack(player));
+				DamageSource damagesource = Optional.ofNullable(player.getWeaponItem().getItem().getItemDamageSource(player)).orElse(player.damageSources().playerAttack(player));
 
 			float f = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
 			float f2 = player.getAttackStrengthScale(0.5F);
@@ -208,9 +203,12 @@ public class CommonEvents {
 
 				player.level()
 						.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, player.getSoundSource(), 1.0F, 1.0F);
-				player.sweepAttack();
-
-			event.setSweeping(false);
+				double d0 = -Mth.sin(player.getYRot() * (float) (Math.PI / 180.0));
+				double d1 = Mth.cos(player.getYRot() * (float) (Math.PI / 180.0));
+				if (player.level() instanceof ServerLevel serverLevel) {
+					serverLevel.sendParticles(ParticleTypes.SWEEP_ATTACK, player.getX() + d0, player.getY(0.5), player.getZ() + d1, 0, d0, 0.0, d1, 0.0);
+				}
+				event.setSweeping(false);
 			}
 		}
 	}
@@ -239,22 +237,6 @@ public class CommonEvents {
 
 	}
 
-	@SubscribeEvent
-	public static void onMusicPlayed(SelectMusicEvent event) {
-		if (Minecraft.getInstance().level != null && Minecraft.getInstance().player != null) {
-			Holder<Biome> biome = Minecraft.getInstance().player.level().getBiome(Minecraft.getInstance().player.blockPosition());
-			if (Minecraft.getInstance().level.dimension() == TofuDimensions.tofu_world) {
-				Optional<WeightedList<Music>> musicInfo = biome.value().getBackgroundMusic();
-
-				if (!musicInfo.isEmpty()) {
-					Optional<Music> musicInfo1 = musicInfo.get().getRandom(Minecraft.getInstance().level.random);
-					if (!musicInfo1.isEmpty()) {
-						event.setMusic(new MusicInfo(musicInfo1.get()));
-					}
-				}
-			}
-		}
-	}
 	protected static BlockHitResult getPlayerPOVHitResult(Level p_41436_, Player p_41437_, ClipContext.Fluid p_41438_) {
 		Vec3 vec3 = p_41437_.getEyePosition();
 		Vec3 vec31 = vec3.add(p_41437_.calculateViewVector(p_41437_.getXRot(), p_41437_.getYRot()).scale(p_41437_.blockInteractionRange()));
@@ -512,7 +494,7 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onWorldLoad(LevelEvent.Load event) {
-		if (event.getLevel() instanceof ServerLevel level && level.dimensionTypeRegistration().is(TofuDimensions.tofu_world.location())) {
+		if (event.getLevel() instanceof ServerLevel level && level.dimensionTypeRegistration().is(TofuDimensions.tofu_world.identifier())) {
 			TofuLevelData levelData = new TofuLevelData(level.getServer().getWorldData(), level.getServer().getWorldData().overworldData());
 			level.serverLevelData = levelData;
 			level.levelData = levelData;
@@ -532,16 +514,16 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onServerAboutToStartEvent(ServerStartedEvent event) {
 		// SETUP Tofu Worker House
-		JigsawHelper.registerJigsaw(event.getServer(), ResourceLocation.parse("minecraft:village/plains/houses"),
-				ResourceLocation.parse("tofucraft:village/tofu_craftsman_house_plains_1"), 10);
-		JigsawHelper.registerJigsaw(event.getServer(), ResourceLocation.parse("minecraft:village/taiga/houses"),
-				ResourceLocation.parse("tofucraft:village/tofu_craftsman_house_taiga_1"), 10);
-		JigsawHelper.registerJigsaw(event.getServer(), ResourceLocation.parse("minecraft:village/savanna/houses"),
-				ResourceLocation.parse("tofucraft:village/tofu_craftsman_house_savanna_1"), 10);
-		JigsawHelper.registerJigsaw(event.getServer(), ResourceLocation.parse("minecraft:village/snowy/houses"),
-				ResourceLocation.parse("tofucraft:village/tofu_craftsman_house_snowy_1"), 10);
-		JigsawHelper.registerJigsaw(event.getServer(), ResourceLocation.parse("minecraft:village/desert/houses"),
-				ResourceLocation.parse("tofucraft:village/tofu_craftsman_house_desert_1"), 10);
+		JigsawHelper.registerJigsaw(event.getServer(), Identifier.parse("minecraft:village/plains/houses"),
+				Identifier.parse("tofucraft:village/tofu_craftsman_house_plains_1"), 10);
+		JigsawHelper.registerJigsaw(event.getServer(), Identifier.parse("minecraft:village/taiga/houses"),
+				Identifier.parse("tofucraft:village/tofu_craftsman_house_taiga_1"), 10);
+		JigsawHelper.registerJigsaw(event.getServer(), Identifier.parse("minecraft:village/savanna/houses"),
+				Identifier.parse("tofucraft:village/tofu_craftsman_house_savanna_1"), 10);
+		JigsawHelper.registerJigsaw(event.getServer(), Identifier.parse("minecraft:village/snowy/houses"),
+				Identifier.parse("tofucraft:village/tofu_craftsman_house_snowy_1"), 10);
+		JigsawHelper.registerJigsaw(event.getServer(), Identifier.parse("minecraft:village/desert/houses"),
+				Identifier.parse("tofucraft:village/tofu_craftsman_house_desert_1"), 10);
 	}
 
 	@SubscribeEvent

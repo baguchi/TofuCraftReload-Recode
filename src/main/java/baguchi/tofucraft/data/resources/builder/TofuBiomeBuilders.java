@@ -6,7 +6,6 @@ import baguchi.tofucraft.world.biome.TofuBiomeDefaultFeatures;
 import baguchi.tofucraft.world.gen.placement.TofuWorldPlacements;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.sounds.Music;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
@@ -30,14 +29,10 @@ public class TofuBiomeBuilders {
 				0.8F,
 				0.0F,
 				new BiomeSpecialEffects.Builder()
-						.fogColor(0xAFFFCA)
-						.skyColor(0xFFFFFF)
 						.waterColor(0xDCF6E5)
-						.waterFogColor(0x6ACF8D)
 						.grassColorOverride(7115607)
 						.foliageColorOverride(7115607)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
-						.backgroundMusic(new Music(TofuSounds.GREEN_BRANCH_BGM, 12000, 24000, false))
 						.build(),
 				builder1.build(),
 				builder.build(),
@@ -144,14 +139,10 @@ public class TofuBiomeBuilders {
 				0.8F,
 				0.0F,
 				new BiomeSpecialEffects.Builder()
-						.fogColor(0x93_93_bc)
-						.skyColor(0xFFFFFF)
 						.waterColor(0xBBDAF0)
-						.waterFogColor(0x6099C0)
 						.grassColorOverride(7115607)
 						.foliageColorOverride(7115607)
 						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
-						.backgroundMusic(new Music(soundEvent, 12000, 24000, false))
 						.build(),
 				mobSpawnSetting.build(),
 				builder.build(),

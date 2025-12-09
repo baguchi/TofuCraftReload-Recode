@@ -42,7 +42,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -84,13 +84,13 @@ import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.village.ReputationEventType;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.AbstractIllager;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Vex;
 import net.minecraft.world.entity.monster.Zoglin;
-import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.entity.npc.VillagerData;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.monster.illager.AbstractIllager;
+import net.minecraft.world.entity.monster.zombie.Zombie;
+import net.minecraft.world.entity.npc.villager.VillagerData;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.variant.VariantUtils;
 import net.minecraft.world.food.FoodProperties;
@@ -317,7 +317,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 
 	@Nullable
-	public ResourceLocation getClothTexture() {
+	public Identifier getClothTexture() {
 		TofunianClothVariant tofunianClothVariant = this.getVariant().value();
 		if (this.getVariant().is(TofunianClothVariants.NORMAL)) {
 			return null;
@@ -326,7 +326,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	@Nullable
-	public ResourceLocation getTexture() {
+	public Identifier getTexture() {
 		TofunianVariant tofunianVariant = this.getTofunianVariant().value();
 		return tofunianVariant.texture();
 	}

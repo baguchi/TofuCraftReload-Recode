@@ -8,7 +8,7 @@ import baguchi.tofucraft.fluid.SoyMilkHellFluid;
 import baguchi.tofucraft.fluid.SoyMilkSoulFluid;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
@@ -38,11 +38,11 @@ public class TofuFluids {
 	public static final DeferredHolder<Fluid, FlowingFluid> DOUBANJIANG = FLUIDS.register("doubanjiang", () -> new DoubanjiangFluid.Source());
 	public static final DeferredHolder<Fluid, FlowingFluid> DOUBANJIANG_FLOW = FLUIDS.register("doubanjiang_flow", () -> new DoubanjiangFluid.Flowing());
 
-	public static final DeferredHolder<Fluid, Fluid> CRIMSON = DeferredHolder.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "crimson"));
-	public static final DeferredHolder<Fluid, Fluid> FLOWING_CRIMSON = DeferredHolder.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "flowing_crimson"));
+	public static final DeferredHolder<Fluid, Fluid> CRIMSON = DeferredHolder.create(Registries.FLUID, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "crimson"));
+	public static final DeferredHolder<Fluid, Fluid> FLOWING_CRIMSON = DeferredHolder.create(Registries.FLUID, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "flowing_crimson"));
 
-	public static final DeferredHolder<Fluid, Fluid> WARPED = DeferredHolder.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "warped"));
-	public static final DeferredHolder<Fluid, Fluid> FLOWING_WARPED = DeferredHolder.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "flowing_warped"));
+	public static final DeferredHolder<Fluid, Fluid> WARPED = DeferredHolder.create(Registries.FLUID, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "warped"));
+	public static final DeferredHolder<Fluid, Fluid> FLOWING_WARPED = DeferredHolder.create(Registries.FLUID, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "flowing_warped"));
 
 
 	public static void registerFluids(RegisterEvent event) {

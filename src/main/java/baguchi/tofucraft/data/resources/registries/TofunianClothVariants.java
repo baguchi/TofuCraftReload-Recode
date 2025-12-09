@@ -10,13 +10,13 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
 public class TofunianClothVariants {
-	public static final ResourceKey<Registry<TofunianClothVariant>> TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian_cloth_variant"));
+	public static final ResourceKey<Registry<TofunianClothVariant>> TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY = ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian_cloth_variant"));
 
 	public static final ResourceKey<TofunianClothVariant> NORMAL = createKey("normal");
 	public static final ResourceKey<TofunianClothVariant> ZUNDA = createKey("zunda");
@@ -24,7 +24,7 @@ public class TofunianClothVariants {
 	public static final ResourceKey<TofunianClothVariant> DEFAULT = NORMAL;
 
 	private static ResourceKey<TofunianClothVariant> createKey(String name) {
-		return ResourceKey.create(TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY, ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+		return ResourceKey.create(TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
 	}
 
 	static void register(BootstrapContext<TofunianClothVariant> context, ResourceKey<TofunianClothVariant> key, String name, ResourceKey<Biome> biomeResourceKey) {
@@ -36,7 +36,7 @@ public class TofunianClothVariants {
 	}
 
 	static void register(BootstrapContext<TofunianClothVariant> context, ResourceKey<TofunianClothVariant> key, String name, HolderSet<Biome> biomeHolderSet) {
-		ResourceLocation resourcelocation = TofuCraftReload.prefix("entity/tofunian/cloth/" + name);
+		Identifier resourcelocation = TofuCraftReload.prefix("entity/tofunian/cloth/" + name);
 		context.register(key, new TofunianClothVariant(resourcelocation, biomeHolderSet));
 	}
 

@@ -5,7 +5,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,7 +28,7 @@ public class NourishmentItem extends Item {
 	@Override
 	public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemStack, @NotNull Level level, @NotNull LivingEntity livingEntity) {
 		var resultItem = super.finishUsingItem(itemStack, level, livingEntity);
-		Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.get(ResourceLocation.fromNamespaceAndPath("farmersdelight", "nourishment"));
+		Optional<Holder.Reference<MobEffect>> effect = BuiltInRegistries.MOB_EFFECT.get(Identifier.fromNamespaceAndPath("farmersdelight", "nourishment"));
 		if (effect.isPresent()) {
 			FoodProperties foodProperties = itemStack.get(DataComponents.FOOD);
 			if (foodProperties != null && effect.isPresent()) {
@@ -43,7 +43,7 @@ public class NourishmentItem extends Item {
 	@Override
 	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, TooltipDisplay p_399753_, Consumer<Component> p_399884_, TooltipFlag p_41424_) {
 		super.appendHoverText(p_41421_, p_339594_, p_399753_, p_399884_, p_41424_);
-		MobEffect effect = BuiltInRegistries.MOB_EFFECT.getValue(ResourceLocation.fromNamespaceAndPath("farmersdelight", "nourishment"));
+		MobEffect effect = BuiltInRegistries.MOB_EFFECT.getValue(Identifier.fromNamespaceAndPath("farmersdelight", "nourishment"));
 		if (effect != null) {
 			p_399884_.accept(Component.translatable("tofucraft.has_nourishment").withStyle(ChatFormatting.GOLD));
 		}

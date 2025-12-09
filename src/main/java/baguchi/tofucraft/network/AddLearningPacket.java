@@ -10,7 +10,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
@@ -27,17 +27,17 @@ public class AddLearningPacket implements CustomPacketPayload, IPayloadHandler<A
 
 
 	private int entityId;
-	private ResourceLocation learning;
+	private Identifier learning;
 	private boolean makeToast;
 
 
-	public AddLearningPacket(int id, ResourceLocation learning, boolean toast) {
+	public AddLearningPacket(int id, Identifier learning, boolean toast) {
 		this.entityId = id;
 		this.learning = learning;
 		this.makeToast = toast;
 	}
 
-	public AddLearningPacket(Entity entity, ResourceLocation learning, boolean toast) {
+	public AddLearningPacket(Entity entity, Identifier learning, boolean toast) {
 		this.entityId = entity.getId();
 		this.learning = learning;
 		this.makeToast = toast;
@@ -45,7 +45,7 @@ public class AddLearningPacket implements CustomPacketPayload, IPayloadHandler<A
 
 	public void write(FriendlyByteBuf buffer) {
 		buffer.writeInt(this.entityId);
-		buffer.writeResourceLocation(this.learning);
+		buffer.writeIdentifier(this.learning);
 		buffer.writeBoolean(this.makeToast);
 	}
 
@@ -55,7 +55,7 @@ public class AddLearningPacket implements CustomPacketPayload, IPayloadHandler<A
 	}
 
 	public AddLearningPacket(FriendlyByteBuf buffer) {
-		this(buffer.readInt(), buffer.readResourceLocation(), buffer.readBoolean());
+		this(buffer.readInt(), buffer.readIdentifier(), buffer.readBoolean());
 	}
 
 	@Override

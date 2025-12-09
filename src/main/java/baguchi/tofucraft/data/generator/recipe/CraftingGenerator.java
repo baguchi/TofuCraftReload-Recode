@@ -50,6 +50,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuDiamondSmithing(this.output, TofuItems.TOFU_METAL_AXE.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_AXE);
 		tofuDiamondSmithing(this.output, TofuItems.TOFU_METAL_SHOVEL.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_SHOVEL);
 		tofuDiamondSmithing(this.output, TofuItems.TOFU_METAL_HOE.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_HOE);
+		tofuDiamondSmithing(this.output, TofuItems.TOFU_METAL_SPEAR.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_SPEAR);
 
 
 		tofuDiamondSmithing(this.output, TofuItems.TOFU_METAL_HELMET.get(), RecipeCategory.COMBAT, TofuItems.TOFU_DIAMOND_HELMET);
@@ -155,6 +156,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		axeItem(this.output, "tofu_metal_axe", TofuItems.TOFU_METAL_AXE, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
 		shovelItem(this.output, "tofu_metal_shovel", TofuItems.TOFU_METAL_SHOVEL, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
 		hoeItem(this.output, "tofu_metal_hoe", TofuItems.TOFU_METAL_HOE, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
+		spearItem(this.output, "tofu_metal_spear", TofuItems.TOFU_METAL_SPEAR, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
 
 		helmetItem(this.output, "tofu_solid_helmet", TofuItems.ARMOR_TOFU_SOLIDHELMET, TofuBlocks.ISHITOFU);
 		chestplateItem(this.output, "tofu_solid_chestplate", TofuItems.ARMOR_TOFU_SOLIDCHESTPLATE, TofuBlocks.ISHITOFU);
@@ -166,12 +168,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 		axeItem(this.output, "tofu_solid_axe", TofuItems.TOFU_SOLID_AXE, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 		shovelItem(this.output, "tofu_solid_shovel", TofuItems.TOFU_SOLID_SHOVEL, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 		hoeItem(this.output, "tofu_solid_hoe", TofuItems.TOFU_SOLID_HOE, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
+		spearItem(this.output, "tofu_solid_spear", TofuItems.TOFU_SOLID_SPEAR, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 
 		swordItem(this.output, "tofu_solid_sword_terrain", TofuItems.TOFU_SOLID_SWORD, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
 		pickaxeItem(this.output, "tofu_solid_pickaxe_terrain", TofuItems.TOFU_SOLID_PICKAXE, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
 		axeItem(this.output, "tofu_solid_axe_terrain", TofuItems.TOFU_SOLID_AXE, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
 		shovelItem(this.output, "tofu_solid_shovel_terrain", TofuItems.TOFU_SOLID_SHOVEL, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
 		hoeItem(this.output, "tofu_solid_hoe_terrain", TofuItems.TOFU_SOLID_HOE, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
+		spearItem(this.output, "tofu_solid_spear_terrain", TofuItems.TOFU_SOLID_SPEAR, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
 
 		swordItem(this.output, "tofu_solid_sword_slate", TofuItems.TOFU_SOLID_SWORD, TofuBlocks.TOFUSLATE, Tags.Items.RODS_WOODEN);
 		pickaxeItem(this.output, "tofu_solid_pickaxe_slate", TofuItems.TOFU_SOLID_PICKAXE, TofuBlocks.TOFUSLATE, Tags.Items.RODS_WOODEN);
@@ -189,6 +193,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		axeItem(this.output, "tofu_momen_axe", TofuItems.TOFU_MOMEN_AXE, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
 		shovelItem(this.output, "tofu_momen_shovel", TofuItems.TOFU_MOMEN_SHOVEL, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
 		hoeItem(this.output, "tofu_momen_hoe", TofuItems.TOFU_MOMEN_HOE, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
+		spearItem(this.output, "tofu_momen_spear", TofuItems.TOFU_MOMEN_SPEAR, TofuBlocks.MOMENTOFU, Tags.Items.RODS_WOODEN);
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.TOFU_METAL_SHEARS.get())
 				.pattern(" #")
@@ -215,6 +220,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		axeItem(this.output, "tofu_kinu_axe", TofuItems.TOFU_KINU_AXE, TofuBlocks.KINUTOFU, Tags.Items.RODS_WOODEN);
 		shovelItem(this.output, "tofu_kinu_shovel", TofuItems.TOFU_KINU_SHOVEL, TofuBlocks.KINUTOFU, Tags.Items.RODS_WOODEN);
 		hoeItem(this.output, "tofu_kinu_hoe", TofuItems.TOFU_KINU_HOE, TofuBlocks.KINUTOFU, Tags.Items.RODS_WOODEN);
+		spearItem(this.output, "tofu_kinu_spear", TofuItems.TOFU_KINU_SPEAR, TofuBlocks.KINUTOFU, Tags.Items.RODS_WOODEN);
 
 
 		ladderItem(this.output, TofuBlocks.TOFULADDER_KINU, TofuItems.TOFUKINU);

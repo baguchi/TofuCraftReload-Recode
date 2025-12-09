@@ -9,7 +9,9 @@ import baguchi.tofucraft.block.utils.WeightBaseBlock;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuDataComponents;
 import baguchi.tofucraft.registry.TofuItems;
-import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.advancements.criterion.BlockPredicate;
+import net.minecraft.advancements.criterion.LocationPredicate;
+import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -17,9 +19,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -38,12 +39,12 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
+import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.neoforged.fml.util.ObfuscationReflectionHelper;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -89,9 +90,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 		LootItemCondition.Builder pale = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN_PALE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanPaleCropsBlock.AGE, 3));
 		LootItemCondition.Builder pale_glow = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.SOYBEAN_PALE.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanPaleCropsBlock.AGE, 3).hasProperty(SoybeanPaleCropsBlock.BLOOM, true));
 
-		add(TofuBlocks.SOYBEAN_PALE.get(), applyExplosionDecay(TofuBlocks.SOYBEAN_PALE.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_PALE_GLOW.get()).when(pale_glow).otherwise(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_PALE.get()))))
-				.withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_PALE_GLOW.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3)).when(pale_glow)
-						.otherwise(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_PALE.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3)))))));
+		add(TofuBlocks.SOYBEAN_PALE.get(), applyExplosionDecay(TofuBlocks.SOYBEAN_PALE.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_PALE.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3).when(pale))).add(LootItem.lootTableItem(TofuItems.SEEDS_SOYBEANS_PALE_GLOW.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))
+		))));
 
 		LootItemCondition.Builder lootitemcondition$builder4 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.LEEK_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoybeanCropsBlock.AGE, 3));
 
@@ -313,7 +313,6 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.SPROUTSJAR.get());
 		dropSelf(TofuBlocks.MORIJIO.get());
 		add(TofuBlocks.FOODPLATE.get(), this::createFoodPlateDrop);
-		;
 		dropSelf(TofuBlocks.ZUNDAMA_BLOCK.get());
 
 		dropSelf(TofuBlocks.RICE_BLOCK.get());
@@ -326,23 +325,23 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		LootItemCondition.Builder miso = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISO.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MisoBarrelBlock.STAT, WeightBaseBlock.Stat.USED));
 
-		add(TofuBlocks.BARREL_MISO.get(), applyExplosionDecay(TofuBlocks.BARREL_MISO.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.MISO.get()).when(miso).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(miso).when(ExplosionCondition.survivesExplosion()).otherwise(LootItem.lootTableItem(TofuBlocks.BARREL_MISO.get()).when(ExplosionCondition.survivesExplosion()))))));
+		add(TofuBlocks.BARREL_MISO.get(), applyExplosionDecay(TofuBlocks.BARREL_MISO.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.MISO.get())).when(miso).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))).when(miso).when(ExplosionCondition.survivesExplosion())).withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuBlocks.BARREL_MISO)).when(InvertedLootItemCondition.invert(miso)).when(ExplosionCondition.survivesExplosion())));
 
 		LootItemCondition.Builder miso_tofu = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_MISOTOFU.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
 
-		add(TofuBlocks.BARREL_MISOTOFU.get(), applyExplosionDecay(TofuBlocks.BARREL_MISOTOFU.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFUMISO.get()).when(miso_tofu).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(miso_tofu).when(ExplosionCondition.survivesExplosion()).otherwise(LootItem.lootTableItem(TofuBlocks.BARREL_MISOTOFU.get()).when(ExplosionCondition.survivesExplosion()))))));
+		add(TofuBlocks.BARREL_MISOTOFU.get(), applyExplosionDecay(TofuBlocks.BARREL_MISOTOFU.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFUMISO.get())).when(miso_tofu).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL)).when(miso_tofu).when(ExplosionCondition.survivesExplosion())).withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuBlocks.BARREL_MISOTOFU)).when(InvertedLootItemCondition.invert(miso_tofu)).when(ExplosionCondition.survivesExplosion())));
 
 		LootItemCondition.Builder natto = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.NATTOBED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
 
-		add(TofuBlocks.NATTOBED.get(), applyExplosionDecay(TofuBlocks.NATTOBED.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.NATTO.get()).when(natto).apply(SetItemCountFunction.setCount(ConstantValue.exactly(6.0F)))))));
+		add(TofuBlocks.NATTOBED.get(), applyExplosionDecay(TofuBlocks.NATTOBED.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.NATTO.get())).when(natto).apply(SetItemCountFunction.setCount(ConstantValue.exactly(6.0F))))));
 
 		LootItemCondition.Builder nether_natto = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.NETHER_NATTOBED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
 
-		add(TofuBlocks.NETHER_NATTOBED.get(), applyExplosionDecay(TofuBlocks.NETHER_NATTOBED.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.NETHER_NATTO.get()).when(nether_natto).apply(SetItemCountFunction.setCount(ConstantValue.exactly(6.0F)))))));
+		add(TofuBlocks.NETHER_NATTOBED.get(), applyExplosionDecay(TofuBlocks.NETHER_NATTOBED.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.NETHER_NATTO.get())).when(nether_natto).apply(SetItemCountFunction.setCount(ConstantValue.exactly(6.0F))))));
 
 		LootItemCondition.Builder tofugemAdvBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_ADV_TOFUGEM.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
 
-		add(TofuBlocks.BARREL_ADV_TOFUGEM.get(), applyExplosionDecay(TofuBlocks.BARREL_ADV_TOFUGEM.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.ADVANCE_TOFUGEM.get()).when(tofugemAdvBuilder).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL).when(tofugemAdvBuilder).when(ExplosionCondition.survivesExplosion()).otherwise(LootItem.lootTableItem(TofuBlocks.BARREL_ADV_TOFUGEM.get()).when(ExplosionCondition.survivesExplosion()))))));
+		add(TofuBlocks.BARREL_ADV_TOFUGEM.get(), applyExplosionDecay(TofuBlocks.BARREL_ADV_TOFUGEM.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.ADVANCE_TOFUGEM.get())).when(tofugemAdvBuilder).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))).add(LootItem.lootTableItem(Blocks.BARREL)).when(tofugemAdvBuilder).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).add(LootItem.lootTableItem(TofuBlocks.BARREL_ADV_TOFUGEM)).when(InvertedLootItemCondition.invert(tofugemAdvBuilder)).when(ExplosionCondition.survivesExplosion()))));
 
 		dropSelf(TofuBlocks.TOFU_CHIKUWA_BLOCK.get());
 		dropSelf(TofuBlocks.CHIKUWA_BLOCK.get());
@@ -430,51 +429,99 @@ public class BlockLootTables extends BlockLootSubProvider {
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {
-		return createSilkTouchDispatchTable(p_124140_, applyExplosionDecay(p_124140_, LootItem.lootTableItem(p_124141_).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))).apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE)))));
+		return applyExplosionDecay(p_124140_, createSilkTouchDispatchTable(p_124140_, LootItem.lootTableItem(p_124141_)).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))).apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))));
 	}
 
 	protected LootTable.Builder createTofuGemOreDrop(Block p_124140_, Item p_124141_) {
-		return createSilkTouchDispatchTable(p_124140_, applyExplosionDecay(p_124140_, LootItem.lootTableItem(p_124141_).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE)))));
+		return applyExplosionDecay(p_124140_, createSilkTouchDispatchTable(p_124140_, LootItem.lootTableItem(p_124141_)).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))));
 	}
 
 	protected LootTable.Builder createTofuForceOreDrop(Block p_124140_, Item p_124141_) {
-		return createSilkTouchDispatchTable(p_124140_, applyExplosionDecay(p_124140_, LootItem.lootTableItem(p_124141_).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1F))).apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE)))));
+		return applyExplosionDecay(p_124140_, createSilkTouchDispatchTable(p_124140_, LootItem.lootTableItem(p_124141_)).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1F)))).apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE)));
 	}
 
 	protected LootTable.Builder createApricotLeavesDrop(Block p_124264_, Block p_124265_, float... p_124266_) {
-		return createLeavesDrops(p_124264_, p_124265_, p_124266_).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(applyExplosionCondition(TofuBlocks.LEAVES_APRICOT.get(), LootItem.lootTableItem(TofuItems.APRICOT.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+		return createLeavesDrops(p_124264_, p_124265_, p_124266_).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(applyExplosionCondition(TofuBlocks.LEAVES_APRICOT.get(), LootItem.lootTableItem(TofuItems.APRICOT.get()))).when(BonusLevelTableCondition.bonusLevelFlatChance(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F)));
 	}
 
 	protected LootTable.Builder createTofuLeavesDrops(Block p_250088_, Block p_250731_, float... p_248949_) {
-		return createSilkTouchOrShearsDispatchTable(p_250088_, this.applyExplosionCondition(p_250088_, LootItem.lootTableItem(p_250731_)).when(BonusLevelTableCondition.bonusLevelFlatChance(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), p_248949_)));
+		HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+		return this.createSilkTouchOrShearsDispatchTable(
+				p_250088_,
+				((LootPoolSingletonContainer.Builder<?>) this.applyExplosionCondition(p_250088_, LootItem.lootTableItem(p_250731_)))
+						.when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), p_248949_))
+		);
 	}
 
+	private LootItemCondition.Builder hasShearsOrSilkTouch() {
+		return this.hasShears().or(this.hasSilkTouch());
+	}
+
+	private LootItemCondition.Builder doesNotHaveShearsOrSilkTouch() {
+		return this.hasShearsOrSilkTouch().invert();
+	}
+
+
 	protected LootTable.Builder createZundaMushroomDrop(Block p_124264_, Block p_124265_, float... p_124266_) {
-		return createTofuLeavesDrops(p_124264_, p_124265_, p_124266_).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(applyExplosionCondition(p_124264_, LootItem.lootTableItem(TofuItems.TOFUZUNDA.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.1F, 0.05F, 0.0625F, 0.12F, 0.2F))).add(applyExplosionCondition(p_124264_, LootItem.lootTableItem(TofuItems.ZUNDAMA.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.1F, 0.05F, 0.15F, 0.125F, 0.105F))));
+		return createTofuLeavesDrops(p_124264_, p_124265_, p_124266_).withPool(applyExplosionCondition(p_124264_, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(TofuItems.TOFUZUNDA.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.1F, 0.05F, 0.0625F, 0.12F, 0.2F))).add(LootItem.lootTableItem(TofuItems.ZUNDAMA.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.1F, 0.05F, 0.15F, 0.125F, 0.105F)));
 	}
 
 	private void registerTofuDrop(Block tofu, Item dropItem) {
-		LootPoolEntryContainer.Builder<?> sticks = applyExplosionDecay(tofu, LootItem.lootTableItem(dropItem)
-				.apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))));
-		add(tofu, createSilkTouchOrShearsDispatchTable(tofu, sticks));
+		add(tofu, applyExplosionDecay(tofu, createSilkTouchOrShearsDispatchTable(tofu, LootItem.lootTableItem(dropItem)
+				.apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))))));
 	}
 
 	private void registerLeek(Block tofu, Item dropItem) {
-		LootPoolEntryContainer.Builder<?> sticks = applyExplosionDecay(tofu, LootItem.lootTableItem(dropItem)
-				.apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))));
-		add(tofu, createSilkTouchOrShearsDispatchTable(tofu, sticks));
+		add(tofu, applyExplosionDecay(tofu, createSilkTouchOrShearsDispatchTable(tofu, LootItem.lootTableItem(dropItem)
+				.apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))));
 	}
-
 	protected LootTable.Builder createDoublePlantWithLeekDrops(Block p_248590_, Block p_248735_) {
 		HolderLookup.RegistryLookup<Block> registrylookup = this.registries.lookupOrThrow(Registries.BLOCK);
-		LootPoolEntryContainer.Builder<?> builder = LootItem.lootTableItem(p_248735_).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))).when(this.hasShears()).otherwise(((LootPoolSingletonContainer.Builder<?>) this.applyExplosionCondition(p_248590_, LootItem.lootTableItem(TofuItems.LEEK.get()))).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))));
-		return LootTable.lootTable().withPool(LootPool.lootPool().add(builder).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(p_248590_).setProperties(net.minecraft.advancements.critereon.StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))).when(LocationCheck.checkLocation(net.minecraft.advancements.critereon.LocationPredicate.Builder.location().setBlock(net.minecraft.advancements.critereon.BlockPredicate.Builder.block().of(registrylookup, p_248590_).setProperties(net.minecraft.advancements.critereon.StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))), new BlockPos(0, 1, 0)))).withPool(LootPool.lootPool().add(builder).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(p_248590_).setProperties(net.minecraft.advancements.critereon.StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))).when(LocationCheck.checkLocation(net.minecraft.advancements.critereon.LocationPredicate.Builder.location().setBlock(net.minecraft.advancements.critereon.BlockPredicate.Builder.block().of(registrylookup, p_248590_).setProperties(net.minecraft.advancements.critereon.StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))), new BlockPos(0, -1, 0))));
-	}
-
-	// [VanillaCopy] super.droppingWithChancesAndSticks, but non-silk touch parameter can be an item instead of a block
-	private LootTable.Builder silkAndStick(Block block, ItemLike nonSilk, float... nonSilkFortune) {
-		LootItemCondition.Builder NOT_SILK_TOUCH_OR_SHEARS = ObfuscationReflectionHelper.getPrivateValue(BlockLootSubProvider.class, null, "HAS_NO_SHEARS_OR_SILK_TOUCH");
-		return createSilkTouchOrShearsDispatchTable(block, applyExplosionCondition(block, LootItem.lootTableItem(nonSilk.asItem())).when(BonusLevelTableCondition.bonusLevelFlatChance(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), nonSilkFortune))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(applyExplosionDecay(block, LootItem.lootTableItem(Items.STICK).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))).when(BonusLevelTableCondition.bonusLevelFlatChance(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
+		LootPoolEntryContainer.Builder<?> builder = (LootPoolEntryContainer.Builder<?>) LootItem.lootTableItem(p_248735_)
+				.apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))
+				.when(this.hasShears());
+		LootPoolEntryContainer.Builder<?> builder2 = builder.otherwise(
+				LootItem.lootTableItem(TofuItems.LEEK.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
+		);
+		return LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+								.add(this.applyExplosionCondition(p_248590_, builder2))
+								.when(
+										LootItemBlockStatePropertyCondition.hasBlockStateProperties(p_248590_)
+												.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))
+								)
+								.when(
+										LocationCheck.checkLocation(
+												LocationPredicate.Builder.location()
+														.setBlock(
+																BlockPredicate.Builder.block()
+																		.of(registrylookup, p_248590_)
+																		.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))
+														),
+												new BlockPos(0, 1, 0)
+										)
+								)
+				)
+				.withPool(
+						LootPool.lootPool()
+								.add(this.applyExplosionCondition(p_248590_, builder2))
+								.when(
+										LootItemBlockStatePropertyCondition.hasBlockStateProperties(p_248590_)
+												.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER))
+								)
+								.when(
+										LocationCheck.checkLocation(
+												LocationPredicate.Builder.location()
+														.setBlock(
+																BlockPredicate.Builder.block()
+																		.of(registrylookup, p_248590_)
+																		.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER))
+														),
+												new BlockPos(0, -1, 0)
+										)
+								)
+				);
 	}
 
 	private void registerEmpty(Block b) {

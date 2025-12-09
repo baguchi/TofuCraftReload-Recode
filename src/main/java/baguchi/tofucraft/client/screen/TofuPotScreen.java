@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.data.AtlasIds;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
@@ -22,8 +22,8 @@ import org.joml.Matrix3x2fStack;
 import java.awt.*;
 
 public class TofuPotScreen extends AbstractRecipeBookScreen<TofuPotMenu> {
-	private static final WidgetSprites RECIPE_BUTTON = new WidgetSprites(ResourceLocation.withDefaultNamespace("recipe_book/button"), ResourceLocation.withDefaultNamespace("recipe_book/button"));
-	private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tofu_pot.png");
+	private static final WidgetSprites RECIPE_BUTTON = new WidgetSprites(Identifier.withDefaultNamespace("recipe_book/button"), Identifier.withDefaultNamespace("recipe_book/button"));
+	private static final Identifier BACKGROUND_TEXTURE = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/tofu_pot.png");
 	private static final Rectangle HEAT_ICON = new Rectangle(14, 43, 14, 14);
 	private static final Rectangle PROGRESS_ARROW = new Rectangle(103, 38, 24, 17);
 

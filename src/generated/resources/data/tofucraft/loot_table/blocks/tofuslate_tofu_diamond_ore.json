@@ -1,5 +1,24 @@
 {
   "type": "minecraft:block",
+  "functions": [
+    {
+      "add": false,
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 2.0
+      },
+      "function": "minecraft:set_count"
+    },
+    {
+      "enchantment": "minecraft:fortune",
+      "formula": "minecraft:ore_drops",
+      "function": "minecraft:apply_bonus"
+    },
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
   "pools": [
     {
       "bonus_rolls": 0.0,
@@ -30,25 +49,6 @@
             },
             {
               "type": "minecraft:item",
-              "functions": [
-                {
-                  "add": false,
-                  "count": {
-                    "type": "minecraft:uniform",
-                    "max": 3.0,
-                    "min": 2.0
-                  },
-                  "function": "minecraft:set_count"
-                },
-                {
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops",
-                  "function": "minecraft:apply_bonus"
-                },
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ],
               "name": "tofucraft:tofu_diamond_nugget"
             }
           ]

@@ -6,18 +6,18 @@ import baguchi.tofucraft.client.render.layer.ZundaTofuSlimeOuterLayer;
 import baguchi.tofucraft.client.render.state.TofuSlimeRenderState;
 import baguchi.tofucraft.entity.TofuSlime;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.SlimeModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.monster.slime.SlimeModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.state.CameraRenderState;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
 
 public class TofuSlimeRender extends MobRenderer<TofuSlime, TofuSlimeRenderState, SlimeModel> {
-	public static final ResourceLocation LOCATION = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_slime.png");
+	public static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_slime.png");
 
 	public TofuSlimeRender(EntityRendererProvider.Context p_174391_) {
 		super(p_174391_, new SlimeModel(p_174391_.bakeLayer(ModelLayers.SLIME)), 0.25F);
@@ -33,7 +33,7 @@ public class TofuSlimeRender extends MobRenderer<TofuSlime, TofuSlimeRenderState
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(TofuSlimeRenderState p_365351_) {
+	public Identifier getTextureLocation(TofuSlimeRenderState p_365351_) {
 		return LOCATION;
 	}
 

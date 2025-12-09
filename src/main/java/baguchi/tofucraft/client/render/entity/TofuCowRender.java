@@ -2,11 +2,11 @@ package baguchi.tofucraft.client.render.entity;
 
 import baguchi.tofucraft.client.render.state.TofuCowRenderState;
 import baguchi.tofucraft.entity.TofuCow;
-import net.minecraft.client.model.CowModel;
+import net.minecraft.client.model.animal.cow.CowModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.AgeableMobRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 
 public class TofuCowRender extends AgeableMobRenderer<TofuCow, TofuCowRenderState, CowModel> {
@@ -20,12 +20,12 @@ public class TofuCowRender extends AgeableMobRenderer<TofuCow, TofuCowRenderStat
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(TofuCowRenderState entity) {
+	public Identifier getTextureLocation(TofuCowRenderState entity) {
 		String type = "";
 
 		if (entity.type != TofuCow.TofuCowType.NORMAL)
 			type = "_" + entity.type.name().toLowerCase();
-		return ResourceLocation.parse("tofucraft:textures/entity/tofu_cow/tofu_cow" + type + ".png");
+		return Identifier.parse("tofucraft:textures/entity/tofu_cow/tofu_cow" + type + ".png");
 	}
 
 	@Override

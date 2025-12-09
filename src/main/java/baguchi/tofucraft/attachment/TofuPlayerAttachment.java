@@ -10,7 +10,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.storage.ValueInput;
@@ -28,7 +28,7 @@ public class TofuPlayerAttachment implements ValueIOSerializable {
 	public void addLearning(Holder<TofuLearning> learning, Player player) {
 		this.learning.add(learning);
 		if (!player.level().isClientSide()) {
-			PacketDistributor.sendToPlayersTrackingEntityAndSelf(player, new AddLearningPacket(player, learning.unwrap().left().get().location(), true));
+			PacketDistributor.sendToPlayersTrackingEntityAndSelf(player, new AddLearningPacket(player, learning.unwrap().left().get().identifier(), true));
 		}
 	}
 
@@ -64,7 +64,7 @@ public class TofuPlayerAttachment implements ValueIOSerializable {
 		CompoundTag tag = new CompoundTag();
 		for (int i = 0; i < learning.size(); i++) {
 			CompoundTag compoundTag = new CompoundTag();
-			ResourceLocation resourceLocation = TofuCraftReload.registryAccess().lookupOrThrow(TofuLearning.REGISTRY_KEY).getKey(learning.get(i).value());
+			Identifier resourceLocation = TofuCraftReload.registryAccess().lookupOrThrow(TofuLearning.REGISTRY_KEY).getKey(learning.get(i).value());
 			if (resourceLocation != null) {
 				compoundTag.putString("Learn", resourceLocation.toString());
 			}
@@ -84,7 +84,7 @@ public class TofuPlayerAttachment implements ValueIOSerializable {
 			CompoundTag compoundnbt = list.getCompoundOrEmpty(i);
 
 			if (compoundnbt.contains("Learn")) {
-				Optional<Holder.Reference<TofuLearning>> learn = TofuCraftReload.registryAccess().lookupOrThrow(TofuLearning.REGISTRY_KEY).get(ResourceLocation.parse(compoundnbt.getStringOr("Learn", "")));
+				Optional<Holder.Reference<TofuLearning>> learn = TofuCraftReload.registryAccess().lookupOrThrow(TofuLearning.REGISTRY_KEY).get(Identifier.parse(compoundnbt.getStringOr("Learn", "")));
 				//check mob enchant is not null
 				learn.ifPresent(learning::add);
 			}
