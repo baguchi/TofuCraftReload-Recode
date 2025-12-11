@@ -91,7 +91,7 @@ public class TofuModelData extends ModelProvider {
 
 		@Override
 		public void accept(Item p_456234_, ItemModel.Unbaked p_454728_, ClientItem.Properties p_455827_) {
-			this.register(p_456234_, new ClientItem(p_454728_, ClientItem.Properties.DEFAULT));
+			this.register(p_456234_, new ClientItem(p_454728_, p_455827_));
 		}
 
 		public void register(Item p_388205_, ClientItem p_388233_) {
