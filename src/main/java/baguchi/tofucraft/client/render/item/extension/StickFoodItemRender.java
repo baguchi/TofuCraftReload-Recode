@@ -26,8 +26,10 @@ public class StickFoodItemRender implements IClientItemExtensions {
 			float f1 = f / itemInHand.getUseDuration(player);
 
 			if (f1 < 0.8F) {
-				float f2 = Mth.clamp(f1 + 0.2F, 0F, this.scale);
-				poseStack.translate(0.0F, 0.0F, -0.2F + this.scale - f2);
+				float f2 = Mth.clamp(f1 - 0.2F, 0F, 1.0F);
+				poseStack.translate(0.0F, 0.0F, (1.0F - f2) * this.scale);
+			} else {
+				poseStack.translate(-0.2F, 0.0F, 0.0F);
 			}
 
 			float f3 = 1.0F - (float) Math.pow(f1, 27.0);
