@@ -182,12 +182,14 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-		event.registerItem(new StickFoodItemRender(1F), TofuItems.SOYSTICK);
-		event.registerItem(new StickFoodItemRender(1.5F), TofuItems.LONGER_SOYSTICK);
-		event.registerItem(new StickFoodItemRender(0.6F), TofuItems.NEGIMA);
-		event.registerItem(new StickFoodItemRender(0.6F), TofuItems.GOHEIMOCHI);
-		event.registerItem(new StickFoodItemRender(0.6F), TofuItems.MISODENGAKU);
-		event.registerItem(new StickFoodItemRender(0.6F), TofuItems.MISO_CHEESE_DENGAKU);
+		event.registerItem(new StickFoodItemRender(0.8F), TofuItems.SOYSTICK);
+		event.registerItem(new StickFoodItemRender(1.15F), TofuItems.LONGER_SOYSTICK);
+		event.registerItem(new StickFoodItemRender(0.45F), TofuItems.NEGIMA);
+		event.registerItem(new StickFoodItemRender(0.4F), TofuItems.GOHEIMOCHI);
+		event.registerItem(new StickFoodItemRender(0.45F), TofuItems.MISODENGAKU);
+		event.registerItem(new StickFoodItemRender(0.45F), TofuItems.MISO_CHEESE_DENGAKU);
+		event.registerItem(new StickFoodItemRender(0.8F), TofuItems.APRICOTJERRY_BREAD);
+		event.registerItem(new StickFoodItemRender(0.8F), TofuItems.KINAKO_BREAD);
 
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk");

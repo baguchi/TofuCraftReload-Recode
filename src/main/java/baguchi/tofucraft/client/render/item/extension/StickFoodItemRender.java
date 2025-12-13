@@ -34,9 +34,9 @@ public class StickFoodItemRender implements IClientItemExtensions {
 
 			float f3 = 1.0F - (float) Math.pow(f1, 27.0);
 			poseStack.translate(0.1F, 0, 0);
-			poseStack.translate(f3 * i * -0.3F + f3 * i * 0.1F, 0.0F, -0.2F + -0.2F * -i);
+			poseStack.translate(f3 * i * -0.3F + i * 0.4F + -0.15F, 0.0F, -0.3F - 0.15F * i);
 			poseStack.mulPose(Axis.YP.rotationDegrees(i * 45.0F));
-			poseStack.mulPose(Axis.YP.rotationDegrees(45.0F));
+			poseStack.mulPose(Axis.YP.rotationDegrees(45.0F + 180));
 			poseStack.mulPose(Axis.YP.rotationDegrees(i * 15.0F));
 			poseStack.mulPose(Axis.ZN.rotationDegrees(i * 90.0F));
 			//this.applyItemArmTransform(poseStack, arm, swingProcess);
