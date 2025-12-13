@@ -60,6 +60,7 @@ public class TofuFoods {
 
 
 	public static final FoodProperties SOYSTICK = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.65F).build();
+	public static final FoodProperties LONGER_SOYSTICK = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.65F).build();
 
 	public static final FoodProperties MISOSOUP = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).build();
 	public static final FoodProperties MOYASHIITAME = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.55F).build();

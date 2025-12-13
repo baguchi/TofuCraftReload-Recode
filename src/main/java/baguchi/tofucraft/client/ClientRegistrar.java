@@ -53,6 +53,7 @@ import baguchi.tofucraft.client.render.entity.TofunianRender;
 import baguchi.tofucraft.client.render.entity.TravelerTofunianRender;
 import baguchi.tofucraft.client.render.entity.ZundamiteRender;
 import baguchi.tofucraft.client.render.entity.effect.NattoCobWebRender;
+import baguchi.tofucraft.client.render.item.extension.StickFoodItemRender;
 import baguchi.tofucraft.client.render.item.properties.TFProperty;
 import baguchi.tofucraft.client.render.layer.ZundaLayer;
 import baguchi.tofucraft.client.render.layer.ZundaSlimeOuterLayer;
@@ -74,6 +75,7 @@ import baguchi.tofucraft.registry.TofuDimensionTypes;
 import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuFluidTypes;
+import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
@@ -180,6 +182,9 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+		event.registerItem(new StickFoodItemRender(1F), TofuItems.SOYSTICK);
+		event.registerItem(new StickFoodItemRender(2F), TofuItems.LONGER_SOYSTICK);
+
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk");
 			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_flow");
