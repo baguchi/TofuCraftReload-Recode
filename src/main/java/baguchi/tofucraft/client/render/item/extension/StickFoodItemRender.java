@@ -19,7 +19,7 @@ public class StickFoodItemRender implements IClientItemExtensions {
 
 	@Override
 	public boolean applyForgeHandTransform(PoseStack poseStack, LocalPlayer player, HumanoidArm arm, ItemStack itemInHand, float partialTick, float equipProcess, float swingProcess) {
-		if (player.isUsingItem()) {
+		if (player.isUsingItem() && player.getUseItem().equals(itemInHand)) {
 			boolean flag2 = arm == HumanoidArm.RIGHT;
 			int i = flag2 ? 1 : -1;
 			float f = player.getUseItemRemainingTicks() - partialTick + 1.0F;
@@ -34,10 +34,10 @@ public class StickFoodItemRender implements IClientItemExtensions {
 
 			float f3 = 1.0F - (float) Math.pow(f1, 27.0);
 			poseStack.translate(0.1F, 0, 0);
-			poseStack.translate(f3 * i * -0.3F + f3 * i * 0.5F, 0.0F, -0.2F + -0.2F * -i);
+			poseStack.translate(f3 * i * -0.3F + f3 * i * 0.1F, 0.0F, -0.2F + -0.2F * -i);
 			poseStack.mulPose(Axis.YP.rotationDegrees(i * 45.0F));
 			poseStack.mulPose(Axis.YP.rotationDegrees(45.0F));
-			//poseStack.mulPose(Axis.YP.rotationDegrees(i * 10.0F));
+			poseStack.mulPose(Axis.YP.rotationDegrees(i * 15.0F));
 			poseStack.mulPose(Axis.ZN.rotationDegrees(i * 90.0F));
 			//this.applyItemArmTransform(poseStack, arm, swingProcess);
 
