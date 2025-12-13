@@ -1,5 +1,5 @@
 {
-  "parent": "tofucraft:item/big_handheld",
+  "parent": "tofucraft:item/big_generated",
   "textures": {
     "layer0": "tofucraft:item/longer_soystick"
   }
