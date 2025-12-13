@@ -29,7 +29,7 @@ public class StickFoodItemRender implements IClientItemExtensions {
 				float f2 = Mth.clamp(f1 - 0.2F, 0F, 1.0F);
 				poseStack.translate(0.0F, 0.0F, (1.0F - f2) * this.scale);
 			} else {
-				poseStack.translate(-0.2F, 0.0F, 0.0F);
+				poseStack.translate(0.0F, 0.0F, -0.2F);
 			}
 
 			float f3 = 1.0F - (float) Math.pow(f1, 27.0);
