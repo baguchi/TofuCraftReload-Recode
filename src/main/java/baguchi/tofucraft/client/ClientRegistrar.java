@@ -184,6 +184,10 @@ public class ClientRegistrar {
 	public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
 		event.registerItem(new StickFoodItemRender(1F), TofuItems.SOYSTICK);
 		event.registerItem(new StickFoodItemRender(1.5F), TofuItems.LONGER_SOYSTICK);
+		event.registerItem(new StickFoodItemRender(0.6F), TofuItems.NEGIMA);
+		event.registerItem(new StickFoodItemRender(0.6F), TofuItems.GOHEIMOCHI);
+		event.registerItem(new StickFoodItemRender(0.6F), TofuItems.MISODENGAKU);
+		event.registerItem(new StickFoodItemRender(0.6F), TofuItems.MISO_CHEESE_DENGAKU);
 
 		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk");
