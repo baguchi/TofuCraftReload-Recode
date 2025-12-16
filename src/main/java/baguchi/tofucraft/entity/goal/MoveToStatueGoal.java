@@ -17,11 +17,11 @@ public class MoveToStatueGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.isMeeting() && this.creature.getVillageCenter() != null && !this.creature.level().isBrightOutside() && !this.creature.isBaby() && super.canUse());
+		return (this.creature.isMeeting() && this.creature.getVillageCenter() != null && this.creature.level().isDarkOutside() && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (this.creature.level().isBrightOutside() && this.creature.isMeeting() && super.canContinueToUse());
+		return (this.creature.level().isDarkOutside() && this.creature.isMeeting() && super.canContinueToUse());
 	}
 
 	@Override
