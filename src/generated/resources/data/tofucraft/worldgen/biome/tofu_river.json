@@ -1,4 +1,13 @@
 {
+  "attributes": {
+    "minecraft:audio/background_music": {
+      "default": {
+        "max_delay": 24000,
+        "min_delay": 12000,
+        "sound": "tofucraft:music.tofu_road"
+      }
+    }
+  },
   "carvers": [
     "tofucraft:tofu_cave",
     "tofucraft:tofu_cave_extra_underground",

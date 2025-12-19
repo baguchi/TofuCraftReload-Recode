@@ -45,30 +45,8 @@
     ],
     "stream": true
   },
-  "music.tofu_world": {
-    "sounds": [
-      {
-        "name": "tofucraft:music/green_branch",
-        "stream": true
-      },
-      {
-        "name": "tofucraft:music/tofu_road",
-        "stream": true
-      },
-      {
-        "name": "tofucraft:music/rough_ground",
-        "stream": true
-      },
-      {
-        "name": "tofucraft:music/milky_earth",
-        "stream": true
-      },
-      {
-        "name": "tofucraft:music/soft",
-        "stream": true
-      }
-    ],
-    "stream": true
+  tream
+  ": true
   },
   "tofubugle": {
     "sounds": [
