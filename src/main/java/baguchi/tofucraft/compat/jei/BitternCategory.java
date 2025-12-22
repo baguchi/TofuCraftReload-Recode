@@ -1,6 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
-/*
+
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.BitternRecipe;
 import baguchi.tofucraft.registry.TofuItems;
@@ -25,8 +25,6 @@ import java.util.Arrays;
 
 
 public class BitternCategory implements IRecipeCategory<BitternRecipe> {
-
-	public static final Identifier UID = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "bittern");
 	protected final IDrawableAnimated arrow;
 	private final Component title;
 	private final IDrawable background;
@@ -48,11 +46,6 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 	@Override
 	public int getHeight() {
 		return 54;
-	}
-
-	@Override
-	public net.minecraft.resources.ResourceLocation getRegistryName(BitternRecipe recipe) {
-		return UID;
 	}
 
 	@Override
@@ -94,5 +87,5 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 		background.draw(guiGraphics);
 		arrow.draw(guiGraphics, 72 - 17, 35 - 17);
 	}
-}*/
+}
 

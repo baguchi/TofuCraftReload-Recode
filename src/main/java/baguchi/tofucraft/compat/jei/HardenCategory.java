@@ -1,7 +1,5 @@
 package baguchi.tofucraft.compat.jei;
 
-/*
-
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.HardenRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -23,8 +21,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 
 public class HardenCategory implements IRecipeCategory<HardenRecipe> {
-
-	public static final Identifier UID = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "harden");
 	protected final IDrawableAnimated arrow;
 	private final Component title;
 	private final IDrawable background;
@@ -46,11 +42,6 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 	@Override
 	public int getHeight() {
 		return 54;
-	}
-
-	@Override
-	public Identifier getRegistryName(HardenRecipe recipe) {
-		return UID;
 	}
 
 	@Override
@@ -93,4 +84,3 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
 }
-*/

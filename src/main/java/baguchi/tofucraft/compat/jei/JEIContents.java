@@ -1,6 +1,4 @@
 package baguchi.tofucraft.compat.jei;
-/*
-
 
 import baguchi.tofucraft.recipe.BitternRecipe;
 import baguchi.tofucraft.recipe.HardenRecipe;
@@ -38,5 +36,3 @@ public class JEIContents {
 		return recipes;
 	}
 }
-
-*/

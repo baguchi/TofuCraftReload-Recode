@@ -1,5 +1,4 @@
 package baguchi.tofucraft.compat.jei;
-/*
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.TofuPotRecipe;
@@ -26,8 +25,6 @@ import java.util.Optional;
 
 
 public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
-
-	public static final Identifier UID = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_pot");
 	protected final IDrawableAnimated arrow;
 	private final Component title;
 	private final IDrawable background;
@@ -49,11 +46,6 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 	@Override
 	public int getHeight() {
 		return 79;
-	}
-
-	@Override
-	public Identifier getRegistryName(TofuPotRecipe recipe) {
-		return UID;
 	}
 
 	@Override
@@ -108,4 +100,3 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 		arrow.draw(stack, 103 - 37, 38 - 4);
 	}
 }
-*/

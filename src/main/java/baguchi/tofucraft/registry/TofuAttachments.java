@@ -3,7 +3,6 @@ package baguchi.tofucraft.registry;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.attachment.SoyHealthAttachment;
 import baguchi.tofucraft.attachment.TofuLivingAttachment;
-import baguchi.tofucraft.attachment.TofuPlayerAttachment;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.neoforged.neoforge.attachment.AttachmentSyncHandler;
 import net.neoforged.neoforge.attachment.AttachmentType;
@@ -39,6 +38,4 @@ public class TofuAttachments {
 					return attachment;
 				}
 			}).build());
-	public static final Supplier<AttachmentType<TofuPlayerAttachment>> TOFU_PLAYER = ATTACHMENT_TYPES.register(
-			"tofu_player", () -> AttachmentType.serializable(TofuPlayerAttachment::new).copyOnDeath().build());
 }

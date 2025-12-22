@@ -1,6 +1,5 @@
 package baguchi.tofucraft.compat.jei;
 
-/*
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.TFCraftingRecipe;
@@ -28,8 +27,6 @@ import java.util.Optional;
 
 
 public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
-
-	public static final Identifier UID = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tf_craft");
 	protected final IDrawableAnimated arrow;
 	private final Component title;
 	private final IDrawable background;
@@ -51,11 +48,6 @@ public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
 	@Override
 	public int getHeight() {
 		return 63;
-	}
-
-	@Override
-	public Identifier getRegistryName(TFCraftingRecipe recipe) {
-		return UID;
 	}
 
 	@Override
@@ -116,4 +108,3 @@ public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
 
 
 }
-*/

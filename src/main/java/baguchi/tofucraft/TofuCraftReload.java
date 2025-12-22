@@ -9,7 +9,6 @@ import baguchi.tofucraft.client.ClientRegistrar;
 import baguchi.tofucraft.data.resources.registries.TofunianClothVariants;
 import baguchi.tofucraft.data.resources.registries.TofunianVariants;
 import baguchi.tofucraft.event.CraftingEvents;
-import baguchi.tofucraft.network.AddLearningPacket;
 import baguchi.tofucraft.network.BossInfoPacket;
 import baguchi.tofucraft.network.OpenTofuBookPacket;
 import baguchi.tofucraft.network.SaltFurnaceBitternPacket;
@@ -223,7 +222,6 @@ public class TofuCraftReload {
 		registrar.playToClient(TFStorageSoymilkPacket.TYPE, TFStorageSoymilkPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playToClient(BossInfoPacket.Display.TYPE, BossInfoPacket.Display.STREAM_CODEC, BossInfoPacket.Display::execute);
 		registrar.playToClient(BossInfoPacket.Remove.TYPE, BossInfoPacket.Remove.STREAM_CODEC, BossInfoPacket.Remove::execute);
-		registrar.playToClient(AddLearningPacket.TYPE, AddLearningPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playToClient(OpenTofuBookPacket.TYPE, OpenTofuBookPacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 		registrar.playToServer(TFCraftingTableSavedRecipePacket.TYPE, TFCraftingTableSavedRecipePacket.STREAM_CODEC, (handler, payload) -> handler.handle(handler, payload));
 	}

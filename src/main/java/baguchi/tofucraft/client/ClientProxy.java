@@ -3,12 +3,10 @@ package baguchi.tofucraft.client;
 import baguchi.bagus_lib.client.render.book.Book;
 import baguchi.bagus_lib.client.render.book.component.BookComponentDefinition;
 import baguchi.bagus_lib.client.render.book.component.DisplayBookComponent;
+import baguchi.bagus_lib.client.render.book.component.IndexBookComponent;
 import baguchi.bagus_lib.client.render.book.component.TextBookComponent;
 import baguchi.bagus_lib.client.render.screen.BookScreen;
 import baguchi.tofucraft.TofuCraftReload;
-import baguchi.tofucraft.attachment.TofuPlayerAttachment;
-import baguchi.tofucraft.registry.TofuAttachments;
-import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
 import com.google.common.collect.Lists;
 import net.minecraft.ChatFormatting;
@@ -40,11 +38,32 @@ public class ClientProxy {
 		refrencedTileEntity = te;
 	}
 
+	private static IndexBookComponent buildIndex() {
+		return new IndexBookComponent(Component.translatable("tofucraft.tofu_crafters_book.title"), List.of(
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU_CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display"), false),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU_CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display2"), false),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SEEDS_SOYBEANS.get().getDescriptionId()), TofuCraftReload.prefix("before_the_tofu"), true),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BITTERN_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("bittern"), true),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BITTERN_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("about_bittern"), false),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUKINU.get().getDescriptionId()), TofuCraftReload.prefix("once_tofu_made"), true),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUHELL.get().getDescriptionId()), TofuCraftReload.prefix("nether_tofu"), true),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUSOUL.get().getDescriptionId()), TofuCraftReload.prefix("about_another_tofu"), true),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SOYMILK.get().getDescriptionId()), TofuCraftReload.prefix("soymilk"), true),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SOYMILK.get().getDescriptionId()), TofuCraftReload.prefix("soymilk_desc"), false),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUSTICK.get().getDescriptionId()), TofuCraftReload.prefix("tofu_stick"), true),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUSTICK.get().getDescriptionId()), TofuCraftReload.prefix("tofu_stick_desc"), false),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce"), true),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce_desc"), false),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce_desc2"), false)
+		)
+				, 105, 125);
+	}
+
 	public static void handleOpenPageTest(Player player) {
 		if (player.level().isClientSide() && player == Minecraft.getInstance().player) {
 			Quaternionf quaternionf = new Quaternionf().rotateZ((float) Math.PI);
 
-			DisplayBookComponent title = (new DisplayBookComponent(121, 158)).entityDisplay(TofuEntityTypes.TOFUNIAN.get(), 32, 75, 32 + 40, 75 + 110, 0, 180, 40, quaternionf).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.author"), 52, 20, 1.0F);
+			IndexBookComponent index = buildIndex();
 			TextBookComponent introduction = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.introduction"), false, 100, 158);
 			TextBookComponent beforeTheTofu = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.before_the_tofu"), true, 100, 158);
 			DisplayBookComponent bittern = (new DisplayBookComponent(121, 158)).textDisplay(TofuItems.BITTERN_BOTTLE.get().asItem().getName(), 52, 75, 1.0F).itemDisplay(TofuItems.BITTERN_BOTTLE.get().getDefaultInstance(), 46, 20);
@@ -64,7 +83,7 @@ public class ClientProxy {
 			TextBookComponent soysauce_desc2 = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soysauce.desc2"), true, 100, 158);
 
 
-			List<BookComponentDefinition> list = Lists.newArrayList(new BookComponentDefinition(title, TofuCraftReload.prefix("title"), 15, 10, 10, 10)
+			List<BookComponentDefinition> list = Lists.newArrayList(new BookComponentDefinition(index, TofuCraftReload.prefix("index"), 15, 10, 10, 10)
 					, new BookComponentDefinition(introduction, TofuCraftReload.prefix("introduction"), 15, 10, 10, 10)
 					, new BookComponentDefinition(beforeTheTofu, TofuCraftReload.prefix("before_the_tofu"), 15, 10, 10, 10)
 					, new BookComponentDefinition(bittern, TofuCraftReload.prefix("bittern"), 15, 10, 10, 10)
@@ -77,14 +96,11 @@ public class ClientProxy {
 					, new BookComponentDefinition(tofu_stick, TofuCraftReload.prefix("tofu_stick"), 15, 10, 10, 10)
 					, new BookComponentDefinition(tofu_stick_desc, TofuCraftReload.prefix("tofu_stick_desc"), 15, 10, 10, 10));
 
-			TofuPlayerAttachment attachment = player.getData(TofuAttachments.TOFU_PLAYER);
-			if (attachment.getLearning().stream().anyMatch(tofuLearningHolder -> {
-				return tofuLearningHolder.is(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "miso"));
-			})) {
-				list.add(new BookComponentDefinition(soysauce, TofuCraftReload.prefix("soysauce"), 15, 10, 10, 10));
-				list.add(new BookComponentDefinition(soysauce_desc, TofuCraftReload.prefix("soysauce_desc"), 15, 10, 10, 10));
-				list.add(new BookComponentDefinition(soysauce_desc2, TofuCraftReload.prefix("soysauce_desc2"), 15, 10, 10, 10));
-			}
+
+			list.add(new BookComponentDefinition(soysauce, TofuCraftReload.prefix("soysauce"), 15, 10, 10, 10));
+			list.add(new BookComponentDefinition(soysauce_desc, TofuCraftReload.prefix("soysauce_desc"), 15, 10, 10, 10));
+			list.add(new BookComponentDefinition(soysauce_desc2, TofuCraftReload.prefix("soysauce_desc2"), 15, 10, 10, 10));
+
 
 			Book book = new Book(list, 256, 182, 23, 13, 12, 27, TofuCraftReload.prefix("textures/gui/screen/book/book.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), Identifier.withDefaultNamespace("textures/gui/sprites/widget/page_backward.png"), Identifier.withDefaultNamespace("textures/gui/sprites/widget/page_forward.png"));
 			Minecraft.getInstance().setScreen(new BookScreen(book));
