@@ -39,22 +39,24 @@ public class ClientProxy {
 	}
 
 	private static IndexBookComponent buildIndex() {
+		Component dummy = Component.empty();
+
 		return new IndexBookComponent(Component.translatable("tofucraft.tofu_crafters_book.title"), List.of(
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU_CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display"), false),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU_CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display2"), false),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SEEDS_SOYBEANS.get().getDescriptionId()), TofuCraftReload.prefix("before_the_tofu"), true),
+				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU_CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display"), false),
+				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU_CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display2"), false),
+				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.before_the_tofu.title"), TofuCraftReload.prefix("before_the_tofu"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BITTERN_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("bittern"), true),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BITTERN_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("about_bittern"), false),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUKINU.get().getDescriptionId()), TofuCraftReload.prefix("once_tofu_made"), true),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUHELL.get().getDescriptionId()), TofuCraftReload.prefix("nether_tofu"), true),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUSOUL.get().getDescriptionId()), TofuCraftReload.prefix("about_another_tofu"), true),
+				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BITTERN_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("about_bittern"), false),
+				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.once_tofu_made.title"), TofuCraftReload.prefix("once_tofu_made"), true),
+				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.nether_tofu.title"), TofuCraftReload.prefix("nether_tofu"), true),
+				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUSOUL.get().getDescriptionId()), TofuCraftReload.prefix("about_another_tofu"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SOYMILK.get().getDescriptionId()), TofuCraftReload.prefix("soymilk"), true),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SOYMILK.get().getDescriptionId()), TofuCraftReload.prefix("soymilk_desc"), false),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUSTICK.get().getDescriptionId()), TofuCraftReload.prefix("tofu_stick"), true),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUSTICK.get().getDescriptionId()), TofuCraftReload.prefix("tofu_stick_desc"), false),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce"), true),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce_desc"), false),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce_desc2"), false)
+				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SOYMILK.get().getDescriptionId()), TofuCraftReload.prefix("soymilk_desc"), false),
+				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tofu_world.title"), TofuCraftReload.prefix("tofu_stick"), true),
+				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUSTICK.get().getDescriptionId()), TofuCraftReload.prefix("tofu_stick_desc"), false),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce"), true)
+				//new IndexBookComponent.IndexItem(dummy, TofuCraftReload.prefix("soy_sauce_desc"), false),
+				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce_desc2"), false)
 		)
 				, 105, 125);
 	}
