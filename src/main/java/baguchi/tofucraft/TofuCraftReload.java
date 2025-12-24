@@ -112,6 +112,14 @@ public class TofuCraftReload {
 		TofuItems.ITEMS.register(modBus);
 		TofuItems.ITEMS.addAlias(prefix("glassbowl"), prefix("glass_bowl"));
 		TofuItems.ITEMS.addAlias(prefix("tofudiamondnugget"), prefix("tofu_diamond_nugget"));
+
+		TofuItems.ITEMS.addAlias(prefix("bucket_soymilk"), prefix("soymilk_bucket"));
+		TofuItems.ITEMS.addAlias(prefix("bucket_soymilk_nether"), prefix("soymilk_nether_bucket"));
+		TofuItems.ITEMS.addAlias(prefix("bucket_soymilk_soul"), prefix("soymilk_bucket_soul"));
+		TofuItems.ITEMS.addAlias(prefix("bucket_bittern"), prefix("bittern_bucket"));
+		TofuItems.ITEMS.addAlias(prefix("bucket_doubanjiang"), prefix("doubanjiang_bucket"));
+
+
 		TofuItems.ITEMS.addAlias(prefix("soymilk"), prefix("soymilk_bottle"));
 		TofuItems.ITEMS.addAlias(prefix("soymilk_pudding"), prefix("soymilk_pudding_bottle"));
 		TofuItems.ITEMS.addAlias(prefix("soymilk_annin"), prefix("soymilk_annin_bottle"));
