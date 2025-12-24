@@ -29,7 +29,7 @@ public class CraftingEvents {
 		Player player = event.getEntity();
 		ItemStack item = event.getCrafting();
 		Container craftMatrix = event.getInventory();
-		if (item.is(TofuItems.BUCKET_SOYMILK.get())) {
+		if (item.is(TofuItems.SOYMILK_BUCKET.get())) {
 			if (craftMatrix.hasAnyOf(Set.of(TofuItems.FILTERCLOTH.get()))) {
 				CraftingContainer craftingcontainer = makeCraftContainer(craftMatrix);
 				if (player.level() instanceof ServerLevel serverLevel) {

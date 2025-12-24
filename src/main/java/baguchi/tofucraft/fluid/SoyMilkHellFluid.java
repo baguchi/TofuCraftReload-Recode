@@ -36,7 +36,7 @@ public abstract class SoyMilkHellFluid extends WaterFluid {
 
 	@Override
 	public Item getBucket() {
-		return TofuItems.BUCKET_SOYMILK_NETHER.get();
+		return TofuItems.SOYMILK_NETHER_BUCKET.get();
 	}
 
 

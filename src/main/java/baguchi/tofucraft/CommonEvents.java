@@ -254,9 +254,9 @@ public class CommonEvents {
 		ItemStack stack = event.getItemStack();
 		Level level = event.getLevel();
 
-		if (stack.is(TofuItems.BUCKET_SOYMILK.get()))
+		if (stack.is(TofuItems.SOYMILK_BUCKET.get()))
 
-			if (stack.is(TofuItems.BUCKET_SOYMILK.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+			if (stack.is(TofuItems.SOYMILK_BUCKET.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
 				level.setBlock(event.getPos(), TofuBlocks.SOYMILK_CAULDRON.get().defaultBlockState(), 2);
 				event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
 				ItemStack itemstack2 = new ItemStack(Items.BUCKET);
@@ -273,7 +273,7 @@ public class CommonEvents {
 				event.setCancellationResult(InteractionResult.SUCCESS);
 				event.setCanceled(true);
 			}
-		if (stack.is(TofuItems.BUCKET_SOYMILK_NETHER.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+		if (stack.is(TofuItems.SOYMILK_NETHER_BUCKET.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
 			level.setBlock(event.getPos(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get().defaultBlockState(), 2);
 			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
 			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
@@ -290,7 +290,7 @@ public class CommonEvents {
 			event.setCancellationResult(InteractionResult.SUCCESS);
 			event.setCanceled(true);
 		}
-		if (stack.is(TofuItems.BUCKET_SOYMILK_SOUL.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
+		if (stack.is(TofuItems.SOYMILK_SOUL_BUCKET.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
 			level.setBlock(event.getPos(), TofuBlocks.SOYMILK_SOUL_CAULDRON.get().defaultBlockState(), 2);
 			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
 			ItemStack itemstack2 = new ItemStack(Items.BUCKET);

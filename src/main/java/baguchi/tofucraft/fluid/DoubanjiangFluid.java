@@ -36,7 +36,7 @@ public abstract class DoubanjiangFluid extends WaterFluid {
 
 	@Override
 	public Item getBucket() {
-		return TofuItems.BUCKET_DOUBANJIANG.get();
+		return TofuItems.DOUBANJIANG_BUCKET.get();
 	}
 
 

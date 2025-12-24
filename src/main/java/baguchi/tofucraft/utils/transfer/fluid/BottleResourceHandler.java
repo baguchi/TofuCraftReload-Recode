@@ -1,9 +1,6 @@
 package baguchi.tofucraft.utils.transfer.fluid;
 
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.transfer.ItemAccessResourceHandler;
@@ -13,24 +10,18 @@ import net.neoforged.neoforge.transfer.item.ItemResource;
 
 import java.util.Objects;
 
-public class WaterBottleResourceHandler extends ItemAccessResourceHandler<FluidResource> {
-	public final ItemStack stack;
+public class BottleResourceHandler extends ItemAccessResourceHandler<FluidResource> {
 
 	public final Fluid content;
-	public WaterBottleResourceHandler(ItemAccess itemAccess, ItemStack stack, Fluid content) {
+
+	public BottleResourceHandler(ItemAccess itemAccess, Fluid content) {
 		super(itemAccess, 1);
-		this.stack = stack;
 		this.content = content;
 	}
 
 	@Override
 	protected FluidResource getResourceFrom(ItemResource accessResource, int index) {
 		return FluidResource.of(new FluidStack(this.content, 250));
-	}
-
-	@Override
-	public boolean isValid(int index, FluidResource resource) {
-		return super.isValid(index, resource) && this.stack.get(DataComponents.POTION_CONTENTS) != null && this.stack.get(DataComponents.POTION_CONTENTS).is(Potions.WATER);
 	}
 
 	@Override
@@ -54,5 +45,10 @@ public class WaterBottleResourceHandler extends ItemAccessResourceHandler<FluidR
 	protected int getCapacity(int index, FluidResource resource) {
 		Objects.checkIndex(index, this.size());
 		return 250;
+	}
+
+	@Override
+	public boolean isValid(int index, FluidResource resource) {
+		return true;
 	}
 }

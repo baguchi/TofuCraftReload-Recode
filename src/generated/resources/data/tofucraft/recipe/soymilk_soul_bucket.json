@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "tofucraft:seeds_soybeans_nether",
+    "tofucraft:seeds_soybeans_soul",
     "minecraft:bucket"
   ],
   "result": {
     "count": 1,
-    "id": "tofucraft:bucket_soymilk_nether"
+    "id": "tofucraft:soymilk_soul_bucket"
   }
 }

@@ -79,6 +79,7 @@ import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
+import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.registry.TofuWoodTypes;
 import com.google.common.reflect.TypeToken;
 import com.mojang.blaze3d.pipeline.BlendFunction;
@@ -107,6 +108,7 @@ import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.fog.FogData;
 import net.minecraft.client.renderer.fog.environment.FogEnvironment;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
@@ -116,6 +118,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -505,6 +509,33 @@ public class ClientRegistrar {
 				renderRecoverHearts(guiGraphics, minecraft, window, gui, player);
 			}
 		});
+		event.registerAboveAll(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block_info"), (guiGraphics, partialTicks) -> {
+			Minecraft minecraft = Minecraft.getInstance();
+			Window window = minecraft.getWindow();
+			Gui gui = minecraft.gui;
+			LocalPlayer player = minecraft.player;
+			if (player != null) {
+				renderBlockInfoToolTipOverlay(guiGraphics, minecraft, window);
+			}
+		});
+	}
+
+	private static void renderBlockInfoToolTipOverlay(GuiGraphics guiGraphics, Minecraft minecraft, Window window) {
+		if (!minecraft.options.hideGui && minecraft.hitResult instanceof BlockHitResult blockhitresult) {
+			if (minecraft.level != null) {
+				BlockState state = minecraft.level.getBlockState(blockhitresult.getBlockPos());
+				if (state.is(TofuTags.Blocks.HAS_INFO)) {
+					int color = ARGB.white(1F);
+					Component component = Component.translatable(state.getBlock().getDescriptionId() + ".info");
+
+					int i = minecraft.font.width(component);
+					int x = (window.getGuiScaledWidth() / 2) - i / 2;
+					int y = window.getGuiScaledHeight() / 2 + 10;
+
+					guiGraphics.drawStringWithBackdrop(minecraft.font, component, x, y, i, -1);
+				}
+			}
+		}
 	}
 
 	private static void renderRecoverHearts(GuiGraphics guiGraphics, Minecraft minecraft, Window window, Gui gui, LocalPlayer player) {

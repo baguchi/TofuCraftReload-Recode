@@ -34,7 +34,7 @@ public abstract class NigariFluid extends WaterFluid {
 
 	@Override
 	public Item getBucket() {
-		return TofuItems.BUCKET_BITTERN.get();
+		return TofuItems.BITTERN_BUCKET.get();
 	}
 
 

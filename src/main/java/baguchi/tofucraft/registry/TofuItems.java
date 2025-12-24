@@ -297,14 +297,14 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> SOY_CHOCOLATE = ITEMS.registerItem("soy_chocolate", (properties) -> new Item((properties).food(TofuFoods.SOY_CHOCOLATE)));
 	public static final DeferredHolder<Item, Item> TOFUNIAN_SOY_CHOCOLATE = ITEMS.registerItem("tofunian_soy_chocolate", (properties) -> new Item((properties).food(TofuFoods.SOY_CHOCOLATE)));
 
-	public static final DeferredHolder<Item, Item> BUCKET_SOYMILK = ITEMS.registerItem("bucket_soymilk", (properties) -> new BucketItem(TofuFluids.SOYMILK.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final DeferredHolder<Item, Item> BUCKET_SOYMILK_NETHER = ITEMS.registerItem("bucket_soymilk_nether", (properties) -> new BucketItem(TofuFluids.SOYMILK_HELL.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final DeferredHolder<Item, Item> BUCKET_SOYMILK_SOUL = ITEMS.registerItem("bucket_soymilk_soul", (properties) -> new BucketItem(TofuFluids.SOYMILK_SOUL.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final DeferredHolder<Item, Item> SOYMILK_BUCKET = ITEMS.registerItem("soymilk_bucket", (properties) -> new BucketItem(TofuFluids.SOYMILK.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final DeferredHolder<Item, Item> SOYMILK_NETHER_BUCKET = ITEMS.registerItem("soymilk_nether_bucket", (properties) -> new BucketItem(TofuFluids.SOYMILK_HELL.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final DeferredHolder<Item, Item> SOYMILK_SOUL_BUCKET = ITEMS.registerItem("soymilk_soul_bucket", (properties) -> new BucketItem(TofuFluids.SOYMILK_SOUL.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
 
 	public static final DeferredHolder<Item, Item> TOFUFISH_BUCKET = ITEMS.registerItem("tofufish_bucket", (properties) -> new MobBucketItem(TofuEntityTypes.TOFUFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final DeferredHolder<Item, Item> TOFUFISH_SOYMILK_BUCKET = ITEMS.registerItem("tofufish_soymilk_bucket", (properties) -> new MobBucketItem(TofuEntityTypes.TOFUFISH.get(), TofuFluids.SOYMILK.get(), SoundEvents.BUCKET_EMPTY_FISH, (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final DeferredHolder<Item, Item> BUCKET_BITTERN = ITEMS.registerItem("bucket_bittern", (properties) -> new BucketItem(TofuFluids.BITTERN.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
-	public static final DeferredHolder<Item, Item> BUCKET_DOUBANJIANG = ITEMS.registerItem("bucket_doubanjiang", (properties) -> new BucketItem(TofuFluids.DOUBANJIANG.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final DeferredHolder<Item, Item> BITTERN_BUCKET = ITEMS.registerItem("bittern_bucket", (properties) -> new BucketItem(TofuFluids.BITTERN.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final DeferredHolder<Item, Item> DOUBANJIANG_BUCKET = ITEMS.registerItem("doubanjiang_bucket", (properties) -> new BucketItem(TofuFluids.DOUBANJIANG.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
 
 	public static final DeferredHolder<Item, Item> PUDDING = ITEMS.registerItem("pudding", (properties) -> new Item((properties).stacksTo(16).food(TofuFoods.PUDDING).usingConvertsTo(TofuItems.GLASS_BOWL.get())));
 	public static final DeferredHolder<Item, Item> PUDDING_SOYMILK = ITEMS.registerItem("pudding_soymilk", (properties) -> new Item((properties).stacksTo(16).food(TofuFoods.PUDDING_SOYMILK).usingConvertsTo(TofuItems.GLASS_BOWL.get())));
@@ -586,10 +586,10 @@ public class TofuItems {
 				}
 			}
 		};
-		DispenserBlock.registerBehavior(BUCKET_SOYMILK.get(), dispenseitembehavior1);
-		DispenserBlock.registerBehavior(BUCKET_SOYMILK_NETHER.get(), dispenseitembehavior1);
-		DispenserBlock.registerBehavior(BUCKET_SOYMILK_SOUL.get(), dispenseitembehavior1);
-		DispenserBlock.registerBehavior(BUCKET_BITTERN.get(), dispenseitembehavior1);
+		DispenserBlock.registerBehavior(SOYMILK_BUCKET.get(), dispenseitembehavior1);
+		DispenserBlock.registerBehavior(SOYMILK_NETHER_BUCKET.get(), dispenseitembehavior1);
+		DispenserBlock.registerBehavior(SOYMILK_SOUL_BUCKET.get(), dispenseitembehavior1);
+		DispenserBlock.registerBehavior(BITTERN_BUCKET.get(), dispenseitembehavior1);
 		DispenseItemBehavior dispenseitembehavior2 = new DefaultDispenseItemBehavior() {
 			private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 

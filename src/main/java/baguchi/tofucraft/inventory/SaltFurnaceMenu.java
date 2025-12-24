@@ -21,7 +21,7 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 	protected final Level level;
 
 	public SaltFurnaceMenu(int i, Inventory playerInventory) {
-		this(i, playerInventory, new SimpleContainer(5), new SimpleContainerData(4));
+		this(i, playerInventory, new SimpleContainer(4), new SimpleContainerData(4));
 	}
 
 	public SaltFurnaceMenu(int id, Inventory playerInventoryIn, Container furnaceInventoryIn, ContainerData dataIn) {
@@ -34,7 +34,6 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 		addSlot(new SaltFurnaceResultSlot(playerInventoryIn.player, this.container, 1, 80, 53));
 		addSlot(new Slot(this.container, 2, 102, 17));
 		addSlot(new SaltFurnaceResultSlot(playerInventoryIn.player, this.container, 3, 102, 53));
-		addSlot(new Slot(this.container, 4, 124, 17));
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++)
 				addSlot(new Slot(playerInventoryIn, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));

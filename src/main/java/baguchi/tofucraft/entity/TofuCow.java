@@ -112,7 +112,7 @@ public class TofuCow extends Cow {
 			if (itemstack.is(Items.BUCKET)) {
 				p_28298_.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
 				AtomicReference<ItemStack> resultItemStack = new AtomicReference<>(itemstack.copy());
-				resultItemStack.set(TofuItems.BUCKET_SOYMILK.get().getDefaultInstance());
+				resultItemStack.set(TofuItems.SOYMILK_BUCKET.get().getDefaultInstance());
 				p_28298_.setItemInHand(p_28299_, resultItemStack.get());
 				return InteractionResult.SUCCESS;
 			}

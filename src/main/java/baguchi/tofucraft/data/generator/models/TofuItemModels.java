@@ -194,12 +194,12 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.SOY_CHOCOLATE.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUNIAN_SOY_CHOCOLATE.get(), ModelTemplates.FLAT_ITEM);
 
-		this.generateFlatItem(TofuItems.BUCKET_SOYMILK.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.BUCKET_SOYMILK_NETHER.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.BUCKET_SOYMILK_SOUL.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.SOYMILK_BUCKET.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.SOYMILK_NETHER_BUCKET.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.SOYMILK_SOUL_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 
-		this.generateFlatItem(TofuItems.BUCKET_BITTERN.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.BUCKET_DOUBANJIANG.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.BITTERN_BUCKET.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.DOUBANJIANG_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.TOFUFISH_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUFISH_SOYMILK_BUCKET.get(), ModelTemplates.FLAT_ITEM);

@@ -714,23 +714,23 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(this.output);
 
 		//soimilk
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.BUCKET_SOYMILK.get())
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.SOYMILK_BUCKET.get())
 				.requires(TofuTags.Items.SOYBEAN)
 				.requires(Items.BUCKET)
 				.unlockedBy("has_item", has(TofuTags.Items.SOYBEAN))
 				.save(this.output);
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.BUCKET_SOYMILK.get())
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.SOYMILK_BUCKET.get())
 				.requires(TofuTags.Items.SOYBEAN)
 				.requires(Items.BUCKET)
 				.requires(TofuItems.FILTERCLOTH.get())
 				.unlockedBy("has_item", has(TofuTags.Items.SOYBEAN))
 				.save(this.output, prefix("bucket_soymilk_okara"));
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.BUCKET_SOYMILK_NETHER.get())
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.SOYMILK_NETHER_BUCKET.get())
 				.requires(TofuItems.SEEDS_SOYBEANS_NETHER.get())
 				.requires(Items.BUCKET)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_NETHER.get()))
 				.save(this.output);
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.BUCKET_SOYMILK_SOUL.get())
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.SOYMILK_SOUL_BUCKET.get())
 				.requires(TofuItems.SEEDS_SOYBEANS_SOUL.get())
 				.requires(Items.BUCKET)
 				.unlockedBy("has_item", has(TofuItems.SEEDS_SOYBEANS_SOUL.get()))
@@ -863,23 +863,23 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuTags.Items.SALT))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_BOTTLE.get(), 3)
-				.requires(TofuItems.BUCKET_SOYMILK.get())
+				.requires(TofuItems.SOYMILK_BUCKET.get())
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.GLASS_BOTTLE)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_APPLE_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.APPLE)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_COCOA_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.COCOA_BEANS)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_FRUITS_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
@@ -889,52 +889,52 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.SWEET_BERRIES)
 				.requires(Items.GLOW_BERRIES)
 				.requires(Items.CHORUS_FRUIT)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_HONEY_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.HONEY_BOTTLE)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_KINAKO_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(TofuItems.KINAKO.get())
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_PUDDING_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.SUGAR)
 				.requires(Tags.Items.EGGS)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_PUMPKIN_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.PUMPKIN)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_RAMUNE_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.SUGAR)
 				.requires(Items.LIGHT_BLUE_DYE)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_SAKURA_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.SUGAR)
 				.requires(Blocks.CHERRY_LEAVES)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_ANNIN_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(TofuItems.KYONINSO.get())
 				.requires(TofuItems.KYONINSO.get())
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.CRIMSON_BOTTLE.get(), 3)
@@ -1131,17 +1131,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(this.output);
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOY_CHOCOLATE.get(), 6)
-				.requires(TofuItems.BUCKET_SOYMILK.get())
+				.requires(TofuItems.SOYMILK_BUCKET.get())
 				.requires(Items.COCOA_BEANS)
 				.requires(Items.SUGAR)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.TOFUNIAN_SOY_CHOCOLATE.get(), 6)
-				.requires(TofuItems.BUCKET_SOYMILK.get())
+				.requires(TofuItems.SOYMILK_BUCKET.get())
 				.requires(Items.COCOA_BEANS)
 				.requires(Items.SUGAR)
 				.requires(TofuItems.LEEK.get())
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.MINCEDPOTATO.get(), 1)
@@ -1704,14 +1704,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(this.output);
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_SOUL_BOTTLE.get(), 3)
-				.requires(TofuItems.BUCKET_SOYMILK_SOUL.get())
+				.requires(TofuItems.SOYMILK_SOUL_BUCKET.get())
 				.requires(Items.GLASS_BOTTLE, 3)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK_SOUL.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_SOUL_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_HELL_BOTTLE.get(), 3)
-				.requires(TofuItems.BUCKET_SOYMILK_NETHER.get())
+				.requires(TofuItems.SOYMILK_NETHER_BUCKET.get())
 				.requires(Items.GLASS_BOTTLE, 3)
-				.unlockedBy("has_item", has(TofuItems.BUCKET_SOYMILK_NETHER.get()))
+				.unlockedBy("has_item", has(TofuItems.SOYMILK_NETHER_BUCKET.get()))
 				.save(this.output);
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_PALE_BOTTLE.get(), 3)

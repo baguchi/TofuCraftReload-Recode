@@ -53,10 +53,10 @@ import javax.annotation.Nullable;
 public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, StackedContentsCompatible {
 
 	private static final int[] SLOTS_FOR_SIDES = new int[]{0};
-	private static final int[] SLOTS_FOR_UP = new int[]{2, 4};
-	private static final int[] SLOTS_FOR_DOWN = new int[]{1, 3, 4};
+	private static final int[] SLOTS_FOR_UP = new int[]{2};
+	private static final int[] SLOTS_FOR_DOWN = new int[]{1, 3};
 
-	protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
+	protected NonNullList<ItemStack> items = NonNullList.withSize(4, ItemStack.EMPTY);
 
 	public FluidContainer waterTank = new FluidContainer(3000) {
 		@Override
@@ -210,7 +210,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			saltFurnaceBlock.level.setBlock(blockPos, saltFurnaceBlock.level.getBlockState(blockPos).setValue(SaltFurnaceBlock.LIT, Boolean.valueOf(saltFurnaceBlock.isLit())), 3);
 		}
 		saltFurnaceBlock.makeBittern();
-		saltFurnaceBlock.putWater();
 
 
 		if (!level.isClientSide()) {
@@ -269,33 +268,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			return false;
 		}
 		return false;
-	}
-
-	protected boolean canPutWater() {
-		boolean flag = (this.waterTank.getAmountAsInt(0) <= 1000);
-		ItemStack itemstack1 = this.items.get(4);
-		if (itemstack1.getItem() == Items.WATER_BUCKET) {
-			return flag;
-		}
-		return false;
-	}
-
-	private void putWater() {
-		if (canPutWater()) {
-			ItemStack itemstack1 = new ItemStack(Items.BUCKET, 1);
-			ItemStack itemstack2 = this.items.get(4);
-			itemstack2.shrink(1);
-			if (itemstack2.isEmpty()) {
-				this.items.set(4, itemstack1.copy());
-			} else if (itemstack2.getItem() == itemstack1.getItem()) {
-				itemstack2.grow(itemstack1.getCount());
-			}
-			try (Transaction tx = Transaction.openRoot()) {
-
-				this.waterTank.insert(FluidResource.of(Fluids.WATER), 1000, tx);
-				tx.commit();
-			}
-		}
 	}
 
 	private void makeBittern() {
@@ -394,9 +366,6 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		if (p_94041_1_ == 2) {
 			return (p_94041_2_.getItem() == Items.GLASS_BOTTLE);
 		}
-		if (p_94041_1_ == 4) {
-			return p_94041_2_.getItem() == Items.WATER_BUCKET;
-		}
 		ItemStack itemstack = this.items.get(0);
 		return (isFuel(this.level, p_94041_2_) || (p_94041_2_.getItem() == Items.BUCKET && itemstack.getItem() != Items.BUCKET));
 	}
@@ -415,7 +384,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 	}
 
 	public int getContainerSize() {
-		return 5;
+		return 4;
 	}
 
 	@Override

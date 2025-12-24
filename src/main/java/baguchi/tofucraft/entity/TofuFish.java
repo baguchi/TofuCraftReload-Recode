@@ -73,7 +73,7 @@ public class TofuFish extends AbstractTofuFish {
 
 			p_148831_.discard();
 			return Optional.of(InteractionResult.TRY_WITH_EMPTY_HAND);
-		} else if (itemstack.getItem() == TofuItems.BUCKET_SOYMILK.get() && p_148831_.isAlive()) {
+		} else if (itemstack.getItem() == TofuItems.SOYMILK_BUCKET.get() && p_148831_.isAlive()) {
 			p_148831_.playSound(p_148831_.getPickupSound(), 1.0F, 1.0F);
 			ItemStack itemstack1 = TofuItems.TOFUFISH_SOYMILK_BUCKET.get().getDefaultInstance();
 			p_148831_.saveToBucketTag(itemstack1);

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "tofucraft:bucket_soymilk",
+    "tofucraft:soymilk_bucket",
     "minecraft:cocoa_beans",
     "minecraft:sugar"
   ],
