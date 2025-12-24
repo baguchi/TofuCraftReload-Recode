@@ -154,7 +154,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "tofucraft:soymilk_strawberry",
+          "name": "tofucraft:soymilk_strawberry_bottle",
           "weight": 5
         },
         {
@@ -170,7 +170,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "tofucraft:soymilk_tea",
+          "name": "tofucraft:soymilk_tea_bottle",
           "weight": 5
         }
       ],

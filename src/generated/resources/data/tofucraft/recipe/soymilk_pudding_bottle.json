@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:milk/soy_milk",
+    "minecraft:glass_bottle",
+    "minecraft:sugar",
+    "#c:eggs"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:soymilk_pudding_bottle"
+  }
+}

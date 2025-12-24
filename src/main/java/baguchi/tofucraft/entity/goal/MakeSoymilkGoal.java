@@ -73,7 +73,7 @@ public class MakeSoymilkGoal extends Goal {
 				this.cookTick--;
 			if (this.creature.distanceTo(cow) < 1.5F) {
 				if (this.cookTick <= 0) {
-					this.creature.getInventory().addItem(new ItemStack(TofuItems.SOYMILK.get()));
+					this.creature.getInventory().addItem(new ItemStack(TofuItems.SOYMILK_BOTTLE.get()));
 					this.creature.swing(InteractionHand.MAIN_HAND);
 					this.creature.playSound(SoundEvents.COW_MILK, 1.0F, 1F);
 					this.cookTick = 60;

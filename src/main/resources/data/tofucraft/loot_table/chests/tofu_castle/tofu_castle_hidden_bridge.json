@@ -11,7 +11,7 @@
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "tofucraft:soymilk",
+          "name": "tofucraft:soymilk_bottle",
           "functions": [
             {
               "function": "minecraft:set_count",

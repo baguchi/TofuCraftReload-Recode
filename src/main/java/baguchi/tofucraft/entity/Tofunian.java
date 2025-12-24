@@ -127,9 +127,9 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	private static final EntityDataAccessor<Holder<TofunianClothVariant>> DATA_CLOTH_VARIANT = SynchedEntityData.defineId(Tofunian.class, TofuEntityDatas.TOFUNIAN_CLOTH_VARIANT.get());
 	private static final EntityDataAccessor<Holder<TofunianVariant>> DATA_VARIANT = SynchedEntityData.defineId(Tofunian.class, TofuEntityDatas.TOFUNIAN_VARIANT.get());
 
-	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK.get(), 3, TofuItems.TOFUCOOKIE.get(), 3, TofuItems.TOFUGRILLED.get(), 1);
+	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK_BOTTLE.get(), 3, TofuItems.TOFUCOOKIE.get(), 3, TofuItems.TOFUGRILLED.get(), 1);
 
-	private static final Set<Item> WANTED_ITEMS = ImmutableSet.of(TofuItems.SOYMILK.get(), TofuItems.TOFUCOOKIE.get(), TofuItems.TOFUGRILLED.get(), TofuItems.SEEDS_SOYBEANS.get());
+	private static final Set<Item> WANTED_ITEMS = ImmutableSet.of(TofuItems.SOYMILK_BOTTLE.get(), TofuItems.TOFUCOOKIE.get(), TofuItems.TOFUGRILLED.get(), TofuItems.SEEDS_SOYBEANS.get());
 	private static final Predicate<? super ItemEntity> ALLOWED_ITEMS = (p_213616_0_) -> {
 		return WANTED_ITEMS.contains(p_213616_0_.getItem().getItem());
 	};

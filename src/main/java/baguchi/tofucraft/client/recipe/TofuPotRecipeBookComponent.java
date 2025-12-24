@@ -30,7 +30,7 @@ public class TofuPotRecipeBookComponent extends RecipeBookComponent<TofuPotMenu>
 
 	private static final List<RecipeBookComponent.TabInfo> TABS = List.of(
 			new RecipeBookComponent.TabInfo(TofuItems.TOFU_CRAFTERS_BOOK.get(), TofuRecipeBookCategory.SEARCH),
-			new RecipeBookComponent.TabInfo(TofuItems.SOYMILK.get(), TofuRecipeBookCategory.COOKING_DRINKS.get()),
+			new RecipeBookComponent.TabInfo(TofuItems.SOYMILK_BOTTLE.get(), TofuRecipeBookCategory.COOKING_DRINKS.get()),
 			new RecipeBookComponent.TabInfo(TofuItems.NIKUJAGA.get(), TofuRecipeBookCategory.COOKING_MEALS.get()),
 			new RecipeBookComponent.TabInfo(TofuItems.SOY_CHEESE.get(), TofuRecipeBookCategory.COOKING_FAST_FOODS.get()),
 			new RecipeBookComponent.TabInfo(TofuItems.PUDDING_SOYMILK.get(), TofuRecipeBookCategory.COOKING_MISC.get())

@@ -50,7 +50,7 @@ public class SoymilkBottleItem extends Item {
 	public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, TooltipDisplay p_399753_, Consumer<Component> p_399884_, TooltipFlag p_41424_) {
 		super.appendHoverText(p_41421_, p_339594_, p_399753_, p_399884_, p_41424_);
 		p_399884_.accept(this.getEffect().value().getDisplayName().copy().withStyle(ChatFormatting.BLUE));
-		p_399884_.accept(Component.translatable("item.tofucraft.soymilk.desc").withStyle(ChatFormatting.GRAY));
+		p_399884_.accept(Component.translatable("item.tofucraft.soymilk_bottle.desc").withStyle(ChatFormatting.GRAY));
 
 	}
 

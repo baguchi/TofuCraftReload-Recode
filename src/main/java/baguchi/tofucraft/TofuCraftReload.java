@@ -109,20 +109,22 @@ public class TofuCraftReload {
 		modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> event.dataPackRegistry(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, TofunianVariant.DIRECT_CODEC, TofunianVariant.DIRECT_CODEC));
 
 		TofuBlocks.BLOCKS.register(modBus);
-		TofuBlocks.BLOCKS.addAlias(prefix("leek_green_planks_stair"), prefix("leek_green_stair"));
-		TofuBlocks.BLOCKS.addAlias(prefix("leek_planks_stair"), prefix("leek_stair"));
-		TofuBlocks.BLOCKS.addAlias(prefix("tofustem_planks_stair"), prefix("tofustem_stair"));
-		TofuBlocks.BLOCKS.addAlias(prefix("leek_green_planks_slab"), prefix("leek_green_slab"));
-		TofuBlocks.BLOCKS.addAlias(prefix("leek_planks_slab"), prefix("leek_slab"));
-		TofuBlocks.BLOCKS.addAlias(prefix("tofustem_planks_slab"), prefix("tofustem_slab"));
 		TofuItems.ITEMS.register(modBus);
-		TofuItems.ITEMS.addAlias(prefix("sculk_bone_helmet"), prefix("tofu_diamond_helmet"));
-		TofuItems.ITEMS.addAlias(prefix("sculk_bone_chestplate"), prefix("tofu_diamond_chestplate"));
-		TofuItems.ITEMS.addAlias(prefix("sculk_bone_leggings"), prefix("tofu_diamond_leggings"));
-		TofuItems.ITEMS.addAlias(prefix("sculk_bone_boots"), prefix("tofu_diamond_boots"));
 		TofuItems.ITEMS.addAlias(prefix("glassbowl"), prefix("glass_bowl"));
 		TofuItems.ITEMS.addAlias(prefix("tofudiamondnugget"), prefix("tofu_diamond_nugget"));
-
+		TofuItems.ITEMS.addAlias(prefix("soymilk"), prefix("soymilk_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_pudding"), prefix("soymilk_pudding_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_annin"), prefix("soymilk_annin_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_apple"), prefix("soymilk_apple_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_cocoa"), prefix("soymilk_cocoa_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_fruits"), prefix("soymilk_fruits_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_honey"), prefix("soymilk_honey_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_kinako"), prefix("soymilk_kinako_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_pumpkin"), prefix("soymilk_pumpkin_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_ramune"), prefix("soymilk_ramune_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_sakura"), prefix("soymilk_sakura_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_strawberry"), prefix("soymilk_strawberry_bottle"));
+		TofuItems.ITEMS.addAlias(prefix("soymilk_tea"), prefix("soymilk_tea_bottle"));
 		TofuEntityTypes.ENTITIES.register(modBus);
 		TofuEntityTypes.ENTITIES.addAlias(prefix("fukumame_thower"), prefix("fukumame_thrower"));
 		TofuEntityTypes.ENTITIES.addAlias(prefix("tofucow"), prefix("tofu_cow"));

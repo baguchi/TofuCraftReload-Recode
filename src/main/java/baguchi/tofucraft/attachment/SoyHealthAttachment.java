@@ -22,7 +22,7 @@ public class SoyHealthAttachment implements ValueIOSerializable {
 			this.lastTick = entity.level().getGameTime();
 			this.lastChangedTick = entity.level().getGameTime();
 			if (entity instanceof Player) {
-				((Player) entity).displayClientMessage(Component.translatable("item.tofucraft.soymilk.drink_day", level), true);
+				((Player) entity).displayClientMessage(Component.translatable("item.tofucraft.soymilk_bottle.drink_day", level), true);
 			}
 		}
 		if (!entity.level().isClientSide()) {

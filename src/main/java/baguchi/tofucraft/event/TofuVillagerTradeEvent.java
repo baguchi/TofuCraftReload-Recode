@@ -52,7 +52,7 @@ public class TofuVillagerTradeEvent {
 			trades.add(new EmeraldForItems(TofuItems.SEEDS_SOYBEANS.get(), 16, 12, 1));
 			trades.add(new ItemsForEmeralds(TofuItems.TOFUGRILLED.get(), 1, 9, 8, 2));
 
-			trades2.add(new ItemsForEmeralds(TofuItems.SOYMILK.get(), 1, 3, 8, 7));
+			trades2.add(new ItemsForEmeralds(TofuItems.SOYMILK_BOTTLE.get(), 1, 3, 8, 7));
 			trades2.add(new EmeraldForItems(Items.GLASS_BOTTLE, 6, 8, 6));
 
 			trades3.add(new EmeraldForItems(TofuItems.SALT.get(), 17, 10, 12, 0.1F));
@@ -61,17 +61,17 @@ public class TofuVillagerTradeEvent {
 			trades3.add(new ItemsForEmeralds(new ItemStack(TofuItems.BOTTLE_SOYOIL.get()), 3, 5, 10, 10, 0.1F));
 			trades3.add(new ItemsForEmeralds(new ItemStack(TofuItems.YUDOFU.get()), 2, 6, 10, 10, 0.08F));
 
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_ANNIN.get(), 1, 3, 6, 16));
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_APPLE.get(), 1, 3, 6, 16));
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_FRUITS.get(), 1, 3, 6, 16));
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_HONEY.get(), 1, 3, 6, 16));
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_KINAKO.get(), 1, 3, 6, 16));
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_PUDDING.get(), 1, 3, 6, 16));
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_PUMPKIN.get(), 1, 3, 6, 16));
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_RAMUNE.get(), 1, 3, 6, 16));
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_SAKURA.get(), 1, 3, 6, 16));
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_STRAWBERRY.get(), 1, 3, 6, 16));
-			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_TEA.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_ANNIN_BOTTLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_APPLE_BOTTLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_FRUITS_BOTTLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_HONEY_BOTTLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_KINAKO_BOTTLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_PUDDING_BOTTLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_PUMPKIN_BOTTLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_RAMUNE_BOTTLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_SAKURA_BOTTLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_STRAWBERRY_BOTTLE.get(), 1, 3, 6, 16));
+			trades4.add(new ItemsForEmeralds(TofuItems.SOYMILK_TEA_BOTTLE.get(), 1, 3, 6, 16));
 
 			trades5.add(new ItemsForEmeralds(new ItemStack(TofuBlocks.MORIJIO.get()), 10, 2, 6, 20, 0.1F));
 			trades5.add(new ItemsForEmeralds(new ItemStack(TofuItems.BOTTLE_SOYSAUSE.get()), 2, 6, 8, 20, 0.1F));

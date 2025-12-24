@@ -62,17 +62,17 @@ public class JEIPlugin implements IModPlugin {
 		addInfo(registration, TofuItems.BITTERN_BOTTLE.get());
 		addInfo(registration, TofuBlocks.KINUTOFU.get().asItem());
 		addInfo(registration, TofuBlocks.MOMENTOFU.get().asItem());
-		addInfo(registration, TofuItems.SOYMILK.get());
-		addInfo(registration, TofuItems.SOYMILK_APPLE.get(), TofuItems.SOYMILK.get());
-		addInfo(registration, TofuItems.SOYMILK_ANNIN.get(), TofuItems.SOYMILK.get());
-		addInfo(registration, TofuItems.SOYMILK_PUDDING.get(), TofuItems.SOYMILK.get());
-		addInfo(registration, TofuItems.SOYMILK_PUMPKIN.get(), TofuItems.SOYMILK.get());
-		addInfo(registration, TofuItems.SOYMILK_STRAWBERRY.get(), TofuItems.SOYMILK.get());
-		addInfo(registration, TofuItems.SOYMILK_FRUITS.get(), TofuItems.SOYMILK.get());
-		addInfo(registration, TofuItems.SOYMILK_TEA.get(), TofuItems.SOYMILK.get());
-		addInfo(registration, TofuItems.SOYMILK_HONEY.get(), TofuItems.SOYMILK.get());
-		addInfo(registration, TofuItems.SOYMILK_RAMUNE.get(), TofuItems.SOYMILK.get());
-		addInfo(registration, TofuItems.SOYMILK_SAKURA.get(), TofuItems.SOYMILK.get());
+		addInfo(registration, TofuItems.SOYMILK_BOTTLE.get());
+		addInfo(registration, TofuItems.SOYMILK_APPLE_BOTTLE.get(), TofuItems.SOYMILK_BOTTLE.get());
+		addInfo(registration, TofuItems.SOYMILK_ANNIN_BOTTLE.get(), TofuItems.SOYMILK_BOTTLE.get());
+		addInfo(registration, TofuItems.SOYMILK_PUDDING_BOTTLE.get(), TofuItems.SOYMILK_BOTTLE.get());
+		addInfo(registration, TofuItems.SOYMILK_PUMPKIN_BOTTLE.get(), TofuItems.SOYMILK_BOTTLE.get());
+		addInfo(registration, TofuItems.SOYMILK_STRAWBERRY_BOTTLE.get(), TofuItems.SOYMILK_BOTTLE.get());
+		addInfo(registration, TofuItems.SOYMILK_FRUITS_BOTTLE.get(), TofuItems.SOYMILK_BOTTLE.get());
+		addInfo(registration, TofuItems.SOYMILK_TEA_BOTTLE.get(), TofuItems.SOYMILK_BOTTLE.get());
+		addInfo(registration, TofuItems.SOYMILK_HONEY_BOTTLE.get(), TofuItems.SOYMILK_BOTTLE.get());
+		addInfo(registration, TofuItems.SOYMILK_RAMUNE_BOTTLE.get(), TofuItems.SOYMILK_BOTTLE.get());
+		addInfo(registration, TofuItems.SOYMILK_SAKURA_BOTTLE.get(), TofuItems.SOYMILK_BOTTLE.get());
 
 		registration.addRecipes(HARDEN_JEI_TYPE, JEIContents.getAllHardenRecipes(Internal.getClientSyncedRecipes()).stream().map(RecipeHolder::value).toList());
 		registration.addRecipes(BITTERN_JEI_TYPE, JEIContents.getAllBitternRecipes(Internal.getClientSyncedRecipes()).stream().map(RecipeHolder::value).toList());
