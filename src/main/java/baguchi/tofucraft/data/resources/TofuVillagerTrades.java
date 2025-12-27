@@ -78,6 +78,22 @@ public class TofuVillagerTrades {
 	public static final ResourceKey<VillagerTrade> TOFUNIAN_TREAVELER_EDAMAME_ZUNDA_RUBY = resourceKey("tofunian_traveler/buying/edamame_zunda_ruby");
 
 
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_1_SOYBEAN_EMERALD = resourceKey("tofunian_soy_worker/1/soybean_emerald");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_1_EMERALD_SOYMILK = resourceKey("tofunian_soy_worker/1/emerald_soymilk");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_1_EMERALD_GRILLED = resourceKey("tofunian_soy_worker/1/emerald_tofu_grilled");
+
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_2_BOTTLE_EMERALD = resourceKey("tofu_craftsman/2/bottle_emerald");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_2_EMERALD_SOY_SAUCE = resourceKey("tofu_craftsman/2/emerald_soysauce");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_2_EMERALD_SOY_OIL = resourceKey("tofu_craftsman/2/emerald_soyoile");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_3_SALT_EMERALD = resourceKey("tofu_craftsman/3/salt_emerald");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_3_EMERALD_OAGE = resourceKey("tofu_craftsman/3/emerald_oage");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_3_EMERALD_AGEDASHI_TOFU = resourceKey("tofu_craftsman/3/emerald_agedashi_tofu");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_4_EMERALD_MORIJIO = resourceKey("tofu_craftsman/4/emerald_mirijio");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_4_EMERALD_OKARA_DONUT = resourceKey("tofu_craftsman/4/emerald_okara_donut");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_5_EMERALD_MISO_SOUP = resourceKey("tofu_craftsman/5/emerald_miso_soup");
+	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_5_EMERALD_MOYASHI_ITAME = resourceKey("tofu_craftsman/5/emerald_moyashgi_itame");
+
+
 	public static ResourceKey<VillagerTrade> resourceKey(String path) {
 		return ResourceKey.create(Registries.VILLAGER_TRADE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, path));
 	}
@@ -344,6 +360,75 @@ public class TofuVillagerTrades {
 				context,
 				TOFUNIAN_TREAVELER_EDAMAME_ZUNDA_RUBY,
 				new VillagerTrade(new TradeCost(TofuItems.EDAMAME.get(), 24), new ItemStack(TofuItems.ZUNDARUBY), 4, 2, 0.05F, Optional.empty(), List.of())
+		);
+
+		register(
+				context,
+				TOFU_CRAFTSMAN_1_SOYBEAN_EMERALD,
+				new VillagerTrade(new TradeCost(TofuItems.SEEDS_SOYBEANS.get(), 16), new ItemStack(Items.EMERALD, 1), 12, 2, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFU_CRAFTSMAN_1_EMERALD_SOYMILK,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 1), new ItemStack(TofuItems.SOYMILK_BOTTLE, 3), 12, 2, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFU_CRAFTSMAN_1_EMERALD_GRILLED,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 1), new ItemStack(TofuItems.TOFUGRILLED, 9), 12, 2, 0.05F, Optional.empty(), List.of())
+		);
+
+		register(
+				context,
+				TOFU_CRAFTSMAN_2_BOTTLE_EMERALD,
+				new VillagerTrade(new TradeCost(Items.GLASS_BOTTLE, 8), new ItemStack(Items.EMERALD, 1), 12, 6, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFU_CRAFTSMAN_2_EMERALD_SOY_OIL,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 2), new ItemStack(TofuItems.BOTTLE_SOYOIL, 7), 12, 6, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFU_CRAFTSMAN_2_EMERALD_SOY_SAUCE,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 2), new ItemStack(TofuItems.BOTTLE_SOYSAUSE, 6), 8, 7, 0.05F, Optional.empty(), List.of())
+		);
+
+		register(
+				context,
+				TOFU_CRAFTSMAN_3_SALT_EMERALD,
+				new VillagerTrade(new TradeCost(TofuItems.SALT.get(), 14), new ItemStack(Items.EMERALD, 1), 12, 11, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFU_CRAFTSMAN_3_EMERALD_AGEDASHI_TOFU,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 2), new ItemStack(TofuItems.AGEDASHI_TOFU, 6), 8, 12, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFU_CRAFTSMAN_3_EMERALD_OAGE,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 2), new ItemStack(TofuItems.OAGE, 6), 8, 12, 0.05F, Optional.empty(), List.of())
+		);
+
+		register(
+				context,
+				TOFU_CRAFTSMAN_4_EMERALD_MORIJIO,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 15), new ItemStack(TofuBlocks.MORIJIO, 2), 8, 17, 0.1F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFU_CRAFTSMAN_4_EMERALD_OKARA_DONUT,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 2), new ItemStack(TofuItems.OKARA_DONUT, 6), 8, 16, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFU_CRAFTSMAN_5_EMERALD_MISO_SOUP,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 2), new ItemStack(TofuItems.MISOSOUP, 3), 6, 20, 0.1F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFU_CRAFTSMAN_5_EMERALD_MOYASHI_ITAME,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 2), new ItemStack(TofuItems.MOYASHIITAME, 3), 6, 20, 0.1F, Optional.empty(), List.of())
 		);
 	}
 

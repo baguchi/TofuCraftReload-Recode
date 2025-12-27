@@ -138,6 +138,26 @@ public class CustomTagGenerator {
 					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_5_ZUNDA_RUBY_SOYMILK_TEA)
 					.add(TofuVillagerTrades.TOFUNIAN_SMITH_5_ZUNDA_RUBY_ZUNDA_ARROW);
 
+
+			tag(TofuTags.TofunianTrade.TOFU_CRAFTSMAN_LEVEL_1)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_1_SOYBEAN_EMERALD)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_1_EMERALD_GRILLED)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_1_EMERALD_SOYMILK);
+			tag(TofuTags.TofunianTrade.TOFU_CRAFTSMAN_LEVEL_2)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_2_BOTTLE_EMERALD)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_2_EMERALD_SOY_OIL)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_2_EMERALD_SOY_SAUCE);
+			tag(TofuTags.TofunianTrade.TOFU_CRAFTSMAN_LEVEL_3)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_3_SALT_EMERALD)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_3_EMERALD_OAGE)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_3_EMERALD_AGEDASHI_TOFU);
+			tag(TofuTags.TofunianTrade.TOFU_CRAFTSMAN_LEVEL_4)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_4_EMERALD_OKARA_DONUT)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_4_EMERALD_MORIJIO);
+			tag(TofuTags.TofunianTrade.TOFU_CRAFTSMAN_LEVEL_5)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_5_EMERALD_MISO_SOUP)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_5_EMERALD_MOYASHI_ITAME);
+
 		}
 	}
 

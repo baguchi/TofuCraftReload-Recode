@@ -53,6 +53,13 @@ public class TofuTags {
 		public static final TagKey<VillagerTrade> ENGINEER_LEVEL_4 = tag("engineer/level_4");
 		public static final TagKey<VillagerTrade> ENGINEER_LEVEL_5 = tag("engineer/level_5");
 
+		public static final TagKey<VillagerTrade> TOFU_CRAFTSMAN_LEVEL_1 = tag("tofu_craftsman/level_1");
+		public static final TagKey<VillagerTrade> TOFU_CRAFTSMAN_LEVEL_2 = tag("tofu_craftsman/level_2");
+		public static final TagKey<VillagerTrade> TOFU_CRAFTSMAN_LEVEL_3 = tag("tofu_craftsman/level_3");
+		public static final TagKey<VillagerTrade> TOFU_CRAFTSMAN_LEVEL_4 = tag("tofu_craftsman/level_4");
+		public static final TagKey<VillagerTrade> TOFU_CRAFTSMAN_LEVEL_5 = tag("tofu_craftsman/level_5");
+
+
 
 		public static final TagKey<VillagerTrade> TOFUNIAN_TRAVELER_BUYING = tag("tofunian_traveler/buying");
 		public static final TagKey<VillagerTrade> TOFUNIAN_TRAVELER_UNCOMMON = tag("tofunian_traveler/uncommon");

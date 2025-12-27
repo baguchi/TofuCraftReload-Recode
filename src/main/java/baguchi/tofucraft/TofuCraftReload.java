@@ -38,6 +38,7 @@ import baguchi.tofucraft.registry.TofuLootModifiers;
 import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuPoiTypes;
+import baguchi.tofucraft.registry.TofuProfessions;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuRecipePropertySets;
 import baguchi.tofucraft.registry.TofuRecipes;
@@ -159,6 +160,7 @@ public class TofuCraftReload {
 		TofuParticleTypes.PARTICLE_TYPES.register(modBus);
 		TofuAdvancements.CRITERIONS_REGISTER.register(modBus);
 		TofuCarvers.WORLD_CARVER.register(modBus);
+		TofuProfessions.PROFESSIONS.register(modBus);
 		TofunianProfessions.TOFUNIAN_PROFESSION.register(modBus);
 		if (FMLEnvironment.getDist() == Dist.CLIENT) {
 			modBus.addListener(ClientRegistrar::setup);
