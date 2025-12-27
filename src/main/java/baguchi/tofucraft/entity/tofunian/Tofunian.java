@@ -486,7 +486,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 		//validate job position
 		if (this.getTofunianJobBlock() != null && this.getRole().getKey() != TofunianProfessions.NONE.getKey()) {
-			if (this.getRole().value().jobSite().isPresent() && !this.getRole().value().jobSite().get().contains(this.level().getBlockState(this.getTofunianJobBlock()).typeHolder())) {
+			if (this.getRole().value().jobSite().isPresent() && !this.getRole().value().jobSite().get().contains(this.level().getBlockState(this.getTofunianJobBlock()))) {
 				this.setTofunianJobBlock(null);
 
 				//if xp is none. set role normal
@@ -588,32 +588,33 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				this.setUnhappy();
 				return InteractionResult.SUCCESS;
 			} else {
-				boolean flag = this.getOffers().isEmpty();
-				if (this.getAction() == Actions.HAPPY || this.getAction() == Actions.EAT || this.getAction() == Actions.CRY) {
-					return InteractionResult.CONSUME;
+				if (!this.level().isClientSide()) {
+					boolean flag = this.getOffers().isEmpty();
+					if (this.getAction() == Actions.HAPPY || this.getAction() == Actions.EAT || this.getAction() == Actions.CRY) {
+						return InteractionResult.CONSUME;
 
-				}
-				if (p_35473_ == InteractionHand.MAIN_HAND) {
-					if (flag && !this.level().isClientSide()) {
-						this.setUnhappy();
+					}
+					if (p_35473_ == InteractionHand.MAIN_HAND) {
+						if (flag && !this.level().isClientSide()) {
+							this.setUnhappy();
+						}
+
+						//p_35472_.awardStat(Stats.TALKED_TO_VILLAGER);
 					}
 
-					//p_35472_.awardStat(Stats.TALKED_TO_VILLAGER);
-				}
+					if (flag) {
+						return InteractionResult.SUCCESS;
+					} else {
+						if (!this.level().isClientSide() && !this.offers.isEmpty()) {
+							this.startTrading(p_35472_);
+						}
 
-				if (flag) {
-					return InteractionResult.SUCCESS;
-				} else {
-					if (!this.level().isClientSide() && !this.offers.isEmpty()) {
-						this.startTrading(p_35472_);
+						return InteractionResult.SUCCESS;
 					}
-
-					return InteractionResult.SUCCESS;
 				}
 			}
-		} else {
-			return super.mobInteract(p_35472_, p_35473_);
 		}
+		return super.mobInteract(p_35472_, p_35473_);
 	}
 
 	private void setUnhappy() {

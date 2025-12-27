@@ -23,11 +23,11 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.getRole().is(TofunianProfessions.FARMER) && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isBrightOutside() && super.canUse());
+		return (this.creature.getRole().is(TofunianProfessions.FARMER.getKey()) && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isBrightOutside() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.getRole().is(TofunianProfessions.FARMER) && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isBrightOutside() && this.mob != null);
+		return (super.canContinueToUse() && this.creature.getRole().is(TofunianProfessions.FARMER.getKey()) && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isBrightOutside() && this.mob != null);
 	}
 
 	public void start() {

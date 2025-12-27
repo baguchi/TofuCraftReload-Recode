@@ -20,11 +20,11 @@ public class RestockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isBrightOutside() && !this.creature.getRole().is(TofunianProfessions.NONE) && this.creature.canResetStock() && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isBrightOutside() && !this.creature.getRole().is(TofunianProfessions.NONE.getKey()) && this.creature.canResetStock() && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level().isBrightOutside() && this.creature.canResetStock() && !this.creature.isBaby() && !this.creature.getRole().is(TofunianProfessions.NONE));
+		return (super.canContinueToUse() && this.creature.level().isBrightOutside() && this.creature.canResetStock() && !this.creature.isBaby() && !this.creature.getRole().is(TofunianProfessions.NONE.getKey()));
 	}
 
 	public void tick() {

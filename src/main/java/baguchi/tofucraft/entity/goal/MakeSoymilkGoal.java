@@ -34,7 +34,7 @@ public class MakeSoymilkGoal extends Goal {
 			this.cooldown = 400 + this.creature.getRandom().nextInt(400);
 		}
 
-		if ((this.creature.getRole().is(TofunianProfessions.SOY_WORKER) && !this.creature.hasExcessFood() && this.creature.level().isBrightOutside())) {
+		if ((this.creature.getRole().is(TofunianProfessions.SOY_WORKER.getKey()) && !this.creature.hasExcessFood() && this.creature.level().isBrightOutside())) {
 			if (cooldown-- <= 0) {
 				List<TofuCow> list = this.creature.level()
 						.getEntities(
@@ -58,7 +58,7 @@ public class MakeSoymilkGoal extends Goal {
 	}
 
 	public boolean canContinueToUse() {
-		return (this.creature.getRole().is(TofunianProfessions.SOY_WORKER) && !this.creature.hasExcessFood() && this.creature.level().isBrightOutside() && this.cow != null) && this.stop;
+		return (this.creature.getRole().is(TofunianProfessions.SOY_WORKER.getKey()) && !this.creature.hasExcessFood() && this.creature.level().isBrightOutside() && this.cow != null) && this.stop;
 	}
 
 	public void start() {

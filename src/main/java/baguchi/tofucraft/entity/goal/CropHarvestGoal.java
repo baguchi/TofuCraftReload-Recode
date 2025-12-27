@@ -42,7 +42,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 			this.canPlant = false;
 			this.wantsToHarvest = true;
 		}
-		return (this.tofunian.level().isBrightOutside() && this.tofunian.getRole().is(TofunianProfessions.FARMER) && super.canUse());
+		return (this.tofunian.level().isBrightOutside() && this.tofunian.getRole().is(TofunianProfessions.FARMER.getKey()) && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
