@@ -584,7 +584,7 @@
   "entity.tofucraft.natto_cobweb" : "納荳蛛網",
   "entity.tofucraft.natto_ball" : "納荳玥",
   "entity.tofucraft.falling_tofu" : "墜荳腐",
-  "entity.minecraft.villager.tofucraft.tofu_craftsman" : "荳腐匠",
+  "entity.tofucraft.villager.tofu_craftsman": "荳腐匠",
   "entity.tofucraft.shudofuspider" : "臭荳腐蛛",
   "entity.tofucraft.tofu_stem_boat": "荳腐莖稈舟",
   "entity.tofucraft.leek_boat": "蔥舟",

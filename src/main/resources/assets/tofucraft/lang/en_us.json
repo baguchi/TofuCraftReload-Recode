@@ -598,7 +598,7 @@
   "entity.tofucraft.natto_cobweb" : "Natto Cob Web",
   "entity.tofucraft.natto_ball" : "Natto Ball",
   "entity.tofucraft.falling_tofu" : "Falling Tofu",
-  "entity.minecraft.villager.tofucraft.tofu_craftsman" : "Tofu Craftsman",
+  "entity.tofucraft.villager.tofu_craftsman": "Tofu Craftsman",
   "entity.tofucraft.shudofuspider" : "ShuDofu Spider",
   "entity.tofucraft.tofu_stem_boat": "Tofu Stem Boat",
   "entity.tofucraft.leek_boat": "Leek Boat",
