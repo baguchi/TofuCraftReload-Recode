@@ -64,9 +64,6 @@ public class TofunianProfessions {
 		return ImmutableSet.copyOf(p_218074_.getStateDefinition().getPossibleStates());
 	}
 
-	private static Set<BlockState> getBlockStatesOptional(Optional<? extends Block> p_218074_) {
-		return ImmutableSet.copyOf(p_218074_.get().getStateDefinition().getPossibleStates());
-	}
 
 	private static List<BlockState> soyWorkerBlockList() {
 		List<BlockState> list = Lists.newArrayList();

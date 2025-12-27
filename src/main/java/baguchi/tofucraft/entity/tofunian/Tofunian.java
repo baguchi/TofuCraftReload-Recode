@@ -292,7 +292,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
 		RegistryAccess registryaccess = this.registryAccess();
-		Registry<TofunianProfession> registry3 = registryaccess.lookupOrThrow(TofunianProfessions.TOFUNIAN_PROFESSION_REGISTRY);
+		Registry<TofunianProfession> registry3 = TofunianProfessions.getRegistry();
 
 		builder.define(ROLE, registry3.get(TofunianProfessions.NONE.getKey()).orElseThrow());
 		builder.define(ACTION, "NORMAL");
@@ -358,7 +358,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public void setRole(ResourceKey<TofunianProfession> role) {
-		this.entityData.set(ROLE, this.registryAccess().lookupOrThrow(TofunianProfessions.TOFUNIAN_PROFESSION_REGISTRY).getOrThrow(role));
+		this.entityData.set(ROLE, TofunianProfessions.getRegistry().getOrThrow(role));
 	}
 
 	public Holder<TofunianProfession> getRole() {

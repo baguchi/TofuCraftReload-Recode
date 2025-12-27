@@ -40,7 +40,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 		super.tick();
 		if (isReachedTarget()) {
 			if (!findNearbyTofunianHadJob(this.creature, this.blockPos)) {
-				Optional<Map.Entry<ResourceKey<TofunianProfession>, TofunianProfession>> role = this.creature.registryAccess().lookupOrThrow(TofunianProfessions.TOFUNIAN_PROFESSION_REGISTRY).entrySet().stream().filter(entry -> {
+				Optional<Map.Entry<ResourceKey<TofunianProfession>, TofunianProfession>> role = TofunianProfessions.getRegistry().entrySet().stream().filter(entry -> {
 					return entry.getValue().jobSite().isPresent() && entry.getValue().jobSite().get().contains(this.creature.level().getBlockState(this.blockPos));
 				}).findFirst();
 				if (role.isPresent() && !this.findBlock) {
@@ -88,8 +88,8 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		Optional<Map.Entry<ResourceKey<TofunianProfession>, TofunianProfession>> role = this.creature.registryAccess().lookupOrThrow(TofunianProfessions.TOFUNIAN_PROFESSION_REGISTRY).entrySet().stream().filter(entry -> {
-			return entry.getValue().jobSite().isPresent() && entry.getValue().jobSite().get().contains(this.creature.level().getBlockState(this.blockPos));
+		Optional<Map.Entry<ResourceKey<TofunianProfession>, TofunianProfession>> role = TofunianProfessions.getRegistry().entrySet().stream().filter(entry -> {
+			return entry.getValue().jobSite().isPresent() && entry.getValue().jobSite().get().contains(blockstate);
 		}).findFirst();
 		if (role.isPresent()) {
 			BlockHitResult hitResult = worldIn.clip(new ClipContext(this.creature.getEyePosition(), pos.getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this.creature));
