@@ -1,6 +1,6 @@
 package baguchi.tofucraft.entity.goal;
 
-import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.entity.tofunian.Tofunian;
 import baguchi.tofucraft.utils.DayHelper;
 
 public class TofunianSleepOnBedGoal extends SleepOnBedGoal {

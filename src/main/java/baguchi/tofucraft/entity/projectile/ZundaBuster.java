@@ -108,7 +108,7 @@ public class ZundaBuster extends ThrowableProjectile {
 
 	protected void onHit(HitResult p_37406_) {
 		super.onHit(p_37406_);
-		playSound(SoundEvents.GENERIC_EXPLODE.value(), 0.8F, 0.8F + this.level().random.nextFloat() * 0.4F);
+		playSound(SoundEvents.GENERIC_EXPLODE.value(), 0.8F, 0.8F + this.level().getRandom().nextFloat() * 0.4F);
 	}
 
 	@Override

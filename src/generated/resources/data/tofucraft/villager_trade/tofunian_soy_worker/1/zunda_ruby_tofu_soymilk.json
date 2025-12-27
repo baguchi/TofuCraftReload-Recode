@@ -1,0 +1,12 @@
+{
+  "gives": {
+    "count": 3,
+    "id": "tofucraft:soymilk_bottle"
+  },
+  "max_uses": 2.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "id": "tofucraft:zundaruby"
+  },
+  "xp": 2.0
+}

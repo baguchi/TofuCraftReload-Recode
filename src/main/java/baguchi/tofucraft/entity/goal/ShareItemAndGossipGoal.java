@@ -1,6 +1,6 @@
 package baguchi.tofucraft.entity.goal;
 
-import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.entity.tofunian.Tofunian;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.LivingEntity;

@@ -593,7 +593,7 @@ public class CommonEvents {
 					float f2 = getSeenPercent(p, entity);
 					if (entity instanceof LivingEntity livingEntity) {
 						livingEntity.addEffect(new MobEffectInstance(TofuEffects.ZUNDAFIED, (int) (getEntityDamageAmount(event.getExplosion(), entity, f2) * 40)));
-						if (!entity.getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
+						if (!entity.is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
 							livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, (int) (getEntityDamageAmount(event.getExplosion(), entity, f2) * 40)));
 						}
 					}

@@ -1,6 +1,6 @@
 package baguchi.tofucraft.entity.goal;
 
-import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.entity.tofunian.Tofunian;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;

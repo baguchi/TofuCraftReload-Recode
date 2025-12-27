@@ -1,6 +1,6 @@
 package baguchi.tofucraft.entity.goal;
 
-import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.entity.tofunian.Tofunian;
 import baguchi.tofucraft.registry.TofuPoiTypes;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;

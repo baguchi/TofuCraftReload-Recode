@@ -49,6 +49,7 @@ public class DataGenerators {
 		generator.addProvider(true, new EnchantTagGenerator(packOutput, lookupProvider));
 		generator.addProvider(true, new CustomTagGenerator.BannerPatternTagGenerator(packOutput, lookupProvider));
 		generator.addProvider(true, new CustomTagGenerator.PoiTypeTagGenerator(packOutput, lookupProvider));
+		generator.addProvider(true, new CustomTagGenerator.VillagerTradeTagGenerator(packOutput, lookupProvider));
 		generator.addProvider(true, new CustomTagGenerator.SoundEventTagGenerator(packOutput, lookupProvider));
 		generator.addProvider(true, new BiomeTagGenerator(packOutput, lookupProvider));
 		generator.addProvider(true, new FluidTagGenerator(packOutput, lookupProvider));

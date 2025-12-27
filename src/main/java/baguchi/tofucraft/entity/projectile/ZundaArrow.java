@@ -98,7 +98,7 @@ public class ZundaArrow extends AbstractArrow {
 					this.spawnAtLocation(serverlevel, new ItemStack(TofuItems.TOFUZUNDA.get(), slime.getSize() * 2));
 					p_36757_.getEntity().discard();
 					this.discard();
-				} else if (p_36757_.getEntity().getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
+				} else if (p_36757_.getEntity().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {
 
 					if (p_36757_.getEntity().hurtServer(serverlevel, source, j)) {
 

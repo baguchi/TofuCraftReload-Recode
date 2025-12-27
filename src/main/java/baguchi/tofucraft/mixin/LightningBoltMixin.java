@@ -76,10 +76,10 @@ public abstract class LightningBoltMixin extends Entity {
 		if (blockstate1.getBlock() instanceof TofuTerrainBlock) {
 			p_147151_.setBlockAndUpdate(blockpos, TofuBlocks.TOFU_TERRAIN_ZUNDA.get().defaultBlockState());
 			BlockPos.MutableBlockPos blockpos$mutableblockpos = p_147152_.mutable();
-			int i = p_147151_.random.nextInt(3) + 3;
+			int i = p_147151_.getRandom().nextInt(3) + 3;
 
 			for (int j = 0; j < i; ++j) {
-				int k = p_147151_.random.nextInt(8) + 1;
+				int k = p_147151_.getRandom().nextInt(8) + 1;
 				randomWalkCleaningCopper(p_147151_, blockpos, blockpos$mutableblockpos, k);
 			}
 		}
@@ -99,7 +99,7 @@ public abstract class LightningBoltMixin extends Entity {
 	}
 
 	private static Optional<BlockPos> randomStepZunda(Level p_147154_, BlockPos p_147155_) {
-		for (BlockPos blockpos : BlockPos.randomInCube(p_147154_.random, 10, p_147155_, 1)) {
+		for (BlockPos blockpos : BlockPos.randomInCube(p_147154_.getRandom(), 10, p_147155_, 1)) {
 			BlockState blockstate = p_147154_.getBlockState(blockpos);
 			if (blockstate.getBlock() instanceof TofuTerrainBlock) {
 				if (TofuTerrainBlock.canBeGrass(blockstate, p_147154_, blockpos)) {

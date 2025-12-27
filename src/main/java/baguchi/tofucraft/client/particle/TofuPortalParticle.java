@@ -55,8 +55,9 @@ public class TofuPortalParticle extends SingleQuadParticle {
 		return this.quadSize * f;
 	}
 
-	public int getLightColor(float p_107564_) {
-		int i = super.getLightColor(p_107564_);
+	@Override
+	public int getLightCoords(float p_107564_) {
+		int i = super.getLightCoords(p_107564_);
 		float f = (float) this.age / (float) this.lifetime;
 		f *= f;
 		f *= f;

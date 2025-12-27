@@ -3,6 +3,8 @@ package baguchi.tofucraft.data.generator;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.data.resources.ModConfiguredFeatures;
 import baguchi.tofucraft.data.resources.TofuConfiguredWorldCarvers;
+import baguchi.tofucraft.data.resources.TofuVillagerTrades;
+import baguchi.tofucraft.data.resources.TofunianTradeSets;
 import baguchi.tofucraft.data.resources.builder.TofuNoiseBuilder;
 import baguchi.tofucraft.data.resources.registries.TofunianClothVariants;
 import baguchi.tofucraft.data.resources.registries.TofunianVariants;
@@ -46,7 +48,9 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.ENCHANTMENT, TofuEnchantments::bootstrap)
 			.add(Registries.BANNER_PATTERN, TofuBannerPatterns::bootstrap)
 			.add(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, TofunianVariants::bootstrap)
-			.add(TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY, TofunianClothVariants::bootstrap);
+			.add(TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY, TofunianClothVariants::bootstrap)
+			.add(Registries.VILLAGER_TRADE, TofuVillagerTrades::bootstrap)
+			.add(Registries.TRADE_SET, TofunianTradeSets::bootstrap);
 
 
 	public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

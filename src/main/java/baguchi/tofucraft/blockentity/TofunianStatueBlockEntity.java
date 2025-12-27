@@ -51,12 +51,12 @@ public class TofunianStatueBlockEntity extends SyncedBlockEntity {
 						ObjectArrayList<ItemStack> objectarraylist = loottable.getRandomItems(lootparams);
 						foodPlate.addAllItem(objectarraylist.get(0));
 						statue.processTick = 0;
-						statue.cooldown = level.getGameTime() + 12000 + level.random.nextInt(12000);
+						statue.cooldown = level.getGameTime() + 12000 + level.getRandom().nextInt(12000);
 						statue.happyTime = statue.getCooldown() + 24000;
 						statue.happyScale = Mth.clamp(statue.happyScale + 1F, 0F, 5F);
 						level.playSound(null, platePos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS);
 					} else {
-						if (level.random.nextInt(4) == 0) {
+						if (level.getRandom().nextInt(4) == 0) {
 							((ServerLevel) level).sendParticles(TofuParticleTypes.TOFU_PORTAL.get(), platePos.getX() + 0.5F, platePos.getY() + 0.1F, platePos.getZ() + 0.5F, 1, 0D, 0D, 0D, 1.0F);
 						}
 					}

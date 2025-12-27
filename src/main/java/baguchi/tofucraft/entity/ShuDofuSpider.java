@@ -10,6 +10,7 @@ import baguchi.tofucraft.entity.effect.NattoCobWebEntity;
 import baguchi.tofucraft.entity.projectile.FukumameEntity;
 import baguchi.tofucraft.entity.projectile.NattoBallEntity;
 import baguchi.tofucraft.entity.projectile.NattoStringEntity;
+import baguchi.tofucraft.entity.tofunian.AbstractTofunian;
 import baguchi.tofucraft.network.BossInfoPacket;
 import baguchi.tofucraft.registry.TofuDamageTypes;
 import baguchi.tofucraft.registry.TofuEffects;
@@ -672,7 +673,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 				this.heal(f * 0.2F);
 			}
 		}
-		if (entity instanceof LivingEntity && !entity.getType().is(Tags.EntityTypes.BOSSES)) {
+		if (entity instanceof LivingEntity && !entity.is(Tags.EntityTypes.BOSSES)) {
 				if (this.getPassengers().isEmpty()) {
 					entity.stopRiding();
 					entity.startRiding(this, true, false);

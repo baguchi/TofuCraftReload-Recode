@@ -36,7 +36,7 @@ public class KinuTofuBlock extends Block {
 	@Override
 	public void fallOn(Level p_152426_, BlockState p_152427_, BlockPos p_152428_, Entity p_152429_, double p_397222_) {
 		super.fallOn(p_152426_, p_152427_, p_152428_, p_152429_, p_397222_ * 0.25F);
-		if (p_397222_ > 0.5F && !p_152429_.getType().is(TofuTags.EntityTypes.WALKABLE_WITHOUT_TRIGGER)) {
+		if (p_397222_ > 0.5F && !p_152429_.is(TofuTags.EntityTypes.WALKABLE_WITHOUT_TRIGGER)) {
 			p_152426_.destroyBlock(p_152428_, true);
 		}
 	}

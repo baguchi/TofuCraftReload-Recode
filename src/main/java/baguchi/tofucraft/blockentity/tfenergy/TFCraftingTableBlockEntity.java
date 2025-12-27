@@ -168,7 +168,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 					tfoven.setChanged();
 				} else {
 					tfoven.progress = 0;
-					tfoven.refreshTime = 10 + tfoven.level.random.nextInt(20);
+					tfoven.refreshTime = 10 + tfoven.level.getRandom().nextInt(20);
 					tfoven.setChanged();
 				}
 			} else {

@@ -50,8 +50,9 @@ public class ParticleSimpleStink extends SingleQuadParticle {
 		return this.quadSize * Mth.clamp(((float) this.age + p_107567_) / (float) this.lifetime * 32.0F, 0.0F, 1.0F);
 	}
 
-	public int getLightColor(float p_107564_) {
-		int i = super.getLightColor(p_107564_);
+	@Override
+	protected int getLightCoords(float a) {
+		int i = super.getLightCoords(a);
 		float f = (float) this.age / (float) this.lifetime;
 		f *= f;
 		f *= f;

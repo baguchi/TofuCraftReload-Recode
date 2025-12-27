@@ -1,6 +1,6 @@
 package baguchi.tofucraft.client.render.state;
 
-import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.entity.tofunian.Tofunian;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.AnimationState;
 
@@ -12,7 +12,7 @@ public class TofunianRenderState extends AbstractTofunianRenderState {
 	public final AnimationState waveAnimationState = new AnimationState();
 
 	public Tofunian.Actions actions;
-	public Tofunian.Roles roles;
+	public Identifier rolesTexture;
 	@Nullable
 	public Identifier clothTexture;
 	@Nullable

@@ -6,6 +6,7 @@ import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
@@ -164,5 +165,10 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				.add(TofuBlocks.RICE_CROP.get());
 		this.tag(BlockTags.MAINTAINS_FARMLAND).add(TofuBlocks.SOYBEAN.get());
 		this.tag(Tags.Blocks.ORES).add(TofuBlocks.ORE_TOFUGEM.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get(), TofuBlocks.ISHI_TOFUGEM_ORE.get());
+
+		tag(TofuTags.Blocks.TOFUNIAN_SMITH).add(Blocks.SMITHING_TABLE);
+		tag(TofuTags.Blocks.TOFUNIAN_FARMER).add(Blocks.COMPOSTER);
+		tag(TofuTags.Blocks.TOFUNIAN_SOY_WORKER).add(Blocks.CAULDRON).add(Blocks.WATER_CAULDRON).add(TofuBlocks.SOYMILK_CAULDRON.get());
+		tag(TofuTags.Blocks.TOFUNIAN_ENGINEER).add(TofuBlocks.TOFU_WORK_STATION.get());
 	}
 }

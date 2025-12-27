@@ -1,6 +1,7 @@
 package baguchi.tofucraft.data.generator;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.data.resources.TofuVillagerTrades;
 import baguchi.tofucraft.registry.TofuBannerPatterns;
 import baguchi.tofucraft.registry.TofuPoiTypes;
 import baguchi.tofucraft.registry.TofuSounds;
@@ -13,6 +14,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.PoiTypeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.block.entity.BannerPattern;
 
 import java.util.concurrent.CompletableFuture;
@@ -51,6 +53,91 @@ public class CustomTagGenerator {
 		protected void addTags(HolderLookup.Provider p_256380_) {
 			tag(TofuTags.PoiTypes.TOFU_VILLAGE).add(TofuPoiTypes.TOFUNIAN_STATUE);
 			tag(PoiTypeTags.ACQUIRABLE_JOB_SITE).add(TofuPoiTypes.TOFU_CRAFTSMAN);
+		}
+	}
+
+	public static class VillagerTradeTagGenerator extends KeyTagProvider<VillagerTrade> {
+
+		public VillagerTradeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+			super(output, Registries.VILLAGER_TRADE, provider, TofuCraftReload.MODID);
+		}
+
+		@Override
+		protected void addTags(HolderLookup.Provider p_256380_) {
+			tag(TofuTags.TofunianTrade.FARMER_LEVEL_1)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_1_LEEK_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_1_SOYBEAN_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_1_ZUNDA_RUBY_GRILLED_TOFU);
+			tag(TofuTags.TofunianTrade.FARMER_LEVEL_2)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_2_KINAKO_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_2_SALT_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_2_ZUNDA_RUBY_TOFU_COOKIE);
+			tag(TofuTags.TofunianTrade.FARMER_LEVEL_3)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_3_MISO_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_3_NATTO_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_3_ZUNDA_RUBY_MISO_SOUP);
+			tag(TofuTags.TofunianTrade.FARMER_LEVEL_4)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_4_ZUNDA_RUBY_SESAME_TOFU)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_4_ZUNDA_RUBY_STRAWBERRY_TOFU);
+			tag(TofuTags.TofunianTrade.FARMER_LEVEL_5)
+					.add(TofuVillagerTrades.TOFUNIAN_FARMER_5_ZUNDA_RUBY_TOFU_CAKE);
+
+			tag(TofuTags.TofunianTrade.SMITH_LEVEL_1)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_1_TOFU_ISHI_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_1_ZUNDA_RUBY_TOFU_METAL_AXE)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_1_ZUNDA_RUBY_TOFU_METAL_SWORD);
+			tag(TofuTags.TofunianTrade.SMITH_LEVEL_2)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_2_TOFU_METAL_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_2_ZUNDA_RUBY_TOFU_METAL_PICKAXE)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_2_ZUNDA_RUBY_TOFU_METAL_SHOVEL);
+			tag(TofuTags.TofunianTrade.SMITH_LEVEL_3)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_3_ZUNDA_RUBY_TOFU_METAL_HOE)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_3_ZUNDA_RUBY_TOFU_METAL_SPEAR);
+			tag(TofuTags.TofunianTrade.SMITH_LEVEL_4)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_4_ZUNDA_RUBY_TOFU_METAL_HELMET)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_4_ZUNDA_RUBY_TOFU_METAL_CHESTPLATE)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_4_ZUNDA_RUBY_TOFU_METAL_LEGGINGS)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_4_ZUNDA_RUBY_TOFU_METAL_BOOTS);
+			tag(TofuTags.TofunianTrade.SMITH_LEVEL_5)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_5_ZUNDA_RUBY_TEMPLATE)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_5_ZUNDA_RUBY_ZUNDA_ARROW);
+
+			tag(TofuTags.TofunianTrade.SOY_WORKER_LEVEL_1)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_1_ZUNDA_RUBY_SOYMILK)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_1_SOYBEAN_ZUNDA_RUBY);
+			tag(TofuTags.TofunianTrade.SOY_WORKER_LEVEL_2)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_2_BOTTLE_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_2_ZUNDA_RUBY_SOY_SAUCE)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_2_ZUNDA_RUBY_YUDOFU);
+			tag(TofuTags.TofunianTrade.SOY_WORKER_LEVEL_3)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_3_ZUNDA_RUBY_SOYMILK_COCOA)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_3_ZUNDA_RUBY_SOYMILK_HONEY)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_3_ZUNDA_RUBY_SOYMILK_PUMPKIN);
+			tag(TofuTags.TofunianTrade.SOY_WORKER_LEVEL_4)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_4_ZUNDA_RUBY_SOYMILK_PUDDING)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_4_ZUNDA_RUBY_SOYMILK_RAMUNE);
+			tag(TofuTags.TofunianTrade.SOY_WORKER_LEVEL_5)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_5_ZUNDA_RUBY_SOYMILK_STRAWBERRY)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_5_ZUNDA_RUBY_SOYMILK_TEA);
+
+			tag(TofuTags.TofunianTrade.TOFUNIAN_TRAVELER_COMMON)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_3_ZUNDA_RUBY_SOYMILK_COCOA)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_3_ZUNDA_RUBY_SOYMILK_HONEY)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_3_ZUNDA_RUBY_SOYMILK_PUMPKIN)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_4_ZUNDA_RUBY_SOYMILK_PUDDING)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_4_ZUNDA_RUBY_SOYMILK_RAMUNE);
+
+			tag(TofuTags.TofunianTrade.TOFUNIAN_TRAVELER_BUYING)
+					.add(TofuVillagerTrades.TOFUNIAN_TREAVELER_SOYMILK_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_TREAVELER_SOYBEAN_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_TREAVELER_EDAMAME_ZUNDA_RUBY);
+
+
+			tag(TofuTags.TofunianTrade.TOFUNIAN_TRAVELER_UNCOMMON)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_5_ZUNDA_RUBY_SOYMILK_STRAWBERRY)
+					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_5_ZUNDA_RUBY_SOYMILK_TEA)
+					.add(TofuVillagerTrades.TOFUNIAN_SMITH_5_ZUNDA_RUBY_ZUNDA_ARROW);
+
 		}
 	}
 

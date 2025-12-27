@@ -1,7 +1,7 @@
 package baguchi.tofucraft.world;
 
 import baguchi.tofucraft.TofuConfig;
-import baguchi.tofucraft.entity.TravelerTofunian;
+import baguchi.tofucraft.entity.tofunian.TravelerTofunian;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;

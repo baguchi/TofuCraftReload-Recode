@@ -7,6 +7,7 @@ import baguchi.tofucraft.entity.goal.ChargeGoal;
 import baguchi.tofucraft.entity.goal.SpinAttackGoal;
 import baguchi.tofucraft.entity.projectile.FukumameEntity;
 import baguchi.tofucraft.entity.projectile.SoyballEntity;
+import baguchi.tofucraft.entity.tofunian.AbstractTofunian;
 import baguchi.tofucraft.network.BossInfoPacket;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuParticleTypes;

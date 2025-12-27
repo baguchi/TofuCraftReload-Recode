@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.126'
+    id 'net.neoforged.moddev' version '2.0.134'
     id 'idea'
 }
 
@@ -26,7 +26,7 @@ base {
 }
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 // Default run configurations.
 // These can be tweaked, removed, or duplicated as needed.
@@ -125,7 +125,7 @@ dependencies {
     //implementation "baguchi.bagus_lib:BagusLib:${bagus_lib_version}"
     implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
 
-    implementation "mezz.jei:jei-1.21.11-neoforge:27.3.0.10"
+    //implementation "mezz.jei:jei-1.21.11-neoforge:27.3.0.10"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

@@ -36,7 +36,6 @@ public class TofuPotScreen extends AbstractRecipeBookScreen<TofuPotMenu> {
 	@Override
 	public void init() {
 		super.init();
-		this.imageHeight = 177;
 		this.titleLabelX = 100;
 		this.inventoryLabelY = this.imageHeight - 96 + 2;
 	}

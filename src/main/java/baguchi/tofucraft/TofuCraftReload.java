@@ -1,7 +1,5 @@
 package baguchi.tofucraft;
 
-import baguchi.tofucraft.api.TofuLearning;
-import baguchi.tofucraft.api.TofunianTradeManager;
 import baguchi.tofucraft.api.entity.TofunianClothVariant;
 import baguchi.tofucraft.api.entity.TofunianVariant;
 import baguchi.tofucraft.api.tfenergy.TofuEnergyMap;
@@ -36,17 +34,16 @@ import baguchi.tofucraft.registry.TofuFluidTypes;
 import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuFoliagePlacerType;
 import baguchi.tofucraft.registry.TofuItems;
-import baguchi.tofucraft.registry.TofuLearnings;
 import baguchi.tofucraft.registry.TofuLootModifiers;
 import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuPoiTypes;
-import baguchi.tofucraft.registry.TofuProfessions;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuRecipePropertySets;
 import baguchi.tofucraft.registry.TofuRecipes;
 import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofuTags;
+import baguchi.tofucraft.registry.TofunianProfessions;
 import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
 import net.minecraft.client.Minecraft;
@@ -103,8 +100,6 @@ public class TofuCraftReload {
 		Reflection.initialize(TofuTags.Items.class);
 
 
-		modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> event.dataPackRegistry(TofuLearning.REGISTRY_KEY, TofuLearning.CODEC, TofuLearning.CODEC));
-
 		modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> event.dataPackRegistry(TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY, TofunianClothVariant.DIRECT_CODEC, TofunianClothVariant.DIRECT_CODEC));
 		modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> event.dataPackRegistry(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, TofunianVariant.DIRECT_CODEC, TofunianVariant.DIRECT_CODEC));
 
@@ -155,7 +150,6 @@ public class TofuCraftReload {
 		TofuDataComponents.DATA_COMPONENT_TYPES.register(modBus);
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuPoiTypes.POI_TYPES.register(modBus);
-		TofuProfessions.PROFESSIONS.register(modBus);
 		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
 
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
@@ -165,12 +159,10 @@ public class TofuCraftReload {
 		TofuParticleTypes.PARTICLE_TYPES.register(modBus);
 		TofuAdvancements.CRITERIONS_REGISTER.register(modBus);
 		TofuCarvers.WORLD_CARVER.register(modBus);
-		TofuLearnings.LEARNING.register(modBus);
-
+		TofunianProfessions.TOFUNIAN_PROFESSION.register(modBus);
 		if (FMLEnvironment.getDist() == Dist.CLIENT) {
 			modBus.addListener(ClientRegistrar::setup);
 		}
-		NeoForge.EVENT_BUS.addListener(TofunianTradeManager::loadTrades);
 		NeoForge.EVENT_BUS.register(new CraftingEvents());
 		modContainer.registerConfig(ModConfig.Type.COMMON, TofuConfig.COMMON_SPEC);
 		modBus.addListener(TofuCraftReload::registerBETypes);

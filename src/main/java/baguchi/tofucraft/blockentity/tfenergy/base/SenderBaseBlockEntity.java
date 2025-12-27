@@ -94,7 +94,7 @@ public class SenderBaseBlockEntity extends EnergyBaseBlockEntity {
 	//The onCache decides what TileEntities will be cached into the function and be send energy to.
 	public void onCache() {
 		cache = TofuNetwork.toTiles(TofuNetwork.Instance.getInsertableWithinRadius(this, ((IAnntena) antenna).getRadius(getBlockPos().above(), level)));
-		findCooldown = 40 + level.random.nextInt(40);
+		findCooldown = 40 + level.getRandom().nextInt(40);
 	}
 
 	public int getTransferPower() {

@@ -1,6 +1,7 @@
 package baguchi.tofucraft.compat.jei;
 
 
+/*
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.BitternRecipe;
 import baguchi.tofucraft.registry.TofuItems;
@@ -89,3 +90,4 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 	}
 }
 
+*/

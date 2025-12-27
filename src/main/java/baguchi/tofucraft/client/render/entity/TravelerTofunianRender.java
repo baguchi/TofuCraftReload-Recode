@@ -6,7 +6,7 @@ import baguchi.tofucraft.client.TofuModelLayers;
 import baguchi.tofucraft.client.model.TravelerTofunianModel;
 import baguchi.tofucraft.client.render.layer.TofunianEyeLayer;
 import baguchi.tofucraft.client.render.state.TravelerTofunianRenderState;
-import baguchi.tofucraft.entity.TravelerTofunian;
+import baguchi.tofucraft.entity.tofunian.TravelerTofunian;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;

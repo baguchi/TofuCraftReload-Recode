@@ -49,9 +49,9 @@ public class TofuScoopItem extends Item {
 			if (!worldIn.isClientSide()) {
 				if (context.getPlayer() != null)
 					stack.hurtAndBreak(1, (LivingEntity) context.getPlayer(), context.getHand());
-				double d0 = (worldIn.random.nextFloat() * 0.5F) + 0.25D;
-				double d1 = (worldIn.random.nextFloat() * 0.5F);
-				double d2 = (worldIn.random.nextFloat() * 0.5F) + 0.25D;
+				double d0 = (worldIn.getRandom().nextFloat() * 0.5F) + 0.25D;
+				double d1 = (worldIn.getRandom().nextFloat() * 0.5F);
+				double d2 = (worldIn.getRandom().nextFloat() * 0.5F) + 0.25D;
 				ItemEntity itementity = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, stack2);
 				itementity.setDefaultPickUpDelay();
 				worldIn.addFreshEntity(itementity);

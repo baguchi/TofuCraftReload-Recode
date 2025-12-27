@@ -29,7 +29,7 @@ public class NetherFukumameItem extends Item implements ProjectileItem {
 		if (!levelIn.isClientSide()) {
 			for (int i = 0; i < 5; i++) {
 				NetherFukumameEntity fukumamentity = new NetherFukumameEntity(levelIn, playerIn, itemstack);
-				float d0 = i * levelIn.random.nextFloat() * 10.0F - 5.0F * i;
+				float d0 = i * levelIn.getRandom().nextFloat() * 10.0F - 5.0F * i;
 				//fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(levelIn.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.POWER), playerIn) * 0.5F;
 				fukumamentity.shootFromRotation(playerIn, playerIn.getXRot() + d0 * 0.325F, playerIn.getYRot() + d0, 0.0F, 1.5F, 0.8F);
 				levelIn.addFreshEntity(fukumamentity);

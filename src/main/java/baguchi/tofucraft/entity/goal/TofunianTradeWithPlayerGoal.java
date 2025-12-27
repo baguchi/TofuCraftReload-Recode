@@ -1,8 +1,8 @@
 package baguchi.tofucraft.entity.goal;
 
-import baguchi.tofucraft.entity.AbstractTofunian;
-import baguchi.tofucraft.entity.Tofunian;
-import baguchi.tofucraft.entity.TravelerTofunian;
+import baguchi.tofucraft.entity.tofunian.AbstractTofunian;
+import baguchi.tofucraft.entity.tofunian.Tofunian;
+import baguchi.tofucraft.entity.tofunian.TravelerTofunian;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 

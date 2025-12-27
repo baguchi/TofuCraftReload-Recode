@@ -2,7 +2,7 @@ package baguchi.tofucraft.client.model;
 
 import baguchi.tofucraft.client.animation.definitions.TofunianAnimation;
 import baguchi.tofucraft.client.render.state.TofunianRenderState;
-import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.entity.tofunian.Tofunian;
 import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;

@@ -80,7 +80,7 @@ public class ChikuwaBlock extends Block implements Fallable, SimpleWaterloggedBl
 	@Override
 	public void stepOn(Level level, BlockPos pos, BlockState blockState, Entity p_152434_) {
 		super.stepOn(level, pos, blockState, p_152434_);
-		if (!p_152434_.isSteppingCarefully() && !p_152434_.getType().is(TofuTags.EntityTypes.WALKABLE_WITHOUT_TRIGGER)) {
+		if (!p_152434_.isSteppingCarefully() && !p_152434_.is(TofuTags.EntityTypes.WALKABLE_WITHOUT_TRIGGER)) {
 			if (isFree(level.getBlockState(pos.below()))) {
 				if (!level.getBlockTicks().hasScheduledTick(pos, this)) {
 					this.triggerChikuwa(level, pos, blockState);

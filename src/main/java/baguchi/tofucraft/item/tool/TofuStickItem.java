@@ -67,7 +67,7 @@ public class TofuStickItem extends Item implements IEnergyInsertable {
 			} else {
 				Direction.Axis direction$axis = p_49272_.getAxis().isHorizontal()
 						? p_49272_.getCounterClockWise().getAxis()
-						: Direction.Plane.HORIZONTAL.getRandomAxis(p_49270_.random);
+						: Direction.Plane.HORIZONTAL.getRandomAxis(p_49270_.getRandom());
 				return PortalShape.findEmptyPortalShape(p_49270_, p_49271_, direction$axis).isPresent();
 			}
 		}

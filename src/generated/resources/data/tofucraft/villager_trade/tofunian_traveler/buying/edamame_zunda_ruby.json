@@ -1,0 +1,12 @@
+{
+  "gives": {
+    "count": 1,
+    "id": "tofucraft:zundaruby"
+  },
+  "reputation_discount": 0.05,
+  "wants": {
+    "count": 24.0,
+    "id": "tofucraft:edamame"
+  },
+  "xp": 2.0
+}

@@ -1,5 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
+/*
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.TofuPotRecipe;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -100,3 +101,4 @@ public class TofuPotCategory implements IRecipeCategory<TofuPotRecipe> {
 		arrow.draw(stack, 103 - 37, 38 - 4);
 	}
 }
+*/

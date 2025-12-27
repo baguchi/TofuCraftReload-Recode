@@ -30,7 +30,7 @@ public class SoulFukumameItem extends Item implements ProjectileItem {
 				SoulFukumameEntity fukumamentity = new SoulFukumameEntity(levelIn, playerIn, itemstack);
 				fukumamentity.damage = 2.0F;
 				//fukumamentity.damage += EnchantmentHelper.getEnchantmentLevel(levelIn.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.POWER), playerIn) * 0.5F;
-				float d0 = i * levelIn.random.nextFloat() * 10.0F - 5.0F * i;
+				float d0 = i * levelIn.getRandom().nextFloat() * 10.0F - 5.0F * i;
 				fukumamentity.shootFromRotation(playerIn, playerIn.getXRot() + d0 * 0.325F, playerIn.getYRot() + d0, 0.0F, 1.5F, 0.8F);
 				levelIn.addFreshEntity(fukumamentity);
 			}

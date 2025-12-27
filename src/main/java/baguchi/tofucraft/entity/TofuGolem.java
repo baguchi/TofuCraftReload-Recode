@@ -3,6 +3,7 @@ package baguchi.tofucraft.entity;
 import baguchi.tofucraft.entity.goal.DefendTofuVillageTargetGoal;
 import baguchi.tofucraft.entity.goal.MoveBackToTofuVillageGoal;
 import baguchi.tofucraft.entity.projectile.SoyballEntity;
+import baguchi.tofucraft.entity.tofunian.AbstractTofunian;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
 import net.minecraft.core.BlockPos;
@@ -275,11 +276,11 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 	}
 
 	@Override
-	public boolean canAttackType(EntityType<?> p_21399_) {
-		if (this.isPlayerCreated() && p_21399_ == EntityType.PLAYER) {
+	public boolean canAttack(LivingEntity target) {
+		if (this.isPlayerCreated() && target.getType() == EntityType.PLAYER) {
 			return false;
 		} else {
-			return p_21399_ == EntityType.CREEPER ? false : super.canAttackType(p_21399_);
+			return target.getType() == EntityType.CREEPER ? false : super.canAttack(target);
 		}
 	}
 }

@@ -36,7 +36,7 @@ public class UnstableZundamaEntity extends ThrowableItemProjectile {
 	) {
 		@Override
 		public boolean shouldDamageEntity(Explosion p_346248_, Entity p_344983_) {
-			return p_344983_.getType().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA);
+			return p_344983_.is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA);
 		}
 
 		@Override

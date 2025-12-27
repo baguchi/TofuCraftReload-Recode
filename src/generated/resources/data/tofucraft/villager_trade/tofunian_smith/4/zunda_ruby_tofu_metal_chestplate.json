@@ -1,0 +1,39 @@
+{
+  "given_item_modifiers": [
+    {
+      "function": "minecraft:enchant_with_levels",
+      "include_additional_cost_component": true,
+      "levels": {
+        "type": "minecraft:uniform",
+        "max": 20.0,
+        "min": 5.0
+      },
+      "options": "#minecraft:on_traded_equipment"
+    },
+    {
+      "function": "minecraft:filtered",
+      "item_filter": {
+        "items": "tofucraft:tofu_metal_chestplate",
+        "predicates": {
+          "minecraft:enchantments": [
+            {}
+          ]
+        }
+      },
+      "on_fail": {
+        "function": "minecraft:discard"
+      }
+    }
+  ],
+  "gives": {
+    "count": 1,
+    "id": "tofucraft:tofu_metal_chestplate"
+  },
+  "max_uses": 10.0,
+  "reputation_discount": 0.1,
+  "wants": {
+    "count": 5.0,
+    "id": "tofucraft:zundaruby"
+  },
+  "xp": 16.0
+}

@@ -135,7 +135,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 						tfoven.drain(5, false);
 
 					} else {
-						tfoven.refreshTime = 30 + tfoven.level.random.nextInt(30);
+						tfoven.refreshTime = 30 + tfoven.level.getRandom().nextInt(30);
 					}
 				} else {
 					tfoven.progress = 0;

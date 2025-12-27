@@ -38,8 +38,8 @@ public class SoymilkDripParticle extends SingleQuadParticle {
 	}
 
 	@Override
-	public int getLightColor(float p_106065_) {
-		return this.isGlowing ? 240 : super.getLightColor(p_106065_);
+	public int getLightCoords(float p_106065_) {
+		return this.isGlowing ? 240 : super.getLightCoords(p_106065_);
 	}
 
 	@Override

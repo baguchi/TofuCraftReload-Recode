@@ -6,17 +6,17 @@ import baguchi.tofucraft.client.TofuModelLayers;
 import baguchi.tofucraft.client.model.TofunianModel;
 import baguchi.tofucraft.client.render.layer.TofunianClothLayer;
 import baguchi.tofucraft.client.render.layer.TofunianEyeLayer;
+import baguchi.tofucraft.client.render.layer.TofunianItemInHandLayer;
 import baguchi.tofucraft.client.render.layer.TofunianRoleLayer;
 import baguchi.tofucraft.client.render.state.TofunianRenderState;
-import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.entity.tofunian.Tofunian;
+import baguchi.tofucraft.registry.TofunianProfessions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
-import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.Identifier;
 
 import java.time.LocalDate;
@@ -35,15 +35,7 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		this.addLayer(new CustomArmorLayer<>(this, context));
 		this.addLayer(new CustomHeadLayer<>(this, context.getModelSet(), context.getPlayerSkinRenderCache()));
 
-		this.addLayer(new ItemInHandLayer<>(this) {
-
-			@Override
-			public void submit(PoseStack p_433803_, SubmitNodeCollector p_434482_, int p_433450_, TofunianRenderState p_434546_, float p_433047_, float p_433527_) {
-				if (!p_434546_.isBaby) {
-					super.submit(p_433803_, p_434482_, p_433450_, p_434546_, p_433047_, p_433527_);
-				}
-			}
-		});
+		this.addLayer(new TofunianItemInHandLayer(this));
 	}
 
 
@@ -97,7 +89,12 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		renderState.happyAnimationState.copyFrom(tofunian.happyAnimationState);
 		renderState.waveAnimationState.copyFrom(tofunian.waveAnimationState);
 		renderState.actions = tofunian.getAction();
-		renderState.roles = tofunian.getRole();
+		if (tofunian.getRole().is(TofunianProfessions.NONE)) {
+			renderState.rolesTexture = null;
+		} else {
+			renderState.rolesTexture = tofunian.getRole().getKey().identifier();
+		}
+
 		renderState.clothTexture = tofunian.getClothTexture();
 		renderState.texture = tofunian.getTexture();
 	}

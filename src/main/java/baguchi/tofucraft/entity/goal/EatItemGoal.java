@@ -1,6 +1,6 @@
 package baguchi.tofucraft.entity.goal;
 
-import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.entity.tofunian.Tofunian;
 import baguchi.tofucraft.registry.TofuLootTables;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;

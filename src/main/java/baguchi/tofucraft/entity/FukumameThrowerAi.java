@@ -409,7 +409,7 @@ public class FukumameThrowerAi {
 	private static BehaviorControl<LivingEntity> babySometimesRideBabyHoglin() {
 		SetEntityLookTargetSometimes.Ticker setentitylooktargetsometimes$ticker = new SetEntityLookTargetSometimes.Ticker(RIDE_START_INTERVAL);
 		return CopyMemoryWithExpiry.create((p_289472_) -> {
-			return p_289472_.isBaby() && setentitylooktargetsometimes$ticker.tickDownAndCheck(p_289472_.level().random);
+			return p_289472_.isBaby() && setentitylooktargetsometimes$ticker.tickDownAndCheck(p_289472_.level().getRandom());
 		}, MemoryModuleType.NEAREST_VISIBLE_BABY_HOGLIN, MemoryModuleType.RIDE_TARGET, RIDE_DURATION);
 	}
 
@@ -467,12 +467,12 @@ public class FukumameThrowerAi {
 		p_34968_.getBrain().eraseMemory(MemoryModuleType.ANGRY_AT);
 		p_34968_.getBrain().eraseMemory(MemoryModuleType.ATTACK_TARGET);
 		p_34968_.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
-		p_34968_.getBrain().setMemoryWithExpiry(MemoryModuleType.AVOID_TARGET, p_34969_, (long) RETREAT_DURATION.sample(p_34968_.level().random));
+		p_34968_.getBrain().setMemoryWithExpiry(MemoryModuleType.AVOID_TARGET, p_34969_, (long) RETREAT_DURATION.sample(p_34968_.level().getRandom()));
 		dontKillAnyMoreHoglinsForAWhile(p_34968_);
 	}
 
 	protected static void dontKillAnyMoreHoglinsForAWhile(AbstractPiglin p_34923_) {
-		p_34923_.getBrain().setMemoryWithExpiry(MemoryModuleType.HUNTED_RECENTLY, true, (long) TIME_BETWEEN_HUNTS.sample(p_34923_.level().random));
+		p_34923_.getBrain().setMemoryWithExpiry(MemoryModuleType.HUNTED_RECENTLY, true, (long) TIME_BETWEEN_HUNTS.sample(p_34923_.level().getRandom()));
 	}
 
 	private static void eat(Piglin p_35015_) {

@@ -11,6 +11,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -29,7 +30,45 @@ public class TofuTags {
 		}
 	}
 
+	public static class TofunianTrade {
+		public static final TagKey<VillagerTrade> FARMER_LEVEL_1 = tag("farmer/level_1");
+		public static final TagKey<VillagerTrade> FARMER_LEVEL_2 = tag("farmer/level_2");
+		public static final TagKey<VillagerTrade> FARMER_LEVEL_3 = tag("farmer/level_3");
+		public static final TagKey<VillagerTrade> FARMER_LEVEL_4 = tag("farmer/level_4");
+		public static final TagKey<VillagerTrade> FARMER_LEVEL_5 = tag("farmer/level_5");
+		public static final TagKey<VillagerTrade> SOY_WORKER_LEVEL_1 = tag("soy_worker/level_1");
+		public static final TagKey<VillagerTrade> SOY_WORKER_LEVEL_2 = tag("soy_worker/level_2");
+		public static final TagKey<VillagerTrade> SOY_WORKER_LEVEL_3 = tag("soy_worker/level_3");
+		public static final TagKey<VillagerTrade> SOY_WORKER_LEVEL_4 = tag("soy_worker/level_4");
+		public static final TagKey<VillagerTrade> SOY_WORKER_LEVEL_5 = tag("soy_worker/level_5");
+		public static final TagKey<VillagerTrade> SMITH_LEVEL_1 = tag("smith/level_1");
+		public static final TagKey<VillagerTrade> SMITH_LEVEL_2 = tag("smith/level_2");
+		public static final TagKey<VillagerTrade> SMITH_LEVEL_3 = tag("smith/level_3");
+		public static final TagKey<VillagerTrade> SMITH_LEVEL_4 = tag("smith/level_4");
+		public static final TagKey<VillagerTrade> SMITH_LEVEL_5 = tag("smith/level_5");
+
+		public static final TagKey<VillagerTrade> ENGINEER_LEVEL_1 = tag("engineer/level_1");
+		public static final TagKey<VillagerTrade> ENGINEER_LEVEL_2 = tag("engineer/level_2");
+		public static final TagKey<VillagerTrade> ENGINEER_LEVEL_3 = tag("engineer/level_3");
+		public static final TagKey<VillagerTrade> ENGINEER_LEVEL_4 = tag("engineer/level_4");
+		public static final TagKey<VillagerTrade> ENGINEER_LEVEL_5 = tag("engineer/level_5");
+
+
+		public static final TagKey<VillagerTrade> TOFUNIAN_TRAVELER_BUYING = tag("tofunian_traveler/buying");
+		public static final TagKey<VillagerTrade> TOFUNIAN_TRAVELER_UNCOMMON = tag("tofunian_traveler/uncommon");
+		public static final TagKey<VillagerTrade> TOFUNIAN_TRAVELER_COMMON = tag("tofunian_traveler/common");
+
+		private static TagKey<VillagerTrade> tag(String name) {
+			return TagKey.create(Registries.VILLAGER_TRADE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));
+		}
+	}
+
 	public static class Blocks {
+		public static final TagKey<Block> TOFUNIAN_SOY_WORKER = tag("tofunian_soy_worker");
+		public static final TagKey<Block> TOFUNIAN_FARMER = tag("tofunian_farmer");
+		public static final TagKey<Block> TOFUNIAN_SMITH = tag("tofunian_smith");
+		public static final TagKey<Block> TOFUNIAN_ENGINEER = tag("tofunian_engineer");
+
 		public static final TagKey<Block> HAS_INFO = tag("has_info");
 
 		public static final TagKey<Block> PICKABLE_TOFU = tag("pickable_tofu");

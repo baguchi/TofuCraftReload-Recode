@@ -102,11 +102,11 @@ public class ZundamaBlock extends HalfTransparentBlock {
 
 	private void maybeDoSlideEffects(Level p_53995_, Entity p_53996_) {
 		if (doesEntityDoHoneyBlockSlideEffects(p_53996_)) {
-			if (p_53995_.random.nextInt(5) == 0) {
+			if (p_53995_.getRandom().nextInt(5) == 0) {
 				p_53996_.playSound(SoundEvents.HONEY_BLOCK_SLIDE, 1.0F, 1.0F);
 			}
 
-			if (p_53995_.isClientSide() && p_53995_.random.nextInt(5) == 0) {
+			if (p_53995_.isClientSide() && p_53995_.getRandom().nextInt(5) == 0) {
 				showSlideParticles(p_53996_);
 			}
 		}

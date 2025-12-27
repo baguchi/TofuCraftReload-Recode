@@ -165,9 +165,9 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 			if (stat == Stat.SALT) {
 				ItemStack salt = new ItemStack(TofuItems.SALT.get(), 2);
 				float f = 0.7F;
-				double d0 = (level.random.nextFloat() * f) + (1.0F - f) * 0.5D;
-				double d1 = (level.random.nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
-				double d2 = (level.random.nextFloat() * f) + (1.0F - f) * 0.5D;
+				double d0 = (level.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
+				double d1 = (level.getRandom().nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;
+				double d2 = (level.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
 				ItemEntity itemEntity = new ItemEntity(level, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, salt);
 				itemEntity.setPickUpDelay(10);
 				level.addFreshEntity(itemEntity);
