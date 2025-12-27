@@ -1,0 +1,13 @@
+{
+  "gives": {
+    "count": 6,
+    "id": "tofucraft:bottle_soysause"
+  },
+  "max_uses": 8.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "count": 2.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 7.0
+}

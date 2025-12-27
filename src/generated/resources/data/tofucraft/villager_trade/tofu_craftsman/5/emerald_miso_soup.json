@@ -1,0 +1,13 @@
+{
+  "gives": {
+    "count": 3,
+    "id": "tofucraft:misosoup"
+  },
+  "max_uses": 6.0,
+  "reputation_discount": 0.1,
+  "wants": {
+    "count": 2.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 20.0
+}
