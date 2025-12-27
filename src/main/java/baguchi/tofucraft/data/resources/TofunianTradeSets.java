@@ -70,6 +70,7 @@ public class TofunianTradeSets {
 		register(context, ENGINEER_LEVEL_3, TofuTags.TofunianTrade.ENGINEER_LEVEL_3);
 		register(context, ENGINEER_LEVEL_4, TofuTags.TofunianTrade.ENGINEER_LEVEL_4);
 		register(context, ENGINEER_LEVEL_5, TofuTags.TofunianTrade.ENGINEER_LEVEL_5);*/
+		TofuTradeSets.bootstrap(context);
 	}
 
 	public static Holder.Reference<TradeSet> register(BootstrapContext<TradeSet> context, ResourceKey<TradeSet> resourceKey, TagKey<VillagerTrade> tradeTag) {
