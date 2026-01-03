@@ -72,6 +72,20 @@ public class TofuVillagerTrades {
 	public static final ResourceKey<VillagerTrade> TOFUNIAN_SOY_WORKER_5_ZUNDA_RUBY_SOYMILK_TEA = resourceKey("tofunian_soy_worker/5/zunda_ruby_soymilk_tea");
 	public static final ResourceKey<VillagerTrade> TOFUNIAN_SOY_WORKER_5_ZUNDA_RUBY_SOYMILK_STRAWBERRY = resourceKey("tofunian_soy_worker/5/zunda_ruby_soymilk_strayberry");
 
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_1_TOFU_GEM_ZUNDA_RUBY = resourceKey("tofunian_tofu_engineer/1/tofu_gem_zunda_ruby");
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_1_ZUNDA_RUBY_CIRCUIT = resourceKey("tofunian_tofu_engineer/1/zunda_ruby_circuit");
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_1_ZUNDA_RUBY_COIL = resourceKey("tofunian_tofu_engineer/1/zunda_ruby_coil");
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_2_TOFU_METAL_ZUNDA_RUBY = resourceKey("tofunian_tofu_engineer/2/tofu_metal");
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_2_ZUNDA_RUBY_CAPACITOR = resourceKey("tofunian_tofu_engineer/2/zunda_ruby_capacitor");
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_2_ZUNDA_RUBY_OSCILLATOR = resourceKey("tofunian_tofu_engineer/2/zunda_ruby_oscillator");
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_3_ADVANCE_TOFU_GEM_ZUNDA_RUBY = resourceKey("tofunian_tofu_engineer/3/advance_tofu_gem");
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_3_ZUNDA_RUBY_BATTERY = resourceKey("tofunian_tofu_engineer/3/zunda_ruby_battery");
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_4_ZUNDA_RUBY_TOFU_CORE = resourceKey("tofunian_tofu_engineer/4/zunda_ruby_tofu_core");
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_4_ZUNDA_RUBY_TOFU_DEVICE = resourceKey("tofunian_tofu_engineer/4/zunda_ruby_tofu_device");
+	public static final ResourceKey<VillagerTrade> TOFUNIAN_ENGINEER_5_ZUNDA_RUBY_ANTENNA = resourceKey("tofunian_tofu_engineer/5/zunda_ruby_antenna");
+
+
+
 
 	public static final ResourceKey<VillagerTrade> TOFUNIAN_TREAVELER_SOYBEAN_ZUNDA_RUBY = resourceKey("tofunian_traveler/buying/soybean_zunda_ruby");
 	public static final ResourceKey<VillagerTrade> TOFUNIAN_TREAVELER_SOYMILK_ZUNDA_RUBY = resourceKey("tofunian_traveler/buying/soymilk_zunda_ruby");
@@ -290,7 +304,7 @@ public class TofuVillagerTrades {
 		register(
 				context,
 				TOFUNIAN_SOY_WORKER_1_ZUNDA_RUBY_SOYMILK,
-				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStack(TofuItems.SOYMILK_BOTTLE, 3), 2, 2, 0.05F, Optional.empty(), List.of())
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStack(TofuItems.SOYMILK_BOTTLE, 3), 12, 2, 0.05F, Optional.empty(), List.of())
 		);
 
 		register(
@@ -343,6 +357,63 @@ public class TofuVillagerTrades {
 				context,
 				TOFUNIAN_SOY_WORKER_5_ZUNDA_RUBY_SOYMILK_TEA,
 				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStack(TofuItems.SOYMILK_TEA_BOTTLE, 5), 6, 20, 0.1F, Optional.empty(), List.of())
+		);
+
+
+		register(
+				context,
+				TOFUNIAN_ENGINEER_1_TOFU_GEM_ZUNDA_RUBY,
+				new VillagerTrade(new TradeCost(TofuItems.TOFUGEM.get(), 10), new ItemStack(TofuItems.ZUNDARUBY), 16, 3, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFUNIAN_ENGINEER_1_ZUNDA_RUBY_CIRCUIT,
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStack(TofuItems.TF_CIRCUIT, 6), 12, 2, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFUNIAN_ENGINEER_1_ZUNDA_RUBY_COIL,
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStack(TofuItems.TF_COIL, 6), 12, 2, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFUNIAN_ENGINEER_2_TOFU_METAL_ZUNDA_RUBY,
+				new VillagerTrade(new TradeCost(TofuItems.TOFUMETAL.get(), 12), new ItemStack(TofuItems.ZUNDARUBY), 12, 6, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFUNIAN_ENGINEER_2_ZUNDA_RUBY_CAPACITOR,
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStack(TofuItems.TF_CAPACITOR, 4), 12, 5, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFUNIAN_ENGINEER_2_ZUNDA_RUBY_OSCILLATOR,
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 2), new ItemStack(TofuItems.TF_OSCILLATOR, 7), 12, 5, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFUNIAN_ENGINEER_3_ADVANCE_TOFU_GEM_ZUNDA_RUBY,
+				new VillagerTrade(new TradeCost(TofuItems.ADVANCE_TOFUGEM.get(), 8), new ItemStack(TofuItems.ZUNDARUBY, 2), 12, 12, 0.05F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFUNIAN_ENGINEER_3_ZUNDA_RUBY_BATTERY,
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 2), new ItemStack(TofuItems.TF_BATTERY, 1), 6, 11, 0.1F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFUNIAN_ENGINEER_4_ZUNDA_RUBY_TOFU_CORE,
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStack(TofuItems.TOFU_CORE, 1), 6, 16, 0.1F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFUNIAN_ENGINEER_4_ZUNDA_RUBY_TOFU_DEVICE,
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 5), new ItemStack(TofuItems.TF_DEVICE, 1), 6, 17, 0.1F, Optional.empty(), List.of())
+		);
+		register(
+				context,
+				TOFUNIAN_ENGINEER_5_ZUNDA_RUBY_ANTENNA,
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 6), new ItemStack(TofuBlocks.ANTENNA_BASIC, 1), 6, 16, 0.1F, Optional.empty(), List.of())
 		);
 
 

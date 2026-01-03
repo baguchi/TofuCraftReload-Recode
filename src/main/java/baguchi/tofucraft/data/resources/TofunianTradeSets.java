@@ -37,12 +37,12 @@ public class TofunianTradeSets {
 	public static final ResourceKey<TradeSet> SMITH_LEVEL_4 = resourceKey("smith/level_4");
 	public static final ResourceKey<TradeSet> SMITH_LEVEL_5 = resourceKey("smith/level_5");
 
-	/*public static final ResourceKey<TradeSet> ENGINEER_LEVEL_1 = resourceKey("engineer/level_1");
+	public static final ResourceKey<TradeSet> ENGINEER_LEVEL_1 = resourceKey("engineer/level_1");
 	public static final ResourceKey<TradeSet> ENGINEER_LEVEL_2 = resourceKey("engineer/level_2");
 	public static final ResourceKey<TradeSet> ENGINEER_LEVEL_3 = resourceKey("engineer/level_3");
 	public static final ResourceKey<TradeSet> ENGINEER_LEVEL_4 = resourceKey("engineer/level_4");
 	public static final ResourceKey<TradeSet> ENGINEER_LEVEL_5 = resourceKey("engineer/level_5");
-*/
+
 
 	public static void bootstrap(BootstrapContext<TradeSet> context) {
 		register(context, TOFUNIAN_TRAVELER_BUYING, TofuTags.TofunianTrade.TOFUNIAN_TRAVELER_BUYING);
@@ -65,11 +65,11 @@ public class TofunianTradeSets {
 		register(context, SMITH_LEVEL_4, TofuTags.TofunianTrade.SMITH_LEVEL_4);
 		register(context, SMITH_LEVEL_5, TofuTags.TofunianTrade.SMITH_LEVEL_5);
 
-		/*register(context, ENGINEER_LEVEL_1, TofuTags.TofunianTrade.ENGINEER_LEVEL_1);
+		register(context, ENGINEER_LEVEL_1, TofuTags.TofunianTrade.ENGINEER_LEVEL_1);
 		register(context, ENGINEER_LEVEL_2, TofuTags.TofunianTrade.ENGINEER_LEVEL_2);
 		register(context, ENGINEER_LEVEL_3, TofuTags.TofunianTrade.ENGINEER_LEVEL_3);
 		register(context, ENGINEER_LEVEL_4, TofuTags.TofunianTrade.ENGINEER_LEVEL_4);
-		register(context, ENGINEER_LEVEL_5, TofuTags.TofunianTrade.ENGINEER_LEVEL_5);*/
+		register(context, ENGINEER_LEVEL_5, TofuTags.TofunianTrade.ENGINEER_LEVEL_5);
 		TofuTradeSets.bootstrap(context);
 	}
 

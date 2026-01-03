@@ -119,6 +119,24 @@ public class CustomTagGenerator {
 			tag(TofuTags.TofunianTrade.SOY_WORKER_LEVEL_5)
 					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_5_ZUNDA_RUBY_SOYMILK_STRAWBERRY)
 					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_5_ZUNDA_RUBY_SOYMILK_TEA);
+			tag(TofuTags.TofunianTrade.ENGINEER_LEVEL_1)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_1_TOFU_GEM_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_1_ZUNDA_RUBY_CIRCUIT)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_1_ZUNDA_RUBY_COIL);
+			tag(TofuTags.TofunianTrade.ENGINEER_LEVEL_2)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_2_TOFU_METAL_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_2_ZUNDA_RUBY_CAPACITOR)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_2_ZUNDA_RUBY_OSCILLATOR);
+			tag(TofuTags.TofunianTrade.ENGINEER_LEVEL_3)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_3_ADVANCE_TOFU_GEM_ZUNDA_RUBY)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_3_ZUNDA_RUBY_BATTERY);
+			tag(TofuTags.TofunianTrade.ENGINEER_LEVEL_4)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_4_ZUNDA_RUBY_TOFU_CORE)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_4_ZUNDA_RUBY_TOFU_DEVICE);
+			tag(TofuTags.TofunianTrade.ENGINEER_LEVEL_5)
+					.add(TofuVillagerTrades.TOFUNIAN_ENGINEER_5_ZUNDA_RUBY_ANTENNA);
+
+
 
 			tag(TofuTags.TofunianTrade.TOFUNIAN_TRAVELER_COMMON)
 					.add(TofuVillagerTrades.TOFUNIAN_SOY_WORKER_3_ZUNDA_RUBY_SOYMILK_COCOA)
