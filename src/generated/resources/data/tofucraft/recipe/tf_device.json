@@ -2,17 +2,18 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "C": "tofucraft:tf_device",
-    "P": "tofucraft:leek",
+    "C": "tofucraft:tofu_core",
+    "L": "tofucraft:tf_coil",
+    "O": "tofucraft:tf_oscillator",
     "T": "tofucraft:tofumetal"
   },
   "pattern": [
-    " P ",
-    " C ",
+    "TTT",
+    "LCO",
     "TTT"
   ],
   "result": {
     "count": 1,
-    "id": "tofucraft:antenna_basic"
+    "id": "tofucraft:tf_device"
   }
 }

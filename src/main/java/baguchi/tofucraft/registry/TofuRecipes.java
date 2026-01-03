@@ -8,6 +8,7 @@ import baguchi.tofucraft.recipe.HardenSerializer;
 import baguchi.tofucraft.recipe.TFCraftingRecipe;
 import baguchi.tofucraft.recipe.TFShapedRecipe;
 import baguchi.tofucraft.recipe.TFShapelessRecipe;
+import baguchi.tofucraft.recipe.TFTofuMakerRecipe;
 import baguchi.tofucraft.recipe.TofuPotRecipe;
 import baguchi.tofucraft.recipe.TofuPotShapelessRecipe;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -34,4 +35,7 @@ public class TofuRecipes {
 	public static final Supplier<TFShapelessRecipe.Serializer> RECIPE_TF_CRAFT_SHAPELESS = RECIPE_SERIALIZERS.register("tf_craft_shapeless", TFShapelessRecipe.Serializer::new);
 	public static final Supplier<TFShapedRecipe.Serializer> RECIPE_TF_CRAFT_SHAPED = RECIPE_SERIALIZERS.register("tf_craft_shaped", TFShapedRecipe.Serializer::new);
 
+	public static final Supplier<RecipeType<TFTofuMakerRecipe>> RECIPETYPE_TF_TOFU_MAKER = RECIPE_TYPES.register("tf_tofu_maker", () -> RecipeType.simple(TofuCraftReload.prefix("tf_tofu_maker")));
+
+	public static final Supplier<TFTofuMakerRecipe.Serializer> RECIPE_TF_TOFU_MAKER = RECIPE_SERIALIZERS.register("tf_tofu_maker", TFTofuMakerRecipe.Serializer::new);
 }

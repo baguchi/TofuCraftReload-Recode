@@ -39,10 +39,10 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	}
 
 	@Override
-	public void render(GuiGraphics p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
-		super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
-		this.renderTooltip(p_230430_1_, p_230430_2_, p_230430_3_);
-		this.renderOnboardingTooltips(p_230430_1_, p_230430_2_, p_230430_3_);
+	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float p_230430_4_) {
+		super.render(guiGraphics, mouseX, mouseY, p_230430_4_);
+		this.renderTooltip(guiGraphics, mouseX, mouseY);
+		this.renderOnboardingTooltips(guiGraphics, mouseX, mouseY);
 	}
 
 	protected void renderBg(GuiGraphics p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {

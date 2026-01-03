@@ -94,19 +94,24 @@ public class TFOvenBlock extends TFBaseEntityBlock {
 
 	}
 
+
+	@Override
 	public boolean hasAnalogOutputSignal(BlockState p_48700_) {
 		return true;
 	}
 
-	public int getAnalogOutputSignal(BlockState p_48702_, Level p_48703_, BlockPos p_48704_) {
-		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(p_48703_.getBlockEntity(p_48704_));
+
+	@Override
+	protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
+		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
 	}
 
+	@Override
 	public RenderShape getRenderShape(BlockState p_48727_) {
 		return RenderShape.MODEL;
 	}
 
-
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_48725_) {
 		p_48725_.add(FACING, LIT);
 	}

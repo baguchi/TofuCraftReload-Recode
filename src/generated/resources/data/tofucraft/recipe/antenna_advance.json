@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": "tofucraft:antenna_basic",
+    "G": "tofucraft:adv_tofugem",
+    "T": "tofucraft:tofu_diamond_nugget"
+  },
+  "pattern": [
+    "T",
+    "G",
+    "A"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tofucraft:antenna_advance"
+  }
+}

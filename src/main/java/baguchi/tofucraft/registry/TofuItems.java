@@ -442,6 +442,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TF_CIRCUIT = ITEMS.registerItem("tf_circuit", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TF_OSCILLATOR = ITEMS.registerItem("tf_oscillator", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TOFU_CORE = ITEMS.registerItem("tofu_core", (properties) -> new Item((properties)));
+	public static final DeferredHolder<Item, Item> TF_DEVICE = ITEMS.registerItem("tf_device", (properties) -> new Item((properties)));
 	public static final DeferredHolder<Item, Item> TF_BATTERY = ITEMS.registerItem("tf_battery", (properties) -> new TFBatteryItem((properties.stacksTo(1))));
 
 	public static final DeferredHolder<Item, Item> TOFUNIAN_SPAWN_EGG = ITEMS.registerItem("tofunian_spawn_egg", (properties) -> new SpawnEggItem((properties.spawnEgg(TofuEntityTypes.TOFUNIAN.get()))));

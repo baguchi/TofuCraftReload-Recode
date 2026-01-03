@@ -1,0 +1,11 @@
+{
+  "type": "tofucraft:tf_tofu_maker",
+  "cookingtime": 600,
+  "experience": 0.2,
+  "group": "tofu_maker",
+  "ingredient": "tofucraft:blocktofuishi",
+  "result": {
+    "count": 1,
+    "id": "tofucraft:blocktofumetal"
+  }
+}

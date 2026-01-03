@@ -250,6 +250,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TF_CAPACITOR.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TF_OSCILLATOR.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_CORE.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TF_DEVICE.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TF_BATTERY.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOY_FORCE_SHARD.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOY_ORB.get(), ModelTemplates.FLAT_ITEM);

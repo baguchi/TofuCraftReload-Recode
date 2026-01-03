@@ -272,6 +272,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createLantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
 		createTranslucentCube(TofuBlocks.ZUNDAMA_BLOCK.get());
 		this.createCrossBlockWithDefaultItem(TofuBlocks.ANTENNA_BASIC.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+		this.createCrossBlockWithDefaultItem(TofuBlocks.ANTENNA_ADVANCE.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		createTrivialCube(TofuBlocks.TF_COLLECTOR.get());
 		createTrivialCube(TofuBlocks.SALT_BLOCK.get());
 		createTrivialCube(TofuBlocks.OKARA_BLOCK.get());
