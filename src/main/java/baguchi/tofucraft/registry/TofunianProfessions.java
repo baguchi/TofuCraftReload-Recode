@@ -29,48 +29,49 @@ import static net.minecraft.resources.ResourceKey.createRegistryKey;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class TofunianProfessions {
-	public static final ResourceKey<Registry<TofunianProfession>> TOFUNIAN_PROFESSION_REGISTRY = createRegistryKey(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian_profession"));
+	public static final ResourceKey<Registry<TofunianProfession>> TOFUNIAN_PROFESSION_REGISTRY_KEY = createRegistryKey(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian_profession"));
 
-	public static final DeferredRegister<TofunianProfession> TOFUNIAN_PROFESSION = DeferredRegister.create(TOFUNIAN_PROFESSION_REGISTRY, TofuCraftReload.MODID);
+	public static final DeferredRegister<TofunianProfession> TOFUNIAN_PROFESSION = DeferredRegister.create(TOFUNIAN_PROFESSION_REGISTRY_KEY, TofuCraftReload.MODID);
 
-	public static final DeferredHolder<TofunianProfession, TofunianProfession> NONE = TOFUNIAN_PROFESSION.register("protection", () -> new TofunianProfession(Optional.empty(), new Int2ObjectOpenHashMap<>()));
+	public static final DeferredHolder<TofunianProfession, TofunianProfession> NONE = TOFUNIAN_PROFESSION.register("none", () -> new TofunianProfession(Optional.empty(), new Int2ObjectOpenHashMap<>()));
 	public static final DeferredHolder<TofunianProfession, TofunianProfession> SOY_WORKER = register("soy_worker", soyWorkerBlockList(), new Int2ObjectOpenHashMap<>(Int2ObjectMap.ofEntries(Int2ObjectMap.entry(1, TofunianTradeSets.SOY_WORKER_LEVEL_1), Int2ObjectMap.entry(2, TofunianTradeSets.SOY_WORKER_LEVEL_2), Int2ObjectMap.entry(3, TofunianTradeSets.SOY_WORKER_LEVEL_3), Int2ObjectMap.entry(4, TofunianTradeSets.SOY_WORKER_LEVEL_4), Int2ObjectMap.entry(5, TofunianTradeSets.SOY_WORKER_LEVEL_5))));
 	public static final DeferredHolder<TofunianProfession, TofunianProfession> FARMER = register("farmer", getBlockStates(Blocks.COMPOSTER), new Int2ObjectOpenHashMap<>(Int2ObjectMap.ofEntries(Int2ObjectMap.entry(1, TofunianTradeSets.FARMER_LEVEL_1), Int2ObjectMap.entry(2, TofunianTradeSets.FARMER_LEVEL_2), Int2ObjectMap.entry(3, TofunianTradeSets.FARMER_LEVEL_3), Int2ObjectMap.entry(4, TofunianTradeSets.FARMER_LEVEL_4), Int2ObjectMap.entry(5, TofunianTradeSets.FARMER_LEVEL_5))));
 	public static final DeferredHolder<TofunianProfession, TofunianProfession> SMITH = register("smith", getBlockStates(Blocks.BLAST_FURNACE), new Int2ObjectOpenHashMap<>(Int2ObjectMap.ofEntries(Int2ObjectMap.entry(1, TofunianTradeSets.SMITH_LEVEL_1), Int2ObjectMap.entry(2, TofunianTradeSets.SMITH_LEVEL_2), Int2ObjectMap.entry(3, TofunianTradeSets.SMITH_LEVEL_3), Int2ObjectMap.entry(4, TofunianTradeSets.SMITH_LEVEL_4), Int2ObjectMap.entry(5, TofunianTradeSets.SMITH_LEVEL_5))));
-	public static final DeferredHolder<TofunianProfession, TofunianProfession> ENGINEER = register("smith", getBlockStates(TofuBlocks.TOFU_WORK_STATION.get()), new Int2ObjectOpenHashMap<>(Int2ObjectMap.ofEntries(Int2ObjectMap.entry(1, TofunianTradeSets.ENGINEER_LEVEL_1), Int2ObjectMap.entry(2, TofunianTradeSets.ENGINEER_LEVEL_2), Int2ObjectMap.entry(3, TofunianTradeSets.ENGINEER_LEVEL_3), Int2ObjectMap.entry(4, TofunianTradeSets.ENGINEER_LEVEL_4), Int2ObjectMap.entry(5, TofunianTradeSets.ENGINEER_LEVEL_5))));
+	public static final DeferredHolder<TofunianProfession, TofunianProfession> ENGINEER = register("engineer", getBlockStates(Blocks.SMITHING_TABLE), new Int2ObjectOpenHashMap<>(Int2ObjectMap.ofEntries(Int2ObjectMap.entry(1, TofunianTradeSets.ENGINEER_LEVEL_1), Int2ObjectMap.entry(2, TofunianTradeSets.ENGINEER_LEVEL_2), Int2ObjectMap.entry(3, TofunianTradeSets.ENGINEER_LEVEL_3), Int2ObjectMap.entry(4, TofunianTradeSets.ENGINEER_LEVEL_4), Int2ObjectMap.entry(5, TofunianTradeSets.ENGINEER_LEVEL_5))));
 
-	private static Registry<TofunianProfession> registry;
-
+	public static final Registry<TofunianProfession> TOFUNIAN_PROFESSION_REGISTRY = new RegistryBuilder<>(TOFUNIAN_PROFESSION_REGISTRY_KEY)
+			// If you want to enable integer id syncing, for networking.
+			// These should only be used in networking contexts, for example in packets or purely networking-related NBT data.
+			.sync(true)
+			// The default key. Similar to minecraft:air for blocks. This is optional.
+			.defaultKey(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "none"))
+			// Effectively limits the max count. Generally discouraged, but may make sense in settings such as networking.
+			// Build the registry.
+			.create();
 	@SubscribeEvent
 	public static void onNewRegistry(NewRegistryEvent event) {
-		registry = event.create(new RegistryBuilder<>(TOFUNIAN_PROFESSION_REGISTRY).sync(true));
+		event.register(TOFUNIAN_PROFESSION_REGISTRY);
 	}
 
 	public static Registry<TofunianProfession> getRegistry() {
-		if (registry == null) {
-			throw new IllegalStateException("Registry not yet initialized");
-		}
-		return registry;
+		return TOFUNIAN_PROFESSION_REGISTRY;
 	}
 
 	private static DeferredHolder<TofunianProfession, TofunianProfession> register(String name, Set<BlockState> jobSite, Int2ObjectOpenHashMap<ResourceKey<TradeSet>> trades) {
-		return TOFUNIAN_PROFESSION.register(name, () -> new TofunianProfession(Optional.of(jobSite.stream().toList()), trades));
-	}
-
-	private static DeferredHolder<TofunianProfession, TofunianProfession> register(String name, List<BlockState> jobSite, Int2ObjectOpenHashMap<ResourceKey<TradeSet>> trades) {
 		return TOFUNIAN_PROFESSION.register(name, () -> new TofunianProfession(Optional.of(jobSite), trades));
 	}
+
 
 	private static Set<BlockState> getBlockStates(Block p_218074_) {
 		return ImmutableSet.copyOf(p_218074_.getStateDefinition().getPossibleStates());
 	}
 
 
-	private static List<BlockState> soyWorkerBlockList() {
+	private static Set<BlockState> soyWorkerBlockList() {
 		List<BlockState> list = Lists.newArrayList();
 		list.addAll(getBlockStates(Blocks.CAULDRON).stream().toList());
 		list.addAll(getBlockStates(Blocks.WATER_CAULDRON).stream().toList());
 
-		return list;
+		return Set.copyOf(list);
 	}
 }

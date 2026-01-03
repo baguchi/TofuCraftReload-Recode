@@ -1,7 +1,7 @@
 {
   "gives": {
-    "count": 3,
-    "id": "tofucraft:soymilk_bottle"
+    "count": 6,
+    "id": "tofucraft:tf_coil"
   },
   "max_uses": 12.0,
   "reputation_discount": 0.05,
