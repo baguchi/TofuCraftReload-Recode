@@ -831,5 +831,5 @@
   "tofucraft.tofu_crafters_book.tf_force.title": "トーフフォース取扱説明書",
   "tofucraft.tofu_crafters_book.tf_force.desc": "豆腐や大豆を使った工業化もできるよ\n\nエネルギーは、大豆や豆腐がメイン、\nそこから物を焼いたり豆腐ツールの耐久を回復することができるよ",
   "tofucraft.tofu_crafters_book.tf_storage.desc": "豆腐ストレージは、主に大豆などでエネルギーを発電し、\nその中で豆腐ツールを回復したり充電するよ",
-  "tofucraft.tofu_crafters_book.antenna_basic.desc": "アンテナベーシックは、TFForceというエネルギーをほかのTFForceを扱える機械に送るために必要"
+  "tofucraft.tofu_crafters_book.antenna_basic.desc": "アンテナベーシックは、TFForceというエネルギーをほかのTFForceを扱える機械に送るために必要\n TFストレージなどの発電機の上に憑りつける必要があるよ"
 }

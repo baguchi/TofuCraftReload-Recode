@@ -834,6 +834,5 @@
   "tofucraft.tofu_crafters_book.tf_force.title": "Tofu Force",
   "tofucraft.tofu_crafters_book.tf_force.desc": "You can also industrialize using tofu and soybeans.\n\n The main source of energy is soybeans and tofu,\n which can be used to bake things and restore the durability of tofu tools.",
   "tofucraft.tofu_crafters_book.tf_storage.desc": "Tofu storage generates energy mainly from soybeans,\n which is used to restore and charge tofu tools.",
-  "tofucraft.tofu_crafters_book.antenna_basic.desc": "The Antenna Basic is necessary to send TF Force energy to other TF Force-handling machines."
-
+  "tofucraft.tofu_crafters_book.antenna_basic.desc": "The Antenna Basic is necessary to send TF Force energy to other TF Force-handling machines.\n You need to put those antenna on Generator like TF Storage"
 }
