@@ -7,6 +7,7 @@ import baguchi.bagus_lib.client.render.book.component.IndexBookComponent;
 import baguchi.bagus_lib.client.render.book.component.TextBookComponent;
 import baguchi.bagus_lib.client.render.screen.BookScreen;
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuItems;
 import com.google.common.collect.Lists;
 import net.minecraft.ChatFormatting;
@@ -46,17 +47,14 @@ public class ClientProxy {
 				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU_CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display2"), false),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.before_the_tofu.title"), TofuCraftReload.prefix("before_the_tofu"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BITTERN_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("bittern"), true),
-				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BITTERN_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("about_bittern"), false),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.once_tofu_made.title"), TofuCraftReload.prefix("once_tofu_made"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.nether_tofu.title"), TofuCraftReload.prefix("nether_tofu"), true),
-				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUSOUL.get().getDescriptionId()), TofuCraftReload.prefix("about_another_tofu"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SOYMILK_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("soymilk"), true),
-				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SOYMILK.get().getDescriptionId()), TofuCraftReload.prefix("soymilk_desc"), false),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tofu_world.title"), TofuCraftReload.prefix("tofu_stick"), true),
-				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFUSTICK.get().getDescriptionId()), TofuCraftReload.prefix("tofu_stick_desc"), false),
-				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce"), true)
-				//new IndexBookComponent.IndexItem(dummy, TofuCraftReload.prefix("soy_sauce_desc"), false),
-				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce_desc2"), false)
+				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce"), true),
+				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tf_force.title"), TofuCraftReload.prefix("tf_force"), true),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuBlocks.TF_STORAGE.get().getDescriptionId()), TofuCraftReload.prefix("tf_storage"), true),
+				new IndexBookComponent.IndexItem(Component.translatable(TofuBlocks.ANTENNA_BASIC.get().getDescriptionId()), TofuCraftReload.prefix("antenna_basic"), true)
 		)
 				, 105, 125);
 	}
@@ -85,6 +83,13 @@ public class ClientProxy {
 			TextBookComponent soysauce_desc2 = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soysauce.desc2"), true, 100, 158);
 
 
+			TextBookComponent tf_force_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tf_force.desc"), true, 100, 158);
+			DisplayBookComponent tf_storage = (new DisplayBookComponent(121, 158)).textDisplay(TofuBlocks.TF_STORAGE.toStack().getItem().getName(), 52, 26, 1.0F).itemDisplay(TofuBlocks.TF_STORAGE.toStack().getItem().getDefaultInstance(), 46, 30);
+			TextBookComponent tf_storage_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tf_storage.desc"), true, 100, 158);
+			DisplayBookComponent antenna_basic = (new DisplayBookComponent(121, 158)).textDisplay(TofuBlocks.ANTENNA_BASIC.toStack().getItem().getName(), 52, 26, 1.0F).itemDisplay(TofuBlocks.ANTENNA_BASIC.toStack().getItem().getDefaultInstance(), 46, 30);
+			TextBookComponent antenna_basic_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.antenna_basic.desc"), true, 100, 158);
+
+
 			List<BookComponentDefinition> list = Lists.newArrayList(new BookComponentDefinition(index, TofuCraftReload.prefix("index"), 15, 10, 10, 10)
 					, new BookComponentDefinition(introduction, TofuCraftReload.prefix("introduction"), 15, 10, 10, 10)
 					, new BookComponentDefinition(beforeTheTofu, TofuCraftReload.prefix("before_the_tofu"), 15, 10, 10, 10)
@@ -102,6 +107,12 @@ public class ClientProxy {
 			list.add(new BookComponentDefinition(soysauce, TofuCraftReload.prefix("soysauce"), 15, 10, 10, 10));
 			list.add(new BookComponentDefinition(soysauce_desc, TofuCraftReload.prefix("soysauce_desc"), 15, 10, 10, 10));
 			list.add(new BookComponentDefinition(soysauce_desc2, TofuCraftReload.prefix("soysauce_desc2"), 15, 10, 10, 10));
+
+			list.add(new BookComponentDefinition(tf_force_desc, TofuCraftReload.prefix("tf_force"), 15, 10, 10, 10));
+			list.add(new BookComponentDefinition(tf_storage, TofuCraftReload.prefix("tf_storage"), 15, 10, 10, 10));
+			list.add(new BookComponentDefinition(tf_storage_desc, TofuCraftReload.prefix("tf_storage_desc"), 15, 10, 10, 10));
+			list.add(new BookComponentDefinition(antenna_basic, TofuCraftReload.prefix("antenna_basic"), 15, 10, 10, 10));
+			list.add(new BookComponentDefinition(antenna_basic_desc, TofuCraftReload.prefix("antenna_basic_desc"), 15, 10, 10, 10));
 
 
 			Book book = new Book(list, 256, 182, 23, 13, 12, 27, TofuCraftReload.prefix("textures/gui/screen/book/book.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), Identifier.withDefaultNamespace("textures/gui/sprites/widget/page_backward.png"), Identifier.withDefaultNamespace("textures/gui/sprites/widget/page_forward.png"));
