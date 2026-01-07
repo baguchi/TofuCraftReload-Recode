@@ -41,7 +41,6 @@ import net.minecraft.world.entity.animal.pig.Pig;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -53,7 +52,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class TofuPig extends Pig implements ItemInteractable {
-	private static final Ingredient FOOD_ITEMS = Ingredient.of(TofuItems.LEEK.get(), Items.CARROT);
 	private static final EntityDataAccessor<Integer> DATA_HEALING_TIME = SynchedEntityData.defineId(TofuPig.class, EntityDataSerializers.INT);
 	private final ItemBasedInteractable healilng = new HealInteractable(this.entityData, DATA_HEALING_TIME);
 
