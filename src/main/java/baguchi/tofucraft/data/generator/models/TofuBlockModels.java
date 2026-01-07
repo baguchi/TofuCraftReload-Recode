@@ -172,7 +172,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createTrivialCube(TofuBlocks.ORE_TOFUGEM.get());
 		createTrivialCube(TofuBlocks.TOFU_BEDROCK.get());
 
-		logWithHorizontalGlow(TofuBlocks.ISHI_TOFU_STEM.get());
+		logWithHorizontal(TofuBlocks.ISHI_TOFU_STEM.get());
 
 
 		logWithHorizontalGlow(TofuBlocks.TOFU_STEM.get());

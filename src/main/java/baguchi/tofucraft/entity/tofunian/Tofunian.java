@@ -486,7 +486,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 		//validate job position
 		if (this.getTofunianJobBlock() != null && this.getRole().getKey() != TofunianProfessions.NONE.getKey()) {
-			if (this.getRole().value().jobSite().isPresent() && !this.getRole().value().jobSite().get().contains(this.level().getBlockState(this.getTofunianJobBlock()))) {
+			if (this.getRole().value().jobSite().isPresent() && !this.level().getBlockState(this.getTofunianJobBlock()).typeHolder().is(this.getRole().value().jobSite().get().location())) {
 				this.setTofunianJobBlock(null);
 
 				//if xp is none. set role normal

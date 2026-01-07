@@ -40,7 +40,7 @@ public class RestockGoal extends MoveToBlockGoal {
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		return this.creature.getRole().value().jobSite().isPresent() && this.creature.getRole().value().jobSite().get().contains(blockstate);
+		return this.creature.getRole().value().jobSite().isPresent() && this.creature.getRole().value().isValidTarget(blockstate);
 	}
 
 
