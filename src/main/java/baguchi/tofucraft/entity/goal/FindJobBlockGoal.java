@@ -41,7 +41,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 		if (isReachedTarget()) {
 			if (!findNearbyTofunianHadJob(this.creature, this.blockPos)) {
 				Optional<Map.Entry<ResourceKey<TofunianProfession>, TofunianProfession>> role = TofunianProfessions.getRegistry().entrySet().stream().filter(entry -> {
-					return entry.getValue().jobSite().isPresent() && this.creature.level().getBlockState(this.blockPos).typeHolder().is(entry.getValue().jobSite().get());
+					return entry.getValue().jobSite().isPresent() && entry.getValue().isValidTarget(this.creature.level().getBlockState(this.blockPos));
 				}).findFirst();
 				if (role.isPresent() && !this.findBlock) {
 						if (this.creature.level() instanceof ServerLevel) {
@@ -89,7 +89,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
 		Optional<Map.Entry<ResourceKey<TofunianProfession>, TofunianProfession>> role = TofunianProfessions.getRegistry().entrySet().stream().filter(entry -> {
-			return entry.getValue().jobSite().isPresent() && blockstate.typeHolder().is(entry.getValue().jobSite().get());
+			return entry.getValue().isValidTarget(blockstate);
 		}).findFirst();
 		if (role.isPresent()) {
 			BlockHitResult hitResult = worldIn.clip(new ClipContext(this.creature.getEyePosition(), pos.getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this.creature));

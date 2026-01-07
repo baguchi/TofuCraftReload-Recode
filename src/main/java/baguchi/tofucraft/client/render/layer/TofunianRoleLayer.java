@@ -18,7 +18,7 @@ public class TofunianRoleLayer extends RenderLayer<TofunianRenderState, Tofunian
 	@Override
 	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, TofunianRenderState tofunianRenderState, float v, float v1) {
 		if (!tofunianRenderState.isInvisible && tofunianRenderState.rolesTexture != null) {
-			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(tofunianRenderState), poseStack, submitNodeCollector, i, tofunianRenderState, -1, 1);
+			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(tofunianRenderState), poseStack, submitNodeCollector, i, tofunianRenderState, -1, 3);
 
 		}
 	}
