@@ -124,7 +124,7 @@ public class TofuStructures {
 								.terrainAdapation(TerrainAdjustment.BEARD_THIN)
 								.build(),
 						pools.getOrThrow(TofuStructures.TOFU_VILLAGE_TOWN_CENTERS),
-						6,
+						8,
 						ConstantHeight.of(VerticalAnchor.absolute(0)),
 						true,
 						Heightmap.Types.WORLD_SURFACE_WG
@@ -137,7 +137,7 @@ public class TofuStructures {
 								.terrainAdapation(TerrainAdjustment.BEARD_THIN)
 								.build(),
 						pools.getOrThrow(TofuStructures.ZUNDA_TOFU_VILLAGE_TOWN_CENTERS),
-						6,
+						8,
 						ConstantHeight.of(VerticalAnchor.absolute(0)),
 						true,
 						Heightmap.Types.WORLD_SURFACE_WG
