@@ -248,7 +248,6 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFU_TERRAIN.get());
 		dropSelf(TofuBlocks.MABOU_TERRAIN.get());
 		dropSelf(TofuBlocks.TOFU_TERRAIN_ZUNDA.get());
-		dropSelf(TofuBlocks.TOFU_TERRAIN_ISHI.get());
 		dropSelf(TofuBlocks.TOFUSLATE.get());
 		this.add(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), createTofuDiamondOreDrop(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuItems.TOFUDIAMOND_NUGGET.get()));
 		this.add(TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get(), createTofuForceOreDrop(TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get(), TofuItems.SOY_FORCE_SHARD.get()));
@@ -291,6 +290,9 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
 		this.add(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get(), createZundaMushroomDrop(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get(), TofuBlocks.ZUNDATOFU_MUSHROOM.get(), RARE_SAPLING_DROP_RATES));
+
+		registerTofuDrop(TofuBlocks.ISHI_TOFU_STEM.get(), TofuItems.TOFUISHI.get());
+
 
 		dropSelf(TofuBlocks.TOFU_STEM.get());
 		dropSelf(TofuBlocks.TOFU_STEM_PLANKS.get());

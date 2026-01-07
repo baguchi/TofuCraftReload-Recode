@@ -310,7 +310,6 @@ public class TofuBlocks {
 			.hasPostProcess(TofuBlocks::always)
 			.sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> TOFU_TERRAIN_ZUNDA = register("tofu_terrain_zunda", TofuTerrainBlock::new, () -> BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_LIGHT_GREEN).randomTicks().sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> TOFU_TERRAIN_ISHI = register("tofu_terrain_ishi", Block::new, () -> BlockBehaviour.Properties.of().strength(1.5F, 2.0F).mapColor(MapColor.TERRACOTTA_YELLOW).sound(SoundType.CALCITE));
 	public static final DeferredBlock<Block> SUSPICIOUS_TOFU_TERRAIN = register("suspicious_tofu_terrain", (properties) -> new SuspiciousTofuTerrainBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.4F, 0.5F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.SNOW));
 
 	public static final DeferredBlock<Block> TOFUSLATE = register("tofuslate", Block::new, () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.5F, 4.0F).sound(SoundType.DEEPSLATE));
@@ -374,6 +373,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> ZUNDATOFU_MUSHROOM = register("zundatofu_mushroom", (properties) -> new TofuMushroomBlock(TofuTreeGrowers.ZUNDA_MUSHROOM, properties), () -> BlockBehaviour.Properties.of().instabreak().noCollision().sound(SoundType.FUNGUS));
 	public static final DeferredBlock<Block> ZUNDA_MUSHROOM_BLOCK = register("zunda_mushroom_block", Block::new, () -> BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.FUNGUS));
 
+	public static final DeferredBlock<RotatedPillarBlock> ISHI_TOFU_STEM = register("ishi_tofu_stem", RotatedPillarBlock::new, () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.BASALT));
 
 	public static final DeferredBlock<RotatedPillarBlock> TOFU_STEM = register("tofustem", BurnableRotatedPillarBlock::new, () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));
 	public static final DeferredBlock<Block> TOFU_STEM_PLANKS = register("tofustem_planks", Block::new, () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));

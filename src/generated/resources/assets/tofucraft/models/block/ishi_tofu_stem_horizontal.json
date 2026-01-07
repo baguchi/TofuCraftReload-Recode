@@ -1,0 +1,9 @@
+{
+  "parent": "tofucraft:block/glow_column_horizontal",
+  "textures": {
+    "end": "tofucraft:block/ishi_tofu_stem_top",
+    "glow_end": "tofucraft:block/ishi_tofu_stem_top_glow",
+    "glow_side": "tofucraft:block/ishi_tofu_stem_glow",
+    "side": "tofucraft:block/ishi_tofu_stem"
+  }
+}

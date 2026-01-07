@@ -42,9 +42,9 @@
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "tofucraft:blocktofuishi",
+        "Name": "tofucraft:ishi_tofu_stem",
         "Properties": {
-          "hardness": "0"
+          "axis": "y"
         }
       }
     }

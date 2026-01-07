@@ -30,10 +30,9 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 public class TofuWorldFeatures {
 	public static final RuleTest TOFU_ORE_REPLACEABLES = new BlockMatchTest(TofuBlocks.TOFU_TERRAIN.get());
 	public static final RuleTest TOFUSLATE_ORE_REPLACEABLES = new BlockMatchTest(TofuBlocks.TOFUSLATE.get());
-	public static final RuleTest TOFUISHI_ORE_REPLACEABLES = new BlockMatchTest(TofuBlocks.TOFU_TERRAIN_ISHI.get());
 
 	public static final ImmutableList<OreConfiguration.TargetBlockState> ORE_DIAMOND_TARGET_LIST = ImmutableList.of(OreConfiguration.target(TOFU_ORE_REPLACEABLES, TofuBlocks.ORE_TOFU_DIAMOND.get().defaultBlockState()), OreConfiguration.target(TOFUSLATE_ORE_REPLACEABLES, TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get().defaultBlockState()));
-	public static final ImmutableList<OreConfiguration.TargetBlockState> ORE_TOFUGEM_TARGET_LIST = ImmutableList.of(OreConfiguration.target(TOFU_ORE_REPLACEABLES, TofuBlocks.ORE_TOFUGEM.get().defaultBlockState()), OreConfiguration.target(TOFUISHI_ORE_REPLACEABLES, TofuBlocks.ISHI_TOFUGEM_ORE.get().defaultBlockState()));
+	public static final ImmutableList<OreConfiguration.TargetBlockState> ORE_TOFUGEM_TARGET_LIST = ImmutableList.of(OreConfiguration.target(TOFU_ORE_REPLACEABLES, TofuBlocks.ORE_TOFUGEM.get().defaultBlockState()));
 	public static final ImmutableList<OreConfiguration.TargetBlockState> ORE_SOY_FORCE_TARGET_LIST = ImmutableList.of(OreConfiguration.target(TOFUSLATE_ORE_REPLACEABLES, TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get().defaultBlockState()));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_KINU_TOFU = registerKey("ore_kinu_tofu");

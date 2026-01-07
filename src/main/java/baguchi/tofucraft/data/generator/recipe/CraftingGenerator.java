@@ -171,13 +171,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 		hoeItem(this.output, "tofu_solid_hoe", TofuItems.TOFU_SOLID_HOE, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 		spearItem(this.output, "tofu_solid_spear", TofuItems.TOFU_SOLID_SPEAR, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 
-		swordItem(this.output, "tofu_solid_sword_terrain", TofuItems.TOFU_SOLID_SWORD, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
-		pickaxeItem(this.output, "tofu_solid_pickaxe_terrain", TofuItems.TOFU_SOLID_PICKAXE, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
-		axeItem(this.output, "tofu_solid_axe_terrain", TofuItems.TOFU_SOLID_AXE, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
-		shovelItem(this.output, "tofu_solid_shovel_terrain", TofuItems.TOFU_SOLID_SHOVEL, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
-		hoeItem(this.output, "tofu_solid_hoe_terrain", TofuItems.TOFU_SOLID_HOE, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
-		spearItem(this.output, "tofu_solid_spear_terrain", TofuItems.TOFU_SOLID_SPEAR, TofuBlocks.TOFU_TERRAIN_ISHI, Tags.Items.RODS_WOODEN);
-
 		swordItem(this.output, "tofu_solid_sword_slate", TofuItems.TOFU_SOLID_SWORD, TofuBlocks.TOFUSLATE, Tags.Items.RODS_WOODEN);
 		pickaxeItem(this.output, "tofu_solid_pickaxe_slate", TofuItems.TOFU_SOLID_PICKAXE, TofuBlocks.TOFUSLATE, Tags.Items.RODS_WOODEN);
 		axeItem(this.output, "tofu_solid_axe_slate", TofuItems.TOFU_SOLID_AXE, TofuBlocks.TOFUSLATE, Tags.Items.RODS_WOODEN);
@@ -2035,15 +2028,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapedRecipeBuilder.shaped(this.registries.lookupOrThrow(Registries.ITEM), RecipeCategory.BUILDING_BLOCKS, TofuBlocks.ISHITOFU_BRICK.get(), 4)
 				.pattern("MM")
 				.pattern("MM")
-				.define('M', TofuBlocks.TOFU_TERRAIN_ISHI.get())
-				.unlockedBy("has_item", has(TofuBlocks.TOFU_TERRAIN_ISHI.get())).save(this.output, prefix("terrain_tofu_ishi"));
-		ShapedRecipeBuilder.shaped(this.registries.lookupOrThrow(Registries.ITEM), RecipeCategory.BUILDING_BLOCKS, TofuBlocks.ISHITOFU_BRICK.get(), 4)
-				.pattern("MM")
-				.pattern("MM")
 				.define('M', TofuBlocks.TOFUSLATE.get())
 				.unlockedBy("has_item", has(TofuBlocks.TOFUSLATE.get())).save(this.output, prefix("slate_tofu_ishi"));
 		cuttingRecipe(this.output, () -> TofuBlocks.TOFUSLATE, () -> TofuBlocks.ISHITOFU_BRICK, 1);
-		cuttingRecipe(this.output, () -> TofuBlocks.TOFU_TERRAIN_ISHI, () -> TofuBlocks.ISHITOFU_BRICK, 1);
 
 		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, Optional.empty(), TofuItems.MONSTER_JERKY.get(), 340, 0.1F)
 				.requires(Items.ROTTEN_FLESH)
