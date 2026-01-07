@@ -62,7 +62,7 @@ public class TofuLeavesBlock extends LeavesBlock {
 	}
 
 	private static int getDistanceAt(BlockState p_54464_) {
-		if (p_54464_.is(TofuBlocks.ISHITOFU.get())) {
+		if (p_54464_.is(TofuBlocks.ISHITOFU.get()) || p_54464_.is(TofuBlocks.ISHI_TOFU_STEM.get())) {
 			return 0;
 		} else {
 			return p_54464_.getBlock() instanceof LeavesBlock ? p_54464_.getValue(DISTANCE) : 7;
