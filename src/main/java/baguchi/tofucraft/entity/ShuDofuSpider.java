@@ -3,6 +3,7 @@ package baguchi.tofucraft.entity;
 import baguchi.bagus_lib.client.camera.CameraCore;
 import baguchi.bagus_lib.client.camera.holder.EntityCameraHolder;
 import baguchi.bagus_lib.entity.ISmartJump;
+import baguchi.bagus_lib.entity.goal.MostDamageTargetGoal;
 import baguchi.bagus_lib.entity.path.node.SmartNodeEvaluator;
 import baguchi.bagus_lib.util.GlobalVec3;
 import baguchi.tofucraft.TofuCraftReload;
@@ -124,6 +125,12 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	private float graspDamageReceived;
 	private float rangedDamageReceived;
 
+	/**
+	 * Goal for targeting in groups of entities
+	 */
+	private MostDamageTargetGoal mostDamageTargetGoal;
+
+
 	public ShuDofuSpider(EntityType<? extends ShuDofuSpider> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);
 		this.xpReward = 200;
@@ -181,9 +188,11 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, true, null));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, 10, true, true, null));
+		this.mostDamageTargetGoal = new MostDamageTargetGoal(this);
+		this.targetSelector.addGoal(1, this.mostDamageTargetGoal);
+		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, true, null));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, 10, true, true, null));
 	}
 
 	protected float getStandingEyeHeight(Pose p_33799_, EntityDimensions p_33800_) {
@@ -716,11 +725,11 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	}
 
 	@Override
-	public boolean hurtServer(ServerLevel serverLevel, DamageSource p_31461_, float p_31462_) {
-		if (this.isInvulnerableTo(serverLevel, p_31461_)) {
+	public boolean hurtServer(ServerLevel serverLevel, DamageSource damageSource, float amount) {
+		if (this.isInvulnerableTo(serverLevel, damageSource)) {
 			return false;
-		} else if (!p_31461_.is(DamageTypes.SWEET_BERRY_BUSH) && !p_31461_.is(DamageTypes.CACTUS) && !p_31461_.is(DamageTypes.CRAMMING) && !p_31461_.is(DamageTypes.IN_WALL) && !p_31461_.is(DamageTypes.STALAGMITE)) {
-			Entity entity = p_31461_.getDirectEntity();
+		} else if (!damageSource.is(DamageTypes.SWEET_BERRY_BUSH) && !damageSource.is(DamageTypes.CACTUS) && !damageSource.is(DamageTypes.CRAMMING) && !damageSource.is(DamageTypes.IN_WALL) && !damageSource.is(DamageTypes.STALAGMITE)) {
+			Entity entity = damageSource.getDirectEntity();
 			float f = this.getHealth();
 
 			if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
@@ -731,14 +740,21 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			if (entity instanceof FukumameEntity) {
 				return false;
 			} else if (entity instanceof Projectile) {
-				boolean flag = super.hurtServer(serverLevel, p_31461_, p_31462_ * 0.35F);
+				boolean flag = super.hurtServer(serverLevel, damageSource, amount * 0.35F);
 				if (flag) {
-					this.hurtCounter(f);
+					if (!this.level().isClientSide() && damageSource.getEntity() instanceof LivingEntity living) {
+						this.hurtCounter(f);
+						this.mostDamageTargetGoal.addAggro(living, amount);
+					}
+					return true;
 				}
 			}
-			boolean flag = super.hurtServer(serverLevel, p_31461_, p_31462_);
+			boolean flag = super.hurtServer(serverLevel, damageSource, amount);
 			if (flag) {
-				this.hurtCounter(f);
+				if (!this.level().isClientSide() && damageSource.getEntity() instanceof LivingEntity living) {
+					this.hurtCounter(f);
+					this.mostDamageTargetGoal.addAggro(living, amount);
+				}
 			}
 
 			return flag;
