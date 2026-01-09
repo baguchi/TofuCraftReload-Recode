@@ -745,6 +745,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 						this.hurtCounter(f);
 						this.mostDamageTargetGoal.addAggro(living, amount * 0.35F);
 					}
+					return true;
 				}
 			}
 			boolean flag = super.hurtServer(serverLevel, damageSource, amount);

@@ -110,6 +110,8 @@ public class TofuTags {
 		public static final TagKey<Item> MILK_SOYMILK = universalTag("milk/soy_milk");
 
 		public static final TagKey<Item> RICE_BLOCK = universalTag("block/rice_block");
+		public static final TagKey<Item> SOYBEANS_BLOCK = universalTag("storage_blocks/soybeans");
+
 		public static final TagKey<Item> TOFU = universalTag("tofu");
 		public static final TagKey<Item> TOFU_FRIED = universalTag("tofu/fried");
 
