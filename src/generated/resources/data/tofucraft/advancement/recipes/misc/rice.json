@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#c:block/rice_block"
+            "items": "#c:storage_blocks/rice"
           }
         ]
       },

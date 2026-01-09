@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:block/rice_block"
+      "tag": "c:storage_blocks/rice"
     }
   ],
   "result": {
