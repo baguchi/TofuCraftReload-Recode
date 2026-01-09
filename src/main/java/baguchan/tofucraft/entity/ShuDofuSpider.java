@@ -3,6 +3,7 @@ package baguchan.tofucraft.entity;
 import bagu_chan.bagus_lib.client.camera.CameraCore;
 import bagu_chan.bagus_lib.client.camera.holder.EntityCameraHolder;
 import bagu_chan.bagus_lib.entity.ISmartJump;
+import bagu_chan.bagus_lib.entity.goal.MostDamageTargetGoal;
 import bagu_chan.bagus_lib.util.GlobalVec3;
 import baguchan.tofucraft.TofuCraftReload;
 import baguchan.tofucraft.entity.effect.NattoCobWebEntity;
@@ -92,6 +93,10 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	private final ShuDofuSpiderPart leg4;
 	private final ShuDofuSpiderPart leg5;
 	private final ShuDofuSpiderPart leg6;
+	/**
+	 * Goal for targeting in groups of entities
+	 */
+	private MostDamageTargetGoal mostDamageTargetGoal;
 
 	private int attackTime;
 	private int jumpTime;
@@ -164,9 +169,11 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 		this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, true, null));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, 10, true, true, null));
+		this.mostDamageTargetGoal = new MostDamageTargetGoal(this);
+		this.targetSelector.addGoal(1, this.mostDamageTargetGoal);
+		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, true, null));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, 10, true, true, null));
 	}
 
 	private boolean isMovingOnLand() {
@@ -661,26 +668,33 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	}
 
 	@Override
-	public boolean hurt(DamageSource p_31461_, float p_31462_) {
-		if (this.isInvulnerableTo(p_31461_)) {
+	public boolean hurt(DamageSource damageSource, float amount) {
+		if (this.isInvulnerableTo(damageSource)) {
 			return false;
-		} else if (!p_31461_.is(DamageTypes.SWEET_BERRY_BUSH) && !p_31461_.is(DamageTypes.CACTUS) && !p_31461_.is(DamageTypes.CRAMMING) && !p_31461_.is(DamageTypes.IN_WALL) && !p_31461_.is(DamageTypes.STALAGMITE)) {
-			Entity entity = p_31461_.getDirectEntity();
+		} else if (!damageSource.is(DamageTypes.SWEET_BERRY_BUSH) && !damageSource.is(DamageTypes.CACTUS) && !damageSource.is(DamageTypes.CRAMMING) && !damageSource.is(DamageTypes.IN_WALL) && !damageSource.is(DamageTypes.STALAGMITE)) {
+			Entity entity = damageSource.getDirectEntity();
 			float f = this.getHealth();
 
 			if (entity instanceof FukumameEntity) {
 				return false;
 			} else if (entity instanceof Projectile) {
-				boolean flag = super.hurt(p_31461_, p_31462_ * 0.3F);
+				boolean flag = super.hurt(damageSource, amount * 0.3F);
 				if (flag) {
-					this.hurtCounter(f);
+					if (!this.level().isClientSide() && damageSource.getEntity() instanceof LivingEntity living) {
+						this.hurtCounter(f);
+						this.mostDamageTargetGoal.addAggro(living, amount);
+					}
+					return true;
 				}
 			}
 
 
-			boolean flag = super.hurt(p_31461_, p_31462_);
+			boolean flag = super.hurt(damageSource, amount);
 			if (flag) {
-				this.hurtCounter(f);
+				if (!this.level().isClientSide() && damageSource.getEntity() instanceof LivingEntity living) {
+					this.hurtCounter(f);
+					this.mostDamageTargetGoal.addAggro(living, amount);
+				}
 			}
 
 			return flag;
