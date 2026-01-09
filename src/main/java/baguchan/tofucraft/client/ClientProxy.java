@@ -102,7 +102,7 @@ public class ClientProxy {
 			list.add(new BookComponentDefinition(antenna_basic_desc, TofuCraftReload.prefix("antenna_basic_desc"), 15, 10, 10, 10));
 
 
-			Book book = new Book(list, 256, 182, 23, 13, 12, 27, TofuCraftReload.prefix("textures/gui/screen/book/book.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), Identifier.withDefaultNamespace("textures/gui/sprites/widget/page_backward.png"), Identifier.withDefaultNamespace("textures/gui/sprites/widget/page_forward.png"));
+			Book book = new Book(list, 256, 182, 23, 13, 12, 27, TofuCraftReload.prefix("textures/gui/screen/book/book.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), TofuCraftReload.prefix("textures/gui/screen/book/book_back.png"), ResourceLocation.withDefaultNamespace("textures/gui/sprites/widget/page_backward.png"), ResourceLocation.withDefaultNamespace("textures/gui/sprites/widget/page_forward.png"));
 			Minecraft.getInstance().setScreen(new BookScreen(book));
 		}
 
