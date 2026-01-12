@@ -1,3 +1,4 @@
 {
-  "texture": "tofucraft:entity/tofunian/variant/tofunian_zunda"
+  "texture": "tofucraft:entity/tofunian/variant/tofunian_zunda",
+  "texture_baby": "tofucraft:entity/tofunian/variant/tofunian_zunda_baby"
 }

@@ -3,20 +3,24 @@ package baguchi.tofucraft.client.render.entity;
 import baguchi.bagus_lib.client.layer.CustomArmorLayer;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.TofuModelLayers;
+import baguchi.tofucraft.client.model.TofunianBabyModel;
 import baguchi.tofucraft.client.model.TofunianModel;
 import baguchi.tofucraft.client.render.layer.TofunianClothLayer;
 import baguchi.tofucraft.client.render.layer.TofunianEyeLayer;
-import baguchi.tofucraft.client.render.layer.TofunianItemInHandLayer;
 import baguchi.tofucraft.client.render.layer.TofunianRoleLayer;
 import baguchi.tofucraft.client.render.state.TofunianRenderState;
 import baguchi.tofucraft.entity.tofunian.Tofunian;
 import baguchi.tofucraft.registry.TofunianProfessions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.model.AdultAndBabyModelPair;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
+import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.resources.Identifier;
 
 import java.time.LocalDate;
@@ -25,7 +29,11 @@ import java.time.temporal.ChronoField;
 
 public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, TofunianModel<TofunianRenderState>> {
 	private static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/tofunian.png");
+	private static final Identifier LOCATION_BABY = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/variant/tofunian_plain_baby.png");
 	public static final Identifier BAGU_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofunian/secret/bagunian.png");
+
+	private final AdultAndBabyModelPair<TofunianModel<TofunianRenderState>> models;
+
 
 	public TofunianRender(EntityRendererProvider.Context context) {
 		super(context, new TofunianModel<>(context.bakeLayer(TofuModelLayers.TOFUNIAN)), 0.5F);
@@ -34,8 +42,21 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		this.addLayer(new TofunianRoleLayer(this));
 		this.addLayer(new CustomArmorLayer<>(this, context));
 		this.addLayer(new CustomHeadLayer<>(this, context.getModelSet(), context.getPlayerSkinRenderCache()));
+		this.addLayer(new ItemInHandLayer<>(this));
+		this.models = bakeModels(context);
+	}
 
-		this.addLayer(new TofunianItemInHandLayer(this));
+	private static AdultAndBabyModelPair<TofunianModel<TofunianRenderState>> bakeModels(EntityRendererProvider.Context context) {
+		return new AdultAndBabyModelPair<>(
+				new TofunianModel<>(context.bakeLayer(TofuModelLayers.TOFUNIAN)), new TofunianBabyModel<>(context.bakeLayer(TofuModelLayers.TOFUNIAN_BABY))
+		);
+	}
+
+
+	@Override
+	public void submit(TofunianRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
+		this.model = this.models.getModel(state.isBaby);
+		super.submit(state, poseStack, submitNodeCollector, camera);
 	}
 
 
@@ -53,7 +74,7 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 	}
 
 	public Identifier getTextureLocation(TofunianRenderState entity) {
-		if (entity.nameTag != null) {
+		if (!entity.isBaby && entity.nameTag != null) {
 			String s = ChatFormatting.stripFormatting(entity.nameTag.getString());
 			if (s != null && "bagu_chan".equals(s)) {
 				LocalDate localdate = LocalDate.now();
@@ -66,6 +87,10 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		}
 		if (entity.texture != null) {
 			return entity.texture;
+		}
+
+		if (entity.isBaby) {
+			return LOCATION_BABY;
 		}
 		return LOCATION;
 	}

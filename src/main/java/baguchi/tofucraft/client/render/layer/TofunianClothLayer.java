@@ -23,7 +23,7 @@ public class TofunianClothLayer<S extends TofunianRenderState> extends RenderLay
 
 	@Override
 	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, S tofunianRenderState, float v, float v1) {
-		if (!tofunianRenderState.isInvisible && tofunianRenderState.clothTexture != null) {
+		if (!tofunianRenderState.isBaby && !tofunianRenderState.isInvisible && tofunianRenderState.clothTexture != null) {
 			renderColoredCutoutModel(this.getParentModel(), this.getTextureLocation(tofunianRenderState), poseStack, submitNodeCollector, i, tofunianRenderState, -1, 2);
 
 		}

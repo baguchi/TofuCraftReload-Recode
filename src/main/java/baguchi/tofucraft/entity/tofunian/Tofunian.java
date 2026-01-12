@@ -332,6 +332,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Nullable
 	public Identifier getTexture() {
 		TofunianVariant tofunianVariant = this.getTofunianVariant().value();
+		if (this.isBaby()) {
+			return tofunianVariant.textureBaby();
+		}
+		return tofunianVariant.texture();
+	}
+
+	@Nullable
+	public Identifier getBabyTexture() {
+		TofunianVariant tofunianVariant = this.getTofunianVariant().value();
 		return tofunianVariant.texture();
 	}
 

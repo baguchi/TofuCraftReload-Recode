@@ -16,7 +16,6 @@ import net.minecraft.world.entity.HumanoidArm;
 
 public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extends EntityModel<T> implements ArmedModel, HeadedModel, IArmor {
 	public final ModelPart head;
-	public final ModelPart hat;
 	public final ModelPart body;
 	public final ModelPart leftLeg;
 	public final ModelPart rightLeg;
@@ -26,9 +25,8 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 	private final KeyframeAnimation babyAnimation;
 	public AbstractTofunianModel(ModelPart p_170688_) {
 		super(p_170688_);
-		this.roots = p_170688_.getChild("roots");
+		this.roots = p_170688_.getChild("root");
 		this.head = this.roots.getChild("head");
-		this.hat = this.head.getChild("hat");
 		this.body = this.roots.getChild("body");
 		this.leftLeg = this.roots.getChild("left_leg");
 		this.rightLeg = this.roots.getChild("right_leg");
@@ -73,19 +71,9 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 				this.rightArm.zRot = entity.attackTime * 0.5F;
 			}
 		}
-
-		float f6 = 12.0F;
-
-		if (entity.isBaby) {
-			this.babyAnimation.applyStatic();
-			this.rightArm.visible = false;
-			this.leftArm.visible = false;
-			this.body.visible = false;
-		} else {
-			this.rightArm.visible = true;
-			this.leftArm.visible = true;
-			this.body.visible = true;
-		}
+		this.rightArm.visible = true;
+		this.leftArm.visible = true;
+		this.body.visible = true;
 	}
 
 	public ModelPart getArm(HumanoidArm p_102923_) {

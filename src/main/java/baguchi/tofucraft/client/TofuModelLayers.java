@@ -7,6 +7,7 @@ import net.minecraft.resources.Identifier;
 
 public class TofuModelLayers {
 	public static final ModelLayerLocation TOFUNIAN = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian"), "main");
+	public static final ModelLayerLocation TOFUNIAN_BABY = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian_baby"), "main");
 	public static final ModelLayerLocation TRAVELER_TOFUNIAN = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "traveler_tofunian"), "main");
 	public static final ModelLayerLocation TOFUSPIDER = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofuspider"), "main");
 	public static final ModelLayerLocation OAGE_CUBE = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "oage_cube"), "main");

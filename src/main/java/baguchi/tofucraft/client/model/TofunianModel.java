@@ -38,7 +38,7 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition root = partdefinition.addOrReplaceChild("roots", CubeListBuilder.create(), PartPose.offset(0.0F, 25.0F, 0.0F));
+		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 25.0F, 0.0F));
 
 		PartDefinition left_leg = root.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 16).mirror().addBox(-1.0F, -1.0F, -1.0F, 2.0F, 6.0F, 2.0F, new CubeDeformation(0.0F)).mirror(), PartPose.offset(1.5F, -6.0F, 0.0F));
 
@@ -67,11 +67,9 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 		}
 		this.happyAnimation.apply(entity.happyAnimationState, entity.ageInTicks);
 		this.eatAnimation.apply(entity.eatFoodAnimationState, entity.ageInTicks);
-		if (entity.isBaby) {
-			this.waveChildAnimation.apply(entity.waveAnimationState, entity.ageInTicks);
-		} else {
-			this.waveAnimation.apply(entity.waveAnimationState, entity.ageInTicks);
-		}
+
+		this.waveAnimation.apply(entity.waveAnimationState, entity.ageInTicks);
+
 
 		if (entity.actions == Tofunian.Actions.CRY) {
 			this.head.xRot = 0.0F;

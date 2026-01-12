@@ -26,7 +26,9 @@ public class TofunianVariants {
 
 	static void register(BootstrapContext<TofunianVariant> context, ResourceKey<TofunianVariant> key, String name) {
 		Identifier resourcelocation = TofuCraftReload.prefix("entity/tofunian/variant/" + name);
-		context.register(key, new TofunianVariant(resourcelocation));
+		Identifier resourcelocation2 = TofuCraftReload.prefix("entity/tofunian/variant/" + name + "_baby");
+
+		context.register(key, new TofunianVariant(resourcelocation, resourcelocation2));
 	}
 
 	public static Holder<TofunianVariant> getRandomVariant(RegistryAccess p_332694_, RandomSource randomSource) {

@@ -1,3 +1,4 @@
 {
-  "texture": "tofucraft:entity/tofunian/variant/tofunian_egg"
+  "texture": "tofucraft:entity/tofunian/variant/tofunian_egg",
+  "texture_baby": "tofucraft:entity/tofunian/variant/tofunian_egg_baby"
 }

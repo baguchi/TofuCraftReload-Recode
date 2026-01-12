@@ -13,6 +13,7 @@ import baguchi.tofucraft.client.model.TofuFishModel;
 import baguchi.tofucraft.client.model.TofuGandlemModel;
 import baguchi.tofucraft.client.model.TofuGolemModel;
 import baguchi.tofucraft.client.model.TofuSpiderModel;
+import baguchi.tofucraft.client.model.TofunianBabyModel;
 import baguchi.tofucraft.client.model.TofunianModel;
 import baguchi.tofucraft.client.model.TravelerTofunianModel;
 import baguchi.tofucraft.client.model.ZundaBusterModel;
@@ -436,6 +437,7 @@ public class ClientRegistrar {
 	@SubscribeEvent
 	public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
 		event.registerLayerDefinition(TofuModelLayers.TOFUNIAN, TofunianModel::createBodyLayer);
+		event.registerLayerDefinition(TofuModelLayers.TOFUNIAN_BABY, TofunianBabyModel::createBodyBabyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TRAVELER_TOFUNIAN, TravelerTofunianModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.TOFUSPIDER, TofuSpiderModel::createBodyLayer);
 		event.registerLayerDefinition(TofuModelLayers.OAGE_CUBE, OageCubeModel::createBodyLayer);

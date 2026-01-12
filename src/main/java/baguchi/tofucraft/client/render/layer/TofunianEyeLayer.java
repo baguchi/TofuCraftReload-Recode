@@ -22,7 +22,7 @@ public class TofunianEyeLayer<T extends AbstractTofunianRenderState, M extends A
 	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, T tofunianState, float v, float v1) {
 		float f3 = (tofunianState.ageInTicks + tofunianState.id);
 
-		if (!tofunianState.isInvisible && (0 > Math.sin(f3 * 0.05F) + Math.sin(f3 * 0.13F) + Math.sin(f3 * 0.7F) + 2.55F) || tofunianState.pose == Pose.SLEEPING) {
+		if (!tofunianState.isBaby && !tofunianState.isInvisible && (0 > Math.sin(f3 * 0.05F) + Math.sin(f3 * 0.13F) + Math.sin(f3 * 0.7F) + 2.55F) || tofunianState.pose == Pose.SLEEPING) {
 			renderColoredCutoutModel(this.getParentModel(), LOCATION, poseStack, submitNodeCollector, i, tofunianState, -1, 1);
 		}
 	}
