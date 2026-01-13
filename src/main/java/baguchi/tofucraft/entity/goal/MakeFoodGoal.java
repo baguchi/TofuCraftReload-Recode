@@ -52,7 +52,9 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 				this.creature.swing(InteractionHand.MAIN_HAND);
 				this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
 				this.cookTick = 20;
-				this.creature.setAction(Tofunian.Actions.CRAFTING);
+				if (this.creature.getAction() != Tofunian.Actions.CRAFTING) {
+					this.creature.setAction(Tofunian.Actions.CRAFTING);
+				}
 			} else {
 				this.creature.setAction(Tofunian.Actions.NORMAL);
 			}
