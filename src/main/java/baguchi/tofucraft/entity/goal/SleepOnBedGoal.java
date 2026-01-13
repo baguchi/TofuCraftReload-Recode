@@ -39,7 +39,8 @@ public class SleepOnBedGoal extends MoveToBlockGoal {
 		return super.findNearestBlock();
 	}
 
+	@Override
 	public double acceptedDistance() {
-		return 2.0D;
+		return 2.5D;
 	}
 }

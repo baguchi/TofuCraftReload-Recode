@@ -45,7 +45,8 @@ public class MoveToJobGoal extends MoveToBlockGoal {
 		super.stop();
 	}
 
+	@Override
 	public double acceptedDistance() {
-		return 2.0D;
+		return 2.5D;
 	}
 }

@@ -171,6 +171,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	public final AnimationState happyAnimationState = new AnimationState();
 	public final AnimationState eatFoodAnimationState = new AnimationState();
 	public final AnimationState waveAnimationState = new AnimationState();
+	public final AnimationState craftingAnimationState = new AnimationState();
+	public final AnimationState craftOnceAnimationState = new AnimationState();
 
 	public Tofunian(EntityType<? extends Tofunian> type, Level worldIn) {
 		super(type, worldIn);
@@ -475,6 +477,15 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 					}
 					eatFoodAnimationState.startIfStopped(this.tickCount);
 					break;
+				case CRAFTING:
+					if (!loop && !actions.loop) {
+						this.stopAnimations();
+					}
+					craftingAnimationState.startIfStopped(this.tickCount);
+					break;
+				case CRAFTING_ONCE:
+					craftOnceAnimationState.start(this.tickCount);
+					break;
 				case NORMAL:
 					this.stopAnimations();
 					break;
@@ -486,8 +497,10 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public void stopAnimations() {
-		eatFoodAnimationState.stop();
-		happyAnimationState.stop();
+		this.eatFoodAnimationState.stop();
+		this.happyAnimationState.stop();
+		this.craftingAnimationState.stop();
+		this.craftOnceAnimationState.stop();
 	}
 
 	public void tofunianJobCheck() {
@@ -1131,6 +1144,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		SIT(true, -1),
 		HAPPY(false, 30),
 		WAVE(false, 25),
+		CRAFTING_ONCE(false, 40),
+		CRAFTING(true, -1),
 		EAT(true, -1);
 
 		private final boolean loop;

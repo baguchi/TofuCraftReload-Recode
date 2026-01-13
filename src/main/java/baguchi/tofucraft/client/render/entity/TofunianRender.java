@@ -113,6 +113,8 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		renderState.eatFoodAnimationState.copyFrom(tofunian.eatFoodAnimationState);
 		renderState.happyAnimationState.copyFrom(tofunian.happyAnimationState);
 		renderState.waveAnimationState.copyFrom(tofunian.waveAnimationState);
+		renderState.craftingAnimationState.copyFrom(tofunian.craftingAnimationState);
+		renderState.craftOnceAnimationState.copyFrom(tofunian.craftOnceAnimationState);
 		renderState.actions = tofunian.getAction();
 		if (tofunian.getRole().is(TofunianProfessions.NONE)) {
 			renderState.rolesTexture = null;

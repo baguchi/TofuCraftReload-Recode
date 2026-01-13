@@ -64,6 +64,7 @@ public class MoveToStatueGoal extends MoveToBlockGoal {
 		this.creature.setAction(Tofunian.Actions.NORMAL);
 	}
 
+	@Override
 	public double acceptedDistance() {
 		return 4.5D;
 	}

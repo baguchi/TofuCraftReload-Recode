@@ -4,7 +4,6 @@ import baguchi.tofucraft.entity.tofunian.Tofunian;
 import baguchi.tofucraft.registry.TofunianProfessions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,8 +30,8 @@ public class RestockGoal extends MoveToBlockGoal {
 		super.tick();
 		if (isReachedTarget() && !restockComplete) {
 			this.creature.restock();
-			this.creature.swing(InteractionHand.MAIN_HAND);
 			this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
+			this.creature.setAction(Tofunian.Actions.CRAFTING_ONCE);
 			restockComplete = true;
 		}
 	}
@@ -59,7 +58,8 @@ public class RestockGoal extends MoveToBlockGoal {
 		restockComplete = false;
 	}
 
+	@Override
 	public double acceptedDistance() {
-		return 2.0D;
+		return 2.5D;
 	}
 }

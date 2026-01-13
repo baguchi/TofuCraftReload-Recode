@@ -35,16 +35,27 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 		this.cookTick = 0;
 	}
 
+	@Override
+	public void stop() {
+		super.stop();
+		this.creature.setAction(Tofunian.Actions.NORMAL);
+	}
+
 	public void tick() {
 		super.tick();
 		this.creature.getLookControl().setLookAt(this.blockPos.getX(), this.blockPos.getY(), this.blockPos.getZ(), 30.0F, 30.0F);
 		if (this.cookTick > 0)
 			this.cookTick--;
-		if (isReachedTarget() && this.cookTick <= 0) {
-			this.creature.cookingFood();
-			this.creature.swing(InteractionHand.MAIN_HAND);
-			this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
-			this.cookTick = 20;
+		if (this.cookTick <= 0) {
+			if (isReachedTarget()) {
+				this.creature.cookingFood();
+				this.creature.swing(InteractionHand.MAIN_HAND);
+				this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
+				this.cookTick = 20;
+				this.creature.setAction(Tofunian.Actions.CRAFTING);
+			} else {
+				this.creature.setAction(Tofunian.Actions.NORMAL);
+			}
 		}
 	}
 
@@ -63,7 +74,8 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 		return false;
 	}
 
+	@Override
 	public double acceptedDistance() {
-		return 2.0D;
+		return 2.5D;
 	}
 }

@@ -17,7 +17,8 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 	private final KeyframeAnimation happyAnimation;
 	private final KeyframeAnimation eatAnimation;
 	private final KeyframeAnimation waveAnimation;
-	private final KeyframeAnimation waveChildAnimation;
+	private final KeyframeAnimation craftingAnimation;
+	private final KeyframeAnimation craftOnceAnimation;
 	private final KeyframeAnimation cryAnimation;
 	private final KeyframeAnimation avoidAnimation;
 	private final KeyframeAnimation sitAnimation;
@@ -28,7 +29,8 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 		this.happyAnimation = TofunianAnimation.HAPPY.bake(root);
 		this.eatAnimation = TofunianAnimation.EAT.bake(root);
 		this.waveAnimation = TofunianAnimation.wave.bake(root);
-		this.waveChildAnimation = TofunianAnimation.wave_child.bake(root);
+		this.craftingAnimation = TofunianAnimation.crafting.bake(root);
+		this.craftOnceAnimation = TofunianAnimation.crafting_once.bake(root);
 		this.cryAnimation = TofunianAnimation.CRY.bake(root);
 		this.avoidAnimation = TofunianAnimation.AVOIDING.bake(root);
 		this.sitAnimation = TofunianAnimation.SIT.bake(root);
@@ -69,7 +71,8 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 		this.eatAnimation.apply(entity.eatFoodAnimationState, entity.ageInTicks);
 
 		this.waveAnimation.apply(entity.waveAnimationState, entity.ageInTicks);
-
+		this.craftingAnimation.apply(entity.craftingAnimationState, entity.ageInTicks);
+		this.craftOnceAnimation.apply(entity.craftOnceAnimationState, entity.ageInTicks);
 
 		if (entity.actions == Tofunian.Actions.CRY) {
 			this.head.xRot = 0.0F;

@@ -10,6 +10,8 @@ public class TofunianRenderState extends AbstractTofunianRenderState {
 	public final AnimationState happyAnimationState = new AnimationState();
 	public final AnimationState eatFoodAnimationState = new AnimationState();
 	public final AnimationState waveAnimationState = new AnimationState();
+	public final AnimationState craftingAnimationState = new AnimationState();
+	public final AnimationState craftOnceAnimationState = new AnimationState();
 
 	public Tofunian.Actions actions;
 	public Identifier rolesTexture;

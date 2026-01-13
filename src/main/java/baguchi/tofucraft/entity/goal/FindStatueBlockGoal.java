@@ -101,6 +101,7 @@ public class FindStatueBlockGoal extends MoveToBlockGoal {
 		super.stop();
 	}
 
+	@Override
 	public double acceptedDistance() {
 		return 8.0D;
 	}

@@ -111,7 +111,8 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 		super.stop();
 	}
 
+	@Override
 	public double acceptedDistance() {
-		return 3.0D;
+		return 4.0D;
 	}
 }

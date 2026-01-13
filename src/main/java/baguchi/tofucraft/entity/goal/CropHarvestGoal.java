@@ -69,6 +69,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 				Integer integer = blockstate.getValue(CropBlock.AGE);
 				if (integer.intValue() == 7)
 					world.destroyBlock(blockpos, true);
+				this.tofunian.setAction(Tofunian.Actions.CRAFTING_ONCE);
 			}
 			BlockState blockstate2 = world.getBlockState(this.blockPos);
 			ItemStack stack = findSeeds(this.tofunian);
