@@ -484,6 +484,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 					craftingAnimationState.startIfStopped(this.tickCount);
 					break;
 				case CRAFTING_ONCE:
+					this.stopAnimations();
 					craftOnceAnimationState.start(this.tickCount);
 					break;
 				case NORMAL:
