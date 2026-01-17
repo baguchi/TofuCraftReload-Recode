@@ -2112,7 +2112,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		HardenRecipeBuilder.harden(TofuBlocks.METALTOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuBlocks.ISHITOFU.get())).unlockedBy("has_item", has(TofuBlocks.ISHITOFU.get())).save(this.output, prefix("harden_to_metal"));
 
 		TFTofuMakeRecipeBuilder.tofuMake(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), Ingredient.of(items.getOrThrow(TofuTags.Items.SOYBEAN)), 0.1F, 100).unlockedBy("has_item", has(TofuBlocks.TF_TOFU_MAKER.get())).save(this.output, prefix("tf_tofu_maker_kinu"));
-		TFTofuMakeRecipeBuilder.tofuMake(TofuBlocks.ISHITOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get()), 0.15F, 200).unlockedBy("has_item", has(TofuBlocks.TF_TOFU_MAKER.get())).save(this.output, prefix("tf_tofu_maker_ishi"));
-		TFTofuMakeRecipeBuilder.tofuMake(TofuBlocks.METALTOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuBlocks.ISHITOFU.get()), 0.2F, 600).unlockedBy("has_item", has(TofuBlocks.TF_TOFU_MAKER.get())).save(this.output, prefix("tf_tofu_maker_metal"));
+		TFTofuMakeRecipeBuilder.tofuMake(TofuBlocks.HELLTOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuItems.SEEDS_SOYBEANS_NETHER.get()), 0.1F, 100).unlockedBy("has_item", has(TofuBlocks.TF_TOFU_MAKER.get())).save(this.output, prefix("tf_tofu_maker_hell"));
+		TFTofuMakeRecipeBuilder.tofuMake(TofuBlocks.SOULTOFU.get().asItem().getDefaultInstance(), Ingredient.of(TofuItems.SEEDS_SOYBEANS_SOUL.get()), 0.1F, 100).unlockedBy("has_item", has(TofuBlocks.TF_TOFU_MAKER.get())).save(this.output, prefix("tf_tofu_maker_soul"));
 	}
 }

@@ -116,7 +116,7 @@ public class TFTofuMakerBlockEntity extends WorkerBaseBlockEntity implements Wor
 		if (level instanceof ServerLevel serverLevel) {
 			boolean convert = false;
 			boolean worked = false;
-			if (tfTofuMaker.getEnergyStored() >= 50) {
+			if (tfTofuMaker.getEnergyStored() >= 20) {
 				if (tfTofuMaker.refreshTime <= 0) {
 
 					Optional<? extends RecipeHolder<? extends TFTofuMakerRecipe>> optional = tfTofuMaker.quickCheck.getRecipeFor(new SingleRecipeInput(tfTofuMaker.inventory.get(0)), serverLevel);
@@ -131,7 +131,7 @@ public class TFTofuMakerBlockEntity extends WorkerBaseBlockEntity implements Wor
 						}
 						worked = true;
 
-						tfTofuMaker.drain(50, false);
+						tfTofuMaker.drain(20, false);
 
 					} else {
 						tfTofuMaker.refreshTime = 30 + tfTofuMaker.level.getRandom().nextInt(30);
