@@ -383,6 +383,8 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_CORE = ITEMS.register("tofu_core", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TF_BATTERY = ITEMS.register("tf_battery", () -> new TFBatteryItem((new Item.Properties().stacksTo(1))));
 
+	public static final DeferredHolder<Item, Item> TF_DEVICE = ITEMS.register("tf_device", () -> new Item(new Item.Properties()));
+
 	public static final DeferredHolder<Item, Item> TOFUNIAN_SPAWNEGG = ITEMS.register("tofunian_spawnegg", () -> new DeferredSpawnEggItem(TofuEntityTypes.TOFUNIAN, 15460584, 13291425, (new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TOFUCOW_SPAWNEGG = ITEMS.register("tofucow_spawnegg", () -> new DeferredSpawnEggItem(TofuEntityTypes.TOFUCOW, 15460584, 10724259, (new Item.Properties())));
 	public static final DeferredHolder<Item, Item> TOFUPIG_SPAWNEGG = ITEMS.register("tofupig_spawnegg", () -> new DeferredSpawnEggItem(TofuEntityTypes.TOFUPIG, 15460584, 10066329, (new Item.Properties())));

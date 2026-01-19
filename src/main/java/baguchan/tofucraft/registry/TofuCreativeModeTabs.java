@@ -66,6 +66,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TF_OVEN,
 						TofuBlocks.TF_COLLECTOR
 						, TofuBlocks.ANTENNA_BASIC
+						, TofuBlocks.ANTENNA_ADVANCE
 						, TofuBlocks.TOFU_DETECTOR
 						, TofuBlocks.TOFU_WORK_STATION).map(sup -> {
 					return sup.get().asItem().getDefaultInstance();
@@ -77,7 +78,8 @@ public class TofuCreativeModeTabs {
 						, TofuItems.TF_OSCILLATOR
 						, TofuItems.TOFU_CORE
 						, TofuItems.REFLECT_TOFU_SHIELD
-						, TofuItems.TF_BATTERY).map(sup -> {
+						, TofuItems.TF_BATTERY
+						, TofuItems.TF_DEVICE).map(sup -> {
 					return sup.get().getDefaultInstance();
 				}).toList());
 			}).build());

@@ -425,6 +425,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.TF_OSCILLATOR);
 		singleTex(TofuItems.TOFU_CORE);
 		singleTex(TofuItems.TF_BATTERY);
+		singleTex(TofuItems.TF_DEVICE);
 		toBlock(TofuBlocks.TF_CRAFTER);
 		toBlock(TofuBlocks.TF_OVEN);
 		toBlock(TofuBlocks.TF_COLLECTOR);
@@ -542,6 +543,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
 		toBlock(TofuBlocks.TOFU_DETECTOR);
 		itemBlockFlat(TofuBlocks.ANTENNA_BASIC);
+		itemBlockFlat(TofuBlocks.ANTENNA_ADVANCE);
 
 		toBlock(TofuBlocks.SALT_BLOCK);
 		toBlock(TofuBlocks.SOYBEANS_SEEDS_BLOCK);
