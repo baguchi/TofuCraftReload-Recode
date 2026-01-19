@@ -41,6 +41,7 @@ import baguchi.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchi.tofucraft.block.crop.SoybeanPaleCropsBlock;
 import baguchi.tofucraft.block.crop.SoybeanSoulCropsBlock;
 import baguchi.tofucraft.block.crop.SproutsCropBlock;
+import baguchi.tofucraft.block.tfenergy.TFAntennaAdvanceBlock;
 import baguchi.tofucraft.block.tfenergy.TFAntennaBlock;
 import baguchi.tofucraft.block.tfenergy.TFCollectorBlock;
 import baguchi.tofucraft.block.tfenergy.TFCraftingTableBlock;
@@ -535,6 +536,7 @@ public class TofuBlocks {
 	}));
 
 	public static final DeferredBlock<Block> ANTENNA_BASIC = register("antenna_basic", TFAntennaBlock::new, () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollision().strength(5.0F, 6.0F).sound(SoundType.METAL));
+	public static final DeferredBlock<Block> ANTENNA_ADVANCE = register("antenna_advance", TFAntennaAdvanceBlock::new, () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().noCollision().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> TOFU_WORK_STATION = register("tofu_work_station", TofuWorkStationBlock::new, () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().noOcclusion().strength(1.5F, 6.0F).sound(SoundType.STONE));
 
 	public static final DeferredBlock<Block> TOFU_POT = register("tofu_pot",

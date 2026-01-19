@@ -1811,14 +1811,21 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.ANTENNA_BASIC.get())
 				.pattern(" P ")
-				.pattern("LCO")
+				.pattern(" C ")
 				.pattern("TTT")
 				.define('P', TofuItems.LEEK.get())
-				.define('O', TofuItems.TF_OSCILLATOR.get())
-				.define('L', TofuItems.TF_COIL.get())
-				.define('C', TofuItems.TOFU_CORE.get())
+				.define('C', TofuItems.TF_DEVICE.get())
 				.define('T', TofuItems.TOFUMETAL.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(this.output);
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.ANTENNA_ADVANCE.get())
+				.pattern("T")
+				.pattern("G")
+				.pattern("A")
+				.define('G', TofuItems.ADVANCE_TOFUGEM.get())
+				.define('A', TofuBlocks.ANTENNA_BASIC.get())
+				.define('T', TofuItems.TOFUDIAMOND_NUGGET.get())
+				.unlockedBy("has_item", has(TofuBlocks.ANTENNA_BASIC.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.TF_STORAGE.get())
 				.pattern("CCC")
@@ -1833,7 +1840,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("AMA")
 				.define('A', TofuItems.ADVANCE_TOFUGEM.get())
 				.define('M', TofuBlocks.METALTOFU.get())
-				.define('C', TofuItems.TF_CIRCUIT.get())
+				.define('C', TofuItems.TF_DEVICE.get())
 				.define('H', Blocks.HOPPER)
 				.unlockedBy("has_item", has(TofuItems.ADVANCE_TOFUGEM.get()))
 				.save(this.output);
@@ -1847,6 +1854,18 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('R', TofuItems.TF_CAPACITOR.get())
 				.unlockedBy("has_item", has(TofuItems.TOFU_GEM_DUST.get()))
 				.save(this.output);
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuItems.TF_DEVICE.get())
+				.pattern("TTT")
+				.pattern("LCO")
+				.pattern("TTT")
+				.define('O', TofuItems.TF_OSCILLATOR.get())
+				.define('L', TofuItems.TF_COIL.get())
+				.define('C', TofuItems.TOFU_CORE.get())
+				.define('T', TofuItems.TOFUMETAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFU_CORE.get()))
+				.save(this.output);
+
+
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuItems.TF_BATTERY.get())
 				.pattern("MRM")
 				.pattern("MTM")

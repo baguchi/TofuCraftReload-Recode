@@ -3,7 +3,7 @@
   "category": "redstone",
   "key": {
     "A": "tofucraft:adv_tofugem",
-    "C": "tofucraft:tf_circuit",
+    "C": "tofucraft:tf_device",
     "H": "minecraft:hopper",
     "M": "tofucraft:blocktofumetal"
   },

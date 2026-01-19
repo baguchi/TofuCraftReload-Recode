@@ -56,7 +56,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.SALT_FURNACE.get()
 				, TofuBlocks.SOYMILK_CAULDRON.get(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get(), TofuBlocks.SOYMILK_SOUL_CAULDRON.get()
 				, TofuBlocks.TOFU_METAL_LANTERN.get(), TofuBlocks.TOFU_METAL_SOUL_LANTERN.get(), TofuBlocks.TOFU_METAL_CHAIN.get()
-				, TofuBlocks.TOFU_DETECTOR.get(), TofuBlocks.TF_STORAGE.get(), TofuBlocks.TF_OVEN.get(), TofuBlocks.ANTENNA_BASIC.get(), TofuBlocks.TOFU_WORK_STATION.get(), TofuBlocks.TF_COLLECTOR.get()
+						, TofuBlocks.TOFU_DETECTOR.get(), TofuBlocks.TF_STORAGE.get(), TofuBlocks.TF_OVEN.get(), TofuBlocks.ANTENNA_BASIC.get(), TofuBlocks.ANTENNA_ADVANCE.get(), TofuBlocks.TOFU_WORK_STATION.get(), TofuBlocks.TF_COLLECTOR.get()
 				, TofuBlocks.TOFUNIAN_STATUE.get()
 				, TofuBlocks.TOFU_POT.get()
 						, TofuBlocks.TF_CRAFTING_TABLE.get(), TofuBlocks.WAXED_ISHITOFU.get(), TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get())
@@ -95,7 +95,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		tag(TofuTags.Blocks.TOFU_TERRAIN).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.TOFU_TERRAIN_ISHI.get());
 
 		tag(BlockTags.REPLACEABLE).add(TofuBlocks.LEEK.get()).add(TofuBlocks.TALL_LEEK.get());
-		tag(TofuTags.Blocks.TF_TRANSMITTER).addTag(BlockTags.REPLACEABLE).add(TofuBlocks.ANTENNA_BASIC.get());
+		tag(TofuTags.Blocks.TF_TRANSMITTER).addTag(BlockTags.REPLACEABLE).add(TofuBlocks.ANTENNA_BASIC.get()).add(TofuBlocks.ANTENNA_ADVANCE.get());
 
 
 		tag(BlockTags.BEDS).add(TofuBlocks.TOFUBED.get());
