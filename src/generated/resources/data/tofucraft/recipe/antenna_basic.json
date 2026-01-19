@@ -3,13 +3,7 @@
   "category": "redstone",
   "key": {
     "C": {
-      "item": "tofucraft:tofu_core"
-    },
-    "L": {
-      "item": "tofucraft:tf_coil"
-    },
-    "O": {
-      "item": "tofucraft:tf_oscillator"
+      "item": "tofucraft:tf_device"
     },
     "P": {
       "item": "tofucraft:leek"
@@ -20,7 +14,7 @@
   },
   "pattern": [
     " P ",
-    "LCO",
+    " C ",
     "TTT"
   ],
   "result": {

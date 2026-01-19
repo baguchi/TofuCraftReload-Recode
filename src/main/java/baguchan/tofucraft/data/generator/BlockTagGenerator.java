@@ -84,7 +84,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		tag(TofuTags.Blocks.TOFU_TERRAIN).add(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get());
 
 		tag(BlockTags.REPLACEABLE).add(TofuBlocks.LEEK.get());
-		tag(TofuTags.Blocks.TF_TRANSMITTER).addTag(BlockTags.REPLACEABLE).add(TofuBlocks.ANTENNA_BASIC.get());
+		tag(TofuTags.Blocks.TF_TRANSMITTER).addTag(BlockTags.REPLACEABLE).add(TofuBlocks.ANTENNA_BASIC.get()).add(TofuBlocks.ANTENNA_ADVANCE.get());
 
 
 		tag(BlockTags.BEDS).add(TofuBlocks.TOFUBED.get());
