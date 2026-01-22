@@ -6,10 +6,10 @@ import com.google.common.annotations.VisibleForTesting;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.PlacementInfo;
@@ -27,7 +27,7 @@ import java.util.Optional;
 
 public class TFShapedRecipe implements TFCraftingRecipe {
 	public final ShapedRecipePattern pattern;
-	final ItemStack result;
+	final ItemStackTemplate result;
 	final String group;
 	final TFCraftingCategory category;
 	final int tf;
@@ -35,7 +35,7 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 	@Nullable
 	private PlacementInfo placementInfo;
 
-	public TFShapedRecipe(String group, TFCraftingCategory category, ShapedRecipePattern pattern, ItemStack result, int tf, boolean showNotification) {
+	public TFShapedRecipe(String group, TFCraftingCategory category, ShapedRecipePattern pattern, ItemStackTemplate result, int tf, boolean showNotification) {
 		this.group = group;
 		this.category = category;
 		this.pattern = pattern;
@@ -44,7 +44,7 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 		this.showNotification = showNotification;
 	}
 
-	public TFShapedRecipe(String group, TFCraftingCategory category, ShapedRecipePattern pattern, ItemStack result, int tf) {
+	public TFShapedRecipe(String group, TFCraftingCategory category, ShapedRecipePattern pattern, ItemStackTemplate result, int tf) {
 		this(group, category, pattern, result, tf, true);
 	}
 
@@ -92,13 +92,13 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 	}
 
 	@Override
-	public ItemStack assemble(CraftingInput input, HolderLookup.Provider registries) {
-		return this.result.copy();
+	public ItemStack assemble(CraftingInput input) {
+		return this.result.create();
 	}
 
 	@Override
 	public ItemStack getResult() {
-		return result.copy();
+		return result.create();
 	}
 
 	public int getWidth() {
@@ -120,7 +120,7 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 								Codec.STRING.optionalFieldOf("group", "").forGetter(p_311729_ -> p_311729_.group),
 								TFCraftingCategory.CODEC.fieldOf("category").orElse(TFCraftingCategory.MISC).forGetter(p_311732_ -> p_311732_.category),
 								ShapedRecipePattern.MAP_CODEC.forGetter(p_311733_ -> p_311733_.pattern),
-								ItemStack.STRICT_CODEC.fieldOf("result").forGetter(p_311730_ -> p_311730_.result),
+								ItemStackTemplate.CODEC.fieldOf("result").forGetter(p_311730_ -> p_311730_.result),
 								Codec.INT.fieldOf("tf").forGetter(tfShapedRecipe -> tfShapedRecipe.tf),
 								Codec.BOOL.optionalFieldOf("show_notification", Boolean.valueOf(true)).forGetter(p_311731_ -> p_311731_.showNotification)
 						)
@@ -144,7 +144,7 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 			String s = buffer.readUtf();
 			TFCraftingCategory craftingbookcategory = buffer.readEnum(TFCraftingCategory.class);
 			ShapedRecipePattern shapedrecipepattern = ShapedRecipePattern.STREAM_CODEC.decode(buffer);
-			ItemStack itemstack = ItemStack.STREAM_CODEC.decode(buffer);
+			ItemStackTemplate itemstack = ItemStackTemplate.STREAM_CODEC.decode(buffer);
 			int i = buffer.readInt();
 			boolean flag = buffer.readBoolean();
 			return new TFShapedRecipe(s, craftingbookcategory, shapedrecipepattern, itemstack, i, flag);
@@ -154,7 +154,7 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 			buffer.writeUtf(recipe.group);
 			buffer.writeEnum(recipe.category);
 			ShapedRecipePattern.STREAM_CODEC.encode(buffer, recipe.pattern);
-			ItemStack.STREAM_CODEC.encode(buffer, recipe.result);
+			ItemStackTemplate.STREAM_CODEC.encode(buffer, recipe.result);
 			buffer.writeInt(recipe.tf);
 			buffer.writeBoolean(recipe.showNotification);
 		}

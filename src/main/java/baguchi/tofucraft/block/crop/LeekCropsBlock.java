@@ -1,7 +1,7 @@
 package baguchi.tofucraft.block.crop;
 
-import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -35,7 +35,7 @@ public class LeekCropsBlock extends CropBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter p_52303_, BlockPos p_52304_) {
-		return state.is(TofuBlocks.TOFU_FARMLAND.get());
+		return state.is(TofuTags.Blocks.TOFU_FARMLANDS);
 	}
 
 	@Override

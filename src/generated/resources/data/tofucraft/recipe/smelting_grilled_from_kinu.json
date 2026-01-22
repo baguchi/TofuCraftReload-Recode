@@ -5,7 +5,6 @@
   "experience": 0.1,
   "ingredient": "tofucraft:tofukinu",
   "result": {
-    "count": 1,
     "id": "tofucraft:tofugrilled"
   }
 }

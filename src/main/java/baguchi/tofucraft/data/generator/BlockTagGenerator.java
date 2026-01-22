@@ -53,7 +53,6 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				, TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get()
 				, TofuBlocks.TOFUSLATE.get()
 						, TofuBlocks.ISHI_TOFU_STEM.get()
-				, TofuBlocks.ISHI_TOFUGEM_ORE.get()
 				, TofuBlocks.SALT_FURNACE.get()
 				, TofuBlocks.SOYMILK_CAULDRON.get(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get(), TofuBlocks.SOYMILK_SOUL_CAULDRON.get()
 				, TofuBlocks.TOFU_METAL_LANTERN.get(), TofuBlocks.TOFU_METAL_SOUL_LANTERN.get(), TofuBlocks.TOFU_METAL_CHAIN.get()
@@ -90,6 +89,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				.add(TofuBlocks.DIAMONDTOFU.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
 		tag(BlockTags.PIGLIN_REPELLENTS).add(TofuBlocks.SOYBEAN_SOUL.get());
 
+		tag(TofuTags.Blocks.TOFU_FARMLANDS).add(TofuBlocks.TOFU_FARMLAND.get());
+
 		tag(TofuTags.Blocks.HAS_INFO).add(TofuBlocks.SALT_FURNACE.get()).add(TofuBlocks.SALTPAN.get());
 		tag(TofuTags.Blocks.PICKABLE_TOFU).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
 				, TofuBlocks.GRILLEDTOFU.get(), TofuBlocks.ZUNDATOFU.get(), TofuBlocks.MINCEDTOFU.get()).add(TofuBlocks.METALTOFU.get()).add(TofuBlocks.ISHITOFU.get());
@@ -97,6 +98,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 
 		tag(BlockTags.REPLACEABLE).add(TofuBlocks.LEEK.get()).add(TofuBlocks.TALL_LEEK.get());
 		tag(TofuTags.Blocks.TF_TRANSMITTER).addTag(BlockTags.REPLACEABLE).add(TofuBlocks.ANTENNA_BASIC.get()).add(TofuBlocks.ANTENNA_ADVANCE.get());
+
+		tag(BlockTags.ENABLES_BUBBLE_COLUMN_DRAG_DOWN).add(TofuBlocks.MABOU_TERRAIN.get());
 
 
 		tag(BlockTags.BEDS).add(TofuBlocks.TOFUBED.get());
@@ -164,7 +167,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		this.tag(BlockTags.BEE_GROWABLES).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get()).add(TofuBlocks.SOYBEAN_PALE.get())
 				.add(TofuBlocks.RICE_CROP.get());
 		this.tag(BlockTags.MAINTAINS_FARMLAND).add(TofuBlocks.SOYBEAN.get());
-		this.tag(Tags.Blocks.ORES).add(TofuBlocks.ORE_TOFUGEM.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get(), TofuBlocks.ISHI_TOFUGEM_ORE.get());
+		this.tag(Tags.Blocks.ORES).add(TofuBlocks.ORE_TOFUGEM.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get());
 
 		tag(TofuTags.Blocks.TOFUNIAN_SMITH).add(Blocks.BLAST_FURNACE);
 		tag(TofuTags.Blocks.TOFUNIAN_FARMER).add(Blocks.COMPOSTER);

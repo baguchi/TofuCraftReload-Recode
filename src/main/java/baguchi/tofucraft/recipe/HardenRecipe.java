@@ -1,8 +1,8 @@
 package baguchi.tofucraft.recipe;
 
 import baguchi.tofucraft.registry.TofuRecipes;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
@@ -20,9 +20,9 @@ public class HardenRecipe implements Recipe<EmptyRecipeInput> {
 	/**
 	 * This ingredient used for the harden tofu.
 	 */
-	final ItemStack result;
+	final ItemStackTemplate result;
 
-	public HardenRecipe(Ingredient tofu, ItemStack results) {
+	public HardenRecipe(Ingredient tofu, ItemStackTemplate results) {
 		this.tofu = tofu;
 		this.result = results;
 	}
@@ -54,12 +54,12 @@ public class HardenRecipe implements Recipe<EmptyRecipeInput> {
 	}
 
 	@Override
-	public ItemStack assemble(EmptyRecipeInput p_44001_, HolderLookup.Provider p_336092_) {
+	public ItemStack assemble(EmptyRecipeInput p_44001_) {
 		return null;
 	}
 
 
-	public ItemStack getResult() {
+	public ItemStackTemplate getResult() {
 		return result;
 	}
 

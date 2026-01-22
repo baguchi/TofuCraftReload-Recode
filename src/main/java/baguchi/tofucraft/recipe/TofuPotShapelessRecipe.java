@@ -6,11 +6,11 @@ import com.google.common.annotations.VisibleForTesting;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.PlacementInfo;
@@ -29,7 +29,7 @@ import java.util.Optional;
 public class TofuPotShapelessRecipe implements TofuPotRecipe {
 	final String group;
 	final TofuPotCategory category;
-	final ItemStack result;
+	final ItemStackTemplate result;
 	final List<Ingredient> ingredients;
 	final Optional<SizedFluidIngredient> ingredientFluid;
 	private final int cookTime;
@@ -38,7 +38,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 	@Nullable
 	private PlacementInfo placementInfo;
 
-	public TofuPotShapelessRecipe(String p_249640_, TofuPotCategory category, ItemStack result, List<Ingredient> ingredients, Optional<SizedFluidIngredient> ingredientFluid, int cookTime, float experience) {
+	public TofuPotShapelessRecipe(String p_249640_, TofuPotCategory category, ItemStackTemplate result, List<Ingredient> ingredients, Optional<SizedFluidIngredient> ingredientFluid, int cookTime, float experience) {
 		this.group = p_249640_;
 		this.category = category;
 		this.result = result;
@@ -105,12 +105,13 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 		}
 	}
 
-	public ItemStack assemble(CraftingInput input, HolderLookup.Provider registries) {
-		return this.result.copy();
+	@Override
+	public ItemStack assemble(CraftingInput input) {
+		return this.result.create();
 	}
 
 	public ItemStack getResult() {
-		return result.copy();
+		return result.create();
 	}
 
 	@VisibleForTesting
@@ -126,7 +127,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 				p_340779_ -> p_340779_.group(
 								Codec.STRING.optionalFieldOf("group", "").forGetter(p_301127_ -> p_301127_.group),
 								TofuPotCategory.CODEC.fieldOf("category").orElse(TofuPotCategory.MISC).forGetter(p_301133_ -> p_301133_.category),
-								ItemStack.STRICT_CODEC.fieldOf("result").forGetter(p_301142_ -> p_301142_.result),
+								ItemStackTemplate.CODEC.fieldOf("result").forGetter(p_301142_ -> p_301142_.result),
 								Codec.lazyInitialized(() -> Ingredient.CODEC
 												.listOf(1, 4 * 3)).fieldOf("ingredients")
 										.forGetter((p_360071_) -> p_360071_.ingredients),
@@ -140,7 +141,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 				p_360074_ -> p_360074_.group,
 				TofuPotCategory.STREAM_CODEC,
 				p_360073_ -> p_360073_.category,
-				ItemStack.STREAM_CODEC,
+				ItemStackTemplate.STREAM_CODEC,
 				p_360070_ -> p_360070_.result,
 				Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()),
 				p_360069_ -> p_360069_.ingredients,

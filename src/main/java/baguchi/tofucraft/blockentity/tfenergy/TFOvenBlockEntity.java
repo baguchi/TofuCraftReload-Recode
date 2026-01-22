@@ -63,7 +63,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 	public static final int MAX_CRAFT_TIME = 100;
 	private final RecipeType<? extends SmeltingRecipe> recipeType;
 
-	private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends Recipe> quickCheck;
+	private final RecipeManager.CachedCheck<SingleRecipeInput, ? extends SmeltingRecipe> quickCheck;
 
 	private final Reference2IntOpenHashMap<ResourceKey<Recipe<?>>> recipesUsed = new Reference2IntOpenHashMap<>();
 
@@ -120,7 +120,7 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 			if (tfoven.getEnergyStored() > 0) {
 				if (tfoven.refreshTime <= 0) {
 
-					Optional<? extends RecipeHolder<? extends Recipe>> optional = tfoven.quickCheck.getRecipeFor(new SingleRecipeInput(tfoven.inventory.get(0)), serverLevel);
+					Optional<? extends RecipeHolder<? extends SmeltingRecipe>> optional = tfoven.quickCheck.getRecipeFor(new SingleRecipeInput(tfoven.inventory.get(0)), serverLevel);
 
 					if (optional.isPresent()) {
 						++tfoven.progress;
@@ -153,10 +153,10 @@ public class TFOvenBlockEntity extends WorkerBaseBlockEntity implements WorldlyC
 		}
 	}
 
-	private boolean burn(RegistryAccess p_266740_, @javax.annotation.Nullable RecipeHolder<?> p_300910_, NonNullList<ItemStack> p_267073_) {
+	private boolean burn(RegistryAccess p_266740_, @javax.annotation.Nullable RecipeHolder<? extends SmeltingRecipe> p_300910_, NonNullList<ItemStack> p_267073_) {
 		if (p_300910_ != null) {
 			ItemStack itemstack = p_267073_.get(0);
-			ItemStack itemstack1 = ((RecipeHolder<net.minecraft.world.item.crafting.Recipe<SingleRecipeInput>>) p_300910_).value().assemble(new SingleRecipeInput(p_267073_.get(0)), p_266740_);
+			ItemStack itemstack1 = p_300910_.value().assemble(new SingleRecipeInput(p_267073_.get(0)));
 			ItemStack itemstack2 = p_267073_.get(1);
 			if (itemstack2.isEmpty()) {
 				p_267073_.set(1, itemstack1.copy());

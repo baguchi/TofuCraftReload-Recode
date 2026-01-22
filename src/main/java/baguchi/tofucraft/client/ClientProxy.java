@@ -66,16 +66,16 @@ public class ClientProxy {
 			IndexBookComponent index = buildIndex();
 			TextBookComponent introduction = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.introduction"), false, 100, 158);
 			TextBookComponent beforeTheTofu = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.before_the_tofu"), true, 100, 158);
-			DisplayBookComponent bittern = (new DisplayBookComponent(121, 158)).textDisplay(TofuItems.BITTERN_BOTTLE.get().asItem().getName(), 52, 75, 1.0F).itemDisplay(TofuItems.BITTERN_BOTTLE.get().getDefaultInstance(), 46, 20);
+			DisplayBookComponent bittern = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuItems.BITTERN_BOTTLE.get().asItem().getDescriptionId()), 52, 75, 1.0F).itemDisplay(TofuItems.BITTERN_BOTTLE.get().getDefaultInstance(), 46, 20);
 			TextBookComponent about_bittern = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.about_bittern"), true, 100, 158);
 			TextBookComponent onceTofuMade = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.once_tofu_made"), true, 100, 158);
-			DisplayBookComponent nether_tofu = (new DisplayBookComponent(121, 158)).textDisplay(TofuItems.TOFUHELL.get().asItem().getName(), 52, 16, 1.0F).itemDisplay(TofuItems.TOFUHELL.get().getDefaultInstance(), 46, 26)
-					.textDisplay(TofuItems.TOFUSOUL.get().asItem().getName(), 52, 56, 1.0F).itemDisplay(TofuItems.TOFUSOUL.get().getDefaultInstance(), 46, 66);
+			DisplayBookComponent nether_tofu = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuItems.TOFUHELL.get().asItem().getDescriptionId()), 52, 16, 1.0F).itemDisplay(TofuItems.TOFUHELL.get().getDefaultInstance(), 46, 26)
+					.textDisplay(Component.translatable(TofuItems.TOFUSOUL.get().asItem().getDescriptionId()), 52, 56, 1.0F).itemDisplay(TofuItems.TOFUSOUL.get().getDefaultInstance(), 46, 66);
 
 			TextBookComponent aboutAnotherTofu = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.about_another_tofu"), false, 100, 158);
-			DisplayBookComponent soymilk = (new DisplayBookComponent(121, 158)).textDisplay(TofuItems.SOYMILK_BOTTLE.get().asItem().getName(), 52, 16, 1.0F).itemDisplay(TofuItems.SOYMILK_BOTTLE.get().getDefaultInstance(), 46, 26);
+			DisplayBookComponent soymilk = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuItems.SOYMILK_BOTTLE.get().asItem().getDescriptionId()), 52, 16, 1.0F).itemDisplay(TofuItems.SOYMILK_BOTTLE.get().getDefaultInstance(), 46, 26);
 			TextBookComponent soymilk_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soymilk.desc"), true, 100, 158);
-			DisplayBookComponent tofu_stick = (new DisplayBookComponent(121, 158)).textDisplay(Component.literal("TofuStick").setStyle(ALT_STYLE).withStyle(ChatFormatting.GRAY), 52, 22, 1.0F).textDisplay(TofuItems.TOFUSTICK.get().asItem().getName(), 52, 26, 1.0F).itemDisplay(TofuItems.TOFUSTICK.get().getDefaultInstance(), 46, 30);
+			DisplayBookComponent tofu_stick = (new DisplayBookComponent(121, 158)).textDisplay(Component.literal("TofuStick").setStyle(ALT_STYLE).withStyle(ChatFormatting.GRAY), 52, 22, 1.0F).textDisplay(Component.translatable(TofuItems.TOFUSTICK.get().asItem().getDescriptionId()), 52, 26, 1.0F).itemDisplay(TofuItems.TOFUSTICK.get().getDefaultInstance(), 46, 30);
 			TextBookComponent tofu_stick_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tofu_stick.desc"), true, 100, 158);
 
 			DisplayBookComponent soysauce = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.soysauce"), 52, 26, 1.0F).itemDisplay(TofuItems.BOTTLE_SOYSAUSE.get().getDefaultInstance(), 46, 30);
@@ -84,9 +84,9 @@ public class ClientProxy {
 
 
 			TextBookComponent tf_force_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tf_force.desc"), true, 100, 158);
-			DisplayBookComponent tf_storage = (new DisplayBookComponent(121, 158)).textDisplay(TofuBlocks.TF_STORAGE.toStack().getItem().getName(), 52, 26, 1.0F).itemDisplay(TofuBlocks.TF_STORAGE.toStack().getItem().getDefaultInstance(), 46, 30);
+			DisplayBookComponent tf_storage = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuBlocks.TF_STORAGE.toStack().getItem().getDescriptionId()), 52, 26, 1.0F).itemDisplay(TofuBlocks.TF_STORAGE.toStack().getItem().getDefaultInstance(), 46, 30);
 			TextBookComponent tf_storage_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tf_storage.desc"), true, 100, 158);
-			DisplayBookComponent antenna_basic = (new DisplayBookComponent(121, 158)).textDisplay(TofuBlocks.ANTENNA_BASIC.toStack().getItem().getName(), 52, 26, 1.0F).itemDisplay(TofuBlocks.ANTENNA_BASIC.toStack().getItem().getDefaultInstance(), 46, 30);
+			DisplayBookComponent antenna_basic = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuBlocks.ANTENNA_BASIC.toStack().getItem().getDescriptionId()), 52, 26, 1.0F).itemDisplay(TofuBlocks.ANTENNA_BASIC.toStack().getItem().getDefaultInstance(), 46, 30);
 			TextBookComponent antenna_basic_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.antenna_basic.desc"), true, 100, 158);
 
 

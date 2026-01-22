@@ -5,7 +5,6 @@
   "group": "tofu_maker",
   "ingredient": "tofucraft:seeds_soybeans_soul",
   "result": {
-    "count": 1,
     "id": "tofucraft:blocktofusoul"
   }
 }

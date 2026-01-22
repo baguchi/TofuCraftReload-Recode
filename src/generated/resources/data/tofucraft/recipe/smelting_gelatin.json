@@ -1,11 +1,10 @@
 {
   "type": "minecraft:smelting",
-  "category": "misc",
+  "category": "food",
   "cookingtime": 200,
   "experience": 0.1,
   "ingredient": "tofucraft:gelatinraw",
   "result": {
-    "count": 1,
     "id": "tofucraft:gelatin"
   }
 }

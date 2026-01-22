@@ -15,7 +15,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
@@ -28,9 +28,7 @@ import java.util.Objects;
 public class TFShapelessRecipeBuilder implements RecipeBuilder {
 	private final HolderGetter<Item> items;
 	private final TFCraftingCategory category;
-	private final Item result;
-	private final int count;
-	private final ItemStack resultStack; // Neo: add stack result support
+	private final ItemStackTemplate resultStack; // Neo: add stack result support
 	private final int tf;
 	private final NonNullList<Ingredient> ingredients = NonNullList.create();
 	private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
@@ -38,14 +36,12 @@ public class TFShapelessRecipeBuilder implements RecipeBuilder {
 	private String group;
 
 	public TFShapelessRecipeBuilder(HolderGetter<Item> items, TFCraftingCategory category, ItemLike result, int count, int tf) {
-		this(items, category, new ItemStack(result, count), tf);
+		this(items, category, new ItemStackTemplate(result.asItem(), count), tf);
 	}
 
-	public TFShapelessRecipeBuilder(HolderGetter<Item> items, TFCraftingCategory p_250837_, ItemStack result, int tf) {
+	public TFShapelessRecipeBuilder(HolderGetter<Item> items, TFCraftingCategory p_250837_, ItemStackTemplate result, int tf) {
 		this.items = items;
 		this.category = p_250837_;
-		this.result = result.getItem();
-		this.count = result.getCount();
 		this.resultStack = result;
 		this.tf = tf;
 	}
@@ -64,7 +60,7 @@ public class TFShapelessRecipeBuilder implements RecipeBuilder {
 		return new TFShapelessRecipeBuilder(items, category, result, count, tf);
 	}
 
-	public static TFShapelessRecipeBuilder shapeless(HolderGetter<Item> items, TFCraftingCategory p_252339_, ItemStack result, int tf) {
+	public static TFShapelessRecipeBuilder shapeless(HolderGetter<Item> items, TFCraftingCategory p_252339_, ItemStackTemplate result, int tf) {
 		return new TFShapelessRecipeBuilder(items, p_252339_, result, tf);
 	}
 
@@ -121,9 +117,10 @@ public class TFShapelessRecipeBuilder implements RecipeBuilder {
 		return this;
 	}
 
+
 	@Override
-	public Item getResult() {
-		return this.result;
+	public ResourceKey<Recipe<?>> defaultId() {
+		return RecipeBuilder.getDefaultRecipeId(this.resultStack);
 	}
 
 	@Override

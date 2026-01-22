@@ -207,7 +207,6 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TOFUSLATE_SOY_FORCE_ORE,
 						TofuBlocks.TOFUSLATE,
 						TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE,
-						TofuBlocks.ISHI_TOFUGEM_ORE,
 						TofuBlocks.TOFU_BEDROCK,
 						TofuBlocks.LEEK,
 						TofuBlocks.TALL_LEEK,

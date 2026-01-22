@@ -4,6 +4,7 @@ import baguchi.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchi.tofucraft.entity.tofunian.Tofunian;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.registry.TofunianProfessions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -73,7 +74,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 			}
 			BlockState blockstate2 = world.getBlockState(this.blockPos);
 			ItemStack stack = findSeeds(this.tofunian);
-			if (this.canPlant && blockstate2.getBlock() == TofuBlocks.TOFU_FARMLAND.get() && !stack.isEmpty()) {
+			if (this.canPlant && blockstate2.is(TofuTags.Blocks.TOFU_FARMLANDS) && !stack.isEmpty()) {
 				world.setBlock(this.blockPos.above(), TofuBlocks.SOYBEAN.get().defaultBlockState(), 2);
 				stack.shrink(1);
 			}
@@ -93,7 +94,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 
 	protected boolean isValidTarget(LevelReader p_179488_1_, BlockPos p_179488_2_) {
 		Block block = p_179488_1_.getBlockState(p_179488_2_).getBlock();
-		if (block == TofuBlocks.TOFU_FARMLAND.get() && this.wantsToHarvest) {
+		if (p_179488_1_.getBlockState(p_179488_2_).is(TofuTags.Blocks.TOFU_FARMLANDS) && this.wantsToHarvest) {
 			p_179488_2_ = p_179488_2_.above();
 			BlockState blockstate = p_179488_1_.getBlockState(p_179488_2_);
 			block = blockstate.getBlock();

@@ -167,7 +167,6 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createTrivialCube(TofuBlocks.TOFUSLATE.get());
 		createTrivialCube(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
 		createTrivialCube(TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get());
-		createTrivialCube(TofuBlocks.ISHI_TOFUGEM_ORE.get());
 		createTrivialCube(TofuBlocks.ORE_TOFU_DIAMOND.get());
 		createTrivialCube(TofuBlocks.ORE_TOFUGEM.get());
 		createTrivialCube(TofuBlocks.TOFU_BEDROCK.get());

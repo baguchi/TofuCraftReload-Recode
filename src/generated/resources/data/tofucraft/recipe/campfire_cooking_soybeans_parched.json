@@ -5,7 +5,6 @@
   "experience": 0.1,
   "ingredient": "tofucraft:seeds_soybeans",
   "result": {
-    "count": 1,
     "id": "tofucraft:soybeans_parched"
   }
 }

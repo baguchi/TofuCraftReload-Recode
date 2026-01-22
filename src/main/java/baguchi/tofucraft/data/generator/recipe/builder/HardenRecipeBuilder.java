@@ -10,7 +10,7 @@ import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 
@@ -19,20 +19,19 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class HardenRecipeBuilder implements RecipeBuilder {
-	;
-	private final ItemStack stackResult; // Neo: add stack result support
+	private final ItemStackTemplate stackResult; // Neo: add stack result support
 	private final Ingredient ingredient;
 	private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
 	private HardenRecipeBuilder(
-			ItemStack result,
+			ItemStackTemplate result,
 			Ingredient fluidStack
 	) {
 		this.stackResult = result;
 		this.ingredient = fluidStack;
 	}
 
-	public static HardenRecipeBuilder harden(ItemStack stack, Ingredient ingredient) {
+	public static HardenRecipeBuilder harden(ItemStackTemplate stack, Ingredient ingredient) {
 		return new HardenRecipeBuilder(stack, ingredient);
 	}
 
@@ -46,8 +45,12 @@ public class HardenRecipeBuilder implements RecipeBuilder {
 	}
 
 	@Override
+	public ResourceKey<Recipe<?>> defaultId() {
+		return RecipeBuilder.getDefaultRecipeId(this.stackResult);
+	}
+
 	public Item getResult() {
-		return this.stackResult.getItem();
+		return this.stackResult.create().getItem();
 	}
 
 	@Override

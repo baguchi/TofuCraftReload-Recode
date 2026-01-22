@@ -64,7 +64,7 @@ public class OageCube extends MagmaCube {
 
 	@Override
 	protected ParticleOptions getParticleType() {
-		return new ItemParticleOption(ParticleTypes.ITEM, TofuItems.OAGE.get().getDefaultInstance());
+		return new ItemParticleOption(ParticleTypes.ITEM, TofuItems.OAGE.get());
 	}
 
 	@Override

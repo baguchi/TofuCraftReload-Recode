@@ -24,6 +24,7 @@
     "minecraft:visual/sky_color": "#ffffc8"
   },
   "coordinate_scale": 1.0,
+  "default_clock": "minecraft:overworld",
   "has_ceiling": true,
   "has_skylight": true,
   "height": 384,

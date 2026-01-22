@@ -10,7 +10,7 @@ import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -21,13 +21,13 @@ import java.util.Map;
 
 public class BitternRecipeBuilder implements RecipeBuilder {
 	;
-	private final ItemStack stackResult;
+	private final ItemStackTemplate stackResult;
 	private final FluidStack ingredient;
 	private final Ingredient extraIngredient;
 	private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
 	private BitternRecipeBuilder(
-			ItemStack result,
+			ItemStackTemplate result,
 			FluidStack fluidStack,
 			Ingredient extraIngredient
 	) {
@@ -36,7 +36,7 @@ public class BitternRecipeBuilder implements RecipeBuilder {
 		this.extraIngredient = extraIngredient;
 	}
 
-	public static BitternRecipeBuilder bittern(ItemStack stack, FluidStack fluidStack, Ingredient extraFluid) {
+	public static BitternRecipeBuilder bittern(ItemStackTemplate stack, FluidStack fluidStack, Ingredient extraFluid) {
 		return new BitternRecipeBuilder(stack, fluidStack, extraFluid);
 	}
 
@@ -50,8 +50,12 @@ public class BitternRecipeBuilder implements RecipeBuilder {
 	}
 
 	@Override
+	public ResourceKey<Recipe<?>> defaultId() {
+		return RecipeBuilder.getDefaultRecipeId(this.stackResult);
+	}
+
 	public Item getResult() {
-		return this.stackResult.getItem();
+		return this.stackResult.item().value();
 	}
 
 	@Override

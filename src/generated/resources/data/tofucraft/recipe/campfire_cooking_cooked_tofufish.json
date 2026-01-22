@@ -5,7 +5,6 @@
   "experience": 0.2,
   "ingredient": "tofucraft:raw_tofufish",
   "result": {
-    "count": 1,
     "id": "tofucraft:cooked_tofufish"
   }
 }

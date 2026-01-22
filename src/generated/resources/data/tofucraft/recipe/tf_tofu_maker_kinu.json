@@ -5,7 +5,6 @@
   "group": "tofu_maker",
   "ingredient": "#c:crops/soybean",
   "result": {
-    "count": 1,
     "id": "tofucraft:blocktofukinu"
   }
 }

@@ -29,7 +29,7 @@ public class RecipeHelper {
 			});
 			for (RecipeHolder<?> recipe : tofuRecipe.collect(Collectors.toList())) {
 				if (recipe.value() instanceof HardenRecipe hardenRecipe && hardenRecipe.getTofu().test(new ItemStack(block.asItem()))) {
-					return ((HardenRecipe) recipe.value()).getResult();
+					return ((HardenRecipe) recipe.value()).getResult().create();
 				}
 			}
 		}
@@ -48,7 +48,7 @@ public class RecipeHelper {
 			for (RecipeHolder<?> recipe : tofuRecipe.collect(Collectors.toList())) {
 				if (recipe.value() instanceof BitternRecipe bitternRecipe && bitternRecipe.getFluid().is(fluid)) {
 					if (bitternRecipe.getBitternIngredient().test(stack)) {
-						return bitternRecipe.getResult();
+						return bitternRecipe.getResult().create();
 					}
 				}
 			}

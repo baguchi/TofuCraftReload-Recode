@@ -26,7 +26,6 @@
     }
   ],
   "gives": {
-    "count": 1,
     "id": "tofucraft:tofu_metal_sword"
   },
   "max_uses": 10.0,

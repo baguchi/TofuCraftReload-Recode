@@ -1,7 +1,7 @@
 package baguchi.tofucraft.block.crop;
 
-import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -25,7 +25,7 @@ public class SoybeanCropsBlock extends CropBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState p_52302_, BlockGetter p_52303_, BlockPos p_52304_) {
-		return super.mayPlaceOn(p_52302_, p_52303_, p_52304_) || p_52302_.is(TofuBlocks.TOFU_FARMLAND.get());
+		return super.mayPlaceOn(p_52302_, p_52303_, p_52304_) || p_52302_.is(TofuTags.Blocks.TOFU_FARMLANDS);
 	}
 
 	@Override

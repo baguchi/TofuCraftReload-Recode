@@ -2,7 +2,6 @@
   "type": "minecraft:stonecutting",
   "ingredient": "tofucraft:tofuslate",
   "result": {
-    "count": 1,
     "id": "tofucraft:tofuishi_brick"
   }
 }

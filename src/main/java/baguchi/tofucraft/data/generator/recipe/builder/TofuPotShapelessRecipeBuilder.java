@@ -15,7 +15,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
@@ -30,9 +30,7 @@ import java.util.Optional;
 public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 	private final HolderGetter<Item> items;
 	private final TofuPotCategory category;
-	private final Item result;
-	private final int count;
-	private final ItemStack resultStack; // Neo: add stack result support
+	private final ItemStackTemplate resultStack; // Neo: add stack result support
 	private final NonNullList<Ingredient> ingredients = NonNullList.create();
 	private final Optional<SizedFluidIngredient> fluidIngredient;
 	private final int cookTime;
@@ -42,14 +40,12 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 	private String group;
 
 	public TofuPotShapelessRecipeBuilder(HolderGetter<Item> items, TofuPotCategory category, ItemLike result, Optional<SizedFluidIngredient> fluidIngredient, int count, int cookTime, float experience) {
-		this(items, category, new ItemStack(result, count), fluidIngredient, cookTime, experience);
+		this(items, category, new ItemStackTemplate(result.asItem(), count), fluidIngredient, cookTime, experience);
 	}
 
-	public TofuPotShapelessRecipeBuilder(HolderGetter<Item> items, TofuPotCategory p_250837_, ItemStack result, Optional<SizedFluidIngredient> fluidIngredient, int cookTime, float experience) {
+	public TofuPotShapelessRecipeBuilder(HolderGetter<Item> items, TofuPotCategory p_250837_, ItemStackTemplate result, Optional<SizedFluidIngredient> fluidIngredient, int cookTime, float experience) {
 		this.items = items;
 		this.category = p_250837_;
-		this.result = result.getItem();
-		this.count = result.getCount();
 		this.resultStack = result;
 		this.fluidIngredient = fluidIngredient;
 		this.cookTime = cookTime;
@@ -70,24 +66,24 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 		return new TofuPotShapelessRecipeBuilder(holderGetter, category, result, fluidIngredient, count, cookTime, experience);
 	}
 
-	public static TofuPotShapelessRecipeBuilder shapeless(HolderGetter<Item> holderGetter, TofuPotCategory p_252339_, Optional<SizedFluidIngredient> fluidIngredient, ItemStack result, int cookTime, float experience) {
+	public static TofuPotShapelessRecipeBuilder shapeless(HolderGetter<Item> holderGetter, TofuPotCategory p_252339_, Optional<SizedFluidIngredient> fluidIngredient, ItemStackTemplate result, int cookTime, float experience) {
 		return new TofuPotShapelessRecipeBuilder(holderGetter, p_252339_, result, fluidIngredient, cookTime, experience);
 	}
 
-	public static TofuPotShapelessRecipeBuilder shapeless(HolderGetter<Item> holderGetter, TofuPotCategory p_252339_, Optional<SizedFluidIngredient> fluidIngredient, ItemStack result, int cookTime) {
+	public static TofuPotShapelessRecipeBuilder shapeless(HolderGetter<Item> holderGetter, TofuPotCategory p_252339_, Optional<SizedFluidIngredient> fluidIngredient, ItemStackTemplate result, int cookTime) {
 		return new TofuPotShapelessRecipeBuilder(holderGetter, p_252339_, result, fluidIngredient, cookTime, 0.1F);
 	}
 
-	public static TofuPotShapelessRecipeBuilder shapeless(HolderGetter<Item> holderGetter, TofuPotCategory p_252339_, Optional<SizedFluidIngredient> fluidIngredient, ItemStack result) {
+	public static TofuPotShapelessRecipeBuilder shapeless(HolderGetter<Item> holderGetter, TofuPotCategory p_252339_, Optional<SizedFluidIngredient> fluidIngredient, ItemStackTemplate result) {
 		return new TofuPotShapelessRecipeBuilder(holderGetter, p_252339_, result, fluidIngredient, 300, 0.1F);
 	}
 
-	public static TofuPotShapelessRecipeBuilder shapeless(HolderGetter<Item> holderGetter, TofuPotCategory p_252339_, ItemStack result) {
+	public static TofuPotShapelessRecipeBuilder shapeless(HolderGetter<Item> holderGetter, TofuPotCategory p_252339_, ItemStackTemplate result) {
 		return new TofuPotShapelessRecipeBuilder(holderGetter, p_252339_, result, Optional.empty(), 300, 0.1F);
 	}
 
 	public static TofuPotShapelessRecipeBuilder shapeless(HolderGetter<Item> holderGetter, TofuPotCategory p_252339_, Item result) {
-		return new TofuPotShapelessRecipeBuilder(holderGetter, p_252339_, new ItemStack(result), Optional.empty(), 300, 0.1F);
+		return new TofuPotShapelessRecipeBuilder(holderGetter, p_252339_, new ItemStackTemplate(result), Optional.empty(), 300, 0.1F);
 	}
 
 	/**
@@ -143,11 +139,11 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 		return this;
 	}
 
-	@Override
-	public Item getResult() {
-		return this.result;
-	}
 
+	@Override
+	public ResourceKey<Recipe<?>> defaultId() {
+		return RecipeBuilder.getDefaultRecipeId(this.resultStack);
+	}
 
 	@Override
 	public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> resourceKey) {

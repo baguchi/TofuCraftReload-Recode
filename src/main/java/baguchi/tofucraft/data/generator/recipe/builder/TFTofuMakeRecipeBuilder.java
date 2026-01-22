@@ -9,8 +9,7 @@ import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 
@@ -20,14 +19,14 @@ import java.util.Map;
 
 public class TFTofuMakeRecipeBuilder implements RecipeBuilder {
 	;
-	private final ItemStack stackResult;
+	private final ItemStackTemplate stackResult;
 	private final Ingredient ingredient;
 	private final int cookTime;
 	private final float exp;
 	private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
 	private TFTofuMakeRecipeBuilder(
-			ItemStack result,
+			ItemStackTemplate result,
 			Ingredient ingredient,
 			float exp,
 			int cookTime
@@ -38,7 +37,7 @@ public class TFTofuMakeRecipeBuilder implements RecipeBuilder {
 		this.cookTime = cookTime;
 	}
 
-	public static TFTofuMakeRecipeBuilder tofuMake(ItemStack stack, Ingredient ingredient, float exp, int cookTime) {
+	public static TFTofuMakeRecipeBuilder tofuMake(ItemStackTemplate stack, Ingredient ingredient, float exp, int cookTime) {
 		return new TFTofuMakeRecipeBuilder(stack, ingredient, exp, cookTime);
 	}
 
@@ -52,8 +51,8 @@ public class TFTofuMakeRecipeBuilder implements RecipeBuilder {
 	}
 
 	@Override
-	public Item getResult() {
-		return this.stackResult.getItem();
+	public ResourceKey<Recipe<?>> defaultId() {
+		return RecipeBuilder.getDefaultRecipeId(this.stackResult);
 	}
 
 	@Override

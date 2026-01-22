@@ -16,7 +16,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
@@ -31,9 +31,7 @@ import java.util.Objects;
 public class TFShapedRecipeBuilder implements RecipeBuilder {
 	private final HolderGetter<Item> items;
 	private final TFCraftingCategory category;
-	private final Item result;
-	private final int count;
-	private final ItemStack resultStack; // Neo: add stack result support
+	private final ItemStackTemplate resultStack; // Neo: add stack result support
 	private final int tf;
 	private final List<String> rows = Lists.newArrayList();
 	private final Map<Character, Ingredient> key = Maps.newLinkedHashMap();
@@ -43,14 +41,12 @@ public class TFShapedRecipeBuilder implements RecipeBuilder {
 	private boolean showNotification = true;
 
 	public TFShapedRecipeBuilder(HolderGetter<Item> items, TFCraftingCategory category, ItemLike result, int count, int tf) {
-		this(items, category, new ItemStack(result, count), tf);
+		this(items, category, new ItemStackTemplate(result.asItem(), count), tf);
 	}
 
-	public TFShapedRecipeBuilder(HolderGetter<Item> items, TFCraftingCategory p_249996_, ItemStack result, int tf) {
+	public TFShapedRecipeBuilder(HolderGetter<Item> items, TFCraftingCategory p_249996_, ItemStackTemplate result, int tf) {
 		this.items = items;
 		this.category = p_249996_;
-		this.result = result.getItem();
-		this.count = result.getCount();
 		this.resultStack = result;
 		this.tf = tf;
 	}
@@ -69,7 +65,7 @@ public class TFShapedRecipeBuilder implements RecipeBuilder {
 		return new TFShapedRecipeBuilder(items, category, result, count, tf);
 	}
 
-	public static TFShapedRecipeBuilder shaped(HolderGetter<Item> items, TFCraftingCategory p_251325_, ItemStack result, int tf) {
+	public static TFShapedRecipeBuilder shaped(HolderGetter<Item> items, TFCraftingCategory p_251325_, ItemStackTemplate result, int tf) {
 		return new TFShapedRecipeBuilder(items, p_251325_, result, tf);
 	}
 
@@ -123,14 +119,14 @@ public class TFShapedRecipeBuilder implements RecipeBuilder {
 		return this;
 	}
 
+	@Override
+	public ResourceKey<Recipe<?>> defaultId() {
+		return RecipeBuilder.getDefaultRecipeId(this.resultStack);
+	}
+
 	public TFShapedRecipeBuilder showNotification(boolean showNotification) {
 		this.showNotification = showNotification;
 		return this;
-	}
-
-	@Override
-	public Item getResult() {
-		return this.result;
 	}
 
 	@Override

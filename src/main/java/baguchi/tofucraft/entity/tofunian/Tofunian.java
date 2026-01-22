@@ -280,13 +280,13 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public boolean isMeeting() {
-		long time = level().getDayTime();
+		long time = level().getOverworldClockTime();
 		long day = time / 24000;
 		return day % 5 == 0;
 	}
 
 	public boolean isStoreFood() {
-		int i = (int) (this.level().getDayTime() % 24000L);
+		int i = (int) (this.level().getOverworldClockTime() % 24000L);
 		return i >= 10000 && i <= 12800;
 	}
 
@@ -715,7 +715,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		long i = this.lastRestock + 12000L;
 		long j = this.level().getGameTime();
 		boolean flag = j > i;
-		long k = this.level().getDayTime();
+		long k = this.level().getOverworldClockTime();
 		if (this.lastRestockDayTime > 0L) {
 			long l = this.lastRestockDayTime / 24000L;
 			long i1 = k / 24000L;

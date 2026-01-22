@@ -103,7 +103,7 @@ public class DishItem extends Item {
 						entity.level().playSound(null, target.blockPosition(), SoundEvents.GENERIC_EAT.value(), SoundSource.PLAYERS, 0.8F, 0.8F);
 
 						if (itemStack.has(DataComponents.USE_REMAINDER) && !player.isCreative()) {
-							player.addItem(itemStack.get(DataComponents.USE_REMAINDER).convertInto());
+							player.addItem(itemStack.get(DataComponents.USE_REMAINDER).convertInto().create());
 							itemStack.shrink(1);
 						}
 

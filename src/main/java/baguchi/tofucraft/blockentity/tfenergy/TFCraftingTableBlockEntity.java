@@ -137,8 +137,8 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 				Optional<? extends RecipeHolder<? extends CraftingRecipe>> optional2 = tfoven.quickNormalCheck.getRecipeFor(CraftingInput.of(3, 3, tfoven.inventory), serverLevel);
 
 
-				ItemStack tfStack = optional.isEmpty() ? ItemStack.EMPTY : optional.get().value().assemble(CraftingInput.of(3, 3, tfoven.inventory), serverLevel.registryAccess());
-				ItemStack craftStack = optional2.isEmpty() ? ItemStack.EMPTY : optional2.get().value().assemble(CraftingInput.of(3, 3, tfoven.inventory), serverLevel.registryAccess());
+				ItemStack tfStack = optional.isEmpty() ? ItemStack.EMPTY : optional.get().value().assemble(CraftingInput.of(3, 3, tfoven.inventory));
+				ItemStack craftStack = optional2.isEmpty() ? ItemStack.EMPTY : optional2.get().value().assemble(CraftingInput.of(3, 3, tfoven.inventory));
 
 				if (optional.isPresent() && tfoven.canProcess(tfStack) && (tfoven.recipeDisplay == null || !optional.get().value().display().isEmpty() && optional.get().value().display().contains(tfoven.recipeDisplay))) {
 					tfoven.progressMax = optional.get().value().getNeedTF() / 10;
@@ -196,8 +196,8 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 			for (int i = 0; i < 9; ++i) {
 				ItemStack slotStack = inventory.get(i);
-				if (!slotStack.getCraftingRemainder().isEmpty()) {
-					ejectIngredientRemainder(slotStack.getCraftingRemainder());
+				if (slotStack.getCraftingRemainder() != null) {
+					ejectIngredientRemainder(slotStack.getCraftingRemainder().create());
 				}
 				if (!slotStack.isEmpty())
 					slotStack.shrink(1);
@@ -240,8 +240,8 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 			for (int i = 0; i < 9; ++i) {
 				ItemStack slotStack = inventory.get(i);
-				if (!slotStack.getCraftingRemainder().isEmpty()) {
-					ejectIngredientRemainder(slotStack.getCraftingRemainder());
+				if (slotStack.getCraftingRemainder() != null) {
+					ejectIngredientRemainder(slotStack.getCraftingRemainder().create());
 				}
 				if (!slotStack.isEmpty())
 					slotStack.shrink(1);

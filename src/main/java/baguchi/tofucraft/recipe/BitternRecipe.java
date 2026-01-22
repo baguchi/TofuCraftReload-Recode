@@ -1,8 +1,8 @@
 package baguchi.tofucraft.recipe;
 
 import baguchi.tofucraft.registry.TofuRecipes;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
@@ -24,9 +24,9 @@ public class BitternRecipe implements Recipe<RecipeInput> {
 	/**
 	 * This ingredient used for the harden tofu.
 	 */
-	final ItemStack result;
+	final ItemStackTemplate result;
 
-	public BitternRecipe(FluidStack fluid, Ingredient ingredient, ItemStack results) {
+	public BitternRecipe(FluidStack fluid, Ingredient ingredient, ItemStackTemplate results) {
 		this.fluid = fluid;
 		this.ingredient = ingredient;
 		this.result = results;
@@ -58,11 +58,11 @@ public class BitternRecipe implements Recipe<RecipeInput> {
 	}
 
 	@Override
-	public ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
-		return this.getResult().copy();
+	public ItemStack assemble(RecipeInput recipeInput) {
+		return this.getResult().create();
 	}
 
-	public ItemStack getResult() {
+	public ItemStackTemplate getResult() {
 		return result;
 	}
 

@@ -9,7 +9,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -25,7 +25,7 @@ public class TFTofuMakerRecipe extends SingleItemRecipe {
 	private final float experience;
 	private final int cookingTime;
 
-	public TFTofuMakerRecipe(String group, Ingredient ingredient, ItemStack result, float experience, int cookingTime) {
+	public TFTofuMakerRecipe(String group, Ingredient ingredient, ItemStackTemplate result, float experience, int cookingTime) {
 		super(group, ingredient, result);
 		this.experience = experience;
 		this.cookingTime = cookingTime;
@@ -50,7 +50,7 @@ public class TFTofuMakerRecipe extends SingleItemRecipe {
 	}
 
 	@Override
-	public ItemStack result() {
+	public ItemStackTemplate result() {
 		return super.result();
 	}
 
@@ -68,7 +68,7 @@ public class TFTofuMakerRecipe extends SingleItemRecipe {
 				r -> r.group(
 								Codec.STRING.optionalFieldOf("group", "").forGetter(SingleItemRecipe::group),
 								Ingredient.CODEC.fieldOf("ingredient").forGetter(SingleItemRecipe::input),
-								ItemStack.CODEC.fieldOf("result").forGetter(TFTofuMakerRecipe::result),
+								ItemStackTemplate.CODEC.fieldOf("result").forGetter(TFTofuMakerRecipe::result),
 								Codec.FLOAT.fieldOf("experience").orElse(0.0F).forGetter(TFTofuMakerRecipe::experience),
 								Codec.INT.fieldOf("cookingtime").orElse(200).forGetter(TFTofuMakerRecipe::cookingTime)
 						)
@@ -79,7 +79,7 @@ public class TFTofuMakerRecipe extends SingleItemRecipe {
 				SingleItemRecipe::group,
 				Ingredient.CONTENTS_STREAM_CODEC,
 				SingleItemRecipe::input,
-				ItemStack.STREAM_CODEC,
+				ItemStackTemplate.STREAM_CODEC,
 				TFTofuMakerRecipe::result,
 				ByteBufCodecs.FLOAT,
 				TFTofuMakerRecipe::experience,

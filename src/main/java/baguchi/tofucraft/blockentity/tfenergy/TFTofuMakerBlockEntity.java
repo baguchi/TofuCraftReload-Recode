@@ -153,10 +153,10 @@ public class TFTofuMakerBlockEntity extends WorkerBaseBlockEntity implements Wor
 	}
 
 
-	private boolean burn(RegistryAccess p_266740_, @javax.annotation.Nullable RecipeHolder<?> p_300910_, NonNullList<ItemStack> p_267073_) {
+	private boolean burn(RegistryAccess p_266740_, @javax.annotation.Nullable RecipeHolder<? extends TFTofuMakerRecipe> p_300910_, NonNullList<ItemStack> p_267073_) {
 		if (p_300910_ != null) {
 			ItemStack itemstack = p_267073_.get(0);
-			ItemStack itemstack1 = ((RecipeHolder<net.minecraft.world.item.crafting.Recipe<SingleRecipeInput>>) p_300910_).value().assemble(new SingleRecipeInput(p_267073_.get(0)), p_266740_);
+			ItemStack itemstack1 = p_300910_.value().assemble(new SingleRecipeInput(p_267073_.get(0)));
 			ItemStack itemstack2 = p_267073_.get(1);
 			if (itemstack2.isEmpty()) {
 				p_267073_.set(1, itemstack1.copy());

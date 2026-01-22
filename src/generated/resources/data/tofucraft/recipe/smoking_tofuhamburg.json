@@ -5,7 +5,6 @@
   "experience": 0.25,
   "ingredient": "tofucraft:tofuhamburg_raw",
   "result": {
-    "count": 1,
     "id": "tofucraft:tofuhamburg"
   }
 }
