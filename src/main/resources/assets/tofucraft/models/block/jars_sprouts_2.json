@@ -2,6 +2,6 @@
   "parent": "tofucraft:block/jars_crop",
   "render_type": "cutout",
   "textures": {
-    "crop": "tofucraft:block/sprouts_2"
+    "crop": "tofucraft:block/sprouts_crop_2"
   }
 }
