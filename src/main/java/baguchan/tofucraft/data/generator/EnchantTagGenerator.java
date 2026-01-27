@@ -23,11 +23,16 @@ public class EnchantTagGenerator extends EnchantmentTagsProvider {
 				TofuEnchantments.SHAPED_BEAN,
 				TofuEnchantments.CRACK_BURST
 		);
+		this.tag(EnchantmentTags.NON_TREASURE).add(
+				TofuEnchantments.SHAPED_BEAN
+		);
+
 		this.tag(EnchantmentTags.TREASURE)
 				.add(
 						TofuEnchantments.BATCH,
 						TofuEnchantments.DRAIN,
-						TofuEnchantments.EFFECT_PROTECTION
+						TofuEnchantments.EFFECT_PROTECTION,
+						TofuEnchantments.CRACK_BURST
 				);
 	}
 }
