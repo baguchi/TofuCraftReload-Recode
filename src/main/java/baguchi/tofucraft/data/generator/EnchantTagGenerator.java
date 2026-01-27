@@ -20,18 +20,22 @@ public class EnchantTagGenerator extends EnchantmentTagsProvider {
 	protected void addTags(HolderLookup.Provider p_256380_) {
 		HolderLookup<Enchantment> lookup = p_256380_.lookupOrThrow(Registries.ENCHANTMENT);
 		this.tag(EnchantmentTags.TOOLTIP_ORDER).add(
-				lookup.get(TofuEnchantments.BATCH).get().key()
-				,
-				lookup.get(TofuEnchantments.DRAIN).get().key(),
-				lookup.get(TofuEnchantments.EFFECT_PROTECTION).get().key(),
-				lookup.get(TofuEnchantments.SHAPED_BEAN).get().key(),
-				lookup.get(TofuEnchantments.CRACK_BURST).get().key()
+				TofuEnchantments.BATCH,
+				TofuEnchantments.DRAIN,
+				TofuEnchantments.EFFECT_PROTECTION,
+				TofuEnchantments.SHAPED_BEAN,
+				TofuEnchantments.CRACK_BURST
 		);
+		this.tag(EnchantmentTags.NON_TREASURE).add(
+				TofuEnchantments.SHAPED_BEAN
+		);
+
 		this.tag(EnchantmentTags.TREASURE)
 				.add(
 						TofuEnchantments.BATCH,
 						TofuEnchantments.DRAIN,
-						TofuEnchantments.EFFECT_PROTECTION
+						TofuEnchantments.EFFECT_PROTECTION,
+						TofuEnchantments.CRACK_BURST
 				);
 	}
 }
