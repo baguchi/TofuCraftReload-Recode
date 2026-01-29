@@ -61,8 +61,21 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.stairs(TofuBlocks.TOFUSTAIR_EGGBRICK.get())
 				.slab(TofuBlocks.TOFUSLAB_EGGBRICK.get());
 
+		createTrivialCube(TofuBlocks.EGGTOFU_SMOOTH_BRICK.get());
+		createTrivialCube(TofuBlocks.EGGTOFU_CHISELED_BRICK.get());
+
+		family(TofuBlocks.DRIEDTOFU_BRICK.get())
+				.stairs(TofuBlocks.TOFUSTAIR_DRIEDBRICK.get())
+				.slab(TofuBlocks.TOFUSLAB_DRIEDBRICK.get());
+
+		createTrivialCube(TofuBlocks.DRIEDTOFU_SMOOTH_BRICK.get());
+		createTrivialCube(TofuBlocks.DRIEDTOFU_CHISELED_BRICK.get());
+
+
 		createTrivialCube(TofuBlocks.HELLTOFU_SMOOTH_BRICK.get());
+		createTrivialCube(TofuBlocks.HELLTOFU_CHISELED_BRICK.get());
 		createTrivialCube(TofuBlocks.SOULTOFU_SMOOTH_BRICK.get());
+		createTrivialCube(TofuBlocks.SOULTOFU_CHISELED_BRICK.get());
 		createTrivialCube(TofuBlocks.MINCEDTOFU.get());
 
 		family(TofuBlocks.HELLTOFU_BRICK.get())

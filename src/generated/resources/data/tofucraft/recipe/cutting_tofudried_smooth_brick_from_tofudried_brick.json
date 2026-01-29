@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "tofucraft:tofudried_brick",
+  "result": {
+    "id": "tofucraft:tofudried_smooth_brick"
+  }
+}

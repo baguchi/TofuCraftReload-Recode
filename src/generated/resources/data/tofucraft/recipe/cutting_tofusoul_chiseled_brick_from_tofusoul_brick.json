@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "tofucraft:tofusoul_brick",
+  "result": {
+    "id": "tofucraft:tofusoul_chiseled_brick"
+  }
+}
