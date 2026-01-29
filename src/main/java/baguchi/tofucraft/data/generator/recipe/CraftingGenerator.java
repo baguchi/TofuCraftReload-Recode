@@ -493,8 +493,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		buildingTofuBlockItem(this.output, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU);
 		buildingTofuBlockItem(this.output, TofuBlocks.SOULTOFU_SMOOTH_BRICK, TofuBlocks.SOULTOFU_BRICK);
 
-		cuttingRecipe(this.output, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU_SMOOTH_BRICK, 2);
-		cuttingRecipe(this.output, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU_SMOOTH_BRICK, 2);
+		cuttingRecipe(this.output, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU_SMOOTH_BRICK, 1);
+		cuttingRecipe(this.output, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU_SMOOTH_BRICK, 1);
 		tofuBlockItem(this.output, TofuBlocks.MINCEDTOFU, TofuItems.TOFU_MINCED);
 
 		tofuBlockItem(this.output, TofuBlocks.EGGTOFU, TofuItems.TOFUEGG);

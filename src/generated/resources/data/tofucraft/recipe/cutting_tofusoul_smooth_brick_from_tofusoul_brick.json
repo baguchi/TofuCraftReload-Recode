@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "ingredient": "tofucraft:tofusoul_brick",
   "result": {
-    "count": 2,
+    "count": 1,
     "id": "tofucraft:tofusoul_smooth_brick"
   }
 }
