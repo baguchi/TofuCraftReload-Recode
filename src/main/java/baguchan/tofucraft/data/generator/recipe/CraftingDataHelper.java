@@ -228,6 +228,15 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 				.save(consumer);
 	}
 
+	protected final void buildingTofuChiseledItem(RecipeOutput consumer, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result.get(), 1)
+				.pattern("#")
+				.pattern("#")
+				.define('#', material.get())
+				.unlockedBy("has_item", has(material.get()))
+				.save(consumer);
+	}
+
 	public void makeStairs(RecipeOutput consumer, Supplier<? extends ItemLike> stairsOut, Supplier<? extends ItemLike> blockIn) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stairsOut.get(), 4)
 				.pattern("M  ")

@@ -36,8 +36,10 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				.add(TofuBlocks.WAXED_KINUTOFU.get(), TofuBlocks.WAXED_MOMENTOFU.get());
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(TofuBlocks.ISHITOFU.get(), TofuBlocks.ISHITOFU_BRICK.get(), TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(), TofuBlocks.ISHITOFU_CHISELED_BRICK.get()
 				, TofuBlocks.METALTOFU.get(), TofuBlocks.METAL_TOFU_GRATE.get(), TofuBlocks.METAL_TOFU_LUMP.get(), TofuBlocks.DIAMONDTOFU.get(), TofuBlocks.TOFU_GEM_BLOCK.get(), TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get()
-				, TofuBlocks.HELLTOFU_BRICK.get(), TofuBlocks.HELLTOFU_SMOOTH_BRICK.get()
-				, TofuBlocks.SOULTOFU_BRICK.get(), TofuBlocks.SOULTOFU_SMOOTH_BRICK.get()
+				, TofuBlocks.HELLTOFU_BRICK.get(), TofuBlocks.HELLTOFU_SMOOTH_BRICK.get(), TofuBlocks.HELLTOFU_CHISELED_BRICK.get()
+				, TofuBlocks.SOULTOFU_BRICK.get(), TofuBlocks.SOULTOFU_SMOOTH_BRICK.get(), TofuBlocks.SOULTOFU_CHISELED_BRICK.get()
+				, TofuBlocks.DRIEDTOFU_BRICK.get(), TofuBlocks.DRIEDTOFU_SMOOTH_BRICK.get(), TofuBlocks.DRIEDTOFU_CHISELED_BRICK.get(), TofuBlocks.TOFUSTAIR_DRIEDBRICK.get(), TofuBlocks.TOFUSLAB_DRIEDBRICK.get()
+				, TofuBlocks.EGGTOFU_BRICK.get(), TofuBlocks.EGGTOFU_SMOOTH_BRICK.get(), TofuBlocks.EGGTOFU_CHISELED_BRICK.get(), TofuBlocks.TOFUSTAIR_EGGBRICK.get(), TofuBlocks.TOFUSLAB_EGGBRICK.get()
 				, TofuBlocks.EGGTOFU_BRICK.get(), TofuBlocks.TOFUSTAIR_EGGBRICK.get(), TofuBlocks.TOFUSLAB_EGGBRICK.get()
 				, TofuBlocks.ZUNDATOFU_BRICK.get(), TofuBlocks.ZUNDATOFU_SMOOTH_BRICK.get(), TofuBlocks.TOFUSTAIR_ZUNDABRICK.get(), TofuBlocks.TOFUSLAB_ZUNDABRICK.get()
 				, TofuBlocks.TOFUSTAIR_ISHI.get(), TofuBlocks.TOFUSTAIR_METAL.get(), TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.TOFUSTAIR_HELLBRICK.get(), TofuBlocks.TOFUSTAIR_SOULBRICK.get()

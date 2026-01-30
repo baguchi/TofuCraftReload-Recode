@@ -1,10 +1,10 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "tofucraft:blocktofudried"
+    "item": "tofucraft:tofudried_brick"
   },
   "result": {
     "count": 2,
-    "id": "tofucraft:tofuslab_dried"
+    "id": "tofucraft:tofuslab_driedbrick"
   }
 }

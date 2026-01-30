@@ -95,7 +95,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import org.joml.Vector3f;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT)
 public class ClientRegistrar {
 	private static final ResourceLocation TEXTURE_SOYHEARTS = ResourceLocation.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/gui/soy_hearts.png");
 

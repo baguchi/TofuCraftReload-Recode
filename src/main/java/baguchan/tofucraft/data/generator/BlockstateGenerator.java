@@ -72,6 +72,11 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 		simpleBlock(TofuBlocks.MISOTOFU.get());
 		simpleBlock(TofuBlocks.DRIEDTOFU.get());
+		simpleBlock(TofuBlocks.DRIEDTOFU_BRICK.get());
+		simpleBlock(TofuBlocks.DRIEDTOFU_SMOOTH_BRICK.get());
+		simpleBlock(TofuBlocks.DRIEDTOFU_CHISELED_BRICK.get());
+		stairs(TofuBlocks.TOFUSTAIR_DRIEDBRICK, TofuBlocks.DRIEDTOFU_BRICK);
+		slab(TofuBlocks.TOFUSLAB_DRIEDBRICK, TofuBlocks.DRIEDTOFU_BRICK);
 
 		simpleBlock(TofuBlocks.EGGTOFU);
 		stairs(TofuBlocks.TOFUSTAIR_EGG, TofuBlocks.EGGTOFU);
@@ -82,15 +87,19 @@ public class BlockstateGenerator extends BlockStateProvider {
 		slab(TofuBlocks.TOFUSLAB_SESAME, TofuBlocks.SESAMETOFU);
 
 		simpleBlock(TofuBlocks.EGGTOFU_BRICK.get());
+		simpleBlock(TofuBlocks.EGGTOFU_SMOOTH_BRICK.get());
+		simpleBlock(TofuBlocks.EGGTOFU_CHISELED_BRICK.get());
 		stairs(TofuBlocks.TOFUSTAIR_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
 		slab(TofuBlocks.TOFUSLAB_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
 
 		simpleBlock(TofuBlocks.HELLTOFU.get());
 		simpleBlock(TofuBlocks.HELLTOFU_BRICK.get());
 		simpleBlock(TofuBlocks.HELLTOFU_SMOOTH_BRICK.get());
+		simpleBlock(TofuBlocks.HELLTOFU_CHISELED_BRICK.get());
 		simpleBlock(TofuBlocks.SOULTOFU.get());
 		simpleBlock(TofuBlocks.SOULTOFU_BRICK.get());
 		simpleBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK.get());
+		simpleBlock(TofuBlocks.SOULTOFU_CHISELED_BRICK.get());
 		simpleBlock(TofuBlocks.MINCEDTOFU.get());
 
 		stairs(TofuBlocks.TOFUSTAIR_KINU, TofuBlocks.KINUTOFU);

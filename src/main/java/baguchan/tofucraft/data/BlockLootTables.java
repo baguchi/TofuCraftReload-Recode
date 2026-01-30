@@ -133,8 +133,19 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerSlab(TofuBlocks.TOFUSLAB_EGG.get());
 
 		dropSelf(TofuBlocks.EGGTOFU_BRICK.get());
+		dropSelf(TofuBlocks.EGGTOFU_SMOOTH_BRICK.get());
+		dropSelf(TofuBlocks.EGGTOFU_CHISELED_BRICK.get());
+
 		dropSelf(TofuBlocks.TOFUSTAIR_EGGBRICK.get());
 		registerSlab(TofuBlocks.TOFUSLAB_EGGBRICK.get());
+
+		dropSelf(TofuBlocks.DRIEDTOFU_BRICK.get());
+		dropSelf(TofuBlocks.DRIEDTOFU_SMOOTH_BRICK.get());
+		dropSelf(TofuBlocks.DRIEDTOFU_CHISELED_BRICK.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_DRIEDBRICK.get());
+		registerSlab(TofuBlocks.TOFUSLAB_DRIEDBRICK.get());
+
+
 
 		registerTofuDrop(TofuBlocks.SESAMETOFU.get(), TofuItems.TOFUSESAME.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_SESAME.get());
@@ -142,8 +153,10 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		dropSelf(TofuBlocks.HELLTOFU_BRICK.get());
 		dropSelf(TofuBlocks.HELLTOFU_SMOOTH_BRICK.get());
+		dropSelf(TofuBlocks.HELLTOFU_CHISELED_BRICK.get());
 		dropSelf(TofuBlocks.SOULTOFU_BRICK.get());
 		dropSelf(TofuBlocks.SOULTOFU_SMOOTH_BRICK.get());
+		dropSelf(TofuBlocks.SOULTOFU_CHISELED_BRICK.get());
 		registerTofuDrop(TofuBlocks.MINCEDTOFU.get(), TofuItems.TOFU_MINCED.get());
 
 		dropSelf(TofuBlocks.TOFUSTAIR_KINU.get());
@@ -159,6 +172,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFUSTAIR_SOULBRICK.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_MISO.get());
 		dropSelf(TofuBlocks.TOFUSTAIR_DRIED.get());
+		dropSelf(TofuBlocks.TOFUSTAIR_DRIEDBRICK.get());
 
 		registerSlab(TofuBlocks.TOFUSLAB_KINU.get());
 		registerSlab(TofuBlocks.TOFUSLAB_MOMEN.get());
@@ -173,6 +187,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerSlab(TofuBlocks.TOFUSLAB_SOULBRICK.get());
 		registerSlab(TofuBlocks.TOFUSLAB_MISO.get());
 		registerSlab(TofuBlocks.TOFUSLAB_DRIED.get());
+		registerSlab(TofuBlocks.TOFUSLAB_DRIEDBRICK.get());
 
 		dropSelf(TofuBlocks.TOFUFENCE_KINU.get());
 		dropSelf(TofuBlocks.TOFUFENCE_MOMEN.get());

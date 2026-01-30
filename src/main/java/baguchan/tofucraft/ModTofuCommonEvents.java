@@ -11,7 +11,7 @@ import net.neoforged.neoforge.items.wrapper.ForwardingItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
-@EventBusSubscriber(modid = TofuCraftReload.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = TofuCraftReload.MODID)
 public class ModTofuCommonEvents {
 
 	@SubscribeEvent

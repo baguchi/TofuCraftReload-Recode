@@ -229,6 +229,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.ISHITOFU, TofuItems.TOFUISHI);
 		buildingTofuBlockItem(consumer, TofuBlocks.ISHITOFU_BRICK, TofuBlocks.ISHITOFU);
 		buildingTofuBlockItem(consumer, TofuBlocks.ISHITOFU_SMOOTH_BRICK, TofuBlocks.ISHITOFU_BRICK);
+		buildingTofuChiseledItem(consumer, TofuBlocks.ISHITOFU_CHISELED_BRICK, TofuBlocks.TOFUSLAB_ISHIBRICK);
+
 		tofuBlockItem(consumer, TofuBlocks.METALTOFU, TofuItems.TOFUMETAL);
 		tofuBlockItem(consumer, TofuBlocks.DIAMONDTOFU, TofuItems.TOFUDIAMOND);
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TofuBlocks.TOFU_GEM_BLOCK.get())
@@ -289,6 +291,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.ZUNDATOFU, TofuItems.TOFUZUNDA);
 		tofuBlockItem(consumer, TofuBlocks.MISOTOFU, TofuItems.TOFUMISO);
 		tofuBlockItem(consumer, TofuBlocks.DRIEDTOFU, TofuItems.TOFUDRIED);
+		makeStairs(consumer, TofuBlocks.TOFUSTAIR_DRIED, TofuBlocks.DRIEDTOFU);
+		makeSlab(consumer, TofuBlocks.TOFUSLAB_DRIED, TofuBlocks.DRIEDTOFU);
+
+		buildingTofuBlockItem(consumer, TofuBlocks.DRIEDTOFU_BRICK, TofuBlocks.DRIEDTOFU);
+		buildingTofuBlockItem(consumer, TofuBlocks.DRIEDTOFU_SMOOTH_BRICK, TofuBlocks.DRIEDTOFU_BRICK);
+		buildingTofuChiseledItem(consumer, TofuBlocks.DRIEDTOFU_CHISELED_BRICK, TofuBlocks.TOFUSLAB_DRIEDBRICK);
+		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_DRIEDBRICK, TofuBlocks.DRIEDTOFU_BRICK);
+		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_DRIEDBRICK, TofuBlocks.DRIEDTOFU_BRICK);
+
 
 		TofuPotShapelessRecipeBuilder.shapeless(TofuPotCategory.FAST_FOOD, new ItemStack(TofuItems.TOFUEGG.get(), 4))
 				.requires(Tags.Items.EGGS)
@@ -391,12 +402,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Items.WHITE_WOOL))
 				.save(consumer);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, TofuBlocks.ISHITOFU_CHISELED_BRICK.get())
-				.pattern("#")
-				.pattern("#")
-				.define('#', TofuBlocks.TOFUSLAB_ISHIBRICK.get())
-				.unlockedBy("has_item", has(TofuBlocks.TOFUSLAB_ISHIBRICK.get()))
-				.save(consumer);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_KINU, TofuBlocks.KINUTOFU);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.MOMENTOFU);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_ISHI, TofuBlocks.ISHITOFU);
@@ -409,7 +414,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
 		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_MISO, TofuBlocks.MISOTOFU);
-		makeStairs(consumer, TofuBlocks.TOFUSTAIR_DRIED, TofuBlocks.DRIEDTOFU);
 
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_KINU, TofuBlocks.KINUTOFU);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_MOMEN, TofuBlocks.MOMENTOFU);
@@ -423,7 +427,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_HELLBRICK, TofuBlocks.HELLTOFU_BRICK);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_SOULBRICK, TofuBlocks.SOULTOFU_BRICK);
 		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_MISO, TofuBlocks.MISOTOFU);
-		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_DRIED, TofuBlocks.DRIEDTOFU);
 
 
 		makeSolidFence(consumer, TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
@@ -487,12 +490,21 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(consumer, TofuBlocks.HELLTOFU, TofuItems.TOFUHELL);
 		buildingTofuBlockItem(consumer, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU);
 		buildingTofuBlockItem(consumer, TofuBlocks.HELLTOFU_SMOOTH_BRICK, TofuBlocks.HELLTOFU_BRICK);
+		buildingTofuChiseledItem(consumer, TofuBlocks.HELLTOFU_CHISELED_BRICK, TofuBlocks.TOFUSLAB_HELLBRICK);
 		tofuBlockItem(consumer, TofuBlocks.SOULTOFU, TofuItems.TOFUSOUL);
 		buildingTofuBlockItem(consumer, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU);
 		buildingTofuBlockItem(consumer, TofuBlocks.SOULTOFU_SMOOTH_BRICK, TofuBlocks.SOULTOFU_BRICK);
+		buildingTofuChiseledItem(consumer, TofuBlocks.SOULTOFU_CHISELED_BRICK, TofuBlocks.TOFUSLAB_SOULBRICK);
 
 		cuttingRecipe(consumer, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU_SMOOTH_BRICK, 1);
 		cuttingRecipe(consumer, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU_SMOOTH_BRICK, 1);
+		cuttingRecipe(consumer, TofuBlocks.HELLTOFU_BRICK, TofuBlocks.HELLTOFU_CHISELED_BRICK, 1);
+		cuttingRecipe(consumer, TofuBlocks.SOULTOFU_BRICK, TofuBlocks.SOULTOFU_CHISELED_BRICK, 1);
+
+		cuttingRecipe(consumer, TofuBlocks.DRIEDTOFU_BRICK, TofuBlocks.DRIEDTOFU_SMOOTH_BRICK, 1);
+		cuttingRecipe(consumer, TofuBlocks.EGGTOFU_BRICK, TofuBlocks.EGGTOFU_SMOOTH_BRICK, 1);
+		cuttingRecipe(consumer, TofuBlocks.DRIEDTOFU_BRICK, TofuBlocks.DRIEDTOFU_CHISELED_BRICK, 1);
+		cuttingRecipe(consumer, TofuBlocks.EGGTOFU_BRICK, TofuBlocks.EGGTOFU_CHISELED_BRICK, 1);
 		tofuBlockItem(consumer, TofuBlocks.MINCEDTOFU, TofuItems.TOFU_MINCED);
 
 		tofuBlockItem(consumer, TofuBlocks.EGGTOFU, TofuItems.TOFUEGG);
@@ -502,11 +514,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 		buildingTofuBlockItem(consumer, TofuBlocks.EGGTOFU_BRICK, TofuBlocks.EGGTOFU);
 		makeStairs(consumer, TofuBlocks.TOFUSTAIR_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
 		makeSlab(consumer, TofuBlocks.TOFUSLAB_EGGBRICK, TofuBlocks.EGGTOFU_BRICK);
+		buildingTofuBlockItem(consumer, TofuBlocks.EGGTOFU_SMOOTH_BRICK, TofuBlocks.EGGTOFU_BRICK);
+		buildingTofuChiseledItem(consumer, TofuBlocks.EGGTOFU_CHISELED_BRICK, TofuBlocks.TOFUSLAB_EGGBRICK);
 
 		buildingTofuBlockItem(consumer, TofuBlocks.ZUNDATOFU_BRICK, TofuBlocks.ZUNDATOFU);
 		buildingTofuBlockItem(consumer, TofuBlocks.ZUNDATOFU_SMOOTH_BRICK, TofuBlocks.ZUNDATOFU_BRICK);
-		makeStairs(consumer, TofuBlocks.TOFUSTAIR_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
-		makeSlab(consumer, TofuBlocks.TOFUSLAB_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
+		makeStairsCraftingOrCutting(consumer, TofuBlocks.TOFUSTAIR_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
+		makeSlabCraftingOrCutting(consumer, TofuBlocks.TOFUSLAB_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, TofuItems.TOFUZUNDA.get(), 1)
 				.requires(TofuItems.ZUNDA.get())

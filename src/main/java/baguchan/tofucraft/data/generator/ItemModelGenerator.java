@@ -59,13 +59,19 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 		toBlock(TofuBlocks.MISOTOFU);
 		toBlock(TofuBlocks.DRIEDTOFU);
+		toBlock(TofuBlocks.DRIEDTOFU_BRICK);
+		toBlock(TofuBlocks.DRIEDTOFU_SMOOTH_BRICK);
+		toBlock(TofuBlocks.DRIEDTOFU_CHISELED_BRICK);
+
 
 		toBlock(TofuBlocks.HELLTOFU);
 		toBlock(TofuBlocks.HELLTOFU_BRICK);
 		toBlock(TofuBlocks.HELLTOFU_SMOOTH_BRICK);
+		toBlock(TofuBlocks.HELLTOFU_CHISELED_BRICK);
 		toBlock(TofuBlocks.SOULTOFU);
 		toBlock(TofuBlocks.SOULTOFU_BRICK);
 		toBlock(TofuBlocks.SOULTOFU_SMOOTH_BRICK);
+		toBlock(TofuBlocks.SOULTOFU_CHISELED_BRICK);
 		toBlock(TofuBlocks.EGGTOFU_BRICK);
 
 		toBlock(TofuBlocks.EGGTOFU);
@@ -73,6 +79,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSLAB_EGG);
 
 		toBlock(TofuBlocks.EGGTOFU_BRICK);
+		toBlock(TofuBlocks.EGGTOFU_SMOOTH_BRICK);
+		toBlock(TofuBlocks.EGGTOFU_CHISELED_BRICK);
 		toBlock(TofuBlocks.TOFUSTAIR_EGGBRICK);
 		toBlock(TofuBlocks.TOFUSLAB_EGGBRICK);
 
@@ -96,6 +104,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSTAIR_SOULBRICK);
 		toBlock(TofuBlocks.TOFUSTAIR_MISO);
 		toBlock(TofuBlocks.TOFUSTAIR_DRIED);
+		toBlock(TofuBlocks.TOFUSTAIR_DRIEDBRICK);
 
 		toBlock(TofuBlocks.TOFUSLAB_KINU);
 		toBlock(TofuBlocks.TOFUSLAB_MOMEN);
@@ -110,6 +119,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlock(TofuBlocks.TOFUSLAB_SOULBRICK);
 		toBlock(TofuBlocks.TOFUSLAB_MISO);
 		toBlock(TofuBlocks.TOFUSLAB_DRIED);
+		toBlock(TofuBlocks.TOFUSLAB_DRIEDBRICK);
 
 		wall(TofuBlocks.TOFUFENCE_KINU, TofuBlocks.KINUTOFU);
 		wall(TofuBlocks.TOFUFENCE_MOMEN, TofuBlocks.MOMENTOFU);
