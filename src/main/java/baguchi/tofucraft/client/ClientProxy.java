@@ -50,8 +50,8 @@ public class ClientProxy {
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.once_tofu_made.title"), TofuCraftReload.prefix("once_tofu_made"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.nether_tofu.title"), TofuCraftReload.prefix("nether_tofu"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SOYMILK_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("soymilk"), true),
-				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tofu_world.title"), TofuCraftReload.prefix("tofu_stick"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce"), true),
+				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tofu_world.title"), TofuCraftReload.prefix("tofu_stick"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tf_force.title"), TofuCraftReload.prefix("tf_force"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuBlocks.TF_STORAGE.get().getDescriptionId()), TofuCraftReload.prefix("tf_storage"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuBlocks.ANTENNA_BASIC.get().getDescriptionId()), TofuCraftReload.prefix("antenna_basic"), true)
@@ -100,13 +100,11 @@ public class ClientProxy {
 					, new BookComponentDefinition(aboutAnotherTofu, TofuCraftReload.prefix("about_another_tofu"), 15, 10, 10, 10)
 					, new BookComponentDefinition(soymilk, TofuCraftReload.prefix("soymilk"), 15, 10, 10, 10)
 					, new BookComponentDefinition(soymilk_desc, TofuCraftReload.prefix("soymilk_desc"), 15, 10, 10, 10)
+					, new BookComponentDefinition(soysauce, TofuCraftReload.prefix("soysauce"), 15, 10, 10, 10)
+					, new BookComponentDefinition(soysauce_desc, TofuCraftReload.prefix("soysauce_desc"), 15, 10, 10, 10)
+					, new BookComponentDefinition(soysauce_desc2, TofuCraftReload.prefix("soysauce_desc2"), 15, 10, 10, 10)
 					, new BookComponentDefinition(tofu_stick, TofuCraftReload.prefix("tofu_stick"), 15, 10, 10, 10)
 					, new BookComponentDefinition(tofu_stick_desc, TofuCraftReload.prefix("tofu_stick_desc"), 15, 10, 10, 10));
-
-
-			list.add(new BookComponentDefinition(soysauce, TofuCraftReload.prefix("soysauce"), 15, 10, 10, 10));
-			list.add(new BookComponentDefinition(soysauce_desc, TofuCraftReload.prefix("soysauce_desc"), 15, 10, 10, 10));
-			list.add(new BookComponentDefinition(soysauce_desc2, TofuCraftReload.prefix("soysauce_desc2"), 15, 10, 10, 10));
 
 			list.add(new BookComponentDefinition(tf_force_desc, TofuCraftReload.prefix("tf_force"), 15, 10, 10, 10));
 			list.add(new BookComponentDefinition(tf_storage, TofuCraftReload.prefix("tf_storage"), 15, 10, 10, 10));
