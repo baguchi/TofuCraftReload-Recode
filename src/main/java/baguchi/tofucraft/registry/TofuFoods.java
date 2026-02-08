@@ -105,7 +105,7 @@ public class TofuFoods {
 	public static final FoodProperties OKARASTICK = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.6F).build();
 	public static final FoodProperties OKARA_DONUT = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.3F).build();
 
-	public static final FoodProperties SOBOROTOFUSAUTE = (new FoodProperties.Builder()).nutrition(10).saturationModifier(0.8F).build();
+	public static final FoodProperties SOBOROTOFUSAUTE = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.8F).build();
 
 	public static final FoodProperties PUDDING = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.3F).build();
 	public static final FoodProperties PUDDING_SOYMILK = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.35F).build();
