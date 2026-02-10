@@ -80,6 +80,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 						TofuBlocks.LEEK_SHELF.get(),
 						TofuBlocks.TOFU_STEM_SHELF.get()
 				);
+		tag(BlockTags.LANTERNS).add(TofuBlocks.TOFU_METAL_LANTERN.get()).add(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
+		tag(BlockTags.CHAINS).add(TofuBlocks.TOFU_METAL_CHAIN.get());
 		tag(BlockTags.MINEABLE_WITH_HOE).add(TofuBlocks.GIANT_OKARA_DONUT.get()).add(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get()).add(TofuBlocks.RICE_ROOT.get(), TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.RICE_BLOCK.get(), TofuBlocks.SOYBEANS_SEEDS_BLOCK.get(), TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get(), TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get())
 				.add(TofuBlocks.SOY_CHEESE_BLOCK.get()).add(TofuBlocks.SOY_NETHER_CHEESE_BLOCK.get()).add(TofuBlocks.SOY_SOUL_CHEESE_BLOCK.get());
 
