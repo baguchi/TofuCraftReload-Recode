@@ -863,7 +863,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuTags.Items.SALT))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_BOTTLE.get(), 3)
-				.requires(TofuItems.SOYMILK_BUCKET.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.GLASS_BOTTLE)
@@ -1131,13 +1131,13 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(this.output);
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOY_CHOCOLATE.get(), 6)
-				.requires(TofuItems.SOYMILK_BUCKET.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.COCOA_BEANS)
 				.requires(Items.SUGAR)
 				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.TOFUNIAN_SOY_CHOCOLATE.get(), 6)
-				.requires(TofuItems.SOYMILK_BUCKET.get())
+				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.COCOA_BEANS)
 				.requires(Items.SUGAR)
 				.requires(TofuItems.LEEK.get())

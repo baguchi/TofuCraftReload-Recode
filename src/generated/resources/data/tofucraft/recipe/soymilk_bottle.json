@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "tofucraft:soymilk_bucket",
+    "#c:milk/soy_milk",
     "minecraft:glass_bottle",
     "minecraft:glass_bottle",
     "minecraft:glass_bottle"

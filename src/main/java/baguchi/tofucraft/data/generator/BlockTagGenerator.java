@@ -97,6 +97,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		tag(BlockTags.REPLACEABLE).add(TofuBlocks.LEEK.get()).add(TofuBlocks.TALL_LEEK.get());
 		tag(TofuTags.Blocks.TF_TRANSMITTER).addTag(BlockTags.REPLACEABLE).add(TofuBlocks.ANTENNA_BASIC.get()).add(TofuBlocks.ANTENNA_ADVANCE.get());
 
+		tag(BlockTags.LANTERNS).add(TofuBlocks.TOFU_METAL_LANTERN.get()).add(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
+		tag(BlockTags.CHAINS).add(TofuBlocks.TOFU_METAL_CHAIN.get());
 
 		tag(BlockTags.BEDS).add(TofuBlocks.TOFUBED.get());
 		tag(BlockTags.WALLS).add(TofuBlocks.TOFUFENCE_KINU.get(), TofuBlocks.TOFUFENCE_MOMEN.get(), TofuBlocks.TOFUFENCE_HELL.get(), TofuBlocks.TOFUFENCE_SOUL.get(), TofuBlocks.TOFUFENCE_ISHI.get(), TofuBlocks.TOFUFENCE_METAL.get())
