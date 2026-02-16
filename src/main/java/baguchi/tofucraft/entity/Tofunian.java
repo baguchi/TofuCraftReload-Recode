@@ -1107,9 +1107,10 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return p_27574_.getBlockState(p_27573_.below()).is(Blocks.GRASS_BLOCK) ? 10.0F : p_27574_.getPathfindingCostFromLightLevels(p_27573_);
 	}
 
+
 	@Override
 	protected Component getTypeName() {
-		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().getKey().identifier().toString().toLowerCase(Locale.ROOT));
+		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().getKey().identifier().getPath().toLowerCase(Locale.ROOT));
 	}
 
 	public enum Actions {
