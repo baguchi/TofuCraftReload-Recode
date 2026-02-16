@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tofucraft:block/tofuslab_driedbrick"
+    },
+    "type=double": {
+      "model": "tofucraft:block/tofudried_brick"
+    },
+    "type=top": {
+      "model": "tofucraft:block/tofuslab_driedbrick_top"
+    }
+  }
+}

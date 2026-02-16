@@ -1,6 +1,7 @@
 package baguchi.tofucraft.entity.goal;
 
 import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.registry.TofunianProfessions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -19,11 +20,11 @@ public class RestockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isBrightOutside() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.canResetStock() && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isBrightOutside() && !this.creature.getRole().is(TofunianProfessions.NONE.getKey()) && this.creature.canResetStock() && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level().isBrightOutside() && this.creature.canResetStock() && !this.creature.isBaby() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
+		return (super.canContinueToUse() && this.creature.level().isBrightOutside() && this.creature.canResetStock() && !this.creature.isBaby() && !this.creature.getRole().is(TofunianProfessions.NONE.getKey()));
 	}
 
 	public void tick() {
@@ -39,7 +40,7 @@ public class RestockGoal extends MoveToBlockGoal {
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		return this.creature.getRole().is(blockstate);
+		return this.creature.getRole().value().isValidTarget(blockstate);
 	}
 
 

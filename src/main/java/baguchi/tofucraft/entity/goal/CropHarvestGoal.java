@@ -4,6 +4,7 @@ import baguchi.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchi.tofucraft.entity.Tofunian;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofunianProfessions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.SimpleContainer;
@@ -41,7 +42,7 @@ public class CropHarvestGoal extends MoveToBlockGoal {
 			this.canPlant = false;
 			this.wantsToHarvest = true;
 		}
-		return (this.tofunian.level().isBrightOutside() && this.tofunian.getRole() == Tofunian.Roles.TOFUCOOK && super.canUse());
+		return (this.tofunian.level().isBrightOutside() && this.tofunian.getRole().is(TofunianProfessions.FARMER.getKey()) && super.canUse());
 	}
 
 	public boolean canContinueToUse() {

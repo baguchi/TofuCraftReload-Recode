@@ -1,6 +1,6 @@
 package baguchi.tofucraft.api.event;
 
-import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.api.TofunianProfession;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.entity.npc.villager.VillagerTrades;
@@ -11,11 +11,11 @@ import java.util.List;
 
 public class TofunianTradeEvent extends Event {
 	protected Int2ObjectMap<List<VillagerTrades.ItemListing>> trades;
-	protected Tofunian.Roles type;
+	protected TofunianProfession type;
 	private final HolderLookup.Provider registries;
 
 	@ApiStatus.Internal
-	public TofunianTradeEvent(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades, Tofunian.Roles type, HolderLookup.Provider registries) {
+	public TofunianTradeEvent(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades, TofunianProfession type, HolderLookup.Provider registries) {
 		this.trades = trades;
 		this.type = type;
 		this.registries = registries;
@@ -25,7 +25,7 @@ public class TofunianTradeEvent extends Event {
 		return trades;
 	}
 
-	public Tofunian.Roles getType() {
+	public TofunianProfession getType() {
 		return type;
 	}
 

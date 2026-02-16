@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "tofucraft:tofuminced"
+    "#": "tofucraft:tofuslab_hellbrick"
   },
   "pattern": [
-    "##",
-    "##"
+    "#",
+    "#"
   ],
   "result": {
     "count": 1,
-    "id": "tofucraft:blocktofuminced"
+    "id": "tofucraft:tofuhell_chiseled_brick"
   }
 }

@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "tofucraft:tofuegg"
+    "#": "tofucraft:tofuslab_soulbrick"
   },
   "pattern": [
-    "##",
-    "##"
+    "#",
+    "#"
   ],
   "result": {
     "count": 1,
-    "id": "tofucraft:blocktofuegg"
+    "id": "tofucraft:tofusoul_chiseled_brick"
   }
 }

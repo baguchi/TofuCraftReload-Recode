@@ -591,7 +591,7 @@
   "entity.tofucraft.natto_cobweb" : "纳豆蜘蛛网",
   "entity.tofucraft.natto_ball" : "纳豆珠子",
   "entity.tofucraft.falling_tofu" : "掉落中的豆腐",
-  "entity.minecraft.villager.tofucraft.tofu_craftsman" : "豆腐职人",
+  "entity.tofucraft.villager.tofu_craftsman": "豆腐职人",
   "entity.tofucraft.shudofuspider" : "臭豆腐蜘蛛",
   "entity.tofucraft.tofu_stem_boat": "豆腐茎秆船",
   "entity.tofucraft.leek_boat": "葱秆船",

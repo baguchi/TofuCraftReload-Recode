@@ -2,13 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": "tofucraft:blocktofuegg"
+    "#": "tofucraft:tofuslab_eggbrick"
   },
   "pattern": [
-    "MMM"
+    "#",
+    "#"
   ],
   "result": {
-    "count": 6,
-    "id": "tofucraft:tofuslab_egg"
+    "count": 1,
+    "id": "tofucraft:tofuegg_chiseled_brick"
   }
 }

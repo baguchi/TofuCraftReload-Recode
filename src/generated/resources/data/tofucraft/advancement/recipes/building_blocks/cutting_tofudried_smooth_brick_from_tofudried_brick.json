@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tofucraft:blocktofuegg"
+            "items": "tofucraft:tofudried_brick"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofustair_egg"
+        "recipe": "tofucraft:cutting_tofudried_smooth_brick_from_tofudried_brick"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:tofustair_egg"
+      "tofucraft:cutting_tofudried_smooth_brick_from_tofudried_brick"
     ]
   }
 }

@@ -338,7 +338,7 @@
   "enchantment.tofucraft.drain": "吸收",
   "enchantment.tofucraft.effect_protection": "異常狀態抗性",
   "enchantment.tofucraft.shaped_bean": "Shaped Bean",
-  "entity.minecraft.villager.tofucraft.tofu_craftsman": "豆腐職人",
+  "entity.tofucraft.villager.tofu_craftsman": "豆腐職人",
   "entity.tofucraft.falling_tofu": "掉落中的豆腐",
   "entity.tofucraft.fukumame": "福豆",
   "entity.tofucraft.fukumame_thrower": "福豆加特林",

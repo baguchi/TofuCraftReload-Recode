@@ -1,6 +1,7 @@
 package baguchi.tofucraft.entity.goal;
 
 import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.registry.TofunianProfessions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -22,11 +23,11 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isBrightOutside() && super.canUse());
+		return (this.creature.getRole().is(TofunianProfessions.FARMER.getKey()) && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isBrightOutside() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isBrightOutside() && this.mob != null);
+		return (super.canContinueToUse() && this.creature.getRole().is(TofunianProfessions.FARMER.getKey()) && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isBrightOutside() && this.mob != null);
 	}
 
 	public void start() {
@@ -50,7 +51,7 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		return this.creature.getRole().is(blockstate);
+		return this.creature.getRole().value().isValidTarget(blockstate);
 	}
 
 	protected boolean findNearestBlock() {

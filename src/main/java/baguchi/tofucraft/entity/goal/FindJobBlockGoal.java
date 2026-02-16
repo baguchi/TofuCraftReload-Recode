@@ -1,7 +1,10 @@
 package baguchi.tofucraft.entity.goal;
 
+import baguchi.tofucraft.api.TofunianProfession;
 import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.registry.TofunianProfessions;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -13,6 +16,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class FindJobBlockGoal extends MoveToBlockGoal {
 	private final Tofunian creature;
@@ -24,34 +29,34 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isBrightOutside() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunianJobBlock() == null) && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isBrightOutside() && (this.creature.getRole().is(TofunianProfessions.NONE.getKey()) || this.creature.getTofunianJobBlock() == null) && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return !this.findBlock && (super.canContinueToUse() && this.creature.level().isBrightOutside() && !this.creature.isBaby() && (this.creature.getRole() == Tofunian.Roles.TOFUNIAN || this.creature.getTofunianJobBlock() == null) && this.mob != null);
+		return !this.findBlock && (super.canContinueToUse() && this.creature.level().isBrightOutside() && !this.creature.isBaby() && (this.creature.getRole().is(TofunianProfessions.NONE.getKey()) || this.creature.getTofunianJobBlock() == null) && this.mob != null);
 	}
 
 	public void tick() {
 		super.tick();
 		if (isReachedTarget()) {
 			if (!findNearbyTofunianHadJob(this.creature, this.blockPos)) {
-				Tofunian.Roles role = Tofunian.Roles.getJob(this.creature.level().getBlockState(this.blockPos));
-					if (role != null && !this.findBlock) {
-						if (this.creature.level() instanceof ServerLevel) {
-							this.creature.setTofunianJobBlock(this.blockPos);
-							if (this.creature.getRole() == Tofunian.Roles.TOFUNIAN) {
-								this.creature.setRole(role);
-								//this.creature.updateTrades();
+				Optional<Map.Entry<ResourceKey<TofunianProfession>, TofunianProfession>> role = TofunianProfessions.getRegistry().entrySet().stream().filter(entry -> {
+					return entry.getValue().jobSite().isPresent() && entry.getValue().isValidTarget(this.creature.level().getBlockState(this.blockPos));
+				}).findFirst();
+				if (role.isPresent() && !this.findBlock) {
+					if (this.creature.level() instanceof ServerLevel) {
+						this.creature.setTofunianJobBlock(this.blockPos);
+						if (this.creature.getRole().is(TofunianProfessions.NONE.getKey())) {
+							this.creature.setRole(role.get().getKey());
+							//this.creature.updateTrades();
 
 
-								this.findBlock = true;
-							}
+							this.findBlock = true;
 						}
-
-
 						this.creature.swing(InteractionHand.MAIN_HAND);
 						this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
 					}
+				}
 			} else {
 				this.findBlock = true;
 			}
@@ -81,8 +86,10 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		Tofunian.Roles role = Tofunian.Roles.getJob(blockstate);
-		if (role != null) {
+		Optional<Map.Entry<ResourceKey<TofunianProfession>, TofunianProfession>> role = TofunianProfessions.getRegistry().entrySet().stream().filter(entry -> {
+			return entry.getValue().isValidTarget(blockstate);
+		}).findFirst();
+		if (role.isPresent()) {
 			BlockHitResult hitResult = worldIn.clip(new ClipContext(this.creature.getEyePosition(), pos.getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this.creature));
 			if (hitResult.getBlockPos().equals(BlockPos.containing(pos.getCenter())) || hitResult.getType() == HitResult.Type.MISS) {
 				return true;

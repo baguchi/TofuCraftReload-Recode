@@ -1,5 +1,6 @@
 package baguchi.tofucraft.entity;
 
+import baguchi.tofucraft.api.TofunianProfession;
 import baguchi.tofucraft.api.entity.TofunianClothVariant;
 import baguchi.tofucraft.api.entity.TofunianVariant;
 import baguchi.tofucraft.data.resources.registries.TofunianClothVariants;
@@ -27,8 +28,8 @@ import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuSounds;
+import baguchi.tofucraft.registry.TofunianProfessions;
 import baguchi.tofucraft.registry.TofunianTrades;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -43,6 +44,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -102,9 +104,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
@@ -123,7 +123,7 @@ import java.util.stream.Collectors;
 public class Tofunian extends AbstractTofunian implements ReputationEventHandler {
 
 	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
-	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
+	private static final EntityDataAccessor<Holder<TofunianProfession>> ROLE = SynchedEntityData.defineId(Tofunian.class, TofuEntityDatas.TOFUNIAN_PROFESSION.get());
 	private static final EntityDataAccessor<Holder<TofunianClothVariant>> DATA_CLOTH_VARIANT = SynchedEntityData.defineId(Tofunian.class, TofuEntityDatas.TOFUNIAN_CLOTH_VARIANT.get());
 	private static final EntityDataAccessor<Holder<TofunianVariant>> DATA_VARIANT = SynchedEntityData.defineId(Tofunian.class, TofuEntityDatas.TOFUNIAN_VARIANT.get());
 
@@ -289,7 +289,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(ROLE, "NORMAL");
+		Registry<TofunianProfession> registry3 = TofunianProfessions.getRegistry();
+		builder.define(ROLE, registry3.get(TofunianProfessions.NONE.getKey()).orElseThrow());
 		builder.define(ACTION, "NORMAL");
 		RegistryAccess registryaccess = this.registryAccess();
 		Registry<TofunianClothVariant> registry = registryaccess.lookupOrThrow(TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY);
@@ -349,13 +350,18 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.actionTick = 0;
 	}
 
-	public void setRole(Roles role) {
-		this.entityData.set(ROLE, role.name());
+	public void setRole(Holder<TofunianProfession> role) {
+		this.entityData.set(ROLE, role);
 	}
 
-	public Roles getRole() {
-		return Roles.get(this.entityData.get(ROLE));
+	public void setRole(ResourceKey<TofunianProfession> role) {
+		this.entityData.set(ROLE, TofunianProfessions.getRegistry().getOrThrow(role));
 	}
+
+	public Holder<TofunianProfession> getRole() {
+		return this.entityData.get(ROLE);
+	}
+
 	public void setTofunianHome(@Nullable BlockPos pos) {
 		this.tofunianHome = pos;
 	}
@@ -400,7 +406,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			level().broadcastEntityEvent(this, (byte) 14);
 			this.previousCustomer = null;
 		}
-		if (getRole() == Roles.TOFUNIAN && isTrading()) {
+		if (getRole().is(TofunianProfessions.NONE.getKey()) && isTrading()) {
 			stopTrading();
 		}
 		ProfilerFiller profilerfiller = Profiler.get();
@@ -477,14 +483,14 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
 
 		//validate job position
-		if (this.getTofunianJobBlock() != null && this.getRole() != Roles.TOFUNIAN) {
-			if (!this.getRole().is(this.level().getBlockState(this.getTofunianJobBlock()))) {
+		if (this.getTofunianJobBlock() != null && this.getRole().getKey() != TofunianProfessions.NONE.getKey()) {
+			if (!this.getRole().value().isValidTarget(this.level().getBlockState(this.getTofunianJobBlock()))) {
 				this.setTofunianJobBlock(null);
 
 				//if xp is none. set role normal
 				if (this.getTofunianLevel() <= 1 && this.getVillagerXp() == 0) {
 					this.setOffers(null);
-					this.setRole(Roles.TOFUNIAN);
+					this.setRole(TofunianProfessions.NONE);
 				}
 			}
 		}
@@ -789,7 +795,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		if (this.villageCenter != null) {
 			compound.store("VillageCenter", BlockPos.CODEC, this.villageCenter);
 		}
-		compound.putString("Roles", getRole().name());
+		compound.store("tofunian_roles", TofunianProfessions.getRegistry().holderByNameCodec(), getRole());
 		VariantUtils.writeVariant(compound, this.getVariant());
 		compound.store("tofunian_variant", TofunianVariant.CODEC, this.getTofunianVariant());
 	}
@@ -813,7 +819,21 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.tofunianHome = compound.read("TofunianHome", BlockPos.CODEC).orElse(null);
 		this.tofunianJobBlock = compound.read("TofunianJobBlock", BlockPos.CODEC).orElse(null);
 		this.villageCenter = compound.read("VillageCenter", BlockPos.CODEC).orElse(null);
-		setRole(Roles.get(compound.getStringOr("Roles", "")));
+		Optional<String> optionalOld = compound.getString("Roles");
+		if (optionalOld.isPresent()) {
+			if (optionalOld.get().contains("SOYWORKER")) {
+				setRole(TofunianProfessions.SOY_WORKER);
+			}
+			if (optionalOld.get().contains("TOFUSMITH")) {
+				setRole(TofunianProfessions.SMITH);
+			}
+			if (optionalOld.get().contains("TOFUCOOK")) {
+				setRole(TofunianProfessions.FARMER);
+			}
+		} else {
+			Optional<Holder<TofunianProfession>> tofunianProfession = compound.read("tofunian_roles", TofunianProfessions.getRegistry().holderByNameCodec());
+			tofunianProfession.ifPresent(this::setRole);
+		}
 
 		VariantUtils.readVariant(compound, TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY).ifPresent(this::setVariant);
 
@@ -1089,7 +1109,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@Override
 	protected Component getTypeName() {
-		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().name().toLowerCase(Locale.ROOT));
+		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().getKey().identifier().toString().toLowerCase(Locale.ROOT));
 	}
 
 	public enum Actions {
@@ -1118,45 +1138,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			return NORMAL;
 		}
 
-	}
-
-	public enum Roles {
-		TOFUCOOK(getBlockStates(Blocks.COMPOSTER)), TOFUSMITH(getBlockStates(Blocks.BLAST_FURNACE)), SOYWORKER(ImmutableList.of(Blocks.CAULDRON, Blocks.LAVA_CAULDRON, Blocks.WATER_CAULDRON, Blocks.POWDER_SNOW_CAULDRON).stream().flatMap((p_218093_) -> {
-			return p_218093_.getStateDefinition().getPossibleStates().stream();
-		}).collect(ImmutableSet.toImmutableSet())), TOFUNIAN(Set.of());
-
-		private final Set<BlockState> matchingStates;
-
-		Roles(Set<BlockState> matchingStates) {
-			matchingStates = Set.copyOf(matchingStates);
-			this.matchingStates = matchingStates;
-		}
-
-		public boolean is(BlockState p_148693_) {
-			return this.matchingStates.contains(p_148693_);
-		}
-
-		private static Set<BlockState> getBlockStates(Block p_218074_) {
-			return ImmutableSet.copyOf(p_218074_.getStateDefinition().getPossibleStates());
-		}
-
-		public static Roles get(String nameIn) {
-			for (Roles role : values()) {
-				if (role.name().equals(nameIn))
-					return role;
-			}
-			return TOFUNIAN;
-		}
-
-		@Nullable
-		public static Roles getJob(BlockState blockState) {
-			for (Roles role : values()) {
-				if (role != TOFUNIAN && role.is(blockState)) {
-					return role;
-				}
-			}
-			return null;
-		}
 	}
 
 	class MoveToGoal extends Goal {

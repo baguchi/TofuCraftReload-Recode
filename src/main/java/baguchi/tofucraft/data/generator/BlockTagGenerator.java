@@ -6,6 +6,7 @@ import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
@@ -36,10 +37,11 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				.add(TofuBlocks.WAXED_KINUTOFU.get(), TofuBlocks.WAXED_MOMENTOFU.get());
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(TofuBlocks.ISHITOFU.get(), TofuBlocks.ISHITOFU_BRICK.get(), TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(), TofuBlocks.ISHITOFU_CHISELED_BRICK.get()
 						, TofuBlocks.METALTOFU.get(), TofuBlocks.METAL_TOFU_GRATE.get(), TofuBlocks.METAL_TOFU_LUMP.get(), TofuBlocks.METAL_TOFU_BARS.get(), TofuBlocks.DIAMONDTOFU.get(), TofuBlocks.TOFU_GEM_BLOCK.get(), TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get()
-				, TofuBlocks.HELLTOFU_BRICK.get(), TofuBlocks.HELLTOFU_SMOOTH_BRICK.get()
-				, TofuBlocks.SOULTOFU_BRICK.get(), TofuBlocks.SOULTOFU_SMOOTH_BRICK.get()
-				, TofuBlocks.EGGTOFU_BRICK.get(), TofuBlocks.TOFUSTAIR_EGGBRICK.get(), TofuBlocks.TOFUSLAB_EGGBRICK.get()
-				, TofuBlocks.ZUNDATOFU_BRICK.get(), TofuBlocks.ZUNDATOFU_SMOOTH_BRICK.get(), TofuBlocks.TOFUSTAIR_ZUNDABRICK.get(), TofuBlocks.TOFUSLAB_ZUNDABRICK.get()
+						, TofuBlocks.HELLTOFU_BRICK.get(), TofuBlocks.HELLTOFU_SMOOTH_BRICK.get(), TofuBlocks.HELLTOFU_CHISELED_BRICK.get()
+						, TofuBlocks.SOULTOFU_BRICK.get(), TofuBlocks.SOULTOFU_SMOOTH_BRICK.get(), TofuBlocks.SOULTOFU_CHISELED_BRICK.get()
+						, TofuBlocks.DRIEDTOFU_BRICK.get(), TofuBlocks.DRIEDTOFU_SMOOTH_BRICK.get(), TofuBlocks.DRIEDTOFU_CHISELED_BRICK.get(), TofuBlocks.TOFUSTAIR_DRIEDBRICK.get(), TofuBlocks.TOFUSLAB_DRIEDBRICK.get()
+						, TofuBlocks.EGGTOFU_BRICK.get(), TofuBlocks.EGGTOFU_SMOOTH_BRICK.get(), TofuBlocks.EGGTOFU_CHISELED_BRICK.get(), TofuBlocks.TOFUSTAIR_EGGBRICK.get(), TofuBlocks.TOFUSLAB_EGGBRICK.get()
+						, TofuBlocks.ZUNDATOFU_BRICK.get(), TofuBlocks.ZUNDATOFU_SMOOTH_BRICK.get(), TofuBlocks.TOFUSTAIR_ZUNDABRICK.get(), TofuBlocks.TOFUSLAB_ZUNDABRICK.get()
 				, TofuBlocks.TOFUSTAIR_ISHI.get(), TofuBlocks.TOFUSTAIR_METAL.get(), TofuBlocks.TOFUSTAIR_ISHIBRICK.get(), TofuBlocks.TOFUSTAIR_HELLBRICK.get(), TofuBlocks.TOFUSTAIR_SOULBRICK.get()
 				, TofuBlocks.TOFUSLAB_ISHI.get(), TofuBlocks.TOFUSLAB_METAL.get(), TofuBlocks.TOFUSLAB_ISHIBRICK.get(), TofuBlocks.TOFUSLAB_HELLBRICK.get(), TofuBlocks.TOFUSLAB_SOULBRICK.get()
 				, TofuBlocks.TOFULADDER_ISHI.get(), TofuBlocks.TOFULADDER_ISHIBRICK.get(), TofuBlocks.TOFULADDER_METAL.get()
@@ -166,5 +168,10 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				.add(TofuBlocks.RICE_CROP.get());
 		this.tag(BlockTags.MAINTAINS_FARMLAND).add(TofuBlocks.SOYBEAN.get());
 		this.tag(Tags.Blocks.ORES).add(TofuBlocks.ORE_TOFUGEM.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get(), TofuBlocks.ISHI_TOFUGEM_ORE.get());
+
+
+		tag(TofuTags.Blocks.TOFUNIAN_SMITH).add(Blocks.BLAST_FURNACE);
+		tag(TofuTags.Blocks.TOFUNIAN_FARMER).add(Blocks.COMPOSTER);
+		tag(TofuTags.Blocks.TOFUNIAN_SOY_WORKER).add(Blocks.CAULDRON).add(Blocks.WATER_CAULDRON).add(TofuBlocks.SOYMILK_CAULDRON.get());
 	}
 }

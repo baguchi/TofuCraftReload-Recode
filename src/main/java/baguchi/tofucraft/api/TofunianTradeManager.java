@@ -2,7 +2,7 @@ package baguchi.tofucraft.api;
 
 import baguchi.tofucraft.api.event.TofunianTradeEvent;
 import baguchi.tofucraft.api.event.TravelerTofunianTradesEvent;
-import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.registry.TofunianProfessions;
 import baguchi.tofucraft.registry.TofunianTrades;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -34,7 +34,7 @@ public class TofunianTradeManager {
 	}
 
 	private static void postTofunianEvents(HolderLookup.Provider registries) {
-		for (Tofunian.Roles prof : Tofunian.Roles.values()) {
+		for (TofunianProfession prof : TofunianProfessions.getRegistry()) {
 			Int2ObjectMap<VillagerTrades.ItemListing[]> trades = TofunianTrades.TOFUNIAN_TRADE.getOrDefault(prof, new Int2ObjectOpenHashMap<>());
 			Int2ObjectMap<List<VillagerTrades.ItemListing>> mutableTrades = new Int2ObjectOpenHashMap<>();
 			for (int i = 1; i < 6; i++) {

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tofucraft:blocktofuegg"
+            "items": "tofucraft:tofuegg_brick"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofuslab_egg"
+        "recipe": "tofucraft:cutting_tofuegg_chiseled_brick_from_tofuegg_brick"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tofucraft:tofuslab_egg"
+      "tofucraft:cutting_tofuegg_chiseled_brick_from_tofuegg_brick"
     ]
   }
 }

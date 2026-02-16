@@ -12,9 +12,9 @@ public class TofunianRenderState extends AbstractTofunianRenderState {
 	public final AnimationState waveAnimationState = new AnimationState();
 
 	public Tofunian.Actions actions;
-	public Tofunian.Roles roles;
 	@Nullable
 	public Identifier clothTexture;
 	@Nullable
 	public Identifier texture;
+	public Identifier rolesTexture;
 }

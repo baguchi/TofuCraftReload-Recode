@@ -9,6 +9,7 @@ import baguchi.tofucraft.client.render.layer.TofunianEyeLayer;
 import baguchi.tofucraft.client.render.layer.TofunianRoleLayer;
 import baguchi.tofucraft.client.render.state.TofunianRenderState;
 import baguchi.tofucraft.entity.Tofunian;
+import baguchi.tofucraft.registry.TofunianProfessions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -97,7 +98,11 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		renderState.happyAnimationState.copyFrom(tofunian.happyAnimationState);
 		renderState.waveAnimationState.copyFrom(tofunian.waveAnimationState);
 		renderState.actions = tofunian.getAction();
-		renderState.roles = tofunian.getRole();
+		if (tofunian.getRole().is(TofunianProfessions.NONE)) {
+			renderState.rolesTexture = null;
+		} else {
+			renderState.rolesTexture = tofunian.getRole().getKey().identifier();
+		}
 		renderState.clothTexture = tofunian.getClothTexture();
 		renderState.texture = tofunian.getTexture();
 	}
