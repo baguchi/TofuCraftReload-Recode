@@ -975,7 +975,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@Override
 	public void updateTrades() {
-		Int2ObjectMap<VillagerTrades.ItemListing[]> int2objectmap = TofunianTrades.TOFUNIAN_TRADE.get(getRole());
+		Int2ObjectMap<VillagerTrades.ItemListing[]> int2objectmap = TofunianTrades.TOFUNIAN_TRADE.get(getRole().value());
 		if (int2objectmap != null && !int2objectmap.isEmpty()) {
 			VillagerTrades.ItemListing[] avillagertrades$ItemListing = int2objectmap.get(this.tofunianLevel);
 			if (avillagertrades$ItemListing != null) {
