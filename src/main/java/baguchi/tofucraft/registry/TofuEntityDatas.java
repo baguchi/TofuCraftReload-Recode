@@ -2,8 +2,8 @@ package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.api.entity.TofunianClothVariant;
+import baguchi.tofucraft.api.entity.TofunianProfession;
 import baguchi.tofucraft.api.entity.TofunianVariant;
-import baguchi.tofucraft.data.resources.registries.TofunianProfession;
 import net.minecraft.core.Holder;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.syncher.EntityDataSerializer;

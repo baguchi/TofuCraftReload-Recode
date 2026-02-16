@@ -1,8 +1,8 @@
 package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.api.entity.TofunianProfession;
 import baguchi.tofucraft.data.resources.TofunianTradeSets;
-import baguchi.tofucraft.data.resources.registries.TofunianProfession;
 import com.google.common.collect.ImmutableSet;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;

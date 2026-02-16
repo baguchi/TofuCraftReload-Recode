@@ -1,6 +1,6 @@
 package baguchi.tofucraft.entity.goal;
 
-import baguchi.tofucraft.data.resources.registries.TofunianProfession;
+import baguchi.tofucraft.api.entity.TofunianProfession;
 import baguchi.tofucraft.entity.tofunian.Tofunian;
 import baguchi.tofucraft.registry.TofunianProfessions;
 import net.minecraft.core.BlockPos;

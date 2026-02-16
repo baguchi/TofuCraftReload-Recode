@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data.resources.registries;
+package baguchi.tofucraft.api.entity;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.resources.ResourceKey;

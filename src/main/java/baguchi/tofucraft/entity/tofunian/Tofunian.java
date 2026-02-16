@@ -1,9 +1,9 @@
 package baguchi.tofucraft.entity.tofunian;
 
 import baguchi.tofucraft.api.entity.TofunianClothVariant;
+import baguchi.tofucraft.api.entity.TofunianProfession;
 import baguchi.tofucraft.api.entity.TofunianVariant;
 import baguchi.tofucraft.data.resources.registries.TofunianClothVariants;
-import baguchi.tofucraft.data.resources.registries.TofunianProfession;
 import baguchi.tofucraft.data.resources.registries.TofunianVariants;
 import baguchi.tofucraft.entity.ShuDofuSpider;
 import baguchi.tofucraft.entity.TofuGandlem;
@@ -821,7 +821,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		if (this.villageCenter != null) {
 			compound.store("VillageCenter", BlockPos.CODEC, this.villageCenter);
 		}
-		compound.store("Roles", TofunianProfessions.getRegistry().holderByNameCodec(), getRole());
+		compound.store("tofunian_roles", TofunianProfessions.getRegistry().holderByNameCodec(), getRole());
 		VariantUtils.writeVariant(compound, this.getVariant());
 		compound.store("tofunian_variant", TofunianVariant.CODEC, this.getTofunianVariant());
 	}
@@ -858,7 +858,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 				setRole(TofunianProfessions.FARMER);
 			}
 		} else {
-			Optional<Holder<TofunianProfession>> tofunianProfession = compound.read("Roles", TofunianProfessions.getRegistry().holderByNameCodec());
+			Optional<Holder<TofunianProfession>> tofunianProfession = compound.read("tofunian_roles", TofunianProfessions.getRegistry().holderByNameCodec());
 			tofunianProfession.ifPresent(this::setRole);
 		}
 		VariantUtils.readVariant(compound, TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY).ifPresent(this::setVariant);
