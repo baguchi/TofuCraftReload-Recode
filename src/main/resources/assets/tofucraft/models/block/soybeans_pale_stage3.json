@@ -2,6 +2,6 @@
   "parent": "block/crop",
   "render_type": "cutout",
   "textures": {
-    "crop": "tofucraft:block/soybean_soul_1"
+    "crop": "tofucraft:block/soybean_pale_stage3"
   }
 }
