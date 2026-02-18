@@ -11,6 +11,7 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -22,13 +23,21 @@ import net.minecraft.world.item.crafting.display.SlotDisplay;
 import java.util.List;
 
 public class TFTofuMakerRecipe extends SingleItemRecipe {
+	protected final Recipe.CommonInfo commonInfo;
+
 	private final float experience;
 	private final int cookingTime;
 
-	public TFTofuMakerRecipe(String group, Ingredient ingredient, ItemStackTemplate result, float experience, int cookingTime) {
-		super(group, ingredient, result);
+	public TFTofuMakerRecipe(CommonInfo commonInfo, Ingredient ingredient, ItemStackTemplate result, float experience, int cookingTime) {
+		super(commonInfo, ingredient, result);
+		this.commonInfo = commonInfo;
 		this.experience = experience;
 		this.cookingTime = cookingTime;
+	}
+
+	@Override
+	public String group() {
+		return "tofu_maker";
 	}
 
 	@Override
@@ -63,10 +72,10 @@ public class TFTofuMakerRecipe extends SingleItemRecipe {
 		return TofuRecipeBookCategory.TF_TOFU_MAKER.get();
 	}
 
-	public static class Serializer implements RecipeSerializer<TFTofuMakerRecipe> {
-		private final MapCodec<TFTofuMakerRecipe> CODEC = RecordCodecBuilder.mapCodec(
+	public static class Serializer {
+		private static final MapCodec<TFTofuMakerRecipe> CODEC = RecordCodecBuilder.mapCodec(
 				r -> r.group(
-								Codec.STRING.optionalFieldOf("group", "").forGetter(SingleItemRecipe::group),
+								Recipe.CommonInfo.MAP_CODEC.forGetter(o -> o.commonInfo),
 								Ingredient.CODEC.fieldOf("ingredient").forGetter(SingleItemRecipe::input),
 								ItemStackTemplate.CODEC.fieldOf("result").forGetter(TFTofuMakerRecipe::result),
 								Codec.FLOAT.fieldOf("experience").orElse(0.0F).forGetter(TFTofuMakerRecipe::experience),
@@ -74,9 +83,9 @@ public class TFTofuMakerRecipe extends SingleItemRecipe {
 						)
 						.apply(r, TFTofuMakerRecipe::new)
 		);
-		private final StreamCodec<RegistryFriendlyByteBuf, TFTofuMakerRecipe> STREAM_CODEC = StreamCodec.composite(
-				ByteBufCodecs.STRING_UTF8,
-				SingleItemRecipe::group,
+		private static final StreamCodec<RegistryFriendlyByteBuf, TFTofuMakerRecipe> STREAM_CODEC = StreamCodec.composite(
+				Recipe.CommonInfo.STREAM_CODEC,
+				o -> o.commonInfo,
 				Ingredient.CONTENTS_STREAM_CODEC,
 				SingleItemRecipe::input,
 				ItemStackTemplate.STREAM_CODEC,
@@ -87,15 +96,7 @@ public class TFTofuMakerRecipe extends SingleItemRecipe {
 				TFTofuMakerRecipe::cookingTime,
 				TFTofuMakerRecipe::new
 		);
+		public static final RecipeSerializer<TFTofuMakerRecipe> SERIALIZER = new RecipeSerializer<>(CODEC, STREAM_CODEC);
 
-		@Override
-		public MapCodec<TFTofuMakerRecipe> codec() {
-			return this.CODEC;
-		}
-
-		@Override
-		public StreamCodec<RegistryFriendlyByteBuf, TFTofuMakerRecipe> streamCodec() {
-			return this.STREAM_CODEC;
-		}
 	}
 }

@@ -34,7 +34,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
@@ -138,7 +138,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements Stack
 			}
 
 			if (!milk.isEmpty()) {
-				Map.Entry<FluidStack, Integer> recipe = TofuEnergyMap.getLiquidFuel(milk.toStack(1));
+				Map.Entry<FluidStackTemplate, Integer> recipe = TofuEnergyMap.getLiquidFuel(milk.toStack(1));
 				if (recipe != null) {
 					try (Transaction tx = Transaction.openRoot()) {
 						tfStorageBlockEntity.tank.extract(FluidResource.of(recipe.getKey()), recipe.getValue(), tx);

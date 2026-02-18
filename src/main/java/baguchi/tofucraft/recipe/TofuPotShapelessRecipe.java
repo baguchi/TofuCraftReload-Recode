@@ -110,6 +110,16 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 		return this.result.create();
 	}
 
+	@Override
+	public boolean showNotification() {
+		return false;
+	}
+
+	@Override
+	public String group() {
+		return "";
+	}
+
 	public ItemStack getResult() {
 		return result.create();
 	}
@@ -119,7 +129,7 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 		return this.ingredients.stream().map(Optional::of).toList();
 	}
 
-	public static class Serializer implements RecipeSerializer<TofuPotShapelessRecipe> {
+	public static class Serializer {
 		public static final StreamCodec<RegistryFriendlyByteBuf, Optional<SizedFluidIngredient>> OPTIONAL_STREAM_CODEC = ByteBufCodecs.optional(SizedFluidIngredient.STREAM_CODEC);
 
 
@@ -154,14 +164,6 @@ public class TofuPotShapelessRecipe implements TofuPotRecipe {
 				TofuPotShapelessRecipe::new
 		);
 
-		@Override
-		public MapCodec<TofuPotShapelessRecipe> codec() {
-			return CODEC;
-		}
-
-		@Override
-		public StreamCodec<RegistryFriendlyByteBuf, TofuPotShapelessRecipe> streamCodec() {
-			return STREAM_CODEC;
-		}
+		public static final RecipeSerializer<TofuPotShapelessRecipe> SERIALIZER = new RecipeSerializer<>(CODEC, STREAM_CODEC);
 	}
 }

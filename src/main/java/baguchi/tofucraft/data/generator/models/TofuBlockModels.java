@@ -11,6 +11,7 @@ import net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerato
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
+import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Blocks;
@@ -33,7 +34,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 
 		createTrivialCube(TofuBlocks.ISHITOFU_SMOOTH_BRICK.get());
 		createTrivialCube(TofuBlocks.ISHITOFU_CHISELED_BRICK.get());
-		createCutoutCube(TofuBlocks.METAL_TOFU_GRATE.get());
+		this.createTrivialCube(TofuBlocks.METAL_TOFU_GRATE.get());
 		createTrivialCube(TofuBlocks.METAL_TOFU_LUMP.get());
 		this.createBarsAndItem(TofuBlocks.METAL_TOFU_BARS.get());
 		createTrivialCube(TofuBlocks.DIAMONDTOFU.get());
@@ -41,7 +42,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createTrivialCube(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());
 		createTrivialCube(TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get());
 
-		logWithHorizontal(TofuBlocks.GRILLEDTOFU.get());
+		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.GRILLEDTOFU.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
 
 		createTrivialCube(TofuBlocks.ZUNDATOFU_SMOOTH_BRICK.get());
 
@@ -176,22 +177,17 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createLadder(TofuBlocks.TOFULADDER_SOUL.get());
 
 		createTrivialCube(TofuBlocks.TOFU_TERRAIN.get());
-		createGlowCube(TofuBlocks.MABOU_TERRAIN.get());
+		createTrivialCube(TofuBlocks.MABOU_TERRAIN.get());
 		createTrivialCube(TofuBlocks.TOFUSLATE.get());
 		createTrivialCube(TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
 		createTrivialCube(TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get());
 		createTrivialCube(TofuBlocks.ORE_TOFU_DIAMOND.get());
 		createTrivialCube(TofuBlocks.ORE_TOFUGEM.get());
 		createTrivialCube(TofuBlocks.TOFU_BEDROCK.get());
-
-		logWithHorizontal(TofuBlocks.ISHI_TOFU_STEM.get());
-
-
-		logWithHorizontalGlow(TofuBlocks.TOFU_STEM.get());
-
-		logWithHorizontal(TofuBlocks.LEEK_STEM.get());
-
-		logWithHorizontal(TofuBlocks.LEEK_GREEN_STEM.get());
+		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.ISHI_TOFU_STEM.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
+		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.TOFU_STEM.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
+		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.LEEK_STEM.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
+		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.LEEK_GREEN_STEM.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
 
 		this.createHangingSign(TofuBlocks.LEEK_STEM.get(), TofuBlocks.LEEK_HANGING_SIGN.get(), TofuBlocks.LEEK_WALL_HANGING_SIGN.get());
 		this.createHangingSign(TofuBlocks.LEEK_GREEN_STEM.get(), TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get());
@@ -205,10 +201,10 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		this.createCrossBlockWithDefaultItem(TofuBlocks.ZUNDATOFU_MUSHROOM.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		this.createTrivialCube(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get());
 		this.createCrossBlockWithDefaultItem(TofuBlocks.SAPLING_TOFU.get(), BlockModelGenerators.PlantType.NOT_TINTED);
-		createTrivialBlock(TofuBlocks.LEAVES_TOFU.get(), LEAVES_PROVIDER);
+		createTrivialBlock(TofuBlocks.LEAVES_TOFU.get(), TexturedModel.LEAVES);
 
 		this.createCrossBlockWithDefaultItem(TofuBlocks.SAPLING_APRICOT.get(), BlockModelGenerators.PlantType.NOT_TINTED);
-		createTrivialBlock(TofuBlocks.LEAVES_APRICOT.get(), LEAVES_PROVIDER);
+		createTrivialBlock(TofuBlocks.LEAVES_APRICOT.get(), TexturedModel.LEAVES);
 
 		this.createCrossBlockWithDefaultItem(TofuBlocks.TOFU_FLOWER.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		this.createCrossBlockWithDefaultItem(TofuBlocks.LEEK.get(), BlockModelGenerators.PlantType.NOT_TINTED);
@@ -300,7 +296,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		this.createCropBlock(TofuBlocks.RICE_CROP.get(), BlockStateProperties.AGE_7, 0, 1, 1, 2, 2, 3, 3, 4);
 		this.createCropBlock(TofuBlocks.LEEK_CROP.get(), BlockStateProperties.AGE_3, 0, 1, 1, 2);
 		this.createCropBlock(TofuBlocks.SPROUTS.get(), BlockStateProperties.AGE_3, 0, 1, 2, 3);
-		this.createSingleCrop(TofuBlocks.RICE_ROOT.get());
+		this.createSingleCropBlock(TofuBlocks.RICE_ROOT.get());
 		this.createTofuFarmland();
 		this.createTofuPortalBlock();
 		this.createTofunianState(TofuBlocks.TOFUNIAN_STATUE.get(), TofuBlocks.TOFUSLATE.get());

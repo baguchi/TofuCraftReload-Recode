@@ -6,7 +6,8 @@ import baguchi.tofucraft.client.model.FukumameThrowerModel;
 import baguchi.tofucraft.client.render.state.FukumameThrowerRenderState;
 import baguchi.tofucraft.entity.FukumameThrower;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.model.monster.piglin.PiglinModel;
+import net.minecraft.client.model.monster.piglin.AdultPiglinModel;
+import net.minecraft.client.model.monster.piglin.BabyPiglinModel;
 import net.minecraft.client.renderer.entity.ArmorModelSet;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
@@ -24,8 +25,8 @@ public class FukumameThrowerRenderer extends HumanoidMobRenderer<FukumameThrower
 		this.addLayer(
 				new HumanoidArmorLayer(
 						this,
-						ArmorModelSet.bake(ModelLayers.PIGLIN_ARMOR, context.getModelSet(), PiglinModel::new),
-						ArmorModelSet.bake(ModelLayers.PIGLIN_ARMOR, context.getModelSet(), PiglinModel::new),
+						ArmorModelSet.bake(ModelLayers.PIGLIN_ARMOR, context.getModelSet(), AdultPiglinModel::new),
+						ArmorModelSet.bake(ModelLayers.PIGLIN_BABY_ARMOR, context.getModelSet(), BabyPiglinModel::new),
 						context.getEquipmentRenderer()
 				)
 		);

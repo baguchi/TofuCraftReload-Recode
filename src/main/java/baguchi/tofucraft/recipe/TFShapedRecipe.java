@@ -114,7 +114,7 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 		return List.of(new ShapedCraftingRecipeDisplay(this.pattern.width(), this.pattern.height(), this.pattern.ingredients().stream().map((p_380107_) -> p_380107_.map(Ingredient::display).orElse(SlotDisplay.Empty.INSTANCE)).toList(), new SlotDisplay.ItemStackSlotDisplay(this.result), new SlotDisplay.ItemSlotDisplay(TofuBlocks.TF_CRAFTING_TABLE.asItem())));
 	}
 
-	public static class Serializer implements RecipeSerializer<TFShapedRecipe> {
+	public static class Serializer {
 		public static final MapCodec<TFShapedRecipe> CODEC = RecordCodecBuilder.mapCodec(
 				p_340778_ -> p_340778_.group(
 								Codec.STRING.optionalFieldOf("group", "").forGetter(p_311729_ -> p_311729_.group),
@@ -130,15 +130,7 @@ public class TFShapedRecipe implements TFCraftingRecipe {
 				Serializer::toNetwork, Serializer::fromNetwork
 		);
 
-		@Override
-		public MapCodec<TFShapedRecipe> codec() {
-			return CODEC;
-		}
-
-		@Override
-		public StreamCodec<RegistryFriendlyByteBuf, TFShapedRecipe> streamCodec() {
-			return STREAM_CODEC;
-		}
+		public static final RecipeSerializer<TFShapedRecipe> SERIALIZER = new RecipeSerializer<>(CODEC, STREAM_CODEC);
 
 		private static TFShapedRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
 			String s = buffer.readUtf();

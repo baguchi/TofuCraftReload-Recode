@@ -60,14 +60,14 @@ public class TravelerTofunianModel<T extends TravelerTofunianRenderState> extend
 	}
 
 	@Override
-	public void translateToChest(ModelPart modelPart, PoseStack poseStack) {
+	public void translateToChest(T entity, ModelPart modelPart, PoseStack poseStack) {
 		this.roots.translateAndRotate(poseStack);
 		modelPart.translateAndRotate(poseStack);
 		poseStack.scale(0.95F, 0.75F, 0.95F);
 	}
 
 	@Override
-	public void translateToLeg(ModelPart modelPart, PoseStack poseStack) {
+	public void translateToLeg(T entity, ModelPart modelPart, PoseStack poseStack) {
 		this.roots.translateAndRotate(poseStack);
 		modelPart.translateAndRotate(poseStack);
 		//poseStack.translate(0, -(6 / 16F), 0);
@@ -75,7 +75,7 @@ public class TravelerTofunianModel<T extends TravelerTofunianRenderState> extend
 	}
 
 	@Override
-	public void translateToChestPat(ModelPart modelPart, PoseStack poseStack) {
+	public void translateToChestPat(T entity, ModelPart modelPart, PoseStack poseStack) {
 		this.roots.translateAndRotate(poseStack);
 		modelPart.translateAndRotate(poseStack);
 

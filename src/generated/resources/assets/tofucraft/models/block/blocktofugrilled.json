@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "end": "tofucraft:block/blocktofugrilled_top",
-    "side": "tofucraft:block/blocktofugrilled"
+    "side": "tofucraft:block/blocktofugrilled_side"
   }
 }

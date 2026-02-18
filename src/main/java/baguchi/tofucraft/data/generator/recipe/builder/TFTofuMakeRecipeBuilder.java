@@ -63,7 +63,7 @@ public class TFTofuMakeRecipeBuilder implements RecipeBuilder {
 				.rewards(AdvancementRewards.Builder.recipe(p_379998_))
 				.requirements(AdvancementRequirements.Strategy.OR);
 		this.criteria.forEach(advancement$builder::addCriterion);
-		TFTofuMakerRecipe recipe = new TFTofuMakerRecipe("tofu_maker", this.ingredient, this.stackResult, this.exp, this.cookTime);
+		TFTofuMakerRecipe recipe = new TFTofuMakerRecipe(new Recipe.CommonInfo(true), this.ingredient, this.stackResult, this.exp, this.cookTime);
 		recipeOutput.accept(p_379998_, recipe, advancement$builder.build(p_379998_.identifier().withPrefix("recipes/tf_tofu_maker/")));
 	}
 

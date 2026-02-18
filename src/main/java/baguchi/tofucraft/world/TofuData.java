@@ -1,14 +1,16 @@
 package baguchi.tofucraft.world;
 
+import baguchi.tofucraft.TofuCraftReload;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.saveddata.SavedDataType;
-import net.minecraft.world.level.storage.DimensionDataStorage;
+import net.minecraft.world.level.storage.SavedDataStorage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +30,7 @@ public class TofuData extends SavedData {
 	);
 	private static final String IDENTIFIER = "tofucraft_world_data";
 	public static final SavedDataType<TofuData> TYPE = new SavedDataType<>(
-			"tofucraft_world_data",
+			Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofucraft_world_data"),
 			TofuData::new,
 			CODEC);
 
@@ -53,7 +55,7 @@ public class TofuData extends SavedData {
 			ServerLevel overworld = world.getServer().getLevel(world.dimension());
 			TofuData fromMap = dataMap.get(overworld);
 			if (fromMap == null) {
-				DimensionDataStorage storage = overworld.getDataStorage();
+				SavedDataStorage storage = overworld.getDataStorage();
 				TofuData data = storage.computeIfAbsent(TYPE);
 				if (data != null) {
 					data.setDirty();

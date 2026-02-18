@@ -12,7 +12,6 @@ import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuDamageTypes;
 import baguchi.tofucraft.registry.TofuDataComponents;
-import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuEffects;
 import baguchi.tofucraft.registry.TofuEnchantments;
 import baguchi.tofucraft.registry.TofuItems;
@@ -26,7 +25,6 @@ import baguchi.tofucraft.utils.JigsawHelper;
 import baguchi.tofucraft.utils.RecipeHelper;
 import baguchi.tofucraft.utils.TofuDiamondToolUtil;
 import baguchi.tofucraft.world.TofuData;
-import baguchi.tofucraft.world.TofuLevelData;
 import baguchi.tofucraft.world.TravelerTofunianSpawner;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -93,7 +91,6 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.entity.player.SweepAttackEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.ExplosionEvent;
-import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
@@ -374,7 +371,7 @@ public class CommonEvents {
 
 							ServerPlayer player = (ServerPlayer) event.getPlayer();
 							if (!player.isCreative() && !(event.getState().getBlock() instanceof TorchBlock)) {
-								player.displayClientMessage(Component.translatable("tofucraft.need_defeat_boss"), true);
+								player.sendOverlayMessage(Component.translatable("tofucraft.need_defeat_boss"));
 								event.setCanceled(true);
 							}
 					}
@@ -396,7 +393,7 @@ public class CommonEvents {
 					if (structureStart.isValid() && !data.getBeatenDungeons().contains(structureStart.getBoundingBox())) {
 						ServerPlayer player = (ServerPlayer) event.getEntity();
 						if (!player.isCreative() && !(event.getState().getBlock() instanceof TorchBlock)) {
-							player.displayClientMessage(Component.translatable("tofucraft.need_defeat_boss"), true);
+							player.sendOverlayMessage(Component.translatable("tofucraft.need_defeat_boss"));
 							event.setCanceled(true);
 						}
 
@@ -448,14 +445,6 @@ public class CommonEvents {
 		}
 	}
 
-	@SubscribeEvent
-	public static void onWorldLoad(LevelEvent.Load event) {
-		if (event.getLevel() instanceof ServerLevel level && level.dimensionTypeRegistration().is(TofuDimensions.tofu_world.identifier())) {
-			TofuLevelData levelData = new TofuLevelData(level.getServer().getWorldData(), level.getServer().getWorldData().overworldData());
-			level.serverLevelData = levelData;
-			level.levelData = levelData;
-		}
-	}
 
 	@SubscribeEvent
 	public static void onServerTick(LevelTickEvent.Post tick) {

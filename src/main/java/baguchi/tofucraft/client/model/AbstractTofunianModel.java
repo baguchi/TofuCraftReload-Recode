@@ -1,6 +1,6 @@
 package baguchi.tofucraft.client.model;
 
-import baguchi.bagus_lib.client.layer.IArmor;
+import baguchi.bagus_lib.client.layer.CustomArmorRender;
 import baguchi.tofucraft.client.animation.definitions.TofunianAnimation;
 import baguchi.tofucraft.client.render.state.AbstractTofunianRenderState;
 import com.google.common.collect.ImmutableList;
@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 
-public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extends EntityModel<T> implements ArmedModel, HeadedModel, IArmor {
+public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extends EntityModel<T> implements ArmedModel, HeadedModel, CustomArmorRender<T> {
 	public final ModelPart head;
 	public final ModelPart body;
 	public final ModelPart leftLeg;
@@ -91,20 +91,20 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 	}
 
 	@Override
-	public void translateToHead(ModelPart modelPart, PoseStack poseStack) {
+	public void translateToHead(T entity, ModelPart modelPart, PoseStack poseStack) {
 		this.roots.translateAndRotate(poseStack);
 		modelPart.translateAndRotate(poseStack);
 	}
 
 	@Override
-	public void translateToChest(ModelPart modelPart, PoseStack poseStack) {
+	public void translateToChest(T entity, ModelPart modelPart, PoseStack poseStack) {
 		this.roots.translateAndRotate(poseStack);
 		modelPart.translateAndRotate(poseStack);
 		poseStack.scale(0.75F, 0.75F, 0.75F);
 	}
 
 	@Override
-	public void translateToLeg(ModelPart modelPart, PoseStack poseStack) {
+	public void translateToLeg(T entity, ModelPart modelPart, PoseStack poseStack) {
 		this.roots.translateAndRotate(poseStack);
 		modelPart.translateAndRotate(poseStack);
 		//poseStack.translate(0, -(6 / 16F), 0);
@@ -112,7 +112,7 @@ public class AbstractTofunianModel<T extends AbstractTofunianRenderState> extend
 	}
 
 	@Override
-	public void translateToChestPat(ModelPart modelPart, PoseStack poseStack) {
+	public void translateToChestPat(T entity, ModelPart modelPart, PoseStack poseStack) {
 		this.roots.translateAndRotate(poseStack);
 		modelPart.translateAndRotate(poseStack);
 

@@ -1,7 +1,9 @@
 {
   "parent": "minecraft:block/cube_all",
-  "render_type": "minecraft:translucent",
   "textures": {
-    "all": "tofucraft:block/zundama_block"
+    "all": {
+      "force_translucent": true,
+      "sprite": "tofucraft:block/zundama_block"
+    }
   }
 }

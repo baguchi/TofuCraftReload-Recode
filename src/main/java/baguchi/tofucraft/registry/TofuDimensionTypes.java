@@ -44,6 +44,7 @@ public class TofuDimensionTypes {
 				false,
 				true,
 				true,
+				false,
 				1.0,
 				-64,
 				384,

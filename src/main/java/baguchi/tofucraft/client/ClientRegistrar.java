@@ -214,8 +214,8 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
-				return new Vector4f(255 / 255F, 251 / 255F, 222 / 255F, 1F);
+			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				fluidFogColor.set(new Vector4f(255 / 255F, 251 / 255F, 222 / 255F, 1F));
 			}
 
 			@Override
@@ -240,8 +240,8 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
-				return new Vector4f(156 / 255F, 145 / 255F, 78 / 255F, 1F);
+			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				fluidFogColor.set(new Vector4f(156 / 255F, 145 / 255F, 78 / 255F, 1F));
 			}
 
 			@Override
@@ -267,8 +267,8 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
-				return new Vector4f(78 / 255F, 145 / 255F, 156 / 255F, 1F);
+			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				fluidFogColor.set(new Vector4f(78 / 255F, 145 / 255F, 156 / 255F, 1F));
 			}
 
 			@Override
@@ -293,8 +293,8 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
-				return new Vector4f(104 / 255F, 157 / 255F, 170 / 255F, 1F);
+			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				fluidFogColor.set(new Vector4f(104 / 255F, 157 / 255F, 170 / 255F, 1F));
 			}
 
 			@Override
@@ -319,8 +319,8 @@ public class ClientRegistrar {
 			}
 
 			@Override
-			public Vector4f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
-				return new Vector4f(155 / 255F, 25 / 255F, 0 / 255F, 1F);
+			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				fluidFogColor.set(new Vector4f(155 / 255F, 25 / 255F, 0 / 255F, 1F));
 			}
 
 			@Override
@@ -642,7 +642,7 @@ public class ClientRegistrar {
 				timeInPortal = timeInPortal * 0.8F + 0.2F;
 			}
 			int i = ARGB.white(timeInPortal);
-			TextureAtlasSprite textureatlassprite = minecraft.getBlockRenderer().getBlockModelShaper().getParticleIcon(TofuBlocks.TOFU_PORTAL.get().defaultBlockState());
+			TextureAtlasSprite textureatlassprite = minecraft.getBlockRenderer().getBlockModelShaper().getParticleMaterial(TofuBlocks.TOFU_PORTAL.get().defaultBlockState()).sprite();
 			guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, textureatlassprite, 0, 0,
 					guiGraphics.guiWidth(),
 					guiGraphics.guiHeight(),

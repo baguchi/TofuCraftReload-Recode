@@ -1,6 +1,5 @@
 package baguchi.tofucraft.entity;
 
-import com.mojang.serialization.Dynamic;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -14,6 +13,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.Brain;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -24,11 +25,24 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class FukumameThrower extends Piglin {
 	private static final EntityDataAccessor<Boolean> DATA_CHARGE = SynchedEntityData.defineId(FukumameThrower.class, EntityDataSerializers.BOOLEAN);
 
 	private static final EntityDataAccessor<Integer> DATA_FUKUMAME_COUNT = SynchedEntityData.defineId(FukumameThrower.class, EntityDataSerializers.INT);
-
+	private static final Brain.Provider<Piglin> BRAIN_PROVIDER = Brain.<Piglin>provider(
+			List.of(
+					MemoryModuleType.UNIVERSAL_ANGER,
+					MemoryModuleType.ATE_RECENTLY,
+					MemoryModuleType.SPEAR_FLEEING_TIME,
+					MemoryModuleType.SPEAR_FLEEING_POSITION,
+					MemoryModuleType.SPEAR_CHARGE_POSITION,
+					MemoryModuleType.SPEAR_ENGAGE_TIME
+			),
+			List.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.NEAREST_ITEMS, SensorType.HURT_BY, SensorType.PIGLIN_SPECIFIC_SENSOR),
+			FukumameThrowerAi::getActivities
+	);
 	public FukumameThrower(EntityType<? extends FukumameThrower> p_34683_, Level p_34684_) {
 		super(p_34683_, p_34684_);
 	}
@@ -73,15 +87,11 @@ public class FukumameThrower extends Piglin {
 		return true;
 	}
 
-	protected Brain.Provider<FukumameThrower> revampedBrainProvider() {
-		return Brain.provider(Piglin.MEMORY_TYPES, SENSOR_TYPES);
-	}
-
-
 	@Override
-	protected Brain<?> makeBrain(Dynamic<?> p_34723_) {
-		return FukumameThrowerAi.makeBrain(this, this.revampedBrainProvider().makeBrain(p_34723_));
+	protected Brain<Piglin> makeBrain(Brain.Packed packedBrain) {
+		return BRAIN_PROVIDER.makeBrain(this, packedBrain);
 	}
+
 
 	public ItemStack addToInventory(ItemStack p_34779_) {
 		return super.addToInventory(p_34779_);

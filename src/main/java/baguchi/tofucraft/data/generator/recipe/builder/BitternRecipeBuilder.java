@@ -13,7 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
-import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStackTemplate;
 
 import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
@@ -22,13 +22,13 @@ import java.util.Map;
 public class BitternRecipeBuilder implements RecipeBuilder {
 	;
 	private final ItemStackTemplate stackResult;
-	private final FluidStack ingredient;
+	private final FluidStackTemplate ingredient;
 	private final Ingredient extraIngredient;
 	private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
 
 	private BitternRecipeBuilder(
 			ItemStackTemplate result,
-			FluidStack fluidStack,
+			FluidStackTemplate fluidStack,
 			Ingredient extraIngredient
 	) {
 		this.stackResult = result;
@@ -36,7 +36,7 @@ public class BitternRecipeBuilder implements RecipeBuilder {
 		this.extraIngredient = extraIngredient;
 	}
 
-	public static BitternRecipeBuilder bittern(ItemStackTemplate stack, FluidStack fluidStack, Ingredient extraFluid) {
+	public static BitternRecipeBuilder bittern(ItemStackTemplate stack, FluidStackTemplate fluidStack, Ingredient extraFluid) {
 		return new BitternRecipeBuilder(stack, fluidStack, extraFluid);
 	}
 

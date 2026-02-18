@@ -109,7 +109,7 @@ public class TFShapelessRecipe implements TFCraftingRecipe {
 	}
 
 
-	public static class Serializer implements RecipeSerializer<TFShapelessRecipe> {
+	public static class Serializer {
 		private static final MapCodec<TFShapelessRecipe> CODEC = RecordCodecBuilder.mapCodec(
 				p_340779_ -> p_340779_.group(
 								Codec.STRING.optionalFieldOf("group", "").forGetter(p_301127_ -> p_301127_.group),
@@ -136,14 +136,7 @@ public class TFShapelessRecipe implements TFCraftingRecipe {
 				p_360069_ -> p_360069_.tfNeed,
 				TFShapelessRecipe::new
 		);
-		@Override
-		public MapCodec<TFShapelessRecipe> codec() {
-			return CODEC;
-		}
 
-		@Override
-		public StreamCodec<RegistryFriendlyByteBuf, TFShapelessRecipe> streamCodec() {
-			return STREAM_CODEC;
-		}
+		public static final RecipeSerializer<TFShapelessRecipe> SERIALIZER = new RecipeSerializer<>(CODEC, STREAM_CODEC);
 	}
 }

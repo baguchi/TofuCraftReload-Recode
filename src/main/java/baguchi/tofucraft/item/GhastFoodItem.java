@@ -72,7 +72,7 @@ public class GhastFoodItem extends Item {
 						event.setCancellationResult(InteractionResult.SUCCESS);
 						event.setCanceled(true);
 					} else {
-						player.displayClientMessage(Component.translatable("tofucraft.soy_food.cannot_give_on_wolf", happyGhast.getName()), true);
+						player.sendOverlayMessage(Component.translatable("tofucraft.soy_food.cannot_give_on_wolf", happyGhast.getName()));
 						event.setCancellationResult(InteractionResult.FAIL);
 						event.setCanceled(true);
 					}

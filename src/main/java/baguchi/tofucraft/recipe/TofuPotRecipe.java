@@ -23,6 +23,15 @@ public interface TofuPotRecipe extends Recipe<CraftingInput> {
 
 	List<Optional<Ingredient>> getIngredients();
 
+	@Override
+	public default boolean showNotification() {
+		return true;
+	}
+
+	@Override
+	public default String group() {
+		return "";
+	}
 
 	default RecipeBookCategory recipeBookCategory() {
 		RecipeBookCategory var10000;

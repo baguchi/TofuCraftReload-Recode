@@ -37,4 +37,14 @@ public interface TFCraftingRecipe extends Recipe<CraftingInput> {
 	}
 
 	ItemStack getResult();
+
+	@Override
+	public default boolean showNotification() {
+		return true;
+	}
+
+	@Override
+	public default String group() {
+		return "";
+	}
 }

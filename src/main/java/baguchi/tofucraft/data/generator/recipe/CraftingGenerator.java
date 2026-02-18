@@ -27,7 +27,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import java.util.Optional;
@@ -2119,9 +2119,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.BOTTLE_MIRIN.get()))
 				.save(this.output);
 
-		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.KINUTOFU.get().asItem()), new FluidStack(TofuFluids.SOYMILK.get(), 1000), Ingredient.of(TofuItems.BITTERN_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(this.output, prefix("bittern_to_kinu"));
-		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.HELLTOFU.get().asItem()), new FluidStack(TofuFluids.SOYMILK_HELL.get(), 1000), Ingredient.of(TofuItems.WARPED_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(this.output, prefix("bittern_to_hell"));
-		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.SOULTOFU.get().asItem()), new FluidStack(TofuFluids.SOYMILK_SOUL.get(), 1000), Ingredient.of(TofuItems.CRIMSON_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.CRIMSON_BOTTLE.get())).save(this.output, prefix("bittern_to_soul"));
+		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.KINUTOFU.get().asItem()), new FluidStackTemplate(TofuFluids.SOYMILK.get(), 1000), Ingredient.of(TofuItems.BITTERN_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(this.output, prefix("bittern_to_kinu"));
+		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.HELLTOFU.get().asItem()), new FluidStackTemplate(TofuFluids.SOYMILK_HELL.get(), 1000), Ingredient.of(TofuItems.WARPED_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(this.output, prefix("bittern_to_hell"));
+		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.SOULTOFU.get().asItem()), new FluidStackTemplate(TofuFluids.SOYMILK_SOUL.get(), 1000), Ingredient.of(TofuItems.CRIMSON_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.CRIMSON_BOTTLE.get())).save(this.output, prefix("bittern_to_soul"));
 		HardenRecipeBuilder.harden(new ItemStackTemplate(TofuBlocks.ISHITOFU.get().asItem()), Ingredient.of(TofuBlocks.MOMENTOFU.get())).unlockedBy("has_item", has(TofuBlocks.MOMENTOFU.get())).save(this.output, prefix("harden_to_ishi"));
 		HardenRecipeBuilder.harden(new ItemStackTemplate(TofuBlocks.METALTOFU.get().asItem()), Ingredient.of(TofuBlocks.ISHITOFU.get())).unlockedBy("has_item", has(TofuBlocks.ISHITOFU.get())).save(this.output, prefix("harden_to_metal"));
 

@@ -1,8 +1,7 @@
 {
   "parent": "minecraft:block/door_bottom_right",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "tofucraft:block/tofudoor_zunda_bottom",
-    "top": "tofucraft:block/tofudoor_zunda"
+    "top": "tofucraft:block/tofudoor_zunda_top"
   }
 }

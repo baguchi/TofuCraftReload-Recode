@@ -6,13 +6,14 @@ import baguchi.tofucraft.registry.TofuItems;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStackTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class TofuEnergyMap {
 	private static HashMap<ItemStackTemplate, Integer> recipes = new HashMap<>();
-	private static HashMap<FluidStack, Integer> fluidRecipes = new HashMap<>();
+	private static HashMap<FluidStackTemplate, Integer> fluidRecipes = new HashMap<>();
 
 	public static void init() {
 		register(new ItemStackTemplate(TofuItems.TOFUKINU, 1), 100);
@@ -35,16 +36,16 @@ public class TofuEnergyMap {
 		register(new ItemStackTemplate(TofuBlocks.SOULTOFU.asItem(), 1), 900);
 		register(new ItemStackTemplate(TofuItems.SEEDS_SOYBEANS, 1), 400);
 		register(new ItemStackTemplate(TofuItems.SOYBEAN_PARCHED, 1), 400);
-		register(new FluidStack(TofuFluids.SOYMILK, 100), 400);
-		register(new FluidStack(TofuFluids.SOYMILK_HELL, 100), 60);
-		register(new FluidStack(TofuFluids.SOYMILK_SOUL, 100), 80);
+		register(new FluidStackTemplate(TofuFluids.SOYMILK, 100), 400);
+		register(new FluidStackTemplate(TofuFluids.SOYMILK_HELL, 100), 60);
+		register(new FluidStackTemplate(TofuFluids.SOYMILK_SOUL, 100), 80);
 	}
 
 	public static void register(ItemStackTemplate item, int loader) {
 		recipes.put(item, loader);
 	}
 
-	public static void register(FluidStack fluid, int loader) {
+	public static void register(FluidStackTemplate fluid, int loader) {
 		fluidRecipes.put(fluid, loader);
 	}
 
@@ -57,9 +58,9 @@ public class TofuEnergyMap {
 		return -1;
 	}
 
-	public static Map.Entry<FluidStack, Integer> getLiquidFuel(FluidStack fluid) {
-		for (Map.Entry<FluidStack, Integer> rep : fluidRecipes.entrySet()) {
-			if (rep.getKey().getFluid().equals(fluid.getFluid()))
+	public static Map.Entry<FluidStackTemplate, Integer> getLiquidFuel(FluidStack fluid) {
+		for (Map.Entry<FluidStackTemplate, Integer> rep : fluidRecipes.entrySet()) {
+			if (rep.getKey().fluid().equals(fluid.getFluid()))
 				return rep;
 		}
 		return null;

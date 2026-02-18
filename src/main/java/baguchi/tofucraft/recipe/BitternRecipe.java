@@ -11,7 +11,7 @@ import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 
 public class BitternRecipe implements Recipe<RecipeInput> {
@@ -19,17 +19,27 @@ public class BitternRecipe implements Recipe<RecipeInput> {
 	/**
 	 * The ingredient used for the Before it hardens tofu.
 	 */
-	protected FluidStack fluid;
+	protected FluidStackTemplate fluid;
 	protected Ingredient ingredient;
 	/**
 	 * This ingredient used for the harden tofu.
 	 */
 	final ItemStackTemplate result;
 
-	public BitternRecipe(FluidStack fluid, Ingredient ingredient, ItemStackTemplate results) {
+	public BitternRecipe(FluidStackTemplate fluid, Ingredient ingredient, ItemStackTemplate results) {
 		this.fluid = fluid;
 		this.ingredient = ingredient;
 		this.result = results;
+	}
+
+	@Override
+	public boolean showNotification() {
+		return true;
+	}
+
+	@Override
+	public String group() {
+		return "";
 	}
 
 	/**
@@ -37,7 +47,7 @@ public class BitternRecipe implements Recipe<RecipeInput> {
 	 *
 	 * @return An ingredient that can used to match an Block as a tofu for the tofu.
 	 */
-	public FluidStack getFluid() {
+	public FluidStackTemplate getFluid() {
 
 		return this.fluid;
 	}
@@ -50,7 +60,7 @@ public class BitternRecipe implements Recipe<RecipeInput> {
 	public boolean matches(RecipeInput recipeInput, Level level) {
 		ItemStack stack = recipeInput.getItem(0);
 		ItemStack stack2 = recipeInput.getItem(1);
-		if (FluidUtil.getFirstStackContained(stack).is(this.fluid.getFluid()) && !stack2.isEmpty()) {
+		if (FluidUtil.getFirstStackContained(stack).is(this.fluid.fluid()) && !stack2.isEmpty()) {
 			return this.ingredient.test(stack2);
 		}
 
@@ -74,7 +84,6 @@ public class BitternRecipe implements Recipe<RecipeInput> {
 
 	@Override
 	public RecipeType<? extends Recipe<RecipeInput>> getType() {
-
 		return TofuRecipes.RECIPETYPE_BITTERN.get();
 	}
 

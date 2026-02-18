@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "tofucraft:block/blocktofugrilled_top"
+    "wall": "tofucraft:block/blocktofugrilled"
   }
 }

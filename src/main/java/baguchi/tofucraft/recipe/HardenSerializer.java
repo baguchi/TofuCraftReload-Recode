@@ -8,7 +8,7 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
-public class HardenSerializer implements RecipeSerializer<HardenRecipe> {
+public class HardenSerializer {
 
 	private static final MapCodec<HardenRecipe> CODEC = RecordCodecBuilder.mapCodec((p_296927_) -> {
 		return p_296927_.group(Ingredient.CODEC.fieldOf("tofu").forGetter((p_296920_) -> {
@@ -22,15 +22,7 @@ public class HardenSerializer implements RecipeSerializer<HardenRecipe> {
 			HardenSerializer::toNetwork, HardenSerializer::fromNetwork
 	);
 
-	@Override
-	public MapCodec<HardenRecipe> codec() {
-		return CODEC;
-	}
-
-	@Override
-	public StreamCodec<RegistryFriendlyByteBuf, HardenRecipe> streamCodec() {
-		return STREAM_CODEC;
-	}
+	public static final RecipeSerializer<HardenRecipe> SERIALIZER = new RecipeSerializer<>(CODEC, STREAM_CODEC);
 
 	private static HardenRecipe fromNetwork(RegistryFriendlyByteBuf p_320719_) {
 		Ingredient ingredient1 = Ingredient.CONTENTS_STREAM_CODEC.decode(p_320719_);

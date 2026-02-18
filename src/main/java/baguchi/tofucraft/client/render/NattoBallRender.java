@@ -20,7 +20,7 @@ import org.joml.Matrix4f;
 
 public class NattoBallRender extends EntityRenderer<NattoBallEntity, ProjectileRenderState> {
 	private static final Identifier TEXTURE_LOCATION = TofuCraftReload.prefix("textures/item/natto_cobweb.png");
-	private static final RenderType RENDER_TYPE = RenderTypes.entityCutoutNoCull(TEXTURE_LOCATION);
+	private static final RenderType RENDER_TYPE = RenderTypes.entityCutout(TEXTURE_LOCATION);
 
 	public NattoBallRender(EntityRendererProvider.Context p_173962_) {
 		super(p_173962_);

@@ -23,7 +23,7 @@ import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.SpriteId;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Unit;
@@ -78,19 +78,19 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity, 
 
 	@Override
 	public void submit(BedRenderState p_445609_, PoseStack p_439782_, SubmitNodeCollector p_439369_, CameraRenderState p_451216_) {
-		Material material = Sheets.getBedMaterial(p_445609_.color);
-		this.submitPiece(p_439782_, p_439369_, p_445609_.isHead ? this.headModel : this.footModel, p_445609_.facing, material, p_445609_.lightCoords, OverlayTexture.NO_OVERLAY, false, p_445609_.breakProgress);
+		SpriteId bedSprite = Sheets.getBedSprite(p_445609_.color);
+		this.submitPiece(p_439782_, p_439369_, p_445609_.isHead ? this.headModel : this.footModel, p_445609_.facing, bedSprite, p_445609_.lightCoords, OverlayTexture.NO_OVERLAY, false, p_445609_.breakProgress);
 	}
 
-	public void submitSpecial(PoseStack p_439640_, SubmitNodeCollector p_439587_, int p_439564_, int p_440267_, Material p_440126_) {
+	public void submitSpecial(PoseStack p_439640_, SubmitNodeCollector p_439587_, int p_439564_, int p_440267_, SpriteId p_440126_) {
 		this.submitPiece(p_439640_, p_439587_, this.headModel, Direction.SOUTH, p_440126_, p_439564_, p_440267_, false, (ModelFeatureRenderer.CrumblingOverlay) null);
 		this.submitPiece(p_439640_, p_439587_, this.footModel, Direction.SOUTH, p_440126_, p_439564_, p_440267_, true, (ModelFeatureRenderer.CrumblingOverlay) null);
 	}
 
-	private void submitPiece(PoseStack p_440523_, SubmitNodeCollector p_440584_, Model.Simple p_440701_, Direction p_439931_, Material p_439303_, int p_438920_, int p_439582_, boolean p_440123_, @Nullable ModelFeatureRenderer.CrumblingOverlay p_439398_) {
+	private void submitPiece(PoseStack p_440523_, SubmitNodeCollector p_440584_, Model.Simple p_440701_, Direction p_439931_, SpriteId p_439303_, int p_438920_, int p_439582_, boolean p_440123_, @Nullable ModelFeatureRenderer.CrumblingOverlay p_439398_) {
 		p_440523_.pushPose();
 		preparePose(p_440523_, p_440123_, p_439931_);
-		p_440584_.submitModel(p_440701_, Unit.INSTANCE, p_440523_, RenderTypes.entityCutoutNoCull(BED_TEXTURES), p_438920_, p_439582_, -1, null, 0, p_439398_);
+		p_440584_.submitModel(p_440701_, Unit.INSTANCE, p_440523_, RenderTypes.entityCutout(BED_TEXTURES), p_438920_, p_439582_, -1, null, 0, p_439398_);
 		p_440523_.popPose();
 	}
 

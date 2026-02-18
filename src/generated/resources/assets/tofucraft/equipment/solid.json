@@ -5,6 +5,11 @@
         "texture": "tofucraft:solid"
       }
     ],
+    "humanoid_baby": [
+      {
+        "texture": "tofucraft:solid"
+      }
+    ],
     "humanoid_leggings": [
       {
         "texture": "tofucraft:solid"

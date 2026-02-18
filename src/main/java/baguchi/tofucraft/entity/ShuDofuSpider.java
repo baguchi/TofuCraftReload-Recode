@@ -127,7 +127,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	public final AnimationState graspAnimationState = new AnimationState();
 	public final AnimationState graspPreAnimationState = new AnimationState();
 
-	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
+	private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(Mth.createInsecureUUID(this.random), this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
 	private float graspDamageReceived;
 	private float rangedDamageReceived;
 

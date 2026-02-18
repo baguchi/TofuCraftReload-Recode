@@ -2,7 +2,7 @@ package baguchi.tofucraft.data.provider;
 
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
-import net.minecraft.resources.Identifier;
+import net.minecraft.client.renderer.block.model.Material;
 import net.minecraft.world.level.block.Block;
 
 import static net.minecraft.client.data.models.model.TextureMapping.getBlockTexture;
@@ -14,14 +14,11 @@ public class TofuTextureMapping {
 
 	public static final TextureSlot OVERLAY = TextureSlot.create("overlay");
 
-	public static TextureMapping cubeWithTop(Block p_387253_) {
-		Identifier resourcelocation = getBlockTexture(p_387253_);
-		return cubeWithTop(resourcelocation);
+	public static TextureMapping cubeTop(Block block) {
+		return (new TextureMapping()).put(TextureSlot.ALL, getBlockTexture(block, "_top"));
 	}
 
-	public static TextureMapping cubeWithTop(Identifier p_386993_) {
-		return (new TextureMapping()).put(TextureSlot.ALL, p_386993_.withSuffix("_top"));
-	}
+
 
 	public static TextureMapping doorTop(Block block) {
 		return new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(block)).put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_top")).copySlot(TextureSlot.TOP, TextureSlot.PARTICLE);
@@ -56,24 +53,24 @@ public class TofuTextureMapping {
 
 
 	public static TextureMapping grassBlock(Block block, Block dirt) {
-		Identifier resourcelocation = getBlockTexture(block).withSuffix("_top");
-		Identifier resourcelocation2 = getBlockTexture(block).withSuffix("_side");
-		Identifier resourcelocation3 = getBlockTexture(block).withSuffix("_side_overlay");
-		Identifier resourcelocation4 = getBlockTexture(dirt);
+		Material resourcelocation = getBlockTexture(block, "_top");
+		Material resourcelocation2 = getBlockTexture(block, "_side");
+		Material resourcelocation3 = getBlockTexture(block, "_side_overlay");
+		Material resourcelocation4 = getBlockTexture(dirt);
 		return grassBlock(resourcelocation, resourcelocation2, resourcelocation3, resourcelocation4);
 	}
 
-	public static TextureMapping grassBlock(Identifier p_386993_, Identifier side, Identifier overlay, Identifier dirt) {
+	public static TextureMapping grassBlock(Material p_386993_, Material side, Material overlay, Material dirt) {
 		return new TextureMapping().put(TextureSlot.PARTICLE, dirt).put(TextureSlot.TOP, p_386993_).put(TextureSlot.SIDE, side).put(TextureSlot.BOTTOM, dirt).put(OVERLAY, overlay);
 	}
 
 	public static TextureMapping glowCube(Block p_387253_) {
-		Identifier resourcelocation = getBlockTexture(p_387253_);
-		Identifier resourcelocation2 = getBlockTexture(p_387253_, "_emissive");
+		Material resourcelocation = getBlockTexture(p_387253_);
+		Material resourcelocation2 = getBlockTexture(p_387253_, "_emissive");
 		return glowCube(resourcelocation, resourcelocation2);
 	}
 
-	public static TextureMapping glowCube(Identifier p_386993_, Identifier glow) {
-		return new TextureMapping().put(TextureSlot.ALL, p_386993_).put(GLOW_ALL, glow);
+	public static TextureMapping glowCube(Material p_386993_, Material glow) {
+		return (new TextureMapping()).put(TextureSlot.ALL, p_386993_).put(GLOW_ALL, glow);
 	}
 }

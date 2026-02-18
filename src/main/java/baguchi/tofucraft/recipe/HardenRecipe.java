@@ -37,6 +37,16 @@ public class HardenRecipe implements Recipe<EmptyRecipeInput> {
 		return this.tofu;
 	}
 
+	@Override
+	public boolean showNotification() {
+		return true;
+	}
+
+	@Override
+	public String group() {
+		return "";
+	}
+
 	/**
 	 * Gets all the possible results when harden the tofu.
 	 *

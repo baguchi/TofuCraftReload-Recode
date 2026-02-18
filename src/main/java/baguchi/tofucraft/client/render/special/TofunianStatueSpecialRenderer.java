@@ -35,7 +35,7 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 		poseStack.pushPose();
 		poseStack.scale(-1.5F, -1.5F, 1.5F);
 		poseStack.translate(-0.4, -1F, 0);
-		submitNodeCollector.submitModel(this.model, Direction.SOUTH, poseStack, RenderTypes.entityCutoutNoCull(TofunianStatueRender.TEXTURES), i, i1, -1, null, 0, null);
+		submitNodeCollector.submitModel(this.model, Direction.SOUTH, poseStack, RenderTypes.entityCutout(TofunianStatueRender.TEXTURES), i, i1, -1, null, 0, null);
 		poseStack.popPose();
 	}
 

@@ -7,25 +7,27 @@ import net.minecraft.client.multiplayer.LevelLoadTracker;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
-
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class ReceivingTofuLevelScreen extends LevelLoadingScreen {
 	private static final Component TRAVELING_IN_TOFU_PORTAL = Component.translatable("multiplayer.tofucraft.travel_tofuworld");
 
-	@Nullable
-	private TextureAtlasSprite cachedTofuPortalSprite;
+	private @Nullable TextureAtlasSprite cachedNetherPortalSprite;
 
 	public ReceivingTofuLevelScreen(LevelLoadTracker levelReceived) {
 		super(levelReceived, Reason.OTHER);
 	}
 
 	private TextureAtlasSprite getTofuPortalSprite() {
-		if (this.cachedTofuPortalSprite != null) {
-			return this.cachedTofuPortalSprite;
+		if (this.cachedNetherPortalSprite != null) {
+			return this.cachedNetherPortalSprite;
 		} else {
-			this.cachedTofuPortalSprite = this.minecraft.getBlockRenderer().getBlockModelShaper().getParticleIcon(TofuBlocks.TOFU_PORTAL.get().defaultBlockState());
-			return this.cachedTofuPortalSprite;
+			this.cachedNetherPortalSprite = this.minecraft
+					.getBlockRenderer()
+					.getBlockModelShaper()
+					.getParticleMaterial(TofuBlocks.TOFU_PORTAL.get().defaultBlockState())
+					.sprite();
+			return this.cachedNetherPortalSprite;
 		}
 	}
 

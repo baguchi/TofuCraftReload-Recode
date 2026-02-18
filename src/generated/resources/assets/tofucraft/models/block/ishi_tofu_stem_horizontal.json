@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column_horizontal",
   "textures": {
     "end": "tofucraft:block/ishi_tofu_stem_top",
-    "side": "tofucraft:block/ishi_tofu_stem"
+    "side": "tofucraft:block/ishi_tofu_stem_side"
   }
 }

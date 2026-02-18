@@ -7,6 +7,6 @@ import net.minecraft.core.Direction;
 
 public class TofunianStatueModel extends Model<Direction> {
 	public TofunianStatueModel(ModelPart root) {
-		super(root, RenderTypes::entityCutoutNoCull);
+		super(root, RenderTypes::entityCutout);
 	}
 }
