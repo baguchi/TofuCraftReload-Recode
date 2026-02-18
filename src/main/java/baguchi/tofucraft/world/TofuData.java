@@ -54,7 +54,7 @@ public class TofuData extends SavedData {
 		if (world instanceof ServerLevel serverLevel) {
 			ServerLevel overworld = world.getServer().getLevel(world.dimension());
 			TofuData fromMap = dataMap.get(overworld);
-			if (fromMap == null) {
+			if (fromMap == null && overworld != null) {
 				SavedDataStorage storage = overworld.getDataStorage();
 				TofuData data = storage.computeIfAbsent(TYPE);
 				if (data != null) {
