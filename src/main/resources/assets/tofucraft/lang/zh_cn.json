@@ -85,7 +85,7 @@
   "item.tofucraft.soymilk_pale_bottle.desc": "饮用后只能恢复血量.",
   "item.tofucraft.soymilk_pale_glow_bottle.desc": "饮用后只能恢复血量.",
   "item.tofucraft.saltymelon": "盐西瓜",
-  "item.tofucraft.soymilk_bucket": "豆奶桶",
+  "item.tofucraft.soymilk_bucket": "豆浆桶",
   "item.tofucraft.soymilk_nether_bucket": "地狱豆奶桶",
   "item.tofucraft.soymilk_soul_bucket": "灵魂豆奶桶",
   "item.tofucraft.soymilk_pale_bucket": "不详的豆奶桶",
@@ -847,3 +847,4 @@
   "tofucraft.tofu_crafters_book.antenna_basic.desc": "基础天线用于将TF能传输至其他使用TF能的机器.\n 需要将天线放置在类似于TF能量站的发电机上",
   "block.tofucraft.chili_crop" : "辣椒植株"
 }
+
