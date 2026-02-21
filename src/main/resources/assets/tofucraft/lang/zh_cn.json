@@ -149,7 +149,7 @@
   "item.tofucraft.zunda_mochi": "毛豆泥年糕",
   "item.tofucraft.crimson_soup": "绯红汤",
   "item.tofucraft.salt": "盐",
-  "item.tofucraft.morijio": "盐堆",
+  "item.tofucraft.morijio": "御守盐",
   "item.tofucraft.bottle_mirin": "味醂",
   "item.tofucraft.bittern_bottle": "盐卤",
   "item.tofucraft.crimson_fluid_bottle" : "绯红液体瓶",
@@ -353,7 +353,7 @@
   "block.tofucraft.blocktofuegg": "玉子豆腐块",
   "block.tofucraft.tofuegg_brick": "玉子豆腐块",
   "block.tofucraft.tofuegg_smooth_brick": "平滑玉子豆腐砖",
-  "block.tofucraft.tofuegg_chiseled_brick": "雕纹冻豆腐砖",
+  "block.tofucraft.tofuegg_chiseled_brick": "雕纹玉子豆腐砖",
   "block.tofucraft.blocktofusesame": "芝麻豆腐块",
   "block.tofucraft.blocktofumiso": "味增豆腐块",
   "block.tofucraft.blocktofudried": "冻豆腐块",
@@ -847,3 +847,4 @@
   "tofucraft.tofu_crafters_book.antenna_basic.desc": "基础天线用于将TF能传输至其他使用TF能的机器.\n 需要将天线放置在类似于TF能量站的发电机上",
   "block.tofucraft.chili_crop" : "辣椒植株"
 }
+
