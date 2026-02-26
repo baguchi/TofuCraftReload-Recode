@@ -132,7 +132,7 @@ public class SproutsJarBlock extends Block implements SimpleWaterloggedBlock {
 				return InteractionResult.SUCCESS;
 			}
 			if (stat == Stat.SPROUTS_3) {
-				ItemStack salt = new ItemStack(TofuItems.SPROUTS.get(), 1);
+				ItemStack salt = new ItemStack(TofuItems.SPROUTS.get(), 2 + worldIn.getRandom().nextInt(3));
 				float f = 0.7F;
 				double d0 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.5D;
 				double d1 = (worldIn.getRandom().nextFloat() * f) + (1.0F - f) * 0.2D + 0.6D;

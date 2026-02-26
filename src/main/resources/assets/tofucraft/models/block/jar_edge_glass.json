@@ -1,4 +1,5 @@
 {
+  "ambientocclusion": false,
   "parent": "tofucraft:block/jar_edgemodel",
   "textures": {
     "glass": "block/tinted_glass",
