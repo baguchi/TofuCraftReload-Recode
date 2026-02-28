@@ -40,6 +40,11 @@ public class TofuBiomeDefaultFeatures {
 		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_TOFUGEM_LARGE);
 	}
 
+	public static void addCaveSproutFeatures(BiomeGenerationSettings.Builder p_194721_) {
+		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.BIG_SPROUT);
+		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.SPROUT_WATER_POOL);
+	}
+
 	public static void addForestFeatures(BiomeGenerationSettings.Builder p_194721_) {
 		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.TOFU_TREES_FOREST);
 		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.PATCH_TOFU_FLOWER);

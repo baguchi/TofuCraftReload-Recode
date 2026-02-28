@@ -26,9 +26,9 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(TofuTags.Items.SOYMILK).addTag(TofuTags.Items.MILK_SOYMILK);
 		tag(TofuTags.Items.MILK_SOYMILK).add(TofuItems.SOYMILK_BUCKET.get(), TofuItems.SOYMILK_BOTTLE.get());
 		tag(TofuTags.Items.RICE).add(TofuItems.RICE.get());
-		tag(ItemTags.LOGS_THAT_BURN).add(TofuBlocks.TOFU_STEM.get().asItem(), TofuBlocks.LEEK_STEM.get().asItem(), TofuBlocks.LEEK_GREEN_STEM.get().asItem());
-		tag(ItemTags.LOGS).add(TofuBlocks.TOFU_STEM.get().asItem(), TofuBlocks.LEEK_STEM.get().asItem(), TofuBlocks.LEEK_GREEN_STEM.get().asItem());
-		tag(ItemTags.PLANKS).add(TofuBlocks.TOFU_STEM_PLANKS.get().asItem()).add(TofuBlocks.LEEK_PLANKS.get().asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS.get().asItem());
+		tag(ItemTags.LOGS_THAT_BURN).add(TofuBlocks.SPROUT_STEM.get().asItem(), TofuBlocks.TOFU_STEM.get().asItem(), TofuBlocks.LEEK_STEM.get().asItem(), TofuBlocks.LEEK_GREEN_STEM.get().asItem());
+		tag(ItemTags.LOGS).add(TofuBlocks.SPROUT_STEM.get().asItem(), TofuBlocks.TOFU_STEM.get().asItem(), TofuBlocks.LEEK_STEM.get().asItem(), TofuBlocks.LEEK_GREEN_STEM.get().asItem());
+		tag(ItemTags.PLANKS).add(TofuBlocks.SPROUT_PLANKS.get().asItem()).add(TofuBlocks.TOFU_STEM_PLANKS.get().asItem()).add(TofuBlocks.LEEK_PLANKS.get().asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS.get().asItem());
 		tag(ItemTags.ARROWS).add(TofuItems.ZUNDA_ARROW.get());
 		tag(Tags.Items.SEEDS).add(TofuItems.SEEDS_CHILI.get(), TofuItems.SEEDS_SOYBEANS.get(), TofuItems.SEEDS_SOYBEANS_NETHER.get(), TofuItems.SEEDS_SOYBEANS_SOUL.get(), TofuItems.SEEDS_SOYBEANS_PALE.get(), TofuItems.SEEDS_SOYBEANS_PALE_GLOW.get(), TofuItems.SEEDS_RICE.get());
 
@@ -71,16 +71,16 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(TofuBlocks.TOFUSLATE.get().asItem());
 
 		tag(ItemTags.VILLAGER_PLANTABLE_SEEDS).add(TofuItems.SEEDS_CHILI.get(), TofuItems.SEEDS_SOYBEANS.get());
-		tag(ItemTags.WOODEN_SLABS).add(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get().asItem()).add(TofuBlocks.LEEK_PLANKS_SLAB.get().asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get().asItem());
-		tag(ItemTags.WOODEN_STAIRS).add(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get().asItem()).add(TofuBlocks.LEEK_PLANKS_STAIR.get().asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get().asItem());
-		tag(ItemTags.WOODEN_FENCES).add(TofuBlocks.LEEK_FENCE.get().asItem()).add(TofuBlocks.LEEK_GREEN_FENCE.get().asItem()).add(TofuBlocks.TOFU_STEM_FENCE.get().asItem());
-		tag(ItemTags.FENCE_GATES).add(TofuBlocks.TOFU_STEM_FENCE_GATE.get().asItem()).add(TofuBlocks.LEEK_FENCE_GATE.get().asItem()).add(TofuBlocks.LEEK_GREEN_FENCE_GATE.get().asItem());
-		tag(ItemTags.WOODEN_DOORS).add(TofuBlocks.TOFU_STEM_DOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_DOOR.get().asItem()).add(TofuBlocks.LEEK_DOOR.get().asItem());
-		tag(ItemTags.DOORS).add(TofuBlocks.TOFU_STEM_DOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_DOOR.get().asItem()).add(TofuBlocks.LEEK_DOOR.get().asItem());
-		tag(ItemTags.WOODEN_TRAPDOORS).add(TofuBlocks.TOFU_STEM_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_TRAPDOOR.get().asItem());
-		tag(ItemTags.TRAPDOORS).add(TofuBlocks.TOFU_STEM_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_TRAPDOOR.get().asItem());
-		tag(ItemTags.WOODEN_PRESSURE_PLATES).add(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.get().asItem()).add(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.get().asItem()).add(TofuBlocks.LEEK_PRESSURE_PLATE.get().asItem());
-		tag(ItemTags.WOODEN_BUTTONS).add(TofuBlocks.TOFU_STEM_BUTTON.get().asItem()).add(TofuBlocks.LEEK_GREEN_BUTTON.get().asItem()).add(TofuBlocks.LEEK_BUTTON.get().asItem());
+		tag(ItemTags.WOODEN_SLABS).add(TofuBlocks.SPROUT_PLANKS_SLAB.get().asItem()).add(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get().asItem()).add(TofuBlocks.LEEK_PLANKS_SLAB.get().asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get().asItem());
+		tag(ItemTags.WOODEN_STAIRS).add(TofuBlocks.SPROUT_PLANKS_STAIR.get().asItem()).add(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get().asItem()).add(TofuBlocks.LEEK_PLANKS_STAIR.get().asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get().asItem());
+		tag(ItemTags.WOODEN_FENCES).add(TofuBlocks.SPROUT_FENCE.get().asItem()).add(TofuBlocks.LEEK_FENCE.get().asItem()).add(TofuBlocks.LEEK_GREEN_FENCE.get().asItem()).add(TofuBlocks.TOFU_STEM_FENCE.get().asItem());
+		tag(ItemTags.FENCE_GATES).add(TofuBlocks.SPROUT_FENCE_GATE.get().asItem()).add(TofuBlocks.TOFU_STEM_FENCE_GATE.get().asItem()).add(TofuBlocks.LEEK_FENCE_GATE.get().asItem()).add(TofuBlocks.LEEK_GREEN_FENCE_GATE.get().asItem());
+		tag(ItemTags.WOODEN_DOORS).add(TofuBlocks.SPROUT_DOOR.get().asItem()).add(TofuBlocks.TOFU_STEM_DOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_DOOR.get().asItem()).add(TofuBlocks.LEEK_DOOR.get().asItem());
+		tag(ItemTags.DOORS).add(TofuBlocks.SPROUT_DOOR.get().asItem()).add(TofuBlocks.TOFU_STEM_DOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_DOOR.get().asItem()).add(TofuBlocks.LEEK_DOOR.get().asItem());
+		tag(ItemTags.WOODEN_TRAPDOORS).add(TofuBlocks.SPROUT_TRAPDOOR.get().asItem()).add(TofuBlocks.TOFU_STEM_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_TRAPDOOR.get().asItem());
+		tag(ItemTags.TRAPDOORS).add(TofuBlocks.SPROUT_TRAPDOOR.get().asItem()).add(TofuBlocks.TOFU_STEM_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_TRAPDOOR.get().asItem());
+		tag(ItemTags.WOODEN_PRESSURE_PLATES).add(TofuBlocks.SPROUT_PRESSURE_PLATE.get().asItem()).add(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.get().asItem()).add(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.get().asItem()).add(TofuBlocks.LEEK_PRESSURE_PLATE.get().asItem());
+		tag(ItemTags.WOODEN_BUTTONS).add(TofuBlocks.SPROUT_BUTTON.get().asItem()).add(TofuBlocks.TOFU_STEM_BUTTON.get().asItem()).add(TofuBlocks.LEEK_GREEN_BUTTON.get().asItem()).add(TofuBlocks.LEEK_BUTTON.get().asItem());
 
 
 		this.tag(ItemTags.WOODEN_SHELVES)

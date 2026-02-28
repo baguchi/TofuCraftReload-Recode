@@ -125,6 +125,29 @@ public class TofuBiomeBuilders {
 		return makeDefaultBiome(builder, builder1).setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(TofuSounds.ROUGH_GROUND_BGM)).build();
 	}
 
+	public static Biome sproutCaveBiome(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
+		BiomeGenerationSettings.Builder builder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
+		MobSpawnSettings.Builder builder1 = new MobSpawnSettings.Builder();
+
+		TofuBiomeDefaultFeatures.addDefaultCarvers(builder);
+		TofuBiomeDefaultFeatures.addDefaultOres(builder);
+		TofuBiomeDefaultFeatures.addCaveSproutFeatures(builder);
+		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
+		TofuBiomeDefaultFeatures.tofuWaterCreatureSpawns(builder1);
+		return fullDefinition(
+				0.8F,
+				0.6F,
+				new BiomeSpecialEffects.Builder()
+						.waterColor(0xBBDAF0)
+						.grassColorOverride(7115607)
+						.foliageColorOverride(7115607)
+						.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.NONE)
+						.build(),
+				builder1.build(),
+				builder.build(),
+				Biome.TemperatureModifier.NONE
+		).setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(TofuSounds.ROUGH_GROUND_BGM)).build();
+	}
 
 	public static Biome.BiomeBuilder makeDefaultBiome(BiomeGenerationSettings.Builder builder, MobSpawnSettings.Builder mobSpawnSetting) {
 		TofuBiomeDefaultFeatures.addDefaultCarvers(builder);
@@ -132,7 +155,7 @@ public class TofuBiomeBuilders {
 		TofuBiomeDefaultFeatures.tofuCreatureSpawns(mobSpawnSetting);
 		return fullDefinition(
 				0.8F,
-				0.0F,
+				0.6F,
 				new BiomeSpecialEffects.Builder()
 						.waterColor(0xBBDAF0)
 						.grassColorOverride(7115607)

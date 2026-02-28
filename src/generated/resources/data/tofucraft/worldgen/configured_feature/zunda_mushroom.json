@@ -1,6 +1,15 @@
 {
   "type": "minecraft:tree",
   "config": {
+    "below_trunk_provider": {
+      "fallback": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "tofucraft:tofu_terrain"
+        }
+      },
+      "rules": []
+    },
     "decorators": [],
     "foliage_placer": {
       "type": "tofucraft:mushroom_foliage_placer",

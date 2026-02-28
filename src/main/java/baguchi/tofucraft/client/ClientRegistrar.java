@@ -170,6 +170,7 @@ public class ClientRegistrar {
 			Sheets.addWoodType(TofuWoodTypes.LEEK);
 			Sheets.addWoodType(TofuWoodTypes.LEEK_GREEN);
 			Sheets.addWoodType(TofuWoodTypes.TOFU_STEM);
+			Sheets.addWoodType(TofuWoodTypes.SPROUT);
 		});
 
 	}
@@ -418,9 +419,11 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.LEEK_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.LEEK_BOAT));
 		event.registerEntityRenderer(TofuEntityTypes.LEEK_GREEN_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.LEEK_GREEN_BOAT));
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_STEM_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.TOFU_STEM_BOAT));
+		event.registerEntityRenderer(TofuEntityTypes.SPROUT_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.SPROUT_BOAT));
 		event.registerEntityRenderer(TofuEntityTypes.LEEK_CHEST_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.LEEK_CHEST_BOAT));
 		event.registerEntityRenderer(TofuEntityTypes.LEEK_GREEN_CHEST_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.LEEK_GREEN_CHEST_BOAT));
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_STEM_CHEST_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.TOFU_STEM_CHEST_BOAT));
+		event.registerEntityRenderer(TofuEntityTypes.SPROUT_CHEST_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.SPROUT_CHEST_BOAT));
 
 
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUBED.get(), TofuBedRenderer::new);
@@ -451,9 +454,11 @@ public class ClientRegistrar {
 		event.registerLayerDefinition(TofuModelLayers.TOFU_STEM_BOAT, BoatModel::createBoatModel);
 		event.registerLayerDefinition(TofuModelLayers.LEEK_BOAT, BoatModel::createBoatModel);
 		event.registerLayerDefinition(TofuModelLayers.LEEK_GREEN_BOAT, BoatModel::createBoatModel);
+		event.registerLayerDefinition(TofuModelLayers.SPROUT_BOAT, BoatModel::createBoatModel);
 		event.registerLayerDefinition(TofuModelLayers.TOFU_STEM_CHEST_BOAT, BoatModel::createChestBoatModel);
 		event.registerLayerDefinition(TofuModelLayers.LEEK_CHEST_BOAT, BoatModel::createChestBoatModel);
 		event.registerLayerDefinition(TofuModelLayers.LEEK_GREEN_CHEST_BOAT, BoatModel::createChestBoatModel);
+		event.registerLayerDefinition(TofuModelLayers.SPROUT_CHEST_BOAT, BoatModel::createChestBoatModel);
 	}
 
 	@SubscribeEvent

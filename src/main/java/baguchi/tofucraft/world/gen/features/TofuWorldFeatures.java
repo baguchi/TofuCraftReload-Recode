@@ -5,12 +5,14 @@ import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuFeatures;
 import baguchi.tofucraft.registry.TofuTags;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.WeightedList;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -21,8 +23,11 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -50,6 +55,8 @@ public class TofuWorldFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_DELTA = registerKey("tofu_delta");
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SPROUT_WATER_POOL = registerKey("sprout_water_pool");
+
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_FLOWER = registerKey("tofu_flower");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEEK = registerKey("leek");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BIG_LEEK = registerKey("big_leek");
@@ -68,6 +75,7 @@ public class TofuWorldFeatures {
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 		RuleTest ruletest = new TagMatchTest(TofuTags.Blocks.TOFU_TERRAIN);
+		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 		FeatureUtils.register(context, ORE_KINU_TOFU, Feature.ORE, new OreConfiguration(ruletest, TofuBlocks.KINUTOFU.get().defaultBlockState(), 20));
 		FeatureUtils.register(context, ORE_MINCED_TOFU, Feature.ORE, new OreConfiguration(ruletest, TofuBlocks.MINCEDTOFU.get().defaultBlockState(), 28));
 
@@ -88,6 +96,8 @@ public class TofuWorldFeatures {
 				Feature.DELTA_FEATURE,
 				new DeltaFeatureConfiguration(TofuBlocks.DOUBANJIANG.get().defaultBlockState(), TofuBlocks.MABOU_TERRAIN.get().defaultBlockState(), UniformInt.of(3, 7), UniformInt.of(0, 2))
 		);
+
+		FeatureUtils.register(context, SPROUT_WATER_POOL, Feature.WATERLOGGED_VEGETATION_PATCH, new VegetationPatchConfiguration(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE, BlockStateProvider.simple(TofuBlocks.MINCEDTOFU.get()), PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(ModTreeFeatures.SPROUT), new PlacementModifier[0]), CaveSurface.FLOOR, ConstantInt.of(3), 0.8F, 5, 0.055F, UniformInt.of(4, 7), 0.7F));
 
 		FeatureUtils.register(context, TOFU_FLOWER, Feature.FLOWER, grassPatch(BlockStateProvider.simple(TofuBlocks.TOFU_FLOWER.get()), 32));
 		FeatureUtils.register(context, LEEK, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(

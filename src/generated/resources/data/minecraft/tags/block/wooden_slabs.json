@@ -1,8 +1,8 @@
 {
   "values": [
+    "tofucraft:sprout_slab",
     "tofucraft:tofustem_slab",
     "tofucraft:leek_slab",
-    "tofucraft:leek_green_slab",
-    "tofucraft:tofustem_slab"
+    "tofucraft:leek_green_slab"
   ]
 }

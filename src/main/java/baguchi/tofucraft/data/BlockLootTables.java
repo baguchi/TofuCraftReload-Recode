@@ -276,6 +276,17 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.SPROUT_STEM.get());
 		dropSelf(TofuBlocks.YELLOW_SPROUT_STEM.get());
 
+		dropSelf(TofuBlocks.SPROUT_PLANKS.get());
+		dropSelf(TofuBlocks.SPROUT_PLANKS_STAIR.get());
+		registerSlab(TofuBlocks.SPROUT_PLANKS_SLAB.get());
+		dropSelf(TofuBlocks.SPROUT_FENCE.get());
+		dropSelf(TofuBlocks.SPROUT_FENCE_GATE.get());
+		this.add(TofuBlocks.SPROUT_DOOR.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		dropSelf(TofuBlocks.SPROUT_TRAPDOOR.get());
+		dropSelf(TofuBlocks.SPROUT_PRESSURE_PLATE.get());
+		dropSelf(TofuBlocks.SPROUT_SHELF.get());
+		dropSelf(TofuBlocks.SPROUT_BUTTON.get());
+
 		dropSelf(TofuBlocks.LEEK_GREEN_STEM.get());
 		dropSelf(TofuBlocks.LEEK_GREEN_PLANKS.get());
 		dropSelf(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get());

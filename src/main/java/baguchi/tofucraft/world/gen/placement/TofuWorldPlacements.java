@@ -2,15 +2,18 @@ package baguchi.tofucraft.world.gen.placement;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuBlocks;
+import baguchi.tofucraft.world.gen.features.ModTreeFeatures;
 import baguchi.tofucraft.world.gen.features.ModVegetationFeatures;
 import baguchi.tofucraft.world.gen.features.TofuWorldFeatures;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
@@ -19,11 +22,13 @@ import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
+import net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.NoiseThresholdCountPlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
 
@@ -54,6 +59,10 @@ public class TofuWorldPlacements {
 	public static final ResourceKey<PlacedFeature> LEEK_BONEMEAL = registerKey("leek_bonemeal");
 
 	public static final ResourceKey<PlacedFeature> BIG_LEEK = registerKey("big_leek");
+
+	public static final ResourceKey<PlacedFeature> BIG_SPROUT = registerKey("big_sprout");
+	public static final ResourceKey<PlacedFeature> SPROUT_WATER_POOL = registerKey("sprout_water_pool");
+
 
 	public static final ResourceKey<PlacedFeature> TOFU_BUILDING = registerKey("tofu_building");
 
@@ -95,6 +104,21 @@ public class TofuWorldPlacements {
 		PlacementUtils.register(context, LEEK_BONEMEAL, configuredFeature.getOrThrow(TofuWorldFeatures.LEEK), PlacementUtils.isEmpty());
 
 		PlacementUtils.register(context, BIG_LEEK, configuredFeature.getOrThrow(TofuWorldFeatures.BIG_LEEK), PlacementUtils.countExtra(3, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, BIG_SPROUT, configuredFeature.getOrThrow(ModTreeFeatures.SPROUT),
+				CountOnEveryLayerPlacement.of(5),
+				BiomeFilter.biome());
+		PlacementUtils.register(
+				context,
+				SPROUT_WATER_POOL,
+				configuredFeature.getOrThrow(TofuWorldFeatures.SPROUT_WATER_POOL),
+				CountPlacement.of(61),
+				InSquarePlacement.spread(),
+				PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+				EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+				RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+				BiomeFilter.biome()
+		);
+
 
 		PlacementUtils.register(context, TOFU_BUILDING, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_BUILDING), PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 

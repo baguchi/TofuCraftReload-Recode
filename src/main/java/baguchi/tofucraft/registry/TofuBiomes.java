@@ -27,6 +27,9 @@ public class TofuBiomes {
 	public static final ResourceKey<Biome> TOFU_BEACH = register("tofu_beach");
 
 
+	public static final ResourceKey<Biome> SPROUT_CAVE = register("sprout_cave");
+
+
 	public static void init() {
 
 	}
@@ -45,6 +48,7 @@ public class TofuBiomes {
 		context.register(TOFU_OCEAN, TofuBiomeBuilders.tofuOceanBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(TOFU_BEACH, TofuBiomeBuilders.tofuBeachBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(TOFU_RIVER, TofuBiomeBuilders.tofuRiverBiome(placedFeatures, vanillaConfiguredCarvers));
+		context.register(SPROUT_CAVE, TofuBiomeBuilders.sproutCaveBiome(placedFeatures, vanillaConfiguredCarvers));
 	}
 
 	private static ResourceKey<Biome> register(String p_48229_) {

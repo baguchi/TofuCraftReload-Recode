@@ -46,6 +46,17 @@ public class TofuBlockFamilies {
 			.door(TofuBlocks.LEEK_GREEN_DOOR.get())
 			.trapdoor(TofuBlocks.LEEK_GREEN_TRAPDOOR.get())
 			.getFamily();
+	public static final BlockFamily SPROUT_PLANKS = familyBuilder(TofuBlocks.SPROUT_PLANKS.get())
+			.button(TofuBlocks.SPROUT_BUTTON.get())
+			.fence(TofuBlocks.SPROUT_FENCE.get())
+			.fenceGate(TofuBlocks.SPROUT_FENCE_GATE.get())
+			.pressurePlate(TofuBlocks.SPROUT_PRESSURE_PLATE.get())
+			.sign(TofuBlocks.SPROUT_SIGN.get(), TofuBlocks.SPROUT_WALL_SIGN.get())
+			.slab(TofuBlocks.SPROUT_PLANKS_SLAB.get())
+			.stairs(TofuBlocks.SPROUT_PLANKS_STAIR.get())
+			.door(TofuBlocks.SPROUT_DOOR.get())
+			.trapdoor(TofuBlocks.SPROUT_TRAPDOOR.get())
+			.getFamily();
 
 	private static BlockFamily.Builder familyBuilder(Block baseBlock) {
 		BlockFamily.Builder builder = new BlockFamily.Builder(baseBlock);

@@ -344,6 +344,21 @@ public class TofuBlocks {
 	public static final DeferredBlock<RotatedPillarBlock> SPROUT_STEM = register("sprout_stem", BurnableRotatedPillarBlock::new, () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));
 	public static final DeferredBlock<RotatedPillarBlock> YELLOW_SPROUT_STEM = register("yellow_sprout_stem", BurnableRotatedPillarBlock::new, () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));
 
+	public static final DeferredBlock<Block> SPROUT_PLANKS = register("sprout_planks", Block::new, () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
+	public static final DeferredBlock<StairBlock> SPROUT_PLANKS_STAIR = register("sprout_stair", (properties) -> new StairBlock(SPROUT_PLANKS.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SPROUT_PLANKS.get()));
+	public static final DeferredBlock<SlabBlock> SPROUT_PLANKS_SLAB = register("sprout_slab", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(SPROUT_PLANKS.get()));
+	public static final DeferredBlock<FenceBlock> SPROUT_FENCE = register("sprout_fence", FenceBlock::new, () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
+	public static final DeferredBlock<FenceGateBlock> SPROUT_FENCE_GATE = register("sprout_fence_gate", (properties) -> new FenceGateBlock(TofuWoodTypes.SPROUT, properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F));
+	public static final DeferredBlock<StandingSignBlock> SPROUT_SIGN = register("sprout_sign", (properties) -> new StandingSignBlock(TofuWoodTypes.SPROUT, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SIGN));
+	public static final DeferredBlock<WallSignBlock> SPROUT_WALL_SIGN = registerWithoutItem("sprout_wall_sign", (properties) -> new WallSignBlock(TofuWoodTypes.SPROUT, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_SIGN));
+	public static final DeferredBlock<CeilingHangingSignBlock> SPROUT_HANGING_SIGN = register("sprout_hanging_sign", (properties) -> new CeilingHangingSignBlock(TofuWoodTypes.SPROUT, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_HANGING_SIGN));
+	public static final DeferredBlock<WallHangingSignBlock> SPROUT_WALL_HANGING_SIGN = registerWithoutItem("sprout_wall_hanging_sign", (properties) -> new WallHangingSignBlock(TofuWoodTypes.SPROUT, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_WALL_HANGING_SIGN));
+	public static final DeferredBlock<DoorBlock> SPROUT_DOOR = register("sprout_door", (properties) -> new DoorBlock(TofuBlockSetTypes.SPROUT, properties), () -> BlockBehaviour.Properties.ofFullCopy(SPROUT_PLANKS.get()).noOcclusion());
+	public static final DeferredBlock<TrapDoorBlock> SPROUT_TRAPDOOR = register("sprout_trapdoor", (properties) -> new TrapDoorBlock(TofuBlockSetTypes.SPROUT, properties), () -> BlockBehaviour.Properties.ofFullCopy(SPROUT_PLANKS.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
+	public static final DeferredBlock<ButtonBlock> SPROUT_BUTTON = register("sprout_button", (properties) -> new ButtonBlock(TofuBlockSetTypes.SPROUT, 30, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_BUTTON));
+	public static final DeferredBlock<PressurePlateBlock> SPROUT_PRESSURE_PLATE = register("sprout_pressure_plate", (properties) -> new PressurePlateBlock(TofuBlockSetTypes.SPROUT, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PRESSURE_PLATE));
+	public static final DeferredBlock<ShelfBlock> SPROUT_SHELF = register(
+			"sprout_shelf", ShelfBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_SHELF));
 
 
 	public static final DeferredBlock<RotatedPillarBlock> LEEK_GREEN_STEM = register("leek_green_stem", (properties) -> new BurnableRotatedPillarBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));

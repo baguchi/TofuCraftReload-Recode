@@ -87,6 +87,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
 				.save(this.output);
 
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TRANSPORTATION, TofuItems.SPROUT_BOAT.get(), 1)
+				.pattern("S S")
+				.pattern("SSS")
+				.define('S', TofuBlocks.SPROUT_PLANKS.get())
+				.unlockedBy("inside_of", insideOf(Blocks.WATER))
+				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TRANSPORTATION, TofuItems.TOFU_STEM_BOAT.get(), 1)
 				.pattern("S S")
 				.pattern("SSS")
@@ -103,6 +109,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("S S")
 				.pattern("SSS")
 				.define('S', TofuBlocks.LEEK_GREEN_PLANKS.get())
+				.unlockedBy("inside_of", insideOf(Blocks.WATER))
+				.save(this.output);
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.TRANSPORTATION, TofuItems.SPROUT_CHEST_BOAT.get(), 1)
+				.requires(TofuItems.SPROUT_BOAT.get())
+				.requires(Tags.Items.CHESTS_WOODEN)
 				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.TRANSPORTATION, TofuItems.TOFU_STEM_CHEST_BOAT.get(), 1)
@@ -525,6 +536,20 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.BOTTLE_DASHI.get())
 				.unlockedBy("has_item", has(TofuItems.ZUNDA.get()))
 				.save(this.output);
+
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.SPROUT_PLANKS.get(), 4)
+				.requires(TofuBlocks.SPROUT_STEM.get())
+				.unlockedBy("has_item", has(TofuBlocks.SPROUT_STEM.get()))
+				.save(this.output);
+
+		makeStairs(this.output, TofuBlocks.SPROUT_PLANKS_STAIR, TofuBlocks.SPROUT_PLANKS);
+		makeSlab(this.output, TofuBlocks.SPROUT_PLANKS_SLAB, TofuBlocks.SPROUT_PLANKS);
+		makeWoodFence(this.output, TofuBlocks.SPROUT_FENCE.get(), TofuBlocks.SPROUT_PLANKS.get());
+		makeFenceGate(this.output, TofuBlocks.SPROUT_FENCE_GATE.get(), TofuBlocks.SPROUT_PLANKS.get());
+		makeDoor(this.output, TofuBlocks.SPROUT_DOOR, TofuBlocks.SPROUT_PLANKS);
+		makeTrapdoor(this.output, TofuBlocks.SPROUT_TRAPDOOR, TofuBlocks.SPROUT_PLANKS);
+
+
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.TOFU_STEM_PLANKS.get(), 4)
 				.requires(TofuBlocks.TOFU_STEM.get())
@@ -1737,6 +1762,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSign(TofuBlocks.LEEK_SIGN, TofuBlocks.LEEK_PLANKS).save(this.output);
 		makeSign(TofuBlocks.LEEK_GREEN_SIGN, TofuBlocks.LEEK_GREEN_PLANKS).save(this.output);
 
+		makeHangingSign(TofuBlocks.SPROUT_HANGING_SIGN, TofuBlocks.SPROUT_STEM).save(this.output);
 		makeHangingSign(TofuBlocks.TOFU_STEM_HANGING_SIGN, TofuBlocks.TOFU_STEM).save(this.output);
 		makeHangingSign(TofuBlocks.LEEK_HANGING_SIGN, TofuBlocks.LEEK_STEM).save(this.output);
 		makeHangingSign(TofuBlocks.LEEK_GREEN_HANGING_SIGN, TofuBlocks.LEEK_GREEN_STEM).save(this.output);

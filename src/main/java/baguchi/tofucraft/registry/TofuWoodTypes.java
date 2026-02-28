@@ -3,6 +3,7 @@ package baguchi.tofucraft.registry;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class TofuWoodTypes {
+	public static final WoodType SPROUT = WoodType.register(new WoodType("tofucraft:sprout", TofuBlockSetTypes.SPROUT));
 	public static final WoodType LEEK = WoodType.register(new WoodType("tofucraft:leek", TofuBlockSetTypes.LEEK));
 	public static final WoodType LEEK_GREEN = WoodType.register(new WoodType("tofucraft:leek_green", TofuBlockSetTypes.LEEK_GREEN));
 

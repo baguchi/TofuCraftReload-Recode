@@ -19,6 +19,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 
@@ -54,23 +55,23 @@ public class ModTreeFeatures {
 	}
 
 	private static TreeConfiguration.TreeConfigurationBuilder createStraightBlobTree(Block trunk, Block leaves, int trunkSize, int foliageSize) {
-		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new StraightTrunkPlacer(trunkSize, 2, 0), BlockStateProvider.simple(leaves), new TofuFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(0), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1));
+		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new StraightTrunkPlacer(trunkSize, 2, 0), BlockStateProvider.simple(leaves), new TofuFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(0), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1)).belowTrunkProvider(RuleBasedBlockStateProvider.always(TofuBlocks.TOFU_TERRAIN.get()));
 	}
 
 	private static TreeConfiguration.TreeConfigurationBuilder createBigTrunkMushroom(Block trunk, Block leaves, int trunkSize, int foliageSize) {
-		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new FancyTrunkPlacer(trunkSize, 4, 0), BlockStateProvider.simple(leaves), new MushroomFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(1), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1));
+		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new FancyTrunkPlacer(trunkSize, 4, 0), BlockStateProvider.simple(leaves), new MushroomFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(1), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1)).belowTrunkProvider(RuleBasedBlockStateProvider.always(TofuBlocks.TOFU_TERRAIN.get()));
 	}
 
 	private static TreeConfiguration.TreeConfigurationBuilder createMushroom(Block trunk, Block leaves, int trunkSize, int foliageSize) {
-		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new StraightTrunkPlacer(trunkSize, 2, 0), BlockStateProvider.simple(leaves), new MushroomFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(0), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1));
+		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new StraightTrunkPlacer(trunkSize, 2, 0), BlockStateProvider.simple(leaves), new MushroomFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(0), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1)).belowTrunkProvider(RuleBasedBlockStateProvider.always(TofuBlocks.TOFU_TERRAIN.get()));
 	}
 
 	private static TreeConfiguration.TreeConfigurationBuilder createBigTree(Block trunk, Block leaves, int trunkSize, int foliageSize) {
-		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new FancyTrunkPlacer(trunkSize, 8, 0), BlockStateProvider.simple(leaves), new TofuFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(2), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1));
+		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new FancyTrunkPlacer(trunkSize, 8, 0), BlockStateProvider.simple(leaves), new TofuFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(2), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1)).belowTrunkProvider(RuleBasedBlockStateProvider.always(TofuBlocks.TOFU_TERRAIN.get()));
 	}
 
 	private static TreeConfiguration.TreeConfigurationBuilder createSprout(Block trunk, int trunkSize) {
-		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new SproutTrunkPlacer(trunkSize, 8, 2), BlockStateProvider.simple(Blocks.AIR), new NoFoliagePlacer(), new TwoLayersFeatureSize(1, 0, 1)).decorators(List.of(new SproutTopDecorator()));
+		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new SproutTrunkPlacer(trunkSize, 4, 4), BlockStateProvider.simple(Blocks.AIR), new NoFoliagePlacer(), new TwoLayersFeatureSize(1, 0, 1)).decorators(List.of(new SproutTopDecorator())).belowTrunkProvider(RuleBasedBlockStateProvider.always(TofuBlocks.TOFU_TERRAIN.get()));
 	}
 
 	private static TreeConfiguration.TreeConfigurationBuilder createApricotTree() {
@@ -94,6 +95,6 @@ public class ModTreeFeatures {
 		FeatureUtils.register(context, APRICOT_TREE, Feature.TREE, createApricotTree().build());
 		FeatureUtils.register(context, ZUNDA_MUSHROOM, Feature.TREE, createZunda().build());
 		FeatureUtils.register(context, ZUNDA_MUSHROOM_BIG, Feature.TREE, createZundaBig().build());
-		FeatureUtils.register(context, SPROUT, Feature.TREE, createSprout(TofuBlocks.SPROUT_STEM.get(), 5).build());
+		FeatureUtils.register(context, SPROUT, Feature.TREE, createSprout(TofuBlocks.SPROUT_STEM.get(), 2).build());
 	}
 }

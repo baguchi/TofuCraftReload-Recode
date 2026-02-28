@@ -494,10 +494,14 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> LEEK_BOAT = ITEMS.registerItem("leek_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_BOAT.get(), properties.stacksTo(1)));
 	public static final DeferredHolder<Item, Item> LEEK_GREEN_BOAT = ITEMS.registerItem("leek_green_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_GREEN_BOAT.get(), properties.stacksTo(1)));
 	public static final DeferredHolder<Item, Item> TOFU_STEM_BOAT = ITEMS.registerItem("tofu_stem_boat", (properties) -> new BoatItem(TofuEntityTypes.TOFU_STEM_BOAT.get(), properties.stacksTo(1)));
+	public static final DeferredHolder<Item, Item> SPROUT_BOAT = ITEMS.registerItem("sprout_boat", (properties) -> new BoatItem(TofuEntityTypes.SPROUT_BOAT.get(), properties.stacksTo(1)));
 
 	public static final DeferredHolder<Item, Item> LEEK_CHEST_BOAT = ITEMS.registerItem("leek_chest_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_CHEST_BOAT.get(), properties.stacksTo(1).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
 	public static final DeferredHolder<Item, Item> LEEK_GREEN_CHEST_BOAT = ITEMS.registerItem("leek_green_chest_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_GREEN_CHEST_BOAT.get(), properties.stacksTo(1).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
 	public static final DeferredHolder<Item, Item> TOFU_STEM_CHEST_BOAT = ITEMS.registerItem("tofu_stem_chest_boat", (properties) -> new BoatItem(TofuEntityTypes.TOFU_STEM_CHEST_BOAT.get(), properties.stacksTo(1).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
+	public static final DeferredHolder<Item, Item> SPROUT_CHEST_BOAT = ITEMS.registerItem("sprout_chest_boat", (properties) -> new BoatItem(TofuEntityTypes.SPROUT_CHEST_BOAT.get(), properties.stacksTo(1)));
+
+
 	public static final DeferredHolder<Item, Item> MUSIC_DISC_GREEN_BRANCH = ITEMS.registerItem("music_disc_green_branch", (properties) -> new Item(properties.jukeboxPlayable(TofuJukeboxSongs.GREEN_BRANCH).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
 	public static final DeferredHolder<Item, Item> TOFU_CRAFTERS_BOOK = ITEMS.registerItem("tofu_crafters_book", TofuBookItem::new);
 

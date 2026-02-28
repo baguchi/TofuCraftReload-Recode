@@ -190,6 +190,28 @@ public class TofuEntityTypes {
 							.clientTrackingRange(10).build(prefix("tofu_stem_chest_boat"))
 	);
 
+	public static final Supplier<EntityType<Boat>> SPROUT_BOAT = ENTITIES.register(
+			"sprout_boat",
+			() ->
+					EntityType.Builder.of(boatFactory(TofuItems.SPROUT_BOAT), MobCategory.MISC)
+							.noLootTable()
+							.requiredFeatures(TofuCraftReload.EXPERIMENTAL)
+							.sized(1.375F, 0.5625F)
+							.eyeHeight(0.5625F)
+							.clientTrackingRange(10).build(prefix("sprout_boat"))
+	);
+	public static final Supplier<EntityType<ChestBoat>> SPROUT_CHEST_BOAT = ENTITIES.register(
+			"sprout_chest_boat",
+			() ->
+					EntityType.Builder.of(chestBoatFactory(TofuItems.SPROUT_CHEST_BOAT), MobCategory.MISC)
+							.noLootTable()
+							.requiredFeatures(TofuCraftReload.EXPERIMENTAL)
+							.sized(1.375F, 0.5625F)
+							.eyeHeight(0.5625F)
+							.clientTrackingRange(10).build(prefix("sprout_chest_boat"))
+	);
+
+
 	private static EntityType.EntityFactory<Boat> boatFactory(Supplier<Item> p_376580_) {
 		return (p_375558_, p_375559_) -> new Boat(p_375558_, p_375559_, p_376580_);
 	}

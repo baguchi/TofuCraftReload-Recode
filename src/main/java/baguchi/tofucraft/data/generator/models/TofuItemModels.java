@@ -385,9 +385,12 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFU_STEM_BOAT.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.LEEK_BOAT.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.LEEK_GREEN_BOAT.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.SPROUT_BOAT.get(), ModelTemplates.FLAT_ITEM);
+
 		this.generateFlatItem(TofuItems.TOFU_STEM_CHEST_BOAT.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.LEEK_CHEST_BOAT.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.LEEK_GREEN_CHEST_BOAT.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.SPROUT_CHEST_BOAT.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.MUSIC_DISC_GREEN_BRANCH.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_CRAFTERS_BOOK.get(), ModelTemplates.FLAT_ITEM);

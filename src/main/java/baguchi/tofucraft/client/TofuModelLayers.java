@@ -27,7 +27,9 @@ public class TofuModelLayers {
 	public static final ModelLayerLocation LEEK_BOAT = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "leek_boat"), "main");
 	public static final ModelLayerLocation LEEK_GREEN_BOAT = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "leek_green_boat"), "main");
 	public static final ModelLayerLocation TOFU_STEM_BOAT = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_stem_boat"), "main");
+	public static final ModelLayerLocation SPROUT_BOAT = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "sprout_boat"), "main");
 	public static final ModelLayerLocation LEEK_CHEST_BOAT = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "leek_chest_boat"), "main");
 	public static final ModelLayerLocation LEEK_GREEN_CHEST_BOAT = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "leek_green_chest_boat"), "main");
 	public static final ModelLayerLocation TOFU_STEM_CHEST_BOAT = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_stem_chest_boat"), "main");
+	public static final ModelLayerLocation SPROUT_CHEST_BOAT = new ModelLayerLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "sprout_chest_boat"), "main");
 }
