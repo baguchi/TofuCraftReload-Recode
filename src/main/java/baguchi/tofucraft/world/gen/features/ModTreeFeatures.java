@@ -3,7 +3,10 @@ package baguchi.tofucraft.world.gen.features;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.world.gen.foliage.MushroomFoliagePlacer;
+import baguchi.tofucraft.world.gen.foliage.NoFoliagePlacer;
 import baguchi.tofucraft.world.gen.foliage.TofuFoliagePlacer;
+import baguchi.tofucraft.world.gen.treedecorators.SproutTopDecorator;
+import baguchi.tofucraft.world.gen.trunk.SproutTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
@@ -19,12 +22,16 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 
+import java.util.List;
+
 public class ModTreeFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_TREE = registerKey("tofu_tree");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_TREE_BIG = registerKey("tofu_tree_big");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ZUNDA_MUSHROOM = registerKey("zunda_mushroom");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ZUNDA_MUSHROOM_BIG = registerKey("zunda_mushroom_big");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SPROUT = registerKey("sprout");
 
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> APRICOT_TREE = registerKey("apricot_tree");
@@ -62,6 +69,10 @@ public class ModTreeFeatures {
 		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new FancyTrunkPlacer(trunkSize, 8, 0), BlockStateProvider.simple(leaves), new TofuFoliagePlacer(ConstantInt.of(foliageSize), ConstantInt.of(2), foliageSize + 1), new TwoLayersFeatureSize(1, 0, 1));
 	}
 
+	private static TreeConfiguration.TreeConfigurationBuilder createSprout(Block trunk, int trunkSize) {
+		return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(trunk), new SproutTrunkPlacer(trunkSize, 8, 2), BlockStateProvider.simple(Blocks.AIR), new NoFoliagePlacer(), new TwoLayersFeatureSize(1, 0, 1)).decorators(List.of(new SproutTopDecorator()));
+	}
+
 	private static TreeConfiguration.TreeConfigurationBuilder createApricotTree() {
 		return new TreeConfiguration.TreeConfigurationBuilder(
 				BlockStateProvider.simple(Blocks.OAK_LOG),
@@ -83,5 +94,6 @@ public class ModTreeFeatures {
 		FeatureUtils.register(context, APRICOT_TREE, Feature.TREE, createApricotTree().build());
 		FeatureUtils.register(context, ZUNDA_MUSHROOM, Feature.TREE, createZunda().build());
 		FeatureUtils.register(context, ZUNDA_MUSHROOM_BIG, Feature.TREE, createZundaBig().build());
+		FeatureUtils.register(context, SPROUT, Feature.TREE, createSprout(TofuBlocks.SPROUT_STEM.get(), 5).build());
 	}
 }

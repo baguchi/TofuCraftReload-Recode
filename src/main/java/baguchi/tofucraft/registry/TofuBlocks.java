@@ -341,6 +341,11 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> SAPLING_APRICOT = register("sapling_apricot", (properties) -> new ApricotSaplingBlock(TofuTreeGrowers.APRICOT_TREE, properties), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING));
 	public static final DeferredBlock<Block> LEAVES_APRICOT = register("leaves_apricot", (properties) -> new ApricotLeavesBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.2F).noOcclusion().isSuffocating((state, getter, pos) -> false).randomTicks().sound(SoundType.GRASS));
 
+	public static final DeferredBlock<RotatedPillarBlock> SPROUT_STEM = register("sprout_stem", BurnableRotatedPillarBlock::new, () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));
+	public static final DeferredBlock<RotatedPillarBlock> YELLOW_SPROUT_STEM = register("yellow_sprout_stem", BurnableRotatedPillarBlock::new, () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));
+
+
+
 	public static final DeferredBlock<RotatedPillarBlock> LEEK_GREEN_STEM = register("leek_green_stem", (properties) -> new BurnableRotatedPillarBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.STEM));
 
 	public static final DeferredBlock<Block> LEEK_GREEN_PLANKS = register("leek_green_planks", Block::new, () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
@@ -658,20 +663,33 @@ public class TofuBlocks {
 		FireBlock fireBlock = (FireBlock) Blocks.FIRE;
 		fireBlock.setFlammable(ZUNDATOFU_MUSHROOM.get(), 20, 20);
 		fireBlock.setFlammable(LEEK.get(), 20, 20);
+
+
+		fireBlock.setFlammable(SPROUT_STEM.get(), 5, 20);
+		fireBlock.setFlammable(YELLOW_SPROUT_STEM.get(), 5, 20);
+
+		fireBlock.setFlammable(TOFU_STEM.get(), 5, 20);
 		fireBlock.setFlammable(TOFU_STEM_PLANKS.get(), 5, 20);
 		fireBlock.setFlammable(TOFU_STEM_PLANKS_STAIR.get(), 5, 20);
 		fireBlock.setFlammable(TOFU_STEM_PLANKS_SLAB.get(), 5, 20);
 		fireBlock.setFlammable(TOFU_STEM_FENCE.get(), 5, 20);
 		fireBlock.setFlammable(TOFU_STEM_FENCE_GATE.get(), 5, 20);
+		fireBlock.setFlammable(TOFU_STEM_SHELF.get(), 30, 20);
+
+		fireBlock.setFlammable(LEEK_STEM.get(), 5, 20);
 		fireBlock.setFlammable(LEEK_PLANKS.get(), 5, 20);
 		fireBlock.setFlammable(LEEK_PLANKS_STAIR.get(), 5, 20);
 		fireBlock.setFlammable(LEEK_PLANKS_SLAB.get(), 5, 20);
 		fireBlock.setFlammable(LEEK_FENCE.get(), 5, 20);
 		fireBlock.setFlammable(LEEK_FENCE_GATE.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_SHELF.get(), 30, 20);
+
+		fireBlock.setFlammable(LEEK_GREEN_STEM.get(), 5, 20);
 		fireBlock.setFlammable(LEEK_GREEN_PLANKS.get(), 5, 20);
 		fireBlock.setFlammable(LEEK_GREEN_PLANKS_STAIR.get(), 5, 20);
 		fireBlock.setFlammable(LEEK_GREEN_PLANKS_SLAB.get(), 5, 20);
 		fireBlock.setFlammable(LEEK_GREEN_FENCE.get(), 5, 20);
 		fireBlock.setFlammable(LEEK_GREEN_FENCE_GATE.get(), 5, 20);
+		fireBlock.setFlammable(LEEK_GREEN_SHELF.get(), 30, 20);
 	}
 }

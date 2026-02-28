@@ -186,6 +186,10 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createTrivialCube(TofuBlocks.TOFU_BEDROCK.get());
 		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.ISHI_TOFU_STEM.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
 		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.TOFU_STEM.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
+
+		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.YELLOW_SPROUT_STEM.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
+		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.SPROUT_STEM.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
+
 		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.LEEK_STEM.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
 		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.LEEK_GREEN_STEM.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
 

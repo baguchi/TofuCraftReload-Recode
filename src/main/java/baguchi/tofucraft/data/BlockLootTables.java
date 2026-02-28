@@ -273,6 +273,9 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		dropSelf(TofuBlocks.TOFU_FLOWER.get());
 
+		dropSelf(TofuBlocks.SPROUT_STEM.get());
+		dropSelf(TofuBlocks.YELLOW_SPROUT_STEM.get());
+
 		dropSelf(TofuBlocks.LEEK_GREEN_STEM.get());
 		dropSelf(TofuBlocks.LEEK_GREEN_PLANKS.get());
 		dropSelf(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get());

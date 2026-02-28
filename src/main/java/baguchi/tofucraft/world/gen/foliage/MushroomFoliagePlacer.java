@@ -30,6 +30,7 @@ public class MushroomFoliagePlacer extends FoliagePlacer {
 		this.height = p_161358_;
 	}
 
+	@Override
 	protected FoliagePlacerType<?> type() {
 		return TofuFoliagePlacerType.MUSHROOM_FOLIAGE_PLACER.get();
 	}

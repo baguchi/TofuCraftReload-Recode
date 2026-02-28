@@ -63,7 +63,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 						, TofuBlocks.TF_CRAFTING_TABLE.get(), TofuBlocks.WAXED_ISHITOFU.get(), TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get())
 				.add(TofuBlocks.FOODPLATE.get());
 		tag(BlockTags.MINEABLE_WITH_AXE).add(TofuBlocks.SALTPAN.get()
-				, TofuBlocks.LEEK_GREEN_STEM.get(), TofuBlocks.LEEK_STEM.get()
+						, TofuBlocks.SPROUT_STEM.get(), TofuBlocks.YELLOW_SPROUT_STEM.get()
 				, TofuBlocks.TOFU_STEM.get(), TofuBlocks.TOFU_STEM_PLANKS.get(), TofuBlocks.TOFU_STEM_PLANKS_STAIR.get(), TofuBlocks.TOFU_STEM_PLANKS_SLAB.get(), TofuBlocks.TOFU_STEM_FENCE.get(), TofuBlocks.TOFU_STEM_FENCE_GATE.get(), TofuBlocks.TOFU_STEM_DOOR.get(), TofuBlocks.TOFU_STEM_TRAPDOOR.get()
 				, TofuBlocks.LEEK_STEM.get(), TofuBlocks.LEEK_PLANKS.get(), TofuBlocks.LEEK_PLANKS_STAIR.get(), TofuBlocks.LEEK_PLANKS_SLAB.get(), TofuBlocks.LEEK_FENCE.get(), TofuBlocks.LEEK_FENCE_GATE.get()
 						, TofuBlocks.LEEK_GREEN_STEM.get(), TofuBlocks.LEEK_GREEN_PLANKS.get(), TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get(), TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get(), TofuBlocks.LEEK_GREEN_FENCE.get(), TofuBlocks.LEEK_GREEN_FENCE_GATE.get(), TofuBlocks.LEEK_GREEN_DOOR.get(), TofuBlocks.LEEK_GREEN_TRAPDOOR.get(), TofuBlocks.LEEK_DOOR.get(), TofuBlocks.LEEK_TRAPDOOR.get()

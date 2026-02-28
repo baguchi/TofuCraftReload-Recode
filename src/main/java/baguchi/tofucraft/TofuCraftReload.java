@@ -44,6 +44,8 @@ import baguchi.tofucraft.registry.TofuRecipePropertySets;
 import baguchi.tofucraft.registry.TofuRecipes;
 import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofuTags;
+import baguchi.tofucraft.registry.TofuTreeDecoratorType;
+import baguchi.tofucraft.registry.TofuTrunkPlacerType;
 import baguchi.tofucraft.registry.TofunianProfessions;
 import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
@@ -152,8 +154,11 @@ public class TofuCraftReload {
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
+		TofuTrunkPlacerType.TRUNK_PLACER_TYPE.register(modBus);
 
 		TofuFoliagePlacerType.FOLIAGE_PLACER_TYPE.register(modBus);
+		TofuTreeDecoratorType.TREE_DECORATOR_TYPE.register(modBus);
+
 		TofuFeatures.FEATURES.register(modBus);
 		TofuSounds.SOUND_EVENTS.register(modBus);
 		TofuAttachments.ATTACHMENT_TYPES.register(modBus);
