@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "tofucraft:sprout_door",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "name": "tofucraft:sprout_door"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "tofucraft:blocks/sprout_door"
+}

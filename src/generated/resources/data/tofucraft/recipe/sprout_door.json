@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": "tofucraft:sprout_planks"
+  },
+  "pattern": [
+    "PP",
+    "PP",
+    "PP"
+  ],
+  "result": {
+    "count": 3,
+    "id": "tofucraft:sprout_door"
+  }
+}

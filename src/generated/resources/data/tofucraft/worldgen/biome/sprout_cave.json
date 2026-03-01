@@ -1,0 +1,84 @@
+{
+  "attributes": {
+    "minecraft:audio/background_music": {
+      "default": {
+        "max_delay": 24000,
+        "min_delay": 12000,
+        "sound": "tofucraft:music.rough_ground"
+      }
+    }
+  },
+  "carvers": [
+    "tofucraft:tofu_cave",
+    "tofucraft:tofu_cave_extra_underground",
+    "tofucraft:tofu_canyon"
+  ],
+  "downfall": 0.6,
+  "effects": {
+    "foliage_color": "#6c9357",
+    "grass_color": "#6c9357",
+    "water_color": "#bbdaf0"
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "tofucraft:ore_tofu_diamond",
+      "tofucraft:ore_tofu_diamond_medium",
+      "tofucraft:ore_tofu_diamond_buried",
+      "tofucraft:ore_tofu_diamond_large",
+      "tofucraft:ore_soy_force",
+      "tofucraft:ore_tofugem",
+      "tofucraft:ore_tofugem_large"
+    ],
+    [],
+    [],
+    [
+      "tofucraft:big_sprout",
+      "tofucraft:sprout_water_pool"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      {
+        "type": "tofucraft:tofu_slime",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "tofucraft:tofu_creeper",
+        "maxCount": 3,
+        "minCount": 2,
+        "weight": 10
+      },
+      {
+        "type": "tofucraft:tofu_spider",
+        "maxCount": 3,
+        "minCount": 2,
+        "weight": 30
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [
+      {
+        "type": "tofucraft:tofu_fish",
+        "maxCount": 6,
+        "minCount": 3,
+        "weight": 10
+      }
+    ],
+    "water_creature": []
+  },
+  "temperature": 0.8
+}

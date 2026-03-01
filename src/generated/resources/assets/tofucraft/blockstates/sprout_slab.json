@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tofucraft:block/sprout_slab"
+    },
+    "type=double": {
+      "model": "tofucraft:block/sprout_planks"
+    },
+    "type=top": {
+      "model": "tofucraft:block/sprout_slab_top"
+    }
+  }
+}

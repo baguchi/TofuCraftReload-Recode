@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "tofucraft:block/sprout_planks",
+    "side": "tofucraft:block/sprout_planks",
+    "top": "tofucraft:block/sprout_planks"
+  }
+}

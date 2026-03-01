@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_unpowered",
+  "textures": {
+    "all": "tofucraft:block/sprout_shelf",
+    "particle": "tofucraft:block/sprout_stem"
+  }
+}

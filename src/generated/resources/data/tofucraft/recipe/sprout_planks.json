@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "tofucraft:sprout_stem"
+  ],
+  "result": {
+    "count": 4,
+    "id": "tofucraft:sprout_planks"
+  }
+}

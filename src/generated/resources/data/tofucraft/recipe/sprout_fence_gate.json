@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": "tofucraft:sprout_planks",
+    "S": "#c:rods/wooden"
+  },
+  "pattern": [
+    "SMS",
+    "SMS"
+  ],
+  "result": {
+    "id": "tofucraft:sprout_fence_gate"
+  }
+}

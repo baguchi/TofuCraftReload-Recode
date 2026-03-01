@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": "tofucraft:sprout_planks",
+    "S": "#c:rods/wooden"
+  },
+  "pattern": [
+    "MSM",
+    "MSM"
+  ],
+  "result": {
+    "count": 3,
+    "id": "tofucraft:sprout_fence"
+  }
+}
