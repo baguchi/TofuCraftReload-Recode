@@ -249,7 +249,7 @@ public class TofuWorldBiomeBuilder {
 
 	private void addUndergroundBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> p_187227_) {
 		//this.addUndergroundBiome(p_187227_, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(0.8F, 1.0F), this.FULL_RANGE, this.FULL_RANGE, 0.0F, Biomes.DRIPSTONE_CAVES);
-		this.addUndergroundBiome(p_187227_, this.FULL_RANGE, Climate.Parameter.span(0.65F, 1.0F), this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F, TofuBiomes.SPROUT_CAVE);
+		this.addUndergroundBiome(p_187227_, this.FULL_RANGE, Climate.Parameter.span(0.4F, 1.0F), this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F, TofuBiomes.SPROUT_CAVE);
 	}
 
 	private ResourceKey<Biome> pickMiddleBiome(int p_187164_, int p_187165_, Climate.Parameter p_187166_) {
@@ -308,12 +308,45 @@ public class TofuWorldBiomeBuilder {
 		return resourcekey == null ? this.pickMiddleBiome(p_187249_, p_187250_, p_187251_) : resourcekey;
 	}
 
-	private void addSurfaceBiome(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> p_187181_, Climate.Parameter p_187182_, Climate.Parameter p_187183_, Climate.Parameter p_187184_, Climate.Parameter p_187185_, Climate.Parameter p_187186_, float p_187187_, ResourceKey<Biome> p_187188_) {
-		p_187181_.accept(Pair.of(Climate.parameters(p_187182_, p_187183_, p_187184_, p_187185_, Climate.Parameter.point(0.0F), p_187186_, p_187187_), p_187188_));
-		p_187181_.accept(Pair.of(Climate.parameters(p_187182_, p_187183_, p_187184_, p_187185_, Climate.Parameter.point(1.0F), p_187186_, p_187187_), p_187188_));
+	private void addSurfaceBiome(
+			Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> biomes,
+			Climate.Parameter temperature,
+			Climate.Parameter humidity,
+			Climate.Parameter continentalness,
+			Climate.Parameter erosion,
+			Climate.Parameter weirdness,
+			float offset,
+			ResourceKey<Biome> second
+	) {
+		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(0.0F), weirdness, offset), second));
+		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(1.0F), weirdness, offset), second));
 	}
 
-	private void addUndergroundBiome(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> p_187201_, Climate.Parameter p_187202_, Climate.Parameter p_187203_, Climate.Parameter p_187204_, Climate.Parameter p_187205_, Climate.Parameter p_187206_, float p_187207_, ResourceKey<Biome> p_187208_) {
-		p_187201_.accept(Pair.of(Climate.parameters(p_187202_, p_187203_, p_187204_, p_187205_, Climate.Parameter.span(0.2F, 0.9F), p_187206_, p_187207_), p_187208_));
+	private void addUndergroundBiome(
+			Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> biomes,
+			Climate.Parameter temperature,
+			Climate.Parameter humidity,
+			Climate.Parameter continentalness,
+			Climate.Parameter erosion,
+			Climate.Parameter weirdness,
+			float offset,
+			ResourceKey<Biome> biome
+	) {
+		biomes.accept(
+				Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(0.2F, 0.9F), weirdness, offset), biome)
+		);
+	}
+
+	private void addBottomBiome(
+			Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> biomes,
+			Climate.Parameter temperature,
+			Climate.Parameter humidity,
+			Climate.Parameter continentalness,
+			Climate.Parameter erosion,
+			Climate.Parameter weirdness,
+			float offset,
+			ResourceKey<Biome> biome
+	) {
+		biomes.accept(Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.point(1.1F), weirdness, offset), biome));
 	}
 }
