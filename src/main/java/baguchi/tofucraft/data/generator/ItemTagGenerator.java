@@ -87,19 +87,22 @@ public class ItemTagGenerator extends ItemTagsProvider {
 				.add(
 						TofuBlocks.LEEK_GREEN_SHELF.get().asItem(),
 						TofuBlocks.LEEK_SHELF.get().asItem(),
-						TofuBlocks.TOFU_STEM_SHELF.get().asItem()
+						TofuBlocks.TOFU_STEM_SHELF.get().asItem(),
+						TofuBlocks.SPROUT_SHELF.get().asItem()
 				);
 		this.tag(ItemTags.SIGNS)
 				.add(
 						TofuBlocks.LEEK_SIGN.get().asItem(),
 						TofuBlocks.LEEK_GREEN_SIGN.get().asItem(),
-						TofuBlocks.TOFU_STEM_SIGN.get().asItem()
+						TofuBlocks.TOFU_STEM_SIGN.get().asItem(),
+						TofuBlocks.SPROUT_SIGN.get().asItem()
 				);
 		this.tag(ItemTags.HANGING_SIGNS)
 				.add(
 						TofuBlocks.LEEK_HANGING_SIGN.get().asItem(),
 						TofuBlocks.LEEK_GREEN_HANGING_SIGN.get().asItem(),
-						TofuBlocks.TOFU_STEM_HANGING_SIGN.get().asItem()
+						TofuBlocks.TOFU_STEM_HANGING_SIGN.get().asItem(),
+						TofuBlocks.SPROUT_HANGING_SIGN.get().asItem()
 				);
 
 		this.tag(TofuTags.Items.STATUE_HAPPY).add(TofuItems.EDAMAME_TEMPLA.get(), TofuItems.ZUNDA_MOCHI.get(), TofuItems.ZUNDA_MANJU.get()
