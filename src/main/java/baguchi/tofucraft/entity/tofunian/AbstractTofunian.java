@@ -16,6 +16,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.util.Unit;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -281,6 +282,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 					new LootParams.Builder(level)
 							.withParameter(LootContextParams.ORIGIN, this.position())
 							.withParameter(LootContextParams.THIS_ENTITY, this)
+							.withParameter(LootContextParams.ADDITIONAL_COST_COMPONENT_ALLOWED, Unit.INSTANCE)
 							.create(LootContextParamSets.VILLAGER_TRADE)
 			)
 					.create(tradeSet.randomSequence());
