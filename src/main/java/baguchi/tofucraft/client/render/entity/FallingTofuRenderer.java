@@ -2,8 +2,8 @@ package baguchi.tofucraft.client.render.entity;
 
 import baguchi.tofucraft.entity.projectile.FallingTofuEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -21,13 +21,10 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 
 public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity, FallingBlockRenderState> {
-	private final BlockRenderDispatcher dispatcher;
 
 	public FallingTofuRenderer(EntityRendererProvider.Context context) {
 		super(context);
-
 		this.shadowRadius = 0.5F;
-		this.dispatcher = context.getBlockRenderDispatcher();
 	}
 
 	public boolean shouldRender(FallingTofuEntity p_362415_, Frustum p_364047_, double p_362218_, double p_363427_, double p_361722_) {
@@ -48,19 +45,23 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity, Falli
 		}
 	}
 
-
+	@Override
 	public FallingBlockRenderState createRenderState() {
 		return new FallingBlockRenderState();
 	}
 
-	public void extractRenderState(FallingTofuEntity p_364559_, FallingBlockRenderState p_360509_, float p_361019_) {
-		super.extractRenderState(p_364559_, p_360509_, p_361019_);
-		BlockPos blockpos = BlockPos.containing(p_364559_.getX(), p_364559_.getBoundingBox().maxY, p_364559_.getZ());
-
-		//p_360509_.movingBlockRenderState.randomSeedPos = p_364559_.getStartPos();
-		p_360509_.movingBlockRenderState.blockPos = blockpos;
-		p_360509_.movingBlockRenderState.blockState = p_364559_.getBlockState();
-		p_360509_.movingBlockRenderState.biome = p_364559_.level().getBiome(blockpos);
-		p_360509_.movingBlockRenderState.level = p_364559_.level();
+	@Override
+	public void extractRenderState(FallingTofuEntity entity, FallingBlockRenderState state, float p_361019_) {
+		super.extractRenderState(entity, state, p_361019_);
+		BlockPos blockpos = BlockPos.containing(entity.getX(), entity.getBoundingBox().maxY, entity.getZ());
+		BlockPos pos = BlockPos.containing(entity.getX(), entity.getBoundingBox().maxY, entity.getZ());
+		//state.movingBlockRenderState.randomSeedPos = entity.getStartPos();
+		state.movingBlockRenderState.blockPos = pos;
+		state.movingBlockRenderState.blockState = entity.getBlockState();
+		if (entity.level() instanceof ClientLevel clientLevel) {
+			state.movingBlockRenderState.biome = clientLevel.getBiome(pos);
+			state.movingBlockRenderState.cardinalLighting = clientLevel.cardinalLighting();
+			state.movingBlockRenderState.lightEngine = clientLevel.getLightEngine();
+		}
 	}
 }

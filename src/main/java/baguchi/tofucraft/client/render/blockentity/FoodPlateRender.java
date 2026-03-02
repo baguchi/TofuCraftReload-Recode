@@ -7,6 +7,7 @@ import baguchi.tofucraft.registry.TofuBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.block.BlockModelResolver;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
@@ -28,9 +29,11 @@ import org.jetbrains.annotations.Nullable;
 public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity, FoodPlateRenderState> {
 	private final RandomSource random = RandomSource.create();
 	private ItemModelResolver itemModelResolver;
+	private BlockModelResolver blockModelResolver;
 
-	public FoodPlateRender(BlockEntityRendererProvider.Context p_174114_) {
-		this.itemModelResolver = p_174114_.itemModelResolver();
+	public FoodPlateRender(BlockEntityRendererProvider.Context context) {
+		this.itemModelResolver = context.itemModelResolver();
+		this.blockModelResolver = context.blockModelResolver();
 	}
 
 	public FoodPlateRender() {
@@ -43,7 +46,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		poseStack.translate(0F, 0.1F, 0F);
 		BlockState state = TofuBlocks.FOODPLATE.get().defaultBlockState();
 		//poseStack.translate(-0.5F, 0F, -0.5F);
-		submitNodeCollector.submitBlock(poseStack, state, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+		foodPlateRenderState.plateBlock.submit(poseStack, submitNodeCollector, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 		poseStack.popPose();
 		if (!foodPlateRenderState.plateItem.isEmpty()) {
 			poseStack.pushPose();
@@ -92,15 +95,16 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	}
 
 	@Override
-	public void extractRenderState(FoodPlateBlockEntity foodPlateBlockEntity, FoodPlateRenderState foodPlateRenderState, float p_446851_, Vec3 p_445788_, @Nullable ModelFeatureRenderer.CrumblingOverlay p_446944_) {
-		BlockEntityRenderer.super.extractRenderState(foodPlateBlockEntity, foodPlateRenderState, p_446851_, p_445788_, p_446944_);
-		this.itemModelResolver.updateForTopItem(foodPlateRenderState.plateItem, foodPlateBlockEntity.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
-		foodPlateRenderState.plateState = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()).defaultBlockState();
-		foodPlateRenderState.candle = foodPlateBlockEntity.getStoredItem().is(ItemTags.CANDLES);
-		foodPlateRenderState.cake = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()) instanceof CakeBlock;
-		foodPlateRenderState.fire = foodPlateBlockEntity.isFire();
-		foodPlateRenderState.renderAmount = getRenderAmount(foodPlateBlockEntity.getStoredItem());
-		foodPlateRenderState.direction = foodPlateBlockEntity.getBlockState().getValue(FoodPlateBlock.FACING);
+	public void extractRenderState(FoodPlateBlockEntity foodPlateBlockEntity, FoodPlateRenderState state, float p_446851_, Vec3 p_445788_, @Nullable ModelFeatureRenderer.CrumblingOverlay p_446944_) {
+		BlockEntityRenderer.super.extractRenderState(foodPlateBlockEntity, state, p_446851_, p_445788_, p_446944_);
+		this.itemModelResolver.updateForTopItem(state.plateItem, foodPlateBlockEntity.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
+		state.plateState = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()).defaultBlockState();
+		state.candle = foodPlateBlockEntity.getStoredItem().is(ItemTags.CANDLES);
+		state.cake = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()) instanceof CakeBlock;
+		state.fire = foodPlateBlockEntity.isFire();
+		state.renderAmount = getRenderAmount(foodPlateBlockEntity.getStoredItem());
+		state.direction = foodPlateBlockEntity.getBlockState().getValue(FoodPlateBlock.FACING);
+		this.blockModelResolver.update(state.plateBlock, foodPlateBlockEntity.getBlockState());
 
 	}
 
@@ -121,7 +125,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 					state = state.setValue(CandleBlock.LIT, foodPlateRenderState.fire);
 				}
 				//poseStack.translate(-0.5F, 0F, -0.5F);
-				submitNodeCollector.submitBlock(poseStack, state, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+				foodPlateRenderState.plateBlock.submit(poseStack, submitNodeCollector, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 				poseStack.popPose();
 			} else if (!foodPlateRenderState.plateItem.isEmpty()) {
 				poseStack.pushPose();

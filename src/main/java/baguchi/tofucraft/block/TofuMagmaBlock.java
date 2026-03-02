@@ -15,11 +15,11 @@ public class TofuMagmaBlock extends MagmaBlock {
 
 	@Override
 	public @Nullable PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
-		return PathType.DAMAGE_FIRE;
+		return PathType.FIRE;
 	}
 
 	@Override
 	public @Nullable PathType getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, PathType originalType) {
-		return PathType.DANGER_FIRE;
+		return PathType.FIRE_IN_NEIGHBOR;
 	}
 }

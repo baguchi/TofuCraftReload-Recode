@@ -24,9 +24,8 @@ public class ReceivingTofuLevelScreen extends LevelLoadingScreen {
 		} else {
 			this.cachedNetherPortalSprite = this.minecraft
 					.getBlockRenderer()
-					.getBlockModelShaper()
-					.getParticleMaterial(TofuBlocks.TOFU_PORTAL.get().defaultBlockState())
-					.sprite();
+					.getBlockModel(TofuBlocks.TOFU_PORTAL.get().defaultBlockState())
+					.particleMaterial().sprite();
 			return this.cachedNetherPortalSprite;
 		}
 	}

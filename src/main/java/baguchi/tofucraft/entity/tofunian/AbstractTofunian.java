@@ -68,8 +68,8 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 
 	public AbstractTofunian(EntityType<? extends AbstractTofunian> type, Level worldIn) {
 		super(type, worldIn);
-		this.setPathfindingMalus(PathType.DANGER_FIRE, 16.0F);
-		this.setPathfindingMalus(PathType.DAMAGE_FIRE, -1.0F);
+		this.setPathfindingMalus(PathType.FIRE_IN_NEIGHBOR, 16.0F);
+		this.setPathfindingMalus(PathType.FIRE, -1.0F);
 	}
 
 	@Override

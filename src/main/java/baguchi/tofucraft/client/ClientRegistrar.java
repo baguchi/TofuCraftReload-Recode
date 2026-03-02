@@ -85,8 +85,10 @@ import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.registry.TofuWoodTypes;
 import com.google.common.reflect.TypeToken;
 import com.mojang.blaze3d.pipeline.BlendFunction;
+import com.mojang.blaze3d.pipeline.ColorTargetState;
+import com.mojang.blaze3d.pipeline.DepthStencilState;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
-import com.mojang.blaze3d.platform.DepthTestFunction;
+import com.mojang.blaze3d.platform.CompareOp;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
@@ -162,8 +164,8 @@ public class ClientRegistrar {
 					.withLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "pipeline/zunda"))
 					.withVertexShader("core/glint").withFragmentShader("core/glint")
 					.withSampler("Sampler0")
-					.withBlend(BlendFunction.ADDITIVE)
-					.withDepthWrite(false).withCull(false).withDepthTestFunction(DepthTestFunction.EQUAL_DEPTH_TEST).withVertexFormat(DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS).build();
+					.withColorTargetState(new ColorTargetState(BlendFunction.ADDITIVE)).withCull(false)
+					.withDepthStencilState(new DepthStencilState(CompareOp.EQUAL, false)).withVertexFormat(DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS).build();
 
 	public static void setup(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
@@ -647,7 +649,7 @@ public class ClientRegistrar {
 				timeInPortal = timeInPortal * 0.8F + 0.2F;
 			}
 			int i = ARGB.white(timeInPortal);
-			TextureAtlasSprite textureatlassprite = minecraft.getBlockRenderer().getBlockModelShaper().getParticleMaterial(TofuBlocks.TOFU_PORTAL.get().defaultBlockState()).sprite();
+			TextureAtlasSprite textureatlassprite = minecraft.getBlockRenderer().getBlockModel(TofuBlocks.TOFU_PORTAL.get().defaultBlockState()).particleMaterial().sprite();
 			guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, textureatlassprite, 0, 0,
 					guiGraphics.guiWidth(),
 					guiGraphics.guiHeight(),

@@ -16,6 +16,7 @@ import net.minecraft.world.attribute.EnvironmentAttributeMap;
 import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.clock.WorldClock;
 import net.minecraft.world.clock.WorldClocks;
+import net.minecraft.world.level.CardinalLighting;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.timeline.Timeline;
 
@@ -53,7 +54,7 @@ public class TofuDimensionTypes {
 				0.0F,
 				new DimensionType.MonsterSettings(UniformInt.of(0, 7), 0),
 				DimensionType.Skybox.OVERWORLD,
-				DimensionType.CardinalLightType.DEFAULT,
+				CardinalLighting.Type.DEFAULT,
 				environmentattributemap,
 				holdergetter.getOrThrow(TimelineTags.IN_OVERWORLD),
 				Optional.of(clocks.getOrThrow(WorldClocks.OVERWORLD))
