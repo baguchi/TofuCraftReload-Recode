@@ -11,6 +11,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.InsideBlockEffectType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -37,6 +40,26 @@ public abstract class DoubanjiangFluid extends WaterFluid {
 	@Override
 	public Item getBucket() {
 		return TofuItems.DOUBANJIANG_BUCKET.get();
+	}
+
+
+	@Override
+	protected void entityInside(Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier) {
+		effectApplier.apply(InsideBlockEffectType.CLEAR_FREEZE);
+		effectApplier.runAfter(InsideBlockEffectType.CLEAR_FREEZE, this::lavaHurt);
+	}
+
+	public void lavaHurt(Entity entity) {
+		if (!entity.fireImmune()) {
+			Level var2 = entity.level();
+			if (var2 instanceof ServerLevel) {
+				ServerLevel serverLevel = (ServerLevel) var2;
+				if (entity.hurtServer(serverLevel, entity.damageSources().lava(), 2.0F) && !entity.isSilent()) {
+					serverLevel.playSound((Entity) null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.GENERIC_BURN, entity.getSoundSource(), 0.4F, 2.0F + entity.getRandom().nextFloat() * 0.4F);
+				}
+			}
+		}
+
 	}
 
 
