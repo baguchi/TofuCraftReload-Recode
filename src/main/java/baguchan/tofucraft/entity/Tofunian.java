@@ -920,7 +920,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@Override
 	public void updateTrades() {
-		Int2ObjectMap<VillagerTrades.ItemListing[]> int2objectmap = TofunianTrades.TOFUNIAN_TRADE.get(getRole());
+		Int2ObjectMap<VillagerTrades.ItemListing[]> int2objectmap = TofunianTrades.TOFUNIAN_TRADE.get(getRole().getKey());
 		if (int2objectmap != null && !int2objectmap.isEmpty()) {
 			VillagerTrades.ItemListing[] avillagertrades$ItemListing = int2objectmap.get(this.tofunianLevel);
 			if (avillagertrades$ItemListing != null) {
@@ -1063,7 +1063,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@Override
 	protected Component getTypeName() {
-		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().getKey().location().toString().toLowerCase(Locale.ROOT));
+		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().getKey().location().getPath().toLowerCase(Locale.ROOT));
 	}
 
 	public enum TofunianType {
