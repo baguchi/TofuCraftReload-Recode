@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/iron_bars_cap_alt",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bars": "tofucraft:block/tofu_metal_bars",
+    "edge": "tofucraft:block/tofu_metal_bars",
+    "particle": "tofucraft:block/tofu_metal_bars"
+  }
+}
