@@ -85,7 +85,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('N', TofuItems.TOFU_METAL_NUGGET.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
 				.save(consumer);
-
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, TofuBlocks.TOFU_METAL_BARS.get(), 16)
+				.pattern("###")
+				.pattern("###")
+				.define('#', TofuItems.TOFUMETAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.save(consumer);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, TofuItems.TOFU_STEM_BOAT.get(), 1)
 				.pattern("S S")
@@ -447,14 +452,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_GRILLED, TofuBlocks.GRILLEDTOFU);
 		makeDoor(consumer, TofuBlocks.TOFUDOOR_ZUNDA, TofuBlocks.ZUNDATOFU);
 
-		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_KINU, TofuItems.TOFUKINU);
-		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_MOMEN, TofuItems.TOFUMOMEN);
-		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_ISHI, TofuItems.TOFUISHI);
-		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_METAL, TofuItems.TOFUMETAL);
-		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_HELL, TofuItems.TOFUHELL);
-		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_SOUL, TofuItems.TOFUSOUL);
-		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_GRILLED, TofuItems.TOFUGRILLED);
-		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_ZUNDA, TofuItems.TOFUZUNDA);
+		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_KINU, TofuBlocks.KINUTOFU);
+		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_MOMEN, TofuBlocks.MOMENTOFU);
+		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_ISHI, TofuBlocks.ISHITOFU);
+		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_METAL, TofuBlocks.METALTOFU);
+		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_HELL, TofuBlocks.HELLTOFU);
+		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_SOUL, TofuBlocks.SOULTOFU);
+		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_GRILLED, TofuBlocks.GRILLEDTOFU);
+		makeTrapdoor(consumer, TofuBlocks.TOFUTRAPDOOR_ZUNDA, TofuBlocks.ZUNDATOFU);
 
 		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.TOFUTRAPDOOR_ISHI, 1);
 		cuttingRecipe(consumer, TofuBlocks.ISHITOFU, TofuBlocks.TOFUFENCE_ISHI, 1);

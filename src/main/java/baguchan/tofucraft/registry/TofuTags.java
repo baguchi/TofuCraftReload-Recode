@@ -28,6 +28,12 @@ public class TofuTags {
 	}
 
 	public static class Blocks {
+		public static final TagKey<Block> TOFUNIAN_SOY_WORKER = tag("tofunian_soy_worker");
+		public static final TagKey<Block> TOFUNIAN_FARMER = tag("tofunian_farmer");
+		public static final TagKey<Block> TOFUNIAN_SMITH = tag("tofunian_smith");
+		public static final TagKey<Block> TOFUNIAN_ENGINEER = tag("tofunian_engineer");
+
+
 		public static final TagKey<Block> TOFU_METAL = tag("tofu_metal");
 		public static final TagKey<Block> SOFT_TOFU = tag("soft_tofu");
 

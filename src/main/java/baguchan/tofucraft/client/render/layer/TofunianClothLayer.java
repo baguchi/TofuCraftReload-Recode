@@ -61,6 +61,6 @@ public class TofunianClothLayer extends RenderLayer<Tofunian, TofunianModel<Tofu
 		String cloth = "";
 		if (entity.getTofunianType() != Tofunian.TofunianType.NORMAL)
 			cloth = entity.getTofunianType().name().toLowerCase();
-		return ResourceLocation.parse("tofucraft:textures/entity/tofunian/" + cloth + "_cloth.png");
+		return ResourceLocation.parse("tofucraft:textures/entity/tofunian/cloth/" + cloth + "_cloth.png");
 	}
 }

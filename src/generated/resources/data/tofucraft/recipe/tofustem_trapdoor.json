@@ -7,8 +7,8 @@
     }
   },
   "pattern": [
-    "PPP",
-    "PPP"
+    "PP",
+    "PP"
   ],
   "result": {
     "count": 2,

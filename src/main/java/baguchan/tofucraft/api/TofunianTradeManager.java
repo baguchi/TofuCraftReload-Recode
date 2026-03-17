@@ -2,18 +2,20 @@ package baguchan.tofucraft.api;
 
 import baguchan.tofucraft.api.event.TofunianTradeEvent;
 import baguchan.tofucraft.api.event.TravelerTofunianTradesEvent;
-import baguchan.tofucraft.entity.Tofunian;
+import baguchan.tofucraft.registry.TofunianProfessions;
 import baguchan.tofucraft.registry.TofunianTrades;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.TagsUpdatedEvent;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class TofunianTradeManager {
 	public static void loadTrades(TagsUpdatedEvent e) {
@@ -34,8 +36,8 @@ public class TofunianTradeManager {
 	}
 
 	private static void postTofunianEvents(HolderLookup.Provider registries) {
-		for (Tofunian.Roles prof : Tofunian.Roles.values()) {
-			Int2ObjectMap<VillagerTrades.ItemListing[]> trades = TofunianTrades.TOFUNIAN_TRADE.getOrDefault(prof, new Int2ObjectOpenHashMap<>());
+		for (Map.Entry<ResourceKey<TofunianProfession>, TofunianProfession> prof : TofunianProfessions.getRegistry().entrySet()) {
+			Int2ObjectMap<VillagerTrades.ItemListing[]> trades = TofunianTrades.TOFUNIAN_TRADE.getOrDefault(prof.getKey(), new Int2ObjectOpenHashMap<>());
 			Int2ObjectMap<List<VillagerTrades.ItemListing>> mutableTrades = new Int2ObjectOpenHashMap<>();
 			for (int i = 1; i < 6; i++) {
 				mutableTrades.put(i, NonNullList.create());
@@ -43,10 +45,10 @@ public class TofunianTradeManager {
 			trades.int2ObjectEntrySet().forEach(e -> {
 				Arrays.stream(e.getValue()).forEach(mutableTrades.get(e.getIntKey())::add);
 			});
-			NeoForge.EVENT_BUS.post(new TofunianTradeEvent(mutableTrades, prof, registries));
+			NeoForge.EVENT_BUS.post(new TofunianTradeEvent(mutableTrades, prof.getKey(), registries));
 			Int2ObjectMap<VillagerTrades.ItemListing[]> newTrades = new Int2ObjectOpenHashMap<>();
 			mutableTrades.int2ObjectEntrySet().forEach(e -> newTrades.put(e.getIntKey(), e.getValue().toArray(new VillagerTrades.ItemListing[0])));
-			TofunianTrades.TOFUNIAN_TRADE.put(prof, newTrades);
+			TofunianTrades.TOFUNIAN_TRADE.put(prof.getKey(), newTrades);
 		}
 	}
 }

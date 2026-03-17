@@ -360,6 +360,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFU_METAL_LANTERN.get());
 		dropSelf(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
 		dropSelf(TofuBlocks.TOFU_METAL_CHAIN.get());
+		dropSelf(TofuBlocks.TOFU_METAL_BARS.get());
 
 		dropPottedContents(TofuBlocks.POTTED_TOFU_SAPLING.get());
 		dropPottedContents(TofuBlocks.POTTED_APRICOT_SAPLING.get());

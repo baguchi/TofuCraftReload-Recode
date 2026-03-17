@@ -291,8 +291,8 @@ public abstract class CraftingDataHelper extends RecipeProvider {
 
 	public void makeTrapdoor(RecipeOutput consumer, Supplier<? extends Block> trapdoorOut, Supplier<? extends ItemLike> plankIn) {
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, trapdoorOut.get(), 2)
-				.pattern("PPP")
-				.pattern("PPP")
+				.pattern("PP")
+				.pattern("PP")
 				.define('P', plankIn.get())
 				.unlockedBy("has_" + BuiltInRegistries.ITEM.getKey(plankIn.get().asItem()).getPath(), has(plankIn.get())).save(consumer);
 	}

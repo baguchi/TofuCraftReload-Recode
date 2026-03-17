@@ -549,6 +549,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		singleTex(TofuItems.LEEK_GREEN_CHEST_BOAT);
 
 		singleTex(TofuBlocks.TOFU_METAL_CHAIN);
+		itemBlockFlat(TofuBlocks.TOFU_METAL_BARS);
 		singleTex(TofuBlocks.TOFU_METAL_LANTERN);
 		singleTex(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
 		toBlock(TofuBlocks.TOFU_DETECTOR);

@@ -3,12 +3,12 @@
   "category": "misc",
   "key": {
     "P": {
-      "item": "tofucraft:tofugrilled"
+      "item": "tofucraft:blocktofugrilled"
     }
   },
   "pattern": [
-    "PPP",
-    "PPP"
+    "PP",
+    "PP"
   ],
   "result": {
     "count": 2,

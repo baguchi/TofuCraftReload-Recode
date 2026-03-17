@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity.goal;
 
 import baguchan.tofucraft.entity.Tofunian;
+import baguchan.tofucraft.registry.TofunianProfessions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.LevelReader;
@@ -16,17 +17,17 @@ public class MoveToJobGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isDay() && this.creature.getRole() != Tofunian.Roles.TOFUNIAN && this.creature.getTofunianJobBlock() != null && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isDay() && !this.creature.getRole().is(TofunianProfessions.NONE) && this.creature.getTofunianJobBlock() != null && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.level().isDay() && this.creature.getTofunianJobBlock() != null && this.creature.getRole() != Tofunian.Roles.TOFUNIAN);
+		return (super.canContinueToUse() && this.creature.level().isDay() && this.creature.getTofunianJobBlock() != null && !this.creature.getRole().is(TofunianProfessions.NONE));
 	}
 
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		return this.creature.getRole().is(blockstate);
+		return this.creature.getRole().value().is(blockstate);
 	}
 
 

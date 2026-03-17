@@ -136,6 +136,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TOFU_METAL_LANTERN,
 						TofuBlocks.TOFU_METAL_SOUL_LANTERN,
 						TofuBlocks.TOFU_METAL_CHAIN,
+						TofuBlocks.TOFU_METAL_BARS,
 						TofuBlocks.DIAMONDTOFU,
 						TofuBlocks.TOFU_GEM_BLOCK,
 						TofuBlocks.ADVANCE_TOFU_GEM_BLOCK,

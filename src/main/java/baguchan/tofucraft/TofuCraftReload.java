@@ -37,6 +37,7 @@ import baguchan.tofucraft.registry.TofuPoiTypes;
 import baguchan.tofucraft.registry.TofuProfessions;
 import baguchan.tofucraft.registry.TofuRecipes;
 import baguchan.tofucraft.registry.TofuSounds;
+import baguchan.tofucraft.registry.TofunianProfessions;
 import com.google.common.collect.Maps;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -105,6 +106,8 @@ public class TofuCraftReload {
 		TofuRecipes.RECIPE_SERIALIZERS.register(modBus);
 		TofuPoiTypes.POI_TYPES.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
+		TofunianProfessions.TOFUNIAN_PROFESSION.register(modBus);
+
 		TofuLootModifiers.LOOT_MODIFIERS.register(modBus);
 
 		TofuArmorMaterial.ARMOR_MATERIALS.register(modBus);

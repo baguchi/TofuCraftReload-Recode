@@ -1,5 +1,6 @@
 package baguchan.tofucraft.entity;
 
+import baguchan.tofucraft.api.TofunianProfession;
 import baguchan.tofucraft.entity.goal.CropHarvestGoal;
 import baguchan.tofucraft.entity.goal.DoSleepingGoal;
 import baguchan.tofucraft.entity.goal.EatItemGoal;
@@ -18,17 +19,20 @@ import baguchan.tofucraft.entity.goal.TofunianTradeWithPlayerGoal;
 import baguchan.tofucraft.entity.goal.WakeUpGoal;
 import baguchan.tofucraft.registry.TofuAdvancements;
 import baguchan.tofucraft.registry.TofuBiomes;
+import baguchan.tofucraft.registry.TofuEntityDatas;
 import baguchan.tofucraft.registry.TofuEntityTypes;
 import baguchan.tofucraft.registry.TofuItems;
 import baguchan.tofucraft.registry.TofuParticleTypes;
 import baguchan.tofucraft.registry.TofuSounds;
+import baguchan.tofucraft.registry.TofunianProfessions;
 import baguchan.tofucraft.registry.TofunianTrades;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Dynamic;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -39,6 +43,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -95,9 +101,7 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -105,11 +109,11 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -117,7 +121,7 @@ import java.util.stream.Collectors;
 public class Tofunian extends AbstractTofunian implements ReputationEventHandler {
 
 	private static final EntityDataAccessor<String> ACTION = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
-	private static final EntityDataAccessor<String> ROLE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
+	private static final EntityDataAccessor<Holder<TofunianProfession>> ROLE = SynchedEntityData.defineId(Tofunian.class, TofuEntityDatas.TOFUNIAN_PROFESSION.get());
 	private static final EntityDataAccessor<String> TOFUNIAN_TYPE = SynchedEntityData.defineId(Tofunian.class, EntityDataSerializers.STRING);
 
 	public static final Map<Item, Integer> FOOD_POINTS = ImmutableMap.of(TofuItems.SOYMILK.get(), 3, TofuItems.TOFUCOOKIE.get(), 3, TofuItems.TOFUGRILLED.get(), 1);
@@ -260,9 +264,11 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return day % 5 == 0;
 	}
 
+	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
-		builder.define(ROLE, Roles.TOFUNIAN.name());
+		Registry<TofunianProfession> registry3 = TofunianProfessions.getRegistry();
+		builder.define(ROLE, registry3.getHolderOrThrow(TofunianProfessions.NONE.getKey()));
 		builder.define(ACTION, Actions.NORMAL.name());
 		builder.define(TOFUNIAN_TYPE, TofunianType.NORMAL.name());
 	}
@@ -285,12 +291,16 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.actionTick = 0;
 	}
 
-	public void setRole(Roles role) {
-		this.entityData.set(ROLE, role.name());
+	public void setRole(Holder<TofunianProfession> role) {
+		this.entityData.set(ROLE, role);
 	}
 
-	public Roles getRole() {
-		return Roles.get(this.entityData.get(ROLE));
+	public void setRole(ResourceKey<TofunianProfession> role) {
+		this.entityData.set(ROLE, TofunianProfessions.getRegistry().getHolderOrThrow(role));
+	}
+
+	public Holder<TofunianProfession> getRole() {
+		return this.entityData.get(ROLE);
 	}
 
 	public void setTofunianType(TofunianType type) {
@@ -355,7 +365,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			level().broadcastEntityEvent(this, (byte) 14);
 			this.previousCustomer = null;
 		}
-		if (getRole() == Roles.TOFUNIAN && isTrading()) {
+		if (getRole().is(TofunianProfessions.NONE) && isTrading()) {
 			stopTrading();
 		}
 
@@ -431,14 +441,14 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
 
 		//validate job position
-		if (this.getTofunianJobBlock() != null && this.getRole() != Roles.TOFUNIAN) {
-			if (!this.getRole().is(this.level().getBlockState(this.getTofunianJobBlock()))) {
+		if (this.getTofunianJobBlock() != null && !getRole().is(TofunianProfessions.NONE)) {
+			if (!this.getRole().value().is(this.level().getBlockState(this.getTofunianJobBlock()))) {
 				this.setTofunianJobBlock(null);
 
 				//if xp is none. set role normal
 				if (this.getTofunianLevel() == 1 && this.getVillagerXp() == 0) {
 					this.setOffers(null);
-					this.setRole(Roles.TOFUNIAN);
+					this.setRole(TofunianProfessions.NONE);
 				}
 			}
 		}
@@ -729,7 +739,8 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		if (this.villageCenter != null) {
 			compound.put("VillageCenter", NbtUtils.writeBlockPos(this.villageCenter));
 		}
-		compound.putString("Roles", getRole().name());
+		compound.putString("tofunian_roles", this.getRole().unwrapKey().orElse(TofunianProfessions.NONE.getKey()).location().toString());
+
 		compound.putString("TofunianType", getTofunianType().name());
 	}
 
@@ -758,8 +769,24 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		if (compound.contains("VillageCenter")) {
 			this.villageCenter = NbtUtils.readBlockPos(compound, "VillageCenter").orElse(null);
 		}
+
+
 		if (compound.contains("Roles")) {
-			setRole(Roles.get(compound.getString("Roles")));
+			String optionalOld = compound.getString("Roles");
+			if (optionalOld.contains("SOYWORKER")) {
+				setRole(TofunianProfessions.SOY_WORKER);
+			}
+			if (optionalOld.contains("TOFUSMITH")) {
+				setRole(TofunianProfessions.SMITH);
+			}
+			if (optionalOld.contains("TOFUCOOK")) {
+				setRole(TofunianProfessions.FARMER);
+			}
+		} else {
+			Optional.ofNullable(ResourceLocation.tryParse(compound.getString("tofunian_roles")))
+					.map(p_335980_ -> ResourceKey.create(TofunianProfessions.TOFUNIAN_PROFESSION_REGISTRY_KEY, p_335980_))
+					.flatMap(TofunianProfessions.getRegistry()::getHolder)
+					.ifPresent(this::setRole);
 		}
 		if (compound.contains("TofunianType")) {
 			setTofunianType(TofunianType.get(compound.getString("TofunianType")));
@@ -1036,7 +1063,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@Override
 	protected Component getTypeName() {
-		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().name().toLowerCase(Locale.ROOT));
+		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().getKey().location().toString().toLowerCase(Locale.ROOT));
 	}
 
 	public enum TofunianType {
@@ -1086,51 +1113,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			return NORMAL;
 		}
 
-	}
-
-	public enum Roles {
-		TOFUCOOK(getBlockStates(Blocks.COMPOSTER)), TOFUSMITH(getBlockStates(Blocks.BLAST_FURNACE)), SOYWORKER((Set) ImmutableList.of(Blocks.CAULDRON, Blocks.LAVA_CAULDRON, Blocks.WATER_CAULDRON, Blocks.POWDER_SNOW_CAULDRON).stream().flatMap((p_218093_) -> {
-			return p_218093_.getStateDefinition().getPossibleStates().stream();
-		}).collect(ImmutableSet.toImmutableSet())), TOFUNIAN(Set.of());
-
-		private static final Map<String, Roles> lookup;
-
-		static {
-			lookup = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, p_220362_0_ -> p_220362_0_));
-		}
-
-		private final Set<BlockState> matchingStates;
-
-		private Roles(Set<BlockState> matchingStates) {
-			matchingStates = Set.copyOf(matchingStates);
-			this.matchingStates = matchingStates;
-		}
-
-		public boolean is(BlockState p_148693_) {
-			return this.matchingStates.contains(p_148693_);
-		}
-
-		private static Set<BlockState> getBlockStates(Block p_218074_) {
-			return ImmutableSet.copyOf(p_218074_.getStateDefinition().getPossibleStates());
-		}
-
-		public static Roles get(String nameIn) {
-			for (Roles role : values()) {
-				if (role.name().equals(nameIn))
-					return role;
-			}
-			return TOFUNIAN;
-		}
-
-		@Nullable
-		public static Roles getJob(BlockState blockState) {
-			for (Roles role : values()) {
-				if (role != TOFUNIAN && role.is(blockState)) {
-					return role;
-				}
-			}
-			return null;
-		}
 	}
 
 	class MoveToGoal extends Goal {

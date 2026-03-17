@@ -236,6 +236,7 @@ public class BlockstateGenerator extends BlockStateProvider {
 		this.carpet(TofuBlocks.YUBA);
 		this.simpleBlock(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN);
 		this.chainBlock(TofuBlocks.TOFU_METAL_CHAIN);
+		this.bars(TofuBlocks.TOFU_METAL_BARS.get());
 		this.lantern(TofuBlocks.TOFU_METAL_LANTERN);
 		this.lantern(TofuBlocks.TOFU_METAL_SOUL_LANTERN);
 		this.translucentBlock(TofuBlocks.ZUNDAMA_BLOCK);
@@ -244,6 +245,63 @@ public class BlockstateGenerator extends BlockStateProvider {
 		simpleBlock(TofuBlocks.TF_COLLECTOR);
 		simpleBlock(TofuBlocks.SALT_BLOCK);
 	}
+
+	public void bars(Block block) {
+		ResourceLocation texture = this.texture(this.name(block));
+
+		ModelFile postEnds = this.models().withExistingParent(this.name(block) + "_post_ends", this.mcLoc("block/iron_bars_post_ends")).texture("edge", texture).texture("particle", texture).renderType(ResourceLocation.withDefaultNamespace("cutout"));
+		ModelFile post = this.models().withExistingParent(this.name(block) + "_post", this.mcLoc("block/iron_bars_post")).texture("bars", texture).texture("particle", texture).renderType(ResourceLocation.withDefaultNamespace("cutout"));
+		ModelFile cap = this.models().withExistingParent(this.name(block) + "_cap", this.mcLoc("block/iron_bars_cap")).texture("edge", texture).texture("bars", texture).texture("particle", texture).renderType(ResourceLocation.withDefaultNamespace("cutout"));
+		ModelFile capAlt = this.models().withExistingParent(this.name(block) + "_cap_alt", this.mcLoc("block/iron_bars_cap_alt")).texture("edge", texture).texture("bars", texture).texture("particle", texture).renderType(ResourceLocation.withDefaultNamespace("cutout"));
+		ModelFile side = this.models().withExistingParent(this.name(block) + "_side", this.mcLoc("block/iron_bars_side")).texture("edge", texture).texture("bars", texture).texture("particle", texture).renderType(ResourceLocation.withDefaultNamespace("cutout"));
+		ModelFile sideAlt = this.models().withExistingParent(this.name(block) + "_side_alt", this.mcLoc("block/iron_bars_side_alt")).texture("edge", texture).texture("bars", texture).texture("particle", texture).renderType(ResourceLocation.withDefaultNamespace("cutout"));
+
+		this.getMultipartBuilder(block)
+				.part().modelFile(postEnds).addModel().end()
+				.part().modelFile(post).addModel()
+				.condition(BlockStateProperties.NORTH, false)
+				.condition(BlockStateProperties.EAST, false)
+				.condition(BlockStateProperties.SOUTH, false)
+				.condition(BlockStateProperties.WEST, false)
+				.end()
+				.part().modelFile(cap).addModel()
+				.condition(BlockStateProperties.NORTH, true)
+				.condition(BlockStateProperties.EAST, false)
+				.condition(BlockStateProperties.SOUTH, false)
+				.condition(BlockStateProperties.WEST, false)
+				.end()
+				.part().modelFile(cap).rotationY(90).addModel()
+				.condition(BlockStateProperties.NORTH, false)
+				.condition(BlockStateProperties.EAST, true)
+				.condition(BlockStateProperties.SOUTH, false)
+				.condition(BlockStateProperties.WEST, false)
+				.end()
+				.part().modelFile(capAlt).addModel()
+				.condition(BlockStateProperties.NORTH, false)
+				.condition(BlockStateProperties.EAST, false)
+				.condition(BlockStateProperties.SOUTH, true)
+				.condition(BlockStateProperties.WEST, false)
+				.end()
+				.part().modelFile(capAlt).rotationY(90).addModel()
+				.condition(BlockStateProperties.NORTH, false)
+				.condition(BlockStateProperties.EAST, false)
+				.condition(BlockStateProperties.SOUTH, false)
+				.condition(BlockStateProperties.WEST, true)
+				.end()
+				.part().modelFile(side).addModel()
+				.condition(BlockStateProperties.NORTH, true)
+				.end()
+				.part().modelFile(side).rotationY(90).addModel()
+				.condition(BlockStateProperties.EAST, true)
+				.end()
+				.part().modelFile(sideAlt).addModel()
+				.condition(BlockStateProperties.SOUTH, true)
+				.end()
+				.part().modelFile(sideAlt).rotationY(90).addModel()
+				.condition(BlockStateProperties.WEST, true)
+				.end();
+	}
+
 
 	public void button(Supplier<? extends ButtonBlock> block, Supplier<? extends Block> fullBlock) {
 		buttonBlock(block.get(), texture(name(fullBlock)));
@@ -600,6 +658,10 @@ public class BlockstateGenerator extends BlockStateProvider {
 
 	protected String name(Supplier<? extends Block> block) {
 		return BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
+	}
+
+	protected String name(Block block) {
+		return BuiltInRegistries.BLOCK.getKey(block).getPath();
 	}
 
 	private ResourceLocation extend(ResourceLocation rl, String suffix) {

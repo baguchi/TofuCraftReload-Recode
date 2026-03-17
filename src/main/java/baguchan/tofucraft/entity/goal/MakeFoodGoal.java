@@ -1,6 +1,7 @@
 package baguchan.tofucraft.entity.goal;
 
 import baguchan.tofucraft.entity.Tofunian;
+import baguchan.tofucraft.registry.TofunianProfessions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -19,11 +20,11 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isDay() && super.canUse());
+		return (this.creature.getRole().is(TofunianProfessions.FARMER) && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isDay() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {
-		return (super.canContinueToUse() && this.creature.getRole() == Tofunian.Roles.TOFUCOOK && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isDay() && this.mob != null);
+		return (super.canContinueToUse() && this.creature.getRole().is(TofunianProfessions.FARMER) && !this.creature.hasExcessFood() && this.creature.hasFarmSeeds() && this.creature.level().isDay() && this.mob != null);
 	}
 
 	public void start() {
@@ -47,7 +48,7 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 	@Override
 	protected boolean isValidTarget(LevelReader worldIn, BlockPos pos) {
 		BlockState blockstate = worldIn.getBlockState(pos);
-		return this.creature.getRole().is(blockstate);
+		return this.creature.getRole().value().is(blockstate);
 	}
 
 	protected boolean findNearestBlock() {

@@ -168,7 +168,8 @@ public class TofuStructures {
 				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/smithing_hut")), 1),
 				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/water_space")), 1),
 				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/smithing_hut_2")), 1),
-				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/water_space_2")), 1)
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/water_space_2")), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/plains/house/engineer_hut")), 1)
 		), StructureTemplatePool.Projection.RIGID));
 
 
@@ -200,7 +201,8 @@ public class TofuStructures {
 				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/smithing_hut")), 1),
 				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/water_space")), 1),
 				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/smithing_hut_2")), 1),
-				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/water_space_2")), 1)
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/water_space_2")), 1),
+				Pair.of(StructurePoolElement.legacy(name("tofu_village/zunda/house/engineer_hut")), 1)
 		), StructureTemplatePool.Projection.RIGID));
 
 		context.register(TOFUNIAN, new StructureTemplatePool(emptyPool, ImmutableList.of(
