@@ -21,7 +21,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfi
 import net.minecraft.world.level.levelgen.feature.configurations.DeltaFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -65,9 +64,6 @@ public class TofuWorldFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ZUNDA_TOFU_MUSHROOM = registerKey("zunda_tofu_mushroom");
 
-	private static RandomPatchConfiguration grassPatch(BlockStateProvider p_195203_, int p_195204_) {
-		return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(p_195203_)));
-	}
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
 		return ResourceKey.create(Registries.CONFIGURED_FEATURE, TofuCraftReload.prefix(name));
@@ -99,15 +95,15 @@ public class TofuWorldFeatures {
 
 		FeatureUtils.register(context, SPROUT_WATER_POOL, Feature.WATERLOGGED_VEGETATION_PATCH, new VegetationPatchConfiguration(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE, BlockStateProvider.simple(TofuBlocks.MINCEDTOFU.get()), PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(ModTreeFeatures.SPROUT), new PlacementModifier[0]), CaveSurface.FLOOR, ConstantInt.of(3), 0.8F, 5, 0.055F, UniformInt.of(4, 7), 0.7F));
 
-		FeatureUtils.register(context, TOFU_FLOWER, Feature.FLOWER, grassPatch(BlockStateProvider.simple(TofuBlocks.TOFU_FLOWER.get()), 32));
-		FeatureUtils.register(context, LEEK, Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(
+		FeatureUtils.register(context, TOFU_FLOWER, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TofuBlocks.TOFU_FLOWER.get())));
+		FeatureUtils.register(context, LEEK, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(
 				WeightedList.<BlockState>builder().add(TofuBlocks.LEEK.get().defaultBlockState(), 10).add(TofuBlocks.TALL_LEEK.get().defaultBlockState(), 1)
-		), 32));
+		)));
 		FeatureUtils.register(context, BIG_LEEK, TofuFeatures.BIG_LEEK.get(), RandomFeatureConfiguration.NONE);
 
 		FeatureUtils.register(context, TOFU_BUILDING, TofuFeatures.TOFU_BUILDING.get(), new BlockStateConfiguration(TofuBlocks.TOFU_TERRAIN.get().defaultBlockState()));
 
-		FeatureUtils.register(context, ZUNDA_TOFU_MUSHROOM, Feature.FLOWER, grassPatch(BlockStateProvider.simple(TofuBlocks.ZUNDATOFU_MUSHROOM.get()), 32));
+		FeatureUtils.register(context, ZUNDA_TOFU_MUSHROOM, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TofuBlocks.ZUNDATOFU_MUSHROOM.get())));
 
 	}
 }

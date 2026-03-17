@@ -456,7 +456,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 					this.setJumpAnimation(false);
 				}
 			}
-			if (this.isJump() && this.isInFluidType()) {
+			if (this.isJump() && this.isInLiquid()) {
 				this.setJumping(false);
 				this.setJumpAnimation(false);
 			}

@@ -5,7 +5,7 @@ import baguchi.tofucraft.blockentity.fluid.FluidContainer;
 import baguchi.tofucraft.client.recipe.TofuPotRecipeBookComponent;
 import baguchi.tofucraft.inventory.TofuPotMenu;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
@@ -53,13 +53,7 @@ public class TofuPotScreen extends AbstractRecipeBookScreen<TofuPotMenu> {
 
 
 	@Override
-	protected void renderLabels(GuiGraphics gui, int mouseX, int mouseY) {
-		super.renderLabels(gui, mouseX, mouseY);
-		//gui.drawString(this.font, this.playerInventoryTitle, 8, (this.imageHeight - 96 + 2), 4210752, false);
-	}
-
-	@Override
-	protected void renderBg(GuiGraphics gui, float partialTicks, int mouseX, int mouseY) {
+	protected void extractBackground(GuiGraphicsExtractor gui, int mouseX, int mouseY, float partialTicks) {
 		// Render UI background
 		if (this.minecraft == null)
 			return;
@@ -82,7 +76,7 @@ public class TofuPotScreen extends AbstractRecipeBookScreen<TofuPotMenu> {
 	}
 
 
-	public static void renderFluidStack(GuiGraphics guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
+	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.BLOCKS).getSprite(IClientFluidTypeExtensions.of(fluid).getStillTexture());
 		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
 

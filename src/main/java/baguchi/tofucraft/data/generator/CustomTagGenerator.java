@@ -6,16 +6,19 @@ import baguchi.tofucraft.registry.TofuBannerPatterns;
 import baguchi.tofucraft.registry.TofuPoiTypes;
 import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofuTags;
+import baguchi.tofucraft.world.gen.features.TofuWorldFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.KeyTagProvider;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.FeatureTags;
 import net.minecraft.tags.PoiTypeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.block.entity.BannerPattern;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -53,6 +56,18 @@ public class CustomTagGenerator {
 		protected void addTags(HolderLookup.Provider p_256380_) {
 			tag(TofuTags.PoiTypes.TOFU_VILLAGE).add(TofuPoiTypes.TOFUNIAN_STATUE);
 			tag(PoiTypeTags.ACQUIRABLE_JOB_SITE).add(TofuPoiTypes.TOFU_CRAFTSMAN);
+		}
+	}
+
+	public static class ConfiguredFeatureTagGenerator extends KeyTagProvider<ConfiguredFeature<?, ?>> {
+
+		public ConfiguredFeatureTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+			super(output, Registries.CONFIGURED_FEATURE, provider, TofuCraftReload.MODID);
+		}
+
+		@Override
+		protected void addTags(HolderLookup.Provider p_256380_) {
+			tag(FeatureTags.CAN_SPAWN_FROM_BONE_MEAL).add(TofuWorldFeatures.TOFU_FLOWER).add(TofuWorldFeatures.ZUNDA_TOFU_MUSHROOM);
 		}
 	}
 

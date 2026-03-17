@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Vector3fc;
 
@@ -28,8 +27,9 @@ public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataCompo
 		return p_387204_.immutableComponents();
 	}
 
+
 	@Override
-	public void submit(@org.jetbrains.annotations.Nullable DataComponentMap typedDataComponents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b, int i2) {
+	public void submit(@org.jspecify.annotations.Nullable DataComponentMap typedDataComponents, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b, int i2) {
 		poseStack.pushPose();
 		poseStack.scale(1.0F, -1.0F, -1.0F);
 
@@ -44,12 +44,12 @@ public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataCompo
 
 	}
 
-	public static record Unbaked() implements SpecialModelRenderer.Unbaked {
+	public static record Unbaked() implements SpecialModelRenderer.Unbaked<DataComponentMap> {
 		public static final TofuShieldSpecialRenderer.Unbaked INSTANCE = new TofuShieldSpecialRenderer.Unbaked();
 		public static final MapCodec<TofuShieldSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(INSTANCE);
 
 		@Override
-		public @org.jetbrains.annotations.Nullable SpecialModelRenderer<?> bake(BakingContext bakingContext) {
+		public @org.jspecify.annotations.Nullable SpecialModelRenderer<DataComponentMap> bake(BakingContext bakingContext) {
 			return new TofuShieldSpecialRenderer(new ShieldModel(bakingContext.entityModelSet().bakeLayer(ModelLayers.SHIELD)));
 		}
 

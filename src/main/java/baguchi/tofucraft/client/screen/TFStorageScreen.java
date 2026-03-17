@@ -7,7 +7,7 @@ import baguchi.tofucraft.client.ClientProxy;
 import baguchi.tofucraft.inventory.TFStorageMenu;
 import baguchi.tofucraft.registry.TofuFluids;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -39,13 +39,13 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float p_230430_4_) {
-		super.render(guiGraphics, mouseX, mouseY, p_230430_4_);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
-		this.renderOnboardingTooltips(guiGraphics, mouseX, mouseY);
+	public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+		super.extractRenderState(graphics, mouseX, mouseY, a);
+		this.extractOnboardingTooltips(graphics, mouseX, mouseY);
 	}
 
-	protected void renderBg(GuiGraphics p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
+	@Override
+	public void extractBackground(GuiGraphicsExtractor p_230450_1_, int p_230450_3_, int p_230450_4_, float p_230450_2_) {
 		int i = this.leftPos;
 		int j = this.topPos;
 		p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
@@ -65,7 +65,7 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	}
 
 
-	public static void renderFluidStack(GuiGraphics guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
+	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.BLOCKS).getSprite(IClientFluidTypeExtensions.of(fluid).getStillTexture());
 		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
 
@@ -87,7 +87,8 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xPosition, yPosition - desiredHeight, desiredWidth, desiredHeight, color);
 
 	}
-	private void renderOnboardingTooltips(GuiGraphics p_281668_, int p_267192_, int p_266859_) {
+
+	private void extractOnboardingTooltips(GuiGraphicsExtractor p_281668_, int p_267192_, int p_266859_) {
 		Optional<Component> optional = Optional.empty();
 
 		if (this.hoveredSlot != null) {

@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.Block;
@@ -31,7 +30,7 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 	}
 
 	@Override
-	public void submit(@org.jetbrains.annotations.Nullable ItemContainerContents itemContainerContents, ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b, int i2) {
+	public void submit(@org.jetbrains.annotations.Nullable ItemContainerContents itemContainerContents, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b, int i2) {
 
 		if (itemContainerContents != null && itemContainerContents.getSlots() > 0) {
 			this.renderState.plateState = Block.byItem(itemContainerContents.getStackInSlot(0).getItem()).defaultBlockState();
@@ -72,11 +71,11 @@ public class FoodPlateSpecialRenderer implements SpecialModelRenderer<ItemContai
 	}
 
 
-	public record Unbaked() implements SpecialModelRenderer.Unbaked {
+	public record Unbaked() implements SpecialModelRenderer.Unbaked<ItemContainerContents> {
 		public static final MapCodec<FoodPlateSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(FoodPlateSpecialRenderer.Unbaked::new);
 
 		@Override
-		public @org.jetbrains.annotations.Nullable SpecialModelRenderer<?> bake(BakingContext bakingContext) {
+		public @org.jetbrains.annotations.Nullable SpecialModelRenderer<ItemContainerContents> bake(BakingContext bakingContext) {
 
 
 			FoodPlateRender foodPlateRender1 = new FoodPlateRender();

@@ -3,10 +3,9 @@ package baguchi.tofucraft.client.screen;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.recipe.TFCraftingTableRecipeBookComponent;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
-import baguchi.tofucraft.mixin.client.AbstractRecipeBookScreenAccessor;
 import baguchi.tofucraft.registry.TofuFluids;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -15,7 +14,6 @@ import net.minecraft.data.AtlasIds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import org.joml.Matrix3x2fStack;
@@ -64,7 +62,7 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics gui, float partialTicks, int mouseX, int mouseY) {
+	public void extractBackground(GuiGraphicsExtractor gui, int mouseX, int mouseY, float partialTicks) {
 		// Render UI background
 		if (this.minecraft == null)
 			return;
@@ -82,7 +80,7 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 	}
 
 
-	public static void renderFluidStack(GuiGraphics guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
+	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.BLOCKS).getSprite(IClientFluidTypeExtensions.of(fluid).getStillTexture());
 		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
 
@@ -102,19 +100,6 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 		float uDif = uMax - uMin;
 		float vDif = vMax - vMin;
 		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xPosition, yPosition - desiredHeight, desiredWidth, desiredHeight, color);
-
-	}
-
-	@Override
-	protected void renderSlots(GuiGraphics p_376566_, int p_470798_, int p_470821_) {
-		super.renderSlots(p_376566_, p_470798_, p_470821_);
-		((AbstractRecipeBookScreenAccessor) this).getRecipeBookComponent().renderGhostRecipe(p_376566_, this.isBiggerResultSlot());
-
-		for (Slot slot : this.menu.slots) {
-			if (slot.isActive()) {
-				this.renderSlot(p_376566_, slot, p_470798_, p_470821_);
-			}
-		}
 
 	}
 }

@@ -3,7 +3,7 @@ package baguchi.tofucraft.client.screen;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.recipe.OvenRecipeBookComponent;
 import baguchi.tofucraft.inventory.TFOvenMenu;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
@@ -53,7 +53,7 @@ public class TFOvenScreen extends AbstractRecipeBookScreen<TFOvenMenu> implement
 	}
 
 	@Override
-	protected void renderBg(GuiGraphics p_282928_, float p_281631_, int p_281252_, int p_281891_) {
+	public void extractBackground(GuiGraphicsExtractor p_282928_, int p_281252_, int p_281891_, float particalTick) {
 		int i = this.leftPos;
 		int j = this.topPos;
 		p_282928_.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);

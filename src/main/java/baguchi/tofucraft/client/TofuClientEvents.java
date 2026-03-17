@@ -10,7 +10,7 @@ import baguchi.tofucraft.registry.TofuAnimations;
 import baguchi.tofucraft.registry.TofuItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.animation.KeyframeAnimation;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -59,7 +59,7 @@ public class TofuClientEvents {
 			Component itextcomponent = boss.getDisplayName();
 			int l = minecraft.font.width(itextcomponent);
 			int i1 = i / 2 - l / 2;
-			event.getGuiGraphics().drawString(minecraft.font, itextcomponent, i1, event.getY() - 9, 16777215);
+			event.getGuiGraphics().text(minecraft.font, itextcomponent, i1, event.getY() - 9, 16777215);
 			if (event.getY() >= minecraft.getWindow().getGuiScaledHeight() / 3) {
 				return;
 			}
@@ -67,7 +67,7 @@ public class TofuClientEvents {
 		}
 	}
 
-	private static void drawBar(GuiGraphics p_283672_, int p_283570_, int p_283306_, BossEvent p_283156_, Mob mob) {
+	private static void drawBar(GuiGraphicsExtractor p_283672_, int p_283570_, int p_283306_, BossEvent p_283156_, Mob mob) {
 		if (mob instanceof TofuGandlem) {
 			drawBar(p_283672_, p_283570_, p_283306_, p_283156_, 182, GANDLEM_BOSS_BAR_BACKGROUND);
 			int i = Mth.lerpDiscrete(p_283156_.getProgress(), 0, 182);
@@ -78,7 +78,7 @@ public class TofuClientEvents {
 	}
 
 	private static void drawBar(
-			GuiGraphics p_281657_, int p_283675_, int p_282498_, BossEvent p_281288_, int p_283619_, Identifier p_296156_
+			GuiGraphicsExtractor p_281657_, int p_283675_, int p_282498_, BossEvent p_281288_, int p_283619_, Identifier p_296156_
 	) {
 		p_281657_.blitSprite(RenderPipelines.GUI_TEXTURED, p_296156_, 182, 9, 0, 0, p_283675_, p_282498_, p_283619_, 9);
 	}

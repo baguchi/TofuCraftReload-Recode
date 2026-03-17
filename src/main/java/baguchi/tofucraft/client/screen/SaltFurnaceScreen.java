@@ -7,7 +7,7 @@ import baguchi.tofucraft.client.ClientProxy;
 import baguchi.tofucraft.inventory.SaltFurnaceMenu;
 import baguchi.tofucraft.registry.TofuFluids;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -35,13 +35,12 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float p_230430_4_) {
-		super.render(guiGraphics, mouseX, mouseY, p_230430_4_);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
+	public void extractRenderState(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float p_230430_4_) {
+		super.extractRenderState(guiGraphics, mouseX, mouseY, p_230430_4_);
+		this.extractTooltip(guiGraphics, mouseX, mouseY);
 	}
-
 	@Override
-	protected void renderBg(GuiGraphics p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
+	public void extractBackground(GuiGraphicsExtractor p_230450_1_, int mouseX, int mouseY, float particalTick) {
 		int i = this.leftPos;
 		int j = this.topPos;
 		p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
@@ -70,7 +69,7 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 	}
 
 
-	public static void renderFluidStack(GuiGraphics guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
+	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.BLOCKS).getSprite(IClientFluidTypeExtensions.of(fluid).getStillTexture());
 		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
 

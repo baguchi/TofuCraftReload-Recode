@@ -7,14 +7,12 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -32,16 +30,9 @@ public class ModPaleFeatures {
 	}
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-		FeatureUtils.register(context, PALE_SOYBEAN, Feature.RANDOM_PATCH, new RandomPatchConfiguration(
-				64,
-				7,
-				3,
-				onlyWhenEmptyOrGrass(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TofuBlocks.SOYBEAN_PALE.get().defaultBlockState().setValue(SoybeanPaleCropsBlock.AGE, 3)), true))));
+		FeatureUtils.register(context, PALE_SOYBEAN, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TofuBlocks.SOYBEAN_PALE.get().defaultBlockState().setValue(SoybeanPaleCropsBlock.AGE, 3))));
 	}
 
-	private static RandomPatchConfiguration grassPatch(BlockStateProvider p_195203_, int p_195204_) {
-		return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(p_195203_)));
-	}
 
 	public static <FC extends FeatureConfiguration, F extends Feature<FC>> Holder<PlacedFeature> onlyWhenEmptyOrGrass(F p_206496_, FC p_206497_) {
 		return filtered(p_206496_, p_206497_, ONLY_IN_AIR_OR_GRASS_PREDICATE);

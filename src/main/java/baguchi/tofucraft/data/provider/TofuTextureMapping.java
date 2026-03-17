@@ -2,7 +2,7 @@ package baguchi.tofucraft.data.provider;
 
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
-import net.minecraft.client.renderer.block.model.Material;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.world.level.block.Block;
 
 import static net.minecraft.client.data.models.model.TextureMapping.getBlockTexture;

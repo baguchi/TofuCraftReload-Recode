@@ -8,13 +8,16 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 
 import java.util.List;
 
@@ -33,6 +36,9 @@ public class ModPalePlacements {
 		PlacementUtils.register(context, PATCH_PALE_SOYBEAN, configuredFeature.getOrThrow(ModPaleFeatures.PALE_SOYBEAN), List.of(CountPlacement.of(4),
 				InSquarePlacement.spread(),
 				PlacementUtils.HEIGHTMAP,
-				BiomeFilter.biome()));
+				BiomeFilter.biome(),
+				CountPlacement.of(32),
+				RandomOffsetPlacement.ofTriangle(7, 3),
+				BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)));
 	}
 }

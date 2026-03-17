@@ -11,7 +11,7 @@ import net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerato
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.renderer.block.model.BlockModelDefinition;
+import net.minecraft.client.renderer.block.dispatch.BlockStateModelDispatcher;
 import net.minecraft.client.renderer.item.ClientItem;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.core.Holder;
@@ -189,9 +189,9 @@ public class TofuModelData extends ModelProvider {
 		}
 
 		public CompletableFuture<?> save(CachedOutput p_388014_, PackOutput.PathProvider p_388192_) {
-			Map<Block, BlockModelDefinition> map = Maps.transformValues(this.generators, BlockModelDefinitionGenerator::create);
+			Map<Block, BlockStateModelDispatcher> map = Maps.transformValues(this.generators, BlockModelDefinitionGenerator::create);
 			Function<Block, Path> function = p_387598_ -> p_388192_.json(p_387598_.builtInRegistryHolder().key().identifier());
-			return DataProvider.saveAll(p_388014_, BlockModelDefinition.CODEC, function, map);
+			return DataProvider.saveAll(p_388014_, BlockStateModelDispatcher.CODEC, function, map);
 		}
 	}
 }

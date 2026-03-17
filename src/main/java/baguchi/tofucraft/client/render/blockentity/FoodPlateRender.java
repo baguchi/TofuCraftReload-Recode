@@ -8,11 +8,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.block.BlockModelResolver;
+import net.minecraft.client.renderer.block.model.BlockDisplayContext;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
-import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.ItemTags;
@@ -27,6 +28,8 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity, FoodPlateRenderState> {
+	public static final BlockDisplayContext BLOCK_DISPLAY_CONTEXT = BlockDisplayContext.create();
+
 	private final RandomSource random = RandomSource.create();
 	private ItemModelResolver itemModelResolver;
 	private BlockModelResolver blockModelResolver;
@@ -104,7 +107,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		state.fire = foodPlateBlockEntity.isFire();
 		state.renderAmount = getRenderAmount(foodPlateBlockEntity.getStoredItem());
 		state.direction = foodPlateBlockEntity.getBlockState().getValue(FoodPlateBlock.FACING);
-		this.blockModelResolver.update(state.plateBlock, foodPlateBlockEntity.getBlockState());
+		this.blockModelResolver.update(state.plateBlock, foodPlateBlockEntity.getBlockState(), BLOCK_DISPLAY_CONTEXT);
 
 	}
 

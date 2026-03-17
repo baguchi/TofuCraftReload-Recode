@@ -7,7 +7,7 @@ import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
@@ -56,15 +56,9 @@ public class TFTofuMakerScreen extends AbstractRecipeBookScreen<TFTofuMakerMenu>
 		return new ScreenPosition(this.leftPos + 10, this.height / 2 - 49);
 	}
 
-	@Override
-	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float p_230430_4_) {
-		super.render(guiGraphics, mouseX, mouseY, p_230430_4_);
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
-	}
-
 
 	@Override
-	protected void renderBg(GuiGraphics guiGraphics, float p_281631_, int p_281252_, int p_281891_) {
+	public void extractBackground(GuiGraphicsExtractor guiGraphics, int p_281252_, int p_281891_, float p_281631_) {
 		int i = this.leftPos;
 		int j = this.topPos;
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
@@ -82,7 +76,7 @@ public class TFTofuMakerScreen extends AbstractRecipeBookScreen<TFTofuMakerMenu>
 		guiGraphics.pose().popMatrix();
 	}
 
-	public static void renderFluidStack(GuiGraphics guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
+	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.BLOCKS).getSprite(IClientFluidTypeExtensions.of(fluid).getStillTexture());
 		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
 

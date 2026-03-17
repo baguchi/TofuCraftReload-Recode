@@ -1,13 +1,14 @@
 package baguchi.tofucraft.block;
 
 import baguchi.tofucraft.registry.TofuBlocks;
-import baguchi.tofucraft.world.gen.placement.TofuWorldPlacements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.Util;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -17,7 +18,6 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.neoforged.neoforge.common.ItemAbilities;
@@ -41,7 +41,7 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 		} else if (blockstate.getFluidState().getAmount() == 8) {
 			return false;
 		} else {
-			int i = LightEngine.getLightBlockInto(state, blockstate, Direction.UP, blockstate.getLightBlock());
+			int i = LightEngine.getLightBlockInto(state, blockstate, Direction.UP, blockstate.getLightDampening());
 			return i < 15;
 		}
 	}
@@ -67,48 +67,42 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel p_221270_, RandomSource p_221271_, BlockPos p_221272_, BlockState p_221273_) {
+	public void performBonemeal(ServerLevel level, RandomSource randomSource, BlockPos p_221272_, BlockState p_221273_) {
 		BlockPos blockpos = p_221272_.above();
 		BlockState blockstate = TofuBlocks.LEEK.get().defaultBlockState();
-		Optional<Holder.Reference<PlacedFeature>> optional = p_221270_.registryAccess().lookupOrThrow(Registries.PLACED_FEATURE).get(TofuWorldPlacements.LEEK_BONEMEAL);
+		Optional<Holder.Reference<PlacedFeature>> grassFeature = level.registryAccess()
+				.lookupOrThrow(Registries.PLACED_FEATURE)
+				.get(VegetationPlacements.GRASS_BONEMEAL);
 
 		label49:
 		for (int i = 0; i < 128; ++i) {
-			BlockPos blockpos1 = blockpos;
+			BlockPos testPos = blockpos;
 
 			for (int j = 0; j < i / 16; ++j) {
-				blockpos1 = blockpos1.offset(p_221271_.nextInt(3) - 1, (p_221271_.nextInt(3) - 1) * p_221271_.nextInt(3) / 2, p_221271_.nextInt(3) - 1);
-				if (!p_221270_.getBlockState(blockpos1.below()).is(this) || p_221270_.getBlockState(blockpos1).isCollisionShapeFullBlock(p_221270_, blockpos1)) {
+				testPos = testPos.offset(randomSource.nextInt(3) - 1, (randomSource.nextInt(3) - 1) * randomSource.nextInt(3) / 2, randomSource.nextInt(3) - 1);
+				if (!level.getBlockState(testPos.below()).is(this) || level.getBlockState(testPos).isCollisionShapeFullBlock(level, testPos)) {
 					continue label49;
 				}
 			}
 
-			BlockState blockstate1 = p_221270_.getBlockState(blockpos1);
-			if (blockstate1.is(blockstate.getBlock()) && p_221271_.nextInt(10) == 0) {
+			BlockState testState = level.getBlockState(testPos);
+			if (testState.is(blockstate.getBlock()) && randomSource.nextInt(10) == 0) {
 				BonemealableBlock bonemealableblock = (BonemealableBlock) blockstate.getBlock();
-				if (bonemealableblock.isValidBonemealTarget(p_221270_, blockpos1, blockstate1)) {
-					bonemealableblock.performBonemeal(p_221270_, p_221271_, blockpos1, blockstate1);
+				if (bonemealableblock.isValidBonemealTarget(level, testPos, testState)) {
+					bonemealableblock.performBonemeal(level, randomSource, testPos, testState);
 				}
 			}
 
-			if (blockstate1.isAir()) {
-				Holder<PlacedFeature> holder;
-				if (p_221271_.nextInt(8) == 0) {
-					List<ConfiguredFeature<?, ?>> list = p_221270_.getBiome(blockpos1).value().getGenerationSettings().getFlowerFeatures();
-					if (list.isEmpty()) {
-						continue;
+			if (testState.isAir() && !level.isOutsideBuildHeight(testPos)) {
+				if (randomSource.nextInt(8) == 0) {
+					List<ConfiguredFeature<?, ?>> features = level.getBiome(testPos).value().getGenerationSettings().getBoneMealFeatures();
+					if (!features.isEmpty()) {
+						ConfiguredFeature<?, ?> placementFeature = Util.getRandom(features, randomSource);
+						placementFeature.place(level, level.getChunkSource().getGenerator(), randomSource, testPos);
 					}
-
-					holder = ((RandomPatchConfiguration) list.get(0).config()).feature();
-				} else {
-					if (!optional.isPresent()) {
-						continue;
-					}
-
-					holder = optional.get();
+				} else if (grassFeature.isPresent()) {
+					grassFeature.get().value().place(level, level.getChunkSource().getGenerator(), randomSource, testPos);
 				}
-
-				holder.value().place(p_221270_, p_221270_.getChunkSource().getGenerator(), p_221271_, blockpos1);
 			}
 		}
 	}

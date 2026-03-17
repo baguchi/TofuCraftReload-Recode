@@ -21,9 +21,9 @@ import net.minecraft.client.renderer.blockentity.state.BedRenderState;
 import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
-import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.SpriteId;
+import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Unit;
@@ -69,7 +69,7 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity, 
 		BlockEntityRenderState.extractBase(p_445886_, p_447090_, p_446152_);
 		//p_447090_.color = p_445886_.getColor();
 		p_447090_.facing = p_445886_.getBlockState().getValue(BedBlock.FACING);
-		p_447090_.isHead = p_445886_.getBlockState().getValue(BedBlock.PART) == BedPart.HEAD;
+		p_447090_.part = p_445886_.getBlockState().getValue(BedBlock.PART);
 		if (p_445886_.getLevel() != null) {
 			DoubleBlockCombiner.NeighborCombineResult<? extends TofuBedBlockEntity> neighborcombineresult = DoubleBlockCombiner.combineWithNeigbour(TofuBlockEntitys.TOFUBED.get(), TofuBedBlock::getBlockType, BedBlock::getConnectedDirection, ChestBlock.FACING, p_445886_.getBlockState(), p_445886_.getLevel(), p_445886_.getBlockPos(), (p_112202_, p_112203_) -> false);
 			p_447090_.lightCoords = ((Int2IntFunction) neighborcombineresult.apply(new BrightnessCombiner())).get(p_447090_.lightCoords);
@@ -79,7 +79,7 @@ public class TofuBedRenderer implements BlockEntityRenderer<TofuBedBlockEntity, 
 	@Override
 	public void submit(BedRenderState p_445609_, PoseStack p_439782_, SubmitNodeCollector p_439369_, CameraRenderState p_451216_) {
 		SpriteId bedSprite = Sheets.getBedSprite(p_445609_.color);
-		this.submitPiece(p_439782_, p_439369_, p_445609_.isHead ? this.headModel : this.footModel, p_445609_.facing, bedSprite, p_445609_.lightCoords, OverlayTexture.NO_OVERLAY, false, p_445609_.breakProgress);
+		this.submitPiece(p_439782_, p_439369_, p_445609_.part == BedPart.HEAD ? this.headModel : this.footModel, p_445609_.facing, bedSprite, p_445609_.lightCoords, OverlayTexture.NO_OVERLAY, false, p_445609_.breakProgress);
 	}
 
 	public void submitSpecial(PoseStack p_439640_, SubmitNodeCollector p_439587_, int p_439564_, int p_440267_, SpriteId p_440126_) {

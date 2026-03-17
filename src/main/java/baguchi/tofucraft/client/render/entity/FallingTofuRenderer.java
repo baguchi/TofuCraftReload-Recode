@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.FallingBlockRenderState;
-import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
@@ -33,6 +33,7 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity, Falli
 				: p_362415_.getBlockState() != p_362415_.level().getBlockState(p_362415_.blockPosition());
 	}
 
+	@Override
 	public void submit(FallingBlockRenderState p_361300_, PoseStack p_114637_, SubmitNodeCollector p_114638_, CameraRenderState cameraRenderState) {
 		BlockState blockstate = p_361300_.movingBlockRenderState.blockState;
 		if (blockstate.getRenderShape() == RenderShape.MODEL) {

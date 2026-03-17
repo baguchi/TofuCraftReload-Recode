@@ -95,13 +95,13 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.object.boat.BoatModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.BoatRenderer;
@@ -148,6 +148,8 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.client.renderstate.RegisterRenderStateModifiersEvent;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector4f;
+
+import java.util.List;
 
 import static net.minecraft.client.renderer.RenderPipelines.FOG_SNIPPET;
 import static net.minecraft.client.renderer.RenderPipelines.GLOBALS_SNIPPET;
@@ -383,10 +385,8 @@ public class ClientRegistrar {
 
 
 	@SubscribeEvent
-	public static void registerColorBlock(RegisterColorHandlersEvent.Block event) {
-		event.register((p_92621_, p_92622_, p_92623_, p_92624_) -> {
-			return p_92622_ != null && p_92623_ != null ? BiomeColors.getAverageWaterColor(p_92622_, p_92623_) : -1;
-		}, TofuBlocks.SALTPAN.get(), TofuBlocks.SPROUTSJAR.get());
+	public static void registerColorBlock(RegisterColorHandlersEvent.BlockTintSources event) {
+		event.register(List.of(BlockTintSources.water()), TofuBlocks.SALTPAN.get(), TofuBlocks.SPROUTSJAR.get());
 	}
 
 	@SubscribeEvent
@@ -532,7 +532,7 @@ public class ClientRegistrar {
 		});
 	}
 
-	private static void renderBlockInfoToolTipOverlay(GuiGraphics guiGraphics, Minecraft minecraft, Window window) {
+	private static void renderBlockInfoToolTipOverlay(GuiGraphicsExtractor guiGraphics, Minecraft minecraft, Window window) {
 		if (!minecraft.options.hideGui && minecraft.hitResult instanceof BlockHitResult blockhitresult) {
 			if (minecraft.level != null) {
 				BlockState state = minecraft.level.getBlockState(blockhitresult.getBlockPos());
@@ -544,13 +544,13 @@ public class ClientRegistrar {
 					int x = (window.getGuiScaledWidth() / 2) - i / 2;
 					int y = window.getGuiScaledHeight() / 2 + 10;
 
-					guiGraphics.drawStringWithBackdrop(minecraft.font, component, x, y, i, -1);
+					guiGraphics.textWithWordWrap(minecraft.font, component, x, y, i, -1);
 				}
 			}
 		}
 	}
 
-	private static void renderRecoverHearts(GuiGraphics guiGraphics, Minecraft minecraft, Window window, Gui gui, LocalPlayer player) {
+	private static void renderRecoverHearts(GuiGraphicsExtractor guiGraphics, Minecraft minecraft, Window window, Gui gui, LocalPlayer player) {
 		GuiAccessor guiAccessor = (GuiAccessor) gui;
 
 		if (minecraft.gameMode.canHurtPlayer()) {
@@ -600,7 +600,7 @@ public class ClientRegistrar {
 		}
 	}
 
-	private static void renderHearts(GuiGraphics guiGraphics, Player player, Gui gui, int left, int top, int regen, float displayOverallHealth, float displayRecoverHealth, int maxDefaultHealth, int recoverHealth, int rowHeight, int absorption, boolean highlight) {
+	private static void renderHearts(GuiGraphicsExtractor guiGraphics, Player player, Gui gui, int left, int top, int regen, float displayOverallHealth, float displayRecoverHealth, int maxDefaultHealth, int recoverHealth, int rowHeight, int absorption, boolean highlight) {
 		GuiAccessor guiAccessor = (GuiAccessor) gui;
 		int overallHearts = Mth.ceil((double) displayOverallHealth / 2.0);
 		int recoverHearts = Mth.ceil((double) displayRecoverHealth / 2.0);
@@ -635,12 +635,12 @@ public class ClientRegistrar {
 	}
 
 	private static void renderHeart(
-			GuiGraphics p_283024_, Identifier p_281393_, int p_283636_, int p_283279_
+			GuiGraphicsExtractor p_283024_, Identifier p_281393_, int p_283636_, int p_283279_
 	) {
 		p_283024_.blitSprite(RenderPipelines.GUI_TEXTURED, p_281393_, p_283636_, p_283279_, 9, 9);
 	}
 
-	private static void renderTofuPortalOverlay(GuiGraphics guiGraphics, Minecraft minecraft, Window window, TofuLivingAttachment handler, DeltaTracker partialTicks) {
+	private static void renderTofuPortalOverlay(GuiGraphicsExtractor guiGraphics, Minecraft minecraft, Window window, TofuLivingAttachment handler, DeltaTracker partialTicks) {
 		float timeInPortal = Mth.lerp(partialTicks.getGameTimeDeltaPartialTick(false), handler.getPrevPortalAnimTime(), handler.getPortalAnimTime());
 		if (timeInPortal > 0.0F) {
 			if (timeInPortal < 1.0F) {
@@ -649,7 +649,7 @@ public class ClientRegistrar {
 				timeInPortal = timeInPortal * 0.8F + 0.2F;
 			}
 			int i = ARGB.white(timeInPortal);
-			TextureAtlasSprite textureatlassprite = minecraft.getBlockRenderer().getBlockModel(TofuBlocks.TOFU_PORTAL.get().defaultBlockState()).particleMaterial().sprite();
+			TextureAtlasSprite textureatlassprite = minecraft.getModelManager().getBlockStateModelSet().get(TofuBlocks.TOFU_PORTAL.get().defaultBlockState()).particleMaterial().sprite();
 			guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, textureatlassprite, 0, 0,
 					guiGraphics.guiWidth(),
 					guiGraphics.guiHeight(),

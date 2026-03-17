@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.ItemDisplayContext;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3fc;
 
@@ -31,7 +30,7 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 	}
 
 	@Override
-	public void submit(ItemDisplayContext itemDisplayContext, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b, int i2) {
+	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, int i1, boolean b, int i2) {
 		poseStack.pushPose();
 		poseStack.scale(-1.5F, -1.5F, 1.5F);
 		poseStack.translate(-0.4, -1F, 0);
@@ -40,12 +39,11 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 	}
 
 
-	public record Unbaked() implements SpecialModelRenderer.Unbaked {
+	public record Unbaked() implements SpecialModelRenderer.Unbaked<Void> {
 		public static final MapCodec<TofunianStatueSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(TofunianStatueSpecialRenderer.Unbaked::new);
 
 		@Override
-		public @Nullable SpecialModelRenderer<?> bake(BakingContext bakingContext) {
-
+		public @Nullable SpecialModelRenderer<Void> bake(BakingContext bakingContext) {
 			TofunianStatueModel tofunianStatue = new TofunianStatueModel(bakingContext.entityModelSet().bakeLayer(TofuModelLayers.TOFUNIAN));
 			return new TofunianStatueSpecialRenderer(tofunianStatue);
 		}
