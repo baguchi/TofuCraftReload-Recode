@@ -32,6 +32,7 @@ public class TofunianProfessions {
 	public static final DeferredHolder<TofunianProfession, TofunianProfession> SOY_WORKER = register("soy_worker", TofuTags.Blocks.TOFUNIAN_SOY_WORKER);
 	public static final DeferredHolder<TofunianProfession, TofunianProfession> FARMER = register("farmer", TofuTags.Blocks.TOFUNIAN_FARMER);
 	public static final DeferredHolder<TofunianProfession, TofunianProfession> SMITH = register("smith", TofuTags.Blocks.TOFUNIAN_SMITH);
+	public static final DeferredHolder<TofunianProfession, TofunianProfession> ENGINEER = register("engineer", TofuTags.Blocks.TOFUNIAN_ENGINEER);
 
 	public static final Registry<TofunianProfession> TOFUNIAN_PROFESSION_REGISTRY = new RegistryBuilder<>(TOFUNIAN_PROFESSION_REGISTRY_KEY)
 			// If you want to enable integer id syncing, for networking.

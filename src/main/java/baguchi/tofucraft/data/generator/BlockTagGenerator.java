@@ -171,6 +171,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 
 
 		tag(TofuTags.Blocks.TOFUNIAN_SMITH).add(Blocks.BLAST_FURNACE);
+		tag(TofuTags.Blocks.TOFUNIAN_ENGINEER).add(TofuBlocks.TOFU_WORK_STATION.get());
 		tag(TofuTags.Blocks.TOFUNIAN_FARMER).add(Blocks.COMPOSTER);
 		tag(TofuTags.Blocks.TOFUNIAN_SOY_WORKER).add(Blocks.CAULDRON).add(Blocks.WATER_CAULDRON).add(TofuBlocks.SOYMILK_CAULDRON.get());
 	}
