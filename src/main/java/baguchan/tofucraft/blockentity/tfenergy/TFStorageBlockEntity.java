@@ -109,7 +109,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 			worked = true;
 		}
 		level.setBlock(blockPos, blockState.setValue(TFStorageBlock.LIT, worked), 3);
-		ItemStack from = tfStorageBlockEntity.inventory.get(0);
+		ItemStack from = tfStorageBlockEntity.inventory.get(1);
 
 		if (from.getItem() instanceof IEnergyInsertable symbol) {
 			if (tfStorageBlockEntity.getEnergyStored() >= POWER * 5) {
@@ -117,7 +117,7 @@ public class TFStorageBlockEntity extends SenderBaseBlockEntity implements World
 			}
 		}
 
-		ItemStack to = tfStorageBlockEntity.inventory.get(1);
+		ItemStack to = tfStorageBlockEntity.inventory.get(0);
 
 		//Consume beans inside machine
 		if (tfStorageBlockEntity.workload == 0) {

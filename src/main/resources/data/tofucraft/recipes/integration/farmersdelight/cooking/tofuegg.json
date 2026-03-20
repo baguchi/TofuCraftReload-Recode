@@ -11,7 +11,7 @@
       "item": "tofucraft:bottle_dashi"
     },
     {
-      "item": "minecraft:egg"
+      "tag": "forge:eggs"
     }
   ],
   "result": {
