@@ -50,8 +50,10 @@ import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.monster.illager.AbstractIllager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -121,7 +123,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 20F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 1.75F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 16.0F).add(Attributes.ARMOR_TOUGHNESS, 3.5F).add(Attributes.ATTACK_DAMAGE, 6.0D);
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 300.0D).add(Attributes.FOLLOW_RANGE, 20F).add(Attributes.MOVEMENT_SPEED, 0.11D).add(Attributes.FLYING_SPEED, 0.11D).add(Attributes.ATTACK_KNOCKBACK, 1.75F).add(Attributes.KNOCKBACK_RESISTANCE, 0.9D).add(Attributes.ARMOR, 16.0F).add(Attributes.ARMOR_TOUGHNESS, 3.0F).add(Attributes.ATTACK_DAMAGE, 6.0D);
 	}
 
 	@Override
@@ -170,9 +172,10 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		this.goalSelector.addGoal(11, new RandomLookAroundGoal(this));
 		this.mostDamageTargetGoal = new MostDamageTargetGoal(this);
 		this.targetSelector.addGoal(1, this.mostDamageTargetGoal);
-
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, true));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllager.class, true));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EnderMan.class, true));
+		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, true));
+		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, true));
 	}
 
 	@Override
