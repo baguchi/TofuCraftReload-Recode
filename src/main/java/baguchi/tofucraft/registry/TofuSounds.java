@@ -17,7 +17,6 @@ public class TofuSounds {
 	public static final Holder<SoundEvent> ROUGH_GROUND_BGM = createHolderEvent("music.rough_ground");
 	public static final Holder<SoundEvent> TOFU_ROAD_BGM = createHolderEvent("music.tofu_road");
 	public static final Holder<SoundEvent> GREEN_BRANCH_BGM = createHolderEvent("music.green_branch");
-	public static final Holder<SoundEvent> TOFU_DUNGEON_BGM = createHolderEvent("music.tofu_dungeon");
 
 	public static final Supplier<SoundEvent> TOFUBUGLE = createEvent("tofubugle");
 

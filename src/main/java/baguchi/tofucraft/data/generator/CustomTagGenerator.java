@@ -4,7 +4,6 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.data.resources.TofuVillagerTrades;
 import baguchi.tofucraft.registry.TofuBannerPatterns;
 import baguchi.tofucraft.registry.TofuPoiTypes;
-import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.world.gen.features.TofuWorldFeatures;
 import net.minecraft.core.HolderLookup;
@@ -202,7 +201,7 @@ public class CustomTagGenerator {
 
 		@Override
 		protected void addTags(HolderLookup.Provider p_256380_) {
-			tag(TofuTags.SoundEvents.BOSS_MUSIC).add(TofuSounds.TOFU_DUNGEON_BGM.getKey());
+			//tag(TofuTags.SoundEvents.BOSS_MUSIC);
 		}
 	}
 }

@@ -11,7 +11,6 @@ import baguchi.tofucraft.entity.tofunian.AbstractTofunian;
 import baguchi.tofucraft.network.BossInfoPacket;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuParticleTypes;
-import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofuStructures;
 import baguchi.tofucraft.utils.CombatUtils;
 import baguchi.tofucraft.world.TofuData;
@@ -106,9 +105,6 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 	@Nullable
 	private BlockPos homePos;
-
-	private static final Music GANDLEM_MUSIC = new Music(TofuSounds.TOFU_DUNGEON_BGM, 0, 0, true);
-
 
 	public TofuGandlem(EntityType<? extends TofuGandlem> p_27508_, Level p_27509_) {
 		super(p_27508_, p_27509_);

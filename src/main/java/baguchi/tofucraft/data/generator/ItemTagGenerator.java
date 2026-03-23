@@ -35,7 +35,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(TofuTags.Items.RICE_BLOCK).add(TofuBlocks.RICE_BLOCK.get().asItem());
 		tag(TofuTags.Items.SOYBEANS_BLOCK).add(TofuBlocks.SOYBEANS_SEEDS_BLOCK.get().asItem()).add(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get().asItem()).add(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get().asItem());
 		tag(Tags.Items.STORAGE_BLOCKS).addTags(TofuTags.Items.RICE_BLOCK).addTags(TofuTags.Items.SOYBEANS_BLOCK);
-		tag(ItemTags.METAL_NUGGETS).add(TofuItems.TOFU_METAL_NUGGET.get());
+		tag(ItemTags.METAL_NUGGETS).add(TofuItems.TOFU_METAL_NUGGET.get()).add(TofuItems.TOFUDIAMOND_NUGGET.get());
 
 		tag(ItemTags.LANTERNS).add(TofuBlocks.TOFU_METAL_LANTERN.get().asItem()).add(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get().asItem());
 		tag(ItemTags.CHAINS).add(TofuBlocks.TOFU_METAL_CHAIN.get().asItem());
