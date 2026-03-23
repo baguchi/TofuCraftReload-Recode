@@ -15,7 +15,16 @@ public class StafeableFlyingMoveControl extends MoveControl {
 		this.hoversInPlace = p_24895_;
 	}
 
+	@Override
+	public void setWantedPosition(double x, double y, double z, double speedModifier) {
+		super.setWantedPosition(x, y, z, speedModifier);
+	}
+
+	@Override
 	public void tick() {
+		this.mob.setZza(0);
+		this.mob.setXxa(0);
+		this.mob.setYya(0);
 		if (this.operation == MoveControl.Operation.STRAFE) {
 			this.operation = MoveControl.Operation.WAIT;
 			if (!this.hoversInPlace) {
@@ -40,17 +49,11 @@ public class StafeableFlyingMoveControl extends MoveControl {
 			f3 *= f4;
 			float f5 = Mth.sin(this.mob.getYRot() * ((float) Math.PI / 180F));
 			float f6 = Mth.cos(this.mob.getYRot() * ((float) Math.PI / 180F));
-			float f7 = f2 * f6 - f3 * f5;
-			float f8 = f3 * f6 + f2 * f5;
-
-			double d0 = this.strafeRight - this.mob.getX();
-			double d1 = this.strafeForwards - this.mob.getZ();
 
 			this.mob.setSpeed(f1);
 			this.mob.setZza(this.strafeForwards);
 			this.mob.setXxa(this.strafeRight);
-			this.mob.setYya(-f1 * 1.5F);
-			this.operation = MoveControl.Operation.WAIT;
+			this.mob.setYya(-0.1F);
 		} else if (this.operation == MoveControl.Operation.MOVE_TO) {
 			this.operation = MoveControl.Operation.WAIT;
 			this.mob.setNoGravity(true);
@@ -61,6 +64,7 @@ public class StafeableFlyingMoveControl extends MoveControl {
 			double d2 = this.wantedZ - this.mob.getZ();
 			double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 			if (d3 < (double) 2.5000003E-7F) {
+				this.mob.setXxa(0.0F);
 				this.mob.setYya(0.0F);
 				this.mob.setZza(0.0F);
 				return;

@@ -14,6 +14,7 @@ public class SpinAttackGoal extends Goal {
 	private final TofuGandlem gandlem;
 	private int attackTime;
 
+	private boolean trigger;
 	private int cooldown;
 	private int maxCooldown;
 	private final UniformInt timeBetweenCooldown;
@@ -27,6 +28,7 @@ public class SpinAttackGoal extends Goal {
 	@Override
 	public boolean canUse() {
 		if (this.gandlem.isInWall() && this.gandlem.hurtMarked) {
+			this.trigger = false;
 			return true;
 		}
 		if (this.maxCooldown <= 0) {
@@ -42,11 +44,20 @@ public class SpinAttackGoal extends Goal {
 					return true;
 				}
 			} else {
-				++this.cooldown;
+				if (this.trigger) {
+					this.trigger = false;
+					this.cooldown += 8;
+				} else {
+					++this.cooldown;
+				}
 				return false;
 			}
 		}
 		return false;
+	}
+
+	public void trigger() {
+		this.trigger = true;
 	}
 
 	@Override
@@ -87,7 +98,7 @@ public class SpinAttackGoal extends Goal {
 			float f2 = -Mth.sin(f * ((float) Math.PI / 180F));
 			float f3 = Mth.cos(f7 * ((float) Math.PI / 180F)) * Mth.cos(f * ((float) Math.PI / 180F));
 			float f4 = Mth.sqrt(f1 * f1 + f2 * f2 + f3 * f3);
-			float f5 = 0.8F * ((2.75F) / 4.0F);
+			float f5 = 0.8F * ((3F) / 4.0F);
 			f1 *= f5 / f4;
 			f2 *= f5 / f4;
 			f3 *= f5 / f4;

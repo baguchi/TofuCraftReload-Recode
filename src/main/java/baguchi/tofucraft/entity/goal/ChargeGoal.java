@@ -64,7 +64,7 @@ public class ChargeGoal extends Goal {
 		if (this.attackTime == 59) {
 			this.gandlem.setCharging(false);
 			this.gandlem.setAction(TofuGandlem.Actions.CHARGE_STOP);
-			this.gandlem.setFullCharge(true);
+			this.gandlem.makeFullCharge();
 		}
 
 	}

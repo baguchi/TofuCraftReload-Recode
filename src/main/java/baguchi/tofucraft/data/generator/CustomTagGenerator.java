@@ -22,6 +22,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import java.util.concurrent.CompletableFuture;
 
 public class CustomTagGenerator {
+
 	public static class BannerPatternTagGenerator extends KeyTagProvider<BannerPattern> {
 
 		public static final TagKey<BannerPattern> TOFUNIAN_BANNER_PATTERN = create("pattern_item/tofunian");
