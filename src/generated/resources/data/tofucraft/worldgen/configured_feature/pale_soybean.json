@@ -1,39 +1,15 @@
 {
-  "type": "minecraft:random_patch",
+  "type": "minecraft:simple_block",
   "config": {
-    "feature": {
-      "feature": {
-        "type": "minecraft:simple_block",
-        "config": {
-          "schedule_tick": true,
-          "to_place": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "tofucraft:soybean_pale",
-              "Properties": {
-                "age": "3",
-                "bloom": "false"
-              }
-            }
-          }
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "tofucraft:soybean_pale",
+        "Properties": {
+          "age": "3",
+          "bloom": "false"
         }
-      },
-      "placement": [
-        {
-          "type": "minecraft:block_predicate_filter",
-          "predicate": {
-            "type": "minecraft:matching_blocks",
-            "blocks": [
-              "minecraft:air",
-              "minecraft:short_grass",
-              "minecraft:tall_grass"
-            ]
-          }
-        }
-      ]
-    },
-    "tries": 64,
-    "xz_spread": 7,
-    "y_spread": 3
+      }
+    }
   }
 }

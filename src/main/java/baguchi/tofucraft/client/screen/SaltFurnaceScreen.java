@@ -11,13 +11,11 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.data.AtlasIds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import org.joml.Matrix3x2fStack;
 
@@ -40,38 +38,40 @@ public class SaltFurnaceScreen extends AbstractContainerScreen<SaltFurnaceMenu> 
 		this.extractTooltip(guiGraphics, mouseX, mouseY);
 	}
 	@Override
-	public void extractBackground(GuiGraphicsExtractor p_230450_1_, int mouseX, int mouseY, float particalTick) {
+	public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float particalTick) {
+		super.extractBackground(graphics, mouseX, mouseY, particalTick);
+
 		int i = this.leftPos;
 		int j = this.topPos;
-		p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+		graphics.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 		if (this.menu.isLit()) {
 			int k = this.menu.getLitProgress();
-			p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i + 23, j + 36 + 12 - k, 176, 12 - k, 14, k + 1, 256, 256);
+			graphics.blit(RenderPipelines.GUI_TEXTURED, texture, i + 23, j + 36 + 12 - k, 176, 12 - k, 14, k + 1, 256, 256);
 		}
 		int l = this.menu.getBurnProgress();
-		p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i + 54, j + 54, 176, 14, l + 1, 16, 256, 256);
-		p_230450_1_.pose().pushMatrix();
+		graphics.blit(RenderPipelines.GUI_TEXTURED, texture, i + 54, j + 54, 176, 14, l + 1, 16, 256, 256);
+		graphics.pose().pushMatrix();
 		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity) {
 			FluidContainer fluidTank = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).bitternTank;
 			int heightInd = (int) (44.0F * fluidTank.getAmountAsInt(0) / fluidTank.getCapacityAsInt(0, FluidResource.of(TofuFluids.BITTERN)));
 			if (heightInd > 0)
-				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 145, j + 69, 10, heightInd, fluidTank.getResource(0).value());
+				renderFluidStack(graphics, graphics.pose(), i + 145, j + 69, 10, heightInd, fluidTank.getResource(0).value());
 		}
-		p_230450_1_.pose().popMatrix();
-		p_230450_1_.pose().pushMatrix();
+		graphics.pose().popMatrix();
+		graphics.pose().pushMatrix();
 		if (ClientProxy.PROXY.getRefrencedTE() instanceof SaltFurnaceBlockEntity) {
 			FluidContainer fluidTank2 = ((SaltFurnaceBlockEntity) ClientProxy.PROXY.getRefrencedTE()).waterTank;
 			int heightInd2 = (int) (44.0F * fluidTank2.getAmountAsInt(0) / fluidTank2.getCapacityAsInt(0, FluidResource.of(Fluids.WATER)));
 			if (heightInd2 > 0)
-				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 158, j + 69, 10, heightInd2, fluidTank2.getResource(0).getFluid());
+				renderFluidStack(graphics, graphics.pose(), i + 158, j + 69, 10, heightInd2, fluidTank2.getResource(0).getFluid());
 		}
-		p_230450_1_.pose().popMatrix();
+		graphics.pose().popMatrix();
 	}
 
 
 	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
-		TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.BLOCKS).getSprite(IClientFluidTypeExtensions.of(fluid).getStillTexture());
-		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
+		TextureAtlasSprite sprite = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(fluid.defaultFluidState()).stillMaterial().sprite();
+		int color = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(fluid.defaultFluidState()).fluidTintSource().color(fluid.defaultFluidState());
 
 		float alpha = (float) (color >> 24 & 255) / 255.0F;
 		float red = (float) (color >> 16 & 0xFF) / 255.0F;

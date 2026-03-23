@@ -14,6 +14,7 @@ import baguchi.tofucraft.registry.TofuDamageTypes;
 import baguchi.tofucraft.registry.TofuDataComponents;
 import baguchi.tofucraft.registry.TofuEffects;
 import baguchi.tofucraft.registry.TofuEnchantments;
+import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuPoiTypes;
@@ -95,6 +96,8 @@ import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.village.VillageSiegeEvent;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.fluids.RegisterCauldronFluidContentEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -114,6 +117,14 @@ public class CommonEvents {
 		event.sendRecipes(TofuRecipes.RECIPETYPE_BITTERN.get());
 		event.sendRecipes(TofuRecipes.RECIPETYPE_HARDER.get());
 		event.sendRecipes(TofuRecipes.RECIPETYPE_TF_TOFU_MAKER.get());
+	}
+
+
+	@SubscribeEvent
+	public static void handleQuestSyncing(RegisterCauldronFluidContentEvent event) {
+		event.register(TofuBlocks.SOYMILK_CAULDRON.get(), TofuFluids.SOYMILK.get(), FluidType.BUCKET_VOLUME, null);
+		event.register(TofuBlocks.SOYMILK_HELL.get(), TofuFluids.SOYMILK_HELL.get(), FluidType.BUCKET_VOLUME, null);
+		event.register(TofuBlocks.SOYMILK_SOUL.get(), TofuFluids.SOYMILK_SOUL.get(), FluidType.BUCKET_VOLUME, null);
 	}
 
 	@SubscribeEvent

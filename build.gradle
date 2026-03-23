@@ -49,6 +49,8 @@ neoForge {
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            jvmArgument("-Xms4G")
+            jvmArgument("-Xmx4G")
         }
 
         server {
@@ -135,8 +137,8 @@ repositories {
 }
 
 dependencies {
-    //implementation "baguchi.bagus_lib:BagusLib:${bagus_lib_version}"
-    implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
+    implementation "baguchi.bagus_lib:BagusLib:${bagus_lib_version}"
+    //implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
 
     //implementation "mezz.jei:jei-1.21.11-neoforge:27.3.0.10"
 }
@@ -182,6 +184,7 @@ publishing {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    options.compilerArgs << "-Xmaxerrs" << "9000"
 }
 
 // IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.

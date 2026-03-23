@@ -53,16 +53,17 @@ public class TFOvenScreen extends AbstractRecipeBookScreen<TFOvenMenu> implement
 	}
 
 	@Override
-	public void extractBackground(GuiGraphicsExtractor p_282928_, int p_281252_, int p_281891_, float particalTick) {
+	public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+		super.extractBackground(graphics, mouseX, mouseY, partialTicks);
 		int i = this.leftPos;
 		int j = this.topPos;
-		p_282928_.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+		graphics.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 		int k = 14;
 		int l = Mth.ceil(this.menu.getTFForce() * 16.0F);
-		p_282928_.blit(RenderPipelines.GUI_TEXTURED, texture, i + 72, j + 35, 176, 39, 24, l, 256, 256);
+		graphics.blit(RenderPipelines.GUI_TEXTURED, texture, i + 72, j + 35, 176, 39, 24, l, 256, 256);
 
 
 		int j1 = Mth.ceil(this.menu.getProgress() * 28.0F);
-		p_282928_.blit(RenderPipelines.GUI_TEXTURED, texture, i + 67, j + 15, 176, 14, j1, 17, 256, 256);
+		graphics.blit(RenderPipelines.GUI_TEXTURED, texture, i + 67, j + 15, 176, 14, j1, 17, 256, 256);
 	}
 }

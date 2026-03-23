@@ -11,13 +11,11 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.data.AtlasIds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import org.joml.Matrix3x2fStack;
@@ -45,29 +43,31 @@ public class TFStorageScreen extends AbstractContainerScreen<TFStorageMenu> {
 	}
 
 	@Override
-	public void extractBackground(GuiGraphicsExtractor p_230450_1_, int p_230450_3_, int p_230450_4_, float p_230450_2_) {
+	public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+		super.extractBackground(graphics, mouseX, mouseY, partialTicks);
+
 		int i = this.leftPos;
 		int j = this.topPos;
-		p_230450_1_.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+		graphics.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 
 		if (ClientProxy.PROXY.getRefrencedTE() instanceof TFStorageBlockEntity && !((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank().getResource(0).isEmpty()) {
 			FluidContainer fluidTank = ((TFStorageBlockEntity) ClientProxy.PROXY.getRefrencedTE()).getTank();
 			int heightInd = (int) (44.0F * fluidTank.getAmountAsInt(0) / fluidTank.getCapacityAsInt(0, FluidResource.of(TofuFluids.SOYMILK)));
 			if (heightInd > 0)
-				renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 145, j + 69, 10, heightInd, fluidTank.getResource(0).getFluid());
+				renderFluidStack(graphics, graphics.pose(), i + 145, j + 69, 10, heightInd, fluidTank.getResource(0).getFluid());
 		}
-		p_230450_1_.pose().pushMatrix();
+		graphics.pose().pushMatrix();
 		FluidStack fluidTank2 = new FluidStack(TofuFluids.SOYMILK_FLOW.get(), 1000);
 		int heightInd2 = (int) (44.0F * menu.getTFEnergy() / menu.getTFMaxEnergy());
 		if (heightInd2 > 0)
-			renderFluidStack(p_230450_1_, p_230450_1_.pose(), i + 76, j + 69, 10, heightInd2, fluidTank2.getFluid());
-		p_230450_1_.pose().popMatrix();
+			renderFluidStack(graphics, graphics.pose(), i + 76, j + 69, 10, heightInd2, fluidTank2.getFluid());
+		graphics.pose().popMatrix();
 	}
 
 
 	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
-		TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.BLOCKS).getSprite(IClientFluidTypeExtensions.of(fluid).getStillTexture());
-		int color = IClientFluidTypeExtensions.of(fluid).getTintColor();
+		TextureAtlasSprite sprite = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(fluid.defaultFluidState()).stillMaterial().sprite();
+		int color = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(fluid.defaultFluidState()).fluidTintSource().color(fluid.defaultFluidState());
 
 		float alpha = (float) (color >> 24 & 255) / 255.0F;
 		float red = (float) (color >> 16 & 0xFF) / 255.0F;

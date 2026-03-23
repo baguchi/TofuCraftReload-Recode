@@ -2,13 +2,10 @@
   "type": "minecraft:tree",
   "config": {
     "below_trunk_provider": {
-      "fallback": {
-        "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "tofucraft:tofu_terrain"
-        }
-      },
-      "rules": []
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "tofucraft:tofu_terrain"
+      }
     },
     "decorators": [
       {

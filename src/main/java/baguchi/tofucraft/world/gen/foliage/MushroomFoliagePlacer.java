@@ -8,7 +8,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
-import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -36,14 +36,14 @@ public class MushroomFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected void createFoliage(LevelSimulatedReader level, FoliageSetter blockSetter, RandomSource random, TreeConfiguration config, int maxFreeTreeHeight, FoliageAttachment attachment, int height, int radius, int offset) {
+	protected void createFoliage(WorldGenLevel level, FoliageSetter blockSetter, RandomSource random, TreeConfiguration config, int maxFreeTreeHeight, FoliageAttachment attachment, int height, int radius, int offset) {
 		BlockPos blockpos = attachment.pos();
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 		this.makeCap(level, radius, random, blockpos, height, offset, blockpos$mutableblockpos, config, attachment, blockSetter);
 
 	}
 
-	private void makeCap(LevelSimulatedReader level, int radius, RandomSource random, BlockPos blockpos, int height, int offset, BlockPos.MutableBlockPos blockpos$mutableblockpos, TreeConfiguration config, FoliageAttachment attachment, FoliageSetter blockSetter) {
+	private void makeCap(WorldGenLevel level, int radius, RandomSource random, BlockPos blockpos, int height, int offset, BlockPos.MutableBlockPos blockpos$mutableblockpos, TreeConfiguration config, FoliageAttachment attachment, FoliageSetter blockSetter) {
 		for (int i = offset; i > offset - height; --i) {
 			int j = i < offset ? radius : radius - 1;
 			int k = radius - 2;

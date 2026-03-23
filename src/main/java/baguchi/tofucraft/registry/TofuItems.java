@@ -402,14 +402,14 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFU_SHIELD = ITEMS.registerItem("tofu_shield", (properties) -> new TofuShieldItem((properties).stacksTo(1).durability(450).repairable(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL)
 			.equippableUnswappable(EquipmentSlot.OFFHAND)
-			.component(
+			.delayedComponent(
 					DataComponents.BLOCKS_ATTACKS,
-					new BlocksAttacks(
+					context -> new BlocksAttacks(
 							0.25F,
 							0.8F,
 							List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
 							new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F),
-							Optional.of(DamageTypeTags.BYPASSES_SHIELD),
+							Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)),
 							Optional.of(SoundEvents.SHIELD_BLOCK),
 							Optional.of(SoundEvents.SHIELD_BREAK)
 					)
@@ -489,7 +489,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> SOY_KARAAGE = ITEMS.registerItem("soy_karaage", (properties) -> new Item((properties).food(TofuFoods.SOY_KARAAGE)));
 	public static final DeferredHolder<Item, Item> SOYMEATDON = ITEMS.registerItem("soymeatdon", (properties) -> new Item((properties).craftRemainder(TofuItems.CERAMIC_BOWL.get()).usingConvertsTo(TofuItems.CERAMIC_BOWL.get()).food(TofuFoods.SOYMEATDON)));
 
-	public static final DeferredHolder<Item, Item> TOFUNIAN_BANNER_PATTERN = ITEMS.registerItem("tofunian_banner_pattern", (properties) -> new Item(properties.stacksTo(1).component(DataComponents.PROVIDES_BANNER_PATTERNS, CustomTagGenerator.BannerPatternTagGenerator.TOFUNIAN_BANNER_PATTERN).rarity(Rarity.RARE).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
+	public static final DeferredHolder<Item, Item> TOFUNIAN_BANNER_PATTERN = ITEMS.registerItem("tofunian_banner_pattern", (properties) -> new Item(properties.stacksTo(1).delayedComponent(DataComponents.PROVIDES_BANNER_PATTERNS, (context) -> context.getOrThrow(CustomTagGenerator.BannerPatternTagGenerator.TOFUNIAN_BANNER_PATTERN)).rarity(Rarity.RARE).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
 
 	public static final DeferredHolder<Item, Item> LEEK_BOAT = ITEMS.registerItem("leek_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_BOAT.get(), properties.stacksTo(1)));
 	public static final DeferredHolder<Item, Item> LEEK_GREEN_BOAT = ITEMS.registerItem("leek_green_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_GREEN_BOAT.get(), properties.stacksTo(1)));

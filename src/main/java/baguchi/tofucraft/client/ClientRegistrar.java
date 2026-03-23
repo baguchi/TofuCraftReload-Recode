@@ -77,6 +77,7 @@ import baguchi.tofucraft.registry.TofuDimensionTypes;
 import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuFluidTypes;
+import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuParticleTypes;
@@ -104,6 +105,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.block.FluidModel;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.SlimeRenderer;
@@ -112,6 +114,7 @@ import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.renderer.fog.FogData;
 import net.minecraft.client.renderer.fog.environment.FogEnvironment;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
@@ -136,6 +139,7 @@ import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterCustomEnvironmentEffectRendererEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEvent;
+import net.neoforged.neoforge.client.event.RegisterFluidModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
@@ -161,6 +165,52 @@ public class ClientRegistrar {
 	private static final Identifier TEXTURE_RECOVER_HEART = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container");
 	private static final Identifier TEXTURE_RECOVER_HEART_HALF = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "hud/heart/recover_container_half");
 
+	private static final FluidModel.Unbaked SOYMILK_MODEL = new FluidModel.Unbaked(
+			new Material(TofuCraftReload.prefix("block/soymilk")),
+			new Material(TofuCraftReload.prefix("block/soymilk_flow")),
+			new Material(TofuCraftReload.prefix("block/soymilk_overlay")),
+			null
+	);
+
+	private static final FluidModel.Unbaked SOYMILK_HELL_MODEL = new FluidModel.Unbaked(
+			new Material(TofuCraftReload.prefix("block/soymilk_hell")),
+			new Material(TofuCraftReload.prefix("block/soymilk_hell_flow")),
+			new Material(TofuCraftReload.prefix("block/soymilk_hell_overlay")),
+			null
+	);
+
+	private static final FluidModel.Unbaked SOYMILK_SOUL_MODEL = new FluidModel.Unbaked(
+			new Material(TofuCraftReload.prefix("block/soymilk_soul")),
+			new Material(TofuCraftReload.prefix("block/soymilk_soul_flow")),
+			new Material(TofuCraftReload.prefix("block/soymilk_soul_overlay")),
+			null
+	);
+
+	private static final FluidModel.Unbaked BITTERN_MODEL = new FluidModel.Unbaked(
+			new Material(TofuCraftReload.prefix("block/bittern")),
+			new Material(TofuCraftReload.prefix("block/bittern_flow")),
+			new Material(TofuCraftReload.prefix("block/bittern_overlay")),
+			null
+	);
+
+	private static final FluidModel.Unbaked DOUBANJIANG_MODEL = new FluidModel.Unbaked(
+			new Material(TofuCraftReload.prefix("block/doubanjiang")),
+			new Material(TofuCraftReload.prefix("block/doubanjiang_flow")),
+			new Material(TofuCraftReload.prefix("block/doubanjiang_overlay")),
+			null
+	);
+	private static final FluidModel.Unbaked CRIMSON_MODEL = new FluidModel.Unbaked(
+			new Material(TofuCraftReload.prefix("block/crimson")),
+			new Material(TofuCraftReload.prefix("block/crimson")),
+			null,
+			null
+	);
+	private static final FluidModel.Unbaked WARPED_MODEL = new FluidModel.Unbaked(
+			new Material(TofuCraftReload.prefix("block/warped")),
+			new Material(TofuCraftReload.prefix("block/warped")),
+			null,
+			null
+	);
 	public static final RenderPipeline ZUNDA =
 			RenderPipeline.builder(MATRICES_PROJECTION_SNIPPET, FOG_SNIPPET, GLOBALS_SNIPPET)
 					.withLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "pipeline/zunda"))
@@ -208,15 +258,6 @@ public class ClientRegistrar {
 			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_flow");
 			private static final Identifier TEXTURE_OVERLAY = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_overlay");
 
-			@Override
-			public Identifier getStillTexture() {
-				return TEXTURE_STILL;
-			}
-
-			@Override
-			public Identifier getFlowingTexture() {
-				return TEXTURE_FLOW;
-			}
 
 			@Override
 			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
@@ -230,20 +271,6 @@ public class ClientRegistrar {
 			}
 		}, TofuFluidTypes.SOYMILK.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell");
-			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell_flow");
-			private static final Identifier TEXTURE_OVERLAY = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_hell_overlay");
-
-			@Override
-			public Identifier getStillTexture() {
-				return TEXTURE_STILL;
-			}
-
-			@Override
-			public Identifier getFlowingTexture() {
-				return TEXTURE_FLOW;
-			}
-
 			@Override
 			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
 				fluidFogColor.set(new Vector4f(156 / 255F, 145 / 255F, 78 / 255F, 1F));
@@ -257,20 +284,6 @@ public class ClientRegistrar {
 
 		}, TofuFluidTypes.SOYMILK_HELL.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul");
-			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul_flow");
-			private static final Identifier TEXTURE_OVERLAY = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/soymilk_soul_overlay");
-
-			@Override
-			public Identifier getStillTexture() {
-				return TEXTURE_STILL;
-			}
-
-			@Override
-			public Identifier getFlowingTexture() {
-				return TEXTURE_FLOW;
-			}
-
 			@Override
 			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
 				fluidFogColor.set(new Vector4f(78 / 255F, 145 / 255F, 156 / 255F, 1F));
@@ -283,19 +296,6 @@ public class ClientRegistrar {
 			}
 		}, TofuFluidTypes.SOYMILK_SOUL.get());
 		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
-			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern");
-			private static final Identifier TEXTURE_OVERLAY = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/bittern_overlay");
-
-			@Override
-			public Identifier getStillTexture() {
-				return TEXTURE_STILL;
-			}
-
-			@Override
-			public Identifier getFlowingTexture() {
-				return TEXTURE_FLOW;
-			}
 
 			@Override
 			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
@@ -314,16 +314,6 @@ public class ClientRegistrar {
 			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang_flow");
 
 			@Override
-			public Identifier getStillTexture() {
-				return TEXTURE_STILL;
-			}
-
-			@Override
-			public Identifier getFlowingTexture() {
-				return TEXTURE_FLOW;
-			}
-
-			@Override
 			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
 				fluidFogColor.set(new Vector4f(155 / 255F, 25 / 255F, 0 / 255F, 1F));
 			}
@@ -334,36 +324,17 @@ public class ClientRegistrar {
 				fogData.environmentalEnd = 3.0F;
 			}
 		}, TofuFluidTypes.DOUBANJIANG.get());
+	}
 
-
-		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final Identifier STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson"),
-					FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/crimson");
-
-			@Override
-			public Identifier getStillTexture() {
-				return STILL;
-			}
-
-			@Override
-			public Identifier getFlowingTexture() {
-				return FLOW;
-			}
-		}, TofuFluidTypes.CRIMSON.get());
-		event.registerFluidType(new IClientFluidTypeExtensions() {
-			private static final Identifier STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped"),
-					FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/warped");
-
-			@Override
-			public Identifier getStillTexture() {
-				return STILL;
-			}
-
-			@Override
-			public Identifier getFlowingTexture() {
-				return FLOW;
-			}
-		}, TofuFluidTypes.WARPED.get());
+	@SubscribeEvent
+	public static void screenEvent(RegisterFluidModelsEvent event) {
+		event.register(BITTERN_MODEL, TofuFluids.BITTERN.get(), TofuFluids.BITTERN_FLOW.get());
+		event.register(SOYMILK_MODEL, TofuFluids.SOYMILK.get(), TofuFluids.SOYMILK_FLOW.get());
+		event.register(SOYMILK_HELL_MODEL, TofuFluids.SOYMILK_HELL.get(), TofuFluids.SOYMILK_HELL_FLOW.get());
+		event.register(SOYMILK_SOUL_MODEL, TofuFluids.SOYMILK_SOUL.get(), TofuFluids.SOYMILK_SOUL_FLOW.get());
+		event.register(DOUBANJIANG_MODEL, TofuFluids.DOUBANJIANG.get(), TofuFluids.DOUBANJIANG_FLOW.get());
+		event.register(CRIMSON_MODEL, TofuFluids.CRIMSON.get(), TofuFluids.FLOWING_CRIMSON.get());
+		event.register(WARPED_MODEL, TofuFluids.WARPED.get(), TofuFluids.FLOWING_WARPED.get());
 	}
 
 	@SubscribeEvent

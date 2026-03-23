@@ -306,7 +306,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		this.createTofuPortalBlock();
 		this.createTofunianState(TofuBlocks.TOFUNIAN_STATUE.get(), TofuBlocks.TOFUSLATE.get());
 		this.createChest(TofuBlocks.TOFUCHEST.get(), TofuBlocks.ISHITOFU.get(), TofuCraftReload.prefix("tofuchest"), false);
-		this.createTofuBed(TofuBlocks.TOFUBED.get(), TofuBlocks.KINUTOFU.get(), TofuCraftReload.prefix("tofubed"));
+		this.createTofuBed();
 		this.itemModelOutput.accept(TofuBlocks.TOFU_FARMLAND.asItem(), ItemModelUtils.plainModel(ModelLocationUtils.getModelLocation(TofuBlocks.TOFU_FARMLAND.get())));
 		this.itemModelOutput.accept(TofuBlocks.SALTPAN.asItem(), ItemModelUtils.plainModel(TofuCraftReload.prefix("block/saltpan_inventory")));
 		this.itemModelOutput.accept(TofuBlocks.SPROUTSJAR.asItem(), ItemModelUtils.plainModel(TofuCraftReload.prefix("block/sprouts_jar_inventory")));

@@ -3,6 +3,7 @@ package baguchi.tofucraft.entity;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBiomes;
 import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -166,7 +167,7 @@ public class TofuSlime extends Slime {
 		}
 
 		public boolean canUse() {
-			return (this.slime.isInFluidType()) && this.slime.getMoveControl() instanceof SlimeMoveControl;
+			return (this.slime.isEyeInFluid(TofuTags.Fluids.SOYMILK) || this.slime.isInWater()) && this.slime.getMoveControl() instanceof SlimeMoveControl;
 		}
 
 		public boolean requiresUpdateEveryTick() {
