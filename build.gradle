@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.135'
+    id 'net.neoforged.moddev' version '2.0.141'
     id 'idea'
 }
 
@@ -126,19 +126,11 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
-    maven {
-        name = "Maven for PR #2993" // https://github.com/neoforged/NeoForge/pull/2993
-        url = uri("https://prmaven.neoforged.net/NeoForge/pr2993")
-        content {
-            includeModule("net.neoforged", "neoforge")
-            includeModule("net.neoforged", "testframework")
-        }
-    }
 }
 
 dependencies {
-    implementation "baguchi.bagus_lib:BagusLib:${bagus_lib_version}"
-    //implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
+    //implementation "baguchi.bagus_lib:BagusLib:${bagus_lib_version}"
+    implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
 
     //implementation "mezz.jei:jei-1.21.11-neoforge:27.3.0.10"
 }
