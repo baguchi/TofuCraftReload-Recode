@@ -103,15 +103,6 @@
               "function": "minecraft:set_count"
             },
             {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.95,
-                "min": 0.8
-              },
-              "function": "minecraft:set_damage"
-            },
-            {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
@@ -126,15 +117,6 @@
               "add": false,
               "count": 1.0,
               "function": "minecraft:set_count"
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.95,
-                "min": 0.8
-              },
-              "function": "minecraft:set_damage"
             },
             {
               "function": "minecraft:enchant_randomly",
@@ -153,15 +135,6 @@
               "function": "minecraft:set_count"
             },
             {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.95,
-                "min": 0.8
-              },
-              "function": "minecraft:set_damage"
-            },
-            {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
@@ -176,15 +149,6 @@
               "add": false,
               "count": 1.0,
               "function": "minecraft:set_count"
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.95,
-                "min": 0.8
-              },
-              "function": "minecraft:set_damage"
             },
             {
               "function": "minecraft:enchant_randomly",
@@ -203,13 +167,20 @@
               "function": "minecraft:set_count"
             },
             {
+              "function": "minecraft:enchant_randomly",
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "tofucraft:tofu_metal_spear",
+          "functions": [
+            {
               "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.95,
-                "min": 0.8
-              },
-              "function": "minecraft:set_damage"
+              "count": 1.0,
+              "function": "minecraft:set_count"
             },
             {
               "function": "minecraft:enchant_randomly",
@@ -228,15 +199,6 @@
               "function": "minecraft:set_count"
             },
             {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.95,
-                "min": 0.8
-              },
-              "function": "minecraft:set_damage"
-            },
-            {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
@@ -251,15 +213,6 @@
               "add": false,
               "count": 1.0,
               "function": "minecraft:set_count"
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.95,
-                "min": 0.8
-              },
-              "function": "minecraft:set_damage"
             },
             {
               "function": "minecraft:enchant_randomly",
