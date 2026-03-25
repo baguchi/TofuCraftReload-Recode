@@ -75,7 +75,7 @@
             }
           ],
           "name": "tofucraft:tofugem",
-          "weight": 5
+          "weight": 15
         },
         {
           "type": "minecraft:item",
@@ -91,7 +91,23 @@
             }
           ],
           "name": "tofucraft:tofu_diamond_nugget",
-          "weight": 3
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "tofucraft:soy_force_shard",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
@@ -107,7 +123,7 @@
             }
           ],
           "name": "tofucraft:tofudiamond",
-          "weight": 2
+          "weight": 3
         },
         {
           "type": "minecraft:item",
