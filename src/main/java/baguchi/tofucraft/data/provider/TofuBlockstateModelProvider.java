@@ -1,7 +1,6 @@
 package baguchi.tofucraft.data.provider;
 
 import baguchi.tofucraft.TofuCraftReload;
-import baguchi.tofucraft.client.render.special.FoodPlateSpecialRenderer;
 import baguchi.tofucraft.client.render.special.TofunianStatueSpecialRenderer;
 import baguchi.tofucraft.registry.TofuBlocks;
 import com.mojang.math.Transformation;
@@ -137,13 +136,5 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 
 		this.blockStateOutput
 				.accept(MultiVariantGenerator.dispatch(p_388554_, multiVariant).with(ROTATION_HORIZONTAL_FACING));
-	}
-
-	public void createFoodPlate(Block block) {
-		//this.createParticleOnlyBlock(p_387020_, p_388374_);
-		Item item = block.asItem();
-		Identifier resourcelocation = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "item/template_foodplate");
-		ItemModel.Unbaked itemmodel$unbaked = ItemModelUtils.specialModel(resourcelocation, new FoodPlateSpecialRenderer.Unbaked());
-		this.itemModelOutput.accept(item, itemmodel$unbaked);
 	}
 }

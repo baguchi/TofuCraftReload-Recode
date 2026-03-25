@@ -1,9 +1,6 @@
 {
   "model": {
-    "type": "minecraft:special",
-    "base": "tofucraft:item/template_foodplate",
-    "model": {
-      "type": "tofucraft:foodplate"
-    }
+    "type": "minecraft:model",
+    "model": "tofucraft:block/foodplate"
   }
 }

@@ -58,7 +58,6 @@ import baguchi.tofucraft.client.render.item.extension.StickFoodItemRender;
 import baguchi.tofucraft.client.render.item.properties.TFProperty;
 import baguchi.tofucraft.client.render.layer.ZundaLayer;
 import baguchi.tofucraft.client.render.layer.ZundaSlimeOuterLayer;
-import baguchi.tofucraft.client.render.special.FoodPlateSpecialRenderer;
 import baguchi.tofucraft.client.render.special.TofuShieldSpecialRenderer;
 import baguchi.tofucraft.client.render.special.TofunianStatueSpecialRenderer;
 import baguchi.tofucraft.client.screen.ReceivingTofuLevelScreen;
@@ -351,7 +350,6 @@ public class ClientRegistrar {
 	public static void specialModelRender(RegisterSpecialModelRendererEvent event) {
 		event.register(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_shield"), TofuShieldSpecialRenderer.Unbaked.MAP_CODEC);
 		event.register(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofunian_statue"), TofunianStatueSpecialRenderer.Unbaked.MAP_CODEC);
-		event.register(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "foodplate"), FoodPlateSpecialRenderer.Unbaked.MAP_CODEC);
 	}
 
 
