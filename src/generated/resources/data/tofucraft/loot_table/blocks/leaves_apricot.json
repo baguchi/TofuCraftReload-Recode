@@ -133,19 +133,6 @@
     },
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "chances": [
-            0.005,
-            0.0055555557,
-            0.00625,
-            0.008333334,
-            0.025
-          ],
-          "condition": "minecraft:table_bonus",
-          "enchantment": "minecraft:fortune"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
@@ -157,7 +144,11 @@
           "name": "tofucraft:apricot"
         }
       ],
-      "rolls": 1.0
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 1.0
+      }
     }
   ],
   "random_sequence": "tofucraft:blocks/leaves_apricot"
