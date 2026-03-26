@@ -76,7 +76,7 @@ public class ClientProxy {
 			DisplayBookComponent soymilk = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuItems.SOYMILK_BOTTLE.get().asItem().getDescriptionId()), 52, 16, 1.0F).itemDisplay(TofuItems.SOYMILK_BOTTLE.get().getDefaultInstance(), 46, 26);
 			TextBookComponent soymilk_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soymilk.desc"), true, 100, 158);
 			DisplayBookComponent tofu_stick = (new DisplayBookComponent(121, 158)).textDisplay(Component.literal("TofuStick").setStyle(ALT_STYLE).withStyle(ChatFormatting.GRAY), 52, 22, 1.0F).textDisplay(Component.translatable(TofuItems.TOFUSTICK.get().asItem().getDescriptionId()), 52, 26, 1.0F).itemDisplay(TofuItems.TOFUSTICK.get().getDefaultInstance(), 46, 30);
-			TextBookComponent tofu_stick_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tofu_stick.desc"), true, 100, 158);
+			TextBookComponent tofu_stick_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tofu_stick.desc"), false, 100, 158);
 
 			DisplayBookComponent soysauce = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.soysauce"), 52, 26, 1.0F).itemDisplay(TofuItems.BOTTLE_SOYSAUSE.get().getDefaultInstance(), 46, 30);
 			TextBookComponent soysauce_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soysauce.desc"), true, 100, 158);
