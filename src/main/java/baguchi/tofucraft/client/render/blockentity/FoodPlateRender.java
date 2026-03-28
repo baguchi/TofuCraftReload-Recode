@@ -106,7 +106,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		state.cake = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()) instanceof CakeBlock;
 		state.fire = foodPlateBlockEntity.isFire();
 		state.renderAmount = getRenderAmount(foodPlateBlockEntity.getStoredItem());
-		state.direction = foodPlateBlockEntity.getBlockState().getValue(FoodPlateBlock.FACING);
+		state.direction = foodPlateBlockEntity.getBlockState().getValue(FoodPlateBlock.FACING).getOpposite();
 		this.blockModelResolver.update(state.plateBlock, foodPlateBlockEntity.getBlockState(), BLOCK_DISPLAY_CONTEXT);
 
 	}
