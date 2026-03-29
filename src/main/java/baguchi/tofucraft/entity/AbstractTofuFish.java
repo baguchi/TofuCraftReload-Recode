@@ -19,10 +19,12 @@ public abstract class AbstractTofuFish extends AbstractFish {
 		super(p_27461_, p_27462_);
 	}
 
+	@Override
 	protected PathNavigation createNavigation(Level p_27480_) {
 		return new SoymilkPathNavigation(this, p_27480_);
 	}
 
+	@Override
 	public void travel(Vec3 p_27490_) {
 		if (this.isEffectiveAi() && this.isInWater()) {
 			this.moveRelative(0.01F, p_27490_);

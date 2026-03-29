@@ -33,7 +33,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -75,7 +75,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 		if (!stateIn.canSurvive(levelReader, currentPos) && !access.getBlockTicks().hasScheduledTick(currentPos, this)) {
 			access.scheduleTick(currentPos, this, 1);
 		}
-		if (((Boolean) stateIn.getValue((Property) WATERLOGGED)).booleanValue()) {
+		if (stateIn.getValue((WATERLOGGED))) {
 			access.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelReader));
 			Stat stat = getStat(stateIn);
 			if (stat == Stat.EMPTY || stat == Stat.BITTERN) {
@@ -109,7 +109,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	protected InteractionResult useItemOn(ItemStack p_316304_, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		Stat stat = getStat(state);
-		if (!((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
+		if (!state.getValue((WATERLOGGED))) {
 			if (stat == Stat.EMPTY && itemHeld != null) {
 				if (itemHeld.is(Items.WATER_BUCKET)) {
 
@@ -182,19 +182,36 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		Stat stat = getStat(state);
-		int l = stat.getMeta();
-		if (stat == Stat.WATER && !((Boolean) state.getValue((Property) WATERLOGGED)).booleanValue()) {
+		if (stat == Stat.WATER && !state.getValue(WATERLOGGED)) {
 			float f = calcAdaptation(worldIn, pos);
 			if (f > 0.0F && random.nextInt((int) (25.0F / f) + 1) == 0) {
-				l++;
 				worldIn.setBlock(pos, state.setValue(STAT, Stat.SALT), 2);
 			}
 		}
 	}
 
+	@Override
+	public void handlePrecipitation(BlockState state, Level level, BlockPos pos, Biome.Precipitation precipitation) {
+		Stat stat = getStat(state);
+		if (shouldHandlePrecipitation(level, precipitation)) {
+			if (precipitation == Biome.Precipitation.RAIN && stat == Stat.EMPTY) {
+				level.setBlockAndUpdate(pos, state.setValue(STAT, Stat.WATER));
+				level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
+			}
+		}
+	}
+
+	protected static boolean shouldHandlePrecipitation(Level level, Biome.Precipitation precipitation) {
+		if (precipitation == Biome.Precipitation.RAIN) {
+			return level.getRandom().nextFloat() < 0.05F;
+		} else {
+			return precipitation == Biome.Precipitation.SNOW && level.getRandom().nextFloat() < 0.1F;
+		}
+	}
+
 	public Stat getStat(BlockState meta) {
 		if (meta.getBlock() == this)
-			return (Stat) meta.getValue((Property) STAT);
+			return meta.getValue(STAT);
 		return Stat.NA;
 	}
 
@@ -238,7 +255,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 
 	@Override
 	public FluidState getFluidState(BlockState p_204507_1_) {
-		return ((Boolean) p_204507_1_.getValue((Property) WATERLOGGED)).booleanValue() ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
+		return p_204507_1_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
 	}
 
 	public enum Stat implements StringRepresentable {

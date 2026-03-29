@@ -31,18 +31,22 @@ public class TofuFish extends AbstractTofuFish {
 		super(p_27523_, p_27524_);
 	}
 
+	@Override
 	public ItemStack getBucketItemStack() {
 		return new ItemStack(TofuItems.TOFUFISH_BUCKET.get());
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound() {
 		return SoundEvents.COD_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.COD_DEATH;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource p_28281_) {
 		return SoundEvents.COD_HURT;
 	}
@@ -53,7 +57,7 @@ public class TofuFish extends AbstractTofuFish {
 		return SoundEvents.COD_FLOP;
 	}
 
-
+	@Override
 	protected InteractionResult mobInteract(Player p_27477_, InteractionHand p_27478_) {
 		return bucketMobPickup(p_27477_, p_27478_, this).orElse(super.mobInteract(p_27477_, p_27478_));
 	}

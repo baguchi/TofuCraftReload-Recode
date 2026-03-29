@@ -13,7 +13,7 @@ public class BagBlock extends Block {
 	}
 
 	@Override
-	public void fallOn(Level p_152426_, BlockState p_152427_, BlockPos p_152428_, Entity p_152429_, double p_397222_) {
-		super.fallOn(p_152426_, p_152427_, p_152428_, p_152429_, p_397222_ * 0.5F);
+	public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
+		super.fallOn(level, state, pos, entity, fallDistance * 0.5F);
 	}
 }

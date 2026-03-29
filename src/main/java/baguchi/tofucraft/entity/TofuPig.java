@@ -61,6 +61,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 		super(p_29462_, p_29463_);
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
@@ -123,6 +124,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 		return null;
 	}
 
+	@Override
 	public void thunderHit(ServerLevel p_29473_, LightningBolt p_29474_) {
 		if (this.getTofuPigType() == TofuPigType.NORMAL) {
 			this.setTofuPigType(TofuPigType.ZUNDA);

@@ -15,8 +15,9 @@ public class ApricotLeavesBlock extends LeavesBlock {
 					)
 					.apply(p_399854_, TofuLeavesBlock::new)
 	);
-	public ApricotLeavesBlock(Properties p_54422_) {
-		super(0.01F, p_54422_);
+
+	public ApricotLeavesBlock(Properties properties) {
+		super(0.01F, properties);
 	}
 
 	@Override

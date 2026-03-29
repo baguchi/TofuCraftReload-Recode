@@ -22,13 +22,9 @@ public class ChiliCropsBlock extends CropBlock {
 		return TofuItems.SEEDS_CHILI.get();
 	}
 
-	@Override
-	protected boolean mayPlaceOn(BlockState p_52302_, BlockGetter p_52303_, BlockPos p_52304_) {
-		return super.mayPlaceOn(p_52302_, p_52303_, p_52304_);
-	}
 
 	@Override
-	public VoxelShape getShape(BlockState p_52297_, BlockGetter p_52298_, BlockPos p_52299_, CollisionContext p_52300_) {
-		return SHAPES[p_52297_.getValue(AGE)];
+	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext p_52300_) {
+		return SHAPES[state.getValue(AGE)];
 	}
 }

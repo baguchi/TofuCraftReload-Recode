@@ -55,6 +55,7 @@ public class TofuCow extends Cow {
 		builder.define(TOFUCOW_TYPE, "NORMAL");
 	}
 
+	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
@@ -106,6 +107,7 @@ public class TofuCow extends Cow {
 		return p_27579_.getBlockState(p_27581_.below()).is(TofuTags.Blocks.TOFU_TERRAIN) && p_27579_.getRawBrightness(p_27581_, 0) > 8;
 	}
 
+	@Override
 	public InteractionResult mobInteract(Player p_28298_, InteractionHand p_28299_) {
 		ItemStack itemstack = p_28298_.getItemInHand(p_28299_);
 		if (!this.isBaby()) {

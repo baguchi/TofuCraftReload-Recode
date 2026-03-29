@@ -28,13 +28,13 @@ public class LeekCropsBlock extends CropBlock {
 	}
 
 	@Override
-	public boolean canSurvive(BlockState p_51028_, LevelReader p_51029_, BlockPos p_51030_) {
-		BlockPos blockpos = p_51030_.below();
-		return this.mayPlaceOn(p_51029_.getBlockState(blockpos), p_51029_, blockpos);
+	public boolean canSurvive(BlockState blockState, LevelReader level, BlockPos pos) {
+		BlockPos blockpos = pos.below();
+		return this.mayPlaceOn(level.getBlockState(blockpos), level, blockpos);
 	}
 
 	@Override
-	protected boolean mayPlaceOn(BlockState state, BlockGetter p_52303_, BlockPos p_52304_) {
+	protected boolean mayPlaceOn(BlockState state, BlockGetter blockGetter, BlockPos blockPos) {
 		return state.is(TofuTags.Blocks.TOFU_FARMLANDS);
 	}
 
@@ -43,14 +43,17 @@ public class LeekCropsBlock extends CropBlock {
 		return TofuItems.LEEK.get();
 	}
 
+	@Override
 	public IntegerProperty getAgeProperty() {
 		return AGE;
 	}
 
+	@Override
 	public int getMaxAge() {
 		return 3;
 	}
 
+	@Override
 	public void randomTick(BlockState p_49667_, ServerLevel p_49668_, BlockPos p_49669_, RandomSource p_49670_) {
 		if (p_49670_.nextInt(3) != 0) {
 			super.randomTick(p_49667_, p_49668_, p_49669_, p_49670_);
@@ -58,6 +61,7 @@ public class LeekCropsBlock extends CropBlock {
 
 	}
 
+	@Override
 	public void growCrops(Level p_52264_, BlockPos p_52265_, BlockState p_52266_) {
 		int i = this.getAge(p_52266_) + this.getBonemealAgeIncrease(p_52264_);
 		int j = this.getMaxAge();
@@ -67,14 +71,17 @@ public class LeekCropsBlock extends CropBlock {
 		p_52264_.setBlock(p_52265_, this.getStateForAge(i), 2);
 	}
 
-	protected int getBonemealAgeIncrease(Level p_49663_) {
-		return super.getBonemealAgeIncrease(p_49663_) / 3;
+	@Override
+	protected int getBonemealAgeIncrease(Level level) {
+		return super.getBonemealAgeIncrease(level) / 3;
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_49665_) {
 		p_49665_.add(AGE);
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState p_49672_, BlockGetter p_49673_, BlockPos p_49674_, CollisionContext p_49675_) {
 		return SHAPE_BY_AGE[p_49672_.getValue(this.getAgeProperty())];
 	}

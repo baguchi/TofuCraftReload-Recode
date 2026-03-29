@@ -42,6 +42,7 @@ public class RiceCropsBlock extends CropBlock {
 		return p_52302_.is(TofuBlocks.RICE_ROOT.get());
 	}
 
+	@Override
 	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 		if (!worldIn.isAreaLoaded(pos, 1))
 			return;

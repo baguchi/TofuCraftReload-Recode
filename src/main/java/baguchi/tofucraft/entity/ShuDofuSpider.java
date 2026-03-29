@@ -38,11 +38,9 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -192,10 +190,6 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, true, null));
 		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, 10, true, true, null));
-	}
-
-	protected float getStandingEyeHeight(Pose p_33799_, EntityDimensions p_33800_) {
-		return 1.25F;
 	}
 
 	private boolean isMovingOnLand() {
