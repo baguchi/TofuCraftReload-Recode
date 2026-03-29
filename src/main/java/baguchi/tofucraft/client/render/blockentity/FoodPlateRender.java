@@ -3,7 +3,6 @@ package baguchi.tofucraft.client.render.blockentity;
 import baguchi.tofucraft.block.FoodPlateBlock;
 import baguchi.tofucraft.blockentity.FoodPlateBlockEntity;
 import baguchi.tofucraft.client.render.blockentity.state.FoodPlateRenderState;
-import baguchi.tofucraft.registry.TofuBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -22,8 +21,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CakeBlock;
-import net.minecraft.world.level.block.CandleBlock;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,25 +34,6 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	public FoodPlateRender(BlockEntityRendererProvider.Context context) {
 		this.itemModelResolver = context.itemModelResolver();
 		this.blockModelResolver = context.blockModelResolver();
-	}
-
-	public FoodPlateRender() {
-	}
-
-	public void renderInHand(FoodPlateRenderState foodPlateRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
-		float f = 90.0F;
-		poseStack.pushPose();
-		//poseStack.scale(-1.0F, -1.0F, 1.0F);
-		poseStack.translate(0F, 0.1F, 0F);
-		BlockState state = TofuBlocks.FOODPLATE.get().defaultBlockState();
-		//poseStack.translate(-0.5F, 0F, -0.5F);
-		foodPlateRenderState.plateBlock.submit(poseStack, submitNodeCollector, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
-		poseStack.popPose();
-		if (!foodPlateRenderState.plateItem.isEmpty()) {
-			poseStack.pushPose();
-			renderPlacedItem(foodPlateRenderState, poseStack, submitNodeCollector);
-			poseStack.popPose();
-		}
 	}
 
 	public int getRenderAmount(ItemStack p_115043_) {
@@ -81,12 +59,11 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		//matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 	}
 
-	public void renderBlock(PoseStack matrixStackIn, Direction direction, boolean candle) {
+	public void renderBlock(PoseStack matrixStackIn, Direction direction) {
 		float f = -direction.toYRot();
 		matrixStackIn.translate(0.5D, 0.0D, 0.5D);
-		if (!candle) {
-			matrixStackIn.scale(0.6F, 0.6F, 0.6F);
-		}
+		matrixStackIn.scale(0.8F, 0.8F, 0.8F);
+
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
 		matrixStackIn.translate(-0.5D, 0.0D, -0.5D);
 		//matrixStackIn.scale(0.8F, 0.8F, 0.8F);
@@ -101,14 +78,12 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	public void extractRenderState(FoodPlateBlockEntity foodPlateBlockEntity, FoodPlateRenderState state, float p_446851_, Vec3 p_445788_, @Nullable ModelFeatureRenderer.CrumblingOverlay p_446944_) {
 		BlockEntityRenderer.super.extractRenderState(foodPlateBlockEntity, state, p_446851_, p_445788_, p_446944_);
 		this.itemModelResolver.updateForTopItem(state.plateItem, foodPlateBlockEntity.getStoredItem(), ItemDisplayContext.GROUND, null, null, 0);
-		state.plateState = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()).defaultBlockState();
-		state.candle = foodPlateBlockEntity.getStoredItem().is(ItemTags.CANDLES);
-		state.cake = Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()) instanceof CakeBlock;
 		state.fire = foodPlateBlockEntity.isFire();
 		state.renderAmount = getRenderAmount(foodPlateBlockEntity.getStoredItem());
 		state.direction = foodPlateBlockEntity.getBlockState().getValue(FoodPlateBlock.FACING).getOpposite();
-		this.blockModelResolver.update(state.plateBlock, foodPlateBlockEntity.getBlockState(), BLOCK_DISPLAY_CONTEXT);
-
+		if (Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()) instanceof CakeBlock || foodPlateBlockEntity.getStoredItem().is(ItemTags.CANDLES)) {
+			this.blockModelResolver.update(state.plateBlock, Block.byItem(foodPlateBlockEntity.getStoredItem().getItem()).defaultBlockState(), BLOCK_DISPLAY_CONTEXT);
+		}
 	}
 
 	@Override
@@ -119,14 +94,9 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 
 	private void renderPlacedItem(FoodPlateRenderState foodPlateRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector) {
 		for (int k = 0; k < foodPlateRenderState.renderAmount; ++k) {
-			if ((foodPlateRenderState.candle || foodPlateRenderState.cake) && foodPlateRenderState.plateState != null) {
+			if (!foodPlateRenderState.plateBlock.isEmpty()) {
 				poseStack.pushPose();
-				renderBlock(poseStack, foodPlateRenderState.direction, foodPlateRenderState.candle);
-
-				BlockState state = foodPlateRenderState.plateState;
-				if (foodPlateRenderState.candle) {
-					state = state.setValue(CandleBlock.LIT, foodPlateRenderState.fire);
-				}
+				renderBlock(poseStack, foodPlateRenderState.direction);
 				//poseStack.translate(-0.5F, 0F, -0.5F);
 				foodPlateRenderState.plateBlock.submit(poseStack, submitNodeCollector, foodPlateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 				poseStack.popPose();
