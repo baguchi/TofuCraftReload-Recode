@@ -694,6 +694,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			merchantoffer.resetSpecialPriceDiff();
 	}
 
+	@Override
 	public boolean canRestock() {
 		return true;
 	}
@@ -803,6 +804,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		return this.tofunianLevel;
 	}
 
+	@Override
 	public void addAdditionalSaveData(ValueOutput compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putByte("FoodLevel", this.foodLevel);
@@ -826,6 +828,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		compound.store("tofunian_variant", TofunianVariant.CODEC, this.getTofunianVariant());
 	}
 
+	@Override
 	public void readAdditionalSaveData(ValueInput compound) {
 		super.readAdditionalSaveData(compound);
 		this.foodLevel = compound.getByteOr("FoodLevel", (byte) 0);
@@ -870,6 +873,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		setCanPickUpLoot(true);
 	}
 
+	@Override
 	public int getVillagerXp() {
 		return this.xp;
 	}
@@ -1167,45 +1171,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		}
 
 	}
-
-	/*public enum Roles {
-		TOFUCOOK(getBlockStates(Blocks.COMPOSTER)), TOFUSMITH(getBlockStates(Blocks.BLAST_FURNACE)), SOYWORKER(ImmutableList.of(Blocks.CAULDRON, Blocks.LAVA_CAULDRON, Blocks.WATER_CAULDRON, Blocks.POWDER_SNOW_CAULDRON).stream().flatMap((p_218093_) -> {
-			return p_218093_.getStateDefinition().getPossibleStates().stream();
-		}).collect(ImmutableSet.toImmutableSet())), TOFUNIAN(Set.of());
-
-		private final Set<BlockState> matchingStates;
-
-		Roles(Set<BlockState> matchingStates, Int2ObjectMap<ResourceKey<TradeSet>> tradeSetsByLevel) {
-			matchingStates = Set.copyOf(matchingStates);
-			this.matchingStates = matchingStates;
-		}
-
-		public boolean is(BlockState p_148693_) {
-			return this.matchingStates.contains(p_148693_);
-		}
-
-		private static Set<BlockState> getBlockStates(Block p_218074_) {
-			return ImmutableSet.copyOf(p_218074_.getStateDefinition().getPossibleStates());
-		}
-
-		public static Roles get(String nameIn) {
-			for (Roles role : values()) {
-				if (role.name().equals(nameIn))
-					return role;
-			}
-			return TOFUNIAN;
-		}
-
-		@Nullable
-		public static Roles getJob(BlockState blockState) {
-			for (Roles role : values()) {
-				if (role != TOFUNIAN && role.is(blockState)) {
-					return role;
-				}
-			}
-			return null;
-		}
-	}*/
 
 	class MoveToGoal extends Goal {
 		final Tofunian tofunian;

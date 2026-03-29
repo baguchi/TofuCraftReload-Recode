@@ -106,15 +106,16 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		return TofuSounds.TOFUNIAN_HURT.get();
 	}
 
+	@Override
 	protected SoundEvent getDeathSound() {
 		return TofuSounds.TOFUNIAN_DEATH.get();
 	}
-
 
 	protected SoundEvent getTradeUpdatedSound(boolean p_213721_1_) {
 		return p_213721_1_ ? TofuSounds.TOFUNIAN_YES.get() : TofuSounds.TOFUNIAN_NO.get();
 	}
 
+	@Override
 	public SoundEvent getNotifyTradeSound() {
 		return TofuSounds.TOFUNIAN_YES.get();
 	}
@@ -164,6 +165,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		return this.tradingPlayer != null;
 	}
 
+	@Override
 	public MerchantOffers getOffers() {
 		if (this.level() instanceof ServerLevel serverLevel) {
 			if (this.offers == null) {
@@ -177,12 +179,15 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		}
 	}
 
+	@Override
 	public void overrideOffers(@Nullable MerchantOffers p_35276_) {
 	}
 
+	@Override
 	public void overrideXp(int p_35322_) {
 	}
 
+	@Override
 	public void notifyTrade(MerchantOffer p_35274_) {
 		p_35274_.increaseUses();
 		this.ambientSoundTime = -this.getAmbientSoundInterval();
@@ -194,6 +199,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 
 	protected abstract void rewardTradeXp(MerchantOffer p_35299_);
 
+	@Override
 	public boolean showProgressBar() {
 		return true;
 	}
