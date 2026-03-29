@@ -1,6 +1,6 @@
 package baguchi.tofucraft.client.render.blockentity;
 
-import baguchi.tofucraft.block.FoodPlateBlock;
+import baguchi.tofucraft.block.utils.FoodPlateBlock;
 import baguchi.tofucraft.blockentity.FoodPlateBlockEntity;
 import baguchi.tofucraft.client.render.blockentity.state.FoodPlateRenderState;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -62,7 +62,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	public void renderBlock(PoseStack matrixStackIn, Direction direction) {
 		float f = -direction.toYRot();
 		matrixStackIn.translate(0.5D, 0.0D, 0.5D);
-		matrixStackIn.scale(0.8F, 0.8F, 0.8F);
+		matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 
 		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
 		matrixStackIn.translate(-0.5D, 0.0D, -0.5D);

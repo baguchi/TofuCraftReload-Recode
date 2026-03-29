@@ -1,4 +1,4 @@
-package baguchi.tofucraft.block;
+package baguchi.tofucraft.block.utils;
 
 import baguchi.tofucraft.blockentity.FoodPlateBlockEntity;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
@@ -78,22 +78,22 @@ public class FoodPlateBlock extends BaseEntityBlock {
 		BlockEntity tileEntity = level.getBlockEntity(blockPos);
 		if (tileEntity instanceof FoodPlateBlockEntity foodPlate) {
 			if (foodPlate.isFire()) {
-				addParticlesAndSound(level, new Vec3(0.5F, 0.5F, 0.5F).add((double) blockPos.getX(), (double) blockPos.getY(), (double) blockPos.getZ()), p_220700_);
+				addParticlesAndSound(level, new Vec3(0.5F, 0.26F, 0.5F).add(blockPos.getX(), blockPos.getY(), blockPos.getZ()), p_220700_);
 			}
 		}
 
 	}
 
-	private static void addParticlesAndSound(Level p_220688_, Vec3 p_220689_, RandomSource p_220690_) {
-		float f = p_220690_.nextFloat();
+	private static void addParticlesAndSound(Level level, Vec3 pos, RandomSource randomSource) {
+		float f = randomSource.nextFloat();
 		if (f < 0.3F) {
-			p_220688_.addParticle(ParticleTypes.SMOKE, p_220689_.x, p_220689_.y, p_220689_.z, (double) 0.0F, (double) 0.0F, (double) 0.0F);
+			level.addParticle(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 0.0F, 0.0F, 0.0F);
 			if (f < 0.17F) {
-				p_220688_.playLocalSound(p_220689_.x + (double) 0.5F, p_220689_.y + (double) 0.5F, p_220689_.z + (double) 0.5F, SoundEvents.CANDLE_AMBIENT, SoundSource.BLOCKS, 1.0F + p_220690_.nextFloat(), p_220690_.nextFloat() * 0.7F + 0.3F, false);
+				level.playLocalSound(pos.x + (double) 0.5F, pos.y + (double) 0.26F, pos.z + (double) 0.5F, SoundEvents.CANDLE_AMBIENT, SoundSource.BLOCKS, 1.0F + randomSource.nextFloat(), randomSource.nextFloat() * 0.7F + 0.3F, false);
 			}
 		}
 
-		p_220688_.addParticle(ParticleTypes.SMALL_FLAME, p_220689_.x, p_220689_.y, p_220689_.z, (double) 0.0F, (double) 0.0F, (double) 0.0F);
+		level.addParticle(ParticleTypes.SMALL_FLAME, pos.x, pos.y, pos.z, 0.0F, 0.0F, 0.0F);
 	}
 
 	@Override
@@ -104,8 +104,7 @@ public class FoodPlateBlock extends BaseEntityBlock {
 	@Override
 	protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 		BlockEntity tileEntity = level.getBlockEntity(blockPos);
-		if (tileEntity instanceof FoodPlateBlockEntity) {
-			FoodPlateBlockEntity plateBlockEntity = (FoodPlateBlockEntity) tileEntity;
+		if (tileEntity instanceof FoodPlateBlockEntity plateBlockEntity) {
 			ItemStack heldStack = player.getItemInHand(hand);
 
 			if (plateBlockEntity.isEmpty()) {
