@@ -76,12 +76,6 @@ public class TFTofuMakerScreen extends AbstractRecipeBookScreen<TFTofuMakerMenu>
 
 	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
 		TextureAtlasSprite sprite = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(fluid.defaultFluidState()).stillMaterial().sprite();
-		int color = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(fluid.defaultFluidState()).fluidTintSource().color(fluid.defaultFluidState());
-
-		float alpha = (float) (color >> 24 & 255) / 255.0F;
-		float red = (float) (color >> 16 & 0xFF) / 255.0F;
-		float green = (float) (color >> 8 & 0xFF) / 255.0F;
-		float blue = (float) (color & 0xFF) / 255.0F;
 
 		int xTileCount = desiredWidth / 16;
 		int xRemainder = desiredWidth - (xTileCount * 16);
@@ -93,7 +87,7 @@ public class TFTofuMakerScreen extends AbstractRecipeBookScreen<TFTofuMakerMenu>
 		float vMax = sprite.getV1();
 		float uDif = uMax - uMin;
 		float vDif = vMax - vMin;
-		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xPosition, yPosition - desiredHeight, desiredWidth, desiredHeight, color);
+		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xPosition, yPosition - desiredHeight, desiredWidth, desiredHeight);
 
 	}
 }
