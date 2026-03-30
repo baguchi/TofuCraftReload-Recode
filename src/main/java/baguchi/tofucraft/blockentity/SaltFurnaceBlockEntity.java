@@ -58,14 +58,14 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 
 	protected NonNullList<ItemStack> items = NonNullList.withSize(4, ItemStack.EMPTY);
 
-	public FluidContainer waterTank = new FluidContainer(3000) {
+	public FluidContainer waterTank = new FluidContainer(3000, s -> s.is(Fluids.WATER)) {
 		@Override
 		protected void onContentsChanged() {
 			setChanged();
 		}
 	};
 
-	public FluidContainer bitternTank = new FluidContainer(2000) {
+	public FluidContainer bitternTank = new FluidContainer(2000, s -> s.is(TofuFluids.BITTERN.get())) {
 
 		@Override
 		protected void onContentsChanged() {

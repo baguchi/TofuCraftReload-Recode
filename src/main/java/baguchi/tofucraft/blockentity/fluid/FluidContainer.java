@@ -21,8 +21,9 @@ public class FluidContainer extends FluidStacksResourceHandler {
 		this.validator = validator;
 	}
 
+	@Override
 	public boolean matches(FluidStack stack, FluidResource resource) {
-		return resource.matches(stack) || validator.test(stack);
+		return resource.matches(stack) && validator.test(stack);
 	}
 
 	@Override
