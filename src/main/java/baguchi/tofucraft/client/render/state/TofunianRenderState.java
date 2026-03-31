@@ -13,6 +13,7 @@ public class TofunianRenderState extends AbstractTofunianRenderState {
 	public final AnimationState craftingAnimationState = new AnimationState();
 	public final AnimationState craftOnceAnimationState = new AnimationState();
 
+	public boolean child;
 	public Tofunian.Actions actions;
 	public Identifier rolesTexture;
 	@Nullable

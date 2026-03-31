@@ -105,6 +105,7 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		super.extractRenderState(tofunian, renderState, partialTick);
 		HumanoidMobRenderer.extractHumanoidRenderState(tofunian, renderState, partialTick, this.itemModelResolver);
 
+		renderState.child = tofunian.getAge() >= -12000 && tofunian.isBaby();
 		renderState.id = tofunian.getId();
 		renderState.isPassenger = tofunian.isPassenger() && (tofunian.getVehicle() != null && tofunian.getVehicle().shouldRiderSit());
 

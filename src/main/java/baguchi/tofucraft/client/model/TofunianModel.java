@@ -22,6 +22,7 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 	private final KeyframeAnimation cryAnimation;
 	private final KeyframeAnimation avoidAnimation;
 	private final KeyframeAnimation sitAnimation;
+	private final KeyframeAnimation babyAnimation;
 
 
 	public TofunianModel(ModelPart root) {
@@ -34,6 +35,7 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 		this.cryAnimation = TofunianAnimation.CRY.bake(root);
 		this.avoidAnimation = TofunianAnimation.AVOIDING.bake(root);
 		this.sitAnimation = TofunianAnimation.SIT.bake(root);
+		this.babyAnimation = TofunianAnimation.BABY.bake(root);
 	}
 
 	public static LayerDefinition createBodyLayer() {
