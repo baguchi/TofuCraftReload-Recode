@@ -97,16 +97,6 @@ public class TofunianModel<T extends TofunianRenderState> extends AbstractTofuni
 			this.leftLeg.zRot = -0.07853982F;
 			this.sitAnimation.applyStatic();
 		}
-
-		boolean babyFlag = entity.isBaby && !entity.child;
-
-		this.rightArm.visible = babyFlag;
-		this.leftArm.visible = babyFlag;
-		this.body.visible = babyFlag;
-
-		if (entity.child) {
-			this.babyAnimation.applyStatic();
-		}
 	}
 
 }
