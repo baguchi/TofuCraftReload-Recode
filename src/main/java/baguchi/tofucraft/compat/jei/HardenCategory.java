@@ -1,6 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
-/*
+
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.HardenRecipe;
 import mezz.jei.api.constants.VanillaTypes;
@@ -13,7 +13,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.types.IRecipeType;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
@@ -74,15 +74,14 @@ public class HardenCategory implements IRecipeCategory<HardenRecipe> {
 		builder.addSlot(RecipeIngredientRole.INPUT, 38, 18 + borderSlotSize)
 				.add(Items.COBBLESTONE);
 
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).add(recipe.getResult());
+		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).add(recipe.getResult().create());
 
 	}
 
 
 	@Override
-	public void draw(HardenRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics stack, double mouseX, double mouseY) {
+	public void draw(HardenRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor stack, double mouseX, double mouseY) {
 		background.draw(stack);
 		arrow.draw(stack, 72 - 17, 35 - 17);
 	}
 }
-*/

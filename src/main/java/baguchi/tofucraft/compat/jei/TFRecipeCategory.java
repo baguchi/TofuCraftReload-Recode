@@ -1,7 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
 
-/*
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.TFCraftingRecipe;
 import baguchi.tofucraft.recipe.TFShapedRecipe;
@@ -16,7 +15,7 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.types.IRecipeType;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
@@ -102,11 +101,10 @@ public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
 
 
 	@Override
-	public void draw(TFCraftingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics stack, double mouseX, double mouseY) {
+	public void draw(TFCraftingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor stack, double mouseX, double mouseY) {
 		background.draw(stack);
 		arrow.draw(stack, 89 - 10, 34 - 12);
 	}
 
 
 }
-*/

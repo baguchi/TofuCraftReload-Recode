@@ -94,9 +94,9 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockState blockstate = context.getLevel().getBlockState(context.getClickedPos());
 		return (blockstate.getBlock() == this) ? context.getLevel().getBlockState(context.getClickedPos()).setValue(NORTH, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().north())))
-				.setValue(EAST, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().east())))
-				.setValue(SOUTH, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().south())))
-				.setValue(WEST, Boolean.valueOf(canConnectTo(context.getLevel(), context.getClickedPos().west()))) : super.getStateForPlacement(context);
+				.setValue(EAST, canConnectTo(context.getLevel(), context.getClickedPos().east()))
+				.setValue(SOUTH, canConnectTo(context.getLevel(), context.getClickedPos().south()))
+				.setValue(WEST, canConnectTo(context.getLevel(), context.getClickedPos().west())) : super.getStateForPlacement(context);
 	}
 
 
@@ -109,7 +109,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 	protected InteractionResult useItemOn(ItemStack p_316304_, BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
 		ItemStack itemHeld = player.getItemInHand(handIn);
 		Stat stat = getStat(state);
-		if (!state.getValue((WATERLOGGED))) {
+		if (!state.getValue(WATERLOGGED)) {
 			if (stat == Stat.EMPTY && itemHeld != null) {
 				if (itemHeld.is(Items.WATER_BUCKET)) {
 
@@ -203,7 +203,7 @@ public class SaltPanBlock extends Block implements SimpleWaterloggedBlock {
 
 	protected static boolean shouldHandlePrecipitation(Level level, Biome.Precipitation precipitation) {
 		if (precipitation == Biome.Precipitation.RAIN) {
-			return level.getRandom().nextFloat() < 0.05F;
+			return level.getRandom().nextFloat() < 0.1F;
 		} else {
 			return precipitation == Biome.Precipitation.SNOW && level.getRandom().nextFloat() < 0.1F;
 		}

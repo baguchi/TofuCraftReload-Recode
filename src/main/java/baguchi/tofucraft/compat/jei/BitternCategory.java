@@ -1,7 +1,6 @@
 package baguchi.tofucraft.compat.jei;
 
 
-/*
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.BitternRecipe;
 import baguchi.tofucraft.registry.TofuItems;
@@ -16,11 +15,11 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.types.IRecipeType;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStackTemplate;
 
 import java.util.Arrays;
 
@@ -67,27 +66,25 @@ public class BitternCategory implements IRecipeCategory<BitternRecipe> {
 
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, BitternRecipe recipe, IFocusGroup focuses) {
-		FluidStack recipeIngredients = recipe.getFluid();
+		FluidStackTemplate recipeIngredients = recipe.getFluid();
 		int borderSlotSize = 18;
 		builder.addSlot(RecipeIngredientRole.INPUT, 38, 18)
 				.setFluidRenderer(1000, false, 16, 16)
-				.addIngredients(NeoForgeTypes.FLUID_STACK, Arrays.asList(recipeIngredients));
+				.addIngredients(NeoForgeTypes.FLUID_STACK, Arrays.asList(recipeIngredients.create()));
 
 		builder.addSlot(RecipeIngredientRole.INPUT, 10, 18)
 				.setFluidRenderer(1000, false, 16, 16)
-				.addIngredients(NeoForgeTypes.FLUID_STACK, Arrays.asList(recipe.getFluid()));
+				.addIngredients(NeoForgeTypes.FLUID_STACK, Arrays.asList(recipe.getFluid().create()));
 
 
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).add(recipe.getResult());
+		builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 18).add(recipe.getResult().create());
 
 	}
 
 
 	@Override
-	public void draw(BitternRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+	public void draw(BitternRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX, double mouseY) {
 		background.draw(guiGraphics);
 		arrow.draw(guiGraphics, 72 - 17, 35 - 17);
 	}
 }
-
-*/
