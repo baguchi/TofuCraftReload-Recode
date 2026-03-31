@@ -406,7 +406,7 @@ public class TofuItems {
 					DataComponents.BLOCKS_ATTACKS,
 					context -> new BlocksAttacks(
 							0.25F,
-							0.8F,
+							0.75F,
 							List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
 							new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 1.0F),
 							Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)),
