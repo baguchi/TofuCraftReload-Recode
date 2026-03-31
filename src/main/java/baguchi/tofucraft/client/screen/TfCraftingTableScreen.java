@@ -4,17 +4,14 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.recipe.TFCraftingTableRecipeBookComponent;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
 import baguchi.tofucraft.registry.TofuFluids;
-import net.minecraft.client.Minecraft;
+import baguchi.tofucraft.utils.ClientUtils;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.level.material.Fluid;
-import org.joml.Matrix3x2fStack;
 
 import java.awt.*;
 
@@ -66,34 +63,11 @@ public class TfCraftingTableScreen extends AbstractRecipeBookScreen<TFCraftingTa
 
 		int heightInd = (int) (44.0F * this.menu.getTFEnergy() / this.menu.getTFMaxEnergy());
 		if (heightInd > 0)
-			renderFluidStack(gui, gui.pose(), this.leftPos + 158, this.topPos + 69, 10, heightInd, TofuFluids.SOYMILK.get());
+			ClientUtils.renderFluidStack(gui, gui.pose(), this.leftPos + 158, this.topPos + 69, 10, heightInd, TofuFluids.SOYMILK.get());
 
 
 		// Render progress arrow
 		int l = this.menu.getCookProgressionScaled();
 		gui.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURE, this.leftPos + PROGRESS_ARROW.x, this.topPos + PROGRESS_ARROW.y, 176, 15, l + 1, PROGRESS_ARROW.height, 256, 256);
-	}
-
-
-	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
-		TextureAtlasSprite sprite = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(fluid.defaultFluidState()).stillMaterial().sprite();
-		int color = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(fluid.defaultFluidState()).fluidTintSource().color(fluid.defaultFluidState());
-		float alpha = (float) (color >> 24 & 255) / 255.0F;
-		float red = (float) (color >> 16 & 0xFF) / 255.0F;
-		float green = (float) (color >> 8 & 0xFF) / 255.0F;
-		float blue = (float) (color & 0xFF) / 255.0F;
-
-		int xTileCount = desiredWidth / 16;
-		int xRemainder = desiredWidth - (xTileCount * 16);
-		int yTileCount = desiredHeight / 16;
-		int yRemainder = desiredHeight - (yTileCount * 16);
-		float uMin = sprite.getU0();
-		float uMax = sprite.getU1();
-		float vMin = sprite.getV0();
-		float vMax = sprite.getV1();
-		float uDif = uMax - uMin;
-		float vDif = vMax - vMin;
-		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xPosition, yPosition - desiredHeight, desiredWidth, desiredHeight, color);
-
 	}
 }

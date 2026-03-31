@@ -6,21 +6,18 @@ import baguchi.tofucraft.inventory.TFTofuMakerMenu;
 import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
-import net.minecraft.client.Minecraft;
+import baguchi.tofucraft.utils.ClientUtils;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
-import org.joml.Matrix3x2fStack;
 
 import java.util.List;
 
@@ -70,24 +67,7 @@ public class TFTofuMakerScreen extends AbstractRecipeBookScreen<TFTofuMakerMenu>
 		FluidStack fluidTank2 = new FluidStack(TofuFluids.SOYMILK_FLOW.get(), 1000);
 		int heightInd2 = (int) (44.0F * menu.getTFForce());
 		if (heightInd2 > 0)
-			renderFluidStack(guiGraphics, guiGraphics.pose(), i + 76 + 40, j + 69, 10, heightInd2, fluidTank2.getFluid());
+			ClientUtils.renderFluidStack(guiGraphics, guiGraphics.pose(), i + 76 + 40, j + 69, 10, heightInd2, fluidTank2.getFluid());
 		guiGraphics.pose().popMatrix();
-	}
-
-	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
-		TextureAtlasSprite sprite = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(fluid.defaultFluidState()).stillMaterial().sprite();
-
-		int xTileCount = desiredWidth / 16;
-		int xRemainder = desiredWidth - (xTileCount * 16);
-		int yTileCount = desiredHeight / 16;
-		int yRemainder = desiredHeight - (yTileCount * 16);
-		float uMin = sprite.getU0();
-		float uMax = sprite.getU1();
-		float vMin = sprite.getV0();
-		float vMax = sprite.getV1();
-		float uDif = uMax - uMin;
-		float vDif = vMax - vMin;
-		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xPosition, yPosition - desiredHeight, desiredWidth, desiredHeight);
-
 	}
 }

@@ -4,18 +4,15 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.blockentity.fluid.FluidContainer;
 import baguchi.tofucraft.client.recipe.TofuPotRecipeBookComponent;
 import baguchi.tofucraft.inventory.TofuPotMenu;
-import net.minecraft.client.Minecraft;
+import baguchi.tofucraft.utils.ClientUtils;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.level.material.Fluid;
-import org.joml.Matrix3x2fStack;
 
 import java.awt.*;
 
@@ -66,27 +63,10 @@ public class TofuPotScreen extends AbstractRecipeBookScreen<TofuPotMenu> {
 		FluidContainer fluidTank = this.menu.blockEntity.fluidTank;
 		int heightInd = (int) (44.0F * fluidTank.getAmountAsInt(0) / fluidTank.getCapacityAsInt(0, fluidTank.getResource(0)));
 		if (heightInd > 0)
-			renderFluidStack(gui, gui.pose(), this.leftPos + 158, this.topPos + 69, 10, heightInd, fluidTank.getResource(0).getFluid());
+			ClientUtils.renderFluidStack(gui, gui.pose(), this.leftPos + 158, this.topPos + 69, 10, heightInd, fluidTank.getResource(0).getFluid());
 
 		// Render progress arrow
 		int l = this.menu.getCookProgressionScaled();
 		gui.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURE, this.leftPos + PROGRESS_ARROW.x, this.topPos + PROGRESS_ARROW.y, 176, 15, l + 1, PROGRESS_ARROW.height, 256, 256);
-	}
-
-	public static void renderFluidStack(GuiGraphicsExtractor guiGraphics, Matrix3x2fStack stack, int xPosition, int yPosition, int desiredWidth, int desiredHeight, Fluid fluid) {
-		TextureAtlasSprite sprite = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(fluid.defaultFluidState()).stillMaterial().sprite();
-
-		int xTileCount = desiredWidth / 16;
-		int xRemainder = desiredWidth - (xTileCount * 16);
-		int yTileCount = desiredHeight / 16;
-		int yRemainder = desiredHeight - (yTileCount * 16);
-		float uMin = sprite.getU0();
-		float uMax = sprite.getU1();
-		float vMin = sprite.getV0();
-		float vMax = sprite.getV1();
-		float uDif = uMax - uMin;
-		float vDif = vMax - vMin;
-		guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, xPosition, yPosition - desiredHeight, desiredWidth, desiredHeight);
-
 	}
 }
