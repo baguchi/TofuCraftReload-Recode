@@ -428,7 +428,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> SOUL_FUKUMAME = ITEMS.registerItem("soul_fukumame", (properties) -> new SoulFukumameItem((properties).stacksTo(1).enchantable(3).durability(64).rarity(Rarity.UNCOMMON)));
 
-	public static final DeferredHolder<Item, Item> ZUNDA_BOW = ITEMS.registerItem("zunda_bow", (properties) -> new ZundaBowItem((properties).rarity(Rarity.UNCOMMON).enchantable(3).durability(426)));
+	public static final DeferredHolder<Item, Item> ZUNDA_BOW = ITEMS.registerItem("zunda_bow", (properties) -> new ZundaBowItem((properties).rarity(Rarity.UNCOMMON).enchantable(3).durability(686)));
 
 	public static final DeferredHolder<Item, Item> ZUNDA_ARROW = ITEMS.registerItem("zunda_arrow", (properties) -> new ZundaArrowItem((properties)));
 
