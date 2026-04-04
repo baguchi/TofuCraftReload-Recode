@@ -47,9 +47,8 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 					if (this.creature.level() instanceof ServerLevel) {
 						this.creature.setTofunianJobBlock(this.blockPos);
 						if (this.creature.getRole().is(TofunianProfessions.NONE.getKey())) {
+							this.creature.setOffers(null);
 							this.creature.setRole(role.get().getKey());
-							//this.creature.updateTrades();
-
 
 							this.findBlock = true;
 						}
