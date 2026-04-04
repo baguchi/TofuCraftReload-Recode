@@ -292,18 +292,10 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	public void setRole(Holder<TofunianProfession> role) {
-		TofunianProfession currentData = this.getRole().value();
-		if (!currentData.equals(role.value())) {
-			this.offers = null;
-		}
 		this.entityData.set(ROLE, role);
 	}
 
 	public void setRole(ResourceKey<TofunianProfession> role) {
-		Holder<TofunianProfession> currentData = this.getRole();
-		if (!currentData.equals(role)) {
-			this.offers = null;
-		}
 		this.entityData.set(ROLE, TofunianProfessions.getRegistry().getHolderOrThrow(role));
 	}
 
