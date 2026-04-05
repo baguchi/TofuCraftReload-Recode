@@ -3,5 +3,8 @@
   "description": {
     "color": "#6CBEEB",
     "translate": "trim_material.tofucraft.tofu_diamond"
+  },
+  "override_armor_assets": {
+    "tofucraft:diamond": "tofu_diamond_darker"
   }
 }
