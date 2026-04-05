@@ -553,7 +553,7 @@ public class TofuItems {
 
 
 	public static SmithingTemplateItem createTofuUpgradeTemplate(Item.Properties p_363106_) {
-		return new SmithingTemplateItem(TOFU_UPGRADE_APPLIES_TO, TOFU_UPGRADE_INGREDIENTS, TOFU_UPGRADE_BASE_SLOT_DESCRIPTION, TOFU_UPGRADE, createTofuUpgradeMaterialList(), createTofuUpgradeIconList(), p_363106_.requiredFeatures(TofuCraftReload.EXPERIMENTAL));
+		return new SmithingTemplateItem(TOFU_UPGRADE_APPLIES_TO, TOFU_UPGRADE_INGREDIENTS, TOFU_UPGRADE_BASE_SLOT_DESCRIPTION, TOFU_UPGRADE, createTofuUpgradeIconList(), createTofuUpgradeMaterialList(), p_363106_.requiredFeatures(TofuCraftReload.EXPERIMENTAL));
 	}
 
 	private static List<Identifier> createZundaBowUpgradeIconList() {
