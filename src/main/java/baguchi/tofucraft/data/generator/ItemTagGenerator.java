@@ -57,18 +57,26 @@ public class ItemTagGenerator extends ItemTagsProvider {
 
 		tag(ItemTags.HEAD_ARMOR).add(TofuItems.TOFU_DIAMOND_HELMET.get())
 				.add(TofuItems.TOFU_METAL_HELMET.get())
-				.add(TofuItems.TOFU_SOLID_HELMET.get());
+				.add(TofuItems.TOFU_SOLID_HELMET.get())
+				.add(TofuItems.TOFU_MOMEN_HELMET.get())
+				.add(TofuItems.TOFU_KINU_HELMET.get());
 
 		tag(ItemTags.CHEST_ARMOR).add(TofuItems.TOFU_DIAMOND_CHESTPLATE.get())
 				.add(TofuItems.TOFU_METAL_CHESTPLATE.get())
-				.add(TofuItems.TOFU_SOLID_CHESTPLATE.get());
+				.add(TofuItems.TOFU_SOLID_CHESTPLATE.get())
+				.add(TofuItems.TOFU_MOMEN_CHESTPLATE.get())
+				.add(TofuItems.TOFU_KINU_CHESTPLATE.get());
 
 		tag(ItemTags.LEG_ARMOR).add(TofuItems.TOFU_DIAMOND_LEGGINGS.get())
 				.add(TofuItems.TOFU_METAL_LEGGINGS.get())
-				.add(TofuItems.TOFU_SOLID_LEGGINGS.get());
+				.add(TofuItems.TOFU_SOLID_LEGGINGS.get())
+				.add(TofuItems.TOFU_MOMEN_LEGGINGS.get())
+				.add(TofuItems.TOFU_KINU_LEGGINGS.get());
 		tag(ItemTags.FOOT_ARMOR).add(TofuItems.TOFU_DIAMOND_BOOTS.get())
 				.add(TofuItems.TOFU_METAL_BOOTS.get())
-				.add(TofuItems.TOFU_SOLID_BOOTS.get());
+				.add(TofuItems.TOFU_SOLID_BOOTS.get())
+				.add(TofuItems.TOFU_MOMEN_BOOTS.get())
+				.add(TofuItems.TOFU_KINU_BOOTS.get());
 
 		tag(TofuTags.Items.NATTO).add(TofuItems.NATTO.get());
 		tag(TofuTags.Items.MISO).add(TofuItems.MISO.get());
