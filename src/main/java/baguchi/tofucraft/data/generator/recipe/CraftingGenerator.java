@@ -170,10 +170,10 @@ public class CraftingGenerator extends CraftingDataHelper {
 		hoeItem(this.output, "tofu_metal_hoe", TofuItems.TOFU_METAL_HOE, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
 		spearItem(this.output, "tofu_metal_spear", TofuItems.TOFU_METAL_SPEAR, TofuBlocks.METALTOFU, Tags.Items.RODS_WOODEN);
 
-		helmetItem(this.output, "tofu_solid_helmet", TofuItems.ARMOR_TOFU_SOLIDHELMET, TofuBlocks.ISHITOFU);
-		chestplateItem(this.output, "tofu_solid_chestplate", TofuItems.ARMOR_TOFU_SOLIDCHESTPLATE, TofuBlocks.ISHITOFU);
-		leggingsItem(this.output, "tofu_solid_leggings", TofuItems.ARMOR_TOFU_SOLIDLEGGINGS, TofuBlocks.ISHITOFU);
-		bootsItem(this.output, "tofu_solid_boots", TofuItems.ARMOR_TOFU_SOLIDBOOTS, TofuBlocks.ISHITOFU);
+		helmetItem(this.output, "tofu_solid_helmet", TofuItems.TOFU_SOLID_HELMET, TofuBlocks.ISHITOFU);
+		chestplateItem(this.output, "tofu_solid_chestplate", TofuItems.TOFU_SOLID_CHESTPLATE, TofuBlocks.ISHITOFU);
+		leggingsItem(this.output, "tofu_solid_leggings", TofuItems.TOFU_SOLID_LEGGINGS, TofuBlocks.ISHITOFU);
+		bootsItem(this.output, "tofu_solid_boots", TofuItems.TOFU_SOLID_BOOTS, TofuBlocks.ISHITOFU);
 
 		swordItem(this.output, "tofu_solid_sword", TofuItems.TOFU_SOLID_SWORD, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);
 		pickaxeItem(this.output, "tofu_solid_pickaxe", TofuItems.TOFU_SOLID_PICKAXE, TofuBlocks.ISHITOFU, Tags.Items.RODS_WOODEN);

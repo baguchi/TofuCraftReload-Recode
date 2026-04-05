@@ -306,10 +306,10 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateDynamicTrimmableItem(TofuItems.TOFU_MOMEN_LEGGINGS.get(), TRIM_PREFIX_LEGGINGS);
 		this.generateDynamicTrimmableItem(TofuItems.TOFU_MOMEN_BOOTS.get(), TRIM_PREFIX_BOOTS);
 
-		this.generateDynamicTrimmableItem(TofuItems.ARMOR_TOFU_SOLIDHELMET.get(), TRIM_PREFIX_HELMET);
-		this.generateDynamicTrimmableItem(TofuItems.ARMOR_TOFU_SOLIDCHESTPLATE.get(), TRIM_PREFIX_CHESTPLATE);
-		this.generateDynamicTrimmableItem(TofuItems.ARMOR_TOFU_SOLIDLEGGINGS.get(), TRIM_PREFIX_LEGGINGS);
-		this.generateDynamicTrimmableItem(TofuItems.ARMOR_TOFU_SOLIDBOOTS.get(), TRIM_PREFIX_BOOTS);
+		this.generateDynamicTrimmableItem(TofuItems.TOFU_SOLID_HELMET.get(), TRIM_PREFIX_HELMET);
+		this.generateDynamicTrimmableItem(TofuItems.TOFU_SOLID_CHESTPLATE.get(), TRIM_PREFIX_CHESTPLATE);
+		this.generateDynamicTrimmableItem(TofuItems.TOFU_SOLID_LEGGINGS.get(), TRIM_PREFIX_LEGGINGS);
+		this.generateDynamicTrimmableItem(TofuItems.TOFU_SOLID_BOOTS.get(), TRIM_PREFIX_BOOTS);
 
 		this.generateDynamicTrimmableItem(TofuItems.TOFU_METAL_HELMET.get(), TRIM_PREFIX_HELMET);
 		this.generateDynamicTrimmableItem(TofuItems.TOFU_METAL_CHESTPLATE.get(), TRIM_PREFIX_CHESTPLATE);
@@ -398,6 +398,10 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.ZUNDA_TOTEM.get(), ModelTemplates.FLAT_ITEM);
 		this.generateZundaSword(this, TofuItems.ZUNDA_ALLOY_TOFU_SWORD.get());
 
+	}
+
+	public void generateDynamicTrimmableItem(Item armor, Identifier slotTrimPrefix) {
+		this.generateDynamicTrimmableItem(armor, this.createFlatItemModel(armor, ModelTemplates.FLAT_ITEM), slotTrimPrefix);
 	}
 
 	public void generateTofuShield(ItemModelGenerators generators, Item p_386530_) {

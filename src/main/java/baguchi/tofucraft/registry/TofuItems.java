@@ -385,10 +385,10 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN_LEGGINGS = ITEMS.registerItem("tofu_momen_leggings", (properties) -> new BreakableTofuArmorItem(TofuArmorMaterials.MOMEN, ArmorType.LEGGINGS, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN_BOOTS = ITEMS.registerItem("tofu_momen_boots", (properties) -> new BreakableTofuBootsItem(TofuArmorMaterials.MOMEN, ArmorType.BOOTS, -0.25F, (properties.stacksTo(1).component(TofuDataComponents.MAX_FALL_DURABILITY, 16))));
 
-	public static final DeferredHolder<Item, Item> ARMOR_TOFU_SOLIDHELMET = ITEMS.registerItem("tofu_solid_helmet", (properties) -> new TofuArmorItem(TofuArmorMaterials.SOLID, ArmorType.HELMET, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> ARMOR_TOFU_SOLIDCHESTPLATE = ITEMS.registerItem("tofu_solid_chestplate", (properties) -> new TofuArmorItem(TofuArmorMaterials.SOLID, ArmorType.CHESTPLATE, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> ARMOR_TOFU_SOLIDLEGGINGS = ITEMS.registerItem("tofu_solid_leggings", (properties) -> new TofuArmorItem(TofuArmorMaterials.SOLID, ArmorType.LEGGINGS, (properties.stacksTo(1))));
-	public static final DeferredHolder<Item, Item> ARMOR_TOFU_SOLIDBOOTS = ITEMS.registerItem("tofu_solid_boots", (properties) -> new TofuArmorItem(TofuArmorMaterials.SOLID, ArmorType.BOOTS, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_SOLID_HELMET = ITEMS.registerItem("tofu_solid_helmet", (properties) -> new TofuArmorItem(TofuArmorMaterials.SOLID, ArmorType.HELMET, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_SOLID_CHESTPLATE = ITEMS.registerItem("tofu_solid_chestplate", (properties) -> new TofuArmorItem(TofuArmorMaterials.SOLID, ArmorType.CHESTPLATE, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_SOLID_LEGGINGS = ITEMS.registerItem("tofu_solid_leggings", (properties) -> new TofuArmorItem(TofuArmorMaterials.SOLID, ArmorType.LEGGINGS, (properties.stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_SOLID_BOOTS = ITEMS.registerItem("tofu_solid_boots", (properties) -> new TofuArmorItem(TofuArmorMaterials.SOLID, ArmorType.BOOTS, (properties.stacksTo(1))));
 
 	public static final DeferredHolder<Item, Item> TOFU_METAL_HELMET = ITEMS.registerItem("tofu_metal_helmet", (properties) -> new TofuArmorItem(TofuArmorMaterials.METAL, ArmorType.HELMET, (properties.stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_METAL_CHESTPLATE = ITEMS.registerItem("tofu_metal_chestplate", (properties) -> new TofuArmorItem(TofuArmorMaterials.METAL, ArmorType.CHESTPLATE, (properties.stacksTo(1))));
