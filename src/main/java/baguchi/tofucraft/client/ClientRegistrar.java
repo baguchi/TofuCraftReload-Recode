@@ -134,6 +134,7 @@ import net.neoforged.neoforge.client.CustomEnvironmentEffectsRendererManager;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ExtractLevelRenderStateEvent;
+import net.neoforged.neoforge.client.event.RegisterBlockModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterCustomEnvironmentEffectRendererEvent;
@@ -226,6 +227,11 @@ public class ClientRegistrar {
 			Sheets.addWoodType(TofuWoodTypes.SPROUT);
 		});
 
+	}
+
+	@SubscribeEvent
+	public static void registerBuiltinModel(RegisterBlockModelsEvent event) {
+		TofuBuiltInBlockModels.registerBuiltinModel(event);
 	}
 
 	@SubscribeEvent

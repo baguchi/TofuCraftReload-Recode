@@ -124,7 +124,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 	public void createTofunianState(Block p_387718_, Block p_386452_) {
 		this.createParticleOnlyBlock(p_387718_, p_386452_);
 		Item item = p_387718_.asItem();
-		Identifier resourcelocation1 = ModelTemplates.BED_INVENTORY
+		Identifier resourcelocation1 = TofuModelTemplates.STATUE_INVENTORY
 				.create(ModelLocationUtils.getModelLocation(item), TextureMapping.particle(p_386452_), this.modelOutput);
 		this.itemModelOutput.accept(item, ItemModelUtils.specialModel(resourcelocation1, new TofunianStatueSpecialRenderer.Unbaked()));
 	}
@@ -132,7 +132,7 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 
 	public void createLadder(Block p_388554_) {
 		this.registerSimpleFlatItemModel(p_388554_);
-		MultiVariant multiVariant = plainVariant(TofuModelTemplate.LADDER.create(p_388554_, TofuTextureMapping.ladder(p_388554_), this.modelOutput));
+		MultiVariant multiVariant = plainVariant(TofuModelTemplates.LADDER.create(p_388554_, TofuTextureMapping.ladder(p_388554_), this.modelOutput));
 
 		this.blockStateOutput
 				.accept(MultiVariantGenerator.dispatch(p_388554_, multiVariant).with(ROTATION_HORIZONTAL_FACING));

@@ -2,7 +2,7 @@ package baguchi.tofucraft.data.generator.models;
 
 import baguchi.tofucraft.client.render.item.properties.TFProperty;
 import baguchi.tofucraft.client.render.special.TofuShieldSpecialRenderer;
-import baguchi.tofucraft.data.provider.TofuModelTemplate;
+import baguchi.tofucraft.data.provider.TofuModelTemplates;
 import baguchi.tofucraft.registry.TofuItems;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ItemModelOutput;
@@ -131,7 +131,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TTTBURGER.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.MEAT_WRAPPED_YUBA.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOYSTICK.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.LONGER_SOYSTICK.get(), TofuModelTemplate.BIG_FLAT_ITEM);
+		this.generateFlatItem(TofuItems.LONGER_SOYSTICK.get(), TofuModelTemplates.BIG_FLAT_ITEM);
 		this.generateFlatItem(TofuItems.MISOSOUP.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.MOYASHIITAME.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.MOYASHIOHITASHI.get(), ModelTemplates.FLAT_ITEM);
