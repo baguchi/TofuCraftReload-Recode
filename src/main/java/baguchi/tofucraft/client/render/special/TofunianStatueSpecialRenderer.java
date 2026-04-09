@@ -4,6 +4,7 @@ import baguchi.tofucraft.client.TofuModelLayers;
 import baguchi.tofucraft.client.model.TofunianStatueModel;
 import baguchi.tofucraft.client.render.blockentity.TofunianStatueRender;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
@@ -34,6 +35,7 @@ public class TofunianStatueSpecialRenderer implements NoDataSpecialModelRenderer
 		poseStack.pushPose();
 		poseStack.scale(-1.5F, -1.5F, 1.5F);
 		poseStack.translate(-0.4, -1F, 0);
+		poseStack.mulPose(Axis.YP.rotationDegrees(180));
 		submitNodeCollector.submitModel(this.model, Direction.SOUTH, poseStack, RenderTypes.entityCutout(TofunianStatueRender.TEXTURES), i, i1, -1, null, 0, null);
 		poseStack.popPose();
 	}
