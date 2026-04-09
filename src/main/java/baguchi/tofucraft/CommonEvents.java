@@ -84,6 +84,7 @@ import net.neoforged.neoforge.event.entity.EntityMobGriefingEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDestroyBlockEvent;
+import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
 import net.neoforged.neoforge.event.entity.living.LivingUseTotemEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
@@ -676,6 +677,12 @@ public class CommonEvents {
 			}
 		}
 
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.POISON.value()) {
+			if (event.getEntity().hasEffect(TofuEffects.MISO_BOOST)) {
+				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+			}
+		}
+
 		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.NAUSEA.value()) {
 			if (event.getEntity().hasEffect(TofuEffects.MISO_BOOST)) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
@@ -683,6 +690,12 @@ public class CommonEvents {
 		}
 	}
 
+	@SubscribeEvent
+	public static void onHealEvent(LivingHealEvent event) {
+		if (event.getEntity().hasEffect(TofuEffects.SALT_BOOST)) {
+			event.setAmount(event.getAmount() * 1.25F);
+		}
+	}
 
 	@SubscribeEvent
 	public static boolean onBlockStartBreak(BlockEvent.BreakEvent event) {
