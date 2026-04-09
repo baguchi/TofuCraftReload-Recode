@@ -17,7 +17,7 @@ public class TofuModelTemplates {
 	public static final ModelTemplate LADDER = create("ladder", TextureSlot.ALL);
 	public static final ModelTemplate TRANSLUCENT_CUBE = create("translucent_cube", TextureSlot.ALL);
 	public static final ModelTemplate BIG_FLAT_ITEM = createItem(TofuCraftReload.MODID + ":big_generated", TextureSlot.LAYER0);
-	public static final ModelTemplate STATUE_INVENTORY = createItem(TofuCraftReload.MODID + "template_statue", TextureSlot.PARTICLE);
+	public static final ModelTemplate STATUE_INVENTORY = createItem(TofuCraftReload.MODID + ":template_statue", TextureSlot.PARTICLE);
 
 	public static ModelTemplate create(String p_386521_, TextureSlot... p_388561_) {
 		return new ModelTemplate(Optional.of(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, p_386521_).withPrefix("block/")), Optional.empty(), p_388561_);
