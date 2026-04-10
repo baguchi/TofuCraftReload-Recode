@@ -5,7 +5,7 @@
     "1": "tofucraft:block/tofu_pot_top",
     "2": "tofucraft:block/tofu_pot_bottom",
     "3": "tofucraft:block/tofu_pot_side",
-    "particle": "tofucraft:block/tofu_pot_handle"
+    "particle": "tofucraft:block/tofu_pot_bottom"
   },
   "elements": [
     {
