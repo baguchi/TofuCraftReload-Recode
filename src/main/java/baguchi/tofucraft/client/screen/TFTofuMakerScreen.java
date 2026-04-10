@@ -54,6 +54,7 @@ public class TFTofuMakerScreen extends AbstractRecipeBookScreen<TFTofuMakerMenu>
 
 	@Override
 	public void extractBackground(GuiGraphicsExtractor guiGraphics, int p_281252_, int p_281891_, float p_281631_) {
+		super.extractBackground(guiGraphics, p_281252_, p_281891_, p_281631_);
 		int i = this.leftPos;
 		int j = this.topPos;
 		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);

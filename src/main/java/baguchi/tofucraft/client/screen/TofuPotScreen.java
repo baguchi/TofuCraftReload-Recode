@@ -31,6 +31,7 @@ public class TofuPotScreen extends AbstractRecipeBookScreen<TofuPotMenu> {
 	@Override
 	public void init() {
 		super.init();
+		this.imageHeight = 178;
 		this.titleLabelX = 100;
 		this.inventoryLabelY = this.imageHeight - 96 + 2;
 	}
@@ -49,10 +50,7 @@ public class TofuPotScreen extends AbstractRecipeBookScreen<TofuPotMenu> {
 
 	@Override
 	public void extractBackground(GuiGraphicsExtractor gui, int mouseX, int mouseY, float partialTicks) {
-		// Render UI background
-		if (this.minecraft == null)
-			return;
-
+		super.extractBackground(gui, mouseX, mouseY, partialTicks);
 		gui.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 
 		// Render heat icon
