@@ -19,6 +19,7 @@ import net.minecraft.world.clock.WorldClocks;
 import net.minecraft.world.level.CardinalLighting;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.timeline.Timeline;
+import net.neoforged.neoforge.common.world.NeoForgeEnvironmentAttributes;
 
 import java.util.Optional;
 
@@ -39,6 +40,7 @@ public class TofuDimensionTypes {
 				.set(EnvironmentAttributes.BED_RULE, BedRule.CAN_SLEEP_WHEN_DARK)
 				.set(EnvironmentAttributes.RESPAWN_ANCHOR_WORKS, false)
 				.set(EnvironmentAttributes.NETHER_PORTAL_SPAWNS_PIGLINS, true)
+				.set(NeoForgeEnvironmentAttributes.CUSTOM_SKYBOX, TofuCraftReload.prefix("tofu_world"))
 				//.set(EnvironmentAttributes.AMBIENT_SOUNDS, AmbientSounds.LEGACY_CAVE_SETTINGS)
 				.build();
 		context.register(TOFU_WORLD_TYPE, new DimensionType(

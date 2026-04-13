@@ -72,7 +72,6 @@ import baguchi.tofucraft.registry.TofuAnimations;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuBlocks;
-import baguchi.tofucraft.registry.TofuDimensionTypes;
 import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuFluidTypes;
@@ -130,10 +129,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.CustomEnvironmentEffectsRendererManager;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.ExtractLevelRenderStateEvent;
 import net.neoforged.neoforge.client.event.RegisterBlockModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
@@ -657,13 +654,6 @@ public class ClientRegistrar {
 	@SubscribeEvent
 	public static void registerClientReloadListeners(AddClientReloadListenersEvent event) {
 		event.addListener(TofuCraftReload.prefix("tofu_world_render"), TofuWorldTextureManager.INSTANCE);
-	}
-
-	@SubscribeEvent
-	public static void extractDimensionEffect(ExtractLevelRenderStateEvent event) {
-		if (event.getLevel().dimensionTypeRegistration().is(TofuDimensionTypes.TOFU_WORLD_TYPE)) {
-			event.getRenderState().customSkyboxRenderer = CustomEnvironmentEffectsRendererManager.getCustomSkyboxRenderer(TofuCraftReload.prefix("tofu_world"));
-		}
 	}
 
 	@SubscribeEvent
