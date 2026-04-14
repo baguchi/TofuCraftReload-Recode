@@ -16,6 +16,7 @@
         "translate": "block.minecraft.bed.no_sleep"
       }
     },
+    "minecraft:gameplay/can_start_raid": false,
     "minecraft:gameplay/nether_portal_spawns_piglin": true,
     "minecraft:gameplay/respawn_anchor_works": false,
     "minecraft:visual/cloud_color": "#ccffffff",
