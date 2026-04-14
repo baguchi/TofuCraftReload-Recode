@@ -46,7 +46,7 @@ public class TofuDimensionTypes {
 		context.register(TOFU_WORLD_TYPE, new DimensionType(
 				false,
 				true,
-				true,
+				false,
 				false,
 				1.0,
 				-64,
