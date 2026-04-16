@@ -150,4 +150,9 @@ public class FukumameThrower extends Piglin {
 		}
 		this.setFukumameCount(32 + random.nextInt(32));
 	}
+
+	@Override
+	public boolean canUseNonMeleeWeapon(ItemStack item) {
+		return this.getFukumameCount() > 0;
+	}
 }

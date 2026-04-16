@@ -91,8 +91,6 @@ iduki and turtton helping Revamped Content
 
 Rutl-Tri made tofu world music! (https://twitter.com/RoundDelta)
 
-@MajinThorin753 make classic texture!
-
 @uind_w helped Texture too!
 
 RizaSTAR helped new items!

@@ -126,7 +126,7 @@ public class FukumameThrowerAi extends PiglinAi {
 							return body.getFukumameCount() > 0;
 						}, BackUpIfTooClose.create(10, 0.75F)), new EatFukumame<>(), BehaviorBuilder.triggerIf((entity) -> {
 							return body.getFukumameCount() <= 0;
-						}, MeleeAttack.create(20)), BackUpIfTooClose.create(10, 0.75F), new EatFukumame<>(), BehaviorBuilder.triggerIf((entity) -> {
+						}, MeleeAttack.create(20)), BehaviorBuilder.triggerIf((entity) -> {
 							return body.getFukumameCount() <= 0;
 						}, SetWalkTargetFromAttackTargetIfTargetOutOfReachOneShot.create(1.0F)), new ThrowFukumame<>(), RememberIfHoglinWasKilled.create(), EraseMemoryIf.create(FukumameThrowerAi::isNearZombified, MemoryModuleType.ATTACK_TARGET)), MemoryModuleType.ATTACK_TARGET);
 	}
