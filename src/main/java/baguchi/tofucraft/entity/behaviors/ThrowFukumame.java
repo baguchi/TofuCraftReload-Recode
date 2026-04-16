@@ -12,6 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
+import net.minecraft.world.entity.ai.memory.WalkTarget;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.Optional;
@@ -52,7 +53,7 @@ public class ThrowFukumame<E extends FukumameThrower> extends Behavior<E> {
 
 		if (optional.isPresent()) {
 			LivingEntity livingEntity = optional.get();
-			if (p_22552_.hasLineOfSight(optional.get())) {
+			if (p_22552_.hasLineOfSight(optional.get()) && p_22552_.distanceToSqr(optional.get()) < 64F) {
 				if (++this.ticks == 80) {
 					p_22552_.swing(InteractionHand.MAIN_HAND);
 					p_22552_.setCharge(false);
@@ -77,6 +78,8 @@ public class ThrowFukumame<E extends FukumameThrower> extends Behavior<E> {
 					this.ticks = 0;
 					p_22552_.setCharge(true);
 				}
+			} else {
+				p_22552_.getBrain().setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(optional.get(), 0.8F, 6));
 			}
 		} else {
 			this.ticks = 0;
