@@ -6,10 +6,13 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.profiling.Profiler;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntitySpawnReason;
@@ -100,6 +103,22 @@ public class FukumameThrower extends AbstractPiglin {
 	public boolean canHunt() {
 		return true;
 	}
+
+	@Override
+	protected @org.jspecify.annotations.Nullable SoundEvent getAmbientSound() {
+		return this.level().isClientSide() ? null : FukumameThrowerAi.getSoundForCurrentActivity(this).orElse(null);
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return SoundEvents.PIGLIN_HURT;
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.PIGLIN_DEATH;
+	}
+
 
 	@Override
 	protected Brain<FukumameThrower> makeBrain(Brain.Packed packedBrain) {
