@@ -42,6 +42,7 @@ import baguchi.tofucraft.registry.TofuProfessions;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuRecipePropertySets;
 import baguchi.tofucraft.registry.TofuRecipes;
+import baguchi.tofucraft.registry.TofuSensorTypes;
 import baguchi.tofucraft.registry.TofuSounds;
 import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.registry.TofuTreeDecoratorType;
@@ -139,6 +140,7 @@ public class TofuCraftReload {
 		TofuEntityTypes.ENTITIES.addAlias(prefix("tofuslime"), prefix("tofu_slime"));
 		TofuEntityTypes.ENTITIES.addAlias(prefix("tofucreeper"), prefix("tofu_creeper"));
 		TofuEntityTypes.ENTITIES.addAlias(prefix("tofuspider"), prefix("tofu_spider"));
+		TofuSensorTypes.SENSOR_TYPE.register(modBus);
 		TofuEnchantmentEffects.ENTITY_EFFECTS.register(modBus);
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 		TofuMenus.MENU_TYPES.register(modBus);

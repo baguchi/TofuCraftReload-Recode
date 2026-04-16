@@ -1,10 +1,14 @@
 package baguchi.tofucraft.entity;
 
+import baguchi.tofucraft.registry.TofuSensorTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.profiling.Profiler;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -13,9 +17,14 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.Brain;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.sensing.SensorType;
-import net.minecraft.world.entity.monster.piglin.Piglin;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
+import net.minecraft.world.entity.monster.piglin.PiglinArmPose;
+import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -27,11 +36,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FukumameThrower extends Piglin {
+public class FukumameThrower extends AbstractPiglin {
 	private static final EntityDataAccessor<Boolean> DATA_CHARGE = SynchedEntityData.defineId(FukumameThrower.class, EntityDataSerializers.BOOLEAN);
 
 	private static final EntityDataAccessor<Integer> DATA_FUKUMAME_COUNT = SynchedEntityData.defineId(FukumameThrower.class, EntityDataSerializers.INT);
-	private static final Brain.Provider<Piglin> BRAIN_PROVIDER = Brain.<Piglin>provider(
+	private static final Brain.Provider<FukumameThrower> BRAIN_PROVIDER = Brain.<FukumameThrower>provider(
 			List.of(
 					MemoryModuleType.UNIVERSAL_ANGER,
 					MemoryModuleType.ATE_RECENTLY,
@@ -40,11 +49,16 @@ public class FukumameThrower extends Piglin {
 					MemoryModuleType.SPEAR_CHARGE_POSITION,
 					MemoryModuleType.SPEAR_ENGAGE_TIME
 			),
-			List.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.NEAREST_ITEMS, SensorType.HURT_BY, SensorType.PIGLIN_SPECIFIC_SENSOR),
-			FukumameThrowerAi::getActivities
+			List.of(SensorType.NEAREST_LIVING_ENTITIES, SensorType.NEAREST_PLAYERS, SensorType.NEAREST_ITEMS, SensorType.HURT_BY, TofuSensorTypes.FUKUMAME_THROWER.get()),
+			FukumameThrowerAi::getThrowerActivities
 	);
 	public FukumameThrower(EntityType<? extends FukumameThrower> p_34683_, Level p_34684_) {
 		super(p_34683_, p_34684_);
+		this.xpReward = 8;
+	}
+
+	public static AttributeSupplier.Builder createAttributes() {
+		return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, (double) 16.0F).add(Attributes.MOVEMENT_SPEED, (double) 0.35F).add(Attributes.ATTACK_DAMAGE, (double) 5.0F);
 	}
 
 	@Override
@@ -88,17 +102,37 @@ public class FukumameThrower extends Piglin {
 	}
 
 	@Override
-	protected Brain<Piglin> makeBrain(Brain.Packed packedBrain) {
+	protected Brain<FukumameThrower> makeBrain(Brain.Packed packedBrain) {
 		return BRAIN_PROVIDER.makeBrain(this, packedBrain);
 	}
 
-
-	public ItemStack addToInventory(ItemStack p_34779_) {
-		return super.addToInventory(p_34779_);
+	@Override
+	public Brain<FukumameThrower> getBrain() {
+		return (Brain<FukumameThrower>) super.getBrain();
 	}
 
-	public boolean canAddToInventory(ItemStack p_34781_) {
-		return super.canAddToInventory(p_34781_);
+	protected void customServerAiStep(ServerLevel level) {
+		ProfilerFiller profiler = Profiler.get();
+		profiler.push("fukumameBrain");
+		this.getBrain().tick(level, this);
+		profiler.pop();
+		FukumameThrowerAi.updateActivity(this);
+		super.customServerAiStep(level);
+	}
+
+	@Override
+	public PiglinArmPose getArmPose() {
+		if (this.isAggressive() && this.isHoldingMeleeWeapon()) {
+			return PiglinArmPose.ATTACKING_WITH_MELEE_WEAPON;
+		} else {
+			return this.isHolding((is) -> is.getItem() instanceof CrossbowItem) && CrossbowItem.isCharged(this.getWeaponItem()) ? PiglinArmPose.CROSSBOW_HOLD : PiglinArmPose.DEFAULT;
+		}
+	}
+
+
+	@Override
+	protected void playConvertedSound() {
+
 	}
 
 	public void eatFukumame() {
@@ -149,10 +183,5 @@ public class FukumameThrower extends Piglin {
 			this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 		}
 		this.setFukumameCount(32 + random.nextInt(32));
-	}
-
-	@Override
-	public boolean canUseNonMeleeWeapon(ItemStack item) {
-		return this.getFukumameCount() > 0;
 	}
 }

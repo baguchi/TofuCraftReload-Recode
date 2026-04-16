@@ -6,6 +6,8 @@ import baguchi.tofucraft.entity.behaviors.ThrowFukumame;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
@@ -21,11 +23,8 @@ import net.minecraft.world.entity.ai.behavior.BackUpIfTooClose;
 import net.minecraft.world.entity.ai.behavior.BehaviorControl;
 import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.behavior.CopyMemoryWithExpiry;
-import net.minecraft.world.entity.ai.behavior.DismountOrSkipMounting;
 import net.minecraft.world.entity.ai.behavior.DoNothing;
 import net.minecraft.world.entity.ai.behavior.EraseMemoryIf;
-import net.minecraft.world.entity.ai.behavior.GoToTargetLocation;
-import net.minecraft.world.entity.ai.behavior.GoToWantedItem;
 import net.minecraft.world.entity.ai.behavior.InteractWith;
 import net.minecraft.world.entity.ai.behavior.InteractWithDoor;
 import net.minecraft.world.entity.ai.behavior.LookAtTargetSink;
@@ -49,32 +48,25 @@ import net.minecraft.world.entity.ai.behavior.declarative.Trigger;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.monster.piglin.Piglin;
-import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.monster.piglin.RememberIfHoglinWasKilled;
-import net.minecraft.world.entity.monster.piglin.StartAdmiringItemIfSeen;
-import net.minecraft.world.entity.monster.piglin.StartHuntingHoglin;
-import net.minecraft.world.entity.monster.piglin.StopAdmiringIfItemTooFarAway;
-import net.minecraft.world.entity.monster.piglin.StopAdmiringIfTiredOfTryingToReachItem;
-import net.minecraft.world.entity.monster.piglin.StopHoldingItemIfNoLongerAdmiring;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
-public class FukumameThrowerAi extends PiglinAi {
+public class FukumameThrowerAi {
 	private static final UniformInt AVOID_ZOMBIFIED_DURATION = TimeUtil.rangeOfSeconds(5, 7);
 	private static final UniformInt BABY_AVOID_NEMESIS_DURATION = TimeUtil.rangeOfSeconds(5, 7);
 
 
-	public static List<ActivityData<FukumameThrower>> getActivities(FukumameThrower piglin) {
+	public static List<ActivityData<FukumameThrower>> getThrowerActivities(FukumameThrower piglin) {
 		return List.of(
 				initCoreActivity(),
 				initIdleActivity(),
-				initAdmireItemActivity(),
 				initFightActivity(piglin),
-				initCelebrateActivity(),
 				initRetreatActivity(),
 				initRideHoglinActivity()
 		);
@@ -90,8 +82,6 @@ public class FukumameThrowerAi extends PiglinAi {
 						InteractWithDoor.create(),
 						babyAvoidNemesis(),
 						avoidZombified(),
-						StopHoldingItemIfNoLongerAdmiring.create(),
-						StartAdmiringItemIfSeen.create(119),
 						StartCelebratingIfTargetDead.create(300, FukumameThrowerAi::wantsToDance),
 						StopBeingAngryIfTargetDead.create()
 				)
@@ -103,9 +93,7 @@ public class FukumameThrowerAi extends PiglinAi {
 				Activity.IDLE,
 				10,
 				ImmutableList.of(
-						SetEntityLookTarget.create(FukumameThrowerAi::isPlayerHoldingLovedItem, 14.0F),
 						StartAttacking.<FukumameThrower>create((level, piglin) -> piglin.isAdult(), FukumameThrowerAi::findNearestValidAttackTarget),
-						BehaviorBuilder.triggerIf(FukumameThrower::canHunt, StartHuntingHoglin.create()),
 						avoidRepellent(),
 						createIdleLookBehaviors(),
 						createIdleMovementBehaviors(),
@@ -118,53 +106,17 @@ public class FukumameThrowerAi extends PiglinAi {
 		return ActivityData.create(
 				Activity.FIGHT,
 				10,
-				ImmutableList.of(
-						StopAttackingIfTargetInvalid.create((p_375910_, p_375911_, living) -> {
-							isNearestValidAttackTarget(p_375910_, body, living);
-						})
-						, BehaviorBuilder.triggerIf((entity) -> {
-							return body.getFukumameCount() > 0;
-						}, BackUpIfTooClose.create(10, 0.75F)), new EatFukumame<>(), BehaviorBuilder.triggerIf((entity) -> {
-							return body.getFukumameCount() <= 0;
-						}, MeleeAttack.create(20)), BehaviorBuilder.triggerIf((entity) -> {
-							return body.getFukumameCount() <= 0;
-						}, SetWalkTargetFromAttackTargetIfTargetOutOfReachOneShot.create(1.0F)), new ThrowFukumame<>(), RememberIfHoglinWasKilled.create(), EraseMemoryIf.create(FukumameThrowerAi::isNearZombified, MemoryModuleType.ATTACK_TARGET)), MemoryModuleType.ATTACK_TARGET);
-	}
-
-	private static ActivityData<FukumameThrower> initCelebrateActivity() {
-		return ActivityData.create(
-				Activity.CELEBRATE,
-				10,
 				ImmutableList.<net.minecraft.world.entity.ai.behavior.BehaviorControl<? super FukumameThrower>>of(
-						avoidRepellent(),
-						SetEntityLookTarget.create(FukumameThrowerAi::isPlayerHoldingLovedItem, 14.0F),
-						StartAttacking.<FukumameThrower>create((level, piglin) -> piglin.isAdult(), FukumameThrowerAi::findNearestValidAttackTarget),
-						BehaviorBuilder.<FukumameThrower>triggerIf(
-								body -> body instanceof FukumameThrower && !body.isDancing(), GoToTargetLocation.create(MemoryModuleType.CELEBRATE_LOCATION, 2, 1.0F)
-						),
-						BehaviorBuilder.<FukumameThrower>triggerIf(FukumameThrower::isDancing, GoToTargetLocation.create(MemoryModuleType.CELEBRATE_LOCATION, 4, 0.6F)),
-						new RunOne<FukumameThrower>(
-								ImmutableList.of(
-										Pair.of(SetEntityLookTarget.create(EntityType.PIGLIN, 8.0F), 1),
-										Pair.of(RandomStroll.stroll(0.6F, 2, 1), 1),
-										Pair.of(new DoNothing(10, 20), 1)
-								)
-						)
+						StopAttackingIfTargetInvalid.create((level, target) -> !isNearestValidAttackTarget(level, body, target)),
+						BehaviorBuilder.triggerIf(predicate -> body.getFukumameCount() > 0, BackUpIfTooClose.create(5, 0.75F)),
+						BehaviorBuilder.triggerIf(predicate -> body.getFukumameCount() <= 0, SetWalkTargetFromAttackTargetIfTargetOutOfReachOneShot.create(1.0F)),
+						BehaviorBuilder.triggerIf(predicate -> body.getFukumameCount() <= 0, MeleeAttack.create(20)),
+						new EatFukumame(),
+						new ThrowFukumame(),
+						RememberIfHoglinWasKilled.create(),
+						EraseMemoryIf.create(FukumameThrowerAi::isNearZombified, MemoryModuleType.ATTACK_TARGET)
 				),
-				MemoryModuleType.CELEBRATE_LOCATION
-		);
-	}
-
-	private static ActivityData<FukumameThrower> initAdmireItemActivity() {
-		return ActivityData.<FukumameThrower>create(
-				Activity.ADMIRE_ITEM,
-				10,
-				ImmutableList.of(
-						GoToWantedItem.create(FukumameThrowerAi::isNotHoldingLovedItemInOffHand, 1.0F, true, 9),
-						StopAdmiringIfItemTooFarAway.create(9),
-						StopAdmiringIfTiredOfTryingToReachItem.create(200, 200)
-				),
-				MemoryModuleType.ADMIRING_ITEM
+				MemoryModuleType.ATTACK_TARGET
 		);
 	}
 
@@ -188,7 +140,6 @@ public class FukumameThrowerAi extends PiglinAi {
 				10,
 				ImmutableList.of(
 						Mount.create(0.8F),
-						SetEntityLookTarget.create(FukumameThrowerAi::isPlayerHoldingLovedItem, 8.0F),
 						BehaviorBuilder.sequence(
 								BehaviorBuilder.triggerIf(Entity::isPassenger),
 								TriggerGate.triggerOneShuffled(
@@ -197,8 +148,7 @@ public class FukumameThrowerAi extends PiglinAi {
 												.add(Pair.of(BehaviorBuilder.triggerIf(e -> true), 1))
 												.build()
 								)
-						),
-						DismountOrSkipMounting.<FukumameThrower>create(8, FukumameThrowerAi::wantsToStopRiding)
+						)
 				),
 				MemoryModuleType.RIDE_TARGET
 		);
@@ -246,22 +196,49 @@ public class FukumameThrowerAi extends PiglinAi {
 		);
 	}
 
-	private static boolean wantsToStopRiding(Piglin body, Entity entityBeingRidden) {
-		return !(entityBeingRidden instanceof Mob mobBeingRidden)
-				? false
-				: !mobBeingRidden.isBaby()
-				|| !mobBeingRidden.isAlive()
-				|| wasHurtRecently(body)
-				|| wasHurtRecently(mobBeingRidden)
-				|| mobBeingRidden instanceof Piglin && mobBeingRidden.getVehicle() == null;
+
+	protected static void updateActivity(FukumameThrower body) {
+		Brain<FukumameThrower> brain = body.getBrain();
+		Activity oldActivity = (Activity) brain.getActiveNonCoreActivity().orElse(null);
+		brain.setActiveActivityToFirstValid(ImmutableList.of(Activity.ADMIRE_ITEM, Activity.FIGHT, Activity.AVOID, Activity.CELEBRATE, Activity.RIDE, Activity.IDLE));
+		Activity newActivity = (Activity) brain.getActiveNonCoreActivity().orElse(null);
+		if (oldActivity != newActivity) {
+			Optional<SoundEvent> var10000 = getSoundForCurrentActivity(body);
+			Objects.requireNonNull(body);
+			var10000.ifPresent(body::makeSound);
+		}
+
+		body.setAggressive(brain.hasMemoryValue(MemoryModuleType.ATTACK_TARGET));
+
 	}
 
-	private static boolean isNearestValidAttackTarget(ServerLevel level, Piglin body, LivingEntity target) {
+	public static Optional<SoundEvent> getSoundForCurrentActivity(FukumameThrower body) {
+		return body.getBrain().getActiveNonCoreActivity().map(activity -> getSoundForActivity(body, activity));
+	}
+
+	private static SoundEvent getSoundForActivity(FukumameThrower body, Activity activity) {
+		if (activity == Activity.FIGHT) {
+			return SoundEvents.PIGLIN_ANGRY;
+		} else if (body.isConverting()) {
+			return SoundEvents.PIGLIN_RETREAT;
+		} else if (activity == Activity.AVOID && isNearAvoidTarget(body)) {
+			return SoundEvents.PIGLIN_RETREAT;
+		} else {
+			return isNearRepellent(body) ? SoundEvents.PIGLIN_RETREAT : SoundEvents.PIGLIN_AMBIENT;
+		}
+	}
+
+	private static boolean isNearAvoidTarget(FukumameThrower body) {
+		Brain<FukumameThrower> brain = body.getBrain();
+		return !brain.hasMemoryValue(MemoryModuleType.AVOID_TARGET) ? false : brain.getMemory(MemoryModuleType.AVOID_TARGET).get().closerThan(body, 12.0);
+	}
+
+	private static boolean isNearestValidAttackTarget(ServerLevel level, FukumameThrower body, LivingEntity target) {
 		return findNearestValidAttackTarget(level, body).filter(nearestValidTarget -> nearestValidTarget == target).isPresent();
 	}
 
-	private static boolean isNearZombified(Piglin body) {
-		Brain<Piglin> brain = body.getBrain();
+	private static boolean isNearZombified(FukumameThrower body) {
+		Brain<FukumameThrower> brain = body.getBrain();
 		if (brain.hasMemoryValue(MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED)) {
 			LivingEntity zombified = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED).get();
 			return body.closerThan(zombified, 6.0);
@@ -270,8 +247,8 @@ public class FukumameThrowerAi extends PiglinAi {
 		}
 	}
 
-	private static Optional<? extends LivingEntity> findNearestValidAttackTarget(ServerLevel level, Piglin body) {
-		Brain<Piglin> brain = body.getBrain();
+	private static Optional<? extends LivingEntity> findNearestValidAttackTarget(ServerLevel level, FukumameThrower body) {
+		Brain<FukumameThrower> brain = body.getBrain();
 		if (isNearZombified(body)) {
 			return Optional.empty();
 		} else {
@@ -299,15 +276,12 @@ public class FukumameThrowerAi extends PiglinAi {
 		}
 	}
 
-	private static boolean isBarterCurrency(ItemStack itemStack) {
-		return itemStack.is(BARTERING_ITEM);
-	}
 
 	private static boolean isFood(ItemStack itemStack) {
 		return itemStack.is(ItemTags.PIGLIN_FOOD);
 	}
 
-	private static boolean isNearRepellent(Piglin body) {
+	private static boolean isNearRepellent(FukumameThrower body) {
 		return body.getBrain().hasMemoryValue(MemoryModuleType.NEAREST_REPELLENT);
 	}
 
@@ -319,9 +293,6 @@ public class FukumameThrowerAi extends PiglinAi {
 		return !seesPlayerHoldingLovedItem(body);
 	}
 
-	public static boolean isPlayerHoldingLovedItem(LivingEntity entity) {
-		return entity.is(EntityType.PLAYER) && entity.isHolding(PiglinAi::isLovedItem);
-	}
 
 	private static boolean isAdmiringDisabled(Piglin body) {
 		return body.getBrain().hasMemoryValue(MemoryModuleType.ADMIRING_DISABLED);
@@ -331,20 +302,12 @@ public class FukumameThrowerAi extends PiglinAi {
 		return body.getBrain().hasMemoryValue(MemoryModuleType.HURT_BY);
 	}
 
-	private static boolean isHoldingItemInOffHand(Piglin body) {
-		return !body.getOffhandItem().isEmpty();
-	}
-
-	private static boolean isNotHoldingLovedItemInOffHand(Piglin body) {
-		return body.getOffhandItem().isEmpty() || !isLovedItem(body.getOffhandItem());
-	}
-
 	private static boolean wantsToDance(LivingEntity body, LivingEntity killedTarget) {
 		return !killedTarget.is(EntityType.HOGLIN) ? false : RandomSource.create(body.level().getGameTime()).nextFloat() < 0.1F;
 	}
 
-	private static boolean wantsToStopFleeing(Piglin body) {
-		Brain<Piglin> brain = body.getBrain();
+	private static boolean wantsToStopFleeing(FukumameThrower body) {
+		Brain<FukumameThrower> brain = body.getBrain();
 		if (!brain.hasMemoryValue(MemoryModuleType.AVOID_TARGET)) {
 			return true;
 		} else {
@@ -357,11 +320,16 @@ public class FukumameThrowerAi extends PiglinAi {
 		}
 	}
 
-	private static boolean piglinsEqualOrOutnumberHoglins(Piglin body) {
+	public static boolean isZombified(Entity entity) {
+		return entity.is(EntityType.ZOMBIFIED_PIGLIN) || entity.is(EntityType.ZOGLIN);
+	}
+
+
+	private static boolean piglinsEqualOrOutnumberHoglins(FukumameThrower body) {
 		return !hoglinsOutnumberPiglins(body);
 	}
 
-	private static boolean hoglinsOutnumberPiglins(Piglin body) {
+	private static boolean hoglinsOutnumberPiglins(FukumameThrower body) {
 		int piglinCount = body.getBrain().getMemory(MemoryModuleType.VISIBLE_ADULT_PIGLIN_COUNT).orElse(0) + 1;
 		int hoglinCount = body.getBrain().getMemory(MemoryModuleType.VISIBLE_ADULT_HOGLIN_COUNT).orElse(0);
 		return hoglinCount > piglinCount;
