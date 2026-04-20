@@ -98,7 +98,7 @@ public class TofuWorldPlacements {
 
 
 		PlacementUtils.register(context, PATCH_TOFU_FLOWER, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_FLOWER), RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome(),
-				CountPlacement.of(32),
+				CountPlacement.of(24),
 				RandomOffsetPlacement.ofTriangle(7, 3),
 				BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE));
 		PlacementUtils.register(context, PATCH_LEEK, configuredFeature.getOrThrow(TofuWorldFeatures.LEEK), NoiseThresholdCountPlacement.of(-0.8D, 5, 10), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome(),
@@ -106,7 +106,7 @@ public class TofuWorldPlacements {
 				RandomOffsetPlacement.ofTriangle(7, 3),
 				BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE));
 		PlacementUtils.register(context, PATCH_LEEK_WASTE, configuredFeature.getOrThrow(TofuWorldFeatures.LEEK), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome(),
-				CountPlacement.of(32),
+				CountPlacement.of(26),
 				RandomOffsetPlacement.ofTriangle(7, 3),
 				BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE));
 

@@ -1,5 +1,6 @@
 package baguchi.tofucraft.entity.tofunian;
 
+import baguchi.tofucraft.data.resources.TofunianTradeSets;
 import baguchi.tofucraft.entity.ShuDofuSpider;
 import baguchi.tofucraft.entity.TofuGandlem;
 import baguchi.tofucraft.entity.goal.LookAtTofunianTradingPlayerGoal;
@@ -41,7 +42,6 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
-import net.minecraft.world.item.trading.TradeSets;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.storage.ValueInput;
@@ -129,16 +129,16 @@ public class TravelerTofunian extends AbstractTofunian {
 				//p_35856_.awardStat(Stats.TALKED_TO_VILLAGER);
 			}
 
-			if (this.getOffers().isEmpty()) {
-				return InteractionResult.CONSUME;
-			} else {
-				if (!this.level().isClientSide()) {
+			if (!this.level().isClientSide()) {
+				if (this.getOffers().isEmpty()) {
+					return InteractionResult.CONSUME;
+				} else {
 					this.setTradingPlayer(p_35856_);
 					this.openTradingScreen(p_35856_, this.getDisplayName(), 1);
 				}
-
-				return InteractionResult.SUCCESS;
 			}
+
+			return InteractionResult.SUCCESS;
 		} else {
 			return super.mobInteract(p_35856_, p_35857_);
 		}
@@ -147,9 +147,9 @@ public class TravelerTofunian extends AbstractTofunian {
 	@Override
 	protected void updateTrades(ServerLevel level) {
 		MerchantOffers offers = this.getOffers();
-		this.addOffersFromTradeSet(level, offers, TradeSets.WANDERING_TRADER_BUYING);
-		this.addOffersFromTradeSet(level, offers, TradeSets.WANDERING_TRADER_UNCOMMON);
-		this.addOffersFromTradeSet(level, offers, TradeSets.WANDERING_TRADER_COMMON);
+		this.addOffersFromTradeSet(level, offers, TofunianTradeSets.TOFUNIAN_TRAVELER_BUYING);
+		this.addOffersFromTradeSet(level, offers, TofunianTradeSets.TOFUNIAN_TRAVELER_UNCOMMON);
+		this.addOffersFromTradeSet(level, offers, TofunianTradeSets.TOFUNIAN_TRAVELER_COMMON);
 	}
 
 	public void addAdditionalSaveData(ValueOutput p_35861_) {
