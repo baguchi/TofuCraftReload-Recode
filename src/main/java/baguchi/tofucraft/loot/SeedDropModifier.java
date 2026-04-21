@@ -23,8 +23,8 @@ public class SeedDropModifier extends LootModifier {
 			RecordCodecBuilder.mapCodec(inst -> codecStart(inst)
 					.apply(inst, SeedDropModifier::new)));
 
-	protected SeedDropModifier(LootItemCondition[] conditionsIn) {
-		super(conditionsIn);
+	protected SeedDropModifier(LootItemCondition[] conditionsIn, int priority) {
+		super(conditionsIn, priority);
 	}
 
 	@Nonnull

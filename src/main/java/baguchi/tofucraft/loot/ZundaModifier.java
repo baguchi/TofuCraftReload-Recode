@@ -27,8 +27,8 @@ public class ZundaModifier extends LootModifier {
 			RecordCodecBuilder.mapCodec(inst -> codecStart(inst)
 					.apply(inst, ZundaModifier::new)));
 
-	protected ZundaModifier(LootItemCondition[] conditionsIn) {
-		super(conditionsIn);
+	protected ZundaModifier(LootItemCondition[] conditionsIn, int priority) {
+		super(conditionsIn, priority);
 	}
 
 	@Nonnull
