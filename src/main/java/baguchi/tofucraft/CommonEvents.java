@@ -93,6 +93,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.entity.player.SweepAttackEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.ExplosionEvent;
+import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
@@ -370,7 +371,7 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onBlockBreaked(BlockEvent.BreakEvent event) {
+	public static void onBlockBreaked(BreakBlockEvent event) {
 		if (event.getPlayer() instanceof ServerPlayer) {
 			net.minecraft.world.level.LevelAccessor world = event.getPlayer().level();
 			if (world instanceof ServerLevel) {
@@ -698,7 +699,7 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static boolean onBlockStartBreak(BlockEvent.BreakEvent event) {
+	public static boolean onBlockStartBreak(BreakBlockEvent event) {
 		ItemStack hand = event.getPlayer().getItemInHand(InteractionHand.MAIN_HAND);
 		if (hand.has(DataComponents.TOOL)) {
 			Block blockDestroyed = event.getLevel().getBlockState(event.getPos()).getBlock();
