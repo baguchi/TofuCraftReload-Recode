@@ -9,6 +9,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public class KoujiBaseItem extends Item {
@@ -17,19 +18,32 @@ public class KoujiBaseItem extends Item {
 	}
 
 	@Override
-	public void inventoryTick(ItemStack p_41404_, ServerLevel p_401805_, Entity p_41406_, @Nullable EquipmentSlot p_401900_) {
-		super.inventoryTick(p_41404_, p_401805_, p_41406_, p_401900_);
-		Integer fermentationData = p_41404_.getOrDefault(TofuDataComponents.FERMENTATION_DATA, 0);
-		if (p_41406_ instanceof Player) {
-			Player player = (Player) p_41406_;
-			int ticks = fermentationData;
-			if (ticks > 2400) {
+	public void inventoryTick(ItemStack stack, ServerLevel serverLevel, Entity p_41406_, @Nullable EquipmentSlot p_401900_) {
+		super.inventoryTick(stack, serverLevel, p_41406_, p_401900_);
+		long minutes = (serverLevel.getGameTime() / 1200);
+
+		long fermentationData = stack.getOrDefault(TofuDataComponents.FERMENTATION_DATA, minutes);
+		if (p_41406_ instanceof Player player) {
+			long storedMinutes = fermentationData;
+			if (storedMinutes > minutes + 1200 * 5) {
 				ItemStack newstack = new ItemStack(TofuItems.KOUJI.get(), 1);
-				p_41404_.shrink(1);
+				stack.shrink(1);
 				player.getInventory().add(newstack);
 			}
-			p_41404_.set(TofuDataComponents.FERMENTATION_DATA, ticks + 1);
+
+
+			if (serverLevel.getGameTime() % 20 == 0 && !stack.has(TofuDataComponents.FERMENTATION_DATA)) {
+				stack.set(TofuDataComponents.FERMENTATION_DATA, storedMinutes);
+			}
 		}
+	}
+
+	@Override
+	public void onCraftedPostProcess(ItemStack stack, Level level) {
+		super.onCraftedPostProcess(stack, level);
+		long minutes = (level.getGameTime() / 1200);
+
+		stack.set(TofuDataComponents.FERMENTATION_DATA, minutes);
 	}
 
 	private void updateTags(int tick, CompoundTag p_40735_) {

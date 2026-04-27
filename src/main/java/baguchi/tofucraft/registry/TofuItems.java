@@ -150,7 +150,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> FUKUMENI = ITEMS.registerItem("fukumeni", (properties) -> new Item((properties).food(TofuFoods.FUKUMENI)));
 	public static final DeferredHolder<Item, Item> KOYADOFUSTEW = ITEMS.registerItem("koyadofustew", (properties) -> new DishItem((properties).food(TofuFoods.KOYADOFUSTEW).usingConvertsTo(Items.BOWL).stacksTo(16)));
 
-	public static final DeferredHolder<Item, Item> KOUJI_BASE = ITEMS.registerItem("koujibase", (properties) -> new KoujiBaseItem((properties).stacksTo(1)));
+	public static final DeferredHolder<Item, Item> KOUJI_BASE = ITEMS.registerItem("koujibase", KoujiBaseItem::new);
 	public static final DeferredHolder<Item, Item> KOUJI = ITEMS.registerItem("kouji", Item::new);
 
 	public static final DeferredHolder<Item, Item> MISO = ITEMS.registerItem("miso", Item::new);

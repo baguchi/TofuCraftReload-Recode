@@ -27,7 +27,7 @@ public class TofuDataComponents {
 			p_331382_ -> p_331382_.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT)
 	);
 
-	public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> FERMENTATION_DATA = DATA_COMPONENT_TYPES.register("fermentation_data", () -> DataComponentType.<Integer>builder().persistent(ExtraCodecs.NON_NEGATIVE_INT.orElse(0)).networkSynchronized(ByteBufCodecs.VAR_INT).cacheEncoding().build());
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<Long>> FERMENTATION_DATA = DATA_COMPONENT_TYPES.register("fermentation_data", () -> DataComponentType.<Long>builder().persistent(ExtraCodecs.NON_NEGATIVE_LONG.orElse(0L)).networkSynchronized(ByteBufCodecs.VAR_LONG).cacheEncoding().build());
 
 
 	private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String p_332092_, UnaryOperator<DataComponentType.Builder<T>> p_331261_) {
