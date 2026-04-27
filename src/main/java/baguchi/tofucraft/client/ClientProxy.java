@@ -87,6 +87,8 @@ public class ClientProxy {
 			DisplayBookComponent soysauce = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.soysauce"), 52, 26, 1.0F).itemDisplay(TofuItems.BOTTLE_SOYSAUSE.get().getDefaultInstance(), 46, 30);
 			TextBookComponent soysauce_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soysauce.desc"), true, 100, 158);
 			TextBookComponent soysauce_desc2 = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soysauce.desc2"), true, 100, 158);
+			DisplayBookComponent natto = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.natto"), 52, 26, 1.0F).itemDisplay(TofuItems.NATTO.get().getDefaultInstance(), 46, 30);
+			TextBookComponent natto_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.natto.desc"), true, 100, 158);
 
 
 			TextBookComponent tf_force_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tf_force.desc"), true, 100, 158);

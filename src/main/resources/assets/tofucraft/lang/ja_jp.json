@@ -858,6 +858,8 @@
   "tofucraft.tofu_crafters_book.soysauce": "醤油とみそのつくりかた",
   "tofucraft.tofu_crafters_book.soysauce.desc": "まず、麹の種を作成しよう。\n作成後、麴の種がインベントリ内で麴に変化するまで待とう。時間がかかるから、バンドルでインベントリを管理することをお勧めするよ。\nバンドルやチェストに麹の種を入れないでね。インベントリで必ず発酵させよう。",
   "tofucraft.tofu_crafters_book.soysauce.desc2": "麹ができたら、味噌樽をクラフトして設置し、あとは石を上に置いて待つだけ...\n色が変わったら、納豆菌床を壊わそう。そうしたら味噌の完成！",
+  "tofucraft.tofu_crafters_book.natto": "納豆の作り方",
+  "tofucraft.tofu_crafters_book.natto.desc": "醬油と違って、納豆を作るために必要な納豆俵は、置くだけで発行するよ。色が変わったら回収するだけでok!",
   "tofucraft.tofu_crafters_book.tf_force.title": "トーフフォース取扱説明書",
   "tofucraft.tofu_crafters_book.tf_force.desc": "豆腐や大豆を使った工業化もできるよ\nエネルギーは、大豆や豆腐がメイン、\nそこから物を焼いたり豆腐ツールの耐久を回復することができるよ",
   "tofucraft.tofu_crafters_book.tf_storage.desc": "豆腐ストレージは、主に大豆などでエネルギーを発電し、\nその中で豆腐ツールを回復したり充電するよ",
