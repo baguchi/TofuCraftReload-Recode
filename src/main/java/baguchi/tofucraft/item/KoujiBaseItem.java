@@ -31,9 +31,11 @@ public class KoujiBaseItem extends Item {
 				player.getInventory().add(newstack);
 			}
 
-
-			if (serverLevel.getGameTime() % 20 == 0 && !stack.has(TofuDataComponents.FERMENTATION_DATA)) {
-				stack.set(TofuDataComponents.FERMENTATION_DATA, storedMinutes);
+			//Prevent immediate syncing when items are added to the inventory.
+			if (stack.getPopTime() <= 0) {
+				if (serverLevel.getGameTime() % 20 == 0 && !stack.has(TofuDataComponents.FERMENTATION_DATA)) {
+					stack.set(TofuDataComponents.FERMENTATION_DATA, storedMinutes);
+				}
 			}
 		}
 	}
