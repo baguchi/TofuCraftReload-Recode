@@ -2,7 +2,6 @@ package baguchan.tofucraft.item;
 
 import baguchan.tofucraft.registry.TofuDataComponents;
 import baguchan.tofucraft.registry.TofuItems;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -14,23 +13,35 @@ public class KoujiBaseItem extends Item {
 		super(tab);
 	}
 
+
 	@Override
-	public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
-		super.inventoryTick(p_41404_, p_41405_, p_41406_, p_41407_, p_41408_);
-		Integer fermentationData = p_41404_.getOrDefault(TofuDataComponents.FERMENTATION_DATA, 0);
-		if (p_41406_ instanceof Player) {
-			Player player = (Player) p_41406_;
-			int ticks = fermentationData;
-				if (ticks > 2400) {
-					ItemStack newstack = new ItemStack(TofuItems.KOUJI.get(), 1);
-					p_41404_.shrink(1);
-					player.getInventory().add(newstack);
+	public void inventoryTick(ItemStack stack, Level level, Entity p_41406_, int p_41407_, boolean p_41408_) {
+		super.inventoryTick(stack, level, p_41406_, p_41407_, p_41408_);
+		long minutes = (level.getGameTime() / 1200);
+
+		long fermentationData = stack.getOrDefault(TofuDataComponents.FERMENTATION_DATA, minutes);
+		if (p_41406_ instanceof Player player) {
+			long storedMinutes = fermentationData;
+			if (storedMinutes > minutes + 1200 * 5) {
+				ItemStack newstack = new ItemStack(TofuItems.KOUJI.get(), 1);
+				stack.shrink(1);
+				player.getInventory().add(newstack);
+			}
+
+			//Prevent immediate syncing when items are added to the inventory.
+			if (stack.getPopTime() <= 0) {
+				if (level.getGameTime() % 20 == 0 && !stack.has(TofuDataComponents.FERMENTATION_DATA)) {
+					stack.set(TofuDataComponents.FERMENTATION_DATA, storedMinutes);
 				}
-			p_41404_.set(TofuDataComponents.FERMENTATION_DATA, ticks + 1);
+			}
 		}
 	}
 
-	private void updateTags(int tick, CompoundTag p_40735_) {
-		p_40735_.putInt("Fermentation", tick);
+	@Override
+	public void onCraftedPostProcess(ItemStack stack, Level level) {
+		super.onCraftedPostProcess(stack, level);
+		long minutes = (level.getGameTime() / 1200);
+
+		stack.set(TofuDataComponents.FERMENTATION_DATA, minutes);
 	}
 }

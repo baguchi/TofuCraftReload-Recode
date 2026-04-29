@@ -145,7 +145,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> FUKUMENI = ITEMS.register("fukumeni", () -> new Item((new Item.Properties()).food(TofuFoods.FUKUMENI)));
 	public static final DeferredHolder<Item, Item> KOYADOFUSTEW = ITEMS.register("koyadofustew", () -> new DishItem((new Item.Properties()).food(TofuFoods.KOYADOFUSTEW).stacksTo(16)));
 
-	public static final DeferredHolder<Item, Item> KOUJI_BASE = ITEMS.register("koujibase", () -> new KoujiBaseItem((new Item.Properties()).stacksTo(1)));
+	public static final DeferredHolder<Item, Item> KOUJI_BASE = ITEMS.register("koujibase", () -> new KoujiBaseItem((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> KOUJI = ITEMS.register("kouji", () -> new Item((new Item.Properties())));
 
 	public static final DeferredHolder<Item, Item> MISO = ITEMS.register("miso", () -> new Item((new Item.Properties())));
