@@ -30,7 +30,7 @@ public class KoujiBaseItem extends Item {
 
 			//Prevent immediate syncing when items are added to the inventory.
 			if (stack.getPopTime() <= 0) {
-				if (level.getGameTime() % 20 == 0 && !stack.has(TofuDataComponents.FERMENTATION_DATA)) {
+				if (level.getGameTime() % 20 == 0 && (!stack.has(TofuDataComponents.FERMENTATION_DATA) || storedMinutes - 1 > minutes)) {
 					stack.set(TofuDataComponents.FERMENTATION_DATA, storedMinutes);
 				}
 			}
