@@ -22,7 +22,7 @@ public class KoujiBaseItem extends Item {
 		long fermentationData = stack.getOrDefault(TofuDataComponents.FERMENTATION_DATA, minutes);
 		if (p_41406_ instanceof Player player) {
 			long storedMinutes = fermentationData;
-			if (storedMinutes > minutes + 1200 * 5) {
+			if (storedMinutes > minutes + 5) {
 				ItemStack newstack = new ItemStack(TofuItems.KOUJI.get(), 1);
 				stack.shrink(1);
 				player.getInventory().add(newstack);
