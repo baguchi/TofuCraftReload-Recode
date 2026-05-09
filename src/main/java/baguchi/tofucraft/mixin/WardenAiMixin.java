@@ -2,25 +2,28 @@ package baguchi.tofucraft.mixin;
 
 import baguchi.tofucraft.entity.behaviors.CoughTask;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.world.entity.ai.ActivityData;
-import net.minecraft.world.entity.monster.warden.Warden;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.world.entity.monster.warden.WardenAi;
-import net.minecraft.world.entity.schedule.Activity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @Mixin(value = WardenAi.class)
 public class WardenAiMixin {
 
 
-	@Inject(method = "getActivities", at = @At("RETURN"))
-	private static void getActivities(Warden body, CallbackInfoReturnable<List<ActivityData<Warden>>> cir) {
+	@ModifyExpressionValue(
+			method = "initCoreActivity",
+			at = @At(
+					value = "INVOKE",
+					target = "Lcom/google/common/collect/ImmutableList;of(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableList;"
+			)
+	)
+	private static ImmutableList tofucraft$addCough(ImmutableList original) {
 
-		List<ActivityData<Warden>> wardenActivityData = cir.getReturnValue();
-		wardenActivityData.add(ActivityData.create(Activity.IDLE, 10, ImmutableList.of(new CoughTask())));
+		final ArrayList behaviors = new ArrayList<>(original);
+		behaviors.add(new CoughTask());
+		return ImmutableList.copyOf(behaviors);
 	}
 }
