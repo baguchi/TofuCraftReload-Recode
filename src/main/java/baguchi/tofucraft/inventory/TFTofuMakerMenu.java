@@ -2,6 +2,7 @@ package baguchi.tofucraft.inventory;
 
 import baguchi.tofucraft.blockentity.tfenergy.TFTofuMakerBlockEntity;
 import baguchi.tofucraft.inventory.slot.TFTofuMakerResultSlot;
+import baguchi.tofucraft.recipe.TFTofuMakerRecipe;
 import baguchi.tofucraft.registry.TofuMenus;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.recipebook.ServerPlaceRecipe;
@@ -18,7 +19,6 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
@@ -163,7 +163,7 @@ public class TFTofuMakerMenu extends RecipeBookMenu {
 			boolean p_361547_, boolean p_363944_, RecipeHolder<?> p_360938_, final ServerLevel p_379475_, Inventory p_361954_
 	) {
 		final List<Slot> list = List.of(this.getSlot(0));
-		return ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<AbstractCookingRecipe>() {
+		return ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<>() {
 			@Override
 			public void fillCraftSlotsStackedContents(StackedItemContents p_361824_) {
 				TFTofuMakerMenu.this.fillCraftSlotsStackedContents(p_361824_);
@@ -175,9 +175,9 @@ public class TFTofuMakerMenu extends RecipeBookMenu {
 			}
 
 			@Override
-			public boolean recipeMatches(RecipeHolder<AbstractCookingRecipe> p_361040_) {
+			public boolean recipeMatches(RecipeHolder<TFTofuMakerRecipe> p_361040_) {
 				return p_361040_.value().matches(new SingleRecipeInput(TFTofuMakerMenu.this.container.getItem(0)), p_379475_);
 			}
-		}, 1, 1, List.of(this.getSlot(0)), list, p_361954_, (RecipeHolder<AbstractCookingRecipe>) p_360938_, p_361547_, p_363944_);
+		}, 1, 1, List.of(this.getSlot(0)), list, p_361954_, (RecipeHolder<TFTofuMakerRecipe>) p_360938_, p_361547_, p_363944_);
 	}
 }
