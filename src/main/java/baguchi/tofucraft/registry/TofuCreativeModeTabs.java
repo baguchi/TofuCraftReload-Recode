@@ -581,7 +581,6 @@ public class TofuCreativeModeTabs {
 						TofuItems.LEEK_CHEST_BOAT,
 						TofuItems.LEEK_GREEN_BOAT,
 						TofuItems.LEEK_GREEN_CHEST_BOAT,
-						TofuItems.SOYBALL,
 						TofuItems.ZUNDA,
 						TofuItems.ZUNDAMA,
 						TofuItems.UNSTABLE_ZUNDAMA,

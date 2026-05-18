@@ -23,7 +23,6 @@ import baguchi.tofucraft.item.RollingPinItem;
 import baguchi.tofucraft.item.SaltFoodItem;
 import baguchi.tofucraft.item.SeedAndRootItem;
 import baguchi.tofucraft.item.SoulFukumameItem;
-import baguchi.tofucraft.item.SoyBallItem;
 import baguchi.tofucraft.item.SoymilkBottleItem;
 import baguchi.tofucraft.item.TFBatteryItem;
 import baguchi.tofucraft.item.TofuBookItem;
@@ -199,7 +198,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> KYONINSO = ITEMS.registerItem("kyoninso", Item::new);
 
 	public static final DeferredHolder<Item, Item> YUBA = ITEMS.registerItem("yuba", (properties) -> new Item((properties).food(TofuFoods.YUBA)));
-	public static final DeferredHolder<Item, Item> SOYBALL = ITEMS.registerItem("soyball", (properties) -> new SoyBallItem((properties)));
+
 	public static final DeferredHolder<Item, Item> ZUNDA = ITEMS.registerItem("zunda", Item::new);
 	public static final DeferredHolder<Item, Item> ZUNDAMA = ITEMS.registerItem("zundama", Item::new);
 	public static final DeferredHolder<Item, Item> UNSTABLE_ZUNDAMA = ITEMS.registerItem("unstable_zundama", (properties) -> new UnstableZundamaItem((properties)));

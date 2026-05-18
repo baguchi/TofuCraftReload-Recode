@@ -86,7 +86,14 @@ public class TofuTags {
 		public static final TagKey<Block> TOFU_TERRAIN = tag("tofu_terrain");
 		public static final TagKey<Block> TF_TRANSMITTER = tag("tf_transmitter");
 
+		public static final TagKey<Block> SUBSTRATE_TOFU_WORLD = tag("substrate_tofu_world");
+
+
 		public static final TagKey<Block> TOFU_WORLD_CARVER_REPLACEABLE = tag("tofu_world_replaceable");
+
+		public static final TagKey<Block> SUPPORTS_TOFU_PLANT = tag("supports_tofu_plant");
+		public static final TagKey<Block> SUPPORTS_ROUGH_TOFU_PLANT = tag("supports_rough_tofu_plant");
+
 
 		private static TagKey<Block> tag(String name) {
 			return BlockTags.create(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));

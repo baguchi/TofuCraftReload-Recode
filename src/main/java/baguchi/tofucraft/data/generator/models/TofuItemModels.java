@@ -112,8 +112,6 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFU_CHIKUWA.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.YUBA.get(), ModelTemplates.FLAT_ITEM);
 
-		this.generateFlatItem(TofuItems.SOYBALL.get(), ModelTemplates.FLAT_ITEM);
-
 		this.generateFlatItem(TofuItems.ZUNDA.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.ZUNDAMA.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.UNSTABLE_ZUNDAMA.get(), ModelTemplates.FLAT_ITEM);
