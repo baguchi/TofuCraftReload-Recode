@@ -1,7 +1,6 @@
 {
   "values": [
-    "tofucraft:tofu_terrain",
-    "tofucraft:tofu_terrain_zunda",
+    "#tofucraft:tofu_terrain",
     "tofucraft:soymilk",
     "tofucraft:tofuslate",
     "tofucraft:okara_block"
