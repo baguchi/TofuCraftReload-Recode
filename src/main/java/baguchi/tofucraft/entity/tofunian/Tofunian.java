@@ -682,8 +682,10 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	private void resetSpecialPrices() {
-		for (MerchantOffer merchantoffer : this.getOffers())
-			merchantoffer.resetSpecialPriceDiff();
+		if (!this.level().isClientSide()) {
+			for (MerchantOffer merchantoffer : this.getOffers())
+				merchantoffer.resetSpecialPriceDiff();
+		}
 	}
 
 	@Override
