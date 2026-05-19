@@ -601,43 +601,35 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 	}
 
 	@Override
-	public InteractionResult mobInteract(Player p_35472_, InteractionHand p_35473_) {
-		ItemStack itemstack = p_35472_.getItemInHand(p_35473_);
-		if (itemstack.getItem() != TofuItems.TOFUNIAN_SPAWN_EGG.get() && this.isAlive() && !this.isTrading() && !this.isSleeping() && !p_35472_.isSecondaryUseActive()) {
-			if (p_35472_ instanceof ServerPlayer) {
-				TofuAdvancements.MY_TOFU_CHILD.get().trigger((ServerPlayer) p_35472_);
-			}
-			if (this.isBaby()) {
-				this.setUnhappy();
-				return InteractionResult.SUCCESS;
-			} else {
-				if (!this.level().isClientSide()) {
-					boolean flag = this.getOffers().isEmpty();
-					if (this.getAction() == Actions.HAPPY || this.getAction() == Actions.EAT || this.getAction() == Actions.CRY) {
-						return InteractionResult.CONSUME;
-
-					}
-					if (p_35473_ == InteractionHand.MAIN_HAND) {
-						if (flag && !this.level().isClientSide()) {
-							this.setUnhappy();
-						}
-
-						//p_35472_.awardStat(Stats.TALKED_TO_VILLAGER);
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemStack = player.getItemInHand(hand);
+		if (itemStack.is(TofuItems.TOFUNIAN_SPAWN_EGG) || !this.isAlive() || this.isTrading() || this.isSleeping() || player.isSecondaryUseActive()) {
+			return super.mobInteract(player, hand);
+		} else if (this.isBaby()) {
+			this.setUnhappy();
+			return InteractionResult.SUCCESS;
+		} else {
+			if (!this.level().isClientSide()) {
+				boolean noOffers = this.getOffers().isEmpty();
+				if (hand == InteractionHand.MAIN_HAND) {
+					if (noOffers) {
+						this.setUnhappy();
 					}
 
-					if (flag) {
-						return InteractionResult.SUCCESS;
-					} else {
-						if (!this.level().isClientSide() && !this.offers.isEmpty()) {
-							this.startTrading(p_35472_);
-						}
-
-						return InteractionResult.SUCCESS;
+					if (player instanceof ServerPlayer) {
+						TofuAdvancements.MY_TOFU_CHILD.get().trigger((ServerPlayer) player);
 					}
 				}
+
+				if (noOffers) {
+					return InteractionResult.CONSUME;
+				}
+
+				this.startTrading(player);
 			}
+
+			return InteractionResult.SUCCESS;
 		}
-		return super.mobInteract(p_35472_, p_35473_);
 	}
 
 	private void setUnhappy() {
@@ -1076,7 +1068,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			this.gossips.add(entity.getUUID(), GossipType.MAJOR_POSITIVE, 20);
 			this.gossips.add(entity.getUUID(), GossipType.MINOR_POSITIVE, 25);
 		} else if (reputationEventType == ReputationEventType.TRADE) {
-			this.gossips.add(entity.getUUID(), GossipType.TRADING, 2);
+			this.gossips.add(entity.getUUID(), GossipType.TRADING, 1);
 		} else if (reputationEventType == ReputationEventType.VILLAGER_HURT) {
 			this.gossips.add(entity.getUUID(), GossipType.MINOR_NEGATIVE, 25);
 		} else if (reputationEventType == ReputationEventType.VILLAGER_KILLED) {

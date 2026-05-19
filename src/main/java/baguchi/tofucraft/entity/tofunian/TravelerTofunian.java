@@ -122,10 +122,12 @@ public class TravelerTofunian extends AbstractTofunian {
 
 	}
 
-	public InteractionResult mobInteract(Player p_35856_, InteractionHand p_35857_) {
-		ItemStack itemstack = p_35856_.getItemInHand(p_35857_);
-		if (!itemstack.is(TofuItems.TRAVELER_TOFUNIAN_SPAWN_EGG.get()) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
-			if (p_35857_ == InteractionHand.MAIN_HAND) {
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemStack = player.getItemInHand(hand);
+		if (itemStack.is(TofuItems.TRAVELER_TOFUNIAN_SPAWN_EGG) || !this.isAlive() || this.isTrading() || this.isSleeping() || player.isSecondaryUseActive()) {
+			return super.mobInteract(player, hand);
+		} else {
+			if (hand == InteractionHand.MAIN_HAND) {
 				//p_35856_.awardStat(Stats.TALKED_TO_VILLAGER);
 			}
 
@@ -133,14 +135,12 @@ public class TravelerTofunian extends AbstractTofunian {
 				if (this.getOffers().isEmpty()) {
 					return InteractionResult.CONSUME;
 				} else {
-					this.setTradingPlayer(p_35856_);
-					this.openTradingScreen(p_35856_, this.getDisplayName(), 1);
+					this.setTradingPlayer(player);
+					this.openTradingScreen(player, this.getDisplayName(), 1);
 				}
 			}
 
 			return InteractionResult.SUCCESS;
-		} else {
-			return super.mobInteract(p_35856_, p_35857_);
 		}
 	}
 
