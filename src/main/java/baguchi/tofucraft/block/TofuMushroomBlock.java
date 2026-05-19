@@ -30,6 +30,6 @@ public class TofuMushroomBlock extends TofuSaplingBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState p_51042_, BlockGetter p_51043_, BlockPos p_51044_) {
-		return p_51042_.is(TofuTags.Blocks.TOFU_TERRAIN);
+		return p_51042_.is(TofuTags.Blocks.SUPPORTS_TOFU_PLANT);
 	}
 }

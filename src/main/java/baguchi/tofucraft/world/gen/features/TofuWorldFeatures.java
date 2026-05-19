@@ -55,6 +55,7 @@ public class TofuWorldFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_DELTA = registerKey("tofu_delta");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SPROUT_WATER_POOL = registerKey("sprout_water_pool");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_SPROUTS = registerKey("wild_sprouts");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_FLOWER = registerKey("tofu_flower");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEEK = registerKey("leek");
@@ -92,6 +93,7 @@ public class TofuWorldFeatures {
 				Feature.DELTA_FEATURE,
 				new DeltaFeatureConfiguration(TofuBlocks.DOUBANJIANG.get().defaultBlockState(), TofuBlocks.MABOU_TERRAIN.get().defaultBlockState(), UniformInt.of(3, 7), UniformInt.of(0, 2))
 		);
+		FeatureUtils.register(context, WILD_SPROUTS, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TofuBlocks.WILD_SPROUTS.get())));
 
 		FeatureUtils.register(context, SPROUT_WATER_POOL, Feature.WATERLOGGED_VEGETATION_PATCH, new VegetationPatchConfiguration(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE, BlockStateProvider.simple(TofuBlocks.MINCEDTOFU.get()), PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(ModTreeFeatures.SPROUT), new PlacementModifier[0]), CaveSurface.FLOOR, ConstantInt.of(3), 0.8F, 5, 0.055F, UniformInt.of(4, 7), 0.7F));
 

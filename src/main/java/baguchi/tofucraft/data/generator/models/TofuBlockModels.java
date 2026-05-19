@@ -302,6 +302,10 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		this.createCropBlock(TofuBlocks.LEEK_CROP.get(), BlockStateProperties.AGE_3, 0, 1, 1, 2);
 		this.createCropBlock(TofuBlocks.SPROUTS.get(), BlockStateProperties.AGE_3, 0, 1, 2, 3);
 		this.createSingleCropBlock(TofuBlocks.RICE_ROOT.get());
+		this.createSingleCropBlock(TofuBlocks.WILD_SPROUTS.get());
+		this.registerSimpleFlatItemModel(TofuBlocks.WILD_SPROUTS.get());
+
+
 		this.createTofuFarmland();
 		this.createTofuPortalBlock();
 		this.createTofunianState(TofuBlocks.TOFUNIAN_STATUE.get(), TofuBlocks.TOFUSLATE.get());

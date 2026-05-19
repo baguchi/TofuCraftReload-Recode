@@ -15,6 +15,6 @@ public class TofuFlowerBlock extends FlowerBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState p_51042_, BlockGetter p_51043_, BlockPos p_51044_) {
-		return super.mayPlaceOn(p_51042_, p_51043_, p_51044_) || p_51042_.is(TofuTags.Blocks.TOFU_TERRAIN);
+		return super.mayPlaceOn(p_51042_, p_51043_, p_51044_) || p_51042_.is(TofuTags.Blocks.SUPPORTS_TOFU_PLANT);
 	}
 }

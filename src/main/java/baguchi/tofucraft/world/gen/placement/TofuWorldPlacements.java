@@ -55,6 +55,7 @@ public class TofuWorldPlacements {
 	public static final ResourceKey<PlacedFeature> PATCH_LEEK = registerKey("patch_leek");
 	public static final ResourceKey<PlacedFeature> PATCH_LEEK_WASTE = registerKey("patch_leek_waste");
 	public static final ResourceKey<PlacedFeature> PATCH_TOFU_FLOWER = registerKey("patch_tofu_flower");
+	public static final ResourceKey<PlacedFeature> PATCH_WILD_SPROUTS = registerKey("patch_wild_sprouts");
 
 	public static final ResourceKey<PlacedFeature> LEEK_BONEMEAL = registerKey("leek_bonemeal");
 
@@ -96,6 +97,13 @@ public class TofuWorldPlacements {
 
 		PlacementUtils.register(context, TOFU_DELTA, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_DELTA), CountOnEveryLayerPlacement.of(30), BiomeFilter.biome());
 
+		PlacementUtils.register(context, PATCH_WILD_SPROUTS, configuredFeature.getOrThrow(TofuWorldFeatures.WILD_SPROUTS), InSquarePlacement.spread(),
+				InSquarePlacement.spread(),
+				CountPlacement.of(32),
+				RandomOffsetPlacement.ofTriangle(7, 3),
+				PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+				EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+				BiomeFilter.biome());
 
 		PlacementUtils.register(context, PATCH_TOFU_FLOWER, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_FLOWER), RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome(),
 				CountPlacement.of(24),

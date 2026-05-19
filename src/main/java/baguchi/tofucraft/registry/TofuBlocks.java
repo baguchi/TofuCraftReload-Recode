@@ -29,6 +29,7 @@ import baguchi.tofucraft.block.TofuSaplingBlock;
 import baguchi.tofucraft.block.TofuTerrainBlock;
 import baguchi.tofucraft.block.TofuTrapDoorBlock;
 import baguchi.tofucraft.block.TofunianStatueBlock;
+import baguchi.tofucraft.block.WildSproutsBlock;
 import baguchi.tofucraft.block.YubaBlock;
 import baguchi.tofucraft.block.ZundamaBlock;
 import baguchi.tofucraft.block.crop.ChiliCropsBlock;
@@ -141,6 +142,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> RICE_ROOT = registerWithoutItem("rice_root", (properties) -> new RiceRootBlock(properties), () -> BlockBehaviour.Properties.of().noCollision().randomTicks().strength(0.1F).sound(SoundType.CROP));
 	public static final DeferredBlock<Block> CHILI_CROP = registerWithoutItem("chili_crop", (properties) -> new ChiliCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> SPROUTS = registerWithoutItem("sprouts_crop", (properties) -> new SproutsCropBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
+	public static final DeferredBlock<Block> WILD_SPROUTS = register("wild_sprouts", (properties) -> new WildSproutsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 
 	public static final DeferredBlock<Block> KINUTOFU = register("blocktofukinu", (properties) -> new KinuTofuBlock(properties), () -> BlockBehaviour.Properties.of().randomTicks().strength(0.1F, 0.2F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> WAXED_KINUTOFU = register("waxed_tofu_kinu", Block::new, () -> BlockBehaviour.Properties.of().strength(0.1F, 0.2F).sound(SoundType.SNOW));

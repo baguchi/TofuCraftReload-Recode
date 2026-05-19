@@ -43,6 +43,8 @@ public class TofuBiomeDefaultFeatures {
 	public static void addCaveSproutFeatures(BiomeGenerationSettings.Builder p_194721_) {
 		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.BIG_SPROUT);
 		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.SPROUT_WATER_POOL);
+		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.PATCH_WILD_SPROUTS);
+
 	}
 
 	public static void addForestFeatures(BiomeGenerationSettings.Builder p_194721_) {

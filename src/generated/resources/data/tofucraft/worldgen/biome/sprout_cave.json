@@ -39,7 +39,8 @@
     [],
     [
       "tofucraft:big_sprout",
-      "tofucraft:sprout_water_pool"
+      "tofucraft:sprout_water_pool",
+      "tofucraft:patch_wild_sprouts"
     ]
   ],
   "has_precipitation": true,

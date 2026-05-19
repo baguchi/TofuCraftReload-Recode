@@ -67,7 +67,7 @@ public class CustomTagGenerator {
 
 		@Override
 		protected void addTags(HolderLookup.Provider p_256380_) {
-			tag(FeatureTags.CAN_SPAWN_FROM_BONE_MEAL).add(TofuWorldFeatures.TOFU_FLOWER).add(TofuWorldFeatures.ZUNDA_TOFU_MUSHROOM);
+			tag(FeatureTags.CAN_SPAWN_FROM_BONE_MEAL).add(TofuWorldFeatures.WILD_SPROUTS).add(TofuWorldFeatures.TOFU_FLOWER).add(TofuWorldFeatures.ZUNDA_TOFU_MUSHROOM);
 		}
 	}
 

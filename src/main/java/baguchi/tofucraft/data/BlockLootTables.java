@@ -109,6 +109,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		LootItemCondition.Builder lootitemconditon$sprouts = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.CHILI_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SproutsCropBlock.AGE, 3));
 
 		add(TofuBlocks.SPROUTS.get(), applyExplosionDecay(TofuBlocks.SPROUTS.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SPROUTS.get()).when(lootitemconditon$sprouts).otherwise(LootItem.lootTableItem(TofuItems.SPROUTS.get())))).withPool(LootPool.lootPool().when(lootitemconditon$sprouts).add(LootItem.lootTableItem(TofuItems.SPROUTS.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))))));
+		add(TofuBlocks.WILD_SPROUTS.get(), applyExplosionDecay(TofuBlocks.WILD_SPROUTS.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SPROUTS.get())))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.SPROUTS.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3)))));
 
 
 		dropOther(TofuBlocks.SOYMILK_CAULDRON.get(), Blocks.CAULDRON);

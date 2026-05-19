@@ -21,7 +21,7 @@ public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
 		if (!p_159749_.level().isEmptyBlock(p_159749_.origin()))
 			return false;
 		BlockState blockstate = p_159749_.level().getBlockState(p_159749_.origin().below());
-		if (!blockstate.is(TofuTags.Blocks.TOFU_TERRAIN))
+		if (!blockstate.is(TofuTags.Blocks.SUPPORTS_TOFU_PLANT))
 			return false;
 		if (p_159749_.random().nextInt(6) == 0) {
 			setBigLeekBlock(p_159749_.level(), p_159749_.random(), p_159749_.origin());

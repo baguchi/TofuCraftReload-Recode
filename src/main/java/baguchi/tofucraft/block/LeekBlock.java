@@ -22,7 +22,7 @@ public class LeekBlock extends BushBlock implements BonemealableBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState p_51042_, BlockGetter p_51043_, BlockPos p_51044_) {
-		return p_51042_.is(TofuTags.Blocks.TOFU_TERRAIN) || p_51042_.is(TofuBlocks.MOMENTOFU.get());
+		return p_51042_.is(TofuTags.Blocks.SUPPORTS_TOFU_PLANT);
 	}
 
 	public void growLeek(ServerLevel serverLevel, BlockPos pos, BlockState p_54862_, RandomSource randomSource) {
@@ -36,7 +36,7 @@ public class LeekBlock extends BushBlock implements BonemealableBlock {
 	@Override
 	public boolean isValidBonemealTarget(LevelReader p_256655_, BlockPos p_256553_, BlockState p_256213_) {
 		BlockState blockstate = p_256655_.getBlockState(p_256553_.below());
-		return blockstate.is(TofuTags.Blocks.TOFU_TERRAIN) || blockstate.is(TofuBlocks.MOMENTOFU.get());
+		return blockstate.is(TofuTags.Blocks.SUPPORTS_TOFU_PLANT);
 	}
 
 	@Override
