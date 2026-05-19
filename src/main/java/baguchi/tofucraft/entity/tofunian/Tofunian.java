@@ -232,7 +232,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(14, new FindStatueBlockGoal(this, 0.85F, 6));
 
 		this.goalSelector.addGoal(15, new WaterAvoidingRandomStrollGoal(this, 0.9D));
-		this.goalSelector.addGoal(16, new InteractGoal(this, Player.class, 3.0F, 1.0F));
 		this.goalSelector.addGoal(17, new ShareItemAndGossipGoal(this, 0.9F));
 		this.goalSelector.addGoal(18, new InteractGoal(this, AbstractTofunian.class, 4.0F, 0.25F) {
 			@Override
