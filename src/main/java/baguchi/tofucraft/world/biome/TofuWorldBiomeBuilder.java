@@ -249,7 +249,7 @@ public class TofuWorldBiomeBuilder {
 
 	private void addUndergroundBiomes(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> p_187227_) {
 		//this.addUndergroundBiome(p_187227_, this.FULL_RANGE, this.FULL_RANGE, Climate.Parameter.span(0.8F, 1.0F), this.FULL_RANGE, this.FULL_RANGE, 0.0F, Biomes.DRIPSTONE_CAVES);
-		this.addUndergroundBiome(p_187227_, this.FULL_RANGE, Climate.Parameter.span(0.4F, 1.0F), this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F, TofuBiomes.SPROUT_CAVE);
+		this.addLowUndergroundBiome(p_187227_, this.FULL_RANGE, Climate.Parameter.span(0.25F, 1.0F), this.FULL_RANGE, this.FULL_RANGE, this.FULL_RANGE, 0.0F, TofuBiomes.SPROUT_CAVE);
 	}
 
 	private ResourceKey<Biome> pickMiddleBiome(int p_187164_, int p_187165_, Climate.Parameter p_187166_) {
@@ -334,6 +334,21 @@ public class TofuWorldBiomeBuilder {
 	) {
 		biomes.accept(
 				Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(0.2F, 0.9F), weirdness, offset), biome)
+		);
+	}
+
+	private void addLowUndergroundBiome(
+			Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> biomes,
+			Climate.Parameter temperature,
+			Climate.Parameter humidity,
+			Climate.Parameter continentalness,
+			Climate.Parameter erosion,
+			Climate.Parameter weirdness,
+			float offset,
+			ResourceKey<Biome> biome
+	) {
+		biomes.accept(
+				Pair.of(Climate.parameters(temperature, humidity, continentalness, erosion, Climate.Parameter.span(0.1F, 0.7F), weirdness, offset), biome)
 		);
 	}
 

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "tofucraft:block/wild_sprouts"
+  }
+}

@@ -97,13 +97,12 @@ public class TofuWorldPlacements {
 
 		PlacementUtils.register(context, TOFU_DELTA, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_DELTA), CountOnEveryLayerPlacement.of(30), BiomeFilter.biome());
 
-		PlacementUtils.register(context, PATCH_WILD_SPROUTS, configuredFeature.getOrThrow(TofuWorldFeatures.WILD_SPROUTS), InSquarePlacement.spread(),
+		PlacementUtils.register(context, PATCH_WILD_SPROUTS, configuredFeature.getOrThrow(TofuWorldFeatures.WILD_SPROUTS),
+				CountPlacement.of(188),
 				InSquarePlacement.spread(),
-				CountPlacement.of(32),
-				RandomOffsetPlacement.ofTriangle(7, 3),
 				PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
-				EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(), BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
-				BiomeFilter.biome());
+				EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+				RandomOffsetPlacement.vertical(ConstantInt.of(-1)));
 
 		PlacementUtils.register(context, PATCH_TOFU_FLOWER, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_FLOWER), RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome(),
 				CountPlacement.of(24),

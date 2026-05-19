@@ -13,17 +13,23 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.VegetationBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.level.BlockGrowFeatureEvent;
 
 import java.util.Optional;
 
 public class WildSproutsBlock extends VegetationBlock implements BonemealableBlock {
+	private static final VoxelShape SHAPES = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D);
+
+
 	public static final MapCodec<WildSproutsBlock> CODEC = simpleCodec(WildSproutsBlock::new);
 
 	public WildSproutsBlock(BlockBehaviour.Properties properties) {
@@ -33,6 +39,11 @@ public class WildSproutsBlock extends VegetationBlock implements BonemealableBlo
 	@Override
 	protected MapCodec<? extends VegetationBlock> codec() {
 		return CODEC;
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState p_52297_, BlockGetter p_52298_, BlockPos p_52299_, CollisionContext p_52300_) {
+		return SHAPES;
 	}
 
 	@Override
