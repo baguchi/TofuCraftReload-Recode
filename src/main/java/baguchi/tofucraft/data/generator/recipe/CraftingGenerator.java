@@ -143,15 +143,6 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get())
 				.unlockedBy("has_item", has(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get()))
 				.save(this.output, prefix("copy_tofu_template"));
-		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get(), 2)
-				.pattern("ZZZ")
-				.pattern("Z#Z")
-				.pattern("ZDZ")
-				.define('Z', TofuItems.ZUNDAMA.get())
-				.define('D', TofuItems.ZUNDA_INGOT.get())
-				.define('#', TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get())
-				.unlockedBy("has_item", has(TofuItems.ZUNDA_UPGRADE_SMITHING_TEMPLATE.get()))
-				.save(this.output, prefix("copy_zunda_template"));
 
 		/*swordItem(this.output, "tofu_diamond_sword", TofuItems.TOFU_DIAMOND_SWORD, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
 		pickaxeItem(this.output, "tofu_diamond_pickaxe", TofuItems.TOFU_DIAMOND_PICKAXE, TofuBlocks.DIAMONDTOFU, Tags.Items.RODS_WOODEN);
@@ -2030,7 +2021,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		TFShapedRecipeBuilder.shaped(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.ZUNDA_BOW.get()), 1000)
 				.define('S', TofuItems.ZUNDAMA.get())
 				.define('Z', TofuItems.ZUNDA_INGOT.get())
-				.define('G', TofuItems.TOFUGEM.get())
+				.define('G', TofuItems.SOY_FORCE_SHARD.get())
 				.pattern(" ZS")
 				.pattern("ZGS")
 				.pattern(" ZS")
