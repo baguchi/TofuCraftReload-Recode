@@ -401,6 +401,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFU_SHIELD = ITEMS.registerItem("tofu_shield", (properties) -> new TofuShieldItem((properties).stacksTo(1).durability(450).repairable(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL)
 			.equippableUnswappable(EquipmentSlot.OFFHAND)
+			.repairable(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL)
 			.delayedComponent(
 					DataComponents.BLOCKS_ATTACKS,
 					context -> new BlocksAttacks(
