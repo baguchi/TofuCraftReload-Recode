@@ -183,8 +183,8 @@ public class CommonEvents {
 	public static void onDamage(LivingDamageEvent.Post event) {
 		TofuLivingAttachment attachment = event.getEntity().getData(TofuAttachments.TOFU_LIVING.get());
 
-		if (event.getEntity().hasEffect(TofuEffects.HEART_RECOVER) && attachment.getRecoverHealth() <= event.getNewDamage()) {
-			attachment.setRecoverHealth(event.getEntity(), event.getNewDamage());
+		if (event.getEntity().hasEffect(TofuEffects.HEART_RECOVER) && attachment.getRecoverHealth() <= event.getHealthDamage()) {
+			attachment.setRecoverHealth(event.getEntity(), event.getHealthDamage());
 		}
 	}
 
@@ -538,7 +538,7 @@ public class CommonEvents {
 	//on fall with tofu boots
 	@SubscribeEvent
 	public static void onFall(LivingDamageEvent.Post event) {
-		float damage = event.getNewDamage();
+		float damage = event.getHealthDamage();
 		LivingEntity entity = event.getEntity();
 		ItemStack feet = entity.getItemBySlot(EquipmentSlot.FEET);
 		if (event.getSource().is(DamageTypeTags.IS_FALL)) {
