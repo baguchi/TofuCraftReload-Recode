@@ -15,46 +15,35 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 
 import javax.annotation.Nullable;
 
 
-public class TofuPotBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+public class TofuPotBlock extends BaseEntityBlock {
 	public static final MapCodec<TofuPotBlock> CODEC = simpleCodec(TofuPotBlock::new);
 
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
-	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-	protected static final VoxelShape SHAPE_WITH_TRAY = Shapes.or(SHAPE, Block.box(0.0D, -1.0D, 0.0D, 16.0D, 0.0D, 16.0D));
 
 	public TofuPotBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 
 	@Override
@@ -90,24 +79,13 @@ public class TofuPotBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return SHAPE;
-	}
-
-	@Override
-	public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return SHAPE;
-	}
-
-	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockPos pos = context.getClickedPos();
 		Level level = context.getLevel();
 		FluidState fluid = level.getFluidState(context.getClickedPos());
 
 		BlockState state = this.defaultBlockState()
-				.setValue(FACING, context.getHorizontalDirection().getOpposite())
-				.setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);
+				.setValue(FACING, context.getHorizontalDirection().getOpposite());
 
 		return state;
 	}
@@ -124,9 +102,6 @@ public class TofuPotBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 			BlockState p_53162_,
 			RandomSource p_374199_
 	) {
-		if (p_53160_.getValue(WATERLOGGED)) {
-			p_374149_.scheduleTick(p_53164_, Fluids.WATER, Fluids.WATER.getTickDelay(p_374322_));
-		}
 
 		return super.updateShape(p_53160_, p_374322_, p_374149_, p_53164_, p_53161_, p_53165_, p_53162_, p_374199_);
 	}
@@ -149,7 +124,7 @@ public class TofuPotBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(FACING, WATERLOGGED);
+		builder.add(FACING);
 	}
 
 	@Override
@@ -183,10 +158,6 @@ public class TofuPotBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 		return 0;
 	}*/
 
-	@Override
-	public FluidState getFluidState(BlockState state) {
-		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-	}
 
 	@Nullable
 	@Override
