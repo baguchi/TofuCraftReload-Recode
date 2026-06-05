@@ -347,6 +347,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.TOFU_METAL_SHOVEL,
 						TofuItems.TOFU_METAL_HOE,
 						TofuItems.TOFU_SHIELD,
+						//TofuItems.TOFU_DIAMOND_SHIELD,
 						TofuItems.TOFU_METAL_SHEARS,
 						TofuItems.TOFU_DIAMOND_SWORD,
 						TofuItems.TOFU_DIAMOND_SPEAR,

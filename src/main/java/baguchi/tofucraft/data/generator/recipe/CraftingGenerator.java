@@ -52,7 +52,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuDiamondSmithing(this.output, TofuItems.TOFU_METAL_SHOVEL.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_SHOVEL);
 		tofuDiamondSmithing(this.output, TofuItems.TOFU_METAL_HOE.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_HOE);
 		tofuDiamondSmithing(this.output, TofuItems.TOFU_METAL_SPEAR.get(), RecipeCategory.TOOLS, TofuItems.TOFU_DIAMOND_SPEAR);
-
+		//tofuDiamondSmithing(this.output, TofuItems.TOFU_SHIELD.get(), RecipeCategory.COMBAT, TofuItems.TOFU_DIAMOND_SHIELD);
 
 		tofuDiamondSmithing(this.output, TofuItems.TOFU_METAL_HELMET.get(), RecipeCategory.COMBAT, TofuItems.TOFU_DIAMOND_HELMET);
 		tofuDiamondSmithing(this.output, TofuItems.TOFU_METAL_CHESTPLATE.get(), RecipeCategory.COMBAT, TofuItems.TOFU_DIAMOND_CHESTPLATE);

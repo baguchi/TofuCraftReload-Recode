@@ -3,18 +3,18 @@
     "type": "minecraft:condition",
     "on_false": {
       "type": "minecraft:special",
-      "base": "tofucraft:item/tofu_shield",
+      "base": "tofucraft:item/tofu_diamond_shield",
       "model": {
         "type": "tofucraft:tofu_shield",
-        "texture": "tofucraft:textures/entity/tofu_metal_shield.png"
+        "texture": "tofucraft:textures/entity/tofu_diamond_shield.png"
       }
     },
     "on_true": {
       "type": "minecraft:special",
-      "base": "tofucraft:item/tofu_shield_blocking",
+      "base": "tofucraft:item/tofu_diamond_shield_blocking",
       "model": {
         "type": "tofucraft:tofu_shield",
-        "texture": "tofucraft:textures/entity/tofu_metal_shield.png"
+        "texture": "tofucraft:textures/entity/tofu_diamond_shield.png"
       }
     },
     "property": "minecraft:using_item"

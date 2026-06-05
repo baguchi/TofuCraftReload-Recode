@@ -1,5 +1,6 @@
 package baguchi.tofucraft.data.generator.models;
 
+import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.render.item.properties.TFProperty;
 import baguchi.tofucraft.client.render.special.TofuShieldSpecialRenderer;
 import baguchi.tofucraft.data.provider.TofuModelTemplates;
@@ -288,7 +289,8 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFU_DIAMOND_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 		this.generateSpear(TofuItems.TOFU_DIAMOND_SPEAR.get());
 
-		generateTofuShield(this, TofuItems.TOFU_SHIELD.get());
+		generateTofuShield(this, TofuItems.TOFU_SHIELD.get(), Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_metal_shield.png"));
+		//generateTofuShield(this, TofuItems.TOFU_DIAMOND_SHIELD.get(), Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_diamond_shield.png"));
 
 
 		this.generateFlatItem(TofuItems.TOFU_UPGRADE_SMITHING_TEMPLATE.get(), ModelTemplates.FLAT_ITEM);
@@ -402,10 +404,10 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateDynamicTrimmableItem(armor, this.createFlatItemModel(armor, ModelTemplates.FLAT_ITEM), slotTrimPrefix);
 	}
 
-	public void generateTofuShield(ItemModelGenerators generators, Item p_386530_) {
-		ItemModel.Unbaked itemmodel$unbaked = ItemModelUtils.specialModel(ModelLocationUtils.getModelLocation(p_386530_), new TofuShieldSpecialRenderer.Unbaked());
+	public void generateTofuShield(ItemModelGenerators generators, Item p_386530_, Identifier texture) {
+		ItemModel.Unbaked itemmodel$unbaked = ItemModelUtils.specialModel(ModelLocationUtils.getModelLocation(p_386530_), new TofuShieldSpecialRenderer.Unbaked(texture));
 		ItemModel.Unbaked itemmodel$unbaked1 = ItemModelUtils.specialModel(
-				ModelLocationUtils.getModelLocation(p_386530_, "_blocking"), new TofuShieldSpecialRenderer.Unbaked()
+				ModelLocationUtils.getModelLocation(p_386530_, "_blocking"), new TofuShieldSpecialRenderer.Unbaked(texture)
 		);
 		generators.generateBooleanDispatch(p_386530_, ItemModelUtils.isUsingItem(), itemmodel$unbaked1, itemmodel$unbaked);
 	}

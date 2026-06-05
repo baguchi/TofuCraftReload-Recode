@@ -1,8 +1,8 @@
 package baguchi.tofucraft.client.render.special;
 
-import baguchi.tofucraft.TofuCraftReload;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.object.equipment.ShieldModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -16,9 +16,11 @@ import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
 public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataComponentMap> {
+	private final Identifier identifier;
 	private final ShieldModel model;
 
-	public TofuShieldSpecialRenderer(ShieldModel p_386724_) {
+	public TofuShieldSpecialRenderer(Identifier identifier, ShieldModel p_386724_) {
+		this.identifier = identifier;
 		this.model = p_386724_;
 	}
 
@@ -33,8 +35,8 @@ public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataCompo
 		poseStack.pushPose();
 		poseStack.scale(1.0F, -1.0F, -1.0F);
 
-		submitNodeCollector.submitModelPart(this.model.handle(), poseStack, this.model.renderType(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofumetal_shield.png")), i, i1, null);
-		submitNodeCollector.submitModelPart(this.model.plate(), poseStack, this.model.renderType(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofumetal_shield.png")), i, i1, null);
+		submitNodeCollector.submitModelPart(this.model.handle(), poseStack, this.model.renderType().apply(identifier), i, i1, null);
+		submitNodeCollector.submitModelPart(this.model.plate(), poseStack, this.model.renderType().apply(identifier), i, i1, null);
 
 		poseStack.popPose();
 	}
@@ -44,13 +46,12 @@ public class TofuShieldSpecialRenderer implements SpecialModelRenderer<DataCompo
 
 	}
 
-	public static record Unbaked() implements SpecialModelRenderer.Unbaked<DataComponentMap> {
-		public static final TofuShieldSpecialRenderer.Unbaked INSTANCE = new TofuShieldSpecialRenderer.Unbaked();
-		public static final MapCodec<TofuShieldSpecialRenderer.Unbaked> MAP_CODEC = MapCodec.unit(INSTANCE);
+	public static record Unbaked(Identifier texture) implements SpecialModelRenderer.Unbaked<DataComponentMap> {
+		public static final MapCodec<Unbaked> MAP_CODEC = RecordCodecBuilder.mapCodec((i) -> i.group(Identifier.CODEC.fieldOf("texture").forGetter(Unbaked::texture)).apply(i, Unbaked::new));
 
 		@Override
 		public @org.jspecify.annotations.Nullable SpecialModelRenderer<DataComponentMap> bake(BakingContext bakingContext) {
-			return new TofuShieldSpecialRenderer(new ShieldModel(bakingContext.entityModelSet().bakeLayer(ModelLayers.SHIELD)));
+			return new TofuShieldSpecialRenderer(this.texture, new ShieldModel(bakingContext.entityModelSet().bakeLayer(ModelLayers.SHIELD)));
 		}
 
 		@Override

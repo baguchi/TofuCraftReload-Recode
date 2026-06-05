@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "tofucraft:blocktofudiamond",
+  "base": "tofucraft:tofu_shield",
+  "result": {
+    "id": "tofucraft:tofu_diamond_shield"
+  },
+  "template": "tofucraft:tofu_upgrade_smithing_template"
+}

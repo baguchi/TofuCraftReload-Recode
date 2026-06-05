@@ -401,7 +401,6 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFU_SHIELD = ITEMS.registerItem("tofu_shield", (properties) -> new TofuShieldItem((properties).stacksTo(1).durability(450).repairable(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL)
 			.equippableUnswappable(EquipmentSlot.OFFHAND)
-			.repairable(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL)
 			.delayedComponent(
 					DataComponents.BLOCKS_ATTACKS,
 					context -> new BlocksAttacks(
@@ -416,6 +415,26 @@ public class TofuItems {
 			)
 			.component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK)
 			.equippableUnswappable(EquipmentSlot.OFFHAND)));
+
+	/*public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SHIELD = ITEMS.registerItem("tofu_diamond_shield", (properties) -> new TofuShieldItem((properties).stacksTo(1).durability(1061)
+			.rarity(Rarity.UNCOMMON)
+			.equippableUnswappable(EquipmentSlot.OFFHAND)
+			.repairable(TofuTags.Items.TOFU_DIAMOND_TOOL_MATERIAL)
+			.delayedComponent(
+					DataComponents.BLOCKS_ATTACKS,
+					context -> new BlocksAttacks(
+							0.25F,
+							0.65F,
+							List.of(new BlocksAttacks.DamageReduction(90.0F, Optional.empty(), 0.0F, 1.0F)),
+							new BlocksAttacks.ItemDamageFunction(3.0F, 1.0F, 0.75F),
+							Optional.of(context.getOrThrow(DamageTypeTags.BYPASSES_SHIELD)),
+							Optional.of(SoundEvents.SHIELD_BLOCK),
+							Optional.of(SoundEvents.SHIELD_BREAK)
+					)
+			)
+			.component(DataComponents.BREAK_SOUND, SoundEvents.SHIELD_BREAK)
+			.equippableUnswappable(EquipmentSlot.OFFHAND)));
+*/
 
 	public static final DeferredHolder<Item, Item> ROLLINGPIN = ITEMS.registerItem("rollingpin", (properties) -> new RollingPinItem((properties)));
 
