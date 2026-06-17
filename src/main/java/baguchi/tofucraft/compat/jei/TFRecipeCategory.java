@@ -1,6 +1,7 @@
 package baguchi.tofucraft.compat.jei;
 
 
+/*
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.TFCraftingRecipe;
 import baguchi.tofucraft.recipe.TFShapedRecipe;
@@ -108,3 +109,4 @@ public class TFRecipeCategory implements IRecipeCategory<TFCraftingRecipe> {
 
 
 }
+*/

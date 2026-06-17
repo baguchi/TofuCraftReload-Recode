@@ -9,7 +9,7 @@ import baguchi.tofucraft.world.gen.features.TofuWorldFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.KeyTagProvider;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.FeatureTags;
 import net.minecraft.tags.PoiTypeTags;
@@ -23,7 +23,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class CustomTagGenerator {
 
-	public static class BannerPatternTagGenerator extends KeyTagProvider<BannerPattern> {
+	public static class BannerPatternTagGenerator extends TagsProvider<BannerPattern> {
 
 		public static final TagKey<BannerPattern> TOFUNIAN_BANNER_PATTERN = create("pattern_item/tofunian");
 
@@ -46,7 +46,7 @@ public class CustomTagGenerator {
 		}
 	}
 
-	public static class PoiTypeTagGenerator extends KeyTagProvider<PoiType> {
+	public static class PoiTypeTagGenerator extends TagsProvider<PoiType> {
 
 		public PoiTypeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
 			super(output, Registries.POINT_OF_INTEREST_TYPE, provider, TofuCraftReload.MODID);
@@ -59,7 +59,7 @@ public class CustomTagGenerator {
 		}
 	}
 
-	public static class ConfiguredFeatureTagGenerator extends KeyTagProvider<ConfiguredFeature<?, ?>> {
+	public static class ConfiguredFeatureTagGenerator extends TagsProvider<ConfiguredFeature<?, ?>> {
 
 		public ConfiguredFeatureTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
 			super(output, Registries.CONFIGURED_FEATURE, provider, TofuCraftReload.MODID);
@@ -71,7 +71,7 @@ public class CustomTagGenerator {
 		}
 	}
 
-	public static class VillagerTradeTagGenerator extends KeyTagProvider<VillagerTrade> {
+	public static class VillagerTradeTagGenerator extends TagsProvider<VillagerTrade> {
 
 		public VillagerTradeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
 			super(output, Registries.VILLAGER_TRADE, provider, TofuCraftReload.MODID);
@@ -194,7 +194,7 @@ public class CustomTagGenerator {
 		}
 	}
 
-	public static class SoundEventTagGenerator extends KeyTagProvider<SoundEvent> {
+	public static class SoundEventTagGenerator extends TagsProvider<SoundEvent> {
 
 		public SoundEventTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
 			super(output, Registries.SOUND_EVENT, provider, TofuCraftReload.MODID);

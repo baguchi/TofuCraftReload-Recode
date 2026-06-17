@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_bed_head",
+  "textures": {
+    "east": "tofucraft:block/tofu_bed_head_east",
+    "up": "tofucraft:block/tofu_bed_head_up",
+    "west": "tofucraft:block/tofu_bed_head_west"
+  }
+}

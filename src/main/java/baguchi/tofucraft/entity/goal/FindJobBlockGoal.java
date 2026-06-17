@@ -14,6 +14,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 import java.util.Map;
@@ -91,8 +92,8 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 			return entry.getValue().isValidTarget(blockstate);
 		}).findFirst();
 		if (role.isPresent()) {
-			BlockHitResult hitResult = worldIn.clip(new ClipContext(this.creature.getEyePosition(), pos.getCenter(), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this.creature));
-			if (hitResult.getBlockPos().equals(BlockPos.containing(pos.getCenter())) || hitResult.getType() == HitResult.Type.MISS) {
+			BlockHitResult hitResult = worldIn.clip(new ClipContext(this.creature.getEyePosition(), Vec3.atCenterOf(pos), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this.creature));
+			if (hitResult.getBlockPos().equals(pos) || hitResult.getType() == HitResult.Type.MISS) {
 				return true;
 			}
 		}

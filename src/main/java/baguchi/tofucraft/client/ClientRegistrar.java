@@ -33,7 +33,6 @@ import baguchi.tofucraft.client.render.SoulFukumameRender;
 import baguchi.tofucraft.client.render.ZundaArrowRender;
 import baguchi.tofucraft.client.render.ZundaBusterRenderer;
 import baguchi.tofucraft.client.render.blockentity.FoodPlateRender;
-import baguchi.tofucraft.client.render.blockentity.TofuBedRenderer;
 import baguchi.tofucraft.client.render.blockentity.TofuChestRenderer;
 import baguchi.tofucraft.client.render.blockentity.TofunianStatueRender;
 import baguchi.tofucraft.client.render.dimension.TofuWorldSpecialEffect;
@@ -67,7 +66,7 @@ import baguchi.tofucraft.client.screen.TFStorageScreen;
 import baguchi.tofucraft.client.screen.TFTofuMakerScreen;
 import baguchi.tofucraft.client.screen.TfCraftingTableScreen;
 import baguchi.tofucraft.client.screen.TofuPotScreen;
-import baguchi.tofucraft.mixin.client.GuiAccessor;
+import baguchi.tofucraft.mixin.client.HudAccessor;
 import baguchi.tofucraft.registry.TofuAnimations;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
@@ -81,8 +80,8 @@ import baguchi.tofucraft.registry.TofuMenus;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuTags;
-import baguchi.tofucraft.registry.TofuWoodTypes;
 import com.google.common.reflect.TypeToken;
+import com.mojang.blaze3d.PrimitiveTopology;
 import com.mojang.blaze3d.pipeline.BlendFunction;
 import com.mojang.blaze3d.pipeline.ColorTargetState;
 import com.mojang.blaze3d.pipeline.DepthStencilState;
@@ -90,7 +89,6 @@ import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.platform.CompareOp;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -101,8 +99,8 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.object.boat.BoatModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.BindGroupLayouts;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.block.FluidModel;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -152,9 +150,7 @@ import org.joml.Vector4f;
 
 import java.util.List;
 
-import static net.minecraft.client.renderer.RenderPipelines.FOG_SNIPPET;
 import static net.minecraft.client.renderer.RenderPipelines.GLOBALS_SNIPPET;
-import static net.minecraft.client.renderer.RenderPipelines.MATRICES_PROJECTION_SNIPPET;
 
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT)
@@ -209,20 +205,19 @@ public class ClientRegistrar {
 			null
 	);
 	public static final RenderPipeline ZUNDA =
-			RenderPipeline.builder(MATRICES_PROJECTION_SNIPPET, FOG_SNIPPET, GLOBALS_SNIPPET)
+			RenderPipeline.builder(GLOBALS_SNIPPET)
+					.withBindGroupLayout(BindGroupLayouts.MATRICES_PROJECTION)
+					.withBindGroupLayout(BindGroupLayouts.FOG)
 					.withLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "pipeline/zunda"))
 					.withVertexShader("core/glint").withFragmentShader("core/glint")
-					.withSampler("Sampler0")
+					.withBindGroupLayout(BindGroupLayouts.SAMPLER0)
 					.withColorTargetState(new ColorTargetState(BlendFunction.ADDITIVE)).withCull(false)
-					.withDepthStencilState(new DepthStencilState(CompareOp.EQUAL, false)).withVertexFormat(DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS).build();
+					.withDepthStencilState(new DepthStencilState(CompareOp.EQUAL, false))
+					.withVertexBinding(0, DefaultVertexFormat.POSITION_TEX)
+					.withPrimitiveTopology(PrimitiveTopology.QUADS)
+					.build();
 
 	public static void setup(FMLClientSetupEvent event) {
-		event.enqueueWork(() -> {
-			Sheets.addWoodType(TofuWoodTypes.LEEK);
-			Sheets.addWoodType(TofuWoodTypes.LEEK_GREEN);
-			Sheets.addWoodType(TofuWoodTypes.TOFU_STEM);
-			Sheets.addWoodType(TofuWoodTypes.SPROUT);
-		});
 
 	}
 
@@ -399,8 +394,6 @@ public class ClientRegistrar {
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_STEM_CHEST_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.TOFU_STEM_CHEST_BOAT));
 		event.registerEntityRenderer(TofuEntityTypes.SPROUT_CHEST_BOAT.get(), p_375462_ -> new BoatRenderer(p_375462_, TofuModelLayers.SPROUT_CHEST_BOAT));
 
-
-		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUBED.get(), TofuBedRenderer::new);
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUCHEST.get(), TofuChestRenderer::new);
 		event.registerBlockEntityRenderer(TofuBlockEntitys.FOODPLATE.get(), context -> new FoodPlateRender(context));
 		event.registerBlockEntityRenderer(TofuBlockEntitys.TOFUNIAN_STATUE.get(), TofunianStatueRender::new);
@@ -505,7 +498,7 @@ public class ClientRegistrar {
 	}
 
 	private static void renderBlockInfoToolTipOverlay(GuiGraphicsExtractor guiGraphics, Minecraft minecraft, Window window) {
-		if (!minecraft.options.hideGui && minecraft.hitResult instanceof BlockHitResult blockhitresult) {
+		if (!minecraft.gui.hud.isHidden() && minecraft.hitResult instanceof BlockHitResult blockhitresult) {
 			if (minecraft.level != null) {
 				BlockState state = minecraft.level.getBlockState(blockhitresult.getBlockPos());
 				if (state.is(TofuTags.Blocks.HAS_INFO)) {
@@ -523,7 +516,7 @@ public class ClientRegistrar {
 	}
 
 	private static void renderRecoverHearts(GuiGraphicsExtractor guiGraphics, Minecraft minecraft, Window window, Gui gui, LocalPlayer player) {
-		GuiAccessor guiAccessor = (GuiAccessor) gui;
+		HudAccessor hudAccessor = (HudAccessor) gui.hud;
 
 		if (minecraft.gameMode.canHurtPlayer()) {
 			var tofuLivingAttachment = player.getData(TofuAttachments.TOFU_LIVING);
@@ -541,14 +534,14 @@ public class ClientRegistrar {
 					int currentOverallHealth = Mth.ceil(player.getHealth());
 					int currentRecoverHealth = Mth.ceil(maxRecoverHealth);
 
-					boolean highlight = guiAccessor.tofucraft$getHealthBlinkTime() > (long) gui.getGuiTicks() && (guiAccessor.tofucraft$getHealthBlinkTime() - (long) gui.getGuiTicks()) / 3L % 2L == 1L;
-					if (Util.getMillis() - guiAccessor.tofucraft$getLastHealthTime() > 1000L) {
+					boolean highlight = hudAccessor.tofucraft$getHealthBlinkTime() > (long) gui.hud.getGuiTicks() && (hudAccessor.tofucraft$getHealthBlinkTime() - (long) gui.hud.getGuiTicks()) / 3L % 2L == 1L;
+					if (Util.getMillis() - hudAccessor.tofucraft$getLastHealthTime() > 1000L) {
 						lastOverallHealth = currentOverallHealth;
 						lastRecoverHealth = currentRecoverHealth;
 					}
 					//do NOT cast this to long. This is the only way the hearts will properly shake when health is low
 					//the only time the shaking will be off is if the player's max health attribute base is below 0. This probably can't be fixed.
-					guiAccessor.tofucraft$getRandom().setSeed(gui.getGuiTicks() * 312871L);
+					hudAccessor.tofucraft$getRandom().setSeed(gui.hud.getGuiTicks() * 312871L);
 
 					float displayOverallHealth = Math.max(lastOverallHealth, currentOverallHealth);
 					float displayRecoverHealth = Mth.clamp(Math.max(lastRecoverHealth, currentRecoverHealth), 0, maxDefaultHealth);
@@ -562,7 +555,7 @@ public class ClientRegistrar {
 
 					int regen = Integer.MIN_VALUE;
 					if (player.hasEffect(MobEffects.REGENERATION)) {
-						regen = gui.getGuiTicks() % Mth.ceil(displayOverallHealth + 5.0F);
+						regen = gui.hud.getGuiTicks() % Mth.ceil(displayOverallHealth + 5.0F);
 					}
 
 					renderHearts(guiGraphics, player, gui, left, top, regen, displayOverallHealth, displayRecoverHealth, maxDefaultHealth, currentRecoverHealth, rowHeight, absorption, highlight);
@@ -573,7 +566,7 @@ public class ClientRegistrar {
 	}
 
 	private static void renderHearts(GuiGraphicsExtractor guiGraphics, Player player, Gui gui, int left, int top, int regen, float displayOverallHealth, float displayRecoverHealth, int maxDefaultHealth, int recoverHealth, int rowHeight, int absorption, boolean highlight) {
-		GuiAccessor guiAccessor = (GuiAccessor) gui;
+		HudAccessor hudAccessor = (HudAccessor) gui.hud;
 		int overallHearts = Mth.ceil((double) displayOverallHealth / 2.0);
 		int recoverHearts = Mth.ceil((double) displayRecoverHealth / 2.0);
 		int maxDefaultHearts = Mth.ceil((double) maxDefaultHealth / 2.0);
@@ -582,7 +575,7 @@ public class ClientRegistrar {
 			int y = top - (currentHeart) / 10 * rowHeight;
 
 			if (Mth.ceil(player.getHealth()) + absorption <= 4) {
-				y += guiAccessor.tofucraft$getRandom().nextInt(2);
+				y += hudAccessor.tofucraft$getRandom().nextInt(2);
 			}
 			if ((maxDefaultHearts >= 10 ? overallHearts - 10 : maxDefaultHearts) < overallHearts && Math.min(maxDefaultHearts, 10) == regen) {
 				y -= 2;

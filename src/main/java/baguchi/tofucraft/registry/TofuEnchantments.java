@@ -2,7 +2,7 @@ package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.item.enchantment.effect.NoItemDamageExplodeEffect;
-import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;

@@ -7,7 +7,6 @@
   ],
   "pools": [
     {
-      "bonus_rolls": 0.0,
       "conditions": [
         {
           "block": "tofucraft:barrel_miso",
@@ -25,7 +24,6 @@
       ],
       "functions": [
         {
-          "add": false,
           "count": 3.0,
           "function": "minecraft:set_count"
         }
@@ -33,7 +31,6 @@
       "rolls": 1.0
     },
     {
-      "bonus_rolls": 0.0,
       "conditions": [
         {
           "block": "tofucraft:barrel_miso",
@@ -51,7 +48,6 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "add": false,
               "count": 1.0,
               "function": "minecraft:set_count"
             }
@@ -62,7 +58,6 @@
       "rolls": 1.0
     },
     {
-      "bonus_rolls": 0.0,
       "conditions": [
         {
           "condition": "minecraft:inverted",

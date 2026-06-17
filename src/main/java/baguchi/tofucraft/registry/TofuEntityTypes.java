@@ -46,6 +46,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -54,82 +55,81 @@ import java.util.function.Supplier;
 public class TofuEntityTypes {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, TofuCraftReload.MODID);
 
-	public static final Supplier<EntityType<Tofunian>> TOFUNIAN = ENTITIES.register("tofunian", () -> EntityType.Builder.of(Tofunian::new, MobCategory.CREATURE)
+	public static final DeferredHolder<EntityType<?>, EntityType<Tofunian>> TOFUNIAN = ENTITIES.register("tofunian", () -> EntityType.Builder.of(Tofunian::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.2F).eyeHeight(1.2F * 0.8F).clientTrackingRange(10).passengerAttachments(1.2F).ridingOffset(-0.3F).build(prefix("tofunian")));
 
-	public static final Supplier<EntityType<TravelerTofunian>> TRAVELER_TOFUNIAN = ENTITIES.register("traveler_tofunian", () -> EntityType.Builder.of(TravelerTofunian::new, MobCategory.CREATURE)
+	public static final DeferredHolder<EntityType<?>, EntityType<TravelerTofunian>> TRAVELER_TOFUNIAN = ENTITIES.register("traveler_tofunian", () -> EntityType.Builder.of(TravelerTofunian::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.5F).eyeHeight(1.5F * 0.85F).clientTrackingRange(10).passengerAttachments(1.2F).ridingOffset(-0.3F).build(prefix("traveler_tofunian")));
 
-	public static final Supplier<EntityType<TofuCow>> TOFUCOW = ENTITIES.register("tofu_cow", () -> EntityType.Builder.of(TofuCow::new, MobCategory.CREATURE)
+	public static final DeferredHolder<EntityType<?>, EntityType<TofuCow>> TOFUCOW = ENTITIES.register("tofu_cow", () -> EntityType.Builder.of(TofuCow::new, MobCategory.CREATURE)
 			.sized(0.9F, 1.4F).eyeHeight(1.4F * 0.8F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_cow")));
 
-	public static final Supplier<EntityType<TofuPig>> TOFUPIG = ENTITIES.register("tofu_pig", () -> EntityType.Builder.of(TofuPig::new, MobCategory.CREATURE)
+	public static final DeferredHolder<EntityType<?>, EntityType<TofuPig>> TOFUPIG = ENTITIES.register("tofu_pig", () -> EntityType.Builder.of(TofuPig::new, MobCategory.CREATURE)
 			.sized(0.9F, 0.9F).eyeHeight(0.9F * 0.8F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_pig")));
 
-	public static final Supplier<EntityType<TofuFish>> TOFUFISH = ENTITIES.register("tofu_fish", () -> EntityType.Builder.of(TofuFish::new, MobCategory.WATER_AMBIENT)
+	public static final DeferredHolder<EntityType<?>, EntityType<TofuFish>> TOFUFISH = ENTITIES.register("tofu_fish", () -> EntityType.Builder.of(TofuFish::new, MobCategory.WATER_AMBIENT)
 			.sized(0.5F, 0.35F).eyeHeight(0.3F).setTrackingRange(4).requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_fish")));
-	public static final Supplier<EntityType<TofuGolem>> TOFU_GOLEM = ENTITIES.register("tofu_golem", () -> EntityType.Builder.of(TofuGolem::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<TofuGolem>> TOFU_GOLEM = ENTITIES.register("tofu_golem", () -> EntityType.Builder.of(TofuGolem::new, MobCategory.MISC)
 			.sized(0.8F, 0.9F).eyeHeight(0.9F * 0.55F).clientTrackingRange(10).fireImmune().build(prefix("tofu_golem")));
 
-	public static final Supplier<EntityType<TofuGandlem>> TOFU_GANDLEM = ENTITIES.register("tofu_gandlem", () -> EntityType.Builder.of(TofuGandlem::new, MobCategory.CREATURE)
+	public static final DeferredHolder<EntityType<?>, EntityType<TofuGandlem>> TOFU_GANDLEM = ENTITIES.register("tofu_gandlem", () -> EntityType.Builder.of(TofuGandlem::new, MobCategory.CREATURE)
 			.sized(0.6F, 1.6F).eyeHeight(1.6F * 0.8F).clientTrackingRange(10).fireImmune().requiredFeatures(TofuCraftReload.EXPERIMENTAL).build(prefix("tofu_gandlem")));
 
 
-	public static final Supplier<EntityType<TofuSlime>> TOFUSLIME = ENTITIES.register("tofu_slime", () -> EntityType.Builder.of(TofuSlime::new, MobCategory.MONSTER)
+	public static final DeferredHolder<EntityType<?>, EntityType<TofuSlime>> TOFUSLIME = ENTITIES.register("tofu_slime", () -> EntityType.Builder.of(TofuSlime::new, MobCategory.MONSTER)
 			.sized(0.52F, 0.52F).eyeHeight(0.325F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("tofu_slime")));
-	public static final Supplier<EntityType<OageCube>> OAGE_CUBE = ENTITIES.register("oage_cube", () -> EntityType.Builder.of(OageCube::new, MobCategory.MONSTER)
+	public static final DeferredHolder<EntityType<?>, EntityType<OageCube>> OAGE_CUBE = ENTITIES.register("oage_cube", () -> EntityType.Builder.of(OageCube::new, MobCategory.MONSTER)
 			.fireImmune().sized(0.52F, 0.52F).eyeHeight(0.325F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("oage_cube")));
-	public static final Supplier<EntityType<TofuCreeper>> TOFUCREEPER = ENTITIES.register("tofu_creeper", () -> EntityType.Builder.of(TofuCreeper::new, MobCategory.MONSTER)
+	public static final DeferredHolder<EntityType<?>, EntityType<TofuCreeper>> TOFUCREEPER = ENTITIES.register("tofu_creeper", () -> EntityType.Builder.of(TofuCreeper::new, MobCategory.MONSTER)
 			.sized(0.6F, 1.6F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("tofu_creeper")));
 
-	public static final Supplier<EntityType<TofuSpider>> TOFUSPIDER = ENTITIES.register("tofu_spider", () -> EntityType.Builder.of(TofuSpider::new, MobCategory.MONSTER)
+	public static final DeferredHolder<EntityType<?>, EntityType<TofuSpider>> TOFUSPIDER = ENTITIES.register("tofu_spider", () -> EntityType.Builder.of(TofuSpider::new, MobCategory.MONSTER)
 			.sized(0.95F, 0.55F).eyeHeight(0.3F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("tofu_spider")));
-	public static final Supplier<EntityType<Zundamite>> ZUNDAMITE = ENTITIES.register("zundamite", () -> EntityType.Builder.of(Zundamite::new, MobCategory.MONSTER)
+	public static final DeferredHolder<EntityType<?>, EntityType<Zundamite>> ZUNDAMITE = ENTITIES.register("zundamite", () -> EntityType.Builder.of(Zundamite::new, MobCategory.MONSTER)
 			.sized(0.4F, 0.3F).eyeHeight(0.13F).clientTrackingRange(8).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("zundamite")));
 
-	public static final Supplier<EntityType<FukumameEntity>> FUKUMAME = ENTITIES.register("fukumame", () -> EntityType.Builder.<FukumameEntity>of(FukumameEntity::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<FukumameEntity>> FUKUMAME = ENTITIES.register("fukumame", () -> EntityType.Builder.<FukumameEntity>of(FukumameEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).updateInterval(30).build(prefix("fukumame")));
 
-	public static final Supplier<EntityType<NetherFukumameEntity>> NETHER_FUKUMAME = ENTITIES.register("nether_fukumame", () -> EntityType.Builder.<NetherFukumameEntity>of(NetherFukumameEntity::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<NetherFukumameEntity>> NETHER_FUKUMAME = ENTITIES.register("nether_fukumame", () -> EntityType.Builder.<NetherFukumameEntity>of(NetherFukumameEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).updateInterval(30).build(prefix("nether_fukumame")));
 
-	public static final Supplier<EntityType<SoulFukumameEntity>> SOUL_FUKUMAME = ENTITIES.register("soul_fukumame", () -> EntityType.Builder.<SoulFukumameEntity>of(SoulFukumameEntity::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<SoulFukumameEntity>> SOUL_FUKUMAME = ENTITIES.register("soul_fukumame", () -> EntityType.Builder.<SoulFukumameEntity>of(SoulFukumameEntity::new, MobCategory.MISC)
 			.sized(0.25F, 0.25F).updateInterval(30).build(prefix("soul_fukumame")));
-	public static final Supplier<EntityType<SoyballEntity>> SOYBALL = ENTITIES.register("soyball", () -> EntityType.Builder.<SoyballEntity>of(SoyballEntity::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<SoyballEntity>> SOYBALL = ENTITIES.register("soyball", () -> EntityType.Builder.<SoyballEntity>of(SoyballEntity::new, MobCategory.MISC)
 			.sized(0.3F, 0.3F).updateInterval(30).build(prefix("soyball")));
-	public static final Supplier<EntityType<UnstableZundamaEntity>> UNSTABLE_ZUNDAMA = ENTITIES.register("unstable_zundama", () -> EntityType.Builder.<UnstableZundamaEntity>of(UnstableZundamaEntity::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<UnstableZundamaEntity>> UNSTABLE_ZUNDAMA = ENTITIES.register("unstable_zundama", () -> EntityType.Builder.<UnstableZundamaEntity>of(UnstableZundamaEntity::new, MobCategory.MISC)
 			.sized(0.3F, 0.3F).updateInterval(30).build(prefix("unstable_zundama")));
-	public static final Supplier<EntityType<ZundaBuster>> ZUNDA_BUSTER = ENTITIES.register("zunda_buster", () -> EntityType.Builder.<ZundaBuster>of(ZundaBuster::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<ZundaBuster>> ZUNDA_BUSTER = ENTITIES.register("zunda_buster", () -> EntityType.Builder.<ZundaBuster>of(ZundaBuster::new, MobCategory.MISC)
 			.sized(0.8F, 0.8F).updateInterval(30).build(prefix("zunda_buster")));
 
 
-
-	public static final Supplier<EntityType<NattoStringEntity>> NATTO_STRNIG = ENTITIES.register("natto_string", () -> EntityType.Builder.<NattoStringEntity>of(NattoStringEntity::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<NattoStringEntity>> NATTO_STRNIG = ENTITIES.register("natto_string", () -> EntityType.Builder.<NattoStringEntity>of(NattoStringEntity::new, MobCategory.MISC)
 			.sized(0.2F, 0.2F).updateInterval(40).build(prefix("natto_string")));
 
-	public static final Supplier<EntityType<ZundaArrow>> ZUNDA_ARROW = ENTITIES.register("zunda_arrow", () -> EntityType.Builder.<ZundaArrow>of(ZundaArrow::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<ZundaArrow>> ZUNDA_ARROW = ENTITIES.register("zunda_arrow", () -> EntityType.Builder.<ZundaArrow>of(ZundaArrow::new, MobCategory.MISC)
 			.sized(0.5F, 0.5F).updateInterval(40).build(prefix("zunda_arrow")));
 
 
-	public static final Supplier<EntityType<NattoCobWebEntity>> NATTO_COBWEB = ENTITIES.register("natto_cobweb", () -> EntityType.Builder.<NattoCobWebEntity>of(NattoCobWebEntity::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<NattoCobWebEntity>> NATTO_COBWEB = ENTITIES.register("natto_cobweb", () -> EntityType.Builder.<NattoCobWebEntity>of(NattoCobWebEntity::new, MobCategory.MISC)
 			.sized(3F, 0.1F).updateInterval(10).fireImmune().build(prefix("natto_cobweb")));
 
-	public static final Supplier<EntityType<NattoBallEntity>> NATTO_BALL = ENTITIES.register("natto_ball", () -> EntityType.Builder.<NattoBallEntity>of(NattoBallEntity::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<NattoBallEntity>> NATTO_BALL = ENTITIES.register("natto_ball", () -> EntityType.Builder.<NattoBallEntity>of(NattoBallEntity::new, MobCategory.MISC)
 			.sized(0.35F, 0.35F).updateInterval(20).build(prefix("natto_ball")));
 
-	public static final Supplier<EntityType<FallingTofuEntity>> FALLING_TOFU = ENTITIES.register("falling_tofu", () -> EntityType.Builder.<FallingTofuEntity>of(FallingTofuEntity::new, MobCategory.MISC)
+	public static final DeferredHolder<EntityType<?>, EntityType<FallingTofuEntity>> FALLING_TOFU = ENTITIES.register("falling_tofu", () -> EntityType.Builder.<FallingTofuEntity>of(FallingTofuEntity::new, MobCategory.MISC)
 			.sized(1.0F, 1.0F).updateInterval(20).build(prefix("falling_tofu")));
 
-	public static final Supplier<EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
+	public static final DeferredHolder<EntityType<?>, EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
 			.sized(3.5F, 2.9F).eyeHeight(2.0F).clientTrackingRange(10).requiredFeatures(TofuCraftReload.EXPERIMENTAL).fireImmune().build(prefix("shudofuspider")));
 
-	public static final Supplier<EntityType<FukumameThrower>> FUKUMAME_THROWER = ENTITIES.register("fukumame_thrower", () -> EntityType.Builder.of(FukumameThrower::new, MobCategory.MONSTER).sized(0.6F, 1.95F)
+	public static final DeferredHolder<EntityType<?>, EntityType<FukumameThrower>> FUKUMAME_THROWER = ENTITIES.register("fukumame_thrower", () -> EntityType.Builder.of(FukumameThrower::new, MobCategory.MONSTER).sized(0.6F, 1.95F)
 			.notInPeaceful()
 			.eyeHeight(1.79F)
 			.passengerAttachments(2.0125F)
 			.ridingOffset(-0.7F).clientTrackingRange(8).build(prefix("fukumame_thrower")));
 
-	public static final Supplier<EntityType<Boat>> LEEK_BOAT = ENTITIES.register(
+	public static final DeferredHolder<EntityType<?>, EntityType<Boat>> LEEK_BOAT = ENTITIES.register(
 			"leek_boat",
 			() ->
 					EntityType.Builder.of(boatFactory(TofuItems.LEEK_BOAT), MobCategory.MISC)
@@ -139,7 +139,7 @@ public class TofuEntityTypes {
 							.eyeHeight(0.5625F)
 							.clientTrackingRange(10).build(prefix("leek_boat"))
 	);
-	public static final Supplier<EntityType<ChestBoat>> LEEK_CHEST_BOAT = ENTITIES.register(
+	public static final DeferredHolder<EntityType<?>, EntityType<ChestBoat>> LEEK_CHEST_BOAT = ENTITIES.register(
 			"leek_chest_boat",
 			() ->
 					EntityType.Builder.of(chestBoatFactory(TofuItems.LEEK_CHEST_BOAT), MobCategory.MISC)
@@ -149,7 +149,7 @@ public class TofuEntityTypes {
 							.eyeHeight(0.5625F)
 							.clientTrackingRange(10).build(prefix("leek_chest_boat"))
 	);
-	public static final Supplier<EntityType<Boat>> LEEK_GREEN_BOAT = ENTITIES.register(
+	public static final DeferredHolder<EntityType<?>, EntityType<Boat>> LEEK_GREEN_BOAT = ENTITIES.register(
 			"leek_green_boat",
 			() ->
 					EntityType.Builder.of(boatFactory(TofuItems.LEEK_GREEN_BOAT), MobCategory.MISC)
@@ -159,7 +159,7 @@ public class TofuEntityTypes {
 							.eyeHeight(0.5625F)
 							.clientTrackingRange(10).build(prefix("leek_green_boat"))
 	);
-	public static final Supplier<EntityType<ChestBoat>> LEEK_GREEN_CHEST_BOAT = ENTITIES.register(
+	public static final DeferredHolder<EntityType<?>, EntityType<ChestBoat>> LEEK_GREEN_CHEST_BOAT = ENTITIES.register(
 			"leek_green_chest_boat",
 			() ->
 					EntityType.Builder.of(chestBoatFactory(TofuItems.LEEK_GREEN_CHEST_BOAT), MobCategory.MISC)
@@ -169,7 +169,7 @@ public class TofuEntityTypes {
 							.eyeHeight(0.5625F)
 							.clientTrackingRange(10).build(prefix("leek_green_chest_boat"))
 	);
-	public static final Supplier<EntityType<Boat>> TOFU_STEM_BOAT = ENTITIES.register(
+	public static final DeferredHolder<EntityType<?>, EntityType<Boat>> TOFU_STEM_BOAT = ENTITIES.register(
 			"tofu_stem_boat",
 			() ->
 					EntityType.Builder.of(boatFactory(TofuItems.TOFU_STEM_BOAT), MobCategory.MISC)
@@ -179,7 +179,7 @@ public class TofuEntityTypes {
 							.eyeHeight(0.5625F)
 							.clientTrackingRange(10).build(prefix("tofu_stem_boat"))
 	);
-	public static final Supplier<EntityType<ChestBoat>> TOFU_STEM_CHEST_BOAT = ENTITIES.register(
+	public static final DeferredHolder<EntityType<?>, EntityType<ChestBoat>> TOFU_STEM_CHEST_BOAT = ENTITIES.register(
 			"tofu_stem_chest_boat",
 			() ->
 					EntityType.Builder.of(chestBoatFactory(TofuItems.TOFU_STEM_CHEST_BOAT), MobCategory.MISC)
@@ -190,7 +190,7 @@ public class TofuEntityTypes {
 							.clientTrackingRange(10).build(prefix("tofu_stem_chest_boat"))
 	);
 
-	public static final Supplier<EntityType<Boat>> SPROUT_BOAT = ENTITIES.register(
+	public static final DeferredHolder<EntityType<?>, EntityType<Boat>> SPROUT_BOAT = ENTITIES.register(
 			"sprout_boat",
 			() ->
 					EntityType.Builder.of(boatFactory(TofuItems.SPROUT_BOAT), MobCategory.MISC)
@@ -200,7 +200,7 @@ public class TofuEntityTypes {
 							.eyeHeight(0.5625F)
 							.clientTrackingRange(10).build(prefix("sprout_boat"))
 	);
-	public static final Supplier<EntityType<ChestBoat>> SPROUT_CHEST_BOAT = ENTITIES.register(
+	public static final DeferredHolder<EntityType<?>, EntityType<ChestBoat>> SPROUT_CHEST_BOAT = ENTITIES.register(
 			"sprout_chest_boat",
 			() ->
 					EntityType.Builder.of(chestBoatFactory(TofuItems.SPROUT_CHEST_BOAT), MobCategory.MISC)

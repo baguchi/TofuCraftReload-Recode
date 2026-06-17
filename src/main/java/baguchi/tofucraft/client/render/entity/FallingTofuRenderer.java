@@ -34,15 +34,15 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity, Falli
 	}
 
 	@Override
-	public void submit(FallingBlockRenderState p_361300_, PoseStack p_114637_, SubmitNodeCollector p_114638_, CameraRenderState cameraRenderState) {
-		BlockState blockstate = p_361300_.movingBlockRenderState.blockState;
+	public void submit(FallingBlockRenderState renderState, PoseStack poseStack, SubmitNodeCollector p_114638_, CameraRenderState cameraRenderState) {
+		BlockState blockstate = renderState.movingBlockRenderState.blockState;
 		if (blockstate.getRenderShape() == RenderShape.MODEL) {
-			p_114637_.pushPose();
-			p_114637_.translate(-0.5, 0.0, -0.5);
-			p_114638_.submitMovingBlock(p_114637_, p_361300_.movingBlockRenderState);
+			poseStack.pushPose();
+			poseStack.translate(-0.5, 0.0, -0.5);
+			p_114638_.submitMovingBlock(poseStack, renderState.movingBlockRenderState, renderState.outlineColor);
 
-			p_114637_.popPose();
-			super.submit(p_361300_, p_114637_, p_114638_, cameraRenderState);
+			poseStack.popPose();
+			super.submit(renderState, poseStack, p_114638_, cameraRenderState);
 		}
 	}
 

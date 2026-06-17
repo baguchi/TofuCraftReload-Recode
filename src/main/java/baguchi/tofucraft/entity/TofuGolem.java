@@ -20,6 +20,7 @@ import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MoverType;
@@ -267,7 +268,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 		if (super.considersEntityAsAlly(p_360600_)) {
 			return true;
 		} else {
-			if (p_360600_.getType() == TofuEntityTypes.TOFU_GOLEM) {
+			if (p_360600_.getType() == TofuEntityTypes.TOFU_GOLEM.get()) {
 				return false;
 			}
 
@@ -277,10 +278,10 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 
 	@Override
 	public boolean canAttack(LivingEntity target) {
-		if (this.isPlayerCreated() && target.getType() == EntityType.PLAYER) {
+		if (this.isPlayerCreated() && target.getType() == EntityTypes.PLAYER) {
 			return false;
 		} else {
-			return target.getType() == EntityType.CREEPER ? false : super.canAttack(target);
+			return target.getType() == EntityTypes.CREEPER ? false : super.canAttack(target);
 		}
 	}
 }

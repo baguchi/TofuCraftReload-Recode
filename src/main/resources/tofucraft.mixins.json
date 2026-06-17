@@ -19,7 +19,7 @@
   "client": [
     "client.AbstractRecipeBookScreenAccessor",
     "client.EntityHitboxDebugRendererMixin",
-    "client.GuiAccessor",
+    "client.HudAccessor",
     "client.RecipeBookComponentAccessor",
     "client.RecipeBookComponentMixin"
   ]

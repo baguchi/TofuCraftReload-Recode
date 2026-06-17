@@ -408,13 +408,14 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		if (p_36347_.isAttackable()) {
 			if (p_36347_ instanceof LivingEntity living && this.level() instanceof ServerLevel serverLevel) {
 
+				float damage = 16.0F;
 				if (p_36347_.hurtServer(serverLevel, source, 16.0F)) {
 					float i = (float) this.getAttributeValue(Attributes.ATTACK_KNOCKBACK); // Forge: Initialize this value to the attack knockback attribute of the player, which is by default 0
 					i += 5.0F;
 
 					if (i > 0) {
 						if (p_36347_ instanceof LivingEntity) {
-							((LivingEntity) p_36347_).knockback((double) ((float) i * 0.5F), (double) Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), (double) (-Mth.cos(this.getYRot() * ((float) Math.PI / 180F))));
+							((LivingEntity) p_36347_).knockback((double) ((float) i * 0.5F), (double) Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), (double) (-Mth.cos(this.getYRot() * ((float) Math.PI / 180F))), source, damage);
 						} else {
 							p_36347_.push((double) (-Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * (float) i * 0.5F), 0.1D, (double) (Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * (float) i * 0.5F));
 						}
@@ -661,7 +662,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		if (super.considersEntityAsAlly(p_360600_)) {
 			return true;
 		} else {
-			if (p_360600_.getType() == TofuEntityTypes.TOFU_GANDLEM) {
+			if (p_360600_.getType() == TofuEntityTypes.TOFU_GANDLEM.get()) {
 				return this.getTeam() == null && p_360600_.getTeam() == null;
 			}
 			return false;

@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
     "tofucraft:soymilk_nether_bucket",
     "minecraft:glass_bottle",

@@ -7,7 +7,6 @@
   ],
   "pools": [
     {
-      "bonus_rolls": 0.0,
       "conditions": [
         {
           "block": "tofucraft:barrel_adv_tofugem",
@@ -53,12 +52,10 @@
       ],
       "functions": [
         {
-          "add": false,
           "count": 3.0,
           "function": "minecraft:set_count"
         },
         {
-          "add": false,
           "count": 1.0,
           "function": "minecraft:set_count"
         }

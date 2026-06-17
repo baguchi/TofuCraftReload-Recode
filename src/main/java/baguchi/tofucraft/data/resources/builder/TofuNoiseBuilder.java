@@ -19,8 +19,8 @@ import java.util.List;
 
 public class TofuNoiseBuilder {
 
-	public static NoiseGeneratorSettings tofuWorld(BootstrapContext<NoiseGeneratorSettings> p_256478_) {
-		return new NoiseGeneratorSettings(new NoiseSettings(-64, 384, 1, 2), TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), TofuBlocks.SOYMILK.get().defaultBlockState(), NoiseRouterData.overworld(p_256478_.lookup(Registries.DENSITY_FUNCTION), p_256478_.lookup(Registries.NOISE), false, false), TofuSurfaceRuleData.tofuWorld(), List.of(), 63, false, true, false, false);
+	public static NoiseGeneratorSettings tofuWorld(BootstrapContext<NoiseGeneratorSettings> context) {
+		return new NoiseGeneratorSettings(new NoiseSettings(-64, 384, 1, 2), TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(), TofuBlocks.SOYMILK.get().defaultBlockState(), NoiseRouterData.overworld(context.lookup(Registries.DENSITY_FUNCTION), context.lookup(Registries.NOISE), false, false), TofuSurfaceRuleData.tofuWorld(context.lookup(Registries.BIOME)), List.of(), 63, false, true, false, false);
 	}
 
 	public static void bootstrap(BootstrapContext<NoiseGeneratorSettings> p_256365_) {

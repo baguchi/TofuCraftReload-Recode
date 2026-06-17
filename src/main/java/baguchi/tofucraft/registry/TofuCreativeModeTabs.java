@@ -392,8 +392,8 @@ public class TofuCreativeModeTabs {
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_foods" + ".main_tab"))
 			.icon(() -> TofuItems.TOFUCOOKIE.get().getDefaultInstance())
 			.displayItems((parameters, output) -> {
-				output.accept(TofuBlocks.TOFUCAKE.get());
-				output.accept(TofuBlocks.ZUNDATOFUCAKE.get());
+				output.accept(TofuBlocks.TOFU_CAKE.get());
+				output.accept(TofuBlocks.ZUNDA_TOFU_CAKE.get());
 				output.accept(TofuBlocks.SOYCHEESE_TART.get());
 				output.accept(TofuBlocks.GIANT_OKARA_DONUT.asItem());
 				output.acceptAll(Stream.of(

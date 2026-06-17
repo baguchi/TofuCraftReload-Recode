@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "G": "tofucraft:tofugrilled",
     "M": "tofucraft:tofuhamburg"

@@ -13,7 +13,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
@@ -97,7 +97,7 @@ public class FukumameThrowerAi {
 						avoidRepellent(),
 						createIdleLookBehaviors(),
 						createIdleMovementBehaviors(),
-						SetLookAndInteract.create(EntityType.PLAYER, 4)
+						SetLookAndInteract.create(EntityTypes.PLAYER, 4)
 				)
 		);
 	}
@@ -156,8 +156,8 @@ public class FukumameThrowerAi {
 
 	private static ImmutableList<Pair<OneShot<LivingEntity>, Integer>> createLookBehaviors() {
 		return ImmutableList.of(
-				Pair.of(SetEntityLookTarget.create(EntityType.PLAYER, 8.0F), 1),
-				Pair.of(SetEntityLookTarget.create(EntityType.PIGLIN, 8.0F), 1),
+				Pair.of(SetEntityLookTarget.create(EntityTypes.PLAYER, 8.0F), 1),
+				Pair.of(SetEntityLookTarget.create(EntityTypes.PIGLIN, 8.0F), 1),
 				Pair.of(SetEntityLookTarget.create(8.0F), 1)
 		);
 	}
@@ -175,7 +175,7 @@ public class FukumameThrowerAi {
 		return new RunOne<>(
 				ImmutableList.of(
 						Pair.of(RandomStroll.stroll(0.6F), 2),
-						Pair.of(InteractWith.of(EntityType.PIGLIN, 8, MemoryModuleType.INTERACTION_TARGET, 0.6F, 2), 2),
+						Pair.of(InteractWith.of(EntityTypes.PIGLIN, 8, MemoryModuleType.INTERACTION_TARGET, 0.6F, 2), 2),
 						Pair.of(BehaviorBuilder.triggerIf(FukumameThrowerAi::doesntSeeAnyPlayerHoldingLovedItem, SetWalkTargetFromLookTarget.create(0.6F, 3)), 2),
 						Pair.of(new DoNothing(30, 60), 1)
 				)
@@ -303,7 +303,7 @@ public class FukumameThrowerAi {
 	}
 
 	private static boolean wantsToDance(LivingEntity body, LivingEntity killedTarget) {
-		return !killedTarget.is(EntityType.HOGLIN) ? false : RandomSource.create(body.level().getGameTime()).nextFloat() < 0.1F;
+		return !killedTarget.is(EntityTypes.HOGLIN) ? false : RandomSource.create(body.level().getGameTime()).nextFloat() < 0.1F;
 	}
 
 	private static boolean wantsToStopFleeing(FukumameThrower body) {
@@ -312,7 +312,7 @@ public class FukumameThrowerAi {
 			return true;
 		} else {
 			LivingEntity avoidedEntity = brain.getMemory(MemoryModuleType.AVOID_TARGET).get();
-			if (avoidedEntity.is(EntityType.HOGLIN)) {
+			if (avoidedEntity.is(EntityTypes.HOGLIN)) {
 				return piglinsEqualOrOutnumberHoglins(body);
 			} else {
 				return isZombified(avoidedEntity) ? !brain.isMemoryValue(MemoryModuleType.NEAREST_VISIBLE_ZOMBIFIED, avoidedEntity) : false;
@@ -321,7 +321,7 @@ public class FukumameThrowerAi {
 	}
 
 	public static boolean isZombified(Entity entity) {
-		return entity.is(EntityType.ZOMBIFIED_PIGLIN) || entity.is(EntityType.ZOGLIN);
+		return entity.is(EntityTypes.ZOMBIFIED_PIGLIN) || entity.is(EntityTypes.ZOGLIN);
 	}
 
 

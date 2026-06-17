@@ -17,6 +17,7 @@ import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.clock.WorldClock;
 import net.minecraft.world.clock.WorldClocks;
 import net.minecraft.world.level.CardinalLighting;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.timeline.Timeline;
 import net.neoforged.neoforge.common.world.NeoForgeEnvironmentAttributes;
@@ -27,6 +28,8 @@ public class TofuDimensionTypes {
 	public static final ResourceKey<DimensionType> TOFU_WORLD_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "tofu_world_type"));
 
 	public static void bootstrap(BootstrapContext<DimensionType> context) {
+		HolderGetter<Block> blocks = context.lookup(Registries.BLOCK);
+
 		HolderGetter<Timeline> holdergetter = context.lookup(Registries.TIMELINE);
 
 		HolderGetter<Timeline> timelines = context.lookup(Registries.TIMELINE);
@@ -52,7 +55,7 @@ public class TofuDimensionTypes {
 				-64,
 				384,
 				384,
-				BlockTags.INFINIBURN_OVERWORLD,
+				blocks.getOrThrow(BlockTags.INFINIBURN_OVERWORLD),
 				0.0F,
 				new DimensionType.MonsterSettings(UniformInt.of(0, 7), 0),
 				DimensionType.Skybox.OVERWORLD,

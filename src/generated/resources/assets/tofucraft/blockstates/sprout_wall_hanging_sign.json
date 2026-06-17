@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
-      "model": "tofucraft:block/sprout_hanging_sign"
+    "facing=east": {
+      "model": "tofucraft:block/sprout_wall_hanging_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "tofucraft:block/sprout_wall_hanging_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "tofucraft:block/sprout_wall_hanging_sign"
+    },
+    "facing=west": {
+      "model": "tofucraft:block/sprout_wall_hanging_sign",
+      "y": 90
     }
   }
 }

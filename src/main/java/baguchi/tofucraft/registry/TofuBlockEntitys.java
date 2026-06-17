@@ -3,7 +3,6 @@ package baguchi.tofucraft.registry;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.blockentity.FoodPlateBlockEntity;
 import baguchi.tofucraft.blockentity.SaltFurnaceBlockEntity;
-import baguchi.tofucraft.blockentity.TofuBedBlockEntity;
 import baguchi.tofucraft.blockentity.TofuChestBlockEntity;
 import baguchi.tofucraft.blockentity.TofuPotBlockEntity;
 import baguchi.tofucraft.blockentity.TofunianStatueBlockEntity;
@@ -30,7 +29,6 @@ import java.util.Set;
 public class TofuBlockEntitys {
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, TofuCraftReload.MODID);
 
-	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TofuBedBlockEntity>> TOFUBED = register("tofubed", TofuBedBlockEntity::new, TofuBlocks.TOFUBED);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TofuChestBlockEntity>> TOFUCHEST = register("tofuchest", TofuChestBlockEntity::new, TofuBlocks.TOFUCHEST);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends SaltFurnaceBlockEntity>> SALT_FURNACE = register("salt_furnace", SaltFurnaceBlockEntity::new, TofuBlocks.SALT_FURNACE);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends FoodPlateBlockEntity>> FOODPLATE = register("foodplate", FoodPlateBlockEntity::new, TofuBlocks.FOODPLATE);

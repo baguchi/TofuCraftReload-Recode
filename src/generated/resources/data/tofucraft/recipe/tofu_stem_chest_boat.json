@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
     "tofucraft:tofu_stem_boat",
     "#c:chests/wooden"

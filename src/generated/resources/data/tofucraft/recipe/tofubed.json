@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "#": "tofucraft:yuba",
     "P": "#minecraft:planks"

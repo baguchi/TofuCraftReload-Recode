@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "#": "tofucraft:tofufried_pouch",
     "X": "minecraft:bread"

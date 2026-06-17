@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
     "tofucraft:starch",
     "tofucraft:bottle_soyoil",

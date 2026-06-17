@@ -1,6 +1,5 @@
 package baguchi.tofucraft.data.provider;
 
-import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.render.special.TofunianStatueSpecialRenderer;
 import baguchi.tofucraft.registry.TofuBlocks;
 import com.mojang.math.Transformation;
@@ -17,18 +16,14 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.data.models.model.TexturedModel;
-import net.minecraft.client.renderer.blockentity.BedRenderer;
 import net.minecraft.client.renderer.item.ItemModel;
-import net.minecraft.client.renderer.special.BedSpecialRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import org.joml.Quaternionfc;
 import org.joml.Vector3f;
-import org.joml.Vector3fc;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -109,16 +104,16 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 				);
 	}
 
-	public void createTofuBed() {
-		MultiVariant blockModel = plainVariant(ModelLocationUtils.decorateBlockModelLocation("bed"));
-		this.blockStateOutput.accept(createSimpleBlock(TofuBlocks.TOFUBED.get(), blockModel));
-		Item bedItem = TofuBlocks.TOFUBED.get().asItem();
-		Identifier baseModel = ModelTemplates.BED_INVENTORY.create(ModelLocationUtils.getModelLocation(bedItem), TextureMapping.particle(TofuBlocks.KINUTOFU.get()), this.modelOutput);
-		Transformation headTransformation = BedRenderer.modelTransform(Direction.SOUTH);
-		ItemModel.Unbaked headPart = ItemModelUtils.specialModel(baseModel, headTransformation, new BedSpecialRenderer.Unbaked(TofuCraftReload.prefix("tofubed"), BedPart.HEAD));
-		Transformation footTransformation = (new Transformation(new Vector3f(0.0F, 0.0F, -1.0F), (Quaternionfc) null, (Vector3fc) null, (Quaternionfc) null)).compose(headTransformation);
-		ItemModel.Unbaked footPart = ItemModelUtils.specialModel(baseModel, footTransformation, new BedSpecialRenderer.Unbaked(TofuCraftReload.prefix("tofubed"), BedPart.FOOT));
-		this.itemModelOutput.accept(bedItem, ItemModelUtils.composite(new ItemModel.Unbaked[]{headPart, footPart}));
+	public void createTofuBed(Block bed) {
+		Identifier head = ModelTemplates.BED_HEAD.createWithSuffix(bed, "_" + BedPart.HEAD, TextureMapping.bed(bed, BedPart.HEAD), this.modelOutput);
+		Identifier foot = ModelTemplates.BED_FOOT.createWithSuffix(bed, "_" + BedPart.FOOT, TextureMapping.bed(bed, BedPart.FOOT), this.modelOutput);
+		MultiVariant blockModelHead = plainVariant(head);
+		MultiVariant blockModelFoot = plainVariant(foot);
+		this.blockStateOutput.accept(createBed(bed, blockModelHead, blockModelFoot));
+		Transformation footTransformation = new Transformation(new Vector3f(0.0F, 0.0F, 1.0F), null, null, null);
+		ItemModel.Unbaked itemModelHead = ItemModelUtils.plainModel(head);
+		ItemModel.Unbaked itemModelFoot = ItemModelUtils.plainModel(foot, footTransformation);
+		this.itemModelOutput.accept(bed.asItem(), ItemModelUtils.composite(itemModelHead, itemModelFoot));
 	}
 
 	public void createTofunianState(Block p_387718_, Block p_386452_) {

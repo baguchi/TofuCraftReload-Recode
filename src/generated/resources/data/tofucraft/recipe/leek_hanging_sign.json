@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "#": "tofucraft:leek_stem",
     "|": "tofucraft:tofu_metal_chain"

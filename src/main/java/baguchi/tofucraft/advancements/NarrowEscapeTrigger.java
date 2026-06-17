@@ -4,10 +4,10 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuAdvancements;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.criterion.ContextAwarePredicate;
-import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.advancements.criterion.SimpleCriterionTrigger;
+import net.minecraft.advancements.predicates.ContextAwarePredicate;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.advancements.triggers.Criterion;
+import net.minecraft.advancements.triggers.SimpleCriterionTrigger;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -26,7 +26,7 @@ public class NarrowEscapeTrigger extends SimpleCriterionTrigger<NarrowEscapeTrig
 		return Instance.CODEC;
 	}
 
-	public record Instance(Optional<ContextAwarePredicate> player) implements SimpleInstance {
+	public record Instance(Optional<ContextAwarePredicate> player) implements SimpleCriterionTrigger.SimpleInstance {
 		public static final Codec<NarrowEscapeTrigger.Instance> CODEC = RecordCodecBuilder.create((p_311988_) -> {
 			return p_311988_.group(EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(NarrowEscapeTrigger.Instance::player)).apply(p_311988_, NarrowEscapeTrigger.Instance::new);
 		});
@@ -37,7 +37,7 @@ public class NarrowEscapeTrigger extends SimpleCriterionTrigger<NarrowEscapeTrig
 		}
 	}
 
-	public static Criterion<NarrowEscapeTrigger.Instance> get() {
+	public static Criterion<Instance> get() {
 		return TofuAdvancements.NARROW_ESCAPE_TRIGGER.get().createCriterion(new NarrowEscapeTrigger.Instance(Optional.empty()));
 	}
 }

@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "M": "tofucraft:tofu_metal_nugget",
     "S": "minecraft:soul_torch"

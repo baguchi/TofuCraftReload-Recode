@@ -9,9 +9,9 @@ import baguchi.tofucraft.block.utils.WeightBaseBlock;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuDataComponents;
 import baguchi.tofucraft.registry.TofuItems;
-import net.minecraft.advancements.criterion.BlockPredicate;
-import net.minecraft.advancements.criterion.LocationPredicate;
-import net.minecraft.advancements.criterion.StatePropertiesPredicate;
+import net.minecraft.advancements.predicates.BlockPredicate;
+import net.minecraft.advancements.predicates.LocationPredicate;
+import net.minecraft.advancements.predicates.StatePropertiesPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -372,8 +372,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFU_CHIKUWA_BLOCK.get());
 		dropSelf(TofuBlocks.CHIKUWA_BLOCK.get());
 
-		registerEmpty(TofuBlocks.TOFUCAKE.get());
-		registerEmpty(TofuBlocks.ZUNDATOFUCAKE.get());
+		registerEmpty(TofuBlocks.TOFU_CAKE.get());
+		registerEmpty(TofuBlocks.ZUNDA_TOFU_CAKE.get());
 		registerEmpty(TofuBlocks.SOYCHEESE_TART.get());
 
 		dropSelf(TofuBlocks.SOY_CHEESE_BLOCK.get());

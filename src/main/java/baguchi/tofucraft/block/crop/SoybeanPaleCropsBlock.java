@@ -120,8 +120,8 @@ public class SoybeanPaleCropsBlock extends CropBlock {
 		}
 	}
 
-	public void spawnTransformParticle(ServerLevel p_383084_, BlockPos p_383042_, RandomSource p_382825_, boolean flag) {
-		Vec3 vec3 = p_383042_.getCenter();
+	public void spawnTransformParticle(ServerLevel p_383084_, BlockPos blockPos, RandomSource p_382825_, boolean flag) {
+		Vec3 vec3 = Vec3.atBottomCenterOf(blockPos);
 		double d0 = 0.5 + p_382825_.nextDouble();
 		Vec3 vec31 = new Vec3(p_382825_.nextDouble() - 0.5, p_382825_.nextDouble() + 1.0, p_382825_.nextDouble() - 0.5);
 		Vec3 vec32 = vec3.add(vec31.scale(d0));

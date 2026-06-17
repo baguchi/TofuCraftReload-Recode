@@ -4,7 +4,7 @@ import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuLootTables;
 import baguchi.tofucraft.registry.TofuTags;
-import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;

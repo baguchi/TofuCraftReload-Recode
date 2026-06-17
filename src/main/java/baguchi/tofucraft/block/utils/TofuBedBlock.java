@@ -1,6 +1,5 @@
 package baguchi.tofucraft.block.utils;
 
-import baguchi.tofucraft.blockentity.TofuBedBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
@@ -21,14 +20,12 @@ import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
@@ -58,13 +55,13 @@ public class TofuBedBlock extends BedBlock {
 	public TofuBedBlock(Properties p_49455_) {
 		super(DyeColor.WHITE, p_49455_);
 
-		this.registerDefaultState((BlockState) ((BlockState) ((BlockState) this.stateDefinition.any()).setValue(PART, BedPart.FOOT)).setValue(OCCUPIED, false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(PART, BedPart.FOOT).setValue(OCCUPIED, false));
 	}
 
 	@Override
 	protected BlockState updateShape(BlockState p_49525_, LevelReader p_374508_, ScheduledTickAccess p_374420_, BlockPos p_49529_, Direction p_49526_, BlockPos p_49530_, BlockState p_49527_, RandomSource p_374423_) {
-		if (p_49526_ == getNeighbourDirection((BedPart) p_49525_.getValue(PART), (Direction) p_49525_.getValue(FACING))) {
-			return p_49527_.is(this) && p_49527_.getValue(PART) != p_49525_.getValue(PART) ? (BlockState) p_49525_.setValue(OCCUPIED, (Boolean) p_49527_.getValue(OCCUPIED)) : Blocks.AIR.defaultBlockState();
+		if (p_49526_ == getNeighbourDirection(p_49525_.getValue(PART), p_49525_.getValue(FACING))) {
+			return p_49527_.is(this) && p_49527_.getValue(PART) != p_49525_.getValue(PART) ? p_49525_.setValue(OCCUPIED, p_49527_.getValue(OCCUPIED)) : Blocks.AIR.defaultBlockState();
 		} else {
 
 			return super.updateShape(p_49525_, p_374508_, p_374420_, p_49529_, p_49526_, p_49530_, p_49527_, p_374423_);
@@ -78,9 +75,9 @@ public class TofuBedBlock extends BedBlock {
 	@Override
 	public BlockState playerWillDestroy(Level p_49505_, BlockPos p_49506_, BlockState p_49507_, Player p_49508_) {
 		if (!p_49505_.isClientSide() && p_49508_.isCreative()) {
-			BedPart var5 = (BedPart) p_49507_.getValue(PART);
+			BedPart var5 = p_49507_.getValue(PART);
 			if (var5 == BedPart.FOOT) {
-				BlockPos var6 = p_49506_.relative(getNeighbourDirection(var5, (Direction) p_49507_.getValue(FACING)));
+				BlockPos var6 = p_49506_.relative(getNeighbourDirection(var5, p_49507_.getValue(FACING)));
 				BlockState var7 = p_49505_.getBlockState(var6);
 				if (var7.is(this) && var7.getValue(PART) == BedPart.HEAD) {
 					p_49505_.setBlock(var6, Blocks.AIR.defaultBlockState(), 35);
@@ -98,7 +95,7 @@ public class TofuBedBlock extends BedBlock {
 		Direction var2 = p_49479_.getHorizontalDirection();
 		BlockPos var3 = p_49479_.getClickedPos();
 		BlockPos var4 = var3.relative(var2);
-		return p_49479_.getLevel().getBlockState(var4).canBeReplaced(p_49479_) ? (BlockState) this.defaultBlockState().setValue(FACING, var2) : null;
+		return p_49479_.getLevel().getBlockState(var4).canBeReplaced(p_49479_) ? this.defaultBlockState().setValue(FACING, var2) : null;
 	}
 
 	@Override
@@ -118,12 +115,12 @@ public class TofuBedBlock extends BedBlock {
 
 
 	public static Direction getConnectedDirection(BlockState p_49558_) {
-		Direction var1 = (Direction) p_49558_.getValue(FACING);
+		Direction var1 = p_49558_.getValue(FACING);
 		return p_49558_.getValue(PART) == BedPart.HEAD ? var1.getOpposite() : var1;
 	}
 
 	public static DoubleBlockCombiner.BlockType getBlockType(BlockState p_49560_) {
-		BedPart var1 = (BedPart) p_49560_.getValue(PART);
+		BedPart var1 = p_49560_.getValue(PART);
 		return var1 == BedPart.HEAD ? DoubleBlockCombiner.BlockType.FIRST : DoubleBlockCombiner.BlockType.SECOND;
 	}
 
@@ -132,7 +129,7 @@ public class TofuBedBlock extends BedBlock {
 	}
 
 	public static Optional<Vec3> findStandUpPosition(EntityType<?> p_49459_, CollisionGetter p_49460_, BlockPos p_49461_, float p_49462_) {
-		Direction var4 = (Direction) p_49460_.getBlockState(p_49461_).getValue(FACING);
+		Direction var4 = p_49460_.getBlockState(p_49461_).getValue(FACING);
 		Direction var5 = var4.getClockWise();
 		Direction var6 = var5.isFacingAngle(p_49462_) ? var5.getOpposite() : var5;
 		if (isBunkBed(p_49460_, p_49461_)) {
@@ -189,40 +186,41 @@ public class TofuBedBlock extends BedBlock {
 		return Optional.empty();
 	}
 
+	@Override
 	public PushReaction getPistonPushReaction(BlockState p_49556_) {
 		return PushReaction.DESTROY;
 	}
 
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_49532_) {
-		p_49532_.add(new Property[]{FACING, PART, OCCUPIED});
+		p_49532_.add(FACING, PART, OCCUPIED);
 	}
 
-	public BlockEntity newBlockEntity(BlockPos p_152175_, BlockState p_152176_) {
-		return new TofuBedBlockEntity(p_152175_, p_152176_);
-	}
-
+	@Override
 	public void setPlacedBy(Level p_49499_, BlockPos p_49500_, BlockState p_49501_, @Nullable LivingEntity p_49502_, ItemStack p_49503_) {
 		super.setPlacedBy(p_49499_, p_49500_, p_49501_, p_49502_, p_49503_);
 		if (!p_49499_.isClientSide()) {
-			BlockPos var6 = p_49500_.relative((Direction) p_49501_.getValue(FACING));
-			p_49499_.setBlock(var6, (BlockState) p_49501_.setValue(PART, BedPart.HEAD), 3);
+			BlockPos var6 = p_49500_.relative(p_49501_.getValue(FACING));
+			p_49499_.setBlock(var6, p_49501_.setValue(PART, BedPart.HEAD), 3);
 			p_49499_.neighborChanged(p_49500_, Blocks.AIR, null);
 			p_49501_.updateNeighbourShapes(p_49499_, p_49500_, 3);
 		}
 
 	}
 
+	@Override
 	public long getSeed(BlockState p_49522_, BlockPos p_49523_) {
-		BlockPos var3 = p_49523_.relative((Direction) p_49522_.getValue(FACING), p_49522_.getValue(PART) == BedPart.HEAD ? 0 : 1);
+		BlockPos var3 = p_49523_.relative(p_49522_.getValue(FACING), p_49522_.getValue(PART) == BedPart.HEAD ? 0 : 1);
 		return Mth.getSeed(var3.getX(), p_49523_.getY(), var3.getZ());
 	}
 
-	public boolean isPathfindable(BlockState p_49510_, BlockGetter p_49511_, BlockPos p_49512_, PathComputationType p_49513_) {
+	@Override
+	protected boolean isPathfindable(BlockState state, PathComputationType type) {
 		return false;
 	}
 
 	private static int[][] bedStandUpOffsets(Direction p_49539_, Direction p_49540_) {
-		return (int[][]) ArrayUtils.addAll(bedSurroundStandUpOffsets(p_49539_, p_49540_), bedAboveStandUpOffsets(p_49539_));
+		return ArrayUtils.addAll(bedSurroundStandUpOffsets(p_49539_, p_49540_), bedAboveStandUpOffsets(p_49539_));
 	}
 
 	private static int[][] bedSurroundStandUpOffsets(Direction p_49552_, Direction p_49553_) {
@@ -241,9 +239,9 @@ public class TofuBedBlock extends BedBlock {
 		LEG_SOUTH_WEST = Block.box(0.0D, 0.0D, 13.0D, 3.0D, 3.0D, 16.0D);
 		LEG_NORTH_EAST = Block.box(13.0D, 0.0D, 0.0D, 16.0D, 3.0D, 3.0D);
 		LEG_SOUTH_EAST = Block.box(13.0D, 0.0D, 13.0D, 16.0D, 3.0D, 16.0D);
-		NORTH_SHAPE = Shapes.or(BASE, new VoxelShape[]{LEG_NORTH_WEST, LEG_NORTH_EAST});
-		SOUTH_SHAPE = Shapes.or(BASE, new VoxelShape[]{LEG_SOUTH_WEST, LEG_SOUTH_EAST});
-		WEST_SHAPE = Shapes.or(BASE, new VoxelShape[]{LEG_NORTH_WEST, LEG_SOUTH_WEST});
-		EAST_SHAPE = Shapes.or(BASE, new VoxelShape[]{LEG_NORTH_EAST, LEG_SOUTH_EAST});
+		NORTH_SHAPE = Shapes.or(BASE, LEG_NORTH_WEST, LEG_NORTH_EAST);
+		SOUTH_SHAPE = Shapes.or(BASE, LEG_SOUTH_WEST, LEG_SOUTH_EAST);
+		WEST_SHAPE = Shapes.or(BASE, LEG_NORTH_WEST, LEG_SOUTH_WEST);
+		EAST_SHAPE = Shapes.or(BASE, LEG_NORTH_EAST, LEG_SOUTH_EAST);
 	}
 }

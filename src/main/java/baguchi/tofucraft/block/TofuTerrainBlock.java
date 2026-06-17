@@ -41,7 +41,7 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 		} else if (blockstate.getFluidState().getAmount() == 8) {
 			return false;
 		} else {
-			int i = LightEngine.getLightBlockInto(state, blockstate, Direction.UP, blockstate.getLightDampening());
+			int i = LightEngine.getLightDampeningInto(state, blockstate, Direction.UP, blockstate.getLightDampening());
 			return i < 15;
 		}
 	}

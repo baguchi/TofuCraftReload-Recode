@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.item.CrossbowItem;
 
 
@@ -40,7 +40,7 @@ public class FukumameThrowerRenderer extends HumanoidMobRenderer<FukumameThrower
 
 	public void extractRenderState(FukumameThrower p_361113_, FukumameThrowerRenderState p_364996_, float p_362352_) {
 		super.extractRenderState(p_361113_, p_364996_, p_362352_);
-		p_364996_.isBrute = p_361113_.getType() == EntityType.PIGLIN_BRUTE;
+		p_364996_.isBrute = p_361113_.getType() == EntityTypes.PIGLIN_BRUTE;
 		p_364996_.armPose = p_361113_.getArmPose();
 		p_364996_.maxCrossbowChageDuration = (float) CrossbowItem.getChargeDuration(p_361113_.getUseItem(), p_361113_);
 		p_364996_.isConverting = p_361113_.isConverting();

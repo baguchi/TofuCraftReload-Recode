@@ -351,7 +351,7 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 		if (super.considersEntityAsAlly(p_360600_)) {
 			return true;
 		} else {
-			if (p_360600_.getType() == TofuEntityTypes.TOFU_GOLEM) {
+			if (p_360600_.getType() == TofuEntityTypes.TOFU_GOLEM.get()) {
 				return this.getTeam() == null && p_360600_.getTeam() == null;
 			}
 

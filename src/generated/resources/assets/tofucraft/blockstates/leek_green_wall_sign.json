@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
-      "model": "tofucraft:block/leek_green_sign"
+    "facing=east": {
+      "model": "tofucraft:block/leek_green_wall_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "tofucraft:block/leek_green_wall_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "tofucraft:block/leek_green_wall_sign"
+    },
+    "facing=west": {
+      "model": "tofucraft:block/leek_green_wall_sign",
+      "y": 90
     }
   }
 }

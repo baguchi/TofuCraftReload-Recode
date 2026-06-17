@@ -199,7 +199,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 		if (super.considersEntityAsAlly(p_360600_)) {
 			return true;
 		} else {
-			if (p_360600_.getType() == TofuEntityTypes.SHUDOFUSPIDER) {
+			if (p_360600_.getType() == TofuEntityTypes.SHUDOFUSPIDER.get()) {
 				return this.getTeam() == null && p_360600_.getTeam() == null;
 			}
 			return false;

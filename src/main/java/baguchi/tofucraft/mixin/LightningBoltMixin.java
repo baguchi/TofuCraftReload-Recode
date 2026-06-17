@@ -7,6 +7,7 @@ import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuDimensions;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -14,9 +15,9 @@ import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LightningRodBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -49,11 +50,11 @@ public abstract class LightningBoltMixin extends Entity {
 	private void makeZundamiteOnLightningStrike() {
 		BlockState blockstate = this.level().getBlockState(this.getStrikePosition());
 		if (this.level().dimension() == TofuDimensions.tofu_world) {
-			if (!blockstate.is(Blocks.LIGHTNING_ROD) && this.random.nextInt(2) == 0) {
+			if (!blockstate.is(BlockTags.LIGHTNING_RODS) && this.random.nextInt(2) == 0) {
 				Zundamite zundamite = TofuEntityTypes.ZUNDAMITE.get().create(this.level(), EntitySpawnReason.MOB_SUMMONED);
 
 				if (zundamite != null) {
-					zundamite.setPos(this.getStrikePosition().above().getCenter());
+					zundamite.setPos(Vec3.atBottomCenterOf(this.getStrikePosition().above()));
 					zundamite.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600));
 					this.level().addFreshEntity(zundamite);
 				}
@@ -65,7 +66,7 @@ public abstract class LightningBoltMixin extends Entity {
 		BlockState blockstate = p_147151_.getBlockState(p_147152_);
 		BlockPos blockpos;
 		BlockState blockstate1;
-		if (blockstate.is(Blocks.LIGHTNING_ROD)) {
+		if (blockstate.is(BlockTags.LIGHTNING_RODS)) {
 			blockpos = p_147152_.relative(blockstate.getValue(LightningRodBlock.FACING).getOpposite());
 			blockstate1 = p_147151_.getBlockState(blockpos);
 		} else {

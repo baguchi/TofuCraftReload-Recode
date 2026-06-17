@@ -140,7 +140,7 @@ public class TofuMusicManager {
 	 */
 	@Nullable
 	public static <T extends LivingEntity & TofuBossMob<?>> Music getSituationalMusic() {
-		if (!(minecraft.screen instanceof WinScreen)) {
+		if (!(minecraft.gui.screen() instanceof WinScreen)) {
 			if (minecraft.player != null) { // Otherwise replace creative music with biome music in the Tofu.
 				if (isTofuBossMusicActive()) {
 					T boss = getBossFromFight();
@@ -161,7 +161,7 @@ public class TofuMusicManager {
 	}
 
 	public static boolean isTofuBossMusicActive() {
-		return minecraft.gui.getBossOverlay().shouldPlayMusic();
+		return minecraft.gui.hud.getBossOverlay().shouldPlayMusic();
 	}
 
 

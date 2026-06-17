@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "#": "tofucraft:tofu_upgrade_smithing_template",
     "D": "tofucraft:tofudiamond",

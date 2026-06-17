@@ -2,7 +2,7 @@ package baguchi.tofucraft.entity.path;
 
 import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.level.Level;
@@ -17,7 +17,7 @@ public class SoymilkPathNavigation extends PathNavigation {
 	}
 
 	protected PathFinder createPathFinder(int p_26598_) {
-		this.allowBreaching = this.mob.getType() == EntityType.DOLPHIN;
+		this.allowBreaching = this.mob.getType() == EntityTypes.DOLPHIN;
 		this.nodeEvaluator = new SoymilkSwimNodeEvaluator(this.allowBreaching);
 		return new PathFinder(this.nodeEvaluator, p_26598_);
 	}

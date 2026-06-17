@@ -1,7 +1,7 @@
 package baguchi.tofucraft.block;
 
 import baguchi.tofucraft.registry.TofuBlocks;
-import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -81,9 +81,9 @@ public class ZundamaBlock extends HalfTransparentBlock {
 		}
 	}
 
-	private void maybeDoSlideAchievement(Entity p_53992_, BlockPos p_53993_) {
-		if (p_53992_ instanceof ServerPlayer && p_53992_.level().getGameTime() % 20L == 0L) {
-			CriteriaTriggers.HONEY_BLOCK_SLIDE.trigger((ServerPlayer) p_53992_, p_53992_.level().getBlockState(p_53993_));
+	private void maybeDoSlideAchievement(Entity entity, BlockPos blockPos) {
+		if (entity instanceof ServerPlayer && entity.level().getGameTime() % 20L == 0L) {
+			CriteriaTriggers.HONEY_BLOCK_SLIDE.trigger((ServerPlayer) entity, entity.level().getBlockState(blockPos));
 		}
 
 	}

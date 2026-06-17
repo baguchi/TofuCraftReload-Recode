@@ -5,13 +5,13 @@ import baguchi.tofucraft.registry.TofuDamageTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.KeyTagProvider;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageType;
 
 import java.util.concurrent.CompletableFuture;
 
-public class TofuDamageTypeTags extends KeyTagProvider<DamageType> {
+public class TofuDamageTypeTags extends TagsProvider<DamageType> {
 
 	public TofuDamageTypeTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future) {
 		super(output, Registries.DAMAGE_TYPE, future, TofuCraftReload.MODID);

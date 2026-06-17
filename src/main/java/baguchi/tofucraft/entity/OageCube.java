@@ -12,7 +12,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.MagmaCube;
+import net.minecraft.world.entity.monster.cubemob.MagmaCube;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -30,7 +30,7 @@ public class OageCube extends MagmaCube {
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(0, new TofuSlime.TofuSlimeFloatGoal(this));
+		//this.goalSelector.addGoal(0, new TofuSlime.TofuSlimeFloatGoal(this));
 	}
 
 	public static boolean checkOageSpawnRules(EntityType<? extends OageCube> p_219014_, ServerLevelAccessor p_219015_, EntitySpawnReason p_361180_, BlockPos p_219017_, RandomSource p_219018_) {

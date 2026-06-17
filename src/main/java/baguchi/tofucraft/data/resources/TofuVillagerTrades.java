@@ -11,12 +11,9 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.EnchantmentTags;
-import net.minecraft.tags.PotionTags;
-import net.minecraft.world.entity.npc.villager.VillagerType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.trading.TradeCost;
 import net.minecraft.world.item.trading.VillagerTrade;
@@ -114,17 +111,8 @@ public class TofuVillagerTrades {
 
 	public static void bootstrap(BootstrapContext<VillagerTrade> context) {
 		HolderGetter<Item> items = context.lookup(Registries.ITEM);
-		Optional<HolderSet<Enchantment>> enchantmentsForTradedEquipment = context.lookup(Registries.ENCHANTMENT)
-				.get(EnchantmentTags.ON_TRADED_EQUIPMENT)
-				.map(named -> (HolderSet<Enchantment>) named);
-		Optional<HolderSet<Enchantment>> enchantmentsForBooks = context.lookup(Registries.ENCHANTMENT)
-				.get(EnchantmentTags.TRADEABLE)
-				.map(named -> (HolderSet<Enchantment>) named);
-		Optional<HolderSet<Enchantment>> doubleTradePrice = context.lookup(Registries.ENCHANTMENT)
-				.get(EnchantmentTags.DOUBLE_TRADE_PRICE)
-				.map(named -> (HolderSet<Enchantment>) named);
-		Optional<HolderSet<Potion>> potionsForTippedArrows = context.lookup(Registries.POTION).get(PotionTags.TRADEABLE).map(named -> (HolderSet<Potion>) named);
-		HolderGetter<VillagerType> villagerVariants = context.lookup(Registries.VILLAGER_TYPE);
+		HolderGetter<Enchantment> enchantments = context.lookup(Registries.ENCHANTMENT);
+		HolderSet<Enchantment> enchantmentsForTradedEquipment = enchantments.getOrThrow(EnchantmentTags.ON_TRADED_EQUIPMENT);
 		register(
 				context,
 				TOFUNIAN_FARMER_1_SOYBEAN_ZUNDA_RUBY,
@@ -184,7 +172,7 @@ public class TofuVillagerTrades {
 		register(
 				context,
 				TOFUNIAN_FARMER_5_ZUNDA_RUBY_TOFU_CAKE,
-				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuBlocks.TOFUCAKE.asItem()), 3, 20, 0.1F, Optional.empty(), List.of())
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuBlocks.TOFU_CAKE.asItem()), 3, 20, 0.1F, Optional.empty(), List.of())
 		);
 
 		register(

@@ -44,7 +44,7 @@ public class MoveBackToTofuVillageGoal extends RandomStrollGoal {
 			return true;
 		}, this.mob.blockPosition(), 42, PoiManager.Occupancy.IS_OCCUPIED);
 		return optional.isPresent()
-				? DefaultRandomPos.getPosTowards(this.mob, 10, 7, optional.get().getCenter(), (float) (Math.PI / 2))
+				? DefaultRandomPos.getPosTowards(this.mob, 10, 7, Vec3.atCenterOf(optional.get()), (float) (Math.PI / 2))
 				: null;
 	}
 }

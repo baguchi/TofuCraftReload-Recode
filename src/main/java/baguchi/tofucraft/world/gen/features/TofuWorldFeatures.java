@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -71,6 +72,8 @@ public class TofuWorldFeatures {
 	}
 
 	public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
+		HolderGetter<Block> blocks = context.lookup(Registries.BLOCK);
+
 		RuleTest ruletest = new TagMatchTest(TofuTags.Blocks.TOFU_TERRAIN);
 		HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 		FeatureUtils.register(context, ORE_KINU_TOFU, Feature.ORE, new OreConfiguration(ruletest, TofuBlocks.KINUTOFU.get().defaultBlockState(), 20));
@@ -95,7 +98,7 @@ public class TofuWorldFeatures {
 		);
 		FeatureUtils.register(context, WILD_SPROUTS, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TofuBlocks.WILD_SPROUTS.get())));
 
-		FeatureUtils.register(context, SPROUT_WATER_POOL, Feature.WATERLOGGED_VEGETATION_PATCH, new VegetationPatchConfiguration(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE, BlockStateProvider.simple(TofuBlocks.MINCEDTOFU.get()), PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(ModTreeFeatures.SPROUT), new PlacementModifier[0]), CaveSurface.FLOOR, ConstantInt.of(3), 0.8F, 5, 0.055F, UniformInt.of(4, 7), 0.7F));
+		FeatureUtils.register(context, SPROUT_WATER_POOL, Feature.WATERLOGGED_VEGETATION_PATCH, new VegetationPatchConfiguration(blocks.getOrThrow(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE), BlockStateProvider.simple(TofuBlocks.MINCEDTOFU.get()), PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(ModTreeFeatures.SPROUT), new PlacementModifier[0]), CaveSurface.FLOOR, ConstantInt.of(3), 0.8F, 5, 0.055F, UniformInt.of(4, 7), 0.7F));
 
 		FeatureUtils.register(context, TOFU_FLOWER, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TofuBlocks.TOFU_FLOWER.get())));
 		FeatureUtils.register(context, LEEK, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(

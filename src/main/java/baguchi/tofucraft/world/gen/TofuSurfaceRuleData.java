@@ -3,6 +3,8 @@ package baguchi.tofucraft.world.gen;
 import baguchi.tofucraft.registry.TofuBiomes;
 import baguchi.tofucraft.registry.TofuBlocks;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.SurfaceRules;
@@ -21,11 +23,11 @@ public class TofuSurfaceRuleData {
 		return SurfaceRules.state(p_194811_.defaultBlockState());
 	}
 
-	public static SurfaceRules.RuleSource tofuWorld() {
-		return tofuWorldLike(true, false, true);
+	public static SurfaceRules.RuleSource tofuWorld(HolderGetter<Biome> biomes) {
+		return tofuWorldLike(biomes, false, true);
 	}
 
-	public static SurfaceRules.RuleSource tofuWorldLike(boolean p_198381_, boolean p_198382_, boolean p_198383_) {
+	public static SurfaceRules.RuleSource tofuWorldLike(HolderGetter<Biome> biomes, boolean p_198382_, boolean p_198383_) {
 		ImmutableList.Builder<SurfaceRules.RuleSource> builder = ImmutableList.builder();
 		if (p_198382_) {
 			builder.add(SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("bedrock_roof", VerticalAnchor.belowTop(5), VerticalAnchor.top())), BEDROCK));
@@ -39,11 +41,11 @@ public class TofuSurfaceRuleData {
 
 		SurfaceRules.RuleSource zundaSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0), TOFU_TERRAIN_ZUNDA), TOFU_TERRAIN);
 
-		SurfaceRules.RuleSource zunda = SurfaceRules.ifTrue(SurfaceRules.isBiome(TofuBiomes.ZUNDA_FOREST), SurfaceRules.sequence(
+		SurfaceRules.RuleSource zunda = SurfaceRules.ifTrue(SurfaceRules.isBiome(biomes, TofuBiomes.ZUNDA_FOREST), SurfaceRules.sequence(
 				SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, zundaSurface),
 				SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, TOFU_TERRAIN)
 		));
-		SurfaceRules.RuleSource ishi = SurfaceRules.ifTrue(SurfaceRules.isBiome(TofuBiomes.TOFU_BEACH), SurfaceRules.sequence(
+		SurfaceRules.RuleSource ishi = SurfaceRules.ifTrue(SurfaceRules.isBiome(biomes, TofuBiomes.TOFU_BEACH), SurfaceRules.sequence(
 				SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, MINCED_TOFU),
 				SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, MINCED_TOFU)
 		));

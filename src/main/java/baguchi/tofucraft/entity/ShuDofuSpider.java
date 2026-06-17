@@ -21,6 +21,7 @@ import baguchi.tofucraft.registry.TofuSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -140,14 +141,17 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		this.leg5 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
 		this.leg6 = new ShuDofuSpiderPart(this, "leg", 0.75F, 2.0F);
 		this.subEntities = new ShuDofuSpiderPart[]{this.body, this.leg1, this.leg2, this.leg3, this.leg4, this.leg5, this.leg6};
-		this.setId(ENTITY_COUNTER.getAndAdd(this.subEntities.length + 1) + 1); // Forge: Fix MC-158205: Make sure part ids are successors of parent mob id
 	}
 
+
 	@Override
-	public void setId(int id) {
-		super.setId(id);
-		for (int i = 0; i < this.subEntities.length; i++) // Forge: Fix MC-158205: Set part ids to successors of parent mob id
-			this.subEntities[i].setId(id + i + 1);
+	public void recreateFromPacket(ClientboundAddEntityPacket packet) {
+		super.recreateFromPacket(packet);
+		PartEntity<?>[] subEntities = this.getParts();
+
+		for (int i = 0; i < subEntities.length; i++) {
+			subEntities[i].setId(i + packet.getId() + 1);
+		}
 	}
 
 	@Override
@@ -645,7 +649,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 			if (i > 0) {
 				if (p_36347_ instanceof LivingEntity) {
-					((LivingEntity) p_36347_).knockback(i, Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), -Mth.cos(this.getYRot() * ((float) Math.PI / 180F)));
+					((LivingEntity) p_36347_).knockback(i, Mth.sin(this.getYRot() * ((float) Math.PI / 180F)), -Mth.cos(this.getYRot() * ((float) Math.PI / 180F)), this.damageSources().mobAttack(this), 18.0F);
 				} else {
 					p_36347_.push(-Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * i, 0.1D, Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * i);
 				}
@@ -792,11 +796,11 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 		if (super.considersEntityAsAlly(p_360600_)) {
 			return true;
 		} else {
-			if (p_360600_.getType() == TofuEntityTypes.SHUDOFUSPIDER) {
+			if (p_360600_.getType() == TofuEntityTypes.SHUDOFUSPIDER.get()) {
 				return this.getTeam() == null && p_360600_.getTeam() == null;
 			}
 
-			if (p_360600_.getType() == TofuEntityTypes.TOFUSPIDER) {
+			if (p_360600_.getType() == TofuEntityTypes.TOFUSPIDER.get()) {
 				return this.getTeam() == null && p_360600_.getTeam() == null;
 			}
 			return false;

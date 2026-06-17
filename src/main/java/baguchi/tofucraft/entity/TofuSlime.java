@@ -3,7 +3,6 @@ package baguchi.tofucraft.entity;
 import baguchi.tofucraft.registry.TofuAttachments;
 import baguchi.tofucraft.registry.TofuBiomes;
 import baguchi.tofucraft.registry.TofuItems;
-import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -12,16 +11,19 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.golem.IronGolem;
+import net.minecraft.world.entity.monster.cubemob.AbstractCubeMob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
@@ -29,11 +31,8 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.event.EventHooks;
 
-import java.util.EnumSet;
-
-public class TofuSlime extends Slime {
+public class TofuSlime extends AbstractCubeMob {
 	private static final EntityDataAccessor<Boolean> DATA_CONVERSION_ID = SynchedEntityData.defineId(TofuSlime.class, EntityDataSerializers.BOOLEAN);
 
 	private int onZundaTime;
@@ -51,9 +50,14 @@ public class TofuSlime extends Slime {
 	}
 
 	@Override
-	protected void registerGoals() {
-		super.registerGoals();
-		this.goalSelector.addGoal(0, new TofuSlimeFloatGoal(this));
+	protected void addBehaviourGoals() {
+
+	}
+
+	@Override
+	protected void addTargetingGoals() {
+		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, Player.class, 10, true, false, (target, level) -> Math.abs(target.getY() - this.getY()) <= (double) 4.0F));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, IronGolem.class, true));
 	}
 
 	public void shoot(double p_37266_, double p_37267_, double p_37268_, float p_37269_, float p_37270_) {
@@ -89,7 +93,7 @@ public class TofuSlime extends Slime {
 		if (!this.level().isClientSide() && this.isAlive() && !this.isNoAi()) {
 			if (this.isZundaConverting()) {
 				--this.conversionTime;
-				if (this.conversionTime < 0 && EventHooks.canLivingConvert(this, EntityType.DROWNED, (timer) -> this.conversionTime = timer)) {
+				if (this.conversionTime < 0) {
 					this.doZundaConversion();
 				}
 			} else if (this.convertsOnZunda()) {
@@ -105,6 +109,26 @@ public class TofuSlime extends Slime {
 		}
 
 		super.tick();
+	}
+
+	@Override
+	protected SoundEvent getJumpSound() {
+		return this.isTiny() ? SoundEvents.SLIME_JUMP_SMALL : SoundEvents.SLIME_JUMP;
+	}
+
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return this.isTiny() ? SoundEvents.SLIME_HURT_SMALL : SoundEvents.SLIME_HURT;
+	}
+
+	@Override
+	protected SoundEvent getDeathSound() {
+		return this.isTiny() ? SoundEvents.SLIME_DEATH_SMALL : SoundEvents.SLIME_DEATH;
+	}
+
+	@Override
+	protected SoundEvent getSquishSound() {
+		return this.isTiny() ? SoundEvents.SLIME_SQUISH_SMALL : SoundEvents.SLIME_SQUISH;
 	}
 
 	protected boolean convertsOnZunda() {
@@ -155,35 +179,5 @@ public class TofuSlime extends Slime {
 
 	public static boolean checkMonsterSpawnRules(EntityType<? extends TofuSlime> p_33018_, ServerLevelAccessor p_33019_, EntitySpawnReason p_33020_, BlockPos p_33021_, RandomSource p_33022_) {
 		return p_33019_.getDifficulty() != Difficulty.PEACEFUL && isDarkEnoughToSpawn(p_33019_, p_33021_, p_33022_) && checkMobSpawnRules(p_33018_, p_33019_, p_33020_, p_33021_, p_33022_);
-	}
-
-	public static class TofuSlimeFloatGoal extends Goal {
-		private final Slime slime;
-
-		public TofuSlimeFloatGoal(Slime p_33655_) {
-			this.slime = p_33655_;
-			this.setFlags(EnumSet.of(Flag.JUMP, Flag.MOVE));
-			p_33655_.getNavigation().setCanFloat(true);
-		}
-
-		public boolean canUse() {
-			return (this.slime.isEyeInFluid(TofuTags.Fluids.SOYMILK) || this.slime.isInWater()) && this.slime.getMoveControl() instanceof SlimeMoveControl;
-		}
-
-		public boolean requiresUpdateEveryTick() {
-			return true;
-		}
-
-		public void tick() {
-			if (this.slime.getRandom().nextFloat() < 0.8F) {
-				this.slime.getJumpControl().jump();
-			}
-
-			MoveControl var2 = this.slime.getMoveControl();
-			if (var2 instanceof SlimeMoveControl slime$slimemovecontrol) {
-				slime$slimemovecontrol.setWantedMovement(1.2);
-			}
-
-		}
 	}
 }

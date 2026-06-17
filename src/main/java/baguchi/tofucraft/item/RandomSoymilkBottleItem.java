@@ -33,7 +33,7 @@ public class RandomSoymilkBottleItem extends SoymilkBottleItem {
 					.getAny()
 					.filter(mobEffect -> mobEffect.value().getCategory() != MobEffectCategory.HARMFUL)
 					.filter(mobEffect -> mobEffect.value().getCategory() != MobEffectCategory.NEUTRAL)
-					.filter(mobEffect -> !mobEffect.value().isInstantenous())
+					.filter(mobEffect -> !mobEffect.value().isInstantaneous())
 					.filter(mobEffect -> mobEffect != MobEffects.INSTANT_HEALTH)
 					.filter(mobEffect -> mobEffect != MobEffects.HERO_OF_THE_VILLAGE)
 					.filter(mobEffect -> mobEffect != MobEffects.DOLPHINS_GRACE)

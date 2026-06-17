@@ -7,7 +7,6 @@
   ],
   "pools": [
     {
-      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -48,7 +47,6 @@
               "type": "minecraft:item",
               "functions": [
                 {
-                  "add": false,
                   "count": {
                     "type": "minecraft:uniform",
                     "max": 2.0,

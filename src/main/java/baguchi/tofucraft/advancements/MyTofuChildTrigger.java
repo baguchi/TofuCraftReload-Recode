@@ -4,10 +4,10 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuAdvancements;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.criterion.ContextAwarePredicate;
-import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.advancements.criterion.SimpleCriterionTrigger;
+import net.minecraft.advancements.predicates.ContextAwarePredicate;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.advancements.triggers.Criterion;
+import net.minecraft.advancements.triggers.SimpleCriterionTrigger;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -37,7 +37,7 @@ public class MyTofuChildTrigger extends SimpleCriterionTrigger<MyTofuChildTrigge
 		}
 	}
 
-	public static Criterion<MyTofuChildTrigger.Instance> get() {
+	public static Criterion<Instance> get() {
 		return TofuAdvancements.MY_TOFU_CHILD.get().createCriterion(new MyTofuChildTrigger.Instance(Optional.empty()));
 	}
 }

@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "#": "tofucraft:tofukinu",
     "X": "#c:crops/wheat"

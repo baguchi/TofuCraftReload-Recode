@@ -397,7 +397,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.FILTERCLOTH.get(), 32)
 				.pattern("###")
 				.define('#', ItemTags.WOOL)
-				.unlockedBy("has_item", has(Items.WHITE_WOOL))
+				.unlockedBy("has_item", has(Items.WOOL.white()))
 				.save(this.output);
 		makeStairs(this.output, TofuBlocks.TOFUSTAIR_KINU, TofuBlocks.KINUTOFU);
 		makeStairs(this.output, TofuBlocks.TOFUSTAIR_MOMEN, TofuBlocks.MOMENTOFU);
@@ -704,7 +704,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.CHIKUWA.get()))
 				.save(this.output);
 
-		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.FOOD, TofuBlocks.TOFUCAKE.get())
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.FOOD, TofuBlocks.TOFU_CAKE.get())
 				.pattern("###")
 				.pattern("SES")
 				.pattern("WWW")
@@ -715,7 +715,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.TOFUKINU.get()))
 				.save(this.output);
 
-		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.FOOD, TofuBlocks.ZUNDATOFUCAKE.get())
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.FOOD, TofuBlocks.ZUNDA_TOFU_CAKE.get())
 				.pattern("###")
 				.pattern("SES")
 				.pattern("WWW")
@@ -943,7 +943,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
 				.requires(Items.SUGAR)
-				.requires(Items.LIGHT_BLUE_DYE)
+				.requires(Items.DYE.lightBlue())
 				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_SAKURA_BOTTLE.get())

@@ -7,7 +7,7 @@ import baguchi.tofucraft.advancements.NarrowEscapeTrigger;
 import baguchi.tofucraft.advancements.NightmaresEchoTrigger;
 import baguchi.tofucraft.advancements.TofuPigPopTrigger;
 import baguchi.tofucraft.advancements.TooColdTrigger;
-import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.advancements.triggers.CriterionTrigger;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

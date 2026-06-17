@@ -59,7 +59,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -178,24 +178,24 @@ public class TofuCraftReload {
 	}
 
 	private static void registerBETypes(BlockEntityTypeAddBlocksEvent event) {
-		event.modify(BlockEntityType.SIGN,
+		event.modify(BlockEntityTypes.SIGN,
 				TofuBlocks.TOFU_STEM_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_SIGN.get(),
 				TofuBlocks.LEEK_SIGN.get(), TofuBlocks.LEEK_WALL_SIGN.get(),
 				TofuBlocks.LEEK_GREEN_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_SIGN.get(),
 				TofuBlocks.SPROUT_SIGN.get(), TofuBlocks.SPROUT_WALL_SIGN.get());
 
-		event.modify(BlockEntityType.HANGING_SIGN,
+		event.modify(BlockEntityTypes.HANGING_SIGN,
 				TofuBlocks.TOFU_STEM_HANGING_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get(),
 				TofuBlocks.LEEK_HANGING_SIGN.get(), TofuBlocks.LEEK_WALL_HANGING_SIGN.get(),
 				TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get(),
 				TofuBlocks.SPROUT_HANGING_SIGN.get(), TofuBlocks.SPROUT_WALL_HANGING_SIGN.get());
-		event.modify(BlockEntityType.SHELF,
+		event.modify(BlockEntityTypes.SHELF,
 				TofuBlocks.TOFU_STEM_SHELF.get(),
 				TofuBlocks.LEEK_SHELF.get(),
 				TofuBlocks.LEEK_GREEN_SHELF.get(),
 				TofuBlocks.SPROUT_SHELF.get());
 
-		event.modify(BlockEntityType.BRUSHABLE_BLOCK, TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
+		event.modify(BlockEntityTypes.BRUSHABLE_BLOCK, TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 	}
 
 	private void setup(FMLCommonSetupEvent event) {

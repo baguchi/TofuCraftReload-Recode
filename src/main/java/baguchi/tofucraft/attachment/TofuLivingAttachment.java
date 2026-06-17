@@ -150,15 +150,15 @@ public class TofuLivingAttachment implements ValueIOSerializable {
 		if (player.level().isClientSide()) {
 			this.prevPortalAnimTime = this.portalAnimTime;
 			if (this.isInsidePortal()) {
-				if (Minecraft.getInstance().screen != null
-						&& !Minecraft.getInstance().screen.isPauseScreen()
-						&& !(Minecraft.getInstance().screen instanceof DeathScreen)
-						&& !(Minecraft.getInstance().screen instanceof WinScreen)) {
-					if (Minecraft.getInstance().screen instanceof AbstractContainerScreen) {
+				if (Minecraft.getInstance().gui.screen() != null
+						&& !Minecraft.getInstance().gui.screen().isPauseScreen()
+						&& !(Minecraft.getInstance().gui.screen() instanceof DeathScreen)
+						&& !(Minecraft.getInstance().gui.screen() instanceof WinScreen)) {
+					if (Minecraft.getInstance().gui.screen() instanceof AbstractContainerScreen) {
 						player.closeContainer();
 					}
 
-					Minecraft.getInstance().setScreen(null);
+					Minecraft.getInstance().gui.setScreen(null);
 				}
 
 				if (this.portalAnimTime == 0.0F) {

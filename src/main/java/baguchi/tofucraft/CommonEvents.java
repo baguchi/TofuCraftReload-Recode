@@ -27,7 +27,7 @@ import baguchi.tofucraft.utils.RecipeHelper;
 import baguchi.tofucraft.utils.TofuDiamondToolUtil;
 import baguchi.tofucraft.world.TofuData;
 import baguchi.tofucraft.world.TravelerTofunianSpawner;
-import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ExplosionParticleInfo;
@@ -160,7 +160,7 @@ public class CommonEvents {
 						//float f8 = player.getEnchantedDamage(livingentity2, f6, damagesource) * f2;
 						if (player.level() instanceof ServerLevel serverlevel && livingentity2.hurtServer(serverlevel, damagesource, f6)) {
 							livingentity2.knockback(
-									0.4F, Mth.sin(player.getYRot() * (float) (Math.PI / 180.0)), -Mth.cos(player.getYRot() * (float) (Math.PI / 180.0))
+									0.4F, Mth.sin(player.getYRot() * (float) (Math.PI / 180.0)), -Mth.cos(player.getYRot() * (float) (Math.PI / 180.0)), damagesource, f6
 							);
 							EnchantmentHelper.doPostAttackEffects(serverlevel, livingentity2, damagesource);
 						}

@@ -20,165 +20,159 @@ public class ItemTagGenerator extends ItemTagsProvider {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags(HolderLookup.Provider p_256380_) {
-		tag(TofuTags.Items.DUST_SALT).add(TofuItems.SALT.get());
-		tag(TofuTags.Items.SALT).add(TofuItems.SALT.get());
-		tag(TofuTags.Items.SOYBEAN).add(TofuItems.SEEDS_SOYBEANS.get());
+		tag(TofuTags.Items.DUST_SALT).add(TofuItems.SALT.getKey());
+		tag(TofuTags.Items.SALT).add(TofuItems.SALT.getKey());
+		tag(TofuTags.Items.SOYBEAN).add(TofuItems.SEEDS_SOYBEANS.getKey());
 		tag(TofuTags.Items.SOYMILK).addTag(TofuTags.Items.MILK_SOYMILK);
-		tag(TofuTags.Items.MILK_SOYMILK).add(TofuItems.SOYMILK_BUCKET.get(), TofuItems.SOYMILK_BOTTLE.get());
-		tag(TofuTags.Items.RICE).add(TofuItems.RICE.get());
-		tag(ItemTags.LOGS_THAT_BURN).add(TofuBlocks.SPROUT_STEM.get().asItem(), TofuBlocks.TOFU_STEM.get().asItem(), TofuBlocks.LEEK_STEM.get().asItem(), TofuBlocks.LEEK_GREEN_STEM.get().asItem());
-		tag(ItemTags.LOGS).add(TofuBlocks.SPROUT_STEM.get().asItem(), TofuBlocks.TOFU_STEM.get().asItem(), TofuBlocks.LEEK_STEM.get().asItem(), TofuBlocks.LEEK_GREEN_STEM.get().asItem());
-		tag(ItemTags.PLANKS).add(TofuBlocks.SPROUT_PLANKS.get().asItem()).add(TofuBlocks.TOFU_STEM_PLANKS.get().asItem()).add(TofuBlocks.LEEK_PLANKS.get().asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS.get().asItem());
-		tag(ItemTags.ARROWS).add(TofuItems.ZUNDA_ARROW.get());
-		tag(Tags.Items.SEEDS).add(TofuItems.SEEDS_CHILI.get(), TofuItems.SEEDS_SOYBEANS.get(), TofuItems.SEEDS_SOYBEANS_NETHER.get(), TofuItems.SEEDS_SOYBEANS_SOUL.get(), TofuItems.SEEDS_SOYBEANS_PALE.get(), TofuItems.SEEDS_SOYBEANS_PALE_GLOW.get(), TofuItems.SEEDS_RICE.get());
+		tag(TofuTags.Items.MILK_SOYMILK).add(TofuItems.SOYMILK_BUCKET.getKey(), TofuItems.SOYMILK_BOTTLE.getKey());
+		tag(TofuTags.Items.RICE).add(TofuItems.RICE.getKey());
+		tag(ItemTags.LOGS_THAT_BURN).add(TofuBlocks.SPROUT_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.TOFU_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.LEEK_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.LEEK_GREEN_STEM.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.LOGS).add(TofuBlocks.SPROUT_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.TOFU_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.LEEK_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.LEEK_GREEN_STEM.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.PLANKS).add(TofuBlocks.SPROUT_PLANKS.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_PLANKS.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_PLANKS.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_PLANKS.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.ARROWS).add(TofuItems.ZUNDA_ARROW.getKey());
+		tag(Tags.Items.SEEDS).add(TofuItems.SEEDS_CHILI.getKey(), TofuItems.SEEDS_SOYBEANS.getKey(), TofuItems.SEEDS_SOYBEANS_NETHER.getKey(), TofuItems.SEEDS_SOYBEANS_SOUL.getKey(), TofuItems.SEEDS_SOYBEANS_PALE.getKey(), TofuItems.SEEDS_SOYBEANS_PALE_GLOW.getKey(), TofuItems.SEEDS_RICE.getKey());
 
-		tag(TofuTags.Items.RICE_BLOCK).add(TofuBlocks.RICE_BLOCK.get().asItem());
-		tag(TofuTags.Items.SOYBEANS_BLOCK).add(TofuBlocks.SOYBEANS_SEEDS_BLOCK.get().asItem()).add(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get().asItem()).add(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get().asItem());
+		tag(TofuTags.Items.RICE_BLOCK).add(TofuBlocks.RICE_BLOCK.asItem().builtInRegistryHolder().key());
+		tag(TofuTags.Items.SOYBEANS_BLOCK).add(TofuBlocks.SOYBEANS_SEEDS_BLOCK.asItem().builtInRegistryHolder().key()).add(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.asItem().builtInRegistryHolder().key()).add(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.asItem().builtInRegistryHolder().key());
 		tag(Tags.Items.STORAGE_BLOCKS).addTags(TofuTags.Items.RICE_BLOCK).addTags(TofuTags.Items.SOYBEANS_BLOCK);
-		tag(ItemTags.METAL_NUGGETS).add(TofuItems.TOFU_METAL_NUGGET.get()).add(TofuItems.TOFUDIAMOND_NUGGET.get());
+		tag(ItemTags.METAL_NUGGETS).add(TofuItems.TOFU_METAL_NUGGET.getKey()).add(TofuItems.TOFUDIAMOND_NUGGET.getKey());
 
-		tag(ItemTags.LANTERNS).add(TofuBlocks.TOFU_METAL_LANTERN.get().asItem()).add(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get().asItem());
-		tag(ItemTags.CHAINS).add(TofuBlocks.TOFU_METAL_CHAIN.get().asItem());
-
-		tag(ItemTags.SWORDS).add(TofuItems.ZUNDA_ALLOY_TOFU_SWORD.get()).add(TofuItems.TOFU_KINU_SWORD.get()).add(TofuItems.TOFU_MOMEN_SWORD.get()).add(TofuItems.TOFU_SOLID_SWORD.get()).add(TofuItems.TOFU_METAL_SWORD.get()).add(TofuItems.TOFU_DIAMOND_SWORD.get());
-		tag(ItemTags.PICKAXES).add(TofuItems.TOFU_KINU_PICKAXE.get()).add(TofuItems.TOFU_MOMEN_PICKAXE.get()).add(TofuItems.TOFU_SOLID_PICKAXE.get()).add(TofuItems.TOFU_METAL_PICKAXE.get()).add(TofuItems.TOFU_DIAMOND_PICKAXE.get());
-		tag(ItemTags.AXES).add(TofuItems.TOFU_KINU_AXE.get()).add(TofuItems.TOFU_MOMEN_AXE.get()).add(TofuItems.TOFU_SOLID_AXE.get()).add(TofuItems.TOFU_METAL_AXE.get()).add(TofuItems.TOFU_DIAMOND_AXE.get());
-		tag(ItemTags.SHOVELS).add(TofuItems.TOFU_KINU_SHOVEL.get()).add(TofuItems.TOFU_MOMEN_SHOVEL.get()).add(TofuItems.TOFU_SOLID_SHOVEL.get()).add(TofuItems.TOFU_METAL_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get());
-		tag(ItemTags.HOES).add(TofuItems.TOFU_KINU_HOE.get()).add(TofuItems.TOFU_MOMEN_HOE.get()).add(TofuItems.TOFU_SOLID_HOE.get()).add(TofuItems.TOFU_METAL_HOE.get()).add(TofuItems.TOFU_DIAMOND_HOE.get());
+		tag(ItemTags.SWORDS).add(TofuItems.ZUNDA_ALLOY_TOFU_SWORD.getKey()).add(TofuItems.TOFU_KINU_SWORD.getKey()).add(TofuItems.TOFU_MOMEN_SWORD.getKey()).add(TofuItems.TOFU_SOLID_SWORD.getKey()).add(TofuItems.TOFU_METAL_SWORD.getKey()).add(TofuItems.TOFU_DIAMOND_SWORD.getKey());
+		tag(ItemTags.PICKAXES).add(TofuItems.TOFU_KINU_PICKAXE.getKey()).add(TofuItems.TOFU_MOMEN_PICKAXE.getKey()).add(TofuItems.TOFU_SOLID_PICKAXE.getKey()).add(TofuItems.TOFU_METAL_PICKAXE.getKey()).add(TofuItems.TOFU_DIAMOND_PICKAXE.getKey());
+		tag(ItemTags.AXES).add(TofuItems.TOFU_KINU_AXE.getKey()).add(TofuItems.TOFU_MOMEN_AXE.getKey()).add(TofuItems.TOFU_SOLID_AXE.getKey()).add(TofuItems.TOFU_METAL_AXE.getKey()).add(TofuItems.TOFU_DIAMOND_AXE.getKey());
+		tag(ItemTags.SHOVELS).add(TofuItems.TOFU_KINU_SHOVEL.getKey()).add(TofuItems.TOFU_MOMEN_SHOVEL.getKey()).add(TofuItems.TOFU_SOLID_SHOVEL.getKey()).add(TofuItems.TOFU_METAL_SHOVEL.getKey()).add(TofuItems.TOFU_DIAMOND_SHOVEL.getKey());
+		tag(ItemTags.HOES).add(TofuItems.TOFU_KINU_HOE.getKey()).add(TofuItems.TOFU_MOMEN_HOE.getKey()).add(TofuItems.TOFU_SOLID_HOE.getKey()).add(TofuItems.TOFU_METAL_HOE.getKey()).add(TofuItems.TOFU_DIAMOND_HOE.getKey());
 		this.tag(ItemTags.SPEARS)
-				.add(TofuItems.TOFU_KINU_SPEAR.get()).add(TofuItems.TOFU_MOMEN_SPEAR.get()).add(TofuItems.TOFU_SOLID_SPEAR.get()).add(TofuItems.TOFU_METAL_SPEAR.get()).add(TofuItems.TOFU_DIAMOND_SPEAR.get());
-		this.tag(Tags.Items.TOOLS_SHEAR).add(TofuItems.TOFU_METAL_SHEARS.get());
+				.add(TofuItems.TOFU_KINU_SPEAR.getKey()).add(TofuItems.TOFU_MOMEN_SPEAR.getKey()).add(TofuItems.TOFU_SOLID_SPEAR.getKey()).add(TofuItems.TOFU_METAL_SPEAR.getKey()).add(TofuItems.TOFU_DIAMOND_SPEAR.getKey());
+		this.tag(Tags.Items.TOOLS_SHEAR).add(TofuItems.TOFU_METAL_SHEARS.getKey());
 
-		this.tag(Tags.Items.TOOLS_SHEAR).add(TofuItems.TOFU_METAL_SHEARS.get());
+		this.tag(Tags.Items.TOOLS_SHEAR).add(TofuItems.TOFU_METAL_SHEARS.getKey());
 
 
-		this.tag(ItemTags.DURABILITY_ENCHANTABLE).add(TofuItems.ZUNDA_BOW.get());
-		this.tag(ItemTags.BOW_ENCHANTABLE).add(TofuItems.ZUNDA_BOW.get());
+		this.tag(ItemTags.DURABILITY_ENCHANTABLE).add(TofuItems.ZUNDA_BOW.getKey());
+		this.tag(ItemTags.BOW_ENCHANTABLE).add(TofuItems.ZUNDA_BOW.getKey());
 
-		tag(ItemTags.HEAD_ARMOR).add(TofuItems.TOFU_DIAMOND_HELMET.get())
-				.add(TofuItems.TOFU_METAL_HELMET.get())
-				.add(TofuItems.TOFU_SOLID_HELMET.get())
-				.add(TofuItems.TOFU_MOMEN_HELMET.get())
-				.add(TofuItems.TOFU_KINU_HELMET.get());
+		tag(ItemTags.HEAD_ARMOR).add(TofuItems.TOFU_DIAMOND_HELMET.getKey())
+				.add(TofuItems.TOFU_METAL_HELMET.getKey())
+				.add(TofuItems.TOFU_SOLID_HELMET.getKey())
+				.add(TofuItems.TOFU_MOMEN_HELMET.getKey())
+				.add(TofuItems.TOFU_KINU_HELMET.getKey());
 
-		tag(ItemTags.CHEST_ARMOR).add(TofuItems.TOFU_DIAMOND_CHESTPLATE.get())
-				.add(TofuItems.TOFU_METAL_CHESTPLATE.get())
-				.add(TofuItems.TOFU_SOLID_CHESTPLATE.get())
-				.add(TofuItems.TOFU_MOMEN_CHESTPLATE.get())
-				.add(TofuItems.TOFU_KINU_CHESTPLATE.get());
+		tag(ItemTags.CHEST_ARMOR).add(TofuItems.TOFU_DIAMOND_CHESTPLATE.getKey())
+				.add(TofuItems.TOFU_METAL_CHESTPLATE.getKey())
+				.add(TofuItems.TOFU_SOLID_CHESTPLATE.getKey())
+				.add(TofuItems.TOFU_MOMEN_CHESTPLATE.getKey())
+				.add(TofuItems.TOFU_KINU_CHESTPLATE.getKey());
 
-		tag(ItemTags.LEG_ARMOR).add(TofuItems.TOFU_DIAMOND_LEGGINGS.get())
-				.add(TofuItems.TOFU_METAL_LEGGINGS.get())
-				.add(TofuItems.TOFU_SOLID_LEGGINGS.get())
-				.add(TofuItems.TOFU_MOMEN_LEGGINGS.get())
-				.add(TofuItems.TOFU_KINU_LEGGINGS.get());
-		tag(ItemTags.FOOT_ARMOR).add(TofuItems.TOFU_DIAMOND_BOOTS.get())
-				.add(TofuItems.TOFU_METAL_BOOTS.get())
-				.add(TofuItems.TOFU_SOLID_BOOTS.get())
-				.add(TofuItems.TOFU_MOMEN_BOOTS.get())
-				.add(TofuItems.TOFU_KINU_BOOTS.get());
+		tag(ItemTags.LEG_ARMOR).add(TofuItems.TOFU_DIAMOND_LEGGINGS.getKey())
+				.add(TofuItems.TOFU_METAL_LEGGINGS.getKey())
+				.add(TofuItems.TOFU_SOLID_LEGGINGS.getKey())
+				.add(TofuItems.TOFU_MOMEN_LEGGINGS.getKey())
+				.add(TofuItems.TOFU_KINU_LEGGINGS.getKey());
+		tag(ItemTags.FOOT_ARMOR).add(TofuItems.TOFU_DIAMOND_BOOTS.getKey())
+				.add(TofuItems.TOFU_METAL_BOOTS.getKey())
+				.add(TofuItems.TOFU_SOLID_BOOTS.getKey())
+				.add(TofuItems.TOFU_MOMEN_BOOTS.getKey())
+				.add(TofuItems.TOFU_KINU_BOOTS.getKey());
 
-		tag(TofuTags.Items.NATTO).add(TofuItems.NATTO.get());
-		tag(TofuTags.Items.MISO).add(TofuItems.MISO.get());
-		tag(TofuTags.Items.SOYSAUCE_SOYSAUCE).add(TofuItems.BOTTLE_SOYSAUSE.get());
+		tag(TofuTags.Items.NATTO).add(TofuItems.NATTO.getKey());
+		tag(TofuTags.Items.MISO).add(TofuItems.MISO.getKey());
+		tag(TofuTags.Items.SOYSAUCE_SOYSAUCE).add(TofuItems.BOTTLE_SOYSAUSE.getKey());
 		tag(TofuTags.Items.SOYSAUCE).addTag(TofuTags.Items.SOYSAUCE_SOYSAUCE);
-		tag(TofuTags.Items.TOFU).add(TofuItems.TOFUKINU.get()).add(TofuItems.TOFUMOMEN.get());
-		tag(TofuTags.Items.TOFU_FRIED).add(TofuItems.TOFUFRIED.get());
-		tag(ItemTags.PIGLIN_REPELLENTS).add(TofuItems.SOUL_FUKUMAME.get(), TofuItems.SOUL_MANJU.get(), TofuItems.SEEDS_SOYBEANS_SOUL.get());
-		tag(ItemTags.TRIM_MATERIALS).add(TofuItems.ZUNDARUBY.get(), TofuItems.TOFUMETAL.get(), TofuItems.TOFUDIAMOND.get());
-		tag(ItemTags.BOATS).add(TofuItems.LEEK_BOAT.get(), TofuItems.LEEK_GREEN_BOAT.get(), TofuItems.TOFU_STEM_BOAT.get());
-		tag(ItemTags.CHEST_BOATS).add(TofuItems.LEEK_CHEST_BOAT.get(), TofuItems.LEEK_GREEN_CHEST_BOAT.get(), TofuItems.TOFU_STEM_CHEST_BOAT.get());
-		this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(TofuBlocks.TOFUSLATE.get().asItem());
+		tag(TofuTags.Items.TOFU).add(TofuItems.TOFUKINU.getKey()).add(TofuItems.TOFUMOMEN.getKey());
+		tag(TofuTags.Items.TOFU_FRIED).add(TofuItems.TOFUFRIED.getKey());
+		tag(ItemTags.PIGLIN_REPELLENTS).add(TofuItems.SOUL_FUKUMAME.getKey(), TofuItems.SOUL_MANJU.getKey(), TofuItems.SEEDS_SOYBEANS_SOUL.getKey());
+		tag(ItemTags.TRIM_MATERIALS).add(TofuItems.ZUNDARUBY.getKey(), TofuItems.TOFUMETAL.getKey(), TofuItems.TOFUDIAMOND.getKey());
+		tag(ItemTags.BOATS).add(TofuItems.LEEK_BOAT.getKey(), TofuItems.LEEK_GREEN_BOAT.getKey(), TofuItems.TOFU_STEM_BOAT.getKey());
+		tag(ItemTags.CHEST_BOATS).add(TofuItems.LEEK_CHEST_BOAT.getKey(), TofuItems.LEEK_GREEN_CHEST_BOAT.getKey(), TofuItems.TOFU_STEM_CHEST_BOAT.getKey());
+		this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(TofuBlocks.TOFUSLATE.asItem().builtInRegistryHolder().key());
 
-		tag(ItemTags.VILLAGER_PLANTABLE_SEEDS).add(TofuItems.SEEDS_CHILI.get(), TofuItems.SEEDS_SOYBEANS.get());
-		tag(ItemTags.WOODEN_SLABS).add(TofuBlocks.SPROUT_PLANKS_SLAB.get().asItem()).add(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get().asItem()).add(TofuBlocks.LEEK_PLANKS_SLAB.get().asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get().asItem());
-		tag(ItemTags.WOODEN_STAIRS).add(TofuBlocks.SPROUT_PLANKS_STAIR.get().asItem()).add(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get().asItem()).add(TofuBlocks.LEEK_PLANKS_STAIR.get().asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get().asItem());
-		tag(ItemTags.WOODEN_FENCES).add(TofuBlocks.SPROUT_FENCE.get().asItem()).add(TofuBlocks.LEEK_FENCE.get().asItem()).add(TofuBlocks.LEEK_GREEN_FENCE.get().asItem()).add(TofuBlocks.TOFU_STEM_FENCE.get().asItem());
-		tag(ItemTags.FENCE_GATES).add(TofuBlocks.SPROUT_FENCE_GATE.get().asItem()).add(TofuBlocks.TOFU_STEM_FENCE_GATE.get().asItem()).add(TofuBlocks.LEEK_FENCE_GATE.get().asItem()).add(TofuBlocks.LEEK_GREEN_FENCE_GATE.get().asItem());
-		tag(ItemTags.WOODEN_DOORS).add(TofuBlocks.SPROUT_DOOR.get().asItem()).add(TofuBlocks.TOFU_STEM_DOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_DOOR.get().asItem()).add(TofuBlocks.LEEK_DOOR.get().asItem());
-		tag(ItemTags.DOORS).add(TofuBlocks.SPROUT_DOOR.get().asItem()).add(TofuBlocks.TOFU_STEM_DOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_DOOR.get().asItem()).add(TofuBlocks.LEEK_DOOR.get().asItem());
-		tag(ItemTags.WOODEN_TRAPDOORS).add(TofuBlocks.SPROUT_TRAPDOOR.get().asItem()).add(TofuBlocks.TOFU_STEM_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_TRAPDOOR.get().asItem());
-		tag(ItemTags.TRAPDOORS).add(TofuBlocks.SPROUT_TRAPDOOR.get().asItem()).add(TofuBlocks.TOFU_STEM_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.get().asItem()).add(TofuBlocks.LEEK_TRAPDOOR.get().asItem());
-		tag(ItemTags.WOODEN_PRESSURE_PLATES).add(TofuBlocks.SPROUT_PRESSURE_PLATE.get().asItem()).add(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.get().asItem()).add(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.get().asItem()).add(TofuBlocks.LEEK_PRESSURE_PLATE.get().asItem());
-		tag(ItemTags.WOODEN_BUTTONS).add(TofuBlocks.SPROUT_BUTTON.get().asItem()).add(TofuBlocks.TOFU_STEM_BUTTON.get().asItem()).add(TofuBlocks.LEEK_GREEN_BUTTON.get().asItem()).add(TofuBlocks.LEEK_BUTTON.get().asItem());
+		tag(ItemTags.VILLAGER_PLANTABLE_SEEDS).add(TofuItems.SEEDS_CHILI.getKey(), TofuItems.SEEDS_SOYBEANS.getKey());
+		tag(ItemTags.WOODEN_SLABS).add(TofuBlocks.SPROUT_PLANKS_SLAB.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_PLANKS_SLAB.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_PLANKS_SLAB.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.WOODEN_STAIRS).add(TofuBlocks.SPROUT_PLANKS_STAIR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_PLANKS_STAIR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_PLANKS_STAIR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.WOODEN_FENCES).add(TofuBlocks.SPROUT_FENCE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_FENCE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_FENCE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_FENCE.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.FENCE_GATES).add(TofuBlocks.SPROUT_FENCE_GATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_FENCE_GATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_FENCE_GATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_FENCE_GATE.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.WOODEN_DOORS).add(TofuBlocks.SPROUT_DOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_DOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_DOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_DOOR.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.WOODEN_TRAPDOORS).add(TofuBlocks.SPROUT_TRAPDOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_TRAPDOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_TRAPDOOR.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.WOODEN_PRESSURE_PLATES).add(TofuBlocks.SPROUT_PRESSURE_PLATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_PRESSURE_PLATE.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.WOODEN_BUTTONS).add(TofuBlocks.SPROUT_BUTTON.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_BUTTON.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_BUTTON.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_BUTTON.asItem().builtInRegistryHolder().key());
 
 
 		this.tag(ItemTags.WOODEN_SHELVES)
 				.add(
-						TofuBlocks.LEEK_GREEN_SHELF.get().asItem(),
-						TofuBlocks.LEEK_SHELF.get().asItem(),
-						TofuBlocks.TOFU_STEM_SHELF.get().asItem(),
-						TofuBlocks.SPROUT_SHELF.get().asItem()
+						TofuBlocks.LEEK_GREEN_SHELF.asItem().builtInRegistryHolder().key(),
+						TofuBlocks.LEEK_SHELF.asItem().builtInRegistryHolder().key(),
+						TofuBlocks.TOFU_STEM_SHELF.asItem().builtInRegistryHolder().key(),
+						TofuBlocks.SPROUT_SHELF.asItem().builtInRegistryHolder().key()
 				);
 		this.tag(ItemTags.SIGNS)
 				.add(
-						TofuBlocks.LEEK_SIGN.get().asItem(),
-						TofuBlocks.LEEK_GREEN_SIGN.get().asItem(),
-						TofuBlocks.TOFU_STEM_SIGN.get().asItem(),
-						TofuBlocks.SPROUT_SIGN.get().asItem()
+						TofuBlocks.LEEK_SIGN.asItem().builtInRegistryHolder().key(),
+						TofuBlocks.LEEK_GREEN_SIGN.asItem().builtInRegistryHolder().key(),
+						TofuBlocks.TOFU_STEM_SIGN.asItem().builtInRegistryHolder().key(),
+						TofuBlocks.SPROUT_SIGN.asItem().builtInRegistryHolder().key()
 				);
 		this.tag(ItemTags.HANGING_SIGNS)
 				.add(
-						TofuBlocks.LEEK_HANGING_SIGN.get().asItem(),
-						TofuBlocks.LEEK_GREEN_HANGING_SIGN.get().asItem(),
-						TofuBlocks.TOFU_STEM_HANGING_SIGN.get().asItem(),
-						TofuBlocks.SPROUT_HANGING_SIGN.get().asItem()
+						TofuBlocks.LEEK_HANGING_SIGN.asItem().builtInRegistryHolder().key(),
+						TofuBlocks.LEEK_GREEN_HANGING_SIGN.asItem().builtInRegistryHolder().key(),
+						TofuBlocks.TOFU_STEM_HANGING_SIGN.asItem().builtInRegistryHolder().key(),
+						TofuBlocks.SPROUT_HANGING_SIGN.asItem().builtInRegistryHolder().key()
 				);
 
-		this.tag(TofuTags.Items.STATUE_HAPPY).add(TofuItems.EDAMAME_TEMPLA.get(), TofuItems.ZUNDA_MOCHI.get(), TofuItems.ZUNDA_MANJU.get()
-				, TofuItems.KINAKO_MOCHI.get(), TofuItems.KINAKO_MANJU.get(), TofuItems.GOHEIMOCHI.get()
-				, TofuItems.RICE_SOBORO_TOFU.get()
-				, TofuItems.NANBANTOFU.get(), TofuItems.KOYADOFUSTEW.get(), TofuItems.MOYASHIITAME.get(), TofuItems.MOYASHIOHITASHI.get(), TofuItems.TOFUCOOKIE.get(), TofuItems.TOFUANNIN.get());
+		this.tag(TofuTags.Items.STATUE_HAPPY).add(TofuItems.EDAMAME_TEMPLA.getKey(), TofuItems.ZUNDA_MOCHI.getKey(), TofuItems.ZUNDA_MANJU.getKey()
+				, TofuItems.KINAKO_MOCHI.getKey(), TofuItems.KINAKO_MANJU.getKey(), TofuItems.GOHEIMOCHI.getKey()
+				, TofuItems.RICE_SOBORO_TOFU.getKey()
+				, TofuItems.NANBANTOFU.getKey(), TofuItems.KOYADOFUSTEW.getKey(), TofuItems.MOYASHIITAME.getKey(), TofuItems.MOYASHIOHITASHI.getKey(), TofuItems.TOFUCOOKIE.getKey(), TofuItems.TOFUANNIN.getKey());
 
-		this.tag(TofuTags.Items.TOFU_DIAMOND_ARMOR_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_HELMET.get(), TofuItems.TOFU_DIAMOND_CHESTPLATE.get(), TofuItems.TOFU_DIAMOND_LEGGINGS.get(), TofuItems.TOFU_DIAMOND_BOOTS.get());
-		this.tag(TofuTags.Items.TOFU_DIAMOND_SWORD_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_SWORD.get());
-		this.tag(TofuTags.Items.TOFU_DIAMOND_MINEABLE_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_PICKAXE.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_HOE.get());
+		this.tag(TofuTags.Items.TOFU_DIAMOND_ARMOR_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_HELMET.getKey(), TofuItems.TOFU_DIAMOND_CHESTPLATE.getKey(), TofuItems.TOFU_DIAMOND_LEGGINGS.getKey(), TofuItems.TOFU_DIAMOND_BOOTS.getKey());
+		this.tag(TofuTags.Items.TOFU_DIAMOND_SWORD_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_SWORD.getKey());
+		this.tag(TofuTags.Items.TOFU_DIAMOND_MINEABLE_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_PICKAXE.getKey()).add(TofuItems.TOFU_DIAMOND_SHOVEL.getKey()).add(TofuItems.TOFU_DIAMOND_HOE.getKey());
 
-		this.tag(TofuTags.Items.FUKUMAME_ENCHANTABLE).add(TofuItems.FUKUMAME.get()).add(TofuItems.NETHER_FUKUMAME.get()).add(TofuItems.SOUL_FUKUMAME.get());
+		this.tag(TofuTags.Items.FUKUMAME_ENCHANTABLE).add(TofuItems.FUKUMAME.getKey()).add(TofuItems.NETHER_FUKUMAME.getKey()).add(TofuItems.SOUL_FUKUMAME.getKey());
 
 		this.tag(ItemTags.DURABILITY_ENCHANTABLE).addTag(TofuTags.Items.FUKUMAME_ENCHANTABLE);
-		this.tag(ItemTags.HEAD_ARMOR).add(TofuItems.TOFU_KINU_HELMET.get()).add(TofuItems.TOFU_MOMEN_HELMET.get())
-				.add(TofuItems.TOFU_METAL_HELMET.get()).add(TofuItems.TOFU_DIAMOND_HELMET.get());
-		this.tag(ItemTags.CHEST_ARMOR).add(TofuItems.TOFU_KINU_CHESTPLATE.get()).add(TofuItems.TOFU_MOMEN_CHESTPLATE.get())
-				.add(TofuItems.TOFU_METAL_CHESTPLATE.get()).add(TofuItems.TOFU_DIAMOND_CHESTPLATE.get());
-		this.tag(ItemTags.LEG_ARMOR).add(TofuItems.TOFU_KINU_LEGGINGS.get()).add(TofuItems.TOFU_MOMEN_LEGGINGS.get())
-				.add(TofuItems.TOFU_METAL_LEGGINGS.get()).add(TofuItems.TOFU_DIAMOND_LEGGINGS.get());
-		this.tag(ItemTags.FOOT_ARMOR).add(TofuItems.TOFU_KINU_BOOTS.get()).add(TofuItems.TOFU_MOMEN_BOOTS.get())
-				.add(TofuItems.TOFU_METAL_BOOTS.get()).add(TofuItems.TOFU_DIAMOND_BOOTS.get());
-		this.tag(TofuTags.Items.TOFU_TOOL_MATERIAL).add(TofuItems.TOFUMOMEN.get(), TofuItems.TOFUKINU.get());
-		this.tag(TofuTags.Items.TOFU_SOLID_TOOL_MATERIAL).add(TofuItems.TOFUISHI.get());
-		this.tag(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL).add(TofuItems.TOFUMETAL.get());
-		this.tag(TofuTags.Items.TOFU_DIAMOND_TOOL_MATERIAL).add(TofuItems.TOFUDIAMOND.get());
+		this.tag(ItemTags.HEAD_ARMOR).add(TofuItems.TOFU_KINU_HELMET.getKey()).add(TofuItems.TOFU_MOMEN_HELMET.getKey())
+				.add(TofuItems.TOFU_METAL_HELMET.getKey()).add(TofuItems.TOFU_DIAMOND_HELMET.getKey());
+		this.tag(ItemTags.CHEST_ARMOR).add(TofuItems.TOFU_KINU_CHESTPLATE.getKey()).add(TofuItems.TOFU_MOMEN_CHESTPLATE.getKey())
+				.add(TofuItems.TOFU_METAL_CHESTPLATE.getKey()).add(TofuItems.TOFU_DIAMOND_CHESTPLATE.getKey());
+		this.tag(ItemTags.LEG_ARMOR).add(TofuItems.TOFU_KINU_LEGGINGS.getKey()).add(TofuItems.TOFU_MOMEN_LEGGINGS.getKey())
+				.add(TofuItems.TOFU_METAL_LEGGINGS.getKey()).add(TofuItems.TOFU_DIAMOND_LEGGINGS.getKey());
+		this.tag(ItemTags.FOOT_ARMOR).add(TofuItems.TOFU_KINU_BOOTS.getKey()).add(TofuItems.TOFU_MOMEN_BOOTS.getKey())
+				.add(TofuItems.TOFU_METAL_BOOTS.getKey()).add(TofuItems.TOFU_DIAMOND_BOOTS.getKey());
+		this.tag(TofuTags.Items.TOFU_TOOL_MATERIAL).add(TofuItems.TOFUMOMEN.getKey(), TofuItems.TOFUKINU.getKey());
+		this.tag(TofuTags.Items.TOFU_SOLID_TOOL_MATERIAL).add(TofuItems.TOFUISHI.getKey());
+		this.tag(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL).add(TofuItems.TOFUMETAL.getKey());
+		this.tag(TofuTags.Items.TOFU_DIAMOND_TOOL_MATERIAL).add(TofuItems.TOFUDIAMOND.getKey());
 
-		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_HELMET.get()).add(TofuItems.TOFU_MOMEN_HELMET.get())
-				.add(TofuItems.TOFU_METAL_HELMET.get()).add(TofuItems.TOFU_DIAMOND_HELMET.get());
-		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_CHESTPLATE.get()).add(TofuItems.TOFU_MOMEN_CHESTPLATE.get())
-				.add(TofuItems.TOFU_METAL_CHESTPLATE.get()).add(TofuItems.TOFU_DIAMOND_CHESTPLATE.get());
-		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_LEGGINGS.get()).add(TofuItems.TOFU_MOMEN_LEGGINGS.get())
-				.add(TofuItems.TOFU_METAL_LEGGINGS.get()).add(TofuItems.TOFU_DIAMOND_LEGGINGS.get());
-		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_BOOTS.get()).add(TofuItems.TOFU_MOMEN_BOOTS.get())
-				.add(TofuItems.TOFU_METAL_BOOTS.get()).add(TofuItems.TOFU_DIAMOND_BOOTS.get());
-		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_SWORD.get()).add(TofuItems.TOFU_MOMEN_SWORD.get())
-				.add(TofuItems.TOFU_METAL_SWORD.get()).add(TofuItems.TOFU_DIAMOND_SWORD.get());
-		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_AXE.get()).add(TofuItems.TOFU_MOMEN_AXE.get())
-				.add(TofuItems.TOFU_METAL_AXE.get()).add(TofuItems.TOFU_DIAMOND_AXE.get());
-		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_DIAMOND_PICKAXE.get()).add(TofuItems.TOFU_DIAMOND_PICKAXE.get())
-				.add(TofuItems.TOFU_DIAMOND_PICKAXE.get()).add(TofuItems.TOFU_DIAMOND_PICKAXE.get());
-		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_DIAMOND_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get())
-				.add(TofuItems.TOFU_DIAMOND_SHOVEL.get()).add(TofuItems.TOFU_DIAMOND_SHOVEL.get());
-		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.ZUNDA_BOW.get());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_HELMET.getKey()).add(TofuItems.TOFU_MOMEN_HELMET.getKey())
+				.add(TofuItems.TOFU_METAL_HELMET.getKey()).add(TofuItems.TOFU_DIAMOND_HELMET.getKey());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_CHESTPLATE.getKey()).add(TofuItems.TOFU_MOMEN_CHESTPLATE.getKey())
+				.add(TofuItems.TOFU_METAL_CHESTPLATE.getKey()).add(TofuItems.TOFU_DIAMOND_CHESTPLATE.getKey());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_LEGGINGS.getKey()).add(TofuItems.TOFU_MOMEN_LEGGINGS.getKey())
+				.add(TofuItems.TOFU_METAL_LEGGINGS.getKey()).add(TofuItems.TOFU_DIAMOND_LEGGINGS.getKey());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_BOOTS.getKey()).add(TofuItems.TOFU_MOMEN_BOOTS.getKey())
+				.add(TofuItems.TOFU_METAL_BOOTS.getKey()).add(TofuItems.TOFU_DIAMOND_BOOTS.getKey());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_SWORD.getKey()).add(TofuItems.TOFU_MOMEN_SWORD.getKey())
+				.add(TofuItems.TOFU_METAL_SWORD.getKey()).add(TofuItems.TOFU_DIAMOND_SWORD.getKey());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_AXE.getKey()).add(TofuItems.TOFU_MOMEN_AXE.getKey())
+				.add(TofuItems.TOFU_METAL_AXE.getKey()).add(TofuItems.TOFU_DIAMOND_AXE.getKey());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_DIAMOND_PICKAXE.getKey()).add(TofuItems.TOFU_DIAMOND_PICKAXE.getKey())
+				.add(TofuItems.TOFU_DIAMOND_PICKAXE.getKey()).add(TofuItems.TOFU_DIAMOND_PICKAXE.getKey());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_DIAMOND_SHOVEL.getKey()).add(TofuItems.TOFU_DIAMOND_SHOVEL.getKey())
+				.add(TofuItems.TOFU_DIAMOND_SHOVEL.getKey()).add(TofuItems.TOFU_DIAMOND_SHOVEL.getKey());
+		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.ZUNDA_BOW.getKey());
 
-		this.tag(ItemTags.CHICKEN_FOOD).add(TofuItems.SEEDS_RICE.get(), TofuItems.SOYBEAN_PARCHED.get());
-		this.tag(ItemTags.COW_FOOD).add(TofuItems.RICE.get());
-		this.tag(ItemTags.PARROT_FOOD).add(TofuItems.SEEDS_RICE.get(), TofuItems.SOYBEAN_PARCHED.get());
-		this.tag(ItemTags.SMALL_FLOWERS).add(TofuBlocks.TOFU_FLOWER.get().asItem());
+		this.tag(ItemTags.CHICKEN_FOOD).add(TofuItems.SEEDS_RICE.getKey(), TofuItems.SOYBEAN_PARCHED.getKey());
+		this.tag(ItemTags.COW_FOOD).add(TofuItems.RICE.getKey());
+		this.tag(ItemTags.PARROT_FOOD).add(TofuItems.SEEDS_RICE.getKey(), TofuItems.SOYBEAN_PARCHED.getKey());
 
-		this.tag(ItemTags.FOX_FOOD).add(TofuItems.OAGE.get());
-		this.tag(TofuTags.Items.TOFU_COW_FOOD).add(TofuItems.LEEK.get());
-		this.tag(TofuTags.Items.TOFU_PIG_FOOD).add(TofuItems.LEEK.get(), TofuItems.NATTO.get());
-		this.tag(TofuTags.Items.BITTERN).add(TofuItems.BITTERN_BOTTLE.get()).add(TofuItems.WARPED_BOTTLE.get()).add(TofuItems.CRIMSON_BOTTLE.get());
-		this.tag(ItemTags.BOOKSHELF_BOOKS).add(TofuItems.TOFU_CRAFTERS_BOOK.get());
-		this.tag(ItemTags.LECTERN_BOOKS).add(TofuItems.TOFU_CRAFTERS_BOOK.get());
-		this.tag(Tags.Items.MUSIC_DISCS).add(TofuItems.MUSIC_DISC_GREEN_BRANCH.get());
+		this.tag(ItemTags.FOX_FOOD).add(TofuItems.OAGE.getKey());
+		this.tag(TofuTags.Items.TOFU_COW_FOOD).add(TofuItems.LEEK.getKey());
+		this.tag(TofuTags.Items.TOFU_PIG_FOOD).add(TofuItems.LEEK.getKey(), TofuItems.NATTO.getKey());
+		this.tag(TofuTags.Items.BITTERN).add(TofuItems.BITTERN_BOTTLE.getKey()).add(TofuItems.WARPED_BOTTLE.getKey()).add(TofuItems.CRIMSON_BOTTLE.getKey());
+		this.tag(ItemTags.BOOKSHELF_BOOKS).add(TofuItems.TOFU_CRAFTERS_BOOK.getKey());
+		this.tag(ItemTags.LECTERN_BOOKS).add(TofuItems.TOFU_CRAFTERS_BOOK.getKey());
+		this.tag(Tags.Items.MUSIC_DISCS).add(TofuItems.MUSIC_DISC_GREEN_BRANCH.getKey());
 	}
 }
