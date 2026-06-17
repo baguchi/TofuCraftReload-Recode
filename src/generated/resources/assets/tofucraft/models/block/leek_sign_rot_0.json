@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_sign_rot_0",
+  "textures": {
+    "all": "tofucraft:block/leek_sign",
+    "particle": "tofucraft:block/leek_planks"
+  }
+}
