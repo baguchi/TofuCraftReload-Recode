@@ -207,7 +207,6 @@ public class TofuCraftReload {
 
 			TofuRecipePropertySets.addToMap();
 
-
 			TofuBlockSetTypes.init();
 			TofuAdvancements.init();
 			TofuItems.registerDispenserItem();

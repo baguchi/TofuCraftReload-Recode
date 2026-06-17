@@ -174,5 +174,15 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		this.tag(ItemTags.BOOKSHELF_BOOKS).add(TofuItems.TOFU_CRAFTERS_BOOK.getKey());
 		this.tag(ItemTags.LECTERN_BOOKS).add(TofuItems.TOFU_CRAFTERS_BOOK.getKey());
 		this.tag(Tags.Items.MUSIC_DISCS).add(TofuItems.MUSIC_DISC_GREEN_BRANCH.getKey());
+
+		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_BOUNCY)
+				.add(TofuBlocks.KINUTOFU.asItem().builtInRegistryHolder().key())
+				.add(TofuBlocks.MOMENTOFU.asItem().builtInRegistryHolder().key());
+		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_BOUNCY)
+				.add(TofuBlocks.ISHITOFU.asItem().builtInRegistryHolder().key())
+				.add(TofuBlocks.ISHITOFU_BRICK.asItem().builtInRegistryHolder().key())
+				.add(TofuBlocks.ISHITOFU_CHISELED_BRICK.asItem().builtInRegistryHolder().key())
+				.add(TofuBlocks.ISHITOFU_SMOOTH_BRICK.asItem().builtInRegistryHolder().key());
+		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_FLAT).add(TofuBlocks.DIAMONDTOFU.asItem().builtInRegistryHolder().key()).add(TofuBlocks.METALTOFU.asItem().builtInRegistryHolder().key());
 	}
 }
