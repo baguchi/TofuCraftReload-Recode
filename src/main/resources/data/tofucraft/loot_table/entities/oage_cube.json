@@ -13,7 +13,9 @@
               "condition": "minecraft:entity_properties",
               "entity": "this",
               "predicate": {
-                "nbt": "{Size:0}"
+                "minecraft:type_specific/cube_mob": {
+                  "size": 1
+                }
               }
             }
           ],

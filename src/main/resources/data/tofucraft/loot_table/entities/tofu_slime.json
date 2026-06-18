@@ -6,66 +6,70 @@
       "rolls": 1,
       "entries": [
         {
-          "type" : "item",
-          "name" : "tofucraft:tofukinu",
-          "conditions" : [
+          "type": "item",
+          "name": "tofucraft:tofukinu",
+          "conditions": [
             {
               "condition": "minecraft:entity_properties",
               "entity": "this",
               "predicate": {
-                "nbt": "{Size:0}"
-              }
-            },
-            {
-              "condition" : "minecraft:damage_source_properties",
-              "predicate" : {
-                "source_entity" : {
-                  "type" : "minecraft:frog"
+                "minecraft:type_specific/cube_mob": {
+                  "size": 1
                 }
               }
             },
             {
-              "condition" : "minecraft:inverted",
-              "term" : {
-                "condition" : "minecraft:entity_properties",
-                "entity" : "this",
-                "predicate" : {
-                  "nbt": "{ZundaConverting:1}"
+              "condition": "minecraft:damage_source_properties",
+              "predicate": {
+                "source_entity": {
+                  "minecraft:entity_type": "minecraft:frog"
+                }
+              }
+            },
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "minecraft:nbt": "{ZundaConverting:1}"
                 }
               }
             }
           ]
         },
         {
-          "type" : "item",
-          "name" : "tofucraft:tofukinu",
-          "conditions" : [
+          "type": "item",
+          "name": "tofucraft:tofukinu",
+          "conditions": [
             {
               "condition": "minecraft:entity_properties",
               "entity": "this",
               "predicate": {
-                "nbt": "{Size:0}"
+                "minecraft:type_specific/cube_mob": {
+                  "size": 1
+                }
               }
             },
             {
-              "condition" : "minecraft:inverted",
-              "term" : {
-                "condition" : "minecraft:damage_source_properties",
-                "predicate" : {
-                  "source_entity" : {
-                    "type" : "minecraft:frog"
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:damage_source_properties",
+                "predicate": {
+                  "source_entity": {
+                    "minecraft:entity_type": "minecraft:frog"
                   }
                 }
               }
             }
           ],
-          "weight" : 1,
-          "functions" : [
+          "weight": 1,
+          "functions": [
             {
-              "function" : "set_count",
-              "count" : {
-                "min" : 0,
-                "max" : 2
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 2
               }
             },
             {
@@ -78,54 +82,78 @@
               "function": "minecraft:enchanted_count_increase"
             },
             {
-              "function": "minecraft:furnace_smelt",
               "conditions": [
                 {
-                  "condition": "minecraft:entity_properties",
-                  "predicate": {
-                    "flags": {
-                      "is_on_fire" : true
+                  "condition": "minecraft:any_of",
+                  "terms": [
+                    {
+                      "condition": "minecraft:entity_properties",
+                      "entity": "this",
+                      "predicate": {
+                        "minecraft:flags": {
+                          "is_on_fire": true
+                        }
+                      }
+                    },
+                    {
+                      "condition": "minecraft:entity_properties",
+                      "entity": "direct_attacker",
+                      "predicate": {
+                        "minecraft:equipment": {
+                          "mainhand": {
+                            "predicates": {
+                              "minecraft:enchantments": [
+                                {
+                                  "enchantments": "#minecraft:smelts_loot"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
                     }
-                  },
-                  "entity" : "this"
+                  ]
                 }
-              ]
+              ],
+              "function": "minecraft:furnace_smelt"
             }
           ]
         }
       ]
     },
     {
-      "rolls" : 2,
-      "entries" : [
+      "rolls": 2,
+      "entries": [
         {
-          "type" : "minecraft:item",
-          "name" : "tofucraft:zundama",
-          "conditions" : [
+          "type": "minecraft:item",
+          "name": "tofucraft:zundama",
+          "conditions": [
             {
-              "condition" : "minecraft:entity_properties",
-              "entity" : "this",
-              "predicate" : {
-                "nbt": "{ZundaConverting:1}"
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "minecraft:nbt": "{ZundaConverting:1}"
               }
             },
             {
-              "condition" : "minecraft:damage_source_properties",
-              "predicate" : {
-                "source_entity" : {
-                  "type" : "minecraft:frog"
+              "condition": "minecraft:damage_source_properties",
+              "predicate": {
+                "source_entity": {
+                  "minecraft:entity_type": "minecraft:frog"
                 }
               }
             }
           ]
         }
       ],
-      "conditions" : [
+      "conditions": [
         {
-          "condition" : "minecraft:entity_properties",
-          "entity" : "this",
-          "predicate" : {
-            "nbt": "{Size:0}"
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:type_specific/cube_mob": {
+              "size": 1
+            }
           }
         }
       ]

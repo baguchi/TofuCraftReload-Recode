@@ -50,26 +50,6 @@
               "function": "minecraft:enchanted_count_increase"
             }
           ]
-        },
-        {
-          "type": "item",
-          "name": "tofucraft:soyball",
-          "weight": 1,
-          "conditions": [
-            {
-              "condition": "minecraft:killed_by_player"
-            },
-            {
-              "condition": "minecraft:random_chance_with_enchanted_bonus",
-              "enchanted_chance": {
-                "type": "minecraft:linear",
-                "base": 0.225,
-                "per_level_above_first": 0.01
-              },
-              "enchantment": "minecraft:looting",
-              "unenchanted_chance": 0.225
-            }
-          ]
         }
       ]
     }
