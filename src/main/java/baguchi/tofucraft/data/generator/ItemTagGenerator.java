@@ -5,16 +5,23 @@ import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.TagAppender;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagEntry;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ItemTagsProvider;
+import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ItemTagGenerator extends ItemTagsProvider {
-	public ItemTagGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-		super(packOutput, lookupProvider, TofuCraftReload.MODID);
+public class ItemTagGenerator extends BlockTagCopyingItemTagProvider {
+	public ItemTagGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTags) {
+		super(packOutput, lookupProvider, blockTags, TofuCraftReload.MODID);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -26,14 +33,14 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(TofuTags.Items.SOYMILK).addTag(TofuTags.Items.MILK_SOYMILK);
 		tag(TofuTags.Items.MILK_SOYMILK).add(TofuItems.SOYMILK_BUCKET.getKey(), TofuItems.SOYMILK_BOTTLE.getKey());
 		tag(TofuTags.Items.RICE).add(TofuItems.RICE.getKey());
-		tag(ItemTags.LOGS_THAT_BURN).add(TofuBlocks.SPROUT_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.TOFU_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.LEEK_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.LEEK_GREEN_STEM.asItem().builtInRegistryHolder().key());
-		tag(ItemTags.LOGS).add(TofuBlocks.SPROUT_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.TOFU_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.LEEK_STEM.asItem().builtInRegistryHolder().key(), TofuBlocks.LEEK_GREEN_STEM.asItem().builtInRegistryHolder().key());
-		tag(ItemTags.PLANKS).add(TofuBlocks.SPROUT_PLANKS.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_PLANKS.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_PLANKS.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_PLANKS.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.LOGS_THAT_BURN).add(TofuBlocks.SPROUT_STEM.asItem(), TofuBlocks.TOFU_STEM.asItem(), TofuBlocks.LEEK_STEM.asItem(), TofuBlocks.LEEK_GREEN_STEM.asItem());
+		tag(ItemTags.LOGS).add(TofuBlocks.SPROUT_STEM.asItem(), TofuBlocks.TOFU_STEM.asItem(), TofuBlocks.LEEK_STEM.asItem(), TofuBlocks.LEEK_GREEN_STEM.asItem());
+		tag(ItemTags.PLANKS).add(TofuBlocks.SPROUT_PLANKS.asItem()).add(TofuBlocks.TOFU_STEM_PLANKS.asItem()).add(TofuBlocks.LEEK_PLANKS.asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS.asItem());
 		tag(ItemTags.ARROWS).add(TofuItems.ZUNDA_ARROW.getKey());
 		tag(Tags.Items.SEEDS).add(TofuItems.SEEDS_CHILI.getKey(), TofuItems.SEEDS_SOYBEANS.getKey(), TofuItems.SEEDS_SOYBEANS_NETHER.getKey(), TofuItems.SEEDS_SOYBEANS_SOUL.getKey(), TofuItems.SEEDS_SOYBEANS_PALE.getKey(), TofuItems.SEEDS_SOYBEANS_PALE_GLOW.getKey(), TofuItems.SEEDS_RICE.getKey());
 
-		tag(TofuTags.Items.RICE_BLOCK).add(TofuBlocks.RICE_BLOCK.asItem().builtInRegistryHolder().key());
-		tag(TofuTags.Items.SOYBEANS_BLOCK).add(TofuBlocks.SOYBEANS_SEEDS_BLOCK.asItem().builtInRegistryHolder().key()).add(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.asItem().builtInRegistryHolder().key()).add(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.asItem().builtInRegistryHolder().key());
+		tag(TofuTags.Items.RICE_BLOCK).add(TofuBlocks.RICE_BLOCK.asItem());
+		tag(TofuTags.Items.SOYBEANS_BLOCK).add(TofuBlocks.SOYBEANS_SEEDS_BLOCK.asItem()).add(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.asItem()).add(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.asItem());
 		tag(Tags.Items.STORAGE_BLOCKS).addTags(TofuTags.Items.RICE_BLOCK).addTags(TofuTags.Items.SOYBEANS_BLOCK);
 		tag(ItemTags.METAL_NUGGETS).add(TofuItems.TOFU_METAL_NUGGET.getKey()).add(TofuItems.TOFUDIAMOND_NUGGET.getKey());
 
@@ -85,39 +92,39 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(ItemTags.TRIM_MATERIALS).add(TofuItems.ZUNDARUBY.getKey(), TofuItems.TOFUMETAL.getKey(), TofuItems.TOFUDIAMOND.getKey());
 		tag(ItemTags.BOATS).add(TofuItems.LEEK_BOAT.getKey(), TofuItems.LEEK_GREEN_BOAT.getKey(), TofuItems.TOFU_STEM_BOAT.getKey());
 		tag(ItemTags.CHEST_BOATS).add(TofuItems.LEEK_CHEST_BOAT.getKey(), TofuItems.LEEK_GREEN_CHEST_BOAT.getKey(), TofuItems.TOFU_STEM_CHEST_BOAT.getKey());
-		this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(TofuBlocks.TOFUSLATE.asItem().builtInRegistryHolder().key());
+		this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(TofuBlocks.TOFUSLATE.asItem());
 
 		tag(ItemTags.VILLAGER_PLANTABLE_SEEDS).add(TofuItems.SEEDS_CHILI.getKey(), TofuItems.SEEDS_SOYBEANS.getKey());
-		tag(ItemTags.WOODEN_SLABS).add(TofuBlocks.SPROUT_PLANKS_SLAB.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_PLANKS_SLAB.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_PLANKS_SLAB.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.asItem().builtInRegistryHolder().key());
-		tag(ItemTags.WOODEN_STAIRS).add(TofuBlocks.SPROUT_PLANKS_STAIR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_PLANKS_STAIR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_PLANKS_STAIR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.asItem().builtInRegistryHolder().key());
-		tag(ItemTags.WOODEN_FENCES).add(TofuBlocks.SPROUT_FENCE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_FENCE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_FENCE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_FENCE.asItem().builtInRegistryHolder().key());
-		tag(ItemTags.FENCE_GATES).add(TofuBlocks.SPROUT_FENCE_GATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_FENCE_GATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_FENCE_GATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_FENCE_GATE.asItem().builtInRegistryHolder().key());
-		tag(ItemTags.WOODEN_DOORS).add(TofuBlocks.SPROUT_DOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_DOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_DOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_DOOR.asItem().builtInRegistryHolder().key());
-		tag(ItemTags.WOODEN_TRAPDOORS).add(TofuBlocks.SPROUT_TRAPDOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_TRAPDOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_TRAPDOOR.asItem().builtInRegistryHolder().key());
-		tag(ItemTags.WOODEN_PRESSURE_PLATES).add(TofuBlocks.SPROUT_PRESSURE_PLATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_PRESSURE_PLATE.asItem().builtInRegistryHolder().key());
-		tag(ItemTags.WOODEN_BUTTONS).add(TofuBlocks.SPROUT_BUTTON.asItem().builtInRegistryHolder().key()).add(TofuBlocks.TOFU_STEM_BUTTON.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_GREEN_BUTTON.asItem().builtInRegistryHolder().key()).add(TofuBlocks.LEEK_BUTTON.asItem().builtInRegistryHolder().key());
+		tag(ItemTags.WOODEN_SLABS).add(TofuBlocks.SPROUT_PLANKS_SLAB.asItem()).add(TofuBlocks.TOFU_STEM_PLANKS_SLAB.asItem()).add(TofuBlocks.LEEK_PLANKS_SLAB.asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.asItem());
+		tag(ItemTags.WOODEN_STAIRS).add(TofuBlocks.SPROUT_PLANKS_STAIR.asItem()).add(TofuBlocks.TOFU_STEM_PLANKS_STAIR.asItem()).add(TofuBlocks.LEEK_PLANKS_STAIR.asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.asItem());
+		tag(ItemTags.WOODEN_FENCES).add(TofuBlocks.SPROUT_FENCE.asItem()).add(TofuBlocks.LEEK_FENCE.asItem()).add(TofuBlocks.LEEK_GREEN_FENCE.asItem()).add(TofuBlocks.TOFU_STEM_FENCE.asItem());
+		tag(ItemTags.FENCE_GATES).add(TofuBlocks.SPROUT_FENCE_GATE.asItem()).add(TofuBlocks.TOFU_STEM_FENCE_GATE.asItem()).add(TofuBlocks.LEEK_FENCE_GATE.asItem()).add(TofuBlocks.LEEK_GREEN_FENCE_GATE.asItem());
+		tag(ItemTags.WOODEN_DOORS).add(TofuBlocks.SPROUT_DOOR.asItem()).add(TofuBlocks.TOFU_STEM_DOOR.asItem()).add(TofuBlocks.LEEK_GREEN_DOOR.asItem()).add(TofuBlocks.LEEK_DOOR.asItem());
+		tag(ItemTags.WOODEN_TRAPDOORS).add(TofuBlocks.SPROUT_TRAPDOOR.asItem()).add(TofuBlocks.TOFU_STEM_TRAPDOOR.asItem()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.asItem()).add(TofuBlocks.LEEK_TRAPDOOR.asItem());
+		tag(ItemTags.WOODEN_PRESSURE_PLATES).add(TofuBlocks.SPROUT_PRESSURE_PLATE.asItem()).add(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.asItem()).add(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.asItem()).add(TofuBlocks.LEEK_PRESSURE_PLATE.asItem());
+		tag(ItemTags.WOODEN_BUTTONS).add(TofuBlocks.SPROUT_BUTTON.asItem()).add(TofuBlocks.TOFU_STEM_BUTTON.asItem()).add(TofuBlocks.LEEK_GREEN_BUTTON.asItem()).add(TofuBlocks.LEEK_BUTTON.asItem());
 
 
 		this.tag(ItemTags.WOODEN_SHELVES)
 				.add(
-						TofuBlocks.LEEK_GREEN_SHELF.asItem().builtInRegistryHolder().key(),
-						TofuBlocks.LEEK_SHELF.asItem().builtInRegistryHolder().key(),
-						TofuBlocks.TOFU_STEM_SHELF.asItem().builtInRegistryHolder().key(),
-						TofuBlocks.SPROUT_SHELF.asItem().builtInRegistryHolder().key()
+						TofuBlocks.LEEK_GREEN_SHELF.asItem(),
+						TofuBlocks.LEEK_SHELF.asItem(),
+						TofuBlocks.TOFU_STEM_SHELF.asItem(),
+						TofuBlocks.SPROUT_SHELF.asItem()
 				);
 		this.tag(ItemTags.SIGNS)
 				.add(
-						TofuBlocks.LEEK_SIGN.asItem().builtInRegistryHolder().key(),
-						TofuBlocks.LEEK_GREEN_SIGN.asItem().builtInRegistryHolder().key(),
-						TofuBlocks.TOFU_STEM_SIGN.asItem().builtInRegistryHolder().key(),
-						TofuBlocks.SPROUT_SIGN.asItem().builtInRegistryHolder().key()
+						TofuBlocks.LEEK_SIGN.asItem(),
+						TofuBlocks.LEEK_GREEN_SIGN.asItem(),
+						TofuBlocks.TOFU_STEM_SIGN.asItem(),
+						TofuBlocks.SPROUT_SIGN.asItem()
 				);
 		this.tag(ItemTags.HANGING_SIGNS)
 				.add(
-						TofuBlocks.LEEK_HANGING_SIGN.asItem().builtInRegistryHolder().key(),
-						TofuBlocks.LEEK_GREEN_HANGING_SIGN.asItem().builtInRegistryHolder().key(),
-						TofuBlocks.TOFU_STEM_HANGING_SIGN.asItem().builtInRegistryHolder().key(),
-						TofuBlocks.SPROUT_HANGING_SIGN.asItem().builtInRegistryHolder().key()
+						TofuBlocks.LEEK_HANGING_SIGN.asItem(),
+						TofuBlocks.LEEK_GREEN_HANGING_SIGN.asItem(),
+						TofuBlocks.TOFU_STEM_HANGING_SIGN.asItem(),
+						TofuBlocks.SPROUT_HANGING_SIGN.asItem()
 				);
 
 		this.tag(TofuTags.Items.STATUE_HAPPY).add(TofuItems.EDAMAME_TEMPLA.getKey(), TofuItems.ZUNDA_MOCHI.getKey(), TofuItems.ZUNDA_MANJU.getKey()
@@ -176,13 +183,75 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		this.tag(Tags.Items.MUSIC_DISCS).add(TofuItems.MUSIC_DISC_GREEN_BRANCH.getKey());
 
 		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_BOUNCY)
-				.add(TofuBlocks.KINUTOFU.asItem().builtInRegistryHolder().key())
-				.add(TofuBlocks.MOMENTOFU.asItem().builtInRegistryHolder().key());
+				.add(TofuBlocks.KINUTOFU.asItem())
+				.add(TofuBlocks.MOMENTOFU.asItem());
 		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_BOUNCY)
-				.add(TofuBlocks.ISHITOFU.asItem().builtInRegistryHolder().key())
-				.add(TofuBlocks.ISHITOFU_BRICK.asItem().builtInRegistryHolder().key())
-				.add(TofuBlocks.ISHITOFU_CHISELED_BRICK.asItem().builtInRegistryHolder().key())
-				.add(TofuBlocks.ISHITOFU_SMOOTH_BRICK.asItem().builtInRegistryHolder().key());
-		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_FLAT).add(TofuBlocks.DIAMONDTOFU.asItem().builtInRegistryHolder().key()).add(TofuBlocks.METALTOFU.asItem().builtInRegistryHolder().key());
+				.add(TofuBlocks.ISHITOFU.asItem())
+				.add(TofuBlocks.ISHITOFU_BRICK.asItem())
+				.add(TofuBlocks.ISHITOFU_CHISELED_BRICK.asItem())
+				.add(TofuBlocks.ISHITOFU_SMOOTH_BRICK.asItem());
+		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_FLAT).add(TofuBlocks.DIAMONDTOFU.asItem()).add(TofuBlocks.METALTOFU.asItem());
+	}
+
+	@Override
+	protected Appender tag(TagKey<Item> tag) {
+		return new Appender(super.tag(tag));
+	}
+
+	protected record Appender(TagAppender<Item> app) implements TagAppender<Item> {
+		@Override
+		public Appender add(ResourceKey<Item> element) {
+			app.add(element);
+			return this;
+		}
+
+		@Override
+		public Appender addOptional(ResourceKey<Item> element) {
+			app.addOptional(element);
+			return this;
+		}
+
+		@Override
+		public Appender addTag(TagKey<Item> tag) {
+			app.addTag(tag);
+			return this;
+		}
+
+		@Override
+		public Appender addOptionalTag(TagKey<Item> tag) {
+			app.addOptionalTag(tag);
+			return this;
+		}
+
+		@Override
+		public Appender add(TagEntry entry) {
+			app.add(entry);
+			return this;
+		}
+
+		@Override
+		public Appender replace(boolean value) {
+			app.replace(value);
+			return this;
+		}
+
+		@Override
+		public Appender remove(ResourceKey<Item> element) {
+			app.remove(element);
+			return this;
+		}
+
+		@Override
+		public Appender remove(TagKey<Item> tag) {
+			app.remove(tag);
+			return this;
+		}
+
+		public Appender add(Item... items) {
+			for (Item item : items) {
+				add(BuiltInRegistries.ITEM.wrapAsHolder(item).getKey());
+			}
+			return this;
+		}
 	}
 }

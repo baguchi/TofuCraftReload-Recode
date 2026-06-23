@@ -43,7 +43,7 @@ public class DataGenerators {
 
 		BlockTagsProvider blocktags = new BlockTagGenerator(packOutput, lookupProvider);
 		generator.addProvider(true, blocktags);
-		generator.addProvider(true, new ItemTagGenerator(packOutput, lookupProvider));
+		generator.addProvider(true, new ItemTagGenerator(packOutput, lookupProvider, blocktags.contentsGetter()));
 		generator.addProvider(true, new EntityTagGenerator(packOutput, lookupProvider));
 		generator.addProvider(true, new TofuDamageTypeTags(packOutput, lookupProvider));
 		generator.addProvider(true, new EnchantTagGenerator(packOutput, lookupProvider));
