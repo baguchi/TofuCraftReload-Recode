@@ -1,6 +1,8 @@
 {
   "values": [
     "tofucraft:block_tofu_diamond",
-    "tofucraft:block_tofu_metal"
+    "tofucraft:block_tofu_metal",
+    "tofucraft:zunda_alloy_tofu_block",
+    "tofucraft:tofu_gem_block"
   ]
 }

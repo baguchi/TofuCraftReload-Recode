@@ -90,58 +90,58 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.donateModelTo(TofuBlocks.KINUTOFU.get(), TofuBlocks.WAXED_KINUTOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_KINU.get())
 				.slab(TofuBlocks.TOFU_SLAB_KINU.get())
-				.wall(TofuBlocks.TOFUFENCE_KINU.get())
-				.door(TofuBlocks.TOFUDOOR_KINU.get())
-				.trapdoor(TofuBlocks.TOFUTRAPDOOR_KINU.get());
+				.wall(TofuBlocks.TOFU_FENCE_KINU.get())
+				.door(TofuBlocks.TOFU_DOOR_KINU.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_KINU.get());
 
 		family(TofuBlocks.MOMENTOFU.get())
 				.donateModelTo(TofuBlocks.MOMENTOFU.get(), TofuBlocks.WAXED_MOMENTOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_MOMEN.get())
 				.slab(TofuBlocks.TOFU_SLAB_MOMEN.get())
-				.wall(TofuBlocks.TOFUFENCE_MOMEN.get())
-				.door(TofuBlocks.TOFUDOOR_MOMEN.get())
-				.trapdoor(TofuBlocks.TOFUTRAPDOOR_MOMEN.get());
+				.wall(TofuBlocks.TOFU_FENCE_MOMEN.get())
+				.door(TofuBlocks.TOFU_DOOR_MOMEN.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_MOMEN.get());
 
 		family(TofuBlocks.ISHITOFU.get())
 				.donateModelTo(TofuBlocks.ISHITOFU.get(), TofuBlocks.WAXED_ISHITOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_ISHI.get())
 				.slab(TofuBlocks.TOFU_SLAB_ISHI.get())
-				.wall(TofuBlocks.TOFUFENCE_ISHI.get())
-				.door(TofuBlocks.TOFUDOOR_ISHI.get())
-				.trapdoor(TofuBlocks.TOFUTRAPDOOR_ISHI.get());
+				.wall(TofuBlocks.TOFU_FENCE_ISHI.get())
+				.door(TofuBlocks.TOFU_DOOR_ISHI.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_ISHI.get());
 
 		family(TofuBlocks.METALTOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_METAL.get())
 				.slab(TofuBlocks.TOFU_SLAB_METAL.get())
-				.wall(TofuBlocks.TOFUFENCE_METAL.get())
-				.door(TofuBlocks.TOFUDOOR_METAL.get())
-				.trapdoor(TofuBlocks.TOFUTRAPDOOR_METAL.get());
+				.wall(TofuBlocks.TOFU_FENCE_METAL.get())
+				.door(TofuBlocks.TOFU_DOOR_METAL.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_METAL.get());
 
 		family(TofuBlocks.HELLTOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_HELL.get())
 				.slab(TofuBlocks.TOFU_SLAB_HELL.get())
-				.wall(TofuBlocks.TOFUFENCE_HELL.get())
-				.door(TofuBlocks.TOFUDOOR_HELL.get())
-				.trapdoor(TofuBlocks.TOFUTRAPDOOR_HELL.get());
+				.wall(TofuBlocks.TOFU_FENCE_HELL.get())
+				.door(TofuBlocks.TOFU_DOOR_HELL.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_HELL.get());
 		family(TofuBlocks.SOULTOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_SOUL.get())
 				.slab(TofuBlocks.TOFU_SLAB_SOUL.get())
-				.wall(TofuBlocks.TOFUFENCE_SOUL.get())
-				.door(TofuBlocks.TOFUDOOR_SOUL.get())
-				.trapdoor(TofuBlocks.TOFUTRAPDOOR_SOUL.get());
+				.wall(TofuBlocks.TOFU_FENCE_SOUL.get())
+				.door(TofuBlocks.TOFU_DOOR_SOUL.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_SOUL.get());
 		familyWithExistingFullBlockWithTop(TofuBlocks.GRILLED_TOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_GRILLED.get())
 				.slab(TofuBlocks.TOFU_SLAB_GRILLED.get())
-				.wall(TofuBlocks.TOFUFENCE_GRILLED.get())
-				.door(TofuBlocks.TOFUDOOR_GRILLED.get())
-				.trapdoor(TofuBlocks.TOFUTRAPDOOR_GRILLED.get());
+				.wall(TofuBlocks.TOFU_FENCE_GRILLED.get())
+				.door(TofuBlocks.TOFU_DOOR_GRILLED.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_GRILLED.get());
 
 		family(TofuBlocks.ZUNDATOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_ZUNDA.get())
 				.slab(TofuBlocks.TOFU_SLAB_ZUNDA.get())
-				.wall(TofuBlocks.TOFUFENCE_ZUNDA.get())
-				.door(TofuBlocks.TOFUDOOR_ZUNDA.get())
-				.trapdoor(TofuBlocks.TOFUTRAPDOOR_ZUNDA.get());
+				.wall(TofuBlocks.TOFU_FENCE_ZUNDA.get())
+				.door(TofuBlocks.TOFU_DOOR_ZUNDA.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get());
 
 		family(TofuBlocks.ISHITOFU_BRICK.get())
 				.stairs(TofuBlocks.TOFU_STAIR_ISHIBRICK.get())

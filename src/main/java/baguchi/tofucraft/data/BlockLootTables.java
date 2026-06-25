@@ -202,32 +202,32 @@ public class BlockLootTables extends BlockLootSubProvider {
 		registerSlab(TofuBlocks.TOFU_SLAB_MISO.get());
 		registerSlab(TofuBlocks.TOFU_SLAB_DRIED.get());
 
-		dropSelf(TofuBlocks.TOFUFENCE_KINU.get());
-		dropSelf(TofuBlocks.TOFUFENCE_MOMEN.get());
-		dropSelf(TofuBlocks.TOFUFENCE_ISHI.get());
-		dropSelf(TofuBlocks.TOFUFENCE_METAL.get());
-		dropSelf(TofuBlocks.TOFUFENCE_HELL.get());
-		dropSelf(TofuBlocks.TOFUFENCE_SOUL.get());
-		dropSelf(TofuBlocks.TOFUFENCE_GRILLED.get());
-		dropSelf(TofuBlocks.TOFUFENCE_ZUNDA.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_KINU.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_MOMEN.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_ISHI.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_METAL.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_HELL.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_SOUL.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_GRILLED.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_ZUNDA.get());
 
-		this.add(TofuBlocks.TOFUDOOR_KINU.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
-		this.add(TofuBlocks.TOFUDOOR_MOMEN.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
-		this.add(TofuBlocks.TOFUDOOR_ISHI.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
-		this.add(TofuBlocks.TOFUDOOR_METAL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
-		this.add(TofuBlocks.TOFUDOOR_HELL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
-		this.add(TofuBlocks.TOFUDOOR_SOUL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
-		this.add(TofuBlocks.TOFUDOOR_GRILLED.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
-		this.add(TofuBlocks.TOFUDOOR_ZUNDA.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_KINU.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_MOMEN.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_ISHI.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_METAL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_HELL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_SOUL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_GRILLED.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_ZUNDA.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 
-		dropSelf(TofuBlocks.TOFUTRAPDOOR_KINU.get());
-		dropSelf(TofuBlocks.TOFUTRAPDOOR_MOMEN.get());
-		dropSelf(TofuBlocks.TOFUTRAPDOOR_ISHI.get());
-		dropSelf(TofuBlocks.TOFUTRAPDOOR_METAL.get());
-		dropSelf(TofuBlocks.TOFUTRAPDOOR_HELL.get());
-		dropSelf(TofuBlocks.TOFUTRAPDOOR_SOUL.get());
-		dropSelf(TofuBlocks.TOFUTRAPDOOR_GRILLED.get());
-		dropSelf(TofuBlocks.TOFUTRAPDOOR_ZUNDA.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_KINU.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_MOMEN.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_ISHI.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_METAL.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_HELL.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_SOUL.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_GRILLED.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get());
 
 		dropSelf(TofuBlocks.TOFU_TORCH_KINU.get());
 		dropSelf(TofuBlocks.TOFU_TORCH_MOMEN.get());
