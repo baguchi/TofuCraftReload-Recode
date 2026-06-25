@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "tofucraft:tofu_door_zunda",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "name": "tofucraft:tofu_door_zunda"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "tofucraft:blocks/tofu_door_zunda"
+}

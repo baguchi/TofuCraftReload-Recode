@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "tofucraft:block/tofudried_brick",
+    "side": "tofucraft:block/tofudried_brick",
+    "top": "tofucraft:block/tofudried_brick"
+  }
+}

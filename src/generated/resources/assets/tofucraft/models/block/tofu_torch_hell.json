@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_torch",
+  "textures": {
+    "torch": "tofucraft:block/tofu_torch_hell"
+  }
+}

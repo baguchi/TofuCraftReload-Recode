@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_block_tofu_momen": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:block_tofu_momen"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:tofu_trapdoor_momen"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_block_tofu_momen"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofu_trapdoor_momen"
+    ]
+  }
+}

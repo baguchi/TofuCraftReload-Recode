@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tofucraft:block/tofu_ladder_hell",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "tofucraft:block/tofu_ladder_hell"
+    },
+    "facing=south": {
+      "model": "tofucraft:block/tofu_ladder_hell",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "tofucraft:block/tofu_ladder_hell",
+      "y": 270
+    }
+  }
+}

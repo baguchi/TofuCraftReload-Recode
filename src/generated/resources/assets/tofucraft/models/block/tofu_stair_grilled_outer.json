@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "tofucraft:block/blocktofugrilled_top",
+    "side": "tofucraft:block/blocktofugrilled_top",
+    "top": "tofucraft:block/blocktofugrilled_top"
+  }
+}
