@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": "tofucraft:block_tofu_miso"
+  },
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "result": {
+    "count": 2,
+    "id": "tofucraft:tofu_trapdoor_miso"
+  }
+}
