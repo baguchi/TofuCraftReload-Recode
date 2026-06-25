@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tofucraft:block/tofu_stem_wall_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "tofucraft:block/tofu_stem_wall_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "tofucraft:block/tofu_stem_wall_sign"
+    },
+    "facing=west": {
+      "model": "tofucraft:block/tofu_stem_wall_sign",
+      "y": 90
+    }
+  }
+}

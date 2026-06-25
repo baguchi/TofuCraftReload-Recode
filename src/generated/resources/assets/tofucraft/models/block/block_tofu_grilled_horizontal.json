@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "tofucraft:block/block_tofu_grilled_top",
+    "side": "tofucraft:block/block_tofu_grilled_side"
+  }
+}
