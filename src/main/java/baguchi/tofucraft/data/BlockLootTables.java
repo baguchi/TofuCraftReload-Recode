@@ -210,6 +210,10 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFU_FENCE_SOUL.get());
 		dropSelf(TofuBlocks.TOFU_FENCE_GRILLED.get());
 		dropSelf(TofuBlocks.TOFU_FENCE_ZUNDA.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_MISO.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_DRIED.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_EGG.get());
+		dropSelf(TofuBlocks.TOFU_FENCE_SESAME.get());
 
 		this.add(TofuBlocks.TOFU_DOOR_KINU.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		this.add(TofuBlocks.TOFU_DOOR_MOMEN.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
@@ -219,6 +223,10 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.TOFU_DOOR_SOUL.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		this.add(TofuBlocks.TOFU_DOOR_GRILLED.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 		this.add(TofuBlocks.TOFU_DOOR_ZUNDA.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_MISO.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_DRIED.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_EGG.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
+		this.add(TofuBlocks.TOFU_DOOR_SESAME.get(), (block) -> createSinglePropConditionTable(block, DoorBlock.HALF, DoubleBlockHalf.LOWER));
 
 		dropSelf(TofuBlocks.TOFU_TRAPDOOR_KINU.get());
 		dropSelf(TofuBlocks.TOFU_TRAPDOOR_MOMEN.get());
@@ -228,6 +236,10 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFU_TRAPDOOR_SOUL.get());
 		dropSelf(TofuBlocks.TOFU_TRAPDOOR_GRILLED.get());
 		dropSelf(TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_MISO.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_DRIED.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_EGG.get());
+		dropSelf(TofuBlocks.TOFU_TRAPDOOR_SESAME.get());
 
 		dropSelf(TofuBlocks.TOFU_TORCH_KINU.get());
 		dropSelf(TofuBlocks.TOFU_TORCH_MOMEN.get());

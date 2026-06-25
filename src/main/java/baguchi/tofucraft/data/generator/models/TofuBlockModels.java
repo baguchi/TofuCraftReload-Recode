@@ -51,11 +51,17 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 
 		family(TofuBlocks.EGGTOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_EGG.get())
-				.slab(TofuBlocks.TOFU_SLAB_EGG.get());
+				.slab(TofuBlocks.TOFU_SLAB_EGG.get())
+				.wall(TofuBlocks.TOFU_FENCE_EGG.get())
+				.door(TofuBlocks.TOFU_DOOR_EGG.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_EGG.get());
 
 		family(TofuBlocks.SESAMETOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_SESAME.get())
-				.slab(TofuBlocks.TOFU_SLAB_SESAME.get());
+				.slab(TofuBlocks.TOFU_SLAB_SESAME.get())
+				.wall(TofuBlocks.TOFU_FENCE_SESAME.get())
+				.door(TofuBlocks.TOFU_DOOR_SESAME.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_SESAME.get());
 
 		family(TofuBlocks.EGGTOFU_BRICK.get())
 				.stairs(TofuBlocks.TOFU_STAIR_EGGBRICK.get())
@@ -149,11 +155,17 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 
 		family(TofuBlocks.MISOTOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_MISO.get())
-				.slab(TofuBlocks.TOFU_SLAB_MISO.get());
+				.slab(TofuBlocks.TOFU_SLAB_MISO.get())
+				.wall(TofuBlocks.TOFU_FENCE_MISO.get())
+				.door(TofuBlocks.TOFU_DOOR_MISO.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_MISO.get());
 
 		family(TofuBlocks.DRIEDTOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_DRIED.get())
-				.slab(TofuBlocks.TOFU_SLAB_DRIED.get());
+				.slab(TofuBlocks.TOFU_SLAB_DRIED.get())
+				.wall(TofuBlocks.TOFU_FENCE_DRIED.get())
+				.door(TofuBlocks.TOFU_DOOR_DRIED.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_DRIED.get());
 
 		this.createNormalTorch(TofuBlocks.TOFU_TORCH_KINU.get(), TofuBlocks.WALL_TOFU_TORCH_KINU.get());
 		this.createNormalTorch(TofuBlocks.TOFU_TORCH_MOMEN.get(), TofuBlocks.WALL_TOFU_TORCH_MOMEN.get());
