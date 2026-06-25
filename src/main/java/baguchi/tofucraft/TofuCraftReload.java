@@ -109,37 +109,7 @@ public class TofuCraftReload {
 
 		TofuBlocks.BLOCKS.register(modBus);
 		TofuItems.ITEMS.register(modBus);
-		TofuItems.ITEMS.addAlias(prefix("glassbowl"), prefix("glass_bowl"));
-		TofuItems.ITEMS.addAlias(prefix("tofudiamondnugget"), prefix("tofu_diamond_nugget"));
-
-		TofuItems.ITEMS.addAlias(prefix("bucket_soymilk"), prefix("soymilk_bucket"));
-		TofuItems.ITEMS.addAlias(prefix("bucket_soymilk_nether"), prefix("soymilk_nether_bucket"));
-		TofuItems.ITEMS.addAlias(prefix("bucket_soymilk_soul"), prefix("soymilk_bucket_soul"));
-		TofuItems.ITEMS.addAlias(prefix("bucket_bittern"), prefix("bittern_bucket"));
-		TofuItems.ITEMS.addAlias(prefix("bucket_doubanjiang"), prefix("doubanjiang_bucket"));
-
-
-		TofuItems.ITEMS.addAlias(prefix("soymilk"), prefix("soymilk_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_pudding"), prefix("soymilk_pudding_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_annin"), prefix("soymilk_annin_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_apple"), prefix("soymilk_apple_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_cocoa"), prefix("soymilk_cocoa_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_fruits"), prefix("soymilk_fruits_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_honey"), prefix("soymilk_honey_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_kinako"), prefix("soymilk_kinako_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_pumpkin"), prefix("soymilk_pumpkin_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_ramune"), prefix("soymilk_ramune_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_sakura"), prefix("soymilk_sakura_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_strawberry"), prefix("soymilk_strawberry_bottle"));
-		TofuItems.ITEMS.addAlias(prefix("soymilk_tea"), prefix("soymilk_tea_bottle"));
 		TofuEntityTypes.ENTITIES.register(modBus);
-		TofuEntityTypes.ENTITIES.addAlias(prefix("fukumame_thower"), prefix("fukumame_thrower"));
-		TofuEntityTypes.ENTITIES.addAlias(prefix("tofucow"), prefix("tofu_cow"));
-		TofuEntityTypes.ENTITIES.addAlias(prefix("tofupig"), prefix("tofu_pig"));
-		TofuEntityTypes.ENTITIES.addAlias(prefix("tofufish"), prefix("tofu_fish"));
-		TofuEntityTypes.ENTITIES.addAlias(prefix("tofuslime"), prefix("tofu_slime"));
-		TofuEntityTypes.ENTITIES.addAlias(prefix("tofucreeper"), prefix("tofu_creeper"));
-		TofuEntityTypes.ENTITIES.addAlias(prefix("tofuspider"), prefix("tofu_spider"));
 		TofuSensorTypes.SENSOR_TYPE.register(modBus);
 		TofuEnchantmentEffects.ENTITY_EFFECTS.register(modBus);
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
@@ -220,7 +190,7 @@ public class TofuCraftReload {
 
 			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.SAPLING_TOFU.get()), TofuBlocks.POTTED_TOFU_SAPLING);
 			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.SAPLING_APRICOT.get()), TofuBlocks.POTTED_APRICOT_SAPLING);
-			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.ZUNDATOFU_MUSHROOM.get()), TofuBlocks.POTTED_ZUNDA_TOFU_MUSHROOM);
+			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get()), TofuBlocks.POTTED_ZUNDA_TOFU_MUSHROOM);
 			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.LEEK.get()), TofuBlocks.POTTED_LEEK);
 			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.TOFU_FLOWER.get()), TofuBlocks.POTTED_TOFU_FLOWER);
 		});

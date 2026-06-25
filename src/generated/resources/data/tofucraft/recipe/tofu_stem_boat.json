@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "S": "tofucraft:tofustem_planks"
+    "S": "tofucraft:tofu_stem_planks"
   },
   "pattern": [
     "S S",

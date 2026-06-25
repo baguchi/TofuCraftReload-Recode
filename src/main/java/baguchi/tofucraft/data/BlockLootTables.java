@@ -133,7 +133,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.TOFU_GEM_BLOCK.get());
 		dropSelf(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());
 		dropSelf(TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get());
-		registerTofuDrop(TofuBlocks.GRILLEDTOFU.get(), TofuItems.TOFU_GRILLED.get());
+		registerTofuDrop(TofuBlocks.GRILLED_TOFU.get(), TofuItems.TOFU_GRILLED.get());
 		registerTofuDrop(TofuBlocks.ZUNDATOFU.get(), TofuItems.TOFU_ZUNDA.get());
 
 		dropSelf(TofuBlocks.ZUNDATOFU_BRICK.get());
@@ -312,8 +312,8 @@ public class BlockLootTables extends BlockLootSubProvider {
 		dropSelf(TofuBlocks.LEEK_SHELF.get());
 		dropSelf(TofuBlocks.LEEK_BUTTON.get());
 
-		dropSelf(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
-		this.add(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get(), createZundaMushroomDrop(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get(), TofuBlocks.ZUNDATOFU_MUSHROOM.get(), RARE_SAPLING_DROP_RATES));
+		dropSelf(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get());
+		this.add(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get(), createZundaMushroomDrop(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get(), TofuBlocks.ZUNDA_TOFU_MUSHROOM.get(), RARE_SAPLING_DROP_RATES));
 
 		registerTofuDrop(TofuBlocks.ISHI_TOFU_STEM.get(), TofuItems.TOFU_ISHI.get());
 

@@ -1,7 +1,7 @@
 {
   "processors": [
     {
-      "block": "tofucraft:tofustem",
+      "block": "tofucraft:tofu_stem",
       "processor_type": "bagus_lib:base",
       "replace_block": "tofucraft:leek_stem"
     }

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_blocktofugrilled": {
+    "has_block_tofu_grilled": {
       "conditions": {
         "items": [
           {
-            "items": "tofucraft:blocktofugrilled"
+            "items": "tofucraft:block_tofu_grilled"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_blocktofugrilled"
+      "has_block_tofu_grilled"
     ]
   ],
   "rewards": {

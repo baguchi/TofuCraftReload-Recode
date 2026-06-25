@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_attached_hanging_sign_rot_0",
-  "textures": {
-    "all": "tofucraft:block/tofustem_hanging_sign",
-    "particle": "minecraft:block/air"
-  }
-}

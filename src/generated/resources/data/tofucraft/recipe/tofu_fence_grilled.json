@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "M": "tofucraft:blocktofugrilled"
+    "M": "tofucraft:block_tofu_grilled"
   },
   "pattern": [
     "MMM",

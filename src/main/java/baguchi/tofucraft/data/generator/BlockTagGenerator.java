@@ -26,7 +26,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 	@Override
 	protected void addTags(HolderLookup.Provider p_256380_) {
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
-						, TofuBlocks.GRILLEDTOFU.get(), TofuBlocks.ZUNDATOFU.get()
+						, TofuBlocks.GRILLED_TOFU.get(), TofuBlocks.ZUNDATOFU.get()
 						, TofuBlocks.TOFU_STAIR_KINU.get(), TofuBlocks.TOFU_STAIR_MOMEN.get(), TofuBlocks.TOFU_STAIR_ZUNDA.get(), TofuBlocks.TOFU_STAIR_HELL.get(), TofuBlocks.TOFU_STAIR_SOUL.get()
 						, TofuBlocks.TOFU_SLAB_KINU.get(), TofuBlocks.TOFU_SLAB_MOMEN.get(), TofuBlocks.TOFU_SLAB_ZUNDA.get(), TofuBlocks.TOFU_SLAB_HELL.get(), TofuBlocks.TOFU_SLAB_SOUL.get()
 						, TofuBlocks.TOFU_LADDER_KINU.get(), TofuBlocks.TOFU_LADDER_MOMEN.get()
@@ -106,7 +106,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 
 		tag(TofuTags.Blocks.HAS_INFO).add(TofuBlocks.SALT_FURNACE.get()).add(TofuBlocks.SALTPAN.get());
 		tag(TofuTags.Blocks.PICKABLE_TOFU).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
-				, TofuBlocks.GRILLEDTOFU.get(), TofuBlocks.ZUNDATOFU.get(), TofuBlocks.MINCEDTOFU.get()).add(TofuBlocks.METALTOFU.get()).add(TofuBlocks.ISHITOFU.get());
+				, TofuBlocks.GRILLED_TOFU.get(), TofuBlocks.ZUNDATOFU.get(), TofuBlocks.MINCEDTOFU.get()).add(TofuBlocks.METALTOFU.get()).add(TofuBlocks.ISHITOFU.get());
 
 		tag(BlockTags.REPLACEABLE).add(TofuBlocks.LEEK.get()).add(TofuBlocks.TALL_LEEK.get());
 		tag(TofuTags.Blocks.TF_TRANSMITTER).addTag(BlockTags.REPLACEABLE).add(TofuBlocks.ANTENNA_BASIC.get()).add(TofuBlocks.ANTENNA_ADVANCE.get());
@@ -170,7 +170,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				.add(TofuBlocks.MINCEDTOFU.get());
 
 		this.tag(BlockTags.LEAVES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get());
-		this.tag(BlockTags.REPLACEABLE_BY_TREES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.LEEK.get(), TofuBlocks.TALL_LEEK.get()).add(TofuBlocks.ZUNDATOFU_MUSHROOM.get());
+		this.tag(BlockTags.REPLACEABLE_BY_TREES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.LEEK.get(), TofuBlocks.TALL_LEEK.get()).add(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get());
 		this.tag(BlockTags.COMPLETES_FIND_TREE_TUTORIAL).add(TofuBlocks.TOFU_STEM.get()).add(TofuBlocks.LEEK_STEM.get()).add(TofuBlocks.LEEK_GREEN_STEM.get());
 
 		tag(BlockTags.CROPS).add(TofuBlocks.RICE_CROP.get()).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get()).add(TofuBlocks.SOYBEAN_PALE.get()).add(TofuBlocks.LEEK_CROP.get());

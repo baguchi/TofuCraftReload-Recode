@@ -117,12 +117,12 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 
 			AdvancementHolder eat_tofu_block = Advancement.Builder.advancement()
 					.parent(make_tofu)
-					.display(TofuBlocks.GRILLEDTOFU.get(),
+					.display(TofuBlocks.GRILLED_TOFU.get(),
 							Component.translatable("advancements.tofucraft.eat_tofu_block.title"),
 							Component.translatable("advancements.tofucraft.eat_tofu_block.desc"),
 							null,
 							AdvancementType.CHALLENGE, true, true, true)
-					.addCriterion("has_item", ConsumeItemTrigger.TriggerInstance.usedItem(items, TofuBlocks.GRILLEDTOFU.get()))
+					.addCriterion("has_item", ConsumeItemTrigger.TriggerInstance.usedItem(items, TofuBlocks.GRILLED_TOFU.get()))
 					.rewards(AdvancementRewards.Builder.experience(50))
 					.save(consumer, "tofucraft:eat_tofu_block");
 

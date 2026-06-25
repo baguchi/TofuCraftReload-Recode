@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_wall_sign",
-  "textures": {
-    "all": "tofucraft:block/tofustem_sign",
-    "particle": "tofucraft:block/tofustem_planks"
-  }
-}

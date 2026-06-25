@@ -108,7 +108,7 @@ public class TofuWorldFeatures {
 
 		FeatureUtils.register(context, TOFU_BUILDING, TofuFeatures.TOFU_BUILDING.get(), new BlockStateConfiguration(TofuBlocks.TOFU_TERRAIN.get().defaultBlockState()));
 
-		FeatureUtils.register(context, ZUNDA_TOFU_MUSHROOM, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TofuBlocks.ZUNDATOFU_MUSHROOM.get())));
+		FeatureUtils.register(context, ZUNDA_TOFU_MUSHROOM, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get())));
 
 	}
 }

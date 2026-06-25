@@ -2,10 +2,10 @@
   "credit": "Made with Blockbench",
   "parent": "block/block",
   "textures": {
-    "0": "tofucraft:block/blocktofuishi",
-    "1": "tofucraft:block/blocktofumetal",
+    "0": "tofucraft:block/block_tofu_ishi",
+    "1": "tofucraft:block/block_tofu_metal",
     "2": "tofucraft:block/tofu_work_station",
-    "particle": "tofucraft:block/blocktofuishi"
+    "particle": "tofucraft:block/block_tofu_ishi"
   },
   "elements": [
     {

@@ -41,7 +41,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		createTrivialCube(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());
 		createTrivialCube(TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get());
 
-		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.GRILLEDTOFU.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
+		this.createRotatedPillarWithHorizontalVariant(TofuBlocks.GRILLED_TOFU.get(), TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
 
 		createTrivialCube(TofuBlocks.ZUNDATOFU_SMOOTH_BRICK.get());
 
@@ -129,7 +129,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.wall(TofuBlocks.TOFUFENCE_SOUL.get())
 				.door(TofuBlocks.TOFUDOOR_SOUL.get())
 				.trapdoor(TofuBlocks.TOFUTRAPDOOR_SOUL.get());
-		familyWithExistingFullBlockWithTop(TofuBlocks.GRILLEDTOFU.get())
+		familyWithExistingFullBlockWithTop(TofuBlocks.GRILLED_TOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_GRILLED.get())
 				.slab(TofuBlocks.TOFU_SLAB_GRILLED.get())
 				.wall(TofuBlocks.TOFUFENCE_GRILLED.get())
@@ -197,7 +197,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		this.createShelf(TofuBlocks.TOFU_STEM_SHELF.get(), TofuBlocks.TOFU_STEM.get());
 		this.createShelf(TofuBlocks.SPROUT_SHELF.get(), TofuBlocks.SPROUT_STEM.get());
 
-		this.createCrossBlockWithDefaultItem(TofuBlocks.ZUNDATOFU_MUSHROOM.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+		this.createCrossBlockWithDefaultItem(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		this.createTrivialCube(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get());
 		this.createCrossBlockWithDefaultItem(TofuBlocks.SAPLING_TOFU.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		createTrivialBlock(TofuBlocks.LEAVES_TOFU.get(), TexturedModel.LEAVES);
