@@ -26,7 +26,7 @@
         {
           "type": "minecraft:item",
           "weight": 8,
-          "name": "tofucraft:tofusesame",
+          "name": "tofucraft:tofu_sesame",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -41,7 +41,7 @@
         {
           "type": "minecraft:item",
           "weight": 8,
-          "name": "tofucraft:tofustrawberry",
+          "name": "tofucraft:tofu_strawberry",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -80,7 +80,7 @@
         {
           "type": "minecraft:item",
           "weight": 10,
-          "name": "tofucraft:tofumetal",
+          "name": "tofucraft:tofu_metal",
           "functions": [
             {
               "function": "minecraft:set_count",

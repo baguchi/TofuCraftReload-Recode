@@ -5,7 +5,7 @@
     "C": "tofucraft:tofu_core",
     "L": "tofucraft:tf_coil",
     "O": "tofucraft:tf_oscillator",
-    "T": "tofucraft:tofumetal"
+    "T": "tofucraft:tofu_metal"
   },
   "pattern": [
     "TTT",

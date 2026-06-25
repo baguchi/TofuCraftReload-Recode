@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "M": "tofucraft:tofumetal",
+    "M": "tofucraft:tofu_metal",
     "R": "tofucraft:tofu_gem_dust",
     "T": "tofucraft:tofugem"
   },

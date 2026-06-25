@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "M": "tofucraft:tofu_metal_nugget",
+    "M": "tofucraft:tofu__metal_nugget",
     "S": "minecraft:soul_torch"
   },
   "pattern": [

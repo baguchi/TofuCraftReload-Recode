@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "tofucraft:tofuminced",
+    "tofucraft:tofu_minced",
     "minecraft:cooked_porkchop",
     "minecraft:carrot",
     "tofucraft:bottle_soysause",

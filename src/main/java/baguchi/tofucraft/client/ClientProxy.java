@@ -43,8 +43,8 @@ public class ClientProxy {
 		Component dummy = Component.empty();
 
 		return new IndexBookComponent(Component.translatable("tofucraft.tofu_crafters_book.title"), List.of(
-				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU_CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display"), false),
-				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU_CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display2"), false),
+				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU__CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display"), false),
+				//new IndexBookComponent.IndexItem(Component.translatable(TofuItems.TOFU__CRAFTERS_BOOK.get().getDescriptionId()), TofuCraftReload.prefix("introduction_display2"), false),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.before_the_tofu.title"), TofuCraftReload.prefix("before_the_tofu"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BITTERN_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("bittern"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.once_tofu_made.title"), TofuCraftReload.prefix("once_tofu_made"), true),
@@ -71,8 +71,8 @@ public class ClientProxy {
 			DisplayBookComponent bittern = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuItems.BITTERN_BOTTLE.get().asItem().getDescriptionId()), 52, 75, 1.0F).itemDisplay(TofuItems.BITTERN_BOTTLE.get().getDefaultInstance(), 46, 20);
 			TextBookComponent about_bittern = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.about_bittern"), true, 100, 158);
 			TextBookComponent onceTofuMade = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.once_tofu_made"), true, 100, 158);
-			DisplayBookComponent nether_tofu = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuItems.TOFUHELL.get().asItem().getDescriptionId()), 52, 16, 1.0F).itemDisplay(TofuItems.TOFUHELL.get().getDefaultInstance(), 46, 26)
-					.textDisplay(Component.translatable(TofuItems.TOFUSOUL.get().asItem().getDescriptionId()), 52, 56, 1.0F).itemDisplay(TofuItems.TOFUSOUL.get().getDefaultInstance(), 46, 66);
+			DisplayBookComponent nether_tofu = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuItems.TOFU_HELL.get().asItem().getDescriptionId()), 52, 16, 1.0F).itemDisplay(TofuItems.TOFU_HELL.get().getDefaultInstance(), 46, 26)
+					.textDisplay(Component.translatable(TofuItems.TOFU_SOUL.get().asItem().getDescriptionId()), 52, 56, 1.0F).itemDisplay(TofuItems.TOFU_SOUL.get().getDefaultInstance(), 46, 66);
 
 			TextBookComponent aboutAnotherTofu = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.about_another_tofu"), false, 100, 158);
 			DisplayBookComponent soymilk = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuItems.SOYMILK_BOTTLE.get().asItem().getDescriptionId()), 52, 16, 1.0F).itemDisplay(TofuItems.SOYMILK_BOTTLE.get().getDefaultInstance(), 46, 26);

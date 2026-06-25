@@ -3,7 +3,7 @@
   "category": "food",
   "cookingtime": 600,
   "experience": 0.1,
-  "ingredient": "tofucraft:tofudried",
+  "ingredient": "tofucraft:tofu_dried",
   "result": {
     "id": "tofucraft:smoketofu"
   }

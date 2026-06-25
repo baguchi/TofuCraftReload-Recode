@@ -1,7 +1,7 @@
 {
   "type": "tofucraft:harder",
   "result": {
-    "id": "tofucraft:blocktofuishi"
+    "id": "tofucraft:block_tofu_ishi"
   },
-  "tofu": "tofucraft:blocktofumomen"
+  "tofu": "tofucraft:block_tofu_momen"
 }

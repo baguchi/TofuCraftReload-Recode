@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "tofucraft:tofuslab_driedbrick"
+    "#": "tofucraft:tofu_slab_driedbrick"
   },
   "pattern": [
     "#",

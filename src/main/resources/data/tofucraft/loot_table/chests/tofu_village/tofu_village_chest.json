@@ -11,7 +11,7 @@
         {
           "type" : "minecraft:item",
           "weight" : 15,
-          "name" : "tofucraft:tofugrilled",
+          "name": "tofucraft:tofu_grilled",
           "functions" : [
             {
               "function" : "minecraft:set_count",
@@ -26,7 +26,7 @@
         {
           "type" : "minecraft:item",
           "weight" : 15,
-          "name" : "tofucraft:tofucookie",
+          "name": "tofucraft:tofu_cookie",
           "functions" : [
             {
               "function" : "minecraft:set_count",

@@ -42,7 +42,7 @@ public class ItemTagGenerator extends BlockTagCopyingItemTagProvider {
 		tag(TofuTags.Items.RICE_BLOCK).add(TofuBlocks.RICE_BLOCK.asItem());
 		tag(TofuTags.Items.SOYBEANS_BLOCK).add(TofuBlocks.SOYBEANS_SEEDS_BLOCK.asItem()).add(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.asItem()).add(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.asItem());
 		tag(Tags.Items.STORAGE_BLOCKS).addTags(TofuTags.Items.RICE_BLOCK).addTags(TofuTags.Items.SOYBEANS_BLOCK);
-		tag(ItemTags.METAL_NUGGETS).add(TofuItems.TOFU_METAL_NUGGET.getKey()).add(TofuItems.TOFUDIAMOND_NUGGET.getKey());
+		tag(ItemTags.METAL_NUGGETS).add(TofuItems.TOFU_METAL_NUGGET.getKey()).add(TofuItems.TOFU_DIAMOND_NUGGET.getKey());
 
 		tag(ItemTags.SWORDS).add(TofuItems.ZUNDA_ALLOY_TOFU_SWORD.getKey()).add(TofuItems.TOFU_KINU_SWORD.getKey()).add(TofuItems.TOFU_MOMEN_SWORD.getKey()).add(TofuItems.TOFU_SOLID_SWORD.getKey()).add(TofuItems.TOFU_METAL_SWORD.getKey()).add(TofuItems.TOFU_DIAMOND_SWORD.getKey());
 		tag(ItemTags.PICKAXES).add(TofuItems.TOFU_KINU_PICKAXE.getKey()).add(TofuItems.TOFU_MOMEN_PICKAXE.getKey()).add(TofuItems.TOFU_SOLID_PICKAXE.getKey()).add(TofuItems.TOFU_METAL_PICKAXE.getKey()).add(TofuItems.TOFU_DIAMOND_PICKAXE.getKey());
@@ -86,10 +86,10 @@ public class ItemTagGenerator extends BlockTagCopyingItemTagProvider {
 		tag(TofuTags.Items.MISO).add(TofuItems.MISO.getKey());
 		tag(TofuTags.Items.SOYSAUCE_SOYSAUCE).add(TofuItems.BOTTLE_SOYSAUSE.getKey());
 		tag(TofuTags.Items.SOYSAUCE).addTag(TofuTags.Items.SOYSAUCE_SOYSAUCE);
-		tag(TofuTags.Items.TOFU).add(TofuItems.TOFUKINU.getKey()).add(TofuItems.TOFUMOMEN.getKey());
-		tag(TofuTags.Items.TOFU_FRIED).add(TofuItems.TOFUFRIED.getKey());
+		tag(TofuTags.Items.TOFU).add(TofuItems.TOFU_KINU.getKey()).add(TofuItems.TOFU_MOMEN.getKey());
+		tag(TofuTags.Items.TOFU_FRIED).add(TofuItems.TOFU_FRIED.getKey());
 		tag(ItemTags.PIGLIN_REPELLENTS).add(TofuItems.SOUL_FUKUMAME.getKey(), TofuItems.SOUL_MANJU.getKey(), TofuItems.SEEDS_SOYBEANS_SOUL.getKey());
-		tag(ItemTags.TRIM_MATERIALS).add(TofuItems.ZUNDARUBY.getKey(), TofuItems.TOFUMETAL.getKey(), TofuItems.TOFUDIAMOND.getKey());
+		tag(ItemTags.TRIM_MATERIALS).add(TofuItems.ZUNDARUBY.getKey(), TofuItems.TOFU_METAL.getKey(), TofuItems.TOFU_DIAMOND.getKey());
 		tag(ItemTags.BOATS).add(TofuItems.LEEK_BOAT.getKey(), TofuItems.LEEK_GREEN_BOAT.getKey(), TofuItems.TOFU_STEM_BOAT.getKey());
 		tag(ItemTags.CHEST_BOATS).add(TofuItems.LEEK_CHEST_BOAT.getKey(), TofuItems.LEEK_GREEN_CHEST_BOAT.getKey(), TofuItems.TOFU_STEM_CHEST_BOAT.getKey());
 		this.tag(ItemTags.STONE_CRAFTING_MATERIALS).add(TofuBlocks.TOFUSLATE.asItem());
@@ -130,7 +130,7 @@ public class ItemTagGenerator extends BlockTagCopyingItemTagProvider {
 		this.tag(TofuTags.Items.STATUE_HAPPY).add(TofuItems.EDAMAME_TEMPLA.getKey(), TofuItems.ZUNDA_MOCHI.getKey(), TofuItems.ZUNDA_MANJU.getKey()
 				, TofuItems.KINAKO_MOCHI.getKey(), TofuItems.KINAKO_MANJU.getKey(), TofuItems.GOHEIMOCHI.getKey()
 				, TofuItems.RICE_SOBORO_TOFU.getKey()
-				, TofuItems.NANBANTOFU.getKey(), TofuItems.KOYADOFUSTEW.getKey(), TofuItems.MOYASHIITAME.getKey(), TofuItems.MOYASHIOHITASHI.getKey(), TofuItems.TOFUCOOKIE.getKey(), TofuItems.TOFUANNIN.getKey());
+				, TofuItems.NANBANTOFU.getKey(), TofuItems.KOYADOFUSTEW.getKey(), TofuItems.MOYASHIITAME.getKey(), TofuItems.MOYASHIOHITASHI.getKey(), TofuItems.TOFUCOOKIE.getKey(), TofuItems.TOFU_ANNIN.getKey());
 
 		this.tag(TofuTags.Items.TOFU_DIAMOND_ARMOR_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_HELMET.getKey(), TofuItems.TOFU_DIAMOND_CHESTPLATE.getKey(), TofuItems.TOFU_DIAMOND_LEGGINGS.getKey(), TofuItems.TOFU_DIAMOND_BOOTS.getKey());
 		this.tag(TofuTags.Items.TOFU_DIAMOND_SWORD_ENCHANTABLE).add(TofuItems.TOFU_DIAMOND_SWORD.getKey());
@@ -147,10 +147,10 @@ public class ItemTagGenerator extends BlockTagCopyingItemTagProvider {
 				.add(TofuItems.TOFU_METAL_LEGGINGS.getKey()).add(TofuItems.TOFU_DIAMOND_LEGGINGS.getKey());
 		this.tag(ItemTags.FOOT_ARMOR).add(TofuItems.TOFU_KINU_BOOTS.getKey()).add(TofuItems.TOFU_MOMEN_BOOTS.getKey())
 				.add(TofuItems.TOFU_METAL_BOOTS.getKey()).add(TofuItems.TOFU_DIAMOND_BOOTS.getKey());
-		this.tag(TofuTags.Items.TOFU_TOOL_MATERIAL).add(TofuItems.TOFUMOMEN.getKey(), TofuItems.TOFUKINU.getKey());
-		this.tag(TofuTags.Items.TOFU_SOLID_TOOL_MATERIAL).add(TofuItems.TOFUISHI.getKey());
-		this.tag(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL).add(TofuItems.TOFUMETAL.getKey());
-		this.tag(TofuTags.Items.TOFU_DIAMOND_TOOL_MATERIAL).add(TofuItems.TOFUDIAMOND.getKey());
+		this.tag(TofuTags.Items.TOFU_TOOL_MATERIAL).add(TofuItems.TOFU_MOMEN.getKey(), TofuItems.TOFU_KINU.getKey());
+		this.tag(TofuTags.Items.TOFU_SOLID_TOOL_MATERIAL).add(TofuItems.TOFU_ISHI.getKey());
+		this.tag(TofuTags.Items.TOFU_METAL_TOOL_MATERIAL).add(TofuItems.TOFU_METAL.getKey());
+		this.tag(TofuTags.Items.TOFU_DIAMOND_TOOL_MATERIAL).add(TofuItems.TOFU_DIAMOND.getKey());
 
 		this.tag(TofuTags.Items.REPAIRABLE_TOFU).add(TofuItems.TOFU_KINU_HELMET.getKey()).add(TofuItems.TOFU_MOMEN_HELMET.getKey())
 				.add(TofuItems.TOFU_METAL_HELMET.getKey()).add(TofuItems.TOFU_DIAMOND_HELMET.getKey());

@@ -6,11 +6,11 @@
       "entries" : [
         {
           "type" : "minecraft:item",
-          "name" : "tofucraft:tofukinu"
+          "name": "tofucraft:tofu_kinu"
         },
         {
           "type" : "minecraft:item",
-          "name" : "tofucraft:tofuishi"
+          "name": "tofucraft:tofu_ishi"
         },
         {
           "type" : "minecraft:item",
@@ -22,11 +22,11 @@
         },
         {
           "type" : "minecraft:item",
-          "name" : "tofucraft:tofumetal"
+          "name": "tofucraft:tofu_metal"
         },
         {
           "type" : "minecraft:item",
-          "name" : "tofucraft:tofudiamond"
+          "name": "tofucraft:tofu_diamond"
         },
         {
           "type" : "minecraft:item",

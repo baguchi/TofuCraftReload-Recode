@@ -2,7 +2,7 @@
   "type": "minecraft:smoking",
   "category": "food",
   "experience": 0.1,
-  "ingredient": "tofucraft:blocktofumomen",
+  "ingredient": "tofucraft:block_tofu_momen",
   "result": {
     "id": "tofucraft:blocktofugrilled"
   }

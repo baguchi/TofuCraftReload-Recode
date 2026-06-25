@@ -1,9 +1,9 @@
 {
   "values": {
-    "tofucraft:blocktofuishi": {
+    "tofucraft:block_tofu_ishi": {
       "level": 3
     },
-    "tofucraft:blocktofumetal": {
+    "tofucraft:block_tofu_metal": {
       "level": 6
     }
   }

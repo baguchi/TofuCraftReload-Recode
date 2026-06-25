@@ -4,7 +4,7 @@
   "cook_time": 200,
   "experience": 0.4,
   "ingredients": [
-    "tofucraft:tofuslab_momen",
+    "tofucraft:tofu_slab_momen",
     "tofucraft:bottle_soyoil"
   ],
   "result": {

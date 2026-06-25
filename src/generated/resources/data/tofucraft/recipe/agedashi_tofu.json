@@ -4,7 +4,7 @@
   "cook_time": 200,
   "experience": 0.4,
   "ingredients": [
-    "tofucraft:tofufried_pouch",
+    "tofucraft:tofu_fried_pouch",
     "tofucraft:bottle_dashi",
     "tofucraft:bottle_soysause",
     "minecraft:bowl"

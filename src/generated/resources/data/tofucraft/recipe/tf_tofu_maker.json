@@ -4,7 +4,7 @@
   "key": {
     "C": "tofucraft:tofu_core",
     "L": "tofucraft:tf_coil",
-    "M": "tofucraft:blocktofumetal",
+    "M": "tofucraft:block_tofu_metal",
     "S": "tofucraft:soy_force_shard"
   },
   "pattern": [

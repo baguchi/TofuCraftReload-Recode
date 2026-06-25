@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "tofucraft:tofugrilled",
-    "tofucraft:tofugrilled",
+    "tofucraft:tofu_grilled",
+    "tofucraft:tofu_grilled",
     "minecraft:cooked_beef",
     "minecraft:bowl"
   ],

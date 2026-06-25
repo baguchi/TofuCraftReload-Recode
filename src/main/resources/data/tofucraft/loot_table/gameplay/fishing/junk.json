@@ -27,12 +27,12 @@
         },
         {
           "type": "minecraft:item",
-          "name": "tofucraft:tofukinu",
+          "name": "tofucraft:tofu_kinu",
           "weight": 10
         },
         {
           "type": "minecraft:item",
-          "name": "tofucraft:tofumomen",
+          "name": "tofucraft:tofu_momen",
           "weight": 10
         },
         {

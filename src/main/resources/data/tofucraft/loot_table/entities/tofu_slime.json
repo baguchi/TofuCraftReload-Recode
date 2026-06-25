@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "item",
-          "name": "tofucraft:tofukinu",
+          "name": "tofucraft:tofu_kinu",
           "conditions": [
             {
               "condition": "minecraft:entity_properties",
@@ -40,7 +40,7 @@
         },
         {
           "type": "item",
-          "name": "tofucraft:tofukinu",
+          "name": "tofucraft:tofu_kinu",
           "conditions": [
             {
               "condition": "minecraft:entity_properties",

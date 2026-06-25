@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "G": "tofucraft:tofugrilled",
+    "G": "tofucraft:tofu_grilled",
     "M": "tofucraft:tofuhamburg"
   },
   "pattern": [

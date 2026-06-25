@@ -48,35 +48,35 @@
     "tofucraft:seeds_soybeans_soul": {
       "chance": 0.3
     },
-    "tofucraft:tofuannin": {
+    "tofucraft:tofu_annin": {
+      "chance": 0.5
+    },
+    "tofucraft:tofu_dried": {
+      "chance": 0.3
+    },
+    "tofucraft:tofu_egg": {
+      "chance": 0.5
+    },
+    "tofucraft:tofu_fried": {
+      "chance": 0.5
+    },
+    "tofucraft:tofu_fried_pouch": {
+      "chance": 0.5
+    },
+    "tofucraft:tofu_kinu": {
+      "chance": 0.3
+    },
+    "tofucraft:tofu_miso": {
+      "chance": 0.5
+    },
+    "tofucraft:tofu_momen": {
+      "chance": 0.3
+    },
+    "tofucraft:tofu_zunda": {
       "chance": 0.5
     },
     "tofucraft:tofucookie": {
       "chance": 0.85
-    },
-    "tofucraft:tofudried": {
-      "chance": 0.3
-    },
-    "tofucraft:tofuegg": {
-      "chance": 0.5
-    },
-    "tofucraft:tofufried": {
-      "chance": 0.5
-    },
-    "tofucraft:tofufried_pouch": {
-      "chance": 0.5
-    },
-    "tofucraft:tofukinu": {
-      "chance": 0.3
-    },
-    "tofucraft:tofumiso": {
-      "chance": 0.5
-    },
-    "tofucraft:tofumomen": {
-      "chance": 0.3
-    },
-    "tofucraft:tofuzunda": {
-      "chance": 0.5
     },
     "tofucraft:zunda_mushroom_block": {
       "chance": 0.5

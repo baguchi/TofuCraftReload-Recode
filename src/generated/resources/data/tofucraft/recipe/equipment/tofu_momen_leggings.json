@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": "tofucraft:blocktofumomen"
+    "#": "tofucraft:block_tofu_momen"
   },
   "pattern": [
     "###",

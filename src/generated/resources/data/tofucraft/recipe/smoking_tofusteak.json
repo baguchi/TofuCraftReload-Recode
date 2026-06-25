@@ -2,7 +2,7 @@
   "type": "minecraft:smoking",
   "category": "food",
   "experience": 0.1,
-  "ingredient": "tofucraft:tofuishi",
+  "ingredient": "tofucraft:tofu_ishi",
   "result": {
     "id": "tofucraft:tofusteak"
   }

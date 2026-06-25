@@ -7,7 +7,7 @@
     "ground_state": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "tofucraft:blocktofuminced"
+        "Name": "tofucraft:block_tofu_minced"
       }
     },
     "replaceable": "#tofucraft:tofu_world_replaceable",

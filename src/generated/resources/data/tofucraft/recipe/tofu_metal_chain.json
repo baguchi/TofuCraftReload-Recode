@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "M": "tofucraft:tofumetal",
-    "N": "tofucraft:tofu_metal_nugget"
+    "M": "tofucraft:tofu_metal",
+    "N": "tofucraft:tofu__metal_nugget"
   },
   "pattern": [
     "N",

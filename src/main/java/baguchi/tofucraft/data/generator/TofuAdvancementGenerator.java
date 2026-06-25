@@ -99,7 +99,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 					.save(consumer, "tofucraft:bittern_bottle");
 			AdvancementHolder make_tofu = Advancement.Builder.advancement()
 					.parent(bittern_bottle)
-					.display(TofuItems.TOFUKINU.get(),
+					.display(TofuItems.TOFU_KINU.get(),
 							Component.translatable("advancements.tofucraft.make_tofu.title"),
 							Component.translatable("advancements.tofucraft.make_tofu.desc"),
 							null,
@@ -308,7 +308,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 			AdvancementHolder yearn_for_tofu_diamond = Advancement.Builder.advancement()
 					.parent(tofu_world)
 					.display(
-							TofuItems.TOFUDIAMOND.get(),
+							TofuItems.TOFU_DIAMOND.get(),
 							Component.translatable("advancements.tofucraft.yearn_for_tofu_diamond.title"),
 							Component.translatable("advancements.tofucraft.yearn_for_tofu_diamond.desc"),
 							null,
@@ -320,7 +320,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 					.addCriterion(
 							"tofu_diamond",
 							InventoryChangeTrigger.TriggerInstance.hasItems(
-									TofuItems.TOFUDIAMOND.get()
+									TofuItems.TOFU_DIAMOND.get()
 							)
 					)
 					.save(consumer, "tofucraft:yearn_for_tofu_diamond");

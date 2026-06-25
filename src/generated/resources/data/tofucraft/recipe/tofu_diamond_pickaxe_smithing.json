@@ -1,6 +1,6 @@
 {
   "type": "minecraft:smithing_transform",
-  "addition": "tofucraft:blocktofudiamond",
+  "addition": "tofucraft:block_tofu_diamond",
   "base": "tofucraft:tofu_metal_pickaxe",
   "result": {
     "id": "tofucraft:tofu_diamond_pickaxe"

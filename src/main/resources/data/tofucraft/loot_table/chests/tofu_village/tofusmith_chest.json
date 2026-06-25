@@ -21,7 +21,7 @@
               }
             }
           ],
-          "name": "tofucraft:tofugrilled"
+          "name": "tofucraft:tofu_grilled"
         },
         {
           "type": "minecraft:item",
@@ -36,7 +36,7 @@
               }
             }
           ],
-          "name": "tofucraft:tofuishi"
+          "name": "tofucraft:tofu_ishi"
         },
         {
           "type": "minecraft:item",
@@ -51,7 +51,7 @@
               }
             }
           ],
-          "name": "tofucraft:tofumetal"
+          "name": "tofucraft:tofu_metal"
         },
         {
           "type": "minecraft:item",

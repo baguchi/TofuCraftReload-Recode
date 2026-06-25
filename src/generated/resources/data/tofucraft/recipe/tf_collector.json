@@ -5,7 +5,7 @@
     "A": "tofucraft:adv_tofugem",
     "C": "tofucraft:tf_device",
     "H": "minecraft:hopper",
-    "M": "tofucraft:blocktofumetal"
+    "M": "tofucraft:block_tofu_metal"
   },
   "pattern": [
     "HCH",

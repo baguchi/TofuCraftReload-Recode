@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "tofucraft:tofukinu"
+    "#": "tofucraft:tofu_kinu"
   },
   "pattern": [
     "##",
     "##"
   ],
   "result": {
-    "id": "tofucraft:blocktofumomen"
+    "id": "tofucraft:block_tofu_momen"
   }
 }

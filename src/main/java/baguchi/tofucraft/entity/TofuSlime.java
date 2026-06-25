@@ -141,7 +141,7 @@ public class TofuSlime extends AbstractCubeMob {
 	}
 
 	protected void doZundaConversion() {
-		this.spawnAtLocation((ServerLevel) this.level(), new ItemStack(TofuItems.TOFUZUNDA.get(), 2 * getSize()));
+		this.spawnAtLocation((ServerLevel) this.level(), new ItemStack(TofuItems.TOFU_ZUNDA.get(), 2 * getSize()));
 		this.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED);
 		this.discard();
 	}
@@ -165,7 +165,7 @@ public class TofuSlime extends AbstractCubeMob {
 
 	@Override
 	protected ParticleOptions getParticleType() {
-		return new ItemParticleOption(ParticleTypes.ITEM, TofuItems.TOFUKINU.get());
+		return new ItemParticleOption(ParticleTypes.ITEM, TofuItems.TOFU_KINU.get());
 	}
 
 	public static boolean isDarkEnoughToSpawn(ServerLevelAccessor p_33009_, BlockPos p_33010_, RandomSource p_33011_) {

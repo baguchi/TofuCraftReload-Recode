@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "tofucraft:blocktofuminced"
+          "Name": "tofucraft:block_tofu_minced"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

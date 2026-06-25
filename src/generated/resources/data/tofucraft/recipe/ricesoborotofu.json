@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "tofucraft:onigiri",
-    "tofucraft:tofuminced",
+    "tofucraft:tofu_minced",
     "tofucraft:bottle_soysause",
     "tofucraft:leek",
     "tofucraft:ceramic_bowl"

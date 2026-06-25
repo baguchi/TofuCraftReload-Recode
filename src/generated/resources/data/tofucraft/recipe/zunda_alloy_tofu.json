@@ -5,8 +5,8 @@
   "ingredients": [
     "tofucraft:zunda_ingot",
     "tofucraft:zunda_ingot",
-    "tofucraft:tofumetal",
-    "tofucraft:tofumetal"
+    "tofucraft:tofu_metal",
+    "tofucraft:tofu_metal"
   ],
   "result": {
     "id": "tofucraft:zunda_alloy_tofu"

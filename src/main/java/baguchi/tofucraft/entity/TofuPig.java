@@ -82,25 +82,25 @@ public class TofuPig extends Pig implements ItemInteractable {
 	}
 
 	@Override
-	public InteractionResult mobInteract(Player p_28298_, InteractionHand p_28299_) {
-		ItemStack var3 = p_28298_.getItemInHand(p_28299_);
-		if (var3.is(TofuItems.TOFUMETAL.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
-			p_28298_.playSound(SoundEvents.ANVIL_USE, 1.0F, 1.0F);
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack var3 = player.getItemInHand(hand);
+		if (var3.is(TofuItems.TOFU_METAL.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
+			player.playSound(SoundEvents.ANVIL_USE, 1.0F, 1.0F);
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.METAL);
 			return InteractionResult.SUCCESS;
-		} else if (var3.is(TofuItems.TOFUGRILLED.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
-			p_28298_.playSound(SoundEvents.GENERIC_EAT.value(), 1.0F, 1.0F);
+		} else if (var3.is(TofuItems.TOFU_GRILLED.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
+			player.playSound(SoundEvents.GENERIC_EAT.value(), 1.0F, 1.0F);
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.GRILLED);
 			return InteractionResult.SUCCESS;
-		} else if (var3.is(TofuItems.TOFUZUNDA.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
-			p_28298_.playSound(SoundEvents.GENERIC_EAT.value(), 1.0F, 1.0F);
+		} else if (var3.is(TofuItems.TOFU_ZUNDA.get()) && !this.isBaby() && this.getTofuPigType().equals(TofuPigType.NORMAL)) {
+			player.playSound(SoundEvents.GENERIC_EAT.value(), 1.0F, 1.0F);
 			var3.shrink(1);
 			this.setTofuPigType(TofuPigType.ZUNDA);
 			return InteractionResult.SUCCESS;
 		} else {
-			return super.mobInteract(p_28298_, p_28299_);
+			return super.mobInteract(player, hand);
 		}
 	}
 

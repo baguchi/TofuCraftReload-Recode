@@ -2,8 +2,8 @@
   "type": "minecraft:smelting",
   "category": "food",
   "experience": 0.1,
-  "ingredient": "tofucraft:tofumomen",
+  "ingredient": "tofucraft:tofu_momen",
   "result": {
-    "id": "tofucraft:tofugrilled"
+    "id": "tofucraft:tofu_grilled"
   }
 }

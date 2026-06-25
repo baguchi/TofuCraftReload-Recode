@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "tofucraft:block/blocktofukinu"
+      "model": "tofucraft:block/block_tofu_kinu"
     }
   }
 }

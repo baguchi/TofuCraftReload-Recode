@@ -42,7 +42,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "tofucraft:tofumetal",
+          "name": "tofucraft:tofu_metal",
           "weight": 10
         },
         {
@@ -122,7 +122,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "tofucraft:tofudiamond",
+          "name": "tofucraft:tofu_diamond",
           "weight": 3
         },
         {
@@ -212,7 +212,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "tofucraft:tofutorch_ishi",
+          "name": "tofucraft:tofu_torch_ishi",
           "weight": 15
         }
       ],
