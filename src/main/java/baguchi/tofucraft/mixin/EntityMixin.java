@@ -40,15 +40,15 @@ public abstract class EntityMixin {
 		if (this.isPushedByFluid()) {
 			Entity entity = (Entity) (Object) this;
 			if (inSoymilk) {
-				this.fluidInteraction.applyCurrentTo(TofuTags.Fluids.SOYMILK, entity, 0.07);
+				this.fluidInteraction.applyCurrentTo(TofuTags.Fluids.SOYMILK, entity, 0.007F);
 			}
 
 			if (inWaterLike) {
-				this.fluidInteraction.applyCurrentTo(TofuTags.Fluids.WATER_LIKE, entity, 0.07);
+				this.fluidInteraction.applyCurrentTo(TofuTags.Fluids.WATER_LIKE, entity, 0.007F);
 			}
 
 			if (inLavaLike) {
-				double lavaFlowScale = this.level.environmentAttributes().getDimensionValue(EnvironmentAttributes.FAST_LAVA) ? 0.005 : 0.0023333333333333335;
+				double lavaFlowScale = this.level.environmentAttributes().getDimensionValue(EnvironmentAttributes.FAST_LAVA) ? 0.007 : 0.0023333333333333335;
 				this.fluidInteraction.applyCurrentTo(TofuTags.Fluids.DOUBANJIANG, entity, lavaFlowScale);
 			}
 		}
