@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data.generator;
+package baguchi.tofucraft.data.generator.tags;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuBiomes;
@@ -11,8 +11,8 @@ import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class BiomeTagGenerator extends BiomeTagsProvider {
-	public BiomeTagGenerator(PackOutput p_341093_, CompletableFuture<HolderLookup.Provider> p_341136_) {
+public class TofuBiomeTags extends BiomeTagsProvider {
+	public TofuBiomeTags(PackOutput p_341093_, CompletableFuture<HolderLookup.Provider> p_341136_) {
 		super(p_341093_, p_341136_, TofuCraftReload.MODID);
 	}
 

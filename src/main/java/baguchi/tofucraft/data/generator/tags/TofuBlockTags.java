@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data.generator;
+package baguchi.tofucraft.data.generator.tags;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -18,13 +18,15 @@ import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class BlockTagGenerator extends BlockTagsProvider {
-	public BlockTagGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+public class TofuBlockTags extends BlockTagsProvider {
+	public TofuBlockTags(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
 		super(packOutput, lookupProvider, TofuCraftReload.MODID);
 	}
 
 	@Override
 	protected void addTags(HolderLookup.Provider p_256380_) {
+		new TofuBlockItemTags(tagId -> TofuBlockItemTags.wrapForBlocks(this.tag(tagId.block()))).run();
+
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
 						, TofuBlocks.GRILLED_TOFU.get(), TofuBlocks.ZUNDATOFU.get()
 						, TofuBlocks.TOFU_STAIR_KINU.get(), TofuBlocks.TOFU_STAIR_MOMEN.get(), TofuBlocks.TOFU_STAIR_ZUNDA.get(), TofuBlocks.TOFU_STAIR_HELL.get(), TofuBlocks.TOFU_STAIR_SOUL.get()
@@ -94,8 +96,6 @@ public class BlockTagGenerator extends BlockTagsProvider {
 						TofuBlocks.TOFU_STEM_SHELF.get(),
 						TofuBlocks.SPROUT_SHELF.get()
 				);
-		tag(BlockTags.LANTERNS).add(TofuBlocks.TOFU_METAL_LANTERN.get()).add(TofuBlocks.TOFU_METAL_SOUL_LANTERN.get());
-		tag(BlockTags.CHAINS).add(TofuBlocks.TOFU_METAL_CHAIN.get());
 		tag(BlockTags.MINEABLE_WITH_HOE).add(TofuBlocks.GIANT_OKARA_DONUT.get()).add(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get()).add(TofuBlocks.RICE_ROOT.get(), TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.RICE_BLOCK.get(), TofuBlocks.SOYBEANS_SEEDS_BLOCK.get(), TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get(), TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get())
 				.add(TofuBlocks.SOY_CHEESE_BLOCK.get()).add(TofuBlocks.SOY_NETHER_CHEESE_BLOCK.get()).add(TofuBlocks.SOY_SOUL_CHEESE_BLOCK.get());
 
@@ -117,8 +117,6 @@ public class BlockTagGenerator extends BlockTagsProvider {
 
 		tag(BlockTags.ENABLES_BUBBLE_COLUMN_DRAG_DOWN).add(TofuBlocks.MABOU_TERRAIN.get());
 
-
-		tag(BlockTags.BEDS).add(TofuBlocks.TOFUBED.get());
 		tag(BlockTags.WALLS).add(TofuBlocks.TOFU_FENCE_KINU.get(), TofuBlocks.TOFU_FENCE_MOMEN.get(), TofuBlocks.TOFU_FENCE_HELL.get(), TofuBlocks.TOFU_FENCE_SOUL.get(), TofuBlocks.TOFU_FENCE_ISHI.get(), TofuBlocks.TOFU_FENCE_METAL.get())
 				.add(TofuBlocks.TOFU_FENCE_GRILLED.get(), TofuBlocks.TOFU_FENCE_ZUNDA.get())
 				.add(TofuBlocks.TOFU_FENCE_MISO.get(), TofuBlocks.TOFU_FENCE_DRIED.get())
@@ -127,37 +125,11 @@ public class BlockTagGenerator extends BlockTagsProvider {
 		tag(BlockTags.WITHER_IMMUNE).add(TofuBlocks.TOFU_BEDROCK.get());
 		tag(BlockTags.DRAGON_IMMUNE).add(TofuBlocks.TOFU_BEDROCK.get());
 		tag(BlockTags.FEATURES_CANNOT_REPLACE).add(TofuBlocks.TOFU_BEDROCK.get());
-		tag(BlockTags.TRAPDOORS).add(TofuBlocks.TOFU_TRAPDOOR_KINU.get(), TofuBlocks.TOFU_TRAPDOOR_MOMEN.get(), TofuBlocks.TOFU_TRAPDOOR_HELL.get(), TofuBlocks.TOFU_TRAPDOOR_SOUL.get(), TofuBlocks.TOFU_TRAPDOOR_ISHI.get(), TofuBlocks.TOFU_TRAPDOOR_METAL.get(), TofuBlocks.TOFU_TRAPDOOR_GRILLED.get(), TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get())
-				.add(TofuBlocks.TOFU_TRAPDOOR_MISO.get()).add(TofuBlocks.TOFU_TRAPDOOR_DRIED.get()).add(TofuBlocks.TOFU_TRAPDOOR_EGG.get()).add(TofuBlocks.TOFU_TRAPDOOR_SESAME.get());
-		tag(BlockTags.WOODEN_DOORS).add(TofuBlocks.TOFU_DOOR_KINU.get(), TofuBlocks.TOFU_DOOR_MOMEN.get(), TofuBlocks.TOFU_DOOR_HELL.get(), TofuBlocks.TOFU_DOOR_SOUL.get(), TofuBlocks.TOFU_DOOR_ISHI.get(), TofuBlocks.TOFU_DOOR_GRILLED.get(), TofuBlocks.TOFU_DOOR_ZUNDA.get())
-				.add(TofuBlocks.SPROUT_DOOR.get(), TofuBlocks.TOFU_STEM_DOOR.get(), TofuBlocks.LEEK_GREEN_DOOR.get(), TofuBlocks.LEEK_DOOR.get());
-		tag(BlockTags.DOORS).add(TofuBlocks.TOFU_DOOR_METAL.get()).add(TofuBlocks.TOFU_DOOR_KINU.get(), TofuBlocks.TOFU_DOOR_MOMEN.get(), TofuBlocks.TOFU_DOOR_HELL.get(), TofuBlocks.TOFU_DOOR_SOUL.get(), TofuBlocks.TOFU_DOOR_ISHI.get(), TofuBlocks.TOFU_DOOR_GRILLED.get(), TofuBlocks.TOFU_DOOR_ZUNDA.get())
-				.add(TofuBlocks.TOFU_DOOR_MISO.get()).add(TofuBlocks.TOFU_DOOR_DRIED.get()).add(TofuBlocks.TOFU_DOOR_EGG.get()).add(TofuBlocks.TOFU_DOOR_SESAME.get())
-				.add(TofuBlocks.SPROUT_DOOR.get(), TofuBlocks.TOFU_STEM_DOOR.get(), TofuBlocks.LEEK_GREEN_DOOR.get(), TofuBlocks.LEEK_DOOR.get());
 
-		this.tag(BlockTags.WOODEN_SHELVES)
-				.add(
-						TofuBlocks.LEEK_GREEN_SHELF.get(),
-						TofuBlocks.LEEK_SHELF.get(),
-						TofuBlocks.TOFU_STEM_SHELF.get()
-				);
-
-		tag(BlockTags.WOODEN_TRAPDOORS).add(TofuBlocks.TOFU_TRAPDOOR_KINU.get(), TofuBlocks.TOFU_TRAPDOOR_MOMEN.get(), TofuBlocks.TOFU_TRAPDOOR_HELL.get(), TofuBlocks.TOFU_TRAPDOOR_SOUL.get(), TofuBlocks.TOFU_TRAPDOOR_ISHI.get(), TofuBlocks.TOFU_TRAPDOOR_GRILLED.get(), TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get())
-				.add(TofuBlocks.SPROUT_TRAPDOOR.get(), TofuBlocks.TOFU_STEM_TRAPDOOR.get(), TofuBlocks.LEEK_GREEN_TRAPDOOR.get(), TofuBlocks.LEEK_TRAPDOOR.get());
-		tag(BlockTags.TRAPDOORS).add(TofuBlocks.TOFU_TRAPDOOR_METAL.get()).add(TofuBlocks.TOFU_TRAPDOOR_KINU.get(), TofuBlocks.TOFU_TRAPDOOR_MOMEN.get(), TofuBlocks.TOFU_TRAPDOOR_HELL.get(), TofuBlocks.TOFU_TRAPDOOR_SOUL.get(), TofuBlocks.TOFU_TRAPDOOR_ISHI.get(), TofuBlocks.TOFU_TRAPDOOR_GRILLED.get(), TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get())
-				.add(TofuBlocks.SPROUT_TRAPDOOR.get(), TofuBlocks.TOFU_STEM_TRAPDOOR.get(), TofuBlocks.LEEK_GREEN_TRAPDOOR.get(), TofuBlocks.LEEK_TRAPDOOR.get());
-
-		tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(TofuBlocks.SOULTOFU.get(), TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.get());
 		tag(BlockTags.INFINIBURN_OVERWORLD).add(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.get());
 
 		tag(BlockTags.SOUL_SPEED_BLOCKS).add(TofuBlocks.SOULTOFU.get());
 		tag(BlockTags.CAULDRONS).add(TofuBlocks.SOYMILK_CAULDRON.get(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get(), TofuBlocks.SOYMILK_SOUL_CAULDRON.get());
-
-		tag(BlockTags.PLANKS).add(TofuBlocks.SPROUT_PLANKS.get()).add(TofuBlocks.TOFU_STEM_PLANKS.get()).add(TofuBlocks.LEEK_PLANKS.get()).add(TofuBlocks.LEEK_GREEN_PLANKS.get());
-		tag(BlockTags.WOODEN_SLABS).add(TofuBlocks.SPROUT_PLANKS_SLAB.get()).add(TofuBlocks.TOFU_STEM_PLANKS_SLAB.get()).add(TofuBlocks.LEEK_PLANKS_SLAB.get()).add(TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get());
-		tag(BlockTags.WOODEN_STAIRS).add(TofuBlocks.SPROUT_PLANKS_STAIR.get()).add(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get()).add(TofuBlocks.LEEK_PLANKS_STAIR.get()).add(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get());
-		tag(BlockTags.WOODEN_FENCES).add(TofuBlocks.SPROUT_FENCE.get()).add(TofuBlocks.TOFU_STEM_FENCE.get()).add(TofuBlocks.LEEK_FENCE.get()).add(TofuBlocks.LEEK_GREEN_FENCE.get());
-		tag(BlockTags.FENCE_GATES).add(TofuBlocks.SPROUT_FENCE_GATE.get()).add(TofuBlocks.TOFU_STEM_FENCE_GATE.get()).add(TofuBlocks.LEEK_FENCE_GATE.get()).add(TofuBlocks.LEEK_GREEN_FENCE_GATE.get());
 
 		this.tag(BlockTags.FEATURES_CANNOT_REPLACE).add(TofuBlocks.TOFU_BEDROCK.get(), TofuBlocks.TOFUCHEST.get());
 		this.tag(BlockTags.PORTALS).add(TofuBlocks.TOFU_PORTAL.get());
@@ -177,9 +149,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
 				.addTag(TofuTags.Blocks.SUPPORTS_TOFU_PLANT)
 				.add(TofuBlocks.MINCEDTOFU.get());
 
-		this.tag(BlockTags.LEAVES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get());
 		this.tag(BlockTags.REPLACEABLE_BY_TREES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.LEEK.get(), TofuBlocks.TALL_LEEK.get()).add(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get());
-		this.tag(BlockTags.COMPLETES_FIND_TREE_TUTORIAL).add(TofuBlocks.TOFU_STEM.get()).add(TofuBlocks.LEEK_STEM.get()).add(TofuBlocks.LEEK_GREEN_STEM.get());
 
 		tag(BlockTags.CROPS).add(TofuBlocks.RICE_CROP.get()).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get()).add(TofuBlocks.SOYBEAN_PALE.get()).add(TofuBlocks.LEEK_CROP.get());
 

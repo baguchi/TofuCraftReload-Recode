@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data.generator;
+package baguchi.tofucraft.data.generator.tags;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.data.resources.TofuVillagerTrades;
@@ -21,7 +21,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CustomTagGenerator {
+public class TofuCustomTags {
 
 	public static class BannerPatternTagGenerator extends TagsProvider<BannerPattern> {
 

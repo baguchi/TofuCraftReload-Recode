@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data.generator;
+package baguchi.tofucraft.data.generator.tags;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuEnchantments;
@@ -11,8 +11,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 
 import java.util.concurrent.CompletableFuture;
 
-public class EnchantTagGenerator extends EnchantmentTagsProvider {
-	public EnchantTagGenerator(PackOutput p_341093_, CompletableFuture<HolderLookup.Provider> p_341136_) {
+public class TofuEnchantTags extends EnchantmentTagsProvider {
+	public TofuEnchantTags(PackOutput p_341093_, CompletableFuture<HolderLookup.Provider> p_341136_) {
 		super(p_341093_, p_341136_, TofuCraftReload.MODID);
 	}
 

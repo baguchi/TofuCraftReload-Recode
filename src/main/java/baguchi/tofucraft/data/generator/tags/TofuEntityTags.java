@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data.generator;
+package baguchi.tofucraft.data.generator.tags;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuEntityTypes;
@@ -12,8 +12,8 @@ import net.neoforged.neoforge.common.Tags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class EntityTagGenerator extends EntityTypeTagsProvider {
-	public EntityTagGenerator(PackOutput p_256095_, CompletableFuture<HolderLookup.Provider> p_256572_) {
+public class TofuEntityTags extends EntityTypeTagsProvider {
+	public TofuEntityTags(PackOutput p_256095_, CompletableFuture<HolderLookup.Provider> p_256572_) {
 		super(p_256095_, p_256572_, TofuCraftReload.MODID);
 	}
 
