@@ -161,6 +161,8 @@ public class TofuTags {
 
 	public static class Fluids {
 		public static final TagKey<Fluid> SOYMILK = tag("soymilk");
+		public static final TagKey<Fluid> DOUBANJIANG = tag("doubanjiang");
+		public static final TagKey<Fluid> WATER_LIKE = tag("water_like");
 
 		private static TagKey<Fluid> tag(String name) {
 			return FluidTags.create(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name));

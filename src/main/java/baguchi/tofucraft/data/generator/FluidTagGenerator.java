@@ -19,5 +19,9 @@ public class FluidTagGenerator extends FluidTagsProvider {
 	protected void addTags(HolderLookup.Provider p_255894_) {
 		this.tag(TofuTags.Fluids.SOYMILK).add(TofuFluids.SOYMILK.get(), TofuFluids.SOYMILK_HELL.get(), TofuFluids.SOYMILK_SOUL.get())
 				.add(TofuFluids.SOYMILK_FLOW.get(), TofuFluids.SOYMILK_HELL_FLOW.get(), TofuFluids.SOYMILK_SOUL_FLOW.get());
+		this.tag(TofuTags.Fluids.DOUBANJIANG).add(TofuFluids.DOUBANJIANG.get())
+				.add(TofuFluids.DOUBANJIANG_FLOW.get());
+		this.tag(TofuTags.Fluids.WATER_LIKE).add(TofuFluids.BITTERN.get())
+				.add(TofuFluids.BITTERN_FLOW.get());
 	}
 }
