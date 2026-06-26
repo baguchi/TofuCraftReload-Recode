@@ -14,6 +14,7 @@
     "LivingEntityMixin",
     "PlaceRecipeHelperMixin",
     "ServerLevelMixin",
+    "SwimMixin",
     "WardenAiMixin"
   ],
   "injectors": {
