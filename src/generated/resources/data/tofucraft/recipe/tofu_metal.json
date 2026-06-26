@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "tofucraft:tofu__metal_nugget"
+    "#": "tofucraft:tofu_metal_nugget"
   },
   "pattern": [
     "###",

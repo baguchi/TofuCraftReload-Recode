@@ -99,9 +99,9 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_MOMEN = ITEMS.registerItem("tofu_momen", (properties) -> new Item((properties).food(TofuFoods.TOFU, TofuConsumables.FAST_FOOD)));
 	public static final DeferredHolder<Item, Item> TOFU_ISHI = ITEMS.registerItem("tofu_ishi", (properties) -> new Item((properties).food(TofuFoods.ISHITOFU)));
 	public static final DeferredHolder<Item, Item> TOFU_METAL = ITEMS.registerItem("tofu_metal", (properties) -> new Item(properties.trimMaterial(TofuTrimMaterials.TOFU_METAL)));
-	public static final DeferredHolder<Item, Item> TOFU_METAL_NUGGET = ITEMS.registerItem("tofu__metal_nugget", Item::new);
+	public static final DeferredHolder<Item, Item> TOFU_METAL_NUGGET = ITEMS.registerItem("tofu_metal_nugget", Item::new);
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND = ITEMS.registerItem("tofu_diamond", (properties) -> new Item(properties.trimMaterial(TofuTrimMaterials.TOFU_DIAMOND)));
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_NUGGET = ITEMS.registerItem("tofu__diamond_nugget", Item::new);
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_NUGGET = ITEMS.registerItem("tofu_diamond_nugget", Item::new);
 	public static final DeferredHolder<Item, Item> TOFU_HELL = ITEMS.registerItem("tofu_hell", (properties) -> new Item((properties).food(TofuFoods.TOFUHELL, TofuConsumables.HELL_FOOD)));
 	public static final DeferredHolder<Item, Item> TOFU_SOUL = ITEMS.registerItem("tofu_soul", (properties) -> new Item((properties).food(TofuFoods.TOFUSOUL, TofuConsumables.SOUL_FOOD)));
 	public static final DeferredHolder<Item, Item> TOFU_GRILLED = ITEMS.registerItem("tofu_grilled", (properties) -> new Item((properties).food(TofuFoods.TOFUGRILLED, TofuConsumables.FAST_FOOD)));
