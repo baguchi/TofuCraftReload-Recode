@@ -2,7 +2,6 @@ package baguchi.tofucraft.entity;
 
 import baguchi.tofucraft.entity.path.SoymilkPathNavigation;
 import baguchi.tofucraft.registry.TofuFluidTypes;
-import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -34,22 +33,6 @@ public abstract class AbstractTofuFish extends AbstractFish {
 			super.travel(p_27490_);
 		}
 
-	}
-
-	@Override
-	public void tick() {
-		super.tick();
-		if (this.isEyeInFluid(TofuTags.Fluids.SOYMILK)) {
-			this.wasTouchingSoymilk = true;
-		} else {
-			this.wasTouchingSoymilk = false;
-		}
-	}
-
-	//override isInWater because most method using this
-	@Override
-	public boolean isInWater() {
-		return super.isInWater() || wasTouchingSoymilk;
 	}
 
 	@Override
