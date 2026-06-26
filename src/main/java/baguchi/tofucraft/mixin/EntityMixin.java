@@ -53,7 +53,7 @@ public abstract class EntityMixin {
 			}
 		}
 
-		if (!cir.getReturnValue() && (inSoymilk || inWaterLike || inLavaLike)) {
+		if (inSoymilk || inWaterLike || inLavaLike) {
 			cir.setReturnValue(true);
 		}
 	}
