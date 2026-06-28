@@ -4,10 +4,12 @@ import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuTags;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.extensions.ILivingEntityExtension;
 import org.spongepowered.asm.mixin.Mixin;
@@ -66,6 +68,16 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntityE
 			}
 		} else {
 			this.jumpInFluid(TofuFluids.BITTERN.get().getFluidType());
+		}
+	}
+
+	@WrapOperation(method = "baseTick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;isEyeInFluid(Lnet/minecraft/tags/TagKey;)Z"))
+	private boolean baseTick(LivingEntity livingEntity, TagKey<Fluid> type, Operation<Boolean> original) {
+		boolean isEyeInFluid = original.call(livingEntity, type);
+		if (!isEyeInFluid) {
+			return livingEntity.isEyeInFluid(TofuTags.Fluids.SOYMILK) || livingEntity.isEyeInFluid(TofuTags.Fluids.WATER_LIKE);
+		} else {
+			return true;
 		}
 	}
 
