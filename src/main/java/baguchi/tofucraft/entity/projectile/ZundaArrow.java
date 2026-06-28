@@ -78,8 +78,7 @@ public class ZundaArrow extends AbstractArrow {
 			Entity entity = p_36757_.getEntity();
 			Entity entity1 = this.getOwner();
 			float f = (float) this.getDeltaMovement().length();
-			//TODO BASE DAMAGE
-			double d0 = 2.0F;
+			double d0 = this.baseDamage;
 			DamageSource source = zundaAttack(this.getOwner());
 			if (this.level() instanceof ServerLevel serverlevel) {
 				if (this.getWeaponItem() != null) {
