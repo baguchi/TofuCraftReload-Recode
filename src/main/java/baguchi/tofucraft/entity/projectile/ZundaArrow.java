@@ -79,14 +79,15 @@ public class ZundaArrow extends AbstractArrow {
 			Entity entity1 = this.getOwner();
 			float f = (float) this.getDeltaMovement().length();
 			//TODO BASE DAMAGE
-			double d0 = 2.0F;
+			double d0 = this.baseDamage;
+
 			DamageSource source = zundaAttack(this.getOwner());
 			if (this.level() instanceof ServerLevel serverlevel) {
 				if (this.getWeaponItem() != null) {
 					d0 = (double) EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, source, (float) d0);
 				}
 				int i = entity.getRemainingFireTicks();
-				int j = Mth.ceil(Mth.clamp((double) f * d0, 0.0, 2.147483647E9));
+				int j = Mth.ceil(Mth.clamp((double) f * d0, 0.0, (double) Integer.MAX_VALUE));
 
 				if (this.isCritArrow()) {
 					long k = this.random.nextInt(j / 2 + 2);
