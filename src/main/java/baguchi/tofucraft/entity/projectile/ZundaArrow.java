@@ -85,7 +85,7 @@ public class ZundaArrow extends AbstractArrow {
 					d0 = (double) EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, source, (float) d0);
 				}
 				int i = entity.getRemainingFireTicks();
-				int j = Mth.ceil(Mth.clamp((double) f * d0, 0.0, 2.147483647E9));
+				int j = Mth.ceil(Mth.clamp((double) f * d0, 0.0, (double) Integer.MAX_VALUE));
 
 				if (this.isCritArrow()) {
 					long k = this.random.nextInt(j / 2 + 2);
