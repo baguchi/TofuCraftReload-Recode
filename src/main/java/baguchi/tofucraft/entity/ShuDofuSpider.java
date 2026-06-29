@@ -305,7 +305,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 		if (!this.level().isClientSide()) {
 			if (this.isAlive() && this.rangedDamageReceived > 0.0F && this.tickCount % 80 == 0) {
-				this.rangedDamageReceived = Mth.clamp(this.rangedDamageReceived - 4.0F, 0, 60);
+				this.rangedDamageReceived = Mth.clamp(this.rangedDamageReceived - 4.0F, 0, this.getMaxHealth());
 			}
 
 			if (this.isAlive() && !this.isGraspAnim() && this.isAttackAnim() && this.getTarget() != null) {
@@ -661,7 +661,9 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	protected void checkGraspAttack(AABB p_21072_, AABB p_21073_) {
 		AABB aabb = p_21072_.minmax(p_21073_);
 		List<Entity> list = this.level().getEntities(this, aabb);
-		if (!list.isEmpty()) {
+		if (!this.getPassengers().isEmpty()) {
+			this.graspAttack(this.getFirstPassenger());
+		} else if (!list.isEmpty()) {
 			for (Entity entity : list) {
 				if (entity != this && !(entity instanceof PartEntity<?>) && entity.isAttackable() && (!(entity instanceof LivingEntity livingEntity) || this.canAttack(livingEntity)) && !(entity instanceof NattoCobWebEntity)) {
 					this.graspAttack(entity);
@@ -674,17 +676,17 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	public void graspAttack(Entity entity) {
 		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 		if (this.level() instanceof ServerLevel serverLevel) {
-			if (entity.hurtServer(serverLevel, this.damageSources().mobAttack(this), f * 0.2F)) {
-				this.heal(f * 0.2F);
+			if (entity.hurtServer(serverLevel, this.damageSources().mobAttack(this), f * 0.1F)) {
+				this.heal(f * 0.1F);
 			}
 		}
 		if (entity instanceof LivingEntity && !entity.is(Tags.EntityTypes.BOSSES)) {
-				if (this.getPassengers().isEmpty()) {
-					entity.stopRiding();
-					entity.startRiding(this, true, false);
-				}
+			if (this.getPassengers().isEmpty()) {
+				entity.stopRiding();
+				entity.startRiding(this, true, false);
 			}
-			this.setSprinting(false);
+		}
+		this.setSprinting(false);
 	}
 
 	protected void playStepSound(BlockPos p_33804_, BlockState p_33805_) {
@@ -835,16 +837,16 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
 		}
 
-		if (this.isGraspAnim()) {
+		if (this.isGraspAnim() && this.getPassengers().isEmpty()) {
 			this.graspDamageReceived = this.graspDamageReceived + pastHealth - this.getHealth();
-			if (this.graspDamageReceived > 0.1F * this.getMaxHealth()) {
+			if (this.graspDamageReceived > 0.05F * this.getMaxHealth()) {
 				this.graspDamageReceived = 0.0F;
 				this.setGraspAnimation(false);
 				this.attackTime = -60;
 			}
 		} else {
 			this.rangedDamageReceived = this.rangedDamageReceived + pastHealth - this.getHealth();
-			if (this.rangedDamageReceived > 40) {
+			if (this.rangedDamageReceived > 0.2F * this.getMaxHealth()) {
 				this.rangedDamageReceived = 0.0F;
 				this.attackTime = -80;
 				this.rangedTime = -120;
