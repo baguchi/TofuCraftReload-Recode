@@ -1,5 +1,6 @@
 package baguchi.tofucraft.entity.projectile;
 
+import baguchi.tofucraft.registry.TofuEffects;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -88,6 +89,7 @@ public class NattoBallEntity extends ThrowableProjectile {
 				areaeffectcloud.setRadius(this.isSmall() ? 1.25F : 3.0F);
 				areaeffectcloud.setDuration(this.isSmall() ? 80 : 200);
 				areaeffectcloud.addEffect(new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 1, 1));
+				areaeffectcloud.addEffect(new MobEffectInstance(TofuEffects.COUGH, 100, 0));
 				if (!list.isEmpty()) {
 					for (LivingEntity livingentity : list) {
 						double d0 = this.distanceToSqr(livingentity);
