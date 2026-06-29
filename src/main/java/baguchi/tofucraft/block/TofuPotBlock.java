@@ -58,7 +58,7 @@ public class TofuPotBlock extends BaseEntityBlock {
 		BlockEntity tileEntity = level.getBlockEntity(pos);
 		if (tileEntity instanceof TofuPotBlockEntity) {
 
-			if (FluidUtil.interactWithFluidHandler(player, hand, level, pos, null)) {
+			if (FluidUtil.interactWithFluidHandler(player, hand, level, pos, null, null)) {
 				return InteractionResult.SUCCESS;
 			}
 		}

@@ -81,7 +81,7 @@ public class TFStorageBlock extends TFBaseEntityBlock {
 		ItemStack stack = p_48709_.getItemInHand(p_48710_);
 		BlockEntity blockentity = p_48707_.getBlockEntity(p_48708_);
 		if (blockentity instanceof TFStorageBlockEntity) {
-			if (FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, p_48707_, p_48708_, null)) {
+			if (FluidUtil.interactWithFluidHandler(p_48709_, p_48710_, p_48707_, p_48708_, null, null)) {
 				flag = true;
 			}
 		}
