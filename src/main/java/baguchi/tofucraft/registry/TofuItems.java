@@ -2,7 +2,7 @@ package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.api.tfenergy.TFEnergyData;
-import baguchi.tofucraft.data.generator.CustomTagGenerator;
+import baguchi.tofucraft.data.generator.tags.TofuCustomTags;
 import baguchi.tofucraft.datamap.TofuHarden;
 import baguchi.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
 import baguchi.tofucraft.item.ApricotItem;
@@ -508,7 +508,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> SOY_KARAAGE = ITEMS.registerItem("soy_karaage", (properties) -> new Item((properties).food(TofuFoods.SOY_KARAAGE)));
 	public static final DeferredHolder<Item, Item> SOYMEATDON = ITEMS.registerItem("soymeatdon", (properties) -> new Item((properties).craftRemainder(TofuItems.CERAMIC_BOWL.get()).usingConvertsTo(TofuItems.CERAMIC_BOWL.get()).food(TofuFoods.SOYMEATDON)));
 
-	public static final DeferredHolder<Item, Item> TOFUNIAN_BANNER_PATTERN = ITEMS.registerItem("tofunian_banner_pattern", (properties) -> new Item(properties.stacksTo(1).delayedComponent(DataComponents.PROVIDES_BANNER_PATTERNS, (context) -> context.getOrThrow(CustomTagGenerator.BannerPatternTagGenerator.TOFUNIAN_BANNER_PATTERN)).rarity(Rarity.RARE).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
+	public static final DeferredHolder<Item, Item> TOFUNIAN_BANNER_PATTERN = ITEMS.registerItem("tofunian_banner_pattern", (properties) -> new Item(properties.stacksTo(1).delayedComponent(DataComponents.PROVIDES_BANNER_PATTERNS, (context) -> context.getOrThrow(TofuCustomTags.BannerPatternTagGenerator.TOFUNIAN_BANNER_PATTERN)).rarity(Rarity.RARE).requiredFeatures(TofuCraftReload.EXPERIMENTAL)));
 
 	public static final DeferredHolder<Item, Item> LEEK_BOAT = ITEMS.registerItem("leek_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_BOAT.get(), properties.stacksTo(1)));
 	public static final DeferredHolder<Item, Item> LEEK_GREEN_BOAT = ITEMS.registerItem("leek_green_boat", (properties) -> new BoatItem(TofuEntityTypes.LEEK_GREEN_BOAT.get(), properties.stacksTo(1)));

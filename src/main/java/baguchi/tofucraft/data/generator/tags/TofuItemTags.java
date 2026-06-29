@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data.generator;
+package baguchi.tofucraft.data.generator.tags;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -12,8 +12,8 @@ import net.neoforged.neoforge.common.data.ItemTagsProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ItemTagGenerator extends ItemTagsProvider {
-	public ItemTagGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+public class TofuItemTags extends ItemTagsProvider {
+	public TofuItemTags(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
 		super(packOutput, lookupProvider, TofuCraftReload.MODID);
 	}
 
@@ -26,6 +26,15 @@ public class ItemTagGenerator extends ItemTagsProvider {
 		tag(TofuTags.Items.SOYMILK).addTag(TofuTags.Items.MILK_SOYMILK);
 		tag(TofuTags.Items.MILK_SOYMILK).add(TofuItems.SOYMILK_BUCKET.get(), TofuItems.SOYMILK_BOTTLE.get());
 		tag(TofuTags.Items.RICE).add(TofuItems.RICE.get());
+		tag(TofuTags.Items.SALT).add(TofuItems.SALT.get());
+		tag(TofuTags.Items.STORAGE_SALT).add(TofuBlocks.SALT_BLOCK.asItem());
+		tag(TofuTags.Items.STORAGE_TOFUGEM).add(TofuBlocks.TOFU_GEM_BLOCK.asItem());
+		tag(TofuTags.Items.STORAGE_ADV_TOFUGEM).add(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.asItem());
+		tag(TofuTags.Items.STORAGE_SOYBEANS).add(TofuBlocks.SOYBEANS_SEEDS_BLOCK.asItem());
+		tag(TofuTags.Items.STORAGE_SOYBEANS_NETHER).add(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.asItem());
+		tag(TofuTags.Items.STORAGE_SOYBEANS_SOUL).add(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.asItem());
+
+
 		tag(ItemTags.LOGS_THAT_BURN).add(TofuBlocks.SPROUT_STEM.get().asItem(), TofuBlocks.TOFU_STEM.get().asItem(), TofuBlocks.LEEK_STEM.get().asItem(), TofuBlocks.LEEK_GREEN_STEM.get().asItem());
 		tag(ItemTags.LOGS).add(TofuBlocks.SPROUT_STEM.get().asItem(), TofuBlocks.TOFU_STEM.get().asItem(), TofuBlocks.LEEK_STEM.get().asItem(), TofuBlocks.LEEK_GREEN_STEM.get().asItem());
 		tag(ItemTags.PLANKS).add(TofuBlocks.SPROUT_PLANKS.get().asItem()).add(TofuBlocks.TOFU_STEM_PLANKS.get().asItem()).add(TofuBlocks.LEEK_PLANKS.get().asItem()).add(TofuBlocks.LEEK_GREEN_PLANKS.get().asItem());

@@ -114,6 +114,12 @@ public class TofuTags {
 		public static final TagKey<Item> SOYBEAN = universalTag("crops/soybean");
 		public static final TagKey<Item> SALT = universalTag("salt");
 		public static final TagKey<Item> DUST_SALT = universalTag("dusts/salt");
+		public static final TagKey<Item> STORAGE_SALT = universalTag("storage_blocks/salt");
+		public static final TagKey<Item> STORAGE_TOFUGEM = universalTag("storage_blocks/tofugem");
+		public static final TagKey<Item> STORAGE_ADV_TOFUGEM = universalTag("storage_blocks/adv_tofugem");
+		public static final TagKey<Item> STORAGE_SOYBEANS = universalTag("storage_blocks/seeds_soybeans");
+		public static final TagKey<Item> STORAGE_SOYBEANS_NETHER = universalTag("storage_blocks/seeds_soybeans_nether");
+		public static final TagKey<Item> STORAGE_SOYBEANS_SOUL = universalTag("storage_blocks/seeds_soybeans_soul");
 		public static final TagKey<Item> RICE = universalTag("crops/rice");
 		public static final TagKey<Item> EGGS = universalTag("eggs");
 		public static final TagKey<Item> SOYMILK = universalTag("soy_milk");

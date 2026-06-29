@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data.generator;
+package baguchi.tofucraft.data.generator.tags;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuFluids;
@@ -9,8 +9,8 @@ import net.minecraft.data.tags.FluidTagsProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class FluidTagGenerator extends FluidTagsProvider {
-	public FluidTagGenerator(PackOutput p_256095_, CompletableFuture<HolderLookup.Provider> p_256572_) {
+public class TofuFluidTags extends FluidTagsProvider {
+	public TofuFluidTags(PackOutput p_256095_, CompletableFuture<HolderLookup.Provider> p_256572_) {
 		super(p_256095_, p_256572_, TofuCraftReload.MODID);
 	}
 

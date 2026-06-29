@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data.generator;
+package baguchi.tofucraft.data.generator.tags;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -12,8 +12,8 @@ import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class BlockTagGenerator extends BlockTagsProvider {
-	public BlockTagGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+public class TofuBlockTags extends BlockTagsProvider {
+	public TofuBlockTags(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
 		super(packOutput, lookupProvider, TofuCraftReload.MODID);
 	}
 
