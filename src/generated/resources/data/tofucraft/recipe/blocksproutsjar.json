@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "G": "minecraft:tinted_glass",
-    "W": "#minecraft:wool"
+    "W": "#minecraft:wool_carpets"
   },
   "pattern": [
     "G",
