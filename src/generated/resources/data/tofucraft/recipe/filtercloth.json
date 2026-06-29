@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": "#minecraft:wool"
+    "#": "#minecraft:wool_carpets"
   },
   "pattern": [
     "###"
   ],
   "result": {
-    "count": 32,
+    "count": 24,
     "id": "tofucraft:filtercloth"
   }
 }

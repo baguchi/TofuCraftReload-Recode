@@ -393,9 +393,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.APRICOT.get()))
 				.save(this.output);
 
-		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.FILTERCLOTH.get(), 32)
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.FILTERCLOTH.get(), 24)
 				.pattern("###")
-				.define('#', ItemTags.WOOL)
+				.define('#', ItemTags.WOOL_CARPETS)
 				.unlockedBy("has_item", has(Items.WOOL.white()))
 				.save(this.output);
 		makeStairs(this.output, TofuBlocks.TOFU_STAIR_KINU, TofuBlocks.KINUTOFU);
@@ -1667,7 +1667,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("G")
 				.pattern("W")
 				.define('G', Blocks.TINTED_GLASS)
-				.define('W', ItemTags.WOOL)
+				.define('W', ItemTags.WOOL_CARPETS)
 				.unlockedBy("has_item", has(Blocks.TINTED_GLASS))
 				.save(this.output);
 
