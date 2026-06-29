@@ -1,6 +1,7 @@
 package baguchi.tofucraft.block.crop;
 
 import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -50,7 +51,10 @@ public class SoybeanNetherCropsBlock extends CropBlock {
 				if (soilDecision.isDefault() ? plant.canSurvive(p_52274_, blockpos.above().offset(i, 0, j)) : soilDecision.isTrue()) {
 					f1 = 1.0F;
 					if (blockstate.is(Blocks.SOUL_SAND)) {
-						f1 = 3.0F;
+						f1 = 4.0F;
+					}
+					if (blockstate.is(Blocks.CRIMSON_NYLIUM)) {
+						f1 = 2.0F;
 					}
 				}
 
@@ -85,7 +89,7 @@ public class SoybeanNetherCropsBlock extends CropBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter p_52303_, BlockPos p_52304_) {
-		return state.is(Blocks.SOUL_SAND) || state.is(Blocks.NETHERRACK) || state.is(Blocks.CRIMSON_NYLIUM);
+		return state.is(TofuTags.Blocks.GROWS_NETHER_CROP);
 	}
 
 	@Override

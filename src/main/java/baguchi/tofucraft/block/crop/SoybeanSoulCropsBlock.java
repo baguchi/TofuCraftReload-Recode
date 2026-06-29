@@ -2,6 +2,7 @@ package baguchi.tofucraft.block.crop;
 
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuSounds;
+import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -68,7 +69,7 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 				if (soilDecision.isDefault() ? plant.canSurvive(p_52274_, blockpos.above().offset(i, 0, j)) : soilDecision.isTrue()) {
 					f1 = 1.0F;
 					if (blockstate.is(Blocks.SOUL_SAND) || blockstate.is(Blocks.SOUL_SOIL)) {
-						f1 = 3.0F;
+						f1 = 4.0F;
 					}
 				}
 
@@ -109,7 +110,7 @@ public class SoybeanSoulCropsBlock extends CropBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter p_52303_, BlockPos p_52304_) {
-		return state.is(Blocks.SOUL_SAND) || state.is(Blocks.SOUL_SOIL) || state.is(Blocks.WARPED_NYLIUM);
+		return state.is(TofuTags.Blocks.GROWS_SOUL_CROP);
 	}
 
 	@Override

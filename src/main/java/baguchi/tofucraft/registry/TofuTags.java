@@ -93,6 +93,8 @@ public class TofuTags {
 
 		public static final TagKey<Block> SUPPORTS_TOFU_PLANT = tag("supports_tofu_plant");
 		public static final TagKey<Block> SUPPORTS_ROUGH_TOFU_PLANT = tag("supports_rough_tofu_plant");
+		public static final TagKey<Block> GROWS_NETHER_CROP = tag("grows_nether_crop");
+		public static final TagKey<Block> GROWS_SOUL_CROP = tag("grows_soul_crop");
 
 
 		private static TagKey<Block> tag(String name) {

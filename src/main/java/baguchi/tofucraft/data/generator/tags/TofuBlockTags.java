@@ -148,6 +148,14 @@ public class TofuBlockTags extends BlockTagsProvider {
 		this.tag(TofuTags.Blocks.SUPPORTS_ROUGH_TOFU_PLANT)
 				.addTag(TofuTags.Blocks.SUPPORTS_TOFU_PLANT)
 				.add(TofuBlocks.MINCEDTOFU.get());
+		this.tag(TofuTags.Blocks.GROWS_SOUL_CROP)
+				.add(Blocks.SOUL_SAND)
+				.add(Blocks.SOUL_SOIL)
+				.add(Blocks.WARPED_NYLIUM);
+		this.tag(TofuTags.Blocks.GROWS_NETHER_CROP)
+				.add(Blocks.SOUL_SAND)
+				.add(Blocks.NETHERRACK)
+				.add(Blocks.CRIMSON_NYLIUM);
 
 		this.tag(BlockTags.REPLACEABLE_BY_TREES).add(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.LEEK.get(), TofuBlocks.TALL_LEEK.get()).add(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get());
 
