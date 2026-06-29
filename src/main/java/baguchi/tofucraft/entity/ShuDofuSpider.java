@@ -197,7 +197,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	}
 
 	private boolean isMovingOnLand() {
-		return this.onGround() && this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D && !this.isInWater();
+		return this.onGround() && this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D && !this.isInLiquid();
 	}
 
 	@Override

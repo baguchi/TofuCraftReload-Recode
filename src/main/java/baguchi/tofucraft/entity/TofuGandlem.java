@@ -460,7 +460,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 	@Override
 	public void travel(Vec3 p_218382_) {
 		if (this.isLocalInstanceAuthoritative()) {
-			if (this.isInWater()) {
+			if (this.isInLiquid()) {
 				this.moveRelative(0.02F, p_218382_);
 				this.move(MoverType.SELF, this.getDeltaMovement());
 				this.setDeltaMovement(this.getDeltaMovement().scale((double) 0.8F));

@@ -19,7 +19,7 @@ public class TofunianTradeWithPlayerGoal extends Goal {
     public boolean canUse() {
         if (!this.mob.isAlive()) {
             return false;
-        } else if (this.mob.isInWater()) {
+		} else if (this.mob.isInLiquid()) {
             return false;
         } else if (!this.mob.onGround()) {
             return false;
