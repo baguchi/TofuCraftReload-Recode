@@ -450,18 +450,18 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_EGG, TofuBlocks.EGGTOFU);
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_SESAME, TofuBlocks.SESAMETOFU);
 
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_KINU, TofuBlocks.KINUTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_MOMEN, TofuBlocks.MOMENTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_ISHI, TofuBlocks.ISHITOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_METAL, TofuBlocks.METALTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_HELL, TofuBlocks.HELLTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_SOUL, TofuBlocks.SOULTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_GRILLED, TofuBlocks.GRILLED_TOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_ZUNDA, TofuBlocks.ZUNDATOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_MISO, TofuBlocks.MISOTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_DRIED, TofuBlocks.DRIEDTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_EGG, TofuBlocks.EGGTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_SESAME, TofuBlocks.SESAMETOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_KINU, TofuItems.TOFU_KINU);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_MOMEN, TofuItems.TOFU_MOMEN);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_ISHI, TofuItems.TOFU_ISHI);
+		makeMetalTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_METAL, TofuBlocks.METALTOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_HELL, TofuItems.TOFU_HELL);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_SOUL, TofuItems.TOFU_SOUL);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_GRILLED, TofuItems.TOFU_GRILLED);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_ZUNDA, TofuItems.TOFU_ZUNDA);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_MISO, TofuItems.TOFU_MISO);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_DRIED, TofuItems.TOFU_DRIED);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_EGG, TofuItems.TOFU_EGG);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_SESAME, TofuItems.TOFU_SESAME);
 
 		cuttingRecipe(this.output, TofuBlocks.ISHITOFU, TofuBlocks.TOFU_TRAPDOOR_ISHI, 1);
 		cuttingRecipe(this.output, TofuBlocks.ISHITOFU, TofuBlocks.TOFU_FENCE_ISHI, 1);

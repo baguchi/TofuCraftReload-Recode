@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "P": "tofucraft:block_tofu_ishi"
+    "P": "tofucraft:tofu_ishi"
   },
   "pattern": [
-    "PP",
-    "PP"
+    "PPP",
+    "PPP"
   ],
   "result": {
     "count": 2,

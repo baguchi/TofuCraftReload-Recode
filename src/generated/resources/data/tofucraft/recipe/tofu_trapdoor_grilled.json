@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "P": "tofucraft:block_tofu_grilled"
+    "P": "tofucraft:tofu_grilled"
   },
   "pattern": [
-    "PP",
-    "PP"
+    "PPP",
+    "PPP"
   ],
   "result": {
     "count": 2,

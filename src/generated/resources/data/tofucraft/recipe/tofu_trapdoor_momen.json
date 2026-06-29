@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "P": "tofucraft:block_tofu_momen"
+    "P": "tofucraft:tofu_momen"
   },
   "pattern": [
-    "PP",
-    "PP"
+    "PPP",
+    "PPP"
   ],
   "result": {
     "count": 2,
