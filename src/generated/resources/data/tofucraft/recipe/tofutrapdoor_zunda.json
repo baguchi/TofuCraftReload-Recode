@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "P": "tofucraft:blocktofuzunda"
+    "P": "tofucraft:tofuzunda"
   },
   "pattern": [
-    "PP",
-    "PP"
+    "PPP",
+    "PPP"
   ],
   "result": {
     "count": 2,

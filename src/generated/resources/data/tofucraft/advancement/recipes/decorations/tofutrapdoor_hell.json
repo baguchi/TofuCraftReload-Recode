@@ -1,27 +1,27 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_blocktofuhell": {
-      "conditions": {
-        "items": [
-          {
-            "items": "tofucraft:blocktofuhell"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "tofucraft:tofutrapdoor_hell"
       },
       "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tofuhell": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:tofuhell"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_blocktofuhell"
+      "has_tofuhell"
     ]
   ],
   "rewards": {

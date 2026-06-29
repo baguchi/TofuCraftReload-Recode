@@ -443,14 +443,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeDoor(this.output, TofuBlocks.TOFUDOOR_GRILLED, TofuBlocks.GRILLEDTOFU);
 		makeDoor(this.output, TofuBlocks.TOFUDOOR_ZUNDA, TofuBlocks.ZUNDATOFU);
 
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_KINU, TofuBlocks.KINUTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_MOMEN, TofuBlocks.MOMENTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_ISHI, TofuBlocks.ISHITOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_METAL, TofuBlocks.METALTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_HELL, TofuBlocks.HELLTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_SOUL, TofuBlocks.SOULTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_GRILLED, TofuBlocks.GRILLEDTOFU);
-		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_ZUNDA, TofuBlocks.ZUNDATOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_KINU, TofuItems.TOFUKINU);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_MOMEN, TofuItems.TOFUMOMEN);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_ISHI, TofuItems.TOFUISHI);
+		makeMetalTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_METAL, TofuBlocks.METALTOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_HELL, TofuItems.TOFUHELL);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_SOUL, TofuItems.TOFUSOUL);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_GRILLED, TofuItems.TOFUGRILLED);
+		makeTrapdoor(this.output, TofuBlocks.TOFUTRAPDOOR_ZUNDA, TofuItems.TOFUZUNDA);
 
 		cuttingRecipe(this.output, TofuBlocks.ISHITOFU, TofuBlocks.TOFUTRAPDOOR_ISHI, 1);
 		cuttingRecipe(this.output, TofuBlocks.ISHITOFU, TofuBlocks.TOFUFENCE_ISHI, 1);
