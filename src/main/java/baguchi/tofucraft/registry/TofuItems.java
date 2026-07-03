@@ -230,7 +230,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> MEAT_WRAPPED_YUBA = ITEMS.registerItem("meatwrapped_yuba", (properties) -> new Item((properties).food(TofuFoods.MEAT_WRAPPED_YUBA)));
 	public static final DeferredHolder<Item, Item> SOYMEAT = ITEMS.registerItem("soymeat", (properties) -> new Item((properties).food(TofuFoods.SOYMEAT)));
 
-	public static final DeferredHolder<Item, Item> SOYSTICK = ITEMS.registerItem("soystick", (properties) -> new Item((properties).food(TofuFoods.SOYSTICK, TofuConsumables.FAST_FOOD)));
+	public static final DeferredHolder<Item, Item> SOYSTICK = ITEMS.registerItem("soystick", (properties) -> new Item((properties).food(TofuFoods.SOYSTICK, TofuConsumables.SOYSTICK_FOOD)));
 	public static final DeferredHolder<Item, Item> LONGER_SOYSTICK = ITEMS.registerItem("longer_soystick", (properties) -> new Item((properties).rarity(Rarity.UNCOMMON).food(TofuFoods.LONGER_SOYSTICK, TofuConsumables.LONGER_FOOD)));
 	public static final DeferredHolder<Item, Item> MISOSOUP = ITEMS.registerItem("misosoup", (properties) -> new DishItem((properties).food(TofuFoods.MISOSOUP, TofuConsumables.MISO_FOOD).usingConvertsTo(Items.BOWL).stacksTo(16)));
 	public static final DeferredHolder<Item, Item> MOYASHIITAME = ITEMS.registerItem("moyashiitame", (properties) -> new DishItem((properties).food(TofuFoods.MOYASHIITAME).usingConvertsTo(Items.BOWL).stacksTo(16)));

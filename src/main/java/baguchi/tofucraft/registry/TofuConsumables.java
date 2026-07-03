@@ -89,6 +89,12 @@ public class TofuConsumables {
 			))
 			.build();
 
+	public static final Consumable SOYSTICK_FOOD = defaultFastFood()
+			.onConsume(new ApplyStatusEffectsConsumeEffect(
+					List.of(new MobEffectInstance(TofuEffects.SALT_BOOST, 200, 0))
+			))
+			.build();
+
 	public static Consumable.Builder defaultFood() {
 		return Consumable.builder().consumeSeconds(1.6F).animation(ItemUseAnimation.EAT).sound(SoundEvents.GENERIC_EAT).hasConsumeParticles(true);
 	}
