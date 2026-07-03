@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right_open",
+  "textures": {
+    "bottom": "tofucraft:block/tofudoor_dried_bottom",
+    "top": "tofucraft:block/tofudoor_dried_top"
+  }
+}
