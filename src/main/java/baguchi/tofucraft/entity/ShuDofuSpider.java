@@ -301,7 +301,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 
 		if (!this.level().isClientSide()) {
 			if (this.isAlive() && this.rangedDamageReceived > 0.0F && this.tickCount % 80 == 0) {
-				this.rangedDamageReceived = Mth.clamp(this.rangedDamageReceived - 4.0F, 0, 60);
+				this.rangedDamageReceived = Mth.clamp(this.rangedDamageReceived - 4.0F, 0, this.getMaxHealth());
 			}
 
 			if (this.isAlive() && !this.isGraspAnim() && this.isAttackAnim() && this.getTarget() != null) {
@@ -657,7 +657,9 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	protected void checkGraspAttack(AABB p_21072_, AABB p_21073_) {
 		AABB aabb = p_21072_.minmax(p_21073_);
 		List<Entity> list = this.level().getEntities(this, aabb);
-		if (!list.isEmpty()) {
+		if (!this.getPassengers().isEmpty()) {
+			this.graspAttack(this.getFirstPassenger());
+		} else if (!list.isEmpty()) {
 			for (Entity entity : list) {
 				if (entity != this && !(entity instanceof PartEntity<?>) && entity.isAttackable() && (!(entity instanceof LivingEntity livingEntity) || this.canAttack(livingEntity)) && !(entity instanceof NattoCobWebEntity)) {
 					this.graspAttack(entity);
@@ -675,12 +677,12 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 			}
 		}
 		if (entity instanceof LivingEntity && !entity.is(Tags.EntityTypes.BOSSES)) {
-				if (this.getPassengers().isEmpty()) {
-					entity.stopRiding();
-					entity.startRiding(this, true, false);
-				}
+			if (this.getPassengers().isEmpty()) {
+				entity.stopRiding();
+				entity.startRiding(this, true, false);
 			}
-			this.setSprinting(false);
+		}
+		this.setSprinting(false);
 	}
 
 	protected void playStepSound(BlockPos p_33804_, BlockState p_33805_) {
@@ -825,7 +827,6 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	}
 
 	private void hurtCounter(float pastHealth) {
-
 		if (!this.isAngry() && this.getHealth() < this.getMaxHealth() / 2) {
 			setAngry(true);
 			this.playSound(SoundEvents.WITHER_BREAK_BLOCK, 2.0F, 1.0F);
