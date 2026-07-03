@@ -83,7 +83,7 @@ public class TofuEntityTypes {
 			.sized(0.6F, 1.6F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("tofu_creeper")));
 
 	public static final Supplier<EntityType<TofuSpider>> TOFUSPIDER = ENTITIES.register("tofu_spider", () -> EntityType.Builder.of(TofuSpider::new, MobCategory.MONSTER)
-			.sized(0.95F, 0.55F).eyeHeight(0.3F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("tofu_spider")));
+			.sized(0.95F, 0.55F).eyeHeight(0.3F).passengerAttachments(0.4F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("tofu_spider")));
 	public static final Supplier<EntityType<Zundamite>> ZUNDAMITE = ENTITIES.register("zundamite", () -> EntityType.Builder.of(Zundamite::new, MobCategory.MONSTER)
 			.sized(0.4F, 0.3F).eyeHeight(0.13F).clientTrackingRange(8).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("zundamite")));
 
@@ -121,7 +121,7 @@ public class TofuEntityTypes {
 			.sized(1.0F, 1.0F).updateInterval(20).build(prefix("falling_tofu")));
 
 	public static final Supplier<EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
-			.sized(3.5F, 2.9F).eyeHeight(2.0F).clientTrackingRange(10).requiredFeatures(TofuCraftReload.EXPERIMENTAL).fireImmune().build(prefix("shudofuspider")));
+			.sized(3.3F, 2.0F).eyeHeight(1.5F).passengerAttachments(1.5F).clientTrackingRange(10).requiredFeatures(TofuCraftReload.EXPERIMENTAL).fireImmune().build(prefix("shudofuspider")));
 
 	public static final Supplier<EntityType<FukumameThrower>> FUKUMAME_THROWER = ENTITIES.register("fukumame_thrower", () -> EntityType.Builder.of(FukumameThrower::new, MobCategory.MONSTER).sized(0.6F, 1.95F)
 			.notInPeaceful()
