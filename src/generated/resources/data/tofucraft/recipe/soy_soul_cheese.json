@@ -1,10 +1,15 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 300,
+  "experience": 0.3,
   "ingredients": [
-    "tofucraft:soy_soul_cheese_block"
+    "tofucraft:seeds_soybeans_soul",
+    "tofucraft:salt",
+    "minecraft:crimson_fungus"
   ],
   "result": {
-    "count": 4,
+    "count": 2,
     "id": "tofucraft:soy_soul_cheese"
   }
 }
