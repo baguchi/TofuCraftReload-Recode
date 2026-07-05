@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "tofucraft:tofu_metal"
+  },
+  "pattern": [
+    "# #",
+    " # "
+  ],
+  "result": {
+    "id": "tofucraft:tofu_metal_bucket"
+  }
+}

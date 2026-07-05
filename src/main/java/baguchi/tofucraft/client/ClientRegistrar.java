@@ -17,6 +17,7 @@ import baguchi.tofucraft.client.model.TofunianBabyModel;
 import baguchi.tofucraft.client.model.TofunianModel;
 import baguchi.tofucraft.client.model.TravelerTofunianModel;
 import baguchi.tofucraft.client.model.ZundaBusterModel;
+import baguchi.tofucraft.client.model.item.TofuMetalBucketModel;
 import baguchi.tofucraft.client.particle.ParticleSimpleStink;
 import baguchi.tofucraft.client.particle.ParticleStink;
 import baguchi.tofucraft.client.particle.ParticleZundaCloud;
@@ -136,6 +137,7 @@ import net.neoforged.neoforge.client.event.RegisterCustomEnvironmentEffectRender
 import net.neoforged.neoforge.client.event.RegisterDimensionTransitionScreenEvent;
 import net.neoforged.neoforge.client.event.RegisterFluidModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.RegisterItemModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.event.RegisterRecipeBookSearchCategoriesEvent;
@@ -220,6 +222,12 @@ public class ClientRegistrar {
 	public static void setup(FMLClientSetupEvent event) {
 
 	}
+
+	@SubscribeEvent
+	private static void registerSpecialItemModels(RegisterItemModelsEvent event) {
+		event.register(TofuCraftReload.prefix("tofu_metal_bucket"), TofuMetalBucketModel.Unbaked.MAP_CODEC);
+	}
+
 
 	@SubscribeEvent
 	public static void registerBuiltinModel(RegisterBlockModelsEvent event) {

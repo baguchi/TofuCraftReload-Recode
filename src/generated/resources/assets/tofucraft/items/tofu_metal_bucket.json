@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "tofucraft:tofu_metal_bucket",
+    "fluid": "minecraft:empty",
+    "textures": {
+      "base": "tofucraft:item/tofu_metal_bucket",
+      "fluid": "neoforge:item/mask/bucket_fluid_drip"
+    }
+  }
+}

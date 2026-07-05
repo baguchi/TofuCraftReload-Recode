@@ -6,6 +6,8 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -28,6 +30,8 @@ public class TofuDataComponents {
 	);
 
 	public static final DeferredHolder<DataComponentType<?>, DataComponentType<Long>> FERMENTATION_DATA = DATA_COMPONENT_TYPES.register("fermentation_data", () -> DataComponentType.<Long>builder().persistent(ExtraCodecs.NON_NEGATIVE_LONG.orElse(0L)).networkSynchronized(ByteBufCodecs.VAR_LONG).cacheEncoding().build());
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<SimpleFluidContent>> STORED_FLUID = DATA_COMPONENT_TYPES.register("stored_fluid", () -> DataComponentType.<SimpleFluidContent>builder().persistent(SimpleFluidContent.CODEC).networkSynchronized(SimpleFluidContent.STREAM_CODEC).build());
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockState>> STORED_BLOCK = DATA_COMPONENT_TYPES.register("stored_block", () -> DataComponentType.<BlockState>builder().persistent(BlockState.CODEC).networkSynchronized(ByteBufCodecs.fromCodec(BlockState.CODEC)).build());
 
 
 	private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String p_332092_, UnaryOperator<DataComponentType.Builder<T>> p_331261_) {

@@ -34,6 +34,7 @@ import baguchi.tofucraft.item.armor.TofuArmorItem;
 import baguchi.tofucraft.item.block.DeferredBlockItem;
 import baguchi.tofucraft.item.tool.TofuAxeItem;
 import baguchi.tofucraft.item.tool.TofuHoeItem;
+import baguchi.tofucraft.item.tool.TofuMetalBucketItem;
 import baguchi.tofucraft.item.tool.TofuPickaxeItem;
 import baguchi.tofucraft.item.tool.TofuScoopItem;
 import baguchi.tofucraft.item.tool.TofuShearsItem;
@@ -85,6 +86,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -304,6 +306,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFUFISH_SOYMILK_BUCKET = ITEMS.registerItem("tofufish_soymilk_bucket", (properties) -> new MobBucketItem(TofuEntityTypes.TOFUFISH.get(), TofuFluids.SOYMILK.get(), SoundEvents.BUCKET_EMPTY_FISH, (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final DeferredHolder<Item, Item> BITTERN_BUCKET = ITEMS.registerItem("bittern_bucket", (properties) -> new BucketItem(TofuFluids.BITTERN.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final DeferredHolder<Item, Item> DOUBANJIANG_BUCKET = ITEMS.registerItem("doubanjiang_bucket", (properties) -> new BucketItem(TofuFluids.DOUBANJIANG.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final DeferredHolder<Item, Item> TOFU_METAL_BUCKET = ITEMS.registerItem("tofu_metal_bucket", (properties) -> new TofuMetalBucketItem((properties).component(TofuDataComponents.STORED_FLUID, SimpleFluidContent.EMPTY).stacksTo(1)));
 
 	public static final DeferredHolder<Item, Item> PUDDING = ITEMS.registerItem("pudding", (properties) -> new Item((properties).stacksTo(16).food(TofuFoods.PUDDING).usingConvertsTo(TofuItems.GLASS_BOWL.get())));
 	public static final DeferredHolder<Item, Item> PUDDING_SOYMILK = ITEMS.registerItem("pudding_soymilk", (properties) -> new Item((properties).stacksTo(16).food(TofuFoods.PUDDING_SOYMILK).usingConvertsTo(TofuItems.GLASS_BOWL.get())));

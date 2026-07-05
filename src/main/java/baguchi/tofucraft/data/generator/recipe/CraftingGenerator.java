@@ -197,6 +197,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('#', TofuItems.TOFU_METAL.get())
 				.unlockedBy("has_item", has(TofuItems.TOFU_METAL.get()))
 				.save(this.output);
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.TOFU_METAL_BUCKET.get())
+				.pattern("# #")
+				.pattern(" # ")
+				.define('#', TofuItems.TOFU_METAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFU_METAL.get()))
+				.save(this.output);
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.BUGLE.get())
 				.pattern("  #")
