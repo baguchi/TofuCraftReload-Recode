@@ -100,7 +100,7 @@ public class TofuCraftReload {
 
 		modBus.addListener(this::setup);
 		modBus.addListener(this::setupPackets);
-
+		modBus.addListener(TofuCreativeModeTabs::registerBuckets);
 		Reflection.initialize(TofuTags.Items.class);
 
 

@@ -6,6 +6,8 @@ import baguchi.tofucraft.data.generator.recipe.builder.TFShapedRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.TFShapelessRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.TFTofuMakeRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.TofuPotShapelessRecipeBuilder;
+import baguchi.tofucraft.recipe.BucketToBottleRecipe;
+import baguchi.tofucraft.recipe.FluidBucketRecipe;
 import baguchi.tofucraft.recipe.TFCraftingCategory;
 import baguchi.tofucraft.recipe.TofuPotCategory;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -19,12 +21,14 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.SpecialRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
@@ -40,6 +44,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 	@Override
 	protected void buildRecipes() {
 		HolderLookup<Item> lookup = this.registries.lookupOrThrow(Registries.ITEM);
+		HolderLookup<Fluid> lookupFluid = this.registries.lookupOrThrow(Registries.FLUID);
 		/*helmetItem(this.output, "tofu_diamond_helmet", TofuItems.ARMOR_TOFU_DIAMONDHELMET, TofuBlocks.DIAMONDTOFU);
 		chestplateItem(this.output, "tofu_diamond_chestplate", TofuItems.ARMOR_TOFU_DIAMONDCHESTPLATE, TofuBlocks.DIAMONDTOFU);
 		leggingsItem(this.output, "tofu_diamond_leggings", TofuItems.ARMOR_TOFU_DIAMONDLEGGINGS, TofuBlocks.DIAMONDTOFU);
@@ -910,6 +915,21 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.GLASS_BOTTLE)
 				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
+
+		SpecialRecipeBuilder.special(() -> new FluidBucketRecipe(Ingredient.of(lookup.getOrThrow(TofuTags.Items.SOYBEAN)), TofuFluids.SOYMILK))
+				.save(this.output, prefix("fluid_bucket_soymilk"));
+		SpecialRecipeBuilder.special(() -> new FluidBucketRecipe(Ingredient.of(TofuItems.SEEDS_SOYBEANS_NETHER.get()), TofuFluids.SOYMILK_HELL))
+				.save(this.output, prefix("fluid_bucket_soymilk_hell"));
+		SpecialRecipeBuilder.special(() -> new FluidBucketRecipe(Ingredient.of(TofuItems.SEEDS_SOYBEANS_SOUL.get()), TofuFluids.SOYMILK_SOUL))
+				.save(this.output, prefix("fluid_bucket_soymilk_soul"));
+		SpecialRecipeBuilder.special(() -> new BucketToBottleRecipe(new ItemStackTemplate(TofuItems.SOYMILK_BOTTLE, 3), TofuFluids.SOYMILK))
+				.save(this.output, prefix("fluid_bucket_to_soymilk_bottle"));
+		SpecialRecipeBuilder.special(() -> new BucketToBottleRecipe(new ItemStackTemplate(TofuItems.SOYMILK_HELL_BOTTLE, 3), TofuFluids.SOYMILK_HELL))
+				.save(this.output, prefix("fluid_bucket_to_soymilk_hell_bottle"));
+		SpecialRecipeBuilder.special(() -> new BucketToBottleRecipe(new ItemStackTemplate(TofuItems.SOYMILK_SOUL_BOTTLE, 3), TofuFluids.SOYMILK_SOUL))
+				.save(this.output, prefix("fluid_bucket_to_soymilk_soul_bottle"));
+
+
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_APPLE_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)
@@ -2163,4 +2183,18 @@ public class CraftingGenerator extends CraftingDataHelper {
 		TFTofuMakeRecipeBuilder.tofuMake(new ItemStackTemplate(TofuBlocks.HELLTOFU.get().asItem()), Ingredient.of(TofuItems.SEEDS_SOYBEANS_NETHER.get()), 0.1F, 100).unlockedBy("has_item", has(TofuBlocks.TF_TOFU_MAKER.get())).save(this.output, prefix("tf_tofu_maker_hell"));
 		TFTofuMakeRecipeBuilder.tofuMake(new ItemStackTemplate(TofuBlocks.SOULTOFU.get().asItem()), Ingredient.of(TofuItems.SEEDS_SOYBEANS_SOUL.get()), 0.1F, 100).unlockedBy("has_item", has(TofuBlocks.TF_TOFU_MAKER.get())).save(this.output, prefix("tf_tofu_maker_soul"));
 	}
+
+	/*public final Ingredient bucket(Holder<Fluid> fluid) {
+		DataComponentMap componentMap = DataComponentMap.builder().set(TofuDataComponents.STORED_FLUID, SimpleFluidContent.copyOf(new FluidStack(fluid, 1000))).build();
+
+
+		return DataComponentIngredient.of(false, componentMap, TofuItems.TOFU_METAL_BUCKET);
+	}
+
+	public final Ingredient bucketEmpty() {
+		DataComponentPatch componentMap = DataComponentPatch.builder().set(TofuDataComponents.STORED_FLUID.get(), SimpleFluidContent.EMPTY).build();
+
+
+		return DataComponentIngredient.of(false, componentMap, TofuItems.TOFU_METAL_BUCKET);
+	}*/
 }

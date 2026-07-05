@@ -183,7 +183,7 @@ public class ClientRegistrar {
 
 	private static final FluidModel.Unbaked BITTERN_MODEL = new FluidModel.Unbaked(
 			new Material(TofuCraftReload.prefix("block/bittern")),
-			new Material(TofuCraftReload.prefix("block/bittern_flow")),
+			new Material(TofuCraftReload.prefix("block/bittern")),
 			new Material(TofuCraftReload.prefix("block/bittern_overlay")),
 			null
 	);

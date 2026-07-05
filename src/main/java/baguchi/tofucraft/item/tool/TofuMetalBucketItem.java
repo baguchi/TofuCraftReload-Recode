@@ -1,6 +1,5 @@
 package baguchi.tofucraft.item.tool;
 
-import baguchi.tofucraft.item.tool.bucket.BucketDispenseBehavior;
 import baguchi.tofucraft.registry.TofuDataComponents;
 import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -36,7 +35,6 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BucketPickup;
-import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.FuelValues;
 import net.minecraft.world.level.block.state.BlockState;
@@ -65,7 +63,6 @@ public class TofuMetalBucketItem extends Item {
 
 	public TofuMetalBucketItem(Properties properties) {
 		super(properties);
-		DispenserBlock.registerBehavior(this, new BucketDispenseBehavior());
 	}
 
 	@Override

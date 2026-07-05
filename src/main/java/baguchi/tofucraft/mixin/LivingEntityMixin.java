@@ -94,6 +94,7 @@ public abstract class LivingEntityMixin extends Entity implements ILivingEntityE
 		}
 		if (this.fluidInteraction.isInFluid(TofuTags.Fluids.WATER_LIKE)) {
 			this.travelInWater(input, baseGravity, isFalling, oldY);
+			ci.cancel();
 		}
 	}
 }
