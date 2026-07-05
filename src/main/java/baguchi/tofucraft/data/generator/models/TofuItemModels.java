@@ -1,6 +1,7 @@
 package baguchi.tofucraft.data.generator.models;
 
 import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.client.model.item.TofuMetalBucketModel;
 import baguchi.tofucraft.client.render.item.properties.TFProperty;
 import baguchi.tofucraft.client.render.special.TofuShieldSpecialRenderer;
 import baguchi.tofucraft.data.provider.TofuModelTemplates;
@@ -11,12 +12,16 @@ import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.item.RangeSelectItemModel;
 import net.minecraft.client.renderer.item.properties.numeric.UseDuration;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.material.Fluids;
 
+import java.util.Optional;
 import java.util.function.BiConsumer;
 
 public class TofuItemModels extends ItemModelGenerators {
@@ -201,6 +206,15 @@ public class TofuItemModels extends ItemModelGenerators {
 
 		this.generateFlatItem(TofuItems.TOFUFISH_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUFISH_SOYMILK_BUCKET.get(), ModelTemplates.FLAT_ITEM);
+
+		this.itemModelOutput.accept(TofuItems.TOFU_METAL_BUCKET.get(), new TofuMetalBucketModel.Unbaked(
+				new TofuMetalBucketModel.Textures(
+						Optional.empty(),
+						Optional.of(TextureMapping.getItemTexture(TofuItems.TOFU_METAL_BUCKET.get())),
+						Optional.of(new Material(Identifier.fromNamespaceAndPath("neoforge", "item/mask/bucket_fluid_drip"))),
+						Optional.empty()
+				), Fluids.EMPTY, true, true));
+
 
 		this.generateFlatItem(TofuItems.GLASS_BOWL.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_METAL_BOWL.get(), ModelTemplates.FLAT_ITEM);

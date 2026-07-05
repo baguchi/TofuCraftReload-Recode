@@ -1,10 +1,12 @@
 package baguchi.tofucraft;
 
 import baguchi.tofucraft.registry.TofuBlockEntitys;
+import baguchi.tofucraft.registry.TofuDataComponents;
 import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.utils.transfer.fluid.BottleResourceHandler;
 import baguchi.tofucraft.utils.transfer.fluid.BucketResourceHandler;
+import baguchi.tofucraft.utils.transfer.fluid.ItemAccessBucketHandler;
 import baguchi.tofucraft.utils.transfer.fluid.WaterBottleResourceHandler;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluids;
@@ -12,6 +14,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.transfer.item.WorldlyContainerWrapper;
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID)
@@ -30,6 +33,7 @@ public class ModTofuCommonEvents {
 		event.registerItem(Capabilities.Fluid.ITEM, (stack, access) -> new BucketResourceHandler(access, stack, TofuFluids.SOYMILK_HELL.get()), TofuItems.SOYMILK_NETHER_BUCKET.get());
 		event.registerItem(Capabilities.Fluid.ITEM, (stack, access) -> new BucketResourceHandler(access, stack, TofuFluids.SOYMILK_SOUL.get()), TofuItems.SOYMILK_SOUL_BUCKET.get());
 		event.registerItem(Capabilities.Fluid.ITEM, (stack, access) -> new BucketResourceHandler(access, stack, Fluids.WATER), Items.WATER_BUCKET);
+		event.registerItem(Capabilities.Fluid.ITEM, (stack, context) -> new ItemAccessBucketHandler(context, TofuDataComponents.STORED_FLUID.get(), FluidType.BUCKET_VOLUME), TofuItems.TOFU_METAL_BUCKET.get());
 
 
 		event.registerBlockEntity(Capabilities.Fluid.BLOCK, // capability to register for

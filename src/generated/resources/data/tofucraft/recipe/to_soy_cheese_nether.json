@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "tofucraft:soy_nether_cheese_block"
+  ],
+  "result": {
+    "count": 4,
+    "id": "tofucraft:soy_nether_cheese"
+  }
+}

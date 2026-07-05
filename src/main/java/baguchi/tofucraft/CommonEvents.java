@@ -264,60 +264,6 @@ public class CommonEvents {
 	public static void onBlockUsed(PlayerInteractEvent.RightClickBlock event) {
 		ItemStack stack = event.getItemStack();
 		Level level = event.getLevel();
-
-		if (stack.is(TofuItems.SOYMILK_BUCKET.get()))
-
-			if (stack.is(TofuItems.SOYMILK_BUCKET.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
-				level.setBlock(event.getPos(), TofuBlocks.SOYMILK_CAULDRON.get().defaultBlockState(), 2);
-				event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
-				ItemStack itemstack2 = new ItemStack(Items.BUCKET);
-				if (!event.getEntity().isCreative()) {
-					stack.shrink(1);
-				}
-				if (stack.isEmpty()) {
-					event.getEntity().setItemInHand(event.getHand(), itemstack2);
-				} else if (!event.getEntity().isCreative() &&
-						!event.getEntity().getInventory().add(itemstack2)) {
-					event.getEntity().drop(itemstack2, false);
-				}
-
-				event.setCancellationResult(InteractionResult.SUCCESS);
-				event.setCanceled(true);
-			}
-		if (stack.is(TofuItems.SOYMILK_NETHER_BUCKET.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
-			level.setBlock(event.getPos(), TofuBlocks.SOYMILK_NETHER_CAULDRON.get().defaultBlockState(), 2);
-			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
-			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
-			if (!event.getEntity().isCreative()) {
-				stack.shrink(1);
-			}
-			if (stack.isEmpty()) {
-				event.getEntity().setItemInHand(event.getHand(), itemstack2);
-			} else if (!event.getEntity().isCreative() &&
-					!event.getEntity().getInventory().add(itemstack2)) {
-				event.getEntity().drop(itemstack2, false);
-			}
-
-			event.setCancellationResult(InteractionResult.SUCCESS);
-			event.setCanceled(true);
-		}
-		if (stack.is(TofuItems.SOYMILK_SOUL_BUCKET.get()) && level.getBlockState(event.getPos()).is(Blocks.CAULDRON)) {
-			level.setBlock(event.getPos(), TofuBlocks.SOYMILK_SOUL_CAULDRON.get().defaultBlockState(), 2);
-			event.getEntity().playSound(SoundEvents.BUCKET_FILL, 1.0F, 1.0F);
-			ItemStack itemstack2 = new ItemStack(Items.BUCKET);
-			if (!event.getEntity().isCreative()) {
-				stack.shrink(1);
-			}
-			if (stack.isEmpty()) {
-				event.getEntity().setItemInHand(event.getHand(), itemstack2);
-			} else if (!event.getEntity().isCreative() &&
-					!event.getEntity().getInventory().add(itemstack2)) {
-				event.getEntity().drop(itemstack2, false);
-			}
-
-			event.setCancellationResult(InteractionResult.SUCCESS);
-			event.setCanceled(true);
-		}
 		TofuBookItem.interactWithBlock(event);
 	}
 

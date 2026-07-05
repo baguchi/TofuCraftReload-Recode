@@ -1,15 +1,34 @@
 package baguchi.tofucraft.registry;
 
 import baguchi.tofucraft.TofuCraftReload;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.Util;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.item.SolidBucketItem;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.fluids.SimpleFluidContent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.function.Supplier;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 
@@ -24,7 +43,7 @@ public class TofuCreativeModeTabs {
 		return ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, p_281544_));
 	}
 
-	public static final Supplier<CreativeModeTab> TOFUS = CREATIVE_MODE_TABS.register("tofus", () -> CreativeModeTab.builder()
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TOFUS = CREATIVE_MODE_TABS.register("tofus", () -> CreativeModeTab.builder()
 			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofus" + ".main_tab"))
 			.icon(() -> TofuItems.TOFUKINU.get().getDefaultInstance())
@@ -54,7 +73,7 @@ public class TofuCreativeModeTabs {
 					return sup.get().getDefaultInstance();
 				}).toList());
 			}).build());
-	public static final Supplier<CreativeModeTab> TOFU_MECHANICAL_BLOCKS = CREATIVE_MODE_TABS.register("tofu_mechanical_blocks", () -> CreativeModeTab.builder()
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TOFU_MECHANICAL_BLOCKS = CREATIVE_MODE_TABS.register("tofu_mechanical_blocks", () -> CreativeModeTab.builder()
 			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_mechanical_blocks" + ".main_tab"))
 			.icon(() -> TofuBlocks.TF_STORAGE.get().asItem().getDefaultInstance())
@@ -83,7 +102,7 @@ public class TofuCreativeModeTabs {
 				}).toList());
 			}).build());
 
-	public static final Supplier<CreativeModeTab> TOFU_BUILDING_BLOCKS = CREATIVE_MODE_TABS.register("tofu_building_blocks", () -> CreativeModeTab.builder()
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TOFU_BUILDING_BLOCKS = CREATIVE_MODE_TABS.register("tofu_building_blocks", () -> CreativeModeTab.builder()
 			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_building_blocks" + ".main_tab"))
 			.icon(() -> TofuBlocks.ISHITOFU_BRICK.get().asItem().getDefaultInstance())
@@ -326,7 +345,7 @@ public class TofuCreativeModeTabs {
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());
 
-	public static final Supplier<CreativeModeTab> TOFU_TOOLS = CREATIVE_MODE_TABS.register("tofu_tools", () -> CreativeModeTab.builder()
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TOFU_TOOLS = CREATIVE_MODE_TABS.register("tofu_tools", () -> CreativeModeTab.builder()
 			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_tools" + ".main_tab"))
 			.icon(() -> TofuItems.TOFU_METAL_SWORD.get().getDefaultInstance())
@@ -402,7 +421,7 @@ public class TofuCreativeModeTabs {
 				}).toList());
 			}).build());
 
-	public static final Supplier<CreativeModeTab> TOFU_FOODS = CREATIVE_MODE_TABS.register("tofu_foods", () -> CreativeModeTab.builder()
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TOFU_FOODS = CREATIVE_MODE_TABS.register("tofu_foods", () -> CreativeModeTab.builder()
 			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_foods" + ".main_tab"))
 			.icon(() -> TofuItems.TOFUCOOKIE.get().getDefaultInstance())
@@ -524,7 +543,7 @@ public class TofuCreativeModeTabs {
 				// Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());
 
-	public static final Supplier<CreativeModeTab> TOFU_MISC = CREATIVE_MODE_TABS.register("tofu_misc", () -> CreativeModeTab.builder()
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TOFU_MISC = CREATIVE_MODE_TABS.register("tofu_misc", () -> CreativeModeTab.builder()
 			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.title(Component.translatable("itemGroup." + TofuCraftReload.MODID + ".tofu_misc" + ".main_tab"))
 			.icon(() -> TofuItems.ZUNDARUBY.get().getDefaultInstance())
@@ -619,4 +638,42 @@ public class TofuCreativeModeTabs {
 					return itemSupplier.get().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
 			}).build());
+
+	public static void registerBuckets(BuildCreativeModeTabContentsEvent event) {
+		if (event.getTabKey() == TOFU_MISC.getKey()) {
+			event.accept(TofuItems.TOFU_METAL_BUCKET.get());
+			List<EntityType<?>> usedEntities = new ArrayList<>();
+			List<Block> usedBlocks = new ArrayList<>();
+
+			for (Item item : BuiltInRegistries.ITEM.stream().filter(item -> item instanceof MobBucketItem).toList().reversed()) {
+				EntityType<?> type = ((MobBucketItem) item).type;
+				if (!usedEntities.contains(type)) {
+					FluidStack stack = new FluidStack(((MobBucketItem) item).content, FluidType.BUCKET_VOLUME);
+					Identifier id = EntityType.getKey(type);
+					event.insertAfter(TofuItems.TOFU_METAL_BUCKET.get().getDefaultInstance(), new ItemStack(TofuItems.TOFU_METAL_BUCKET, 1, DataComponentPatch.builder()
+							.set(DataComponents.BUCKET_ENTITY_DATA, CustomData.of(Util.make(new CompoundTag(), tag -> tag.putString("id", id.toString()))))
+							.set(TofuDataComponents.STORED_FLUID.get(), SimpleFluidContent.copyOf(stack)).build()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+					usedEntities.add(type);
+				}
+			}
+
+			for (Item item : BuiltInRegistries.ITEM.stream().filter(item -> item instanceof SolidBucketItem).toList().reversed()) {
+				Block block = ((SolidBucketItem) item).getBlock();
+				if (!usedBlocks.contains(block)) {
+					event.insertAfter(TofuItems.TOFU_METAL_BUCKET.get().getDefaultInstance(), new ItemStack(TofuItems.TOFU_METAL_BUCKET, 1, DataComponentPatch.builder().set(TofuDataComponents.STORED_BLOCK.get(), block.defaultBlockState()).build()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+					usedBlocks.add(block);
+				}
+			}
+
+			for (Fluid fluid : BuiltInRegistries.FLUID.stream().filter(fluid -> fluid.isSource(fluid.defaultFluidState())).toList().reversed()) {
+				FluidStack stack = new FluidStack(fluid, FluidType.BUCKET_VOLUME);
+				DataComponentPatch.Builder builder = DataComponentPatch.builder();
+				builder.set(TofuDataComponents.STORED_FLUID.get(), SimpleFluidContent.copyOf(stack));
+				/*if (stack.is(NeoForgeMod.MILK)) {
+					builder.set(DataComponents.CONSUMABLE, Consumables.MILK_BUCKET);
+				}*/
+				event.insertAfter(TofuItems.TOFU_METAL_BUCKET.get().getDefaultInstance(), new ItemStack(TofuItems.TOFU_METAL_BUCKET, 1, builder.build()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+			}
+		}
+	}
 }

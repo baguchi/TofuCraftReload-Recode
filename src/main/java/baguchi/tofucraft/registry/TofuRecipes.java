@@ -3,6 +3,8 @@ package baguchi.tofucraft.registry;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.recipe.BitternRecipe;
 import baguchi.tofucraft.recipe.BitternSerializer;
+import baguchi.tofucraft.recipe.BucketToBottleRecipe;
+import baguchi.tofucraft.recipe.FluidBucketRecipe;
 import baguchi.tofucraft.recipe.HardenRecipe;
 import baguchi.tofucraft.recipe.HardenSerializer;
 import baguchi.tofucraft.recipe.TFCraftingRecipe;
@@ -39,4 +41,8 @@ public class TofuRecipes {
 	public static final Supplier<RecipeType<TFTofuMakerRecipe>> RECIPETYPE_TF_TOFU_MAKER = RECIPE_TYPES.register("tf_tofu_maker", () -> RecipeType.simple(TofuCraftReload.prefix("tf_tofu_maker")));
 
 	public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<TFTofuMakerRecipe>> RECIPE_TF_TOFU_MAKER = RECIPE_SERIALIZERS.register("tf_tofu_maker", () -> TFTofuMakerRecipe.Serializer.SERIALIZER);
+
+	public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<FluidBucketRecipe>> RECIPE_FLUID_BUCKET = RECIPE_SERIALIZERS.register("fluid_bucket", () -> FluidBucketRecipe.SERIALIZER);
+	public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<BucketToBottleRecipe>> RECIPE_BUCKET_TO_BOTTLE = RECIPE_SERIALIZERS.register("bucket_to_bottle", () -> BucketToBottleRecipe.SERIALIZER);
+
 }

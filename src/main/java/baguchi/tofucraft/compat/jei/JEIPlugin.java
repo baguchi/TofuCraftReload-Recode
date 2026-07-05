@@ -4,10 +4,14 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.screen.TFOvenScreen;
 import baguchi.tofucraft.client.screen.TfCraftingTableScreen;
 import baguchi.tofucraft.client.screen.TofuPotScreen;
+import baguchi.tofucraft.compat.jei.extension.BucketToBottleExtension;
+import baguchi.tofucraft.compat.jei.extension.FluidBucketExtension;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
 import baguchi.tofucraft.inventory.TFOvenMenu;
 import baguchi.tofucraft.inventory.TofuPotMenu;
 import baguchi.tofucraft.recipe.BitternRecipe;
+import baguchi.tofucraft.recipe.BucketToBottleRecipe;
+import baguchi.tofucraft.recipe.FluidBucketRecipe;
 import baguchi.tofucraft.recipe.HardenRecipe;
 import baguchi.tofucraft.recipe.TFCraftingRecipe;
 import baguchi.tofucraft.recipe.TofuPotRecipe;
@@ -24,6 +28,7 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
+import mezz.jei.api.registration.IVanillaCategoryExtensionRegistration;
 import mezz.jei.common.Internal;
 import mezz.jei.library.plugins.vanilla.gui.RecipeBookGuiHandler;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -55,6 +60,12 @@ public class JEIPlugin implements IModPlugin {
 		registry.addRecipeCategories(new BitternCategory(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new TFRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new TofuPotCategory(registry.getJeiHelpers().getGuiHelper()));
+	}
+
+	@Override
+	public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration registration) {
+		registration.getCraftingCategory().addExtension(FluidBucketRecipe.class, new FluidBucketExtension());
+		registration.getCraftingCategory().addExtension(BucketToBottleRecipe.class, new BucketToBottleExtension());
 	}
 
 	@Override

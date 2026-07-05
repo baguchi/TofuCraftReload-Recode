@@ -1528,7 +1528,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.SOY_CHEESE.get(), 4)
 				.requires(TofuBlocks.SOY_CHEESE_BLOCK.get())
 				.unlockedBy("has_item", has(TofuBlocks.SOY_CHEESE_BLOCK.get()))
-				.save(this.output);
+				.save(this.output, prefix("to_soy_cheese"));
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.SOY_NETHER_CHEESE_BLOCK.get())
 				.pattern("##")
@@ -1540,7 +1540,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.SOY_NETHER_CHEESE.get(), 4)
 				.requires(TofuBlocks.SOY_NETHER_CHEESE_BLOCK.get())
 				.unlockedBy("has_item", has(TofuBlocks.SOY_NETHER_CHEESE_BLOCK.get()))
-				.save(this.output);
+				.save(this.output, prefix("to_soy_cheese_nether"));
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.SOY_SOUL_CHEESE_BLOCK.get())
 				.pattern("##")
@@ -1552,7 +1552,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.SOY_SOUL_CHEESE.get(), 4)
 				.requires(TofuBlocks.SOY_SOUL_CHEESE_BLOCK.get())
 				.unlockedBy("has_item", has(TofuBlocks.SOY_SOUL_CHEESE_BLOCK.get()))
-				.save(this.output);
+				.save(this.output, prefix("to_soy_cheese_soul"));
+
 
 		// kinako_bread
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.KINAKO_BREAD.get(), 3)
@@ -2147,6 +2148,26 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.BOWL)
 				.unlockedBy("has_item", has(TofuItems.BOTTLE_MIRIN.get()))
 				.save(this.output);
+
+
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), TofuItems.SOY_CHEESE.get(), 2, 300, 0.3F)
+				.requires(TofuTags.Items.SOYMILK)
+				.requires(TofuItems.SALT.get())
+				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(this.output);
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), TofuItems.SOY_NETHER_CHEESE.get(), 2, 300, 0.3F)
+				.requires(TofuItems.SEEDS_SOYBEANS_NETHER.get())
+				.requires(TofuItems.SALT.get())
+				.requires(Items.WARPED_FUNGUS)
+				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(this.output);
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), TofuItems.SOY_SOUL_CHEESE.get(), 2, 300, 0.3F)
+				.requires(TofuItems.SEEDS_SOYBEANS_SOUL.get())
+				.requires(TofuItems.SALT.get())
+				.requires(Items.CRIMSON_FUNGUS)
+				.unlockedBy("has_item", has(TofuItems.SALT.get()))
+				.save(this.output);
+
 
 		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.KINUTOFU.get().asItem()), new FluidStackTemplate(TofuFluids.SOYMILK.get(), 1000), Ingredient.of(TofuItems.BITTERN_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(this.output, prefix("bittern_to_kinu"));
 		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.HELLTOFU.get().asItem()), new FluidStackTemplate(TofuFluids.SOYMILK_HELL.get(), 1000), Ingredient.of(TofuItems.WARPED_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(this.output, prefix("bittern_to_hell"));
