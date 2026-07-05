@@ -6,6 +6,8 @@ import baguchi.tofucraft.data.generator.recipe.builder.TFShapedRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.TFShapelessRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.TFTofuMakeRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.TofuPotShapelessRecipeBuilder;
+import baguchi.tofucraft.recipe.BucketToBottleRecipe;
+import baguchi.tofucraft.recipe.FluidBucketRecipe;
 import baguchi.tofucraft.recipe.TFCraftingCategory;
 import baguchi.tofucraft.recipe.TofuPotCategory;
 import baguchi.tofucraft.registry.TofuBlocks;
@@ -19,6 +21,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.SpecialRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
@@ -194,6 +197,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.TOFU_METAL_SHEARS.get())
 				.pattern(" #")
 				.pattern("# ")
+				.define('#', TofuItems.TOFUMETAL.get())
+				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
+				.save(this.output);
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.TOOLS, TofuItems.TOFU_METAL_BUCKET.get())
+				.pattern("# #")
+				.pattern(" # ")
 				.define('#', TofuItems.TOFUMETAL.get())
 				.unlockedBy("has_item", has(TofuItems.TOFUMETAL.get()))
 				.save(this.output);
@@ -905,6 +914,22 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.GLASS_BOTTLE)
 				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
+
+
+		SpecialRecipeBuilder.special(() -> new FluidBucketRecipe(Ingredient.of(lookup.getOrThrow(TofuTags.Items.SOYBEAN)), TofuFluids.SOYMILK))
+				.save(this.output, prefix("fluid_bucket_soymilk"));
+		SpecialRecipeBuilder.special(() -> new FluidBucketRecipe(Ingredient.of(TofuItems.SEEDS_SOYBEANS_NETHER.get()), TofuFluids.SOYMILK_HELL))
+				.save(this.output, prefix("fluid_bucket_soymilk_hell"));
+		SpecialRecipeBuilder.special(() -> new FluidBucketRecipe(Ingredient.of(TofuItems.SEEDS_SOYBEANS_SOUL.get()), TofuFluids.SOYMILK_SOUL))
+				.save(this.output, prefix("fluid_bucket_soymilk_soul"));
+		SpecialRecipeBuilder.special(() -> new BucketToBottleRecipe(new ItemStackTemplate(TofuItems.SOYMILK_BOTTLE, 3), TofuFluids.SOYMILK))
+				.save(this.output, prefix("fluid_bucket_to_soymilk_bottle"));
+		SpecialRecipeBuilder.special(() -> new BucketToBottleRecipe(new ItemStackTemplate(TofuItems.SOYMILK_HELL_BOTTLE, 3), TofuFluids.SOYMILK_HELL))
+				.save(this.output, prefix("fluid_bucket_to_soymilk_hell_bottle"));
+		SpecialRecipeBuilder.special(() -> new BucketToBottleRecipe(new ItemStackTemplate(TofuItems.SOYMILK_SOUL_BOTTLE, 3), TofuFluids.SOYMILK_SOUL))
+				.save(this.output, prefix("fluid_bucket_to_soymilk_soul_bottle"));
+
+
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_APPLE_BOTTLE.get())
 				.requires(TofuTags.Items.MILK_SOYMILK)
 				.requires(Items.GLASS_BOTTLE)

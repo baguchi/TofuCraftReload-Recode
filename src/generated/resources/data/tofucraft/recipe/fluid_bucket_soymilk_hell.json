@@ -1,0 +1,5 @@
+{
+  "type": "tofucraft:fluid_bucket",
+  "fluid": "tofucraft:soymilk_hell",
+  "ingredient": "tofucraft:seeds_soybeans_nether"
+}

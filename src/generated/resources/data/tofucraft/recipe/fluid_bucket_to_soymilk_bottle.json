@@ -1,0 +1,8 @@
+{
+  "type": "tofucraft:bucket_to_bottle",
+  "fluid": "tofucraft:soymilk",
+  "result": {
+    "count": 3,
+    "id": "tofucraft:soymilk_bottle"
+  }
+}
