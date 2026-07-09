@@ -1,12 +1,12 @@
 {
   "values": [
-    "tofucraft:blocktofumetal",
-    "tofucraft:tofustair_metal",
-    "tofucraft:tofuslab_metal",
-    "tofucraft:tofuladder_metal",
-    "tofucraft:tofufence_metal",
-    "tofucraft:tofudoor_metal",
-    "tofucraft:tofutrapdoor_metal",
+    "tofucraft:block_tofu_metal",
+    "tofucraft:tofu_stair_metal",
+    "tofucraft:tofu_slab_metal",
+    "tofucraft:tofu_ladder_metal",
+    "tofucraft:tofu_fence_metal",
+    "tofucraft:tofu_door_metal",
+    "tofucraft:tofu_trapdoor_metal",
     "tofucraft:tofu_gem_block",
     "tofucraft:adv_tofu_gem_block",
     "tofucraft:zunda_alloy_tofu_block"

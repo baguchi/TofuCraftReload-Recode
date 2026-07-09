@@ -16,17 +16,17 @@ public class TofuEnergyMap {
 	private static HashMap<FluidStackTemplate, Integer> fluidRecipes = new HashMap<>();
 
 	public static void init() {
-		register(new ItemStackTemplate(TofuItems.TOFUKINU, 1), 100);
-		register(new ItemStackTemplate(TofuItems.TOFUMOMEN, 1), 100);
-		register(new ItemStackTemplate(TofuItems.TOFUISHI, 1), 100);
-		register(new ItemStackTemplate(TofuItems.TOFUEGG, 1), 120);
-		register(new ItemStackTemplate(TofuItems.TOFUZUNDA, 1), 200);
-		register(new ItemStackTemplate(TofuItems.TOFUDRIED, 1), 120);
-		register(new ItemStackTemplate(TofuItems.TOFUGRILLED, 1), 120);
-		register(new ItemStackTemplate(TofuItems.TOFUMISO, 1), 200);
+		register(new ItemStackTemplate(TofuItems.TOFU_KINU, 1), 100);
+		register(new ItemStackTemplate(TofuItems.TOFU_MOMEN, 1), 100);
+		register(new ItemStackTemplate(TofuItems.TOFU_ISHI, 1), 100);
+		register(new ItemStackTemplate(TofuItems.TOFU_EGG, 1), 120);
+		register(new ItemStackTemplate(TofuItems.TOFU_ZUNDA, 1), 200);
+		register(new ItemStackTemplate(TofuItems.TOFU_DRIED, 1), 120);
+		register(new ItemStackTemplate(TofuItems.TOFU_GRILLED, 1), 120);
+		register(new ItemStackTemplate(TofuItems.TOFU_MISO, 1), 200);
 		register(new ItemStackTemplate(TofuItems.TOFU_MINCED, 1), 100);
-		register(new ItemStackTemplate(TofuItems.TOFUHELL, 1), 200);
-		register(new ItemStackTemplate(TofuItems.TOFUSOUL, 1), 250);
+		register(new ItemStackTemplate(TofuItems.TOFU_HELL, 1), 200);
+		register(new ItemStackTemplate(TofuItems.TOFU_SOUL, 1), 250);
 		register(new ItemStackTemplate(TofuBlocks.KINUTOFU.asItem(), 1), 400);
 		register(new ItemStackTemplate(TofuBlocks.MOMENTOFU.asItem(), 1), 400);
 		register(new ItemStackTemplate(TofuBlocks.ISHITOFU.asItem(), 1), 400);

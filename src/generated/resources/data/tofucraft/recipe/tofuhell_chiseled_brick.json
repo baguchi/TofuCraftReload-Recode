@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "tofucraft:tofuslab_hellbrick"
+    "#": "tofucraft:tofu_slab_hellbrick"
   },
   "pattern": [
     "#",

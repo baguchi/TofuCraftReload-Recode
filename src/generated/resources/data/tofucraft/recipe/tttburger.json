@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "tofucraft:tofufried_pouch",
+    "#": "tofucraft:tofu_fried_pouch",
     "X": "minecraft:bread"
   },
   "pattern": [

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "tofucraft:tofumomen",
+    "#": "tofucraft:tofu_momen",
     "X": "#c:crops/wheat"
   },
   "pattern": [

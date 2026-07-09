@@ -138,7 +138,7 @@ public class TofuVillagerTrades {
 		register(
 				context,
 				TOFUNIAN_FARMER_1_ZUNDA_RUBY_GRILLED_TOFU,
-				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStackTemplate(TofuItems.TOFUGRILLED, 9), 16, 2, 0.05F, Optional.empty(), List.of())
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStackTemplate(TofuItems.TOFU_GRILLED, 9), 16, 2, 0.05F, Optional.empty(), List.of())
 		);
 
 		register(
@@ -174,23 +174,23 @@ public class TofuVillagerTrades {
 		register(
 				context,
 				TOFUNIAN_FARMER_4_ZUNDA_RUBY_STRAWBERRY_TOFU,
-				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuItems.TOFUSTRAWBERRY, 12), 8, 15, 0.1F, Optional.empty(), List.of())
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuItems.TOFU_STRAWBERRY, 12), 8, 15, 0.1F, Optional.empty(), List.of())
 		);
 		register(
 				context,
 				TOFUNIAN_FARMER_4_ZUNDA_RUBY_SESAME_TOFU,
-				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuItems.TOFUSESAME, 12), 8, 15, 0.1F, Optional.empty(), List.of())
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuItems.TOFU_SESAME, 12), 8, 15, 0.1F, Optional.empty(), List.of())
 		);
 		register(
 				context,
 				TOFUNIAN_FARMER_5_ZUNDA_RUBY_TOFU_CAKE,
-				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuBlocks.TOFUCAKE.asItem()), 3, 20, 0.1F, Optional.empty(), List.of())
+				new VillagerTrade(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuBlocks.TOFU_CAKE.asItem()), 3, 20, 0.1F, Optional.empty(), List.of())
 		);
 
 		register(
 				context,
 				TOFUNIAN_SMITH_1_TOFU_ISHI_ZUNDA_RUBY,
-				new VillagerTrade(new TradeCost(TofuItems.TOFUISHI.get(), 32), new ItemStackTemplate(TofuItems.ZUNDARUBY), 16, 2, 0.05F, Optional.empty(), List.of())
+				new VillagerTrade(new TradeCost(TofuItems.TOFU_ISHI.get(), 32), new ItemStackTemplate(TofuItems.ZUNDARUBY), 16, 2, 0.05F, Optional.empty(), List.of())
 		);
 		register(
 				context,
@@ -212,7 +212,7 @@ public class TofuVillagerTrades {
 		register(
 				context,
 				TOFUNIAN_SMITH_2_TOFU_METAL_ZUNDA_RUBY,
-				new VillagerTrade(new TradeCost(TofuItems.TOFUMETAL.get(), 18), new ItemStackTemplate(TofuItems.ZUNDARUBY), 16, 6, 0.05F, Optional.empty(), List.of())
+				new VillagerTrade(new TradeCost(TofuItems.TOFU_METAL.get(), 18), new ItemStackTemplate(TofuItems.ZUNDARUBY), 16, 6, 0.05F, Optional.empty(), List.of())
 		);
 		register(
 				context,
@@ -378,7 +378,7 @@ public class TofuVillagerTrades {
 		register(
 				context,
 				TOFUNIAN_ENGINEER_2_TOFU_METAL_ZUNDA_RUBY,
-				new VillagerTrade(new TradeCost(TofuItems.TOFUMETAL.get(), 12), new ItemStackTemplate(TofuItems.ZUNDARUBY), 12, 6, 0.05F, Optional.empty(), List.of())
+				new VillagerTrade(new TradeCost(TofuItems.TOFU_METAL.get(), 12), new ItemStackTemplate(TofuItems.ZUNDARUBY), 12, 6, 0.05F, Optional.empty(), List.of())
 		);
 		register(
 				context,
@@ -446,7 +446,7 @@ public class TofuVillagerTrades {
 		register(
 				context,
 				TOFU_CRAFTSMAN_1_EMERALD_GRILLED,
-				new VillagerTrade(new TradeCost(Items.EMERALD, 1), new ItemStackTemplate(TofuItems.TOFUGRILLED, 9), 12, 2, 0.05F, Optional.empty(), List.of())
+				new VillagerTrade(new TradeCost(Items.EMERALD, 1), new ItemStackTemplate(TofuItems.TOFU_GRILLED, 9), 12, 2, 0.05F, Optional.empty(), List.of())
 		);
 
 		register(

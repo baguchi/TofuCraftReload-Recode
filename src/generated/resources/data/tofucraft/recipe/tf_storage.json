@@ -4,7 +4,7 @@
   "key": {
     "C": "tofucraft:tf_capacitor",
     "G": "minecraft:glass",
-    "T": "tofucraft:blocktofumetal"
+    "T": "tofucraft:block_tofu_metal"
   },
   "pattern": [
     "CCC",

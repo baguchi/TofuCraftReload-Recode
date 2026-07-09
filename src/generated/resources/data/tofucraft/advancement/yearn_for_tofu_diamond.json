@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tofucraft:tofudiamond"
+            "items": "tofucraft:tofu_diamond"
           }
         ]
       },
@@ -18,7 +18,7 @@
     },
     "frame": "goal",
     "icon": {
-      "id": "tofucraft:tofudiamond"
+      "id": "tofucraft:tofu_diamond"
     },
     "title": {
       "translate": "advancements.tofucraft.yearn_for_tofu_diamond.title"

@@ -1,0 +1,68 @@
+{
+  "type" : "minecraft:entity",
+  "pools" : [
+    {
+      "name" : "gunpowder",
+      "rolls" : 1,
+      "entries" : [
+        {
+          "type" : "item",
+          "name" : "minecraft:gunpowder",
+          "weight" : 1,
+          "functions" : [
+            {
+              "function" : "set_count",
+              "count" : {
+                "min" : 0,
+                "max" : 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "tofu_kinu",
+      "rolls" : 1,
+      "entries" : [
+        {
+          "type" : "item",
+          "name": "tofucraft:tofu_kinu",
+          "weight" : 1,
+          "functions" : [
+            {
+              "function" : "set_count",
+              "count" : {
+                "min" : 0,
+                "max" : 2
+              }
+            },
+            {
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "enchantment": "minecraft:looting",
+              "function": "minecraft:enchanted_count_increase"
+            },
+            {
+              "function" : "minecraft:furnace_smelt",
+              "conditions" : [
+                {
+                  "condition" : "minecraft:entity_properties",
+                  "predicate" : {
+                    "flags" : {
+                      "is_on_fire" : true
+                    }
+                  },
+                  "entity" : "this"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

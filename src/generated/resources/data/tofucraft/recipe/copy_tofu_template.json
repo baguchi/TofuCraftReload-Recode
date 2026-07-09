@@ -3,9 +3,9 @@
   "category": "misc",
   "key": {
     "#": "tofucraft:tofu_upgrade_smithing_template",
-    "D": "tofucraft:tofudiamond",
+    "D": "tofucraft:tofu_diamond",
     "G": "minecraft:diamond",
-    "T": "tofucraft:blocktofuishi"
+    "T": "tofucraft:block_tofu_ishi"
   },
   "pattern": [
     "GTG",

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "tofucraft:tofumomen",
+    "tofucraft:tofu_momen",
     "minecraft:cooked_cod"
   ],
   "result": {

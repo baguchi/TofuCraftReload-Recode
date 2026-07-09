@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/template_chest",
   "textures": {
-    "particle": "tofucraft:block/blocktofuishi"
+    "particle": "tofucraft:block/block_tofu_ishi"
   }
 }

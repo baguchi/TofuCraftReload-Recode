@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": "tofucraft:blocktofumetal",
+    "#": "tofucraft:block_tofu_metal",
     "X": "#c:rods/wooden"
   },
   "pattern": [

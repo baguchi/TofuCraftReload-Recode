@@ -3,7 +3,7 @@
   "category": "redstone",
   "key": {
     "C": "tofucraft:tf_circuit",
-    "M": "tofucraft:tofumetal",
+    "M": "tofucraft:tofu_metal",
     "R": "tofucraft:tf_capacitor",
     "T": "tofucraft:tofu_gem_dust"
   },

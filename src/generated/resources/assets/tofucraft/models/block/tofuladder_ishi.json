@@ -1,6 +1,0 @@
-{
-  "parent": "tofucraft:block/ladder",
-  "textures": {
-    "all": "tofucraft:block/tofuladder_ishi"
-  }
-}

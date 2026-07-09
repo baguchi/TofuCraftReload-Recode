@@ -301,7 +301,7 @@ public class TofuPortalBlock extends Block implements Portal {
 		}
 
 		boolean isTofuBlock(BlockState state) {
-			return (state.getBlock() == TofuBlocks.GRILLEDTOFU.get());
+			return (state.getBlock() == TofuBlocks.GRILLED_TOFU.get());
 		}
 
 		public boolean isValid() {

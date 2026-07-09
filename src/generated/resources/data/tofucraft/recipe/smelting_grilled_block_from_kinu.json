@@ -3,8 +3,8 @@
   "category": "food",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": "tofucraft:blocktofukinu",
+  "ingredient": "tofucraft:block_tofu_kinu",
   "result": {
-    "id": "tofucraft:blocktofugrilled"
+    "id": "tofucraft:block_tofu_grilled"
   }
 }

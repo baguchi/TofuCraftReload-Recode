@@ -4,7 +4,7 @@
   "key": {
     "B": "minecraft:crafting_table",
     "E": "tofucraft:tofu_core",
-    "T": "tofucraft:blocktofumetal"
+    "T": "tofucraft:block_tofu_metal"
   },
   "pattern": [
     "B",

@@ -1,0 +1,59 @@
+{
+  "type" : "minecraft:archaeology",
+  "pools" : [
+    {
+      "bonus_rolls" : 0.0,
+      "entries" : [
+        {
+          "type" : "minecraft:item",
+          "name": "tofucraft:tofu_kinu"
+        },
+        {
+          "type" : "minecraft:item",
+          "name": "tofucraft:tofu_ishi"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofugem"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofustick"
+        },
+        {
+          "type" : "minecraft:item",
+          "name": "tofucraft:tofu_metal"
+        },
+        {
+          "type" : "minecraft:item",
+          "name": "tofucraft:tofu_diamond"
+        },
+        {
+          "type" : "minecraft:item",
+          "name": "tofucraft:tofu_diamond_nugget"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofunian_banner_pattern"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:tofu_upgrade_smithing_template"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:zundaruby"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:sapling_apricot"
+        },
+        {
+          "type" : "minecraft:item",
+          "name" : "tofucraft:leek"
+        }
+      ],
+      "rolls" : 1.0
+    }
+  ]
+}

@@ -3,8 +3,8 @@
   "category": "redstone",
   "key": {
     "C": "minecraft:quartz",
-    "M": "tofucraft:tofumetal",
-    "T": "tofucraft:tofukinu"
+    "M": "tofucraft:tofu_metal",
+    "T": "tofucraft:tofu_kinu"
   },
   "pattern": [
     "TCT",

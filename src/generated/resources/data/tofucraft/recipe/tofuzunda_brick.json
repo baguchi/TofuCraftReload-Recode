@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "tofucraft:blocktofuzunda"
+    "#": "tofucraft:block_tofu_zunda"
   },
   "pattern": [
     "##",

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "tofucraft:blocktofumetal",
-  "result": {
-    "count": 2,
-    "id": "tofucraft:tofustair_metal"
-  }
-}

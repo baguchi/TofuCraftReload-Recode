@@ -99,7 +99,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 					.save(consumer, "tofucraft:bittern_bottle");
 			AdvancementHolder make_tofu = Advancement.Builder.advancement()
 					.parent(bittern_bottle)
-					.display(TofuItems.TOFUKINU.get(),
+					.display(TofuItems.TOFU_KINU.get(),
 							Component.translatable("advancements.tofucraft.make_tofu.title"),
 							Component.translatable("advancements.tofucraft.make_tofu.desc"),
 							null,
@@ -117,12 +117,12 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 
 			AdvancementHolder eat_tofu_block = Advancement.Builder.advancement()
 					.parent(make_tofu)
-					.display(TofuBlocks.GRILLEDTOFU.get(),
+					.display(TofuBlocks.GRILLED_TOFU.get(),
 							Component.translatable("advancements.tofucraft.eat_tofu_block.title"),
 							Component.translatable("advancements.tofucraft.eat_tofu_block.desc"),
 							null,
 							AdvancementType.CHALLENGE, true, true, true)
-					.addCriterion("has_item", ConsumeItemTrigger.TriggerInstance.usedItem(items, TofuBlocks.GRILLEDTOFU.get()))
+					.addCriterion("has_item", ConsumeItemTrigger.TriggerInstance.usedItem(items, TofuBlocks.GRILLED_TOFU.get()))
 					.rewards(AdvancementRewards.Builder.experience(50))
 					.save(consumer, "tofucraft:eat_tofu_block");
 
@@ -308,7 +308,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 			AdvancementHolder yearn_for_tofu_diamond = Advancement.Builder.advancement()
 					.parent(tofu_world)
 					.display(
-							TofuItems.TOFUDIAMOND.get(),
+							TofuItems.TOFU_DIAMOND.get(),
 							Component.translatable("advancements.tofucraft.yearn_for_tofu_diamond.title"),
 							Component.translatable("advancements.tofucraft.yearn_for_tofu_diamond.desc"),
 							null,
@@ -320,7 +320,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 					.addCriterion(
 							"tofu_diamond",
 							InventoryChangeTrigger.TriggerInstance.hasItems(
-									TofuItems.TOFUDIAMOND.get()
+									TofuItems.TOFU_DIAMOND.get()
 							)
 					)
 					.save(consumer, "tofucraft:yearn_for_tofu_diamond");

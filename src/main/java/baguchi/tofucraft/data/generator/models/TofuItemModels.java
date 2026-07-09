@@ -39,28 +39,28 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.KYONINSO.get(), ModelTemplates.FLAT_ITEM);
 
 		//item
-		this.generateFlatItem(TofuItems.TOFUKINU.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUMOMEN.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUISHI.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUMETAL.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_KINU.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_MOMEN.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_ISHI.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_METAL.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_METAL_NUGGET.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUDIAMOND.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUDIAMOND_NUGGET.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_DIAMOND.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_DIAMOND_NUGGET.get(), ModelTemplates.FLAT_ITEM);
 
-		this.generateFlatItem(TofuItems.TOFUHELL.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUSOUL.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_HELL.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_SOUL.get(), ModelTemplates.FLAT_ITEM);
 
-		this.generateFlatItem(TofuItems.TOFUGRILLED.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUZUNDA.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUMISO.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUDRIED.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUFRIED.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUSMOKE.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_GRILLED.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_ZUNDA.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_MISO.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_DRIED.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_FRIED.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_SMOKE.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SHUDOFU.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUSESAME.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUFRIED_POUCH.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUANNIN.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUSTRAWBERRY.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_SESAME.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_FRIED_POUCH.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_ANNIN.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_STRAWBERRY.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.AGEDASHI_TOFU.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_STEAK.get(), ModelTemplates.FLAT_ITEM);
@@ -371,7 +371,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.BOTTLE_DASHI.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.BOTTLE_MIRIN.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.BOTTLE_SOYOIL.get(), ModelTemplates.FLAT_ITEM);
-		this.generateFlatItem(TofuItems.TOFUEGG.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_EGG.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOYSAUSE_RAMEN.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.HELL_MABOU.get(), ModelTemplates.FLAT_ITEM);

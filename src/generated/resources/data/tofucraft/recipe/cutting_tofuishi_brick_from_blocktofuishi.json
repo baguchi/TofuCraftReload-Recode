@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "tofucraft:blocktofuishi",
-  "result": {
-    "id": "tofucraft:tofuishi_brick"
-  }
-}

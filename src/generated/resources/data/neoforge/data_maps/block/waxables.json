@@ -1,12 +1,12 @@
 {
   "values": {
-    "tofucraft:blocktofuishi": {
+    "tofucraft:block_tofu_ishi": {
       "waxed": "tofucraft:waxed_tofu_ishi"
     },
-    "tofucraft:blocktofukinu": {
+    "tofucraft:block_tofu_kinu": {
       "waxed": "tofucraft:waxed_tofu_kinu"
     },
-    "tofucraft:blocktofumomen": {
+    "tofucraft:block_tofu_momen": {
       "waxed": "tofucraft:waxed_tofu_momen"
     }
   }

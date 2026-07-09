@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "tofucraft:tofusoul",
+    "tofucraft:tofu_soul",
     "tofucraft:leek",
     "tofucraft:glass_bowl",
     "tofucraft:bottle_soysause"

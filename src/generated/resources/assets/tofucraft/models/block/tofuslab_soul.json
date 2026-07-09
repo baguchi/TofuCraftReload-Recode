@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "tofucraft:block/blocktofusoul",
-    "side": "tofucraft:block/blocktofusoul",
-    "top": "tofucraft:block/blocktofusoul"
-  }
-}

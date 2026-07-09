@@ -96,7 +96,7 @@ public class ZundaArrow extends AbstractArrow {
 
 				if (p_36757_.getEntity() instanceof TofuSlime slime) {
 					this.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 1.0F);
-					this.spawnAtLocation(serverlevel, new ItemStack(TofuItems.TOFUZUNDA.get(), slime.getSize() * 2));
+					this.spawnAtLocation(serverlevel, new ItemStack(TofuItems.TOFU_ZUNDA.get(), slime.getSize() * 2));
 					p_36757_.getEntity().discard();
 					this.discard();
 				} else if (p_36757_.getEntity().is(TofuTags.EntityTypes.EXTRA_DAMAGE_ZUNDA)) {

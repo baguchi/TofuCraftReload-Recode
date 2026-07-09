@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "tofucraft:tofumetal"
+    "#": "tofucraft:tofu_metal"
   },
   "pattern": [
     "###",

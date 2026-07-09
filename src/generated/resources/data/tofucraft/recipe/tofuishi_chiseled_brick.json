@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": "tofucraft:tofuslab_ishibrick"
+    "#": "tofucraft:tofu_slab_ishibrick"
   },
   "pattern": [
     "#",

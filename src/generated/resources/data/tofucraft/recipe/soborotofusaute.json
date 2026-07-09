@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "tofucraft:tofuminced",
+    "tofucraft:tofu_minced",
     "minecraft:cooked_porkchop",
     "minecraft:carrot",
     "tofucraft:bottle_soysause",

@@ -25,7 +25,7 @@ public class TFTofuMakerScreen extends AbstractRecipeBookScreen<TFTofuMakerMenu>
 	private static final Component FILTER_NAME = Component.translatable("gui.recipebook.toggleRecipes.smeltable");
 	private static final List<RecipeBookComponent.TabInfo> TABS = List.of(
 			new RecipeBookComponent.TabInfo(TofuItems.TOFU_CRAFTERS_BOOK.get(), TofuRecipeBookCategory.TF_TOFU_MAKER_SEARCH),
-			new RecipeBookComponent.TabInfo(TofuItems.TOFUKINU.get(), TofuRecipeBookCategory.TF_TOFU_MAKER.get())
+			new RecipeBookComponent.TabInfo(TofuItems.TOFU_KINU.get(), TofuRecipeBookCategory.TF_TOFU_MAKER.get())
 	);
 
 

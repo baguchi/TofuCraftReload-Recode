@@ -106,7 +106,7 @@ public class TofuGolem extends AbstractGolem implements NeutralMob, RangedAttack
 	@Override
 	protected InteractionResult mobInteract(Player p_28861_, InteractionHand p_28862_) {
 		ItemStack itemstack = p_28861_.getItemInHand(p_28862_);
-		if (!itemstack.is(TofuItems.TOFUISHI.get())) {
+		if (!itemstack.is(TofuItems.TOFU_ISHI.get())) {
 			return InteractionResult.PASS;
 		} else {
 			float f = this.getHealth();

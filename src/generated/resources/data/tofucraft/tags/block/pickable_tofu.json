@@ -1,13 +1,13 @@
 {
   "values": [
-    "tofucraft:blocktofukinu",
-    "tofucraft:blocktofumomen",
-    "tofucraft:blocktofuhell",
-    "tofucraft:blocktofusoul",
-    "tofucraft:blocktofugrilled",
-    "tofucraft:blocktofuzunda",
-    "tofucraft:blocktofuminced",
-    "tofucraft:blocktofumetal",
-    "tofucraft:blocktofuishi"
+    "tofucraft:block_tofu_kinu",
+    "tofucraft:block_tofu_momen",
+    "tofucraft:block_tofu_hell",
+    "tofucraft:block_tofu_soul",
+    "tofucraft:block_tofu_grilled",
+    "tofucraft:block_tofu_zunda",
+    "tofucraft:block_tofu_minced",
+    "tofucraft:block_tofu_metal",
+    "tofucraft:block_tofu_ishi"
   ]
 }

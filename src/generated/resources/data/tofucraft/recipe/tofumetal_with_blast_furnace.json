@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "tofucraft:blocktofumetal",
+    "#": "tofucraft:block_tofu_metal",
     "F": "minecraft:furnace",
     "S": "minecraft:smooth_stone"
   },

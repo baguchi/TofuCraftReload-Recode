@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "tofucraft:blocktofumetal",
-    "S": "tofucraft:tofuishi"
+    "#": "tofucraft:block_tofu_metal",
+    "S": "tofucraft:tofu_ishi"
   },
   "pattern": [
     "S S",

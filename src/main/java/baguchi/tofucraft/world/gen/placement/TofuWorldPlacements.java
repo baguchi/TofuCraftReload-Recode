@@ -142,7 +142,7 @@ public class TofuWorldPlacements {
 				CountPlacement.of(32),
 				RandomOffsetPlacement.ofTriangle(7, 3),
 				BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE));
-		PlacementUtils.register(context, BIG_ZUNDA_TOFU_MUSHROOM, configuredFeature.getOrThrow(ModVegetationFeatures.BIG_ZUNDA_TOFU_MUSHROOM), treePlacement(PlacementUtils.countExtra(1, 0.1F, 1), TofuBlocks.ZUNDATOFU_MUSHROOM.get()));
+		PlacementUtils.register(context, BIG_ZUNDA_TOFU_MUSHROOM, configuredFeature.getOrThrow(ModVegetationFeatures.BIG_ZUNDA_TOFU_MUSHROOM), treePlacement(PlacementUtils.countExtra(1, 0.1F, 1), TofuBlocks.ZUNDA_TOFU_MUSHROOM.get()));
 
 		PlacementUtils.register(context, TOFU_TREES_FOREST, configuredFeature.getOrThrow(ModVegetationFeatures.TOFU_TREES), treePlacement(PlacementUtils.countExtra(10, 0.1F, 1), TofuBlocks.SAPLING_TOFU.get()));
 		PlacementUtils.register(context, TOFU_TREES_PLAINS, configuredFeature.getOrThrow(ModVegetationFeatures.TOFU_TREES), treePlacement(PlacementUtils.countExtra(0, 0.01F, 1), TofuBlocks.SAPLING_TOFU.get()));

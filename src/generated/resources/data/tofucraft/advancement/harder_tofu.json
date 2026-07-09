@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "tofucraft:blocktofumetal"
+            "items": "tofucraft:block_tofu_metal"
           }
         ]
       },
@@ -17,7 +17,7 @@
       "translate": "advancements.tofucraft.harder_tofu.desc"
     },
     "icon": {
-      "id": "tofucraft:blocktofumetal"
+      "id": "tofucraft:block_tofu_metal"
     },
     "title": {
       "translate": "advancements.tofucraft.harder_tofu.title"

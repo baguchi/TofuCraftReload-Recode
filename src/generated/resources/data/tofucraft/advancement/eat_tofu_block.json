@@ -4,7 +4,7 @@
     "has_item": {
       "conditions": {
         "item": {
-          "items": "tofucraft:blocktofugrilled"
+          "items": "tofucraft:block_tofu_grilled"
         }
       },
       "trigger": "minecraft:consume_item"
@@ -17,7 +17,7 @@
     "frame": "challenge",
     "hidden": true,
     "icon": {
-      "id": "tofucraft:blocktofugrilled"
+      "id": "tofucraft:block_tofu_grilled"
     },
     "title": {
       "translate": "advancements.tofucraft.eat_tofu_block.title"

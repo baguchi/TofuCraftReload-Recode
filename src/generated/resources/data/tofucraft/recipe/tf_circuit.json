@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "I": "tofucraft:tofuishi",
+    "I": "tofucraft:tofu_ishi",
     "R": "tofucraft:tofu_gem_dust",
-    "T": "tofucraft:blocktofuishi"
+    "T": "tofucraft:block_tofu_ishi"
   },
   "pattern": [
     "RIR",

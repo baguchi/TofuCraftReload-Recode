@@ -36,7 +36,7 @@
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "tofucraft:zundatofu_mushroom",
+          "Name": "tofucraft:zunda_tofu_mushroom",
           "Properties": {
             "stage": "0"
           }
