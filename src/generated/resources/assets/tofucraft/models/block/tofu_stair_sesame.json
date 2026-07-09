@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "tofucraft:block/block_tofu_sesame",
+    "side": "tofucraft:block/block_tofu_sesame",
+    "top": "tofucraft:block/block_tofu_sesame"
+  }
+}

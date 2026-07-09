@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tofucraft:block/tofu_slab_momen"
+    },
+    "type=double": {
+      "model": "tofucraft:block/block_tofu_momen"
+    },
+    "type=top": {
+      "model": "tofucraft:block/tofu_slab_momen_top"
+    }
+  }
+}

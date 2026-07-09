@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": "tofucraft:block_tofu_metal"
+  },
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "result": {
+    "count": 8,
+    "id": "tofucraft:tofu_trapdoor_metal"
+  }
+}

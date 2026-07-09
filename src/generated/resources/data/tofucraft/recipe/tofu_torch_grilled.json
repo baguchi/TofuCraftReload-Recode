@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": "#minecraft:coals",
+    "M": "tofucraft:tofu_grilled"
+  },
+  "pattern": [
+    "C",
+    "M"
+  ],
+  "result": {
+    "count": 4,
+    "id": "tofucraft:tofu_torch_grilled"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:tofu_trapdoor_ishi"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tofu_ishi": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:tofu_ishi"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_tofu_ishi"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofu_trapdoor_ishi"
+    ]
+  }
+}

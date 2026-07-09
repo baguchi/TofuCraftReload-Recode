@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tofucraft:block/tofu_slab_grilled"
+    },
+    "type=double": {
+      "model": "tofucraft:block/block_tofu_grilled"
+    },
+    "type=top": {
+      "model": "tofucraft:block/tofu_slab_grilled_top"
+    }
+  }
+}

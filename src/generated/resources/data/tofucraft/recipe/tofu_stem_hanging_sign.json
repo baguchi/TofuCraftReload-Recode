@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "tofucraft:tofu_stem",
+    "|": "tofucraft:tofu_metal_chain"
+  },
+  "pattern": [
+    "| |",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "tofucraft:tofu_stem_hanging_sign"
+  }
+}

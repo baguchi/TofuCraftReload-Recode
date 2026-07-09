@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "tofucraft:tofu_zunda",
+    "E": "#c:eggs",
+    "S": "minecraft:sugar",
+    "W": "#c:crops/wheat"
+  },
+  "pattern": [
+    "###",
+    "SES",
+    "WWW"
+  ],
+  "result": {
+    "id": "tofucraft:zunda_tofucake"
+  }
+}

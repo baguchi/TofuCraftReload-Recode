@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "M": "tofucraft:tofu_stem_planks",
+    "S": "#c:rods/wooden"
+  },
+  "pattern": [
+    "MSM",
+    "MSM"
+  ],
+  "result": {
+    "count": 3,
+    "id": "tofucraft:tofu_stem_fence"
+  }
+}

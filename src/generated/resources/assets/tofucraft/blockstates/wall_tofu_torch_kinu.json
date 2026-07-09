@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tofucraft:block/wall_tofu_torch_kinu"
+    },
+    "facing=north": {
+      "model": "tofucraft:block/wall_tofu_torch_kinu",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "tofucraft:block/wall_tofu_torch_kinu",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "tofucraft:block/wall_tofu_torch_kinu",
+      "y": 180
+    }
+  }
+}

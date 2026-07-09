@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tofucraft:block/tofu_slab_ishi"
+    },
+    "type=double": {
+      "model": "tofucraft:block/block_tofu_ishi"
+    },
+    "type=top": {
+      "model": "tofucraft:block/tofu_slab_ishi_top"
+    }
+  }
+}
