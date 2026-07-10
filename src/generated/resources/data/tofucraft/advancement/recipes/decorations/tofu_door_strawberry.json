@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_block_tofu_strawberry": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:block_tofu_strawberry"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tofucraft:tofu_door_strawberry"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_block_tofu_strawberry"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tofucraft:tofu_door_strawberry"
+    ]
+  }
+}

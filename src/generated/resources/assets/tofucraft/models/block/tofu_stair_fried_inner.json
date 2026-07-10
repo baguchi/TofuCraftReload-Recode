@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "tofucraft:block/block_tofu_fried",
+    "side": "tofucraft:block/block_tofu_fried",
+    "top": "tofucraft:block/block_tofu_fried"
+  }
+}
