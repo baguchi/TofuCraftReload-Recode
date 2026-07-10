@@ -166,9 +166,12 @@ public class TofuItemTags extends BlockTagCopyingItemTagProvider {
 				.add(TofuBlocks.DRIEDTOFU.asItem())
 				.add(TofuBlocks.GRILLED_TOFU.asItem())
 				.add(TofuBlocks.SESAMETOFU.asItem())
+				.add(TofuBlocks.STRAWBERRY_TOFU.asItem())
 				.add(TofuBlocks.MISOTOFU.asItem())
 				.add(TofuBlocks.HELLTOFU.asItem())
-				.add(TofuBlocks.SOULTOFU.asItem());
+				.add(TofuBlocks.SOULTOFU.asItem())
+				.add(TofuBlocks.FRIED_TOFU.asItem())
+				.add(TofuBlocks.FRIED_POUCH_TOFU.asItem());
 		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_BOUNCY)
 				.add(TofuBlocks.ZUNDATOFU.asItem())
 				.add(TofuBlocks.GRILLED_TOFU.asItem());

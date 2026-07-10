@@ -3,8 +3,11 @@
     "tofucraft:block_tofu_dried",
     "tofucraft:block_tofu_grilled",
     "tofucraft:block_tofu_sesame",
+    "tofucraft:block_tofu_strawberry",
     "tofucraft:block_tofu_miso",
     "tofucraft:block_tofu_hell",
-    "tofucraft:block_tofu_soul"
+    "tofucraft:block_tofu_soul",
+    "tofucraft:block_tofu_fried",
+    "tofucraft:block_tofu_fried_pouch"
   ]
 }
