@@ -38,6 +38,7 @@ public class DataGenerators {
 
 		CompletableFuture<HolderLookup.Provider> lookupProvider = datapackProvider.getRegistryProvider();
 		generator.addProvider(true, datapackProvider);
+		generator.addProvider(true, new LootModifierProviderFactory().create(event, datapackProvider));
 		generator.addProvider(true, new TofuModelData(packOutput));
 		generator.addProvider(true, new TofuEquipmentModelProvider(packOutput));
 

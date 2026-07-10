@@ -1,0 +1,23 @@
+{
+  "type": "neoforge:add_table",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/ancient_city_ice_box"
+    },
+    {
+      "chance": 1.0,
+      "condition": "minecraft:random_chance"
+    },
+    {
+      "condition": "minecraft:inverted",
+      "term": {
+        "condition": "minecraft:match_tool",
+        "predicate": {
+          "items": "minecraft:shears"
+        }
+      }
+    }
+  ],
+  "table": "tofucraft:injections/seeds_chili_ancient_city"
+}
