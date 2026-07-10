@@ -183,6 +183,8 @@ public class TofuCustomTags {
 			tag(TofuTags.TofunianTrade.TOFU_CRAFTSMAN_LEVEL_3)
 					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_3_SALT_EMERALD)
 					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_3_EMERALD_OAGE)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_3_EMERALD_FRIED_POUCH)
+					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_3_EMERALD_FRIED_TOFU)
 					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_3_EMERALD_AGEDASHI_TOFU);
 			tag(TofuTags.TofunianTrade.TOFU_CRAFTSMAN_LEVEL_4)
 					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_4_EMERALD_OKARA_DONUT)
