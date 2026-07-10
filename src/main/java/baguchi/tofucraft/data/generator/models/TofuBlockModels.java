@@ -65,6 +65,27 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.door(TofuBlocks.TOFU_DOOR_SESAME.get())
 				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_SESAME.get());
 
+		family(TofuBlocks.STRAWBERRY_TOFU.get())
+				.stairs(TofuBlocks.TOFU_STAIR_STRAWBERRY.get())
+				.slab(TofuBlocks.TOFU_SLAB_STRAWBERRY.get())
+				.wall(TofuBlocks.TOFU_FENCE_STRAWBERRY.get())
+				.door(TofuBlocks.TOFU_DOOR_STRAWBERRY.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_STRAWBERRY.get());
+
+		family(TofuBlocks.FRIED_TOFU.get())
+				.stairs(TofuBlocks.TOFU_STAIR_FRIED.get())
+				.slab(TofuBlocks.TOFU_SLAB_FRIED.get())
+				.wall(TofuBlocks.TOFU_FENCE_FRIED.get())
+				.door(TofuBlocks.TOFU_DOOR_FRIED.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_FRIED.get());
+
+		family(TofuBlocks.FRIED_POUCH_TOFU.get())
+				.stairs(TofuBlocks.TOFU_STAIR_FRIED_POUCH.get())
+				.slab(TofuBlocks.TOFU_SLAB_FRIED_POUCH.get())
+				.wall(TofuBlocks.TOFU_FENCE_FRIED_POUCH.get())
+				.door(TofuBlocks.TOFU_DOOR_FRIED_POUCH.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_FRIED_POUCH.get());
+
 
 		family(TofuBlocks.EGGTOFU_BRICK.get())
 				.stairs(TofuBlocks.TOFU_STAIR_EGGBRICK.get())

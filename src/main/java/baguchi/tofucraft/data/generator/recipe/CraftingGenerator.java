@@ -445,6 +445,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSolidFence(this.output, TofuBlocks.TOFU_FENCE_DRIED, TofuBlocks.DRIEDTOFU);
 		makeSolidFence(this.output, TofuBlocks.TOFU_FENCE_EGG, TofuBlocks.EGGTOFU);
 		makeSolidFence(this.output, TofuBlocks.TOFU_FENCE_SESAME, TofuBlocks.SESAMETOFU);
+		makeSolidFence(this.output, TofuBlocks.TOFU_FENCE_STRAWBERRY, TofuBlocks.STRAWBERRY_TOFU);
+		makeSolidFence(this.output, TofuBlocks.TOFU_FENCE_FRIED, TofuBlocks.FRIED_TOFU);
+		makeSolidFence(this.output, TofuBlocks.TOFU_FENCE_FRIED_POUCH, TofuBlocks.FRIED_POUCH_TOFU);
 
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_KINU, TofuBlocks.KINUTOFU);
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_MOMEN, TofuBlocks.MOMENTOFU);
@@ -458,6 +461,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_DRIED, TofuBlocks.DRIEDTOFU);
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_EGG, TofuBlocks.EGGTOFU);
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_SESAME, TofuBlocks.SESAMETOFU);
+		makeDoor(this.output, TofuBlocks.TOFU_DOOR_STRAWBERRY, TofuBlocks.STRAWBERRY_TOFU);
+		makeDoor(this.output, TofuBlocks.TOFU_DOOR_FRIED, TofuBlocks.FRIED_TOFU);
+		makeDoor(this.output, TofuBlocks.TOFU_DOOR_FRIED_POUCH, TofuBlocks.FRIED_POUCH_TOFU);
 
 		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_KINU, TofuItems.TOFU_KINU);
 		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_MOMEN, TofuItems.TOFU_MOMEN);
@@ -471,6 +477,9 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_DRIED, TofuBlocks.DRIEDTOFU);
 		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_EGG, TofuBlocks.EGGTOFU);
 		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_SESAME, TofuBlocks.SESAMETOFU);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_STRAWBERRY, TofuItems.TOFU_STRAWBERRY);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_FRIED, TofuItems.TOFU_FRIED);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_FRIED_POUCH, TofuItems.TOFU_FRIED_POUCH);
 
 		cuttingRecipe(this.output, TofuBlocks.ISHITOFU, TofuBlocks.TOFU_TRAPDOOR_ISHI, 1);
 		cuttingRecipe(this.output, TofuBlocks.ISHITOFU, TofuBlocks.TOFU_FENCE_ISHI, 1);
@@ -1462,6 +1471,17 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(this.output, TofuBlocks.SESAMETOFU, TofuItems.TOFU_SESAME);
 		makeStairs(this.output, TofuBlocks.TOFU_STAIR_SESAME, TofuBlocks.SESAMETOFU);
 		makeSlab(this.output, TofuBlocks.TOFU_SLAB_SESAME, TofuBlocks.SESAMETOFU);
+		tofuBlockItem(this.output, TofuBlocks.STRAWBERRY_TOFU, TofuItems.TOFU_STRAWBERRY);
+		makeStairs(this.output, TofuBlocks.TOFU_STAIR_STRAWBERRY, TofuBlocks.STRAWBERRY_TOFU);
+		makeSlab(this.output, TofuBlocks.TOFU_SLAB_STRAWBERRY, TofuBlocks.STRAWBERRY_TOFU);
+
+		tofuBlockItem(this.output, TofuBlocks.FRIED_TOFU, TofuItems.TOFU_FRIED);
+		makeStairs(this.output, TofuBlocks.TOFU_STAIR_FRIED, TofuBlocks.FRIED_TOFU);
+		makeSlab(this.output, TofuBlocks.TOFU_SLAB_FRIED, TofuBlocks.FRIED_TOFU);
+
+		tofuBlockItem(this.output, TofuBlocks.FRIED_POUCH_TOFU, TofuItems.TOFU_FRIED_POUCH);
+		makeStairs(this.output, TofuBlocks.TOFU_STAIR_FRIED_POUCH, TofuBlocks.FRIED_POUCH_TOFU);
+		makeSlab(this.output, TofuBlocks.TOFU_SLAB_FRIED_POUCH, TofuBlocks.FRIED_POUCH_TOFU);
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.KOUJI_BASE.get(), 1)
 				.requires(TofuTags.Items.SOYBEAN)

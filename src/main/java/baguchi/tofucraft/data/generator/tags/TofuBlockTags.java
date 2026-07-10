@@ -26,11 +26,23 @@ public class TofuBlockTags extends BlockTagsProvider {
 						, TofuBlocks.TOFU_LADDER_KINU.get(), TofuBlocks.TOFU_LADDER_MOMEN.get()
 						, TofuBlocks.TOFU_FENCE_KINU.get(), TofuBlocks.TOFU_FENCE_MOMEN.get(), TofuBlocks.TOFU_FENCE_HELL.get(), TofuBlocks.TOFU_FENCE_SOUL.get()
 						, TofuBlocks.TOFU_DOOR_KINU.get(), TofuBlocks.TOFU_DOOR_MOMEN.get(), TofuBlocks.TOFU_DOOR_HELL.get(), TofuBlocks.TOFU_DOOR_SOUL.get()
+						, TofuBlocks.TOFU_DOOR_ZUNDA.get(), TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get(), TofuBlocks.TOFU_FENCE_ZUNDA.get()
+						, TofuBlocks.TOFU_DOOR_MISO.get(), TofuBlocks.TOFU_TRAPDOOR_MISO.get(), TofuBlocks.TOFU_FENCE_MISO.get()
+						, TofuBlocks.TOFU_DOOR_DRIED.get(), TofuBlocks.TOFU_TRAPDOOR_DRIED.get(), TofuBlocks.TOFU_FENCE_DRIED.get()
+						, TofuBlocks.TOFU_DOOR_EGG.get(), TofuBlocks.TOFU_TRAPDOOR_EGG.get(), TofuBlocks.TOFU_FENCE_EGG.get()
+						, TofuBlocks.TOFU_DOOR_SESAME.get(), TofuBlocks.TOFU_TRAPDOOR_SESAME.get(), TofuBlocks.TOFU_FENCE_SESAME.get()
+						, TofuBlocks.TOFU_DOOR_STRAWBERRY.get(), TofuBlocks.TOFU_TRAPDOOR_STRAWBERRY.get(), TofuBlocks.TOFU_FENCE_STRAWBERRY.get()
+						, TofuBlocks.TOFU_DOOR_FRIED.get(), TofuBlocks.TOFU_TRAPDOOR_FRIED.get(), TofuBlocks.TOFU_FENCE_FRIED.get()
+						, TofuBlocks.TOFU_DOOR_FRIED_POUCH.get(), TofuBlocks.TOFU_TRAPDOOR_FRIED_POUCH.get(), TofuBlocks.TOFU_FENCE_FRIED_POUCH.get()
 						, TofuBlocks.TOFU_TRAPDOOR_KINU.get(), TofuBlocks.TOFU_TRAPDOOR_MOMEN.get(), TofuBlocks.TOFU_TRAPDOOR_HELL.get(), TofuBlocks.TOFU_TRAPDOOR_SOUL.get()
 						, TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.MABOU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.ORE_TOFUGEM.get()
 						, TofuBlocks.EGGTOFU.get(), TofuBlocks.TOFU_STAIR_EGG.get(), TofuBlocks.TOFU_SLAB_EGG.get()
 						, TofuBlocks.SESAMETOFU.get(), TofuBlocks.TOFU_STAIR_SESAME.get(), TofuBlocks.TOFU_SLAB_SESAME.get()
 						, TofuBlocks.MISOTOFU.get(), TofuBlocks.TOFU_STAIR_MISO.get(), TofuBlocks.TOFU_SLAB_MISO.get()
+						, TofuBlocks.STRAWBERRY_TOFU.get(), TofuBlocks.TOFU_STAIR_STRAWBERRY.get(), TofuBlocks.TOFU_SLAB_STRAWBERRY.get()
+						, TofuBlocks.FRIED_TOFU.get(), TofuBlocks.TOFU_STAIR_FRIED.get(), TofuBlocks.TOFU_SLAB_FRIED.get()
+						, TofuBlocks.FRIED_POUCH_TOFU.get(), TofuBlocks.TOFU_STAIR_FRIED_POUCH.get(), TofuBlocks.TOFU_SLAB_FRIED_POUCH.get()
+						, TofuBlocks.ZUNDATOFU.get(), TofuBlocks.TOFU_STAIR_ZUNDA.get(), TofuBlocks.TOFU_SLAB_ZUNDA.get(), TofuBlocks.MISOTOFU.get(), TofuBlocks.TOFU_STAIR_MISO.get(), TofuBlocks.TOFU_SLAB_MISO.get()
 						, TofuBlocks.DRIEDTOFU.get(), TofuBlocks.TOFU_STAIR_DRIED.get(), TofuBlocks.TOFU_SLAB_DRIED.get(), TofuBlocks.MINCEDTOFU.get())
 				.add(TofuBlocks.SALT_BLOCK.get())
 				.add(TofuBlocks.OKARA_BLOCK.get())
@@ -111,13 +123,16 @@ public class TofuBlockTags extends BlockTagsProvider {
 		tag(BlockTags.BEDS).add(TofuBlocks.TOFUBED.get());
 		tag(BlockTags.WALLS).add(TofuBlocks.TOFU_FENCE_KINU.get(), TofuBlocks.TOFU_FENCE_MOMEN.get(), TofuBlocks.TOFU_FENCE_HELL.get(), TofuBlocks.TOFU_FENCE_SOUL.get(), TofuBlocks.TOFU_FENCE_ISHI.get(), TofuBlocks.TOFU_FENCE_METAL.get())
 				.add(TofuBlocks.TOFU_FENCE_GRILLED.get(), TofuBlocks.TOFU_FENCE_ZUNDA.get())
+				.add(TofuBlocks.TOFU_FENCE_FRIED.get(), TofuBlocks.TOFU_FENCE_FRIED_POUCH.get(), TofuBlocks.TOFU_FENCE_STRAWBERRY.get(), TofuBlocks.TOFU_FENCE_ZUNDA.get())
 				.add(TofuBlocks.TOFU_FENCE_MISO.get(), TofuBlocks.TOFU_FENCE_DRIED.get(), TofuBlocks.TOFU_FENCE_EGG.get(), TofuBlocks.TOFU_FENCE_SESAME.get());
 		tag(BlockTags.CLIMBABLE).add(TofuBlocks.TOFU_LADDER_KINU.get(), TofuBlocks.TOFU_LADDER_MOMEN.get(), TofuBlocks.TOFU_LADDER_ISHI.get(), TofuBlocks.TOFU_LADDER_ISHIBRICK.get(), TofuBlocks.TOFU_LADDER_METAL.get(), TofuBlocks.TOFU_LADDER_GRILLED.get(), TofuBlocks.TOFU_LADDER_ZUNDA.get(), TofuBlocks.TOFU_LADDER_HELL.get(), TofuBlocks.TOFU_LADDER_SOUL.get());
 		tag(BlockTags.WITHER_IMMUNE).add(TofuBlocks.TOFU_BEDROCK.get());
 		tag(BlockTags.DRAGON_IMMUNE).add(TofuBlocks.TOFU_BEDROCK.get());
 		tag(BlockTags.FEATURES_CANNOT_REPLACE).add(TofuBlocks.TOFU_BEDROCK.get());
-		tag(BlockTags.TRAPDOORS).add(TofuBlocks.TOFU_TRAPDOOR_KINU.get(), TofuBlocks.TOFU_TRAPDOOR_MOMEN.get(), TofuBlocks.TOFU_TRAPDOOR_HELL.get(), TofuBlocks.TOFU_TRAPDOOR_SOUL.get(), TofuBlocks.TOFU_TRAPDOOR_ISHI.get(), TofuBlocks.TOFU_TRAPDOOR_METAL.get(), TofuBlocks.TOFU_TRAPDOOR_GRILLED.get(), TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get());
-		tag(BlockTags.WOODEN_DOORS).add(TofuBlocks.TOFU_DOOR_KINU.get(), TofuBlocks.TOFU_DOOR_MOMEN.get(), TofuBlocks.TOFU_DOOR_HELL.get(), TofuBlocks.TOFU_DOOR_SOUL.get(), TofuBlocks.TOFU_DOOR_ISHI.get(), TofuBlocks.TOFU_DOOR_GRILLED.get(), TofuBlocks.TOFU_DOOR_ZUNDA.get())
+		tag(BlockTags.TRAPDOORS).add(TofuBlocks.TOFU_TRAPDOOR_KINU.get(), TofuBlocks.TOFU_TRAPDOOR_MOMEN.get(), TofuBlocks.TOFU_TRAPDOOR_HELL.get(), TofuBlocks.TOFU_TRAPDOOR_SOUL.get(), TofuBlocks.TOFU_TRAPDOOR_ISHI.get(), TofuBlocks.TOFU_TRAPDOOR_METAL.get(), TofuBlocks.TOFU_TRAPDOOR_GRILLED.get(), TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get()
+				, TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get(), TofuBlocks.TOFU_TRAPDOOR_STRAWBERRY.get(), TofuBlocks.TOFU_TRAPDOOR_FRIED.get(), TofuBlocks.TOFU_TRAPDOOR_FRIED_POUCH.get());
+		tag(BlockTags.WOODEN_DOORS).add(TofuBlocks.TOFU_DOOR_KINU.get(), TofuBlocks.TOFU_DOOR_MOMEN.get(), TofuBlocks.TOFU_DOOR_HELL.get(), TofuBlocks.TOFU_DOOR_SOUL.get(), TofuBlocks.TOFU_DOOR_ISHI.get(), TofuBlocks.TOFU_DOOR_GRILLED.get(), TofuBlocks.TOFU_DOOR_ZUNDA.get()
+						, TofuBlocks.TOFU_DOOR_ZUNDA.get(), TofuBlocks.TOFU_DOOR_STRAWBERRY.get(), TofuBlocks.TOFU_DOOR_FRIED.get(), TofuBlocks.TOFU_DOOR_FRIED_POUCH.get())
 				.add(TofuBlocks.TOFU_DOOR_MISO.get(), TofuBlocks.TOFU_DOOR_DRIED.get(), TofuBlocks.TOFU_DOOR_EGG.get(), TofuBlocks.TOFU_DOOR_SESAME.get())
 				.add(TofuBlocks.SPROUT_DOOR.get(), TofuBlocks.TOFU_STEM_DOOR.get(), TofuBlocks.LEEK_GREEN_DOOR.get(), TofuBlocks.LEEK_DOOR.get());
 		tag(BlockTags.DOORS).add(TofuBlocks.TOFU_DOOR_METAL.get()).add(TofuBlocks.TOFU_DOOR_KINU.get(), TofuBlocks.TOFU_DOOR_MOMEN.get(), TofuBlocks.TOFU_DOOR_HELL.get(), TofuBlocks.TOFU_DOOR_SOUL.get(), TofuBlocks.TOFU_DOOR_ISHI.get(), TofuBlocks.TOFU_DOOR_GRILLED.get(), TofuBlocks.TOFU_DOOR_ZUNDA.get())
