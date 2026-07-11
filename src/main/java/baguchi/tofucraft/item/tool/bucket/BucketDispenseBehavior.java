@@ -1,6 +1,5 @@
 package baguchi.tofucraft.item.tool.bucket;
 
-import baguchi.tofucraft.item.tool.TofuMetalBucketItem;
 import baguchi.tofucraft.registry.TofuDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -9,7 +8,6 @@ import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.DispensibleContainerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.BucketPickup;
@@ -24,6 +22,7 @@ import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemUtil;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class BucketDispenseBehavior extends OptionalDispenseItemBehavior {
 
@@ -66,16 +65,18 @@ public class BucketDispenseBehavior extends OptionalDispenseItemBehavior {
 				return this.consumeWithRemainder(source, stack, usedStack);
 			}
 		} else {
-			if (!FluidUtil.tryPickupFluid(handler, null, source.level(), pos, facing.getOpposite()).isEmpty()) {
-				var stack0 = ItemUtil.getStack(containingHandler, 0);
-				var stack1 = ItemUtil.getStack(containingHandler, 1);
+			try (var tx = Transaction.openRoot()) {
+				if (!FluidUtil.tryPickupFluid(handler, null, source.level(), pos, facing.getOpposite(), tx).isEmpty()) {
+					var stack0 = ItemUtil.getStack(containingHandler, 0);
+					var stack1 = ItemUtil.getStack(containingHandler, 1);
 
-				// Grow by 1 to match the shrink in consumeWithRemainder
-				stack0.grow(1);
-				return this.consumeWithRemainder(source, stack, stack1);
+					// Grow by 1 to match the shrink in consumeWithRemainder
+					stack0.grow(1);
+					return this.consumeWithRemainder(source, stack0, stack1);
+				}
 			}
 		}
-		return stack;
+		return super.execute(source, stack);
 	}
 
 
@@ -112,15 +113,13 @@ public class BucketDispenseBehavior extends OptionalDispenseItemBehavior {
 	}
 
 	private ItemStack dispenseFluid(BlockSource source, ItemStack stack, ServerLevel level, BlockPos pos, ItemStacksResourceHandler containingHandler, ResourceHandler<FluidResource> handler) {
-		if (!FluidUtil.tryPlaceFluid(handler, null, level, InteractionHand.MAIN_HAND, pos).isEmpty()) {
-			var stack0 = ItemUtil.getStack(containingHandler, 0);
-			var stack1 = ItemUtil.getStack(containingHandler, 1);
-
-			// Grow by 1 to match the shrink in consumeWithRemainder
-			stack0.grow(1);
-			return this.consumeWithRemainder(source, stack, stack1);
-		} else {
-			return super.execute(source, stack);
+		try (var tx = Transaction.openRoot()) {
+			if (!FluidUtil.tryPlaceFluid(handler, null, level, pos, false, tx).isEmpty()) {
+				tx.commit();
+				return ItemUtil.getStack(containingHandler, 0);
+			} else {
+				return super.execute(source, stack);
+			}
 		}
 	}
 }

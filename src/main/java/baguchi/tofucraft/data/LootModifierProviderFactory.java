@@ -2,6 +2,7 @@ package baguchi.tofucraft.data;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.loot.SeedDropModifier;
+import baguchi.tofucraft.loot.ZundaModifier;
 import baguchi.tofucraft.registry.TofuLootTables;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.core.registries.Registries;
@@ -45,6 +46,13 @@ public class LootModifierProviderFactory {
 				addTable(BuiltInLootTables.SPAWN_BONUS_CHEST, TofuLootTables.TOFU_BOOK, 1F);
 				addTable(EntityType.ZOGLIN.getDefaultLootTable().get(), TofuLootTables.ROTTEN_PORK, 1F);
 				addTable(EntityType.ZOMBIFIED_PIGLIN.getDefaultLootTable().get(), TofuLootTables.ROTTEN_PORK, 1F);
+				addZundaTable(0.5F);
+			}
+
+			private void addZundaTable(float chance) {
+				add("zunda", new ZundaModifier(new LootItemCondition[]{
+						LootItemRandomChanceCondition.randomChance(chance).build()
+				}, IGlobalLootModifier.DEFAULT_PRIORITY));
 			}
 
 			private void addTable(ResourceKey<LootTable> table, ResourceKey<LootTable> rewriteTable, float chance) {
