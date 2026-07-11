@@ -1,0 +1,13 @@
+{
+  "type": "tofucraft:seed_drops",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:blocks/large_fern"
+    },
+    {
+      "chance": 0.08,
+      "condition": "minecraft:random_chance"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package baguchi.tofucraft.recipe;
 
-import baguchi.tofucraft.item.tool.TofuMetalBucketItem;
+import baguchi.tofucraft.item.tool.bucket.TofuMetalBucketItem;
 import baguchi.tofucraft.registry.TofuDataComponents;
 import baguchi.tofucraft.registry.TofuItems;
 import com.mojang.serialization.MapCodec;

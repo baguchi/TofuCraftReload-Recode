@@ -54,6 +54,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
@@ -211,6 +212,14 @@ public class TofuCraftReload {
 
 	public static Identifier prefix(String name) {
 		return Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name.toLowerCase(Locale.ROOT));
+	}
+
+	public static String prefix(ResourceKey<?> key) {
+		return prefix(key.identifier());
+	}
+
+	public static String prefix(Identifier key) {
+		return key.getNamespace() + "/" + key.getPath();
 	}
 
 	public static RegistryAccess registryAccess() {

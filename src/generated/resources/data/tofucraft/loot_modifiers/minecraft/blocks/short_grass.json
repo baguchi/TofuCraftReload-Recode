@@ -1,0 +1,13 @@
+{
+  "type": "tofucraft:seed_drops",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:blocks/short_grass"
+    },
+    {
+      "chance": 0.075,
+      "condition": "minecraft:random_chance"
+    }
+  ]
+}
