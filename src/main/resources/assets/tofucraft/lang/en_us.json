@@ -830,6 +830,7 @@
   "subtitles.block.soybean.soybean_crack" : "Soybean cracking",
   "subtitles.block.tofu_chest.open": "Open Tofu Chest",
   "subtitles.block.tofu_chest.close": "Close Tofu Chest",
+  "subtitles.item.zunda_ingot.eat": "Eating Zunda Ingot",
   "tofucraft.bittern_bottle.jei_desc" : "Used to turn soymilk to tofu. when right click on soymilk, make harder",
   "tofucraft.block_tofu_kinu.jei_desc": "This block that can be made by hardening tofu with bittern. Be careful as it will break if you fall from above.",
   "tofucraft.block_tofu_momen.jei_desc": "This block gets harder over time with stones on top and bottom.",

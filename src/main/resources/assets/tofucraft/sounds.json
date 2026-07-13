@@ -100,6 +100,16 @@
     ],
     "subtitle": "subtitles.block.soybean.soybean_crack"
   },
+  "item.zunda_ingot.eat": {
+    "sounds": [
+      "block/honeyblock/step1",
+      "block/honeyblock/step2",
+      "block/honeyblock/step3",
+      "block/honeyblock/step4",
+      "block/honeyblock/step5"
+    ],
+    "subtitle": "subtitles.item.zunda_ingot.eat"
+  },
   "mob.tofuspider.ambient": {
     "sounds": [
       "tofucraft:mob/tofuspider/tofuspider_idle"

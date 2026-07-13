@@ -837,6 +837,7 @@
   "subtitles.entity.zombie_tofunian.idle": "ゾンビトーフニアンがうめく",
   "subtitles.block.tofu_chest.open": "トーフチェストが開かれる",
   "subtitles.block.tofu_chest.close": "トーフチェストが閉じる",
+  "subtitles.item.zunda_ingot.eat": "ずんだインゴットを食べる",
   "tofucraft.bittern_bottle.jei_desc": "豆乳を豆腐に変えるのに使います。液体を右クリックで固めることができます。",
   "tofucraft.block_tofu_kinu.jei_desc": "このブロックは、豆乳をにがりで固めることでできます。上からエンティティが落ちると壊れてしまいます。",
   "tofucraft.block_tofu_momen.jei_desc": "このブロックは、上と下に石を置くと時間経過でより硬くなります。",

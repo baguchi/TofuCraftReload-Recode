@@ -30,6 +30,9 @@ public class TofuConsumables {
 	public static final Consumable LONGER_FOOD = defaultSlowFood()
 			.build();
 
+	public static final Consumable ZUNDA_INGOT = defaultZundaIngot()
+			.build();
+
 	public static final Consumable COUGH = defaultFood()
 			.onConsume(new ApplyStatusEffectsConsumeEffect(
 					List.of(new MobEffectInstance(TofuEffects.COUGH, 600, 0))
@@ -99,6 +102,10 @@ public class TofuConsumables {
 
 	public static Consumable.Builder defaultSlowFood() {
 		return Consumable.builder().consumeSeconds(3.2F).animation(ItemUseAnimation.EAT).sound(SoundEvents.GENERIC_EAT).hasConsumeParticles(true);
+	}
+
+	public static Consumable.Builder defaultZundaIngot() {
+		return Consumable.builder().consumeSeconds(8F).animation(ItemUseAnimation.EAT).sound(TofuSounds.ZUNDA_INGOT_EAT).hasConsumeParticles(true);
 	}
 
 	public static Consumable.Builder defaultDrink() {
