@@ -9,6 +9,6 @@ public interface TofuToolMaterials {
 	ToolMaterial SOLID = new ToolMaterial(BlockTags.INCORRECT_FOR_STONE_TOOL, 126, 5.0F, 1.0F, 12, TofuTags.Items.TOFU_SOLID_TOOL_MATERIAL);
 	ToolMaterial METAL = new ToolMaterial(BlockTags.INCORRECT_FOR_IRON_TOOL, 245, 6.0F, 2.0F, 16, TofuTags.Items.TOFU_METAL_TOOL_MATERIAL);
 	ToolMaterial ZUNDA_ALLOY = new ToolMaterial(BlockTags.INCORRECT_FOR_IRON_TOOL, 620, 6.0F, 2.0F, 18, TofuTags.Items.TOFU_METAL_TOOL_MATERIAL);
-	ToolMaterial TOFUDIAMOND = new ToolMaterial(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 1624, 8.5F, 5.0F, 18, TofuTags.Items.TOFU_DIAMOND_TOOL_MATERIAL);
+	ToolMaterial TOFU_DIAMOND = new ToolMaterial(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2832, 9.5F, 4.0F, 18, TofuTags.Items.TOFU_DIAMOND_TOOL_MATERIAL);
 
 }
