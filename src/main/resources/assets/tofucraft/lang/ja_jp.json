@@ -891,6 +891,8 @@
   "tofucraft.tofu_crafters_book.tofu_metal_usage.desc": "鋼豆腐は鉄の代わりとして代用できるよ。ハサミやバケツなどもつくれちゃう！\n(鋼豆腐のバケツは、仕様上普通のバケツとほぼ同じようには使えないから、それらからボトルに移すことをお勧めするよ)。\n普通のバケツと同じように大豆から豆乳にするときに鋼豆腐のバケツを使えるよ",
   "tofucraft.tofu_crafters_book.tofu_world.title": "豆腐ワールドについて",
   "tofucraft.tofu_crafters_book.tofu_stick.desc": "トーフステッキは、ネザーポータルのように焼き豆腐をおいて使うと、ポータルが開いて僕らの故郷のトーフワールドへ行けるんだ。\nトーフワールドは、オーバーワールドのかかわりのおかげで技術が発展したけど、大昔の悲劇により知られてるすべてのポータルは閉じられたらしい",
+  "tofucraft.tofu_crafters_book.tofu_diamond": "トーフワールドのダイアモンド",
+  "tofucraft.tofu_crafters_book.tofu_diamond.desc": "トーフワールドではダイアモンドより硬い金剛豆腐の粒の塊があるよ。\nブロックにするほどの量を手に入れるのは難しいが、完成すれば長い豆腐職人の相棒にもなる\n\n TofuDiamondの強度は昔よりさがってしまったけど、いまだに衰えない強さをもっているよ。",
   "tofucraft.tofu_crafters_book.soysauce": "醤油とみそのつくりかた",
   "tofucraft.tofu_crafters_book.soysauce.desc": "まず、麹の種を作成しよう。\n作成後、麴の種がインベントリ内で麴に変化するまで待とう。時間がかかるから、バンドルでインベントリを管理することをお勧めするよ。\nバンドルやチェストに麹の種を入れないでね。インベントリで必ず発酵させよう。",
   "tofucraft.tofu_crafters_book.soysauce.desc2": "麹ができたら、味噌樽をクラフトして設置し、あとは石を上に置いて待つだけ...\n色が変わったら、納豆菌床を壊わそう。そうしたら味噌の完成！",

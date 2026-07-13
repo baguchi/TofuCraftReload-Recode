@@ -54,6 +54,7 @@ public class ClientProxy {
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.cooking_with_soy_food.title"), TofuCraftReload.prefix("cooking_with_soy_food"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tofu_metal_usage.title"), TofuCraftReload.prefix("tofu_metal_usage"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tofu_world.title"), TofuCraftReload.prefix("tofu_stick"), true),
+				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tofu_diamond"), TofuCraftReload.prefix("tofu_diamond"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tf_force.title"), TofuCraftReload.prefix("tf_force"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuBlocks.TF_STORAGE.get().getDescriptionId()), TofuCraftReload.prefix("tf_storage"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuBlocks.ANTENNA_BASIC.get().getDescriptionId()), TofuCraftReload.prefix("antenna_basic"), true)
@@ -86,6 +87,9 @@ public class ClientProxy {
 
 			DisplayBookComponent tofu_stick = (new DisplayBookComponent(121, 158)).textDisplay(Component.literal("TofuStick").setStyle(ALT_STYLE).withStyle(ChatFormatting.GRAY), 52, 22, 1.0F).textDisplay(Component.translatable(TofuItems.TOFUSTICK.get().asItem().getDescriptionId()), 52, 26, 1.0F).itemDisplay(TofuItems.TOFUSTICK.get().getDefaultInstance(), 46, 30);
 			TextBookComponent tofu_stick_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tofu_stick.desc"), false, 100, 158);
+			DisplayBookComponent tofu_diamond = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.tofu_diamond"), 52, 26, 1.0F).itemDisplay(TofuItems.TOFU_DIAMOND.get().getDefaultInstance(), 46, 30);
+			TextBookComponent tofu_diamond_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tofu_diamond.desc"), true, 100, 158);
+
 
 			DisplayBookComponent soysauce = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.soysauce"), 52, 26, 1.0F).itemDisplay(TofuItems.BOTTLE_SOYSAUSE.get().getDefaultInstance(), 46, 30);
 			TextBookComponent soysauce_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soysauce.desc"), true, 100, 158);
@@ -115,11 +119,16 @@ public class ClientProxy {
 					, new BookComponentDefinition(cooking_with_soy_food_desc, TofuCraftReload.prefix("cooking_with_soy_food_desc"), 15, 10, 10, 10)
 					, new BookComponentDefinition(tofu_metal_usage, TofuCraftReload.prefix("tofu_metal_usage"), 15, 10, 10, 10)
 					, new BookComponentDefinition(tofu_metal_usage_desc, TofuCraftReload.prefix("tofu_metal_usage_desc"), 15, 10, 10, 10)
+					, new BookComponentDefinition(natto, TofuCraftReload.prefix("natto"), 15, 10, 10, 10)
+					, new BookComponentDefinition(natto_desc, TofuCraftReload.prefix("natto_desc"), 15, 10, 10, 10)
 					, new BookComponentDefinition(soysauce, TofuCraftReload.prefix("soysauce"), 15, 10, 10, 10)
 					, new BookComponentDefinition(soysauce_desc, TofuCraftReload.prefix("soysauce_desc"), 15, 10, 10, 10)
 					, new BookComponentDefinition(soysauce_desc2, TofuCraftReload.prefix("soysauce_desc2"), 15, 10, 10, 10)
 					, new BookComponentDefinition(tofu_stick, TofuCraftReload.prefix("tofu_stick"), 15, 10, 10, 10)
 					, new BookComponentDefinition(tofu_stick_desc, TofuCraftReload.prefix("tofu_stick_desc"), 15, 10, 10, 10));
+			list.add(new BookComponentDefinition(tofu_diamond, TofuCraftReload.prefix("tofu_diamond"), 15, 10, 10, 10));
+			list.add(new BookComponentDefinition(tofu_diamond_desc, TofuCraftReload.prefix("tofu_diamond_desc"), 15, 10, 10, 10));
+
 
 			list.add(new BookComponentDefinition(tf_force_desc, TofuCraftReload.prefix("tf_force"), 15, 10, 10, 10));
 			list.add(new BookComponentDefinition(tf_storage, TofuCraftReload.prefix("tf_storage"), 15, 10, 10, 10));
