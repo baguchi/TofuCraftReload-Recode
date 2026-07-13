@@ -53,11 +53,11 @@ public interface TofuArmorMaterials {
 		p_323383_.put(ArmorType.HELMET, 2);
 		p_323383_.put(ArmorType.BODY, 5);
 	}), 9, SoundEvents.ARMOR_EQUIP_GOLD, 0.0F, 0.0F, TofuTags.Items.TOFU_SOLID_TOOL_MATERIAL, TofuEquipmentAssets.SOLID);
-	ArmorMaterial DIAMOND = new ArmorMaterial(35, Util.make(new EnumMap<>(ArmorType.class), p_323379_ -> {
-		p_323379_.put(ArmorType.BOOTS, 4);
-		p_323379_.put(ArmorType.LEGGINGS, 6);
-		p_323379_.put(ArmorType.CHESTPLATE, 8);
-		p_323379_.put(ArmorType.HELMET, 4);
+	ArmorMaterial DIAMOND = new ArmorMaterial(44, Util.make(new EnumMap<>(ArmorType.class), p_323379_ -> {
+		p_323379_.put(ArmorType.BOOTS, 5);
+		p_323379_.put(ArmorType.LEGGINGS, 7);
+		p_323379_.put(ArmorType.CHESTPLATE, 9);
+		p_323379_.put(ArmorType.HELMET, 5);
 		p_323379_.put(ArmorType.BODY, 18);
 	}), 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.5F, 0.05F, TofuTags.Items.TOFU_DIAMOND_TOOL_MATERIAL, TofuEquipmentAssets.DIAMOND);
 

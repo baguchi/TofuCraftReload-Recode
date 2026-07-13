@@ -468,7 +468,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 	}
 
 	protected LootTable.Builder createTofuDiamondOreDrop(Block p_124140_, Item p_124141_) {
-		return applyExplosionDecay(p_124140_, createSilkTouchDispatchTable(p_124140_, LootItem.lootTableItem(p_124141_)).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))).apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))));
+		return applyExplosionDecay(p_124140_, createSilkTouchDispatchTable(p_124140_, LootItem.lootTableItem(p_124141_)).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addOreBonusCount(this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))));
 	}
 
 	protected LootTable.Builder createTofuGemOreDrop(Block p_124140_, Item p_124141_) {

@@ -365,14 +365,14 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_METAL_HOE = ITEMS.registerItem("tofu_metal_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.METAL, -2.0F, -1.0F, (properties.stacksTo(1))));
 
 
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SWORD = ITEMS.registerItem("tofu_diamond_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.TOFUDIAMOND, 3, -2.3F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SWORD = ITEMS.registerItem("tofu_diamond_sword", (properties) -> new TofuSwordItem(TofuToolMaterials.TOFU_DIAMOND, 3, -2.3F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SPEAR = ITEMS.registerItem(
-			"tofu_diamond_spear", (properties) -> new Item(properties.rarity(Rarity.UNCOMMON).spear(TofuToolMaterials.TOFUDIAMOND, 1.05F, 1.075F, 0.5F, 3.0F, 7.5F, 6.5F, 5.1F, 10.0F, 4.6F)
+			"tofu_diamond_spear", (properties) -> new Item(properties.rarity(Rarity.UNCOMMON).spear(TofuToolMaterials.TOFU_DIAMOND, 1.05F, 1.075F, 0.5F, 3.0F, 7.5F, 6.5F, 5.1F, 10.0F, 4.6F)
 			));
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_AXE = ITEMS.registerItem("tofu_diamond_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.TOFUDIAMOND, 6.0F, -2.9F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_PICKAXE = ITEMS.registerItem("tofu_diamond_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.TOFUDIAMOND, 1.0F, -2.7F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SHOVEL = ITEMS.registerItem("tofu_diamond_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.TOFUDIAMOND, 1.5F, -2.9F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
-	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_HOE = ITEMS.registerItem("tofu_diamond_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.TOFUDIAMOND, -3.0F, 0.0F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_AXE = ITEMS.registerItem("tofu_diamond_axe", (properties) -> new TofuAxeItem(TofuToolMaterials.TOFU_DIAMOND, 6.0F, -2.9F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_PICKAXE = ITEMS.registerItem("tofu_diamond_pickaxe", (properties) -> new TofuPickaxeItem(TofuToolMaterials.TOFU_DIAMOND, 1.0F, -2.7F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_SHOVEL = ITEMS.registerItem("tofu_diamond_shovel", (properties) -> new TofuShovelItem(TofuToolMaterials.TOFU_DIAMOND, 1.5F, -2.9F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
+	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_HOE = ITEMS.registerItem("tofu_diamond_hoe", (properties) -> new TofuHoeItem(TofuToolMaterials.TOFU_DIAMOND, -3.0F, 0.0F, (properties.rarity(Rarity.UNCOMMON).stacksTo(1))));
 	public static final DeferredHolder<Item, Item> TOFU_UPGRADE_SMITHING_TEMPLATE = ITEMS.registerItem("tofu_upgrade_smithing_template", TofuItems::createTofuUpgradeTemplate);
 	public static final DeferredHolder<Item, Item> ZUNDA_UPGRADE_SMITHING_TEMPLATE = ITEMS.registerItem("zunda_upgrade_smithing_template", TofuItems::createZundaBowUpgradeTemplate);
 
