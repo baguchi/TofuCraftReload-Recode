@@ -14,7 +14,7 @@ public class TofuWorldTextureManager implements ResourceManagerReloadListener {
 
 	@Override
 	public void onResourceManagerReload(ResourceManager resourceManager) {
-		tofuWorldRenderer = new TofuWorldRenderer(Minecraft.getInstance().getAtlasManager());
+		tofuWorldRenderer = new TofuWorldRenderer(Minecraft.getInstance().getAtlasManager(), Minecraft.getInstance().gameRenderer.mainRenderTarget());
 	}
 
 	public @Nullable TofuWorldRenderer getTofuWorldRenderer() {

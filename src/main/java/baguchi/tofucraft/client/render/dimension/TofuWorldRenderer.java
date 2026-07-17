@@ -4,6 +4,7 @@ import baguchi.tofucraft.TofuCraftReload;
 import com.mojang.blaze3d.PrimitiveTopology;
 import com.mojang.blaze3d.buffers.GpuBuffer;
 import com.mojang.blaze3d.buffers.GpuBufferSlice;
+import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.systems.RenderPass;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.textures.GpuTextureView;
@@ -14,7 +15,6 @@ import com.mojang.blaze3d.vertex.MeshData;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -24,7 +24,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.MoonPhase;
 import org.joml.Matrix4f;
 import org.joml.Matrix4fStack;
-import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 import java.util.Optional;
@@ -37,10 +36,12 @@ public class TofuWorldRenderer {
 	private final GpuBuffer moonBuffer;
 	private final RenderSystem.AutoStorageIndexBuffer quadIndices;
 	private final TextureAtlas celestialsAtlas;
+	private final RenderTarget renderTarget;
 
-	public TofuWorldRenderer(AtlasManager p_455011_) {
+	public TofuWorldRenderer(AtlasManager atlasManager, RenderTarget renderTarget) {
+		this.renderTarget = renderTarget;
 		this.quadIndices = RenderSystem.getSequentialBuffer(PrimitiveTopology.QUADS);
-		this.celestialsAtlas = p_455011_.getAtlasOrThrow(AtlasIds.CELESTIALS);
+		this.celestialsAtlas = atlasManager.getAtlasOrThrow(AtlasIds.CELESTIALS);
 		this.sunBuffer = buildSunQuad(this.celestialsAtlas);
 		this.moonBuffer = buildMoonPhases(this.celestialsAtlas);
 	}
@@ -49,47 +50,41 @@ public class TofuWorldRenderer {
 		return buildCelestialQuad("Sun quad", p_455519_.getSprite(SUN_SPRITE));
 	}
 
-	private static GpuBuffer buildMoonPhases(TextureAtlas p_455196_) {
-		MoonPhase[] amoonphase = MoonPhase.values();
-		VertexFormat vertexformat = DefaultVertexFormat.POSITION_TEX;
+	private static GpuBuffer buildMoonPhases(TextureAtlas atlas) {
+		MoonPhase[] phases = MoonPhase.values();
+		VertexFormat format = DefaultVertexFormat.POSITION_TEX;
 
-		GpuBuffer gpubuffer;
-		try (ByteBufferBuilder bytebufferbuilder = ByteBufferBuilder.exactlySized(amoonphase.length * 4 * vertexformat.getVertexSize())) {
-			BufferBuilder bufferbuilder = new BufferBuilder(bytebufferbuilder, PrimitiveTopology.QUADS, vertexformat);
+		try (ByteBufferBuilder byteBufferBuilder = ByteBufferBuilder.exactlySized(phases.length * 4 * format.getVertexSize())) {
+			BufferBuilder bufferBuilder = new BufferBuilder(byteBufferBuilder, PrimitiveTopology.QUADS, format);
 
-			for (MoonPhase moonphase : amoonphase) {
-				TextureAtlasSprite textureatlassprite = p_455196_.getSprite(TofuCraftReload.prefix("moon/" + moonphase.getSerializedName()));
-				bufferbuilder.addVertex(-1.0F, 0.0F, -1.0F).setUv(textureatlassprite.getU1(), textureatlassprite.getV1());
-				bufferbuilder.addVertex(1.0F, 0.0F, -1.0F).setUv(textureatlassprite.getU0(), textureatlassprite.getV1());
-				bufferbuilder.addVertex(1.0F, 0.0F, 1.0F).setUv(textureatlassprite.getU0(), textureatlassprite.getV0());
-				bufferbuilder.addVertex(-1.0F, 0.0F, 1.0F).setUv(textureatlassprite.getU1(), textureatlassprite.getV0());
+			for (MoonPhase phase : phases) {
+				TextureAtlasSprite sprite = atlas.getSprite(TofuCraftReload.prefix("moon/" + phase.getSerializedName()));
+				bufferBuilder.addVertex(-1.0F, 0.0F, -1.0F).setUv(sprite.getU1(), sprite.getV1());
+				bufferBuilder.addVertex(1.0F, 0.0F, -1.0F).setUv(sprite.getU0(), sprite.getV1());
+				bufferBuilder.addVertex(1.0F, 0.0F, 1.0F).setUv(sprite.getU0(), sprite.getV0());
+				bufferBuilder.addVertex(-1.0F, 0.0F, 1.0F).setUv(sprite.getU1(), sprite.getV0());
 			}
 
-			try (MeshData meshdata = bufferbuilder.buildOrThrow()) {
-				gpubuffer = RenderSystem.getDevice().createBuffer(() -> "Moon phases", 32, meshdata.vertexBuffer());
+			try (MeshData mesh = bufferBuilder.buildOrThrow()) {
+				return RenderSystem.getDevice().createBuffer(() -> "Moon phases", 32, mesh.vertexBuffer());
 			}
 		}
-
-		return gpubuffer;
 	}
 
-	private static GpuBuffer buildCelestialQuad(String p_454894_, TextureAtlasSprite p_456200_) {
-		VertexFormat vertexformat = DefaultVertexFormat.POSITION_TEX;
+	private static GpuBuffer buildCelestialQuad(String name, TextureAtlasSprite sprite) {
+		VertexFormat format = DefaultVertexFormat.POSITION_TEX;
 
-		GpuBuffer gpubuffer;
-		try (ByteBufferBuilder bytebufferbuilder = ByteBufferBuilder.exactlySized(4 * vertexformat.getVertexSize())) {
-			BufferBuilder bufferbuilder = new BufferBuilder(bytebufferbuilder, PrimitiveTopology.QUADS, vertexformat);
-			bufferbuilder.addVertex(-1.0F, 0.0F, -1.0F).setUv(p_456200_.getU0(), p_456200_.getV0());
-			bufferbuilder.addVertex(1.0F, 0.0F, -1.0F).setUv(p_456200_.getU1(), p_456200_.getV0());
-			bufferbuilder.addVertex(1.0F, 0.0F, 1.0F).setUv(p_456200_.getU1(), p_456200_.getV1());
-			bufferbuilder.addVertex(-1.0F, 0.0F, 1.0F).setUv(p_456200_.getU0(), p_456200_.getV1());
+		try (ByteBufferBuilder byteBufferBuilder = ByteBufferBuilder.exactlySized(4 * format.getVertexSize())) {
+			BufferBuilder bufferBuilder = new BufferBuilder(byteBufferBuilder, PrimitiveTopology.QUADS, format);
+			bufferBuilder.addVertex(-1.0F, 0.0F, -1.0F).setUv(sprite.getU0(), sprite.getV0());
+			bufferBuilder.addVertex(1.0F, 0.0F, -1.0F).setUv(sprite.getU1(), sprite.getV0());
+			bufferBuilder.addVertex(1.0F, 0.0F, 1.0F).setUv(sprite.getU1(), sprite.getV1());
+			bufferBuilder.addVertex(-1.0F, 0.0F, 1.0F).setUv(sprite.getU0(), sprite.getV1());
 
-			try (MeshData meshdata = bufferbuilder.buildOrThrow()) {
-				gpubuffer = RenderSystem.getDevice().createBuffer(() -> p_454894_, 32, meshdata.vertexBuffer());
+			try (MeshData mesh = bufferBuilder.buildOrThrow()) {
+				return RenderSystem.getDevice().createBuffer(() -> name, 32, mesh.vertexBuffer());
 			}
 		}
-
-		return gpubuffer;
 	}
 
 
@@ -109,53 +104,58 @@ public class TofuWorldRenderer {
 		p_363513_.popPose();
 	}
 
-	private void renderSun(float p_362331_, PoseStack p_361665_) {
-			Matrix4fStack matrix4fstack = RenderSystem.getModelViewStack();
-			matrix4fstack.pushMatrix();
-			matrix4fstack.mul(p_361665_.last().pose());
-			matrix4fstack.translate(0.0F, 100.0F, 0.0F);
-			matrix4fstack.scale(30.0F, 1.0F, 30.0F);
-			GpuBufferSlice gpubufferslice = RenderSystem.getDynamicUniforms().writeTransform(matrix4fstack, new Vector4f(1.0F, 1.0F, 1.0F, p_362331_), new Vector3f(), new Matrix4f());
-		GpuTextureView gputextureview = Minecraft.getInstance().gameRenderer.mainRenderTarget().getColorTextureView();
-		GpuTextureView gputextureview1 = Minecraft.getInstance().gameRenderer.mainRenderTarget().getDepthTextureView();
-			GpuBuffer gpubuffer = this.quadIndices.getBuffer(6);
+	private void renderSun(float rainBrightness, PoseStack poseStack) {
+		Matrix4fStack modelViewStack = RenderSystem.getModelViewStack();
+		modelViewStack.pushMatrix();
+		modelViewStack.mul(poseStack.last().pose());
+		modelViewStack.translate(0.0F, 100.0F, 0.0F);
+		modelViewStack.scale(30.0F, 1.0F, 30.0F);
+		GpuBufferSlice dynamicTransforms = RenderSystem.getDynamicUniforms()
+				.writeTransform(new Matrix4f(modelViewStack), new Vector4f(1.0F, 1.0F, 1.0F, rainBrightness));
+		GpuTextureView color = this.renderTarget.getColorTextureView();
+		GpuTextureView depth = this.renderTarget.getDepthTextureView();
+		GpuBuffer indexBuffer = this.quadIndices.getBuffer(6);
 
-		try (RenderPass renderpass = RenderSystem.getDevice().createCommandEncoder().createRenderPass(() -> "Sky sun", gputextureview, Optional.empty(), gputextureview1, OptionalDouble.empty())) {
-				renderpass.setPipeline(RenderPipelines.CELESTIAL);
-				RenderSystem.bindDefaultUniforms(renderpass);
-				renderpass.setUniform("DynamicTransforms", gpubufferslice);
-				renderpass.bindTexture("Sampler0", this.celestialsAtlas.getTextureView(), this.celestialsAtlas.getSampler());
-			renderpass.setVertexBuffer(0, this.sunBuffer.slice());
-				renderpass.setIndexBuffer(gpubuffer, this.quadIndices.type());
-			renderpass.drawIndexed(6, 1, 0, 0, 0);
-			}
+		try (RenderPass renderPass = RenderSystem.getDevice()
+				.createCommandEncoder()
+				.createRenderPass(() -> "Sky sun", color, Optional.empty(), depth, OptionalDouble.empty())) {
+			renderPass.setPipeline(RenderPipelines.CELESTIAL);
+			RenderSystem.bindDefaultUniforms(renderPass);
+			renderPass.setUniform("DynamicTransforms", dynamicTransforms);
+			renderPass.bindTexture("Sampler0", this.celestialsAtlas.getTextureView(), this.celestialsAtlas.getSampler());
+			renderPass.setVertexBuffer(0, this.sunBuffer.slice());
+			renderPass.setIndexBuffer(indexBuffer, this.quadIndices.type());
+			renderPass.drawIndexed(6, 1, 0, 0, 0);
+		}
 
-			matrix4fstack.popMatrix();
-
+		modelViewStack.popMatrix();
 	}
 
-	private void renderMoon(MoonPhase moonPhase, float p_362497_, PoseStack p_362676_) {
-			int i = moonPhase.index() * 4;
-			Matrix4fStack matrix4fstack = RenderSystem.getModelViewStack();
-			matrix4fstack.pushMatrix();
-			matrix4fstack.mul(p_362676_.last().pose());
-		matrix4fstack.translate(0.0F, 100.0F, 0.0F);
-			matrix4fstack.scale(20.0F, 1.0F, 20.0F);
-			GpuBufferSlice gpubufferslice = RenderSystem.getDynamicUniforms().writeTransform(matrix4fstack, new Vector4f(1.0F, 1.0F, 1.0F, p_362497_), new Vector3f(), new Matrix4f());
-		GpuTextureView gputextureview = Minecraft.getInstance().gameRenderer.mainRenderTarget().getColorTextureView();
-		GpuTextureView gputextureview1 = Minecraft.getInstance().gameRenderer.mainRenderTarget().getDepthTextureView();
-			GpuBuffer gpubuffer = this.quadIndices.getBuffer(6);
+	private void renderMoon(MoonPhase moonPhase, float rainBrightness, PoseStack poseStack) {
+		int baseVertex = moonPhase.index() * 4;
+		Matrix4fStack modelViewStack = RenderSystem.getModelViewStack();
+		modelViewStack.pushMatrix();
+		modelViewStack.mul(poseStack.last().pose());
+		modelViewStack.translate(0.0F, 100.0F, 0.0F);
+		modelViewStack.scale(20.0F, 1.0F, 20.0F);
+		GpuBufferSlice dynamicTransforms = RenderSystem.getDynamicUniforms()
+				.writeTransform(new Matrix4f(modelViewStack), new Vector4f(1.0F, 1.0F, 1.0F, rainBrightness));
+		GpuTextureView color = this.renderTarget.getColorTextureView();
+		GpuTextureView depth = this.renderTarget.getDepthTextureView();
+		GpuBuffer indexBuffer = this.quadIndices.getBuffer(6);
 
-		try (RenderPass renderpass = RenderSystem.getDevice().createCommandEncoder().createRenderPass(() -> "Sky moon", gputextureview, Optional.empty(), gputextureview1, OptionalDouble.empty())) {
-				renderpass.setPipeline(RenderPipelines.CELESTIAL);
-				RenderSystem.bindDefaultUniforms(renderpass);
-				renderpass.setUniform("DynamicTransforms", gpubufferslice);
-				renderpass.bindTexture("Sampler0", this.celestialsAtlas.getTextureView(), this.celestialsAtlas.getSampler());
-			renderpass.setVertexBuffer(0, this.moonBuffer.slice());
-				renderpass.setIndexBuffer(gpubuffer, this.quadIndices.type());
-			renderpass.drawIndexed(6, 1, 0, i, 0);
-			}
+		try (RenderPass renderPass = RenderSystem.getDevice()
+				.createCommandEncoder()
+				.createRenderPass(() -> "Sky moon", color, Optional.empty(), depth, OptionalDouble.empty())) {
+			renderPass.setPipeline(RenderPipelines.CELESTIAL);
+			RenderSystem.bindDefaultUniforms(renderPass);
+			renderPass.setUniform("DynamicTransforms", dynamicTransforms);
+			renderPass.bindTexture("Sampler0", this.celestialsAtlas.getTextureView(), this.celestialsAtlas.getSampler());
+			renderPass.setVertexBuffer(0, this.moonBuffer.slice());
+			renderPass.setIndexBuffer(indexBuffer, this.quadIndices.type());
+			renderPass.drawIndexed(6, 1, 0, baseVertex, 0);
+		}
 
-			matrix4fstack.popMatrix();
+		modelViewStack.popMatrix();
 	}
 }
