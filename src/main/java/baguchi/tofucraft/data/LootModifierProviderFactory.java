@@ -39,6 +39,7 @@ public class LootModifierProviderFactory {
 				addSeeds(Blocks.LARGE_FERN.getLootTable().get(), 0.08F);
 				addTable(BuiltInLootTables.SIMPLE_DUNGEON, TofuLootTables.TOFUSTICK, 0.05F);
 				addTable(BuiltInLootTables.JUNGLE_TEMPLE, TofuLootTables.TOFUSTICK, 0.4F);
+				addTable(BuiltInLootTables.SHIPWRECK_TREASURE, TofuLootTables.TOFUSTICK, 0.675F);
 				addTable(BuiltInLootTables.UNDERWATER_RUIN_BIG, TofuLootTables.TOFUSTICK, 0.5F);
 				addTable(BuiltInLootTables.UNDERWATER_RUIN_SMALL, TofuLootTables.TOFUSTICK, 0.1F);
 				addTable(BuiltInLootTables.ANCIENT_CITY, TofuLootTables.SEEDS_CHILI_ANCIENT_CITY, 0.5F);
