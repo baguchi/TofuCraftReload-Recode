@@ -26,7 +26,7 @@
         {
           "type" : "minecraft:item",
           "weight" : 15,
-          "name": "tofucraft:tofu_cookie",
+          "name": "tofucraft:tofucookie",
           "functions" : [
             {
               "function" : "minecraft:set_count",

@@ -11,7 +11,7 @@
         {
           "type" : "minecraft:item",
           "weight": 15,
-          "name" : "tofucraft:tofumetal",
+          "name": "tofucraft:tofu_metal",
           "functions" : [
             {
               "function" : "minecraft:set_count",
