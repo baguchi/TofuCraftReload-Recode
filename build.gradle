@@ -130,8 +130,7 @@ repositories {
 
 dependencies {
     //implementation "baguchi.bagus_lib:BagusLib:${bagus_lib_version}"
-    implementation "maven.modrinth:bagus-lib:${bagus_lib_version}"
-
+    implementation "maven.modrinth:95nSN4Rd:${bagus_lib_version}"
     implementation "mezz.jei:jei-26.2-neoforge:30.0.0.1"
 }
 
