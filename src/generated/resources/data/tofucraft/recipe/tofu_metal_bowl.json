@@ -5,10 +5,11 @@
   },
   "pattern": [
     "# #",
+    "# #",
     " # "
   ],
   "result": {
-    "count": 3,
+    "count": 5,
     "id": "tofucraft:tofu_metal_bowl"
   }
 }

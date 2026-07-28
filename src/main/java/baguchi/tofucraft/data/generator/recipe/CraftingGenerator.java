@@ -2151,7 +2151,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuBlocks.WAXED_ISHITOFU.get()))
 				.save(this.output, prefix("wax_out_ishi"));
 
-		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuItems.TOFU_METAL_BOWL.get(), 3)
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuItems.TOFU_METAL_BOWL.get(), 5)
+				.pattern("# #")
 				.pattern("# #")
 				.pattern(" # ")
 				.define('#', TofuItems.TOFU_METAL.get())
