@@ -16,16 +16,6 @@
           }
         },
         {
-          "condition": "minecraft:inverted",
-          "term": {
-            "block": "tofucraft:barrel_adv_tofugem",
-            "condition": "minecraft:block_state_property",
-            "properties": {
-              "stat": "used"
-            }
-          }
-        },
-        {
           "condition": "minecraft:survives_explosion"
         }
       ],
