@@ -352,7 +352,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		LootItemCondition.Builder tofugemAdvBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_ADV_TOFUGEM.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
 
-		add(TofuBlocks.BARREL_ADV_TOFUGEM.get(), applyExplosionDecay(TofuBlocks.BARREL_ADV_TOFUGEM.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.ADVANCE_TOFUGEM.get())).when(tofugemAdvBuilder).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))).add(LootItem.lootTableItem(Blocks.BARREL)).when(tofugemAdvBuilder).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).add(LootItem.lootTableItem(TofuBlocks.BARREL_ADV_TOFUGEM)).when(InvertedLootItemCondition.invert(tofugemAdvBuilder)).when(ExplosionCondition.survivesExplosion()))));
+		add(TofuBlocks.BARREL_ADV_TOFUGEM.get(), applyExplosionDecay(TofuBlocks.BARREL_ADV_TOFUGEM.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.ADVANCE_TOFUGEM.get())).when(tofugemAdvBuilder).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))).add(LootItem.lootTableItem(Blocks.BARREL)).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).add(LootItem.lootTableItem(TofuBlocks.BARREL_ADV_TOFUGEM)).when(ExplosionCondition.survivesExplosion()))));
 
 		dropSelf(TofuBlocks.TOFU_CHIKUWA_BLOCK.get());
 		dropSelf(TofuBlocks.CHIKUWA_BLOCK.get());
