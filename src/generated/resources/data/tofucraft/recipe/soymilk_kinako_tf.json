@@ -1,0 +1,12 @@
+{
+  "type": "tofucraft:tf_craft_shapeless",
+  "category": "misc",
+  "cook_time": 200,
+  "ingredients": [
+    "minecraft:glass_bottle",
+    "tofucraft:kinako"
+  ],
+  "result": {
+    "id": "tofucraft:soymilk_kinako_bottle"
+  }
+}

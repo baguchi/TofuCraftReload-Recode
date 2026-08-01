@@ -17,9 +17,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.item.SolidBucketItem;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -687,9 +689,9 @@ public class TofuCreativeModeTabs {
 				FluidStack stack = new FluidStack(fluid, FluidType.BUCKET_VOLUME);
 				DataComponentPatch.Builder builder = DataComponentPatch.builder();
 				builder.set(TofuDataComponents.STORED_FLUID.get(), SimpleFluidContent.copyOf(stack));
-				/*if (stack.is(NeoForgeMod.MILK)) {
+				if (stack.is(NeoForgeMod.MILK)) {
 					builder.set(DataComponents.CONSUMABLE, Consumables.MILK_BUCKET);
-				}*/
+				}
 				event.insertAfter(TofuItems.TOFU_METAL_BUCKET.get().getDefaultInstance(), new ItemStack(TofuItems.TOFU_METAL_BUCKET, 1, builder.build()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 			}
 		}

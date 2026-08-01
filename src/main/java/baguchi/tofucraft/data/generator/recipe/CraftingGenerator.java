@@ -2214,6 +2214,65 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(this.output);
 
 
+		//TF Craft with soymilk craft
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.SOYMILK_BOTTLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE))
+				.save(this.output, prefix("soymilk_tf"));
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.SOYMILK_PUMPKIN_BOTTLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.PUMPKIN)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE))
+				.save(this.output, prefix("soymilk_pumpkin_tf"));
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.SOYMILK_PUDDING_BOTTLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.EGG)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE))
+				.save(this.output, prefix("soymilk_paddle_tf"));
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.SOYMILK_HONEY_BOTTLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.HONEY_BOTTLE)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE))
+				.save(this.output, prefix("soymilk_honey_tf"));
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.SOYMILK_RAMUNE_BOTTLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.SUGAR)
+				.requires(Items.LIGHT_BLUE_DYE)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE))
+				.save(this.output, prefix("soymilk_ramune_tf"));
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.SOYMILK_KINAKO_BOTTLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(TofuItems.KINAKO.get())
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE))
+				.save(this.output, prefix("soymilk_kinako_tf"));
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.SOYMILK_APPLE_BOTTLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.APPLE)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE))
+				.save(this.output, prefix("soymilk_apple_tf"));
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.SOYMILK_COCOA_BOTTLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.COCOA_BEANS)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE))
+				.save(this.output, prefix("soymilk_cocoa_tf"));
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.SOYMILK_ANNIN_BOTTLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(TofuItems.KYONINSO.get())
+				.requires(TofuItems.KYONINSO.get())
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE))
+				.save(this.output, prefix("soymilk_annin_tf"));
+		TFShapelessRecipeBuilder.shapeless(lookup, TFCraftingCategory.MISC, new ItemStackTemplate(TofuItems.SOYMILK_FRUITS_BOTTLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.SUGAR)
+				.requires(Items.APPLE)
+				.requires(Items.SWEET_BERRIES)
+				.requires(Items.GLOW_BERRIES)
+				.requires(Items.CHORUS_FRUIT)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE))
+				.save(this.output, prefix("soymilk_fruits_tf"));
+
+
 		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.KINUTOFU.get().asItem()), new FluidStackTemplate(TofuFluids.SOYMILK.get(), 1000), Ingredient.of(TofuItems.BITTERN_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(this.output, prefix("bittern_to_kinu"));
 		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.HELLTOFU.get().asItem()), new FluidStackTemplate(TofuFluids.SOYMILK_HELL.get(), 1000), Ingredient.of(TofuItems.WARPED_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(this.output, prefix("bittern_to_hell"));
 		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.SOULTOFU.get().asItem()), new FluidStackTemplate(TofuFluids.SOYMILK_SOUL.get(), 1000), Ingredient.of(TofuItems.CRIMSON_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.CRIMSON_BOTTLE.get())).save(this.output, prefix("bittern_to_soul"));

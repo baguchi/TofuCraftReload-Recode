@@ -1,0 +1,16 @@
+{
+  "type": "tofucraft:tf_craft_shapeless",
+  "category": "misc",
+  "cook_time": 200,
+  "ingredients": [
+    "minecraft:glass_bottle",
+    "minecraft:sugar",
+    "minecraft:apple",
+    "minecraft:sweet_berries",
+    "minecraft:glow_berries",
+    "minecraft:chorus_fruit"
+  ],
+  "result": {
+    "id": "tofucraft:soymilk_fruits_bottle"
+  }
+}
