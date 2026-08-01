@@ -72,6 +72,7 @@ import net.neoforged.fml.util.thread.EffectiveSide;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -95,6 +96,7 @@ public class TofuCraftReload {
 
 	public TofuCraftReload(ModContainer modContainer, Dist dist, IEventBus modBus) {
 		IEventBus forgeBus = NeoForge.EVENT_BUS;
+		NeoForgeMod.enableMilkFluid();
 		if (dist.isClient()) {
 			modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
 		}

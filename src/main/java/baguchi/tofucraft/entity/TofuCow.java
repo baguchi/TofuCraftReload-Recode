@@ -2,14 +2,13 @@ package baguchi.tofucraft.entity;
 
 import baguchi.tofucraft.registry.TofuBiomes;
 import baguchi.tofucraft.registry.TofuEntityTypes;
-import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -32,14 +31,15 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.cow.Cow;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-
-import java.util.concurrent.atomic.AtomicReference;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public class TofuCow extends Cow {
 	private static final EntityDataAccessor<String> TOFUCOW_TYPE = SynchedEntityData.defineId(TofuCow.class, EntityDataSerializers.STRING);
@@ -108,18 +108,19 @@ public class TofuCow extends Cow {
 	}
 
 	@Override
-	public InteractionResult mobInteract(Player p_28298_, InteractionHand p_28299_) {
-		ItemStack itemstack = p_28298_.getItemInHand(p_28299_);
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
 		if (!this.isBaby()) {
-			if (itemstack.is(Items.BUCKET)) {
-				p_28298_.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
-				AtomicReference<ItemStack> resultItemStack = new AtomicReference<>(itemstack.copy());
-				resultItemStack.set(TofuItems.SOYMILK_BUCKET.get().getDefaultInstance());
-				p_28298_.setItemInHand(p_28299_, resultItemStack.get());
+			var resourceHandler = itemstack.getCapability(Capabilities.Fluid.ITEM, ItemAccess.forStack(itemstack));
+			if (resourceHandler != null) {
+				try (Transaction tx = Transaction.openRoot()) {
+					resourceHandler.insert(FluidResource.of(TofuFluids.SOYMILK.get()), 1000, tx);
+					tx.commit();
+				}
 				return InteractionResult.SUCCESS;
 			}
 		}
-		return super.mobInteract(p_28298_, p_28299_);
+		return super.mobInteract(player, hand);
 	}
 
 	@Override
