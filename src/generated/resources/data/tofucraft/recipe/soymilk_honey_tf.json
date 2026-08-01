@@ -1,0 +1,12 @@
+{
+  "type": "tofucraft:tf_craft_shapeless",
+  "category": "misc",
+  "cook_time": 200,
+  "ingredients": [
+    "minecraft:glass_bottle",
+    "minecraft:honey_bottle"
+  ],
+  "result": {
+    "id": "tofucraft:soymilk_honey_bottle"
+  }
+}
