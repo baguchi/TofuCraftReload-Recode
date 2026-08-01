@@ -53,6 +53,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -71,6 +72,7 @@ public class TofuCraftReload {
 	public static final Logger LOGGER = LogManager.getLogger(TofuCraftReload.MODID);
 
 	public TofuCraftReload(ModContainer modContainer, IEventBus modBus) {
+		NeoForgeMod.enableMilkFluid();
 		IEventBus forgeBus = NeoForge.EVENT_BUS;
 
 		modBus.addListener(this::setup);

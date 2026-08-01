@@ -1924,6 +1924,64 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuBlocks.WAXED_ISHITOFU.get()))
 				.save(consumer, prefix("wax_out_ishi"));
 
+		//TF Craft with soymilk craft
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, new ItemStack(TofuItems.SOYMILK.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(consumer, prefix("soymilk_tf"));
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, new ItemStack(TofuItems.SOYMILK_PUMPKIN.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.PUMPKIN)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(consumer, prefix("soymilk_pumpkin_tf"));
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, new ItemStack(TofuItems.SOYMILK_PUDDING.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.EGG)
+				.requires(Items.SUGAR)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(consumer, prefix("soymilk_paddle_tf"));
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, new ItemStack(TofuItems.SOYMILK_HONEY.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.HONEY_BOTTLE)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(consumer, prefix("soymilk_honey_tf"));
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, new ItemStack(TofuItems.SOYMILK_RAMUNE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.SUGAR)
+				.requires(Items.LIGHT_BLUE_DYE)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(consumer, prefix("soymilk_ramune_tf"));
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, new ItemStack(TofuItems.SOYMILK_KINAKO.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(TofuItems.KINAKO.get())
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(consumer, prefix("soymilk_kinako_tf"));
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, new ItemStack(TofuItems.SOYMILK_APPLE.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.APPLE)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(consumer, prefix("soymilk_apple_tf"));
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, new ItemStack(TofuItems.SOYMILK_COCOA.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.COCOA_BEANS)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(consumer, prefix("soymilk_cocoa_tf"));
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, new ItemStack(TofuItems.SOYMILK_ANNIN.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(TofuItems.KYONINSO.get())
+				.requires(TofuItems.KYONINSO.get())
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(consumer, prefix("soymilk_annin_tf"));
+		TFShapelessRecipeBuilder.shapeless(TFCraftingCategory.MISC, new ItemStack(TofuItems.SOYMILK_FRUITS.get()), 200)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.SUGAR)
+				.requires(Items.APPLE)
+				.requires(Items.SWEET_BERRIES)
+				.requires(Items.GLOW_BERRIES)
+				.requires(Items.CHORUS_FRUIT)
+				.unlockedBy("has_item", has(TofuBlocks.TF_CRAFTING_TABLE.get()))
+				.save(consumer, prefix("soymilk_fruits_tf"));
+
 
 		BitternRecipeBuilder.bittern(TofuBlocks.KINUTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK.get(), 1000), new FluidStack(TofuFluids.BITTERN.get(), 250)).unlockedBy("has_item", has(TofuItems.BITTERN_BOTTLE.get())).save(consumer, prefix("bittern_to_kinu"));
 		BitternRecipeBuilder.bittern(TofuBlocks.HELLTOFU.get().asItem().getDefaultInstance(), new FluidStack(TofuFluids.SOYMILK_HELL.get(), 1000), new FluidStack(TofuFluids.WARPED.get(), 250)).unlockedBy("has_item", has(TofuItems.WARPED_BOTTLE.get())).save(consumer, prefix("bittern_to_hell"));
