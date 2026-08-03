@@ -2,12 +2,14 @@ package baguchi.tofucraft.block.crop;
 
 import baguchi.tofucraft.registry.TofuBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -36,6 +38,25 @@ public class RiceRootBlock extends BushBlock implements BonemealableBlock {
 	@Override
 	protected boolean mayPlaceOn(BlockState p_51042_, BlockGetter p_51043_, BlockPos p_51044_) {
 		return p_51042_.is(BlockTags.DIRT) && p_51043_.getBlockState(p_51044_.above()).getFluidState().is(Fluids.WATER);
+	}
+
+	@Override
+	protected BlockState updateShape(
+			BlockState state,
+			LevelReader level,
+			ScheduledTickAccess ticks,
+			BlockPos pos,
+			Direction directionToNeighbour,
+			BlockPos neighbourPos,
+			BlockState neighbourState,
+			RandomSource random
+	) {
+		BlockState result = super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
+		if (!result.isAir()) {
+			ticks.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+		}
+
+		return result;
 	}
 
 	@Override
