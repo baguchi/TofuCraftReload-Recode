@@ -210,7 +210,7 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onUsedEntity(PlayerInteractEvent.EntityInteractSpecific event) {
+	public static void onUsedEntity(PlayerInteractEvent.EntityInteract event) {
 		ItemStack stack = event.getItemStack();
 		Level level = event.getLevel();
 		Entity entity = event.getTarget();
