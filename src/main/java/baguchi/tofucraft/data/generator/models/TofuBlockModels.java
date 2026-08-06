@@ -231,15 +231,15 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		this.createShelf(TofuBlocks.TOFU_STEM_SHELF.get(), TofuBlocks.TOFU_STEM.get());
 		this.createShelf(TofuBlocks.SPROUT_SHELF.get(), TofuBlocks.SPROUT_STEM.get());
 
-		this.createCrossBlockWithDefaultItem(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+		this.createPlantWithDefaultItem(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get(), TofuBlocks.POTTED_ZUNDA_TOFU_MUSHROOM.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		this.createTrivialCube(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get());
-		this.createCrossBlockWithDefaultItem(TofuBlocks.SAPLING_TOFU.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+		this.createPlantWithDefaultItem(TofuBlocks.SAPLING_TOFU.get(), TofuBlocks.POTTED_TOFU_SAPLING.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		createTrivialBlock(TofuBlocks.LEAVES_TOFU.get(), TexturedModel.LEAVES);
 
-		this.createCrossBlockWithDefaultItem(TofuBlocks.SAPLING_APRICOT.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+		this.createPlantWithDefaultItem(TofuBlocks.SAPLING_APRICOT.get(), TofuBlocks.POTTED_APRICOT_SAPLING.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		createTrivialBlock(TofuBlocks.LEAVES_APRICOT.get(), TexturedModel.LEAVES);
 
-		this.createCrossBlockWithDefaultItem(TofuBlocks.TOFU_FLOWER.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+		this.createPlantWithDefaultItem(TofuBlocks.TOFU_FLOWER.get(), TofuBlocks.POTTED_TOFU_FLOWER.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		this.createCrossBlockWithDefaultItem(TofuBlocks.LEEK.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 		this.createDoublePlantWithDefaultItem(TofuBlocks.TALL_LEEK.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 
