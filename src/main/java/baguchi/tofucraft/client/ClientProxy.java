@@ -95,6 +95,7 @@ public class ClientProxy {
 
 
 			TextBookComponent tf_force_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tf_force.desc"), true, 100, 158);
+			TextBookComponent tf_force_desc2 = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tf_force.desc2"), true, 100, 158);
 			DisplayBookComponent tf_storage = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuBlocks.TF_STORAGE.toStack().getItem().getDescriptionId()), 52, 26, 1.0F).itemDisplay(TofuBlocks.TF_STORAGE.toStack().getItem().getDefaultInstance(), 46, 30);
 			TextBookComponent tf_storage_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tf_storage.desc"), true, 100, 158);
 			DisplayBookComponent antenna_basic = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable(TofuBlocks.ANTENNA_BASIC.toStack().getItem().getDescriptionId()), 52, 26, 1.0F).itemDisplay(TofuBlocks.ANTENNA_BASIC.toStack().getItem().getDefaultInstance(), 46, 30);
@@ -125,6 +126,7 @@ public class ClientProxy {
 			list.add(new BookComponentDefinition(tofu_diamond_desc, TofuCraftReload.prefix("tofu_diamond_desc"), 15, 10, 10, 10));
 
 			list.add(new BookComponentDefinition(tf_force_desc, TofuCraftReload.prefix("tf_force"), 15, 10, 10, 10));
+			list.add(new BookComponentDefinition(tf_force_desc2, TofuCraftReload.prefix("tf_force2"), 15, 10, 10, 10));
 			list.add(new BookComponentDefinition(tf_storage, TofuCraftReload.prefix("tf_storage"), 15, 10, 10, 10));
 			list.add(new BookComponentDefinition(tf_storage_desc, TofuCraftReload.prefix("tf_storage_desc"), 15, 10, 10, 10));
 			list.add(new BookComponentDefinition(antenna_basic, TofuCraftReload.prefix("antenna_basic"), 15, 10, 10, 10));

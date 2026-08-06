@@ -2,6 +2,6 @@
   "parent" : "minecraft:block/flower_pot_cross",
   "render_type" : "minecraft:cutout",
   "textures" : {
-    "plant" : "tofucraft:block/zundatofu_mushroom"
+    "plant": "tofucraft:block/zunda_tofu_mushroom"
   }
 }
