@@ -902,8 +902,9 @@
   "tofucraft.tofu_crafters_book.soysauce.desc2": "After Kouji is made. You can Craft Miso Barrel, and place under the Stone and wait for it... \n If changed color. use bottle and pick soy sauce. and You can break the Barrel and Miso is done!",
   "tofucraft.tofu_crafters_book.natto": "How To make Natto",
   "tofucraft.tofu_crafters_book.natto.desc": "Unlike Soysauce. The natto bed needed to make natto will ferment just by placing them down. Once they change color, simply remove them!",
-  "tofucraft.tofu_crafters_book.tf_force.title": "Tofu Force",
-  "tofucraft.tofu_crafters_book.tf_force.desc": "You can also industrialize using tofu and soybeans.\n The main source of energy is soybeans and tofu,\n which can be used to bake things and restore the durability of tofu tools.",
+  "tofucraft.tofu_crafters_book.tf_force.title": "Tofu Force And Tofu Gem",
+  "tofucraft.tofu_crafters_book.tf_force.desc": "You can also industrialize using tofu and soybeans.\n The main source of energy is soybeans and tofu,\n which can be used to bake things and restore the durability of tofu tools.\n but... don't forget how to handle the energy...! ->",
+  "tofucraft.tofu_crafters_book.tf_force.desc2": "To operate TF Force, you must first mine tofu gem ore in Tofu World.\n You should find it soon after exploring the area for a while.",
   "tofucraft.tofu_crafters_book.tf_storage.desc": "Tofu storage generates energy mainly from soybeans,\n which is used to restore and charge tofu tools.",
   "tofucraft.tofu_crafters_book.antenna_basic.desc": "The Antenna Basic is necessary to send TF Force energy to other TF Force-handling machines.\n You need to put those antenna on Generator like TF Storage"
 }
