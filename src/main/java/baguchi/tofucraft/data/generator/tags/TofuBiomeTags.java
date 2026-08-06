@@ -18,6 +18,12 @@ public class TofuBiomeTags extends BiomeTagsProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider p_256380_) {
+		this.tag(TofuTags.Biomes.TOFU_CASTLE).add(TofuBiomes.TOFU_FOREST);
+		this.tag(TofuTags.Biomes.TOFU_VILLAGE).add(TofuBiomes.TOFU_PLAINS).add(TofuBiomes.TOFU_MOUNTAIN);
+		this.tag(TofuTags.Biomes.TOFU_MINESHAFT).add(TofuBiomes.TOFU_PLAINS).add(TofuBiomes.TOFU_MOUNTAIN).add(TofuBiomes.TOFU_FOREST).add(TofuBiomes.SOYBEAN_FOREST).add(TofuBiomes.ZUNDA_FOREST);
+		this.tag(TofuTags.Biomes.ZUNDA_TOFU_VILLAGE).add(TofuBiomes.ZUNDA_FOREST);
+		this.tag(TofuTags.Biomes.TOFU_RUINS).add(TofuBiomes.SOYBEAN_FOREST).add(TofuBiomes.TOFU_MOUNTAIN);
+
 		this.tag(TofuTags.Biomes.HOT_VARIANT_TOFUNIAN).addTag(BiomeTags.IS_BADLANDS).addTag(Tags.Biomes.IS_DESERT).add(TofuBiomes.TOFU_WASTES);
 	}
 }
