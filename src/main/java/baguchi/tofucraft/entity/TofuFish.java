@@ -2,7 +2,6 @@ package baguchi.tofucraft.entity;
 
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuItems;
-import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -98,7 +97,7 @@ public class TofuFish extends AbstractTofuFish {
 
 	@Override
 	public boolean isInWater() {
-		return super.isInWater() || this.fluidInteraction.isInFluid(TofuTags.Fluids.SOYMILK);
+		return super.isInWater() || this.fluidInteraction.isInAnyFluid();
 	}
 
 	public static boolean checkTofuFishSpawnRules(EntityType<? extends AbstractFish> p_27468_, LevelAccessor p_27469_, EntitySpawnReason p_27470_, BlockPos p_27471_, RandomSource p_27472_) {

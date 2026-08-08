@@ -24,8 +24,9 @@ displayName = "${mod_name}" #mandatory
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/tofucraftreload" #optional
-# A file name (in the root of the mod JAR) containing a logo for display
-logoFile = "logo.png"
+# A file name (in the root of the mod JAR) containing a icon for display
+iconFile = "icon.png"
+bannerFile = "logo.png"
 # A text field displayed in the mod UI
 credits = "${mod_credits}" #optional
 # A text field displayed in the mod UI

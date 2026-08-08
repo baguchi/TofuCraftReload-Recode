@@ -4,17 +4,11 @@
   "compatibilityLevel": "JAVA_25",
   "refmap": "tofucraft.refmap.json",
   "mixins": [
-    "EntityFluidInteractionMixin",
-    "EntityMixin",
     "FishingHookMixin",
-    "FloatGoalMixin",
     "IceBlockMixin",
     "LightningBoltMixin",
-    "LivingEntityAccessor",
-    "LivingEntityMixin",
     "PlaceRecipeHelperMixin",
     "ServerLevelMixin",
-    "SwimMixin",
     "WardenAiMixin"
   ],
   "injectors": {

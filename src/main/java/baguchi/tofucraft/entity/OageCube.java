@@ -30,7 +30,6 @@ public class OageCube extends MagmaCube {
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
-		//this.goalSelector.addGoal(0, new TofuSlime.TofuSlimeFloatGoal(this));
 	}
 
 	public static boolean checkOageSpawnRules(EntityType<? extends OageCube> p_219014_, ServerLevelAccessor p_219015_, EntitySpawnReason p_361180_, BlockPos p_219017_, RandomSource p_219018_) {
