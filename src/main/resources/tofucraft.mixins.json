@@ -7,7 +7,6 @@
     "FishingHookMixin",
     "IceBlockMixin",
     "LightningBoltMixin",
-    "LivingEntityAccessor",
     "PlaceRecipeHelperMixin",
     "ServerLevelMixin",
     "WardenAiMixin"

@@ -1,6 +1,5 @@
 package baguchi.tofucraft.fluid_type;
 
-import baguchi.tofucraft.mixin.LivingEntityAccessor;
 import baguchi.tofucraft.registry.TofuFluidTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.attribute.EnvironmentAttributes;
@@ -9,8 +8,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 
@@ -21,12 +20,11 @@ public class SoymilkFluidType extends FluidType {
 
 
 	@Override
-	public boolean move(FluidState state, LivingEntity entity, Vec3 movementVector, double gravity) {
+	public boolean move(LivingEntity entity, Vec3 movementVector, double gravity) {
 		boolean isFalling = entity.getDeltaMovement().y <= 0.0;
 		double oldY = entity.getY();
 		double baseGravity = gravity;
-
-		float slowDown = entity.isSprinting() ? 0.9F : ((LivingEntityAccessor) entity).getWaterSlowDown();
+		float slowDown = entity.isSprinting() ? 0.9F : 0.8F;
 		float speed = 0.02F;
 		float waterWalker = (float) entity.getAttributeValue(Attributes.WATER_MOVEMENT_EFFICIENCY);
 		if (!entity.onGround()) {
@@ -42,7 +40,7 @@ public class SoymilkFluidType extends FluidType {
 			slowDown = 0.96F;
 		}
 
-		speed *= (float) entity.getAttributeValue(net.neoforged.neoforge.common.NeoForgeMod.SWIM_SPEED);
+		speed *= (float) entity.getAttributeValue(NeoForgeMod.SWIM_SPEED);
 		entity.moveRelative(speed, movementVector);
 		entity.move(MoverType.SELF, entity.getDeltaMovement());
 		Vec3 movement = entity.getDeltaMovement();
@@ -50,11 +48,21 @@ public class SoymilkFluidType extends FluidType {
 			movement = new Vec3(movement.x, 0.2, movement.z);
 		}
 
-		movement = movement.multiply(slowDown, 0.8F, slowDown);
+		movement = movement.multiply((double) slowDown, (double) 0.8F, (double) slowDown);
 		entity.setDeltaMovement(entity.getFluidFallingAdjustedMovement(baseGravity, isFalling, movement));
-		((LivingEntityAccessor) entity).jumpOutOfFluid(oldY);
-		return true;
+		jumpOutOfFluid(entity, oldY);
+		return false;
 	}
+
+
+	private void jumpOutOfFluid(LivingEntity entity, double oldY) {
+		Vec3 movement = entity.getDeltaMovement();
+		if (entity.horizontalCollision && entity.isFree(movement.x, movement.y + (double) 0.6F - entity.getY() + oldY, movement.z)) {
+			entity.setDeltaMovement(movement.x, (double) 0.3F, movement.z);
+		}
+
+	}
+
 
 
 	@Override
