@@ -8,7 +8,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -20,7 +19,7 @@ public class SoymilkFluidType extends FluidType {
 
 
 	@Override
-	public boolean move(FluidState state, LivingEntity entity, Vec3 movementVector, double gravity) {
+	public boolean move(LivingEntity entity, Vec3 movementVector, double gravity) {
 		boolean flag = entity.getDeltaMovement().y <= 0.0D;
 		double d8 = entity.getY();
 
@@ -50,7 +49,7 @@ public class SoymilkFluidType extends FluidType {
 
 		vec3 = vec3.multiply(f, 0.8F, f);
 		entity.setDeltaMovement(entity.getFluidFallingAdjustedMovement(gravity, flag, vec3));
-		return true;
+		return false;
 	}
 
 

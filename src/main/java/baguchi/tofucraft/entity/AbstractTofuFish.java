@@ -2,7 +2,6 @@ package baguchi.tofucraft.entity;
 
 import baguchi.tofucraft.entity.path.SoymilkPathNavigation;
 import baguchi.tofucraft.registry.TofuFluidTypes;
-import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -39,7 +38,7 @@ public abstract class AbstractTofuFish extends AbstractFish {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.isEyeInFluid(TofuTags.Fluids.SOYMILK)) {
+		if (this.isInFluidType(TofuFluidTypes.SOYMILK.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK_HELL.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK_SOUL.get())) {
 			this.wasTouchingSoymilk = true;
 		} else {
 			this.wasTouchingSoymilk = false;
