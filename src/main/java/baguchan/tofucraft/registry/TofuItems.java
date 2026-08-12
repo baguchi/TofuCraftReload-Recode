@@ -187,7 +187,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_CHIKUWA = ITEMS.register("tofu_chikuwa", () -> new Item((new Item.Properties()).food(TofuFoods.TOFU_CHIKUWA)));
 
 	public static final DeferredHolder<Item, Item> APRICOT = ITEMS.register("apricot", () -> new ApricotItem((new Item.Properties()).food(TofuFoods.APRICOT)));
-	public static final DeferredHolder<Item, Item> APRICOTJERRY_BOTTLE = ITEMS.register("apricotjerry_bottle", () -> new Item((new Item.Properties().stacksTo(16))));
+	public static final DeferredHolder<Item, Item> APRICOTJERRY_BOTTLE = ITEMS.register("apricotjerry_bottle", () -> new Item((new Item.Properties().rarity(Rarity.UNCOMMON).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16))));
 	public static final DeferredHolder<Item, Item> APRICOTJERRY_BREAD = ITEMS.register("apricotjerry_bread", () -> new Item((new Item.Properties()).food(TofuFoods.APRICOT_BREAD)));
 	public static final DeferredHolder<Item, Item> APRICOTSEED = ITEMS.register("apricotseed", () -> new Item((new Item.Properties())));
 	public static final DeferredHolder<Item, Item> KYONINSO = ITEMS.register("kyoninso", () -> new Item((new Item.Properties())));
