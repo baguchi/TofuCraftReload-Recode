@@ -95,11 +95,6 @@ public class TofuFish extends AbstractTofuFish {
 		}
 	}
 
-	@Override
-	public boolean isInWater() {
-		return super.isInWater() || this.fluidInteraction.isInAnyFluid();
-	}
-
 	public static boolean checkTofuFishSpawnRules(EntityType<? extends AbstractFish> p_27468_, LevelAccessor p_27469_, EntitySpawnReason p_27470_, BlockPos p_27471_, RandomSource p_27472_) {
 		return p_27469_.getBlockState(p_27471_).is(TofuBlocks.SOYMILK.get()) && p_27469_.getBlockState(p_27471_.above()).is(TofuBlocks.SOYMILK.get());
 	}
