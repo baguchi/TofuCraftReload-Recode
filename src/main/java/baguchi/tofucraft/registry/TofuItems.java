@@ -193,7 +193,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> TOFU_CHIKUWA = ITEMS.registerItem("tofu_chikuwa", (properties) -> new Item((properties).food(TofuFoods.TOFU_CHIKUWA)));
 
 	public static final DeferredHolder<Item, Item> APRICOT = ITEMS.registerItem("apricot", (properties) -> new ApricotItem((properties).food(TofuFoods.APRICOT)));
-	public static final DeferredHolder<Item, Item> APRICOTJERRY_BOTTLE = ITEMS.registerItem("apricotjerry_bottle", (properties) -> new Item((properties.stacksTo(16))));
+	public static final DeferredHolder<Item, Item> APRICOTJERRY_BOTTLE = ITEMS.registerItem("apricotjerry_bottle", (properties) -> new Item((properties.rarity(Rarity.UNCOMMON).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16))));
 	public static final DeferredHolder<Item, Item> APRICOTJERRY_BREAD = ITEMS.registerItem("apricotjerry_bread", (properties) -> new Item((properties).food(TofuFoods.APRICOT_BREAD)));
 	public static final DeferredHolder<Item, Item> APRICOTSEED = ITEMS.registerItem("apricotseed", Item::new);
 	public static final DeferredHolder<Item, Item> KYONINSO = ITEMS.registerItem("kyoninso", Item::new);

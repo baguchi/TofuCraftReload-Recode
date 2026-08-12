@@ -2212,6 +2212,12 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.CRIMSON_FUNGUS)
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
 				.save(this.output);
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MISC, Optional.empty(), TofuItems.APRICOTJERRY_BOTTLE.get(), 1, 300, 0.3F)
+				.requires(TofuItems.APRICOT.get())
+				.requires(Items.SUGAR)
+				.requires(Items.GLASS_BOTTLE)
+				.unlockedBy("has_item", has(TofuItems.APRICOT.get()))
+				.save(this.output);
 
 
 		//TF Craft with soymilk craft
