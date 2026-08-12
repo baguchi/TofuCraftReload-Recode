@@ -1,0 +1,14 @@
+{
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "misc",
+  "cook_time": 300,
+  "experience": 0.3,
+  "ingredients": [
+    "tofucraft:apricot",
+    "minecraft:sugar",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "tofucraft:apricotjerry_bottle"
+  }
+}
