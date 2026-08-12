@@ -9,6 +9,7 @@ import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 
@@ -18,39 +19,51 @@ public class SoymilkFluidType extends FluidType {
 	}
 
 
+
 	@Override
 	public boolean move(LivingEntity entity, Vec3 movementVector, double gravity) {
-		boolean flag = entity.getDeltaMovement().y <= 0.0D;
-		double d8 = entity.getY();
-
-		float f = entity.isSprinting() ? 0.9F : 0.8F;
-		float f1 = 0.02F;
-		float f2 = (float) entity.getAttributeValue(Attributes.WATER_MOVEMENT_EFFICIENCY);
+		boolean isFalling = entity.getDeltaMovement().y <= 0.0;
+		double oldY = entity.getY();
+		double baseGravity = gravity;
+		float slowDown = entity.isSprinting() ? 0.9F : 0.8F;
+		float speed = 0.02F;
+		float waterWalker = (float) entity.getAttributeValue(Attributes.WATER_MOVEMENT_EFFICIENCY);
 		if (!entity.onGround()) {
-			f2 *= 0.5F;
+			waterWalker *= 0.5F;
 		}
 
-		if (f2 > 0.0F) {
-			f += (0.54600006F - f) * f2;
-			f1 += (entity.getSpeed() - f1) * f2;
+		if (waterWalker > 0.0F) {
+			slowDown += (0.54600006F - slowDown) * waterWalker;
+			speed += (entity.getSpeed() - speed) * waterWalker;
 		}
 
 		if (entity.hasEffect(MobEffects.DOLPHINS_GRACE)) {
-			f = 0.96F;
+			slowDown = 0.96F;
 		}
 
-		f1 *= (float) entity.getAttributeValue(net.neoforged.neoforge.common.NeoForgeMod.SWIM_SPEED);
-		entity.moveRelative(f1, movementVector);
+		speed *= (float) entity.getAttributeValue(NeoForgeMod.SWIM_SPEED);
+		entity.moveRelative(speed, movementVector);
 		entity.move(MoverType.SELF, entity.getDeltaMovement());
-		Vec3 vec3 = entity.getDeltaMovement();
+		Vec3 movement = entity.getDeltaMovement();
 		if (entity.horizontalCollision && entity.onClimbable()) {
-			vec3 = new Vec3(vec3.x, 0.2, vec3.z);
+			movement = new Vec3(movement.x, 0.2, movement.z);
 		}
 
-		vec3 = vec3.multiply(f, 0.8F, f);
-		entity.setDeltaMovement(entity.getFluidFallingAdjustedMovement(gravity, flag, vec3));
+		movement = movement.multiply((double) slowDown, (double) 0.8F, (double) slowDown);
+		entity.setDeltaMovement(entity.getFluidFallingAdjustedMovement(baseGravity, isFalling, movement));
+		jumpOutOfFluid(entity, oldY);
 		return false;
 	}
+
+
+	private void jumpOutOfFluid(LivingEntity entity, double oldY) {
+		Vec3 movement = entity.getDeltaMovement();
+		if (entity.horizontalCollision && entity.isFree(movement.x, movement.y + (double) 0.6F - entity.getY() + oldY, movement.z)) {
+			entity.setDeltaMovement(movement.x, (double) 0.3F, movement.z);
+		}
+
+	}
+
 
 
 	@Override
