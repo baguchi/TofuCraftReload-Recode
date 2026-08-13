@@ -1,6 +1,6 @@
 package baguchi.tofucraft.entity.path;
 
-import baguchi.tofucraft.registry.TofuTags;
+import baguchi.tofucraft.registry.TofuFluidTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.Mob;
@@ -22,8 +22,9 @@ public class SoymilkPathNavigation extends PathNavigation {
 		return new PathFinder(this.nodeEvaluator, p_26598_);
 	}
 
+	@Override
 	protected boolean canUpdatePath() {
-		return this.allowBreaching || this.mob.isEyeInFluid(TofuTags.Fluids.SOYMILK);
+		return this.allowBreaching || this.mob.isInFluidType(TofuFluidTypes.SOYMILK.get()) || this.mob.isInFluidType(TofuFluidTypes.SOYMILK_HELL.get()) || this.mob.isInFluidType(TofuFluidTypes.SOYMILK_SOUL.get());
 	}
 
 	protected Vec3 getTempMobPos() {

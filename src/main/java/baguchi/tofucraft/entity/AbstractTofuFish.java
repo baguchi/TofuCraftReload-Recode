@@ -36,6 +36,16 @@ public abstract class AbstractTofuFish extends AbstractFish {
 	}
 
 	@Override
+	public void tick() {
+		super.tick();
+		if (this.isInFluidType(TofuFluidTypes.SOYMILK.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK_HELL.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK_SOUL.get())) {
+			this.wasTouchingSoymilk = true;
+		} else {
+			this.wasTouchingSoymilk = false;
+		}
+	}
+
+	@Override
 	public boolean canDrownInFluidType(FluidType type) {
 		return type != TofuFluidTypes.SOYMILK.get() && type != TofuFluidTypes.SOYMILK_HELL.get() && type != TofuFluidTypes.SOYMILK_SOUL.get() && type != NeoForgeMod.WATER_TYPE.value() && super.canDrownInFluidType(type);
 	}
