@@ -45,6 +45,13 @@ public abstract class AbstractTofuFish extends AbstractFish {
 		}
 	}
 
+	//override isInWater because most method using this
+	@Override
+	public boolean isInWater() {
+		return super.isInWater() || wasTouchingSoymilk;
+	}
+
+
 	@Override
 	public boolean canDrownInFluidType(FluidType type) {
 		return type != TofuFluidTypes.SOYMILK.get() && type != TofuFluidTypes.SOYMILK_HELL.get() && type != TofuFluidTypes.SOYMILK_SOUL.get() && type != NeoForgeMod.WATER_TYPE.value() && super.canDrownInFluidType(type);
