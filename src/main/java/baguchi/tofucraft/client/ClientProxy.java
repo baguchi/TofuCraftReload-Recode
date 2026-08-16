@@ -81,7 +81,7 @@ public class ClientProxy {
 			TextBookComponent soymilk_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.soymilk.desc"), true, 100, 158);
 			DisplayBookComponent cooking_with_soy_food = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.cooking_with_soy_food.title"), 52, 26, 1.0F).itemDisplay(TofuBlocks.TOFU_POT.get().asItem().getDefaultInstance(), 46, 30);
 			TextBookComponent cooking_with_soy_food_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.cooking_with_soy_food.desc"), true, 100, 158);
-			DisplayBookComponent tofu_metal_usage = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.tofu_metal_usage.title"), 52, 26, 1.0F).itemDisplay(TofuBlocks.TOFU_POT.get().asItem().getDefaultInstance(), 46, 30);
+			DisplayBookComponent tofu_metal_usage = (new DisplayBookComponent(121, 158)).textDisplay(Component.translatable("tofucraft.tofu_crafters_book.tofu_metal_usage.title"), 52, 26, 1.0F).itemDisplay(TofuItems.TOFU_METAL_SWORD.get().asItem().getDefaultInstance(), 46, 30);
 			TextBookComponent tofu_metal_usage_desc = new TextBookComponent(Component.translatable("tofucraft.tofu_crafters_book.tofu_metal_usage.desc"), true, 100, 158);
 
 
