@@ -52,7 +52,6 @@ public class ClientProxy {
 				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.SOYMILK_BOTTLE.get().getDescriptionId()), TofuCraftReload.prefix("soymilk"), true),
 				new IndexBookComponent.IndexItem(Component.translatable(TofuItems.BOTTLE_SOYSAUSE.get().getDescriptionId()), TofuCraftReload.prefix("soy_sauce"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.cooking_with_soy_food.title"), TofuCraftReload.prefix("cooking_with_soy_food"), true),
-				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.cooking_with_soy_food.title"), TofuCraftReload.prefix("cooking_with_soy_food"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tofu_metal_usage.title"), TofuCraftReload.prefix("tofu_metal_usage"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tofu_diamond"), TofuCraftReload.prefix("tofu_diamond"), true),
 				new IndexBookComponent.IndexItem(Component.translatable("tofucraft.tofu_crafters_book.tf_force.title"), TofuCraftReload.prefix("tf_force"), true),
