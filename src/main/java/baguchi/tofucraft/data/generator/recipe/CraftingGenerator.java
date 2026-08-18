@@ -551,13 +551,21 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeStairsCraftingOrCutting(this.output, TofuBlocks.TOFU_STAIR_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
 		makeSlabCraftingOrCutting(this.output, TofuBlocks.TOFU_SLAB_ZUNDABRICK, TofuBlocks.ZUNDATOFU_BRICK);
 
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.BUILDING_BLOCKS, TofuItems.TOFU_ZUNDA.get(), 1)
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.TOFU_ZUNDA.get(), 1)
 				.requires(TofuItems.ZUNDA.get())
 				.requires(Items.SUGAR)
 				.requires(TofuItems.STARCH.get())
 				.requires(TofuItems.BOTTLE_DASHI.get())
 				.unlockedBy("has_item", has(TofuItems.ZUNDA.get()))
 				.save(this.output);
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.TOFU_SESAME.get(), 1)
+				.requires(TofuItems.SEEDS_SESAME.get())
+				.requires(TofuItems.SALT.get())
+				.requires(TofuItems.STARCH.get())
+				.requires(TofuItems.BOTTLE_DASHI.get())
+				.unlockedBy("has_item", has(TofuItems.SEEDS_SESAME.get()))
+				.save(this.output);
+
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.BUILDING_BLOCKS, TofuBlocks.SPROUT_PLANKS.get(), 4)
 				.requires(TofuBlocks.SPROUT_STEM.get())

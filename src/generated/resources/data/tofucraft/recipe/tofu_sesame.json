@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "tofucraft:zunda",
-    "minecraft:sugar",
+    "tofucraft:sesame",
+    "tofucraft:salt",
     "tofucraft:starch",
     "tofucraft:bottle_dashi"
   ],
   "result": {
-    "id": "tofucraft:tofu_zunda"
+    "id": "tofucraft:tofu_sesame"
   }
 }

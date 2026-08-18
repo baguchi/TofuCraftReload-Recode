@@ -14,6 +14,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.FeatureTags;
 import net.minecraft.tags.PoiTypeTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.tags.VillagerTradeTags;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.block.entity.BannerPattern;
@@ -192,6 +193,8 @@ public class TofuCustomTags {
 			tag(TofuTags.TofunianTrade.TOFU_CRAFTSMAN_LEVEL_5)
 					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_5_EMERALD_MISO_SOUP)
 					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_5_EMERALD_MOYASHI_ITAME);
+			tag(VillagerTradeTags.FARMER_LEVEL_5)
+					.add(TofuVillagerTrades.FARMER_5_EMERALD_SESAME);
 
 		}
 	}

@@ -36,6 +36,7 @@ import baguchi.tofucraft.block.crop.ChiliCropsBlock;
 import baguchi.tofucraft.block.crop.LeekCropsBlock;
 import baguchi.tofucraft.block.crop.RiceCropsBlock;
 import baguchi.tofucraft.block.crop.RiceRootBlock;
+import baguchi.tofucraft.block.crop.SesameCropsBlock;
 import baguchi.tofucraft.block.crop.SoybeanCropsBlock;
 import baguchi.tofucraft.block.crop.SoybeanNetherCropsBlock;
 import baguchi.tofucraft.block.crop.SoybeanPaleCropsBlock;
@@ -137,6 +138,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> SOYBEAN_NETHER = registerWithoutItem("soybean_nether", (properties) -> new SoybeanNetherCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> SOYBEAN_SOUL = registerWithoutItem("soybean_soul", (properties) -> new SoybeanSoulCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> SOYBEAN_PALE = registerWithoutItem("soybean_pale", (properties) -> new SoybeanPaleCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
+	public static final DeferredBlock<Block> SESAME = registerWithoutItem("sesame", (properties) -> new SesameCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> LEEK_CROP = registerWithoutItem("leek_crop", (properties) -> new LeekCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> RICE_CROP = registerWithoutItem("rice", (properties) -> new RiceCropsBlock(properties), () -> BlockBehaviour.Properties.ofFullCopy(SOYBEAN.value()));
 	public static final DeferredBlock<Block> RICE_ROOT = registerWithoutItem("rice_root", (properties) -> new RiceRootBlock(properties), () -> BlockBehaviour.Properties.of().noCollision().randomTicks().strength(0.1F).sound(SoundType.CROP));

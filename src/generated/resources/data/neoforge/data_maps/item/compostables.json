@@ -48,6 +48,9 @@
     "tofucraft:seeds_soybeans_soul": {
       "chance": 0.3
     },
+    "tofucraft:sesame": {
+      "chance": 0.3
+    },
     "tofucraft:tofu_annin": {
       "chance": 0.5
     },

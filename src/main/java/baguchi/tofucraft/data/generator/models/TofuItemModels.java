@@ -80,6 +80,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		//this.generateFlatItem(TofuItems.SEEDS_SOYBEANS_SOUL.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SEEDS_SOYBEANS_PALE.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SEEDS_SOYBEANS_PALE_GLOW.get(), ModelTemplates.FLAT_ITEM);
+		//this.generateFlatItem(TofuItems.SEEDS_SESAME.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SOYBEAN_PARCHED.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.KINAKO.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.EDAMAME.get(), ModelTemplates.FLAT_ITEM);
