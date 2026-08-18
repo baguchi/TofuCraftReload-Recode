@@ -895,7 +895,7 @@
   "tofucraft.tofu_crafters_book.tofu_diamond.desc": "トーフワールドではダイアモンドより硬い金剛豆腐の粒の塊があるよ。\nブロックにするほどの量を手に入れるのは難しいが、完成すれば長い豆腐職人の相棒にもなる\n\n TofuDiamondの強度は昔よりさがってしまったけど、いまだに衰えない強さをもっているよ。",
   "tofucraft.tofu_crafters_book.soysauce": "醤油とみそのつくりかた",
   "tofucraft.tofu_crafters_book.soysauce.desc": "まず、麹の種を作成しよう。\n作成後、麴の種がインベントリ内で麴に変化するまで待とう。時間がかかるから、バンドルでインベントリを管理することをお勧めするよ。\nバンドルやチェストに麹の種を入れないでね。インベントリで必ず発酵させよう。",
-  "tofucraft.tofu_crafters_book.soysauce.desc2": "麹ができたら、味噌樽をクラフトして設置し、あとは石を上に置いて待つだけ...\n色が変わったら、納豆菌床を壊わそう。そうしたら味噌の完成！",
+  "tofucraft.tofu_crafters_book.soysauce.desc2": "麹ができたら、味噌樽をクラフトして設置し、あとは石を上に置いて待つだけ...\n色が変わったら、ボトルで醬油をゲットし、味噌樽を壊わそう。そうしたら味噌の完成！",
   "tofucraft.tofu_crafters_book.natto": "納豆の作り方",
   "tofucraft.tofu_crafters_book.natto.desc": "醬油と違って、納豆を作るために必要な納豆俵は、置くだけで発行するよ。色が変わったら回収するだけでok!",
   "tofucraft.tofu_crafters_book.tf_force.title": "トーフフォースとトーフジェム取扱説明書",
