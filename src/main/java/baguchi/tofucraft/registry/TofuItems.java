@@ -135,6 +135,7 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_SOUL = ITEMS.registerItem("seeds_soybeans_soul", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_SOUL, (properties).rarity(Rarity.UNCOMMON)));
 	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_PALE = ITEMS.registerItem("seeds_soybeans_pale", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_PALE, (properties)));
 	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_PALE_GLOW = ITEMS.registerItem("seeds_soybeans_pale_glow", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_PALE, (properties)));
+	public static final DeferredHolder<Item, Item> SEEDS_SESAME = ITEMS.registerItem("sesame", (properties) -> new DeferredBlockItem(TofuBlocks.SESAME, (properties)));
 
 	public static final DeferredHolder<Item, Item> SOYBEAN_PARCHED = ITEMS.registerItem("soybeans_parched", Item::new);
 	public static final DeferredHolder<Item, Item> KINAKO = ITEMS.registerItem("kinako", Item::new);

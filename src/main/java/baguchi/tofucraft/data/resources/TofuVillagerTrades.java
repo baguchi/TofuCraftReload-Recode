@@ -109,6 +109,7 @@ public class TofuVillagerTrades {
 	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_5_EMERALD_MISO_SOUP = resourceKey("tofu_craftsman/5/emerald_miso_soup");
 	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_5_EMERALD_MOYASHI_ITAME = resourceKey("tofu_craftsman/5/emerald_moyashgi_itame");
 
+	public static final ResourceKey<VillagerTrade> FARMER_5_EMERALD_SESAME = resourceKey("farmer/5/emerald_sesame");
 
 	public static ResourceKey<VillagerTrade> resourceKey(String path) {
 		return ResourceKey.create(Registries.VILLAGER_TRADE, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, path));
@@ -512,6 +513,12 @@ public class TofuVillagerTrades {
 				context,
 				TOFU_CRAFTSMAN_5_EMERALD_MOYASHI_ITAME,
 				new VillagerTrade(new TradeCost(Items.EMERALD, 2), new ItemStackTemplate(TofuItems.MOYASHIITAME, 3), 6, 20, 0.1F, Optional.empty(), List.of())
+		);
+
+		register(
+				context,
+				FARMER_5_EMERALD_SESAME,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 1), new ItemStackTemplate(TofuItems.SEEDS_SESAME, 6), 6, 20, 0.1F, Optional.empty(), List.of())
 		);
 	}
 

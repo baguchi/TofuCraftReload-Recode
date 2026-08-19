@@ -604,6 +604,7 @@ public class TofuCreativeModeTabs {
 						TofuItems.SEEDS_SOYBEANS_PALE_GLOW,
 						TofuItems.SEEDS_RICE,
 						TofuItems.SEEDS_CHILI,
+						TofuItems.SEEDS_SESAME,
 						TofuItems.CHILI,
 						TofuItems.RICE,
 						TofuItems.SOYBEAN_PARCHED,
