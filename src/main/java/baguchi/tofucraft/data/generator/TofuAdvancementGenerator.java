@@ -95,7 +95,7 @@ public class TofuAdvancementGenerator extends AdvancementProvider {
 							Component.translatable("advancements.tofucraft.bittern_bottle.desc"),
 							null,
 							AdvancementType.TASK, true, true, false)
-					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuBlocks.BITTERN.get()))
+					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuItems.BITTERN_BOTTLE.get()))
 					.save(consumer, "tofucraft:bittern_bottle");
 			AdvancementHolder make_tofu = Advancement.Builder.advancement()
 					.parent(bittern_bottle)
