@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "tofucraft:sesame",
+    "tofucraft:salt",
+    "tofucraft:starch",
+    "tofucraft:bottle_dashi"
+  ],
+  "result": {
+    "id": "tofucraft:tofu_sesame"
+  }
+}
