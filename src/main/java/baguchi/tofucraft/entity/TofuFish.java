@@ -33,7 +33,7 @@ public class TofuFish extends AbstractTofuFish {
 
 	@Override
 	public ItemStack getBucketItemStack() {
-		return new ItemStack(TofuItems.TOFUFISH_BUCKET.get());
+		return new ItemStack(TofuItems.TOFUFISH_SOYMILK_BUCKET.get());
 	}
 
 	@Override
