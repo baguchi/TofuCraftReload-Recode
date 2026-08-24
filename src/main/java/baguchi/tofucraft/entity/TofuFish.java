@@ -33,7 +33,7 @@ public class TofuFish extends AbstractTofuFish {
 
 	@Override
 	public ItemStack getBucketItemStack() {
-		return new ItemStack(TofuItems.TOFUFISH_BUCKET.get());
+		return new ItemStack(TofuItems.TOFUFISH_SOYMILK_BUCKET.get());
 	}
 
 	@Override
@@ -77,22 +77,14 @@ public class TofuFish extends AbstractTofuFish {
 
 			p_148831_.discard();
 			return Optional.of(InteractionResult.TRY_WITH_EMPTY_HAND);
-		} else if (itemstack.getItem() == TofuItems.SOYMILK_BUCKET.get() && p_148831_.isAlive()) {
-			p_148831_.playSound(p_148831_.getPickupSound(), 1.0F, 1.0F);
-			ItemStack itemstack1 = TofuItems.TOFUFISH_SOYMILK_BUCKET.get().getDefaultInstance();
-			p_148831_.saveToBucketTag(itemstack1);
-			ItemStack itemstack2 = ItemUtils.createFilledResult(itemstack, p_148829_, itemstack1, false);
-			p_148829_.setItemInHand(p_148830_, itemstack2);
-			Level level = p_148831_.level();
-			if (!level.isClientSide()) {
-				CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) p_148829_, itemstack1);
-			}
-
-			p_148831_.discard();
-			return Optional.of(InteractionResult.TRY_WITH_EMPTY_HAND);
 		} else {
 			return Bucketable.bucketMobPickup(p_148829_, p_148830_, p_148831_);
 		}
+	}
+
+	@Override
+	public boolean canBePickedUpWithBucket(ItemStack itemStack) {
+		return itemStack.getItem() == TofuItems.SOYMILK_BUCKET.get();
 	}
 
 	public static boolean checkTofuFishSpawnRules(EntityType<? extends AbstractFish> p_27468_, LevelAccessor p_27469_, EntitySpawnReason p_27470_, BlockPos p_27471_, RandomSource p_27472_) {
