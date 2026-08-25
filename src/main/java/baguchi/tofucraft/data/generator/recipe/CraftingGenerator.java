@@ -1057,6 +1057,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuTags.Items.RICE)
 				.unlockedBy("has_item", has(TofuItems.KINAKO.get()))
 				.save(this.output);
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SESAME_OHAGI.get(), 1)
+				.requires(TofuItems.SEEDS_SESAME.get())
+				.requires(Items.SUGAR)
+				.requires(TofuTags.Items.RICE)
+				.unlockedBy("has_item", has(TofuItems.SESAME_OHAGI.get()))
+				.save(this.output);
+
+
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.CRIMSON_SOUP.get(), 1)
 				.requires(TofuItems.SEEDS_SOYBEANS_NETHER.get(), 2)
@@ -1781,6 +1789,14 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.SUGAR)
 				.requires(Tags.Items.CROPS_WHEAT)
 				.requires(Items.COCOA_BEANS)
+				.unlockedBy("has_item", has(TofuTags.Items.MILK_SOYMILK))
+				.save(this.output);
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, Optional.of(SizedFluidIngredient.of(Fluids.WATER, 50)), new ItemStackTemplate(TofuItems.STEAMED_BREAD_SESAME.get()))
+				.requires(TofuTags.Items.MILK_SOYMILK)
+				.requires(Tags.Items.EGGS)
+				.requires(Items.SUGAR)
+				.requires(Tags.Items.CROPS_WHEAT)
+				.requires(TofuItems.SEEDS_SESAME.get())
 				.unlockedBy("has_item", has(TofuTags.Items.MILK_SOYMILK))
 				.save(this.output);
 		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.FAST_FOOD, TofuItems.SANBUZHAN.get())
