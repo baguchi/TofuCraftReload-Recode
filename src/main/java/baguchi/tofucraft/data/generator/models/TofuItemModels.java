@@ -169,6 +169,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.KINAKO_MOCHI.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.CRIMSON_SOUP.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.ZUNDA_MOCHI.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.SESAME_OHAGI.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.PUDDING.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.PUDDING_SOYMILK.get(), ModelTemplates.FLAT_ITEM);
@@ -382,6 +383,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFU_BUNS_BURGER.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.STEAMED_BREAD.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.STEAMED_BREAD_COCOA.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.STEAMED_BREAD_SESAME.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.SANBUZHAN.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.SOY_PIZZA.get(), ModelTemplates.FLAT_ITEM);

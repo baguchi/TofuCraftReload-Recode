@@ -79,6 +79,28 @@ public class TofuConsumables {
 					List.of(new MobEffectInstance(TofuEffects.MISO_BOOST, 2400, 0))
 			))
 			.build();
+	public static final Consumable MISO_FAST_FOOD = defaultFastFood()
+			.onConsume(new ApplyStatusEffectsConsumeEffect(
+					List.of(new MobEffectInstance(TofuEffects.MISO_BOOST, 2400, 0))
+			))
+			.build();
+
+	public static final Consumable SESAME_FOOD = defaultFood()
+			.onConsume(new RemoveStatusEffectsConsumeEffect(
+					MobEffects.MINING_FATIGUE
+			))
+			.onConsume(new RemoveStatusEffectsConsumeEffect(
+					MobEffects.BLINDNESS
+			))
+			.build();
+	public static final Consumable SESAME_FAST_FOOD = defaultFastFood()
+			.onConsume(new RemoveStatusEffectsConsumeEffect(
+					MobEffects.MINING_FATIGUE
+			))
+			.onConsume(new RemoveStatusEffectsConsumeEffect(
+					MobEffects.BLINDNESS
+			))
+			.build();
 
 	public static final Consumable SALT_FOOD = defaultFood()
 			.onConsume(new ApplyStatusEffectsConsumeEffect(

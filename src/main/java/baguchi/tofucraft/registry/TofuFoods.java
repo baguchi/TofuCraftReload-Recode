@@ -84,6 +84,7 @@ public class TofuFoods {
 
 	public static final FoodProperties ZUNDA_MOCHI = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).build();
 	public static final FoodProperties KINAKO_MOCHI = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).build();
+	public static final FoodProperties SESAME_OHAGI = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).build();
 	public static final FoodProperties CRIMSON_SOUP = stew(6).build();
 
 	public static final FoodProperties ONIGIRI = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.6F).build();

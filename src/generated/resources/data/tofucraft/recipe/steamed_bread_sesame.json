@@ -1,0 +1,20 @@
+{
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "fast_food",
+  "cook_time": 300,
+  "experience": 0.1,
+  "fluid": {
+    "amount": 50,
+    "ingredient": "minecraft:water"
+  },
+  "ingredients": [
+    "#c:milk/soy_milk",
+    "#c:eggs",
+    "minecraft:sugar",
+    "#c:crops/wheat",
+    "tofucraft:sesame"
+  ],
+  "result": {
+    "id": "tofucraft:steamed_bread_sesame"
+  }
+}

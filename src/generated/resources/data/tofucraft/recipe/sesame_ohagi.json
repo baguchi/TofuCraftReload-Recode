@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "tofucraft:sesame",
+    "minecraft:sugar",
+    "#c:crops/rice"
+  ],
+  "result": {
+    "id": "tofucraft:sesame_ohagi"
+  }
+}
