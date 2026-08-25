@@ -32,7 +32,7 @@ public class TofuFish extends AbstractTofuFish {
 	}
 
 	public ItemStack getBucketItemStack() {
-		return new ItemStack(TofuItems.TOFUFISH_BUCKET.get());
+		return new ItemStack(TofuItems.TOFUFISH_SOYMILK_BUCKET.get());
 	}
 
 	protected SoundEvent getAmbientSound() {
