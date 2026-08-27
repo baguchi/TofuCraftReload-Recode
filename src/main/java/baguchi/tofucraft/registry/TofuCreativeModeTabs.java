@@ -84,6 +84,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.TF_STORAGE,
 						TofuBlocks.TF_CRAFTING_TABLE,
 						TofuBlocks.TF_OVEN,
+						TofuBlocks.TF_SATURATOR,
 						TofuBlocks.TF_COLLECTOR
 						, TofuBlocks.ANTENNA_BASIC
 						, TofuBlocks.ANTENNA_ADVANCE

@@ -237,7 +237,6 @@ public class ClientRegistrar {
 	public static void registerRecipeBookSearchCategories(RegisterRecipeBookSearchCategoriesEvent event) {
 		event.register(TofuRecipeBookCategory.SEARCH, TofuRecipeBookCategory.COOKING_FAST_FOODS.get(), TofuRecipeBookCategory.COOKING_DRINKS.get(), TofuRecipeBookCategory.COOKING_MEALS.get(), TofuRecipeBookCategory.COOKING_MISC.get());
 		event.register(TofuRecipeBookCategory.TF_SEARCH, TofuRecipeBookCategory.TF_MECHA.get(), TofuRecipeBookCategory.TF_MISC.get());
-		event.register(TofuRecipeBookCategory.TF_TOFU_MAKER_SEARCH, TofuRecipeBookCategory.TF_TOFU_MAKER.get());
 	}
 
 	@SubscribeEvent

@@ -15,7 +15,6 @@ public class TofuRecipeBookCategory {
 	public static final DeferredHolder<RecipeBookCategory, RecipeBookCategory> COOKING_MISC = register("cooking_misc");
 	public static final DeferredHolder<RecipeBookCategory, RecipeBookCategory> TF_MISC = register("tf_misc");
 	public static final DeferredHolder<RecipeBookCategory, RecipeBookCategory> TF_MECHA = register("tf_mecha");
-	public static final DeferredHolder<RecipeBookCategory, RecipeBookCategory> TF_TOFU_MAKER = register("tf_tofu_maker");
 
 
 	private static DeferredHolder<RecipeBookCategory, RecipeBookCategory> register(String p_380980_) {
@@ -25,6 +24,5 @@ public class TofuRecipeBookCategory {
 	public static final RecipeBookCategory SEARCH = new RecipeBookCategory();
 
 	public static final RecipeBookCategory TF_SEARCH = new RecipeBookCategory();
-	public static final RecipeBookCategory TF_TOFU_MAKER_SEARCH = new RecipeBookCategory();
 
 }
