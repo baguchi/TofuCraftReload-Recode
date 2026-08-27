@@ -5,7 +5,6 @@ import baguchi.tofucraft.inventory.SaltFurnaceMenu;
 import baguchi.tofucraft.inventory.TFCraftingTableMenu;
 import baguchi.tofucraft.inventory.TFOvenMenu;
 import baguchi.tofucraft.inventory.TFStorageMenu;
-import baguchi.tofucraft.inventory.TFTofuMakerMenu;
 import baguchi.tofucraft.inventory.TofuPotMenu;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.flag.FeatureFlags;
@@ -25,6 +24,5 @@ public class TofuMenus {
 	public static final Supplier<MenuType<TFOvenMenu>> TF_OVEN = MENU_TYPES.register("tf_oven", () -> new MenuType<>(TFOvenMenu::new, FeatureFlags.DEFAULT_FLAGS));
 	public static final Supplier<MenuType<TofuPotMenu>> TOFU_POT = MENU_TYPES.register("tofu_pot", () -> IMenuTypeExtension.create(TofuPotMenu::new));
 	public static final Supplier<MenuType<TFCraftingTableMenu>> TF_CRAFTING_TABLE = MENU_TYPES.register("tf_crafting_table", () -> IMenuTypeExtension.create(TFCraftingTableMenu::new));
-	public static final Supplier<MenuType<TFTofuMakerMenu>> TF_TOFU_MAKER = MENU_TYPES.register("tf_tofu_maker", () -> IMenuTypeExtension.create(TFTofuMakerMenu::new));
 
 }

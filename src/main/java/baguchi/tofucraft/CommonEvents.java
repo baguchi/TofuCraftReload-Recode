@@ -118,7 +118,6 @@ public class CommonEvents {
 		event.sendRecipes(TofuRecipes.RECIPETYPE_TOFU_POT.get());
 		event.sendRecipes(TofuRecipes.RECIPETYPE_BITTERN.get());
 		event.sendRecipes(TofuRecipes.RECIPETYPE_HARDER.get());
-		event.sendRecipes(TofuRecipes.RECIPETYPE_TF_TOFU_MAKER.get());
 	}
 
 

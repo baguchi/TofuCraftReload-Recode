@@ -614,7 +614,7 @@
   "block.tofucraft.tofu_detector" : "Tofu Detector",
   "block.tofucraft.tf_storage" : "TF Storage",
   "block.tofucraft.tf_oven": "TF Oven",
-  "block.tofucraft.tf_tofu_maker": "TF Tofu Maker",
+  "block.tofucraft.tf_saturator": "TF Saturator",
   "block.tofucraft.tf_collector": "TF Collector",
   "block.tofucraft.tf_crafting_table": "TF Crafting Table",
   "block.tofucraft.antenna_basic" : "Antenna Basic",

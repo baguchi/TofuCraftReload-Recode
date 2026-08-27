@@ -4,7 +4,6 @@ import baguchi.tofucraft.data.generator.recipe.builder.BitternRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.HardenRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.TFShapedRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.TFShapelessRecipeBuilder;
-import baguchi.tofucraft.data.generator.recipe.builder.TFTofuMakeRecipeBuilder;
 import baguchi.tofucraft.data.generator.recipe.builder.TofuPotShapelessRecipeBuilder;
 import baguchi.tofucraft.recipe.BucketToBottleRecipe;
 import baguchi.tofucraft.recipe.FluidBucketRecipe;
@@ -1992,17 +1991,16 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('L', TofuItems.TF_COIL.get())
 				.unlockedBy("has_item", has(TofuItems.TOFU_CORE.get()))
 				.save(this.output);
-		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.TF_TOFU_MAKER.get())
-				.pattern("SCS")
-				.pattern("M M")
-				.pattern("LML")
-				.define('M', TofuBlocks.METALTOFU.get())
-				.define('C', TofuItems.TOFU_CORE.get())
-				.define('S', TofuItems.SOY_FORCE_SHARD.get())
-				.define('L', TofuItems.TF_COIL.get())
-				.unlockedBy("has_item", has(TofuItems.TOFU_CORE.get()))
-				.save(this.output);
 
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.TF_SATURATOR.get())
+				.pattern("DDD")
+				.pattern("DAD")
+				.pattern("DMD")
+				.define('M', TofuBlocks.METALTOFU.get())
+				.define('D', TofuBlocks.DRIEDTOFU.get())
+				.define('A', TofuItems.ADVANCE_TOFUGEM.get())
+				.unlockedBy("has_item", has(TofuItems.ADVANCE_TOFUGEM.get()))
+				.save(this.output);
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuBlocks.TOFU_WORK_STATION.get())
 				.pattern("MM")
@@ -2308,9 +2306,5 @@ public class CraftingGenerator extends CraftingDataHelper {
 		BitternRecipeBuilder.bittern(new ItemStackTemplate(TofuBlocks.SOULTOFU.get().asItem()), new FluidStackTemplate(TofuFluids.SOYMILK_SOUL.get(), 1000), Ingredient.of(TofuItems.CRIMSON_BOTTLE.get())).unlockedBy("has_item", has(TofuItems.CRIMSON_BOTTLE.get())).save(this.output, prefix("bittern_to_soul"));
 		HardenRecipeBuilder.harden(new ItemStackTemplate(TofuBlocks.ISHITOFU.get().asItem()), Ingredient.of(TofuBlocks.MOMENTOFU.get())).unlockedBy("has_item", has(TofuBlocks.MOMENTOFU.get())).save(this.output, prefix("harden_to_ishi"));
 		HardenRecipeBuilder.harden(new ItemStackTemplate(TofuBlocks.METALTOFU.get().asItem()), Ingredient.of(TofuBlocks.ISHITOFU.get())).unlockedBy("has_item", has(TofuBlocks.ISHITOFU.get())).save(this.output, prefix("harden_to_metal"));
-
-		TFTofuMakeRecipeBuilder.tofuMake(new ItemStackTemplate(TofuBlocks.KINUTOFU.get().asItem()), Ingredient.of(items.getOrThrow(TofuTags.Items.SOYBEAN)), 0.1F, 100).unlockedBy("has_item", has(TofuBlocks.TF_TOFU_MAKER.get())).save(this.output, prefix("tf_tofu_maker_kinu"));
-		TFTofuMakeRecipeBuilder.tofuMake(new ItemStackTemplate(TofuBlocks.HELLTOFU.get().asItem()), Ingredient.of(TofuItems.SEEDS_SOYBEANS_NETHER.get()), 0.1F, 100).unlockedBy("has_item", has(TofuBlocks.TF_TOFU_MAKER.get())).save(this.output, prefix("tf_tofu_maker_hell"));
-		TFTofuMakeRecipeBuilder.tofuMake(new ItemStackTemplate(TofuBlocks.SOULTOFU.get().asItem()), Ingredient.of(TofuItems.SEEDS_SOYBEANS_SOUL.get()), 0.1F, 100).unlockedBy("has_item", has(TofuBlocks.TF_TOFU_MAKER.get())).save(this.output, prefix("tf_tofu_maker_soul"));
 	}
 }

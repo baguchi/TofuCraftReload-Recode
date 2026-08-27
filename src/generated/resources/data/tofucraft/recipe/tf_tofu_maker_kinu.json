@@ -1,9 +1,0 @@
-{
-  "type": "tofucraft:tf_tofu_maker",
-  "cookingtime": 100,
-  "experience": 0.1,
-  "ingredient": "#c:crops/soybean",
-  "result": {
-    "id": "tofucraft:block_tofu_kinu"
-  }
-}
