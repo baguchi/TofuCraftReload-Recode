@@ -141,7 +141,7 @@ public class TFOvenMenu extends RecipeBookMenu {
 	public float getProgress() {
 		int i = 0;
 		if (i == 0) {
-			i = 200;
+			i = 100;
 		}
 
 		return Mth.clamp((float) this.data.get(0) / (float) i, 0.0F, 1.0F);
