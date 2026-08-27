@@ -9,8 +9,8 @@ import baguchi.tofucraft.blockentity.TofunianStatueBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFCollectorBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFCraftingTableBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFOvenBlockEntity;
+import baguchi.tofucraft.blockentity.tfenergy.TFSaturatorBlockEntity;
 import baguchi.tofucraft.blockentity.tfenergy.TFStorageBlockEntity;
-import baguchi.tofucraft.blockentity.tfenergy.TFTofuMakerBlockEntity;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -37,8 +37,8 @@ public class TofuBlockEntitys {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFStorageBlockEntity>> TF_STORAGE = register("tf_storage", TFStorageBlockEntity::new, TofuBlocks.TF_STORAGE);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFCraftingTableBlockEntity>> TF_CRAFTING_TABLE = register("tf_crafting_table", TFCraftingTableBlockEntity::new, TofuBlocks.TF_CRAFTING_TABLE);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFOvenBlockEntity>> TF_OVEN = register("tf_oven", TFOvenBlockEntity::new, TofuBlocks.TF_OVEN);
-	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFTofuMakerBlockEntity>> TF_TOFU_MAKER = register("tf_tofu_maker", TFTofuMakerBlockEntity::new, TofuBlocks.TF_TOFU_MAKER);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFCollectorBlockEntity>> TF_COLLECTOR = register("tf_collector", TFCollectorBlockEntity::new, TofuBlocks.TF_COLLECTOR);
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TFSaturatorBlockEntity>> TF_SATURATOR = register("tf_saturator", TFSaturatorBlockEntity::new, TofuBlocks.TF_SATURATOR);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<? extends TofuPotBlockEntity>> TOFU_POT = register("tofu_pot", TofuPotBlockEntity::new, TofuBlocks.TOFU_POT);
 
 

@@ -1,9 +1,0 @@
-{
-  "type": "tofucraft:tf_tofu_maker",
-  "cookingtime": 100,
-  "experience": 0.1,
-  "ingredient": "tofucraft:seeds_soybeans_soul",
-  "result": {
-    "id": "tofucraft:block_tofu_soul"
-  }
-}

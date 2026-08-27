@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
-public class TofuBlock extends Block {
+public class TofuBlock extends Block implements HarderCondition {
 	public static final IntegerProperty HARDNESS = IntegerProperty.create("hardness", 0, 7);
 
 	private static final VoxelShape REQUIRED_SPACE_TO_DRIP_THROUGH_NON_SOLID_BLOCK = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
@@ -69,43 +69,16 @@ public class TofuBlock extends Block {
 		p_154072_.addParticle(particleoptions, d1, d2, d3, 0.0D, 0.0D, 0.0D);
 	}
 
-	public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
-		super.randomTick(state, worldIn, pos, random);
-		if (isDriedCondition(worldIn, pos)) {
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		super.randomTick(state, level, pos, random);
+		if (isDriedCondition(level, pos)) {
 			if (random.nextInt(8) == 0) {
 				if (this == TofuBlocks.MOMENTOFU.get()) {
-					worldIn.setBlock(pos, TofuBlocks.DRIEDTOFU.get().defaultBlockState(), 2);
+					level.setBlock(pos, TofuBlocks.DRIEDTOFU.get().defaultBlockState(), 2);
 				}
 			}
-		} else if (isUnderWeight(worldIn, pos) && state.hasProperty(HARDNESS)) {
-			boolean dripStoneFlag = this.isMoreHardenCondition(worldIn, pos);
-			int i = state.getValue(HARDNESS);
-			int hardenSpeed = dripStoneFlag ? 1 : 0;
-
-			int hardness = this == TofuBlocks.MOMENTOFU.get() ? 2 - hardenSpeed : 3 - hardenSpeed;
-
-			/*if(dripStoneFlag){
-				BlockPos blockpos2 = pos.below(2);
-				BlockPos blockpos1 = findFillableCauldronBelowStalactiteTip(worldIn, blockpos2, Fluids.WATER);
-
-				if (blockpos1 != null) {
-					worldIn.levelEvent(1504, blockpos2, 0);
-					int i2 = blockpos2.getY() - blockpos1.getY();
-					int j = 50 + i2;
-					BlockState blockstate = worldIn.getBlockState(blockpos1);
-					worldIn.scheduleTick(blockpos1, blockstate.getBlock(), j);
-				}
-			}*/
-
-			if (random.nextInt(hardness) == 0) {
-				if (i < 7) {
-					worldIn.setBlock(pos, state.setValue(HARDNESS, i + 1), 2);
-				} else {
-					ItemStack result = RecipeHelper.getTofu(worldIn, state.getBlock());
-					if (result != null)
-						worldIn.setBlock(pos, Block.byItem(result.getItem()).defaultBlockState(), 2);
-				}
-			}
+		} else {
+			this.tryHarder(level, state, pos);
 		}
 	}
 
@@ -156,5 +129,42 @@ public class TofuBlock extends Block {
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_49915_) {
 		p_49915_.add(HARDNESS);
+	}
+
+	public void harder(Level level, BlockState state, BlockPos pos) {
+		boolean dripStoneFlag = this.isMoreHardenCondition(level, pos);
+		int i = state.getValue(HARDNESS);
+		int hardenSpeed = dripStoneFlag ? 1 : 0;
+
+		int hardness = this == TofuBlocks.MOMENTOFU.get() ? 2 - hardenSpeed : 3 - hardenSpeed;
+
+			/*if(dripStoneFlag){
+				BlockPos blockpos2 = pos.below(2);
+				BlockPos blockpos1 = findFillableCauldronBelowStalactiteTip(worldIn, blockpos2, Fluids.WATER);
+
+				if (blockpos1 != null) {
+					worldIn.levelEvent(1504, blockpos2, 0);
+					int i2 = blockpos2.getY() - blockpos1.getY();
+					int j = 50 + i2;
+					BlockState blockstate = worldIn.getBlockState(blockpos1);
+					worldIn.scheduleTick(blockpos1, blockstate.getBlock(), j);
+				}
+			}*/
+		if (level instanceof ServerLevel serverLevel) {
+			if (level.getRandom().nextInt(hardness) == 0) {
+				if (i < 7) {
+					level.setBlock(pos, state.setValue(HARDNESS, i + 1), 2);
+				} else {
+					ItemStack result = RecipeHelper.getTofu(serverLevel, state.getBlock());
+					if (result != null)
+						level.setBlock(pos, Block.byItem(result.getItem()).defaultBlockState(), 2);
+				}
+			}
+		}
+	}
+
+	@Override
+	public boolean canHarder(Level level, BlockState state, BlockPos pos) {
+		return isUnderWeight(level, pos) && state.hasProperty(HARDNESS);
 	}
 }

@@ -1,10 +1,10 @@
 {
   "parent": "block/block",
   "textures": {
-    "bottom": "tofucraft:block/tf_tofu_maker_back",
+    "bottom": "tofucraft:block/tfmachine_side",
     "side": "tofucraft:block/tfmachine_side",
-    "top": "tofucraft:block/tfmachine_side",
-    "front": "tofucraft:block/tf_tofu_maker_front_lit",
+    "top": "tofucraft:block/tf_saturator_top",
+    "front": "tofucraft:block/tf_saturator_front_lit",
     "particle": "tofucraft:block/tfmachine_side"
   },
   "elements": [
