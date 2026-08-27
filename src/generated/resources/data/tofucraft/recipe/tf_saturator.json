@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": "tofucraft:adv_tofugem",
+    "D": "tofucraft:block_tofu_dried",
+    "M": "tofucraft:block_tofu_metal"
+  },
+  "pattern": [
+    "DDD",
+    "DAD",
+    "DMD"
+  ],
+  "result": {
+    "id": "tofucraft:tf_saturator"
+  }
+}
