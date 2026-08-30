@@ -1,8 +1,6 @@
 {
   "values": [
     "tofucraft:salt_furnace",
-    "tofucraft:blocksaltpan",
-    "tofucraft:tf_saturator",
-    "tofucraft:tf_crafting_table"
+    "tofucraft:blocksaltpan"
   ]
 }

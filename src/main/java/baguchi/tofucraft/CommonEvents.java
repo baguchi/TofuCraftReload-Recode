@@ -111,7 +111,6 @@ import static net.minecraft.world.level.ServerExplosion.getSeenPercent;
 public class CommonEvents {
 	private static final Map<ServerLevel, TravelerTofunianSpawner> TRAVELER_TOFUNIAN_SPAWNER_MAP = new HashMap<>();
 
-
 	@SubscribeEvent
 	public static void handleQuestSyncing(OnDatapackSyncEvent event) {
 		event.sendRecipes(TofuRecipes.RECIPETYPE_TF_CRAFT.get());
