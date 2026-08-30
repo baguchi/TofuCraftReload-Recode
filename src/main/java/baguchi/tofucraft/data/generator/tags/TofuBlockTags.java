@@ -110,7 +110,8 @@ public class TofuBlockTags extends BlockTagsProvider {
 
 		tag(TofuTags.Blocks.TOFU_FARMLANDS).add(TofuBlocks.TOFU_FARMLAND.get());
 
-		tag(TofuTags.Blocks.HAS_INFO).add(TofuBlocks.SALT_FURNACE.get()).add(TofuBlocks.SALTPAN.get());
+		tag(TofuTags.Blocks.HAS_INFO).add(TofuBlocks.SALT_FURNACE.get()).add(TofuBlocks.SALTPAN.get())
+				.add(TofuBlocks.TF_SATURATOR.get()).add(TofuBlocks.TF_CRAFTING_TABLE.get());
 		tag(TofuTags.Blocks.PICKABLE_TOFU).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
 				, TofuBlocks.GRILLED_TOFU.get(), TofuBlocks.ZUNDATOFU.get(), TofuBlocks.MINCEDTOFU.get()).add(TofuBlocks.METALTOFU.get()).add(TofuBlocks.ISHITOFU.get());
 
