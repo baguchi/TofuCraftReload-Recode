@@ -71,6 +71,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -80,6 +81,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -118,6 +120,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -703,8 +706,10 @@ public class TofuBlocks {
 				return new BlockItem(block.get(), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 5000)));
 			} else if (block.get() == TF_COLLECTOR.get()) {
 				return new BlockItem(block.get(), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
+			} else if (block.get() == TF_SATURATOR.get()) {
+				return new BlockItem(block.get(), properties.component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("block.tofucraft.tf_saturator.desc")))));
 			} else if (Objects.requireNonNull(block.get()) == TF_CRAFTING_TABLE.get()) {
-				return new BlockItem(Objects.requireNonNull(block.get()), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
+				return new BlockItem(Objects.requireNonNull(block.get()), properties.component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("block.tofucraft.tf_crafting_table.desc")))).component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 10000)));
 			} else if (block.get() == GIANT_OKARA_DONUT.get()) {
 				return new EdiableBlockItem(GIANT_OKARA_DONUT.get(), properties.food(TofuFoods.GIANT_OKARA_DONUT));
 			} else if (block.get() == FOODPLATE.get()) {

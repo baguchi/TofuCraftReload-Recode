@@ -100,9 +100,9 @@ public class JEIPlugin implements IModPlugin {
 
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-		registration.addRecipeClickArea(TofuPotScreen.class, 103, 36, 28, 23, TOFU_POT_RECIPE_JEI_TYPE);
-		registration.addRecipeClickArea(TfCraftingTableScreen.class, 88, 32, 28, 23, TF_RECIPE_JEI_TYPE);
-		registration.addRecipeClickArea(TFOvenScreen.class, 70, 14, 28, 23, RecipeTypes.SMELTING);
+		registration.addRecipeClickArea(TofuPotScreen.class, 103, 36, 24, 23, TOFU_POT_RECIPE_JEI_TYPE);
+		registration.addRecipeClickArea(TfCraftingTableScreen.class, 88, 32, 24, 23, TF_RECIPE_JEI_TYPE);
+		registration.addRecipeClickArea(TFOvenScreen.class, 70, 14, 24, 23, RecipeTypes.SMELTING);
 		registration.addGuiContainerHandler(TofuPotScreen.class, new RecipeBookGuiHandler<>());
 		registration.addGuiContainerHandler(TfCraftingTableScreen.class, new RecipeBookGuiHandler<>());
 		registration.addGuiContainerHandler(TFOvenScreen.class, new RecipeBookGuiHandler<>());

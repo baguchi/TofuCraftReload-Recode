@@ -19,7 +19,6 @@
     "client.AbstractRecipeBookScreenAccessor",
     "client.EntityHitboxDebugRendererMixin",
     "client.HudAccessor",
-    "client.RecipeBookComponentAccessor",
     "client.RecipeBookComponentMixin"
   ]
 }

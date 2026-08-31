@@ -339,6 +339,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 	public void loadAdditional(ValueInput cmp) {
 		super.loadAdditional(cmp);
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+		ContainerHelper.loadAllItems(cmp, this.inventory);
 
 		this.progress = cmp.getIntOr("progress", 0);
 		this.progressMax = cmp.getIntOr("progress_max", 0);
