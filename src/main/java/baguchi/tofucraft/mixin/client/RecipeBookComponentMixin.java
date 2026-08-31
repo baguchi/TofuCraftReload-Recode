@@ -10,6 +10,7 @@ import net.minecraft.client.gui.screens.recipebook.RecipeCollection;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.crafting.display.RecipeDisplayId;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
+import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,14 +23,20 @@ public class RecipeBookComponentMixin {
 	@Shadow
 	protected Minecraft minecraft;
 
-	@Inject(method = "tryPlaceRecipe", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;handlePlaceRecipe(ILnet/minecraft/world/item/crafting/display/RecipeDisplayId;Z)V", shift = At.Shift.BEFORE))
-	public void handlePlaceRecipeWithFakeSlot(RecipeCollection p_366703_, RecipeDisplayId p_380106_, boolean p_446681_, CallbackInfoReturnable<Boolean> cir) {
-		AbstractContainerMenu abstractcontainermenu = this.minecraft.player.containerMenu;
-		if (abstractcontainermenu instanceof TFCraftingTableMenu craftermenu) {
-			if (craftermenu.blockEntity instanceof TFCraftingTableBlockEntity tfCraftingTableBlockEntity) {
-				ClientPacketDistributor.sendToServer(new TFCraftingTableSavedRecipePacket(craftermenu.blockEntity.getBlockPos(), p_380106_));
-				if (this.minecraft.screen instanceof TfCraftingTableScreen screen) {
-					screen.setNeedRefresh();
+	@Shadow
+	private @Nullable RecipeDisplayId lastPlacedRecipe;
+
+	@Inject(method = "tryPlaceRecipe", at = @At(value = "HEAD"))
+	public void handlePlaceRecipeWithFakeSlot(RecipeCollection p_366703_, RecipeDisplayId recipe, boolean p_446681_, CallbackInfoReturnable<Boolean> cir) {
+		if (!recipe.equals(this.lastPlacedRecipe)) {
+
+			AbstractContainerMenu abstractcontainermenu = this.minecraft.player.containerMenu;
+			if (abstractcontainermenu instanceof TFCraftingTableMenu craftermenu) {
+				if (craftermenu.blockEntity instanceof TFCraftingTableBlockEntity tfCraftingTableBlockEntity) {
+					ClientPacketDistributor.sendToServer(new TFCraftingTableSavedRecipePacket(craftermenu.blockEntity.getBlockPos(), recipe));
+					if (this.minecraft.screen instanceof TfCraftingTableScreen screen) {
+						screen.setNeedRefresh();
+					}
 				}
 			}
 		}
