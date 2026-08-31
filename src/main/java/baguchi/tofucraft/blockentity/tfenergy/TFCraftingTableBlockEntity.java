@@ -8,15 +8,11 @@ import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.recipebook.PlaceRecipeHelper;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.context.ContextMap;
@@ -140,7 +136,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 				ItemStack tfStack = optional.isEmpty() ? ItemStack.EMPTY : optional.get().value().assemble(CraftingInput.of(3, 3, tfoven.inventory));
 				ItemStack craftStack = optional2.isEmpty() ? ItemStack.EMPTY : optional2.get().value().assemble(CraftingInput.of(3, 3, tfoven.inventory));
 
-				if (optional.isPresent() && tfoven.canProcess(tfStack) && (tfoven.recipeDisplay == null || !optional.get().value().display().isEmpty() && optional.get().value().display().contains(tfoven.recipeDisplay))) {
+				if (optional.isPresent() && tfoven.canProcess(tfStack.copy())) {
 					tfoven.progressMax = optional.get().value().getNeedTF() / 10;
 					++tfoven.progress;
 					if (tfoven.progress >= tfoven.progressMax) {
@@ -153,7 +149,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 
 					tfoven.drain(10, false);
 					tfoven.setChanged();
-				} else if (optional2.isPresent() && tfoven.canProcess(craftStack) && (tfoven.recipeDisplay == null || !optional2.get().value().display().isEmpty() && optional2.get().value().display().contains(tfoven.recipeDisplay))) {
+				} else if (optional2.isPresent() && tfoven.canProcess(craftStack.copy())) {
 					tfoven.progressMax = 100 / 10;
 					++tfoven.progress;
 					if (tfoven.progress >= tfoven.progressMax) {
@@ -284,6 +280,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 	}
 
 
+	@Override
 	public ItemStack removeItemNoUpdate(int p_70304_1_) {
 		return ContainerHelper.takeItem(this.inventory, p_70304_1_);
 	}
@@ -295,8 +292,6 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		if (stack.getCount() > this.getMaxStackSize()) {
 			stack.setCount(this.getMaxStackSize());
 		}
-
-		this.setChanged();
 	}
 
 	@Override
@@ -339,11 +334,10 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 	public void loadAdditional(ValueInput cmp) {
 		super.loadAdditional(cmp);
 		this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-
+		ContainerHelper.loadAllItems(cmp, this.inventory);
 		this.progress = cmp.getIntOr("progress", 0);
 		this.progressMax = cmp.getIntOr("progress_max", 0);
 		this.refreshTime = cmp.getIntOr("RefreshTime", 0);
-		this.recipeDisplay = cmp.read("saved_recipe_display", RecipeDisplay.CODEC).orElse(null);
 	}
 
 	@Override
@@ -374,30 +368,6 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		}
 	}
 
-	private boolean smallerStackExistWithGrid(int p_307396_, ItemStack p_307520_, int slot, int width, int height) {
-		for (int i = slot + 1; i < 9; ++i) {
-			//check if Slot is outbound than recipe grid
-
-			ItemStack itemstack = this.getItem(i);
-			if (itemstack.isEmpty() || itemstack.getCount() < p_307396_ && ItemStack.isSameItemSameComponents(itemstack, p_307520_)) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	private boolean smallerStackExist(int p_307396_, ItemStack p_307520_, int slot) {
-		for (int i = slot + 1; i < 9; ++i) {
-			ItemStack itemstack = this.getItem(i);
-			if (itemstack.isEmpty() || itemstack.getCount() < p_307396_ && ItemStack.isSameItemSameComponents(itemstack, p_307520_)) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 	protected boolean fillRecipe(int slotIndex, ItemStack slotItem, RecipeDisplay recipeDisplay, ContextMap contextMap) {
 		final boolean[] flag = {false};
 
@@ -412,7 +382,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 						(p_380786_, p_380787_, p_380788_, p_380789_) -> {
 							List<ItemStack> list = p_380786_.resolveForStacks(contextMap);
 							if (!list.isEmpty() && list.stream().anyMatch(stack -> {
-								return ItemStack.isSameItemSameComponents(stack, slotItem);
+								return ItemStack.isSameItemSameComponents(stack, slotItem.copy());
 							})) {
 								if (p_380787_ == slotIndex) {
 									flag[0] = true;
@@ -429,7 +399,7 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 					for (int j = 0; j < i; j++) {
 						List<ItemStack> list = shapelesscraftingrecipedisplay.ingredients().get(j).resolveForStacks(contextMap);
 						if (!list.isEmpty() && list.stream().anyMatch(stack -> {
-							return ItemStack.isSameItemSameComponents(stack, slotItem);
+							return ItemStack.isSameItemSameComponents(stack, slotItem.copy());
 						})) {
 							if (j == slotIndex) {
 								flag[0] = true;
@@ -500,7 +470,6 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 		p_331127_.discard("progress_max");
 		p_331127_.discard("RefreshTime");
 		p_331127_.discard("RecipesUsed");
-		p_331127_.discard("saved_recipe");
 		p_331127_.discard("saved_recipe_display");
 	}
 
@@ -518,25 +487,8 @@ public class TFCraftingTableBlockEntity extends WorkerBaseBlockEntity implements
 	@Override
 	public void fillStackedContents(StackedItemContents stackedItemContents) {
 		for (ItemStack itemstack : this.inventory) {
-			stackedItemContents.accountSimpleStack(itemstack);
+			stackedItemContents.accountStack(itemstack);
 		}
-	}
-
-	@Override
-	@javax.annotation.Nullable
-	public ClientboundBlockEntityDataPacket getUpdatePacket() {
-		return ClientboundBlockEntityDataPacket.create(this);
-	}
-
-	@Override
-	public CompoundTag getUpdateTag(HolderLookup.Provider p_323910_) {
-		return saveCustomOnly(p_323910_);
-	}
-
-	@Override
-	public void onDataPacket(Connection net, ValueInput valueInput) {
-		super.onDataPacket(net, valueInput);
-		loadAdditional(valueInput);
 	}
 
 	public void inventoryChanged() {
