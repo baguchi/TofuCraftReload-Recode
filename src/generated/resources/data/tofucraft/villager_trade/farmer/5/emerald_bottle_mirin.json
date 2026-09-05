@@ -1,0 +1,13 @@
+{
+  "gives": {
+    "count": 6,
+    "id": "tofucraft:bottle_mirin"
+  },
+  "max_uses": 8.0,
+  "reputation_discount": 0.1,
+  "wants": {
+    "count": 2.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 15.0
+}

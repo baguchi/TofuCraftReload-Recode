@@ -109,6 +109,7 @@ public class TofuVillagerTrades {
 	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_5_EMERALD_MISO_SOUP = resourceKey("tofu_craftsman/5/emerald_miso_soup");
 	public static final ResourceKey<VillagerTrade> TOFU_CRAFTSMAN_5_EMERALD_MOYASHI_ITAME = resourceKey("tofu_craftsman/5/emerald_moyashgi_itame");
 
+	public static final ResourceKey<VillagerTrade> FARMER_4_EMERALD_BOTTLE_MIRIN = resourceKey("farmer/5/emerald_bottle_mirin");
 	public static final ResourceKey<VillagerTrade> FARMER_5_EMERALD_SESAME = resourceKey("farmer/5/emerald_sesame");
 
 	public static ResourceKey<VillagerTrade> resourceKey(String path) {
@@ -515,6 +516,11 @@ public class TofuVillagerTrades {
 				new VillagerTrade(new TradeCost(Items.EMERALD, 2), new ItemStackTemplate(TofuItems.MOYASHIITAME, 3), 6, 20, 0.1F, Optional.empty(), List.of())
 		);
 
+		register(
+				context,
+				FARMER_4_EMERALD_BOTTLE_MIRIN,
+				new VillagerTrade(new TradeCost(Items.EMERALD, 2), new ItemStackTemplate(TofuItems.BOTTLE_MIRIN, 6), 8, 15, 0.1F, Optional.empty(), List.of())
+		);
 		register(
 				context,
 				FARMER_5_EMERALD_SESAME,
