@@ -193,6 +193,8 @@ public class TofuCustomTags {
 			tag(TofuTags.TofunianTrade.TOFU_CRAFTSMAN_LEVEL_5)
 					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_5_EMERALD_MISO_SOUP)
 					.add(TofuVillagerTrades.TOFU_CRAFTSMAN_5_EMERALD_MOYASHI_ITAME);
+			tag(VillagerTradeTags.FARMER_LEVEL_4)
+					.add(TofuVillagerTrades.FARMER_4_EMERALD_BOTTLE_MIRIN);
 			tag(VillagerTradeTags.FARMER_LEVEL_5)
 					.add(TofuVillagerTrades.FARMER_5_EMERALD_SESAME);
 
