@@ -131,6 +131,7 @@ public class TofuTags {
 		public static final TagKey<Item> SOYBEANS_BLOCK = universalTag("storage_blocks/soybeans");
 
 		public static final TagKey<Item> TOFU = universalTag("tofu");
+		public static final TagKey<Item> COOKED_TOFU = universalTag("cooked_tofu");
 		public static final TagKey<Item> TOFU_FRIED = universalTag("tofu/fried");
 
 		public static final TagKey<Item> MISO = universalTag("miso");

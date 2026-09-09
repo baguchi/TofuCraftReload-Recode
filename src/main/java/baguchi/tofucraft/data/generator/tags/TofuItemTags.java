@@ -45,6 +45,39 @@ public class TofuItemTags extends BlockTagCopyingItemTagProvider {
 		tag(TofuTags.Items.RICE).add(TofuItems.RICE.getKey());
 		tag(ItemTags.ARROWS).add(TofuItems.ZUNDA_ARROW.getKey());
 		tag(Tags.Items.SEEDS).add(TofuItems.SEEDS_CHILI.getKey(), TofuItems.SEEDS_SESAME.getKey(), TofuItems.SEEDS_SOYBEANS.getKey(), TofuItems.SEEDS_SOYBEANS_NETHER.getKey(), TofuItems.SEEDS_SOYBEANS_SOUL.getKey(), TofuItems.SEEDS_SOYBEANS_PALE.getKey(), TofuItems.SEEDS_SOYBEANS_PALE_GLOW.getKey(), TofuItems.SEEDS_RICE.getKey());
+		tag(Tags.Items.FOODS).addTag(TofuTags.Items.COOKED_TOFU).add(TofuItems.TOFU_ANKAKE.get()).add(TofuItems.SANBUZHAN.get()).add(TofuItems.CHIKUWA.get()).add(TofuItems.TOFU_CHIKUWA.get())
+				.add(TofuItems.TOFU_ISHI.get()).add(TofuItems.TOFU_STEAK.get()).add(TofuItems.OAGE.get())
+				.add(TofuBlocks.GRILLED_TOFU.asItem()).add(TofuBlocks.GIANT_OKARA_DONUT.asItem()).add(TofuItems.AGEDASHI_TOFU.getKey()).add(TofuItems.TOFU_ANNIN.getKey())
+				.add(TofuItems.SPROUTS.getKey()).add(TofuItems.NATTO.getKey()).add(TofuItems.NETHER_NATTO.getKey())
+				.add(TofuItems.YUBA.getKey()).add(TofuItems.BOILED_EDAMAME.getKey()).add(TofuItems.TOFU_HAMBURG.getKey())
+				.add(TofuItems.SOYMEAT.getKey()).add(TofuItems.RAW_TOFU_FISH.getKey()).add(TofuItems.COOKED_TOFU_FISH.getKey())
+				.add(TofuItems.MISODENGAKU.getKey()).add(TofuItems.MISO_CHEESE_DENGAKU.getKey()).add(TofuItems.TOFUCOOKIE.getKey()).add(TofuItems.TTTBURGER.getKey())
+				.add(TofuItems.MEAT_WRAPPED_YUBA.getKey()).add(TofuItems.SOYSTICK.getKey()).add(TofuItems.LONGER_SOYSTICK.getKey())
+				.add(TofuItems.MISOSOUP.getKey()).add(TofuItems.MOYASHIITAME.getKey()).add(TofuItems.MOYASHIOHITASHI.getKey())
+				.add(TofuItems.SALTYMELON.getKey()).add(TofuItems.CHILI.getKey()).add(TofuItems.MABODOFU.getKey()).add(TofuItems.NANBAN.getKey()).add(TofuItems.NANBANTOFU.getKey())
+				.add(TofuItems.FUKUMENI.getKey()).add(TofuItems.KOYADOFUSTEW.getKey()).add(TofuItems.KINAKO_MANJU.getKey()).add(TofuItems.ZUNDA_MANJU.getKey()).add(TofuItems.NETHER_MANJU.getKey()).add(TofuItems.SOUL_MANJU.getKey())
+				.add(TofuItems.SOY_CHOCOLATE.getKey()).add(TofuItems.TOFUNIAN_SOY_CHOCOLATE.getKey())
+				.add(TofuItems.ZUNDA_MOCHI.getKey()).add(TofuItems.KINAKO_MOCHI.getKey()).add(TofuItems.SESAME_OHAGI.getKey())
+				.add(TofuItems.CRIMSON_SOUP.getKey()).add(TofuItems.ONIGIRI.getKey()).add(TofuItems.ONIGIRI_SALT.getKey()).add(TofuItems.YAKIONIGIRI_MISO.getKey()).add(TofuItems.YAKIONIGIRI_SHOYU.getKey())
+				.add(TofuItems.RICE_BURGER.getKey()).add(TofuItems.RICE_NATTO.getKey()).add(TofuItems.RICE_NATTO_LEEK.getKey()).add(TofuItems.RICE_NETHER_NATTO.getKey()).add(TofuItems.RICE_NETHER_NATTO_LEEK.getKey())
+				.add(TofuItems.RICE_TOFU.getKey()).add(TofuItems.RICE_SOBORO_TOFU.getKey()).add(TofuItems.GOHEIMOCHI.getKey())
+				.add(TofuItems.INARI.getKey()).add(TofuItems.OKARASTICK.getKey()).add(TofuItems.OKARA_DONUT.getKey())
+				.add(TofuItems.SOBOROTOFUSAUTE.getKey()).add(TofuItems.PUDDING.getKey()).add(TofuItems.PUDDING_SOYMILK.getKey())
+				.add(TofuItems.NIKUJAGA.getKey()).add(TofuItems.APRICOT.getKey()).add(TofuItems.APRICOTJERRY_BREAD.getKey())
+				.add(TofuItems.TOMATO_SOYBEAN_STEW.getKey()).add(TofuItems.YUDOFU.getKey()).add(TofuItems.EDAMAME_RICE.getKey())
+				.add(TofuItems.TOFUSOMEN.getKey()).add(TofuItems.TASTYSTEW.getKey()).add(TofuItems.TASTYBEEFSTEW.getKey())
+				.add(TofuItems.HIYAYAKKO_GLASS.getKey()).add(TofuItems.NATTOHIYAYAKKO_GLASS.getKey())
+				.add(TofuItems.WARABI_MOCHI.getKey()).add(TofuItems.GRATIN.getKey()).add(TofuItems.CAPRESE.getKey())
+				.add(TofuItems.MUSHROOM_ANKAKE.getKey()).add(TofuItems.TOFU_ANKAKE.getKey())
+				.add(TofuItems.SOYSAUSE_RAMEN.getKey()).add(TofuItems.HELL_MABOU.getKey()).add(TofuItems.HELL_RED_SOUP.getKey()).add(TofuItems.RED_SOUP.getKey())
+				.add(TofuItems.SUKIYAKI.getKey()).add(TofuItems.TOFU_BUNS_BURGER.getKey())
+				.add(TofuItems.STEAMED_BREAD.getKey()).add(TofuItems.STEAMED_BREAD_COCOA.getKey()).add(TofuItems.STEAMED_BREAD_SESAME.getKey())
+				.add(TofuItems.SANBUZHAN.getKey()).add(TofuItems.SOY_CHEESE.getKey()).add(TofuItems.SOY_NETHER_CHEESE.getKey()).add(TofuItems.SOY_SOUL_CHEESE.getKey())
+				.add(TofuItems.KINAKO_BREAD.getKey()).add(TofuItems.EDAMAME_TEMPLA.getKey()).add(TofuItems.NEGIMA.getKey())
+				.add(TofuItems.SOY_KARAAGE.getKey()).add(TofuItems.SOYMEATDON.getKey())
+				.add(TofuItems.ZUNDA_INGOT.getKey())
+				.add(TofuItems.MONSTER_JERKY.getKey()).add(TofuItems.ROTTEN_PORK.getKey()).add(TofuItems.MONSTER_PORK_JERKY.getKey());
+
 
 		tag(TofuTags.Items.RICE_BLOCK).add(TofuBlocks.RICE_BLOCK.asItem());
 		tag(TofuTags.Items.SOYBEANS_BLOCK).add(TofuBlocks.SOYBEANS_SEEDS_BLOCK.asItem()).add(TofuBlocks.NETHER_SOYBEANS_SEEDS_BLOCK.asItem()).add(TofuBlocks.SOUL_SOYBEANS_SEEDS_BLOCK.asItem());
@@ -91,10 +124,19 @@ public class TofuItemTags extends BlockTagCopyingItemTagProvider {
 
 		tag(TofuTags.Items.NATTO).add(TofuItems.NATTO.getKey());
 		tag(TofuTags.Items.MISO).add(TofuItems.MISO.getKey());
+
 		tag(TofuTags.Items.SOYSAUCE_SOYSAUCE).add(TofuItems.BOTTLE_SOYSAUSE.getKey());
 		tag(TofuTags.Items.SOYSAUCE).addTag(TofuTags.Items.SOYSAUCE_SOYSAUCE);
+
 		tag(TofuTags.Items.TOFU).add(TofuItems.TOFU_KINU.getKey()).add(TofuItems.TOFU_MOMEN.getKey());
+		tag(TofuTags.Items.COOKED_TOFU).add(TofuItems.TOFU_ISHI.getKey()).add(TofuItems.TOFU_ANNIN.getKey()).add(TofuItems.TOFU_SESAME.getKey())
+				.add(TofuItems.TOFU_FRIED.getKey()).add(TofuItems.TOFU_FRIED_POUCH.getKey())
+				.add(TofuItems.TOFU_ZUNDA.getKey()).add(TofuItems.TOFU_EGG.getKey()).add(TofuItems.TOFU_MISO.getKey()).add(TofuItems.TOFU_GRILLED.getKey()).add(TofuItems.TOFU_DRIED.getKey()).add(TofuItems.TOFU_STRAWBERRY.getKey()).add(TofuItems.TOFU_SMOKE.getKey())
+				.add(TofuItems.TOFU_HELL.getKey()).add(TofuItems.TOFU_SOUL.getKey()).add(TofuItems.SHUDOFU.getKey());
+
 		tag(TofuTags.Items.TOFU_FRIED).add(TofuItems.TOFU_FRIED.getKey());
+
+
 		tag(ItemTags.PIGLIN_REPELLENTS).add(TofuItems.SOUL_FUKUMAME.getKey(), TofuItems.SOUL_MANJU.getKey(), TofuItems.SEEDS_SOYBEANS_SOUL.getKey());
 		tag(ItemTags.TRIM_MATERIALS).add(TofuItems.ZUNDARUBY.getKey(), TofuItems.TOFU_METAL.getKey(), TofuItems.TOFU_DIAMOND.getKey());
 		tag(ItemTags.BOATS).add(TofuItems.LEEK_BOAT.getKey(), TofuItems.LEEK_GREEN_BOAT.getKey(), TofuItems.TOFU_STEM_BOAT.getKey());
