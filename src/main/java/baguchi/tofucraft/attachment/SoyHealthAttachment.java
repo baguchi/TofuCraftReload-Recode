@@ -58,10 +58,9 @@ public class SoyHealthAttachment implements ValueIOSerializable {
 
 	public void tick(LivingEntity livingEntity) {
 		if (!livingEntity.level().isClientSide()) {
-			if (livingEntity.level().getGameTime() > this.lastChangedTick + 24000L) {
+			if (livingEntity.level().getGameTime() > this.lastChangedTick + 24000L && livingEntity.level().getGameTime() % 24000L == 0) {
 				if (this.soyHealthLevel > 1) {
 					this.setSoyHealthLevel(livingEntity, this.soyHealthLevel - 2, false);
-					this.lastChangedTick = livingEntity.level().getGameTime();
 				}
 			}
 		}
