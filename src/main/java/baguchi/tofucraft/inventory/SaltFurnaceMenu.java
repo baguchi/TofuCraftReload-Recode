@@ -49,32 +49,37 @@ public class SaltFurnaceMenu extends AbstractContainerMenu {
 	}
 
 	@Override
-	public ItemStack quickMoveStack(Player p_82846_1_, int slotIndex) {
+	public ItemStack quickMoveStack(Player p_82846_1_, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
-		Slot slot = this.slots.get(slotIndex);
+		Slot slot = this.slots.get(index);
+		int indexOutput = 1;
+		int indexOutput2 = 3;
+		int startPlayerInv = indexOutput2 + 1;
+		int endPlayerInv = startPlayerInv + 36;
 		if (slot != null && slot.hasItem()) {
-			ItemStack itemstack1 = slot.getItem();
-			itemstack = itemstack1.copy();
-			switch (slotIndex) {
-				case 0, 1, 2, 3, 4:
-					if (!moveItemStackTo(itemstack1, 5, 41, true))
-						return ItemStack.EMPTY;
-					break;
-				default:
-					if (!moveItemStackTo(itemstack1, 0, 4, false))
-						return ItemStack.EMPTY;
-					break;
+			ItemStack slotStack = slot.getItem();
+			itemstack = slotStack.copy();
+			if (index == indexOutput || index == indexOutput2) {
+				if (!this.moveItemStackTo(slotStack, startPlayerInv, endPlayerInv, true)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (index > indexOutput2) {
+				if (!this.moveItemStackTo(slotStack, 0, indexOutput2, false)) {
+					return ItemStack.EMPTY;
+				}
+			} else if (!this.moveItemStackTo(slotStack, 4, 40, false)) {
+				return ItemStack.EMPTY;
 			}
 
-			slot.onQuickCraft(itemstack1, itemstack);
-			if (itemstack1.isEmpty()) {
+			slot.onQuickCraft(slotStack, itemstack);
+			if (slotStack.isEmpty()) {
 				slot.set(ItemStack.EMPTY);
 			} else {
 				slot.setChanged();
 			}
-			if (itemstack1.getCount() == itemstack.getCount())
+			if (slotStack.getCount() == itemstack.getCount())
 				return ItemStack.EMPTY;
-			slot.onTake(p_82846_1_, itemstack1);
+			slot.onTake(p_82846_1_, slotStack);
 		}
 		return itemstack;
 	}
