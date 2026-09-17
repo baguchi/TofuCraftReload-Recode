@@ -116,6 +116,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -668,7 +669,25 @@ public class TofuBlocks {
 			DeferredBlock<T> block = Objects.requireNonNull(deferredBlock);
 			Item.Properties properties = new Item.Properties().setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, name))).useBlockDescriptionPrefix();
 
-			if (block.get() == TOFU_CAKE.get() || block.get() == ZUNDA_TOFU_CAKE.get() || block.get() == SOYCHEESE_TART.get()) {
+			if (block.get() == LEEK_PLANKS.get() || block.get() == LEEK_GREEN_PLANKS.get() || block.get() == SPROUT_PLANKS.get() || block.get() == TOFU_STEM.get()) {
+				return new BlockItem(block.get(), properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+			} else if (block.get() == LEEK_PLANKS_SLAB.get() || block.get() == LEEK_GREEN_PLANKS_SLAB.get() || block.get() == SPROUT_PLANKS_SLAB.get() || block.get() == TOFU_STEM_PLANKS_SLAB.get()) {
+				return new BlockItem(block.get(), properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_SLABS));
+			} else if (block.get() == LEEK_PLANKS_STAIR.get() || block.get() == LEEK_GREEN_PLANKS_STAIR.get() || block.get() == SPROUT_PLANKS_STAIR.get() || block.get() == TOFU_STEM_PLANKS_STAIR.get()) {
+				return new BlockItem(block.get(), properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+			} else if (block.get() == LEEK_TRAPDOOR.get() || block.get() == LEEK_GREEN_TRAPDOOR.get() || block.get() == SPROUT_TRAPDOOR.get() || block.get() == TOFU_STEM_TRAPDOOR.get()) {
+				return new BlockItem(block.get(), properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+			} else if (block.get() == LEEK_DOOR.get() || block.get() == LEEK_GREEN_DOOR.get() || block.get() == SPROUT_DOOR.get() || block.get() == TOFU_STEM_DOOR.get()) {
+				return new BlockItem(block.get(), properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_LARGE));
+			} else if (block.get() == LEEK_BUTTON.get() || block.get() == LEEK_GREEN_BUTTON.get() || block.get() == SPROUT_BUTTON.get() || block.get() == TOFU_STEM_BUTTON.get()) {
+				return new BlockItem(block.get(), properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_EXTRA_SMALL));
+			} else if (block.get() == LEEK_PRESSURE_PLATE.get() || block.get() == LEEK_GREEN_PRESSURE_PLATE.get() || block.get() == SPROUT_PRESSURE_PLATE.get() || block.get() == TOFU_STEM_PRESSURE_PLATE.get()) {
+				return new BlockItem(block.get(), properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+			} else if (block.get() == LEEK_FENCE.get() || block.get() == LEEK_GREEN_FENCE.get() || block.get() == SPROUT_FENCE.get() || block.get() == TOFU_STEM_FENCE.get()) {
+				return new BlockItem(block.get(), properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+			} else if (block.get() == LEEK_FENCE_GATE.get() || block.get() == LEEK_GREEN_FENCE_GATE.get() || block.get() == SPROUT_FENCE_GATE.get() || block.get() == TOFU_STEM_FENCE_GATE.get()) {
+				return new BlockItem(block.get(), properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+			} else if (block.get() == TOFU_CAKE.get() || block.get() == ZUNDA_TOFU_CAKE.get() || block.get() == SOYCHEESE_TART.get()) {
 				return new BlockItem(block.get(), properties.stacksTo(1));
 			} else if (block.get() == GRILLED_TOFU.get()) {
 				return new EdiableBlockItem(GRILLED_TOFU.get(), properties.food(TofuFoods.TOFU_GRILLED_BLOCK));
@@ -689,21 +708,21 @@ public class TofuBlocks {
 			} else if (block.get() == TOFU_TORCH_SOUL.get()) {
 				return new StandingAndWallBlockItem(TOFU_TORCH_SOUL.get(), WALL_TOFU_TORCH_SOUL.get(), Direction.DOWN, properties);
 			} else if (block.get() == TOFU_STEM_SIGN.get()) {
-				return new StandingAndWallBlockItem(TOFU_STEM_SIGN.get(), TOFU_STEM_WALL_SIGN.get(), Direction.DOWN, properties.stacksTo(16));
+				return new StandingAndWallBlockItem(TOFU_STEM_SIGN.get(), TOFU_STEM_WALL_SIGN.get(), Direction.DOWN, properties.stacksTo(16).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_LARGE));
 			} else if (block.get() == LEEK_GREEN_SIGN.get()) {
-				return new StandingAndWallBlockItem(LEEK_GREEN_SIGN.get(), LEEK_GREEN_WALL_SIGN.get(), Direction.DOWN, properties.stacksTo(16));
+				return new StandingAndWallBlockItem(LEEK_GREEN_SIGN.get(), LEEK_GREEN_WALL_SIGN.get(), Direction.DOWN, properties.stacksTo(16).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_LARGE));
 			} else if (block.get() == LEEK_SIGN.get()) {
-				return new StandingAndWallBlockItem(LEEK_SIGN.get(), LEEK_WALL_SIGN.get(), Direction.DOWN, properties.stacksTo(16));
+				return new StandingAndWallBlockItem(LEEK_SIGN.get(), LEEK_WALL_SIGN.get(), Direction.DOWN, properties.stacksTo(16).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_LARGE));
 			} else if (block.get() == SPROUT_SIGN.get()) {
-				return new HangingSignItem(SPROUT_SIGN.get(), SPROUT_WALL_SIGN.get(), properties.stacksTo(16));
+				return new HangingSignItem(SPROUT_SIGN.get(), SPROUT_WALL_SIGN.get(), properties.stacksTo(16).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_LARGE));
 			} else if (block.get() == TOFU_STEM_HANGING_SIGN.get()) {
-				return new HangingSignItem(TOFU_STEM_HANGING_SIGN.get(), TOFU_STEM_WALL_HANGING_SIGN.get(), properties.stacksTo(16));
+				return new HangingSignItem(TOFU_STEM_HANGING_SIGN.get(), TOFU_STEM_WALL_HANGING_SIGN.get(), properties.stacksTo(16).cookingFuel(ContextIntProviders.COOKING_TIME_HANGING_SIGNS));
 			} else if (block.get() == LEEK_GREEN_HANGING_SIGN.get()) {
-				return new HangingSignItem(LEEK_GREEN_HANGING_SIGN.get(), LEEK_GREEN_WALL_HANGING_SIGN.get(), properties.stacksTo(16));
+				return new HangingSignItem(LEEK_GREEN_HANGING_SIGN.get(), LEEK_GREEN_WALL_HANGING_SIGN.get(), properties.stacksTo(16).cookingFuel(ContextIntProviders.COOKING_TIME_HANGING_SIGNS));
 			} else if (block.get() == LEEK_HANGING_SIGN.get()) {
-				return new HangingSignItem(LEEK_HANGING_SIGN.get(), LEEK_WALL_HANGING_SIGN.get(), properties.stacksTo(16));
+				return new HangingSignItem(LEEK_HANGING_SIGN.get(), LEEK_WALL_HANGING_SIGN.get(), properties.stacksTo(16).cookingFuel(ContextIntProviders.COOKING_TIME_HANGING_SIGNS));
 			} else if (block.get() == SPROUT_HANGING_SIGN.get()) {
-				return new HangingSignItem(SPROUT_HANGING_SIGN.get(), SPROUT_WALL_HANGING_SIGN.get(), properties.stacksTo(16));
+				return new HangingSignItem(SPROUT_HANGING_SIGN.get(), SPROUT_WALL_HANGING_SIGN.get(), properties.stacksTo(16).cookingFuel(ContextIntProviders.COOKING_TIME_HANGING_SIGNS));
 			} else if (block.get() == TF_STORAGE.get() || block.get() == TF_OVEN.get()) {
 				return new BlockItem(block.get(), properties.component(TofuDataComponents.TF_ENERGY_DATA, new TFEnergyData(0, 5000)));
 			} else if (block.get() == TF_COLLECTOR.get()) {

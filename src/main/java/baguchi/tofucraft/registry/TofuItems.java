@@ -85,6 +85,7 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -97,33 +98,33 @@ import java.util.function.Supplier;
 public class TofuItems {
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TofuCraftReload.MODID);
 
-	public static final DeferredHolder<Item, Item> TOFU_KINU = ITEMS.registerItem("tofu_kinu", (properties) -> new Item((properties).food(TofuFoods.TOFU, TofuConsumables.FAST_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_MOMEN = ITEMS.registerItem("tofu_momen", (properties) -> new Item((properties).food(TofuFoods.TOFU, TofuConsumables.FAST_FOOD)));
+	public static final DeferredHolder<Item, Item> TOFU_KINU = ITEMS.registerItem("tofu_kinu", (properties) -> new Item((properties).food(TofuFoods.TOFU, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_MOMEN = ITEMS.registerItem("tofu_momen", (properties) -> new Item((properties).food(TofuFoods.TOFU, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
 	public static final DeferredHolder<Item, Item> TOFU_ISHI = ITEMS.registerItem("tofu_ishi", (properties) -> new Item((properties).food(TofuFoods.ISHITOFU)));
 	public static final DeferredHolder<Item, Item> TOFU_METAL = ITEMS.registerItem("tofu_metal", (properties) -> new Item(properties.trimMaterial(TofuTrimMaterials.TOFU_METAL)));
 	public static final DeferredHolder<Item, Item> TOFU_METAL_NUGGET = ITEMS.registerItem("tofu_metal_nugget", Item::new);
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND = ITEMS.registerItem("tofu_diamond", (properties) -> new Item(properties.trimMaterial(TofuTrimMaterials.TOFU_DIAMOND)));
 	public static final DeferredHolder<Item, Item> TOFU_DIAMOND_NUGGET = ITEMS.registerItem("tofu_diamond_nugget", Item::new);
-	public static final DeferredHolder<Item, Item> TOFU_HELL = ITEMS.registerItem("tofu_hell", (properties) -> new Item((properties).food(TofuFoods.TOFUHELL, TofuConsumables.HELL_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_SOUL = ITEMS.registerItem("tofu_soul", (properties) -> new Item((properties).food(TofuFoods.TOFUSOUL, TofuConsumables.SOUL_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_GRILLED = ITEMS.registerItem("tofu_grilled", (properties) -> new Item((properties).food(TofuFoods.TOFUGRILLED, TofuConsumables.FAST_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_ZUNDA = ITEMS.registerItem("tofu_zunda", (properties) -> new Item((properties).food(TofuFoods.TOFUZUNDA, TofuConsumables.FAST_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_MISO = ITEMS.registerItem("tofu_miso", (properties) -> new Item((properties).food(TofuFoods.TOFUMISO, TofuConsumables.MISO_FAST_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_DRIED = ITEMS.registerItem("tofu_dried", (properties) -> new Item((properties).food(TofuFoods.TOFUDRIED, TofuConsumables.FAST_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_SMOKE = ITEMS.registerItem("smoketofu", (properties) -> new Item((properties).food(TofuFoods.TOFUSMOKE, TofuConsumables.FAST_FOOD)));
-	public static final DeferredHolder<Item, Item> SHUDOFU = ITEMS.registerItem("shudofu", (properties) -> new Item((properties).food(TofuFoods.SHUDOFU, TofuConsumables.COUGH)));
+	public static final DeferredHolder<Item, Item> TOFU_HELL = ITEMS.registerItem("tofu_hell", (properties) -> new Item((properties).food(TofuFoods.TOFUHELL, TofuConsumables.HELL_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_SOUL = ITEMS.registerItem("tofu_soul", (properties) -> new Item((properties).food(TofuFoods.TOFUSOUL, TofuConsumables.SOUL_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_GRILLED = ITEMS.registerItem("tofu_grilled", (properties) -> new Item((properties).food(TofuFoods.TOFUGRILLED, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_ZUNDA = ITEMS.registerItem("tofu_zunda", (properties) -> new Item((properties).food(TofuFoods.TOFUZUNDA, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_MISO = ITEMS.registerItem("tofu_miso", (properties) -> new Item((properties).food(TofuFoods.TOFUMISO, TofuConsumables.MISO_FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_DRIED = ITEMS.registerItem("tofu_dried", (properties) -> new Item((properties).food(TofuFoods.TOFUDRIED, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_SMOKE = ITEMS.registerItem("smoketofu", (properties) -> new Item((properties).food(TofuFoods.TOFUSMOKE, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> SHUDOFU = ITEMS.registerItem("shudofu", (properties) -> new Item((properties).food(TofuFoods.SHUDOFU, TofuConsumables.COUGH).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
 
-	public static final DeferredHolder<Item, Item> TOFU_SESAME = ITEMS.registerItem("tofu_sesame", (properties) -> new Item((properties).food(TofuFoods.TOFUSESAME, TofuConsumables.SESAME_FAST_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_FRIED = ITEMS.registerItem("tofu_fried", (properties) -> new Item((properties).food(TofuFoods.TOFUFRIED, TofuConsumables.FAST_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_FRIED_POUCH = ITEMS.registerItem("tofu_fried_pouch", (properties) -> new Item((properties).food(TofuFoods.TOFUFRIED_POUCH, TofuConsumables.FAST_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_EGG = ITEMS.registerItem("tofu_egg", (properties) -> new Item((properties).food(TofuFoods.TOFU_EGG, TofuConsumables.FAST_FOOD)));
-
-
-	public static final DeferredHolder<Item, Item> TOFU_ANNIN = ITEMS.registerItem("tofu_annin", (properties) -> new Item((properties).food(TofuFoods.TOFUANNIN, TofuConsumables.FAST_FOOD)));
-	public static final DeferredHolder<Item, Item> TOFU_STRAWBERRY = ITEMS.registerItem("tofu_strawberry", (properties) -> new Item((properties).food(TofuFoods.TOFUSTRAWBERRY, TofuConsumables.FAST_FOOD)));
+	public static final DeferredHolder<Item, Item> TOFU_SESAME = ITEMS.registerItem("tofu_sesame", (properties) -> new Item((properties).food(TofuFoods.TOFUSESAME, TofuConsumables.SESAME_FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_FRIED = ITEMS.registerItem("tofu_fried", (properties) -> new Item((properties).food(TofuFoods.TOFUFRIED, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_FRIED_POUCH = ITEMS.registerItem("tofu_fried_pouch", (properties) -> new Item((properties).food(TofuFoods.TOFUFRIED_POUCH, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_EGG = ITEMS.registerItem("tofu_egg", (properties) -> new Item((properties).food(TofuFoods.TOFU_EGG, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
 
 
-	public static final DeferredHolder<Item, Item> TOFU_MINCED = ITEMS.registerItem("tofu_minced", (properties) -> new Item((properties).food(TofuFoods.TOFU)));
+	public static final DeferredHolder<Item, Item> TOFU_ANNIN = ITEMS.registerItem("tofu_annin", (properties) -> new Item((properties).food(TofuFoods.TOFUANNIN, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_STRAWBERRY = ITEMS.registerItem("tofu_strawberry", (properties) -> new Item((properties).food(TofuFoods.TOFUSTRAWBERRY, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+
+
+	public static final DeferredHolder<Item, Item> TOFU_MINCED = ITEMS.registerItem("tofu_minced", (properties) -> new Item((properties).food(TofuFoods.TOFU).compostable(ContextIntProviders.COMPOSTABLE_LOW)));
 
 
 	public static final DeferredHolder<Item, Item> BITTERN_BOTTLE = ITEMS.registerItem("bittern_bottle", (properties) -> new Item((properties).craftRemainder(Items.GLASS_BOTTLE)));
@@ -131,21 +132,21 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> WARPED_BOTTLE = ITEMS.registerItem("warped_fluid_bottle", (properties) -> new Item((properties).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final DeferredHolder<Item, Item> SHROOM_BOTTLE = ITEMS.registerItem("shroom_bottle", (properties) -> new Item((properties).craftRemainder(Items.GLASS_BOTTLE)));
 	public static final DeferredHolder<Item, Item> SALT = ITEMS.registerItem("salt", Item::new);
-	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS = ITEMS.registerItem("seeds_soybeans", (properties) -> new DoubleUsageSeedItem(TofuBlocks.SOYBEAN, TofuBlocks.SPROUTS, (properties)));
-	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_NETHER = ITEMS.registerItem("seeds_soybeans_nether", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_NETHER, (properties)));
-	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_SOUL = ITEMS.registerItem("seeds_soybeans_soul", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_SOUL, (properties).rarity(Rarity.UNCOMMON)));
-	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_PALE = ITEMS.registerItem("seeds_soybeans_pale", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_PALE, (properties)));
-	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_PALE_GLOW = ITEMS.registerItem("seeds_soybeans_pale_glow", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_PALE, (properties)));
+	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS = ITEMS.registerItem("seeds_soybeans", (properties) -> new DoubleUsageSeedItem(TofuBlocks.SOYBEAN, TofuBlocks.SPROUTS, (properties.compostable(ContextIntProviders.COMPOSTABLE_LOW))));
+	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_NETHER = ITEMS.registerItem("seeds_soybeans_nether", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_NETHER, (properties.compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM))));
+	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_SOUL = ITEMS.registerItem("seeds_soybeans_soul", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_SOUL, (properties).rarity(Rarity.UNCOMMON).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_PALE = ITEMS.registerItem("seeds_soybeans_pale", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_PALE, (properties.compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM))));
+	public static final DeferredHolder<Item, Item> SEEDS_SOYBEANS_PALE_GLOW = ITEMS.registerItem("seeds_soybeans_pale_glow", (properties) -> new DeferredBlockItem(TofuBlocks.SOYBEAN_PALE, (properties.compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM))));
 	public static final DeferredHolder<Item, Item> SEEDS_SESAME = ITEMS.registerItem("sesame", (properties) -> new DeferredBlockItem(TofuBlocks.SESAME, (properties)));
 
 	public static final DeferredHolder<Item, Item> SOYBEAN_PARCHED = ITEMS.registerItem("soybeans_parched", Item::new);
-	public static final DeferredHolder<Item, Item> KINAKO = ITEMS.registerItem("kinako", Item::new);
+	public static final DeferredHolder<Item, Item> KINAKO = ITEMS.registerItem("kinako", (properties -> new Item(properties.compostable(ContextIntProviders.COMPOSTABLE_LOW))));
 	public static final DeferredHolder<Item, Item> EDAMAME = ITEMS.registerItem("edamame", Item::new);
 	public static final DeferredHolder<Item, Item> BOILED_EDAMAME = ITEMS.registerItem("edamame_boild", (properties) -> new Item((properties).food(TofuFoods.BOILED_EDAMAME)));
 	public static final DeferredHolder<Item, Item> MINCEDPOTATO = ITEMS.registerItem("mincedpotato", Item::new);
 
-	public static final DeferredHolder<Item, Item> SEEDS_CHILI = ITEMS.registerItem("seeds_chili", (properties) -> new DeferredBlockItem(TofuBlocks.CHILI_CROP, (properties)));
-	public static final DeferredHolder<Item, Item> CHILI = ITEMS.registerItem("chili", (properties) -> new ChiliItem((properties).food(TofuFoods.CHILI, TofuConsumables.COUGH)));
+	public static final DeferredHolder<Item, Item> SEEDS_CHILI = ITEMS.registerItem("seeds_chili", (properties) -> new DeferredBlockItem(TofuBlocks.CHILI_CROP, (properties.compostable(ContextIntProviders.COMPOSTABLE_LOW))));
+	public static final DeferredHolder<Item, Item> CHILI = ITEMS.registerItem("chili", (properties) -> new ChiliItem((properties).food(TofuFoods.CHILI, TofuConsumables.COUGH).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM)));
 	public static final DeferredHolder<Item, Item> DOUBANJIANG = ITEMS.registerItem("doubanjiang", Item::new);
 	public static final DeferredHolder<Item, Item> MABODOFU = ITEMS.registerItem("mabodofu", (properties) -> new DishItem((properties).food(TofuFoods.MABODOFU, TofuConsumables.CHILI_FOOD).stacksTo(16).usingConvertsTo(Items.BOWL)));
 
