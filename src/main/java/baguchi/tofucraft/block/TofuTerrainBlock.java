@@ -1,11 +1,11 @@
 package baguchi.tofucraft.block;
 
 import baguchi.tofucraft.registry.TofuBlocks;
+import baguchi.tofucraft.world.gen.placement.TofuWorldPlacements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.Util;
@@ -55,53 +55,68 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource) {
-		return true;
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
+		return level.getBlockState(pos.above()).isAir() && level.isInsideBuildHeight(pos.above());
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource) {
+	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
 		return true;
 	}
 
+
 	@Override
-	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource) {
-		BlockPos blockpos = blockPos.above();
-		BlockState blockstate = TofuBlocks.LEEK.get().defaultBlockState();
-		Optional<Holder.Reference<PlacedFeature>> grassFeature = serverLevel.registryAccess()
+	public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
+		BlockPos above = pos.above();
+
+		label24:
+		for (int attempt = 0; attempt < 128; attempt++) {
+			BlockPos testPos = above;
+			int randomizeCount = attempt / 16;
+
+			for (int i = 0; i < randomizeCount; i++) {
+				int dx = random.nextIntBetweenInclusive(-1, 1);
+				int dy = random.nextIntBetweenInclusive(-1, 1) * random.nextInt(3) / 2;
+				int dz = random.nextIntBetweenInclusive(-1, 1);
+				testPos = testPos.offset(dx, dy, dz);
+				if (this.stopBonemealSpread(level, testPos)) {
+					continue label24;
+				}
+			}
+
+			placeBonemealEffect(level, random, testPos, source);
+		}
+	}
+
+	private static void placeBonemealEffect(ServerLevel level, RandomSource random, BlockPos testPos, BonemealSource source) {
+		BlockState grass = TofuBlocks.LEEK.get().defaultBlockState();
+		Optional<Holder.Reference<PlacedFeature>> grassFeature = level.registryAccess()
 				.lookupOrThrow(Registries.PLACED_FEATURE)
-				.get(VegetationPlacements.GRASS_BONEMEAL);
-
-		label49:
-		for (int i = 0; i < 128; ++i) {
-			BlockPos testPos = blockpos;
-
-			for (int j = 0; j < i / 16; ++j) {
-				testPos = testPos.offset(randomSource.nextInt(3) - 1, (randomSource.nextInt(3) - 1) * randomSource.nextInt(3) / 2, randomSource.nextInt(3) - 1);
-				if (!serverLevel.getBlockState(testPos.below()).is(this) || serverLevel.getBlockState(testPos).isCollisionShapeFullBlock(serverLevel, testPos)) {
-					continue label49;
-				}
-			}
-
-			BlockState testState = serverLevel.getBlockState(testPos);
-			if (testState.is(blockstate.getBlock()) && randomSource.nextInt(10) == 0) {
-				BonemealableBlock bonemealableblock = (BonemealableBlock) blockstate.getBlock();
-				if (bonemealableblock.isValidBonemealTarget(serverLevel, testPos, testState, bonemealSource)) {
-					bonemealableblock.performBonemeal(serverLevel, randomSource, testPos, testState, bonemealSource);
-				}
-			}
-
-			if (testState.isAir() && !serverLevel.isOutsideBuildHeight(testPos)) {
-				if (randomSource.nextInt(8) == 0) {
-					List<Feature> features = serverLevel.getBiome(testPos).value().getGenerationSettings().getBoneMealFeatures();
-					if (!features.isEmpty()) {
-						Feature placementFeature = Util.getRandom(features, randomSource);
-						placementFeature.place(serverLevel, serverLevel.getChunkSource().getGenerator(), randomSource, testPos);
-					}
-				} else if (grassFeature.isPresent()) {
-					grassFeature.get().value().place(serverLevel, serverLevel.getChunkSource().getGenerator(), randomSource, testPos);
-				}
+				.get(TofuWorldPlacements.LEEK_BONEMEAL);
+		BlockState testState = level.getBlockState(testPos);
+		if (testState.is(grass.getBlock()) && random.nextFloat() < 0.1F) {
+			BonemealableBlock bonemealableBlock = (BonemealableBlock) grass.getBlock();
+			if (bonemealableBlock.isValidBonemealTarget(level, testPos, testState, source)) {
+				bonemealableBlock.performBonemeal(level, random, testPos, testState, source);
 			}
 		}
+
+		if (testState.isAir() && !level.isOutsideBuildHeight(testPos)) {
+			if (random.nextFloat() < 0.125F) {
+				List<Feature> features = level.getBiome(testPos).value().getGenerationSettings().getBoneMealFeatures();
+				if (features.isEmpty()) {
+					return;
+				}
+
+				Feature placementFeature = Util.getRandom(features, random);
+				placementFeature.place(level, level.getChunkSource().getGenerator(), random, testPos);
+			} else if (grassFeature.isPresent()) {
+				grassFeature.get().value().place(level, level.getChunkSource().getGenerator(), random, testPos);
+			}
+		}
+	}
+
+	private boolean stopBonemealSpread(ServerLevel level, BlockPos testPos) {
+		return !level.getBlockState(testPos.below()).is(this) || level.getBlockState(testPos).isCollisionShapeFullBlock(level, testPos);
 	}
 }

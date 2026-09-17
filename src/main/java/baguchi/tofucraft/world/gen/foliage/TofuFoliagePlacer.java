@@ -38,7 +38,7 @@ public class TofuFoliagePlacer extends FoliagePlacer {
 	@Override
 	protected void createFoliage(WorldGenLevel level, FoliageSetter foliageSetter, RandomSource random, TreeFeature tree, int treeHeight, FoliageAttachment foliageAttachment, int foliageHeight, int leafRadius, int offset) {
 		for (int i = offset; i >= offset - height; i--) {
-			int j = Math.max(radius.sample(random) + leafRadius, 0);
+			int j = Math.max(radius.sample(random), 0);
 			this.placeLeavesRow(level, foliageSetter, random, tree, foliageAttachment.pos(), j, i, foliageAttachment.doubleTrunk());
 		}
 

@@ -2,22 +2,22 @@
   "type": "minecraft:gift",
   "pools": [
     {
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tofucraft:soymilk"
+          "name": "tofucraft:soymilk_bottle"
         },
         {
           "type": "minecraft:item",
-          "name": "tofucraft:soymilk_apple"
+          "name": "tofucraft:soymilk_apple_bottle"
         },
         {
           "type": "minecraft:item",
-          "name": "tofucraft:soymilk_cocoa"
+          "name": "tofucraft:soymilk_cocoa_bottle"
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ]
 }

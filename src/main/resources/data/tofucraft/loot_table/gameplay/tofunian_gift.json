@@ -10,26 +10,26 @@
         },
         {
           "type" : "minecraft:item",
-          "name" : "tofucraft:soymilk_pumpkin"
+          "name": "tofucraft:soymilk_pumpkin_bottle"
         },
         {
           "type" : "minecraft:item",
-          "name" : "tofucraft:soymilk_pudding"
+          "name": "tofucraft:soymilk_pudding_bottle"
         },
         {
           "type" : "minecraft:item",
-          "name" : "tofucraft:soymilk_sakura"
+          "name": "tofucraft:soymilk_sakura_bottle"
         },
         {
           "type" : "minecraft:item",
-          "name" : "tofucraft:soymilk_tea"
+          "name": "tofucraft:soymilk_tea_bottle"
         },
         {
           "type" : "minecraft:item",
           "name" : "tofucraft:zunda_arrow"
         }
       ],
-      "rolls" : 1.0
+      "rolls": 1
     }
   ]
 }
