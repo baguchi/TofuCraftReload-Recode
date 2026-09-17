@@ -12,9 +12,9 @@
           "type": "minecraft:item",
           "weight": 10,
           "name": "tofucraft:soymilk_bottle",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1.0,
                 "max": 3.0,
@@ -27,9 +27,9 @@
           "type": "minecraft:item",
           "weight": 8,
           "name": "tofucraft:tofu_sesame",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1.0,
                 "max": 3.0,
@@ -42,9 +42,9 @@
           "type": "minecraft:item",
           "weight": 8,
           "name": "tofucraft:tofu_strawberry",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1.0,
                 "max": 3.0,
@@ -66,9 +66,9 @@
           "type": "minecraft:item",
           "weight": 15,
           "name": "tofucraft:zundaruby",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1.0,
                 "max": 3.0,
@@ -81,9 +81,9 @@
           "type": "minecraft:item",
           "weight": 10,
           "name": "tofucraft:tofu_metal",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1.0,
                 "max": 2.0,
@@ -96,14 +96,14 @@
           "type": "minecraft:item",
           "weight": 3,
           "name": "tofucraft:tofu_metal_helmet",
-          "functions": [
+          "modifier": [
             {
               "add": false,
               "count": 1.0,
-              "function": "minecraft:set_count"
+              "type": "minecraft:set_count"
             },
             {
-              "function": "minecraft:enchant_randomly",
+              "type": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
           ]
@@ -112,14 +112,14 @@
           "type": "minecraft:item",
           "weight": 3,
           "name": "tofucraft:tofu_metal_chestplate",
-          "functions": [
+          "modifier": [
             {
               "add": false,
               "count": 1.0,
-              "function": "minecraft:set_count"
+              "type": "minecraft:set_count"
             },
             {
-              "function": "minecraft:enchant_randomly",
+              "type": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
           ]
@@ -128,14 +128,14 @@
           "type": "minecraft:item",
           "weight": 3,
           "name": "tofucraft:tofu_metal_leggings",
-          "functions": [
+          "modifier": [
             {
               "add": false,
-              "count": 1.0,
-              "function": "minecraft:set_count"
+              "count": 1,
+              "type": "minecraft:set_count"
             },
             {
-              "function": "minecraft:enchant_randomly",
+              "type": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
           ]
@@ -144,14 +144,14 @@
           "type": "minecraft:item",
           "weight": 3,
           "name": "tofucraft:tofu_metal_boots",
-          "functions": [
+          "modifier": [
             {
               "add": false,
               "count": 1.0,
-              "function": "minecraft:set_count"
+              "type": "minecraft:set_count"
             },
             {
-              "function": "minecraft:enchant_randomly",
+              "type": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
           ]
@@ -160,14 +160,14 @@
           "type": "minecraft:item",
           "weight": 3,
           "name": "tofucraft:tofu_metal_sword",
-          "functions": [
+          "modifier": [
             {
               "add": false,
               "count": 1.0,
-              "function": "minecraft:set_count"
+              "type": "minecraft:set_count"
             },
             {
-              "function": "minecraft:enchant_randomly",
+              "type": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
           ]
@@ -176,14 +176,14 @@
           "type": "minecraft:item",
           "weight": 3,
           "name": "tofucraft:tofu_metal_spear",
-          "functions": [
+          "modifier": [
             {
               "add": false,
               "count": 1.0,
-              "function": "minecraft:set_count"
+              "type": "minecraft:set_count"
             },
             {
-              "function": "minecraft:enchant_randomly",
+              "type": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
           ]
@@ -192,14 +192,14 @@
           "type": "minecraft:item",
           "weight": 3,
           "name": "tofucraft:tofu_metal_pickaxe",
-          "functions": [
+          "modifier": [
             {
               "add": false,
               "count": 1.0,
-              "function": "minecraft:set_count"
+              "type": "minecraft:set_count"
             },
             {
-              "function": "minecraft:enchant_randomly",
+              "type": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
           ]
@@ -208,14 +208,14 @@
           "type": "minecraft:item",
           "weight": 3,
           "name": "tofucraft:tofu_metal_shovel",
-          "functions": [
+          "modifier": [
             {
               "add": false,
               "count": 1.0,
-              "function": "minecraft:set_count"
+              "type": "minecraft:set_count"
             },
             {
-              "function": "minecraft:enchant_randomly",
+              "type": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
           ]

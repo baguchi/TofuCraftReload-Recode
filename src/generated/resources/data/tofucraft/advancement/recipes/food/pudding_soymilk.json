@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:pudding_soymilk"
+        "recipes": "tofucraft:pudding_soymilk"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

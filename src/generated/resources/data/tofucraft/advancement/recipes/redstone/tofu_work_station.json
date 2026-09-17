@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_work_station"
+        "recipes": "tofucraft:tofu_work_station"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

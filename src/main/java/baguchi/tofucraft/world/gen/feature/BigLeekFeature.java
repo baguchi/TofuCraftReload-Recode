@@ -2,31 +2,33 @@ package baguchi.tofucraft.world.gen.feature;
 
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuTags;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class BigLeekFeature extends Feature<NoneFeatureConfiguration> {
-	public BigLeekFeature(Codec<NoneFeatureConfiguration> codec) {
-		super(codec);
+public record BigLeekFeature() implements Feature {
+	public static final MapCodec<BigLeekFeature> CODEC = MapCodec.unit(BigLeekFeature::new);
+
+	@Override
+	public MapCodec<? extends Feature> codec() {
+		return CODEC;
 	}
 
 	@Override
-	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
-		if (!p_159749_.level().isEmptyBlock(p_159749_.origin()))
+	public boolean place(WorldGenLevel worldGenLevel, ChunkGenerator chunkGenerator, RandomSource randomSource, BlockPos blockPos) {
+		if (!worldGenLevel.isEmptyBlock(blockPos))
 			return false;
-		BlockState blockstate = p_159749_.level().getBlockState(p_159749_.origin().below());
+		BlockState blockstate = worldGenLevel.getBlockState(blockPos.below());
 		if (!blockstate.is(TofuTags.Blocks.SUPPORTS_TOFU_PLANT))
 			return false;
-		if (p_159749_.random().nextInt(6) == 0) {
-			setBigLeekBlock(p_159749_.level(), p_159749_.random(), p_159749_.origin());
+		if (randomSource.nextInt(6) == 0) {
+			setBigLeekBlock(worldGenLevel, randomSource, blockPos);
 		} else {
-			setLeekBlock(p_159749_.level(), p_159749_.random(), p_159749_.origin());
+			setLeekBlock(worldGenLevel, randomSource, blockPos);
 		}
 
 		return true;

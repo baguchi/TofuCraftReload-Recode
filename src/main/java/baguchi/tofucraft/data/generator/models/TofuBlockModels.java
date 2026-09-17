@@ -10,6 +10,8 @@ import net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerato
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
+import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.Identifier;
@@ -36,7 +38,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		this.createTrivialCube(TofuBlocks.METAL_TOFU_GRATE.get());
 		createTrivialCube(TofuBlocks.METAL_TOFU_LUMP.get());
 		this.createBarsAndItem(TofuBlocks.METAL_TOFU_BARS.get());
-		createTrivialCube(TofuBlocks.DIAMONDTOFU.get());
+		createTrivialCube(TofuBlocks.DIAMOND_TOFU.get());
 		createTrivialCube(TofuBlocks.TOFU_GEM_BLOCK.get());
 		createTrivialCube(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get());
 		createTrivialCube(TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get());
@@ -49,14 +51,14 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.stairs(TofuBlocks.TOFU_STAIR_ZUNDABRICK.get())
 				.slab(TofuBlocks.TOFU_SLAB_ZUNDABRICK.get());
 
-		family(TofuBlocks.EGGTOFU.get())
+		family(TofuBlocks.EGG_TOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_EGG.get())
 				.slab(TofuBlocks.TOFU_SLAB_EGG.get())
 				.wall(TofuBlocks.TOFU_FENCE_EGG.get())
 				.door(TofuBlocks.TOFU_DOOR_EGG.get())
 				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_EGG.get());
 
-		family(TofuBlocks.SESAMETOFU.get())
+		family(TofuBlocks.SESAME_TOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_SESAME.get())
 				.slab(TofuBlocks.TOFU_SLAB_SESAME.get())
 				.wall(TofuBlocks.TOFU_FENCE_SESAME.get())
@@ -164,7 +166,7 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.door(TofuBlocks.TOFU_DOOR_GRILLED.get())
 				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_GRILLED.get());
 
-		family(TofuBlocks.ZUNDATOFU.get())
+		family(TofuBlocks.ZUNDA_TOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_ZUNDA.get())
 				.slab(TofuBlocks.TOFU_SLAB_ZUNDA.get())
 				.wall(TofuBlocks.TOFU_FENCE_ZUNDA.get())
@@ -175,14 +177,14 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.stairs(TofuBlocks.TOFU_STAIR_ISHIBRICK.get())
 				.slab(TofuBlocks.TOFU_SLAB_ISHIBRICK.get());
 
-		family(TofuBlocks.MISOTOFU.get())
+		family(TofuBlocks.MISO_TOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_MISO.get())
 				.slab(TofuBlocks.TOFU_SLAB_MISO.get())
 				.wall(TofuBlocks.TOFU_FENCE_MISO.get())
 				.door(TofuBlocks.TOFU_DOOR_MISO.get())
 				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_MISO.get());
 
-		family(TofuBlocks.DRIEDTOFU.get())
+		family(TofuBlocks.DRIED_TOFU.get())
 				.stairs(TofuBlocks.TOFU_STAIR_DRIED.get())
 				.slab(TofuBlocks.TOFU_SLAB_DRIED.get())
 				.wall(TofuBlocks.TOFU_FENCE_DRIED.get())
@@ -335,7 +337,9 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 		this.registerSimpleFlatItemModel(TofuBlocks.WILD_SPROUTS.get());
 
 
-		this.createTofuFarmland();
+		this.createFarmland(
+				TofuBlocks.TOFU_FARMLAND.get(), TextureMapping.getBlockTexture(TofuBlocks.TOFU_TERRAIN.get()), TextureMapping.getBlockTexture(TofuBlocks.TOFU_TERRAIN.get()), ModelTemplates.CUBE_BOTTOM_TOP_INDENTED
+		);
 		this.createTofuPortalBlock();
 		this.createTofunianState(TofuBlocks.TOFUNIAN_STATUE.get(), TofuBlocks.TOFUSLATE.get());
 		this.createChest(TofuBlocks.TOFUCHEST.get(), TofuBlocks.ISHITOFU.get(), TofuCraftReload.prefix("tofuchest"), false);

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:gratin"
+        "recipes": "tofucraft:gratin"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

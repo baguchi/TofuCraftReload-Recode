@@ -1,0 +1,124 @@
+{
+  "type": "minecraft:sequence",
+  "sequence": [
+    {
+      "type": "minecraft:condition",
+      "if_true": {
+        "type": "minecraft:vertical_gradient",
+        "false_at_and_above": {
+          "above_bottom": 5
+        },
+        "random_name": "minecraft:bedrock_floor",
+        "true_at_and_below": {
+          "above_bottom": 0
+        }
+      },
+      "then_run": {
+        "type": "minecraft:block",
+        "result_state": "tofucraft:tofu_bedrock"
+      }
+    },
+    {
+      "type": "minecraft:condition",
+      "if_true": {
+        "type": "minecraft:vertical_gradient",
+        "false_at_and_above": {
+          "absolute": 8
+        },
+        "random_name": "minecraft:deepslate",
+        "true_at_and_below": {
+          "absolute": 0
+        }
+      },
+      "then_run": {
+        "type": "minecraft:block",
+        "result_state": "tofucraft:tofuslate"
+      }
+    },
+    {
+      "type": "minecraft:condition",
+      "if_true": {
+        "type": "minecraft:above_preliminary_surface"
+      },
+      "then_run": {
+        "type": "minecraft:sequence",
+        "sequence": [
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:biome",
+              "biome_is": "tofucraft:zunda_forest"
+            },
+            "then_run": {
+              "type": "minecraft:sequence",
+              "sequence": [
+                {
+                  "type": "minecraft:condition",
+                  "if_true": "minecraft:on_floor",
+                  "then_run": {
+                    "type": "minecraft:sequence",
+                    "sequence": [
+                      {
+                        "type": "minecraft:condition",
+                        "if_true": {
+                          "type": "minecraft:water",
+                          "add_stone_depth": false,
+                          "offset": -1,
+                          "surface_depth_multiplier": 0
+                        },
+                        "then_run": {
+                          "type": "minecraft:block",
+                          "result_state": "tofucraft:tofu_terrain_zunda"
+                        }
+                      },
+                      {
+                        "type": "minecraft:block",
+                        "result_state": "tofucraft:tofu_terrain"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "minecraft:condition",
+                  "if_true": "minecraft:under_floor",
+                  "then_run": {
+                    "type": "minecraft:block",
+                    "result_state": "tofucraft:tofu_terrain"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:biome",
+              "biome_is": "tofucraft:tofu_beach"
+            },
+            "then_run": {
+              "type": "minecraft:sequence",
+              "sequence": [
+                {
+                  "type": "minecraft:condition",
+                  "if_true": "minecraft:on_floor",
+                  "then_run": {
+                    "type": "minecraft:block",
+                    "result_state": "tofucraft:block_tofu_minced"
+                  }
+                },
+                {
+                  "type": "minecraft:condition",
+                  "if_true": "minecraft:under_floor",
+                  "then_run": {
+                    "type": "minecraft:block",
+                    "result_state": "tofucraft:block_tofu_minced"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofubed"
+        "recipes": "tofucraft:tofubed"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

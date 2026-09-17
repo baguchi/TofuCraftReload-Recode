@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:wax_out_momen"
+        "recipes": "tofucraft:wax_out_momen"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

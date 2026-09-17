@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:soy_soul_cheese"
+        "recipes": "tofucraft:soy_soul_cheese"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -9,7 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
@@ -30,9 +30,10 @@ public class SproutTrunkPlacer extends TrunkPlacer {
 		return TofuTrunkPlacerType.SPROUT_TRUNK_PLACER.get();
 	}
 
+
 	@Override
-	public List<FoliagePlacer.FoliageAttachment> placeTrunk(WorldGenLevel level, BiConsumer<BlockPos, BlockState> trunkSetter, RandomSource random, int treeHeight, BlockPos origin, TreeConfiguration config) {
-		placeBelowTrunkBlock(level, trunkSetter, random, origin.below(), config);
+	public List<FoliagePlacer.FoliageAttachment> placeTrunk(WorldGenLevel level, BiConsumer<BlockPos, BlockState> trunkSetter, RandomSource random, int treeHeight, BlockPos origin, TreeFeature tree) {
+		placeBelowTrunkBlock(level, trunkSetter, random, origin.below(), tree);
 		List<FoliagePlacer.FoliageAttachment> attachments = Lists.newArrayList();
 		Direction leanDirection = Direction.Plane.HORIZONTAL.getRandomDirection(random);
 		int leanHeight = treeHeight - random.nextInt(4) - 1;
@@ -50,7 +51,7 @@ public class SproutTrunkPlacer extends TrunkPlacer {
 				--leanSteps;
 			}
 
-			if (this.placeLog(level, trunkSetter, random, logPos.set(tx, yy, tz), config)) {
+			if (this.placeLog(level, trunkSetter, random, logPos.set(tx, yy, tz), tree)) {
 				ey = OptionalInt.of(yy + 1);
 			}
 		}

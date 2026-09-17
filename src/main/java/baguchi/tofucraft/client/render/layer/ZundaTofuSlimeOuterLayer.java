@@ -30,7 +30,7 @@ public class ZundaTofuSlimeOuterLayer extends RenderLayer<TofuSlimeRenderState, 
 	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, TofuSlimeRenderState t, float v, float v1) {
 		if (t.getRenderDataOrDefault(ZUNDA_KEY, false)) {
 			this.model.setupAnim(t);
-			submitNodeCollector.submitModel(this.model, t, poseStack, enchantSwirl(TEXTURE), t.lightCoords, OverlayTexture.NO_OVERLAY, t.outlineColor, null);
+			submitNodeCollector.submitModel(this.model, t, poseStack, enchantSwirl(TEXTURE), t.lightCoords, OverlayTexture.NO_OVERLAY, t.outlineColor);
 		}
 	}
 

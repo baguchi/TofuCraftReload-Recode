@@ -78,7 +78,6 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.component.ItemLore;
@@ -128,11 +127,11 @@ import java.util.function.Supplier;
 public class TofuBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TofuCraftReload.MODID);
 
-	public static final DeferredBlock<Block> SOYMILK = registerWithoutItem("soymilk", (properties) -> new LiquidBlock(TofuFluids.SOYMILK.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
-	public static final DeferredBlock<Block> SOYMILK_HELL = registerWithoutItem("soymilk_hell", (properties) -> new LiquidBlock(TofuFluids.SOYMILK_HELL.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
-	public static final DeferredBlock<Block> SOYMILK_SOUL = registerWithoutItem("soymilk_soul", (properties) -> new LiquidBlock(TofuFluids.SOYMILK_SOUL.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
-	public static final DeferredBlock<Block> BITTERN = registerWithoutItem("bittern", (properties) -> new LiquidBlock(TofuFluids.BITTERN.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY));
-	public static final DeferredBlock<Block> DOUBANJIANG = registerWithoutItem("doubanjiang", (properties) -> new LiquidBlock(TofuFluids.DOUBANJIANG.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().lightLevel((blockstate) -> 10).sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> SOYMILK = registerWithoutItem("soymilk", (properties) -> new LiquidBlock(TofuFluids.SOYMILK.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> SOYMILK_HELL = registerWithoutItem("soymilk_hell", (properties) -> new LiquidBlock(TofuFluids.SOYMILK_HELL.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> SOYMILK_SOUL = registerWithoutItem("soymilk_soul", (properties) -> new LiquidBlock(TofuFluids.SOYMILK_SOUL.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> BITTERN = registerWithoutItem("bittern", (properties) -> new LiquidBlock(TofuFluids.BITTERN.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> DOUBANJIANG = registerWithoutItem("doubanjiang", (properties) -> new LiquidBlock(TofuFluids.DOUBANJIANG.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().lightLevel((blockstate) -> 10).sound(SoundType.EMPTY));
 
 	public static final DeferredBlock<Block> YUBA = registerWithoutItem("yuba", (properties) -> new YubaBlock(properties), () -> BlockBehaviour.Properties.of().noOcclusion().randomTicks().strength(0.25F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.WOOL));
 
@@ -166,34 +165,33 @@ public class TofuBlocks {
 			.requiresCorrectToolForDrops()
 			.isValidSpawn(Blocks::never)
 			.isRedstoneConductor(TofuBlocks::never)
-			.isSuffocating(TofuBlocks::never)
-			.isViewBlocking(TofuBlocks::never));
+			.isSuffocating(TofuBlocks::never));
 	public static final DeferredBlock<Block> METAL_TOFU_LUMP = register("tofu_metal_lump", Block::new, () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).lightLevel(state -> {
 		return 15;
 	}).sound(SoundType.IRON));
 	public static final DeferredBlock<Block> METAL_TOFU_BARS = register("tofu_metal_bars", (properties) -> new IronBarsBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.IRON).noOcclusion());
-	public static final DeferredBlock<Block> DIAMONDTOFU = register("block_tofu_diamond", Block::new, () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
+	public static final DeferredBlock<Block> DIAMOND_TOFU = register("block_tofu_diamond", Block::new, () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> TOFU_GEM_BLOCK = register("tofu_gem_block", (properties) -> new TofuGemBlock(properties), () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> ADVANCE_TOFU_GEM_BLOCK = register("adv_tofu_gem_block", Block::new, () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(2.0F, 6.0F).sound(SoundType.METAL));
 	public static final DeferredBlock<Block> ZUNDA_ALLOY_TOFU_BLOCK = register("zunda_alloy_tofu_block", Block::new, () -> BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.NETHERITE_BLOCK));
 
 	public static final DeferredBlock<RotatedPillarBlock> GRILLED_TOFU = register("block_tofu_grilled", (properties) -> new TofuGrilledBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> ZUNDATOFU = register("block_tofu_zunda", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> ZUNDA_TOFU = register("block_tofu_zunda", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> ZUNDATOFU_BRICK = register("tofuzunda_brick", Block::new, () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.CALCITE));
 	public static final DeferredBlock<Block> ZUNDATOFU_SMOOTH_BRICK = register("tofuzunda_smooth_brick", Block::new, () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.CALCITE));
 
-	public static final DeferredBlock<Block> MISOTOFU = register("block_tofu_miso", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> DRIEDTOFU = register("block_tofu_dried", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> MISO_TOFU = register("block_tofu_miso", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> DRIED_TOFU = register("block_tofu_dried", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> DRIEDTOFU_BRICK = register("tofudried_brick", Block::new, () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.CALCITE));
 	public static final DeferredBlock<Block> DRIEDTOFU_SMOOTH_BRICK = register("tofudried_smooth_brick", Block::new, () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.CALCITE));
 	public static final DeferredBlock<Block> DRIEDTOFU_CHISELED_BRICK = register("tofudried_chiseled_brick", Block::new, () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.CALCITE));
 
-	public static final DeferredBlock<Block> EGGTOFU = register("block_tofu_egg", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> EGG_TOFU = register("block_tofu_egg", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> EGGTOFU_BRICK = register("tofuegg_brick", Block::new, () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.CALCITE));
 	public static final DeferredBlock<Block> EGGTOFU_SMOOTH_BRICK = register("tofuegg_smooth_brick", Block::new, () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.CALCITE));
 	public static final DeferredBlock<Block> EGGTOFU_CHISELED_BRICK = register("tofuegg_chiseled_brick", Block::new, () -> BlockBehaviour.Properties.of().randomTicks().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.CALCITE));
 
-	public static final DeferredBlock<Block> SESAMETOFU = register("block_tofu_sesame", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> SESAME_TOFU = register("block_tofu_sesame", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> STRAWBERRY_TOFU = register("block_tofu_strawberry", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> FRIED_TOFU = register("block_tofu_fried", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> FRIED_POUCH_TOFU = register("block_tofu_fried_pouch", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
@@ -215,7 +213,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<StairBlock> TOFU_STAIR_METAL = register("tofu_stair_metal", (properties) -> new StairBlock(METALTOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(METALTOFU.get()));
 	public static final DeferredBlock<StairBlock> TOFU_STAIR_GRILLED = register("tofu_stair_grilled", (properties) -> new StairBlock(GRILLED_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(GRILLED_TOFU.get()));
 
-	public static final DeferredBlock<StairBlock> TOFU_STAIR_ZUNDA = register("tofu_stair_zunda", (properties) -> new StairBlock(ZUNDATOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()));
+	public static final DeferredBlock<StairBlock> TOFU_STAIR_ZUNDA = register("tofu_stair_zunda", (properties) -> new StairBlock(ZUNDA_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(ZUNDA_TOFU.get()));
 	public static final DeferredBlock<StairBlock> TOFU_STAIR_ZUNDABRICK = register("tofu_stair_zundabrick", (properties) -> new StairBlock(ZUNDATOFU_BRICK.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU_BRICK.get()));
 	public static final DeferredBlock<StairBlock> TOFU_STAIR_HELL = register("tofu_stair_hell", (properties) -> new StairBlock(HELLTOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get()));
 	public static final DeferredBlock<StairBlock> TOFU_STAIR_SOUL = register("tofu_stair_soul", (properties) -> new StairBlock(SOULTOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get()));
@@ -223,15 +221,15 @@ public class TofuBlocks {
 	public static final DeferredBlock<StairBlock> TOFU_STAIR_ISHIBRICK = register("tofu_stair_ishibrick", (properties) -> new StairBlock(ISHITOFU_BRICK.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(ISHITOFU_BRICK.get()));
 	public static final DeferredBlock<StairBlock> TOFU_STAIR_HELLBRICK = register("tofu_stair_hellbrick", (properties) -> new StairBlock(HELLTOFU_BRICK.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(HELLTOFU_BRICK.get()));
 	public static final DeferredBlock<StairBlock> TOFU_STAIR_SOULBRICK = register("tofu_stair_soulbrick", (properties) -> new StairBlock(SOULTOFU_BRICK.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SOULTOFU_BRICK.get()));
-	public static final DeferredBlock<StairBlock> TOFU_STAIR_MISO = register("tofu_stair_miso", (properties) -> new StairBlock(MISOTOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(MISOTOFU.get()));
-	public static final DeferredBlock<StairBlock> TOFU_STAIR_DRIED = register("tofu_stair_dried", (properties) -> new StairBlock(DRIEDTOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(DRIEDTOFU.get()));
+	public static final DeferredBlock<StairBlock> TOFU_STAIR_MISO = register("tofu_stair_miso", (properties) -> new StairBlock(MISO_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(MISO_TOFU.get()));
+	public static final DeferredBlock<StairBlock> TOFU_STAIR_DRIED = register("tofu_stair_dried", (properties) -> new StairBlock(DRIED_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(DRIED_TOFU.get()));
 	public static final DeferredBlock<StairBlock> TOFU_STAIR_DRIEDBRICK = register("tofu_stair_driedbrick", (properties) -> new StairBlock(DRIEDTOFU_BRICK.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(DRIEDTOFU_BRICK.get()));
-	public static final DeferredBlock<StairBlock> TOFU_STAIR_EGG = register("tofu_stair_egg", (properties) -> new StairBlock(EGGTOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(EGGTOFU.get()));
+	public static final DeferredBlock<StairBlock> TOFU_STAIR_EGG = register("tofu_stair_egg", (properties) -> new StairBlock(EGG_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(EGG_TOFU.get()));
 	public static final DeferredBlock<StairBlock> TOFU_STAIR_EGGBRICK = register("tofu_stair_eggbrick", (properties) -> new StairBlock(EGGTOFU_BRICK.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(EGGTOFU_BRICK.get()));
-	public static final DeferredBlock<StairBlock> TOFU_STAIR_SESAME = register("tofu_stair_sesame", (properties) -> new StairBlock(SESAMETOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get()));
-	public static final DeferredBlock<StairBlock> TOFU_STAIR_STRAWBERRY = register("tofu_stair_strawberry", (properties) -> new StairBlock(STRAWBERRY_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get()));
-	public static final DeferredBlock<StairBlock> TOFU_STAIR_FRIED = register("tofu_stair_fried", (properties) -> new StairBlock(FRIED_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get()));
-	public static final DeferredBlock<StairBlock> TOFU_STAIR_FRIED_POUCH = register("tofu_stair_fried_pouch", (properties) -> new StairBlock(FRIED_POUCH_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get()));
+	public static final DeferredBlock<StairBlock> TOFU_STAIR_SESAME = register("tofu_stair_sesame", (properties) -> new StairBlock(SESAME_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SESAME_TOFU.get()));
+	public static final DeferredBlock<StairBlock> TOFU_STAIR_STRAWBERRY = register("tofu_stair_strawberry", (properties) -> new StairBlock(STRAWBERRY_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SESAME_TOFU.get()));
+	public static final DeferredBlock<StairBlock> TOFU_STAIR_FRIED = register("tofu_stair_fried", (properties) -> new StairBlock(FRIED_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SESAME_TOFU.get()));
+	public static final DeferredBlock<StairBlock> TOFU_STAIR_FRIED_POUCH = register("tofu_stair_fried_pouch", (properties) -> new StairBlock(FRIED_POUCH_TOFU.get().defaultBlockState(), properties), () -> BlockBehaviour.Properties.ofFullCopy(SESAME_TOFU.get()));
 
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_KINU = register("tofu_slab_kinu", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(KINUTOFU.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_MOMEN = register("tofu_slab_momen", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(MOMENTOFU.get()));
@@ -239,7 +237,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_METAL = register("tofu_slab_metal", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(METALTOFU.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_GRILLED = register("tofu_slab_grilled", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(GRILLED_TOFU.get()));
 
-	public static final DeferredBlock<SlabBlock> TOFU_SLAB_ZUNDA = register("tofu_slab_zunda", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()));
+	public static final DeferredBlock<SlabBlock> TOFU_SLAB_ZUNDA = register("tofu_slab_zunda", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDA_TOFU.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_ZUNDABRICK = register("tofu_slab_zundabrick", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU_BRICK.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_HELL = register("tofu_slab_hell", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_SOUL = register("tofu_slab_soul", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get()));
@@ -247,12 +245,12 @@ public class TofuBlocks {
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_ISHIBRICK = register("tofu_slab_ishibrick", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ISHITOFU_BRICK.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_HELLBRICK = register("tofu_slab_hellbrick", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(HELLTOFU_BRICK.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_SOULBRICK = register("tofu_slab_soulbrick", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(SOULTOFU_BRICK.get()));
-	public static final DeferredBlock<SlabBlock> TOFU_SLAB_MISO = register("tofu_slab_miso", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(MISOTOFU.get()));
-	public static final DeferredBlock<SlabBlock> TOFU_SLAB_DRIED = register("tofu_slab_dried", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(DRIEDTOFU.get()));
+	public static final DeferredBlock<SlabBlock> TOFU_SLAB_MISO = register("tofu_slab_miso", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(MISO_TOFU.get()));
+	public static final DeferredBlock<SlabBlock> TOFU_SLAB_DRIED = register("tofu_slab_dried", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(DRIED_TOFU.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_DRIEDBRICK = register("tofu_slab_driedbrick", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(DRIEDTOFU_BRICK.get()));
-	public static final DeferredBlock<SlabBlock> TOFU_SLAB_EGG = register("tofu_slab_egg", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(EGGTOFU.get()));
+	public static final DeferredBlock<SlabBlock> TOFU_SLAB_EGG = register("tofu_slab_egg", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(EGG_TOFU.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_EGGBRICK = register("tofu_slab_eggbrick", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(EGGTOFU_BRICK.get()));
-	public static final DeferredBlock<SlabBlock> TOFU_SLAB_SESAME = register("tofu_slab_sesame", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get()));
+	public static final DeferredBlock<SlabBlock> TOFU_SLAB_SESAME = register("tofu_slab_sesame", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(SESAME_TOFU.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_STRAWBERRY = register("tofu_slab_strawberry", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(STRAWBERRY_TOFU.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_FRIED = register("tofu_slab_fried", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(FRIED_TOFU.get()));
 	public static final DeferredBlock<SlabBlock> TOFU_SLAB_FRIED_POUCH = register("tofu_slab_fried_pouch", SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(FRIED_POUCH_TOFU.get()));
@@ -293,9 +291,9 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> TOFU_LADDER_METAL = register("tofu_ladder_metal", LadderBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(METALTOFU.get()).noOcclusion());
 
 	public static final DeferredBlock<Block> TOFU_LADDER_GRILLED = register("tofu_ladder_grilled", LadderBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(GRILLED_TOFU.get()).noOcclusion());
-	public static final DeferredBlock<Block> TOFU_LADDER_ZUNDA = register("tofu_ladder_zunda", LadderBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion());
-	public static final DeferredBlock<Block> TOFU_LADDER_HELL = register("tofu_ladder_hell", LadderBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion());
-	public static final DeferredBlock<Block> TOFU_LADDER_SOUL = register("tofu_ladder_soul", LadderBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion());
+	public static final DeferredBlock<Block> TOFU_LADDER_ZUNDA = register("tofu_ladder_zunda", LadderBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDA_TOFU.get()).noOcclusion());
+	public static final DeferredBlock<Block> TOFU_LADDER_HELL = register("tofu_ladder_hell", LadderBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDA_TOFU.get()).noOcclusion());
+	public static final DeferredBlock<Block> TOFU_LADDER_SOUL = register("tofu_ladder_soul", LadderBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDA_TOFU.get()).noOcclusion());
 
 	public static final DeferredBlock<Block> TOFU_LADDER_ISHIBRICK = register("tofu_ladder_ishibrick", LadderBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ISHITOFU_BRICK.get()).noOcclusion());
 
@@ -306,11 +304,11 @@ public class TofuBlocks {
 	public static final DeferredBlock<WallBlock> TOFU_FENCE_HELL = register("tofu_fence_hell", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get()).noOcclusion().forceSolidOn());
 	public static final DeferredBlock<WallBlock> TOFU_FENCE_SOUL = register("tofu_fence_soul", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get()).noOcclusion().forceSolidOn());
 	public static final DeferredBlock<WallBlock> TOFU_FENCE_GRILLED = register("tofu_fence_grilled", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(GRILLED_TOFU.get()).noOcclusion().forceSolidOn());
-	public static final DeferredBlock<WallBlock> TOFU_FENCE_ZUNDA = register("tofu_fence_zunda", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion().forceSolidOn());
-	public static final DeferredBlock<WallBlock> TOFU_FENCE_MISO = register("tofu_fence_miso", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(MISOTOFU.get()).noOcclusion().forceSolidOn());
-	public static final DeferredBlock<WallBlock> TOFU_FENCE_DRIED = register("tofu_fence_dried", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(DRIEDTOFU.get()).noOcclusion().forceSolidOn());
-	public static final DeferredBlock<WallBlock> TOFU_FENCE_EGG = register("tofu_fence_egg", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(EGGTOFU.get()).noOcclusion().forceSolidOn());
-	public static final DeferredBlock<WallBlock> TOFU_FENCE_SESAME = register("tofu_fence_sesame", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get()).noOcclusion().forceSolidOn());
+	public static final DeferredBlock<WallBlock> TOFU_FENCE_ZUNDA = register("tofu_fence_zunda", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(ZUNDA_TOFU.get()).noOcclusion().forceSolidOn());
+	public static final DeferredBlock<WallBlock> TOFU_FENCE_MISO = register("tofu_fence_miso", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(MISO_TOFU.get()).noOcclusion().forceSolidOn());
+	public static final DeferredBlock<WallBlock> TOFU_FENCE_DRIED = register("tofu_fence_dried", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(DRIED_TOFU.get()).noOcclusion().forceSolidOn());
+	public static final DeferredBlock<WallBlock> TOFU_FENCE_EGG = register("tofu_fence_egg", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(EGG_TOFU.get()).noOcclusion().forceSolidOn());
+	public static final DeferredBlock<WallBlock> TOFU_FENCE_SESAME = register("tofu_fence_sesame", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(SESAME_TOFU.get()).noOcclusion().forceSolidOn());
 	public static final DeferredBlock<WallBlock> TOFU_FENCE_STRAWBERRY = register("tofu_fence_strawberry", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(STRAWBERRY_TOFU.get()).noOcclusion().forceSolidOn());
 	public static final DeferredBlock<WallBlock> TOFU_FENCE_FRIED = register("tofu_fence_fried", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(FRIED_TOFU.get()).noOcclusion().forceSolidOn());
 	public static final DeferredBlock<WallBlock> TOFU_FENCE_FRIED_POUCH = register("tofu_fence_fried_pouch", WallBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(FRIED_POUCH_TOFU.get()).noOcclusion().forceSolidOn());
@@ -323,11 +321,11 @@ public class TofuBlocks {
 	public static final DeferredBlock<DoorBlock> TOFU_DOOR_HELL = register("tofu_door_hell", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get()).noOcclusion());
 	public static final DeferredBlock<DoorBlock> TOFU_DOOR_SOUL = register("tofu_door_soul", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get()).noOcclusion());
 	public static final DeferredBlock<DoorBlock> TOFU_DOOR_GRILLED = register("tofu_door_grilled", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(GRILLED_TOFU.get()).noOcclusion());
-	public static final DeferredBlock<DoorBlock> TOFU_DOOR_ZUNDA = register("tofu_door_zunda", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion());
-	public static final DeferredBlock<DoorBlock> TOFU_DOOR_MISO = register("tofu_door_miso", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(MISOTOFU.get()).noOcclusion());
-	public static final DeferredBlock<DoorBlock> TOFU_DOOR_DRIED = register("tofu_door_dried", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(DRIEDTOFU.get()).noOcclusion());
-	public static final DeferredBlock<DoorBlock> TOFU_DOOR_EGG = register("tofu_door_egg", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(EGGTOFU.get()).noOcclusion());
-	public static final DeferredBlock<DoorBlock> TOFU_DOOR_SESAME = register("tofu_door_sesame", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get()).noOcclusion());
+	public static final DeferredBlock<DoorBlock> TOFU_DOOR_ZUNDA = register("tofu_door_zunda", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(ZUNDA_TOFU.get()).noOcclusion());
+	public static final DeferredBlock<DoorBlock> TOFU_DOOR_MISO = register("tofu_door_miso", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(MISO_TOFU.get()).noOcclusion());
+	public static final DeferredBlock<DoorBlock> TOFU_DOOR_DRIED = register("tofu_door_dried", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(DRIED_TOFU.get()).noOcclusion());
+	public static final DeferredBlock<DoorBlock> TOFU_DOOR_EGG = register("tofu_door_egg", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(EGG_TOFU.get()).noOcclusion());
+	public static final DeferredBlock<DoorBlock> TOFU_DOOR_SESAME = register("tofu_door_sesame", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(SESAME_TOFU.get()).noOcclusion());
 	public static final DeferredBlock<DoorBlock> TOFU_DOOR_STRAWBERRY = register("tofu_door_strawberry", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(STRAWBERRY_TOFU.get()).noOcclusion());
 	public static final DeferredBlock<DoorBlock> TOFU_DOOR_FRIED = register("tofu_door_fried", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(FRIED_TOFU.get()).noOcclusion());
 	public static final DeferredBlock<DoorBlock> TOFU_DOOR_FRIED_POUCH = register("tofu_door_fried_pouch", (properties) -> new TofuDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(FRIED_POUCH_TOFU.get()).noOcclusion());
@@ -339,11 +337,11 @@ public class TofuBlocks {
 	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_HELL = register("tofu_trapdoor_hell", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(HELLTOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
 	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_SOUL = register("tofu_trapdoor_soul", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(SOULTOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
 	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_GRILLED = register("tofu_trapdoor_grilled", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(GRILLED_TOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
-	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_ZUNDA = register("tofu_trapdoor_zunda", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(ZUNDATOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
-	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_MISO = register("tofu_trapdoor_miso", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(MISOTOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
-	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_DRIED = register("tofu_trapdoor_dried", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(DRIEDTOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
-	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_EGG = register("tofu_trapdoor_egg", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(EGGTOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
-	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_SESAME = register("tofu_trapdoor_sesame", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(SESAMETOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
+	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_ZUNDA = register("tofu_trapdoor_zunda", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(ZUNDA_TOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
+	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_MISO = register("tofu_trapdoor_miso", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(MISO_TOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
+	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_DRIED = register("tofu_trapdoor_dried", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(DRIED_TOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
+	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_EGG = register("tofu_trapdoor_egg", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(EGG_TOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
+	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_SESAME = register("tofu_trapdoor_sesame", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(SESAME_TOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
 	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_STRAWBERRY = register("tofu_trapdoor_strawberry", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(STRAWBERRY_TOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
 	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_FRIED = register("tofu_trapdoor_fried", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(FRIED_TOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
 	public static final DeferredBlock<TrapDoorBlock> TOFU_TRAPDOOR_FRIED_POUCH = register("tofu_trapdoor_fried_pouch", (properties) -> new TofuTrapDoorBlock(properties, BlockSetType.OAK), () -> BlockBehaviour.Properties.ofFullCopy(FRIED_TOFU.get()).noOcclusion().isValidSpawn((state, blockGetter, blockPos, entityType) -> false));
@@ -469,8 +467,7 @@ public class TofuBlocks {
 	}));
 	public static final DeferredBlock<Block> SPROUTSJAR = register("blocksproutsjar", (properties) -> new SproutsJarBlock(properties), () -> BlockBehaviour.Properties.of().strength(2.0F, 3.0F).randomTicks().noOcclusion().isValidSpawn(Blocks::never)
 			.isRedstoneConductor(TofuBlocks::never)
-			.isSuffocating(TofuBlocks::never)
-			.isViewBlocking(TofuBlocks::never).sound(SoundType.GLASS));
+			.isSuffocating(TofuBlocks::never).sound(SoundType.GLASS));
 	public static final DeferredBlock<Block> SALT_BLOCK = register("salt_block", (properties) -> new FallFoodBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.SAND));
 	public static final DeferredBlock<Block> OKARA_BLOCK = register("okara_block", (properties) -> new FallFoodBlock(properties), () -> BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL));
 	public static final DeferredBlock<Block> GIANT_OKARA_DONUT = register("giant_okara_donut", Block::new, () -> BlockBehaviour.Properties.of().strength(0.75F).sound(SoundType.NETHER_SPROUTS));
@@ -561,8 +558,8 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> TOFUCHEST = register("tofuchest", (properties) -> new TofuChestBlock(properties, TofuBlockEntitys.TOFUCHEST::get), () -> BlockBehaviour.Properties.of().strength(2.5F, 6.0F).noOcclusion().sound(SoundType.CALCITE));
 
 	public static final DeferredBlock<Block> FOODPLATE = register("foodplate", FoodPlateBlock::new, () -> BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.METAL)
-			.pushReaction(PushReaction.DESTROY));
-	public static final DeferredBlock<Block> TOFUNIAN_STATUE = register("tofunian_statue", TofunianStatueBlock::new, () -> BlockBehaviour.Properties.of().strength(100F, 3600000.0F).requiresCorrectToolForDrops().pushReaction(PushReaction.BLOCK).sound(SoundType.LODESTONE));
+			.pushReaction(PushReaction.POPPED));
+	public static final DeferredBlock<Block> TOFUNIAN_STATUE = register("tofunian_statue", TofunianStatueBlock::new, () -> BlockBehaviour.Properties.of().strength(100F, 3600000.0F).requiresCorrectToolForDrops().pushReaction(PushReaction.IMMOVEABLE).sound(SoundType.LODESTONE));
 
 	public static final DeferredBlock<Block> RICE_BLOCK = register("rice_block",
 			RiceBlock::new, () -> BlockBehaviour.Properties.of()
@@ -622,6 +619,11 @@ public class TofuBlocks {
 	private static boolean never(BlockState p_50806_, BlockGetter p_50807_, BlockPos p_50808_) {
 		return false;
 	}
+
+	private static boolean never(BlockState p_50806_, BlockGetter p_50807_, BlockPos p_50808_, BlockState state) {
+		return false;
+	}
+
 
 	private static <T extends Block> DeferredBlock<Block> registerWithoutItem(String name, Supplier<Block.Properties> properties) {
 		return registerWithoutItem(name, Block::new, properties);
@@ -687,11 +689,11 @@ public class TofuBlocks {
 			} else if (block.get() == TOFU_TORCH_SOUL.get()) {
 				return new StandingAndWallBlockItem(TOFU_TORCH_SOUL.get(), WALL_TOFU_TORCH_SOUL.get(), Direction.DOWN, properties);
 			} else if (block.get() == TOFU_STEM_SIGN.get()) {
-				return new SignItem(TOFU_STEM_SIGN.get(), TOFU_STEM_WALL_SIGN.get(), properties.stacksTo(16));
+				return new StandingAndWallBlockItem(TOFU_STEM_SIGN.get(), TOFU_STEM_WALL_SIGN.get(), Direction.DOWN, properties.stacksTo(16));
 			} else if (block.get() == LEEK_GREEN_SIGN.get()) {
-				return new SignItem(LEEK_GREEN_SIGN.get(), LEEK_GREEN_WALL_SIGN.get(), properties.stacksTo(16));
+				return new StandingAndWallBlockItem(LEEK_GREEN_SIGN.get(), LEEK_GREEN_WALL_SIGN.get(), Direction.DOWN, properties.stacksTo(16));
 			} else if (block.get() == LEEK_SIGN.get()) {
-				return new SignItem(LEEK_SIGN.get(), LEEK_WALL_SIGN.get(), properties.stacksTo(16));
+				return new StandingAndWallBlockItem(LEEK_SIGN.get(), LEEK_WALL_SIGN.get(), Direction.DOWN, properties.stacksTo(16));
 			} else if (block.get() == SPROUT_SIGN.get()) {
 				return new HangingSignItem(SPROUT_SIGN.get(), SPROUT_WALL_SIGN.get(), properties.stacksTo(16));
 			} else if (block.get() == TOFU_STEM_HANGING_SIGN.get()) {

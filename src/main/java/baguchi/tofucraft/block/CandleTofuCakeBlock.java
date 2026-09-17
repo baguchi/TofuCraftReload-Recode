@@ -3,11 +3,8 @@ package baguchi.tofucraft.block;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -46,11 +43,6 @@ import java.util.Map;
  * @since 3.0.0.0
  */
 public class CandleTofuCakeBlock extends AbstractCandleBlock {
-	public static final MapCodec<CandleTofuCakeBlock> CODEC = RecordCodecBuilder.mapCodec(
-			p_308809_ -> p_308809_.group(BuiltInRegistries.BLOCK.byNameCodec().fieldOf("cake").forGetter((p_304363_) -> p_304363_.baseCake), BuiltInRegistries.BLOCK.byNameCodec().fieldOf("candle").forGetter(p_304363_ -> p_304363_.candle), propertiesCodec())
-					.apply(p_308809_, CandleTofuCakeBlock::new)
-	);
-
 	public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
 	protected static final VoxelShape CAKE_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D);
 	protected static final VoxelShape CANDLE_SHAPE = Block.box(7.0D, 8.0D, 7.0D, 9.0D, 14.0D, 9.0D);
@@ -68,11 +60,6 @@ public class CandleTofuCakeBlock extends AbstractCandleBlock {
 		this.candle = candle;
 
 		BY_CANDLE_AND_CAKE.put(Pair.of(candle, (TofuCakeBlock) baseCake), this);
-	}
-
-	@Override
-	protected MapCodec<? extends AbstractCandleBlock> codec() {
-		return CODEC;
 	}
 
 	@Override

@@ -3,13 +3,13 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:leek_boat"
+        "recipes": "tofucraft:leek_boat"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
     "inside_of": {
       "conditions": {
-        "block": "minecraft:water"
+        "blocks": "minecraft:water"
       },
       "trigger": "minecraft:enter_block"
     }

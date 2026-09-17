@@ -31,13 +31,11 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BucketPickup;
 import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.entity.FuelValues;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluid;
@@ -50,8 +48,6 @@ import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.SimpleFluidContent;
-import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
-import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
@@ -98,17 +94,6 @@ public class TofuMetalBucketItem extends Item {
 			return Component.translatable(this.getDescriptionId() + ".block", Component.translatable(stack.get(TofuDataComponents.STORED_BLOCK).getBlock().getDescriptionId()));
 		}
 		return super.getName(stack);
-	}
-
-	@Override
-	public int getBurnTime(ItemStack stack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
-		var fluid = stack.getOrDefault(TofuDataComponents.STORED_FLUID, SimpleFluidContent.EMPTY).copy();
-		if (fluid.isEmpty() && fluid.getAmount() >= FluidType.BUCKET_VOLUME) {
-			FurnaceFuel fuel = fluid.getFluid().getBucket().builtInRegistryHolder().getData(NeoForgeDataMaps.FURNACE_FUELS);
-			return fuel == null ? 0 : fuel.burnTime();
-		}
-
-		return super.getBurnTime(stack, recipeType, fuelValues);
 	}
 
 	@Override

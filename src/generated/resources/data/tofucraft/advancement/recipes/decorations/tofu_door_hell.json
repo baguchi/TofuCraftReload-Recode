@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_door_hell"
+        "recipes": "tofucraft:tofu_door_hell"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

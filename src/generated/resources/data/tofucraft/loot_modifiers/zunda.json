@@ -1,9 +1,7 @@
 {
   "type": "tofucraft:zunda",
-  "conditions": [
-    {
-      "chance": 0.5,
-      "condition": "minecraft:random_chance"
-    }
-  ]
+  "condition": {
+    "type": "minecraft:random_chance",
+    "chance": 0.5
+  }
 }

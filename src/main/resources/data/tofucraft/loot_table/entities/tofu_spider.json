@@ -9,10 +9,11 @@
           "type": "item",
           "name": "tofucraft:seeds_soybeans",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "set_count",
+              "type": "set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 3
               }
@@ -24,7 +25,7 @@
                 "min": 0.0
               },
               "enchantment": "minecraft:looting",
-              "function": "minecraft:enchanted_count_increase"
+              "type": "minecraft:enchanted_count_increase"
             }
           ]
         },
@@ -32,10 +33,11 @@
           "type": "item",
           "name": "tofucraft:yuba",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "set_count",
+              "type": "set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 2
               }
@@ -47,7 +49,7 @@
                 "min": 0.0
               },
               "enchantment": "minecraft:looting",
-              "function": "minecraft:enchanted_count_increase"
+              "type": "minecraft:enchanted_count_increase"
             }
           ]
         }

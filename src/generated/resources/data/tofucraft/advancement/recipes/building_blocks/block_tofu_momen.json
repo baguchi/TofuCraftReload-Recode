@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:block_tofu_momen"
+        "recipes": "tofucraft:block_tofu_momen"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

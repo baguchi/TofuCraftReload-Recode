@@ -11,9 +11,9 @@
           "type": "minecraft:item",
           "weight": 2,
           "name": "tofucraft:chili",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1.0,
                 "max": 3.0,
@@ -26,9 +26,9 @@
           "type": "minecraft:item",
           "weight": 2,
           "name": "tofucraft:seeds_chili",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 1.0,
                 "max": 3.0,

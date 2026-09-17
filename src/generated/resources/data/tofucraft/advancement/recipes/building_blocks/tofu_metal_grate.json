@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_metal_grate"
+        "recipes": "tofucraft:tofu_metal_grate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

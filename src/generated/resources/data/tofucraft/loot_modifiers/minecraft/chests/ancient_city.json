@@ -1,23 +1,26 @@
 {
   "type": "neoforge:add_table",
-  "conditions": [
-    {
-      "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:chests/ancient_city"
-    },
-    {
-      "chance": 0.5,
-      "condition": "minecraft:random_chance"
-    },
-    {
-      "condition": "minecraft:inverted",
-      "term": {
-        "condition": "minecraft:match_tool",
-        "predicate": {
-          "items": "minecraft:shears"
+  "condition": {
+    "type": "minecraft:all_of",
+    "terms": [
+      {
+        "type": "neoforge:loot_table_id",
+        "loot_table_id": "minecraft:chests/ancient_city"
+      },
+      {
+        "type": "minecraft:random_chance",
+        "chance": 0.5
+      },
+      {
+        "type": "minecraft:inverted",
+        "term": {
+          "type": "minecraft:match_tool",
+          "predicate": {
+            "items": "minecraft:shears"
+          }
         }
       }
-    }
-  ],
+    ]
+  },
   "table": "tofucraft:injections/seeds_chili_ancient_city"
 }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:agedashi_tofu"
+        "recipes": "tofucraft:agedashi_tofu"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

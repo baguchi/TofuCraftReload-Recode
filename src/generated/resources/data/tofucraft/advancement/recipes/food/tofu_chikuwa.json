@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_chikuwa"
+        "recipes": "tofucraft:tofu_chikuwa"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

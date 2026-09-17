@@ -2,11 +2,11 @@
   "gives": {
     "id": "tofucraft:zundaruby"
   },
-  "max_uses": 8.0,
+  "max_uses": 8,
   "reputation_discount": 0.1,
   "wants": {
-    "count": 12.0,
+    "count": 12,
     "id": "tofucraft:miso"
   },
-  "xp": 10.0
+  "xp": 10
 }

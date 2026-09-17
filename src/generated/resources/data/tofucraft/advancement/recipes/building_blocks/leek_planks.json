@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:leek_planks"
+        "recipes": "tofucraft:leek_planks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

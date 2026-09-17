@@ -4,11 +4,11 @@ import baguchi.tofucraft.data.resources.registries.TofunianVariants;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.codec.RegistryFileCodec;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
-import net.minecraft.resources.RegistryFileCodec;
 
 import java.util.Objects;
 
@@ -19,7 +19,7 @@ public class TofunianVariant {
 							Identifier.CODEC.fieldOf("texture_baby").forGetter(p_335261_ -> p_335261_.textureBaby))
 					.apply(p_332779_, TofunianVariant::new)
 	);
-	public static final Codec<Holder<TofunianVariant>> CODEC = RegistryFileCodec.create(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, DIRECT_CODEC);
+	public static final Codec<Holder<TofunianVariant>> CODEC = RegistryFileCodec.create(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, DIRECT_CODEC, false);
 	public static final StreamCodec<RegistryFriendlyByteBuf, Holder<TofunianVariant>> STREAM_CODEC = ByteBufCodecs.holderRegistry(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY);
 	private final Identifier texture;
 	private final Identifier textureFull;

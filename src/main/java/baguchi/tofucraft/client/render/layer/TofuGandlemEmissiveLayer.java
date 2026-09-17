@@ -46,7 +46,7 @@ public class TofuGandlemEmissiveLayer<T extends TofuGandlemRenderState, M extend
 		if (!state.isInvisible) {
 			float f = (float) state.ageInTicks;
 			this.onlyDrawSelectedParts();
-			submitNodeCollector.submitModel(this.getParentModel(), state, poseStack, RenderTypes.entityTranslucentEmissive(this.texture), state.lightCoords, LivingEntityRenderer.getOverlayCoords(state, 0.0F), state.outlineColor, null);
+			submitNodeCollector.submitModel(this.getParentModel(), state, poseStack, RenderTypes.entityTranslucentEmissive(this.texture), state.lightCoords, LivingEntityRenderer.getOverlayCoords(state, 0.0F), state.outlineColor);
 			this.resetDrawForAllParts();
 		}
 	}

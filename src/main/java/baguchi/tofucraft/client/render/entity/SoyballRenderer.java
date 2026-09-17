@@ -32,12 +32,12 @@ public class SoyballRenderer extends EntityRenderer<SoyballEntity, ProjectileRen
 	public void submit(ProjectileRenderState llamaSpit, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
 		poseStack.pushPose();
 		poseStack.translate(0.0F, 4F / 16F, 0.0F);
-		poseStack.mulPose(Axis.YP.rotationDegrees(llamaSpit.yRot - 180F));
-		poseStack.mulPose(Axis.XP.rotationDegrees(llamaSpit.xRot));
+		poseStack.rotateDegrees(Axis.YP, llamaSpit.yRot - 180F);
+		poseStack.rotateDegrees(Axis.XP, llamaSpit.xRot);
 		poseStack.translate(0.0F, -1.501F + 3F / 16F, -2.5F / 16F);
 		this.model.setupAnim(llamaSpit);
 
-		submitNodeCollector.submitModel(this.model, llamaSpit, poseStack, this.model.renderType(LLAMA_SPIT_LOCATION), llamaSpit.lightCoords, OverlayTexture.NO_OVERLAY, llamaSpit.outlineColor, null);
+		submitNodeCollector.submitModel(this.model, llamaSpit, poseStack, this.model.renderType(LLAMA_SPIT_LOCATION), llamaSpit.lightCoords, OverlayTexture.NO_OVERLAY, llamaSpit.outlineColor);
 		poseStack.popPose();
 		super.submit(llamaSpit, poseStack, submitNodeCollector, cameraRenderState);
 	}

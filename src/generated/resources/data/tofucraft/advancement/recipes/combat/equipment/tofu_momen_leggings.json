@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:equipment/tofu_momen_leggings"
+        "recipes": "tofucraft:equipment/tofu_momen_leggings"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

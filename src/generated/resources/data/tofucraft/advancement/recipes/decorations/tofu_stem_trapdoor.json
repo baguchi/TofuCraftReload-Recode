@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_stem_trapdoor"
+        "recipes": "tofucraft:tofu_stem_trapdoor"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

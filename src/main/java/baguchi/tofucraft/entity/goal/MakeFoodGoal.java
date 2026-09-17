@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -49,7 +50,7 @@ public class MakeFoodGoal extends MoveToBlockGoal {
 		if (this.cookTick <= 0) {
 			if (isReachedTarget()) {
 				this.creature.cookingFood();
-				this.creature.swing(InteractionHand.MAIN_HAND);
+				this.creature.swing(InteractionHand.MAIN_HAND, SwingAnimation.DEFAULT);
 				this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
 				this.cookTick = 20;
 				if (this.creature.getAction() != Tofunian.Actions.CRAFTING) {

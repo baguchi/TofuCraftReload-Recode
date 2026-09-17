@@ -30,8 +30,8 @@ public class TofuEnergyMap {
 		register(new ItemStackTemplate(TofuBlocks.KINUTOFU.asItem(), 1), 400);
 		register(new ItemStackTemplate(TofuBlocks.MOMENTOFU.asItem(), 1), 400);
 		register(new ItemStackTemplate(TofuBlocks.ISHITOFU.asItem(), 1), 400);
-		register(new ItemStackTemplate(TofuBlocks.EGGTOFU.asItem(), 1), 450);
-		register(new ItemStackTemplate(TofuBlocks.ZUNDATOFU.asItem(), 1), 800);
+		register(new ItemStackTemplate(TofuBlocks.EGG_TOFU.asItem(), 1), 450);
+		register(new ItemStackTemplate(TofuBlocks.ZUNDA_TOFU.asItem(), 1), 800);
 		register(new ItemStackTemplate(TofuBlocks.HELLTOFU.asItem(), 1), 800);
 		register(new ItemStackTemplate(TofuBlocks.SOULTOFU.asItem(), 1), 900);
 		register(new ItemStackTemplate(TofuItems.SEEDS_SOYBEANS, 1), 400);

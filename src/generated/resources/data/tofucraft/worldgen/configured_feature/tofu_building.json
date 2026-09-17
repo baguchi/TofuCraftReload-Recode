@@ -1,8 +1,0 @@
-{
-  "type": "tofucraft:tofu_building",
-  "config": {
-    "state": {
-      "Name": "tofucraft:tofu_terrain"
-    }
-  }
-}

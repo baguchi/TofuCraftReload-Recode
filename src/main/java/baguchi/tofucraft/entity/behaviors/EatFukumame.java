@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.behavior.Behavior;
+import net.minecraft.world.item.component.SwingAnimation;
 
 public class EatFukumame<E extends FukumameThrower> extends Behavior<E> {
 	protected int ticks;
@@ -44,7 +45,7 @@ public class EatFukumame<E extends FukumameThrower> extends Behavior<E> {
 		super.tick(p_22551_, p_22552_, p_22553_);
 
 		if (--this.ticks == 10) {
-			p_22552_.swing(InteractionHand.MAIN_HAND);
+			p_22552_.swing(InteractionHand.MAIN_HAND, SwingAnimation.DEFAULT);
 			p_22552_.setCharge(false);
 			p_22552_.playSound(SoundEvents.GENERIC_EAT.value());
 			p_22552_.eatFukumame();

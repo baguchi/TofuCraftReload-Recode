@@ -10,7 +10,7 @@
           "name": "tofucraft:tofu_kinu",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
+              "type": "minecraft:entity_properties",
               "entity": "this",
               "predicate": {
                 "minecraft:type_specific/cube_mob": {
@@ -19,7 +19,7 @@
               }
             },
             {
-              "condition": "minecraft:damage_source_properties",
+              "type": "minecraft:damage_source_properties",
               "predicate": {
                 "source_entity": {
                   "minecraft:entity_type": "minecraft:frog"
@@ -27,9 +27,9 @@
               }
             },
             {
-              "condition": "minecraft:inverted",
+              "type": "minecraft:inverted",
               "term": {
-                "condition": "minecraft:entity_properties",
+                "type": "minecraft:entity_properties",
                 "entity": "this",
                 "predicate": {
                   "minecraft:nbt": "{ZundaConverting:1}"
@@ -43,7 +43,7 @@
           "name": "tofucraft:tofu_kinu",
           "conditions": [
             {
-              "condition": "minecraft:entity_properties",
+              "type": "minecraft:entity_properties",
               "entity": "this",
               "predicate": {
                 "minecraft:type_specific/cube_mob": {
@@ -52,9 +52,9 @@
               }
             },
             {
-              "condition": "minecraft:inverted",
+              "type": "minecraft:inverted",
               "term": {
-                "condition": "minecraft:damage_source_properties",
+                "type": "minecraft:damage_source_properties",
                 "predicate": {
                   "source_entity": {
                     "minecraft:entity_type": "minecraft:frog"
@@ -68,6 +68,7 @@
             {
               "function": "set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 2
               }
@@ -75,8 +76,8 @@
             {
               "count": {
                 "type": "minecraft:uniform",
-                "max": 1.0,
-                "min": 0.0
+                "max": 1,
+                "min": 0
               },
               "enchantment": "minecraft:looting",
               "function": "minecraft:enchanted_count_increase"
@@ -84,10 +85,10 @@
             {
               "conditions": [
                 {
-                  "condition": "minecraft:any_of",
+                  "type": "minecraft:any_of",
                   "terms": [
                     {
-                      "condition": "minecraft:entity_properties",
+                      "type": "minecraft:entity_properties",
                       "entity": "this",
                       "predicate": {
                         "minecraft:flags": {
@@ -96,7 +97,7 @@
                       }
                     },
                     {
-                      "condition": "minecraft:entity_properties",
+                      "type": "minecraft:entity_properties",
                       "entity": "direct_attacker",
                       "predicate": {
                         "minecraft:equipment": {
@@ -127,36 +128,42 @@
         {
           "type": "minecraft:item",
           "name": "tofucraft:zundama",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "minecraft:nbt": "{ZundaConverting:1}"
-              }
-            },
-            {
-              "condition": "minecraft:damage_source_properties",
-              "predicate": {
-                "source_entity": {
-                  "minecraft:entity_type": "minecraft:frog"
+          "condition": {
+            "type": "minecraft:all_of",
+            "terms": [
+              {
+                "type": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "minecraft:nbt": "{ZundaConverting:1}"
+                }
+              },
+              {
+                "type": "minecraft:damage_source_properties",
+                "predicate": {
+                  "source_entity": {
+                    "minecraft:entity_type": "minecraft:frog"
+                  }
                 }
               }
-            }
-          ]
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "minecraft:type_specific/cube_mob": {
-              "size": 1
-            }
+            ]
           }
         }
-      ]
+      ],
+      "condition": {
+        "type": "minecraft:all_of",
+        "terms": [
+          {
+            "type": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "minecraft:type_specific/cube_mob": {
+                "size": 1
+              }
+            }
+          }
+        ]
+      }
     }
   ]
 }

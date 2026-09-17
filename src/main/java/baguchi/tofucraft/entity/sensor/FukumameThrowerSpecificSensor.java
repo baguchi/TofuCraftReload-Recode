@@ -97,12 +97,11 @@ public class FukumameThrowerSpecificSensor extends Sensor<LivingEntity> {
 	}
 
 	private static Optional<BlockPos> findNearestRepellent(ServerLevel level, LivingEntity body) {
-		return BlockPos.findClosestMatch(body.blockPosition(), 8, 4, (pos) -> isValidRepellent(level, pos));
+		return level.findBlocksInBoxByManhattanDistance(body.blockPosition(), 8, 4).filterState(FukumameThrowerSpecificSensor::isValidRepellent).findFirst();
 	}
 
-	private static boolean isValidRepellent(ServerLevel level, BlockPos pos) {
-		BlockState blockState = level.getBlockState(pos);
-		boolean isRepellent = blockState.is(BlockTags.PIGLIN_REPELLENTS);
-		return isRepellent && blockState.is(Blocks.SOUL_CAMPFIRE) ? CampfireBlock.isLitCampfire(blockState) : isRepellent;
+	private static boolean isValidRepellent(BlockState state) {
+		boolean isRepellent = state.is(BlockTags.PIGLIN_REPELLENTS);
+		return isRepellent && state.is(Blocks.SOUL_CAMPFIRE) ? CampfireBlock.isLitCampfire(state) : isRepellent;
 	}
 }

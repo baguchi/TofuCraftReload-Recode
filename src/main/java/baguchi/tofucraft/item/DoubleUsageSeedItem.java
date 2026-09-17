@@ -56,7 +56,7 @@ public class DoubleUsageSeedItem extends BlockItem {
 					BlockState blockstate1 = level.getBlockState(blockpos);
 					if (blockstate1.is(blockstate.getBlock())) {
 						blockstate1 = this.updateBlockStateFromTag(blockpos, level, itemstack, blockstate1);
-						this.updateCustomBlockEntityTag(blockpos, level, player, itemstack, blockstate1);
+						this.updateCustomBlockEntityTag(level, player, blockpos, itemstack);
 						updateBlockEntityComponents(level, blockpos, itemstack);
 						blockstate1.getBlock().setPlacedBy(level, blockpos, blockstate1, player, itemstack);
 						if (player instanceof ServerPlayer) {

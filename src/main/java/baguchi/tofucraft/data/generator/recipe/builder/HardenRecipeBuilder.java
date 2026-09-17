@@ -6,6 +6,7 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.advancements.triggers.RecipeUnlockedTrigger;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
@@ -54,15 +55,15 @@ public class HardenRecipeBuilder implements RecipeBuilder {
 	}
 
 	@Override
-	public void save(RecipeOutput p_301266_, ResourceKey<Recipe<?>> p_126264_) {
-		this.ensureValid(p_126264_);
-		Advancement.Builder advancement$builder = p_301266_.advancement()
-				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_126264_))
-				.rewards(AdvancementRewards.Builder.recipe(p_126264_))
+	public void save(RecipeOutput output, ResourceKey<Recipe<?>> id) {
+		this.ensureValid(id);
+		Advancement.Builder advancement$builder = output.advancement()
+				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(output.lookup(Registries.RECIPE).getOrThrow(id)))
+				.rewards(AdvancementRewards.Builder.recipe(id))
 				.requirements(AdvancementRequirements.Strategy.OR);
 		this.criteria.forEach(advancement$builder::addCriterion);
 		HardenRecipe recipe = new HardenRecipe(this.ingredient, this.stackResult);
-		p_301266_.accept(p_126264_, recipe, advancement$builder.build(p_126264_.identifier().withPrefix("recipes/harden/")));
+		output.accept(id, recipe, advancement$builder.build(id.identifier().withPrefix("recipes/harden/")));
 	}
 
 	private void ensureValid(ResourceKey<Recipe<?>> p_126266_) {

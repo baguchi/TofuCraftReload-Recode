@@ -35,9 +35,9 @@ public class TofuDimensionTypes {
 		HolderGetter<Timeline> timelines = context.lookup(Registries.TIMELINE);
 		HolderGetter<WorldClock> clocks = context.lookup(Registries.WORLD_CLOCK);
 		EnvironmentAttributeMap environmentattributemap = EnvironmentAttributeMap.builder()
-				.set(EnvironmentAttributes.FOG_COLOR, ARGB.white(0.8F))
-				.set(EnvironmentAttributes.SKY_COLOR, ARGB.color(255, 255, 255, 200))
-				.set(EnvironmentAttributes.CLOUD_COLOR, ARGB.white(0.8F))
+				.set(EnvironmentAttributes.FOG_COLOR, ARGB.vector3fFromRGB24(ARGB.white(1F)))
+				.set(EnvironmentAttributes.SKY_COLOR, ARGB.vector3fFromRGB24(-4138753))
+				.set(EnvironmentAttributes.CLOUD_COLOR, ARGB.vector4fFromARGB32(ARGB.white(0.8F)))
 				.set(EnvironmentAttributes.CLOUD_HEIGHT, 192.33F)
 				.set(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(TofuMusics.TOFU_WORLD))
 				.set(EnvironmentAttributes.BED_RULE, BedRule.CAN_SLEEP_WHEN_DARK)

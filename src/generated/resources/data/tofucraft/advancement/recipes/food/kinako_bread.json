@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:kinako_bread"
+        "recipes": "tofucraft:kinako_bread"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

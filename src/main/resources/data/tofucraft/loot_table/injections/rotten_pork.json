@@ -8,10 +8,11 @@
           "type": "item",
           "name": "tofucraft:rotten_pork",
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "set_count",
+              "type": "set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 0,
                 "max": 1
               }
@@ -23,7 +24,7 @@
                 "min": 0.0
               },
               "enchantment": "minecraft:looting",
-              "function": "minecraft:enchanted_count_increase"
+              "type": "minecraft:enchanted_count_increase"
             }
           ]
         }

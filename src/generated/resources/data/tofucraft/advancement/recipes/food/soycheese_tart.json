@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:soycheese_tart"
+        "recipes": "tofucraft:soycheese_tart"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

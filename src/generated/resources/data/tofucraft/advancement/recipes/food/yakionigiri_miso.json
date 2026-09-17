@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:yakionigiri_miso"
+        "recipes": "tofucraft:yakionigiri_miso"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

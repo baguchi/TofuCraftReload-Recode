@@ -204,26 +204,26 @@ public class TofuItemTags extends BlockTagCopyingItemTagProvider {
 		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_BOUNCY)
 				.add(TofuBlocks.KINUTOFU.asItem())
 				.add(TofuBlocks.MOMENTOFU.asItem())
-				.add(TofuBlocks.EGGTOFU.asItem());
+				.add(TofuBlocks.EGG_TOFU.asItem());
 		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_FAST_FLAT)
-				.add(TofuBlocks.DRIEDTOFU.asItem())
+				.add(TofuBlocks.DRIED_TOFU.asItem())
 				.add(TofuBlocks.GRILLED_TOFU.asItem())
-				.add(TofuBlocks.SESAMETOFU.asItem())
+				.add(TofuBlocks.SESAME_TOFU.asItem())
 				.add(TofuBlocks.STRAWBERRY_TOFU.asItem())
-				.add(TofuBlocks.MISOTOFU.asItem())
+				.add(TofuBlocks.MISO_TOFU.asItem())
 				.add(TofuBlocks.HELLTOFU.asItem())
 				.add(TofuBlocks.SOULTOFU.asItem())
 				.add(TofuBlocks.FRIED_TOFU.asItem())
 				.add(TofuBlocks.FRIED_POUCH_TOFU.asItem());
 		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_BOUNCY)
-				.add(TofuBlocks.ZUNDATOFU.asItem())
+				.add(TofuBlocks.ZUNDA_TOFU.asItem())
 				.add(TofuBlocks.GRILLED_TOFU.asItem());
 		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_BOUNCY)
 				.add(TofuBlocks.ISHITOFU.asItem())
 				.add(TofuBlocks.ISHITOFU_BRICK.asItem())
 				.add(TofuBlocks.ISHITOFU_CHISELED_BRICK.asItem())
 				.add(TofuBlocks.ISHITOFU_SMOOTH_BRICK.asItem());
-		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_FLAT).add(TofuBlocks.DIAMONDTOFU.asItem()).add(TofuBlocks.METALTOFU.asItem()).add(TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.asItem()).add(TofuBlocks.TOFU_GEM_BLOCK.asItem());
+		this.tag(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_FLAT).add(TofuBlocks.DIAMOND_TOFU.asItem()).add(TofuBlocks.METALTOFU.asItem()).add(TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.asItem()).add(TofuBlocks.TOFU_GEM_BLOCK.asItem());
 	}
 
 

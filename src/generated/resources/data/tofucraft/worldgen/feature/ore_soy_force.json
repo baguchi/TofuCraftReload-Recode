@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:ore",
+  "discard_chance_on_air_exposure": 0.0,
+  "size": 8,
+  "targets": [
+    {
+      "state": "tofucraft:tofuslate_soy_force_ore",
+      "target": {
+        "block": "tofucraft:tofuslate",
+        "predicate_type": "minecraft:block_match"
+      }
+    }
+  ]
+}

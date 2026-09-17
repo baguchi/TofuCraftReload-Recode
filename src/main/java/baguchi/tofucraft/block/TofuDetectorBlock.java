@@ -2,7 +2,6 @@ package baguchi.tofucraft.block;
 
 import baguchi.tofucraft.datamap.TofuHarden;
 import baguchi.tofucraft.registry.TofuDataMaps;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -25,17 +24,11 @@ import net.minecraft.world.level.redstone.ExperimentalRedstoneUtils;
 import net.minecraft.world.level.redstone.Orientation;
 
 public class TofuDetectorBlock extends DirectionalBlock {
-	public static final MapCodec<TofuDetectorBlock> CODEC = simpleCodec(TofuDetectorBlock::new);
 	public static final IntegerProperty POWER = BlockStateProperties.POWER;
 
 	public TofuDetectorBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.SOUTH).setValue(POWER, 0));
-	}
-
-	@Override
-	protected MapCodec<? extends DirectionalBlock> codec() {
-		return CODEC;
 	}
 
 	@Override

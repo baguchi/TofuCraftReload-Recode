@@ -2,7 +2,6 @@ package baguchi.tofucraft.block;
 
 import baguchi.tofucraft.blockentity.TofunianStatueBlockEntity;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -37,11 +36,6 @@ public class TofunianStatueBlock extends BaseEntityBlock {
 
 	public TofunianStatueBlock(Properties p_49224_) {
 		super(p_49224_);
-	}
-
-	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
-		return null;
 	}
 
 	@Override

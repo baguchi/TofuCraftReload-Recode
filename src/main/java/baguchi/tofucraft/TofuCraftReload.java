@@ -22,11 +22,9 @@ import baguchi.tofucraft.registry.TofuBiomes;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuBlockSetTypes;
 import baguchi.tofucraft.registry.TofuBlocks;
-import baguchi.tofucraft.registry.TofuCarvers;
 import baguchi.tofucraft.registry.TofuCreativeModeTabs;
 import baguchi.tofucraft.registry.TofuDataComponents;
 import baguchi.tofucraft.registry.TofuEffects;
-import baguchi.tofucraft.registry.TofuEnchantmentEffects;
 import baguchi.tofucraft.registry.TofuEntityDatas;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.registry.TofuFeatures;
@@ -52,14 +50,11 @@ import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -114,7 +109,6 @@ public class TofuCraftReload {
 		TofuItems.ITEMS.register(modBus);
 		TofuEntityTypes.ENTITIES.register(modBus);
 		TofuSensorTypes.SENSOR_TYPE.register(modBus);
-		TofuEnchantmentEffects.ENTITY_EFFECTS.register(modBus);
 		TofuBlockEntitys.BLOCK_ENTITIES.register(modBus);
 		TofuMenus.MENU_TYPES.register(modBus);
 		TofuEffects.MOB_EFFECTS.register(modBus);
@@ -139,7 +133,6 @@ public class TofuCraftReload {
 		TofuAttachments.ATTACHMENT_TYPES.register(modBus);
 		TofuParticleTypes.PARTICLE_TYPES.register(modBus);
 		TofuAdvancements.CRITERIONS_REGISTER.register(modBus);
-		TofuCarvers.WORLD_CARVER.register(modBus);
 		TofuProfessions.PROFESSIONS.register(modBus);
 		TofunianProfessions.TOFUNIAN_PROFESSION.register(modBus);
 		if (FMLEnvironment.getDist() == Dist.CLIENT) {
@@ -187,15 +180,6 @@ public class TofuCraftReload {
 			TofuBiomes.init();
 			TofuEnergyMap.init();
 			ModInteractionInformations.init();
-
-			FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
-
-
-			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.SAPLING_TOFU.get()), TofuBlocks.POTTED_TOFU_SAPLING);
-			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.SAPLING_APRICOT.get()), TofuBlocks.POTTED_APRICOT_SAPLING);
-			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get()), TofuBlocks.POTTED_ZUNDA_TOFU_MUSHROOM);
-			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.LEEK.get()), TofuBlocks.POTTED_LEEK);
-			pot.addPlant(BuiltInRegistries.BLOCK.getKey(TofuBlocks.TOFU_FLOWER.get()), TofuBlocks.POTTED_TOFU_FLOWER);
 		});
 	}
 

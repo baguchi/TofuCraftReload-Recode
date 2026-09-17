@@ -33,7 +33,7 @@ public class TofuSlimeOuterLayer<T extends SlimeRenderState> extends RenderLayer
 			}
 
 			this.model.setupAnim(t);
-			submitNodeCollector.submitModel(this.model, t, poseStack, renderType, t.lightCoords, LivingEntityRenderer.getOverlayCoords(t, 0.0F), t.outlineColor, null);
+			submitNodeCollector.submitModel(this.model, t, poseStack, renderType, t.lightCoords, LivingEntityRenderer.getOverlayCoords(t, 0.0F), t.outlineColor);
 		}
 	}
 }

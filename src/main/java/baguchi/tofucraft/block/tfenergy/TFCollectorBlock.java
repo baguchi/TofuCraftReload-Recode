@@ -2,10 +2,8 @@ package baguchi.tofucraft.block.tfenergy;
 
 import baguchi.tofucraft.blockentity.tfenergy.TFCollectorBlockEntity;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -19,17 +17,11 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import javax.annotation.Nullable;
 
 public class TFCollectorBlock extends TFBaseEntityBlock {
-	public static final MapCodec<TFCollectorBlock> CODEC = simpleCodec(TFCollectorBlock::new);
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
 	public TFCollectorBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(false)));
-	}
-
-	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
-		return CODEC;
 	}
 
 	public RenderShape getRenderShape(BlockState p_48727_) {

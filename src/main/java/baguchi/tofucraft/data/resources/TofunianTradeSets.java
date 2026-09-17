@@ -10,8 +10,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.trading.TradeSet;
 import net.minecraft.world.item.trading.VillagerTrade;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import java.util.Optional;
 
@@ -46,7 +46,7 @@ public class TofunianTradeSets {
 
 	public static void bootstrap(BootstrapContext<TradeSet> context) {
 		register(context, TOFUNIAN_TRAVELER_BUYING, TofuTags.TofunianTrade.TOFUNIAN_TRAVELER_BUYING);
-		register(context, TOFUNIAN_TRAVELER_COMMON, TofuTags.TofunianTrade.TOFUNIAN_TRAVELER_COMMON, ConstantValue.exactly(5.0F));
+		register(context, TOFUNIAN_TRAVELER_COMMON, TofuTags.TofunianTrade.TOFUNIAN_TRAVELER_COMMON, ContextIntProviders.exactly(5));
 		register(context, TOFUNIAN_TRAVELER_UNCOMMON, TofuTags.TofunianTrade.TOFUNIAN_TRAVELER_UNCOMMON);
 		register(context, SOY_WORKER_LEVEL_1, TofuTags.TofunianTrade.SOY_WORKER_LEVEL_1);
 		register(context, SOY_WORKER_LEVEL_2, TofuTags.TofunianTrade.SOY_WORKER_LEVEL_2);
@@ -74,11 +74,11 @@ public class TofunianTradeSets {
 	}
 
 	public static Holder.Reference<TradeSet> register(BootstrapContext<TradeSet> context, ResourceKey<TradeSet> resourceKey, TagKey<VillagerTrade> tradeTag) {
-		return register(context, resourceKey, tradeTag, ConstantValue.exactly(2.0F));
+		return register(context, resourceKey, tradeTag, ContextIntProviders.exactly(2));
 	}
 
 	public static Holder.Reference<TradeSet> register(
-			BootstrapContext<TradeSet> context, ResourceKey<TradeSet> resourceKey, TagKey<VillagerTrade> tradeTag, NumberProvider numberProvider
+			BootstrapContext<TradeSet> context, ResourceKey<TradeSet> resourceKey, TagKey<VillagerTrade> tradeTag, Holder<ContextIntProvider> numberProvider
 	) {
 		return context.register(
 				resourceKey,

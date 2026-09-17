@@ -28,7 +28,7 @@ public class TofuBlockTags extends BlockTagsProvider {
 		new TofuBlockItemTags(tagId -> TofuBlockItemTags.wrapForBlocks(this.tag(tagId.block()))).run();
 
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
-						, TofuBlocks.GRILLED_TOFU.get(), TofuBlocks.ZUNDATOFU.get()
+						, TofuBlocks.GRILLED_TOFU.get(), TofuBlocks.ZUNDA_TOFU.get()
 						, TofuBlocks.TOFU_STAIR_KINU.get(), TofuBlocks.TOFU_STAIR_MOMEN.get(), TofuBlocks.TOFU_STAIR_ZUNDA.get(), TofuBlocks.TOFU_STAIR_HELL.get(), TofuBlocks.TOFU_STAIR_SOUL.get()
 						, TofuBlocks.TOFU_SLAB_KINU.get(), TofuBlocks.TOFU_SLAB_MOMEN.get(), TofuBlocks.TOFU_SLAB_ZUNDA.get(), TofuBlocks.TOFU_SLAB_HELL.get(), TofuBlocks.TOFU_SLAB_SOUL.get()
 						, TofuBlocks.TOFU_LADDER_KINU.get(), TofuBlocks.TOFU_LADDER_MOMEN.get()
@@ -44,18 +44,18 @@ public class TofuBlockTags extends BlockTagsProvider {
 						, TofuBlocks.TOFU_DOOR_FRIED.get(), TofuBlocks.TOFU_TRAPDOOR_FRIED.get(), TofuBlocks.TOFU_FENCE_FRIED.get()
 						, TofuBlocks.TOFU_DOOR_FRIED_POUCH.get(), TofuBlocks.TOFU_TRAPDOOR_FRIED_POUCH.get(), TofuBlocks.TOFU_FENCE_FRIED_POUCH.get()
 						, TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.MABOU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.ORE_TOFUGEM.get()
-						, TofuBlocks.EGGTOFU.get(), TofuBlocks.TOFU_STAIR_EGG.get(), TofuBlocks.TOFU_SLAB_EGG.get()
-						, TofuBlocks.SESAMETOFU.get(), TofuBlocks.TOFU_STAIR_SESAME.get(), TofuBlocks.TOFU_SLAB_SESAME.get()
+						, TofuBlocks.EGG_TOFU.get(), TofuBlocks.TOFU_STAIR_EGG.get(), TofuBlocks.TOFU_SLAB_EGG.get()
+						, TofuBlocks.SESAME_TOFU.get(), TofuBlocks.TOFU_STAIR_SESAME.get(), TofuBlocks.TOFU_SLAB_SESAME.get()
 						, TofuBlocks.STRAWBERRY_TOFU.get(), TofuBlocks.TOFU_STAIR_STRAWBERRY.get(), TofuBlocks.TOFU_SLAB_STRAWBERRY.get()
 						, TofuBlocks.FRIED_TOFU.get(), TofuBlocks.TOFU_STAIR_FRIED.get(), TofuBlocks.TOFU_SLAB_FRIED.get()
 						, TofuBlocks.FRIED_POUCH_TOFU.get(), TofuBlocks.TOFU_STAIR_FRIED_POUCH.get(), TofuBlocks.TOFU_SLAB_FRIED_POUCH.get()
-						, TofuBlocks.ZUNDATOFU.get(), TofuBlocks.TOFU_STAIR_ZUNDA.get(), TofuBlocks.TOFU_SLAB_ZUNDA.get(), TofuBlocks.MISOTOFU.get(), TofuBlocks.TOFU_STAIR_MISO.get(), TofuBlocks.TOFU_SLAB_MISO.get()
-						, TofuBlocks.DRIEDTOFU.get(), TofuBlocks.TOFU_STAIR_DRIED.get(), TofuBlocks.TOFU_SLAB_DRIED.get(), TofuBlocks.MINCEDTOFU.get())
+						, TofuBlocks.ZUNDA_TOFU.get(), TofuBlocks.TOFU_STAIR_ZUNDA.get(), TofuBlocks.TOFU_SLAB_ZUNDA.get(), TofuBlocks.MISO_TOFU.get(), TofuBlocks.TOFU_STAIR_MISO.get(), TofuBlocks.TOFU_SLAB_MISO.get()
+						, TofuBlocks.DRIED_TOFU.get(), TofuBlocks.TOFU_STAIR_DRIED.get(), TofuBlocks.TOFU_SLAB_DRIED.get(), TofuBlocks.MINCEDTOFU.get())
 				.add(TofuBlocks.SALT_BLOCK.get())
 				.add(TofuBlocks.OKARA_BLOCK.get())
 				.add(TofuBlocks.WAXED_KINUTOFU.get(), TofuBlocks.WAXED_MOMENTOFU.get());
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(TofuBlocks.ISHITOFU.get(), TofuBlocks.ISHITOFU_BRICK.get(), TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(), TofuBlocks.ISHITOFU_CHISELED_BRICK.get()
-						, TofuBlocks.METALTOFU.get(), TofuBlocks.METAL_TOFU_GRATE.get(), TofuBlocks.METAL_TOFU_LUMP.get(), TofuBlocks.METAL_TOFU_BARS.get(), TofuBlocks.DIAMONDTOFU.get(), TofuBlocks.TOFU_GEM_BLOCK.get(), TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get()
+						, TofuBlocks.METALTOFU.get(), TofuBlocks.METAL_TOFU_GRATE.get(), TofuBlocks.METAL_TOFU_LUMP.get(), TofuBlocks.METAL_TOFU_BARS.get(), TofuBlocks.DIAMOND_TOFU.get(), TofuBlocks.TOFU_GEM_BLOCK.get(), TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get()
 						, TofuBlocks.HELLTOFU_BRICK.get(), TofuBlocks.HELLTOFU_SMOOTH_BRICK.get(), TofuBlocks.HELLTOFU_CHISELED_BRICK.get()
 						, TofuBlocks.SOULTOFU_BRICK.get(), TofuBlocks.SOULTOFU_SMOOTH_BRICK.get(), TofuBlocks.SOULTOFU_CHISELED_BRICK.get()
 						, TofuBlocks.DRIEDTOFU_BRICK.get(), TofuBlocks.DRIEDTOFU_SMOOTH_BRICK.get(), TofuBlocks.DRIEDTOFU_CHISELED_BRICK.get(), TofuBlocks.TOFU_STAIR_DRIEDBRICK.get(), TofuBlocks.TOFU_SLAB_DRIEDBRICK.get()
@@ -110,14 +110,15 @@ public class TofuBlockTags extends BlockTagsProvider {
 				.add(TofuBlocks.METALTOFU.get(), TofuBlocks.TOFU_STAIR_METAL.get(), TofuBlocks.TOFU_SLAB_METAL.get(), TofuBlocks.TOFU_LADDER_METAL.get(), TofuBlocks.TOFU_FENCE_METAL.get(), TofuBlocks.TOFU_DOOR_METAL.get(), TofuBlocks.TOFU_TRAPDOOR_METAL.get())
 				.add(TofuBlocks.TOFU_GEM_BLOCK.get()).add(TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get()).add(TofuBlocks.ZUNDA_ALLOY_TOFU_BLOCK.get());
 		tag(BlockTags.NEEDS_IRON_TOOL)
-				.add(TofuBlocks.DIAMONDTOFU.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
+				.add(TofuBlocks.DIAMOND_TOFU.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get());
 		tag(BlockTags.PIGLIN_REPELLENTS).add(TofuBlocks.SOYBEAN_SOUL.get());
 
 		tag(TofuTags.Blocks.TOFU_FARMLANDS).add(TofuBlocks.TOFU_FARMLAND.get());
+		tag(TofuTags.Blocks.TOFU_PORTAL_FRAME).add(TofuBlocks.GRILLED_TOFU.get());
 
 		tag(TofuTags.Blocks.HAS_INFO).add(TofuBlocks.SALT_FURNACE.get()).add(TofuBlocks.SALTPAN.get());
 		tag(TofuTags.Blocks.PICKABLE_TOFU).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
-				, TofuBlocks.GRILLED_TOFU.get(), TofuBlocks.ZUNDATOFU.get(), TofuBlocks.MINCEDTOFU.get()).add(TofuBlocks.METALTOFU.get()).add(TofuBlocks.ISHITOFU.get());
+				, TofuBlocks.GRILLED_TOFU.get(), TofuBlocks.ZUNDA_TOFU.get(), TofuBlocks.MINCEDTOFU.get()).add(TofuBlocks.METALTOFU.get()).add(TofuBlocks.ISHITOFU.get());
 
 		tag(BlockTags.REPLACEABLE).add(TofuBlocks.LEEK.get()).add(TofuBlocks.TALL_LEEK.get());
 		tag(TofuTags.Blocks.TF_TRANSMITTER).addTag(BlockTags.REPLACEABLE).add(TofuBlocks.ANTENNA_BASIC.get()).add(TofuBlocks.ANTENNA_ADVANCE.get());
@@ -188,6 +189,78 @@ public class TofuBlockTags extends BlockTagsProvider {
 		tag(TofuTags.Blocks.TOFUNIAN_FARMER).add(Blocks.COMPOSTER.builtInRegistryHolder().key());
 		tag(TofuTags.Blocks.TOFUNIAN_SOY_WORKER).add(Blocks.CAULDRON.builtInRegistryHolder().key()).add(Blocks.WATER_CAULDRON.builtInRegistryHolder().key()).add(TofuBlocks.SOYMILK_CAULDRON.get());
 		tag(TofuTags.Blocks.TOFUNIAN_ENGINEER).add(TofuBlocks.TOFU_WORK_STATION.get());
+
+		this.tag(BlockTags.CANNOT_REPLACE_BELOW_TREE_TRUNK).add(TofuBlocks.TOFU_BEDROCK.get());
+		this.tag(BlockTags.BLOCKS_MOTION).addAll(
+				TofuBlocks.TOFU_TERRAIN.get(),
+				TofuBlocks.TOFU_TERRAIN_ZUNDA.get(),
+				TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get(),
+				TofuBlocks.TOFUSLATE.get(),
+				TofuBlocks.TOFU_BEDROCK.get(),
+				TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get(),
+				TofuBlocks.TOFU_FARMLAND.get()
+		).addAll(
+				TofuBlocks.KINUTOFU.get(),
+				TofuBlocks.MOMENTOFU.get(),
+				TofuBlocks.ISHITOFU.get(),
+				TofuBlocks.ISHITOFU_BRICK.get(),
+				TofuBlocks.ISHITOFU_SMOOTH_BRICK.get(),
+				TofuBlocks.ISHITOFU_CHISELED_BRICK.get(),
+				TofuBlocks.METALTOFU.get(),
+				TofuBlocks.METAL_TOFU_GRATE.get(),
+				TofuBlocks.METAL_TOFU_LUMP.get(),
+				TofuBlocks.METALTOFU.get(),
+				TofuBlocks.ISHI_TOFU_STEM.get(),
+				TofuBlocks.DIAMOND_TOFU.get(),
+				TofuBlocks.HELLTOFU.get(),
+				TofuBlocks.HELLTOFU_BRICK.get(),
+				TofuBlocks.HELLTOFU_CHISELED_BRICK.get(),
+				TofuBlocks.HELLTOFU_SMOOTH_BRICK.get(),
+				TofuBlocks.SOULTOFU.get(),
+				TofuBlocks.SOULTOFU_BRICK.get(),
+				TofuBlocks.SOULTOFU_CHISELED_BRICK.get(),
+				TofuBlocks.SOULTOFU_SMOOTH_BRICK.get(),
+				TofuBlocks.MISO_TOFU.get(),
+				TofuBlocks.DRIED_TOFU.get(),
+				TofuBlocks.DRIEDTOFU_BRICK.get(),
+				TofuBlocks.DRIEDTOFU_CHISELED_BRICK.get(),
+				TofuBlocks.DRIEDTOFU_SMOOTH_BRICK.get(),
+				TofuBlocks.EGG_TOFU.get(),
+				TofuBlocks.EGGTOFU_BRICK.get(),
+				TofuBlocks.EGGTOFU_CHISELED_BRICK.get(),
+				TofuBlocks.EGGTOFU_SMOOTH_BRICK.get(),
+				TofuBlocks.SESAME_TOFU.get(),
+				TofuBlocks.ZUNDA_TOFU.get(),
+				TofuBlocks.ZUNDATOFU_BRICK.get(),
+				TofuBlocks.ZUNDATOFU_SMOOTH_BRICK.get(),
+				TofuBlocks.STRAWBERRY_TOFU.get(),
+				TofuBlocks.FRIED_TOFU.get(),
+				TofuBlocks.FRIED_POUCH_TOFU.get()
+		).addAll(
+				TofuBlocks.MINCEDTOFU.get(),
+				TofuBlocks.CHIKUWA_BLOCK.get(),
+				TofuBlocks.TOFU_CHIKUWA_BLOCK.get(),
+				TofuBlocks.SALT_BLOCK.get(),
+				TofuBlocks.OKARA_BLOCK.get(),
+				TofuBlocks.GIANT_OKARA_DONUT.get(),
+				TofuBlocks.BARREL_MISO.get(),
+				TofuBlocks.BARREL_MISOTOFU.get(),
+				TofuBlocks.BARREL_ADV_TOFUGEM.get(),
+				TofuBlocks.NATTOBED.get(),
+				TofuBlocks.NETHER_NATTOBED.get(),
+				TofuBlocks.SOY_CHEESE_BLOCK.get(),
+				TofuBlocks.SOY_NETHER_CHEESE_BLOCK.get(),
+				TofuBlocks.SOY_SOUL_CHEESE_BLOCK.get(),
+				TofuBlocks.ZUNDAMA_BLOCK.get(),
+				TofuBlocks.TOFU_DETECTOR.get(),
+				TofuBlocks.TF_STORAGE.get(),
+				TofuBlocks.TF_OVEN.get(),
+				TofuBlocks.TF_COLLECTOR.get(),
+				TofuBlocks.TF_SATURATOR.get(),
+				TofuBlocks.TOFU_WORK_STATION.get(),
+				TofuBlocks.TF_CRAFTING_TABLE.get(),
+				TofuBlocks.TOFU_POT.get()
+		);
 	}
 
 	protected record Appender(TagAppender<Block> app) implements TagAppender<Block> {
@@ -247,6 +320,13 @@ public class TofuBlockTags extends BlockTagsProvider {
 		}
 
 		public Appender addAll(Iterable<Block> blocks) {
+			for (Block block : blocks) {
+				add(block);
+			}
+			return this;
+		}
+
+		public Appender addAll(Block... blocks) {
 			for (Block block : blocks) {
 				add(block);
 			}

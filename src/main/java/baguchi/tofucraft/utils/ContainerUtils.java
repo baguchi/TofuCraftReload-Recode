@@ -1,5 +1,6 @@
 package baguchi.tofucraft.utils;
 
+import net.minecraft.util.Prediction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -14,7 +15,7 @@ public class ContainerUtils {
 		if (itemHand.isEmpty()) {
 			player.setItemInHand(hand, bottle);
 		} else if ((!player.isCreative() || canAdd) && !player.getInventory().add(bottle)) {
-			player.drop(bottle, false);
+			player.drop(bottle, false, Prediction.PREDICTED);
 		}
 	}
 }

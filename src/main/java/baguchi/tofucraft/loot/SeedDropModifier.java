@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.core.Holder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -15,6 +16,7 @@ import net.neoforged.neoforge.common.loot.LootModifier;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class SeedDropModifier extends LootModifier {
@@ -23,7 +25,7 @@ public class SeedDropModifier extends LootModifier {
 			RecordCodecBuilder.mapCodec(inst -> codecStart(inst)
 					.apply(inst, SeedDropModifier::new)));
 
-	public SeedDropModifier(LootItemCondition[] conditionsIn, int priority) {
+	public SeedDropModifier(Optional<Holder<LootItemCondition>> conditionsIn, int priority) {
 		super(conditionsIn, priority);
 	}
 

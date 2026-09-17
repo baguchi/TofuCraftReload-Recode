@@ -52,7 +52,7 @@ public class TofuGandlemChargedLayer<T extends TofuGandlemRenderState, M extends
 		if (state.fullCharge) {
 			float f = (float) state.ageInTicks;
 			this.onlyDrawSelectedParts();
-			submitNodeCollector.submitModel(this.getParentModel(), state, poseStack, RenderTypes.energySwirl(this.texture, this.xOffset(f) % 1.0F, f * 0.01F % 1.0F), state.lightCoords, LivingEntityRenderer.getOverlayCoords(state, 0.0F), state.outlineColor, null);
+			submitNodeCollector.submitModel(this.getParentModel(), state, poseStack, RenderTypes.energySwirl(this.texture, this.xOffset(f) % 1.0F, f * 0.01F % 1.0F), state.lightCoords, LivingEntityRenderer.getOverlayCoords(state, 0.0F), state.outlineColor);
 			this.resetDrawForAllParts();
 		}
 	}

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:equipment/tofu_kinu_chestplate"
+        "recipes": "tofucraft:equipment/tofu_kinu_chestplate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -9,10 +9,11 @@
           "type" : "item",
           "name" : "minecraft:gunpowder",
           "weight" : 1,
-          "functions" : [
+          "modifier": [
             {
-              "function" : "set_count",
+              "type": "set_count",
               "count" : {
+                "type": "minecraft:uniform",
                 "min" : 0,
                 "max" : 1
               }
@@ -29,10 +30,11 @@
           "type" : "item",
           "name": "tofucraft:tofu_kinu",
           "weight" : 1,
-          "functions" : [
+          "modifier": [
             {
-              "function" : "set_count",
+              "type": "set_count",
               "count" : {
+                "type": "minecraft:uniform",
                 "min" : 0,
                 "max" : 2
               }
@@ -44,21 +46,24 @@
                 "min": 0.0
               },
               "enchantment": "minecraft:looting",
-              "function": "minecraft:enchanted_count_increase"
+              "type": "minecraft:enchanted_count_increase"
             },
             {
-              "function" : "minecraft:furnace_smelt",
-              "conditions" : [
-                {
-                  "condition" : "minecraft:entity_properties",
-                  "predicate" : {
-                    "flags" : {
-                      "is_on_fire" : true
-                    }
-                  },
-                  "entity" : "this"
-                }
-              ]
+              "type": "minecraft:furnace_smelt",
+              "conditions": {
+                "type": "minecraft:all_of",
+                "terms": [
+                  {
+                    "condition": "minecraft:entity_properties",
+                    "predicate": {
+                      "flags": {
+                        "is_on_fire": true
+                      }
+                    },
+                    "entity": "this"
+                  }
+                ]
+              }
             }
           ]
         }

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_crafters_book"
+        "recipes": "tofucraft:tofu_crafters_book"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

@@ -1,37 +1,37 @@
 package baguchi.tofucraft.world.gen.feature;
 
 import baguchi.tofucraft.registry.TofuTags;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
-public class TofuBlobFeature extends Feature<BlockStateConfiguration> {
-	public TofuBlobFeature(Codec<BlockStateConfiguration> codec) {
-		super(codec);
+public record TofuBlobFeature(Holder<BlockStateProvider> stateProvider) implements Feature {
+	public static final MapCodec<TofuBlobFeature> CODEC = RecordCodecBuilder.mapCodec((i) -> i.group(BlockStateProvider.CODEC.fieldOf("state_provider").forGetter(TofuBlobFeature::stateProvider)).apply(i, TofuBlobFeature::new));
+
+	@Override
+	public MapCodec<? extends Feature> codec() {
+		return CODEC;
 	}
 
+	@Override
+	public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
+		BlockPos blockpos = origin;
 
-	public boolean place(FeaturePlaceContext<BlockStateConfiguration> p_159471_) {
-		BlockPos blockpos = p_159471_.origin();
-		WorldGenLevel worldgenlevel = p_159471_.level();
-		RandomSource random = p_159471_.random();
-
-		BlockStateConfiguration blockstateconfiguration;
-		for (blockstateconfiguration = p_159471_.config(); blockpos.getY() > worldgenlevel.getMinY() + 3; blockpos = blockpos.below()) {
-			if (!worldgenlevel.isEmptyBlock(blockpos.below())) {
-				BlockState blockstate = worldgenlevel.getBlockState(blockpos.below());
-				if (isTofu(blockstate)) {
-					break;
-				}
+		if (!level.isEmptyBlock(blockpos.below())) {
+			BlockState blockstate = level.getBlockState(blockpos.below());
+			if (!isTofu(blockstate)) {
+				return false;
 			}
 		}
 
-		if (blockpos.getY() <= worldgenlevel.getMinY() + 3) {
+		if (blockpos.getY() <= level.getMinY() + 3) {
 			return false;
 		} else {
 			for (int l = 0; l < 3; ++l) {
@@ -42,7 +42,7 @@ public class TofuBlobFeature extends Feature<BlockStateConfiguration> {
 
 				for (BlockPos blockpos1 : BlockPos.betweenClosed(blockpos.offset(-i, -j, -k), blockpos.offset(i, j, k))) {
 					if (blockpos1.distSqr(blockpos) <= (double) (f * f)) {
-						worldgenlevel.setBlock(blockpos1, blockstateconfiguration.state, 4);
+						level.setBlock(blockpos1, stateProvider.value().getState(level, random, blockpos1), 4);
 					}
 				}
 

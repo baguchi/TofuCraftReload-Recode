@@ -2,7 +2,6 @@
   "values": [
     "tofucraft:batch",
     "tofucraft:drain",
-    "tofucraft:effect_protection",
-    "tofucraft:crack_burst"
+    "tofucraft:effect_protection"
   ]
 }

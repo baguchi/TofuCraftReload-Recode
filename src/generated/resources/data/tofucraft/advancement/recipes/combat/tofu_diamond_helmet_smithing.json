@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_diamond_helmet_smithing"
+        "recipes": "tofucraft:tofu_diamond_helmet_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:moyashiitame"
+        "recipes": "tofucraft:moyashiitame"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

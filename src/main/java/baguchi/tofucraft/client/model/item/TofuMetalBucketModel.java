@@ -31,6 +31,7 @@ import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.resources.model.geometry.QuadCollection;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.client.resources.model.sprite.MaterialBaker;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -64,9 +65,16 @@ public class TofuMetalBucketModel implements ItemModel {
 
 	private static final Material FALLBACK_CONTENT = new Material(getContentTexture(TofuCraftReload.prefix("fallback")));
 
-	private static final RenderType RENDER_TYPE_CUTOUT_UNLIT_BLOCK = NeoForgeRenderTypes.getItemCutoutUnlit(TextureAtlas.LOCATION_BLOCKS);
-	private static final RenderType RENDER_TYPE_CUTOUT_UNLIT_ITEM = NeoForgeRenderTypes.getItemCutoutUnlit(TextureAtlas.LOCATION_ITEMS);
-
+	private static final ItemRenderTypes RENDER_TYPES_CUTOUT_ITEM = new ItemRenderTypes(Sheets.cutoutItemSheet(), Sheets.cutoutItemGlintSheet(), Sheets.cutoutItemGlintSpecialSheet());
+	private static final ItemRenderTypes RENDER_TYPES_CUTOUT_UNLIT_BLOCK = new ItemRenderTypes(
+			NeoForgeRenderTypes.getItemCutoutUnlit(TextureAtlas.LOCATION_BLOCKS),
+			NeoForgeRenderTypes.getItemGlintCutoutUnlit(TextureAtlas.LOCATION_BLOCKS),
+			NeoForgeRenderTypes.getItemGlintSpecialCutoutUnlit(TextureAtlas.LOCATION_BLOCKS));
+	private static final ItemRenderTypes RENDER_TYPES_CUTOUT_UNLIT_ITEM = new ItemRenderTypes(
+			NeoForgeRenderTypes.getItemCutoutUnlit(TextureAtlas.LOCATION_ITEMS),
+			NeoForgeRenderTypes.getItemGlintCutoutUnlit(TextureAtlas.LOCATION_ITEMS),
+			NeoForgeRenderTypes.getItemGlintSpecialCutoutUnlit(TextureAtlas.LOCATION_ITEMS));
+	private static final ItemRenderTypes RENDER_TYPES_CUTOUT_BLOCK = new ItemRenderTypes(Sheets.cutoutBlockItemSheet(), Sheets.cutoutBlockItemGlintSheet(), Sheets.cutoutBlockItemGlintSpecialSheet());
 	private final Unbaked unbakedModel;
 	private final BakingContext bakingContext;
 	private final Matrix4fc transformation;
@@ -144,10 +152,14 @@ public class TofuMetalBucketModel implements ItemModel {
 		} else if (fluidMaskLocation != null && fluidSprite != null) {
 			Material.Baked templateSprite = materials.get(fluidMaskLocation, DEBUG_NAME);
 			// Fluid layer
+
 			ModelState transformedState = new ComposedModelState(state, DEPTH_OFFSET_TRANSFORM);
 			boolean emissive = this.unbakedModel.applyFluidLuminosity && fluid.getFluidType().getLightLevel() > 0;
+			ItemRenderTypes renderTypes = computeFluidItemRenderType(fluidSprite, emissive);
+			Direction shadeDir = emissive ? Direction.UP : null;
+
 			BakedQuad.MaterialInfo fluidInfo = baker.interner().materialInfo(new BakedQuad.MaterialInfo(
-					fluidSprite.sprite(), ChunkSectionLayer.SOLID, computeFluidItemRenderType(fluidSprite, emissive), 0, !emissive, emissive ? Level.MAX_BRIGHTNESS : 0, !emissive));
+					fluidSprite.sprite(), ChunkSectionLayer.SOLID, renderTypes.item, renderTypes.itemGlint, renderTypes.itemGlintSpecial, 0, shadeDir, emissive ? Level.MAX_BRIGHTNESS : 0, !emissive));
 			QuadCollection quads = UnbakedElementsHelper.bakeItemMaskQuads(baker, templateSprite, fluidInfo, transformedState, ExtraFaceData.DEFAULT); // Use template as mask
 
 			subModels.add(new CuboidItemModelWrapper(List.of(FluidContentsTint.INSTANCE), quads, renderProperties, this.transformation));
@@ -187,11 +199,11 @@ public class TofuMetalBucketModel implements ItemModel {
 		bakedModel.update(state, stack, resolver, context, level, owner, seed);
 	}
 
-	private static RenderType computeFluidItemRenderType(Material.Baked material, boolean emissive) {
+	private static ItemRenderTypes computeFluidItemRenderType(Material.Baked material, boolean emissive) {
 		if (material.sprite().atlasLocation().equals(TextureAtlas.LOCATION_BLOCKS)) {
-			return emissive ? RENDER_TYPE_CUTOUT_UNLIT_BLOCK : Sheets.cutoutBlockItemSheet();
+			return emissive ? RENDER_TYPES_CUTOUT_UNLIT_BLOCK : RENDER_TYPES_CUTOUT_BLOCK;
 		} else {
-			return emissive ? RENDER_TYPE_CUTOUT_UNLIT_ITEM : Sheets.cutoutItemSheet();
+			return emissive ? RENDER_TYPES_CUTOUT_UNLIT_ITEM : RENDER_TYPES_CUTOUT_ITEM;
 		}
 	}
 
@@ -228,5 +240,8 @@ public class TofuMetalBucketModel implements ItemModel {
 		public void resolveDependencies(Resolver resolver) {
 			//No dependencies
 		}
+	}
+
+	private record ItemRenderTypes(RenderType item, RenderType itemGlint, RenderType itemGlintSpecial) {
 	}
 }

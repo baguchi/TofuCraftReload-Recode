@@ -84,7 +84,7 @@ public class FukumameThrowerModel extends HumanoidModel<FukumameThrowerRenderSta
 		this.leftEar.zRot = (float) (-Math.PI / 6) - Mth.cos(f3 * 1.2F) * f4;
 		this.rightEar.zRot = (float) (Math.PI / 6) + Mth.cos(f3) * f4;
 		float f5 = (float) (Math.PI / 6);
-		float f6 = entity.attackTime;
+		float f6 = entity.swingAnimation;
 		PiglinArmPose piglinarmpose = entity.armPose;
 		if (piglinarmpose == PiglinArmPose.DANCING) {
 			float f7 = entity.ageInTicks / 60.0F;
@@ -131,7 +131,7 @@ public class FukumameThrowerModel extends HumanoidModel<FukumameThrowerRenderSta
 
 	@Override
 	protected void setupAttackAnimation(FukumameThrowerRenderState p_362671_) {
-		float f = p_362671_.attackTime;
+		float f = p_362671_.swingAnimation;
 		if (f > 0.0F && p_362671_.armPose == PiglinArmPose.ATTACKING_WITH_MELEE_WEAPON) {
 			AnimationUtils.swingWeaponDown(this.rightArm, this.leftArm, p_362671_.mainArm, f, p_362671_.ageInTicks);
 		} else {

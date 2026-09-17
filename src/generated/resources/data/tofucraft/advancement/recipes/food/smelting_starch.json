@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:smelting_starch"
+        "recipes": "tofucraft:smelting_starch"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -10,6 +10,7 @@ import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.advancements.triggers.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.Identifier;
@@ -130,10 +131,10 @@ public class TFShapedRecipeBuilder implements RecipeBuilder {
 	}
 
 	@Override
-	public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> id) {
+	public void save(RecipeOutput output, ResourceKey<Recipe<?>> id) {
 		ShapedRecipePattern shapedrecipepattern = this.ensureValid(id.identifier());
-		Advancement.Builder advancement$builder = recipeOutput.advancement()
-				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
+		Advancement.Builder advancement$builder = output.advancement()
+				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(output.lookup(Registries.RECIPE).getOrThrow(id)))
 				.rewards(AdvancementRewards.Builder.recipe(id))
 				.requirements(AdvancementRequirements.Strategy.OR);
 		this.criteria.forEach(advancement$builder::addCriterion);
@@ -145,7 +146,7 @@ public class TFShapedRecipeBuilder implements RecipeBuilder {
 				this.tf,
 				this.showNotification
 		);
-		recipeOutput.accept(id, shapedrecipe, advancement$builder.build(id.identifier().withPrefix("recipes/" + this.category.getSerializedName() + "/")));
+		output.accept(id, shapedrecipe, advancement$builder.build(id.identifier().withPrefix("recipes/" + this.category.getSerializedName() + "/")));
 	}
 
 	private ShapedRecipePattern ensureValid(Identifier loaction) {

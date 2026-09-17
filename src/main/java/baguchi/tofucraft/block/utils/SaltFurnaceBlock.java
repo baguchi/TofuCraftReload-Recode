@@ -3,7 +3,6 @@ package baguchi.tofucraft.block.utils;
 import baguchi.tofucraft.blockentity.SaltFurnaceBlockEntity;
 import baguchi.tofucraft.client.ClientProxy;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -34,17 +33,11 @@ import net.neoforged.neoforge.transfer.fluid.FluidUtil;
 import javax.annotation.Nullable;
 
 public class SaltFurnaceBlock extends BaseEntityBlock {
-	public static final MapCodec<SaltFurnaceBlock> CODEC = simpleCodec(SaltFurnaceBlock::new);
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
 	public SaltFurnaceBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, Boolean.valueOf(false)));
-	}
-
-	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
-		return CODEC;
 	}
 
 	@Override
@@ -160,7 +153,13 @@ public class SaltFurnaceBlock extends BaseEntityBlock {
 	}
 
 	@Nullable
-	protected static <T extends BlockEntity> BlockEntityTicker<T> createFurnaceTicker(Level p_151988_, BlockEntityType<T> p_151989_, BlockEntityType<? extends SaltFurnaceBlockEntity> p_151990_) {
-		return createTickerHelper(p_151989_, p_151990_, SaltFurnaceBlockEntity::tick);
+	protected static <T extends BlockEntity> @org.jspecify.annotations.Nullable BlockEntityTicker<T> createFurnaceTicker(
+			Level level, BlockEntityType<T> actualType, BlockEntityType<? extends SaltFurnaceBlockEntity> expectedType
+	) {
+		return level instanceof ServerLevel serverLevel
+				? createTickerHelper(
+				actualType, expectedType, (innerLevel, pos, state, entity) -> SaltFurnaceBlockEntity.tick(serverLevel, pos, state, entity)
+		)
+				: null;
 	}
 }

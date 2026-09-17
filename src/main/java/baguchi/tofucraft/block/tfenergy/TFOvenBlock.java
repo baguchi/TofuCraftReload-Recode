@@ -2,7 +2,6 @@ package baguchi.tofucraft.block.tfenergy;
 
 import baguchi.tofucraft.blockentity.tfenergy.TFOvenBlockEntity;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -12,7 +11,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.RenderShape;
@@ -31,7 +29,6 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 
 public class TFOvenBlock extends TFBaseEntityBlock {
-	public static final MapCodec<TFOvenBlock> CODEC = simpleCodec(TFOvenBlock::new);
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
@@ -39,11 +36,6 @@ public class TFOvenBlock extends TFBaseEntityBlock {
 	public TFOvenBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
-	}
-
-	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
-		return CODEC;
 	}
 
 	public BlockState getStateForPlacement(BlockPlaceContext p_48689_) {

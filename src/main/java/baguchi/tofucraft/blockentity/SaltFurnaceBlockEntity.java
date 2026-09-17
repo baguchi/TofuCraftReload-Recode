@@ -35,8 +35,7 @@ import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.component.CookingFuel;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
@@ -167,7 +166,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		return this.saveCustomOnly(p_324313_);
 	}
 
-	public static void tick(Level level, BlockPos blockPos, BlockState p_155016_, SaltFurnaceBlockEntity saltFurnaceBlock) {
+	public static void tick(ServerLevel level, BlockPos blockPos, BlockState p_155016_, SaltFurnaceBlockEntity saltFurnaceBlock) {
 
 		boolean flag = saltFurnaceBlock.isLit();
 		boolean flag1 = false;
@@ -326,18 +325,27 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		ExperienceOrb.award(p_154999_, p_155000_, i);
 	}
 
-	protected int getBurnDuration(Level level, ItemStack p_213997_1_) {
-		if (p_213997_1_.isEmpty())
+	protected int getBurnDuration(ServerLevel level, ItemStack stack) {
+		CookingFuel cookingFuel = stack.get(DataComponents.COOKING_FUEL);
+		if (cookingFuel != null) {
+			return cookingFuel.burnTime().get(this.getLootContext(level), 0);
+		}
+
+		if (stack.isEmpty())
 			return 0;
-		return p_213997_1_.getBurnTime(RecipeType.SMELTING, level.fuelValues());
+		return 0;
 	}
 
 	protected int getTotalCookTime() {
 		return 200;
 	}
 
-	public static boolean isFuel(Level level, ItemStack p_213991_0_) {
-		return (p_213991_0_.getBurnTime(null, level.fuelValues()) > 0);
+	public boolean isFuel(ServerLevel level, ItemStack p_213991_0_) {
+		CookingFuel cookingFuel = p_213991_0_.get(DataComponents.COOKING_FUEL);
+		if (cookingFuel != null) {
+			return cookingFuel.burnTime().get(this.getLootContext(level), 0) > 0;
+		}
+		return false;
 	}
 
 	@Override
@@ -359,6 +367,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 		return canPlaceItem(p_180462_1_, p_180462_2_);
 	}
 
+	@Override
 	public boolean canPlaceItem(int p_94041_1_, ItemStack p_94041_2_) {
 		if (p_94041_1_ == 3 || p_94041_1_ == 1) {
 			return false;
@@ -367,7 +376,7 @@ public class SaltFurnaceBlockEntity extends BaseContainerBlockEntity implements 
 			return (p_94041_2_.getItem() == Items.GLASS_BOTTLE);
 		}
 		ItemStack itemstack = this.items.get(0);
-		return (isFuel(this.level, p_94041_2_) || (p_94041_2_.getItem() == Items.BUCKET && itemstack.getItem() != Items.BUCKET));
+		return itemstack.has(DataComponents.COOKING_FUEL) || (p_94041_2_.getItem() == Items.BUCKET && itemstack.getItem() != Items.BUCKET);
 	}
 
 	@Override

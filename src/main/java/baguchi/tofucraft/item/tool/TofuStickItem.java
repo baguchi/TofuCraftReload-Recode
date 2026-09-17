@@ -2,6 +2,7 @@ package baguchi.tofucraft.item.tool;
 
 import baguchi.tofucraft.api.tfenergy.IEnergyInsertable;
 import baguchi.tofucraft.registry.TofuDimensions;
+import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.world.TofuPortalShape;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -56,7 +57,7 @@ public class TofuStickItem extends Item implements IEnergyInsertable {
 			boolean flag = false;
 
 			for (Direction direction : Direction.values()) {
-				if (p_49270_.getBlockState(blockpos$mutableblockpos.set(p_49271_).move(direction)).isPortalFrame(p_49270_, blockpos$mutableblockpos)) {
+				if (p_49270_.getBlockState(blockpos$mutableblockpos.set(p_49271_).move(direction)).is(TofuTags.Blocks.TOFU_PORTAL_FRAME)) {
 					flag = true;
 					break;
 				}

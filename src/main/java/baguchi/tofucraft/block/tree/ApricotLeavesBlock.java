@@ -1,32 +1,12 @@
 package baguchi.tofucraft.block.tree;
 
-import baguchi.tofucraft.block.TofuLeavesBlock;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 
 public class ApricotLeavesBlock extends LeavesBlock {
-	public static final MapCodec<TofuLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(
-			p_399854_ -> p_399854_.group(
-							propertiesCodec()
-					)
-					.apply(p_399854_, TofuLeavesBlock::new)
-	);
 
 	public ApricotLeavesBlock(Properties properties) {
-		super(0.01F, properties);
+		super(AmbientLeavesBlockSoundPlayer.noAmbientSound(), properties);
 	}
 
-	@Override
-	public MapCodec<? extends LeavesBlock> codec() {
-		return CODEC;
-	}
-
-	@Override
-	protected void spawnFallingLeavesParticle(Level level, BlockPos blockPos, RandomSource randomSource) {
-
-	}
 }

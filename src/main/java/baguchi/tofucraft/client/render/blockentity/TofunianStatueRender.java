@@ -70,8 +70,8 @@ public class TofunianStatueRender implements BlockEntityRenderer<TofunianStatueB
 		poseStack.scale(-1.0F, -1.0F, 1.0F);
 		poseStack.translate(0.0F, -1.501F, 0.0F);
 		poseStack.translate(-0.5F, 0.0F, 0.5F);
-		poseStack.mulPose(Axis.YP.rotationDegrees(f));
-		submitNodeCollector.submitModel(this.tofunianModel, tofunianStateRenderState.direction, poseStack, RenderTypes.entityCutout(TEXTURES), tofunianStateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0, null);
+		poseStack.rotateDegrees(Axis.YP, f);
+		submitNodeCollector.submitModel(this.tofunianModel, tofunianStateRenderState.direction, poseStack, RenderTypes.entityCutout(TEXTURES), tofunianStateRenderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 		poseStack.popPose();
 	}
 }

@@ -88,7 +88,7 @@ import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.village.ReputationEventType;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Enderman;
 import net.minecraft.world.entity.monster.Vex;
 import net.minecraft.world.entity.monster.Zoglin;
 import net.minecraft.world.entity.monster.illager.AbstractIllager;
@@ -196,7 +196,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		this.goalSelector.addGoal(1, new OpenTofuDoorGoal(this, true));
 		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.25D, 1.3D));
 		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, AbstractIllager.class, 12.0F, 1.25D, 1.3D));
-		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, EnderMan.class, 10.0F, 1.25D, 1.3D));
+		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Enderman.class, 10.0F, 1.25D, 1.3D));
 		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Vex.class, 8.0F, 1.25D, 1.3D));
 		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, Zoglin.class, 10.0F, 1.25D, 1.3D));
 		this.goalSelector.addGoal(1, new TofunianAvoidEntityGoal<>(this, ShuDofuSpider.class, 10.0F, 1.25D, 1.3D));
@@ -433,7 +433,6 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@Override
 	public void aiStep() {
-		this.updateSwingTime();
 		super.aiStep();
 		this.actionTicks();
 		if (this.level().isClientSide()) {

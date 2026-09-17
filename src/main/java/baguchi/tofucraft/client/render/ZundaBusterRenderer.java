@@ -35,14 +35,14 @@ public class ZundaBusterRenderer<T extends ZundaBuster> extends EntityRenderer<T
 		poseStack.pushPose();
 
 		//poseStack.translate(0.0F, 0.5F, 0.0F);
-		poseStack.mulPose(Axis.YP.rotationDegrees(projectileRenderState.yRot - 90));
-		poseStack.mulPose(Axis.ZP.rotationDegrees(projectileRenderState.xRot));
+		poseStack.rotateDegrees(Axis.YP, projectileRenderState.yRot - 90);
+		poseStack.rotateDegrees(Axis.ZP, projectileRenderState.xRot);
 		poseStack.scale(-1, -1, 1);
 		poseStack.translate(0.0F, (13.5F / 16F) / 2F, 0F);
 
 		poseStack.translate(0.0F, -1.501F, 0F);
 
-		submitNodeCollector.submitModel(this.model, projectileRenderState, poseStack, RenderTypes.eyes(this.getTextureLocation(projectileRenderState)), projectileRenderState.lightCoords, OverlayTexture.NO_OVERLAY, projectileRenderState.outlineColor, null);
+		submitNodeCollector.submitModel(this.model, projectileRenderState, poseStack, RenderTypes.eyes(this.getTextureLocation(projectileRenderState)), projectileRenderState.lightCoords, OverlayTexture.NO_OVERLAY, projectileRenderState.outlineColor);
 
 		poseStack.popPose();
 		super.submit(projectileRenderState, poseStack, submitNodeCollector, cameraRenderState);

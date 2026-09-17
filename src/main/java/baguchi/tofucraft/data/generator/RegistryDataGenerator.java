@@ -1,8 +1,9 @@
 package baguchi.tofucraft.data.generator;
 
-import baguchi.tofucraft.TofuCraftReload;
+import baguchi.tofucraft.data.TofuLootTableProvider;
+import baguchi.tofucraft.data.generator.recipe.CraftingGenerator;
+import baguchi.tofucraft.data.provider.TofuBlockStateProviders;
 import baguchi.tofucraft.data.resources.ModConfiguredFeatures;
-import baguchi.tofucraft.data.resources.TofuConfiguredWorldCarvers;
 import baguchi.tofucraft.data.resources.TofuVillagerTrades;
 import baguchi.tofucraft.data.resources.TofunianTradeSets;
 import baguchi.tofucraft.data.resources.builder.TofuNoiseBuilder;
@@ -17,27 +18,24 @@ import baguchi.tofucraft.registry.TofuEnchantments;
 import baguchi.tofucraft.registry.TofuLevelStems;
 import baguchi.tofucraft.registry.TofuStructures;
 import baguchi.tofucraft.registry.TofuTrimMaterials;
-import net.minecraft.core.HolderLookup;
+import baguchi.tofucraft.world.TofuMaterialRules;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
 
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-
-public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
+public class RegistryDataGenerator {
 
 	public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
 			.add(Registries.NOISE, (context) -> {
 			})
-			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrapConfiguredFeature)
+			.add(Registries.FEATURE, ModConfiguredFeatures::bootstrapConfiguredFeature)
 			.add(Registries.PLACED_FEATURE, ModConfiguredFeatures::bootstrapPlacedFeature)
 			.add(Registries.PROCESSOR_LIST, TofuStructures::bootstrapProcessors)
 			.add(Registries.STRUCTURE, TofuStructures::bootstrapStructures)
 			.add(Registries.STRUCTURE_SET, TofuStructures::bootstrapSets)
 			.add(Registries.TEMPLATE_POOL, TofuStructures::bootstrapPools)
-			.add(Registries.CONFIGURED_CARVER, TofuConfiguredWorldCarvers::bootstrap)
+			.add(Registries.MATERIAL_RULE, TofuMaterialRules::bootstrap)
 			.add(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST, TofuBiomeSources::bootstrapPreset)
 			.add(Registries.NOISE_SETTINGS, TofuNoiseBuilder::bootstrap)
 			.add(Registries.DIMENSION_TYPE, TofuDimensionTypes::bootstrap)
@@ -50,10 +48,13 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 			.add(TofunianVariants.TOFUNIAN_VARIANT_REGISTRY_KEY, TofunianVariants::bootstrap)
 			.add(TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY, TofunianClothVariants::bootstrap)
 			.add(Registries.VILLAGER_TRADE, TofuVillagerTrades::bootstrap)
-			.add(Registries.TRADE_SET, TofunianTradeSets::bootstrap);
+			.add(Registries.TRADE_SET, TofunianTradeSets::bootstrap)
+			.add(Registries.BLOCK_STATE_PROVIDER, TofuBlockStateProviders::bootstrap);
 
+	public static final RegistrySetBuilder RELOADABLE_BUILDER = new RegistrySetBuilder()
+			.add(Registries.LOOT_TABLE, TofuLootTableProvider.create())
+			.add(Registries.ADVANCEMENT, TofuAdvancementGenerator.create())
+			.add(VanillaRecipeProvider.create())
+			.add(RecipeProvider.asBootstrap(CraftingGenerator::new));
 
-	public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-		super(output, registries, BUILDER, Set.of("minecraft", TofuCraftReload.MODID));
-	}
 }

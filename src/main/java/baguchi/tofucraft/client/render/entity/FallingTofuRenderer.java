@@ -27,11 +27,12 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity, Falli
 		this.shadowRadius = 0.5F;
 	}
 
-	public boolean shouldRender(FallingTofuEntity p_362415_, Frustum p_364047_, double p_362218_, double p_363427_, double p_361722_) {
-		return !super.shouldRender(p_362415_, p_364047_, p_362218_, p_363427_, p_361722_)
-				? false
-				: p_362415_.getBlockState() != p_362415_.level().getBlockState(p_362415_.blockPosition());
+	@Override
+	public boolean shouldRender(FallingTofuEntity entity, Frustum culler, double camX, double camY, double camZ, float partialTicks) {
+		return super.shouldRender(entity, culler, camX, camY, camZ, partialTicks) ? false
+				: entity.getBlockState() != entity.level().getBlockState(entity.blockPosition());
 	}
+
 
 	@Override
 	public void submit(FallingBlockRenderState renderState, PoseStack poseStack, SubmitNodeCollector p_114638_, CameraRenderState cameraRenderState) {

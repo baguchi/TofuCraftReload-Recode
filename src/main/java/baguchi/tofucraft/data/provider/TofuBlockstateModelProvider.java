@@ -14,7 +14,6 @@ import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.core.Direction;
@@ -42,14 +41,6 @@ public abstract class TofuBlockstateModelProvider extends BlockModelGenerators {
 				.accept(
 						MultiVariantGenerator.dispatch(cake).with(createBooleanModelDispatch(BlockStateProperties.LIT, resourcelocation9, resourcelocation8))
 				);
-	}
-
-	public void createTofuFarmland() {
-		TextureMapping dryTextures = (new TextureMapping()).put(TextureSlot.DIRT, TextureMapping.getBlockTexture(TofuBlocks.TOFU_TERRAIN.get())).put(TextureSlot.TOP, TextureMapping.getBlockTexture(TofuBlocks.TOFU_FARMLAND.get()));
-		TextureMapping moistTextures = (new TextureMapping()).put(TextureSlot.DIRT, TextureMapping.getBlockTexture(TofuBlocks.TOFU_TERRAIN.get())).put(TextureSlot.TOP, TextureMapping.getBlockTexture(TofuBlocks.TOFU_FARMLAND.get(), "_moist"));
-		MultiVariant dryModel = plainVariant(ModelTemplates.FARMLAND.create(TofuBlocks.TOFU_FARMLAND.get(), dryTextures, this.modelOutput));
-		MultiVariant moistModel = plainVariant(ModelTemplates.FARMLAND.create(ModelLocationUtils.getModelLocation(TofuBlocks.TOFU_FARMLAND.get(), "_moist"), moistTextures, this.modelOutput));
-		this.blockStateOutput.accept(MultiVariantGenerator.dispatch(TofuBlocks.TOFU_FARMLAND.get()).with(createEmptyOrFullDispatch(BlockStateProperties.MOISTURE, 7, moistModel, dryModel)));
 	}
 
 	public static MultiVariantGenerator createSimpleBlock(Block p_387997_, Identifier p_388814_) {

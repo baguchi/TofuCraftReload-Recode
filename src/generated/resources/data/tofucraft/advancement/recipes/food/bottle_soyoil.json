@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:bottle_soyoil"
+        "recipes": "tofucraft:bottle_soyoil"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

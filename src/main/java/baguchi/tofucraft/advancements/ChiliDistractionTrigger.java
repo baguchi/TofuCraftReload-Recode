@@ -4,12 +4,12 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuAdvancements;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.advancements.predicates.ContextAwarePredicate;
-import net.minecraft.advancements.predicates.entity.EntityPredicate;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.advancements.triggers.SimpleCriterionTrigger;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 import java.util.Optional;
 
@@ -26,14 +26,9 @@ public class ChiliDistractionTrigger extends SimpleCriterionTrigger<ChiliDistrac
 		return Instance.CODEC;
 	}
 
-	public record Instance(Optional<ContextAwarePredicate> player) implements SimpleCriterionTrigger.SimpleInstance {
-		public static final Codec<ChiliDistractionTrigger.Instance> CODEC = RecordCodecBuilder.create((p_311988_) -> {
-			return p_311988_.group(EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(ChiliDistractionTrigger.Instance::player)).apply(p_311988_, ChiliDistractionTrigger.Instance::new);
-		});
-		@Override
-		public Optional<ContextAwarePredicate> player() {
-			return this.player;
-		}
+	public record Instance(
+			Optional<Holder<LootItemCondition>> player) implements SimpleCriterionTrigger.SimpleInstance {
+		public static final Codec<ChiliDistractionTrigger.Instance> CODEC = RecordCodecBuilder.create((i) -> i.group(LootItemCondition.CODEC.optionalFieldOf("player").forGetter(Instance::player)).apply(i, Instance::new));
 	}
 
 	public static Criterion<Instance> get() {

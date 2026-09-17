@@ -1,6 +1,7 @@
 package baguchi.tofucraft.item;
 
 import baguchi.tofucraft.registry.TofuItems;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -23,7 +24,7 @@ public class ApricotItem extends Item {
 			} else {
 				ItemStack itemstack = new ItemStack(TofuItems.APRICOTSEED.get());
 				if (!player.getInventory().add(itemstack)) {
-					player.drop(itemstack, false);
+					player.drop(itemstack, false, Prediction.PREDICTED);
 				}
 			}
 		}

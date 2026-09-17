@@ -46,7 +46,6 @@ public class TravelerTofunianRender extends MobRenderer<TravelerTofunian, Travel
 		p_360515_.isPassenger = p_362733_.isPassenger() && (p_362733_.getVehicle() != null && p_362733_.getVehicle().shouldRiderSit());
 
 		p_360515_.unhappyCounter = p_362733_.getUnhappyCounter();
-		p_360515_.attackTime = p_362733_.attackAnim;
 		p_360515_.waveAnimationState.copyFrom(p_362733_.waveAnimationState);
 	}
 }

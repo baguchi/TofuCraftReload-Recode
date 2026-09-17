@@ -30,7 +30,7 @@ import net.minecraft.world.entity.ai.goal.MoveTowardsRestrictionGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.UseItemGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Enderman;
 import net.minecraft.world.entity.monster.Vex;
 import net.minecraft.world.entity.monster.Zoglin;
 import net.minecraft.world.entity.monster.illager.AbstractIllager;
@@ -75,7 +75,7 @@ public class TravelerTofunian extends AbstractTofunian {
 		this.goalSelector.addGoal(1, new TofunianTradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zombie.class, 8.0F, 1.2D, 1.2D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, AbstractIllager.class, 12.0F, 1.2D, 1.2D));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, EnderMan.class, 12.0F, 1.2D, 1.2D));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Enderman.class, 12.0F, 1.2D, 1.2D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Vex.class, 8.0F, 1.2D, 1.2D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Zoglin.class, 10.0F, 1.2D, 1.2D));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, ShuDofuSpider.class, 10.0F, 1.2D, 1.3D));

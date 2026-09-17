@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:hell_mabou"
+        "recipes": "tofucraft:hell_mabou"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -1,6 +1,7 @@
 package baguchi.tofucraft.world;
 
 import baguchi.tofucraft.registry.TofuBlocks;
+import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -27,7 +28,7 @@ public class TofuPortalShape {
 	public static final int MAX_WIDTH = 21;
 	private static final int MIN_HEIGHT = 3;
 	public static final int MAX_HEIGHT = 21;
-	private static final BlockBehaviour.StatePredicate FRAME = net.neoforged.neoforge.common.extensions.IBlockStateExtension::isPortalFrame;
+	private static final BlockBehaviour.StatePredicate FRAME = (state, level, pos) -> level.getBlockState(pos).is(TofuTags.Blocks.TOFU_PORTAL_FRAME);
 	private static final float SAFE_TRAVEL_MAX_ENTITY_XY = 4.0F;
 	private static final double SAFE_TRAVEL_MAX_VERTICAL_DELTA = 1.0;
 	private final LevelAccessor level;

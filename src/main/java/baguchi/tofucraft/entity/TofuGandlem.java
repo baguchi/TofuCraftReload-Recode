@@ -50,7 +50,7 @@ import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Enderman;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.monster.illager.AbstractIllager;
@@ -173,7 +173,7 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 		this.mostDamageTargetGoal = new MostDamageTargetGoal(this);
 		this.targetSelector.addGoal(1, this.mostDamageTargetGoal);
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllager.class, true));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EnderMan.class, true));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Enderman.class, true));
 		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, true));
 		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, true));
 	}

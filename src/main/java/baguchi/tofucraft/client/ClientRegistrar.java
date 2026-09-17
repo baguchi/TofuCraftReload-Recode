@@ -81,14 +81,14 @@ import baguchi.tofucraft.registry.TofuParticleTypes;
 import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuTags;
 import com.google.common.reflect.TypeToken;
-import com.mojang.blaze3d.PrimitiveTopology;
-import com.mojang.blaze3d.pipeline.BlendFunction;
-import com.mojang.blaze3d.pipeline.ColorTargetState;
-import com.mojang.blaze3d.pipeline.DepthStencilState;
-import com.mojang.blaze3d.pipeline.RenderPipeline;
-import com.mojang.blaze3d.platform.CompareOp;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.renderpearl.api.pipeline.BlendFunction;
+import com.mojang.renderpearl.api.pipeline.ColorTargetState;
+import com.mojang.renderpearl.api.pipeline.CompareOp;
+import com.mojang.renderpearl.api.pipeline.DepthStencilState;
+import com.mojang.renderpearl.api.pipeline.PrimitiveTopology;
+import com.mojang.renderpearl.api.pipeline.RenderPipeline;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -151,7 +151,7 @@ import org.joml.Vector4f;
 
 import java.util.List;
 
-import static net.minecraft.client.renderer.RenderPipelines.GLOBALS_SNIPPET;
+import static net.minecraft.client.renderer.RenderPipelines.ENTITY_SNIPPET;
 
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT)
@@ -206,9 +206,7 @@ public class ClientRegistrar {
 			null
 	);
 	public static final RenderPipeline ZUNDA =
-			RenderPipeline.builder(GLOBALS_SNIPPET)
-					.withBindGroupLayout(BindGroupLayouts.MATRICES_PROJECTION)
-					.withBindGroupLayout(BindGroupLayouts.FOG)
+			RenderPipeline.builder(ENTITY_SNIPPET)
 					.withLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "pipeline/zunda"))
 					.withVertexShader("core/glint").withFragmentShader("core/glint")
 					.withBindGroupLayout(BindGroupLayouts.SAMPLER0)

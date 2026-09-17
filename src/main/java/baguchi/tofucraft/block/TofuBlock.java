@@ -74,7 +74,7 @@ public class TofuBlock extends Block implements HarderCondition {
 		if (isDriedCondition(level, pos)) {
 			if (random.nextInt(8) == 0) {
 				if (this == TofuBlocks.MOMENTOFU.get()) {
-					level.setBlock(pos, TofuBlocks.DRIEDTOFU.get().defaultBlockState(), 2);
+					level.setBlock(pos, TofuBlocks.DRIED_TOFU.get().defaultBlockState(), 2);
 				}
 			}
 		} else {

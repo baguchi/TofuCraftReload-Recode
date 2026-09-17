@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_trapdoor_zunda"
+        "recipes": "tofucraft:tofu_trapdoor_zunda"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

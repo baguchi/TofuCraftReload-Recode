@@ -60,7 +60,7 @@ public class TofuBlockItemTags {
 				);
 		this.tag(BlockItemTags.SAPLINGS).add(BlockItemIds.OAK_SAPLING, BlockItemIds.SPRUCE_SAPLING, BlockItemIds.BIRCH_SAPLING, BlockItemIds.JUNGLE_SAPLING, BlockItemIds.ACACIA_SAPLING, BlockItemIds.DARK_OAK_SAPLING, BlockItemIds.PALE_OAK_SAPLING, BlockItemIds.AZALEA, BlockItemIds.FLOWERING_AZALEA, BlockItemIds.MANGROVE_PROPAGULE, BlockItemIds.CHERRY_SAPLING);
 
-		this.tag(BlockItemTags.LOGS_THAT_BURN).add(TofuBlocks.SPROUT_STEM.get(), TofuBlocks.TOFU_STEM.get(), TofuBlocks.LEEK_STEM.get(), TofuBlocks.LEEK_GREEN_STEM.get());
+		this.tag(BlockItemTags.LOGS_THAT_BURN).add(TofuBlocks.SPROUT_STEM.get(), TofuBlocks.YELLOW_SPROUT_STEM.get(), TofuBlocks.TOFU_STEM.get(), TofuBlocks.LEEK_STEM.get(), TofuBlocks.LEEK_GREEN_STEM.get());
 
 		this.tag(BlockItemTags.SLABS).add(TofuBlocks.TOFU_SLAB_KINU.get(), TofuBlocks.TOFU_SLAB_MOMEN.get(), TofuBlocks.TOFU_SLAB_ISHI.get(), TofuBlocks.TOFU_SLAB_ISHIBRICK.get(), TofuBlocks.TOFU_SLAB_METAL.get()
 				, TofuBlocks.TOFU_SLAB_HELL.get(), TofuBlocks.TOFU_SLAB_HELLBRICK.get(), TofuBlocks.TOFU_SLAB_SOUL.get(), TofuBlocks.TOFU_SLAB_SOULBRICK.get()

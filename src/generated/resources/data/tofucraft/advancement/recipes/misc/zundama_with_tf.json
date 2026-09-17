@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:zundama_with_tf"
+        "recipes": "tofucraft:zundama_with_tf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

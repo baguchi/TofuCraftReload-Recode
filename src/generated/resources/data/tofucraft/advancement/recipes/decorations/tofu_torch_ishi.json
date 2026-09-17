@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_torch_ishi"
+        "recipes": "tofucraft:tofu_torch_ishi"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

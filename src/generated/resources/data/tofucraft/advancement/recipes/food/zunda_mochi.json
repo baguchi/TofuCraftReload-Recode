@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:zunda_mochi"
+        "recipes": "tofucraft:zunda_mochi"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

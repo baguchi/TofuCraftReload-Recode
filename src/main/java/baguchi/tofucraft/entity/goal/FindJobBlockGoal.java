@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
@@ -56,7 +57,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 						}
 
 
-						this.creature.swing(InteractionHand.MAIN_HAND);
+					this.creature.swing(InteractionHand.MAIN_HAND, SwingAnimation.DEFAULT);
 						this.creature.playSound(SoundEvents.ITEM_PICKUP, 1.0F, 0.7F);
 					}
 			} else {

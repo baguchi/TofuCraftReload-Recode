@@ -1,34 +1,28 @@
 {
   "type": "minecraft:block",
-  "functions": [
-    {
-      "function": "minecraft:explosion_decay"
-    }
-  ],
+  "modifier": {
+    "type": "minecraft:explosion_decay"
+  },
   "pools": [
     {
-      "conditions": [
-        {
-          "block": "tofucraft:nether_nattobed",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "stat": "used"
-          }
+      "condition": {
+        "type": "minecraft:match_block",
+        "blocks": "tofucraft:nether_nattobed",
+        "state": {
+          "stat": "used"
         }
-      ],
+      },
       "entries": [
         {
           "type": "minecraft:item",
           "name": "tofucraft:nether_natto"
         }
       ],
-      "functions": [
-        {
-          "count": 6.0,
-          "function": "minecraft:set_count"
-        }
-      ],
-      "rolls": 1.0
+      "modifier": {
+        "type": "minecraft:set_count",
+        "count": 6
+      },
+      "rolls": 1
     }
   ],
   "random_sequence": "tofucraft:blocks/nether_nattobed"

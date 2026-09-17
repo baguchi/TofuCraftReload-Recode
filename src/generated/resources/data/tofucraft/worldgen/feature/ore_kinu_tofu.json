@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:ore",
+  "discard_chance_on_air_exposure": 0.0,
+  "size": 20,
+  "targets": [
+    {
+      "state": "tofucraft:block_tofu_kinu",
+      "target": {
+        "predicate_type": "minecraft:tag_match",
+        "tag": "tofucraft:tofu_terrain"
+      }
+    }
+  ]
+}

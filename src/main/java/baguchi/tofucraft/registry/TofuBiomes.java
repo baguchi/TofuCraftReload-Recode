@@ -8,7 +8,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class TofuBiomes {
@@ -36,7 +36,7 @@ public class TofuBiomes {
 
 	public static void bootstrap(BootstrapContext<Biome> context) {
 		HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
-		HolderGetter<ConfiguredWorldCarver<?>> vanillaConfiguredCarvers = context.lookup(Registries.CONFIGURED_CARVER);
+		HolderGetter<WorldCarver> vanillaConfiguredCarvers = context.lookup(Registries.CARVER);
 		context.register(SOYBEAN_FOREST, TofuBiomeBuilders.soybeanForestBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(SOYBEAN_FOREST_SPARSE, TofuBiomeBuilders.soybeanForestSpareBiome(placedFeatures, vanillaConfiguredCarvers));
 		context.register(ZUNDA_FOREST, TofuBiomeBuilders.zundaForestBiome(placedFeatures, vanillaConfiguredCarvers));

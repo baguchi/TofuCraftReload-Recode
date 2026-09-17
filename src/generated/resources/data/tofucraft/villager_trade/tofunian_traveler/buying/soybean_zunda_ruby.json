@@ -2,11 +2,11 @@
   "gives": {
     "id": "tofucraft:zundaruby"
   },
-  "max_uses": 6.0,
+  "max_uses": 6,
   "reputation_discount": 0.05,
   "wants": {
-    "count": 24.0,
+    "count": 24,
     "id": "tofucraft:seeds_soybeans"
   },
-  "xp": 2.0
+  "xp": 2
 }

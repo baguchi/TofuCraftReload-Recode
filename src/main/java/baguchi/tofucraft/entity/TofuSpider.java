@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -68,7 +69,7 @@ public class TofuSpider extends Spider implements RangedAttackMob {
 				stack.shrink(1);
 			}
 			if (!p_21472_.addItem(new ItemStack(Items.GLASS_BOTTLE))) {
-				p_21472_.drop(new ItemStack(Items.GLASS_BOTTLE), false);
+				p_21472_.drop(new ItemStack(Items.GLASS_BOTTLE), false, Prediction.PREDICTED);
 			}
 			this.playSound(SoundEvents.ZOMBIE_VILLAGER_CURE, 3.0F, 1F);
 

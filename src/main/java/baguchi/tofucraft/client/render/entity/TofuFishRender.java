@@ -34,10 +34,10 @@ public class TofuFishRender extends MobRenderer<TofuFish, LivingEntityRenderStat
 	protected void setupRotations(LivingEntityRenderState p_360516_, PoseStack p_114010_, float p_114011_, float p_114012_) {
 		super.setupRotations(p_360516_, p_114010_, p_114011_, p_114012_);
 		float f = 4.3F * Mth.sin(0.6F * p_360516_.ageInTicks);
-		p_114010_.mulPose(Axis.YP.rotationDegrees(f));
+		p_114010_.rotateDegrees(Axis.YP, f);
 		if (!p_360516_.isInWater) {
 			p_114010_.translate(0.1F, 0.1F, -0.1F);
-			p_114010_.mulPose(Axis.ZP.rotationDegrees(90.0F));
+			p_114010_.rotateDegrees(Axis.ZP, 90.0F);
 		}
 	}
 }

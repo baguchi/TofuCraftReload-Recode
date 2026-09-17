@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_stem_stair"
+        "recipes": "tofucraft:tofu_stem_stair"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

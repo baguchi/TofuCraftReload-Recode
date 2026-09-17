@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.phys.AABB;
 
@@ -75,7 +76,7 @@ public class MakeSoymilkGoal extends Goal {
 			if (this.creature.distanceTo(cow) < 1.5F) {
 				if (this.cookTick <= 0) {
 					this.creature.getInventory().addItem(new ItemStack(TofuItems.SOYMILK_BOTTLE.get()));
-					this.creature.swing(InteractionHand.MAIN_HAND);
+					this.creature.swing(InteractionHand.MAIN_HAND, SwingAnimation.DEFAULT);
 					this.creature.playSound(SoundEvents.COW_MILK, 1.0F, 1F);
 					this.cookTick = 60;
 					this.stop = true;

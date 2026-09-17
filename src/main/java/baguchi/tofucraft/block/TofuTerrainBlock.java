@@ -9,20 +9,17 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.Util;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.lighting.LightEngine;
-import net.neoforged.neoforge.common.ItemAbilities;
-import net.neoforged.neoforge.common.ItemAbility;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,21 +53,22 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 		}
 	}
 
+
 	@Override
-	public boolean isValidBonemealTarget(LevelReader p_256559_, BlockPos p_50898_, BlockState p_50899_) {
+	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource) {
 		return true;
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level p_53697_, RandomSource p_53698_, BlockPos p_53699_, BlockState p_53700_) {
+	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel level, RandomSource randomSource, BlockPos p_221272_, BlockState p_221273_) {
-		BlockPos blockpos = p_221272_.above();
+	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource) {
+		BlockPos blockpos = blockPos.above();
 		BlockState blockstate = TofuBlocks.LEEK.get().defaultBlockState();
-		Optional<Holder.Reference<PlacedFeature>> grassFeature = level.registryAccess()
+		Optional<Holder.Reference<PlacedFeature>> grassFeature = serverLevel.registryAccess()
 				.lookupOrThrow(Registries.PLACED_FEATURE)
 				.get(VegetationPlacements.GRASS_BONEMEAL);
 
@@ -80,35 +78,30 @@ public class TofuTerrainBlock extends Block implements BonemealableBlock {
 
 			for (int j = 0; j < i / 16; ++j) {
 				testPos = testPos.offset(randomSource.nextInt(3) - 1, (randomSource.nextInt(3) - 1) * randomSource.nextInt(3) / 2, randomSource.nextInt(3) - 1);
-				if (!level.getBlockState(testPos.below()).is(this) || level.getBlockState(testPos).isCollisionShapeFullBlock(level, testPos)) {
+				if (!serverLevel.getBlockState(testPos.below()).is(this) || serverLevel.getBlockState(testPos).isCollisionShapeFullBlock(serverLevel, testPos)) {
 					continue label49;
 				}
 			}
 
-			BlockState testState = level.getBlockState(testPos);
+			BlockState testState = serverLevel.getBlockState(testPos);
 			if (testState.is(blockstate.getBlock()) && randomSource.nextInt(10) == 0) {
 				BonemealableBlock bonemealableblock = (BonemealableBlock) blockstate.getBlock();
-				if (bonemealableblock.isValidBonemealTarget(level, testPos, testState)) {
-					bonemealableblock.performBonemeal(level, randomSource, testPos, testState);
+				if (bonemealableblock.isValidBonemealTarget(serverLevel, testPos, testState, bonemealSource)) {
+					bonemealableblock.performBonemeal(serverLevel, randomSource, testPos, testState, bonemealSource);
 				}
 			}
 
-			if (testState.isAir() && !level.isOutsideBuildHeight(testPos)) {
+			if (testState.isAir() && !serverLevel.isOutsideBuildHeight(testPos)) {
 				if (randomSource.nextInt(8) == 0) {
-					List<ConfiguredFeature<?, ?>> features = level.getBiome(testPos).value().getGenerationSettings().getBoneMealFeatures();
+					List<Feature> features = serverLevel.getBiome(testPos).value().getGenerationSettings().getBoneMealFeatures();
 					if (!features.isEmpty()) {
-						ConfiguredFeature<?, ?> placementFeature = Util.getRandom(features, randomSource);
-						placementFeature.place(level, level.getChunkSource().getGenerator(), randomSource, testPos);
+						Feature placementFeature = Util.getRandom(features, randomSource);
+						placementFeature.place(serverLevel, serverLevel.getChunkSource().getGenerator(), randomSource, testPos);
 					}
 				} else if (grassFeature.isPresent()) {
-					grassFeature.get().value().place(level, level.getChunkSource().getGenerator(), randomSource, testPos);
+					grassFeature.get().value().place(serverLevel, serverLevel.getChunkSource().getGenerator(), randomSource, testPos);
 				}
 			}
 		}
-	}
-
-	@Override
-	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility toolAction, boolean simulate) {
-		return toolAction == ItemAbilities.HOE_TILL ? TofuBlocks.TOFU_FARMLAND.get().defaultBlockState() : null;
 	}
 }

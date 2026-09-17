@@ -2,7 +2,6 @@ package baguchi.tofucraft.block;
 
 import baguchi.tofucraft.blockentity.TofuPotBlockEntity;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -37,18 +36,12 @@ import javax.annotation.Nullable;
 
 
 public class TofuPotBlock extends BaseEntityBlock {
-	public static final MapCodec<TofuPotBlock> CODEC = simpleCodec(TofuPotBlock::new);
 
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 	public TofuPotBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
-	}
-
-	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
-		return CODEC;
 	}
 
 	@Override

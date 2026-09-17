@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:tree",
+  "below_trunk_provider": "tofucraft:soil_beneath_tofu_tree",
+  "decorators": [
+    {
+      "type": "tofucraft:sprout_top"
+    }
+  ],
+  "foliage_placer": {
+    "type": "tofucraft:no_foliage_placer"
+  },
+  "foliage_provider": {
+    "id": "minecraft:air"
+  },
+  "ignore_vines": true,
+  "minimum_size": {
+    "type": "minecraft:two_layers_feature_size"
+  },
+  "trunk_placer": {
+    "type": "tofucraft:sprout_trunk_placer",
+    "base_height": 2,
+    "height_rand_a": 4,
+    "height_rand_b": 4
+  },
+  "trunk_provider": {
+    "id": "tofucraft:sprout_stem",
+    "properties": {
+      "axis": "y"
+    }
+  }
+}

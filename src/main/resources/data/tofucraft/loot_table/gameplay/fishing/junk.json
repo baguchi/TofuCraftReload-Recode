@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
+          "modifier": [
             {
               "add": false,
               "damage": {
@@ -14,7 +14,7 @@
                 "max": 0.9,
                 "min": 0.0
               },
-              "function": "minecraft:set_damage"
+              "type": "minecraft:set_damage"
             }
           ],
           "name": "tofucraft:tofu_solid_boots",
@@ -47,7 +47,7 @@
         },
         {
           "type": "minecraft:item",
-          "functions": [
+          "modifier": [
             {
               "add": false,
               "damage": {
@@ -55,7 +55,7 @@
                 "max": 0.9,
                 "min": 0.0
               },
-              "function": "minecraft:set_damage"
+              "type": "minecraft:set_damage"
             }
           ],
           "name": "minecraft:fishing_rod",

@@ -23,7 +23,7 @@ public class TofunianTradeWithPlayerGoal extends Goal {
             return false;
         } else if (!this.mob.onGround()) {
             return false;
-        } else if (this.mob.hurtMarked) {
+		} else if (this.mob.wasHurtRecently()) {
             return false;
         } else {
             Player player = this.mob.getTradingPlayer();

@@ -18,7 +18,7 @@ import net.minecraft.tags.VillagerTradeTags;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.block.entity.BannerPattern;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -60,10 +60,10 @@ public class TofuCustomTags {
 		}
 	}
 
-	public static class ConfiguredFeatureTagGenerator extends TagsProvider<ConfiguredFeature<?, ?>> {
+	public static class ConfiguredFeatureTagGenerator extends TagsProvider<Feature> {
 
 		public ConfiguredFeatureTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
-			super(output, Registries.CONFIGURED_FEATURE, provider, TofuCraftReload.MODID);
+			super(output, Registries.FEATURE, provider, TofuCraftReload.MODID);
 		}
 
 		@Override

@@ -26,7 +26,7 @@ public class ShuDofuSpiderRender extends MobRenderer<ShuDofuSpider, ShuDofuSpide
 			@Override
 			public void submit(PoseStack p_433452_, SubmitNodeCollector p_433171_, int p_434650_, ShuDofuSpiderRenderState p_435883_, float p_433542_, float p_435619_) {
 				if (p_435883_.angry) {
-					p_433171_.submitModel(this.getParentModel(), p_435883_, p_433452_, this.renderType(), 1728640, OverlayTexture.NO_OVERLAY, p_435883_.outlineColor, null);
+					p_433171_.submitModel(this.getParentModel(), p_435883_, p_433452_, this.renderType(), 1728640, OverlayTexture.NO_OVERLAY, p_435883_.outlineColor);
 				}
 			}
 

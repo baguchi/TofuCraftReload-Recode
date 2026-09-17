@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:blackstone_saltpan"
+        "recipes": "tofucraft:blackstone_saltpan"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

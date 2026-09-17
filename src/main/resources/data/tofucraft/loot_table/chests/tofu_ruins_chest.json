@@ -12,9 +12,9 @@
           "type" : "minecraft:item",
           "weight": 15,
           "name": "tofucraft:tofu_metal",
-          "functions" : [
+          "modifier": [
             {
-              "function" : "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count" : {
                 "min" : 1.0,
                 "max" : 2.0,
@@ -27,9 +27,9 @@
           "type" : "minecraft:item",
           "weight" : 5,
           "name" : "tofucraft:zundaruby",
-          "functions" : [
+          "modifier": [
             {
-              "function" : "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count" : {
                 "min" : 1.0,
                 "max" : 2.0,
@@ -56,9 +56,9 @@
           "type" : "minecraft:item",
           "weight": 8,
           "name": "tofucraft:zunda_arrow",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 2.0,
                 "max": 3.0,

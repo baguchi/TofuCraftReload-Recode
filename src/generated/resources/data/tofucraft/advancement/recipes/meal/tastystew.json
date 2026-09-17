@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tastystew"
+        "recipes": "tofucraft:tastystew"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

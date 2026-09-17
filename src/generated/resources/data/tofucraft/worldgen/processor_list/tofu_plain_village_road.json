@@ -12,9 +12,7 @@
             "block": "tofucraft:soymilk",
             "predicate_type": "minecraft:block_match"
           },
-          "output_state": {
-            "Name": "tofucraft:leek_planks"
-          }
+          "output_state": "tofucraft:leek_planks"
         },
         {
           "input_predicate": {
@@ -25,9 +23,7 @@
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
           },
-          "output_state": {
-            "Name": "tofucraft:tofu_terrain"
-          }
+          "output_state": "tofucraft:tofu_terrain"
         },
         {
           "input_predicate": {
@@ -38,12 +34,7 @@
             "block": "tofucraft:soymilk",
             "predicate_type": "minecraft:block_match"
           },
-          "output_state": {
-            "Name": "tofucraft:soymilk",
-            "Properties": {
-              "level": "0"
-            }
-          }
+          "output_state": "tofucraft:soymilk"
         }
       ]
     }

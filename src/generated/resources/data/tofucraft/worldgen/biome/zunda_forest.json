@@ -6,12 +6,32 @@
         "min_delay": 12000,
         "sound": "tofucraft:music.green_branch"
       }
+    },
+    "minecraft:gameplay/natural_mob_spawns": {
+      "argument": {
+        "spawn_costs": {},
+        "spawns_by_category": {
+          "creature": [
+            {
+              "type": "tofucraft:tofu_cow",
+              "count": 4,
+              "weight": 10
+            },
+            {
+              "type": "tofucraft:tofu_pig",
+              "count": 4,
+              "weight": 20
+            }
+          ]
+        }
+      },
+      "modifier": "overlay"
     }
   },
   "carvers": [
-    "tofucraft:tofu_cave",
-    "tofucraft:tofu_cave_extra_underground",
-    "tofucraft:tofu_canyon"
+    "minecraft:cave",
+    "minecraft:cave_extra_underground",
+    "minecraft:canyon"
   ],
   "downfall": 0.0,
   "effects": {
@@ -43,29 +63,5 @@
     ]
   ],
   "has_precipitation": true,
-  "spawn_costs": {},
-  "spawners": {
-    "ambient": [],
-    "axolotls": [],
-    "creature": [
-      {
-        "type": "tofucraft:tofu_cow",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 10
-      },
-      {
-        "type": "tofucraft:tofu_pig",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 20
-      }
-    ],
-    "misc": [],
-    "monster": [],
-    "underground_water_creature": [],
-    "water_ambient": [],
-    "water_creature": []
-  },
   "temperature": 0.8
 }

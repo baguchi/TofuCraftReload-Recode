@@ -61,6 +61,7 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.ClipContext;
@@ -251,7 +252,7 @@ public class CommonEvents {
 						level.levelEvent(2001, blockraytraceresult1.getBlockPos(), Block.getId(level.getBlockState(blockraytraceresult1.getBlockPos())));
 						level.playSound(null, blockraytraceresult1.getBlockPos(), SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1F, 1F);
 						ContainerUtils.addWithContainer(playerIn, handIn, itemstack, new ItemStack(Items.GLASS_BOTTLE), false);
-						playerIn.swing(handIn);
+						playerIn.swing(handIn, SwingAnimation.DEFAULT, true);
 						event.setCancellationResult(InteractionResult.SUCCESS);
 					}
 				}
@@ -649,7 +650,9 @@ public class CommonEvents {
 		if (hand.has(DataComponents.TOOL)) {
 			Block blockDestroyed = event.getLevel().getBlockState(event.getPos()).getBlock();
 			if (event.getLevel() instanceof ServerLevel level) {
-				TofuDiamondToolUtil.onBlockStartBreak(hand, level, blockDestroyed, event.getPos(), event.getPlayer());
+				if (event.getPlayer() instanceof ServerPlayer serverPlayer) {
+					TofuDiamondToolUtil.onBlockStartBreak(hand, level, blockDestroyed, event.getPos(), serverPlayer);
+				}
 			}
 		}
 		return false;

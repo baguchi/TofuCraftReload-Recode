@@ -27,7 +27,7 @@ public class SpinAttackGoal extends Goal {
 
 	@Override
 	public boolean canUse() {
-		if (this.gandlem.isInWall() && this.gandlem.hurtMarked) {
+		if (this.gandlem.isInWall() && this.gandlem.wasHurtRecently()) {
 			this.trigger = false;
 			return true;
 		}

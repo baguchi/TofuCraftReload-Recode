@@ -78,6 +78,9 @@ public class TofuTags {
 
 		public static final TagKey<Block> HAS_INFO = tag("has_info");
 
+		public static final TagKey<Block> TOFU_PORTAL_FRAME = tag("tofu_portal_frame");
+
+
 		public static final TagKey<Block> TOFU_FARMLANDS = tag("tofu_farmlands");
 
 

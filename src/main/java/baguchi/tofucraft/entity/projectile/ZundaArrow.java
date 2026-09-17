@@ -18,7 +18,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -134,7 +133,7 @@ public class ZundaArrow extends AbstractArrow {
 						this.discard();
 					} else {
 						entity.setRemainingFireTicks(i);
-						this.deflect(ProjectileDeflection.REVERSE, entity, EntityReference.of(this.getOwner()), false);
+						this.deflect(ProjectileDeflection.REVERSE, entity, this.owner, false, 0.2);
 						this.setDeltaMovement(this.getDeltaMovement().scale(0.2));
 						if (!this.level().isClientSide() && this.getDeltaMovement().lengthSqr() < 1.0E-7) {
 							if (this.pickup == AbstractArrow.Pickup.ALLOWED) {

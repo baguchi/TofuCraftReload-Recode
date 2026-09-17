@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_fence_momen"
+        "recipes": "tofucraft:tofu_fence_momen"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

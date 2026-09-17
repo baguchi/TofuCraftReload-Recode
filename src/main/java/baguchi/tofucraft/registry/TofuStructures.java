@@ -25,9 +25,9 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
+import net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
-import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
@@ -178,7 +178,7 @@ public class TofuStructures {
 				, new RandomSpreadStructurePlacement(32, 8, RandomSpreadType.LINEAR, 16324620)));
 		context.register(TOFU_RUINS_SET, new StructureSet(structures.getOrThrow(TOFU_RUINS), new RandomSpreadStructurePlacement(28, 8, RandomSpreadType.LINEAR, 83469867)));
 		context.register(TOFU_MINESHAFT_SET, new StructureSet(structures.getOrThrow(TOFU_MINESHAFT), new RandomSpreadStructurePlacement(
-				Vec3i.ZERO, StructurePlacement.FrequencyReductionMethod.LEGACY_TYPE_3, 0.001F, 0, Optional.empty(), 1, 0, RandomSpreadType.LINEAR
+				Vec3i.ZERO, AbstractSpreadingStructurePlacement.FrequencyReductionMethod.LEGACY_TYPE_3, 0.001F, 0, Optional.empty(), 1, 0, RandomSpreadType.LINEAR
 		)));
 	}
 

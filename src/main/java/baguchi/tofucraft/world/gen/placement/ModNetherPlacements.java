@@ -9,15 +9,15 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.OffsetPlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-import net.minecraft.world.level.levelgen.placement.RandomOffsetPlacement;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 import java.util.List;
@@ -35,20 +35,20 @@ public class ModNetherPlacements {
 	}
 
 	public static void bootstrap(BootstrapContext<PlacedFeature> context) {
-		HolderGetter<ConfiguredFeature<?, ?>> configuredFeature = context.lookup(Registries.CONFIGURED_FEATURE);
+		HolderGetter<Feature> configuredFeature = context.lookup(Registries.FEATURE);
 		PlacementUtils.register(context, PATCH_NETHER_SOYBEAN_NORMAL, configuredFeature.getOrThrow(ModNetherFeatures.NETHER_SOYBEAN), List.of(RarityFilter.onAverageOnceEvery(4), InSquarePlacement.spread(), NETHER_SOYBEAN_HEIGHT, BiomeFilter.biome(),
 				CountPlacement.of(32),
-				RandomOffsetPlacement.ofTriangle(7, 3),
+				OffsetPlacement.ofTriangle(7, 3),
 				BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)));
 
 		PlacementUtils.register(context, PATCH_NETHER_SOYBEAN_CRIMSON, configuredFeature.getOrThrow(ModNetherFeatures.NETHER_SOYBEAN), List.of(RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), NETHER_SOYBEAN_HEIGHT, BiomeFilter.biome(),
 				CountPlacement.of(32),
-				RandomOffsetPlacement.ofTriangle(7, 3),
+				OffsetPlacement.ofTriangle(7, 3),
 				BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)));
 
 		PlacementUtils.register(context, PATCH_SOUL_SOYBEAN, configuredFeature.getOrThrow(ModNetherFeatures.SOUL_SOYBEAN), List.of(RarityFilter.onAverageOnceEvery(5), InSquarePlacement.spread(), NETHER_SOYBEAN_HEIGHT, BiomeFilter.biome(),
 				CountPlacement.of(32),
-				RandomOffsetPlacement.ofTriangle(7, 3),
+				OffsetPlacement.ofTriangle(7, 3),
 				BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)));
 	}
 }

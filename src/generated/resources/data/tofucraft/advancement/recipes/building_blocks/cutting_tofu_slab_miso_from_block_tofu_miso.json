@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:cutting_tofu_slab_miso_from_block_tofu_miso"
+        "recipes": "tofucraft:cutting_tofu_slab_miso_from_block_tofu_miso"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

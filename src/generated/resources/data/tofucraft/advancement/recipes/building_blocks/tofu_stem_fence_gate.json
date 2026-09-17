@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_stem_fence_gate"
+        "recipes": "tofucraft:tofu_stem_fence_gate"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

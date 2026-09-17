@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:leek_green_planks"
+        "recipes": "tofucraft:leek_green_planks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

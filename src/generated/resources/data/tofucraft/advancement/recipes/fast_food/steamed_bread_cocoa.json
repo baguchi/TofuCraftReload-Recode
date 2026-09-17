@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:steamed_bread_cocoa"
+        "recipes": "tofucraft:steamed_bread_cocoa"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

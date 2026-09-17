@@ -9,11 +9,11 @@ import baguchi.tofucraft.world.gen.placement.ModNetherPlacements;
 import baguchi.tofucraft.world.gen.placement.ModPalePlacements;
 import baguchi.tofucraft.world.gen.placement.TofuWorldPlacements;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class ModConfiguredFeatures {
-	public static void bootstrapConfiguredFeature(BootstrapContext<ConfiguredFeature<?, ?>> context) {
+	public static void bootstrapConfiguredFeature(BootstrapContext<Feature> context) {
 		ModNetherFeatures.bootstrap(context);
 		ModPaleFeatures.bootstrap(context);
 		ModTreeFeatures.bootstrap(context);

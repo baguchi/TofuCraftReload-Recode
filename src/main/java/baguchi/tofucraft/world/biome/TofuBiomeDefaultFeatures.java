@@ -1,33 +1,32 @@
 package baguchi.tofucraft.world.biome;
 
-import baguchi.tofucraft.data.resources.TofuConfiguredWorldCarvers;
 import baguchi.tofucraft.registry.TofuEntityTypes;
 import baguchi.tofucraft.world.gen.placement.TofuWorldPlacements;
-import net.minecraft.world.entity.MobCategory;
+import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
 public class TofuBiomeDefaultFeatures {
 	public static void addDefaultCarvers(BiomeGenerationSettings.Builder p_194721_) {
-		p_194721_.addCarver(TofuConfiguredWorldCarvers.CAVE);
-		p_194721_.addCarver(TofuConfiguredWorldCarvers.CAVE_EXTRA_UNDERGROUND);
-		p_194721_.addCarver(TofuConfiguredWorldCarvers.CANYON);
+		p_194721_.addCarver(Carvers.CAVE);
+		p_194721_.addCarver(Carvers.CAVE_EXTRA_UNDERGROUND);
+		p_194721_.addCarver(Carvers.CANYON);
 	}
 
 	public static void tofuMonsterSpawns(MobSpawnSettings.Builder p_126813_) {
-		p_126813_.addSpawn(MobCategory.MONSTER, 100, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUSLIME.get(), 4, 4));
-		p_126813_.addSpawn(MobCategory.MONSTER, 10, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUCREEPER.get(), 2, 3));
-		p_126813_.addSpawn(MobCategory.MONSTER, 30, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUSPIDER.get(), 2, 3));
+		p_126813_.addSpawn(TofuEntityTypes.TOFUSLIME.get(), 100, 4, 4);
+		p_126813_.addSpawn(TofuEntityTypes.TOFUCREEPER.get(), 10, 2, 3);
+		p_126813_.addSpawn(TofuEntityTypes.TOFUSPIDER.get(), 30, 2, 3);
 	}
 
 	public static void tofuCreatureSpawns(MobSpawnSettings.Builder p_126813_) {
-		p_126813_.addSpawn(MobCategory.CREATURE, 10, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUCOW.get(), 4, 4));
-		p_126813_.addSpawn(MobCategory.CREATURE, 20, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUPIG.get(), 4, 4));
+		p_126813_.addSpawn(TofuEntityTypes.TOFUCOW.get(), 10, 4, 4);
+		p_126813_.addSpawn(TofuEntityTypes.TOFUPIG.get(), 20, 4, 4);
 	}
 
 	public static void tofuWaterCreatureSpawns(MobSpawnSettings.Builder p_126813_) {
-		p_126813_.addSpawn(MobCategory.WATER_AMBIENT, 10, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUFISH.get(), 3, 6));
+		p_126813_.addSpawn(TofuEntityTypes.TOFUFISH.get(), 10, 3, 6);
 	}
 
 	public static void addDefaultOres(BiomeGenerationSettings.Builder p_194721_) {

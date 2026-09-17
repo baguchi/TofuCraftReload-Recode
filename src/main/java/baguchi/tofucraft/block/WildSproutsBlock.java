@@ -3,7 +3,6 @@ package baguchi.tofucraft.block;
 import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.world.gen.features.ModTreeFeatures;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -14,11 +13,12 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.VegetationBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.EventHooks;
@@ -29,16 +29,8 @@ import java.util.Optional;
 public class WildSproutsBlock extends VegetationBlock implements BonemealableBlock {
 	private static final VoxelShape SHAPES = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D);
 
-
-	public static final MapCodec<WildSproutsBlock> CODEC = simpleCodec(WildSproutsBlock::new);
-
 	public WildSproutsBlock(BlockBehaviour.Properties properties) {
 		super(properties);
-	}
-
-	@Override
-	protected MapCodec<? extends VegetationBlock> codec() {
-		return CODEC;
 	}
 
 	@Override
@@ -57,18 +49,18 @@ public class WildSproutsBlock extends VegetationBlock implements BonemealableBlo
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource) {
 		BlockState blockstate = levelReader.getBlockState(blockPos.below());
 		return blockstate.is(TofuTags.Blocks.SUPPORTS_TOFU_PLANT);
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+	public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource) {
 		return randomSource.nextFloat() < 0.1F - level.getPathfindingCostFromLightLevels(blockPos) * 0.1F;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+	public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState, BonemealSource bonemealSource) {
 		growSprout(serverLevel, randomSource, blockPos, blockState);
 	}
 
@@ -83,7 +75,7 @@ public class WildSproutsBlock extends VegetationBlock implements BonemealableBlo
 
 	}
 
-	private Optional<? extends Holder<ConfiguredFeature<?, ?>>> getFeature(LevelReader p_256589_) {
-		return p_256589_.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(ModTreeFeatures.SPROUT);
+	private Optional<? extends Holder<Feature>> getFeature(LevelReader p_256589_) {
+		return p_256589_.registryAccess().lookupOrThrow(Registries.FEATURE).get(ModTreeFeatures.SPROUT);
 	}
 }

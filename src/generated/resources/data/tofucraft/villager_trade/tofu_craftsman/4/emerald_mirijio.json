@@ -3,11 +3,11 @@
     "count": 2,
     "id": "tofucraft:morijio"
   },
-  "max_uses": 8.0,
+  "max_uses": 8,
   "reputation_discount": 0.1,
   "wants": {
-    "count": 15.0,
+    "count": 15,
     "id": "minecraft:emerald"
   },
-  "xp": 17.0
+  "xp": 17
 }

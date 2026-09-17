@@ -2,7 +2,6 @@ package baguchi.tofucraft.block.utils;
 
 import baguchi.tofucraft.blockentity.FoodPlateBlockEntity;
 import baguchi.tofucraft.registry.TofuBlockEntitys;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -48,7 +47,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class FoodPlateBlock extends BaseEntityBlock {
-	public static final MapCodec<FoodPlateBlock> CODEC = simpleCodec(FoodPlateBlock::new);
 	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 1.0D, 14.0D);
@@ -56,11 +54,6 @@ public class FoodPlateBlock extends BaseEntityBlock {
 
 	public FoodPlateBlock(Properties p_49224_) {
 		super(p_49224_);
-	}
-
-	@Override
-	protected MapCodec<? extends BaseEntityBlock> codec() {
-		return CODEC;
 	}
 
 	@Override

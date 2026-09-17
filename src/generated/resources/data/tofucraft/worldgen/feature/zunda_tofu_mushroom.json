@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "id": "tofucraft:zunda_tofu_mushroom",
+    "properties": {
+      "stage": "0"
+    }
+  }
+}

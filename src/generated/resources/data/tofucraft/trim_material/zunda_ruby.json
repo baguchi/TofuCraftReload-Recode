@@ -1,7 +1,7 @@
 {
-  "asset_name": "zunda_ruby",
   "description": {
     "color": "#39650D",
     "translate": "trim_material.tofucraft.zunda_ruby"
-  }
+  },
+  "palette_id": "tofucraft:zunda_ruby"
 }

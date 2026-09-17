@@ -3,17 +3,15 @@
   "criteria": {
     "has_item": {
       "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:location": {
-                "structures": "tofucraft:tofu_castle"
-              }
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:location": {
+              "structures": "tofucraft:tofu_castle"
             }
           }
-        ]
+        }
       },
       "trigger": "minecraft:location"
     }

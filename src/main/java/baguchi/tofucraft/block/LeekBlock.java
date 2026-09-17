@@ -2,20 +2,19 @@ package baguchi.tofucraft.block;
 
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuTags;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
 public class LeekBlock extends BushBlock implements BonemealableBlock {
-	public static final MapCodec<LeekBlock> CODEC = simpleCodec(LeekBlock::new);
 	public LeekBlock(Properties p_51021_) {
 		super(p_51021_);
 	}
@@ -34,18 +33,18 @@ public class LeekBlock extends BushBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader p_256655_, BlockPos p_256553_, BlockState p_256213_) {
+	public boolean isValidBonemealTarget(LevelReader p_256655_, BlockPos p_256553_, BlockState p_256213_, BonemealSource bonemealSource) {
 		BlockState blockstate = p_256655_.getBlockState(p_256553_.below());
 		return blockstate.is(TofuTags.Blocks.SUPPORTS_TOFU_PLANT);
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level p_222428_, RandomSource p_222429_, BlockPos p_222430_, BlockState p_222431_) {
+	public boolean isBonemealSuccess(Level p_222428_, RandomSource p_222429_, BlockPos p_222430_, BlockState p_222431_, BonemealSource bonemealSource) {
 		return true;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel p_50893_, RandomSource p_50894_, BlockPos p_50895_, BlockState p_50896_) {
+	public void performBonemeal(ServerLevel p_50893_, RandomSource p_50894_, BlockPos p_50895_, BlockState p_50896_, BonemealSource bonemealSource) {
 		growLeek(p_50893_, p_50895_, p_50896_, p_50894_);
 	}
 }

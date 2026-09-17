@@ -9,7 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
@@ -36,14 +36,14 @@ public class MushroomFoliagePlacer extends FoliagePlacer {
 	}
 
 	@Override
-	protected void createFoliage(WorldGenLevel level, FoliageSetter blockSetter, RandomSource random, TreeConfiguration config, int maxFreeTreeHeight, FoliageAttachment attachment, int height, int radius, int offset) {
-		BlockPos blockpos = attachment.pos();
+	protected void createFoliage(WorldGenLevel level, FoliageSetter foliageSetter, RandomSource random, TreeFeature tree, int treeHeight, FoliageAttachment foliageAttachment, int foliageHeight, int leafRadius, int offset) {
+		BlockPos blockpos = foliageAttachment.pos();
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-		this.makeCap(level, radius, random, blockpos, height, offset, blockpos$mutableblockpos, config, attachment, blockSetter);
+		this.makeCap(level, radius.sample(random), random, blockpos, height, offset, blockpos$mutableblockpos, tree, foliageAttachment, foliageSetter);
 
 	}
 
-	private void makeCap(WorldGenLevel level, int radius, RandomSource random, BlockPos blockpos, int height, int offset, BlockPos.MutableBlockPos blockpos$mutableblockpos, TreeConfiguration config, FoliageAttachment attachment, FoliageSetter blockSetter) {
+	private void makeCap(WorldGenLevel level, int radius, RandomSource random, BlockPos blockpos, int height, int offset, BlockPos.MutableBlockPos blockpos$mutableblockpos, TreeFeature config, FoliageAttachment attachment, FoliageSetter blockSetter) {
 		for (int i = offset; i > offset - height; --i) {
 			int j = i < offset ? radius : radius - 1;
 			int k = radius - 2;
@@ -65,10 +65,12 @@ public class MushroomFoliagePlacer extends FoliagePlacer {
 		}
 	}
 
-	public int foliageHeight(RandomSource p_68423_, int p_68424_, TreeConfiguration p_68425_) {
+	@Override
+	public int foliageHeight(RandomSource random, int treeHeight, TreeFeature tree) {
 		return this.height;
 	}
 
+	@Override
 	protected boolean shouldSkipLocation(RandomSource p_68416_, int p_68417_, int p_68418_, int p_68419_, int p_68420_, boolean p_68421_) {
 		return false;
 	}

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_stem_planks"
+        "recipes": "tofucraft:tofu_stem_planks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.cubemob.Slime;
@@ -19,6 +20,7 @@ import net.neoforged.neoforge.common.loot.LootModifier;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ZundaModifier extends LootModifier {
@@ -27,7 +29,7 @@ public class ZundaModifier extends LootModifier {
 			RecordCodecBuilder.mapCodec(inst -> codecStart(inst)
 					.apply(inst, ZundaModifier::new)));
 
-	public ZundaModifier(LootItemCondition[] conditionsIn, int priority) {
+	public ZundaModifier(Optional<Holder<LootItemCondition>> conditionsIn, int priority) {
 		super(conditionsIn, priority);
 	}
 
@@ -36,7 +38,7 @@ public class ZundaModifier extends LootModifier {
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		List<ItemStack> seeds = Lists.newArrayList();
 		if (context.hasParameter(LootContextParams.THIS_ENTITY) && context.hasParameter(LootContextParams.ATTACKING_ENTITY) && context.hasParameter(LootContextParams.DAMAGE_SOURCE)) {
-			if (context.getParameter(LootContextParams.THIS_ENTITY) instanceof LivingEntity living) {
+			if (context.getOptional(LootContextParams.THIS_ENTITY) instanceof LivingEntity living) {
 				if (living.hasEffect(TofuEffects.ZUNDAFIED)) {
 					if (living instanceof Creeper creeper) {
 						seeds.add(new ItemStack(TofuItems.UNSTABLE_ZUNDAMA, 1 + context.getRandom().nextInt(1)));

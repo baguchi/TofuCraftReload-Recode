@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "data": "tofucraft:blockleek",
+        "weight": 10
+      },
+      {
+        "data": "tofucraft:tall_leek",
+        "weight": 1
+      }
+    ]
+  }
+}

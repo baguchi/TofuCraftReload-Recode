@@ -6,12 +6,56 @@
         "min_delay": 12000,
         "sound": "tofucraft:music.rough_ground"
       }
+    },
+    "minecraft:gameplay/natural_mob_spawns": {
+      "argument": {
+        "spawn_costs": {},
+        "spawns_by_category": {
+          "monster": [
+            {
+              "type": "tofucraft:tofu_slime",
+              "count": 4,
+              "weight": 100
+            },
+            {
+              "type": "tofucraft:tofu_creeper",
+              "count": {
+                "type": "minecraft:uniform",
+                "max_inclusive": 3,
+                "min_inclusive": 2
+              },
+              "weight": 10
+            },
+            {
+              "type": "tofucraft:tofu_spider",
+              "count": {
+                "type": "minecraft:uniform",
+                "max_inclusive": 3,
+                "min_inclusive": 2
+              },
+              "weight": 30
+            }
+          ],
+          "water_ambient": [
+            {
+              "type": "tofucraft:tofu_fish",
+              "count": {
+                "type": "minecraft:uniform",
+                "max_inclusive": 6,
+                "min_inclusive": 3
+              },
+              "weight": 10
+            }
+          ]
+        }
+      },
+      "modifier": "overlay"
     }
   },
   "carvers": [
-    "tofucraft:tofu_cave",
-    "tofucraft:tofu_cave_extra_underground",
-    "tofucraft:tofu_canyon"
+    "minecraft:cave",
+    "minecraft:cave_extra_underground",
+    "minecraft:canyon"
   ],
   "downfall": 0.6,
   "effects": {
@@ -44,42 +88,5 @@
     ]
   ],
   "has_precipitation": true,
-  "spawn_costs": {},
-  "spawners": {
-    "ambient": [],
-    "axolotls": [],
-    "creature": [],
-    "misc": [],
-    "monster": [
-      {
-        "type": "tofucraft:tofu_slime",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 100
-      },
-      {
-        "type": "tofucraft:tofu_creeper",
-        "maxCount": 3,
-        "minCount": 2,
-        "weight": 10
-      },
-      {
-        "type": "tofucraft:tofu_spider",
-        "maxCount": 3,
-        "minCount": 2,
-        "weight": 30
-      }
-    ],
-    "underground_water_creature": [],
-    "water_ambient": [
-      {
-        "type": "tofucraft:tofu_fish",
-        "maxCount": 6,
-        "minCount": 3,
-        "weight": 10
-      }
-    ],
-    "water_creature": []
-  },
   "temperature": 0.8
 }

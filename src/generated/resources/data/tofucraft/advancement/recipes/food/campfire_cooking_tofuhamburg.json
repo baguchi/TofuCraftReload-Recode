@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:campfire_cooking_tofuhamburg"
+        "recipes": "tofucraft:campfire_cooking_tofuhamburg"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

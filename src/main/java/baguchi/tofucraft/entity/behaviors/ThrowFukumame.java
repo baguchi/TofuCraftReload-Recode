@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.ai.memory.WalkTarget;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.Optional;
@@ -55,7 +56,7 @@ public class ThrowFukumame<E extends FukumameThrower> extends Behavior<E> {
 			LivingEntity livingEntity = optional.get();
 			if (p_22552_.hasLineOfSight(optional.get()) && p_22552_.distanceToSqr(optional.get()) < 64F) {
 				if (++this.ticks == 80) {
-					p_22552_.swing(InteractionHand.MAIN_HAND);
+					p_22552_.swing(InteractionHand.MAIN_HAND, SwingAnimation.DEFAULT);
 					p_22552_.setCharge(false);
 					p_22552_.setFukumameCount(Math.max(p_22552_.getFukumameCount() - 1, 0));
 					Vec3 vec3 = livingEntity.getDeltaMovement();

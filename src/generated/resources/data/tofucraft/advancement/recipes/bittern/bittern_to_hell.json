@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:bittern_to_hell"
+        "recipes": "tofucraft:bittern_to_hell"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

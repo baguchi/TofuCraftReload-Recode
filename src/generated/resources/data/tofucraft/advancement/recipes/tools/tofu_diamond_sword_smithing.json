@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:tofu_diamond_sword_smithing"
+        "recipes": "tofucraft:tofu_diamond_sword_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

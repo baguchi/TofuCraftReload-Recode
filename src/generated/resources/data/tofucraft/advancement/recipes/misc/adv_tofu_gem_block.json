@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:adv_tofu_gem_block"
+        "recipes": "tofucraft:adv_tofu_gem_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

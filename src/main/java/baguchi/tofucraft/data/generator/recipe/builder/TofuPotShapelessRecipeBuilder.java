@@ -9,6 +9,7 @@ import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.advancements.triggers.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.Identifier;
@@ -146,11 +147,11 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 	}
 
 	@Override
-	public void save(RecipeOutput recipeOutput, ResourceKey<Recipe<?>> resourceKey) {
-		this.ensureValid(resourceKey.identifier());
-		Advancement.Builder advancement$builder = recipeOutput.advancement()
-				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceKey))
-				.rewards(AdvancementRewards.Builder.recipe(resourceKey))
+	public void save(RecipeOutput output, ResourceKey<Recipe<?>> id) {
+		this.ensureValid(id.identifier());
+		Advancement.Builder advancement$builder = output.advancement()
+				.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(output.lookup(Registries.RECIPE).getOrThrow(id)))
+				.rewards(AdvancementRewards.Builder.recipe(id))
 				.requirements(AdvancementRequirements.Strategy.OR);
 		this.criteria.forEach(advancement$builder::addCriterion);
 		TofuPotShapelessRecipe shapelessrecipe = new TofuPotShapelessRecipe(
@@ -162,7 +163,7 @@ public class TofuPotShapelessRecipeBuilder implements RecipeBuilder {
 				this.cookTime,
 				this.experience
 		);
-		recipeOutput.accept(resourceKey, shapelessrecipe, advancement$builder.build(resourceKey.identifier().withPrefix("recipes/" + this.category.getSerializedName() + "/")));
+		output.accept(id, shapelessrecipe, advancement$builder.build(id.identifier().withPrefix("recipes/" + this.category.getSerializedName() + "/")));
 
 	}
 

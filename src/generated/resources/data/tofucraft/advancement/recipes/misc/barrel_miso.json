@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:barrel_miso"
+        "recipes": "tofucraft:barrel_miso"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

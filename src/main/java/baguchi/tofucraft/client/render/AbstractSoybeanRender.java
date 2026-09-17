@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.ArrowRenderState;
-import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -29,9 +28,9 @@ public abstract class AbstractSoybeanRender<T extends FukumameEntity, S extends 
 	@Override
 	public void submit(S p_113839_, PoseStack p_113842_, SubmitNodeCollector p_113843_, CameraRenderState p_451076_) {
 		p_113842_.pushPose();
-		p_113842_.mulPose(Axis.YP.rotationDegrees(p_113839_.yRot - 90.0F));
-		p_113842_.mulPose(Axis.ZP.rotationDegrees(p_113839_.xRot));
-		p_113843_.submitModel(this.model, p_113839_, p_113842_, RenderTypes.entityCutout(this.getTextureLocation(p_113839_)), p_113839_.lightCoords, OverlayTexture.NO_OVERLAY, p_113839_.outlineColor, (ModelFeatureRenderer.CrumblingOverlay) null);
+		p_113842_.rotateDegrees(Axis.YP, p_113839_.yRot - 90.0F);
+		p_113842_.rotateDegrees(Axis.ZP, p_113839_.xRot);
+		p_113843_.submitModel(this.model, p_113839_, p_113842_, RenderTypes.entityCutout(this.getTextureLocation(p_113839_)), p_113839_.lightCoords, OverlayTexture.NO_OVERLAY, p_113839_.outlineColor);
 
 
 		p_113842_.popPose();

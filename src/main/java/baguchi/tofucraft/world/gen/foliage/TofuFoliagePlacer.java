@@ -8,7 +8,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
@@ -34,19 +34,22 @@ public class TofuFoliagePlacer extends FoliagePlacer {
 		return TofuFoliagePlacerType.TOFU_FOLIAGE_PLACER.get();
 	}
 
+
 	@Override
-	protected void createFoliage(WorldGenLevel worldGenLevel, FoliageSetter blockSetter, RandomSource random, TreeConfiguration config, int maxFreeTreeHeight, FoliageAttachment attachment, int height, int radius, int offset) {
+	protected void createFoliage(WorldGenLevel level, FoliageSetter foliageSetter, RandomSource random, TreeFeature tree, int treeHeight, FoliageAttachment foliageAttachment, int foliageHeight, int leafRadius, int offset) {
 		for (int i = offset; i >= offset - height; i--) {
-			int j = Math.max(radius + attachment.radiusOffset(), 0);
-			this.placeLeavesRow(worldGenLevel, blockSetter, random, config, attachment.pos(), j, i, attachment.doubleTrunk());
+			int j = Math.max(radius.sample(random) + leafRadius, 0);
+			this.placeLeavesRow(level, foliageSetter, random, tree, foliageAttachment.pos(), j, i, foliageAttachment.doubleTrunk());
 		}
 
 	}
 
-	public int foliageHeight(RandomSource p_68423_, int p_68424_, TreeConfiguration p_68425_) {
+	@Override
+	public int foliageHeight(RandomSource random, int treeHeight, TreeFeature tree) {
 		return this.height;
 	}
 
+	@Override
 	protected boolean shouldSkipLocation(RandomSource p_68416_, int p_68417_, int p_68418_, int p_68419_, int p_68420_, boolean p_68421_) {
 		return false;
 	}

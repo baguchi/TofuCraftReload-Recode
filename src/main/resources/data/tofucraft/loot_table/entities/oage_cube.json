@@ -8,34 +8,38 @@
         {
           "type": "item",
           "name": "tofucraft:oage",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "minecraft:type_specific/cube_mob": {
-                  "size": 1
+          "condition": {
+            "type": "minecraft:all_of",
+            "terms": [
+              {
+                "type": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "minecraft:type_specific/cube_mob": {
+                    "size": 1
+                  }
                 }
               }
-            }
-          ],
+            ]
+          },
           "weight": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "set_count",
+              "type": "set_count",
               "count": {
-                "min": 0,
-                "max": 2
+                "type": "minecraft:uniform",
+                "max": 2,
+                "min": 0
               }
             },
             {
               "count": {
                 "type": "minecraft:uniform",
-                "max": 1.0,
-                "min": 0.0
+                "max": 1,
+                "min": 0
               },
               "enchantment": "minecraft:looting",
-              "function": "minecraft:enchanted_count_increase"
+              "type": "minecraft:enchanted_count_increase"
             }
           ]
         }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:nether_nattobed"
+        "recipes": "tofucraft:nether_nattobed"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -188,7 +188,7 @@ public class TofuBedBlock extends BedBlock {
 
 	@Override
 	public PushReaction getPistonPushReaction(BlockState p_49556_) {
-		return PushReaction.DESTROY;
+		return PushReaction.POPPED;
 	}
 
 	@Override

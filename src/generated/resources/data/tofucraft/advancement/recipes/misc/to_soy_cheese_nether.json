@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:to_soy_cheese_nether"
+        "recipes": "tofucraft:to_soy_cheese_nether"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

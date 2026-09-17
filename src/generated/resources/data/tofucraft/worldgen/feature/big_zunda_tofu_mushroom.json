@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:random_selector",
+  "default": {
+    "feature": "tofucraft:zunda_mushroom_big",
+    "placement": []
+  },
+  "features": [
+    {
+      "chance": 0.1,
+      "feature": {
+        "feature": "tofucraft:zunda_mushroom",
+        "placement": []
+      }
+    }
+  ]
+}

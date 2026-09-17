@@ -1,7 +1,8 @@
 {
-  "parent": "minecraft:block/template_farmland",
+  "parent": "minecraft:block/template_cube_bottom_top_indented",
   "textures": {
-    "dirt": "tofucraft:block/tofu_terrain",
+    "bottom": "tofucraft:block/tofu_terrain",
+    "side": "tofucraft:block/tofu_terrain",
     "top": "tofucraft:block/tofu_farmland"
   }
 }

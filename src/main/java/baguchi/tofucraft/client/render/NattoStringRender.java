@@ -47,8 +47,8 @@ public class NattoStringRender<E extends NattoStringEntity, T extends NattoStrin
 	public void submit(T renderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
 		poseStack.pushPose();
 		poseStack.scale(this.scale, this.scale, this.scale);
-		poseStack.mulPose(cameraRenderState.orientation);
-		poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
+		poseStack.rotate(cameraRenderState.orientation);
+		poseStack.rotateDegrees(Axis.YP, 180.0F);
 		renderState.itemStackRenderState.submit(poseStack, submitNodeCollector, renderState.lightCoords, OverlayTexture.NO_OVERLAY, renderState.outlineColor);
 		poseStack.popPose();
 

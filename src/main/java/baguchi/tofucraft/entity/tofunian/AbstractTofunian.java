@@ -294,9 +294,9 @@ public abstract class AbstractTofunian extends AgeableMob implements InventoryCa
 					.create(tradeSet.randomSequence());
 			int numberOfOffers = tradeSet.calculateNumberOfTrades(lootContext);
 			if (tradeSet.allowDuplicates()) {
-				addOffersFromItemListings(lootContext, offers, tradeSet.getTrades(), numberOfOffers);
+				addOffersFromItemListings(lootContext, offers, tradeSet.trades(), numberOfOffers);
 			} else {
-				addOffersFromItemListingsWithoutDuplicates(lootContext, offers, tradeSet.getTrades(), numberOfOffers);
+				addOffersFromItemListingsWithoutDuplicates(lootContext, offers, tradeSet.trades(), numberOfOffers);
 			}
 		}
 	}

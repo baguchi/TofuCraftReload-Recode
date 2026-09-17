@@ -8,9 +8,9 @@
           "type": "minecraft:item",
           "weight": 2,
           "quality": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": 20.0,
               "treasure": false
             }
@@ -21,9 +21,9 @@
           "type": "minecraft:item",
           "weight": 2,
           "quality": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": 20.0,
               "treasure": false
             }
@@ -34,9 +34,9 @@
           "type": "minecraft:item",
           "weight": 2,
           "quality": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": 20.0,
               "treasure": false
             }
@@ -47,9 +47,9 @@
           "type": "minecraft:item",
           "weight": 2,
           "quality": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": 20.0,
               "treasure": false
             }
@@ -60,9 +60,9 @@
           "type": "minecraft:item",
           "weight": 2,
           "quality": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": 20.0,
               "treasure": false
             }
@@ -73,9 +73,9 @@
           "type": "minecraft:item",
           "weight": 2,
           "quality": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": 20.0,
               "treasure": false
             }
@@ -86,9 +86,9 @@
           "type": "minecraft:item",
           "weight": 2,
           "quality": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": 20.0,
               "treasure": false
             }
@@ -99,9 +99,9 @@
           "type": "minecraft:item",
           "weight": 2,
           "quality": 1,
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:enchant_with_levels",
+              "type": "minecraft:enchant_with_levels",
               "levels": 20.0,
               "treasure": false
             }
@@ -110,14 +110,14 @@
         },
         {
           "type": "minecraft:item",
-          "functions": [
+          "modifier": [
             {
               "enchantments": [
                 "tofucraft:batch",
                 "tofucraft:drain",
                 "tofucraft:effect_protection"
               ],
-              "function": "minecraft:enchant_randomly"
+              "type": "minecraft:enchant_randomly"
             }
           ],
           "name": "minecraft:book",
@@ -129,9 +129,9 @@
           "weight": 5,
           "quality": -1,
           "name": "tofucraft:zundaruby",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "min": 4.0,
                 "max": 6.0,

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:nethermanju"
+        "recipes": "tofucraft:nethermanju"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

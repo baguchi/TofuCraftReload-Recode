@@ -1,20 +1,20 @@
 package baguchi.tofucraft.client.render.dimension;
 
 import baguchi.tofucraft.TofuCraftReload;
-import com.mojang.blaze3d.PrimitiveTopology;
-import com.mojang.blaze3d.buffers.GpuBuffer;
-import com.mojang.blaze3d.buffers.GpuBufferSlice;
 import com.mojang.blaze3d.pipeline.RenderTarget;
-import com.mojang.blaze3d.systems.RenderPass;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.textures.GpuTextureView;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.ByteBufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.MeshData;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Axis;
+import com.mojang.renderpearl.api.buffers.GpuBuffer;
+import com.mojang.renderpearl.api.buffers.GpuBufferSlice;
+import com.mojang.renderpearl.api.commands.RenderPass;
+import com.mojang.renderpearl.api.pipeline.PrimitiveTopology;
+import com.mojang.renderpearl.api.textures.GpuTextureView;
+import com.mojang.renderpearl.api.vertex.VertexFormat;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -92,13 +92,13 @@ public class TofuWorldRenderer {
 			PoseStack p_363513_, float p_362201_, float p_362569_, float p_363542_, MoonPhase p_455415_, float p_468909_, float p_467714_
 	) {
 		p_363513_.pushPose();
-		p_363513_.mulPose(Axis.YP.rotationDegrees(-90.0F));
+		p_363513_.rotateDegrees(Axis.YP, -90.0F);
 		p_363513_.pushPose();
-		p_363513_.mulPose(Axis.XP.rotation(p_362201_));
+		p_363513_.rotate(Axis.XP, p_362201_);
 		this.renderSun(p_468909_, p_363513_);
 		p_363513_.popPose();
 		p_363513_.pushPose();
-		p_363513_.mulPose(Axis.XP.rotation(p_362569_));
+		p_363513_.rotate(Axis.XP, p_362569_);
 		this.renderMoon(p_455415_, p_468909_, p_363513_);
 		p_363513_.popPose();
 		p_363513_.popPose();
@@ -119,10 +119,11 @@ public class TofuWorldRenderer {
 		try (RenderPass renderPass = RenderSystem.getDevice()
 				.createCommandEncoder()
 				.createRenderPass(() -> "Sky sun", color, Optional.empty(), depth, OptionalDouble.empty())) {
-			renderPass.setPipeline(RenderPipelines.CELESTIAL);
+			renderPass.setPipeline(RenderSystem.getCompiledPipeline(RenderPipelines.SUNRISE_SUNSET));
+
 			RenderSystem.bindDefaultUniforms(renderPass);
 			renderPass.setUniform("DynamicTransforms", dynamicTransforms);
-			renderPass.bindTexture("Sampler0", this.celestialsAtlas.getTextureView(), this.celestialsAtlas.getSampler());
+			renderPass.setUniform("Sampler0", this.celestialsAtlas.getTextureView(), this.celestialsAtlas.getSampler());
 			renderPass.setVertexBuffer(0, this.sunBuffer.slice());
 			renderPass.setIndexBuffer(indexBuffer, this.quadIndices.type());
 			renderPass.drawIndexed(6, 1, 0, 0, 0);
@@ -147,10 +148,10 @@ public class TofuWorldRenderer {
 		try (RenderPass renderPass = RenderSystem.getDevice()
 				.createCommandEncoder()
 				.createRenderPass(() -> "Sky moon", color, Optional.empty(), depth, OptionalDouble.empty())) {
-			renderPass.setPipeline(RenderPipelines.CELESTIAL);
+			renderPass.setPipeline(RenderSystem.getCompiledPipeline(RenderPipelines.CELESTIAL));
 			RenderSystem.bindDefaultUniforms(renderPass);
 			renderPass.setUniform("DynamicTransforms", dynamicTransforms);
-			renderPass.bindTexture("Sampler0", this.celestialsAtlas.getTextureView(), this.celestialsAtlas.getSampler());
+			renderPass.setUniform("Sampler0", this.celestialsAtlas.getTextureView(), this.celestialsAtlas.getSampler());
 			renderPass.setVertexBuffer(0, this.moonBuffer.slice());
 			renderPass.setIndexBuffer(indexBuffer, this.quadIndices.type());
 			renderPass.drawIndexed(6, 1, 0, baseVertex, 0);

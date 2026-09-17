@@ -23,8 +23,7 @@ public class TofuEnchantTags extends EnchantmentTagsProvider {
 				TofuEnchantments.BATCH,
 				TofuEnchantments.DRAIN,
 				TofuEnchantments.EFFECT_PROTECTION,
-				TofuEnchantments.SHAPED_BEAN,
-				TofuEnchantments.CRACK_BURST
+				TofuEnchantments.SHAPED_BEAN
 		);
 		this.tag(EnchantmentTags.NON_TREASURE).add(
 				TofuEnchantments.SHAPED_BEAN
@@ -34,8 +33,7 @@ public class TofuEnchantTags extends EnchantmentTagsProvider {
 				.add(
 						TofuEnchantments.BATCH,
 						TofuEnchantments.DRAIN,
-						TofuEnchantments.EFFECT_PROTECTION,
-						TofuEnchantments.CRACK_BURST
+						TofuEnchantments.EFFECT_PROTECTION
 				);
 	}
 }

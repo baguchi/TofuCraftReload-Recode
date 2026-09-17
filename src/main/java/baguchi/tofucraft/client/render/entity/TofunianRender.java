@@ -108,7 +108,6 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		renderState.isPassenger = tofunian.isPassenger() && (tofunian.getVehicle() != null && tofunian.getVehicle().shouldRiderSit());
 
 		renderState.unhappyCounter = tofunian.getUnhappyCounter();
-		renderState.attackTime = tofunian.attackAnim;
 		renderState.eatFoodAnimationState.copyFrom(tofunian.eatFoodAnimationState);
 		renderState.happyAnimationState.copyFrom(tofunian.happyAnimationState);
 		renderState.waveAnimationState.copyFrom(tofunian.waveAnimationState);

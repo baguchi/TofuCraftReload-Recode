@@ -4,7 +4,6 @@ import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.datamap.TofuHarden;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuDataMaps;
-import baguchi.tofucraft.registry.TofuItems;
 import baguchi.tofucraft.registry.TofuProfessions;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -13,7 +12,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.neoforged.neoforge.common.data.DataMapProvider;
-import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.neoforged.neoforge.registries.datamaps.builtin.RaidHeroGift;
 import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
@@ -27,7 +25,7 @@ public class TofuDataMapsProvider extends DataMapProvider {
 
 	@Override
 	protected void gather(HolderLookup.Provider provider) {
-		final var compostables = builder(NeoForgeDataMaps.COMPOSTABLES);
+	/*	final var compostables = builder(NeoForgeDataMaps.COMPOSTABLES);
 		compostables.add(TofuItems.EDAMAME, new Compostable(0.1F), false);
 		compostables.add(TofuItems.BOILED_EDAMAME, new Compostable(0.1F), false);
 		compostables.add(TofuItems.SEEDS_SOYBEANS, new Compostable(0.3F), false);
@@ -57,7 +55,7 @@ public class TofuDataMapsProvider extends DataMapProvider {
 		compostables.add(TofuBlocks.SAPLING_TOFU.get().asItem().builtInRegistryHolder(), new Compostable(0.3F), false);
 		compostables.add(TofuBlocks.ZUNDA_MUSHROOM_BLOCK.get().asItem().builtInRegistryHolder(), new Compostable(0.5F), false);
 		compostables.add(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get().asItem().builtInRegistryHolder(), new Compostable(0.3F), false);
-		/*final var fuels = builder(NeoForgeDataMaps.FURNACE_FUELS);
+	*/	/*final var fuels = builder(NeoForgeDataMaps.FURNACE_FUELS);
 		fuels.add()*/
 
 		final var raidHeroGifts = builder(NeoForgeDataMaps.RAID_HERO_GIFTS);

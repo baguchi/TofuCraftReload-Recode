@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "id": "tofucraft:soybean_pale",
+    "properties": {
+      "age": "3",
+      "bloom": "false"
+    }
+  }
+}

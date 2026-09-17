@@ -30,7 +30,7 @@ public class ZundaLayer<T extends LivingEntityRenderState, M extends EntityModel
 		if (t.getRenderDataOrDefault(ZUNDA_KEY, false)) {
 			EntityModel<T> entitymodel = this.getParentModel();
 			entitymodel.setupAnim(t);
-			submitNodeCollector.submitModel(entitymodel, t, poseStack, enchantSwirl(TEXTURE), t.lightCoords, OverlayTexture.NO_OVERLAY, t.outlineColor, null);
+			submitNodeCollector.submitModel(entitymodel, t, poseStack, enchantSwirl(TEXTURE), t.lightCoords, OverlayTexture.NO_OVERLAY, t.outlineColor);
 		}
 	}
 

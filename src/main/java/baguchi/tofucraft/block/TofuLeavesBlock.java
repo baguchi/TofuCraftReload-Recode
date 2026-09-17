@@ -1,8 +1,6 @@
 package baguchi.tofucraft.block;
 
 import baguchi.tofucraft.registry.TofuBlocks;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ColorParticleOption;
@@ -13,18 +11,15 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.FallingParticlesLeavesBlock;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TofuLeavesBlock extends LeavesBlock {
-	public static final MapCodec<TofuLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(
-			p_399854_ -> p_399854_.group(
-							propertiesCodec()
-					)
-					.apply(p_399854_, TofuLeavesBlock::new)
-	);
+public class TofuLeavesBlock extends FallingParticlesLeavesBlock {
+
 	public TofuLeavesBlock(Properties properties) {
-		super(0.01F, properties);
+		super(0.02F, AmbientLeavesBlockSoundPlayer.noAmbientSound(), properties);
 	}
 
 	public BlockState updateShape(BlockState p_54440_, Direction p_54441_, BlockState p_54442_, LevelAccessor p_54443_, BlockPos p_54444_, BlockPos p_54445_) {
@@ -36,12 +31,6 @@ public class TofuLeavesBlock extends LeavesBlock {
 
 		return p_54440_;
 	}
-
-	@Override
-	public MapCodec<? extends LeavesBlock> codec() {
-		return CODEC;
-	}
-
 	public void tick(BlockState p_54426_, ServerLevel p_54427_, BlockPos p_54428_, RandomSource p_54429_) {
 		p_54427_.setBlock(p_54428_, updateDistance(p_54426_, p_54427_, p_54428_), 3);
 	}

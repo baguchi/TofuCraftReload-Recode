@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:block_tofu_diamond"
+        "recipes": "tofucraft:block_tofu_diamond"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

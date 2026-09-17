@@ -2,7 +2,6 @@ package baguchi.tofucraft.block;
 
 import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.world.gen.features.TofuWorldFeatures;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -11,17 +10,17 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.level.BlockGrowFeatureEvent;
 
 import java.util.Optional;
 
 public class TallLeekBlock extends DoublePlantBlock implements BonemealableBlock {
-	public static final MapCodec<LeekBlock> CODEC = simpleCodec(LeekBlock::new);
 
 	public TallLeekBlock(Properties p_51021_) {
 		super(p_51021_);
@@ -32,8 +31,8 @@ public class TallLeekBlock extends DoublePlantBlock implements BonemealableBlock
 		return p_51042_.is(TofuTags.Blocks.SUPPORTS_TOFU_PLANT);
 	}
 
-	private Optional<? extends Holder<ConfiguredFeature<?, ?>>> getFeature(LevelReader p_256589_) {
-		return p_256589_.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(TofuWorldFeatures.BIG_LEEK);
+	private Optional<? extends Holder<Feature>> getFeature(LevelReader p_256589_) {
+		return p_256589_.registryAccess().lookupOrThrow(Registries.FEATURE).get(TofuWorldFeatures.BIG_LEEK);
 	}
 
 	public void growLeek(ServerLevel p_54860_, BlockPos p_54861_, BlockState p_54862_, RandomSource p_54863_) {
@@ -48,18 +47,18 @@ public class TallLeekBlock extends DoublePlantBlock implements BonemealableBlock
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader p_256655_, BlockPos p_256553_, BlockState p_256213_) {
+	public boolean isValidBonemealTarget(LevelReader p_256655_, BlockPos p_256553_, BlockState p_256213_, BonemealSource bonemealSource) {
 		BlockState blockstate = p_256655_.getBlockState(p_256553_.below());
 		return blockstate.is(TofuTags.Blocks.SUPPORTS_TOFU_PLANT);
 	}
 
 	@Override
-	public boolean isBonemealSuccess(Level p_50901_, RandomSource p_50902_, BlockPos p_50903_, BlockState p_50904_) {
+	public boolean isBonemealSuccess(Level p_50901_, RandomSource p_50902_, BlockPos p_50903_, BlockState p_50904_, BonemealSource bonemealSource) {
 		return (double) p_50902_.nextFloat() < 0.1D;
 	}
 
 	@Override
-	public void performBonemeal(ServerLevel p_50893_, RandomSource p_50894_, BlockPos p_50895_, BlockState p_50896_) {
+	public void performBonemeal(ServerLevel p_50893_, RandomSource p_50894_, BlockPos p_50895_, BlockState p_50896_, BonemealSource bonemealSource) {
 		growLeek(p_50893_, p_50895_, p_50896_, p_50894_);
 	}
 }

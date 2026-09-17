@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tofucraft:sanbuzhan"
+        "recipes": "tofucraft:sanbuzhan"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -54,8 +54,8 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 	public void renderItemLayingDown(PoseStack matrixStackIn, Direction direction) {
 		matrixStackIn.translate(0.5D, 0.07D, 0.5D);
 		float f = -direction.toYRot();
-		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
-		matrixStackIn.mulPose(Axis.XP.rotationDegrees(90.0F));
+		matrixStackIn.rotateDegrees(Axis.YP, f);
+		matrixStackIn.rotateDegrees(Axis.XP, 90.0F);
 		//matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 	}
 
@@ -64,7 +64,7 @@ public class FoodPlateRender implements BlockEntityRenderer<FoodPlateBlockEntity
 		matrixStackIn.translate(0.5D, 0.0D, 0.5D);
 		matrixStackIn.scale(0.6F, 0.6F, 0.6F);
 
-		matrixStackIn.mulPose(Axis.YP.rotationDegrees(f));
+		matrixStackIn.rotateDegrees(Axis.YP, f);
 		matrixStackIn.translate(-0.5D, 0.0D, -0.5D);
 		//matrixStackIn.scale(0.8F, 0.8F, 0.8F);
 	}
