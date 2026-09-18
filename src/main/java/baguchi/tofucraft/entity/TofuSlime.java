@@ -51,7 +51,7 @@ public class TofuSlime extends AbstractCubeMob {
 
 	@Override
 	protected void addBehaviourGoals() {
-
+		this.goalSelector.addGoal(2, new AbstractCubeMob.CubeMobAttackGoal(this));
 	}
 
 	@Override

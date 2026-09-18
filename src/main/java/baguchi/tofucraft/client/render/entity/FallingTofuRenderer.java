@@ -4,7 +4,6 @@ import baguchi.tofucraft.entity.projectile.FallingTofuEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.FallingBlockRenderState;
@@ -25,12 +24,6 @@ public class FallingTofuRenderer extends EntityRenderer<FallingTofuEntity, Falli
 	public FallingTofuRenderer(EntityRendererProvider.Context context) {
 		super(context);
 		this.shadowRadius = 0.5F;
-	}
-
-	@Override
-	public boolean shouldRender(FallingTofuEntity entity, Frustum culler, double camX, double camY, double camZ, float partialTicks) {
-		return super.shouldRender(entity, culler, camX, camY, camZ, partialTicks) ? false
-				: entity.getBlockState() != entity.level().getBlockState(entity.blockPosition());
 	}
 
 
