@@ -16,12 +16,17 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.golem.IronGolem;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.cubemob.AbstractCubeMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -31,8 +36,9 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
+import org.jspecify.annotations.Nullable;
 
-public class TofuSlime extends AbstractCubeMob {
+public class TofuSlime extends AbstractCubeMob implements Enemy {
 	private static final EntityDataAccessor<Boolean> DATA_CONVERSION_ID = SynchedEntityData.defineId(TofuSlime.class, EntityDataSerializers.BOOLEAN);
 
 	private int onZundaTime;
@@ -51,7 +57,7 @@ public class TofuSlime extends AbstractCubeMob {
 
 	@Override
 	protected void addBehaviourGoals() {
-
+		this.goalSelector.addGoal(2, new AbstractCubeMob.CubeMobAttackGoal(this));
 	}
 
 	@Override
@@ -179,5 +185,30 @@ public class TofuSlime extends AbstractCubeMob {
 
 	public static boolean checkMonsterSpawnRules(EntityType<? extends TofuSlime> p_33018_, ServerLevelAccessor p_33019_, EntitySpawnReason p_33020_, BlockPos p_33021_, RandomSource p_33022_) {
 		return p_33019_.getDifficulty() != Difficulty.PEACEFUL && isDarkEnoughToSpawn(p_33019_, p_33021_, p_33022_) && checkMobSpawnRules(p_33018_, p_33019_, p_33020_, p_33021_, p_33022_);
+	}
+
+	@Override
+	protected boolean canBeABaby() {
+		return false;
+	}
+
+	@Override
+	public @Nullable SpawnGroupData finalizeSpawn(
+			ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnReason, @Nullable SpawnGroupData groupData
+	) {
+		if (groupData == null) {
+			groupData = new AgeableMob.AgeableMobGroupData(false);
+		}
+
+		return super.finalizeSpawn(level, difficulty, spawnReason, groupData);
+	}
+
+
+	@Override
+	public void setSize(int size, boolean updateHealth) {
+		super.setSize(size, updateHealth);
+		int actualSize = this.entityData.get(ID_SIZE);
+		this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(actualSize);
+		this.xpReward = actualSize;
 	}
 }
