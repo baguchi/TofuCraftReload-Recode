@@ -77,7 +77,7 @@ public class TofuEntityTypes {
 
 
 	public static final DeferredHolder<EntityType<?>, EntityType<TofuSlime>> TOFUSLIME = ENTITIES.register("tofu_slime", () -> EntityType.Builder.of(TofuSlime::new, MobCategory.MONSTER)
-			.sized(0.52F, 0.52F).eyeHeight(0.325F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("tofu_slime")));
+			.sized(0.52F, 0.52F).eyeHeight(0.325F).spawnDimensionsScale(4.0F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("tofu_slime")));
 	public static final DeferredHolder<EntityType<?>, EntityType<OageCube>> OAGE_CUBE = ENTITIES.register("oage_cube", () -> EntityType.Builder.of(OageCube::new, MobCategory.MONSTER)
 			.fireImmune().sized(0.52F, 0.52F).eyeHeight(0.325F).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("oage_cube")));
 	public static final DeferredHolder<EntityType<?>, EntityType<TofuCreeper>> TOFUCREEPER = ENTITIES.register("tofu_creeper", () -> EntityType.Builder.of(TofuCreeper::new, MobCategory.MONSTER)
