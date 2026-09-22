@@ -1,6 +1,6 @@
 package baguchi.tofucraft.block;
 
-import baguchi.tofucraft.datamap.TofuHarden;
+import baguchi.tofucraft.datamap.TofuSignal;
 import baguchi.tofucraft.registry.TofuDataMaps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -79,7 +79,7 @@ public class TofuDetectorBlock extends DirectionalBlock {
 	}
 
 	private void updateSignalStrength(BlockState p_52411_, BlockState faced, Level p_52412_, BlockPos p_52413_) {
-		TofuHarden harden = TofuDataMaps.HARDEN_DATA.get(faced.getBlock());
+		TofuSignal harden = TofuDataMaps.TOFU_SIGNAL_DATA.get(faced.getBlock());
 
 		int i = harden != null ? harden.level() : 0;
 		i = Mth.clamp(i, 0, 15);

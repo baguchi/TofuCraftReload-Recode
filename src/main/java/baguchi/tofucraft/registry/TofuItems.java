@@ -3,7 +3,7 @@ package baguchi.tofucraft.registry;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.api.tfenergy.TFEnergyData;
 import baguchi.tofucraft.data.generator.tags.TofuCustomTags;
-import baguchi.tofucraft.datamap.TofuHarden;
+import baguchi.tofucraft.datamap.TofuSignal;
 import baguchi.tofucraft.dispenser.DamageableProjectileDispenseBehavior;
 import baguchi.tofucraft.item.ApricotItem;
 import baguchi.tofucraft.item.BugleItem;
@@ -651,7 +651,7 @@ public class TofuItems {
 					p_123561_.level().levelEvent(2001, blockpos, Block.getId(state));
 					p_123561_.level().removeBlock(blockpos, false);
 					this.defaultDispenseItemBehavior.dispense(p_123561_, stack);
-					TofuHarden harden = TofuDataMaps.HARDEN_DATA.get(state.getBlock());
+					TofuSignal harden = TofuDataMaps.TOFU_SIGNAL_DATA.get(state.getBlock());
 					int i = harden != null ? harden.level() : 0;
 					p_123562_.hurtAndBreak(1 + i, p_123561_.level(), null, p_348118_ -> {
 					});
