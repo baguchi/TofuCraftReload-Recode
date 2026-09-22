@@ -5,17 +5,26 @@ import baguchi.tofucraft.datamap.TofuSignal;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuDataMaps;
 import baguchi.tofucraft.registry.TofuProfessions;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.BlockTransformer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
+import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider;
 import net.neoforged.neoforge.common.data.DataMapProvider;
+import net.neoforged.neoforge.registries.datamaps.builtin.BlockTransformAppender;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.neoforged.neoforge.registries.datamaps.builtin.RaidHeroGift;
 import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
+import org.apache.commons.compress.utils.Lists;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class TofuDataMapsProvider extends DataMapProvider {
@@ -31,6 +40,22 @@ public class TofuDataMapsProvider extends DataMapProvider {
 		final var tofuSignal = builder(TofuDataMaps.TOFU_SIGNAL);
 		tofuSignal.add(TofuBlocks.ISHITOFU, new TofuSignal(3), false);
 		tofuSignal.add(TofuBlocks.METALTOFU, new TofuSignal(6), false);
+
+		final var transformerBuilder = builder(NeoForgeDataMaps.BLOCK_TRANSFORM_APPENDERS);
+
+		List<BlockTransformer.BlockTransformData> data = Lists.newArrayList();
+
+		data.add(
+				BlockTransformer.BlockTransformData.builder(RuleBasedStateProvider.builder()
+						.ifTrueThenProvide(
+								BlockPredicate.allOf(BlockPredicate.matchesBlocks(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get()), BlockPredicate.matchesTag(Direction.UP, BlockTags.AIR))
+								,
+								Blocks.FARMLAND).build()).transformType(BlockTransformer.TransformType.SINGLE_BLOCK).disallowedFaces(List.of(Direction.DOWN)).build()
+		);
+
+		transformerBuilder.add(TofuCraftReload.prefix("terrain_to_tofu_farmland")
+				, new BlockTransformAppender(data), false);
+
 
 		final var waxableBlockBuilder = builder(NeoForgeDataMaps.WAXABLES);
 		waxableBlockBuilder.add(BuiltInRegistries.BLOCK.wrapAsHolder(TofuBlocks.KINUTOFU.get()), new Waxable(TofuBlocks.WAXED_KINUTOFU.get()), false);
