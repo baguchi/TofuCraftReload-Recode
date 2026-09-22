@@ -21,7 +21,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class BitternRecipeBuilder implements RecipeBuilder {
-	;
 	private final ItemStackTemplate stackResult;
 	private final FluidStackTemplate ingredient;
 	private final Ingredient extraIngredient;
