@@ -3,9 +3,15 @@ package baguchi.tofucraft.data.resources;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuItems;
+import net.minecraft.advancements.predicates.DataComponentMatchers;
+import net.minecraft.advancements.predicates.EnchantmentPredicate;
+import net.minecraft.advancements.predicates.ItemPredicate;
+import net.minecraft.advancements.predicates.MinMaxBounds;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.core.component.predicates.DataComponentPredicates;
+import net.minecraft.core.component.predicates.EnchantmentsPredicate;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
@@ -17,8 +23,14 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.trading.TradeCost;
 import net.minecraft.world.item.trading.VillagerTrade;
+import net.minecraft.world.level.storage.loot.functions.EnchantWithLevelsFunction;
+import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
-import static net.minecraft.world.item.trading.VillagerTrades.enchantedItem;
+import java.util.List;
+import java.util.Optional;
+
+import static net.minecraft.world.item.trading.VillagerTrades.discardItemIfItsNot;
 
 public class TofuVillagerTrades {
 	public static final ResourceKey<VillagerTrade> TOFUNIAN_FARMER_1_SOYBEAN_ZUNDA_RUBY = resourceKey("tofunian_farmer/1/soybean_zunda_ruby");
@@ -185,15 +197,15 @@ public class TofuVillagerTrades {
 		register(
 				context,
 				TOFUNIAN_SMITH_1_ZUNDA_RUBY_TOFU_METAL_SWORD,
-				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStackTemplate(TofuItems.TOFU_METAL_SWORD), 10, 3
-						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, TofuItems.TOFU_METAL_SWORD.get())).build()
+				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStackTemplate(TofuItems.TOFU_METAL_SWORD), 10, 2
+						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, 3, 7, TofuItems.TOFU_METAL_SWORD.get())).build()
 
 		);
 		register(
 				context,
 				TOFUNIAN_SMITH_1_ZUNDA_RUBY_TOFU_METAL_AXE,
-				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 2), new ItemStackTemplate(TofuItems.TOFU_METAL_AXE), 10, 3
-						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, TofuItems.TOFU_METAL_AXE.get())).build()
+				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStackTemplate(TofuItems.TOFU_METAL_AXE), 10, 2
+						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, 3, 6, TofuItems.TOFU_METAL_AXE.get())).build()
 		);
 
 		register(
@@ -204,14 +216,14 @@ public class TofuVillagerTrades {
 		register(
 				context,
 				TOFUNIAN_SMITH_2_ZUNDA_RUBY_TOFU_METAL_PICKAXE,
-				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 2), new ItemStackTemplate(TofuItems.TOFU_METAL_PICKAXE), 10, 6
-						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, TofuItems.TOFU_METAL_PICKAXE.get())).build()
+				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStackTemplate(TofuItems.TOFU_METAL_PICKAXE), 10, 6
+						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, 3, 7, TofuItems.TOFU_METAL_PICKAXE.get())).build()
 		);
 		register(
 				context,
 				TOFUNIAN_SMITH_2_ZUNDA_RUBY_TOFU_METAL_SHOVEL,
 				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStackTemplate(TofuItems.TOFU_METAL_SHOVEL), 10, 6
-						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, TofuItems.TOFU_METAL_SHOVEL.get())).build()
+						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, 2, 6, TofuItems.TOFU_METAL_SHOVEL.get())).build()
 		);
 
 
@@ -219,33 +231,33 @@ public class TofuVillagerTrades {
 				context,
 				TOFUNIAN_SMITH_3_ZUNDA_RUBY_TOFU_METAL_SPEAR,
 				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStackTemplate(TofuItems.TOFU_METAL_SPEAR), 10, 12
-						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, TofuItems.TOFU_METAL_SPEAR.get())).build()
+						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, 2, 6, TofuItems.TOFU_METAL_SPEAR.get())).build()
 		);
 		register(
 				context,
 				TOFUNIAN_SMITH_3_ZUNDA_RUBY_TOFU_METAL_HOE,
 				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 1), new ItemStackTemplate(TofuItems.TOFU_METAL_HOE), 10, 12
-						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, TofuItems.TOFU_METAL_HOE.get())).build()
+						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, 2, 6, TofuItems.TOFU_METAL_HOE.get())).build()
 		);
 
 		register(
 				context,
 				TOFUNIAN_SMITH_4_ZUNDA_RUBY_TOFU_METAL_HELMET,
-				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuItems.TOFU_METAL_HELMET), 10, 16
-						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, TofuItems.TOFU_METAL_HELMET.get())).build()
+				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 2), new ItemStackTemplate(TofuItems.TOFU_METAL_HELMET), 10, 16
+						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, 6, 10, TofuItems.TOFU_METAL_HELMET.get())).build()
 		);
 		register(
 				context,
 				TOFUNIAN_SMITH_4_ZUNDA_RUBY_TOFU_METAL_CHESTPLATE,
-				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 5), new ItemStackTemplate(TofuItems.TOFU_METAL_CHESTPLATE), 10, 16
-						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, TofuItems.TOFU_METAL_CHESTPLATE.get())).build()
+				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuItems.TOFU_METAL_CHESTPLATE), 10, 16
+						, 0.1F).addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, 6, 15, TofuItems.TOFU_METAL_CHESTPLATE.get())).build()
 		);
 		register(
 				context,
 				TOFUNIAN_SMITH_4_ZUNDA_RUBY_TOFU_METAL_LEGGINGS,
-				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 4), new ItemStackTemplate(TofuItems.TOFU_METAL_LEGGINGS), 10, 16
+				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 3), new ItemStackTemplate(TofuItems.TOFU_METAL_LEGGINGS), 10, 16
 								, 0.1F)
-						.addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, TofuItems.TOFU_METAL_LEGGINGS.get()))
+						.addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, 6, 15, TofuItems.TOFU_METAL_LEGGINGS.get()))
 						.build()
 		);
 		register(
@@ -253,7 +265,7 @@ public class TofuVillagerTrades {
 				TOFUNIAN_SMITH_4_ZUNDA_RUBY_TOFU_METAL_BOOTS,
 				VillagerTrade.builder(new TradeCost(TofuItems.ZUNDARUBY.get(), 2), new ItemStackTemplate(TofuItems.TOFU_METAL_BOOTS), 10, 16
 								, 0.1F)
-						.addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, TofuItems.TOFU_METAL_BOOTS.get()))
+						.addModifiers(enchantedItem(items, enchantmentsForTradedEquipment, 6, 10, TofuItems.TOFU_METAL_BOOTS.get()))
 						.build()
 		);
 		register(
@@ -494,6 +506,23 @@ public class TofuVillagerTrades {
 				context,
 				FARMER_5_EMERALD_SESAME,
 				VillagerTrade.builder(new TradeCost(Items.EMERALD, 1), new ItemStackTemplate(TofuItems.SEEDS_SESAME, 6), 6, 20, 0.1F).build()
+		);
+	}
+
+	public static List<Holder<LootItemFunction>> enchantedItem(HolderGetter<Item> items, HolderSet<Enchantment> options, int minLevel, int maxLevel, Item expectedItem) {
+		ItemPredicate.Builder itemWithAnyEnchants = new ItemPredicate.Builder()
+				.of(items, expectedItem)
+				.withComponents(
+						DataComponentMatchers.Builder.components()
+								.partial(
+										DataComponentPredicates.ENCHANTMENTS,
+										EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(Optional.empty(), MinMaxBounds.Ints.ANY)))
+								)
+								.build()
+				);
+		return discardItemIfItsNot(
+				new EnchantWithLevelsFunction.Builder(ContextIntProviders.between(minLevel, maxLevel)).withOptions(options).includeAdditionalCostComponent(),
+				itemWithAnyEnchants
 		);
 	}
 

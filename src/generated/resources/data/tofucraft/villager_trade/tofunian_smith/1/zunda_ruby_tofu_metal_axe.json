@@ -5,8 +5,8 @@
       "include_additional_cost_component": true,
       "levels": {
         "type": "minecraft:uniform",
-        "max": 19,
-        "min": 5
+        "max": 6,
+        "min": 3
       },
       "options": "#minecraft:on_traded_equipment"
     },
@@ -31,8 +31,7 @@
   "max_uses": 10,
   "reputation_discount": 0.1,
   "wants": {
-    "count": 2,
     "id": "tofucraft:zundaruby"
   },
-  "xp": 3
+  "xp": 2
 }
