@@ -13,8 +13,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider;
 import net.neoforged.neoforge.common.data.DataMapProvider;
@@ -48,9 +48,14 @@ public class TofuDataMapsProvider extends DataMapProvider {
 		data.add(
 				BlockTransformer.BlockTransformData.builder(RuleBasedStateProvider.builder()
 						.ifTrueThenProvide(
-								BlockPredicate.allOf(BlockPredicate.matchesBlocks(TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get()), BlockPredicate.matchesTag(Direction.UP, BlockTags.AIR))
+								BlockPredicate.allOf(BlockPredicate.matchesBlocks(TofuBlocks.TOFU_TERRAIN.get()), BlockPredicate.matchesTag(Direction.UP, BlockTags.AIR))
 								,
-								Blocks.FARMLAND).build()).transformType(BlockTransformer.TransformType.SINGLE_BLOCK).disallowedFaces(List.of(Direction.DOWN)).build()
+								TofuBlocks.TOFU_FARMLAND.get())
+								.ifTrueThenProvide(
+										BlockPredicate.allOf(BlockPredicate.matchesBlocks(TofuBlocks.TOFU_TERRAIN_ZUNDA.get()), BlockPredicate.matchesTag(Direction.UP, BlockTags.AIR))
+										,
+										TofuBlocks.TOFU_FARMLAND.get()).build())
+						.sound(SoundEvents.HOE_TILL).transformType(BlockTransformer.TransformType.SINGLE_BLOCK).disallowedFaces(List.of(Direction.DOWN)).build()
 		);
 
 		transformerBuilder.add(TofuCraftReload.prefix("terrain_to_tofu_farmland")

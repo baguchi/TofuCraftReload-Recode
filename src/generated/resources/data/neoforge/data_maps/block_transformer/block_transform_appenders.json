@@ -11,10 +11,7 @@
                 "predicates": [
                   {
                     "type": "minecraft:matching_blocks",
-                    "blocks": [
-                      "tofucraft:tofu_terrain",
-                      "tofucraft:tofu_terrain_zunda"
-                    ]
+                    "blocks": "tofucraft:tofu_terrain"
                   },
                   {
                     "type": "minecraft:matching_block_tag",
@@ -28,7 +25,33 @@
                 ]
               },
               "then": {
-                "id": "minecraft:farmland",
+                "id": "tofucraft:tofu_farmland",
+                "properties": {
+                  "moisture": "0"
+                }
+              }
+            },
+            {
+              "if_true": {
+                "type": "minecraft:all_of",
+                "predicates": [
+                  {
+                    "type": "minecraft:matching_blocks",
+                    "blocks": "tofucraft:tofu_terrain_zunda"
+                  },
+                  {
+                    "type": "minecraft:matching_block_tag",
+                    "offset": [
+                      0,
+                      1,
+                      0
+                    ],
+                    "tag": "minecraft:air"
+                  }
+                ]
+              },
+              "then": {
+                "id": "tofucraft:tofu_farmland",
                 "properties": {
                   "moisture": "0"
                 }
@@ -39,7 +62,8 @@
         "disallowed_faces": [
           "down"
         ],
-        "item_damage_per_use": 1
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.hoe.till"
       }
     ]
   }
