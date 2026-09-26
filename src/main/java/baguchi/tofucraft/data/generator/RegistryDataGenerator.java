@@ -22,7 +22,6 @@ import baguchi.tofucraft.world.TofuMaterialRules;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
 
 public class RegistryDataGenerator {
 
@@ -54,7 +53,6 @@ public class RegistryDataGenerator {
 	public static final RegistrySetBuilder RELOADABLE_BUILDER = new RegistrySetBuilder()
 			.add(Registries.LOOT_TABLE, TofuLootTableProvider.create())
 			.add(Registries.ADVANCEMENT, TofuAdvancementGenerator.create())
-			.add(VanillaRecipeProvider.create())
 			.add(RecipeProvider.asBootstrap(CraftingGenerator::new));
 
 }
