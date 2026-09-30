@@ -418,7 +418,7 @@ public class TofuItemModels extends ItemModelGenerators {
 	}
 
 	public void generateDynamicTrimmableItem(Item armor, Identifier slotTrimPrefix) {
-		this.generateDynamicTrimmableItem(armor, this.createFlatItemModel(armor, ModelTemplates.FLAT_ITEM), slotTrimPrefix);
+		this.generateDynamicTrimmableItem(armor, this.createFlatItemModel(armor, ModelTemplates.FLAT_ITEM), slotTrimPrefix, null);
 	}
 
 	public void generateTofuShield(ItemModelGenerators generators, Item p_386530_, Identifier texture) {
