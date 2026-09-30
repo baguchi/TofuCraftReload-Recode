@@ -10,6 +10,8 @@
     "minecraft:azalea",
     "minecraft:flowering_azalea",
     "minecraft:mangrove_propagule",
-    "minecraft:cherry_sapling"
+    "minecraft:cherry_sapling",
+    "tofucraft:sapling_apricot",
+    "tofucraft:sapling_tofu"
   ]
 }
