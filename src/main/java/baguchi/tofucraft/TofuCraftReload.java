@@ -139,7 +139,7 @@ public class TofuCraftReload {
 			modBus.addListener(ClientRegistrar::setup);
 		}
 		NeoForge.EVENT_BUS.register(new CraftingEvents());
-		modContainer.registerConfig(ModConfig.Type.COMMON, TofuConfig.COMMON_SPEC);
+		modContainer.registerConfig(ModConfig.Type.LOCAL, TofuConfig.COMMON_SPEC);
 		modBus.addListener(TofuCraftReload::registerBETypes);
 	}
 
