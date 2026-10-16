@@ -322,7 +322,12 @@ public class BlockLootTables extends BlockLootSubProvider {
 		this.add(TofuBlocks.LEAVES_APRICOT.get(), createApricotLeavesDrop(TofuBlocks.LEAVES_APRICOT.get(), TofuBlocks.SAPLING_APRICOT.get(), DEFAULT_SAPLING_DROP_RATES));
 
 		dropSelf(TofuBlocks.TOFU_FLOWER.get());
-
+		this.add(
+				TofuBlocks.NATTO_COBWEB.get(),
+				block -> this.createSilkTouchOrShearsDispatchTable(
+						block, (LootPoolEntryContainer.Builder<?>) this.applyExplosionCondition(block, LootItem.lootTableItem(TofuItems.NATTO.get()))
+				)
+		);
 		dropSelf(TofuBlocks.SPROUT_STEM.get());
 		dropSelf(TofuBlocks.YELLOW_SPROUT_STEM.get());
 

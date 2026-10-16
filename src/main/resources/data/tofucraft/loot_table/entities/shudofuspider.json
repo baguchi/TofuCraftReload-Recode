@@ -14,8 +14,8 @@
               "type": "set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 5,
-                "max": 10
+                "min": 8,
+                "max": 12
               }
             },
             {
@@ -37,7 +37,7 @@
       "entries": [
         {
           "type": "item",
-          "name": "tofucraft:natto_cobweb",
+          "name": "tofucraft:natto_ball",
           "weight": 1,
           "modifier": [
             {
@@ -74,8 +74,8 @@
               "type": "set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 6,
-                "max": 12
+                "min": 10,
+                "max": 16
               }
             },
             {

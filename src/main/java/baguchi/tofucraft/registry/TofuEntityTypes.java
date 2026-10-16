@@ -19,6 +19,7 @@ import baguchi.tofucraft.entity.projectile.FukumameEntity;
 import baguchi.tofucraft.entity.projectile.NattoBallEntity;
 import baguchi.tofucraft.entity.projectile.NattoStringEntity;
 import baguchi.tofucraft.entity.projectile.NetherFukumameEntity;
+import baguchi.tofucraft.entity.projectile.ShudofuBomb;
 import baguchi.tofucraft.entity.projectile.SoulFukumameEntity;
 import baguchi.tofucraft.entity.projectile.SoyballEntity;
 import baguchi.tofucraft.entity.projectile.UnstableZundamaEntity;
@@ -89,36 +90,38 @@ public class TofuEntityTypes {
 			.sized(0.4F, 0.3F).eyeHeight(0.13F).clientTrackingRange(8).requiredFeatures(TofuCraftReload.EXPERIMENTAL).notInPeaceful().build(prefix("zundamite")));
 
 	public static final DeferredHolder<EntityType<?>, EntityType<FukumameEntity>> FUKUMAME = ENTITIES.register("fukumame", () -> EntityType.Builder.<FukumameEntity>of(FukumameEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F).updateInterval(30).build(prefix("fukumame")));
+			.sized(0.25F, 0.25F).updateInterval(30).noLootTable().build(prefix("fukumame")));
 
 	public static final DeferredHolder<EntityType<?>, EntityType<NetherFukumameEntity>> NETHER_FUKUMAME = ENTITIES.register("nether_fukumame", () -> EntityType.Builder.<NetherFukumameEntity>of(NetherFukumameEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F).updateInterval(30).build(prefix("nether_fukumame")));
+			.sized(0.25F, 0.25F).updateInterval(30).noLootTable().build(prefix("nether_fukumame")));
 
 	public static final DeferredHolder<EntityType<?>, EntityType<SoulFukumameEntity>> SOUL_FUKUMAME = ENTITIES.register("soul_fukumame", () -> EntityType.Builder.<SoulFukumameEntity>of(SoulFukumameEntity::new, MobCategory.MISC)
-			.sized(0.25F, 0.25F).updateInterval(30).build(prefix("soul_fukumame")));
+			.sized(0.25F, 0.25F).updateInterval(30).noLootTable().build(prefix("soul_fukumame")));
 	public static final DeferredHolder<EntityType<?>, EntityType<SoyballEntity>> SOYBALL = ENTITIES.register("soyball", () -> EntityType.Builder.<SoyballEntity>of(SoyballEntity::new, MobCategory.MISC)
-			.sized(0.3F, 0.3F).updateInterval(30).build(prefix("soyball")));
+			.sized(0.3F, 0.3F).updateInterval(30).noLootTable().build(prefix("soyball")));
 	public static final DeferredHolder<EntityType<?>, EntityType<UnstableZundamaEntity>> UNSTABLE_ZUNDAMA = ENTITIES.register("unstable_zundama", () -> EntityType.Builder.<UnstableZundamaEntity>of(UnstableZundamaEntity::new, MobCategory.MISC)
-			.sized(0.3F, 0.3F).updateInterval(30).build(prefix("unstable_zundama")));
+			.sized(0.3F, 0.3F).updateInterval(30).noLootTable().build(prefix("unstable_zundama")));
 	public static final DeferredHolder<EntityType<?>, EntityType<ZundaBuster>> ZUNDA_BUSTER = ENTITIES.register("zunda_buster", () -> EntityType.Builder.<ZundaBuster>of(ZundaBuster::new, MobCategory.MISC)
-			.sized(0.8F, 0.8F).updateInterval(30).build(prefix("zunda_buster")));
+			.sized(0.8F, 0.8F).updateInterval(30).noLootTable().build(prefix("zunda_buster")));
 
 
 	public static final DeferredHolder<EntityType<?>, EntityType<NattoStringEntity>> NATTO_STRNIG = ENTITIES.register("natto_string", () -> EntityType.Builder.<NattoStringEntity>of(NattoStringEntity::new, MobCategory.MISC)
-			.sized(0.2F, 0.2F).updateInterval(40).build(prefix("natto_string")));
+			.sized(0.2F, 0.2F).updateInterval(40).noLootTable().build(prefix("natto_string")));
 
 	public static final DeferredHolder<EntityType<?>, EntityType<ZundaArrow>> ZUNDA_ARROW = ENTITIES.register("zunda_arrow", () -> EntityType.Builder.<ZundaArrow>of(ZundaArrow::new, MobCategory.MISC)
-			.sized(0.5F, 0.5F).updateInterval(40).build(prefix("zunda_arrow")));
+			.sized(0.5F, 0.5F).updateInterval(40).noLootTable().build(prefix("zunda_arrow")));
 
 
 	public static final DeferredHolder<EntityType<?>, EntityType<NattoCobWebEntity>> NATTO_COBWEB = ENTITIES.register("natto_cobweb", () -> EntityType.Builder.<NattoCobWebEntity>of(NattoCobWebEntity::new, MobCategory.MISC)
-			.sized(3F, 0.1F).updateInterval(10).fireImmune().build(prefix("natto_cobweb")));
+			.sized(3F, 0.1F).updateInterval(10).fireImmune().noLootTable().build(prefix("natto_cobweb")));
 
 	public static final DeferredHolder<EntityType<?>, EntityType<NattoBallEntity>> NATTO_BALL = ENTITIES.register("natto_ball", () -> EntityType.Builder.<NattoBallEntity>of(NattoBallEntity::new, MobCategory.MISC)
-			.sized(0.35F, 0.35F).updateInterval(20).build(prefix("natto_ball")));
+			.sized(0.35F, 0.35F).updateInterval(20).noLootTable().build(prefix("natto_ball")));
+	public static final DeferredHolder<EntityType<?>, EntityType<ShudofuBomb>> SHUDOFU_BOMB = ENTITIES.register("shudofu_bomb", () -> EntityType.Builder.<ShudofuBomb>of(ShudofuBomb::new, MobCategory.MISC)
+			.sized(0.35F, 0.35F).updateInterval(20).noLootTable().build(prefix("shudofu_bomb")));
 
 	public static final DeferredHolder<EntityType<?>, EntityType<FallingTofuEntity>> FALLING_TOFU = ENTITIES.register("falling_tofu", () -> EntityType.Builder.<FallingTofuEntity>of(FallingTofuEntity::new, MobCategory.MISC)
-			.sized(1.0F, 1.0F).updateInterval(20).build(prefix("falling_tofu")));
+			.sized(1.0F, 1.0F).updateInterval(20).noLootTable().build(prefix("falling_tofu")));
 
 	public static final DeferredHolder<EntityType<?>, EntityType<ShuDofuSpider>> SHUDOFUSPIDER = ENTITIES.register("shudofuspider", () -> EntityType.Builder.of(ShuDofuSpider::new, MobCategory.CREATURE)
 			.sized(3.3F, 2.0F).eyeHeight(1.5F).passengerAttachments(1.5F).clientTrackingRange(10).requiredFeatures(TofuCraftReload.EXPERIMENTAL).fireImmune().build(prefix("shudofuspider")));

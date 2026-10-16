@@ -2,7 +2,7 @@ package baguchi.tofucraft.client.render.entity.effect;
 
 import baguchi.tofucraft.client.render.state.NattoCobWebRenderState;
 import baguchi.tofucraft.entity.effect.NattoCobWebEntity;
-import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -60,7 +60,7 @@ public class NattoCobWebRender extends EntityRenderer<NattoCobWebEntity, NattoCo
 		p_361028_.direction = p_362104_.getAttachFace();
 		p_361028_.isSpawning = p_362104_.isSpawing();
 		p_361028_.isSmall = p_362104_.isSmall();
-		this.itemModelResolver.updateForNonLiving(p_361028_.item, TofuItems.NATTO_COBWEB.get().getDefaultInstance(), ItemDisplayContext.GROUND, p_362104_);
+		this.itemModelResolver.updateForNonLiving(p_361028_.item, TofuBlocks.NATTO_COBWEB.get().asItem().getDefaultInstance(), ItemDisplayContext.GROUND, p_362104_);
 
 	}
 }

@@ -1,64 +1,61 @@
 package baguchi.tofucraft.client.render;
 
 import baguchi.tofucraft.TofuCraftReload;
-import baguchi.tofucraft.client.render.state.ProjectileRenderState;
+import baguchi.tofucraft.client.render.state.NattoBallRenderState;
 import baguchi.tofucraft.entity.projectile.NattoBallEntity;
+import baguchi.tofucraft.registry.TofuBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
-import org.joml.Matrix4f;
+import net.minecraft.world.item.ItemDisplayContext;
 
 
-public class NattoBallRender extends EntityRenderer<NattoBallEntity, ProjectileRenderState> {
-	private static final Identifier TEXTURE_LOCATION = TofuCraftReload.prefix("textures/item/natto_cobweb.png");
+public class NattoBallRender extends EntityRenderer<NattoBallEntity, NattoBallRenderState> {
+	private static final Identifier TEXTURE_LOCATION = TofuCraftReload.prefix("textures/entity/projectile/natto_projectile.png");
 	private static final RenderType RENDER_TYPE = RenderTypes.entityCutout(TEXTURE_LOCATION);
+	private final ItemModelResolver itemModelResolver;
 
-	public NattoBallRender(EntityRendererProvider.Context p_173962_) {
-		super(p_173962_);
+	public NattoBallRender(EntityRendererProvider.Context context) {
+		super(context);
+		this.itemModelResolver = context.getItemModelResolver();
 	}
 
-	protected int getBlockLightLevel(NattoBallEntity p_114087_, BlockPos p_114088_) {
+
+	@Override
+	protected int getBlockLightLevel(NattoBallEntity p_116092_, BlockPos p_116093_) {
 		return 15;
 	}
 
 	@Override
-	public ProjectileRenderState createRenderState() {
-		return new ProjectileRenderState();
+	public NattoBallRenderState createRenderState() {
+		return new NattoBallRenderState();
 	}
 
 	@Override
-	public void submit(ProjectileRenderState p_433712_, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState p_451076_) {
-		poseStack.pushPose();
-		poseStack.scale(2.0F, 2.0F, 2.0F);
-		poseStack.rotate(p_451076_.orientation);
-		poseStack.rotateDegrees(Axis.YP, 180.0F);
-		submitNodeCollector.submitCustomGeometry(poseStack, RENDER_TYPE, (pose, vertexConsumer) -> {
-			vertex(vertexConsumer, pose.pose(), pose, p_433712_.lightCoords, 0.0F, 0, 0, 1);
-			vertex(vertexConsumer, pose.pose(), pose, p_433712_.lightCoords, 1.0F, 0, 1, 1);
-			vertex(vertexConsumer, pose.pose(), pose, p_433712_.lightCoords, 1.0F, 1, 1, 0);
-			vertex(vertexConsumer, pose.pose(), pose, p_433712_.lightCoords, 0.0F, 1, 0, 0);
+	public void extractRenderState(NattoBallEntity p_362104_, NattoBallRenderState p_361028_, float p_362204_) {
+		super.extractRenderState(p_362104_, p_361028_, p_362204_);
+		this.itemModelResolver.updateForNonLiving(p_361028_.itemStackRenderState, TofuBlocks.NATTO_COBWEB.get().asItem().getDefaultInstance(), ItemDisplayContext.GROUND, p_362104_);
 
-		});
+	}
+
+	@Override
+	public void submit(NattoBallRenderState renderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+		poseStack.pushPose();
+		poseStack.scale(1, 1, 1);
+		poseStack.rotate(cameraRenderState.orientation);
+		poseStack.rotateDegrees(Axis.YP, 180.0F);
+		renderState.itemStackRenderState.submit(poseStack, submitNodeCollector, renderState.lightCoords, OverlayTexture.NO_OVERLAY, renderState.outlineColor);
 		poseStack.popPose();
 
-		super.submit(p_433712_, poseStack, submitNodeCollector, p_451076_);
-	}
-
-
-	private static void vertex(VertexConsumer p_114090_, Matrix4f p_114091_, PoseStack.Pose p_114092_, int p_114093_, float p_114094_, int p_114095_, int p_114096_, int p_114097_) {
-		p_114090_.addVertex(p_114091_, p_114094_ - 0.5F, (float) p_114095_ - 0.25F, 0.0F).setColor(255, 255, 255, 255).setUv((float) p_114096_, (float) p_114097_).setOverlay(OverlayTexture.NO_OVERLAY).setLight(p_114093_).setNormal(p_114092_, 0.0F, 1.0F, 0.0F);
-	}
-
-	public Identifier getTextureLocation(NattoBallEntity p_114078_) {
-		return TEXTURE_LOCATION;
+		super.submit(renderState, poseStack, submitNodeCollector, cameraRenderState);
 	}
 }

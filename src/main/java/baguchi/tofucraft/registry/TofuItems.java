@@ -15,13 +15,14 @@ import baguchi.tofucraft.item.FukumameItem;
 import baguchi.tofucraft.item.GhastFoodItem;
 import baguchi.tofucraft.item.InfernoNetherFukumameItem;
 import baguchi.tofucraft.item.KoujiBaseItem;
-import baguchi.tofucraft.item.NattoCobWebItem;
+import baguchi.tofucraft.item.NattoCobBallItem;
 import baguchi.tofucraft.item.NetherFukumameItem;
 import baguchi.tofucraft.item.NourishmentItem;
 import baguchi.tofucraft.item.RamuneSoymilkBottleItem;
 import baguchi.tofucraft.item.RollingPinItem;
 import baguchi.tofucraft.item.SaltFoodItem;
 import baguchi.tofucraft.item.SeedAndRootItem;
+import baguchi.tofucraft.item.ShudofuBombItem;
 import baguchi.tofucraft.item.SoulFukumameItem;
 import baguchi.tofucraft.item.SoymilkBottleItem;
 import baguchi.tofucraft.item.TFBatteryItem;
@@ -76,6 +77,7 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.DeathProtection;
+import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 import net.minecraft.world.item.consume_effects.ClearAllStatusEffectsConsumeEffect;
 import net.minecraft.world.item.equipment.ArmorType;
@@ -486,7 +488,8 @@ public class TofuItems {
 	public static final DeferredHolder<Item, Item> FUKUMAME_THROWER_SPAWN_EGG = ITEMS.registerItem("fukumame_thrower_spawn_egg", (properties) -> new SpawnEggItem((properties.spawnEgg(TofuEntityTypes.FUKUMAME_THROWER.get()))));
 	public static final DeferredHolder<Item, Item> ZUNDAMITE_SPAWN_EGG = ITEMS.registerItem("zundamite_spawn_egg", (properties) -> new SpawnEggItem((properties.spawnEgg(TofuEntityTypes.ZUNDAMITE.get()).requiredFeatures(TofuCraftReload.EXPERIMENTAL))));
 
-	public static final DeferredHolder<Item, Item> NATTO_COBWEB = ITEMS.registerItem("natto_cobweb", (properties) -> new NattoCobWebItem((properties.requiredFeatures(TofuCraftReload.EXPERIMENTAL))));
+	public static final DeferredHolder<Item, Item> NATTO_BALL = ITEMS.registerItem("natto_ball", (properties) -> new NattoCobBallItem((properties.stacksTo(16).component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("item.tofucraft.natto_ball.desc")))).requiredFeatures(TofuCraftReload.EXPERIMENTAL))));
+	public static final DeferredHolder<Item, Item> SHUDOFU_BOMB = ITEMS.registerItem("shudofu_bomb", (properties) -> new ShudofuBombItem((properties.stacksTo(16).component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("item.tofucraft.shudofu_bomb.desc")))).requiredFeatures(TofuCraftReload.EXPERIMENTAL))));
 
 	//Tofu delight item
 	public static final DeferredHolder<Item, Item> TOMATO_SOYBEAN_STEW = ITEMS.registerItem("tomato_soybean_stew", (properties) -> new DishItem((properties).stacksTo(16).craftRemainder(Items.BOWL).usingConvertsTo(Items.BOWL).food(TofuFoods.TOMATO_SOYBEAN_STEW)));

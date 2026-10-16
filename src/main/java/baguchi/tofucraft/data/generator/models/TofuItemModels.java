@@ -395,7 +395,8 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.ROTTEN_PORK.get(), ModelTemplates.FLAT_ITEM);
 
 
-		this.generateFlatItem(TofuItems.NATTO_COBWEB.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.NATTO_BALL.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.SHUDOFU_BOMB.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.TOFUNIAN_BANNER_PATTERN.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_STEM_BOAT.get(), ModelTemplates.FLAT_ITEM);

@@ -1,6 +1,7 @@
 package baguchi.tofucraft.item;
 
-import baguchi.tofucraft.entity.projectile.NattoStringEntity;
+import baguchi.tofucraft.entity.projectile.ShudofuBomb;
+import baguchi.tofucraft.registry.TofuEntityTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -11,8 +12,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class NattoCobWebItem extends Item {
-	public NattoCobWebItem(Properties properties) {
+public class ShudofuBombItem extends Item {
+	public ShudofuBombItem(Properties properties) {
 		super(properties);
 	}
 
@@ -21,7 +22,7 @@ public class NattoCobWebItem extends Item {
 		ItemStack itemstack = playerIn.getItemInHand(handIn);
 		levelIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (playerIn.getRandom().nextFloat() * 0.4F + 0.8F));
 		if (!levelIn.isClientSide()) {
-			NattoStringEntity fukumamentity = new NattoStringEntity(levelIn, playerIn);
+			ShudofuBomb fukumamentity = new ShudofuBomb(TofuEntityTypes.SHUDOFU_BOMB.get(), playerIn, levelIn, itemstack);
 			fukumamentity.shootFromRotation(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 1.5F, 0.8F);
 			levelIn.addFreshEntity(fukumamentity);
 		}

@@ -360,6 +360,7 @@ public class TofuCreativeModeTabs {
 						TofuBlocks.OKARA_BLOCK,
 						TofuBlocks.MORIJIO,
 						TofuBlocks.TOFU_FLOWER,
+						TofuBlocks.NATTO_COBWEB,
 						TofuBlocks.TOFU_POT).map(sup -> {
 					return sup.get().asItem().getDefaultInstance();
 				}).toList()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
@@ -651,7 +652,8 @@ public class TofuCreativeModeTabs {
 						TofuItems.ADVANCE_TOFUGEM,
 						TofuItems.TOFU_GEM_DUST,
 						TofuItems.TOFU_MINCED,
-						TofuItems.NATTO_COBWEB,
+						TofuItems.NATTO_BALL,
+						TofuItems.SHUDOFU_BOMB,
 						TofuItems.MUSIC_DISC_GREEN_BRANCH,
 						TofuItems.TOFU_CRAFTERS_BOOK,
 						TofuItems.SOY_FORCE_SHARD,

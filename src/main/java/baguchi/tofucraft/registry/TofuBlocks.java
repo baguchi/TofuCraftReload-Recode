@@ -110,6 +110,7 @@ import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
+import net.minecraft.world.level.block.WebBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -370,6 +371,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> LEAVES_TOFU = register("leaves_tofu", TofuLeavesBlock::new, () -> BlockBehaviour.Properties.of().strength(0.2F).noOcclusion().randomTicks().isSuffocating((state, getter, pos) -> false).sound(SoundType.GRASS));
 
 	public static final DeferredBlock<Block> TOFU_FLOWER = register("tofu_flower", (properties) -> new TofuFlowerBlock(TofuEffects.SOY_HEALTHY, 20.0F, properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollision().sound(SoundType.GRASS));
+	public static final DeferredBlock<Block> NATTO_COBWEB = register("natto_cobweb", (properties) -> new WebBlock(properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.WOOL).sound(SoundType.COBWEB).forceSolidOn().noCollision().requiresCorrectToolForDrops().strength(2.0F).pushReaction(PushReaction.POPPED));
 
 	public static final DeferredBlock<Block> LEEK = register("blockleek", (properties) -> new LeekBlock(properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollision().sound(SoundType.GRASS));
 	public static final DeferredBlock<Block> TALL_LEEK = register("tall_leek", (properties) -> new TallLeekBlock(properties), () -> BlockBehaviour.Properties.of().instabreak().noOcclusion().noCollision().sound(SoundType.GRASS));

@@ -2,7 +2,7 @@ package baguchi.tofucraft.client.render;
 
 import baguchi.tofucraft.client.render.state.NattoStringRenderState;
 import baguchi.tofucraft.entity.projectile.NattoStringEntity;
-import baguchi.tofucraft.registry.TofuItems;
+import baguchi.tofucraft.registry.TofuBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -39,7 +39,7 @@ public class NattoStringRender<E extends NattoStringEntity, T extends NattoStrin
 	@Override
 	public void extractRenderState(E p_362104_, T p_361028_, float p_362204_) {
 		super.extractRenderState(p_362104_, p_361028_, p_362204_);
-		this.itemModelResolver.updateForNonLiving(p_361028_.itemStackRenderState, TofuItems.NATTO_COBWEB.get().getDefaultInstance(), ItemDisplayContext.GROUND, p_362104_);
+		this.itemModelResolver.updateForNonLiving(p_361028_.itemStackRenderState, TofuBlocks.NATTO_COBWEB.get().asItem().getDefaultInstance(), ItemDisplayContext.GROUND, p_362104_);
 
 	}
 
