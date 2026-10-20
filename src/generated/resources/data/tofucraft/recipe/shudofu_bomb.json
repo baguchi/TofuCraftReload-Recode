@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "tofucraft:shudofu",
+    "tofucraft:natto_ball"
+  ],
+  "result": {
+    "id": "tofucraft:shudofu_bomb"
+  }
+}
