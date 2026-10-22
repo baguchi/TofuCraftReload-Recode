@@ -432,7 +432,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 								double d12 = Math.sqrt(entity.distanceToSqr(entity)) / ((double) radius * 2.0F);
 								double d14 = ServerExplosion.getSeenPercent(new Vec3(this.getX(), this.getY(), this.getZ()), entity);
 								double d10 = (1.0D - d12) * d14;
-								entity.addEffect(new MobEffectInstance(TofuEffects.COUGH, (int) (400 * d10), 0));
+								entity.addEffect(new MobEffectInstance(TofuEffects.COUGH, (int) (1200 * d10), 0));
 								entity.hurt(this.damageSources().source(TofuDamageTypes.SOY_SPORE, ShuDofuSpider.this), (float) (((d10 * d10) / 2.0D) * 30.0D));
 							}
 						}
@@ -676,8 +676,8 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 	public void graspAttack(Entity entity) {
 		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 		if (this.level() instanceof ServerLevel serverLevel) {
-			if (entity.hurtServer(serverLevel, this.damageSources().mobAttack(this), f * 0.1F)) {
-				this.heal(f * 0.1F);
+			if (entity.hurtServer(serverLevel, this.damageSources().mobAttack(this), f * 0.2F)) {
+				this.heal(f * 0.2F);
 			}
 		}
 		if (entity instanceof LivingEntity && !entity.is(Tags.EntityTypes.BOSSES)) {
