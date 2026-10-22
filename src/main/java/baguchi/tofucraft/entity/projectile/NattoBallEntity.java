@@ -89,7 +89,7 @@ public class NattoBallEntity extends ThrowableProjectile {
 				areaeffectcloud.setRadius(this.isSmall() ? 1.25F : 3.0F);
 				areaeffectcloud.setDuration(this.isSmall() ? 80 : 200);
 				areaeffectcloud.addEffect(new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 1, 1));
-				areaeffectcloud.addEffect(new MobEffectInstance(TofuEffects.COUGH, 100, 0));
+				areaeffectcloud.addEffect(new MobEffectInstance(TofuEffects.COUGH, 200, 0));
 				if (!list.isEmpty()) {
 					for (LivingEntity livingentity : list) {
 						double d0 = this.distanceToSqr(livingentity);

@@ -83,7 +83,7 @@ public class ShudofuBomb extends ThrowableItemProjectile {
 				areaeffectcloud.setRadius(1.5F);
 				areaeffectcloud.setDuration(120);
 				areaeffectcloud.addEffect(new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 1, 1));
-				areaeffectcloud.addEffect(new MobEffectInstance(TofuEffects.COUGH, 100, 0));
+				areaeffectcloud.addEffect(new MobEffectInstance(TofuEffects.COUGH, 200, 0));
 				if (!list.isEmpty()) {
 					for (LivingEntity livingentity : list) {
 						double d0 = this.distanceToSqr(livingentity);
