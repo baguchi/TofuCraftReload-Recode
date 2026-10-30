@@ -361,16 +361,16 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
-		event.registerEntityRenderer(TofuEntityTypes.TOFUCOW.get(), TofuCowRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFUPIG.get(), TofuPigRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_COW.get(), TofuCowRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_PIG.get(), TofuPigRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFUNIAN.get(), TofunianRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TRAVELER_TOFUNIAN.get(), TravelerTofunianRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFUFISH.get(), TofuFishRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_FISH.get(), TofuFishRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_GOLEM.get(), TofuGolemRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFUSLIME.get(), TofuSlimeRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_SLIME.get(), TofuSlimeRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.OAGE_CUBE.get(), OageCubeRenderer::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFUCREEPER.get(), TofuCreeperRender::new);
-		event.registerEntityRenderer(TofuEntityTypes.TOFUSPIDER.get(), TofuSpiderRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_CREEPER.get(), TofuCreeperRender::new);
+		event.registerEntityRenderer(TofuEntityTypes.TOFU_SPIDER.get(), TofuSpiderRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.TOFU_GANDLEM.get(), TofuGandlemRender::new);
 		event.registerEntityRenderer(TofuEntityTypes.SHUDOFUSPIDER.get(), ShuDofuSpiderRender::new);
 

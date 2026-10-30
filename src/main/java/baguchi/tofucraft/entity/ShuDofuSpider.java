@@ -802,7 +802,7 @@ public class ShuDofuSpider extends Monster implements ISmartJump {
 				return this.getTeam() == null && p_360600_.getTeam() == null;
 			}
 
-			if (p_360600_.getType() == TofuEntityTypes.TOFUSPIDER.get()) {
+			if (p_360600_.getType() == TofuEntityTypes.TOFU_SPIDER.get()) {
 				return this.getTeam() == null && p_360600_.getTeam() == null;
 			}
 			return false;

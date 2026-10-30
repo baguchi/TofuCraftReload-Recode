@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data;
+package baguchi.tofucraft.data.loot;
 
 import net.minecraft.core.registries.SingleRegistryBootstrap;
 import net.minecraft.data.loot.LootTableProvider;
@@ -16,7 +16,8 @@ public class TofuLootTableProvider {
 	private static final Set<ResourceKey<LootTable>> IMMUTABLE_LOCATIONS = Collections.unmodifiableSet(LOCATIONS);
 
 	public static SingleRegistryBootstrap<LootTable> create() {
-		return new LootTableProvider(LOCATIONS, List.of(new LootTableProvider.SubProviderEntry(BlockLootTables::new, LootContextParamSets.BLOCK)));
+		return new LootTableProvider(LOCATIONS, List.of(new LootTableProvider.SubProviderEntry(TofuBlockLootTables::new, LootContextParamSets.BLOCK),
+				new LootTableProvider.SubProviderEntry(TofuEntityLootTables::new, LootContextParamSets.ENTITY)));
 	}
 
 	public static Set<ResourceKey<LootTable>> all() {

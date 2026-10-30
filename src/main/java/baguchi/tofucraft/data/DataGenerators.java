@@ -14,6 +14,7 @@ import baguchi.tofucraft.data.generator.tags.TofuCustomTags;
 import baguchi.tofucraft.data.generator.tags.TofuEnchantTags;
 import baguchi.tofucraft.data.generator.tags.TofuEntityTags;
 import baguchi.tofucraft.data.generator.tags.TofuItemTags;
+import baguchi.tofucraft.data.loot.TofuLootTableProvider;
 import baguchi.tofucraft.data.provider.TofuBlockStateProviders;
 import baguchi.tofucraft.data.resources.ModConfiguredFeatures;
 import baguchi.tofucraft.data.resources.TofuVillagerTrades;

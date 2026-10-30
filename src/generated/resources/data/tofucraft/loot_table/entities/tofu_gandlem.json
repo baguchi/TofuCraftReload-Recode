@@ -2,58 +2,56 @@
   "type": "minecraft:entity",
   "pools": [
     {
-      "name": "main",
-      "rolls": 1,
       "entries": [
         {
-          "type": "item",
-          "name": "tofucraft:seeds_soybeans",
-          "weight": 1,
+          "type": "minecraft:item",
           "modifier": [
             {
-              "type": "set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0,
-                "max": 3
+                "max": 3,
+                "min": 2
               }
             },
             {
+              "type": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "max": 1.0,
                 "min": 0.0
               },
-              "enchantment": "minecraft:looting",
-              "type": "minecraft:enchanted_count_increase"
+              "enchantment": "minecraft:looting"
             }
-          ]
+          ],
+          "name": "tofucraft:soy_force_shard"
         },
         {
-          "type": "item",
-          "name": "tofucraft:yuba",
-          "weight": 1,
+          "type": "minecraft:item",
           "modifier": [
             {
-              "type": "set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0,
-                "max": 2
+                "max": 6,
+                "min": 3
               }
             },
             {
+              "type": "minecraft:enchanted_count_increase",
               "count": {
                 "type": "minecraft:uniform",
                 "max": 1.0,
                 "min": 0.0
               },
-              "enchantment": "minecraft:looting",
-              "type": "minecraft:enchanted_count_increase"
+              "enchantment": "minecraft:looting"
             }
-          ]
+          ],
+          "name": "tofucraft:tofu_diamond"
         }
-      ]
+      ],
+      "rolls": 1
     }
-  ]
+  ],
+  "random_sequence": "tofucraft:entities/tofu_gandlem"
 }

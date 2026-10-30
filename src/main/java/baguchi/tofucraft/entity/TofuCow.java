@@ -125,7 +125,7 @@ public class TofuCow extends Cow {
 
 	@Override
 	public TofuCow getBreedOffspring(ServerLevel p_148890_, AgeableMob p_148891_) {
-		TofuCow tofuCow = TofuEntityTypes.TOFUCOW.get().create(p_148890_, EntitySpawnReason.BREEDING);
+		TofuCow tofuCow = TofuEntityTypes.TOFU_COW.get().create(p_148890_, EntitySpawnReason.BREEDING);
 		if (tofuCow != null) {
 			TofuCowType variant = this.random.nextBoolean() ? this.getTofuCowType() : ((TofuCow) p_148891_).getTofuCowType();
 

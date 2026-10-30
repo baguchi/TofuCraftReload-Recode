@@ -197,7 +197,7 @@ public class TofuPig extends Pig implements ItemInteractable {
 
 	@Override
 	public TofuPig getBreedOffspring(ServerLevel p_148890_, AgeableMob p_148891_) {
-		TofuPig tofuPig = TofuEntityTypes.TOFUPIG.get().create(p_148890_, EntitySpawnReason.BREEDING);
+		TofuPig tofuPig = TofuEntityTypes.TOFU_PIG.get().create(p_148890_, EntitySpawnReason.BREEDING);
 		if (tofuPig != null) {
 			TofuPigType variant = this.random.nextBoolean() ? this.getTofuPigType() : ((TofuPig) p_148891_).getTofuPigType();
 

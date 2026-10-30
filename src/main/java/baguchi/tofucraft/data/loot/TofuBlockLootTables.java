@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data;
+package baguchi.tofucraft.data.loot;
 
 import baguchi.tofucraft.block.crop.ChiliCropsBlock;
 import baguchi.tofucraft.block.crop.LeekCropsBlock;
@@ -56,7 +56,7 @@ import java.util.Set;
 
 import static net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction.copyComponentsFromBlockEntity;
 
-public class BlockLootTables extends BlockLootSubProvider {
+public class TofuBlockLootTables extends BlockLootSubProvider {
 	private final Set<Block> knownBlocks = new HashSet<>();
 	// [VanillaCopy] super
 	private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
@@ -65,7 +65,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 	private static final Set<Item> EXPLOSION_RESISTANT = Set.of();
 
 
-	protected BlockLootTables(LootTableSubProvider.Context output) {
+	public TofuBlockLootTables(LootTableSubProvider.Context output) {
 		super(EXPLOSION_RESISTANT, FeatureFlags.REGISTRY.allFlags(), output);
 	}
 
