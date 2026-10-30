@@ -117,7 +117,7 @@ public class TofunianRender extends MobRenderer<Tofunian, TofunianRenderState, T
 		if (tofunian.getRole().is(TofunianProfessions.NONE)) {
 			renderState.rolesTexture = null;
 		} else {
-			renderState.rolesTexture = tofunian.getRole().getKey().identifier();
+			renderState.rolesTexture = tofunian.getRole().key().identifier();
 		}
 
 		renderState.clothTexture = tofunian.getClothTexture();

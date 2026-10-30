@@ -17,11 +17,11 @@ public class FluidTagGenerator extends FluidTagsProvider {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags(HolderLookup.Provider p_255894_) {
-		this.tag(TofuTags.Fluids.SOYMILK).add(TofuFluids.SOYMILK.getKey(), TofuFluids.SOYMILK_HELL.getKey(), TofuFluids.SOYMILK_SOUL.getKey())
-				.add(TofuFluids.SOYMILK_FLOW.getKey(), TofuFluids.SOYMILK_HELL_FLOW.getKey(), TofuFluids.SOYMILK_SOUL_FLOW.getKey());
-		this.tag(TofuTags.Fluids.DOUBANJIANG).add(TofuFluids.DOUBANJIANG.getKey())
-				.add(TofuFluids.DOUBANJIANG_FLOW.getKey());
-		this.tag(TofuTags.Fluids.WATER_LIKE).add(TofuFluids.BITTERN.getKey())
-				.add(TofuFluids.BITTERN_FLOW.getKey());
+		this.tag(TofuTags.Fluids.SOYMILK).add(TofuFluids.SOYMILK.key(), TofuFluids.SOYMILK_HELL.key(), TofuFluids.SOYMILK_SOUL.key())
+				.add(TofuFluids.SOYMILK_FLOW.key(), TofuFluids.SOYMILK_HELL_FLOW.key(), TofuFluids.SOYMILK_SOUL_FLOW.key());
+		this.tag(TofuTags.Fluids.DOUBANJIANG).add(TofuFluids.DOUBANJIANG.key())
+				.add(TofuFluids.DOUBANJIANG_FLOW.key());
+		this.tag(TofuTags.Fluids.WATER_LIKE).add(TofuFluids.BITTERN.key())
+				.add(TofuFluids.BITTERN_FLOW.key());
 	}
 }

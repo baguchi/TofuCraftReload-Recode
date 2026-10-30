@@ -31,7 +31,7 @@ public class FindJobBlockGoal extends MoveToBlockGoal {
 	}
 
 	public boolean canUse() {
-		return (this.creature.level().isBrightOutside() && (this.creature.getRole().is(TofunianProfessions.NONE.getKey()) || this.creature.getTofunianJobBlock() == null) && !this.creature.isBaby() && super.canUse());
+		return (this.creature.level().isBrightOutside() && (this.creature.getRole().is(TofunianProfessions.NONE.key()) || this.creature.getTofunianJobBlock() == null) && !this.creature.isBaby() && super.canUse());
 	}
 
 	public boolean canContinueToUse() {

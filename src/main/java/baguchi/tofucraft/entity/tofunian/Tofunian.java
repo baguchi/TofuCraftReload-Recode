@@ -295,7 +295,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		RegistryAccess registryaccess = this.registryAccess();
 		Registry<TofunianProfession> registry3 = TofunianProfessions.getRegistry();
 
-		builder.define(ROLE, registry3.get(TofunianProfessions.NONE.getKey()).orElseThrow());
+		builder.define(ROLE, registry3.get(TofunianProfessions.NONE.key()).orElseThrow());
 		builder.define(ACTION, "NORMAL");
 		Registry<TofunianClothVariant> registry = registryaccess.lookupOrThrow(TofunianClothVariants.TOFUNIAN_CLOTH_VARIANT_REGISTRY_KEY);
 		builder.define(DATA_CLOTH_VARIANT, registry.get(TofunianClothVariants.DEFAULT).or(registry::getAny).orElseThrow());
@@ -418,7 +418,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 			level().broadcastEntityEvent(this, (byte) 14);
 			this.previousCustomer = null;
 		}
-		if (getRole().getKey() == TofunianProfessions.NONE.getKey() && isTrading()) {
+		if (getRole().key() == TofunianProfessions.NONE.key() && isTrading()) {
 			stopTrading();
 		}
 		ProfilerFiller profilerfiller = Profiler.get();
@@ -506,7 +506,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 		if ((level().getGameTime() + this.getId()) % (50) != 0) return;
 
 		//validate job position
-		if (this.getTofunianJobBlock() != null && this.getRole().getKey() != TofunianProfessions.NONE.getKey()) {
+		if (this.getTofunianJobBlock() != null && this.getRole().key() != TofunianProfessions.NONE.key()) {
 			if (!this.getRole().value().isValidTarget(this.level().getBlockState(this.getTofunianJobBlock()))) {
 				this.setTofunianJobBlock(null);
 
@@ -1131,7 +1131,7 @@ public class Tofunian extends AbstractTofunian implements ReputationEventHandler
 
 	@Override
 	protected Component getTypeName() {
-		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().getKey().identifier().getPath().toLowerCase(Locale.ROOT));
+		return Component.translatable("entity.tofucraft.tofunian." + this.getRole().key().identifier().getPath().toLowerCase(Locale.ROOT));
 	}
 
 	public enum Actions {

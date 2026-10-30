@@ -119,22 +119,22 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.TRANSPORTATION, TofuItems.SPROUT_CHEST_BOAT.get(), 1)
 				.requires(TofuItems.SPROUT_BOAT.get())
-				.requires(Tags.Items.CHESTS_WOODEN)
+				.requires(Tags.BlockItems.CHESTS_WOODEN.item())
 				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.TRANSPORTATION, TofuItems.TOFU_STEM_CHEST_BOAT.get(), 1)
 				.requires(TofuItems.TOFU_STEM_BOAT.get())
-				.requires(Tags.Items.CHESTS_WOODEN)
+				.requires(Tags.BlockItems.CHESTS_WOODEN.item())
 				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.TRANSPORTATION, TofuItems.LEEK_CHEST_BOAT.get(), 1)
 				.requires(TofuItems.LEEK_BOAT.get())
-				.requires(Tags.Items.CHESTS_WOODEN)
+				.requires(Tags.BlockItems.CHESTS_WOODEN.item())
 				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.TRANSPORTATION, TofuItems.LEEK_GREEN_CHEST_BOAT.get(), 1)
 				.requires(TofuItems.LEEK_GREEN_BOAT.get())
-				.requires(Tags.Items.CHESTS_WOODEN)
+				.requires(Tags.BlockItems.CHESTS_WOODEN.item())
 				.unlockedBy("inside_of", insideOf(Blocks.WATER))
 				.save(this.output);
 
@@ -671,7 +671,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("# #")
 				.pattern("SSS")
 				.define('#', Items.IRON_INGOT)
-				.define('S', Tags.Items.COBBLESTONES)
+				.define('S', Tags.BlockItems.COBBLESTONES.item())
 				.unlockedBy("has_item", has(Items.IRON_INGOT))
 				.save(this.output);
 
@@ -698,7 +698,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" B ")
 				.define('S', TofuTags.Items.SALT)
 				.define('K', TofuItems.KOUJI.get())
-				.define('B', Tags.Items.BARRELS_WOODEN)
+				.define('B', Tags.BlockItems.BARRELS_WOODEN.item())
 				.unlockedBy("has_item", has(TofuItems.KOUJI.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.BARREL_MISOTOFU.get(), 1)
@@ -707,7 +707,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" B ")
 				.define('M', TofuItems.MISO.get())
 				.define('T', TofuItems.TOFU_MOMEN.get())
-				.define('B', Tags.Items.BARRELS_WOODEN)
+				.define('B', Tags.BlockItems.BARRELS_WOODEN.item())
 				.unlockedBy("has_item", has(TofuItems.MISO.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.BARREL_ADV_TOFUGEM.get(), 1)
@@ -716,7 +716,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern(" B ")
 				.define('R', Items.REDSTONE)
 				.define('G', TofuItems.TOFUGEM.get())
-				.define('B', Tags.Items.BARRELS_WOODEN)
+				.define('B', Tags.BlockItems.BARRELS_WOODEN.item())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.NATTOBED.get(), 1)
@@ -1882,7 +1882,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.pattern("BBB")
 				.define('G', TofuItems.TOFUGEM.get())
 				.define('R', Items.REDSTONE)
-				.define('B', Tags.Items.COBBLESTONES)
+				.define('B', Tags.BlockItems.COBBLESTONES.item())
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.REDSTONE, TofuItems.TF_CAPACITOR.get())

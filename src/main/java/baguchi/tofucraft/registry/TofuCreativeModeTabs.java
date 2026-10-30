@@ -663,7 +663,7 @@ public class TofuCreativeModeTabs {
 			}).build());
 
 	public static void registerBuckets(BuildCreativeModeTabContentsEvent event) {
-		if (event.getTabKey() == TOFU_MISC.getKey()) {
+		if (event.getTabKey() == TOFU_MISC.key()) {
 			event.accept(TofuItems.TOFU_METAL_BUCKET.get());
 			List<EntityType<?>> usedEntities = new ArrayList<>();
 			List<Block> usedBlocks = new ArrayList<>();

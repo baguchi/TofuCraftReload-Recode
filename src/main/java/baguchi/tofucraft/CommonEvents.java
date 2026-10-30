@@ -593,38 +593,38 @@ public class CommonEvents {
 
 	@SubscribeEvent
 	public static void onPotionEffectApplied(MobEffectEvent.Applicable event) {
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.BLINDNESS) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().is(MobEffects.BLINDNESS)) {
 			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}
 
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.OOZING) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().is(MobEffects.OOZING)) {
 			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}
 
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.SLOWNESS.value()) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().is(MobEffects.SLOWNESS)) {
 			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}
 
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.INFESTED) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().is(MobEffects.INFESTED)) {
 			if (EnchantmentHelper.getEnchantmentLevel(event.getEntity().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(TofuEnchantments.EFFECT_PROTECTION), event.getEntity()) > 0) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}
 
 
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.HUNGER) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().is(MobEffects.HUNGER)) {
 			if (event.getEntity().hasEffect(TofuEffects.MISO_BOOST)) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}
 		}
 
-		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().value() == MobEffects.POISON.value()) {
+		if (event.getEffectInstance() != null && event.getEffectInstance().getEffect().is(MobEffects.POISON)) {
 			if (event.getEntity().hasEffect(TofuEffects.MISO_BOOST)) {
 				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
 			}

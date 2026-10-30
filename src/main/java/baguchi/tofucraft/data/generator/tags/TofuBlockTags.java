@@ -13,7 +13,6 @@ import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
 import java.util.concurrent.CompletableFuture;
@@ -183,7 +182,6 @@ public class TofuBlockTags extends BlockTagsProvider {
 		this.tag(BlockTags.BEE_GROWABLES).add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get()).add(TofuBlocks.SOYBEAN_PALE.get())
 				.add(TofuBlocks.RICE_CROP.get());
 		this.tag(BlockTags.MAINTAINS_FARMLAND).add(TofuBlocks.SOYBEAN.get());
-		this.tag(Tags.Blocks.ORES).add(TofuBlocks.ORE_TOFUGEM.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get());
 
 		tag(TofuTags.Blocks.TOFUNIAN_SMITH).add(Blocks.BLAST_FURNACE.builtInRegistryHolder().key());
 		tag(TofuTags.Blocks.TOFUNIAN_FARMER).add(Blocks.COMPOSTER.builtInRegistryHolder().key());
@@ -322,7 +320,7 @@ public class TofuBlockTags extends BlockTagsProvider {
 
 		public Appender add(Block... blocks) {
 			for (Block block : blocks) {
-				add(BuiltInRegistries.BLOCK.wrapAsHolder(block).getKey());
+				add(BuiltInRegistries.BLOCK.wrapAsHolder(block).key());
 			}
 			return this;
 		}

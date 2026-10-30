@@ -11,6 +11,7 @@ import net.minecraft.tags.BlockItemTagId;
 import net.minecraft.tags.BlockItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -91,6 +92,7 @@ public class TofuBlockItemTags {
 		this.tag(BlockItemTags.BARS).add(TofuBlocks.METAL_TOFU_BARS.get());
 		this.tag(BlockItemTags.HANGING_SIGNS).add(BlockItemIds.OAK_HANGING_SIGN, BlockItemIds.SPRUCE_HANGING_SIGN, BlockItemIds.BIRCH_HANGING_SIGN, BlockItemIds.ACACIA_HANGING_SIGN, BlockItemIds.CHERRY_HANGING_SIGN, BlockItemIds.JUNGLE_HANGING_SIGN, BlockItemIds.DARK_OAK_HANGING_SIGN, BlockItemIds.PALE_OAK_HANGING_SIGN, BlockItemIds.CRIMSON_HANGING_SIGN, BlockItemIds.WARPED_HANGING_SIGN, BlockItemIds.MANGROVE_HANGING_SIGN, BlockItemIds.BAMBOO_HANGING_SIGN);
 		this.tag(BlockItemTags.BEE_FOOD).add(smallFlowersInteractingWithBees);
+		this.tag(Tags.BlockItems.ORES).add(TofuBlocks.ORE_TOFUGEM.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.TOFUSLATE_TOFU_DIAMOND_ORE.get(), TofuBlocks.TOFUSLATE_SOY_FORCE_ORE.get());
 
 	}
 
@@ -130,7 +132,7 @@ public class TofuBlockItemTags {
 
 		default TofuCombinedAppender add(Block... items) {
 			for (Block item : items) {
-				Identifier id = BuiltInRegistries.BLOCK.wrapAsHolder(item).getKey().identifier();
+				Identifier id = BuiltInRegistries.BLOCK.wrapAsHolder(item).key().identifier();
 
 				add(BlockItemId.create(id, id));
 			}
