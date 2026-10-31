@@ -1,0 +1,158 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_sesame",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_strawberry",
+          "weight": 15
+        }
+      ],
+      "modifier": [
+        {
+          "type": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 5,
+            "min": 3
+          }
+        },
+        {
+          "type": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 5,
+            "min": 3
+          }
+        }
+      ],
+      "rolls": 4
+    },
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_metal",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:zundaruby",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_metal_nugget",
+          "weight": 15
+        }
+      ],
+      "modifier": [
+        {
+          "type": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 3,
+            "min": 2
+          }
+        },
+        {
+          "type": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 3,
+            "min": 2
+          }
+        },
+        {
+          "type": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 5,
+            "min": 4
+          }
+        }
+      ],
+      "rolls": 3
+    },
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:enchant_with_levels",
+            "levels": 15,
+            "options": "#minecraft:on_random_loot"
+          },
+          "name": "tofucraft:tofu_metal_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:enchant_with_levels",
+            "levels": 15,
+            "options": "#minecraft:on_random_loot"
+          },
+          "name": "tofucraft:tofu_metal_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:enchant_with_levels",
+            "levels": 15,
+            "options": "#minecraft:on_random_loot"
+          },
+          "name": "tofucraft:tofu_metal_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:enchant_with_levels",
+            "levels": 15,
+            "options": "#minecraft:on_random_loot"
+          },
+          "name": "tofucraft:tofu_metal_boots"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:enchant_with_levels",
+            "levels": 15,
+            "options": "#minecraft:on_random_loot"
+          },
+          "name": "tofucraft:tofu_metal_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:enchant_with_levels",
+            "levels": 15,
+            "options": "#minecraft:on_random_loot"
+          },
+          "name": "tofucraft:tofu_metal_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:enchant_with_levels",
+            "levels": 15,
+            "options": "#minecraft:on_random_loot"
+          },
+          "name": "tofucraft:tofu_metal_spear"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "tofucraft:chests/tofu_castle/tofu_castle_hidden_bridge"
+}

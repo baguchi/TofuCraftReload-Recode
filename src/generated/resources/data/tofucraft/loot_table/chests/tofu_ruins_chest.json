@@ -1,0 +1,151 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_metal_shovel",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_metal_axe",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_metal_pickaxe",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_metal_sword",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_metal_helmet",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_metal_chestplate",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_metal_leggings",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_metal_boots",
+          "weight": 5
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:set_count",
+            "count": {
+              "type": "minecraft:uniform",
+              "max": 5,
+              "min": 3
+            }
+          },
+          "name": "tofucraft:tofu_metal",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:set_count",
+            "count": {
+              "type": "minecraft:uniform",
+              "max": 8,
+              "min": 4
+            }
+          },
+          "name": "tofucraft:tofu_metal_nugget",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:set_count",
+            "count": {
+              "type": "minecraft:uniform",
+              "max": 4,
+              "min": 2
+            }
+          },
+          "name": "tofucraft:tofugem",
+          "weight": 15
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 3,
+        "min": 2
+      }
+    },
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:set_count",
+            "count": {
+              "type": "minecraft:uniform",
+              "max": 4,
+              "min": 3
+            }
+          },
+          "name": "tofucraft:tofucookie",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:set_count",
+            "count": {
+              "type": "minecraft:uniform",
+              "max": 3,
+              "min": 1
+            }
+          },
+          "name": "tofucraft:soymilk_bottle",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "modifier": {
+            "type": "minecraft:set_count",
+            "count": {
+              "type": "minecraft:uniform",
+              "max": 5,
+              "min": 3
+            }
+          },
+          "name": "tofucraft:zunda_arrow",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 4
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 4,
+        "min": 2
+      }
+    }
+  ],
+  "random_sequence": "tofucraft:chests/tofu_ruins_chest"
+}

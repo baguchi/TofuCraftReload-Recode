@@ -17,7 +17,8 @@ public class TofuLootTableProvider {
 
 	public static SingleRegistryBootstrap<LootTable> create() {
 		return new LootTableProvider(LOCATIONS, List.of(new LootTableProvider.SubProviderEntry(TofuBlockLootTables::new, LootContextParamSets.BLOCK),
-				new LootTableProvider.SubProviderEntry(TofuEntityLootTables::new, LootContextParamSets.ENTITY)));
+				new LootTableProvider.SubProviderEntry(TofuEntityLootTables::new, LootContextParamSets.ENTITY),
+				new LootTableProvider.SubProviderEntry(TofuChestLootTables::new, LootContextParamSets.CHEST)));
 	}
 
 	public static Set<ResourceKey<LootTable>> all() {
