@@ -193,7 +193,7 @@ public class CommonEvents {
 		Entity entity = event.getEntity();
 		SoyHealthAttachment soyHealth = entity.getData(TofuAttachments.SOY_HEALTH);
 
-		if (entity instanceof LivingEntity livingEntity) {
+		if (entity instanceof Player livingEntity) {
 			if (!entity.level().isClientSide()) {
 				soyHealth.tick(livingEntity);
 			}
