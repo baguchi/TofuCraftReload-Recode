@@ -60,7 +60,7 @@ public class TofuEnergyMap {
 
 	public static Map.Entry<FluidStackTemplate, Integer> getLiquidFuel(FluidStack fluid) {
 		for (Map.Entry<FluidStackTemplate, Integer> rep : fluidRecipes.entrySet()) {
-			if (rep.getKey().fluid().equals(fluid.getFluid()))
+			if (fluid.getFluid().isSame(rep.getKey().fluid().value()))
 				return rep;
 		}
 		return null;
