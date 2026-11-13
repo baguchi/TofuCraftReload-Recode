@@ -120,43 +120,6 @@
           ]
         }
       ]
-    },
-    {
-      "rolls": 2,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "tofucraft:zundama",
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "minecraft:nbt": "{ZundaConverting:1}"
-              }
-            },
-            {
-              "condition": "minecraft:damage_source_properties",
-              "predicate": {
-                "source_entity": {
-                  "minecraft:entity_type": "minecraft:frog"
-                }
-              }
-            }
-          ]
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "minecraft:type_specific/cube_mob": {
-              "size": 1
-            }
-          }
-        }
-      ]
     }
   ]
 }
