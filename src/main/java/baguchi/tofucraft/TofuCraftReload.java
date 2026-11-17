@@ -23,6 +23,7 @@ import baguchi.tofucraft.registry.TofuBlockEntitys;
 import baguchi.tofucraft.registry.TofuBlockSetTypes;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuCarvers;
+import baguchi.tofucraft.registry.TofuChunkGenerators;
 import baguchi.tofucraft.registry.TofuCreativeModeTabs;
 import baguchi.tofucraft.registry.TofuDataComponents;
 import baguchi.tofucraft.registry.TofuEffects;
@@ -166,6 +167,8 @@ public class TofuCraftReload {
 		TofuTreeDecoratorType.TREE_DECORATOR_TYPE.register(modBus);
 
 		TofuFeatures.FEATURES.register(modBus);
+		TofuChunkGenerators.CHUNK_GENERATOR.register(modBus);
+
 		TofuSounds.SOUND_EVENTS.register(modBus);
 		TofuAttachments.ATTACHMENT_TYPES.register(modBus);
 		TofuParticleTypes.PARTICLE_TYPES.register(modBus);

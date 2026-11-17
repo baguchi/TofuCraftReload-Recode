@@ -30,6 +30,10 @@ public class TofuBiomeDefaultFeatures {
 		p_126813_.addSpawn(MobCategory.WATER_AMBIENT, 10, new MobSpawnSettings.SpawnerData(TofuEntityTypes.TOFUFISH.get(), 3, 6));
 	}
 
+	public static void addDefaultSprings(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.FLUID_SPRINGS, TofuWorldPlacements.SPRING_DOUBANJIANG);
+	}
+
 	public static void addDefaultOres(BiomeGenerationSettings.Builder p_194721_) {
 		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_TOFU_DIAMOND);
 		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_TOFU_DIAMOND_MEDIUM);

@@ -3,9 +3,11 @@ package baguchi.tofucraft.world.gen.features;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuFeatures;
+import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuTags;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
@@ -14,6 +16,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -22,6 +25,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.DeltaFeatureCon
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SpringConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
@@ -51,6 +55,8 @@ public class TofuWorldFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_TOFUGEM_SMALL = registerKey("ore_tofugem_small");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_TOFUGEM_LARGE = registerKey("ore_tofugem_large");
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SPRING_DOUBANJIANG = registerKey("spring_doubanjiang");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_DELTA = registerKey("tofu_delta");
 
@@ -86,6 +92,23 @@ public class TofuWorldFeatures {
 
 		FeatureUtils.register(context, ORE_TOFUGEM_SMALL, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 6));
 		FeatureUtils.register(context, ORE_TOFUGEM_LARGE, Feature.ORE, new OreConfiguration(ORE_TOFUGEM_TARGET_LIST, 10));
+
+		FeatureUtils.register(
+				context,
+				SPRING_DOUBANJIANG,
+				Feature.SPRING,
+				new SpringConfiguration(
+						TofuFluids.DOUBANJIANG.get().defaultFluidState(),
+						true,
+						4,
+						1,
+						HolderSet.direct(
+								Block::builtInRegistryHolder,
+								TofuBlocks.TOFU_TERRAIN.get(),
+								TofuBlocks.TOFUSLATE.get()
+						)
+				)
+		);
 
 		FeatureUtils.register(
 				context,

@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.heightproviders.VeryBiasedToBottomHeight;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;
@@ -49,6 +50,8 @@ public class TofuWorldPlacements {
 
 	public static final ResourceKey<PlacedFeature> ORE_TOFUGEM = registerKey("ore_tofugem");
 	public static final ResourceKey<PlacedFeature> ORE_TOFUGEM_LARGE = registerKey("ore_tofugem_large");
+	public static final ResourceKey<PlacedFeature> SPRING_DOUBANJIANG = registerKey("spring_doubanjiang");
+
 
 	public static final ResourceKey<PlacedFeature> TOFU_DELTA = registerKey("tofu_delta");
 
@@ -94,6 +97,16 @@ public class TofuWorldPlacements {
 
 		PlacementUtils.register(context, ORE_TOFUGEM, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_TOFUGEM_SMALL), commonOrePlacement(15, HeightRangePlacement.uniform(VerticalAnchor.absolute(136), VerticalAnchor.top())));
 		PlacementUtils.register(context, ORE_TOFUGEM_LARGE, configuredFeature.getOrThrow(TofuWorldFeatures.ORE_TOFUGEM_LARGE), commonOrePlacement(22, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
+
+		PlacementUtils.register(
+				context,
+				SPRING_DOUBANJIANG,
+				configuredFeature.getOrThrow(TofuWorldFeatures.SPRING_DOUBANJIANG),
+				CountPlacement.of(20),
+				InSquarePlacement.spread(),
+				HeightRangePlacement.of(VeryBiasedToBottomHeight.of(VerticalAnchor.bottom(), VerticalAnchor.belowTop(8), 8)),
+				BiomeFilter.biome()
+		);
 
 		PlacementUtils.register(context, TOFU_DELTA, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_DELTA), CountOnEveryLayerPlacement.of(30), BiomeFilter.biome());
 

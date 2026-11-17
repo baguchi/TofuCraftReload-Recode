@@ -38,7 +38,9 @@
       "tofucraft:ore_tofugem_large"
     ],
     [],
-    [],
+    [
+      "tofucraft:spring_doubanjiang"
+    ],
     [
       "tofucraft:tofu_building",
       "tofucraft:tofu_trees_plains",

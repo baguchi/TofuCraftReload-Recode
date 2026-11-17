@@ -36,7 +36,9 @@
       "tofucraft:ore_tofugem_large"
     ],
     [],
-    [],
+    [
+      "tofucraft:spring_doubanjiang"
+    ],
     [
       "tofucraft:big_leek",
       "tofucraft:patch_leek"

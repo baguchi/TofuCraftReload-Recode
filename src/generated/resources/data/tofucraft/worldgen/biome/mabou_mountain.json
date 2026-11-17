@@ -37,7 +37,9 @@
       "tofucraft:ore_tofugem_large"
     ],
     [],
-    [],
+    [
+      "tofucraft:spring_doubanjiang"
+    ],
     [
       "tofucraft:tofu_delta"
     ]

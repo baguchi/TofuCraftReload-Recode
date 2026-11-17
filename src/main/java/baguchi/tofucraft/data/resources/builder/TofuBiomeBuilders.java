@@ -132,6 +132,8 @@ public class TofuBiomeBuilders {
 		TofuBiomeDefaultFeatures.addDefaultCarvers(builder);
 		TofuBiomeDefaultFeatures.addDefaultOres(builder);
 		TofuBiomeDefaultFeatures.addCaveSproutFeatures(builder);
+		TofuBiomeDefaultFeatures.addDefaultSprings(builder);
+
 		TofuBiomeDefaultFeatures.tofuMonsterSpawns(builder1);
 		TofuBiomeDefaultFeatures.tofuWaterCreatureSpawns(builder1);
 		return fullDefinition(
@@ -152,6 +154,8 @@ public class TofuBiomeBuilders {
 	public static Biome.BiomeBuilder makeDefaultBiome(BiomeGenerationSettings.Builder builder, MobSpawnSettings.Builder mobSpawnSetting) {
 		TofuBiomeDefaultFeatures.addDefaultCarvers(builder);
 		TofuBiomeDefaultFeatures.addDefaultOres(builder);
+		TofuBiomeDefaultFeatures.addDefaultSprings(builder);
+
 		TofuBiomeDefaultFeatures.tofuCreatureSpawns(mobSpawnSetting);
 		return fullDefinition(
 				0.8F,
