@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:spring_feature",
+  "state": {
+    "id": "tofucraft:doubanjiang",
+    "properties": {
+      "falling": "true"
+    }
+  },
+  "valid_blocks": [
+    "tofucraft:tofu_terrain",
+    "tofucraft:tofuslate"
+  ]
+}

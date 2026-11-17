@@ -91,9 +91,12 @@
       "tofucraft:ore_tofugem_large"
     ],
     [],
-    [],
     [
-      "tofucraft:tofu_delta"
+      "tofucraft:spring_doubanjiang"
+    ],
+    [
+      "tofucraft:tofu_delta",
+      "tofucraft:tofu_delta_underground"
     ]
   ],
   "has_precipitation": true,

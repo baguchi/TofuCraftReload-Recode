@@ -92,11 +92,14 @@
       "tofucraft:ore_tofugem_large"
     ],
     [],
-    [],
+    [
+      "tofucraft:spring_doubanjiang"
+    ],
     [
       "tofucraft:tofu_trees_plains",
       "tofucraft:patch_tofu_flower",
-      "tofucraft:patch_leek"
+      "tofucraft:patch_leek",
+      "tofucraft:tofu_delta_underground"
     ]
   ],
   "has_precipitation": true,

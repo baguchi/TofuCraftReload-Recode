@@ -67,6 +67,10 @@ public class TofuBiomeDefaultFeatures {
 		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.PATCH_LEEK_WASTE);
 	}
 
+	public static void addDefaultSpring(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.FLUID_SPRINGS, TofuWorldPlacements.SPRING_DOUBANJIANG);
+	}
+
 	public static void addMountainFeatures(BiomeGenerationSettings.Builder p_194721_) {
 		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_KINU_TOFU);
 		p_194721_.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TofuWorldPlacements.ORE_MINCED_TOFU);
@@ -91,5 +95,9 @@ public class TofuBiomeDefaultFeatures {
 	public static void addZundaForestFeatures(BiomeGenerationSettings.Builder p_194721_) {
 		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.BIG_ZUNDA_TOFU_MUSHROOM);
 		p_194721_.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.PATCH_ZUNDA_TOFU_MUSHROOM);
+	}
+
+	public static void addDefaultDelta(BiomeGenerationSettings.Builder builder) {
+		builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TofuWorldPlacements.TOFU_DELTA_UNDERGROUND);
 	}
 }

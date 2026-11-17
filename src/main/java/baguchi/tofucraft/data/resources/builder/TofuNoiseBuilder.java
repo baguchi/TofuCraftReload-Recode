@@ -58,7 +58,7 @@ public class TofuNoiseBuilder {
 		DensityFunction barrierNoise = DensityFunctions.noise(noises.getOrThrow(Noises.AQUIFER_BARRIER), 0.5);
 		DensityFunction fluidLevelFloodednessNoise = DensityFunctions.noise(noises.getOrThrow(Noises.AQUIFER_FLUID_LEVEL_FLOODEDNESS), 0.67);
 		DensityFunction fluidLevelSpreadNoise = DensityFunctions.noise(noises.getOrThrow(Noises.AQUIFER_FLUID_LEVEL_SPREAD), 0.7142857142857143);
-		DensityFunction lavaNoise = DensityFunctions.noise(noises.getOrThrow(Noises.AQUIFER_LAVA));
+		DensityFunction lavaNoise = DensityFunctions.zero();
 		DensityFunction exclusion = OverworldBiomeBuilder.deepDarkRegion(getFunction(functions, names.erosion()), getFunction(functions, names.depth()));
 		return new Aquifer.Config(
 				barrierNoise, fluidLevelFloodednessNoise, fluidLevelSpreadNoise, lavaNoise, exclusion, getFunction(functions, names.preliminarySurfaceLevel())

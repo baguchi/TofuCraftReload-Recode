@@ -151,6 +151,9 @@ public class TofuBiomeBuilders {
 	public static Biome.BiomeBuilder makeDefaultBiome(BiomeGenerationSettings.Builder builder, MobSpawnSettings.Builder mobSpawnSetting) {
 		TofuBiomeDefaultFeatures.addDefaultCarvers(builder);
 		TofuBiomeDefaultFeatures.addDefaultOres(builder);
+		TofuBiomeDefaultFeatures.addDefaultDelta(builder);
+		TofuBiomeDefaultFeatures.addDefaultSpring(builder);
+
 		TofuBiomeDefaultFeatures.tofuCreatureSpawns(mobSpawnSetting);
 		return fullDefinition(
 				0.8F,

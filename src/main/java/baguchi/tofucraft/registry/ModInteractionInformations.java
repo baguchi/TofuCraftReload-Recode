@@ -29,5 +29,18 @@ public class ModInteractionInformations {
 				TofuFluidTypes.SOYMILK_SOUL.get(),
 				fluidState -> TofuBlocks.TOFU_TERRAIN.get().defaultBlockState()
 		));
+
+		FluidInteractionRegistry.addInteraction(TofuFluidTypes.DOUBANJIANG.get(), new FluidInteractionRegistry.InteractionInformation(
+				TofuFluidTypes.SOYMILK.get(),
+				fluidState -> TofuBlocks.MABOU_TERRAIN.get().defaultBlockState()
+		));
+		FluidInteractionRegistry.addInteraction(TofuFluidTypes.DOUBANJIANG.get(), new FluidInteractionRegistry.InteractionInformation(
+				TofuFluidTypes.SOYMILK_HELL.get(),
+				fluidState -> TofuBlocks.MABOU_TERRAIN.get().defaultBlockState()
+		));
+		FluidInteractionRegistry.addInteraction(TofuFluidTypes.DOUBANJIANG.get(), new FluidInteractionRegistry.InteractionInformation(
+				TofuFluidTypes.SOYMILK_SOUL.get(),
+				fluidState -> TofuBlocks.MABOU_TERRAIN.get().defaultBlockState()
+		));
 	}
 }

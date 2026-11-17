@@ -2,11 +2,13 @@ package baguchi.tofucraft.world.gen.features;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuBlocks;
+import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.world.gen.feature.BigLeekFeature;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.levelgen.feature.DeltaFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.OreFeature;
 import net.minecraft.world.level.levelgen.feature.SimpleBlockFeature;
+import net.minecraft.world.level.levelgen.feature.SpringFeature;
 import net.minecraft.world.level.levelgen.feature.VegetationPatchFeature;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
@@ -55,6 +58,7 @@ public class TofuWorldFeatures {
 	public static final ResourceKey<Feature> TOFU_DELTA = registerKey("tofu_delta");
 
 	public static final ResourceKey<Feature> SPROUT_WATER_POOL = registerKey("sprout_water_pool");
+	public static final ResourceKey<Feature> SPRING_DOUBANJIANG = registerKey("spring_doubanjiang");
 	public static final ResourceKey<Feature> WILD_SPROUTS = registerKey("wild_sprouts");
 
 	public static final ResourceKey<Feature> TOFU_FLOWER = registerKey("tofu_flower");
@@ -94,8 +98,21 @@ public class TofuWorldFeatures {
 		);
 		context.register(WILD_SPROUTS, new SimpleBlockFeature(BlockStateProvider.of(TofuBlocks.WILD_SPROUTS.get())));
 
-		context.register(SPROUT_WATER_POOL, new VegetationPatchFeature(blocks.getOrThrow(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE), Holder.direct(BlockStateProvider.of(TofuBlocks.MINCEDTOFU.get())), PlacementUtils.inlinePlaced(lookup.getOrThrow(ModTreeFeatures.SPROUT), new PlacementModifier[0]), CaveSurface.FLOOR, ConstantInt.of(3), 0.8F, 5, 0.055F, UniformInt.of(4, 7), 0.7F));
-
+		context.register(SPROUT_WATER_POOL, new VegetationPatchFeature(blocks.getOrThrow(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE), BlockStateProvider.holderOf(TofuBlocks.MINCEDTOFU.get()), PlacementUtils.inlinePlaced(lookup.getOrThrow(ModTreeFeatures.SPROUT), new PlacementModifier[0]), CaveSurface.FLOOR, ConstantInt.of(3), 0.8F, 5, 0.055F, UniformInt.of(4, 7), 0.7F));
+		context.register(
+				SPRING_DOUBANJIANG,
+				new SpringFeature(
+						TofuFluids.DOUBANJIANG.get().defaultFluidState(),
+						true,
+						4,
+						1,
+						HolderSet.direct(
+								Block::builtInRegistryHolder,
+								TofuBlocks.TOFU_TERRAIN.get(),
+								TofuBlocks.TOFUSLATE.get()
+						)
+				)
+		);
 		context.register(TOFU_FLOWER, new SimpleBlockFeature(BlockStateProvider.of(TofuBlocks.TOFU_FLOWER.get())));
 		context.register(LEEK, new SimpleBlockFeature(Holder.direct(new WeightedStateProvider(
 				WeightedList.<BlockState>builder().add(TofuBlocks.LEEK.get().defaultBlockState(), 10).add(TofuBlocks.TALL_LEEK.get().defaultBlockState(), 1)

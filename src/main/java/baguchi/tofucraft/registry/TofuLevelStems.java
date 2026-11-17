@@ -1,5 +1,6 @@
 package baguchi.tofucraft.registry;
 
+import baguchi.tofucraft.world.gen.TofuNoiseBasedChunkGenerator;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -8,7 +9,6 @@ import net.minecraft.world.level.biome.MultiNoiseBiomeSource;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
-import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
 public class TofuLevelStems {
@@ -19,8 +19,8 @@ public class TofuLevelStems {
 		HolderGetter<MultiNoiseBiomeSourceParameterList> multiNoiseBiomeSourceParameterLists = context.lookup(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST);
 		Holder.Reference<MultiNoiseBiomeSourceParameterList> reference = multiNoiseBiomeSourceParameterLists.getOrThrow(TofuBiomeSources.TOFU_WORLD);
 
-		NoiseBasedChunkGenerator wrappedChunkGenerator =
-				new NoiseBasedChunkGenerator(
+		TofuNoiseBasedChunkGenerator wrappedChunkGenerator =
+				new TofuNoiseBasedChunkGenerator(
 						MultiNoiseBiomeSource.createFromPreset(reference),
 						noiseGenSettings.getOrThrow(TofuNoiseSettings.TOFU_WORLD));
 
