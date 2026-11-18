@@ -65,6 +65,7 @@ public class TofuWorldPlacements {
 	public static final ResourceKey<PlacedFeature> BIG_SPROUT = registerKey("big_sprout");
 	public static final ResourceKey<PlacedFeature> SPROUT_WATER_POOL = registerKey("sprout_water_pool");
 	public static final ResourceKey<PlacedFeature> SPRING_DOUBANJIANG = registerKey("spring_doubanjiang");
+	public static final ResourceKey<PlacedFeature> SPRING_SOYSAUCE = registerKey("spring_soysauce");
 
 
 	public static final ResourceKey<PlacedFeature> TOFU_BUILDING = registerKey("tofu_building");
@@ -104,6 +105,15 @@ public class TofuWorldPlacements {
 				CountPlacement.of(20),
 				InSquarePlacement.spread(),
 				HeightRangePlacement.of(VeryBiasedToBottomHeight.of(VerticalAnchor.bottom(), VerticalAnchor.belowTop(8), 8)),
+				BiomeFilter.biome()
+		);
+		PlacementUtils.register(
+				context,
+				SPRING_SOYSAUCE,
+				configuredFeature.getOrThrow(TofuWorldFeatures.SPRING_SOYSAUCE),
+				CountPlacement.of(24),
+				InSquarePlacement.spread(),
+				HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(16), VerticalAnchor.belowTop(16)),
 				BiomeFilter.biome()
 		);
 
@@ -149,7 +159,7 @@ public class TofuWorldPlacements {
 		);
 
 
-		PlacementUtils.register(context, TOFU_BUILDING, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_BUILDING), PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+		PlacementUtils.register(context, TOFU_BUILDING, configuredFeature.getOrThrow(TofuWorldFeatures.TOFU_DRY_BUILDING), PlacementUtils.countExtra(2, 0.1F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
 		PlacementUtils.register(context, PATCH_ZUNDA_TOFU_MUSHROOM, configuredFeature.getOrThrow(TofuWorldFeatures.ZUNDA_TOFU_MUSHROOM), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome(),
 				CountPlacement.of(32),

@@ -5,6 +5,7 @@ import baguchi.tofucraft.registry.TofuBlocks;
 import baguchi.tofucraft.registry.TofuFluids;
 import baguchi.tofucraft.registry.TofuTags;
 import baguchi.tofucraft.world.gen.feature.BigLeekFeature;
+import baguchi.tofucraft.world.gen.feature.TofuBuildingFeature;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -18,21 +19,24 @@ import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.BlockPileFeature;
 import net.minecraft.world.level.levelgen.feature.BlockReplacement;
 import net.minecraft.world.level.levelgen.feature.DeltaFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.OreFeature;
 import net.minecraft.world.level.levelgen.feature.SimpleBlockFeature;
 import net.minecraft.world.level.levelgen.feature.SpringFeature;
-import net.minecraft.world.level.levelgen.feature.VegetationPatchFeature;
+import net.minecraft.world.level.levelgen.feature.WaterloggedVegetationPatchFeature;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.NoiseThresholdProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+import net.minecraft.world.level.levelgen.synth.NormalNoise;
+
+import java.util.List;
 
 public class TofuWorldFeatures {
 	public static final RuleTest TOFU_ORE_REPLACEABLES = new BlockMatchTest(TofuBlocks.TOFU_TERRAIN.get());
@@ -59,13 +63,14 @@ public class TofuWorldFeatures {
 
 	public static final ResourceKey<Feature> SPROUT_WATER_POOL = registerKey("sprout_water_pool");
 	public static final ResourceKey<Feature> SPRING_DOUBANJIANG = registerKey("spring_doubanjiang");
+	public static final ResourceKey<Feature> SPRING_SOYSAUCE = registerKey("spring_soysauce");
 	public static final ResourceKey<Feature> WILD_SPROUTS = registerKey("wild_sprouts");
 
 	public static final ResourceKey<Feature> TOFU_FLOWER = registerKey("tofu_flower");
 	public static final ResourceKey<Feature> LEEK = registerKey("leek");
 	public static final ResourceKey<Feature> BIG_LEEK = registerKey("big_leek");
 
-	public static final ResourceKey<Feature> TOFU_BUILDING = registerKey("tofu_building");
+	public static final ResourceKey<Feature> TOFU_DRY_BUILDING = registerKey("tofu_dry_building");
 
 	public static final ResourceKey<Feature> ZUNDA_TOFU_MUSHROOM = registerKey("zunda_tofu_mushroom");
 
@@ -98,11 +103,25 @@ public class TofuWorldFeatures {
 		);
 		context.register(WILD_SPROUTS, new SimpleBlockFeature(BlockStateProvider.of(TofuBlocks.WILD_SPROUTS.get())));
 
-		context.register(SPROUT_WATER_POOL, new VegetationPatchFeature(blocks.getOrThrow(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE), BlockStateProvider.holderOf(TofuBlocks.MINCEDTOFU.get()), PlacementUtils.inlinePlaced(lookup.getOrThrow(ModTreeFeatures.SPROUT), new PlacementModifier[0]), CaveSurface.FLOOR, ConstantInt.of(3), 0.8F, 5, 0.055F, UniformInt.of(4, 7), 0.7F));
+		context.register(SPROUT_WATER_POOL, new WaterloggedVegetationPatchFeature(blocks.getOrThrow(TofuTags.Blocks.TOFU_WORLD_CARVER_REPLACEABLE), BlockStateProvider.holderOf(TofuBlocks.MINCEDTOFU.get()), PlacementUtils.inlinePlaced(lookup.getOrThrow(ModTreeFeatures.SPROUT), new PlacementModifier[0]), CaveSurface.FLOOR, ConstantInt.of(3), 0.8F, 5, 0.055F, UniformInt.of(4, 7), 0.7F));
 		context.register(
 				SPRING_DOUBANJIANG,
 				new SpringFeature(
 						TofuFluids.DOUBANJIANG.get().defaultFluidState(),
+						true,
+						4,
+						1,
+						HolderSet.direct(
+								Block::builtInRegistryHolder,
+								TofuBlocks.TOFU_TERRAIN.get(),
+								TofuBlocks.TOFUSLATE.get()
+						)
+				)
+		);
+		context.register(
+				SPRING_SOYSAUCE,
+				new SpringFeature(
+						TofuFluids.SOYSAUCE.get().defaultFluidState(),
 						true,
 						4,
 						1,
@@ -119,7 +138,21 @@ public class TofuWorldFeatures {
 		)), false));
 		context.register(BIG_LEEK, new BigLeekFeature());
 
-		context.register(TOFU_BUILDING, new BlockPileFeature(Holder.direct(BlockStateProvider.of(TofuBlocks.TOFU_TERRAIN.get().defaultBlockState()))));
+		context.register(TOFU_DRY_BUILDING, new TofuBuildingFeature(Holder.direct(new NoiseThresholdProvider(
+				2345L,
+				NormalNoise.createParity(0, 1.0),
+				12.0F,
+				-0.8F,
+				0.33333334F,
+				TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(),
+				List.of(
+						TofuBlocks.FRIED_TOFU.get().defaultBlockState(),
+						TofuBlocks.FRIED_POUCH_TOFU.get().defaultBlockState()
+				),
+				List.of(
+						TofuBlocks.DRIED_TOFU.get().defaultBlockState()
+				)
+		))));
 
 		context.register(ZUNDA_TOFU_MUSHROOM, new SimpleBlockFeature(BlockStateProvider.of(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get())));
 

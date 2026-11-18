@@ -1,5 +1,5 @@
 {
-  "feature": "tofucraft:tofu_building",
+  "feature": "tofucraft:tofu_dry_building",
   "placement": [
     {
       "type": "minecraft:count",

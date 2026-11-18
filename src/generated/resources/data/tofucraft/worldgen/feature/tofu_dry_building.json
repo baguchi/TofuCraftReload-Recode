@@ -1,0 +1,22 @@
+{
+  "type": "tofucraft:tofu_building",
+  "state_provider": {
+    "type": "minecraft:noise_threshold",
+    "default_state": "tofucraft:tofu_terrain",
+    "high_chance": 0.33333334,
+    "high_states": [
+      "tofucraft:block_tofu_dried"
+    ],
+    "low_states": [
+      "tofucraft:block_tofu_fried",
+      "tofucraft:block_tofu_fried_pouch"
+    ],
+    "noise": {
+      "base_amplitude": 0.955388882960065,
+      "base_octave": 0
+    },
+    "scale": 12.0,
+    "seed": 2345,
+    "threshold": -0.8
+  }
+}
