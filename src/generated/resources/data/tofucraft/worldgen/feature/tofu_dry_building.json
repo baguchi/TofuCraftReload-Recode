@@ -3,7 +3,7 @@
   "state_provider": {
     "type": "minecraft:noise_threshold",
     "default_state": "tofucraft:tofu_terrain",
-    "high_chance": 0.33333334,
+    "high_chance": 0.65,
     "high_states": [
       "tofucraft:block_tofu_dried"
     ],
@@ -15,8 +15,8 @@
       "base_amplitude": 0.955388882960065,
       "base_octave": 0
     },
-    "scale": 12.0,
+    "scale": 8.0,
     "seed": 2345,
-    "threshold": -0.8
+    "threshold": -0.5
   }
 }

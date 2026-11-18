@@ -141,9 +141,9 @@ public class TofuWorldFeatures {
 		context.register(TOFU_DRY_BUILDING, new TofuBuildingFeature(Holder.direct(new NoiseThresholdProvider(
 				2345L,
 				NormalNoise.createParity(0, 1.0),
-				12.0F,
-				-0.8F,
-				0.33333334F,
+				8.0F,
+				-0.5F,
+				0.65F,
 				TofuBlocks.TOFU_TERRAIN.get().defaultBlockState(),
 				List.of(
 						TofuBlocks.FRIED_TOFU.get().defaultBlockState(),
