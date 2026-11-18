@@ -17,7 +17,7 @@ public class FluidTagGenerator extends FluidTagsProvider {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void addTags(HolderLookup.Provider p_255894_) {
-		this.tag(TofuTags.Fluids.SOYMILK).add(TofuFluids.SOYMILK.key(), TofuFluids.SOYMILK_HELL.key(), TofuFluids.SOYMILK_SOUL.key())
+		this.tag(TofuTags.Fluids.SOYMILKS).add(TofuFluids.SOYMILK.key(), TofuFluids.SOYMILK_HELL.key(), TofuFluids.SOYMILK_SOUL.key())
 				.add(TofuFluids.SOYMILK_FLOW.key(), TofuFluids.SOYMILK_HELL_FLOW.key(), TofuFluids.SOYMILK_SOUL_FLOW.key());
 		this.tag(TofuTags.Fluids.DOUBANJIANG).add(TofuFluids.DOUBANJIANG.key())
 				.add(TofuFluids.DOUBANJIANG_FLOW.key());

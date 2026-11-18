@@ -186,6 +186,12 @@ public class ClientRegistrar {
 			new Material(TofuCraftReload.prefix("block/bittern_overlay")),
 			null
 	);
+	private static final FluidModel.Unbaked SOYSAUCE_MODEL = new FluidModel.Unbaked(
+			new Material(TofuCraftReload.prefix("block/soysauce")),
+			new Material(TofuCraftReload.prefix("block/soysauce_flow")),
+			new Material(TofuCraftReload.prefix("block/bittern_overlay")),
+			null
+	);
 
 	private static final FluidModel.Unbaked DOUBANJIANG_MODEL = new FluidModel.Unbaked(
 			new Material(TofuCraftReload.prefix("block/doubanjiang")),
@@ -334,6 +340,7 @@ public class ClientRegistrar {
 		event.register(SOYMILK_HELL_MODEL, TofuFluids.SOYMILK_HELL.get(), TofuFluids.SOYMILK_HELL_FLOW.get());
 		event.register(SOYMILK_SOUL_MODEL, TofuFluids.SOYMILK_SOUL.get(), TofuFluids.SOYMILK_SOUL_FLOW.get());
 		event.register(DOUBANJIANG_MODEL, TofuFluids.DOUBANJIANG.get(), TofuFluids.DOUBANJIANG_FLOW.get());
+		event.register(SOYSAUCE_MODEL, TofuFluids.SOYSAUCE.get(), TofuFluids.SOYSAUCE_FLOW.get());
 		event.register(CRIMSON_MODEL, TofuFluids.CRIMSON.get(), TofuFluids.FLOWING_CRIMSON.get());
 		event.register(WARPED_MODEL, TofuFluids.WARPED.get(), TofuFluids.FLOWING_WARPED.get());
 	}

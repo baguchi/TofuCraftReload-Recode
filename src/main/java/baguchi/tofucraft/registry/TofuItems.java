@@ -309,7 +309,9 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFUFISH_BUCKET = ITEMS.registerItem("tofufish_bucket", (properties) -> new MobBucketItem(TofuEntityTypes.TOFU_FISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final DeferredHolder<Item, Item> TOFUFISH_SOYMILK_BUCKET = ITEMS.registerItem("tofufish_soymilk_bucket", (properties) -> new MobBucketItem(TofuEntityTypes.TOFU_FISH.get(), TofuFluids.SOYMILK.get(), SoundEvents.BUCKET_EMPTY_FISH, (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final DeferredHolder<Item, Item> TOFUFISH_SOYSAUCE_BUCKET = ITEMS.registerItem("tofufish_soysauce_bucket", (properties) -> new MobBucketItem(TofuEntityTypes.TOFU_FISH.get(), TofuFluids.SOYSAUCE.get(), SoundEvents.BUCKET_EMPTY_FISH, (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final DeferredHolder<Item, Item> BITTERN_BUCKET = ITEMS.registerItem("bittern_bucket", (properties) -> new BucketItem(TofuFluids.BITTERN.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
+	public static final DeferredHolder<Item, Item> SOYSAUCE_BUCKET = ITEMS.registerItem("soysauce_bucket", (properties) -> new BucketItem(TofuFluids.SOYSAUCE.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final DeferredHolder<Item, Item> DOUBANJIANG_BUCKET = ITEMS.registerItem("doubanjiang_bucket", (properties) -> new BucketItem(TofuFluids.DOUBANJIANG.value(), (properties).craftRemainder(Items.BUCKET).stacksTo(1)));
 	public static final DeferredHolder<Item, Item> TOFU_METAL_BUCKET = ITEMS.registerItem("tofu_metal_bucket", (properties) -> new TofuMetalBucketItem((properties.component(TofuDataComponents.STORED_FLUID, SimpleFluidContent.EMPTY))));
 

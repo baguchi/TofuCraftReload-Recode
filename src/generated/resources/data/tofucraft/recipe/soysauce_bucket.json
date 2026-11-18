@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "tofucraft:bottle_soysause",
+    "tofucraft:bottle_soysause",
+    "tofucraft:bottle_soysause",
+    "minecraft:bucket"
+  ],
+  "result": {
+    "id": "tofucraft:soysauce_bucket"
+  }
+}

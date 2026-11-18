@@ -940,6 +940,20 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(Items.GLASS_BOTTLE)
 				.unlockedBy("has_item", has(TofuItems.SOYMILK_BUCKET.get()))
 				.save(this.output);
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.BOTTLE_SOYSAUSE.get(), 3)
+				.requires(TofuItems.SOYSAUCE_BUCKET.get())
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE)
+				.requires(Items.GLASS_BOTTLE)
+				.unlockedBy("has_item", has(TofuItems.SOYSAUCE_BUCKET.get()))
+				.save(this.output);
+		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYSAUCE_BUCKET.get(), 1)
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
+				.requires(Items.BUCKET)
+				.unlockedBy("has_item", has(TofuItems.SOYSAUCE_BUCKET.get()))
+				.save(this.output);
 
 		SpecialRecipeBuilder.special(() -> new FluidBucketRecipe(Ingredient.of(lookup.getOrThrow(TofuTags.Items.SOYBEAN)), TofuFluids.SOYMILK))
 				.save(this.output, prefix("fluid_bucket_soymilk"));
@@ -947,12 +961,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(this.output, prefix("fluid_bucket_soymilk_hell"));
 		SpecialRecipeBuilder.special(() -> new FluidBucketRecipe(Ingredient.of(TofuItems.SEEDS_SOYBEANS_SOUL.get()), TofuFluids.SOYMILK_SOUL))
 				.save(this.output, prefix("fluid_bucket_soymilk_soul"));
+
 		SpecialRecipeBuilder.special(() -> new BucketToBottleRecipe(new ItemStackTemplate(TofuItems.SOYMILK_BOTTLE, 3), TofuFluids.SOYMILK))
 				.save(this.output, prefix("fluid_bucket_to_soymilk_bottle"));
 		SpecialRecipeBuilder.special(() -> new BucketToBottleRecipe(new ItemStackTemplate(TofuItems.SOYMILK_HELL_BOTTLE, 3), TofuFluids.SOYMILK_HELL))
 				.save(this.output, prefix("fluid_bucket_to_soymilk_hell_bottle"));
 		SpecialRecipeBuilder.special(() -> new BucketToBottleRecipe(new ItemStackTemplate(TofuItems.SOYMILK_SOUL_BOTTLE, 3), TofuFluids.SOYMILK_SOUL))
 				.save(this.output, prefix("fluid_bucket_to_soymilk_soul_bottle"));
+		SpecialRecipeBuilder.special(() -> new BucketToBottleRecipe(new ItemStackTemplate(TofuItems.BOTTLE_SOYSAUSE, 3), TofuFluids.SOYSAUCE))
+				.save(this.output, prefix("fluid_bucket_to_soysauce_bottle"));
 
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOYMILK_APPLE_BOTTLE.get())

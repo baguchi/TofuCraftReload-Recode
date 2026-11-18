@@ -234,7 +234,7 @@ public class TofuEntityTypes {
 	public static final SpawnPlacementType IN_SOYMILK = (p_325672_, p_325673_, p_325674_) -> {
 		if (p_325674_ != null && p_325672_.getWorldBorder().isWithinBounds(p_325673_)) {
 			BlockPos blockpos = p_325673_.above();
-			return p_325672_.getFluidState(p_325673_).is(TofuTags.Fluids.SOYMILK) && !p_325672_.getBlockState(blockpos).isRedstoneConductor(p_325672_, blockpos);
+			return p_325672_.getFluidState(p_325673_).is(TofuTags.Fluids.SOYMILKS) && !p_325672_.getBlockState(blockpos).isRedstoneConductor(p_325672_, blockpos);
 		} else {
 			return false;
 		}

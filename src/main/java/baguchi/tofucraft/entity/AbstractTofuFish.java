@@ -12,7 +12,7 @@ import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.fluids.FluidType;
 
 public abstract class AbstractTofuFish extends AbstractFish {
-	private boolean wasTouchingSoymilk;
+	private boolean wasTouchingSafeFluid;
 
 	public AbstractTofuFish(EntityType<? extends AbstractTofuFish> p_27461_, Level p_27462_) {
 		super(p_27461_, p_27462_);
@@ -39,21 +39,23 @@ public abstract class AbstractTofuFish extends AbstractFish {
 	public void tick() {
 		super.tick();
 		if (this.isInFluidType(TofuFluidTypes.SOYMILK.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK_HELL.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK_SOUL.get())) {
-			this.wasTouchingSoymilk = true;
+			this.wasTouchingSafeFluid = true;
+		} else if (this.isInFluidType(TofuFluidTypes.SOYSAUCE.get())) {
+			this.wasTouchingSafeFluid = true;
 		} else {
-			this.wasTouchingSoymilk = false;
+			this.wasTouchingSafeFluid = false;
 		}
 	}
 
 	//override isInWater because most method using this
 	@Override
 	public boolean isInWater() {
-		return super.isInWater() || wasTouchingSoymilk;
+		return super.isInWater() || wasTouchingSafeFluid;
 	}
 
 
 	@Override
 	public boolean canDrownInFluidType(FluidType type) {
-		return type != TofuFluidTypes.SOYMILK.get() && type != TofuFluidTypes.SOYMILK_HELL.get() && type != TofuFluidTypes.SOYMILK_SOUL.get() && type != NeoForgeMod.WATER_TYPE.value() && super.canDrownInFluidType(type);
+		return type != TofuFluidTypes.SOYSAUCE.get() && type != TofuFluidTypes.SOYMILK.get() && type != TofuFluidTypes.SOYMILK_HELL.get() && type != TofuFluidTypes.SOYMILK_SOUL.get() && type != NeoForgeMod.WATER_TYPE.value() && super.canDrownInFluidType(type);
 	}
 }

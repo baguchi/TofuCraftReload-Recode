@@ -104,7 +104,7 @@ public class TofuFarmlandBlock extends Block {
 
 	private static boolean isNearWater(LevelReader p_53259_, BlockPos p_53260_) {
 		for (BlockPos blockpos : BlockPos.betweenClosed(p_53260_.offset(-4, 0, -4), p_53260_.offset(4, 1, 4))) {
-			if (p_53259_.getFluidState(blockpos).is(FluidTags.WATER) || p_53259_.getFluidState(blockpos).is(TofuTags.Fluids.SOYMILK)) {
+			if (p_53259_.getFluidState(blockpos).is(FluidTags.WATER) || p_53259_.getFluidState(blockpos).is(TofuTags.Fluids.SOYMILKS)) {
 				return true;
 			}
 		}

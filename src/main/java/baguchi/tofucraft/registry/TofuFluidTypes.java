@@ -26,6 +26,9 @@ public class TofuFluidTypes {
 	public static final Supplier<FluidType> SOYMILK_SOUL = FLUID_TYPES.register("soymilk_soul", () -> new SoymilkFluidType(FluidType.Properties.create().pathType(PathType.WATER).canExtinguish(true).fallDistanceModifier(0F).motionScale(0.007F).canHydrate(true).supportsBoating(true).sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
 			.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
 			.sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)));
+	public static final Supplier<FluidType> SOYSAUCE = FLUID_TYPES.register("soysauce", () -> new SoymilkFluidType(FluidType.Properties.create().pathType(PathType.WATER).canExtinguish(true).density(1200).viscosity(2000).fallDistanceModifier(0F).motionScale(0.007F).canHydrate(true).supportsBoating(true).sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+			.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+			.sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)));
 	public static final Supplier<FluidType> BITTERN = FLUID_TYPES.register("bittern", () -> new SoymilkFluidType(FluidType.Properties.create().pathType(PathType.WATER).canExtinguish(true).fallDistanceModifier(0F).motionScale(0.007F).canHydrate(true).supportsBoating(true).sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
 			.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
 			.sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)));

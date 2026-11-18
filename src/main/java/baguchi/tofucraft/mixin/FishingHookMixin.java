@@ -59,12 +59,12 @@ public abstract class FishingHookMixin extends Projectile {
 					target = "Lnet/minecraft/world/level/material/FluidState;is(Lnet/minecraft/tags/TagKey;)Z",
 					ordinal = 1))
 	private boolean tofucraftreload$bobberFloat(FluidState instance, TagKey<Fluid> p_205071_) {
-		return instance.is(p_205071_) || instance.is(TofuTags.Fluids.SOYMILK);
+		return instance.is(p_205071_) || instance.is(TofuTags.Fluids.SOYMILKS);
 	}
 
 	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/material/FluidState;is(Lnet/minecraft/tags/TagKey;)Z", ordinal = 0))
 	private boolean tofucraftreload$CheckHeight(FluidState instance, TagKey<Fluid> p_205071_) {
-		if (instance.is(TofuTags.Fluids.SOYMILK)) {
+		if (instance.is(TofuTags.Fluids.SOYMILKS)) {
 			return true;
 		}
 		return instance.is(p_205071_);
@@ -129,7 +129,7 @@ public abstract class FishingHookMixin extends Projectile {
 
 	@Redirect(method = ("getOpenWaterTypeForBlock"), at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/material/FluidState;is(Lnet/minecraft/tags/TagKey;)Z", ordinal = 0))
 	private boolean getOpenWaterTypeForBlock(FluidState instance, TagKey<Fluid> p_205071_) {
-		if (instance.is(TofuTags.Fluids.SOYMILK)) {
+		if (instance.is(TofuTags.Fluids.SOYMILKS)) {
 			return true;
 		}
 		return instance.is(p_205071_);
