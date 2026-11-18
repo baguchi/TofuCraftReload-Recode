@@ -239,6 +239,15 @@ public class TofuEntityTypes {
 			return false;
 		}
 	};
+
+	public static final SpawnPlacementType IN_SOYMILK_AND_SOYSAUCE = (levelReader, pos, p_325674_) -> {
+		if (p_325674_ != null && levelReader.getWorldBorder().isWithinBounds(pos)) {
+			BlockPos blockpos = pos.above();
+			return (levelReader.getFluidState(pos).is(TofuTags.Fluids.SOYMILKS) || levelReader.getFluidState(pos).getFluidType() == TofuFluidTypes.SOYSAUCE.get()) && !levelReader.getBlockState(blockpos).isRedstoneConductor(levelReader, blockpos);
+		} else {
+			return false;
+		}
+	};
 	@SubscribeEvent
 	public static void registerEntityAttribute(EntityAttributeCreationEvent event) {
 		event.put(TOFU_COW.get(), TofuCow.createAttributes().build());
@@ -270,7 +279,7 @@ public class TofuEntityTypes {
 		event.register(OAGE_CUBE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, OageCube::checkOageSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
 		event.register(TOFU_CREEPER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuCreeper::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
 		event.register(TOFU_SPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuSpider::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
-		event.register(TOFU_FISH.get(), IN_SOYMILK, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuFish::checkTofuFishSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(TOFU_FISH.get(), IN_SOYMILK_AND_SOYSAUCE, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TofuFish::checkTofuFishSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
 		event.register(TOFU_GANDLEM.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
 
 		event.register(FUKUMAME_THROWER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FukumameThrower::checkFukumameSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);

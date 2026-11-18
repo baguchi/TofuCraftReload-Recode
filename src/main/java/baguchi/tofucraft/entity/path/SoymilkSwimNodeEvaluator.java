@@ -30,7 +30,7 @@ public class SoymilkSwimNodeEvaluator extends SwimNodeEvaluator {
 						return PathType.BREACH;
 					}
 
-					if (!fluidstate.is(FluidTags.WATER) && !fluidstate.is(TofuTags.Fluids.SOYMILKS) && fluidstate.getFluidType() != TofuFluidTypes.SOYSAUCE) {
+					if (!fluidstate.is(FluidTags.WATER) && !fluidstate.is(TofuTags.Fluids.SOYMILKS) && fluidstate.getFluidType() != TofuFluidTypes.SOYSAUCE.get()) {
 						return PathType.BLOCKED;
 					}
 				}

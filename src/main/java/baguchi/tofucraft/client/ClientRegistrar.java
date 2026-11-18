@@ -306,6 +306,20 @@ public class ClientRegistrar {
 
 			@Override
 			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				fluidFogColor.set(new Vector4f(15 / 255F, 4 / 255F, 4 / 255F, 1F));
+			}
+
+			@Override
+			public void modifyFogRender(Camera camera, @Nullable FogEnvironment environment, float renderDistance, float partialTick, FogData fogData) {
+				fogData.environmentalStart = 0.0F;
+				fogData.environmentalEnd = 3.0F;
+			}
+		}, TofuFluidTypes.SOYSAUCE.get());
+
+		event.registerFluidType(new IClientFluidTypeExtensions() {
+
+			@Override
+			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
 				fluidFogColor.set(new Vector4f(104 / 255F, 157 / 255F, 170 / 255F, 1F));
 			}
 
