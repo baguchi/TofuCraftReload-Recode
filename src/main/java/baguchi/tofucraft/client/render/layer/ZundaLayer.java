@@ -1,16 +1,13 @@
 package baguchi.tofucraft.client.render.layer;
 
 import baguchi.tofucraft.TofuCraftReload;
-import baguchi.tofucraft.client.ClientRegistrar;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
-import net.minecraft.client.renderer.rendertype.RenderSetup;
-import net.minecraft.client.renderer.rendertype.RenderType;
-import net.minecraft.client.renderer.rendertype.TextureTransform;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.context.ContextKey;
@@ -30,12 +27,7 @@ public class ZundaLayer<T extends LivingEntityRenderState, M extends EntityModel
 		if (t.getRenderDataOrDefault(ZUNDA_KEY, false)) {
 			EntityModel<T> entitymodel = this.getParentModel();
 			entitymodel.setupAnim(t);
-			submitNodeCollector.submitModel(entitymodel, t, poseStack, enchantSwirl(TEXTURE), t.lightCoords, OverlayTexture.NO_OVERLAY, t.outlineColor);
+			submitNodeCollector.submitModel(entitymodel, t, poseStack, RenderTypes.energySwirl(TEXTURE, t.ageInTicks * 0.01F % 1.0F, t.ageInTicks * 0.01F % 1.0F), t.lightCoords, OverlayTexture.NO_OVERLAY, t.outlineColor);
 		}
-	}
-
-	public static RenderType enchantSwirl(Identifier resourceLocation) {
-		return RenderType.create(
-				"zunda_effect", RenderSetup.builder(ClientRegistrar.ZUNDA).withTexture("Sampler0", resourceLocation).setTextureTransform(TextureTransform.ARMOR_ENTITY_GLINT_TEXTURING).createRenderSetup());
 	}
 }

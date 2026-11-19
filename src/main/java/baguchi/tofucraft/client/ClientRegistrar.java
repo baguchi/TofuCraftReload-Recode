@@ -82,13 +82,6 @@ import baguchi.tofucraft.registry.TofuRecipeBookCategory;
 import baguchi.tofucraft.registry.TofuTags;
 import com.google.common.reflect.TypeToken;
 import com.mojang.blaze3d.platform.Window;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.renderpearl.api.pipeline.BlendFunction;
-import com.mojang.renderpearl.api.pipeline.ColorTargetState;
-import com.mojang.renderpearl.api.pipeline.CompareOp;
-import com.mojang.renderpearl.api.pipeline.DepthStencilState;
-import com.mojang.renderpearl.api.pipeline.PrimitiveTopology;
-import com.mojang.renderpearl.api.pipeline.RenderPipeline;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -99,7 +92,6 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.object.boat.BoatModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.BindGroupLayouts;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.block.FluidModel;
 import net.minecraft.client.renderer.entity.BoatRenderer;
@@ -150,8 +142,6 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Vector4f;
 
 import java.util.List;
-
-import static net.minecraft.client.renderer.RenderPipelines.ENTITY_SNIPPET;
 
 
 @EventBusSubscriber(modid = TofuCraftReload.MODID, value = Dist.CLIENT)
@@ -211,17 +201,6 @@ public class ClientRegistrar {
 			null,
 			null
 	);
-	public static final RenderPipeline ZUNDA =
-			RenderPipeline.builder(ENTITY_SNIPPET)
-					.withLocation(Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "pipeline/zunda"))
-					.withVertexShader("core/glint").withFragmentShader("core/glint")
-					.withBindGroupLayout(BindGroupLayouts.SAMPLER0)
-					.withColorTargetState(new ColorTargetState(BlendFunction.ADDITIVE)).withCull(false)
-					.withDepthStencilState(new DepthStencilState(CompareOp.EQUAL, false))
-					.withVertexBinding(0, DefaultVertexFormat.POSITION_TEX)
-					.withPrimitiveTopology(PrimitiveTopology.QUADS)
-					.build();
-
 	public static void setup(FMLClientSetupEvent event) {
 
 	}
@@ -488,7 +467,6 @@ public class ClientRegistrar {
 
 	@SubscribeEvent
 	public static void registerPipelines(RegisterRenderPipelinesEvent event) {
-		event.registerPipeline(ZUNDA);
 	}
 
 

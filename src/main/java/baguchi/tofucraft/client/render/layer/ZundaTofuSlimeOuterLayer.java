@@ -9,11 +9,11 @@ import net.minecraft.client.model.monster.slime.SlimeModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.Identifier;
 
 import static baguchi.tofucraft.client.render.layer.ZundaLayer.ZUNDA_KEY;
-import static baguchi.tofucraft.client.render.layer.ZundaLayer.enchantSwirl;
 
 public class ZundaTofuSlimeOuterLayer extends RenderLayer<TofuSlimeRenderState, SlimeModel> {
 	private final SlimeModel model;
@@ -30,7 +30,7 @@ public class ZundaTofuSlimeOuterLayer extends RenderLayer<TofuSlimeRenderState, 
 	public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, TofuSlimeRenderState t, float v, float v1) {
 		if (t.getRenderDataOrDefault(ZUNDA_KEY, false)) {
 			this.model.setupAnim(t);
-			submitNodeCollector.submitModel(this.model, t, poseStack, enchantSwirl(TEXTURE), t.lightCoords, OverlayTexture.NO_OVERLAY, t.outlineColor);
+			submitNodeCollector.submitModel(this.model, t, poseStack, RenderTypes.energySwirl(TEXTURE, t.ageInTicks * 0.01F % 1.0F, t.ageInTicks * 0.01F % 1.0F), t.lightCoords, OverlayTexture.NO_OVERLAY, t.outlineColor);
 		}
 	}
 
