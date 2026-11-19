@@ -428,7 +428,7 @@ public class TofuBlockLootTables extends BlockLootSubProvider {
 		add(TofuBlocks.NETHER_NATTOBED.get(), applyExplosionDecay(TofuBlocks.NETHER_NATTOBED.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.NETHER_NATTO.get())).when(nether_natto).apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(6))))));
 
 		LootItemCondition.Builder advTofuGem = MatchBlock.blockMatches(
-				this.blocks, TofuBlocks.ADVANCE_TOFU_GEM_BLOCK.get(), StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED)
+				this.blocks, TofuBlocks.BARREL_ADV_TOFUGEM.get(), StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED)
 		);
 
 		add(TofuBlocks.BARREL_ADV_TOFUGEM.get(), applyExplosionDecay(TofuBlocks.BARREL_ADV_TOFUGEM.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.ADVANCE_TOFUGEM.get())).when(advTofuGem).apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(3))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL)).when(advTofuGem).when(ExplosionCondition.survivesExplosion())).withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuBlocks.BARREL_ADV_TOFUGEM)).when(InvertedLootItemCondition.invert(advTofuGem)).when(ExplosionCondition.survivesExplosion())));

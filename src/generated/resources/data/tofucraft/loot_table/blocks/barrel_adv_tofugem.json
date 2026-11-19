@@ -7,7 +7,7 @@
     {
       "condition": {
         "type": "minecraft:match_block",
-        "blocks": "tofucraft:adv_tofu_gem_block",
+        "blocks": "tofucraft:barrel_adv_tofugem",
         "state": {
           "stat": "used"
         }
@@ -30,7 +30,7 @@
         "terms": [
           {
             "type": "minecraft:match_block",
-            "blocks": "tofucraft:adv_tofu_gem_block",
+            "blocks": "tofucraft:barrel_adv_tofugem",
             "state": {
               "stat": "used"
             }
@@ -56,7 +56,7 @@
             "type": "minecraft:inverted",
             "term": {
               "type": "minecraft:match_block",
-              "blocks": "tofucraft:adv_tofu_gem_block",
+              "blocks": "tofucraft:barrel_adv_tofugem",
               "state": {
                 "stat": "used"
               }
