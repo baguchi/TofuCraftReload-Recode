@@ -1,5 +1,6 @@
 package baguchi.tofucraft.entity.path;
 
+import baguchi.tofucraft.registry.TofuFluidTypes;
 import baguchi.tofucraft.registry.TofuTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.FluidTags;
@@ -29,7 +30,7 @@ public class SoymilkSwimNodeEvaluator extends SwimNodeEvaluator {
 						return PathType.BREACH;
 					}
 
-					if (!fluidstate.is(FluidTags.WATER) && !fluidstate.is(TofuTags.Fluids.SOYMILK)) {
+					if (!fluidstate.is(FluidTags.WATER) && !fluidstate.is(TofuTags.Fluids.SOYMILK) && fluidstate.getFluidType() != TofuFluidTypes.SOYSAUCE.get()) {
 						return PathType.BLOCKED;
 					}
 				}

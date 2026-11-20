@@ -23,7 +23,7 @@ public class SoymilkPathNavigation extends PathNavigation {
 	}
 
 	protected boolean canUpdatePath() {
-		return this.allowBreaching || this.mob.isInFluidType(TofuFluidTypes.SOYMILK.get()) || this.mob.isInFluidType(TofuFluidTypes.SOYMILK_HELL.get()) || this.mob.isInFluidType(TofuFluidTypes.SOYMILK_SOUL.get());
+		return this.allowBreaching || this.mob.isInFluidType(TofuFluidTypes.SOYSAUCE.get()) || this.mob.isInFluidType(TofuFluidTypes.SOYMILK.get()) || this.mob.isInFluidType(TofuFluidTypes.SOYMILK_HELL.get()) || this.mob.isInFluidType(TofuFluidTypes.SOYMILK_SOUL.get());
 	}
 
 	protected Vec3 getTempMobPos() {

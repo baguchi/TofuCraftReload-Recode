@@ -38,7 +38,7 @@ public abstract class AbstractTofuFish extends AbstractFish {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.isInFluidType(TofuFluidTypes.SOYMILK.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK_HELL.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK_SOUL.get())) {
+		if (this.isInFluidType(TofuFluidTypes.SOYSAUCE.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK_HELL.get()) || this.isInFluidType(TofuFluidTypes.SOYMILK_SOUL.get())) {
 			this.wasTouchingSoymilk = true;
 		} else {
 			this.wasTouchingSoymilk = false;
