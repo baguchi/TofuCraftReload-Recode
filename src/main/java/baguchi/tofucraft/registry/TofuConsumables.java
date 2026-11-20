@@ -24,7 +24,9 @@ public class TofuConsumables {
 	public static final Consumable SOYMILK_PALE_GLOW = defaultDrink()
 			.onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(TofuEffects.HEART_RECOVER, 2400)))
 			.build();
-
+	public static final Consumable FAST_GLOW_FOOD = defaultFastFood()
+			.onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.GLOWING, 600)))
+			.build();
 	public static final Consumable FAST_FOOD = defaultFastFood()
 			.build();
 	public static final Consumable LONGER_FOOD = defaultSlowFood()

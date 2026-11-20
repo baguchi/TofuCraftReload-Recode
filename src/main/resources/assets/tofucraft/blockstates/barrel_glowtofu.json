@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stat=using": {
+      "model": "tofucraft:block/barrel_glowtofu"
+    },
+    "stat=used": {
+      "model": "tofucraft:block/barrel_glowtofu_fin"
+    }
+  }
+}

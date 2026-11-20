@@ -42,6 +42,7 @@ public class TofuBlockTags extends BlockTagsProvider {
 						, TofuBlocks.TOFU_DOOR_STRAWBERRY.get(), TofuBlocks.TOFU_TRAPDOOR_STRAWBERRY.get(), TofuBlocks.TOFU_FENCE_STRAWBERRY.get()
 						, TofuBlocks.TOFU_DOOR_FRIED.get(), TofuBlocks.TOFU_TRAPDOOR_FRIED.get(), TofuBlocks.TOFU_FENCE_FRIED.get()
 						, TofuBlocks.TOFU_DOOR_FRIED_POUCH.get(), TofuBlocks.TOFU_TRAPDOOR_FRIED_POUCH.get(), TofuBlocks.TOFU_FENCE_FRIED_POUCH.get()
+						, TofuBlocks.TOFU_DOOR_GLOW.get(), TofuBlocks.TOFU_TRAPDOOR_GLOW.get(), TofuBlocks.TOFU_FENCE_GLOW.get()
 						, TofuBlocks.TOFU_TERRAIN.get(), TofuBlocks.MABOU_TERRAIN.get(), TofuBlocks.TOFU_TERRAIN_ZUNDA.get(), TofuBlocks.ORE_TOFU_DIAMOND.get(), TofuBlocks.ORE_TOFUGEM.get()
 						, TofuBlocks.EGG_TOFU.get(), TofuBlocks.TOFU_STAIR_EGG.get(), TofuBlocks.TOFU_SLAB_EGG.get()
 						, TofuBlocks.SESAME_TOFU.get(), TofuBlocks.TOFU_STAIR_SESAME.get(), TofuBlocks.TOFU_SLAB_SESAME.get()
@@ -128,7 +129,7 @@ public class TofuBlockTags extends BlockTagsProvider {
 				.add(TofuBlocks.TOFU_FENCE_GRILLED.get(), TofuBlocks.TOFU_FENCE_ZUNDA.get())
 				.add(TofuBlocks.TOFU_FENCE_MISO.get(), TofuBlocks.TOFU_FENCE_DRIED.get())
 				.add(TofuBlocks.TOFU_FENCE_EGG.get(), TofuBlocks.TOFU_FENCE_SESAME.get())
-				.add(TofuBlocks.TOFU_FENCE_FRIED.get(), TofuBlocks.TOFU_FENCE_FRIED_POUCH.get(), TofuBlocks.TOFU_FENCE_STRAWBERRY.get(), TofuBlocks.TOFU_FENCE_ZUNDA.get());
+				.add(TofuBlocks.TOFU_FENCE_FRIED.get(), TofuBlocks.TOFU_FENCE_FRIED_POUCH.get(), TofuBlocks.TOFU_FENCE_STRAWBERRY.get(), TofuBlocks.TOFU_FENCE_GLOW.get(), TofuBlocks.TOFU_FENCE_ZUNDA.get());
 		tag(BlockTags.CLIMBABLE).add(TofuBlocks.TOFU_LADDER_KINU.get(), TofuBlocks.TOFU_LADDER_MOMEN.get(), TofuBlocks.TOFU_LADDER_ISHI.get(), TofuBlocks.TOFU_LADDER_ISHIBRICK.get(), TofuBlocks.TOFU_LADDER_METAL.get(), TofuBlocks.TOFU_LADDER_GRILLED.get(), TofuBlocks.TOFU_LADDER_ZUNDA.get(), TofuBlocks.TOFU_LADDER_HELL.get(), TofuBlocks.TOFU_LADDER_SOUL.get());
 		tag(BlockTags.WITHER_IMMUNE).add(TofuBlocks.TOFU_BEDROCK.get());
 		tag(BlockTags.DRAGON_IMMUNE).add(TofuBlocks.TOFU_BEDROCK.get());
@@ -233,7 +234,8 @@ public class TofuBlockTags extends BlockTagsProvider {
 				TofuBlocks.ZUNDATOFU_SMOOTH_BRICK.get(),
 				TofuBlocks.STRAWBERRY_TOFU.get(),
 				TofuBlocks.FRIED_TOFU.get(),
-				TofuBlocks.FRIED_POUCH_TOFU.get()
+				TofuBlocks.FRIED_POUCH_TOFU.get(),
+				TofuBlocks.GLOW_TOFU.get()
 		).addAll(
 				TofuBlocks.MINCEDTOFU.get(),
 				TofuBlocks.CHIKUWA_BLOCK.get(),

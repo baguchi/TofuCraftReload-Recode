@@ -415,6 +415,13 @@ public class TofuBlockLootTables extends BlockLootSubProvider {
 
 		add(TofuBlocks.BARREL_MISOTOFU.get(), applyExplosionDecay(TofuBlocks.BARREL_MISOTOFU.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFU_MISO.get())).when(miso_tofu).apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(3))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL)).when(miso_tofu).when(ExplosionCondition.survivesExplosion())).withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuBlocks.BARREL_MISOTOFU)).when(InvertedLootItemCondition.invert(miso_tofu)).when(ExplosionCondition.survivesExplosion())));
 
+		LootItemCondition.Builder glow = MatchBlock.blockMatches(
+				this.blocks, TofuBlocks.BARREL_GLOWTOFU.get(), StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED)
+		);
+
+		add(TofuBlocks.BARREL_GLOWTOFU.get(), applyExplosionDecay(TofuBlocks.BARREL_GLOWTOFU.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFU_GLOW.get())).when(glow).apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(3))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL)).when(glow).when(ExplosionCondition.survivesExplosion())).withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuBlocks.BARREL_GLOWTOFU)).when(InvertedLootItemCondition.invert(glow)).when(ExplosionCondition.survivesExplosion())));
+
+
 		LootItemCondition.Builder natto = MatchBlock.blockMatches(
 				this.blocks, TofuBlocks.NATTOBED.get(), StatePropertiesPredicate.Builder.properties().hasProperty(NoWeightBaseBlock.STAT, NoWeightBaseBlock.Stat.USED)
 		);

@@ -32,6 +32,7 @@ public class TofuBlockItemTags {
 		tag(BlockItemTags.WOODEN_STAIRS).add(TofuBlocks.SPROUT_PLANKS_STAIR.get()).add(TofuBlocks.TOFU_STEM_PLANKS_STAIR.get()).add(TofuBlocks.LEEK_PLANKS_STAIR.get()).add(TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get());
 		tag(BlockItemTags.WOODEN_FENCES).add(TofuBlocks.SPROUT_FENCE.get()).add(TofuBlocks.LEEK_FENCE.get()).add(TofuBlocks.LEEK_GREEN_FENCE.get()).add(TofuBlocks.TOFU_STEM_FENCE.get());
 		tag(BlockItemTags.FENCE_GATES).add(TofuBlocks.SPROUT_FENCE_GATE.get()).add(TofuBlocks.TOFU_STEM_FENCE_GATE.get()).add(TofuBlocks.LEEK_FENCE_GATE.get()).add(TofuBlocks.LEEK_GREEN_FENCE_GATE.get());
+
 		tag(BlockItemTags.WOODEN_DOORS).add(TofuBlocks.SPROUT_DOOR.get()).add(TofuBlocks.TOFU_STEM_DOOR.get()).add(TofuBlocks.LEEK_GREEN_DOOR.get()).add(TofuBlocks.LEEK_DOOR.get());
 		tag(BlockItemTags.WOODEN_TRAPDOORS).add(TofuBlocks.SPROUT_TRAPDOOR.get()).add(TofuBlocks.TOFU_STEM_TRAPDOOR.get()).add(TofuBlocks.LEEK_GREEN_TRAPDOOR.get()).add(TofuBlocks.LEEK_TRAPDOOR.get());
 		tag(BlockItemTags.WOODEN_PRESSURE_PLATES).add(TofuBlocks.SPROUT_PRESSURE_PLATE.get()).add(TofuBlocks.TOFU_STEM_PRESSURE_PLATE.get()).add(TofuBlocks.LEEK_GREEN_PRESSURE_PLATE.get()).add(TofuBlocks.LEEK_PRESSURE_PLATE.get());
@@ -67,21 +68,21 @@ public class TofuBlockItemTags {
 				, TofuBlocks.TOFU_SLAB_HELL.get(), TofuBlocks.TOFU_SLAB_HELLBRICK.get(), TofuBlocks.TOFU_SLAB_SOUL.get(), TofuBlocks.TOFU_SLAB_SOULBRICK.get()
 				, TofuBlocks.TOFU_SLAB_MISO.get(), TofuBlocks.TOFU_SLAB_DRIED.get(), TofuBlocks.TOFU_SLAB_DRIEDBRICK.get(), TofuBlocks.TOFU_SLAB_EGG.get(), TofuBlocks.TOFU_SLAB_EGGBRICK.get(), TofuBlocks.TOFU_SLAB_SESAME.get()
 				, TofuBlocks.TOFU_SLAB_ZUNDA.get(), TofuBlocks.TOFU_SLAB_ZUNDABRICK.get()
-				, TofuBlocks.TOFU_SLAB_STRAWBERRY.get(), TofuBlocks.TOFU_SLAB_FRIED.get(), TofuBlocks.TOFU_SLAB_FRIED_POUCH.get());
+				, TofuBlocks.TOFU_SLAB_STRAWBERRY.get(), TofuBlocks.TOFU_SLAB_FRIED.get(), TofuBlocks.TOFU_SLAB_FRIED_POUCH.get(), TofuBlocks.TOFU_SLAB_GLOW.get());
 		this.tag(BlockItemTags.STAIRS).add(TofuBlocks.TOFU_STAIR_KINU.get(), TofuBlocks.TOFU_STAIR_MOMEN.get(), TofuBlocks.TOFU_STAIR_ISHI.get(), TofuBlocks.TOFU_STAIR_ISHIBRICK.get(), TofuBlocks.TOFU_STAIR_METAL.get()
 				, TofuBlocks.TOFU_STAIR_HELL.get(), TofuBlocks.TOFU_STAIR_HELLBRICK.get(), TofuBlocks.TOFU_STAIR_SOUL.get(), TofuBlocks.TOFU_STAIR_SOULBRICK.get()
 				, TofuBlocks.TOFU_STAIR_MISO.get(), TofuBlocks.TOFU_STAIR_DRIED.get(), TofuBlocks.TOFU_STAIR_DRIEDBRICK.get(), TofuBlocks.TOFU_STAIR_EGG.get(), TofuBlocks.TOFU_STAIR_EGGBRICK.get(), TofuBlocks.TOFU_STAIR_SESAME.get()
 				, TofuBlocks.TOFU_STAIR_ZUNDA.get(), TofuBlocks.TOFU_STAIR_ZUNDABRICK.get()
-				, TofuBlocks.TOFU_STAIR_STRAWBERRY.get(), TofuBlocks.TOFU_STAIR_FRIED.get(), TofuBlocks.TOFU_STAIR_FRIED_POUCH.get());
+				, TofuBlocks.TOFU_STAIR_STRAWBERRY.get(), TofuBlocks.TOFU_STAIR_FRIED.get(), TofuBlocks.TOFU_STAIR_FRIED_POUCH.get(), TofuBlocks.TOFU_STAIR_GLOW.get());
 		this.tag(BlockItemTags.LEAVES).add(TofuBlocks.LEAVES_TOFU.get(), TofuBlocks.LEAVES_APRICOT.get());
 		this.tag(BlockItemTags.TRAPDOORS).add(TofuBlocks.TOFU_TRAPDOOR_KINU.get(), TofuBlocks.TOFU_TRAPDOOR_MOMEN.get(), TofuBlocks.TOFU_TRAPDOOR_ISHI.get(), TofuBlocks.TOFU_TRAPDOOR_METAL.get()
 				, TofuBlocks.TOFU_TRAPDOOR_HELL.get(), TofuBlocks.TOFU_TRAPDOOR_SOUL.get()
 				, TofuBlocks.TOFU_TRAPDOOR_MISO.get(), TofuBlocks.TOFU_TRAPDOOR_DRIED.get(), TofuBlocks.TOFU_TRAPDOOR_EGG.get(), TofuBlocks.TOFU_TRAPDOOR_SESAME.get()
-				, TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get(), TofuBlocks.TOFU_DOOR_STRAWBERRY.get(), TofuBlocks.TOFU_DOOR_FRIED.get(), TofuBlocks.TOFU_DOOR_FRIED_POUCH.get());
-		this.tag(BlockItemTags.DOORS).add(TofuBlocks.TOFU_DOOR_KINU.get(), TofuBlocks.TOFU_DOOR_MOMEN.get(), TofuBlocks.TOFU_DOOR_ISHI.get(), TofuBlocks.TOFU_DOOR_METAL.get()
+				, TofuBlocks.TOFU_TRAPDOOR_ZUNDA.get(), TofuBlocks.TOFU_TRAPDOOR_STRAWBERRY.get(), TofuBlocks.TOFU_TRAPDOOR_FRIED.get(), TofuBlocks.TOFU_TRAPDOOR_FRIED_POUCH.get(), TofuBlocks.TOFU_TRAPDOOR_GLOW.get());
+		this.tag(BlockItemTags.DOORS).add(TofuBlocks.TOFU_DOOR_KINU.get(), TofuBlocks.TOFU_TRAPDOOR_MOMEN.get(), TofuBlocks.TOFU_TRAPDOOR_ISHI.get(), TofuBlocks.TOFU_TRAPDOOR_METAL.get()
 				, TofuBlocks.TOFU_DOOR_HELL.get(), TofuBlocks.TOFU_DOOR_SOUL.get()
 				, TofuBlocks.TOFU_DOOR_MISO.get(), TofuBlocks.TOFU_DOOR_DRIED.get(), TofuBlocks.TOFU_DOOR_EGG.get(), TofuBlocks.TOFU_DOOR_SESAME.get()
-				, TofuBlocks.TOFU_DOOR_ZUNDA.get(), TofuBlocks.TOFU_DOOR_STRAWBERRY.get(), TofuBlocks.TOFU_DOOR_FRIED.get(), TofuBlocks.TOFU_DOOR_FRIED_POUCH.get());
+				, TofuBlocks.TOFU_DOOR_ZUNDA.get(), TofuBlocks.TOFU_DOOR_STRAWBERRY.get(), TofuBlocks.TOFU_DOOR_FRIED.get(), TofuBlocks.TOFU_DOOR_FRIED_POUCH.get(), TofuBlocks.TOFU_DOOR_GLOW.get());
 		this.tag(BlockItemTags.SMALL_FLOWERS).add(smallFlowersInteractingWithBees);
 
 		this.tag(BlockItemTags.BEDS).add(TofuBlocks.TOFUBED.get());

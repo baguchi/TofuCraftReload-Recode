@@ -131,7 +131,7 @@ public class TofuItemTags extends BlockTagCopyingItemTagProvider {
 		tag(TofuTags.Items.TOFU).add(TofuItems.TOFU_KINU.key()).add(TofuItems.TOFU_MOMEN.key());
 		tag(TofuTags.Items.COOKED_TOFU).add(TofuItems.TOFU_ISHI.key()).add(TofuItems.TOFU_ANNIN.key()).add(TofuItems.TOFU_SESAME.key())
 				.add(TofuItems.TOFU_FRIED.key()).add(TofuItems.TOFU_FRIED_POUCH.key())
-				.add(TofuItems.TOFU_ZUNDA.key()).add(TofuItems.TOFU_EGG.key()).add(TofuItems.TOFU_MISO.key()).add(TofuItems.TOFU_GRILLED.key()).add(TofuItems.TOFU_DRIED.key()).add(TofuItems.TOFU_STRAWBERRY.key()).add(TofuItems.TOFU_SMOKE.key())
+				.add(TofuItems.TOFU_ZUNDA.key()).add(TofuItems.TOFU_EGG.key()).add(TofuItems.TOFU_MISO.key()).add(TofuItems.TOFU_GRILLED.key()).add(TofuItems.TOFU_DRIED.key()).add(TofuItems.TOFU_STRAWBERRY.key()).add(TofuItems.TOFU_GLOW.key()).add(TofuItems.TOFU_SMOKE.key())
 				.add(TofuItems.TOFU_HELL.key()).add(TofuItems.TOFU_SOUL.key()).add(TofuItems.SHUDOFU.key());
 
 		tag(TofuTags.Items.TOFU_FRIED).add(TofuItems.TOFU_FRIED.key());

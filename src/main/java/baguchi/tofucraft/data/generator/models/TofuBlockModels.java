@@ -86,6 +86,13 @@ public class TofuBlockModels extends TofuBlockstateModelProvider {
 				.door(TofuBlocks.TOFU_DOOR_FRIED_POUCH.get())
 				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_FRIED_POUCH.get());
 
+		family(TofuBlocks.GLOW_TOFU.get())
+				.stairs(TofuBlocks.TOFU_STAIR_GLOW.get())
+				.slab(TofuBlocks.TOFU_SLAB_GLOW.get())
+				.wall(TofuBlocks.TOFU_FENCE_GLOW.get())
+				.door(TofuBlocks.TOFU_DOOR_GLOW.get())
+				.trapdoor(TofuBlocks.TOFU_TRAPDOOR_GLOW.get());
+
 
 		family(TofuBlocks.EGGTOFU_BRICK.get())
 				.stairs(TofuBlocks.TOFU_STAIR_EGGBRICK.get())

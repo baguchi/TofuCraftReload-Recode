@@ -31,6 +31,7 @@ public class TofuFoods {
 	public static final FoodProperties AGEDASHI_TOFU = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).build();
 	public static final FoodProperties TOFUANNIN = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3F).build();
 	public static final FoodProperties TOFUSTRAWBERRY = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3F).build();
+	public static final FoodProperties TOFU_GLOW = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3F).build();
 
 	public static final FoodProperties SPROUTS = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.1F).build();
 	public static final FoodProperties NATTO = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.1F).build();

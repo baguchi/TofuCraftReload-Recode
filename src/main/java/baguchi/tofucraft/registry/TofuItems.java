@@ -124,6 +124,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> TOFU_ANNIN = ITEMS.registerItem("tofu_annin", (properties) -> new Item((properties).food(TofuFoods.TOFUANNIN, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
 	public static final DeferredHolder<Item, Item> TOFU_STRAWBERRY = ITEMS.registerItem("tofu_strawberry", (properties) -> new Item((properties).food(TofuFoods.TOFUSTRAWBERRY, TofuConsumables.FAST_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+	public static final DeferredHolder<Item, Item> TOFU_GLOW = ITEMS.registerItem("tofu_glow", (properties) -> new Item((properties).food(TofuFoods.TOFU_GLOW, TofuConsumables.FAST_GLOW_FOOD).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
 
 
 	public static final DeferredHolder<Item, Item> TOFU_MINCED = ITEMS.registerItem("tofu_minced", (properties) -> new Item((properties).food(TofuFoods.TOFU).compostable(ContextIntProviders.COMPOSTABLE_LOW)));
