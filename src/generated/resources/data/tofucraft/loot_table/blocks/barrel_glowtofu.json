@@ -10,7 +10,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "tofucraft:barrel_adv_tofugem",
+          "block": "tofucraft:barrel_glowtofu",
           "condition": "minecraft:block_state_property",
           "properties": {
             "stat": "used"
@@ -36,7 +36,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "tofucraft:barrel_adv_tofugem",
+          "block": "tofucraft:barrel_glowtofu",
           "condition": "minecraft:block_state_property",
           "properties": {
             "stat": "used"
@@ -60,7 +60,7 @@
         {
           "condition": "minecraft:inverted",
           "term": {
-            "block": "tofucraft:barrel_adv_tofugem",
+            "block": "tofucraft:barrel_glowtofu",
             "condition": "minecraft:block_state_property",
             "properties": {
               "stat": "used"

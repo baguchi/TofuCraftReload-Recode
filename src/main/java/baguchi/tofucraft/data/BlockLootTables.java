@@ -389,7 +389,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 
 		LootItemCondition.Builder glowTofu = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TofuBlocks.BARREL_GLOWTOFU.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WeightBaseBlock.STAT, WeightBaseBlock.Stat.USED));
 
-		add(TofuBlocks.BARREL_GLOWTOFU.get(), applyExplosionDecay(TofuBlocks.BARREL_GLOWTOFU.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFU_GLOW.get())).when(advTofuGem).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL)).when(advTofuGem).when(ExplosionCondition.survivesExplosion())).withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuBlocks.BARREL_GLOWTOFU)).when(InvertedLootItemCondition.invert(advTofuGem)).when(ExplosionCondition.survivesExplosion())));
+		add(TofuBlocks.BARREL_GLOWTOFU.get(), applyExplosionDecay(TofuBlocks.BARREL_GLOWTOFU.get(), LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuItems.TOFU_GLOW.get())).when(glowTofu).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F))))).withPool(LootPool.lootPool().add(LootItem.lootTableItem(Blocks.BARREL)).when(glowTofu).when(ExplosionCondition.survivesExplosion())).withPool(LootPool.lootPool().add(LootItem.lootTableItem(TofuBlocks.BARREL_GLOWTOFU)).when(InvertedLootItemCondition.invert(glowTofu)).when(ExplosionCondition.survivesExplosion())));
 
 
 		dropSelf(TofuBlocks.TOFU_CHIKUWA_BLOCK.get());
