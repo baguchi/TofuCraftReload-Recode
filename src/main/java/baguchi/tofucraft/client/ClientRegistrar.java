@@ -191,6 +191,13 @@ public class ClientRegistrar {
 			null
 	);
 
+	private static final FluidModel.Unbaked SOYSAUCE_MODEL = new FluidModel.Unbaked(
+			new Material(TofuCraftReload.prefix("block/soysauce")),
+			new Material(TofuCraftReload.prefix("block/soysauce_flow")),
+			null,
+			null
+	);
+
 	private static final FluidModel.Unbaked DOUBANJIANG_MODEL = new FluidModel.Unbaked(
 			new Material(TofuCraftReload.prefix("block/doubanjiang")),
 			new Material(TofuCraftReload.prefix("block/doubanjiang_flow")),
@@ -317,6 +324,20 @@ public class ClientRegistrar {
 		}, TofuFluidTypes.BITTERN.get());
 
 		event.registerFluidType(new IClientFluidTypeExtensions() {
+
+			@Override
+			public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+				fluidFogColor.set(new Vector4f(15 / 255F, 4 / 255F, 4 / 255F, 1F));
+			}
+
+			@Override
+			public void modifyFogRender(Camera camera, @Nullable FogEnvironment environment, float renderDistance, float partialTick, FogData fogData) {
+				fogData.environmentalStart = 0.0F;
+				fogData.environmentalEnd = 3.0F;
+			}
+		}, TofuFluidTypes.SOYSAUCE.get());
+
+		event.registerFluidType(new IClientFluidTypeExtensions() {
 			private static final Identifier TEXTURE_STILL = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang");
 			private static final Identifier TEXTURE_FLOW = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "block/doubanjiang_flow");
 
@@ -340,6 +361,7 @@ public class ClientRegistrar {
 		event.register(SOYMILK_HELL_MODEL, TofuFluids.SOYMILK_HELL.get(), TofuFluids.SOYMILK_HELL_FLOW.get());
 		event.register(SOYMILK_SOUL_MODEL, TofuFluids.SOYMILK_SOUL.get(), TofuFluids.SOYMILK_SOUL_FLOW.get());
 		event.register(DOUBANJIANG_MODEL, TofuFluids.DOUBANJIANG.get(), TofuFluids.DOUBANJIANG_FLOW.get());
+		event.register(SOYSAUCE_MODEL, TofuFluids.SOYSAUCE.get(), TofuFluids.SOYSAUCE_FLOW.get());
 		event.register(CRIMSON_MODEL, TofuFluids.CRIMSON.get(), TofuFluids.FLOWING_CRIMSON.get());
 		event.register(WARPED_MODEL, TofuFluids.WARPED.get(), TofuFluids.FLOWING_WARPED.get());
 	}

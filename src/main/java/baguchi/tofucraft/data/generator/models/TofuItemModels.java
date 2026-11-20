@@ -203,10 +203,12 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.SOYMILK_SOUL_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.BITTERN_BUCKET.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.SOYSAUCE_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.DOUBANJIANG_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.TOFUFISH_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFUFISH_SOYMILK_BUCKET.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFUFISH_SOYSAUCE_BUCKET.get(), ModelTemplates.FLAT_ITEM);
 
 		this.itemModelOutput.accept(TofuItems.TOFU_METAL_BUCKET.get(), new TofuMetalBucketModel.Unbaked(
 				new TofuMetalBucketModel.Textures(

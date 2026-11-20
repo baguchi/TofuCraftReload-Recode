@@ -29,6 +29,9 @@ public class TofuFluidTypes {
 	public static final Supplier<FluidType> BITTERN = FLUID_TYPES.register("bittern", () -> new SoymilkFluidType(FluidType.Properties.create().pathType(PathType.WATER).canExtinguish(true).fallDistanceModifier(0F).motionScale(0.007F).canHydrate(true).supportsBoating(true).sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
 			.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
 			.sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)));
+	public static final Supplier<FluidType> SOYSAUCE = FLUID_TYPES.register("soysauce", () -> new SoymilkFluidType(FluidType.Properties.create().pathType(PathType.WATER).canExtinguish(true).density(1200).viscosity(2000).fallDistanceModifier(0F).motionScale(0.007F).canHydrate(true).supportsBoating(true).sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+			.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+			.sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)));
 	public static final Supplier<FluidType> DOUBANJIANG = FLUID_TYPES.register("doubanjiang", () -> new DoubanjiangFluidType(FluidType.Properties.create().pathType(PathType.LAVA).adjacentPathType(PathType.FIRE_IN_NEIGHBOR).canExtinguish(true).fallDistanceModifier(0.25F).lightLevel(10).motionScale(0.005F).canHydrate(false).supportsBoating(true).sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
 			.sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
 			.sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)));

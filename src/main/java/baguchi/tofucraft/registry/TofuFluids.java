@@ -6,6 +6,7 @@ import baguchi.tofucraft.fluid.NigariFluid;
 import baguchi.tofucraft.fluid.SoyMilkFluid;
 import baguchi.tofucraft.fluid.SoyMilkHellFluid;
 import baguchi.tofucraft.fluid.SoyMilkSoulFluid;
+import baguchi.tofucraft.fluid.SoysauceFluid;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -34,6 +35,9 @@ public class TofuFluids {
 
 	public static final DeferredHolder<Fluid, FlowingFluid> BITTERN = FLUIDS.register("bittern", () -> new NigariFluid.Source());
 	public static final DeferredHolder<Fluid, FlowingFluid> BITTERN_FLOW = FLUIDS.register("bittern_flow", () -> new NigariFluid.Flowing());
+	public static final DeferredHolder<Fluid, FlowingFluid> SOYSAUCE = FLUIDS.register("soysauce", () -> new SoysauceFluid.Source());
+	public static final DeferredHolder<Fluid, FlowingFluid> SOYSAUCE_FLOW = FLUIDS.register("soysauce_flow", () -> new SoysauceFluid.Flowing());
+
 
 	public static final DeferredHolder<Fluid, FlowingFluid> DOUBANJIANG = FLUIDS.register("doubanjiang", () -> new DoubanjiangFluid.Source());
 	public static final DeferredHolder<Fluid, FlowingFluid> DOUBANJIANG_FLOW = FLUIDS.register("doubanjiang_flow", () -> new DoubanjiangFluid.Flowing());

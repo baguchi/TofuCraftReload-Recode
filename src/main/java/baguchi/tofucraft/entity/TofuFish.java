@@ -66,7 +66,20 @@ public class TofuFish extends AbstractTofuFish {
 		ItemStack itemstack = p_148829_.getItemInHand(p_148830_);
 		if (itemstack.getItem() == Items.WATER_BUCKET && p_148831_.isAlive()) {
 			p_148831_.playSound(p_148831_.getPickupSound(), 1.0F, 1.0F);
-			ItemStack itemstack1 = p_148831_.getBucketItemStack();
+			ItemStack itemstack1 = TofuItems.TOFUFISH_BUCKET.get().getDefaultInstance();
+			p_148831_.saveToBucketTag(itemstack1);
+			ItemStack itemstack2 = ItemUtils.createFilledResult(itemstack, p_148829_, itemstack1, false);
+			p_148829_.setItemInHand(p_148830_, itemstack2);
+			Level level = p_148831_.level();
+			if (!level.isClientSide()) {
+				CriteriaTriggers.FILLED_BUCKET.trigger((ServerPlayer) p_148829_, itemstack1);
+			}
+
+			p_148831_.discard();
+			return Optional.of(InteractionResult.TRY_WITH_EMPTY_HAND);
+		} else if (itemstack.getItem() == TofuItems.SOYSAUCE_BUCKET.get() && p_148831_.isAlive()) {
+			p_148831_.playSound(p_148831_.getPickupSound(), 1.0F, 1.0F);
+			ItemStack itemstack1 = TofuItems.TOFUFISH_SOYSAUCE_BUCKET.get().getDefaultInstance();
 			p_148831_.saveToBucketTag(itemstack1);
 			ItemStack itemstack2 = ItemUtils.createFilledResult(itemstack, p_148829_, itemstack1, false);
 			p_148829_.setItemInHand(p_148830_, itemstack2);
