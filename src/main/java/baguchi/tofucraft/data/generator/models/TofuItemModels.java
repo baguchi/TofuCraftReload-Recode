@@ -61,6 +61,7 @@ public class TofuItemModels extends ItemModelGenerators {
 		this.generateFlatItem(TofuItems.TOFU_FRIED_POUCH.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_ANNIN.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_STRAWBERRY.get(), ModelTemplates.FLAT_ITEM);
+		this.generateFlatItem(TofuItems.TOFU_GLOW.get(), ModelTemplates.FLAT_ITEM);
 
 		this.generateFlatItem(TofuItems.AGEDASHI_TOFU.get(), ModelTemplates.FLAT_ITEM);
 		this.generateFlatItem(TofuItems.TOFU_STEAK.get(), ModelTemplates.FLAT_ITEM);

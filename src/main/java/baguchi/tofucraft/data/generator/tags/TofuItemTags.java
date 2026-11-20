@@ -128,7 +128,7 @@ public class TofuItemTags extends ItemTagsProvider {
 		tag(TofuTags.Items.TOFU).add(TofuItems.TOFU_KINU.get()).add(TofuItems.TOFU_MOMEN.get());
 		tag(TofuTags.Items.COOKED_TOFU).add(TofuItems.TOFU_ISHI.get()).add(TofuItems.TOFU_ANNIN.get()).add(TofuItems.TOFU_SESAME.get())
 				.add(TofuItems.TOFU_FRIED.get()).add(TofuItems.TOFU_FRIED_POUCH.get())
-				.add(TofuItems.TOFU_ZUNDA.get()).add(TofuItems.TOFU_EGG.get()).add(TofuItems.TOFU_MISO.get()).add(TofuItems.TOFU_GRILLED.get()).add(TofuItems.TOFU_DRIED.get()).add(TofuItems.TOFU_STRAWBERRY.get()).add(TofuItems.TOFU_SMOKE.get())
+				.add(TofuItems.TOFU_ZUNDA.get()).add(TofuItems.TOFU_EGG.get()).add(TofuItems.TOFU_MISO.get()).add(TofuItems.TOFU_GRILLED.get()).add(TofuItems.TOFU_DRIED.get()).add(TofuItems.TOFU_STRAWBERRY.get()).add(TofuItems.TOFU_GLOW.get()).add(TofuItems.TOFU_SMOKE.get())
 				.add(TofuItems.TOFU_HELL.get()).add(TofuItems.TOFU_SOUL.get()).add(TofuItems.SHUDOFU.get());
 
 		tag(TofuTags.Items.TOFU_FRIED).add(TofuItems.TOFU_FRIED.get());

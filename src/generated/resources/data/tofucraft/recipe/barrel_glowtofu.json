@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "#c:barrels/wooden",
+    "G": "minecraft:glow_berries",
+    "M": "tofucraft:tofu_momen"
+  },
+  "pattern": [
+    "GGG",
+    "MMM",
+    " B "
+  ],
+  "result": {
+    "id": "tofucraft:barrel_glowtofu"
+  }
+}

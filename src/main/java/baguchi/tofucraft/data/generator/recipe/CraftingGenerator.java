@@ -447,6 +447,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeSolidFence(this.output, TofuBlocks.TOFU_FENCE_STRAWBERRY, TofuBlocks.STRAWBERRY_TOFU);
 		makeSolidFence(this.output, TofuBlocks.TOFU_FENCE_FRIED, TofuBlocks.FRIED_TOFU);
 		makeSolidFence(this.output, TofuBlocks.TOFU_FENCE_FRIED_POUCH, TofuBlocks.FRIED_POUCH_TOFU);
+		makeSolidFence(this.output, TofuBlocks.TOFU_FENCE_GLOW, TofuBlocks.GLOW_TOFU);
 
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_KINU, TofuBlocks.KINUTOFU);
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_MOMEN, TofuBlocks.MOMENTOFU);
@@ -463,6 +464,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_STRAWBERRY, TofuBlocks.STRAWBERRY_TOFU);
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_FRIED, TofuBlocks.FRIED_TOFU);
 		makeDoor(this.output, TofuBlocks.TOFU_DOOR_FRIED_POUCH, TofuBlocks.FRIED_POUCH_TOFU);
+		makeDoor(this.output, TofuBlocks.TOFU_DOOR_GLOW, TofuBlocks.GLOW_TOFU);
 
 		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_KINU, TofuItems.TOFU_KINU);
 		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_MOMEN, TofuItems.TOFU_MOMEN);
@@ -479,6 +481,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_STRAWBERRY, TofuItems.TOFU_STRAWBERRY);
 		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_FRIED, TofuItems.TOFU_FRIED);
 		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_FRIED_POUCH, TofuItems.TOFU_FRIED_POUCH);
+		makeTrapdoor(this.output, TofuBlocks.TOFU_TRAPDOOR_GLOW, TofuItems.TOFU_GLOW);
 
 		cuttingRecipe(this.output, TofuBlocks.ISHITOFU, TofuBlocks.TOFU_TRAPDOOR_ISHI, 1);
 		cuttingRecipe(this.output, TofuBlocks.ISHITOFU, TofuBlocks.TOFU_FENCE_ISHI, 1);
@@ -707,6 +710,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('G', TofuItems.TOFUGEM.get())
 				.define('B', Tags.Items.BARRELS_WOODEN)
 				.unlockedBy("has_item", has(TofuItems.TOFUGEM.get()))
+				.save(this.output);
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.BARREL_GLOWTOFU.get(), 1)
+				.pattern("GGG")
+				.pattern("MMM")
+				.pattern(" B ")
+				.define('G', Items.GLOW_BERRIES)
+				.define('M', TofuItems.TOFU_MOMEN.get())
+				.define('B', Tags.Items.BARRELS_WOODEN)
+				.unlockedBy("has_item", has(Items.GLOW_BERRIES))
 				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.NATTOBED.get(), 1)
 				.pattern("SSS")
@@ -1514,6 +1526,11 @@ public class CraftingGenerator extends CraftingDataHelper {
 		tofuBlockItem(this.output, TofuBlocks.FRIED_POUCH_TOFU, TofuItems.TOFU_FRIED_POUCH);
 		makeStairs(this.output, TofuBlocks.TOFU_STAIR_FRIED_POUCH, TofuBlocks.FRIED_POUCH_TOFU);
 		makeSlab(this.output, TofuBlocks.TOFU_SLAB_FRIED_POUCH, TofuBlocks.FRIED_POUCH_TOFU);
+
+		tofuBlockItem(this.output, TofuBlocks.GLOW_TOFU, TofuItems.TOFU_GLOW);
+		makeStairs(this.output, TofuBlocks.TOFU_STAIR_GLOW, TofuBlocks.GLOW_TOFU);
+		makeSlab(this.output, TofuBlocks.TOFU_SLAB_GLOW, TofuBlocks.GLOW_TOFU);
+
 
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.MISC, TofuItems.KOUJI_BASE.get(), 1)
 				.requires(TofuTags.Items.SOYBEAN)
