@@ -43,6 +43,7 @@
     "tofucraft:block_tofu_strawberry",
     "tofucraft:block_tofu_fried",
     "tofucraft:block_tofu_fried_pouch",
+    "tofucraft:block_tofu_glow",
     "tofucraft:block_tofu_minced",
     "tofucraft:chikuwa_block",
     "tofucraft:tofu_chikuwa_block",
@@ -65,6 +66,7 @@
     "tofucraft:tf_saturator",
     "tofucraft:tofu_work_station",
     "tofucraft:tf_crafting_table",
-    "tofucraft:tofu_pot"
+    "tofucraft:tofu_pot",
+    "tofucraft:barrel_glowtofu"
   ]
 }

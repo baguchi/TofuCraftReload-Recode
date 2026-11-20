@@ -88,7 +88,7 @@ public class TofuBlockTags extends BlockTagsProvider {
 						, TofuBlocks.LEEK_GREEN_STEM.get(), TofuBlocks.LEEK_GREEN_PLANKS.get(), TofuBlocks.LEEK_GREEN_PLANKS_STAIR.get(), TofuBlocks.LEEK_GREEN_PLANKS_SLAB.get(), TofuBlocks.LEEK_GREEN_FENCE.get(), TofuBlocks.LEEK_GREEN_FENCE_GATE.get(), TofuBlocks.LEEK_GREEN_DOOR.get(), TofuBlocks.LEEK_GREEN_TRAPDOOR.get(), TofuBlocks.LEEK_DOOR.get(), TofuBlocks.LEEK_TRAPDOOR.get()
 						, TofuBlocks.SPROUT_STEM.get(), TofuBlocks.SPROUT_PLANKS.get(), TofuBlocks.SPROUT_PLANKS_STAIR.get(), TofuBlocks.SPROUT_PLANKS_SLAB.get(), TofuBlocks.SPROUT_FENCE.get(), TofuBlocks.SPROUT_FENCE_GATE.get(), TofuBlocks.SPROUT_DOOR.get(), TofuBlocks.SPROUT_TRAPDOOR.get(), TofuBlocks.LEEK_DOOR.get(), TofuBlocks.LEEK_TRAPDOOR.get()
 						, TofuBlocks.MORIJIO.get()
-						, TofuBlocks.BARREL_MISO.get(), TofuBlocks.BARREL_MISOTOFU.get(), TofuBlocks.BARREL_ADV_TOFUGEM.get()
+						, TofuBlocks.BARREL_MISO.get(), TofuBlocks.BARREL_MISOTOFU.get(), TofuBlocks.BARREL_GLOWTOFU.get(), TofuBlocks.BARREL_ADV_TOFUGEM.get()
 						, TofuBlocks.SPROUT_SIGN.get(), TofuBlocks.SPROUT_WALL_SIGN.get(), TofuBlocks.SPROUT_HANGING_SIGN.get(), TofuBlocks.SPROUT_WALL_HANGING_SIGN.get()
 						, TofuBlocks.TOFU_STEM_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_SIGN.get(), TofuBlocks.TOFU_STEM_HANGING_SIGN.get(), TofuBlocks.TOFU_STEM_WALL_HANGING_SIGN.get()
 						, TofuBlocks.LEEK_GREEN_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_SIGN.get(), TofuBlocks.LEEK_GREEN_HANGING_SIGN.get(), TofuBlocks.LEEK_GREEN_WALL_HANGING_SIGN.get()
@@ -259,7 +259,8 @@ public class TofuBlockTags extends BlockTagsProvider {
 				TofuBlocks.TF_SATURATOR.get(),
 				TofuBlocks.TOFU_WORK_STATION.get(),
 				TofuBlocks.TF_CRAFTING_TABLE.get(),
-				TofuBlocks.TOFU_POT.get()
+				TofuBlocks.TOFU_POT.get(),
+				TofuBlocks.BARREL_GLOWTOFU.get()
 		);
 		tag(BlockTags.SAPLINGS).add(TofuBlocks.SAPLING_APRICOT.get()).add(TofuBlocks.SAPLING_TOFU.get());
 

@@ -1,9 +1,9 @@
 {
   "values": [
     "tofucraft:tofu_door_kinu",
-    "tofucraft:tofu_door_momen",
-    "tofucraft:tofu_door_ishi",
-    "tofucraft:tofu_door_metal",
+    "tofucraft:tofu_trapdoor_momen",
+    "tofucraft:tofu_trapdoor_ishi",
+    "tofucraft:tofu_trapdoor_metal",
     "tofucraft:tofu_door_hell",
     "tofucraft:tofu_door_soul",
     "tofucraft:tofu_door_miso",
@@ -13,6 +13,7 @@
     "tofucraft:tofu_door_zunda",
     "tofucraft:tofu_door_strawberry",
     "tofucraft:tofu_door_fried",
-    "tofucraft:tofu_door_fried_pouch"
+    "tofucraft:tofu_door_fried_pouch",
+    "tofucraft:tofu_door_glow"
   ]
 }

@@ -713,6 +713,15 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.define('B', Tags.BlockItems.BARRELS_WOODEN.item())
 				.unlockedBy("has_item", has(TofuItems.MISO.get()))
 				.save(this.output);
+		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.BARREL_GLOWTOFU.get(), 1)
+				.pattern("GGG")
+				.pattern("TTT")
+				.pattern(" B ")
+				.define('G', Items.GLOW_BERRIES)
+				.define('T', TofuItems.TOFU_MOMEN.get())
+				.define('B', Tags.BlockItems.BARRELS_WOODEN.item())
+				.unlockedBy("has_item", has(Items.GLOW_BERRIES))
+				.save(this.output);
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.BARREL_ADV_TOFUGEM.get(), 1)
 				.pattern("RRR")
 				.pattern("GGG")

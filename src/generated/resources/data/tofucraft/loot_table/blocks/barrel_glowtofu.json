@@ -1,0 +1,80 @@
+{
+  "type": "minecraft:block",
+  "modifier": {
+    "type": "minecraft:explosion_decay"
+  },
+  "pools": [
+    {
+      "condition": {
+        "type": "minecraft:match_block",
+        "blocks": "tofucraft:barrel_glowtofu",
+        "state": {
+          "stat": "used"
+        }
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:tofu_glow"
+        }
+      ],
+      "modifier": {
+        "type": "minecraft:set_count",
+        "count": 3
+      },
+      "rolls": 1
+    },
+    {
+      "condition": {
+        "type": "minecraft:all_of",
+        "terms": [
+          {
+            "type": "minecraft:match_block",
+            "blocks": "tofucraft:barrel_glowtofu",
+            "state": {
+              "stat": "used"
+            }
+          },
+          {
+            "type": "minecraft:survives_explosion"
+          }
+        ]
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:barrel"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "condition": {
+        "type": "minecraft:all_of",
+        "terms": [
+          {
+            "type": "minecraft:inverted",
+            "term": {
+              "type": "minecraft:match_block",
+              "blocks": "tofucraft:barrel_glowtofu",
+              "state": {
+                "stat": "used"
+              }
+            }
+          },
+          {
+            "type": "minecraft:survives_explosion"
+          }
+        ]
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tofucraft:barrel_glowtofu"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "tofucraft:blocks/barrel_glowtofu"
+}
