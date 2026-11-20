@@ -57,6 +57,7 @@ public class TofuWorldFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_TOFUGEM_LARGE = registerKey("ore_tofugem_large");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SPRING_DOUBANJIANG = registerKey("spring_doubanjiang");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SPRING_SOYSAUCE = registerKey("spring_soysauce");
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TOFU_DELTA = registerKey("tofu_delta");
 
@@ -99,6 +100,22 @@ public class TofuWorldFeatures {
 				Feature.SPRING,
 				new SpringConfiguration(
 						TofuFluids.DOUBANJIANG.get().defaultFluidState(),
+						true,
+						4,
+						1,
+						HolderSet.direct(
+								Block::builtInRegistryHolder,
+								TofuBlocks.TOFU_TERRAIN.get(),
+								TofuBlocks.TOFUSLATE.get()
+						)
+				)
+		);
+		FeatureUtils.register(
+				context,
+				SPRING_SOYSAUCE,
+				Feature.SPRING,
+				new SpringConfiguration(
+						TofuFluids.SOYSAUCE.get().defaultFluidState(),
 						true,
 						4,
 						1,

@@ -51,7 +51,7 @@ public class TofuWorldPlacements {
 	public static final ResourceKey<PlacedFeature> ORE_TOFUGEM = registerKey("ore_tofugem");
 	public static final ResourceKey<PlacedFeature> ORE_TOFUGEM_LARGE = registerKey("ore_tofugem_large");
 	public static final ResourceKey<PlacedFeature> SPRING_DOUBANJIANG = registerKey("spring_doubanjiang");
-
+	public static final ResourceKey<PlacedFeature> SPRING_SOYSAUCE = registerKey("spring_soysauce");
 
 	public static final ResourceKey<PlacedFeature> TOFU_DELTA = registerKey("tofu_delta");
 
@@ -105,6 +105,15 @@ public class TofuWorldPlacements {
 				CountPlacement.of(20),
 				InSquarePlacement.spread(),
 				HeightRangePlacement.of(VeryBiasedToBottomHeight.of(VerticalAnchor.bottom(), VerticalAnchor.belowTop(8), 8)),
+				BiomeFilter.biome()
+		);
+		PlacementUtils.register(
+				context,
+				SPRING_SOYSAUCE,
+				configuredFeature.getOrThrow(TofuWorldFeatures.SPRING_SOYSAUCE),
+				CountPlacement.of(24),
+				InSquarePlacement.spread(),
+				HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(16), VerticalAnchor.belowTop(16)),
 				BiomeFilter.biome()
 		);
 

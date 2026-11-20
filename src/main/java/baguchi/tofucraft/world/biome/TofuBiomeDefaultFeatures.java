@@ -32,6 +32,7 @@ public class TofuBiomeDefaultFeatures {
 
 	public static void addDefaultSprings(BiomeGenerationSettings.Builder builder) {
 		builder.addFeature(GenerationStep.Decoration.FLUID_SPRINGS, TofuWorldPlacements.SPRING_DOUBANJIANG);
+		builder.addFeature(GenerationStep.Decoration.FLUID_SPRINGS, TofuWorldPlacements.SPRING_SOYSAUCE);
 	}
 
 	public static void addDefaultOres(BiomeGenerationSettings.Builder p_194721_) {
