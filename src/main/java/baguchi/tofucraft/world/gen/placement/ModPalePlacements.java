@@ -33,11 +33,11 @@ public class ModPalePlacements {
 
 	public static void bootstrap(BootstrapContext<PlacedFeature> context) {
 		HolderGetter<Feature> configuredFeature = context.lookup(Registries.FEATURE);
-		PlacementUtils.register(context, PATCH_PALE_SOYBEAN, configuredFeature.getOrThrow(ModPaleFeatures.PALE_SOYBEAN), List.of(CountPlacement.of(4),
+		PlacementUtils.register(context, PATCH_PALE_SOYBEAN, configuredFeature.getOrThrow(ModPaleFeatures.PALE_SOYBEAN), List.of(
 				InSquarePlacement.spread(),
 				PlacementUtils.HEIGHTMAP,
 				BiomeFilter.biome(),
-				CountPlacement.of(32),
+				CountPlacement.of(36),
 				OffsetPlacement.ofTriangle(7, 3),
 				BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)));
 	}
