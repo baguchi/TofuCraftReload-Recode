@@ -4,8 +4,8 @@
   "cook_time": 300,
   "experience": 0.6,
   "ingredients": [
-    "minecraft:brown_mushroom",
-    "minecraft:red_mushroom",
+    "#minecraft:mushrooms",
+    "#minecraft:mushrooms",
     [
       "minecraft:cooked_chicken",
       "minecraft:cooked_mutton",

@@ -671,7 +671,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 
 		ShapedRecipeBuilder.shaped(lookup, RecipeCategory.MISC, TofuBlocks.SALT_FURNACE.get())
 				.pattern("###")
-				.pattern("# #")
+				.pattern("S S")
 				.pattern("SSS")
 				.define('#', Items.IRON_INGOT)
 				.define('S', Tags.BlockItems.COBBLESTONES.item())
@@ -1354,8 +1354,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.save(this.output);
 
 		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), TofuItems.TASTYBEEFSTEW.get(), 300, 0.6F)
-				.requires(Items.BROWN_MUSHROOM)
-				.requires(Items.RED_MUSHROOM)
+				.requires(ItemTags.MUSHROOMS)
+				.requires(ItemTags.MUSHROOMS)
 				.requires(Items.COOKED_BEEF)
 				.requires(TofuTags.Items.DUST_SALT)
 				.requires(Items.MILK_BUCKET)
@@ -1364,8 +1364,8 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.SALT.get()))
 				.save(this.output);
 		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), TofuItems.TASTYSTEW.get(), 300, 0.6F)
-				.requires(Items.BROWN_MUSHROOM)
-				.requires(Items.RED_MUSHROOM)
+				.requires(ItemTags.MUSHROOMS)
+				.requires(ItemTags.MUSHROOMS)
 				.requires(Ingredient.of(Items.COOKED_CHICKEN, Items.COOKED_MUTTON, Items.COOKED_PORKCHOP, Items.COOKED_RABBIT))
 				.requires(TofuTags.Items.DUST_SALT)
 				.requires(Items.MILK_BUCKET)
