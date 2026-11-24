@@ -268,7 +268,7 @@ public class TofuBlockTags extends BlockTagsProvider {
 				.add(TofuBlocks.TOFU_FLOWER.get()).add(TofuBlocks.ZUNDA_TOFU_MUSHROOM.get())
 				.add(TofuBlocks.CHILI_CROP.get())
 				.add(TofuBlocks.SOYBEAN.get()).add(TofuBlocks.SOYBEAN_PALE.get()).add(TofuBlocks.SOYBEAN_NETHER.get()).add(TofuBlocks.SOYBEAN_SOUL.get())
-				.add(TofuBlocks.LEEK_CROP.get()).add(TofuBlocks.SPROUTS.get());
+				.add(TofuBlocks.LEEK_CROP.get()).add(TofuBlocks.SPROUTS.get()).add(TofuBlocks.YUBA.get());
 		tag(BlockTags.DANGEROUS_FOR_TELEPORTATION).add(TofuBlocks.MABOU_TERRAIN.get());
 	}
 

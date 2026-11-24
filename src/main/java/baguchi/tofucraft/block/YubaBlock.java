@@ -34,15 +34,18 @@ public class YubaBlock extends Block {
 	public YubaBlock(BlockBehaviour.Properties properties) {
 		super(properties);
 	}
+
 	@Override
 	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData, Player player) {
 		return new ItemStack(TofuItems.YUBA.get());
 	}
 
+	@Override
 	public VoxelShape getShape(BlockState p_56057_, BlockGetter p_56058_, BlockPos p_56059_, CollisionContext p_56060_) {
 		return STABLE_SHAPE;
 	}
 
+	@Override
 	public VoxelShape getInteractionShape(BlockState p_56053_, BlockGetter p_56054_, BlockPos p_56055_) {
 		return STABLE_SHAPE;
 	}
@@ -61,7 +64,7 @@ public class YubaBlock extends Block {
 	public boolean canSurvive(BlockState p_152289_, LevelReader p_152290_, BlockPos p_152291_) {
 		BlockPos blockpos = p_152291_.below();
 		BlockState blockstate = p_152290_.getBlockState(blockpos);
-		return blockstate.is(TofuBlocks.SOYMILK.get()) || blockstate.isFaceSturdy(p_152290_, blockpos, Direction.UP);
+		return blockstate.is(TofuBlocks.SOYMILK.get());
 	}
 
 	@Override

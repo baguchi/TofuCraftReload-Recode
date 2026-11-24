@@ -456,7 +456,7 @@ public class TofuBlockLootTables extends BlockLootSubProvider {
 		});
 		dropSelf(TofuBlocks.TOFUCHEST.get());
 
-		registerEmpty(TofuBlocks.YUBA.get());
+		dropOther(TofuBlocks.YUBA.get(), TofuItems.YUBA.get());
 		registerEmpty(TofuBlocks.SUSPICIOUS_TOFU_TERRAIN.get());
 		dropSelf(TofuBlocks.TOFU_STEM_SIGN.get());
 		dropOther(TofuBlocks.TOFU_STEM_WALL_SIGN.get(), TofuBlocks.TOFU_STEM_SIGN.get());

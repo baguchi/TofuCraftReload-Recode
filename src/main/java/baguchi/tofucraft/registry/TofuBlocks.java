@@ -10,6 +10,7 @@ import baguchi.tofucraft.block.KinuTofuBlock;
 import baguchi.tofucraft.block.LeekBlock;
 import baguchi.tofucraft.block.MorijioBlock;
 import baguchi.tofucraft.block.RiceBlock;
+import baguchi.tofucraft.block.SoymilkFluidBlock;
 import baguchi.tofucraft.block.SuspiciousTofuTerrainBlock;
 import baguchi.tofucraft.block.TallLeekBlock;
 import baguchi.tofucraft.block.TofuBlock;
@@ -129,14 +130,14 @@ import java.util.function.Supplier;
 public class TofuBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TofuCraftReload.MODID);
 
-	public static final DeferredBlock<Block> SOYMILK = registerWithoutItem("soymilk", (properties) -> new LiquidBlock(TofuFluids.SOYMILK.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().sound(SoundType.EMPTY));
+	public static final DeferredBlock<Block> SOYMILK = registerWithoutItem("soymilk", (properties) -> new SoymilkFluidBlock(TofuFluids.SOYMILK.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().sound(SoundType.EMPTY));
 	public static final DeferredBlock<Block> SOYMILK_HELL = registerWithoutItem("soymilk_hell", (properties) -> new LiquidBlock(TofuFluids.SOYMILK_HELL.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().sound(SoundType.EMPTY));
 	public static final DeferredBlock<Block> SOYMILK_SOUL = registerWithoutItem("soymilk_soul", (properties) -> new LiquidBlock(TofuFluids.SOYMILK_SOUL.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().sound(SoundType.EMPTY));
 	public static final DeferredBlock<Block> BITTERN = registerWithoutItem("bittern", (properties) -> new LiquidBlock(TofuFluids.BITTERN.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().sound(SoundType.EMPTY));
 	public static final DeferredBlock<Block> SOYSAUCE = registerWithoutItem("soysauce", (properties) -> new LiquidBlock(TofuFluids.SOYSAUCE.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().sound(SoundType.EMPTY));
 	public static final DeferredBlock<Block> DOUBANJIANG = registerWithoutItem("doubanjiang", (properties) -> new LiquidBlock(TofuFluids.DOUBANJIANG.value(), properties), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).replaceable().noCollision().strength(100.0F).pushReaction(PushReaction.POPPED).noLootTable().liquid().lightLevel((blockstate) -> 10).sound(SoundType.EMPTY));
 
-	public static final DeferredBlock<Block> YUBA = registerWithoutItem("yuba", (properties) -> new YubaBlock(properties), () -> BlockBehaviour.Properties.of().noOcclusion().randomTicks().strength(0.25F).mapColor(MapColor.TERRACOTTA_WHITE).sound(SoundType.WOOL));
+	public static final DeferredBlock<Block> YUBA = registerWithoutItem("yuba", (properties) -> new YubaBlock(properties), () -> BlockBehaviour.Properties.of().noOcclusion().randomTicks().strength(0.25F).mapColor(MapColor.TERRACOTTA_WHITE).replaceable().pushReaction(PushReaction.POPPED).sound(SoundType.WOOL));
 
 
 	public static final DeferredBlock<Block> SOYBEAN = registerWithoutItem("soybean", (properties) -> new SoybeanCropsBlock(properties), () -> BlockBehaviour.Properties.of().noCollision().randomTicks().instabreak().sound(SoundType.CROP));

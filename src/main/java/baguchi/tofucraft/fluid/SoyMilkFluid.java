@@ -12,11 +12,11 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -58,9 +58,16 @@ public abstract class SoyMilkFluid extends WaterFluid {
 		}
 		if (fluidState.isSource()) {
 			if (randomSource.nextInt(5) == 0) {
-				if (level.getBlockState(blockPos.below()).is(Blocks.MAGMA_BLOCK)) {
+				boolean flag = level.getBlockState(blockPos.below()).isSolid() && level.getBlockState(blockPos.below(2)).is(BlockTags.FIRE);
+				boolean flag2 = level.getBlockState(blockPos.below()).isSolid() && level.getBlockState(blockPos.below(2)).isSolid() && level.getBlockState(blockPos.below(3)).is(BlockTags.FIRE);
+
+				if (flag) {
 					level.addParticle(ParticleTypes.BUBBLE_POP, blockPos.getX() + randomSource.nextFloat(), (double) blockPos.getY() + 0.95F + randomSource.nextFloat() * 0.1F, (double) blockPos.getZ() + randomSource.nextFloat(), 0, 0, 0);
 					level.playLocalSound((double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, SoundSource.BLOCKS, randomSource.nextFloat() * 0.25F + 0.75F, randomSource.nextFloat() + 0.5F, false);
+				}
+
+				if (flag2) {
+					level.addParticle(ParticleTypes.WHITE_SMOKE, blockPos.getX() + randomSource.nextFloat(), (double) blockPos.getY() + 0.95F + randomSource.nextFloat() * 0.1F, (double) blockPos.getZ() + randomSource.nextFloat(), 0, 0, 0);
 				}
 			}
 		}
@@ -70,7 +77,7 @@ public abstract class SoyMilkFluid extends WaterFluid {
 	protected void randomTick(ServerLevel level, BlockPos blockPos, FluidState fluidState, RandomSource randomSource) {
 		if (!level.isClientSide()) {
 			if (randomSource.nextInt(4) == 0) {
-				if (level.getBlockState(blockPos.above()).isAir() && level.getBlockState(blockPos.below()).is(Blocks.MAGMA_BLOCK)) {
+				if (level.getBlockState(blockPos.above()).isAir() && level.getBlockState(blockPos.below()).isSolid() && level.getBlockState(blockPos.below(2)).is(BlockTags.FIRE)) {
 					level.setBlock(blockPos.above(), TofuBlocks.YUBA.get().defaultBlockState(), 3);
 				}
 			}
