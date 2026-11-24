@@ -1,16 +1,25 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 300,
+  "experience": 2.0,
+  "fluid": {
+    "amount": 200,
+    "ingredient": "minecraft:water"
+  },
   "ingredients": [
     "tofucraft:tofu_hell",
     "minecraft:cooked_cod",
     "minecraft:carrot",
     "minecraft:beetroot",
     "minecraft:bowl",
+    "minecraft:bowl",
     "tofucraft:doubanjiang",
     "tofucraft:chili",
     "tofucraft:chili"
   ],
   "result": {
+    "count": 2,
     "id": "tofucraft:hell_red_soup"
   }
 }

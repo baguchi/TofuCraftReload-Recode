@@ -1,5 +1,8 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "tofucraft:tofu_pot_shapeless",
+  "category": "meal",
+  "cook_time": 300,
+  "experience": 2.0,
   "ingredients": [
     "tofucraft:tofu_minced",
     "minecraft:cooked_porkchop",
@@ -10,6 +13,7 @@
     "minecraft:bowl"
   ],
   "result": {
+    "count": 2,
     "id": "tofucraft:soborotofusaute"
   }
 }

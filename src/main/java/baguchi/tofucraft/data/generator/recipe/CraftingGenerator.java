@@ -1130,7 +1130,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.requires(TofuItems.GLASS_BOWL.get())
 				.unlockedBy("has_item", has(TofuItems.GELATIN.get()))
 				.save(this.output);
-		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), TofuItems.NIKUJAGA.get(), 400, 0.8F)
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), TofuItems.NIKUJAGA.get(), 400, 1F)
 				.requires(TofuItems.BOTTLE_SOYSAUSE.get())
 				.requires(TofuItems.BOTTLE_DASHI.get())
 				.requires(Items.SUGAR)
@@ -1241,7 +1241,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.OKARA.get()))
 				.save(this.output);
 
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SOBOROTOFUSAUTE.get(), 1)
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.empty(), TofuItems.SOBOROTOFUSAUTE.get(), 2, 300, 2F)
 				.requires(TofuItems.TOFU_MINCED.get())
 				.requires(Items.COOKED_PORKCHOP)
 				.requires(Items.CARROT)
@@ -1775,7 +1775,7 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(Blocks.TINTED_GLASS))
 				.save(this.output);
 
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.HELL_MABOU.get())
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.of(SizedFluidIngredient.of(Fluids.WATER, 200)), TofuItems.HELL_MABOU.get(), 2, 300, 0.5F)
 				.requires(TofuItems.TOFU_HELL.get())
 				.requires(TofuItems.DOUBANJIANG.get())
 				.requires(TofuItems.CHILI.get())
@@ -1783,24 +1783,30 @@ public class CraftingGenerator extends CraftingDataHelper {
 				.unlockedBy("has_item", has(TofuItems.DOUBANJIANG.get()))
 				.save(this.output);
 
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.RED_SOUP.get())
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.of(SizedFluidIngredient.of(Fluids.WATER, 200)), TofuItems.RED_SOUP.get(), 2, 300, 1F)
 				.requires(TofuItems.TOFU_HELL.get())
 				.requires(Items.COOKED_COD)
 				.requires(Items.CARROT)
 				.requires(Items.BEETROOT)
 				.requires(Items.BOWL)
+				.requires(Items.BOWL)
 				.unlockedBy("has_item", has(TofuItems.TOFU_HELL.get()))
 				.save(this.output);
-		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.HELL_RED_SOUP.get())
+
+
+		TofuPotShapelessRecipeBuilder.shapeless(lookup, TofuPotCategory.MEAL, Optional.of(SizedFluidIngredient.of(Fluids.WATER, 200)), TofuItems.HELL_RED_SOUP.get(), 2, 300, 2F)
 				.requires(TofuItems.TOFU_HELL.get())
 				.requires(Items.COOKED_COD)
 				.requires(Items.CARROT)
 				.requires(Items.BEETROOT)
+				.requires(Items.BOWL)
 				.requires(Items.BOWL)
 				.requires(TofuItems.DOUBANJIANG.get())
 				.requires(TofuItems.CHILI.get(), 2)
 				.unlockedBy("has_item", has(TofuItems.DOUBANJIANG.get()))
 				.save(this.output);
+
+
 		ShapelessRecipeBuilder.shapeless(lookup, RecipeCategory.FOOD, TofuItems.SUKIYAKI.get())
 				.requires(TofuItems.TOFU_GRILLED.get(), 2)
 				.requires(Items.COOKED_BEEF)
