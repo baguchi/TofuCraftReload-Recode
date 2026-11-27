@@ -190,6 +190,16 @@ public class TofuAdvancementGenerator extends AdvancementSubProvider {
 					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuBlocks.METALTOFU.get()))
 					.save(output, "tofucraft:harder_tofu");
 
+			AdvancementHolder cooking = Advancement.Builder.advancement()
+					.parent(harder_tofu)
+					.display(TofuBlocks.TOFU_POT.get().asItem(),
+							Component.translatable("advancements.tofucraft.cooking.title"),
+							Component.translatable("advancements.tofucraft.cooking.desc"),
+							AdvancementType.GOAL, true, true, false)
+					.addCriterion("has_item", InventoryChangeTrigger.TriggerInstance.hasItems(TofuBlocks.TOFU_POT.get()))
+					.save(output, "tofucraft:cooking");
+
+
 			AdvancementHolder fermentation_basics = Advancement.Builder.advancement()
 					.parent(make_tofu)
 					.display(TofuItems.KOUJI_BASE.get(),

@@ -1,0 +1,33 @@
+{
+  "parent": "tofucraft:harder_tofu",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tofucraft:tofu_pot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tofucraft.cooking.desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "tofucraft:tofu_pot"
+    },
+    "title": {
+      "translate": "advancements.tofucraft.cooking.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
