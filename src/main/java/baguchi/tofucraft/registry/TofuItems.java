@@ -458,8 +458,7 @@ public class TofuItems {
 
 	public static final DeferredHolder<Item, Item> SOUL_FUKUMAME = ITEMS.registerItem("soul_fukumame", (properties) -> new SoulFukumameItem((properties).stacksTo(1).enchantable(3).durability(64).rarity(Rarity.UNCOMMON)));
 
-	public static final DeferredHolder<Item, Item> ZUNDA_BOW = ITEMS.registerItem("zunda_bow", (properties) -> new ZundaBowItem((properties).rarity(Rarity.UNCOMMON).enchantable(3).durability(686).component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("item.tofucraft.zunda_bow.desc")), List.of()))));
-
+	public static final DeferredHolder<Item, Item> ZUNDA_BOW = ITEMS.registerItem("zunda_bow", (properties) -> new ZundaBowItem((properties).rarity(Rarity.UNCOMMON).enchantable(3).durability(686).component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("item.tofucraft.zunda_bow.desc"))))));
 	public static final DeferredHolder<Item, Item> ZUNDA_ARROW = ITEMS.registerItem("zunda_arrow", (properties) -> new ZundaArrowItem((properties)));
 
 	public static final DeferredHolder<Item, Item> ZUNDAMUSHROOM_ON_A_STICK = ITEMS.registerItem("zundamushroom_on_a_stick", (properties) -> new ZundaMushroomOnAStickItem<>((properties).durability(25), TofuEntityTypes.TOFU_PIG, 7));
