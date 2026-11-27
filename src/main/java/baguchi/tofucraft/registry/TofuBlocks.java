@@ -199,7 +199,7 @@ public class TofuBlocks {
 	public static final DeferredBlock<Block> STRAWBERRY_TOFU = register("block_tofu_strawberry", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> FRIED_TOFU = register("block_tofu_fried", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
 	public static final DeferredBlock<Block> FRIED_POUCH_TOFU = register("block_tofu_fried_pouch", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
-	public static final DeferredBlock<Block> GLOW_TOFU = register("block_tofu_glow", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).lightLevel(state -> 15).sound(SoundType.SNOW));
+	public static final DeferredBlock<Block> GLOW_TOFU = register("block_tofu_glow", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).lightLevel(state -> 15).sound(SoundType.CORAL_BLOCK));
 
 
 	public static final DeferredBlock<Block> HELLTOFU = register("block_tofu_hell", Block::new, () -> BlockBehaviour.Properties.of().strength(0.35F, 0.5F).sound(SoundType.SNOW));
