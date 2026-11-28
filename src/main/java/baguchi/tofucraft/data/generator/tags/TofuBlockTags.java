@@ -25,7 +25,8 @@ public class TofuBlockTags extends BlockTagsProvider {
 	@Override
 	protected void addTags(HolderLookup.Provider p_256380_) {
 		new TofuBlockItemTags(tagId -> TofuBlockItemTags.wrapForBlocks(this.tag(tagId.block()))).run();
-
+		tag(BlockTags.SWORD_EFFICIENT).add(TofuBlocks.NATTO_COBWEB.get());
+		tag(BlockTags.SHEARS_EXTREME_BREAKING_SPEED).add(TofuBlocks.NATTO_COBWEB.get());
 		tag(BlockTags.MINEABLE_WITH_SHOVEL).add(TofuBlocks.KINUTOFU.get(), TofuBlocks.MOMENTOFU.get(), TofuBlocks.HELLTOFU.get(), TofuBlocks.SOULTOFU.get()
 						, TofuBlocks.GRILLED_TOFU.get(), TofuBlocks.ZUNDA_TOFU.get()
 						, TofuBlocks.TOFU_STAIR_KINU.get(), TofuBlocks.TOFU_STAIR_MOMEN.get(), TofuBlocks.TOFU_STAIR_ZUNDA.get(), TofuBlocks.TOFU_STAIR_HELL.get(), TofuBlocks.TOFU_STAIR_SOUL.get()

@@ -1,4 +1,4 @@
-package baguchi.tofucraft.data.generator;
+package baguchi.tofucraft.data.generator.tags;
 
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.registry.TofuDamageTypes;

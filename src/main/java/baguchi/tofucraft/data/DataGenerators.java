@@ -1,16 +1,16 @@
 package baguchi.tofucraft.data;
 
 import baguchi.tofucraft.TofuCraftReload;
-import baguchi.tofucraft.data.generator.FluidTagGenerator;
 import baguchi.tofucraft.data.generator.TofuAdvancementGenerator;
-import baguchi.tofucraft.data.generator.TofuDamageTypeTags;
 import baguchi.tofucraft.data.generator.TofuDataMapsProvider;
 import baguchi.tofucraft.data.generator.TofuEquipmentModelProvider;
 import baguchi.tofucraft.data.generator.TofuModelData;
 import baguchi.tofucraft.data.generator.recipe.CraftingGenerator;
+import baguchi.tofucraft.data.generator.tags.FluidTagGenerator;
 import baguchi.tofucraft.data.generator.tags.TofuBiomeTags;
 import baguchi.tofucraft.data.generator.tags.TofuBlockTags;
 import baguchi.tofucraft.data.generator.tags.TofuCustomTags;
+import baguchi.tofucraft.data.generator.tags.TofuDamageTypeTags;
 import baguchi.tofucraft.data.generator.tags.TofuEnchantTags;
 import baguchi.tofucraft.data.generator.tags.TofuEntityTags;
 import baguchi.tofucraft.data.generator.tags.TofuItemTags;
