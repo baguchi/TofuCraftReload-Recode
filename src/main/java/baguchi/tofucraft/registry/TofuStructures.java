@@ -33,6 +33,7 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraft.world.level.levelgen.structure.templatesystem.AlwaysTrueTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.ProcessorRule;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RandomBlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleProcessor;
@@ -164,9 +165,15 @@ public class TofuStructures {
 								.generationStep(GenerationStep.Decoration.UNDERGROUND_STRUCTURES)
 								.build(),
 						pools.getOrThrow(TofuStructures.TOFU_MINESHAFT_CENTERS),
+						Optional.empty(),
 						12,
 						UniformHeight.of(VerticalAnchor.absolute(-32), VerticalAnchor.absolute(16)),
-						false
+						false,
+						Optional.empty(),
+						new JigsawStructure.MaxDistance(80),
+						List.of(),
+						JigsawStructure.DEFAULT_DIMENSION_PADDING,
+						LiquidSettings.IGNORE_WATERLOGGING
 				)
 		);
 	}
