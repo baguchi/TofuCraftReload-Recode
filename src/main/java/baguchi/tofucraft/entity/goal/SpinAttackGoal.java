@@ -69,6 +69,7 @@ public class SpinAttackGoal extends Goal {
 	public void start() {
 		super.start();
 		this.attackTime = 0;
+		this.gandlem.getNavigation().stop();
 		this.gandlem.setAction(TofuGandlem.Actions.START_RUSH);
 	}
 
@@ -82,7 +83,15 @@ public class SpinAttackGoal extends Goal {
 			LivingEntity livingentity = this.gandlem.getTarget();
 			if (livingentity != null) {
 				this.gandlem.lookAt(livingentity, 90.0F, 90.0F);
+
+				if (this.gandlem.getY() - livingentity.getY(0.5F) > 0.5F) {
+					this.gandlem.setYya(-1F);
+				} else if (livingentity.getY(0.5F) - this.gandlem.getY() > 0.5F) {
+					this.gandlem.setYya(1F);
+				}
 			}
+
+
 		}
 
 		if (this.attackTime == 24) {

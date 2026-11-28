@@ -22,9 +22,6 @@ public class StafeableFlyingMoveControl extends MoveControl {
 
 	@Override
 	public void tick() {
-		this.mob.setZza(0);
-		this.mob.setXxa(0);
-		this.mob.setYya(0);
 		if (this.operation == MoveControl.Operation.STRAFE) {
 			this.operation = MoveControl.Operation.WAIT;
 			if (!this.hoversInPlace) {
@@ -53,7 +50,6 @@ public class StafeableFlyingMoveControl extends MoveControl {
 			this.mob.setSpeed(f1);
 			this.mob.setZza(this.strafeForwards);
 			this.mob.setXxa(this.strafeRight);
-			this.mob.setYya(-0.1F);
 		} else if (this.operation == MoveControl.Operation.MOVE_TO) {
 			this.operation = MoveControl.Operation.WAIT;
 			this.mob.setNoGravity(true);

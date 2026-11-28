@@ -45,6 +45,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MoveTowardsRestrictionGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -138,6 +139,8 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 
 	@Override
 	protected void registerGoals() {
+		MoveTowardsRestrictionGoal goal = new MoveTowardsRestrictionGoal(this, 1.0);
+
 		this.spinAttackGoal = new SpinAttackGoal(this, RUSH_COOLDOWN);
 		this.goalSelector.addGoal(1, new FloatGoal(this));
 		this.goalSelector.addGoal(2, new DoNothingGoal());
@@ -166,16 +169,34 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 			}
 		});
 		this.goalSelector.addGoal(7, new AttackGoal(this));
-		this.goalSelector.addGoal(8, new WaterAvoidingRandomFlyingGoal(this, 0.9D));
-		this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 6.0F));
-		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 6.0F));
-		this.goalSelector.addGoal(11, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(8, goal);
+		this.goalSelector.addGoal(9, new WaterAvoidingRandomFlyingGoal(this, 0.9D));
+		this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 6.0F));
+		this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Mob.class, 6.0F));
+		this.goalSelector.addGoal(12, new RandomLookAroundGoal(this));
 		this.mostDamageTargetGoal = new MostDamageTargetGoal(this);
 		this.targetSelector.addGoal(1, this.mostDamageTargetGoal);
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllager.class, true));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Enderman.class, true));
 		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, true));
 		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, AbstractTofunian.class, true));
+	}
+
+	@Override
+	public boolean isWithinHome(BlockPos pos) {
+		if (this.homePos != null) {
+			return this.homePos.distSqr(pos) < (double) (18 * 18);
+		}
+
+		return super.isWithinHome(pos);
+	}
+
+	@Override
+	public boolean isWithinHome(Vec3 pos) {
+		if (this.homePos != null) {
+			return this.homePos.distToCenterSqr(pos) < (double) (18 * 18);
+		}
+		return super.isWithinHome(pos);
 	}
 
 	@Override
@@ -811,10 +832,16 @@ public class TofuGandlem extends Monster implements RangedAttackMob, TofuBossMob
 					}
 
 					if (this.strafingTime > -1) {
-						if (d0 > (double) (this.getFollowDistance() * this.getFollowDistance() * 0.6F)) {
+						if (d0 > (double) (this.getFollowDistance() * this.getFollowDistance() * 0.4F)) {
 							this.strafingBackwards = false;
-						} else if (d0 < (double) (this.getFollowDistance() * this.getFollowDistance() * 0.4F)) {
+						} else if (d0 < (double) (this.getFollowDistance() * this.getFollowDistance() * 0.2F)) {
 							this.strafingBackwards = true;
+						}
+
+						if (this.gandlem.getY() - livingentity.getY(0.5F) > 2.0F) {
+							this.gandlem.setYya(-1F);
+						} else if (livingentity.getY(0.5F) - this.gandlem.getY() > 2.0F) {
+							this.gandlem.setYya(1F);
 						}
 
 						this.gandlem.getMoveControl().strafe(this.strafingBackwards ? -0.6F : 0.5F, this.strafingClockwise ? 0.5F : -0.5F);
