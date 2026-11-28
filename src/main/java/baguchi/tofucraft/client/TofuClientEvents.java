@@ -59,7 +59,7 @@ public class TofuClientEvents {
 			Component itextcomponent = boss.getDisplayName();
 			int l = minecraft.font.width(itextcomponent);
 			int i1 = i / 2 - l / 2;
-			event.getGuiGraphics().text(minecraft.font, itextcomponent, i1, event.getY() - 9, 16777215);
+			event.getGuiGraphics().text(minecraft.font, itextcomponent, i1, event.getY() - 9, -1);
 			if (event.getY() >= minecraft.getWindow().getGuiScaledHeight() / 3) {
 				return;
 			}
