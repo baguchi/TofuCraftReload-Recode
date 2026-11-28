@@ -1,11 +1,4 @@
-<p align="center">
-<a href="https://www.curseforge.com/minecraft/mc-mods/tofucraftreload"><img src="https://i.imgur.com/A4GtY37.png" alt="CurseForge Project"/></a>
-<a href="https://www.mcbbs.net/thread-728674-1-1.html"><img src="https://i.imgur.com/tPInEIv.png" alt="MCBBS"/> </a>
-<img src="https://i.imgur.com/67omSJs.png"/>
-<div align=center><img src="https://i.imgur.com/ofYHpTk.png" alt="TofuCraftReload Logo"/></div>
-</p>
-
-Welcome to TofuCraftReload, TofuCraft mod in 1.21.x Minecraft.
+Welcome to TofuCraftReload, TofuCraft mod in modern Minecraft.
 
 TofuCraft is a mod that all about tofu.
 
