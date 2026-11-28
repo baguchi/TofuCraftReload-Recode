@@ -3,12 +3,12 @@ package baguchi.tofucraft.client.render.entity;
 import baguchi.tofucraft.TofuCraftReload;
 import baguchi.tofucraft.client.TofuModelLayers;
 import baguchi.tofucraft.client.model.TofuGandlemModel;
-import baguchi.tofucraft.client.render.layer.TofuGandlemChargedLayer;
-import baguchi.tofucraft.client.render.layer.TofuGandlemEmissiveLayer;
 import baguchi.tofucraft.client.render.state.TofuGandlemRenderState;
 import baguchi.tofucraft.entity.TofuGandlem;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.LivingEntityEmissiveLayer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
@@ -16,17 +16,39 @@ import net.minecraft.util.Mth;
 public class TofuGandlemRender extends MobRenderer<TofuGandlem, TofuGandlemRenderState, TofuGandlemModel<TofuGandlemRenderState>> {
 	private static final Identifier LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem.png");
 	private static final Identifier SHOOTING_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_shooting.png");
+	private static final Identifier EYE_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_eye.png");
 
 	private static final Identifier CHARGE_LOCATION = Identifier.fromNamespaceAndPath(TofuCraftReload.MODID, "textures/entity/tofu_gandlem/tofu_gandlem_charge.png");
 
 	public TofuGandlemRender(EntityRendererProvider.Context p_173956_) {
 		super(p_173956_, new TofuGandlemModel(p_173956_.bakeLayer(TofuModelLayers.TOFU_GANDLEM)), 0.5F);
-		this.addLayer(new TofuGandlemEmissiveLayer<>(this, LOCATION, (p_234809_, p_234810_, p_234811_) -> {
-			return p_234809_.deathTime <= 0 && !p_234809_.sleep ? Mth.clamp(p_234809_.health / p_234809_.maxHealth + 0.4F, 0.4F, 1.0F) : 0.0F;
-		}, TofuGandlemModel::getCoreModelParts));
-		this.addLayer(new TofuGandlemChargedLayer<>(this, CHARGE_LOCATION, (p_234809_, p_234810_, p_234811_) -> {
-			return p_234809_.health > 0 ? 1.0F : 0.0F;
-		}, TofuGandlemModel::getCoreModelParts));
+
+		this.addLayer(
+				new LivingEntityEmissiveLayer<>(
+						this,
+						renderState -> EYE_LOCATION,
+						(renderState, ageInTicks) -> {
+							if (renderState.health <= 0.0F) {
+								return 0.0F;
+							}
+							return renderState.maxHealth / 2 >= renderState.health ? Math.max(0.2F, Mth.cos(ageInTicks * 0.045F) * 1.0F) : 1.0F;
+						},
+						this.getModel(),
+						RenderTypes::entityTranslucentEmissive,
+						false
+				)
+		);
+
+		this.addLayer(
+				new LivingEntityEmissiveLayer<>(
+						this,
+						renderState -> CHARGE_LOCATION,
+						(renderState, ageInTicks) -> renderState.chargeHealth > 0.0F ? 1.0F : 0.0F,
+						this.getModel(),
+						RenderTypes::entityTranslucentEmissive,
+						false
+				)
+		);
 	}
 
 	@Override
